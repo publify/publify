@@ -1,6 +1,12 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'rake/gempackagetask'
+require 'rake/contrib/rubyforgepublisher'
+
+PKG_VERSION = "1.5.0"
+PKG_NAME = "typo"
+PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 $VERBOSE = nil
 TEST_CHANGES_SINCE = Time.now - 600
