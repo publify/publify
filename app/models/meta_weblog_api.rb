@@ -15,11 +15,9 @@ class MetaWeblogApi
     article.published   = publish ? 1 : 0
     article.author      = username
 
-    Category.find_all.each { |c|
-        if struct['categories'].include?(c.name)
-          article.categories << c
-        end
-    }
+    Category.find_all.each do |c|
+      article.categories << c if struct['categories'].include?(c.name)
+    end
 
     article.save    
     article.id.to_s
@@ -43,11 +41,9 @@ class MetaWeblogApi
 
     categories = Category.find_all()
     article.remove_categories(categories)
-    categories.each { |c|
-        if struct['categories'].include?(c.name)
-          article.categories << c
-        end
-    }
+    categories.each do |c|
+      article.categories << c if struct['categories'].include?(c.name)
+    end
   
     article.save    
     true
