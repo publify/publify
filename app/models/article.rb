@@ -1,3 +1,6 @@
+require 'uri'
+require 'net/http'
+
 class Article < ActiveRecord::Base
   has_many :pings, :dependent => true
   has_many :comments, :dependent => true
@@ -10,9 +13,6 @@ class Article < ActiveRecord::Base
   end
   
   def send_pings(articleurl, urllist)
-    require 'uri'
-    require 'net/http'
-
     urllist.to_a.each do |url|
       # record the ping in the database
       ping = build_to_pings
@@ -35,8 +35,10 @@ class Article < ActiveRecord::Base
   end
 
   def self.find_all_by_date(year, month, day)  
-    from = Time.mktime(year, month, day)
-    to   = from + 1.day
+    from = Time.mktime(year, month || 1, day || 1)
+    to   = from + 1.year unless year.blank?
+    to   = from + 1.month unless month.blank?    
+    to   = from + 1.day unless day.blank?
 
     Article.find_all(["created_at BETWEEN ? AND ?", from, to] ,'created_at DESC')
   end
@@ -46,9 +48,7 @@ class Article < ActiveRecord::Base
   end
   
   def self.find_by_permalink(year, month, day, title)
-    if title == "article-2"
-      return find(2)
-    end
+    find_all_by_date(year, month, day).find { |a| a.stripped_title == title}
   end
 
   def self.search(query)
@@ -57,7 +57,7 @@ class Article < ActiveRecord::Base
       find_by_sql(["SELECT * from articles WHERE #{ (["LOWER(body) like ?"] * tokens.size).join(" AND ") } AND published != 0 ORDER by created_at DESC", *tokens])
     end
   end
-  
+    
   def self.strip_title(title)
     result = title.downcase
 

@@ -9,9 +9,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'xml/:action/feed.xml', :controller  => 'xml'
 
   # allow neat perma urls
-  map.connect 'articles/:year/:month/:day/:title', :controller  => 'articles', :action => 'permalink'
-  
-    
+  map.connect 'articles/:year/:month/:day', :controller  => 'articles', :action => 'find_by_date', :year => /\d{4}/, :day => nil, :month => nil
+  map.connect 'articles/:year/:month/:day/:title', :controller  => 'articles', :action => 'permalink', :year => /\d{4}/
+      
   # Allow legacy urls to still work
   map.connect ':controller/:action/:id' #'
 end

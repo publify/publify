@@ -19,11 +19,23 @@ class ArticlesController < ApplicationController
     fill_from_cookies(@comment)    
   end
   
+  def find_by_date
+    @articles = Article.find_all_by_date(@params["year"], @params["month"], @params["day"])
+    render_action "index"              
+  end
+  
   def permalink
     @article = Article.find_by_permalink(@params["year"], @params["month"], @params["day"], @params["title"])
     @comment = Comment.new
 
     fill_from_cookies(@comment)    
+    render_action "read"      
+
+    unless @params["year"].blank? or @params["month"].blank? or @params["day"].blank? or @params["title"].blank?
+    else
+      @articles = Article.find_all_by_date(@params["year"], @params["month"], @params["day"])
+      render_action "index"            
+    end
   end
   
   def error(message = "Record not found")
@@ -99,7 +111,6 @@ class ArticlesController < ApplicationController
     def fill_from_cookies(comment)      
       comment.author  ||= cookies['author']
       comment.url     ||= cookies['url']
-      comment.email   ||= cookies['email']
     end
     
     def rescue_action_in_public(exception)
