@@ -1,3 +1,5 @@
 <% for article in @articles -%>
   <%= render_partial "article", article %>
-<% end %>
+  
+  <p class="postmetadata"><!--Posted in <%= article.category %> <strong>|</strong> --><%=link_to_comments(article)%></a></p> 
+<% end -%>
