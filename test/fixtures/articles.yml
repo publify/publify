@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+article1:
+  id: 1 
+  title: title
+  body: body
+  category: code
+  
+  
+article2:
+  id: 2
+  title: title
+  body: body
+  category: personal

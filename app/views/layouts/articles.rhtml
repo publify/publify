@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="/stylesheets/base.css" type="text/css" />
+	<link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="/xml/rss" />
+	<title><%= CONFIG['blogname'] %></title>
+</head>
+<body>
+<div id="page">
+
+<!-- head -->
+<div id="header">
+<div id="headerimg">
+<h1><a href="/"><%= CONFIG['blogname'] %></a></h1>
+	<div class="description"></div>  
+</div>
+</div>
+
+<div id="content" class="narrowcolumn">
+  <%= @content_for_layout %>
+</div>
+
+<!-- left -->
+<div id="sidebar">
+
+	<form action="/index.php" method="get"><p>Search<br /><input type="text" name="q" value="" size="15" /></p></form>
+
+     <a href="?pg=2">Archive</a>
+     <br/><br/>
+
+     <b>projects</b><br/>
+     <a href="http://www.hieraki.org" title="">Hieraki</a><br /><a href="http://www.snowdevil.ca" title="">Snowdevil</a><br />
+     <br/>
+     <b>subpages</b><br/>
+     <a href="http://www.neech.de/gallery/" title="Gallery with me, fiona and others">Gallery</a><br /><a href="http://blog.leetsoft.com/resume" title="My Curriculum Vitae">Resume</a><br /><a href="http://blog.leetsoft.com/rails/" title="">Ruby on windows</a><br />
+     <br/>
+     <b>blogs I read</b><br/>
+     <a href="http://ontherails.blogspot.com/" title=""> On The Rails</a><br /><a href="http://www.loudthinking.com/" title="Programmer of RoR(Ruby on rails)">Loud Thinking</a><br /><a href="http://primates.ximian.com/~miguel/activity-log.php" title="">Miguel de Icaza</a><br />
+     <br/>
+     <b>tools I use</b><br/>
+     <a href="http://www.adiumx.com/" title="">Adium X</a><br /><a href="http://www.newsfirerss.com/" title="">NewsFire</a><br /><a href="http://www.rubyonrails.org" title="Web development framework of choice">Ruby on Rails</a><br /><a href="http://www.ruby-lang.org/en/" title="Best programming language out there">Ruby</a><br /><a href="http://macromates.com/" title="">Textmate</a><br />
+
+	<form action="/" method="get">
+<p>Browse<br /><select name="c" onchange="submit(this.form)">
+	<option value=""></option>
+		<option value="code">code</option>
+		<option value="job">job</option>
+		<option value="personal">personal</option>
+</select></p><noscript><input type="submit" value="go" /></noscript></form>
+	<p><a href="/?rss=1" title="XML feed">RSS</a> / <a href="/?atom=1" title="XML feed">Atom</a></p>
+<br/><br/><br/><br/>
+<img style="border:1px solid black" src="http://www.neech.de/albums/victoria2004/IMG_2007.thumb.jpg" alt="" /><br/><br/>
+<img style="border:1px solid black" src="http://www.neech.de/albums/summer03/acy.thumb.jpg" alt=""/>
+<br/><br/>
+<img style="border:1px solid black" src="http://www.neech.de/albums/DEtrip/IMG_2344.thumb.jpg" alt=""/>
+<br/><br/>
+
+
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a><br/>
+      <a href="http://jigsaw.w3.org/css-validator/validator?uri=blog.leetsoft.com">Valid CSS</a>
+    </p>
+</div>
+
+<!-- footer -->
+<div id="footer">
+    <p>Copyright  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#111;&#98;&#105;&#64;&#108;&#101;&#101;&#116;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;" title="Tobias Luetke">Tobias Luetke</a> <br/>
+    <a href="/xml/rss" title="XML feed">RSS</a> available</p>
+</div>
+
+</div>
+
+</body>
+</html>
