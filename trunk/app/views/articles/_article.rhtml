@@ -1,0 +1,21 @@
+<div class="post">
+  <!--
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description
+      rdf:about=""
+      trackback:ping="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>article.id %>"
+      dc:title="<%= article.title %>"
+      dc:identifier="<%= server_url_for :controller=>"articles", :action=>"read", :id=>article.id %>"
+      dc:description="<%= strip_html(article.body_html[0..255]) %>"
+      dc:creator="<%= h article.author %>"
+      dc:date="<%= article.updated_at.xmlschema %>" />
+  </rdf:RDF>
+  -->
+  <h2>
+    <%= article_link article.title, article %>
+  </h2>
+  <b><small>Posted by <%=h article.author %> <%= distance_of_time_in_words_to_now article.created_at %> ago</small></b><br/>
+  <%= article.body_html %>
+</div>

@@ -1,0 +1,8 @@
+<b><%= tada.title %></b><br/>
+<% for task in tada.tasks.to_a -%>
+  <% if task.status == :completed  -%>
+    <del><a href="<%= task.link %>" title="<%= task.title %>"><%= task.title %> </a><br/></del>
+  <% else -%>
+    <a href="<%= task.link %>" title="<%= task.title %>"><%= task.title %> </a><br/>
+  <% end -%>
+<% end -%>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+spam_comment:
+  id: 1
+  article_id: 2
+  author: Bob Foo
+  url: http://fakeurl.com
+  body: Test <a href="http://fakeurl.co.uk">body</a>
+
+comment2:
+  id: 2
+  article_id: 1
+  author: John Bar
+  url: www.google.com
+  body: Comment body _italic_ *bold*

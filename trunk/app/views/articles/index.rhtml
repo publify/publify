@@ -1,0 +1,28 @@
+<% for article in @articles -%>
+  <%= render_partial "article", article %>
+  <p class="postmetadata">
+    <% unless article.categories.empty? -%>
+      Posted in 
+      <%= article.categories.collect { |c| link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name }.join(", ") %>
+      <% unless article.allow_comments < 1 and article.allow_pings < 1 -%>
+        <strong>|</strong> 
+      <% end -%>
+    <% end -%>
+    <% unless article.allow_comments < 1 -%>
+      <%= comments_link(article) %>
+      <% unless article.allow_pings < 1 -%>
+        <strong>|</strong> 
+      <% end -%>
+    <% end -%>
+    <% unless article.allow_pings < 1 -%>
+      <%= trackbacks_link(article) %>
+    <% end -%>
+  </p> 
+<% end -%>
+
+<% unless @articles.size < 10 %>
+<div id="pagination">
+  Older posts:
+  <%= pagination_links @pages, :params => { :action => @controller.action_name } %>
+</div>
+<% end %>

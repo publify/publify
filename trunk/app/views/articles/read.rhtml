@@ -1,0 +1,79 @@
+<% content_for("script") do %>
+function item_added() {
+  new Effect.Highlight($('commentList').lastChild);
+}
+function item_loading() {
+  $('commentform').elements[2].value = '';
+  $('commentform').elements[2].focus();
+}
+
+window.onload = function() {
+  if( $('commentform').elements[1].value != '' ) {
+    Toggle.display('guest_url')
+  }
+}
+<% end %>
+
+<%= render_partial "article", @article %>
+
+<% if @article.allow_comments > 0 -%>
+  <a name="comments"></a><h3><%= responses(@article.comments, "response") %> to '<%=h @article.title  %>'</h3> 
+  <p class="postmetadata alt">
+    <small><a href="#respond">Leave a response</a></small>
+  </p>
+  <ol id="commentList" class="commentlist">
+    <%= render_collection_of_partials "comment", @article.comments %>
+  </ol>
+<% end -%>
+
+<% if @article.allow_pings > 0 -%>
+  <a name="trackbacks"></a><h3><%= responses(@article.trackbacks, "trackback") %> to '<%=h @article.title  %>'</h3>
+  <p class="postmetadata alt">
+    Use the following link to trackback from your own site:<br/>
+    <%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>
+  </p>
+  <ol class="trackbacklist">
+    <%= render_collection_of_partials "trackback", @article.trackbacks %>
+  </ol>
+<% end -%>
+
+<% if @article.allow_comments > 0 -%>
+<%= form_remote_tag :url => {:action => "comment", :id => @article.id}, :update=> "commentList", :position=> "bottom", :loading => 'item_loading()', :complete => "item_added()", :html=>{:id=>'commentform',:name=>'commentform'}%>
+<div class="graybox">
+  <small>write a comment....</small>
+  <a name="respond"></a>
+  <table cellpadding="4" cellspacing="0" border="0">
+    <tr>
+      <td align="right" valign="top">
+        Your name
+      </td>
+      <td valign="top">
+        <%= text_field "comment", "author", :size => 20 %> <small><a href="javascript:Toggle.display('guest_url')">(leave url &#187;)</a></small>
+      </td>
+    </tr>
+    <tr id="guest_url" style="display:none">
+      <td align="right" valign="top">
+        Your blog
+      </td>
+      <td valign="top">
+        <%= text_field "comment", "url" %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+        Your message
+      </td>
+      <td valign="top" colspan="2">
+        <%= text_area "comment", "body", "style"=> "width:300px;height:200px" %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">&nbsp;</td>
+      <td align="right" valign="top">
+        <input type="submit" name="submit" value="submit" class="button" />
+      </td>
+    </tr>
+  </table>
+</div>
+<% end -%>
+<%= end_form_tag %>

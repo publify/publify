@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+login:
+  id: 1
+  name: login
+  value: tobi
+  
+password:
+  id: 2
+  name: password
+  value: whatever
+
+blogName:
+  id: 3
+  name: blog_name
+  value: test blog
+  
+defaultAllowPings:
+  id: 4
+  name: default_allow_pings
+  value: 1
+
+defaultAllowComments:
+  id: 5
+  name: default_allow_comments
+  value: 1

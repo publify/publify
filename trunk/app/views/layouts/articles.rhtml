@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title><%= page_title %></title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xml/rsd" />
+  <link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="<%= url_for :controller => 'xml', :action => 'rss' %>" />
+  <link rel="alternate" type="application/atom+xml"  title="Recent changes (ATOM 0.3)"  href="<%= url_for :controller => 'xml', :action => 'atom' %>" />
+  <%= stylesheet_link_tag "base" %>
+  <%= javascript_include_tag "prototype" %>
+  <script type="text/javascript"><%= @content_for_script %></script>
+</head>
+<body>
+<div id="page">
+
+<!-- head -->
+<div id="header">
+  <div id="headerimg">
+    <h1><a href="/"><%= config_value('blog_name') %></a></h1>
+    <div class="description"></div>  
+  </div>
+</div>
+
+<!-- left -->
+<div id="content" class="narrowcolumn">
+  <%= @content_for_layout %>
+</div>
+
+<!-- right -->
+<div id="sidebar">
+  <%= render_partial "shared/search" %>
+  <br/>
+  <%= categorylist %>
+  <br/>
+  <%= render_partial "shared/links"  %>
+  <br/>
+  <%=
+    # deliciouslist "http://del.icio.us/rss/username" 
+  -%>   
+  <br/>
+  <%=
+    # tadalist "http://<nick>.tadalist.com/l..." 
+  -%>   
+  <br/>
+  <%= render_partial "shared/xml" %>
+  <br/><br/><br/><br/>
+  <%=
+    #flickrlist "http://www.flickr.com/services/feeds/..."
+  -%>   
+  <a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a><br/>
+  <a href="http://jigsaw.w3.org/css-validator/validator?uri=blog.leetsoft.com">Valid CSS</a>
+</div>
+
+<!-- footer -->
+<div id="footer">
+    Powered by <a href="http://typo.leetsoft.com/" title="Typo">Typo</a><br/>
+    <%= link_to 'RSS', :controller => 'xml', :action => 'rss' %> 
+    and 
+    <%= link_to 'atom', :controller => 'xml', :action => 'atom' %>
+</div>
+</div> <!-- end "page" div -->
+
+</body>
+</html>

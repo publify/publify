@@ -1,0 +1,20 @@
+development:
+  adapter: mysql
+  database: typo_dev
+  host: localhost
+  username: root
+  password: 
+
+test:
+  adapter: mysql
+  database: typo_tests
+  host: localhost
+  username: root
+  password: 
+
+production:
+  adapter: mysql
+  database: typo
+  host: localhost
+  username: root
+  password: 

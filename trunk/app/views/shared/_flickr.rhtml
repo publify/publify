@@ -1,0 +1,6 @@
+<b><%= flickr.title  %> (<%= link_to "flickr", flickr.link %>)</b><br/>
+
+<% for pic in flickr.pics.to_a[0..3] -%>
+<img src="<%= pic.thumb %>" alt="<%= pic.title %>" style="border: 1px solid black"/>
+<br/>
+<% end -%>

@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
+xml.rsd "version"=>"1.0", "xmlns"=>"http://archipelago.phrasewise.com/rsd" do
+  xml.service do
+    xml.engineName "Typo"
+    xml.engineLink "http://typo.leetsoft.com"
+    xml.homePageLink server_url_for(:controller => "articles")
+    xml.apis do
+      xml.api "name" => "Moveable Type", "preferred"=>"true",
+              "apiLink" => server_url_for(:controller => "backend", :action => "xmlrpc"),
+              "blogID" => "1"
+      xml.api "name" => "MetaWeblog", "preferred"=>"false",
+              "apiLink" => server_url_for(:controller => "backend", :action => "xmlrpc"),
+              "blogID" => "1"
+      xml.api "name" => "Blogger", "preferred"=>"false",
+              "apiLink" => server_url_for(:controller => "backend", :action => "xmlrpc"),
+              "blogID" => "1"
+    end
+  end
+end

@@ -1,0 +1,11 @@
+software:
+  id: 1
+  name: Software
+
+hardware:
+  id: 2
+  name: Hardware
+
+personal:
+  id: 3
+  name: Personal
