@@ -1,5 +1,0 @@
-#/bin/bash
-rm development.sqlite
-rm test.sqlite
-sqlite development.sqlite < schema.sql
-sqlite test.sqlite < schema.sql

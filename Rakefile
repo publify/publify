@@ -20,6 +20,14 @@ task :default => [ :clone_structure_to_test, :test_units, :test_functional ]
 desc "Generate API documentatio, show coding stats"
 task :doc => [ :appdoc, :stats ]
 
+desc "Generate databases for sqlite"
+task :create_sqlite do
+  `rm db/development.sqlite`
+  `rm db/test.sqlite`
+  `sqlite db/test.sqlite < db/schema.sqlite.sql`
+  `sqlite db/development.sqlite < db/schema.sqlite.sql`
+  `sqlite db/production.sqlite < db/schema.sqlite.sql`
+end
 
 desc "Run the unit tests in test/unit"
 Rake::TestTask.new("test_units") { |t|

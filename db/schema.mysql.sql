@@ -18,7 +18,7 @@ CREATE TABLE `articles` (
 CREATE TABLE `articles_categories` (
   `article_id` int(11) default NULL,
   `category_id` int(11) default NULL,
-  `primary` tinyint(1) default NULL
+  `primary_category` tinyint(1) default NULL
 ) TYPE=MyISAM;
 
 CREATE TABLE `categories` (
