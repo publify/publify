@@ -1,0 +1,5 @@
+<html><head></head><body><div id="search-results">
+<% for article in @articles -%>
+<%= link_to article.title, :controller => 'articles', :action => 'read', :id => article.id  %><br/>
+<% end -%>
+</div></body></html>

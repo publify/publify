@@ -6,6 +6,7 @@
         <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xml/rsd" />
 	<link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="<%= url_for :controller => 'xml', :action => 'rss' %>" />
 	<link rel="alternate" type="application/atom+xml"  title="Recent changes (ATOM 0.3)"  href="<%= url_for :controller => 'xml', :action => 'atom' %>" />
+  <script type="text/javascript" src="/javascripts/livesearch.js"></script>
 	<title><%= CONFIG['blogname'] %></title>
 </head>
 <body>
@@ -26,11 +27,16 @@
 
 <!-- right -->
 <div id="sidebar">
-  <form action="/articles/search" method="get"> 
-    <p>Search<br />
-      <input type="text" name="q" value="" size="15" />
-    </p>
-  </form>
+  <div id="searchform">
+    <form action="/articles/search" method="get">
+      <p>Live Search<br />
+        <input type="text" id="search-input" name="q" value="" size="15" />
+        <script type="text/javascript">liveSearch('search-input', '/live/search')</script>
+        <div id="search-results"></div>
+      </p>
+    </form>
+  </div>
+
   <%= render_partial "shared/links"  %>
   <br/>
   <%=

@@ -403,7 +403,7 @@ ol li, #sidebar ul ol li {
 #searchform {
 	margin: 10px auto;
 	padding: 5px 3px; 
-	text-align: center;
+	text-align: left;
 	}
 
 #sidebar #searchform #s {
@@ -414,6 +414,10 @@ ol li, #sidebar ul ol li {
 #sidebar #searchsubmit {
 	padding: 1px;
 	}
+	
+#search-results {
+  padding: 2px;
+  }
 
 .entry form { /* This is mainly for password protected posts, makes them look better. */
 	text-align:center;
