@@ -3,9 +3,10 @@ require_dependency 'transforms'
 class Comment < ActiveRecord::Base
   belongs_to :article
 
+  validates_presence_of :author, :body
+ 
   protected
   
-    validates_presence_of :author, :body
     before_save :make_nofollow, :correct_url, :transform_body
 
     def correct_url
