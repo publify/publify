@@ -4,23 +4,17 @@ module ArticlesHelper
     case collection.count
     when 0
       "no #{word}s"
-    when 1
-      "one #{word}"
     else
       "#{collection.count} #{word}s"
     end
   end
     
-  def link_to_comments(article)
-    label = responses(article.comments, "comment")
-    
-    link_to label, :controller=> "articles", :action=>"read", :id=> article.id, :anchor=>"comments"
+  def comments_link(article)
+    article_link  responses(article.comments, "comment"), article
   end
 
-  def link_to_trackbacks(article)
-    label = responses(article.trackbacks, "trackback")
-
-    link_to label, :controller=> "articles", :action=>"read", :id=> article.id, :anchor=>"trackbacks"
+  def trackbacks_link(article)  
+    article_link responses(article.trackbacks, "trackback"), article
   end
   
   
@@ -46,5 +40,9 @@ module ArticlesHelper
     else
       config("blog_name") || "Typo"
     end    
+  end
+
+  def article_link(title, article)
+    link_to title, {:controller=>"articles", :action =>"permalink", :year => article.created_at.year, :month => article.created_at.month, :day => article.created_at.day, :title => article.stripped_title},{"title" => "Permalink to article"}
   end
 end

@@ -14,7 +14,7 @@
   </rdf:RDF>
   -->
   <h2>
-    <a href="<%= url_for :controller=>"articles", :action =>"permalink", :year => article.created_at.year, :month => article.created_at.month, :day => article.created_at.day, :title => article.stripped_title %>" title="Permanent link to this article"><%=h article.title %></a>
+    <%= article_link article.title, article %>
   </h2>
   <b><small>Posted by <%=h article.author %> <%= distance_of_time_in_words_to_now article.created_at %> ago</small></b><br/>
   <%= article.body_html %>
