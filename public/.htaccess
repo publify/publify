@@ -5,14 +5,11 @@ Options +FollowSymLinks +ExecCGI
 
 # Redirect all requests not available on the filesystem to Rails
 RewriteEngine On
-RewriteRule ^$ index.html [QSA]
-RewriteRule ^([^.]+)$ $1.html [QSA]
-
 # try to suggest current rss subscribers that the url moved permently
 RewriteRule ^xml/([a-z]+)$ /xml/$1/feed.xml [R=301]
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ /dispatch.cgi?$1 [QSA,L]
+RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
 # In case Rails experiences terminal errors
 ErrorDocument 500 /500.html
