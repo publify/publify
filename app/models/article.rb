@@ -1,8 +1,9 @@
 class Article < ActiveRecord::Base
-  has_many :comments
+  has_many :pings, :dependent => true
+  has_many :comments, :dependent => true
+  has_many :trackbacks, :dependent => true
+  
   has_and_belongs_to_many :categories
-  has_many :trackbacks
-  has_many :pings
   
   def stripped_title
     self.class.strip_title(title)
