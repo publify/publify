@@ -14,7 +14,7 @@ class BlogSweeper < ActiveRecord::Observer
     controller.expire_action :controller => "articles", :action => "index"        
 
     if @article
-      controller.expire_page :controller => "articles", :action => "read", :id=> @action.id
+      controller.expire_page :controller => "articles", :action => "read", :id=> @article.id
     end
   end
 end
