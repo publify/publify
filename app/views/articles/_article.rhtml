@@ -5,7 +5,7 @@
          xmlns:dc="http://purl.org/dc/elements/1.1/">
 <rdf:Description
     rdf:about=""
-    trackback:ping="<%= server_url_for :controller=>"trackback", :action=>"ping", :id=>article.id %>"
+    trackback:ping="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>article.id %>"
     dc:title="<%= article.title %>"
     dc:identifier="<%= server_url_for :controller=>"articles", :action=>"read", :id=>article.id %>"
     dc:description="<%= strip_html(article.body_html[0..255]) %>"
