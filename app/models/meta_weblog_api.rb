@@ -1,4 +1,10 @@
 class MetaWeblogApi
+  
+  attr_reader :request
+
+  def initialize(request)
+    @request = request
+  end
 
   def newPost(blogid, username, password, struct, publish)
     raise "Invalid login" unless valid_login?(username, password)
@@ -52,6 +58,27 @@ class MetaWeblogApi
   
     array          
   end
+  
+
+  def newMediaObject(blogid, username, password, data)
+    raise "Invalid login" unless valid_login?(username, password)
+
+    path      = "#{RAILS_ROOT}/public/files/#{data["name"].split('/')[0..-2].join('/')}"
+    filepath  = "#{RAILS_ROOT}/public/files/#{data["name"]}"
+    
+    FileUtils.mkpath(path)
+    
+    File.open(filepath, "wb") { |f| f << data["bits"] }
+
+    resource = Resource.new
+    resource.filename   = data["name"]
+    resource.size       = File.size(path)
+    resource.mime       = data["type"]    
+    resource.save
+    
+    { "url" => "#{server_url}/files/#{data["name"]}"}
+  end          
+  
 
   def getPost(postid, username, password)
     raise "Invalid login" unless valid_login?(username, password)
@@ -63,12 +90,13 @@ class MetaWeblogApi
   
   private
   
+
   def item_from(article)
     item = {
         "description"   => article.body,
         "title"         => article.title,
         "postid"        => article.id.to_s,
-        "url"           => "/articles/read/#{article.id}",
+        "url"           => "#{server_url}/articles/read/#{article.id}",
         "dateCreated"   => article.created_at
       }
   end
@@ -80,5 +108,10 @@ class MetaWeblogApi
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
   end
+  
+  def server_url
+     "http://" << request.host << request.port_string 
+  end
+   
    
 end

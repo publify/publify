@@ -23,3 +23,14 @@ CREATE TABLE 'comments' (
   'created_at' DATETIME DEFAULT NULL,
   'updated_at' DATETIME DEFAULT NULL
 );
+
+
+CREATE TABLE 'resources' (
+  'id' INTEGER PRIMARY KEY NOT NULL,
+  'size' INTEGER DEFAULT NULL,
+  'filename' VARCHAR(255) DEFAULT NULL,
+  'mime' VARCHAR(255) DEFAULT NULL,
+  'created_at' DATETIME DEFAULT NULL,
+  'updated_at' DATETIME DEFAULT NULL
+);
+
