@@ -59,5 +59,5 @@ end
 
 
 # Include your app's configuration here:
-require_dependency "artools"
-require_dependency "cgifix"
+require "artools"
+require "cgifix"
