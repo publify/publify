@@ -39,4 +39,12 @@ module ArticlesHelper
   	end
     tag
   end  
+  
+  def page_title
+    if @page_title
+      @page_title
+    else
+      config("blog_name") || "Typo"
+    end    
+  end
 end

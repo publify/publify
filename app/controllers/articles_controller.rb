@@ -12,8 +12,9 @@ class ArticlesController < ApplicationController
   end
   
   def read    
-    @article = Article.find(@params["id"])    
-    @comment = Comment.new
+    @article      = Article.find(@params["id"])    
+    @comment      = Comment.new
+    @page_title   = @article.title
 
     fill_from_cookies(@comment)    
   end
