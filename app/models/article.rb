@@ -20,17 +20,12 @@ class Article < ActiveRecord::Base
     
     urllist.to_a.each do |url|            
       begin
-        uri = URI.parse(url)
-        post = "title=#{URI.escape(title)}"
-        post << "&excerpt=#{URI.escape(strip_html(body_html)[0..254])}"
-        post << "&url=#{URI.escape(articleurl)}"
-        post << "&blog_name=#{URI.escape($config['blog_name'])}"
+        
+        ping = pings.build("url" => url)
 
-        Net::HTTP.start(uri.host, uri.port) do |http|
-          http.post("#{uri.path}?#{uri.query}", post)
-        end 
-        # record the ping in the database
-        ping = pings.create("url" => url)      
+        ping.send_ping(articleurl)               
+        ping.save
+        
       rescue
         # in case the remote server doesn't respond or gives an error, 
         # we should throw an xmlrpc error here.
@@ -44,7 +39,7 @@ class Article < ActiveRecord::Base
     
     to   = from + 1.year
     to   = from + 1.month unless month.blank?    
-    to   = from + 1.day unless day.blank?
+    to   = from + 1.day   unless day.blank?
 
     Article.find_all(["created_at BETWEEN ? AND ?", from, to] ,'created_at DESC')
   end

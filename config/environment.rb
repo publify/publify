@@ -69,3 +69,6 @@ Controllers = Dependencies::LoadingModule.root(
 )
 
 # Include your app's configuration here:
+require_dependency 'aggregations/delicious'
+require_dependency 'aggregations/tada'
+require_dependency 'aggregations/flickr'

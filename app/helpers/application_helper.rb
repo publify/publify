@@ -49,4 +49,18 @@ module ApplicationHelper
     controller.config[name]
   end
   
+  def article_link(title, article)
+    link_to title, article_url(article)
+  end
+
+  def article_url(article)
+    url_for :controller=>"articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
+  end
+  
+  def comment_url(comment)
+    article = comment.article
+    url_for :controller=>"articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
+  end
+  
+  
 end

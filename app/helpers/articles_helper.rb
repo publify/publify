@@ -44,7 +44,4 @@ module ArticlesHelper
     end    
   end
 
-  def article_link(title, article)
-    link_to title, {:controller=>"articles", :action =>"permalink", :year => article.created_at.year, :month => article.created_at.month, :day => article.created_at.day, :title => article.stripped_title},{"title" => "Permalink to article"}
-  end
 end

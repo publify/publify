@@ -4,14 +4,14 @@ module XmlHelper
   end
 
   def post_title(post)
-    "#{post.title}"
+    "#{h post.title}"
   end
 
   def post_link(post)
-    server_url_for(:controller => "articles", :action => "read", :id => post.id)
+    server_url_for(article_url(post))
   end
   
   def comment_link(comment)
-    server_url_for(:controller => "articles", :action => "read", :id => comment.article.id, :anchor=> "comment-#{comment.id}")
+    server_url_for(comment_url(comment))
   end  
 end
