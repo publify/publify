@@ -65,4 +65,4 @@ CREATE TABLE 'trackbacks' (
   'ip'          VARCHAR(15) DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
-)
+);

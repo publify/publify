@@ -1,0 +1,45 @@
+== About
+
+Typo is a lean and mean weblog. Weblogs are cool, weblogs are in and everyone who writes
+code has an different opinion on how a weblog should be written. Typo is my take on it.
+Its meant for programmers who can extend and change the source to make it fit to their
+needs but will eventually be useful to normal users as well.
+
+== Requirements
+
+Currently you need all of those things to get typo to run:
+
+ * Ruby of version 1.8.1 or higher 
+ * Rails. Most likely the latest version. If something
+   doesn't work try to run gem update 
+ * Redcloth. You can get it by gem install redcloth
+== Installation
+
+Unpack the tgz or zip in some directory.
+
+The first decision you have to make is whether to use sqlite or mysql. Both are supported.
+There is no reason why postgres or others shouldn't work, I just don't have a sql file for
+them yet.
+
+If you choose sqlite you can use the rake task create_sqlite to get the database files. 
+
+1) Change the config/database.yml to reflect your configuration 
+2) Change the config/config.yml for your setup 
+3) Run script/server -e production and see if it works
+
+If you want to deploy on fastcgi you will need to follow the setup instructions on
+www.rubyonrails.com
+
+== Customization
+
+Your first point of customization should be app/views/articles/layout.rhtml. This is the
+layout used for the weblog. You will see some commented out blocks which indicate on how
+to use the syndication helpers.
+
+== Useage
+
+Typo was made to be used from a desktop client. I personally use MarsEdit but all
+metaweblog and moveable type compatible clients will be able to talk to typo. For a short
+list of clients which are confirmed to work please visit http://typo.leetsoft.com
+
+Enjoy

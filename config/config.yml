@@ -1,6 +1,6 @@
-blogname: too-biased
-login: tobi
-password: hallo
+blogname: My shiny typo log
+login: bob
+password: bobpass
 
 default_allow_comments: 1
 default_allow_pings: 1
