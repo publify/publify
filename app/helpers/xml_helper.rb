@@ -14,4 +14,8 @@ module XmlHelper
   def comment_link(comment)
     server_url_for(comment_url(comment))
   end  
+  
+  def blog_title
+    config_value("blog_name") || "Unnamed blog"
+  end
 end

@@ -45,8 +45,8 @@ module ApplicationHelper
     text.gsub(tag, '').gsub(/\s+/, ' ').strip
   end
 
-  def config(name)  
-    controller.config[name]
+  def config_value(name)  
+    config[name]
   end
   
   def article_link(title, article)

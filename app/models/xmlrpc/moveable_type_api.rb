@@ -93,7 +93,7 @@ class MoveableTypeApi
   private
 
   def valid_login?(user,pass)
-    user == $config['login'] && pass == $config['password']
+    user == config['login'] && pass == config['password']
   end
 
   def pub_date(time)

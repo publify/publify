@@ -40,7 +40,7 @@ module ArticlesHelper
     if @page_title
       @page_title
     else
-      config("blog_name") || "Typo"
+      config_value("blog_name") || "Typo"
     end    
   end
 

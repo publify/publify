@@ -1,7 +1,7 @@
 xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
 xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom/ns#", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
 
-  xml.title config("blog_name")
+  xml.title blog_title
   xml.tagline "mode"=>"escaped", "type"=>"text/html"
   xml.id "tag:#{@request.host},2005:Typo"
   xml.generator "Typo", "url" => "http://typo.leetsoft.com"

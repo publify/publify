@@ -6,8 +6,4 @@ class ApplicationController < ActionController::Base
     $cache ||= SimpleCache.new 1.hour
   end
   
-  
-  def config
-    $config ||= Configuration.new
-  end
 end
