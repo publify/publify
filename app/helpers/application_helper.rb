@@ -2,15 +2,21 @@
 module ApplicationHelper
   
   def flickrlist(url)
-    flickr = controller.cache[:flickr] || controller.cache[:flickr] = Flickr.new(url)
+    begin
+      flickr = controller.cache[:flickr] || controller.cache[:flickr] = Flickr.new(url)
         
-    render_partial("shared/flickr", flickr)
+      render_partial("shared/flickr", flickr)
+    rescue 
+    end 
   end
 
   def tadalist(url)    
-    tada = controller.cache[:tada] || controller.cache[:tada] = Tada.new(url)
+    begin
+      tada = controller.cache[:tada] || controller.cache[:tada] = Tada.new(url)
 
-    render_partial("shared/tada", tada)
+      render_partial("shared/tada", tada)
+    rescue 
+    end 
   end
 
   def server_url_for(options = {})
