@@ -3,8 +3,14 @@ function item_added() {
   new Effect.Highlight($('comments').lastChild);
 }
 function item_loading() {
-  $('commentform').reset(); 
+  $('commentform').elements[2].value = '';
   $('commentform').elements[2].focus();
+}
+
+window.onload = function() {
+  if( $('commentform').elements[1].value != '' ) {
+    Toggle.display('guest_url')
+  }
 }
 <% end %>
 
