@@ -4,13 +4,19 @@ CREATE TABLE 'articles' (
   'author'      VARCHAR(255) DEFAULT NULL,
   'body'        TEXT DEFAULT NULL,
   'body_html'   TEXT DEFAULT NULL,
+  'extended'    TEXT DEFAULT NULL,
+  'excerpt'     TEXT DEFAULT NULL,
+  'keywords'    TEXT DEFAULT NULL,
+  'allow_comments' INTEGER DEFAULT 1,  
+  'allow_pings'    INTEGER DEFAULT 1,  
   'published'   INTEGER DEFAULT 1,  
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );
 CREATE TABLE 'articles_categories' (
   'article_id'	INTEGER,
-  'category_id'	INTEGER
+  'category_id'	INTEGER,
+  'primary'     INTEGER DEFAULT 0
 );
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
@@ -43,3 +49,14 @@ CREATE TABLE 'sidebar_blocks' (
   'data'        TEXT, 
   'position'    INTEGER
 );
+CREATE TABLE 'trackbacks' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'article_id'  INTEGER,
+  'blog_name'   VARCHAR(255) DEFAULT NULL,
+  'title'       VARCHAR(255) DEFAULT NULL,
+  'excerpt'     VARCHAR(255) DEFAULT NULL,
+  'url'         VARCHAR(255) DEFAULT NULL,
+  'ip'          VARCHAR(15) DEFAULT NULL,
+  'created_at'  DATETIME DEFAULT NULL,
+  'updated_at'  DATETIME DEFAULT NULL
+)
