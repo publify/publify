@@ -1,13 +1,16 @@
 CREATE TABLE 'articles' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'title'       VARCHAR(255) DEFAULT NULL,
-  'category'    VARCHAR(255) DEFAULT NULL,
   'author'      VARCHAR(255) DEFAULT NULL,
   'body'        TEXT DEFAULT NULL,
   'body_html'   TEXT DEFAULT NULL,
   'published'   INTEGER DEFAULT 1,  
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
+);
+CREATE TABLE 'articles_categories' (
+  'article_id'	INTEGER,
+  'category_id'	INTEGER
 );
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,

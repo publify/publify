@@ -1,12 +1,7 @@
 class Article < ActiveRecord::Base
   has_many :comments
+  has_and_belongs_to_many :categories
 
-  def self.categories        
-    articles = find_by_sql("SELECT distinct category FROM articles")
-    response = articles.to_a.collect{ |a| a.category.to_a}.compact.flatten
-    response
-  end
-  
   def self.search(query)
     if query
       tokens      = query.split.collect {|c| "%#{c}%"}

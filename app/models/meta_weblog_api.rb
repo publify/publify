@@ -14,7 +14,13 @@ class MetaWeblogApi
     article.title       = struct['title']
     article.published   = publish ? 1 : 0
     article.author      = username
-  
+
+    Category.find_all.each { |c|
+        if struct['categories'].include?(c.name)
+          article.categories << c
+        end
+    }
+
     article.save    
     article.id.to_s
   end
@@ -34,6 +40,14 @@ class MetaWeblogApi
     article.title       = struct['title']
     article.published   = publish ? 1 : 0
     article.author      = username
+
+    categories = Category.find_all()
+    article.remove_categories(categories)
+    categories.each { |c|
+        if struct['categories'].include?(c.name)
+          article.categories << c
+        end
+    }
   
     article.save    
     true
@@ -41,9 +55,8 @@ class MetaWeblogApi
   
   def getCategories(blogid, username, password)
     raise "Invalid login" unless valid_login?(username, password)
-    Article.categories        
+    Category.find_all.collect { |c| c.name }
   end
-
 
   def getRecentPosts(blogid, username, password, numberOfPosts)
     raise "Invalid login" unless valid_login?(username, password)
@@ -96,7 +109,8 @@ class MetaWeblogApi
         "title"         => article.title,
         "postid"        => article.id.to_s,
         "url"           => "#{server_url}/articles/read/#{article.id}",
-        "dateCreated"   => article.created_at
+        "dateCreated"   => article.created_at,
+        "categories"    => article.categories.collect { |c| c.name }
       }
   end
     

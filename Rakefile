@@ -1,6 +1,13 @@
+require 'rubygems'
 require 'rake'
+require 'rake/gempackagetask'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'rake/contrib/rubyforgepublisher'
+
+PKG_VERSION = "1.0.0"
+PKG_NAME = "typo"
+PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 $VERBOSE = nil
 
@@ -110,3 +117,32 @@ task :purge_test_database do
     File.delete(ActiveRecord::Base.configurations["test"]["dbfile"]) if File.exist?(ActiveRecord::Base.configurations["test"]["dbfile"])
   end
 end
+
+
+# Publish beta gem  
+desc "Publish the zip/tgz"
+task :publish => [:package] do
+  Rake::SshFilePublisher.new("leetsoft.com", "dist/pkg", "pkg", "#{PKG_FILE_NAME}.zip").upload
+  Rake::SshFilePublisher.new("leetsoft.com", "dist/pkg", "pkg", "#{PKG_FILE_NAME}.tgz").upload
+end
+
+spec = Gem::Specification.new do |s|
+  s.name = PKG_NAME
+  s.version = PKG_VERSION
+  s.summary = "Tiny minimal weblog supporting metaweblog API."
+  s.has_rdoc = false
+
+  s.files = Dir['**/*'].delete_if{ |f|f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ }
+
+  s.require_path = '.'
+  s.author = "Tobias Luetke"
+  s.email = "tobi@leetsoft.com"
+  s.homepage = "http://leetsoft.com/rails/moneris"  
+end
+
+Rake::GemPackageTask.new(spec) do |p|
+  p.gem_spec = spec
+  p.need_tar = true
+  p.need_zip = true
+end
+
