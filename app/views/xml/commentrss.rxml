@@ -1,0 +1,18 @@
+xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/" do
+  xml.channel do
+    xml.title CONFIG["blogname"] + " comments"
+    xml.link server_url_for(:controller => "articles")
+    xml.language "en-us"
+    xml.ttl "40"
+
+    for comment in @comments
+      xml.item do
+        xml.title "\"#{comment.article.title}\" by #{comment.author}"
+        xml.description comment.body_html
+        xml.pubDate pub_date(comment.created_at)
+        xml.guid comment_link(comment)
+        xml.link comment_link(comment)
+      end
+    end
+  end
+end

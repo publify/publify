@@ -14,4 +14,8 @@ module XmlHelper
   def post_link(post)
     server_url_for(:controller => "articles", :action => "read", :id => post.id)
   end
+  
+  def comment_link(comment)
+    server_url_for(:controller => "articles", :action => "read", :id => comment.article.id, :anchor=> "comment-#{comment.id}")
+  end  
 end

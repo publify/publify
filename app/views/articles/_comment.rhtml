@@ -1,5 +1,5 @@
 <li class="graybox">
-<cite><a href='<%= comment.url %>' rel='nofollow'><%= comment.author %></a></cite> Says:<br />
+<a name="comment-<%= comment.id %>"></a><cite><a href='<%= comment.url %>' rel='nofollow'><%= comment.author %></a></cite> Says:<br />
 <!--<small class="commentmetadata"><a href="#comment-2" title="September 5th, 2004 at 1:47 pm"></a> after publication. </small>-->
 <small class="commentmetadata"><a href="#comment-2" title=""><%= comment.created_at %></a> </small>
 <%= comment.body_html %>

@@ -57,8 +57,7 @@ end
   klass.template_root ||= "#{RAILS_ROOT}/app/views/"
 end
 
-ActionController::Base.fragment_cache_store =
-  ActionController::Caching::Fragments::MemoryStore.new
+
 
 # Include your app's configuration here:
 require "cgifix"
