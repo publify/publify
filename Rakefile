@@ -22,8 +22,8 @@ task :doc => [ :appdoc, :stats ]
 
 desc "Generate databases for sqlite"
 task :create_sqlite do
-  `rm db/development.sqlite`
-  `rm db/test.sqlite`
+  `rm -f db/development.sqlite`
+  `rm -f db/test.sqlite`
   `sqlite db/test.sqlite < db/schema.sqlite.sql`
   `sqlite db/development.sqlite < db/schema.sqlite.sql`
   `sqlite db/production.sqlite < db/schema.sqlite.sql`
