@@ -1,5 +1,5 @@
 <div class="post">
-<h2><a href="<%= url_for :controller=>"article", :action=>"read", :id=>article.id%>" title="Permanent link to this article"><%= h article.title %></a> </h2>
+<h2><a href="<%= url_for :controller=>"articles", :action=>"read", :id=>article.id%>" title="Permanent link to this article"><%= h article.title %></a> </h2>
 <b><small>Posted by <%= h article.author %> <%= distance_of_time_in_words_to_now article.created_at %> ago</small></b>
 <%= article.body_html %>
 </div>
