@@ -70,7 +70,8 @@ class MetaWeblogApi
 
     article = Article.find(postid)
     article.body        = struct['description'] || ''
-    article.title       = struct['title'] || ''
+    category_commands, newtitle   = split_title(struct['title'])
+    article.title       = newtitle || ''
     article.published   = publish ? 1 : 0
     article.author      = username
     # article.dateCreated
