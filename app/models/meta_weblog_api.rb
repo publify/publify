@@ -14,9 +14,33 @@ class MetaWeblogApi
     article.title       = struct['title']
     article.published   = publish ? 1 : 0
     article.author      = username
+    # article.dateCreated
 
-    Category.find_all.each do |c|
-      article.categories << c if struct['categories'].include?(c.name)
+    # Moveable Type API support
+    article.allow_comments = struct['mt_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings']
+    #                      = struct['mt_convert_breaks']
+    article.extended       = struct['mt_text_more']
+    article.excerpt        = struct['mt_excerpt']
+    article.keywords       = struct['mt_keywords']
+    
+    # Build new categories from the keywords
+    #   Maybe we can try this and see if it works well (seth)
+    #new_categories = article.keywords.split(",").collect { |x| x.strip }
+    #Category.find_all.each do |c|
+    #  new_categories.delete_if { |x| x == c.name }
+    #end 
+    #new_categories.each do |category|
+    #  c = Category.new
+    #  c.name = category
+    #  c.save
+    #end
+
+    if struct.has_key?('categories')
+      #struct['categories'] + new_categories 
+      Category.find_all.each do |c|
+        article.categories << c if struct['categories'].include?(c.name)
+      end
     end
 
     article.save    
@@ -38,11 +62,34 @@ class MetaWeblogApi
     article.title       = struct['title']
     article.published   = publish ? 1 : 0
     article.author      = username
+    # article.dateCreated
 
-    categories = Category.find_all()
-    article.remove_categories(categories)
-    categories.each do |c|
-      article.categories << c if struct['categories'].include?(c.name)
+    # Moveable Type API support
+    article.allow_comments = struct['mt_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings']
+    #                      = struct['mt_convert_breaks']
+    article.extended       = struct['mt_text_more']
+    article.excerpt        = struct['mt_excerpt']
+    article.keywords       = struct['mt_keywords']
+
+    # Build new categories from the keywords
+    #new_categories = article.keywords.split(",").collect { |x| x.strip }
+    #Category.find_all.each do |c|
+    #  new_categories.delete_if { |x| x == c.name }
+    #end  
+    #new_categories.each do |category|
+    #  c = Category.new
+    #  c.name = category
+    #  c.save
+    #end
+
+    if struct.has_key?('categories')
+      categories = Category.find_all()
+      article.remove_categories(categories)
+      #struct['categories'] + new_categories
+      categories.each do |c|
+        article.categories << c if struct['categories'].include?(c.name)
+      end
     end
   
     article.save    
@@ -105,6 +152,14 @@ class MetaWeblogApi
         "title"         => article.title,
         "postid"        => article.id.to_s,
         "url"           => "#{server_url}/articles/read/#{article.id}",
+        "link"          => "#{server_url}/articles/read/#{article.id}",
+        "permaLink"     => "#{server_url}/articles/read/#{article.id}",
+        "categories"    => article.categories.collect { |c| c.name },
+        "mt_text_more" 	=> article.extended,
+        "mt_excerpt"    => article.excerpt,
+        "mt_keywords"   => article.keywords,
+        "mt_allow_comments" => article.allow_comments.to_i,
+        "mt_allow_pings"    => article.allow_pings.to_i,
         "dateCreated"   => article.created_at,
         "categories"    => article.categories.collect { |c| c.name }
       }

@@ -1,4 +1,5 @@
-xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/" do
+xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/", 
+        "xmlns:trackback"=>"http://madskills.com/public/xml/rss/module/trackback/" do
   xml.channel do
     xml.title CONFIG["blogname"]
     xml.link server_url_for(:controller => "articles")
@@ -12,6 +13,7 @@ xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/" do
         xml.pubDate pub_date(entry.created_at)
         xml.guid post_link(entry)
         xml.link post_link(entry)
+        xml.trackback :ping, server_url_for(:controller => "trackback", :action =>"ping", :id => entry.id)
       end
     end
   end

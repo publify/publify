@@ -7,6 +7,7 @@ class BackendController < ApplicationController
     @server = XMLRPC::BasicServer.new
     @server.add_handler("blogger", BloggerApi.new(@request))
     @server.add_handler("metaWeblog", MetaWeblogApi.new(@request))
+    @server.add_handler("mt", MoveableTypeApi.new(@request))
           
     headers['Content-Type'] = 'text/xml'
     render_text(@server.process(@request.raw_post))    

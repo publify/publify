@@ -1,5 +1,5 @@
 <% for article in @articles -%>
   <%= render_partial "article", article %>
   
-  <p class="postmetadata"><!--Posted in <%= article.category %> <strong>|</strong> --><%=link_to_comments(article)%></p> 
+  <p class="postmetadata">Posted in <%= article.categories.collect{|c| c.name}.join(", ") %> <strong>|</strong> <%=link_to_comments(article)%></p> 
 <% end -%>
