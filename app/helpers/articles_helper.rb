@@ -21,7 +21,7 @@ module ArticlesHelper
       "#{article.comments.count} comments"
     end
     
-    link_to label, :action=>"read", :id=> article.id, :anchor=>"comments"
+    link_to label, :controller=> "articles", :action=>"read", :id=> article.id, :anchor=>"comments"
   end
   
   
