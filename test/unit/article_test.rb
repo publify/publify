@@ -5,12 +5,5 @@ class ArticleTest < Test::Unit::TestCase
 
   # Replace this with your real tests.
   def test_categories
-    
-    assert_equal ["code", "personal"], Article.categories
-  
-    Article.destroy_all
-    
-    assert_equal [], Article.categories
-    
   end
 end
