@@ -2,9 +2,35 @@ class Article < ActiveRecord::Base
   has_many :comments
   has_and_belongs_to_many :categories
   has_many :trackbacks
+  has_many :pings
   
   def stripped_title
     self.class.strip_title(title)
+  end
+  
+  def send_pings(articleurl, urllist)
+    require 'uri'
+    require 'net/http'
+
+    urllist.each do |url|
+      # record the ping in the database
+      ping = build_to_pings
+      ping.url = url
+      
+      uri = URI.parse(url)
+      post = "title=#{URI.escape(title)}"
+      post << "&excerpt=#{URI.escape(strip_html(body_html)[0..254])}"
+      post << "&url=#{URI.escape(articleurl)}"
+      post << "&blog_name=#{URI.escape(CONFIG['blogname'])}"
+      begin
+        Net::HTTP.start(uri.host, uri.port) do |http|
+          response = http.post("#{uri.path}?#{uri.query}", post)
+        end
+      rescue
+        # in case the remote server doesn't respond or gives an error, 
+        # we should throw an xmlrpc error here.
+      end
+    end
   end
 
   def self.find_all_by_date(year, month, day)  
@@ -47,7 +73,6 @@ class Article < ActiveRecord::Base
     result
   end
 
-
   protected  
 
   before_save :transform_body
@@ -56,8 +81,5 @@ class Article < ActiveRecord::Base
   end  
   
   private
-  
-  
-  
-    
+      
 end

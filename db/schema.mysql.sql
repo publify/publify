@@ -31,7 +31,6 @@ CREATE TABLE `categories` (
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL auto_increment,
   `article_id` int(11) default NULL,
-  `title` varchar(255) default NULL,
   `author` varchar(255) default NULL,
   `email` varchar(255) default NULL,
   `url` varchar(255) default NULL,
@@ -71,6 +70,7 @@ CREATE TABLE `sidebar_blocks` (
 CREATE TABLE `trackbacks` (
   `id` int(11) NOT NULL auto_increment,
   `article_id` int(11) default NULL,
+  `category_id` int(11) default NULL,
   `blog_name` varchar(255) default NULL,
   `title` varchar(255) default NULL,
   `excerpt` varchar(255) default NULL,

@@ -27,6 +27,6 @@ class BloggerApi
     
     def server_url
      "http://" << request.host << request.port_string 
-  end
+    end
   
 end

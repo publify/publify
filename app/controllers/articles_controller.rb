@@ -58,29 +58,34 @@ class ArticlesController < ApplicationController
   # Receive trackbacks linked to articles
   def trackback
     @result = true
-
-    # url is required
-    unless @params.has_key?('url') and @params.has_key?('id')
-      @result = false
-      @error_message = "A url is required."
-      return
-    end
-
-    begin
-      article = Article.find(@params['id'])
-      tb = article.build_to_trackbacks
-      tb.url       = @params['url']
-      tb.title     = @params['title'] || @params['url']
-      tb.excerpt   = @params['excerpt']
-      tb.blog_name = @params['blog_name']
-      unless article.save
+    
+    if @params['__mode'] == "rss"
+      # Part of the trackback spec... will implement later
+    else
+      # url is required
+      unless @params.has_key?('url') and @params.has_key?('id')
         @result = false
-        @error_message = "Trackback not saved.  Database problem most likely."
+        @error_message = "A url is required."
+      else
+        begin
+          article = Article.find(@params['id'])
+          tb = article.build_to_trackbacks
+          tb.url       = @params['url']
+          tb.title     = @params['title'] || @params['url']
+          tb.excerpt   = @params['excerpt']
+          tb.blog_name = @params['blog_name']
+          tb.ip        = request.remote_ip
+          unless article.save
+            @result = false
+            @error_message = "Trackback not saved.  Database problem most likely."
+          end
+        rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
+          @result = false
+          @error_message = "Article id #{@params['id']} not found."
+        end
       end
-    rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
-      @result = false
-      @error_message = "Article id #{@params['id']} not found."
     end
+    render_without_layout
   end
   
   private
@@ -94,4 +99,5 @@ class ArticlesController < ApplicationController
     def rescue_action_in_public(exception)
       error(exception.message)
     end
+
 end

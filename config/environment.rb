@@ -68,4 +68,5 @@ Controllers = Dependencies::LoadingModule.root(
 # Include your app's configuration here:
 require_dependency 'tada'
 require_dependency 'flickr'
+require_dependency 'delicious'
 require_dependency 'simple_cache'

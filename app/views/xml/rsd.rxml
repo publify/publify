@@ -1,3 +1,4 @@
+xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
 xml.rsd "version"=>"1.0", "xmlns"=>"http://archipelago.phrasewise.com/rsd" do
   xml.service do
     xml.engineName "Typo"

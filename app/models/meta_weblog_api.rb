@@ -26,7 +26,7 @@ class MetaWeblogApi
     article.keywords       = struct['mt_keywords'] || ''
 
     # Build new categories from the keywords
-    # I'll probably push most of this code to a category controller
+    # I'll probably push most of this code to category model
     # so that it can handle category "commands" on its own. (all assuming we stick with this)
     new_categories = []
     if category_commands != nil
@@ -53,6 +53,8 @@ class MetaWeblogApi
         article.categories << c if new_categories.include?(c.name)
       end
     end
+    
+    article.send_pings("#{server_url}/articles/read/#{article.id}", struct['mt_tb_ping_urls'])
     
     article.save
     article.id.to_s
@@ -85,7 +87,7 @@ class MetaWeblogApi
     article.keywords       = struct['mt_keywords'] || ''
 
     # Build new categories from the keywords
-    # I'll probably push most of this code to a category controller
+    # I'll probably push most of this code to the category model
     # so that it can handle category "commands" on its own.
     new_categories = []
     if category_commands != nil
@@ -112,7 +114,9 @@ class MetaWeblogApi
         article.categories << c if new_categories.include?(c.name)
       end
     end
-  
+
+    article.send_pings("#{server_url}/articles/read/#{article.id}", struct['mt_tb_ping_urls'])
+
     article.save    
     true
   end
@@ -197,7 +201,7 @@ class MetaWeblogApi
   def server_url
      "http://" << request.host << request.port_string 
   end
-  
+
   # for splitting the category commands out of the title.. ugly, but workable (seth)
   def split_title(title)
     if title =~ /^\[(.*?)\].*/

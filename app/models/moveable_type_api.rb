@@ -25,11 +25,11 @@ class MoveableTypeApi
     raise "Invalid login" unless valid_login?(username, password)
 
     categories = Array.new
-    Category.find_all.each { |c| 
+    Category.find_all.each do |c| 
       categories << {"categoryId"   => c.id,
                      "categoryName" => c.name
                     } 
-    }
+    end
     categories
   end
 
@@ -38,12 +38,12 @@ class MoveableTypeApi
 
     article = Article.find(postid)
     categories = Array.new
-    article.categories.each { |c|
+    article.categories.each do |c|
       categories << {"categoryName" => c.name,
                      "categoryId"   => c.id,
                      "isPrimary"    => c.is_primary
                     }
-    }
+    end
     categories
   end
 
@@ -75,11 +75,11 @@ class MoveableTypeApi
   def getTrackbackPings(postid)
     article = Article.find(postid)
     tb = Array.new
-    article.trackbacks.each { |t|
+    article.trackbacks.each do |t|
       tb << {'pingTitle' => t.title,
              'pingURL'   => t.url,
              'pingIP'    => t.ip}
-    }
+    end
     tb
   end
 

@@ -26,7 +26,6 @@ CREATE TABLE 'categories' (
 CREATE TABLE 'comments' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'article_id'  INTEGER DEFAULT NULL,
-  'title'       VARCHAR(255) DEFAULT NULL,
   'author'      VARCHAR(255) DEFAULT NULL,
   'email'       VARCHAR(255) DEFAULT NULL,
   'url'         VARCHAR(255) DEFAULT NULL,
@@ -58,6 +57,7 @@ CREATE TABLE 'sidebar_blocks' (
 CREATE TABLE 'trackbacks' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'article_id'  INTEGER,
+  'category_id' INTEGER,
   'blog_name'   VARCHAR(255) DEFAULT NULL,
   'title'       VARCHAR(255) DEFAULT NULL,
   'excerpt'     VARCHAR(255) DEFAULT NULL,

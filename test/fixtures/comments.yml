@@ -6,7 +6,6 @@ spam_comment:
   author: Bob Foo
   email: bob@bobsemail.com
   url: http://fakeurl.com
-  title: Search <a href="http://google.com">google</a>
   body: Test <a href="http://fakeurl.co.uk">body</a>
 
 comment2:
@@ -15,5 +14,4 @@ comment2:
   author: John Bar
   email: fake.address@gmail.com
   url: www.google.com
-  title: Comment title
   body: Comment body _italic_ *bold*
