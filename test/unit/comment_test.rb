@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class CommentTest < Test::Unit::TestCase
   fixtures :comments
   
-  def setup
+  def test_save
     assert @comment2.save
     assert @spam_comment.save
   end
