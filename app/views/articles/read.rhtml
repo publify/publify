@@ -1,6 +1,6 @@
 <% content_for("script") do %>
 function item_added() {
-  new Effect.Highlight($('comments').lastChild);
+  new Effect.Highlight($('commentList').lastChild);
 }
 function item_loading() {
   $('commentform').elements[2].value = '';
@@ -21,7 +21,7 @@ window.onload = function() {
   <p class="postmetadata alt">
     <small><a href="#respond">Leave a response</a></small>
   </p>
-  <ol id="comments" class="commentlist">
+  <ol id="commentList" class="commentlist">
     <%= render_collection_of_partials "comment", @article.comments %>
   </ol>
 <% end -%>
@@ -38,7 +38,7 @@ window.onload = function() {
 <% end -%>
 
 <% if @article.allow_comments > 0 -%>
-<%= form_remote_tag :url => {:action => "comment", :id => @article.id}, :update=> "comments", :position=> "bottom", :loading => 'item_loading()', :complete => "item_added()", :html=>{:id=>'commentform',:name=>'commentform'}%>
+<%= form_remote_tag :url => {:action => "comment", :id => @article.id}, :update=> "commentList", :position=> "bottom", :loading => 'item_loading()', :complete => "item_added()", :html=>{:id=>'commentform',:name=>'commentform'}%>
 <div class="graybox">
   <small>write a comment....</small>
   <a name="respond"></a>
