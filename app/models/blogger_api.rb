@@ -13,10 +13,20 @@ class BloggerApi
     true
   end
   
+  def getUsersBlogs(appkey, username, password)
+    raise "Invalid login" unless valid_login?(username, password)
+
+    [ {"url"=> server_url, "blogid" => 1, "blogName" => CONFIG['blogname']}]    
+  end
+  
   private
   
     def valid_login?(user,pass)
       user == CONFIG['login'] && pass == CONFIG['password']
     end
+    
+    def server_url
+     "http://" << request.host << request.port_string 
+  end
   
 end
