@@ -1,14 +1,13 @@
 todo: 
 
-- finish pretty urls
 - move uploaded files into the DB
-- add ajax based comments posting
 - add ajax comments moderation ( http://www.danga.com/demo/comment​manage.html )
 - add ajax based article posting/editing
 - add some statistics
 - add static pages
-- move to AWS
 
 done: 
 
 - add ajax based comments posting
+- move to AWS
+- finish pretty urls

@@ -19,3 +19,10 @@
     <% end -%>
   </p> 
 <% end -%>
+
+<% unless @articles.size < 10 %>
+<div id="pagination">
+  Older posts:
+  <%= pagination_links @pages, :params => { :action => @controller.action_name } %>
+</div>
+<% end %>

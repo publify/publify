@@ -20,6 +20,8 @@ class ConfigurationTest < Test::Unit::TestCase
   end
   
   def test_is_ok
+    Setting.destroy_all "value = 1"
+    @config.reload
     assert ! @config.is_ok?
     
     Setting.create("name" => "default_allow_pings", "value" => "whatever")

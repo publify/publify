@@ -10,6 +10,7 @@ CREATE TABLE 'articles' (
   'allow_comments' INTEGER DEFAULT 1,  
   'allow_pings'    INTEGER DEFAULT 1,  
   'published'   INTEGER DEFAULT 1,  
+  'text_filter' VARCHAR(20) DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );

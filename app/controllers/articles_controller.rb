@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   before_filter :verify_config
   
   def index
-    @articles = Article.find_all('published !=0', 'created_at DESC', '10')
+    @pages = Paginator.new self, Article.count, 10, @params['page']
+    @articles = Article.find_all('published !=0', 'created_at DESC', @pages.current.to_sql)
   end
   
   def search
@@ -18,25 +19,21 @@ class ArticlesController < ApplicationController
 
     fill_from_cookies(@comment)    
   end
-  
-  def find_by_date
-    @articles = Article.find_all_by_date(@params["year"], @params["month"], @params["day"])
-    render_action "index"              
-  end
-  
+    
   def permalink
-    @article = Article.find_by_permalink(@params["year"], @params["month"], @params["day"], @params["title"])
-    @comment = Comment.new
+    @article    = Article.find_by_permalink(@params["year"], @params["month"], @params["day"], @params["title"])
+    @comment    = Comment.new
+    @page_title = @article.title
 
     fill_from_cookies(@comment)    
-    render_action "read"      
-
-    unless @params["year"].blank? or @params["month"].blank? or @params["day"].blank? or @params["title"].blank?
-    else
-      @articles = Article.find_all_by_date(@params["year"], @params["month"], @params["day"])
-      render_action "index"            
-    end
+    render_action "read"
   end
+  
+  def find_by_date
+    @pages = Paginator.new self, Article.count_by_date(@params["year"], @params["month"], @params["day"]), 10, @params['page']
+    @articles = Article.find_all_by_date(@params["year"], @params["month"], @params["day"], @pages.current.to_sql)
+    render_action "index"              
+  end  
   
   def error(message = "Record not found")
     @message = message
@@ -44,8 +41,9 @@ class ArticlesController < ApplicationController
   end
   
   def category
-    if category = Category.find_by_name(@params['id'])    
-      @articles = category.articles        
+    if category = Category.find_by_name(@params['id'])
+      @pages = Paginator.new self, category.articles.size, 10, @params['page']
+      @articles = category.articles.slice(@pages.current.offset..@pages.current.next) rescue category.articles
       render_action "index"
     else
       error("Can't find posts in category #{params['id']}")

@@ -6,6 +6,9 @@ article1:
   body: body
   body_html: body
   created_at: 2005-01-01 20:00:00
+  updated_at: 2005-01-01 20:00:00
+  allow_comments: 1
+  allow_pings: 1
   
 article2:
   id: 2
@@ -13,6 +16,9 @@ article2:
   body: body
   body_html: body
   created_at: 2005-01-01 20:00:00
+  updated_at: 2005-01-01 20:00:00
+  allow_comments: 1
+  allow_pings: 1
 
 article3:
   id: 3
@@ -20,3 +26,17 @@ article3:
   body: body
   body_html: body
   created_at: 2004-06-01 20:00:00
+  updated_at: 2004-06-01 20:00:00
+  allow_comments: 1
+  allow_pings: 1
+
+article4:
+  id: 4
+  title: Article 4!
+  body: I'm not public!
+  body_html: I'm not public!
+  published: 0
+  created_at: 2004-06-01 20:00:00
+  updated_at: 2004-06-01 20:00:00
+  allow_comments: 1
+  allow_pings: 1

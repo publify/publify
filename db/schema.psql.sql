@@ -15,6 +15,7 @@ CREATE TABLE articles (
   allow_comments int default NULL,
   allow_pings int default NULL,
   published int NOT NULL default '1',
+  text_filter varchar(20) default NULL,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
 );

@@ -33,15 +33,16 @@ class Article < ActiveRecord::Base
     end
   end
 
+  # Count articles on a certain date
+  def self.count_by_date(year, month = nil, day = nil, limit = nil)  
+    from, to = self.time_delta(year, month, day)
+    Article.count(["created_at BETWEEN ? AND ?", from, to])
+  end
+  
   # Find all articles on a certain date
-  def self.find_all_by_date(year, month = nil, day = nil)  
-    from = Time.mktime(year, month || 1, day || 1)
-    
-    to   = from + 1.year
-    to   = from + 1.month unless month.blank?    
-    to   = from + 1.day   unless day.blank?
-
-    Article.find_all(["created_at BETWEEN ? AND ?", from, to] ,'created_at DESC')
+  def self.find_all_by_date(year, month = nil, day = nil, limit = nil)  
+    from, to = self.time_delta(year, month, day)
+    Article.find_all(["created_at BETWEEN ? AND ?", from, to] ,'created_at DESC', limit)
   end
 
   # Find one article on a certain date
@@ -87,7 +88,16 @@ class Article < ActiveRecord::Base
   before_save :transform_body
   
   def transform_body
-    self.body_html = HtmlEngine.transform(body)
+    self.body_html = HtmlEngine.transform(body, self.text_filter)
   end  
-        
+
+  def self.time_delta(year, month = nil, day = nil)
+    from = Time.mktime(year, month || 1, day || 1)
+    
+    to   = from + 1.year
+    to   = from + 1.month unless month.blank?    
+    to   = from + 1.day   unless day.blank?
+
+    return [from, to]
+  end
 end

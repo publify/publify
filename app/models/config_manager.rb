@@ -9,6 +9,7 @@ class ConfigManager
   end
 
   def reload
+    settings.clear
     Setting.find_all.each do |line|
       settings[line.name.to_s] = line.value.to_s
     end
