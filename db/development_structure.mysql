@@ -42,6 +42,14 @@ CREATE TABLE `comments` (
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `pings` (
+  `id` int(11) NOT NULL auto_increment,
+  `article_id` int(11) default NULL,
+  `url` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM
+
 CREATE TABLE `resources` (
   `id` int(11) NOT NULL auto_increment,
   `size` int(11) default NULL,
