@@ -1,5 +1,7 @@
 class XmlController < ApplicationController
   
+  caches_page :rss, :atom
+  
   def rss
     @articles = Article.find_all('published=1', 'created_at DESC', '10')
   end

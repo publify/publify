@@ -1,7 +1,7 @@
 require 'xmlrpc/server'
 
-
 class BackendController < ApplicationController
+  cache_sweeper :blog_sweeper
   
   def xmlrpc    
     @server = XMLRPC::BasicServer.new
