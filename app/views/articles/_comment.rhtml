@@ -1,5 +1,4 @@
-<li class="graybox">
-  <a name="comment-<%= comment.id %>"></a><cite><a href="<%= comment.url %>" rel="nofollow"><%= comment.author %></a></cite> Says:<br />
-  <small class="commentmetadata"><a href="#comment-<%= comment.id  %>" title=""><%= comment.created_at %></a> </small>
+<li class="graybox" id="comment-<%= comment.id %>">
+  <a name="comment-<%= comment.id %>"></a><cite><a href="<%= comment.url || '#' %>" rel="nofollow"><%= comment.author %></a></cite> said <%= distance_of_time_in_words comment.article.created_at, comment.created_at %> later:<br />
   <%= comment.body_html %>
 </li>

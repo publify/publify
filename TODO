@@ -1,9 +1,8 @@
 - finish pretty urls
-- move config.yml into DB
 - move uploaded files into the DB
 - add ajax based comments posting
 - add ajax comments moderation ( http://www.danga.com/demo/comment​manage.html )
-- add ajax based article posting
+- add ajax based article posting/editing
 - add some statistics
 - add static pages
 - move to AWS

@@ -5,8 +5,7 @@ class Comment < ActiveRecord::Base
 
   protected
   
-    validates_presence_of :author, :email, :body
-    validates_format_of :email, :with => Format::EMAIL  
+    validates_presence_of :author, :body
     before_save :make_nofollow, :correct_url, :transform_body
 
     def correct_url

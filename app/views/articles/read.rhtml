@@ -5,7 +5,7 @@
   <p class="postmetadata alt">
     <small><a href="#respond">Leave a response</a></small>
   </p>
-  <ol class="commentlist">
+  <ol id="comments" class="commentlist">
     <%= render_collection_of_partials "comment", @article.comments %>
   </ol>
 <% end -%>
@@ -22,7 +22,8 @@
 <% end -%>
 
 <% if @article.allow_comments > 0 -%>
-<%= start_form_tag :action => "comment", :id=> @article.id %>
+
+<%= form_remote_tag :url => {:action => "comment", :id => @article.id}, :update=> "comments", :position=> "bottom", :complete => "new Effect.Highlight($('comments').lastChild);"%>
 <div class="graybox">
   <small>write a comment....</small>
   <a name="respond"></a>
@@ -34,37 +35,32 @@
     </tr>
     <tr>
       <td align="right" valign="top">
-        author
+        Your name
       </td>
       <td valign="top">
-        <%= text_field "comment", "author" %>
+        <%= text_field "comment", "author", :size => 20 %> <small><a href="javascript:Toggle.display('guest_url')">(leave url &#187;)</a></small>
+      </td>
+      <td valign="top" align="left">
+        <!--<input type="checkbox" name="forget" value="1" />Forget-->
+      </td> 
+    </tr>
+    <tr id="guest_url" style="display:none">
+      <td align="right" valign="top">
+        Your blog
+      </td>
+      <td valign="top">
+        <%= text_field "comment", "url" %>
       </td>
       <td valign="top" align="left">
         <!--<input type="checkbox" name="forget" value="1" />Forget-->
       </td> 
     </tr>
     <tr>
-      <td align="right" valign="top">
-        email
-      </td>
-      <td valign="top" colspan="2">
-        <%= text_field "comment", "email" %>
-      </td>
-    </tr>
-    <tr> 
-      <td align="right" valign="top">
-        url
-      </td>
-      <td valign="top" colspan="2">
-        <%= text_field "comment", "url" %>
-      </td>
-    </tr>
-    <tr>
       <td valign="top" align="right">
-        Body
+        Your message
       </td>
       <td valign="top" colspan="2">
-        <%= text_area "comment", "body", "style"=> "width:300px;height:250px" %>
+        <%= text_area "comment", "body", "style"=> "width:300px;height:200px" %>
       </td>
     </tr>
     <tr>

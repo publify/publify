@@ -51,10 +51,11 @@ class ArticlesController < ApplicationController
       cookies['email']   = { :value => @comment.email, :expires => 2.weeks.from_now } 
       cookies['url']     = { :value => @comment.url, :expires => 2.weeks.from_now } 
       
-      redirect_to :action=> "read", :id => @article.id 
+      render_partial("comment", @comment)
+      
     else
     
-      render_action "read"
+      render_text "Please supply name and a message..."
     end
   end  
 
