@@ -4,6 +4,8 @@ module ArticlesHelper
     case collection.count
     when 0
       "no #{word}s"
+    when 1
+      "#{collection.count} #{word}"
     else
       "#{collection.count} #{word}s"
     end
