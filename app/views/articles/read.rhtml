@@ -1,27 +1,27 @@
 <%= render_partial "article", @article %>
 
-<% if @article.allow_comments > 0 %>
+<% if @article.allow_comments > 0 -%>
   <a name="comments"></a><h3><%= responses(@article.comments, "response") %> to '<%=h @article.title  %>'</h3> 
   <p class="postmetadata alt">
     <small><a href="#respond">Leave a response</a></small>
   </p>
   <ol class="commentlist">
-    <%= render_collection_of_partials "comment", @article.comments %>			
+    <%= render_collection_of_partials "comment", @article.comments %>
   </ol>
-<% end %>
+<% end -%>
 
-<% if @article.allow_pings > 0 %>
+<% if @article.allow_pings > 0 -%>
   <a name="trackbacks"></a><h3><%= responses(@article.trackbacks, "trackback") %> to '<%=h @article.title  %>'</h3>
   <p class="postmetadata alt">
     Use the following link to trackback from your own site:<br/>
-           <%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>
+    <%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>
   </p>
   <ol class="trackbacklist">
     <%= render_collection_of_partials "trackback", @article.trackbacks %>
   </ol>
-<% end %>
+<% end -%>
 
-<% if @article.allow_comments > 0 %>
+<% if @article.allow_comments > 0 -%>
 <%= start_form_tag :action => "comment", :id=> @article.id %>
 <div class="graybox">
   <small>write a comment....</small>
@@ -32,49 +32,49 @@
         <%= render_errors(@comment) %>
       </td>
     </tr>
-  	<tr>
-  	  <td align="right" valign="top">
-  	   	author
-  	  </td>
-     <td valign="top">
-  	  	<%= text_field "comment", "author" %>
-  	  </td>
-  	  <td valign="top" align="left">
-  	  	<!--<input type="checkbox" name="forget" value="1" />Forget-->
-  	  </td> 
-  	</tr>
-  	<tr>
-  	  <td align="right" valign="top">
-  	  	email
-  	  </td>
-  	  <td valign="top" colspan="2">
-  	  	<%= text_field "comment", "email" %>
-  	  </td>
-      </tr>
-  	<tr> 
-  	  <td align="right" valign="top">
-  	  	url
-  	  </td>
-  	  <td valign="top" colspan="2">
-  	    <%= text_field "comment", "url" %>
-  	  </td>
-  	</tr>
-  	<tr>
-  	  <td valign="top" align="right">
-  	  	Body
-  	  </td>
-  	  <td valign="top" colspan="2">
-  	  	<%= text_area "comment", "body", "style"=> "width:300px;height:250px" %>
-  	  </td>
-  	</tr>
-  	<tr>
-  	  <td align="right" valign="top">&nbsp;</td>
-  	  <td align="right" valign="top">&nbsp;</td>
-  	  <td align="right" valign="top">
-  		<input type="submit" name="submit" value="submit" class="button" />
-  	  </td>
-  	</tr>
+    <tr>
+      <td align="right" valign="top">
+        author
+      </td>
+      <td valign="top">
+        <%= text_field "comment", "author" %>
+      </td>
+      <td valign="top" align="left">
+        <!--<input type="checkbox" name="forget" value="1" />Forget-->
+      </td> 
+    </tr>
+    <tr>
+      <td align="right" valign="top">
+        email
+      </td>
+      <td valign="top" colspan="2">
+        <%= text_field "comment", "email" %>
+      </td>
+    </tr>
+    <tr> 
+      <td align="right" valign="top">
+        url
+      </td>
+      <td valign="top" colspan="2">
+        <%= text_field "comment", "url" %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+        Body
+      </td>
+      <td valign="top" colspan="2">
+        <%= text_area "comment", "body", "style"=> "width:300px;height:250px" %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">&nbsp;</td>
+      <td align="right" valign="top">&nbsp;</td>
+      <td align="right" valign="top">
+        <input type="submit" name="submit" value="submit" class="button" />
+      </td>
+    </tr>
   </table>
 </div>
-<% end %>
+<% end -%>
 <%= end_form_tag %>

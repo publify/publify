@@ -1,5 +1,5 @@
 <li class="graybox">
-<a name="comment-<%= comment.id %>"></a><cite><a href='<%= comment.url %>' rel='nofollow'><%= comment.author %></a></cite> Says:<br />
-<small class="commentmetadata"><a href="#comment-<%= comment.id  %>" title=""><%= comment.created_at %></a> </small>
-<%= comment.body_html %>
+  <a name="comment-<%= comment.id %>"></a><cite><a href="<%= comment.url %>" rel="nofollow"><%= comment.author %></a></cite> Says:<br />
+  <small class="commentmetadata"><a href="#comment-<%= comment.id  %>" title=""><%= comment.created_at %></a> </small>
+  <%= comment.body_html %>
 </li>
