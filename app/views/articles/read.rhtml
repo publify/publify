@@ -11,7 +11,7 @@
 <% end %>
 
 <% if @article.allow_pings > 0 %>
-  <a href="trackbacks"></a><h3><%= responses(@article.trackbacks, "trackback") %> to '<%=h @article.title  %>'</h3>
+  <a name="trackbacks"></a><h3><%= responses(@article.trackbacks, "trackback") %> to '<%=h @article.title  %>'</h3>
   <p class="postmetadata alt">
     Use the following link to trackback from your own site:<br/>
            <%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>
