@@ -3,7 +3,7 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
-require 'breakpoint'
+
 PKG_VERSION = "1.6.0"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
@@ -174,7 +174,6 @@ spec = Gem::Specification.new do |s|
   s.summary = "Tiny minimal weblog supporting metaweblog API."
   s.has_rdoc = false
   s.files  = Dir['**/*'].delete_if{ |f| f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ } << "public/.htaccess"
-  breakpoint
   s.require_path = '.'
   s.author = "Tobias Luetke"
   s.email = "tobi@leetsoft.com"
