@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "1.6.7"
+PKG_VERSION = "1.6.8"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 

@@ -32,7 +32,7 @@ www.rubyonrails.com
 
 == Customization
 
-Your first point of customization should be app/views/articles/layout.rhtml. This is the
+Your first point of customization should be app/views/articles/articles.rhtml. This is the
 layout used for the weblog. You will see some commented out blocks which indicate on how
 to use the syndication helpers.
 
@@ -42,4 +42,14 @@ Typo was made to be used from a desktop client. I personally use MarsEdit but al
 metaweblog and moveable type compatible clients will be able to talk to typo. For a short
 list of clients which are confirmed to work please visit http://typo.leetsoft.com
 
-Enjoy
+== Client setup ==
+
+Set your desktop client to moveable type api and enter http://your.domain.com/backend/xmlrpc as endpoint address.
+
+== Tell me about your blog == 
+
+Add yourself to the list of typo blogs at http://typo.leetsoft.com
+
+
+Enjoy,
+Tobi
