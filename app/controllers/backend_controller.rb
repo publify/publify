@@ -10,6 +10,7 @@ class BackendController < ApplicationController
     @server.add_handler("mt", MoveableTypeApi.new(@request))
           
     headers['Content-Type'] = 'text/xml'
+
     render_text(@server.process(@request.raw_post))    
   end
   

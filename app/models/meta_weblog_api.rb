@@ -131,12 +131,7 @@ class MetaWeblogApi
   
     articles = Article.find_all(nil, "created_at DESC", numberOfPosts)
   
-    array = []
-  
-    articles.each do |article|      
-      array << item_from(article)
-    end
-    array          
+    articles.to_a.collect{ |c| item_from(c) }
   end
   
 

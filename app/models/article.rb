@@ -12,7 +12,7 @@ class Article < ActiveRecord::Base
     require 'uri'
     require 'net/http'
 
-    urllist.each do |url|
+    urllist.to_a.each do |url|
       # record the ping in the database
       ping = build_to_pings
       ping.url = url
