@@ -48,7 +48,7 @@ CREATE TABLE `pings` (
   `url` varchar(255) default NULL,
   `created_at` datetime default NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM
+) TYPE=MyISAM;
 
 CREATE TABLE `resources` (
   `id` int(11) NOT NULL auto_increment,
