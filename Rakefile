@@ -3,8 +3,8 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
-
-PKG_VERSION = "1.5.0"
+require 'breakpoint'
+PKG_VERSION = "1.6.0"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
@@ -173,13 +173,13 @@ spec = Gem::Specification.new do |s|
   s.version = PKG_VERSION
   s.summary = "Tiny minimal weblog supporting metaweblog API."
   s.has_rdoc = false
-
-  s.files = Dir['**/*/.*'].delete_if{ |f| f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ }
-
+  s.files  = Dir['**/*'].delete_if{ |f| f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ } << "public/.htaccess"
+  breakpoint
   s.require_path = '.'
   s.author = "Tobias Luetke"
   s.email = "tobi@leetsoft.com"
-  s.homepage = "http://leetsoft.com/rails/moneris"  
+  s.homepage = "http://typo.leetsoft.com"  
+  s.rubyforge_project = "typo"
 end
 
 Rake::GemPackageTask.new(spec) do |p|
@@ -188,3 +188,7 @@ Rake::GemPackageTask.new(spec) do |p|
   p.need_zip = true
 end
 
+desc "Publish to RubyForge"
+task :rubyforge do
+    Rake::RubyForgePublisher.new('hieraki', 'webster132').upload
+end
