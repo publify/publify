@@ -174,7 +174,7 @@ spec = Gem::Specification.new do |s|
   s.summary = "Tiny minimal weblog supporting metaweblog API."
   s.has_rdoc = false
 
-  s.files = Dir['**/*'].delete_if{ |f|f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ }
+  s.files = Dir['**/*/.*'].delete_if{ |f| f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ }
 
   s.require_path = '.'
   s.author = "Tobias Luetke"
