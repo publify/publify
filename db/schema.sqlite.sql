@@ -40,7 +40,7 @@ CREATE TABLE 'pings' (
   'article_id'  INTEGER,
   'url'         VARCHAR(15) DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL
-)
+);
 CREATE TABLE 'resources' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'size'        INTEGER DEFAULT NULL,

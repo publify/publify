@@ -161,7 +161,6 @@ task :purge_test_database => :environment do
   end
 end
 
-# Publish beta gem  
 desc "Publish the zip/tgz"
 task :publish => [:package] do
   Rake::SshFilePublisher.new("leetsoft.com", "dist/pkg", "pkg", "#{PKG_FILE_NAME}.zip").upload
@@ -189,5 +188,5 @@ end
 
 desc "Publish to RubyForge"
 task :rubyforge do
-    Rake::RubyForgePublisher.new('hieraki', 'webster132').upload
+    Rake::RubyForgePublisher.new('typo', 'xal').upload
 end

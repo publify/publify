@@ -22,7 +22,6 @@ class CommentTest < Test::Unit::TestCase
   end
   
   def test_nofollow
-    assert_equal "Search <a href=\"http://google.com\" rel=\"nofollow\">google</a>", @spam_comment.title
     assert_equal "Test <a href=\"http://fakeurl.co.uk\" rel=\"nofollow\">body</a>", @spam_comment.body
   end
 end
