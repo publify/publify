@@ -8,7 +8,7 @@
     trackback:ping="<%= server_url_for :controller=>"trackback", :action=>"ping", :id=>article.id %>"
     dc:title="<%= article.title %>"
     dc:identifier="<%= server_url_for :controller=>"articles", :action=>"read", :id=>article.id %>"
-    dc:description=""
+    dc:description="<%= strip_html(article.body_html[0..255]) %>"
     dc:creator="<%= h article.author %>"
     dc:date="<%= article.updated_at.xmlschema %>" />
 </rdf:RDF>
