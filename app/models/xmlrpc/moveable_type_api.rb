@@ -83,14 +83,12 @@ class MoveableTypeApi
     tb
   end
 
-  # I'm not sure if anything even needs to be done here 
-  # since we're not generating static html.
-  # Maybe we could empty the cache to regenerate the article?
   def publishPost(postid, username, password)
     raise "Invalid login" unless valid_login?(username, password)
-    true
+    article = Article.find(postid)
+    article.published = 1
+    article.save    
   end
-
 
   private
 
