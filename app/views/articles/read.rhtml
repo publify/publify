@@ -3,7 +3,7 @@
 
 <p class="postmetadata alt">
 	<small>
-		You can <a href="#respond">leave a response</a>, or <a href="<%= server_url_for :controller=>"articles", :action=>"read", :id=>@article.id %>">trackback</a> from your own site.									
+		You can <a href="#respond">leave a response</a>, or <a href="<%= server_url_for :controller=>"trackback", :action=>"ping", :id=>@article.id %>">trackback</a> from your own site.									
 	</small>
 </p>
 
