@@ -5,11 +5,11 @@
  *  For details, see http://prototype.conio.net/
  */
 
-Prototype = {
-  Version: '1.0.1'
+var Prototype = {
+  Version: '1.1.0'
 }
 
-Class = {
+var Class = {
   create: function() {
     return function() { 
       this.initialize.apply(this, arguments);
@@ -17,7 +17,7 @@ Class = {
   }
 }
 
-Abstract = new Object();
+var Abstract = new Object();
 
 Object.prototype.extend = function(object) {
   for (property in object) {
@@ -40,7 +40,13 @@ Function.prototype.bindAsEventListener = function(object) {
   }
 }
 
-Try = {
+Number.prototype.toColorPart = function() {
+  var digits = this.toString(16);
+  if (this < 16) return '0' + digits;
+  return digits;
+}
+
+var Try = {
   these: function() {
     var returnValue;
     
@@ -56,7 +62,7 @@ Try = {
   }
 }
 
-Toggle = {
+var Toggle = {
   display: function() {
     for (var i = 0; i < arguments.length; i++) {
       var element = $(arguments[i]);
@@ -85,8 +91,8 @@ function $() {
   return elements;
 }
 
-function getElementsByClassName(className, element) {
-  var children = (element || document).getElementsByTagName('*');
+function getElementsByClassName(className) {
+  var children = document.getElementsByTagName('*') || document.all;
   var elements = new Array();
   
   for (var i = 0; i < children.length; i++) {
@@ -105,7 +111,7 @@ function getElementsByClassName(className, element) {
 
 /*--------------------------------------------------------------------------*/
 
-Ajax = {
+var Ajax = {
   getTransport: function() {
     return Try.these(
       function() {return new ActiveXObject('Msxml2.XMLHTTP')},
@@ -191,14 +197,22 @@ Ajax.Updater.prototype = (new Ajax.Base()).extend({
   },
   
   updateContent: function() {
-    this.container.innerHTML = this.request.transport.responseText;
-    if (this.onComplete) this.onComplete(this.request);
+    if (!this.options.insertion) {
+      this.container.innerHTML = this.request.transport.responseText;
+    } else {
+      new this.options.insertion(this.container,
+        this.request.transport.responseText);
+    }
+
+    if (this.onComplete) {
+      setTimeout((function() {this.onComplete(this.request)}).bind(this), 10);
+    }
   }
 });
 
 /*--------------------------------------------------------------------------*/
 
-Field = {
+var Field = {
   clear: function() {
     for (var i = 0; i < arguments.length; i++)
       $(arguments[i]).value = '';
@@ -217,7 +231,7 @@ Field = {
 
 /*--------------------------------------------------------------------------*/
 
-Form = {
+var Form = {
   serialize: function(form) {
     var elements = Form.getElements($(form));
     var queryComponents = new Array();
@@ -269,12 +283,14 @@ Form.Element.Serializers = {
   input: function(element) {
     switch (element.type.toLowerCase()) {
       case 'hidden':
+      case 'password':
       case 'text':
         return Form.Element.Serializers.textarea(element);
       case 'checkbox':  
       case 'radio':
         return Form.Element.Serializers.inputSelector(element);
     }
+    return false;
   },
 
   inputSelector: function(element) {
@@ -334,3 +350,105 @@ Form.Observer.prototype = (new Abstract.TimedObserver()).extend({
   }
 });
 
+
+/*--------------------------------------------------------------------------*/
+
+Abstract.Insertion = function(adjacency) {
+  this.adjacency = adjacency;
+}
+
+Abstract.Insertion.prototype = {
+  initialize: function(element, content) {
+    this.element = $(element);
+    this.content = content;
+    
+    if (this.adjacency && this.element.insertAdjacentHTML) {
+      this.element.insertAdjacentHTML(this.adjacency, this.content);
+    } else {
+      this.range = this.element.ownerDocument.createRange();
+      if (this.initializeRange) this.initializeRange();
+      this.fragment = this.range.createContextualFragment(this.content);
+      this.insertContent();
+    }
+  }
+}
+
+var Insertion = new Object();
+
+Insertion.Before = Class.create();
+Insertion.Before.prototype = (new Abstract.Insertion('beforeBegin')).extend({
+  initializeRange: function() {
+    this.range.setStartBefore(this.element);
+  },
+  
+  insertContent: function() {
+    this.element.parentNode.insertBefore(this.fragment, this.element);
+  }
+});
+
+Insertion.Top = Class.create();
+Insertion.Top.prototype = (new Abstract.Insertion('afterBegin')).extend({
+  initializeRange: function() {
+    this.range.selectNodeContents(this.element);
+    this.range.collapse(true);
+  },
+  
+  insertContent: function() {  
+    this.element.insertBefore(this.fragment, this.element.firstChild);
+  }
+});
+
+Insertion.Bottom = Class.create();
+Insertion.Bottom.prototype = (new Abstract.Insertion('beforeEnd')).extend({
+  initializeRange: function() {
+    this.range.selectNodeContents(this.element);
+    this.range.collapse(this.element);
+  },
+  
+  insertContent: function() {
+    this.element.appendChild(this.fragment);
+  }
+});
+
+Insertion.After = Class.create();
+Insertion.After.prototype = (new Abstract.Insertion('afterEnd')).extend({
+  initializeRange: function() {
+    this.range.setStartAfter(this.element);
+  },
+  
+  insertContent: function() {
+    this.element.parentNode.insertBefore(this.fragment, 
+      this.element.nextSibling);
+  }
+});
+
+/*--------------------------------------------------------------------------*/
+
+var Effect = new Object();
+
+Effect.Highlight = Class.create();
+Effect.Highlight.prototype = {
+  initialize: function(element) {
+    this.element = $(element);
+    this.start  = 153;
+    this.finish = 255;
+    this.current = this.start;
+    this.fade();
+  },
+  
+  fade: function() {
+    if (this.isFinished()) return;
+    if (this.timer) clearTimeout(this.timer);
+    this.highlight(this.element, this.current);
+    this.current += 17;
+    this.timer = setTimeout(this.fade.bind(this), 250);
+  },
+  
+  isFinished: function() {
+    return this.current > this.finish;
+  },
+  
+  highlight: function(element, current) {
+    element.style.backgroundColor = "#ffff" + current.toColorPart();
+  }
+}

@@ -21,7 +21,7 @@ class Article < ActiveRecord::Base
       post = "title=#{URI.escape(title)}"
       post << "&excerpt=#{URI.escape(strip_html(body_html)[0..254])}"
       post << "&url=#{URI.escape(articleurl)}"
-      post << "&blog_name=#{URI.escape(CONFIG['blogname'])}"
+      post << "&blog_name=#{URI.escape(config['blog_name'])}"
       begin
         Net::HTTP.start(uri.host, uri.port) do |http|
           response = http.post("#{uri.path}?#{uri.query}", post)

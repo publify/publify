@@ -11,38 +11,41 @@ ADDITIONAL_LOAD_PATHS.concat(Dir["#{RAILS_ROOT}/components/[_a-z]*"])
 
 # Followed by the standard includes.
 ADDITIONAL_LOAD_PATHS.concat %w(
-  app
-  app/models
-  app/controllers
-  app/helpers
-  app/apis
-  config
-  components
-  lib
-  vendor
-).map { |dir| "#{RAILS_ROOT}/#{dir}" }
+  app 
+  app/models 
+  app/controllers 
+  app/helpers 
+  app/apis 
+  components 
+  config 
+  lib 
+  vendor 
+  vendor/rails/railties
+  vendor/rails/railties/lib
+  vendor/rails/actionpack/lib
+  vendor/rails/activesupport/lib
+  vendor/rails/activerecord/lib
+  vendor/rails/actionmailer/lib
+  vendor/rails/actionwebservice/lib
+).map { |dir| "#{RAILS_ROOT}/#{dir}" }.select { |dir| File.directory?(dir) }
 
 # Prepend to $LOAD_PATH
 ADDITIONAL_LOAD_PATHS.reverse.each { |dir| $:.unshift(dir) if File.directory?(dir) }
 
+# Require Rails libraries.
+require 'rubygems' unless File.directory?("#{RAILS_ROOT}/vendor/rails")
 
-# Require Rails gems.
-require 'rubygems'
-require_gem 'activesupport'
-require_gem 'activerecord'
-require_gem 'actionpack'
-require_gem 'actionmailer'
-require_gem 'actionwebservice'
-require_gem 'rails'
-require_gem 'RedCloth'
-
+require 'active_support'
+require 'active_record'
+require 'action_controller'
+require 'action_mailer'
+require 'action_web_service'
 
 # Environment-specific configuration.
 require_dependency "environments/#{RAILS_ENV}"
-ActiveRecord::Base.configurations = YAML::load(File.open("#{RAILS_ROOT}/config/database.yml"))
+ActiveRecord::Base.configurations = File.open("#{RAILS_ROOT}/config/database.yml") { |f| YAML::load(f) }
 ActiveRecord::Base.establish_connection
 
-CONFIG = YAML::load(File.open("#{RAILS_ROOT}/config/config.yml"))
 
 # Configure defaults if the included environment did not.
 begin
@@ -61,12 +64,8 @@ end
 ActionController::Routing::Routes.reload
 
 Controllers = Dependencies::LoadingModule.root(
-  File.expand_path(File.join(RAILS_ROOT, 'app', 'controllers')),
-  File.expand_path(File.join(RAILS_ROOT, 'components'))
+  File.join(RAILS_ROOT, 'app', 'controllers'),
+  File.join(RAILS_ROOT, 'components')
 )
 
 # Include your app's configuration here:
-require_dependency 'tada'
-require_dependency 'flickr'
-require_dependency 'delicious'
-require_dependency 'simple_cache'

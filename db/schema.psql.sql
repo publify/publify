@@ -64,6 +64,14 @@ CREATE TABLE sidebar_blocks (
   position int default NULL
 );
 
+CREATE TABLE settings (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name varchar(255) default NULL,
+  value varchar(255) default NULL,
+  position int default NULL
+);
+
+
 CREATE TABLE trackbacks (
   id SERIAL PRIMARY KEY NOT NULL,
   article_id int REFERENCES articles,

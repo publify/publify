@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+login:
+  id: 1
+  name: login
+  value: tobi
+  
+password:
+  id: 2
+  name: password
+  value: whatever

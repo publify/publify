@@ -59,6 +59,13 @@ CREATE TABLE `resources` (
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(40) default NULL,
+  `value` varchar(40) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM;
+
 CREATE TABLE `sidebar_blocks` (
   `id` int(11) NOT NULL auto_increment,
   `type` varchar(255) default NULL,

@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   cache_sweeper :blog_sweeper, :only => "comment"
   
+  before_filter :verify_config
+  
   def index
     @articles = Article.find_all('published !=0', 'created_at DESC', '10')
   end
@@ -89,6 +91,10 @@ class ArticlesController < ApplicationController
   end
   
   private
+
+    def verify_config      
+      redirect_to :controller => "settings", :action => "install" if !config.is_ok?
+    end
     
     def fill_from_cookies(comment)      
       comment.author  ||= cookies['author']

@@ -18,8 +18,8 @@ class MetaWeblogApi
     # article.dateCreated
 
     # Moveable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || CONFIG['default_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings'] || CONFIG['default_allow_pings']
+    article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings'] || $config['default_allow_pings']
     #                      = struct['mt_convert_breaks']
     article.extended       = struct['mt_text_more'] || ''
     article.excerpt        = struct['mt_excerpt'] || ''
@@ -79,8 +79,8 @@ class MetaWeblogApi
     # article.dateCreated
 
     # Moveable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || CONFIG['default_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings'] || CONFIG['default_allow_pings']
+    article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings'] || $config['default_allow_pings']
     #                      = struct['mt_convert_breaks']
     article.extended       = struct['mt_text_more'] || ''
     article.excerpt        = struct['mt_excerpt'] || ''
@@ -186,7 +186,7 @@ class MetaWeblogApi
   end
     
   def valid_login?(user,pass)
-    user == CONFIG['login'] && pass == CONFIG['password']
+    user == $config['login'] && pass == $config['password']
   end
   
   def pub_date(time)

@@ -8,6 +8,7 @@ PKG_VERSION = "1.6.8"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
+
 $VERBOSE = nil
 TEST_CHANGES_SINCE = Time.now - 600
 
@@ -77,32 +78,47 @@ Rake::RDocTask.new("appdoc") { |rdoc|
 desc "Generate documentation for the Rails framework"
 Rake::RDocTask.new("apidoc") { |rdoc|
   rdoc.rdoc_dir = 'doc/api'
+  rdoc.template = "#{ENV['template']}.rb" if ENV['template']
   rdoc.title    = "Rails Framework Documentation"
   rdoc.options << '--line-numbers --inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('CHANGELOG')
-  rdoc.rdoc_files.include('vendor/railties/lib/breakpoint.rb')
-  rdoc.rdoc_files.include('vendor/railties/CHANGELOG')
-  rdoc.rdoc_files.include('vendor/railties/MIT-LICENSE')
-  rdoc.rdoc_files.include('vendor/activerecord/README')
-  rdoc.rdoc_files.include('vendor/activerecord/CHANGELOG')
-  rdoc.rdoc_files.include('vendor/activerecord/lib/active_record/**/*.rb')
-  rdoc.rdoc_files.exclude('vendor/activerecord/lib/active_record/vendor/*')
-  rdoc.rdoc_files.include('vendor/actionpack/README')
-  rdoc.rdoc_files.include('vendor/actionpack/CHANGELOG')
-  rdoc.rdoc_files.include('vendor/actionpack/lib/action_controller/**/*.rb')
-  rdoc.rdoc_files.include('vendor/actionpack/lib/action_view/**/*.rb')
-  rdoc.rdoc_files.include('vendor/actionmailer/README')
-  rdoc.rdoc_files.include('vendor/actionmailer/CHANGELOG')
-  rdoc.rdoc_files.include('vendor/actionmailer/lib/action_mailer/base.rb')
+  rdoc.rdoc_files.include('vendor/rails/railties/CHANGELOG')
+  rdoc.rdoc_files.include('vendor/rails/railties/MIT-LICENSE')
+  rdoc.rdoc_files.include('vendor/rails/activerecord/README')
+  rdoc.rdoc_files.include('vendor/rails/activerecord/CHANGELOG')
+  rdoc.rdoc_files.include('vendor/rails/activerecord/lib/active_record/**/*.rb')
+  rdoc.rdoc_files.exclude('vendor/rails/activerecord/lib/active_record/vendor/*')
+  rdoc.rdoc_files.include('vendor/rails/actionpack/README')
+  rdoc.rdoc_files.include('vendor/rails/actionpack/CHANGELOG')
+  rdoc.rdoc_files.include('vendor/rails/actionpack/lib/action_controller/**/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionpack/lib/action_view/**/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionmailer/README')
+  rdoc.rdoc_files.include('vendor/rails/actionmailer/CHANGELOG')
+  rdoc.rdoc_files.include('vendor/rails/actionmailer/lib/action_mailer/base.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/README')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/CHANGELOG')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service/api/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service/client/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service/container/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service/dispatcher/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service/protocol/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/actionwebservice/lib/action_web_service/support/*.rb')
+  rdoc.rdoc_files.include('vendor/rails/activesupport/README')
+  rdoc.rdoc_files.include('vendor/rails/activesupport/CHANGELOG')
+  rdoc.rdoc_files.include('vendor/rails/activesupport/lib/active_support/**/*.rb')
 }
 
 desc "Report code statistics (KLOCs, etc) from the application"
-task :stats do
+task :stats => [ :environment ] do
   require 'code_statistics'
   CodeStatistics.new(
     ["Helpers", "app/helpers"], 
     ["Controllers", "app/controllers"], 
+    ["APIs", "app/apis"],
+    ["Components", "components"],
     ["Functionals", "test/functional"],
     ["Models", "app/models"],
     ["Units", "test/unit"]
@@ -119,8 +135,11 @@ task :clone_structure_to_test => [ :db_structure_dump, :purge_test_database ] do
       IO.readlines("db/#{RAILS_ENV}_structure.sql").join.split("\n\n").each do |table|
         ActiveRecord::Base.connection.execute(table)
       end
-    when  "postgresql"
-      `psql -U #{abcs["test"]["username"]} -f db/#{RAILS_ENV}_structure.sql #{abcs["test"]["database"]}`
+    when "postgresql"
+      ENV['PGHOST']     = abcs["test"]["host"] if abcs["test"]["host"]
+      ENV['PGPORT']     = abcs["test"]["port"].to_s if abcs["test"]["port"]
+      ENV['PGPASSWORD'] = abcs["test"]["password"]
+      `psql -U "#{abcs["test"]["username"]}" -f db/#{RAILS_ENV}_structure.sql #{abcs["test"]["database"]}`
     when "sqlite", "sqlite3"
       `#{abcs[RAILS_ENV]["adapter"]} #{abcs["test"]["dbfile"]} < db/#{RAILS_ENV}_structure.sql`
     else 
@@ -135,8 +154,11 @@ task :db_structure_dump => :environment do
     when "mysql"
       ActiveRecord::Base.establish_connection(abcs[RAILS_ENV])
       File.open("db/#{RAILS_ENV}_structure.sql", "w+") { |f| f << ActiveRecord::Base.connection.structure_dump }
-    when  "postgresql"
-      `pg_dump -U #{abcs[RAILS_ENV]["username"]} -s -f db/#{RAILS_ENV}_structure.sql #{abcs[RAILS_ENV]["database"]}`
+    when "postgresql"
+      ENV['PGHOST']     = abcs[RAILS_ENV]["host"] if abcs[RAILS_ENV]["host"]
+      ENV['PGPORT']     = abcs[RAILS_ENV]["port"].to_s if abcs[RAILS_ENV]["port"]
+      ENV['PGPASSWORD'] = abcs[RAILS_ENV]["password"]
+      `pg_dump -U "#{abcs[RAILS_ENV]["username"]}" -s -x -f db/#{RAILS_ENV}_structure.sql #{abcs[RAILS_ENV]["database"]}`
     when "sqlite", "sqlite3"
       `#{abcs[RAILS_ENV]["adapter"]} #{abcs[RAILS_ENV]["dbfile"]} .schema > db/#{RAILS_ENV}_structure.sql`
     else 
@@ -152,14 +174,18 @@ task :purge_test_database => :environment do
       ActiveRecord::Base.establish_connection(abcs[RAILS_ENV])
       ActiveRecord::Base.connection.recreate_database(abcs["test"]["database"])
     when "postgresql"
-      `dropdb -U #{abcs["test"]["username"]} #{abcs["test"]["database"]}`
-      `createdb -U #{abcs["test"]["username"]}  #{abcs["test"]["database"]}`
+      ENV['PGHOST']     = abcs["test"]["host"] if abcs["test"]["host"]
+      ENV['PGPORT']     = abcs["test"]["port"].to_s if abcs["test"]["port"]
+      ENV['PGPASSWORD'] = abcs["test"]["password"]
+      `dropdb -U "#{abcs["test"]["username"]}" #{abcs["test"]["database"]}`
+      `createdb -T template0 -U "#{abcs["test"]["username"]}" #{abcs["test"]["database"]}`
     when "sqlite","sqlite3"
       File.delete(abcs["test"]["dbfile"]) if File.exist?(abcs["test"]["dbfile"])
     else 
       raise "Unknown database adapter '#{abcs["test"]["adapter"]}'"
   end
 end
+
 
 desc "Publish the zip/tgz"
 task :publish => [:package] do

@@ -1,0 +1,20 @@
+/* Begin Typography & Colors */
+body {
+	font-size: 62.5%; /* Resets 1em to 10px */
+	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	color: #333;
+	}
+	
+#form {
+  position: relative;
+  left: 100px;
+  top: 100px;
+  width: 220px;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.notice {
+  font-weight: bold;
+  margin: 5px 0;
+}

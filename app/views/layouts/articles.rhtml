@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+  <title><%= config('blog_name') %></title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <%= stylesheet_link_tag "base" %>
-  <%= javascript_include_tag "livesearch" %>
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xml/rsd" />
   <link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="<%= url_for :controller => 'xml', :action => 'rss' %>" />
   <link rel="alternate" type="application/atom+xml"  title="Recent changes (ATOM 0.3)"  href="<%= url_for :controller => 'xml', :action => 'atom' %>" />
-  <title><%= CONFIG['blogname'] %></title>
+  <%= stylesheet_link_tag "base" %>
+  <%= javascript_include_tag "livesearch" %>
 </head>
 <body>
 <div id="page">
@@ -15,7 +15,7 @@
 <!-- head -->
 <div id="header">
   <div id="headerimg">
-    <h1><a href="/"><%= CONFIG['blogname'] %></a></h1>
+    <h1><a href="/"><%= config('blog_name') %></a></h1>
     <div class="description"></div>  
   </div>
 </div>
@@ -27,16 +27,15 @@
 
 <!-- right -->
 <div id="sidebar">
-  <div id="searchform">
     <form action="/articles/search" method="get">
-      <p>Live Search<br />
+      <p>Live Search<p>
         <input type="text" id="search-input" name="q" value="" size="15" autocomplete="off" />
         <script type="text/javascript">liveSearch('search-input', '/live/search')</script>
         <div id="search-results"></div>
-      </p>
     </form>
-  </div>
-
+  
+  <%= categorylist %>
+    
   <%= render_partial "shared/links"  %>
   <br/>
   <%=

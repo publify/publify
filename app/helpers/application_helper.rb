@@ -1,6 +1,12 @@
 # The methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def categorylist()
+    categories = Category.find_all(nil, "position ASC")
+
+    render_partial("shared/categories", categories)
+  end
+  
   def flickrlist(url)
     begin
       flickr = controller.cache[:flickr] || controller.cache[:flickr] = Flickr.new(url)
@@ -37,6 +43,10 @@ module ApplicationHelper
     tag_key = attribute_key
     tag = %r{<[!/?\[]?(?:#{tag_key}|--)(?:\s+#{attributes})?\s*(?:[!/?\]]+|--)?>}
     text.gsub(tag, '').gsub(/\s+/, ' ').strip
+  end
+
+  def config(name)  
+    controller.config[name]
   end
   
 end

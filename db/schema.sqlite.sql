@@ -54,6 +54,12 @@ CREATE TABLE 'sidebar_blocks' (
   'data'        TEXT, 
   'position'    INTEGER
 );
+CREATE TABLE 'settings' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'name'        VARCHAR(255) DEFAULT NULL,
+  'value'       VARCHAR(255) DEFAULT NULL,
+  'position'    INTEGER
+);
 CREATE TABLE 'trackbacks' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'article_id'  INTEGER,
