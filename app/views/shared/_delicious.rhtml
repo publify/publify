@@ -1,0 +1,4 @@
+<b><%= delicious.title %></b><br/>
+<% for item in delicious.items.to_a -%>
+    <a href="<%= item.link %>" title="<%= item.title %>"><%= item.title %> </a><br/>
+<% end -%>
