@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  
   cache_sweeper :blog_sweeper, :only => "comment"
   
   def index
@@ -18,11 +17,19 @@ class ArticlesController < ApplicationController
   end
   
   def error(message = "Record not found")
-    @message ||= message
+    @message = message
     render_action "error"
   end
   
-  
+  def category
+    if category = Category.find_by_name(@params['id'])    
+      @articles = category.articles        
+      render_action "index"
+    else
+      error("Can't find posts in category #{params['id']}")
+    end
+  end
+    
   def comment 
     @article = Article.find(@params["id"])    
     @comment = Comment.new(@params["comment"])

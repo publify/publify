@@ -1,5 +1,14 @@
 <% for article in @articles -%>
   <%= render_partial "article", article %>
-  
-  <p class="postmetadata">Posted in <%= article.categories.collect{|c| c.name}.join(", ") %> <strong>|</strong> <%=link_to_comments(article)%></p> 
+  <p class="postmetadata">
+
+  <% if not article.categories.empty? -%>
+    Posted in 
+    <% for category in article.categories -%>
+      <%= link_to category.name, :controller=>"articles", :action=>"category", :id=>category.name %>
+    <% end %>  
+    <strong>|</strong> 
+  <% end -%>
+  <%=link_to_comments(article)%>
 <% end -%>
+</p> 

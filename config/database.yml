@@ -1,11 +1,20 @@
 development:
-  adapter: sqlite
-  dbfile: db/development.sqlite
+  adapter: mysql
+  database: typo_dev
+  host: localhost
+  username: root
+  password: 
 
 test:
-  adapter: sqlite
-  dbfile: db/test.sqlite
+  adapter: mysql
+  database: typo_tests
+  host: localhost
+  username: root
+  password: 
 
 production:
-  adapter: sqlite
-  dbfile: db/production.sqlite
+  adapter: mysql
+  database: typo
+  host: localhost
+  username: root
+  password: 

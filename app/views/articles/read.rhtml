@@ -1,6 +1,12 @@
 <%= render_partial "article", @article %>
 <a name="comments"></a><h3><%= responses(@article) %> to '<%=h @article.title  %>'</h3> 
 
+<p class="postmetadata alt">
+	<small>
+		You can <a href="#respond">leave a response</a>, or <a href="<%= server_url_for :controller=>"articles", :action=>"read", :id=>@article.id %>">trackback</a> from your own site.									
+	</small>
+</p>
+
 <ol class="commentlist">
   <%= render_collection_of_partials "comment", @article.comments %>			
 </ol>
@@ -9,6 +15,7 @@
 <%= start_form_tag :action => "comment", :id=> @article.id %>
 <div class="graybox">
   <small>write a comment....</small>
+  <a name="respond"></a>
   <table cellpadding="4" cellspacing="0" border="0">
     <tr>
       <td colspan="4">
