@@ -18,8 +18,9 @@ class Comment < ActiveRecord::Base
     end
 
     def make_nofollow
-      self.body = nofollowify(body) 
-      self.author = nofollowify(author) 
+      self.title = nofollowify(title)
+      self.author = nofollowify(author)
+      self.body = nofollowify(body)
     end
 
     def transform_body
