@@ -54,7 +54,7 @@ class Article < ActiveRecord::Base
   def self.search(query)
     if query
       tokens      = query.split.collect {|c| "%#{c.downcase}%"}
-      find_by_sql(["SELECT * from articles WHERE #{ (["LOWER(body) like ?"] * tokens.size).join(" AND ") } ORDER by created_at DESC", *tokens])
+      find_by_sql(["SELECT * from articles WHERE #{ (["LOWER(body) like ?"] * tokens.size).join(" AND ") } AND published != 0 ORDER by created_at DESC", *tokens])
     end
   end
   
