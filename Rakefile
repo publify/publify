@@ -1,47 +1,63 @@
-require 'rubygems'
 require 'rake'
-require 'rake/gempackagetask'
 require 'rake/testtask'
 require 'rake/rdoctask'
-require 'rake/contrib/rubyforgepublisher'
-
-PKG_VERSION = "1.3.0"
-PKG_NAME = "typo"
-PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 $VERBOSE = nil
-
-require File.dirname(__FILE__) + '/config/environment'
-require 'code_statistics'
+TEST_CHANGES_SINCE = Time.now - 600
 
 desc "Run all the tests on a fresh test database"
-task :default => [ :clone_structure_to_test, :test_units, :test_functional ]
+task :default => [ :test_units, :test_functional ]
+
+
+desc 'Require application environment.'
+task :environment do
+  unless defined? RAILS_ROOT
+    require File.dirname(__FILE__) + '/config/environment'
+  end
+end
 
 desc "Generate API documentatio, show coding stats"
 task :doc => [ :appdoc, :stats ]
 
-desc "Generate databases for sqlite"
-task :create_sqlite do
-  `rm -f db/development.sqlite`
-  `rm -f db/test.sqlite`
-  `sqlite db/test.sqlite < db/schema.sqlite.sql`
-  `sqlite db/development.sqlite < db/schema.sqlite.sql`
-  `sqlite db/production.sqlite < db/schema.sqlite.sql`
+
+# Look up tests for recently modified sources.
+def recent_tests(source_pattern, test_path, touched_since = 10.minutes.ago)
+  FileList[source_pattern].map do |path|
+    if File.mtime(path) > touched_since
+      test = "#{test_path}/#{File.basename(path, '.rb')}_test.rb"
+      test if File.exists?(test)
+    end
+  end.compact
 end
+
+desc 'Test recent changes.'
+Rake::TestTask.new(:recent => [ :clone_structure_to_test ]) do |t|
+  since = TEST_CHANGES_SINCE
+  touched = FileList['test/**/*_test.rb'].select { |path| File.mtime(path) > since } +
+    recent_tests('app/models/*.rb', 'test/unit', since) +
+    recent_tests('app/controllers/*.rb', 'test/functional', since)
+
+  t.libs << 'test'
+  t.verbose = true
+  t.test_files = touched.uniq
+end
+task :test_recent => [ :clone_structure_to_test ]
 
 desc "Run the unit tests in test/unit"
 Rake::TestTask.new("test_units") { |t|
   t.libs << "test"
-  t.pattern = 'test/unit/*_test.rb'
+  t.pattern = 'test/unit/**/*_test.rb'
   t.verbose = true
 }
+task :test_units => [ :clone_structure_to_test ]
 
 desc "Run the functional tests in test/functional"
 Rake::TestTask.new("test_functional") { |t|
   t.libs << "test"
-  t.pattern = 'test/functional/*_test.rb'
+  t.pattern = 'test/functional/**/*_test.rb'
   t.verbose = true
 }
+task :test_functional => [ :clone_structure_to_test ]
 
 desc "Generate documentation for the application"
 Rake::RDocTask.new("appdoc") { |rdoc|
@@ -77,6 +93,7 @@ Rake::RDocTask.new("apidoc") { |rdoc|
 
 desc "Report code statistics (KLOCs, etc) from the application"
 task :stats do
+  require 'code_statistics'
   CodeStatistics.new(
     ["Helpers", "app/helpers"], 
     ["Controllers", "app/controllers"], 
@@ -88,69 +105,52 @@ end
 
 desc "Recreate the test databases from the development structure"
 task :clone_structure_to_test => [ :db_structure_dump, :purge_test_database ] do
-  if ActiveRecord::Base.configurations["test"]["adapter"] == "mysql"
-    ActiveRecord::Base.establish_connection(:test)
-    ActiveRecord::Base.connection.execute('SET foreign_key_checks = 0')
-    IO.readlines("db/#{RAILS_ENV}_structure.sql").join.split("\n\n").each do |table|
-      ActiveRecord::Base.connection.execute(table)
-    end
-  elsif ActiveRecord::Base.configurations["test"]["adapter"] == "postgresql"
-    `psql -U #{ActiveRecord::Base.configurations["test"]["username"]} -f db/#{RAILS_ENV}_structure.sql #{ActiveRecord::Base.configurations["test"]["database"]}`
-  elsif ActiveRecord::Base.configurations["test"]["adapter"] == "sqlite"
-    `sqlite #{ActiveRecord::Base.configurations["test"]["dbfile"]} < db/#{RAILS_ENV}_structure.sql`
+  abcs = ActiveRecord::Base.configurations
+  case abcs["test"]["adapter"]
+    when  "mysql"
+      ActiveRecord::Base.establish_connection(:test)
+      ActiveRecord::Base.connection.execute('SET foreign_key_checks = 0')
+      IO.readlines("db/#{RAILS_ENV}_structure.sql").join.split("\n\n").each do |table|
+        ActiveRecord::Base.connection.execute(table)
+      end
+    when  "postgresql"
+      `psql -U #{abcs["test"]["username"]} -f db/#{RAILS_ENV}_structure.sql #{abcs["test"]["database"]}`
+    when "sqlite", "sqlite3"
+      `#{abcs[RAILS_ENV]["adapter"]} #{abcs["test"]["dbfile"]} < db/#{RAILS_ENV}_structure.sql`
+    else 
+      raise "Unknown database adapter '#{abcs["test"]["adapter"]}'"
   end
 end
 
 desc "Dump the database structure to a SQL file"
-task :db_structure_dump do
-  if ActiveRecord::Base.configurations[RAILS_ENV]["adapter"] == "mysql"
-    ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[RAILS_ENV])
-    File.open("db/#{RAILS_ENV}_structure.sql", "w+") { |f| f << ActiveRecord::Base.connection.structure_dump }
-  elsif ActiveRecord::Base.configurations[RAILS_ENV]["adapter"] == "postgresql"
-    `pg_dump -U #{ActiveRecord::Base.configurations[RAILS_ENV]["username"]} -s -f db/#{RAILS_ENV}_structure.sql #{ActiveRecord::Base.configurations[RAILS_ENV]["database"]}`
-  elsif ActiveRecord::Base.configurations[RAILS_ENV]["adapter"] == "sqlite"
-    `sqlite #{ActiveRecord::Base.configurations[RAILS_ENV]["dbfile"]} .schema > db/#{RAILS_ENV}_structure.sql`
+task :db_structure_dump => :environment do
+  abcs = ActiveRecord::Base.configurations
+  case abcs[RAILS_ENV]["adapter"] 
+    when "mysql"
+      ActiveRecord::Base.establish_connection(abcs[RAILS_ENV])
+      File.open("db/#{RAILS_ENV}_structure.sql", "w+") { |f| f << ActiveRecord::Base.connection.structure_dump }
+    when  "postgresql"
+      `pg_dump -U #{abcs[RAILS_ENV]["username"]} -s -f db/#{RAILS_ENV}_structure.sql #{abcs[RAILS_ENV]["database"]}`
+    when "sqlite", "sqlite3"
+      `#{abcs[RAILS_ENV]["adapter"]} #{abcs[RAILS_ENV]["dbfile"]} .schema > db/#{RAILS_ENV}_structure.sql`
+    else 
+      raise "Unknown database adapter '#{abcs["test"]["adapter"]}'"
   end
 end
 
-desc "Drop the test database and bring it back again"
-task :purge_test_database do
-  if ActiveRecord::Base.configurations["test"]["adapter"] == "mysql"
-    ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[RAILS_ENV])
-    ActiveRecord::Base.connection.recreate_database(ActiveRecord::Base.configurations["test"]["database"])
-  elsif ActiveRecord::Base.configurations["test"]["adapter"] == "postgresql"
-    `dropdb -U #{ActiveRecord::Base.configurations["test"]["username"]} #{ActiveRecord::Base.configurations["test"]["database"]}`
-    `createdb -U #{ActiveRecord::Base.configurations["test"]["username"]}  #{ActiveRecord::Base.configurations["test"]["database"]}`
-  elsif ActiveRecord::Base.configurations["test"]["adapter"] == "sqlite"
-    File.delete(ActiveRecord::Base.configurations["test"]["dbfile"]) if File.exist?(ActiveRecord::Base.configurations["test"]["dbfile"])
+desc "Empty the test database"
+task :purge_test_database => :environment do
+  abcs = ActiveRecord::Base.configurations
+  case abcs["test"]["adapter"]
+    when "mysql"
+      ActiveRecord::Base.establish_connection(abcs[RAILS_ENV])
+      ActiveRecord::Base.connection.recreate_database(abcs["test"]["database"])
+    when "postgresql"
+      `dropdb -U #{abcs["test"]["username"]} #{abcs["test"]["database"]}`
+      `createdb -U #{abcs["test"]["username"]}  #{abcs["test"]["database"]}`
+    when "sqlite","sqlite3"
+      File.delete(abcs["test"]["dbfile"]) if File.exist?(abcs["test"]["dbfile"])
+    else 
+      raise "Unknown database adapter '#{abcs["test"]["adapter"]}'"
   end
 end
-
-
-# Publish beta gem  
-desc "Publish the zip/tgz"
-task :publish => [:package] do
-  Rake::SshFilePublisher.new("leetsoft.com", "dist/pkg", "pkg", "#{PKG_FILE_NAME}.zip").upload
-  Rake::SshFilePublisher.new("leetsoft.com", "dist/pkg", "pkg", "#{PKG_FILE_NAME}.tgz").upload
-end
-
-spec = Gem::Specification.new do |s|
-  s.name = PKG_NAME
-  s.version = PKG_VERSION
-  s.summary = "Tiny minimal weblog supporting metaweblog API."
-  s.has_rdoc = false
-
-  s.files = Dir['**/*'].delete_if{ |f|f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ }
-
-  s.require_path = '.'
-  s.author = "Tobias Luetke"
-  s.email = "tobi@leetsoft.com"
-  s.homepage = "http://leetsoft.com/rails/moneris"  
-end
-
-Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
-  p.need_tar = true
-  p.need_zip = true
-end
-

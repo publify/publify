@@ -5,11 +5,10 @@ require 'optparse'
 
 OPTIONS = {
   :port        => 3000,
-  :ip          => "127.0.0.1",
+  :ip          => "0.0.0.0",
   :environment => "development",
   :server_root => File.expand_path(File.dirname(__FILE__) + "/../public/"),
-  :server_type => WEBrick::SimpleServer,
-  :index_controller => "articles"
+  :server_type => WEBrick::SimpleServer
 }
 
 ARGV.options do |opts|
@@ -45,6 +44,8 @@ end
 ENV["RAILS_ENV"] = OPTIONS[:environment]
 require File.dirname(__FILE__) + "/../config/environment"
 require 'webrick_server'
+
+OPTIONS['working_directory'] = File.expand_path(RAILS_ROOT)
 
 puts "=> Rails application started on http://#{OPTIONS[:ip]}:#{OPTIONS[:port]}"
 DispatchServlet.dispatch(OPTIONS)

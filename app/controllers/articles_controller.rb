@@ -16,6 +16,13 @@ class ArticlesController < ApplicationController
     fill_from_cookies(@comment)    
   end
   
+  def permalink
+    @article = Article.find_by_permalink(@params["year"], @params["month"], @params["day"], @params["title"])
+    @comment = Comment.new
+
+    fill_from_cookies(@comment)    
+  end
+  
   def error(message = "Record not found")
     @message = message
     render_action "error"

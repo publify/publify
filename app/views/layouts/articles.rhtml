@@ -4,8 +4,8 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="/stylesheets/base.css" type="text/css" />
         <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xml/rsd" />
-	<link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="/xml/rss" />
-	<link rel="alternate" type="application/atom+xml"  title="Recent changes (ATOM 0.3)"  href="/xml/atom" />
+	<link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="<%= url_for :controller => 'xml', :action => 'rss' %>" />
+	<link rel="alternate" type="application/atom+xml"  title="Recent changes (ATOM 0.3)"  href="<%= url_for :controller => 'xml', :action => 'atom' %>" />
 	<title><%= CONFIG['blogname'] %></title>
 </head>
 <body>
@@ -49,7 +49,7 @@
 <!-- footer -->
 <div id="footer">
     Powered by <a href="http://typo.leetsoft.com/" title="Typo">Typo</a><br/>
-    <a href="/xml/rss" title="XML feed">RSS</a> and <a href="/xml/atom" title="XML feed">atom</a> available
+    <%= link_to 'RSS', :controller => 'xml', :action => 'rss' %> and <%= link_to 'atom', :controller => 'xml', :action => 'atom' %>
 </div>
 </div> <!-- end "page" div -->
 

@@ -3,58 +3,16 @@ AddHandler fastcgi-script .fcgi
 AddHandler cgi-script .cgi
 Options +FollowSymLinks +ExecCGI
 
-# <caching>
-# no query string?
-RewriteCond %{QUERY_STRING} ^$
-
-# no POST method?
-RewriteCond %{REQUEST_METHOD} !^POST$ [NC]
-
-# Request filename is a directory?
-RewriteCond %{REQUEST_FILENAME} -d
-
-# Request filename + '/index' is a file?
-RewriteCond %{REQUEST_FILENAME}/index -f
-
-# Rewrite to request filename + '/index' and finish
-RewriteRule ^(.*)/?$ $1/index [QSA,L]
-
-# no query string?
-RewriteCond %{QUERY_STRING} ^$
-
-# no POST method?
-RewriteCond %{REQUEST_METHOD} !^POST$ [NC]
-
-# Request filename is a file?
-RewriteCond %{REQUEST_FILENAME} -f
-
-# Finish rewriting
-RewriteRule .* - [L]
-
-# Set default type of cached files to text/html
-DefaultType application/xml
-# </caching>
-
-
-# Make sure that mod_ruby.c has been added and loaded as a module with Apache
+# Redirect all requests not available on the filesystem to Rails
 RewriteEngine On
+RewriteRule ^$ index.html [QSA]
+RewriteRule ^([^.]+)$ $1.html [QSA]
 
-# Change extension from .cgi to .fcgi to switch to FCGI and to .rb to switch to mod_ruby
-RewriteBase /dispatch.fcgi
+# try to suggest current rss subscribers that the url moved permently
+RewriteRule ^xml/([a-z]+)$ /xml/$1/feed.xml [R=301]
 
-# Enable this rewrite rule to point to the controller/action that should serve root.
-RewriteRule ^$ /articles/index  
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /dispatch.cgi?$1 [QSA,L]
 
-# Add missing slash
-RewriteRule ^([-_a-zA-Z0-9]+)$                                            /$1/ [R]
-
-# if requested atom or rss serve it as xml mime
-
-# Default rewriting rules. 
-RewriteRule ^([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)$          ?controller=$1&action=$2&id=$3 [QSA,L]
-RewriteRule ^([-_a-zA-Z0-9]+)/([-_a-zA-Z0-9]+)$                           ?controller=$1&action=$2 [QSA,L]
-RewriteRule ^([-_a-zA-Z0-9]+)/$                                           ?controller=$1&action=index [QSA,L]
-
-# You can also point these error messages to a controller/action
+# In case Rails experiences terminal errors
 ErrorDocument 500 /500.html
-ErrorDocument 404 /404.html
