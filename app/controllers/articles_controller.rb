@@ -8,23 +8,12 @@ class ArticlesController < ApplicationController
     @articles = Article.search(@params["q"])
   end
   
-  def comment
-    if @request.post?
-      @comment = Comment.new
-      
-    end
-    
-    return 
-        
-  end
-  
   def read    
     @article = Article.find(@params["id"])    
     @comment = Comment.new(@params["comment"])
     @comment.article = @article
 
-    if @request.post?
-      @comment.save
+    if @request.post? and @comment.save      
       @comment.body = ""
       
       cookies['author']  = { :value => @comment.author, :expires => 2.weeks.from_now } 
@@ -35,6 +24,10 @@ class ArticlesController < ApplicationController
     fill_from_cookies(@comment)    
   end
   
+  def error(message = "Record not found")
+    @message ||= message
+    render_action "error"
+  end
   
   private
     
@@ -43,5 +36,8 @@ class ArticlesController < ApplicationController
       comment.url     ||= cookies['url']
       comment.email   ||= cookies['email']
     end
-
+    
+    def rescue_action_in_public(exception)
+      error(exception.message)
+    end
 end

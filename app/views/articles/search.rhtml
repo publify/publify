@@ -1,3 +1,11 @@
+<% if @articles.to_a.empty? -%>
+<div class="post">
+<p>No articles found...</p>
+</div>
+<% else -%>
+
 <% for article in @articles -%>
   <%= render_partial "article", article %>
 <% end -%>
+
+<% end %>

@@ -15,7 +15,6 @@ class Comment < ActiveRecord::Base
       end
     end
 
-  
     before_save :transform_body
     def transform_body
       self.body_html = HtmlEngine.transform(body)

@@ -8,8 +8,10 @@ class Article < ActiveRecord::Base
   end
   
   def self.search(query)
-    tokens      = query.split
-    find_by_sql(["SELECT * from articles WHERE #{ (["body like ?"] * tokens.size).join(" OR ") }", *tokens])
+    if query
+      tokens      = query.split.collect {|c| "%#{c}%"}
+      find_by_sql(["SELECT * from articles WHERE #{ (["body like ?"] * tokens.size).join(" AND ") }", *tokens])
+    end
   end
 
   protected  
@@ -17,5 +19,5 @@ class Article < ActiveRecord::Base
     def transform_body
       self.body_html = HtmlEngine.transform(body)
     end  
-  
+    
 end
