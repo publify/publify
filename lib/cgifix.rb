@@ -3,11 +3,9 @@ class CGI
   
   module QueryExtension
     def initialize_query()
-      STDERR << "initialize_query"
-
       if ("POST" == env_table['REQUEST_METHOD']) and %r|\Amultipart/form-data.*boundary=\"?([^\";,]+)\"?|n.match(env_table['CONTENT_TYPE']) #"
-        boundary = $1.dup
-        @multipart = true
+        boundary      = $1.dup
+        @multipart    = true
         @params       = read_multipart(boundary, Integer(env_table['CONTENT_LENGTH']))
       else
         @multipart    = false
@@ -33,13 +31,13 @@ class CGI
         read_from_cmdline
       end    
     end
-
-  end
-  
+  end  
 end
 
 module ActionController
   class CgiRequest < AbstractRequest #:nodoc:
+    # Access the raw post data
+    # This can be useful for webservices like xmlrpc and soap
     def raw_post
       cgi.raw_post
     end

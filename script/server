@@ -8,7 +8,8 @@ OPTIONS = {
   :ip          => "127.0.0.1",
   :environment => "development",
   :server_root => File.expand_path(File.dirname(__FILE__) + "/../public/"),
-  :server_type => WEBrick::SimpleServer
+  :server_type => WEBrick::SimpleServer,
+  :index_controller => "articles"
 }
 
 ARGV.options do |opts|
