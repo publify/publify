@@ -5,7 +5,7 @@ module ArticlesHelper
     when 0
       "no #{word}s"
     when 1
-      "#{collection.count} #{word}"
+      "1 #{word}"
     else
       "#{collection.count} #{word}s"
     end
