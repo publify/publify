@@ -1,14 +1,23 @@
 <% for article in @articles -%>
   <%= render_partial "article", article %>
   <p class="postmetadata">
-
-  <% if not article.categories.empty? -%>
-    Posted in 
-    <% for category in article.categories -%>
-      <%= link_to category.name, :controller=>"articles", :action=>"category", :id=>category.name %>
-    <% end %>  
-    <strong>|</strong> 
-  <% end -%>
-  <%=link_to_comments(article)%>
+    <% unless article.categories.empty? -%>
+      Posted in 
+      <%= article.categories.collect { |c|
+            link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name 
+          }.join(", ") %>
+      <% unless article.allow_comments < 1 and article.allow_pings < 1 %>
+        <strong>|</strong> 
+      <% end %>
+    <% end -%>
+    <% unless article.allow_comments < 1 %>
+      <%= link_to_comments(article) %>
+      <% unless article.allow_pings < 1 %>
+        <strong>|</strong> 
+      <% end %>
+    <% end -%>
+    <% unless article.allow_pings < 1 %>
+      <%= link_to_trackbacks(article) %>
+    <% end -%>
+  </p> 
 <% end -%>
-</p> 

@@ -1,17 +1,27 @@
 <%= render_partial "article", @article %>
-<a name="comments"></a><h3><%= responses(@article) %> to '<%=h @article.title  %>'</h3> 
 
-<p class="postmetadata alt">
-	<small>
-		You can <a href="#respond">leave a response</a>, or <a href="<%= server_url_for :controller=>"trackback", :action=>"ping", :id=>@article.id %>">trackback</a> from your own site.									
-	</small>
-</p>
+<% if @article.allow_comments > 0 %>
+  <a name="comments"></a><h3><%= responses(@article.comments, "response") %> to '<%=h @article.title  %>'</h3> 
+  <p class="postmetadata alt">
+    <small><a href="#respond">Leave a response</a></small>
+  </p>
+  <ol class="commentlist">
+    <%= render_collection_of_partials "comment", @article.comments %>			
+  </ol>
+<% end %>
 
-<ol class="commentlist">
-  <%= render_collection_of_partials "comment", @article.comments %>			
-</ol>
-		
-		
+<% if @article.allow_pings > 0 %>
+  <a href="trackbacks"></a><h3><%= responses(@article.trackbacks, "trackback") %> to '<%=h @article.title  %>'</h3>
+  <p class="postmetadata alt">
+    Use the following link to trackback from your own site:<br/>
+           <%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>
+  </p>
+  <ol class="trackbacklist">
+    <%= render_collection_of_partials "trackback", @article.trackbacks %>
+  </ol>
+<% end %>
+
+<% if @article.allow_comments > 0 %>
 <%= start_form_tag :action => "comment", :id=> @article.id %>
 <div class="graybox">
   <small>write a comment....</small>
@@ -66,4 +76,5 @@
   	</tr>
   </table>
 </div>
+<% end %>
 <%= end_form_tag %>

@@ -1,27 +1,26 @@
 module ArticlesHelper
   
-  def responses(article)
-    case article.comments.count
+  def responses(collection, word)
+    case collection.count
     when 0
-      "No Responses"
+      "no #{word}s"
     when 1
-      "One Response"
+      "one #{word}"
     else
-      "#{article.comments.count} Responses"
+      "#{collection.count} #{word}s"
     end
   end
     
   def link_to_comments(article)
-    label = case article.comments.count
-    when 0
-      "no comments"
-    when 1
-      "one comment"
-    else
-      "#{article.comments.count} comments"
-    end
+    label = responses(article.comments, "comment")
     
     link_to label, :controller=> "articles", :action=>"read", :id=> article.id, :anchor=>"comments"
+  end
+
+  def link_to_trackbacks(article)
+    label = responses(article.trackbacks, "trackback")
+
+    link_to label, :controller=> "articles", :action=>"read", :id=> article.id, :anchor=>"trackbacks"
   end
   
   

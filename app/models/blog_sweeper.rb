@@ -1,5 +1,5 @@
 class BlogSweeper < ActiveRecord::Observer
-  observe Article, Comment
+  observe Article, Comment, Trackback
 
   def after_save(record)
     if record.is_a?(Comment)

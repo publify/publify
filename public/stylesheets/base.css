@@ -451,6 +451,17 @@ select {
 	padding: 10px;
 	}
 
+.trackbacklist {
+        padding: 0;
+        text-align: justify;
+        }
+
+.trackbacklist li {
+	margin: 15px 0 3px;
+	padding: 5px 10px 3px;
+	list-style: none;
+	}
+
 .commentlist {
 	padding: 0;
 	text-align: justify;
