@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "1.6.0"
+PKG_VERSION = "1.6.7"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
@@ -165,6 +165,8 @@ desc "Publish the zip/tgz"
 task :publish => [:package] do
   Rake::SshFilePublisher.new("leetsoft.com", "dist/pkg", "pkg", "#{PKG_FILE_NAME}.zip").upload
   Rake::SshFilePublisher.new("leetsoft.com", "dist/pkg", "pkg", "#{PKG_FILE_NAME}.tgz").upload
+  puts "tagging release"
+  `svn cp svn://leetsoft.com/typo/trunk svn://leetsoft.com/typo/tags/release_#{PKG_VERSION.gsub(/\./,'_')} -m "tag release #{PKG_VERSION}"`
 end
 
 spec = Gem::Specification.new do |s|
