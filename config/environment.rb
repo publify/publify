@@ -16,6 +16,10 @@ ADDITIONAL_LOAD_PATHS.concat %w(
   app/helpers
   config
   lib
+  vendor/rails/activerecord/lib
+  vendor/rails/actionpack/lib
+  vendor/rails/actionmailer/lib
+  vendor/rails/railties/lib    
   vendor
 ).map { |dir| "#{RAILS_ROOT}/#{dir}" }
 
@@ -23,12 +27,18 @@ ADDITIONAL_LOAD_PATHS.concat %w(
 ADDITIONAL_LOAD_PATHS.reverse.each { |dir| $:.unshift(dir) if File.directory?(dir) }
 
 
-# Require Rails gems.
+require 'active_record'
+require 'action_controller'
+require 'action_view'
+require 'action_mailer'
+
 require 'rubygems'
-require_gem 'activerecord'
-require_gem 'actionpack'
-require_gem 'actionmailer'
-require_gem 'rails'
+# Require Rails gems.
+#require 'rubygems'
+#require_gem 'activerecord'
+#require_gem 'actionpack'
+#require_gem 'actionmailer'
+#require_gem 'rails'
 
 
 # Environment-specific configuration.
@@ -60,4 +70,3 @@ end
 
 
 # Include your app's configuration here:
-require "cgifix"

@@ -55,7 +55,6 @@ class MetaWeblogApi
     articles.each do |article|      
       array << item_from(article)
     end
-  
     array          
   end
   
