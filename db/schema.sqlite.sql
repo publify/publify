@@ -16,7 +16,7 @@ CREATE TABLE 'articles' (
 CREATE TABLE 'articles_categories' (
   'article_id'	INTEGER,
   'category_id'	INTEGER,
-  'primary_category' INTEGER DEFAULT 0
+  'is_primary' INTEGER DEFAULT 0
 );
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,

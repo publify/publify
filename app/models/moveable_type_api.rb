@@ -8,16 +8,14 @@ class MoveableTypeApi
 
   def getRecentPostTitles(blogid, username, password, numberOfPosts)
     raise "Invalid login" unless valid_login?(username, password)
-
-    articles = Article.find_all(nil,"created_at DESC", numberOfPosts)
-
+    
     array = []
-
+    articles = Article.find_all(nil,"created_at DESC", numberOfPosts)
     articles.each do |article|
       array << {"dateCreated"   => article.created_at,
                 "userid"        => blogid.to_s,
                 "postid"        => article.id.to_s,
-                "title"         => article.body
+                "title"         => article.title
                } 
     end
     array
@@ -35,7 +33,6 @@ class MoveableTypeApi
     categories
   end
 
-  # TODO: Set isPrimary to a real value (look up how to set extra info in links)
   def getPostCategories(postid, username, password)
     raise "Invalid login" unless valid_login?(username, password)
 
@@ -44,25 +41,22 @@ class MoveableTypeApi
     article.categories.each { |c|
       categories << {"categoryName" => c.name,
                      "categoryId"   => c.id,
-                     "isPrimary"    => false
+                     "isPrimary"    => c.is_primary
                     }
     }
     categories
   end
 
-  # TODO: figure out something to do with the isPrimary value
   def setPostCategories(postid, username, password, categories)
     raise "Invalid login" unless valid_login?(username, password)
     
     article = Article.find(postid)
     
     if categories != nil
-      all_categories = Category.find_all()
-      article.remove_categories(all_categories)
+      article.categories.clear
       categories.each do |c|
         category = Category.find(c['categoryId'])
-        #category.isPrimary = c['isPrimary']
-        article.categories << category
+        article.categories.push_with_attributes(category, :is_primary => c['isPrimary'])
       end
     end
     article.save
@@ -91,6 +85,7 @@ class MoveableTypeApi
 
   # I'm not sure if anything even needs to be done here 
   # since we're not generating static html.
+  # Maybe we could empty the cache to regenerate the article?
   def publishPost(postid, username, password)
     raise "Invalid login" unless valid_login?(username, password)
     true
@@ -98,7 +93,6 @@ class MoveableTypeApi
 
 
   private
-
 
   def valid_login?(user,pass)
     user == CONFIG['login'] && pass == CONFIG['password']
