@@ -12,4 +12,11 @@ class BloggerApi
     article.destroy
     true
   end
+  
+  private
+  
+    def valid_login?(user,pass)
+      user == CONFIG['login'] && pass == CONFIG['password']
+    end
+  
 end
