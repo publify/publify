@@ -13,7 +13,10 @@ xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/",
         xml.pubDate pub_date(entry.created_at)
         xml.guid post_link(entry)
         xml.link post_link(entry)
-        xml.trackback :ping, server_url_for(:controller => "trackback", :action =>"ping", :id => entry.id)
+        for category in entry.categories
+          xml.category category.name
+        end
+        xml.trackback :ping, server_url_for(:controller => "articles", :action =>"trackback", :id => entry.id)
       end
     end
   end

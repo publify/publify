@@ -1,4 +1,4 @@
-xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom/ns#" do
+xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom/ns#", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
 
   xml.title CONFIG["blogname"]
   xml.tagline "mode"=>"escaped", "type"=>"text/html"
@@ -20,6 +20,9 @@ xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom
       xml.title post_title(entry)
   
       xml.link "rel" => "alternate", "type" => "text/html", "href" => post_link(entry)
+      for category in entry.categories
+        xml.dc :subject, category.name
+      end
 
       xml.content entry.body_html, "type"=>"text/html", "mode"=>"escaped"
 
