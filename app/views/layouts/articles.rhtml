@@ -27,33 +27,15 @@
 
 	<form action="/articles/search" method="get"><p>Search<br /><input type="text" name="q" value="" size="15" /></p></form>
 
-     <b>projects</b><br/>
-     <a href="http://www.hieraki.org" title="">Hieraki</a><br /><a href="http://www.snowdevil.ca" title="">Snowdevil</a><br />
+  	 <%= render_partial "shared/pages"  %>
      <br/>
-     <b>subpages</b><br/>
-     <a href="http://www.neech.de/gallery/" title="Gallery with me, fiona and others">Gallery</a><br />
-     <a href="http://blog.leetsoft.com/files/documents/resume.pdf" title="My Curriculum Vitae">Resume</a><br/>
-     <!--
-     <a href="http://blog.leetsoft.com/resume" title="My Curriculum Vitae">Resume</a><br/>
-     <a href="http://blog.leetsoft.com/rails/" title="">Ruby on windows</a><br />
-     -->
+     <%= render_partial "shared/projects"  %>
      <br/>
-     <b>blogs I read</b><br/>
-     <a href="http://ontherails.blogspot.com/" title=""> On The Rails</a><br /><a href="http://www.loudthinking.com/" title="Programmer of RoR(Ruby on rails)">Loud Thinking</a><br /><a href="http://primates.ximian.com/~miguel/activity-log.php" title="">Miguel de Icaza</a><br />
+     <%= render_partial "shared/tools"  %>
      <br/>
-     <b>tools I use</b><br/>
-     <a href="http://www.adiumx.com/" title="">Adium X</a><br />
-     <a href="http://ranchero.com/netnewswire/" title="">NetNewsWire</a><br />
-     <a href="http://www.rubyonrails.org" title="Web development framework of choice">Ruby on Rails</a><br />
-     <a href="http://www.ruby-lang.org/en/" title="Best programming language out there">Ruby</a><br />
-     <a href="http://macromates.com/" title="">Textmate</a><br />
-     <a href="http://quicksilver.blacktree.com/" title="">Quicksilver</a><br />
-     <a href="http://wsmanager.sourceforge.net/" title="">Desktop Manager</a><br />
-     <br/>
-     <b>syndicate</b><br/>
-	   <a href="/xml/rss" title="XML feed">RSS</a>
-	   <strong>|</strong>
-	   <a href="/xml/atom" title="XML feed">atom</a>
+	   <%= tadalist "http://tobi.tadalist.com/lists/feed_public/741" %>   
+	   <br/>
+	   <%= render_partial "shared/xml" %>
 	   
      <br/><br/><br/><br/>
      <img style="border:1px solid black" src="http://www.neech.de/albums/victoria2004/IMG_2007.thumb.jpg" alt="" /><br/><br/>

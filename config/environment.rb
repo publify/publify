@@ -70,3 +70,4 @@ end
 
 
 # Include your app's configuration here:
+require_dependency 'tada'
