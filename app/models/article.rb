@@ -56,11 +56,11 @@ class Article < ActiveRecord::Base
 
   # Fulltext searches the body of published articles
   def self.search(query)
-    if query
+    if !query.to_s.strip.empty?
       tokens = query.split.collect {|c| "%#{c.downcase}%"}
       find_by_sql(["SELECT * from articles WHERE #{ (["LOWER(body) like ?"] * tokens.size).join(" AND ") } AND published != 0 ORDER by created_at DESC", *tokens])
     else
-      []      
+      []
     end
   end
   
