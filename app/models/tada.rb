@@ -15,17 +15,14 @@ class Tada
   attr_accessor :url, :tasks, :link, :title, :description
     
   # This object holds given information of a task
-  # task.title => "My tada task"
-  # task.date => "2005-01-19..."
-  # task.link => "http://..."
-  class Task < Struct.new(:link, :title, :date, :status)
+  class TaskItem < Struct.new(:link, :title, :date, :status)
     def to_s; title end          
     def date=(value); super(Time.parse(value)) end
   end
     
-  # Pass the url to the tada RSS feed you would like to keep tabs on
-  # by default this will request the rss from the tada server right away and 
-  # fill the tasks array
+  # Pass the url to the RSS feed you would like to keep tabs on
+  # by default this will request the rss from the server right away and 
+  # fill the tasks array  def initialize(url, refresh = true)
   def initialize(url, refresh = true)
     self.tasks  = []
     self.url    = url
@@ -33,7 +30,7 @@ class Tada
   end
   
   # This method lets you refresh the tasks int the tasks array
-  # useful if you keep the tada object cached in memory and 
+  # useful if you keep the object cached in memory and 
   def refresh
     open(@url) do |http|
       parse(http.read)
@@ -63,7 +60,7 @@ private
          :unknown
        end
 
-      task = Task.new
+      task = TaskItem.new
       task.title = title
       task.status = status
                   
@@ -74,5 +71,3 @@ private
     end
   end
 end
-
-
