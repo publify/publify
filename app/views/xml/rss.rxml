@@ -1,16 +1,18 @@
-xml.channel do
-  xml.title CONFIG["blogname"]
-  xml.link server_url_for(:controller => "articles")
-  xml.language "en-us"
-  xml.ttl "40"
+xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/" do
+  xml.channel do
+    xml.title CONFIG["blogname"]
+    xml.link server_url_for(:controller => "articles")
+    xml.language "en-us"
+    xml.ttl "40"
 
-  for entry in @articles
-    xml.item do
-      xml.title post_title(entry)
-      xml.description entry.body_html
-      xml.pubDate pub_date(entry.created_at)
-      xml.guid post_link(entry)
-      xml.link post_link(entry)
+    for entry in @articles
+      xml.item do
+        xml.title post_title(entry)
+        xml.description entry.body_html
+        xml.pubDate pub_date(entry.created_at)
+        xml.guid post_link(entry)
+        xml.link post_link(entry)
+      end
     end
   end
 end

@@ -7,53 +7,56 @@
 		
 		
 <%= start_form_tag :action => "read", :id=> @article.id %>
-<table cellpadding="4" cellspacing="0" border="0" class="graybox">
-  <tr>
-    <td colspan="4">
-      <%= render_errors(@comment) %>
-    </td>
-  </tr>
-	<tr>
-	  <td align="right" valign="top">
-	   	author
-	  </td>
-   <td valign="top">
-	  	<%= text_field "comment", "author" %>
-	  </td>
-	  <td valign="top" align="left">
-	  	<!--<input type="checkbox" name="forget" value="1" />Forget-->
-	  </td> 
-	</tr>
-	<tr>
-	  <td align="right" valign="top">
-	  	email
-	  </td>
-	  <td valign="top" colspan="2">
-	  	<%= text_field "comment", "email" %>
-	  </td>
+<div class="graybox">
+  <small>write a comment....</small>
+  <table cellpadding="4" cellspacing="0" border="0">
+    <tr>
+      <td colspan="4">
+        <%= render_errors(@comment) %>
+      </td>
     </tr>
-	<tr> 
-	  <td align="right" valign="top">
-	  	url
-	  </td>
-	  <td valign="top" colspan="2">
-	    <%= text_field "comment", "url" %>
-	  </td>
-	</tr>
-	<tr>
-	  <td valign="top" align="right">
-	  	Body
-	  </td>
-	  <td valign="top" colspan="2">
-	  	<%= text_area "comment", "body", "style"=> "width:300px;height:250px" %>
-	  </td>
-	</tr>
-	<tr>
-	  <td align="right" valign="top">&nbsp;</td>
-	  <td align="right" valign="top">&nbsp;</td>
-	  <td align="right" valign="top">
-		<input type="submit" name="submit" value="submit" class="button" />
-	  </td>
-	</tr>
-</table>
+  	<tr>
+  	  <td align="right" valign="top">
+  	   	author
+  	  </td>
+     <td valign="top">
+  	  	<%= text_field "comment", "author" %>
+  	  </td>
+  	  <td valign="top" align="left">
+  	  	<!--<input type="checkbox" name="forget" value="1" />Forget-->
+  	  </td> 
+  	</tr>
+  	<tr>
+  	  <td align="right" valign="top">
+  	  	email
+  	  </td>
+  	  <td valign="top" colspan="2">
+  	  	<%= text_field "comment", "email" %>
+  	  </td>
+      </tr>
+  	<tr> 
+  	  <td align="right" valign="top">
+  	  	url
+  	  </td>
+  	  <td valign="top" colspan="2">
+  	    <%= text_field "comment", "url" %>
+  	  </td>
+  	</tr>
+  	<tr>
+  	  <td valign="top" align="right">
+  	  	Body
+  	  </td>
+  	  <td valign="top" colspan="2">
+  	  	<%= text_area "comment", "body", "style"=> "width:300px;height:250px" %>
+  	  </td>
+  	</tr>
+  	<tr>
+  	  <td align="right" valign="top">&nbsp;</td>
+  	  <td align="right" valign="top">&nbsp;</td>
+  	  <td align="right" valign="top">
+  		<input type="submit" name="submit" value="submit" class="button" />
+  	  </td>
+  	</tr>
+  </table>
+</div>
 <%= end_form_tag %>
