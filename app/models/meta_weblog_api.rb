@@ -10,19 +10,19 @@ class MetaWeblogApi
     raise "Invalid login" unless valid_login?(username, password)
 
     article = Article.new 
-    article.body        = struct['description']
-    article.title       = struct['title']
+    article.body        = struct['description'] || ''
+    article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
     # article.dateCreated
 
     # Moveable Type API support
-    article.allow_comments = struct['mt_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings']
+    article.allow_comments = struct['mt_allow_comments'] || CONFIG['default_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings'] || CONFIG['default_allow_pings']
     #                      = struct['mt_convert_breaks']
-    article.extended       = struct['mt_text_more']
-    article.excerpt        = struct['mt_excerpt']
-    article.keywords       = struct['mt_keywords']
+    article.extended       = struct['mt_text_more'] || ''
+    article.excerpt        = struct['mt_excerpt'] || ''
+    article.keywords       = struct['mt_keywords'] || ''
     
     # Build new categories from the keywords
     #   Maybe we can try this and see if it works well (seth)
@@ -58,19 +58,19 @@ class MetaWeblogApi
     raise "Invalid login" unless valid_login?(username, password)
 
     article = Article.find(postid)
-    article.body        = struct['description']
-    article.title       = struct['title']
+    article.body        = struct['description'] || ''
+    article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
     # article.dateCreated
 
     # Moveable Type API support
-    article.allow_comments = struct['mt_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings']
+    article.allow_comments = struct['mt_allow_comments'] || CONFIG['default_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings'] || CONFIG['default_allow_pings']
     #                      = struct['mt_convert_breaks']
-    article.extended       = struct['mt_text_more']
-    article.excerpt        = struct['mt_excerpt']
-    article.keywords       = struct['mt_keywords']
+    article.extended       = struct['mt_text_more'] || ''
+    article.excerpt        = struct['mt_excerpt'] || ''
+    article.keywords       = struct['mt_keywords'] || ''
 
     # Build new categories from the keywords
     #new_categories = article.keywords.split(",").collect { |x| x.strip }
@@ -104,7 +104,7 @@ class MetaWeblogApi
   def getRecentPosts(blogid, username, password, numberOfPosts)
     raise "Invalid login" unless valid_login?(username, password)
   
-    articles = Article.find_all(nil,"created_at DESC", numberOfPosts)
+    articles = Article.find_all(nil, "created_at DESC", numberOfPosts)
   
     array = []
   
