@@ -1,3 +1,6 @@
+# don't know why tada and flickr don't need a require
+require 'delicious'
+
 # The methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
@@ -17,6 +20,12 @@ module ApplicationHelper
       render_partial("shared/tada", tada)
     rescue 
     end 
+  end
+
+  def deliciouslist(url)    
+      delicious = controller.cache[:delicious] || controller.cache[:delicious] = Delicious.new(url)
+
+      render_partial("shared/delicious", delicious)
   end
 
   def server_url_for(options = {})
