@@ -1,3 +1,5 @@
+todo: 
+
 - finish pretty urls
 - move uploaded files into the DB
 - add ajax based comments posting
@@ -6,3 +8,7 @@
 - add some statistics
 - add static pages
 - move to AWS
+
+done: 
+
+- add ajax based comments posting

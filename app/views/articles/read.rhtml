@@ -1,3 +1,13 @@
+<% content_for("script") do %>
+function item_added() {
+  new Effect.Highlight($('comments').lastChild);
+}
+function item_loading() {
+  $('commentform').reset(); 
+  $('commentform').elements[2].focus();
+}
+<% end %>
+
 <%= render_partial "article", @article %>
 
 <% if @article.allow_comments > 0 -%>
@@ -22,17 +32,11 @@
 <% end -%>
 
 <% if @article.allow_comments > 0 -%>
-
-<%= form_remote_tag :url => {:action => "comment", :id => @article.id}, :update=> "comments", :position=> "bottom", :complete => "new Effect.Highlight($('comments').lastChild);"%>
+<%= form_remote_tag :url => {:action => "comment", :id => @article.id}, :update=> "comments", :position=> "bottom", :loading => 'item_loading()', :complete => "item_added()", :html=>{:id=>'commentform',:name=>'commentform'}%>
 <div class="graybox">
   <small>write a comment....</small>
   <a name="respond"></a>
   <table cellpadding="4" cellspacing="0" border="0">
-    <tr>
-      <td colspan="4">
-        <%= render_errors(@comment) %>
-      </td>
-    </tr>
     <tr>
       <td align="right" valign="top">
         Your name
@@ -40,9 +44,6 @@
       <td valign="top">
         <%= text_field "comment", "author", :size => 20 %> <small><a href="javascript:Toggle.display('guest_url')">(leave url &#187;)</a></small>
       </td>
-      <td valign="top" align="left">
-        <!--<input type="checkbox" name="forget" value="1" />Forget-->
-      </td> 
     </tr>
     <tr id="guest_url" style="display:none">
       <td align="right" valign="top">
@@ -51,9 +52,6 @@
       <td valign="top">
         <%= text_field "comment", "url" %>
       </td>
-      <td valign="top" align="left">
-        <!--<input type="checkbox" name="forget" value="1" />Forget-->
-      </td> 
     </tr>
     <tr>
       <td valign="top" align="right">
@@ -64,7 +62,6 @@
       </td>
     </tr>
     <tr>
-      <td align="right" valign="top">&nbsp;</td>
       <td align="right" valign="top">&nbsp;</td>
       <td align="right" valign="top">
         <input type="submit" name="submit" value="submit" class="button" />

@@ -48,11 +48,9 @@ class ArticlesController < ApplicationController
       @comment.body = ""
       
       cookies['author']  = { :value => @comment.author, :expires => 2.weeks.from_now } 
-      cookies['email']   = { :value => @comment.email, :expires => 2.weeks.from_now } 
       cookies['url']     = { :value => @comment.url, :expires => 2.weeks.from_now } 
       
-      render_partial("comment", @comment)
-      
+      render_partial("comment", @comment)      
     else
     
       render_text "Please supply name and a message..."
