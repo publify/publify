@@ -1,5 +1,4 @@
 <b>Categories</b><br/>
 <% for category in categories -%>
-    <%= link_to category.name, :controller=>"articles", :action=>"category", :id=>category.name  %> <br/>
+  <%= link_to category.name, :controller=>"articles", :action=>"category", :id=>category.name  %><br/>
 <% end -%>
-<br/>

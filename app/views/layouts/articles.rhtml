@@ -28,15 +28,10 @@
 
 <!-- right -->
 <div id="sidebar">
-    <p>Live Search</p>
-    <form action="/articles/search" method="get">
-    <input type="text" id="search-input" name="q" value="" size="15" autocomplete="off" />
-    </form>
-    <div id="search_results"></div>
-    <%= observe_field "search-input", :frequency => 1, :url => { :controller => "live", :action => "search" }, :update => "search_results" %>
-
+  <%= render_partial "shared/search" %>
+  <br/>
   <%= categorylist %>
-    
+  <br/>
   <%= render_partial "shared/links"  %>
   <br/>
   <%=

@@ -1,4 +1,3 @@
 <% for article in @articles.to_a -%>
 <%= link_to article.title, :controller => 'articles', :action => 'read', :id => article.id  %><br/>
 <% end -%>
-<br/><br/>

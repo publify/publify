@@ -2,15 +2,13 @@
 module ApplicationHelper
   
   def categorylist()
-    categories = Category.find_all(nil, "position ASC")
-
+    categories = Category.find_all(nil, "position")
     render_partial("shared/categories", categories)
   end
   
   def flickrlist(url)
     begin
-      flickr = controller.cache[:flickr] || controller.cache[:flickr] = Flickr.new(url)
-        
+      flickr = controller.cache[:flickr] || controller.cache[:flickr] = Flickr.new(url)        
       render_partial("shared/flickr", flickr)
     rescue 
     end 
@@ -26,9 +24,11 @@ module ApplicationHelper
   end
 
   def deliciouslist(url)    
+    begin
       delicious = controller.cache[:delicious] || controller.cache[:delicious] = Delicious.new(url)
-
       render_partial("shared/delicious", delicious)
+    rescue 
+    end 
   end
 
   def server_url_for(options = {})
