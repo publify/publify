@@ -114,12 +114,21 @@ class MoveableTypeService < ActionWebService::Base
   def supportedMethods()
   end
 
-  #  No per post text filtering currently, maybe later.
+  # Support for markdown and textile formatting dependant on the relevant 
+  # translators being available.
   def supportedTextFilters()
-    [
-      MoveableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown'),
-      MoveableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile')
-    ]
+    filters = []
+    begin
+      BlueCloth.new("test")
+      filters << MoveableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown')
+    rescue
+    end
+    begin
+      RedCloth.new("test")
+      filters << MoveableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile')
+    rescue
+    end
+    filters
   end
 
   def getTrackbackPings(postid)
