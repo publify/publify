@@ -2,7 +2,8 @@ class SettingsController < ApplicationController
   
   def install  
     if config.is_ok?
-      render_action 'done'                                                                               
+      render_action 'done'
+      return
     end
 
     @fields = Configuration.fields
