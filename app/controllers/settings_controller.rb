@@ -1,18 +1,22 @@
 class SettingsController < ApplicationController
   
   def install  
-    @fields = Configuration.fields
-      
-    if request.post? 
-      Setting.transaction do 
-        for field, value in @params["fields"]
-          setting = find_or_create(field)
-          setting.value = value
-          setting.save
+    if !config.is_ok?
+      @fields = Configuration.fields
+        
+      if request.post? 
+        Setting.transaction do 
+          for field, value in @params["fields"]
+            setting = find_or_create(field)
+            setting.value = value
+            setting.save
+          end
         end
+        config.reload
+        flash.now['notice'] = 'config updated.'
       end
-      config.reload
-      flash.now['notice'] = 'config updated.'
+    else
+      render_action 'done'
     end
   end
     
