@@ -43,7 +43,11 @@ class ArticlesController < ApplicationController
   def category
     if category = Category.find_by_name(@params['id'])
       @pages = Paginator.new self, category.articles.size, 10, @params['page']
-      @articles = category.articles.slice(@pages.current.offset..@pages.current.next) rescue category.articles
+
+      start = @pages.current.offset
+      stop  = @pages.current.next.offset rescue category.articles.size
+      @articles = category.articles.slice(start..stop)
+
       render_action "index"
     else
       error("Can't find posts in category #{params['id']}")
