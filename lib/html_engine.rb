@@ -3,10 +3,10 @@ class HtmlEngine
   def self.transform(txt, text_filter = 'textile')
     return "" if txt.to_s.empty?  
     
-    if text_filter == "markdown"
-      BlueCloth.new(txt).to_html
-    else
-      RedCloth.new(txt).to_html(:textile)
+    case text_filter
+      when "markdown": BlueCloth.new(txt).to_html
+      when "textile": RedCloth.new(txt).to_html(:textile)
+      else txt
     end
   end
   
