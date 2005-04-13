@@ -1,0 +1,27 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Create new user', :action => 'new' %></li>
+  </ul> 
+</div>
+
+<div id="content">
+  <h1>Users</h1>
+
+  <div class="list">	
+    <table>
+    <tr>
+      <th>User Login name</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <% for user in @users -%>
+    <tr>
+      <td class="field"><%= image_tag '/images/admin/checked.gif' %> <%=h user.login %></td>
+      <td class="operation"><%= link_to_edit user %></td>
+      <td class="operation"><%= link_to_destroy user %></td>    
+    </tr>  
+    <% end -%>
+    </table>
+  </div>                      
+</div>

@@ -1,0 +1,71 @@
+.form {
+  padding: 10px 0 0 20px;
+  line-height: 250%;
+}
+
+.form p {
+  line-height: 140%;
+}
+.form label{
+  display:block;
+  width: 120px;
+  font-weight: bold;
+  float:left;
+}
+
+.form > input, .section > select {
+  float:left;
+  margin-bottom: 6px;
+}
+
+.form textarea {
+	float:left;
+	margin-bottom: 6px;
+}
+
+.form br {
+  clear: left;
+}
+
+.form h2 {
+  color: black;
+  font-size: 10pt;
+}
+
+.form {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8e8e8; 
+}
+
+input, textarea {
+	font-size: 9pt; 
+}
+
+#operations {
+  position: fixed;
+	left: 160px;
+	bottom: 0;
+	right: 0;
+	background: #f0f0f0;
+	overflow: hidden;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	line-height: 120%;
+}
+
+#operations input {
+  margin: 10px;
+  padding: 0 10px;
+}
+
+#operations input.primary {
+  font-weight: bold;
+}
+
+
+.objerrors {
+  color: red;
+  margin: 10px 0;
+}

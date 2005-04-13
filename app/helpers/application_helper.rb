@@ -52,14 +52,37 @@ module ApplicationHelper
   def article_link(title, article)
     link_to title, article_url(article)
   end
-
-  def article_url(article)
-    url_for :controller=>"articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
-  end
   
+  def comment_url_link(title, comment)
+    link_to title, comment_url(comment)
+  end  
+  
+  def article_url(article)
+    url_for :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
+  end
+
   def comment_url(comment)
     article = comment.article
-    url_for :controller=>"articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
+    url_for :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
+  end  
+  
+  def responses(collection, word)
+    case collection.count
+    when 0
+      "no #{word}s"
+    when 1
+      "1 #{word}"
+    else
+      "#{collection.count} #{word}s"
+    end
+  end
+    
+  def comments_link(article)
+    article_link  responses(article.comments, "comment"), article
+  end
+
+  def trackbacks_link(article)  
+    article_link responses(article.trackbacks, "trackback"), article
   end
   
   

@@ -1,0 +1,14 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Create new article', :action => 'new' %></li>
+  </ul> 
+</div>
+
+<div id="content">
+  <h1>Articles</h1>
+
+  <div class="list" id="articles">	
+    <%= render_partial 'articles'  %>
+  </div>                      
+</div>

@@ -34,4 +34,54 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_success
     assert_rendered_file "index"
   end
+  
+  def test_no_settings
+    Setting.find_all.each { |setting|
+      setting.destroy
+    }
+    
+    assert Setting.find_all.empty?
+    
+    # save this because the AWS stuff needs it later
+    old_config = $config
+    $config = nil
+    
+    get :index
+    
+    assert_redirect
+    assert_redirected_to :controller => "settings", :action => "install"
+    
+    # reassing so the AWS stuff doesn't barf
+    $config = old_config
+  end
+  
+  def test_no_users_exist
+    User.find_all.each { |user|
+      user.destroy
+    }
+  
+    assert User.find_all.empty?
+    
+    get :index
+    assert_redirect
+    assert_redirected_to :controller => "accounts", :action => "signup"
+  end
+  
+  def Xtest_setup_after_signup
+    User.find_all.each { |user|
+      user.destroy
+    }
+    
+    assert User.find_all.empty?
+    
+    post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "newpassword" }
+    assert_session_has :user
+    
+    assert_redirect
+    assert_redirected_to :controller => "settings", :action => "install"
+  end
+  
+  def test_disable_signup_after_user_exists
+    # FIXME: write
+  end
 end

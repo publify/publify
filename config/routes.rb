@@ -2,6 +2,10 @@ ActionController::Routing::Routes.draw do |map|
 
   # default   
   map.connect '', :controller  => 'articles'
+  map.connect 'admin', :controller  => 'admin/content'
+  
+  # admin/comments controller needs parent article id
+  map.connect 'admin/comments/article/:article_id/:action/:id', :controller  => 'admin/comments', :action => nil, :id => nil
 
   # make rss feed urls pretty and let them end in .xml
   # this improves caches_page because now apache and webrick will send out the 

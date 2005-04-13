@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   cache_sweeper :blog_sweeper, :only => "comment"
   
+  before_filter :verify_user_exists
   before_filter :verify_config
   
   def index
@@ -105,6 +106,10 @@ class ArticlesController < ApplicationController
   end
   
   private
+  
+    def verify_user_exists
+      redirect_to :controller => "accounts", :action => "signup" if User.find_all.length == 0
+    end
 
     def verify_config      
       redirect_to :controller => "settings", :action => "install" if !config.is_ok?

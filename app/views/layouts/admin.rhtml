@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd XHTML 1.1//EN" "http://www.w3.org/tr/xhtml11/dtd/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Typo admin <%= controller.controller_name %></title>
+  <%= stylesheet_link_tag "admin.css" %>
+</head>
+<body>
+
+<div id="container">
+
+  <div id="header">
+  	<h1><%= link_to "Typo admin", "/admin/" %></h1>
+  </div>
+
+  <div id="info">
+    <%= current_user_notice %>
+  </div>  
+
+  <div id="navigation">
+  	<ul>
+  	  <li><%= link_to_section "General", :controller=>"/admin/general"%></li>
+  	  <li><%= link_to_section "Articles", :controller=>"/admin/content"%></li>
+  	  <li><%= link_to_section "Users", :controller=>"/admin/users"%></li>
+  	</ul>
+  </div>  
+
+  <div id="flash">
+    <%= render_flash %>
+  </div>  
+
+  <div id="main">
+  <%= @content_for_layout %>
+  </div>
+</div>       
+
+</body>
+</html>

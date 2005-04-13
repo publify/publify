@@ -1,0 +1,13 @@
+<%= error_messages_for 'article' %>
+<!--[form:articles]-->
+<label for="articles_title">Title:</label><%= text_field 'article', 'title'  %><br/>
+
+<label for="articles_body">Body:</label><%= text_area 'article', 'body'  %><br/>
+
+<label for="articles_allow_comments">Allow comments:</label><%= check_box 'article', 'allow_comments'  %><br/>
+<label for="articles_allow_pings">Allow pings:</label><%= check_box 'article', 'allow_pings'  %><br/>
+
+<br/>
+<br/>
+<br/>
+<!--[eoform:articles]-->

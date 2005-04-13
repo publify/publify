@@ -1,3 +1,10 @@
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL auto_increment,
+  `login` varchar(80) default NULL,
+  `password` varchar(40) default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL auto_increment,
   `title` varchar(255) default NULL,

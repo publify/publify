@@ -1,0 +1,18 @@
+<table>
+<tr>
+  <th>Post title</th>
+  <th>Posted</th>
+  <th>Comments</th>
+  <th>Edit</th>
+  <th>Delete</th>
+</tr>
+<% for article in @articles -%>
+<tr>  
+  <td><%= image_tag '/images/admin/checked.gif' %> <%= link_to article.title, :action => "edit", :id => article.id %> <%= article_link image_tag('/images/admin/go.png'), article %></td>
+  <td><%= distance_of_time_in_words_to_now article.created_at %> ago</td>
+  <td><%= link_to responses(article.comments, 'comment'), :controller => 'comments', :article_id => article, :action => 'list' %></td>
+  <td class="operation"><%= link_to_edit article %></td>
+  <td class="operation"><%= link_to_destroy article %></td>    
+</tr>  
+<% end -%>
+</table>

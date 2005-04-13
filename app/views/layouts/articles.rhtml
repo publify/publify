@@ -6,7 +6,7 @@
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml/rsd' %>" />
   <link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="<%= url_for :controller => 'xml', :action => 'rss' %>" />
   <link rel="alternate" type="application/atom+xml"  title="Recent changes (ATOM 0.3)"  href="<%= url_for :controller => 'xml', :action => 'atom' %>" />
-  <%= stylesheet_link_tag "base" %>
+  <%= stylesheet_link_tag "typo" %>
   <%= javascript_include_tag "prototype" %>
   <script type="text/javascript"><%= @content_for_script %></script>
 </head>

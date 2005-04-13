@@ -1,0 +1,22 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Edit this article', :action => 'edit', :id => @article.id %></li>
+    <li><%= link_to 'Back to overview', :action => 'list' %></li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Articles</h1>
+
+  <%= start_form_tag :action=>"new" %>
+
+  <div class="form">	
+    <label>title:</label> <span class="static"><%=h @article.title %></span><br/>
+    <label>body:</label> <span class="static"><%=h @article.body %></span><br/>
+    <label>author:</label> <span class="static"><%=h @article.author %></span><br/>
+    <label>created at:</label> <span class="static"><%=h @article.created_at %></span><br/>
+    <label>updated at:</label> <span class="static"><%=h @article.updated_at %></span><br/>
+    
+  </div>
+</div>

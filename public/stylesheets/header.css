@@ -1,0 +1,51 @@
+/* Header */
+	
+#header {
+	position: fixed;
+  top: 0;
+	left: 0;
+	right: 0;
+	background: url(/images/admin/spot-header.gif) repeat-x;
+	border-bottom: 1px solid #4782de;
+	padding: 0 0 0 20px;
+	overflow: hidden;
+	height: 38px;
+	border: 0;
+	margin: 0;
+	/*text-overflow: ellipse;*/
+}
+
+#navigation {
+	position: fixed;
+  top: 38px;
+	left: 0;
+	right: 0;
+	background: url(/images/admin/spot-title.gif) repeat-x;
+	padding: 0 0 0 20px;
+	overflow: hidden;
+	height: 20px;
+	border: 0;
+	margin: 0;
+	border-bottom: 1px solid #ccc;
+}
+
+#navigation ul {
+  margin-top:3px;
+   list-style: none;
+}
+
+#navigation li {
+  display: inline;
+  padding: 0 10px;
+}
+
+#header h1 {
+  margin: 5px;
+  padding: 0;
+  font-size: 24px;
+}
+
+#header a {
+  color:white;
+  text-decoration: none;
+}

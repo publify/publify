@@ -1,0 +1,22 @@
+<%= start_form_tag :action=> "login" %>
+
+<div title="Account login" id="loginform" class="form">
+    <h3>Please login</h3>
+    
+    <% if @flash['notice'] %>
+      <div id="message"><%= @flash['notice'] %></div>
+    <% end %>
+
+    <label for="user_login">Login:</label><br/>
+    <input type="text" name="user_login" id="user_login" size="30" value=""/><br/>
+
+    <label for="user_password">Password:</label><br/>
+    <input type="password" name="user_password" id="user_password" size="30"/>
+
+    <br/>
+    <input type="submit" name="login" value="Login &#187;" class="primary" />
+
+</div>
+
+<%= end_form_tag %>
+

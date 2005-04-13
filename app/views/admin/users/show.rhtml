@@ -1,0 +1,19 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Edit this user', :action => 'edit', :id => @user.id %></li>
+    <li><%= link_to 'Back to overview', :action => 'list' %></li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Users</h1>
+
+  <%= start_form_tag :action=>"new" %>
+
+  <div class="form">	
+    <% for column in User.content_columns -%>
+    <label><%= column.human_name %>:</label> <span class="static"><%=h @user.send(column.name) %></span><br/>
+    <% end -%>
+  </div>
+</div>

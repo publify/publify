@@ -160,6 +160,6 @@ class MoveableTypeService < ActionWebService::Base
     method_expects = self.class.web_service_api.api_methods[name][:expects]
     username, password = method_expects.index(:username=>String), method_expects.index(:password=>String)
 
-    raise "Invalid login" unless args[username] == config['login'] && args[password] == config['password']
+    raise "Invalid login" unless User.authenticate?(args[username], args[password])    
   end
 end

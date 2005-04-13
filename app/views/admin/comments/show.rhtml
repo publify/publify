@@ -1,0 +1,20 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Edit this comment', :action => 'edit', :id => @comment.id %></li>
+    <li><%= link_to 'Back to overview', :action => 'list' %></li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Comments for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
+
+  <%= start_form_tag :action=>"new" %>
+
+  <div class="form">	
+    <label>Author:</label> <span class="static"><%=h @comment.author %></span><br/>
+    <label>Body:</label> <span class="static"><%=h @comment.body %></span><br/>
+    <label>IP Address:</label> <span class="static"><%=h @comment.ip %></span><br/>
+    <label>Created at:</label> <span class="static"><%=h @comment.created_at %></span><br/>
+  </div>
+</div>
