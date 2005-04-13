@@ -1,8 +1,8 @@
 module MoveableTypeStructs
   class ArticleTitle < ActionWebService::Struct
-    member :dateCreated,  :string
-    member :userid,       :string
-    member :postid,       :string
+    member :dateCreated,  :datetime
+    member :userid,       :int
+    member :postid,       :int
     member :title,        :string
   end
 
@@ -62,7 +62,7 @@ class MoveableTypeApi < ActionWebService::API::Base
 end
 
 
-class MoveableTypeService < ActionWebService::Base
+class MoveableTypeService < TypoWebService
   web_service_api MoveableTypeApi
   
   before_invocation :authenticate, :except => [:getTrackbackPings, :supportedMethods, :supportedTextFilters]
@@ -152,14 +152,5 @@ class MoveableTypeService < ActionWebService::Base
 
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
-  end
-
-  # FIXME: This method can be rewritten using API::Method#expects_index_of and API::Method#expects_to_hash
-  #       available in the next Rails release
-  def authenticate(name, args)
-    method_expects = self.class.web_service_api.api_methods[name][:expects]
-    username, password = method_expects.index(:username=>String), method_expects.index(:password=>String)
-
-    raise "Invalid login" unless User.authenticate?(args[username], args[password])    
   end
 end

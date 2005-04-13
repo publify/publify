@@ -20,7 +20,7 @@ class BloggerApi < ActionWebService::API::Base
 end
 
 
-class BloggerService < ActionWebService::Base
+class BloggerService < TypoWebService
   web_service_api BloggerApi
 
   before_invocation :authenticate  
@@ -38,21 +38,9 @@ class BloggerService < ActionWebService::Base
   
   def getUsersBlogs(appkey, username, password)
     [BloggerStructs::Blog.new(
-      :url      => controller.url_for("/"),
+      :url      => controller.url_for(:controller => "/"),
       :blogid   => 1,
       :blogName => config['blog_name']
     )]
   end
-  
-  private
-
-  # FIXME: This method can be rewritten using API::Method#expects_index_of and API::Method#expects_to_hash
-  #       available in the next Rails release
-  def authenticate(name, args)
-    method_expects = self.class.web_service_api.api_methods[name][:expects]
-    username, password = method_expects.index(:username=>String), method_expects.index(:password=>String)
-
-    raise "Invalid login" unless User.authenticate?(args[username], args[password])
-  end
-  
 end

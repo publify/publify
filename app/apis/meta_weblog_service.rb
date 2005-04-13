@@ -14,7 +14,7 @@ module MetaWeblogStructs
     member :mt_allow_pings,     :int
     member :mt_convert_breaks,  :string
     member :mt_tb_ping_urls,    :string
-    member :dateCreated,        :string
+    member :dateCreated,        :datetime
   end
 
   class MediaObject < ActionWebService::Struct
@@ -63,7 +63,7 @@ class MetaWeblogApi < ActionWebService::API::Base
 end
 
 
-class MetaWeblogService < ActionWebService::Base
+class MetaWeblogService < TypoWebService
   web_service_api MetaWeblogApi
   
   before_invocation :authenticate  
@@ -134,8 +134,8 @@ class MetaWeblogService < ActionWebService::Base
         article.categories << c if new_categories.include?(c.name)
       end
     end
-    
-    article.send_pings(controller.url_for("/articles/read/#{article.id}"), struct['mt_tb_ping_urls'])
+
+    article.send_pings(controller.url_for(:controller => "/articles/read/#{article.id}"), struct['mt_tb_ping_urls'])
     
     article.save
     article.id.to_s
@@ -193,7 +193,7 @@ class MetaWeblogService < ActionWebService::Base
       end
     end
 
-    article.send_pings(controller.url_for("/articles/read/#{article.id}"), struct['mt_tb_ping_urls'])
+    article.send_pings(controller.url_for(:controller => "/articles/read/#{article.id}"), struct['mt_tb_ping_urls'])
 
     article.save    
     true
@@ -213,17 +213,20 @@ class MetaWeblogService < ActionWebService::Base
     resource.mime       = data["type"]    
     resource.save
       
-    MetaWeblogStructs::Url.new("url" => controller.url_for("/files/#{data["name"]}"))
+    MetaWeblogStructs::Url.new("url" => controller.url_for(:controller => "/files/#{data["name"]}"))
   end             
 
   def article_dto_from(article)
+    # FIXME: rescue is needed for functional tests as the test framework currently doesn't supply fully fledged controller instances
+    article_url = controller.url_for :controller => "/articles/read/#{article.id}" rescue "/articles/read/#{article.id}"
+
     MetaWeblogStructs::Article.new(
       :description       => article.body,
       :title             => article.title,
       :postid            => article.id.to_s,
-      :url               => controller.url_for("/articles/read/#{article.id}"),
-      :link              => controller.url_for("/articles/read/#{article.id}"),
-      :permaLink         => controller.url_for("/articles/read/#{article.id}"),
+      :url               => article_url,
+      :link              => article_url,
+      :permaLink         => article_url,
       :categories        => article.categories.collect { |c| c.name },
       :mt_text_more      => article.extended.to_s,
       :mt_excerpt        => article.excerpt.to_s,
@@ -252,14 +255,4 @@ class MetaWeblogService < ActionWebService::Base
       [nil, title]
     end
   end
-
-  # FIXME: This method can be rewritten using API::Method#expects_index_of and API::Method#expects_to_hash
-  #       available in the next Rails release
-  def authenticate(name, args)
-    method_expects = self.class.web_service_api.api_methods[name][:expects]
-    username, password = method_expects.index(:username=>String), method_expects.index(:password=>String)
-
-    raise "Invalid login" unless User.authenticate?(args[username], args[password])
-  end
-
 end
