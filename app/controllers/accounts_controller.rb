@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  layout  'settings'
+  layout  'admin'
 
   def login
     case @request.method

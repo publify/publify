@@ -5,13 +5,14 @@ require 'articles_controller'
 class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings
+  fixtures :articles, :categories, :settings, :users
 
   def setup
     @controller = ArticlesController.new
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
 
     # Complete settings fixtures
+    config.reload
   end
 
   # Category subpages
@@ -49,7 +50,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :index
     
     assert_redirect
-    assert_redirected_to :controller => "settings", :action => "install"
+    assert_redirected_to :controller => "admin/general", :action => "index"
     
     # reassing so the AWS stuff doesn't barf
     $config = old_config

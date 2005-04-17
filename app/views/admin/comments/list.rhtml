@@ -24,7 +24,7 @@
       <td class="field"><%= image_tag '/images/admin/checked.gif' %> <%=h comment.author %></td>
       <td class="field"><%=link_to comment.body[0..30] + "...", :action => 'show', :id => comment.id %> <%= comment_url_link image_tag('/images/admin/go.png'), comment %></td>
       <td class="field"><%=h comment.ip %></td>
-      <td class="field"><%=h distance_of_time_in_words_to_now comment.created_at %></td>
+      <td class="field"><%=h distance_of_time_in_words_to_now(comment.created_at) %></td>
       <td class="operation"><%= link_to_edit comment %></td>
       <td class="operation"><%= link_to_destroy comment %></td>    
     </tr>  

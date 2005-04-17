@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//w3c//dtd XHTML 1.1//EN" "http://www.w3.org/tr/xhtml11/dtd/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Typo admin <%= controller.controller_name %></title>
+  <title>Typo admin: <%= controller.controller_name %></title>
   <%= stylesheet_link_tag "admin.css" %>
 </head>
 <body>
@@ -9,7 +9,7 @@
 <div id="container">
 
   <div id="header">
-  	<h1><%= link_to "Typo admin", "/admin/" %></h1>
+  	<h1><%= link_to "Typo admin (#{config['blog_name']})", "/admin/" %></h1>
   </div>
 
   <div id="info">

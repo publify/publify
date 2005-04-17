@@ -1,0 +1,26 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Back to blog', :controller => "/" %></li>
+  </ul> 
+</div>
+
+<div id="content">
+  <h1>Blog settings</h1>
+  <%= start_form_tag %>
+
+  <div class="form">	
+    <h2>General settings</h2>
+    <% for field in @fields.delete_if { |f| f.name =~ /^sp_/ } -%>
+
+      <%= field.desc %><br/>
+      <%= settings_field field %><br/>
+    <% end %>
+  </div>
+
+  <div id="operations">
+    <%= save %>  
+  </div>
+
+  <%= end_form_tag %>
+</div>

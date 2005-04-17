@@ -17,7 +17,7 @@ class Admin::CommentsController < Admin::BaseController
 
   def new
     @comment = @article.comments.build(@params["comment"])
-    
+
     if @request.post? and @comment.save
       flash['notice'] = 'Comment was successfully created.'
       redirect_to :action => 'show', :id => @comment.id

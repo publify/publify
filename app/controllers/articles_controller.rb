@@ -112,7 +112,7 @@ class ArticlesController < ApplicationController
     end
 
     def verify_config      
-      redirect_to :controller => "settings", :action => "install" if !config.is_ok?
+      redirect_to :controller => "admin/general", :action => "index" if !config.is_ok?
     end
     
     def fill_from_cookies(comment)      

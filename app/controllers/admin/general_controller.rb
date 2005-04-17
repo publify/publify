@@ -1,14 +1,7 @@
-class SettingsController < ApplicationController
-  before_filter :login_required
-  
-  def install  
-    if config.is_ok?
-      render_action 'done'
-      return
-    end
-
+class Admin::GeneralController < Admin::BaseController
+  def index
     @fields = Configuration.fields
-        
+          
     if request.post? 
       Setting.transaction do 
         for field, value in @params["fields"]
@@ -21,14 +14,13 @@ class SettingsController < ApplicationController
       flash.now['notice'] = 'config updated.'
     end
   end
-    
+      
   private
-  
+
     def find_or_create(name)
       unless setting = Setting.find_by_name(name)
         setting = Setting.new("name" => name)
       end
       setting
     end
-  
 end

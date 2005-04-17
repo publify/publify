@@ -5,12 +5,15 @@ require 'admin/comments_controller'
 class Admin::CommentsController; def rescue_action(e) raise e end; end
 
 class Admin::CommentsControllerTest < Test::Unit::TestCase
-  fixtures :comments
+  fixtures :articles, :comments, :users
 
   def setup
     @controller = Admin::CommentsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    
+    @request.session = { :user => @tobi }
+    @request.request_parameters[:article_id] = 2
   end
 
   def test_index
@@ -40,7 +43,7 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
   def test_create
     num_comments = Comment.find_all.size
 
-    post :new, 'comment' => { }
+    post :new, 'comment' => { 'author' => 'author', 'body' => 'body' }
     assert_redirected_to :action => 'show'
 
     assert_equal num_comments + 1, Comment.find_all.size
