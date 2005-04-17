@@ -33,11 +33,19 @@ class AccountsControllerTest < Test::Unit::TestCase
     assert_session_has :user
     
     assert_redirect
-    assert_redirected_to :controller => "settings", :action => "install"
+    assert_redirected_to :controller => "admin/general", :action => "index"
+  end
+
+  def test_disable_signup_after_user_exists
+    get :signup
+    assert_redirect
+    assert_redirected_to :action => "login"
   end
 
   def test_bad_signup
     @request.session[:return_to] = "/bogus/location"
+    
+    User.delete_all
 
     post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "wrong" }
     assert_invalid_column_on_record "user", :password

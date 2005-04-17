@@ -67,22 +67,4 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_redirect
     assert_redirected_to :controller => "accounts", :action => "signup"
   end
-  
-  def Xtest_setup_after_signup
-    User.find_all.each { |user|
-      user.destroy
-    }
-    
-    assert User.find_all.empty?
-    
-    post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "newpassword" }
-    assert_session_has :user
-    
-    assert_redirect
-    assert_redirected_to :controller => "settings", :action => "install"
-  end
-  
-  def test_disable_signup_after_user_exists
-    # FIXME: write
-  end
 end
