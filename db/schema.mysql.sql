@@ -29,6 +29,13 @@ CREATE TABLE `articles_categories` (
   `is_primary` tinyint(1) NOT NULL default '0'
 ) TYPE=MyISAM;
 
+CREATE TABLE `blacklist_patterns` (
+  `id` int(11) NOT NULL auto_increment,
+  `type` varchar(15) default NULL,
+  `pattern` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) default NULL,
@@ -42,6 +49,7 @@ CREATE TABLE `comments` (
   `author` varchar(255) default NULL,
   `email` varchar(255) default NULL,
   `url` varchar(255) default NULL,
+  `ip` varchar(15) default NULL,
   `body` text,
   `body_html` text,
   `created_at` datetime default NULL,

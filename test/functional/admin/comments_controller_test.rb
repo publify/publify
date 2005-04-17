@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 require 'admin/comments_controller'
+require 'dns_mock'
 
 # Re-raise errors caught by the controller.
 class Admin::CommentsController; def rescue_action(e) raise e end; end

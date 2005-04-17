@@ -3,13 +3,12 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :articles
+  fixtures :articles, :settings
   
   def setup
-    $config = {"blog_name" => "testcase"}
+    config.reload
   end
 
-  # Replace this with your real tests.
   def test_permalink
     assert_equal @article1, Article.find_by_date(2005,01,01)  
     assert_equal @article3, Article.find_by_date(2004,06,01)
@@ -40,7 +39,7 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal "localhost",ping.host
     assert_equal 80, ping.port
     assert_equal "/post/5?param=1", ping.query
-    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=testcase", ping.post_data
+    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
   end
 
 
@@ -50,13 +49,13 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal "localhost",ping.host
     assert_equal 80, ping.port
     assert_equal "/post/5?param=1", ping.query
-    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=testcase", ping.post_data
+    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
 
     ping = Net::HTTP.pings[1]
     assert_equal "127.0.0.1",ping.host
     assert_equal 80, ping.port
     assert_equal "/article/5?", ping.query
-    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=testcase", ping.post_data
+    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
   end
   
 end

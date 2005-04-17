@@ -29,6 +29,9 @@ class ConfigurationTest < Test::Unit::TestCase
     Setting.create("name" => "password", "value" => "whatever")
     Setting.create("name" => "login", "value" => "whatever")
     Setting.create("name" => "blog_name", "value" => "whatever")
+    Setting.create("name" => "sp_article_auto_close", "value" => "whatever")
+    Setting.create("name" => "sp_url_limit", "value" => "whatever")
+    Setting.create("name" => "sp_global", "value" => "1")
     
     @config.reload
     

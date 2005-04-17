@@ -8,7 +8,7 @@ class Delicious
   attr_accessor :url, :items, :link, :title
     
   # This object holds given information of an item
-  class DeliciousItem < Struct.new(:link, :title)  
+  class DeliciousItem < Struct.new(:link, :title, :date)  
     def to_s; title end          
   end
     
@@ -44,8 +44,10 @@ private
       item = DeliciousItem.new
       item.title       = XPath.match(elem, "title/text()").to_s                  
       item.link        = XPath.match(elem, "link/text()").to_s
-      
+      item.date        = Time.mktime(*ParseDate.parsedate(XPath.match(elem, "dc:date/text()").to_s))
       items << item
     end
+    
+    self.items = items.sort_by { |item| item.date }.reverse
   end  
 end

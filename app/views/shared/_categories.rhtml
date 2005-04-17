@@ -1,4 +1,6 @@
-<b>Categories</b><br/>
+<h3>Categories</h3>
+<ul>
 <% for category in categories -%>
-  <%= link_to category.name, :controller=>"articles", :action=>"category", :id=>category.name  %><br/>
+  <li><%= link_to category.name, :controller=>"articles", :action=>"category", :id=>category.name  %></li>
 <% end -%>
+</ul>

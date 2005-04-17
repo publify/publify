@@ -3,10 +3,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class PingTest < Test::Unit::TestCase
-  fixtures :articles
+  fixtures :articles, :settings
   
   def setup
-    $config = {"blog_name" => "testcase"}
+    config.reload
   end
 
   def test_send_ping
@@ -17,7 +17,7 @@ class PingTest < Test::Unit::TestCase
     assert_equal "localhost",ping.host
     assert_equal 80, ping.port
     assert_equal "/post/5?param=1", ping.query
-    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=testcase", ping.post_data
+    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
   end
 
 

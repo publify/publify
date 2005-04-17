@@ -1,5 +1,9 @@
-<b>syndicate</b><br/>
-<a href="<%= url_for :controller=>'xml', :action=>'rss' %>" title="XML feed">RSS</a>
-<strong>|</strong>
-<a href="<%= url_for :controller=>'xml', :action=>'atom' %>" title="XML feed">atom</a><br/>
-<a href="<%= url_for :controller=>'xml', :action=>'commentrss' %>" title="XML feed">Comments</a>
+<h3>syndicate</h3>
+<ul>
+<li>
+  <a href="<%= url_for :controller=>'xml', :action=>'rss' %>" title="XML feed">RSS</a>
+  <strong>|</strong>
+  <a href="<%= url_for :controller=>'xml', :action=>'atom' %>" title="XML feed">atom</a>
+</li>
+<li><a href="<%= url_for :controller=>'xml', :action=>'commentrss' %>" title="XML feed">Comments</a></li>
+</ul>

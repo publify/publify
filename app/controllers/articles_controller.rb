@@ -59,6 +59,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(@params["id"])    
     @comment = Comment.new(@params["comment"])
     @comment.article = @article
+    @comment.ip = request.remote_ip
+
     if @request.post? and @comment.save      
       @comment.body = ""
       
@@ -67,8 +69,8 @@ class ArticlesController < ApplicationController
       
       render_partial("comment", @comment)      
     else
-    
-      render_text "Please supply name and a message..."
+      render_partial("comment_error", @comment)
+#      render_text "Please supply name and a message..."
     end
   end  
 

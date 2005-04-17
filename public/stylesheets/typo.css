@@ -282,6 +282,10 @@ h2.pagetitle {
 	padding: 0;
 	}
 
+#sidebar h3 {  
+ 	margin: 5px 0 0;  
+	}  
+
 h3 {
 	padding: 0;
 	margin: 30px 0 0;
@@ -380,7 +384,6 @@ html>body .entry li {
 #sidebar ul li {
 	list-style-type: none;
 	list-style-image: none;
-	margin-bottom: 15px;
 	}
 
 #sidebar ul p, #sidebar ul select {

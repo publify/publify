@@ -19,6 +19,11 @@ CREATE TABLE 'articles_categories' (
   'category_id'	INTEGER,
   'is_primary' INTEGER DEFAULT 0
 );
+CREATE TABLE 'blacklist_patterns' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'type'        VARCHAR(15) DEFAULT NULL,
+  'pattern'     VARCHAR(255) DEFAULT NULL
+);
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'        VARCHAR(255) DEFAULT NULL,
@@ -30,6 +35,7 @@ CREATE TABLE 'comments' (
   'author'      VARCHAR(255) DEFAULT NULL,
   'email'       VARCHAR(255) DEFAULT NULL,
   'url'         VARCHAR(255) DEFAULT NULL,
+  'ip'          VARCHAR(15) DEFAULT NULL,
   'body'        TEXT DEFAULT NULL,
   'body_html'   TEXT DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,

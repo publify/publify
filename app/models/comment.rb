@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
   belongs_to :article
 
   validates_presence_of :author, :body
+  validates_against_spamdb :body, :url, :ip
+  validates_age_of :article_id
  
   protected
   

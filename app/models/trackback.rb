@@ -3,6 +3,10 @@ require_dependency 'transforms'
 class Trackback < ActiveRecord::Base
   belongs_to :article
 
+  validates_age_of :article_id
+  validates_against_spamdb :title, :excerpt, :ip, :url
+  validates_presence_of :title, :excerpt, :blog_name, :url
+
   protected
     before_save :make_nofollow, :process_trackback
 

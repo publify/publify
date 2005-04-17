@@ -36,6 +36,12 @@ CREATE TABLE articles_categories (
   primary_item int default NULL
 );
 
+CREATE TABLE blacklist_patterns (
+  id SERIAL PRIMARY KEY NOT NULL,
+  type varchar(15) default NULL,
+  pattern varchar(255) default NULL
+);
+
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY NOT NULL,
   article_id int REFERENCES articles,
@@ -43,6 +49,7 @@ CREATE TABLE comments (
   author varchar(255) default NULL,
   email varchar(255) default NULL,
   url varchar(255) default NULL,
+  ip varchar(15) default NULL,
   body text,
   body_html text,
   created_at TIMESTAMP DEFAULT now(),

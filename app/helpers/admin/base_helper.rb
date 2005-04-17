@@ -5,6 +5,8 @@ module Admin::BaseHelper
       %{<input type="text" value="#{config[field.name]}"  name="fields[#{field.name}]" />}
     when :bool
       %{<input type="checkbox" value="1" #{'checked="checked"' if config[field.name].to_i == 1} name="fields[#{field.name}]" /><input type="hidden" value="0" name="fields[#{field.name}]" />}
+    when :int
+      select_tag "fields[#{field.name}]", options_for_select(['none', (1..60).to_a].flatten, config[field.name])
     end
   end
 

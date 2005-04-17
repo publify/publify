@@ -17,7 +17,7 @@ window.onload = function() {
 <%= render_partial "article", @article %>
 
 <% if @article.allow_comments > 0 -%>
-  <a name="comments"></a><h3><%= responses(@article.comments, "response") %> to '<%=h @article.title  %>'</h3> 
+  <a name="comments"></a><h3><%= responses(@article.comments, "response") %> to '<%= @article.title  %>'</h3> 
   <p class="postmetadata alt">
     <small><a href="#respond">Leave a response</a></small>
   </p>
@@ -27,7 +27,7 @@ window.onload = function() {
 <% end -%>
 
 <% if @article.allow_pings > 0 -%>
-  <a name="trackbacks"></a><h3><%= responses(@article.trackbacks, "trackback") %> to '<%=h @article.title  %>'</h3>
+  <a name="trackbacks"></a><h3><%= responses(@article.trackbacks, "trackback") %> to '<%= @article.title  %>'</h3>
   <p class="postmetadata alt">
     Use the following link to trackback from your own site:<br/>
     <%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>

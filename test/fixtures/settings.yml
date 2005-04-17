@@ -23,3 +23,18 @@ defaultAllowComments:
   id: 5
   name: default_allow_comments
   value: 1
+
+spUrlLimit:
+  id: 6
+  name: sp_url_limit
+  value: 3
+
+spArticleAutoClose:
+  id: 7
+  name: sp_article_auto_close
+  value: 300
+
+spGlobal:
+  id: 8
+  name: sp_global
+  value: 1

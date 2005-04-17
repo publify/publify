@@ -1,6 +1,7 @@
 class Admin::GeneralController < Admin::BaseController
   def index
-    @fields = Configuration.fields
+    @fields = Configuration.fields.reject { |f| f.name.to_s =~ /^sp_/ }
+    @sp_fields = Configuration.fields.reject { |f| @fields.include?(f) }
           
     if request.post? 
       Setting.transaction do 
