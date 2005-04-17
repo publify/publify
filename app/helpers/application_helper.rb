@@ -1,4 +1,6 @@
 # The methods added to this helper will be available to all templates in the application.
+require 'digest/sha1'
+
 module ApplicationHelper
   
   def categorylist()
@@ -8,25 +10,21 @@ module ApplicationHelper
   
   def flickrlist(url)
     begin
-      flickr = controller.cache[:flickr] || controller.cache[:flickr] = Flickr.new(url)        
-      render_partial("shared/flickr", flickr)
+      render_partial("shared/flickr", check_cache(Flickr, url))
     rescue 
     end 
   end
 
   def tadalist(url)    
     begin
-      tada = controller.cache[:tada] || controller.cache[:tada] = Tada.new(url)
-
-      render_partial("shared/tada", tada)
+      render_partial("shared/tada", check_cache(Tada, url))
     rescue 
     end 
   end
 
   def deliciouslist(url)    
     begin
-      delicious = controller.cache[:delicious] || controller.cache[:delicious] = Delicious.new(url)
-      render_partial("shared/delicious", delicious)
+      render_partial("shared/delicious", check_cache(Delicious, url))
     rescue 
     end 
   end
@@ -85,5 +83,8 @@ module ApplicationHelper
     article_link responses(article.trackbacks, "trackback"), article
   end
   
-  
+  def check_cache(aggregator, url)
+    hash = "#{aggregator.to_s}_#{Digest::SHA1.hexdigest(url)}".to_sym
+    controller.cache[hash] ||= aggregator.new(url)
+  end  
 end
