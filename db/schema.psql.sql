@@ -65,6 +65,12 @@ CREATE TABLE resources (
   updated_at TIMESTAMP DEFAULT now()
 );
 
+CREATE TABLE sessions (
+  id SERIAL PRIMARY KEY NOT NULL,
+  sessid varchar(255) default NULL,
+  data text
+);                                                                                                                                                                  
+
 CREATE TABLE sidebar_blocks (
   id SERIAL PRIMARY KEY NOT NULL,
   type varchar(255) default NULL,

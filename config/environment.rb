@@ -74,3 +74,5 @@ require_dependency 'aggregations/tada'
 require_dependency 'aggregations/flickr'
 require_dependency 'configuration'
 require_dependency 'spam_protection'
+
+ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)                                                              

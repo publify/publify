@@ -55,6 +55,12 @@ CREATE TABLE 'resources' (
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );
+CREATE TABLE 'sessions' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'sessid'      VARCHAR(32) DEFAULT NULL,
+  'data'        TEXT
+);                                                                                                                                                                  
+
 CREATE TABLE 'sidebar_blocks' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'type'        VARCHAR(255) DEFAULT NULL,

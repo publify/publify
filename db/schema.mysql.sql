@@ -75,6 +75,14 @@ CREATE TABLE `resources` (
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `sessions` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `sessid` varchar(32) default NULL,
+  `data` text,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `sessid` (`sessid`)
+) TYPE=MyISAM;                                                                                                                                                                  
+
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(40) default NULL,
