@@ -56,6 +56,13 @@ CREATE TABLE comments (
   updated_at TIMESTAMP DEFAULT now()
 );
 
+CREATE TABLE pings (
+  id SERIAL PRIMARY KEY NOT NULL,
+  article_id int REFERENCES articles,
+  url varchar(255) DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT now()
+);
+
 CREATE TABLE resources (
   id SERIAL PRIMARY KEY NOT NULL,
   size int default NULL,
