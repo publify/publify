@@ -68,7 +68,9 @@ CREATE TABLE resources (
 CREATE TABLE sessions (
   id SERIAL PRIMARY KEY NOT NULL,
   sessid varchar(255) default NULL,
-  data text
+  data text,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
 );                                                                                                                                                                  
 
 CREATE TABLE sidebar_blocks (

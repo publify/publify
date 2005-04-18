@@ -58,7 +58,9 @@ CREATE TABLE 'resources' (
 CREATE TABLE 'sessions' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'sessid'      VARCHAR(32) DEFAULT NULL,
-  'data'        TEXT
+  'data'        TEXT,
+  'created_at'  DATETIME DEFAULT NULL,
+  'updated_at'  DATETIME DEFAULT NULL
 );                                                                                                                                                                  
 
 CREATE TABLE 'sidebar_blocks' (
