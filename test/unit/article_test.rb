@@ -20,7 +20,7 @@ class ArticleTest < Test::Unit::TestCase
     assert_nil Article.find_by_permalink(2005,01,01, "article-3")  
   end
   
-  def test_stip_title
+  def test_strip_title
     assert_equal "article-3", Article.strip_title("Article-3")
     assert_equal "article-3", Article.strip_title("Article 3!?#")
     assert_equal "article", Article.strip_title("-article-")

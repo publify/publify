@@ -96,7 +96,7 @@ class MetaWeblogService < TypoWebService
     article.title       = newtitle || ''
     article.published   = publish ? 1 : 0
     article.author      = username
-    # article.dateCreated
+    article.created_at  = Time.now
 
     # Moveable Type API support
     article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
@@ -135,7 +135,7 @@ class MetaWeblogService < TypoWebService
       end
     end
 
-    article.send_pings(controller.url_for(:controller => "/articles/read/#{article.id}"), struct['mt_tb_ping_urls'])
+    article.send_pings(article_url(article), struct['mt_tb_ping_urls'])
     
     article.save
     article.id.to_s
@@ -193,7 +193,7 @@ class MetaWeblogService < TypoWebService
       end
     end
 
-    article.send_pings(controller.url_for(:controller => "/articles/read/#{article.id}"), struct['mt_tb_ping_urls'])
+    article.send_pings(article_url(article), struct['mt_tb_ping_urls'])
 
     article.save    
     true
@@ -217,16 +217,13 @@ class MetaWeblogService < TypoWebService
   end             
 
   def article_dto_from(article)
-    # FIXME: rescue is needed for functional tests as the test framework currently doesn't supply fully fledged controller instances
-    article_url = controller.url_for :controller => "/articles/read/#{article.id}" rescue "/articles/read/#{article.id}"
-
     MetaWeblogStructs::Article.new(
       :description       => article.body,
       :title             => article.title,
       :postid            => article.id.to_s,
-      :url               => article_url.to_s,
-      :link              => article_url.to_s,
-      :permaLink         => article_url.to_s,
+      :url               => article_url(article).to_s,
+      :link              => article_url(article).to_s,
+      :permaLink         => article_url(article).to_s,
       :categories        => article.categories.collect { |c| c.name },
       :mt_text_more      => article.extended.to_s,
       :mt_excerpt        => article.excerpt.to_s,
@@ -239,6 +236,18 @@ class MetaWeblogService < TypoWebService
   end
 
   protected
+
+  def article_url(article)
+    begin
+      controller.url_for :controller=>"/articles", :action =>"permalink",
+        :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month),
+        :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
+    rescue
+      # FIXME: rescue is needed for functional tests as the test framework currently doesn't supply fully
+      # fledged controller instances (yet?)
+      "/articles/read/#{article.id}"
+    end
+  end
 
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
