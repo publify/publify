@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def server_url_for(options = {})
-    "http://" << @request.host << @request.port_string << url_for(options)
+    url_for(options.update(:only_path => false))
   end
 
   def strip_html(text)

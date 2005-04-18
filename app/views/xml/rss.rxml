@@ -6,6 +6,7 @@ xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/",
     xml.link server_url_for(:controller => "articles")
     xml.language "en-us"
     xml.ttl "40"
+    xml.description blog_title
 
     for entry in @articles
       xml.item do
