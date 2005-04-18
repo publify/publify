@@ -13,19 +13,19 @@
   </div>
 
   <div id="info">
-    <%= current_user_notice %>
+    <%= current_user_notice rescue nil %>
   </div>  
 
   <div id="navigation">
   	<ul>
-  	  <li><%= link_to_section "General", :controller=>"/admin/general"%></li>
-  	  <li><%= link_to_section "Articles", :controller=>"/admin/content"%></li>
-  	  <li><%= link_to_section "Users", :controller=>"/admin/users"%></li>
+  	  <li><%= link_to_section "General", :controller=>"/admin/general" rescue nil %></li>
+  	  <li><%= link_to_section "Articles", :controller=>"/admin/content" rescue nil %></li>
+  	  <li><%= link_to_section "Users", :controller=>"/admin/users" rescue nil %></li>
   	</ul>
   </div>  
 
   <div id="flash">
-    <%= render_flash %>
+    <%= render_flash rescue nil %>
   </div>  
 
   <div id="main">
