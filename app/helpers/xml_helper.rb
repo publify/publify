@@ -8,11 +8,11 @@ module XmlHelper
   end
 
   def post_link(post)
-    article_url(post, true)
+    article_url(post, false)
   end
   
   def comment_link(comment)
-    comment_url(comment, true)
+    comment_url(comment, false)
   end  
   
   def blog_title

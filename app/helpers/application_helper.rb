@@ -55,13 +55,13 @@ module ApplicationHelper
     link_to title, comment_url(comment)
   end  
   
-  def article_url(article, full_url = false)
-    url_for :only_path => full_url, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
+  def article_url(article, only_path = true)
+    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
   end
 
-  def comment_url(comment, full_url)
+  def comment_url(comment, only_path = true)
     article = comment.article
-    url_for :only_path => full_url, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
+    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
   end  
   
   def responses(collection, word)
