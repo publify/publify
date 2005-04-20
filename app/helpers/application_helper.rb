@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def server_url_for(options = {})
-    url_for(options.update(:only_path => false))
+    url_for options.update(:only_path => false)
   end
 
   def strip_html(text)
@@ -55,13 +55,13 @@ module ApplicationHelper
     link_to title, comment_url(comment)
   end  
   
-  def article_url(article)
-    url_for :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
+  def article_url(article, full_url = false)
+    url_for :only_path => full_url, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
   end
 
-  def comment_url(comment)
+  def comment_url(comment, full_url)
     article = comment.article
-    url_for :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
+    url_for :only_path => full_url, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
   end  
   
   def responses(collection, word)
