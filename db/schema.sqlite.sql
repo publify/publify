@@ -1,7 +1,7 @@
 CREATE TABLE 'users' (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'login' varchar(80) default NULL,
-  'password' varchar(40) default NULL
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'login'       VARCHAR(80) DEFAULT NULL,
+  'password'    VARCHAR(40) DEFAULT NULL
 );
 
 CREATE TABLE 'articles' (
@@ -74,13 +74,6 @@ CREATE TABLE 'sessions' (
   'data'        TEXT,
   'updated_at'  DATETIME DEFAULT NULL
 );                                                                                                                                                                  
-
-CREATE TABLE 'sidebar_blocks' (
-  'id'          INTEGER PRIMARY KEY NOT NULL,
-  'type'        VARCHAR(255) DEFAULT NULL,
-  'data'        TEXT, 
-  'position'    INTEGER
-);
 
 CREATE TABLE 'settings' (
   'id'          INTEGER PRIMARY KEY NOT NULL,

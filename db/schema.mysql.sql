@@ -2,7 +2,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
   `login` varchar(80) default NULL,
   `password` varchar(40) default NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `login` (`login`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `articles` (
@@ -54,7 +55,8 @@ CREATE TABLE `comments` (
   `body_html` text,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  KEY `article_id` (`article_id`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `pings` (
@@ -62,7 +64,8 @@ CREATE TABLE `pings` (
   `article_id` int(11) default NULL,
   `url` varchar(255) default NULL,
   `created_at` datetime default NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  KEY `article_id` (`article_id`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `resources` (
@@ -91,14 +94,6 @@ CREATE TABLE `settings` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `sidebar_blocks` (
-  `id` int(11) NOT NULL auto_increment,
-  `type` varchar(255) default NULL,
-  `data` text,
-  `position` int(11) default NULL,
-  PRIMARY KEY  (`id`)
-) TYPE=MyISAM;
-
 CREATE TABLE `trackbacks` (
   `id` int(11) NOT NULL auto_increment,
   `article_id` int(11) default NULL,
@@ -110,6 +105,7 @@ CREATE TABLE `trackbacks` (
   `ip` varchar(15) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  KEY `article_id` (`article_id`)
 ) TYPE=MyISAM;
 

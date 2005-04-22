@@ -7,6 +7,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   login varchar(40) default NULL,
   password varchar(40) default NULL,
+  UNIQUE (login)
 );
 
 CREATE TABLE articles (
@@ -44,9 +45,11 @@ CREATE TABLE blacklist_patterns (
   pattern varchar(255) default NULL
 );
 
+CREATE INDEX idx_blacklist_pattern ON blacklist_patterns (pattern);
+
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY NOT NULL,
-  article_id int REFERENCES articles,
+  article_id int NOT NULL REFERENCES articles,
   title varchar(255) default NULL,
   author varchar(255) default NULL,
   email varchar(255) default NULL,
@@ -58,12 +61,16 @@ CREATE TABLE comments (
   updated_at TIMESTAMP DEFAULT now()
 );
 
+CREATE INDEX idx_comments_article_id ON comments (article_id);
+
 CREATE TABLE pings (
   id SERIAL PRIMARY KEY NOT NULL,
-  article_id int REFERENCES articles,
+  article_id int NOT NULL REFERENCES articles,
   url varchar(255) DEFAULT NULL,
   created_at TIMESTAMP DEFAULT now()
 );
+
+CREATE INDEX idx_pings_article_id ON pings (article_id);
 
 CREATE TABLE resources (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -82,20 +89,12 @@ CREATE TABLE sessions (
   updated_at TIMESTAMP DEFAULT now()
 );                                                                                                                                                                  
 
-CREATE TABLE sidebar_blocks (
-  id SERIAL PRIMARY KEY NOT NULL,
-  type varchar(255) default NULL,
-  data text,
-  position int default NULL
-);
-
 CREATE TABLE settings (
   id SERIAL PRIMARY KEY NOT NULL,
   name varchar(255) default NULL,
   value varchar(255) default NULL,
   position int default NULL
 );
-
 
 CREATE TABLE trackbacks (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -108,4 +107,6 @@ CREATE TABLE trackbacks (
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
 );
+
+CREATE INDEX idx_trackbacks_article_id ON trackbacks (article_id);
 
