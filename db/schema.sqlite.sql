@@ -1,3 +1,9 @@
+CREATE TABLE 'users' (
+  'id' INTEGER PRIMARY KEY NOT NULL,
+  'login' varchar(80) default NULL,
+  'password' varchar(40) default NULL
+);
+
 CREATE TABLE 'articles' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'title'       VARCHAR(255) DEFAULT NULL,
@@ -14,21 +20,25 @@ CREATE TABLE 'articles' (
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );
+
 CREATE TABLE 'articles_categories' (
   'article_id'	INTEGER,
   'category_id'	INTEGER,
   'is_primary' INTEGER DEFAULT 0
 );
+
 CREATE TABLE 'blacklist_patterns' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'type'        VARCHAR(15) DEFAULT NULL,
   'pattern'     VARCHAR(255) DEFAULT NULL
 );
+
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'        VARCHAR(255) DEFAULT NULL,
   'position'    INTEGER
 );
+
 CREATE TABLE 'comments' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'article_id'  INTEGER DEFAULT NULL,
@@ -41,12 +51,14 @@ CREATE TABLE 'comments' (
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );
+
 CREATE TABLE 'pings' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'article_id'  INTEGER,
   'url'         VARCHAR(15) DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL
 );
+
 CREATE TABLE 'resources' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'size'        INTEGER DEFAULT NULL,
@@ -55,11 +67,11 @@ CREATE TABLE 'resources' (
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );
+
 CREATE TABLE 'sessions' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'sessid'      VARCHAR(32) DEFAULT NULL,
   'data'        TEXT,
-  'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );                                                                                                                                                                  
 
@@ -69,12 +81,14 @@ CREATE TABLE 'sidebar_blocks' (
   'data'        TEXT, 
   'position'    INTEGER
 );
+
 CREATE TABLE 'settings' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'        VARCHAR(255) DEFAULT NULL,
   'value'       VARCHAR(255) DEFAULT NULL,
   'position'    INTEGER
 );
+
 CREATE TABLE 'trackbacks' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'article_id'  INTEGER,

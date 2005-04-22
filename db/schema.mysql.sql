@@ -79,7 +79,6 @@ CREATE TABLE `sessions` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `sessid` varchar(32) default NULL,
   `data` text,
-  `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `sessid` (`sessid`)

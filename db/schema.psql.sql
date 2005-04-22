@@ -3,6 +3,12 @@
 -- Modified by Robby Russell <robby@planetargon.com>
 --
 
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  login varchar(40) default NULL,
+  password varchar(40) default NULL,
+);
+
 CREATE TABLE articles (
   id SERIAL PRIMARY KEY NOT NULL,
   title varchar(255) default NULL,
@@ -25,10 +31,6 @@ CREATE TABLE categories (
   name varchar(255) default NULL,
   position int NOT NULL default '0'
 );
-
-INSERT INTO categories (name, position) VALUES ('RubyOnRails', 1);
-INSERT INTO categories (name, position) VALUES ('Typo', 2);
-
 
 CREATE TABLE articles_categories (
   article_id int REFERENCES articles,
