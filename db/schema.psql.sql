@@ -1,5 +1,5 @@
 --
--- PostgreSQL schema file for Type
+-- PostgreSQL schema file for Typo
 -- Modified by Robby Russell <robby@planetargon.com>
 --
 

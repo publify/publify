@@ -1,6 +1,6 @@
 <% content_for("script") do %>
 function item_added() {
-  new Effect.Highlight($('commentList').lastChild);
+  new Effect.Appear($('commentList').lastChild);
 }
 function item_loading() {
   $('commentform').elements[2].value = '';
@@ -9,7 +9,7 @@ function item_loading() {
 
 window.onload = function() {
   if( $('commentform').elements[1].value != '' ) {
-    Toggle.display('guest_url')
+    Element.toggle('guest_url');
   }
 }
 <% end %>
@@ -48,7 +48,7 @@ window.onload = function() {
         Your name
       </td>
       <td valign="top">
-        <%= text_field "comment", "author", :size => 20 %> <small><a href="javascript:Toggle.display('guest_url')">(leave url &#187;)</a></small>
+        <%= text_field "comment", "author", :size => 20 %> <small><a href="javascript:Element.toggle('guest_url')">(leave url &#187;)</a></small>
       </td>
     </tr>
     <tr id="guest_url" style="display:none">
