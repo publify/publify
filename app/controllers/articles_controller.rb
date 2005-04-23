@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   
   def index
     @pages = Paginator.new self, Article.count, 10, @params['page']
-    @articles = Article.find_all('published !=0', 'created_at DESC', @pages.current.to_sql)
+    @articles = Article.find(:all,  :condition => 'published!=0',  :order => 'articles.created_at DESC', :limit => 10, :offset => @pages.current.offset)
   end
   
   def search
@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   end
   
   def read    
-    @article      = Article.find(@params["id"])    
+    @article      = Article.find(@params["id"], :include => [:categories])    
     @comment      = Comment.new
     @page_title   = @article.title
 
@@ -70,7 +70,6 @@ class ArticlesController < ApplicationController
       render_partial("comment", @comment)      
     else
       render_partial("comment_error", @comment)
-#      render_text "Please supply name and a message..."
     end
   end  
 

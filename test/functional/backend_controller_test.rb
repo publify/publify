@@ -155,7 +155,8 @@ class BackendControllerTest < Test::Unit::TestCase
 
   def test_mt_supported_text_filters
     result = invoke_layered :mt, :supportedTextFilters
-    assert result.map {|f| f['label']}.include?('Markdown')
+    assert result.map {|f| f['label']}.include?('Markdown') if  BlueCloth.new rescue false 
+    assert result.map {|f| f['label']}.include?('Textile') if  RedCloth.new rescue false 
   end
 
   def test_mt_get_trackback_pings

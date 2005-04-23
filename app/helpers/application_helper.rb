@@ -65,7 +65,7 @@ module ApplicationHelper
   end  
   
   def responses(collection, word)
-    case collection.count
+    case collection.size
     when 0
       "no #{word}s"
     when 1
