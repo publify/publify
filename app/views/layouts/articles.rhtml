@@ -3,9 +3,9 @@
 <head>
   <title><%= page_title %></title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml/rsd' %>" />
-  <link rel="alternate" type="application/rss+xml"  title="Recent changes (RSS 2.0)"  href="<%= url_for :controller => 'xml', :action => 'rss' %>" />
-  <link rel="alternate" type="application/atom+xml"  title="Recent changes (ATOM 0.3)"  href="<%= url_for :controller => 'xml', :action => 'atom' %>" />
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= server_url_for :controller => 'xml', :action => 'rsd' %>" />
+	<%= auto_discovery_link_tag :rss, :controller => 'xml', :action => 'rss' %>
+	<%= auto_discovery_link_tag :atom, :controller => 'xml', :action => 'atom' %>
   <%= stylesheet_link_tag "typo" %>
   <%= javascript_include_tag "prototype" %>
   <script type="text/javascript"><%= @content_for_script %></script>

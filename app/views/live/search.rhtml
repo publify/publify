@@ -1,6 +1,8 @@
 <% if !@search.to_s.blank? -%>
-  Searched for <em>"<%=h @search %>"</em><br/><br/>
+  <p>Searched for <em>"<%=h @search %>"</em></p>
+  <ul>
   <% for article in @articles.to_a -%>
-  <%= article_link article.title, article %><br/>
+    <li><%= article_link article.title, article %></li>
   <% end -%>
+	</ul>
 <% end -%>

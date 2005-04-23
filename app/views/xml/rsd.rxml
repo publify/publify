@@ -5,7 +5,7 @@ xml.rsd "version"=>"1.0", "xmlns"=>"http://archipelago.phrasewise.com/rsd" do
     xml.engineLink "http://typo.leetsoft.com"
     xml.homePageLink server_url_for(:controller => "articles")
     xml.apis do
-      xml.api "name" => "Moveable Type", "preferred"=>"true",
+      xml.api "name" => "Movable Type", "preferred"=>"true",
               "apiLink" => server_url_for(:controller => "backend", :action => "xmlrpc"),
               "blogID" => "1"
       xml.api "name" => "MetaWeblog", "preferred"=>"false",
