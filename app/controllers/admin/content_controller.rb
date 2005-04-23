@@ -16,6 +16,9 @@ class Admin::ContentController < Admin::BaseController
   def new
     @article = Article.new(@params["article"])
     @article.author = @session[:user].login
+    @article.allow_comments = config["default_allow_comments"]
+    @article.allow_pings = config["default_allow_pings"]
+    @article.text_filter = config["text_filter"]
     if @request.post? and @article.save
       flash['notice'] = 'Article was successfully created.'
       redirect_to :action => 'show', :id => @article.id

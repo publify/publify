@@ -5,6 +5,7 @@ class Configuration < ConfigManager
   setting :sp_global, :bool, "Use SpamProtection functionality"
   setting :sp_article_auto_close, :int, "Auto-close ability to comment/trackback articles after X days"
   setting :sp_url_limit, :int, "Limit for URLs in comments and trackbacks"
+  setting :text_filter, :string, "Default HTML transformation style"
 end
 
 def config
