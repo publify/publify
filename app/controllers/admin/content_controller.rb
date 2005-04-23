@@ -15,7 +15,7 @@ class Admin::ContentController < Admin::BaseController
 
   def new
     @article = Article.new(@params["article"])
-    
+    @article.author = @session[:user].login
     if @request.post? and @article.save
       flash['notice'] = 'Article was successfully created.'
       redirect_to :action => 'show', :id => @article.id
