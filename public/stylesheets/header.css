@@ -5,7 +5,7 @@
   top: 0;
 	left: 0;
 	right: 0;
-	background: url(/images/admin/spot-header.gif) repeat-x;
+	background: url(../images/spot-header.gif) repeat-x;
 	border-bottom: 1px solid #4782de;
 	padding: 0 0 0 20px;
 	overflow: hidden;
@@ -20,7 +20,7 @@
   top: 38px;
 	left: 0;
 	right: 0;
-	background: url(/images/admin/spot-title.gif) repeat-x;
+	background: url(../images/spot-title.gif) repeat-x;
 	padding: 0 0 0 20px;
 	overflow: hidden;
 	height: 20px;

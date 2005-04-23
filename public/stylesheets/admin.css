@@ -149,7 +149,7 @@ a:hover.link {
   height: 20px;
   background: #ccc;
   text-align: left;
-  background: url(/images/admin/spot-title.gif) repeat-x;
+  background: url(../images/spot-title.gif) repeat-x;
 	border-bottom: 1px solid #ccc;
 
 }
