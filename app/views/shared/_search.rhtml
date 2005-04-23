@@ -1,6 +1,12 @@
 <p>Live Search</p>
 <form action="/articles/search" method="get">
 <input type="text" id="q" name="q" value="" size="15" />
+<%= image_tag "spinner.gif", :id => 'search_spinner', :style => 'display:none;' %>
 </form>
 <div id="search_results"></div>
-<%= observe_field "q", :frequency => 1, :url => { :controller => "live", :action => "search" }, :update => "search_results" %>
+<%= observe_field "q", 
+                  :frequency => 1, 
+                  :url => { :controller => "live", :action => "search" }, 
+                  :loading => "Toggle.display('search_spinner')",
+                  :complete => "Toggle.display('search_spinner')",
+                  :update => "search_results" -%>
