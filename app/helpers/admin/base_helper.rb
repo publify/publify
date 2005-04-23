@@ -61,15 +61,15 @@ module Admin::BaseHelper
   end
 
   def link_to_show(record)
-    link_to image_tag('/images/admin/go.png'), :action => 'show', :id => record.id
+    link_to image_tag('go'), :action => 'show', :id => record.id
   end  
 
   def link_to_edit(record)
-    link_to image_tag('/images/admin/go.png'), :action => 'edit', :id => record.id
+    link_to image_tag('go'), :action => 'edit', :id => record.id
   end  
 
   def link_to_destroy(record)
-    link_to image_tag('/images/admin/delete.png'), :action => 'destroy', :id => record.id
+    link_to image_tag('delete'), :action => 'destroy', :id => record.id
   end    
   
 end

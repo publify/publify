@@ -17,7 +17,7 @@
     </tr>
     <% for user in @users -%>
     <tr>
-      <td class="field"><%= image_tag '/images/admin/checked.gif' %> <%=h user.login %></td>
+      <td class="field"><%= image_tag 'checked.gif' %> <%=h user.login %></td>
       <td class="operation"><%= link_to_edit user %></td>
       <td class="operation"><%= link_to_destroy user %></td>    
     </tr>  
