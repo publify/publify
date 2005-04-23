@@ -49,7 +49,10 @@ Usage
 
 Typo was made to be used from a desktop client. I personally use MarsEdit but all
 metaweblog and movable type compatible clients will be able to talk to typo. For a short
-list of clients which are confirmed to work please visit http://typo.leetsoft.com
+list of clients which are confirmed to work please visit http://typo.leetsoft.com.
+A real admin interface was added recently. You can find it under http://your.domain.com/admin
+Most features of typo like sending of pingbacks still require the use of a desktop client 
+with the moveable type api. 
 
 Client setup
 ============
