@@ -5,6 +5,7 @@ trackback1:
   title: Trackback Entry
   url: http://www.example.com
   excerpt: This is an excerpt
+  created_at: 2005-01-01 01:00:00
 
 trackback2:
   id: 2
@@ -13,3 +14,4 @@ trackback2:
   title: Trackback Entry
   url: http://www.example.com
   excerpt: This is an excerpt
+  created_at: 2005-01-01 01:00:00
