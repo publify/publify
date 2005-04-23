@@ -98,7 +98,7 @@ class MetaWeblogService < TypoWebService
     article.author      = username
     article.created_at  = Time.now
 
-    # Moveable Type API support
+    # Movable Type API support
     article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
     article.allow_pings    = struct['mt_allow_pings'] || $config['default_allow_pings']
     article.extended       = struct['mt_text_more'] || ''
@@ -156,7 +156,7 @@ class MetaWeblogService < TypoWebService
     article.author      = username
     # article.dateCreated
 
-    # Moveable Type API support
+    # Movable Type API support
     article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
     article.allow_pings    = struct['mt_allow_pings'] || $config['default_allow_pings']
     article.extended       = struct['mt_text_more'] || ''

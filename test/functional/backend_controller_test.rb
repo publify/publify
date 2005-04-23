@@ -110,7 +110,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_raise(XMLRPC::FaultException) { invoke_layered :metaWeblog, :getRecentPosts, *args }
   end
 
-  # Moveable Type Tests
+  # Movable Type Tests
 
   def test_mt_get_category_list 
     args = [ 1, 'tobi', 'whatever' ]
@@ -138,14 +138,14 @@ class BackendControllerTest < Test::Unit::TestCase
 
   def test_mt_set_post_categories
     args = [ 2, 'tobi', 'whatever',
-      [MoveableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => 3, 'isPrimary' => 1)] ]
+      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => 3, 'isPrimary' => 1)] ]
     
     result = invoke_layered :mt, :setPostCategories, *args
     assert_equal [@personal], Article.find(2).categories
 
     args = [ 2, 'tobi', 'whatever',
-      [MoveableTypeStructs::CategoryPerPost.new('categoryName' => 'Software', 'categoryId' => 1, 'isPrimary' => 1),
-       MoveableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware', 'categoryId' => 2, 'isPrimary' => 0) ]]
+      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software', 'categoryId' => 1, 'isPrimary' => 1),
+       MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware', 'categoryId' => 2, 'isPrimary' => 0) ]]
 
      result = invoke_layered :mt, :setPostCategories, *args
 

@@ -48,13 +48,13 @@ Usage
 ======
 
 Typo was made to be used from a desktop client. I personally use MarsEdit but all
-metaweblog and moveable type compatible clients will be able to talk to typo. For a short
+metaweblog and movable type compatible clients will be able to talk to typo. For a short
 list of clients which are confirmed to work please visit http://typo.leetsoft.com
 
 Client setup
 ============
 
-Set your desktop client to moveable type api and enter http://your.domain.com/backend/xmlrpc 
+Set your desktop client to movable type api and enter http://your.domain.com/backend/xmlrpc 
 as endpoint address.
 
 Tell me about your blog

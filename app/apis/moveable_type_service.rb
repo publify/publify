@@ -1,4 +1,4 @@
-module MoveableTypeStructs
+module MovableTypeStructs
   class ArticleTitle < ActionWebService::Struct
     member :dateCreated,  :datetime
     member :userid,       :int
@@ -30,31 +30,31 @@ module MoveableTypeStructs
 end
 
 
-class MoveableTypeApi < ActionWebService::API::Base
+class MovableTypeApi < ActionWebService::API::Base
   inflect_names false
 
   api_method :getCategoryList,
     :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string} ],
-    :returns => [[MoveableTypeStructs::CategoryList]]
+    :returns => [[MovableTypeStructs::CategoryList]]
 
   api_method :getPostCategories,
     :expects => [ {:postid => :int}, {:username => :string}, {:password => :string} ],
-    :returns => [[MoveableTypeStructs::CategoryPerPost]]
+    :returns => [[MovableTypeStructs::CategoryPerPost]]
 
   api_method :getRecentPostTitles,
     :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string}, {:numberOfPosts => :int} ],
-    :returns => [[MoveableTypeStructs::ArticleTitle]]
+    :returns => [[MovableTypeStructs::ArticleTitle]]
 
   api_method :setPostCategories,
-    :expects => [ {:postid => :int}, {:username => :string}, {:password => :string}, {:categories => [MoveableTypeStructs::CategoryPerPost]} ],
+    :expects => [ {:postid => :int}, {:username => :string}, {:password => :string}, {:categories => [MovableTypeStructs::CategoryPerPost]} ],
     :returns => [:bool]
 
   api_method :supportedTextFilters,
-    :returns => [[MoveableTypeStructs::TextFilter]]
+    :returns => [[MovableTypeStructs::TextFilter]]
 
   api_method :getTrackbackPings,
     :expects => [ {:postid => :int}],
-    :returns => [[MoveableTypeStructs::TrackBack]]
+    :returns => [[MovableTypeStructs::TrackBack]]
 
   api_method :publishPost,
     :expects => [ {:postid => :int}, {:username => :string}, {:password => :string} ],
@@ -62,14 +62,14 @@ class MoveableTypeApi < ActionWebService::API::Base
 end
 
 
-class MoveableTypeService < TypoWebService
-  web_service_api MoveableTypeApi
+class MovableTypeService < TypoWebService
+  web_service_api MovableTypeApi
   
   before_invocation :authenticate, :except => [:getTrackbackPings, :supportedMethods, :supportedTextFilters]
 
   def getRecentPostTitles(blogid, username, password, numberOfPosts)
     Article.find_all(nil,"created_at DESC", numberOfPosts).collect do |article|
-      MoveableTypeStructs::ArticleTitle.new(
+      MovableTypeStructs::ArticleTitle.new(
             :dateCreated => article.created_at,
             :userid      => blogid.to_s,
             :postid      => article.id.to_s,
@@ -80,7 +80,7 @@ class MoveableTypeService < TypoWebService
 
   def getCategoryList(blogid, username, password)
     Category.find_all.collect do |c| 
-      MoveableTypeStructs::CategoryList.new(
+      MovableTypeStructs::CategoryList.new(
           :categoryId   => c.id,
           :categoryName => c.name
         )
@@ -89,7 +89,7 @@ class MoveableTypeService < TypoWebService
 
   def getPostCategories(postid, username, password)
     Article.find(postid).categories.collect do |c|
-      MoveableTypeStructs::CategoryPerPost.new(
+      MovableTypeStructs::CategoryPerPost.new(
           :categoryName => c.name,
           :categoryId   => c.id.to_i,
           :isPrimary    => c.is_primary.to_i
@@ -120,12 +120,12 @@ class MoveableTypeService < TypoWebService
     filters = []
     begin
       BlueCloth.new("test")
-      filters << MoveableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown')
+      filters << MovableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown')
     rescue
     end
     begin
       RedCloth.new("test")
-      filters << MoveableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile')
+      filters << MovableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile')
     rescue
     end
     filters
@@ -134,7 +134,7 @@ class MoveableTypeService < TypoWebService
   def getTrackbackPings(postid)
     article = Article.find(postid)
     article.trackbacks.collect do |t|
-      MoveableTypeStructs::TrackBack.new(
+      MovableTypeStructs::TrackBack.new(
           :pingTitle  => t.title.to_s,
           :pingURL    => t.url.to_s,
           :pingIP     => t.ip.to_s
