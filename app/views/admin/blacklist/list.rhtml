@@ -11,21 +11,15 @@
   <div class="list">	
     <table>
     <tr>
-      <% for column in BlacklistPattern.content_columns -%>
-      <th><%= column.human_name %></th>
-      <% end -%>
+      <th>Pattern</th>
       <th>Type</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
     <% for blacklist_pattern in @blacklist_patterns -%>
     <tr>
-      <% for column in BlacklistPattern.content_columns -%>
-      <td class="field"><%=h blacklist_pattern.send(column.name) %></td>
-      <% end -%>
+      <td class="field"><%= link_to blacklist_pattern.pattern, :action => "show", :id => blacklist_pattern.id %></td>
       <td class="field"><%= blacklist_pattern.class %></td>
-      <td class="operation"><%= link_to_show blacklist_pattern %></td>
       <td class="operation"><%= link_to_edit blacklist_pattern %></td>
       <td class="operation"><%= link_to_destroy blacklist_pattern %></td>    
     </tr>  

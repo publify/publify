@@ -1,0 +1,20 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Edit this trackback', :action => 'edit', :id => @trackback.id %></li>
+    <li><%= link_to 'Back to overview', :action => 'list' %></li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Trackbacks for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
+
+  <div class="form">
+    <label>Blog name:</label> <span class="static"><%=h @trackback.blog_name %></span><br/>
+    <label>Title:</label> <span class="static"><%=h @trackback.title %></span><br/>
+    <label>URL:</label> <span class="static"><%=h @trackback.url %></span><br/>
+    <label>IP Address:</label> <span class="static"><%=h @trackback.ip %></span><br/>
+    <label>Created at:</label> <span class="static"><%=h @trackback.created_at %></span><br/>
+    <label>Excerpt:</label> <span class="static"><%=h @trackback.excerpt %></span><br/>
+  </div>
+</div>

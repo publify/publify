@@ -18,7 +18,7 @@
     <% for category in @categories -%>
     <tr>
       <td><%= image_tag 'checked.gif' %> <%= link_to category.name, :action => 'show', :id => category.id %></td>
-      <td><%= link_to responses(category.articles, 'articles'), :action => 'show', :id => category.id %></td>
+      <td><%= link_to responses(category.articles, 'article'), :action => 'show', :id => category.id %></td>
       <td class="operation"><%= link_to_destroy category %></td>    
     </tr>  
     <% end -%>
