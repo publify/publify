@@ -1,14 +1,14 @@
 require File.dirname(__FILE__) + '/../../test_helper'
-require 'admin/categories_controller'
+require 'admin/blacklist_controller'
 
 # Re-raise errors caught by the controller.
-class Admin::CategoriesController; def rescue_action(e) raise e end; end
+class Admin::BlacklistController; def rescue_action(e) raise e end; end
 
-class Admin::CategoriesControllerTest < Test::Unit::TestCase
-  fixtures :categories, :users
+class Admin::BlacklistControllerTest < Test::Unit::TestCase
+  fixtures :blacklist_patterns, :users
 
   def setup
-    @controller = Admin::CategoriesController.new
+    @controller = Admin::BlacklistController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
@@ -23,36 +23,36 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
   def test_list
     get :list
     assert_rendered_file 'list'
-    assert_template_has 'categories'
+    assert_template_has 'blacklist_patterns'
   end
 
   def test_show
     get :show, 'id' => 1
     assert_rendered_file 'show'
-    assert_template_has 'category'
-    assert_valid_record 'category'
+    assert_template_has 'blacklist_pattern'
+    assert_valid_record 'blacklist_pattern'
   end
 
   def test_new
     get :new
     assert_rendered_file 'new'
-    assert_template_has 'category'
+    assert_template_has 'blacklist_pattern'
   end
 
   def test_create
-    num_categories = Category.find_all.size
+    num_blacklist_patterns = BlacklistPattern.find_all.size
 
-    post :new, 'category' => { }
+    post :new, 'blacklist_pattern' => { }
     assert_redirected_to :action => 'show'
 
-    assert_equal num_categories + 1, Category.find_all.size
+    assert_equal num_blacklist_patterns + 1, BlacklistPattern.find_all.size
   end
 
   def test_edit
     get :edit, 'id' => 1
     assert_rendered_file 'edit'
-    assert_template_has 'category'
-    assert_valid_record 'category'
+    assert_template_has 'blacklist_pattern'
+    assert_valid_record 'blacklist_pattern'
   end
 
   def test_update
@@ -61,7 +61,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Category.find(1)
+    assert_not_nil BlacklistPattern.find(1)
 
     get :destroy, 'id' => 1
     assert_success
@@ -70,7 +70,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      category = Category.find(1)
+      blacklist_pattern = BlacklistPattern.find(1)
     }
   end
 end

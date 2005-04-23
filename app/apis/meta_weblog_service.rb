@@ -192,7 +192,7 @@ class MetaWeblogService < TypoWebService
         article.categories << c if new_categories.include?(c.name)
       end
     end
-
+    RAILS_DEFAULT_LOGGER.info(struct['mt_tb_ping_urls'])
     article.send_pings(article_url(article), struct['mt_tb_ping_urls'])
 
     article.save    

@@ -9,8 +9,6 @@
 <div id="content">
   <h1>Comments for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
 
-  <%= start_form_tag :action=>"new" %>
-
   <div class="form">	
     <label>Author:</label> <span class="static"><%=h @comment.author %></span><br/>
     <label>Body:</label> <span class="static"><%=h @comment.body %></span><br/>

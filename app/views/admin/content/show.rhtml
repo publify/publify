@@ -9,8 +9,6 @@
 <div id="content">
   <h1>Articles</h1>
 
-  <%= start_form_tag :action=>"new" %>
-
   <div class="form">	
     <label>title:</label> <span class="static"><%=h @article.title %></span><br/>
     <label>body:</label><br/> <span class="static"><%=@article.body_html %></span><br/>
