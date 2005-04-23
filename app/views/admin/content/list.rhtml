@@ -2,7 +2,9 @@
   <h1>Tasks:</h1>
   <ul>
     <li><%= link_to 'Create new article', :action => 'new' %></li>
-  </ul> 
+  </ul>
+  <%= render_partial '/admin/base/recent_comments' %> 
+  <%= render_partial '/admin/base/recent_trackbacks' %> 
 </div>
 
 <div id="content">

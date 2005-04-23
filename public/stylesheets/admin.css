@@ -112,6 +112,15 @@ a:hover.link {
   border-bottom: 1px solid #e8e8e8;
 }
 
+#sidebar ul li {
+  padding-bottom: 5px;
+}
+
+#sidebar .recent li {
+  margin-left: .7em;
+  text-indent: -.7em;
+}
+
 #content > h1 {
   position: fixed;
   top: 59px;
