@@ -6,7 +6,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
-    @articles = Article.find_all(nil, "ID DESC")
+    @articles = Article.find(:all, :order => "articles.id DESC", :include => [ :trackbacks, :comments ])
   end
 
   def show

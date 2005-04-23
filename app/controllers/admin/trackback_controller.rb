@@ -8,7 +8,7 @@ class Admin::TrackbackController < Admin::BaseController
   end
 
   def list
-    @trackbacks = @article.trackbacks.find_all nil, "id DESC"
+    @trackbacks = @article.trackbacks.find(:all, :order => "id DESC")
   end
 
   def show

@@ -8,7 +8,7 @@ class Admin::CommentsController < Admin::BaseController
   end
 
   def list
-    @comments = @article.comments.find_all nil, "id DESC"
+    @comments = @article.comments.find(:all, :order => "id DESC")
   end
 
   def show
