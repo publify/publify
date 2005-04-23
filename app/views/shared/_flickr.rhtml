@@ -1,6 +1,6 @@
 <h3><%= flickr.title  %> (<%= link_to "flickr", flickr.link %>)</h3>
 <ul>
-<% for pic in flickr.pics.to_a[0..3] -%>
+<% for pic in flickr.choose(4) -%>
   <li><%= image_tag pic.thumb, :alt => pic.title, :style => "border: 1px solid black" %></li>
 <% end -%>
 </ul>

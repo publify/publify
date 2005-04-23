@@ -12,6 +12,11 @@ class FlickrTest < Test::Unit::TestCase
     assert_equal 6, @flickr.pics.size    
   end
   
+  def test_random_chooser   
+    assert_equal 4, @flickr.choose(4).size
+  end
+  
+  
   def test_fields
     assert_equal "xal's Photos", @flickr.title    
     assert_equal "http://www.flickr.com/photos/40235412@N00/", @flickr.link    

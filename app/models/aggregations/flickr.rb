@@ -12,6 +12,13 @@ require 'rexml/document'
 class Flickr
   include REXML
 
+  def choose(num)
+    bag = []
+    set = pics.dup
+    (0..num-1).each {|x| bag << pics.delete_at(rand(pics.size))}
+    bag
+  end
+  
   attr_accessor :url, :pics, :link, :title, :description
     
   # This object holds given information of a picture
