@@ -1,0 +1,23 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Back to overview', :action => 'list' %></li>
+  </ul> 
+</div>
+
+<div id="content">
+  <h1>Categories</h1>
+
+  <%= start_form_tag :action=>"edit", :id => @category.id %>
+
+  <div class="form">	
+    <h2>Editing category</h2>
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations">
+    <%= cancel %> <%= save %>  
+  </div>
+
+  <%= end_form_tag %>
+</div>

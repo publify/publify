@@ -78,7 +78,7 @@ module ApplicationHelper
     when 1
       "1 #{word}"
     else
-      "#{collection.count} #{word}s"
+      "#{collection.size} #{word}s"
     end
   end
     

@@ -9,7 +9,7 @@
 <div id="container">
 
   <div id="header">
-  	<h1><%= link_to "Typo admin (#{config['blog_name']})", "/admin/" %></h1>
+  	<h1><%= link_to "Typo admin - #{config_value('blog_name')}", "/admin/" %></h1>
   </div>
 
   <div id="info">
@@ -21,6 +21,7 @@
   	  <li><%= link_to_section "General", :controller=>"/admin/general" rescue nil %></li>
   	  <li><%= link_to_section "Articles", :controller=>"/admin/content" rescue nil %></li>
   	  <li><%= link_to_section "Users", :controller=>"/admin/users" rescue nil %></li>
+  	  <li><%= link_to_section "Categories", :controller=>"/admin/categories" rescue nil %></li>
   	</ul>
   </div>  
 

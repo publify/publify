@@ -1,0 +1,16 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Back to overview', :action => 'list' %></li>
+    <li><%= link_to 'Show this category', :action => 'show', :id => @item.id %></li>
+  </ul> 
+</div>
+
+<div id="content">
+  <h1>Categories</h1>
+
+  <p>Are you sure you want to delete this item?</p>
+  <%= start_form_tag :action => "destroy", :id => @category.id %>
+  <%= confirm_delete %>
+  <%= end_form_tag %>
+</div>

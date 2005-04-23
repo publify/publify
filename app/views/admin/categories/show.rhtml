@@ -1,0 +1,29 @@
+<div id="sidebar">
+  <h1>Tasks:</h1>
+  <ul>
+    <li><%= link_to 'Edit this category', :action => 'edit', :id => @category.id %></li>
+    <li><%= link_to 'Back to overview', :action => 'list' %></li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Categories</h1>
+
+  <%= start_form_tag :action=>"new" %>
+
+  <div class="form">	
+    <label>Category name:</label> <span class="static"><%=h @category.name %></span><br/>
+  </div>
+  
+  <div class="list">	
+    <table>
+    <% for article in @category.articles -%>
+    <tr>  
+      <td><%= image_tag 'checked.gif' %> <%= link_to article.title, :controller => "content", :action => "show", :id => article.id %></td>
+      <td><%= distance_of_time_in_words_to_now article.created_at %> ago</td>
+      <td><%= link_to responses(article.comments, 'comment'), :controller => 'comments', :article_id => article, :action => 'list' %></td>
+    </tr>  
+    <% end -%>
+    </table>
+  </div>     
+</div>
