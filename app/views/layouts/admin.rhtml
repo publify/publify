@@ -3,10 +3,11 @@
 <head>
   <title>Typo admin: <%= controller.controller_name %></title>
   <%= stylesheet_link_tag "admin.css" %>
+  <%= javascript_include_tag "prototype" %>
 </head>
 <body>
 
-<div id="container">
+<div id="admin">
 
   <div id="header">
   	<h1><%= link_to "Typo admin - #{config_value('blog_name')}", "/admin/" %></h1>

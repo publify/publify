@@ -39,4 +39,8 @@ class Admin::ContentController < Admin::BaseController
     end
   end
   
+  def preview
+    render_text RedCloth.new(request.raw_post).to_html
+  end
+  
 end

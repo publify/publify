@@ -21,3 +21,12 @@
 
   <%= end_form_tag %>
 </div>
+
+<div id="preview" class="post" style="display: none; position: absolute; border:1px solid #eee; background-color: #f5f5f5; padding:8px; left:670px; top:185px; width:300px; height:285px; overflow:auto;">
+</div>
+
+<%= observe_field "article_body", 
+      :frequency => 2, 
+      :update => "preview",
+      :complete => "Element.show('preview')",
+      :url => { :action => "preview" } %>
