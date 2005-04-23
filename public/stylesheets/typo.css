@@ -600,19 +600,19 @@ a img {
 
 
 body { 
-background: url("/images/bgcolor.jpg"); 
+background: url("../images/bgcolor.jpg"); 
 }
 
 #page { 
-background: url("/images/bg.jpg") repeat-y top; border: none; 
+background: url("../images/bg.jpg") repeat-y top; border: none; 
 } 			
 #header 	{ 
 
-background: url("/images/header.jpg") no-repeat bottom center; 
+background: url("../images/header.jpg") no-repeat bottom center; 
 }
 			
 #footer 	{ 
-background: url("/images/footer.jpg") no-repeat bottom; 
+background: url("../images/footer.jpg") no-repeat bottom; 
 border: none;
 }
 			
