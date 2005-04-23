@@ -29,6 +29,13 @@ module ApplicationHelper
     end 
   end
 
+  def fortythreelist(url)    
+    begin
+      render_partial("shared/fortythree", check_cache(Fortythree, url))
+    rescue 
+    end 
+  end
+
   def server_url_for(options = {})
     url_for options.update(:only_path => false)
   end

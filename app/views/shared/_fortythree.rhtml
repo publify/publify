@@ -1,0 +1,6 @@
+<h3><%= link_to "43 Things", fortythree.link %></h3>
+<ul>
+<% for thing in fortythree.things.to_a -%>
+  <li><a href="<%= thing.link %>" title="<%= thing.title %>"><%= thing.title %> </a></li>
+<% end -%>
+</ul>

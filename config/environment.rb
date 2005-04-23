@@ -72,6 +72,7 @@ Controllers = Dependencies::LoadingModule.root(
 require_dependency 'aggregations/delicious'
 require_dependency 'aggregations/tada'
 require_dependency 'aggregations/flickr'
+require_dependency 'aggregations/fortythree'
 require_dependency 'configuration'
 require_dependency 'spam_protection'
 
