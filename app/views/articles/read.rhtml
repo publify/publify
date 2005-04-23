@@ -1,19 +1,19 @@
 <% content_for("script") do %>
 function item_added() {
   new Effect.Appear($('commentList').lastChild);
-  Element.toggle('comment_loading');
-  Element.toggle('comment_loaded');
-}
-function item_loading() {
-  Element.toggle('commentform')
-  new Effect.Appear('comment_loading');
+  Element.hide('comment_loading');
+  Element.show('commentform');
   $('commentform').elements[2].value = '';
   $('commentform').elements[2].focus();
+}
+function item_loading() {
+  Element.hide('commentform')
+  new Effect.Appear('comment_loading');
 }
 
 window.onload = function() {
   if( $('commentform').elements[1].value != '' ) {
-    Element.toggle('guest_url');
+    Element.show('guest_url');
   }
 }
 <% end %>
@@ -82,8 +82,5 @@ window.onload = function() {
   <%= end_form_tag %>
   <div id="comment_loading" class="graybox" style="display:none">
     <%= image_tag "spinner.gif" %> Submitting comment
-  </div>
-  <div id="comment_loaded" class="graybox" style="display:none">
-    Finished submitting comment.
   </div>
 <% end -%>
