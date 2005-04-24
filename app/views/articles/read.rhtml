@@ -5,9 +5,10 @@ function item_added() {
   Element.show('commentform');
   $('commentform').elements[2].value = '';
   $('commentform').elements[2].focus();
+  $('form-submit-button').disabled = false;
 }
 function item_loading() {
-  Element.hide('commentform')
+  $('form-submit-button').disabled = true;
   new Effect.Appear('comment_loading');
 }
 
@@ -47,9 +48,12 @@ window.onload = function() {
                       :loading => "item_loading()", 
                       :complete => "item_added()",
                       :html => {:id=>"commentform",:class=>"commentform"} %>
+
+
   <div class="graybox">
     <small>write a comment....</small>
     <a name="respond"></a>
+
     <table cellpadding="4" cellspacing="0" border="0">
       <tr>
         <td align="right" valign="top">Your name</td>
@@ -72,15 +76,13 @@ window.onload = function() {
         </td>
       </tr>
       <tr>
-        <td align="right" valign="top">&nbsp;</td>
+        <td>&nbsp;</td>
         <td align="right" valign="top">
-          <input type="submit" name="submit" value="submit" class="button" />
+          <span id="comment_loading" style="display:none;"><%= image_tag "spinner.gif" %></span>&nbsp;&nbsp;
+          <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
         </td>
       </tr>
     </table>
   </div>
   <%= end_form_tag %>
-  <div id="comment_loading" class="graybox" style="display:none">
-    <%= image_tag "spinner.gif" %> Submitting comment
-  </div>
 <% end -%>

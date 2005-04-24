@@ -32,6 +32,7 @@ class ConfigurationTest < Test::Unit::TestCase
     Setting.create("name" => "sp_article_auto_close", "value" => "whatever")
     Setting.create("name" => "sp_url_limit", "value" => "whatever")
     Setting.create("name" => "sp_global", "value" => "1")
+    Setting.create("name" => "text_filter", "value" => "1")
     
     @config.reload
     

@@ -38,3 +38,8 @@ spGlobal:
   id: 8
   name: sp_global
   value: 1
+  
+textFilter:
+  id: 9
+  name: text_filter
+  value: textile

@@ -43,7 +43,7 @@ class Admin::ContentController < Admin::BaseController
   end
   
   def preview
-    render_text RedCloth.new(request.raw_post).to_html
+    render_text RedCloth.new(request.raw_post, config[:text_filter]).to_html
   end
   
 end
