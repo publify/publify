@@ -11,6 +11,7 @@ class Admin::ContentController < Admin::BaseController
 
   def show
     @article = Article.find(@params['id'])
+    @categories = Category.find(:all)
   end
 
   def new
@@ -40,6 +41,22 @@ class Admin::ContentController < Admin::BaseController
       @article.destroy
       redirect_to :action => 'list'
     end
+  end
+  
+  def category_add
+    @article = Article.find(@params['id'])
+    @category = Category.find(@params['category_id'])
+    @article.categories << @category
+    
+    redirect_to :action => 'show', :id => @article.id
+  end
+
+  def category_remove
+    @article = Article.find(@params['id'])
+    @category = Category.find(@params['category_id'])
+    @article.categories.delete(@category)
+    
+    redirect_to :action => 'show', :id => @article.id
   end
   
   def preview
