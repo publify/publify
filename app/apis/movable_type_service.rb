@@ -118,16 +118,8 @@ class MovableTypeService < TypoWebService
   # translators being available.
   def supportedTextFilters()
     filters = []
-    begin
-      BlueCloth.new("test")
-      filters << MovableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown')
-    rescue
-    end
-    begin
-      RedCloth.new("test")
-      filters << MovableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile')
-    rescue
-    end
+    filters << MovableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown') if defined?(BlueCloth)
+    filters << MovableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile') if defined?(RedCloth)
     filters
   end
 
