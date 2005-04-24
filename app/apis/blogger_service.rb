@@ -4,19 +4,31 @@ module BloggerStructs
     member :blogid,   :int
     member :blogName, :string
   end
+  class User < ActionWebService::Struct
+    member :userid, :string
+    member :firstname, :string
+    member :lastname, :string
+    member :nickname, :string
+    member :email, :string
+    member :url, :string
+  end
 end
 
 
 class BloggerApi < ActionWebService::API::Base
   inflect_names false
 
-  api_method :getUsersBlogs,
-    :expects => [ {:appkey => :string}, {:username => :string}, {:password => :string} ],
-    :returns => [[BloggerStructs::Blog]]
-
   api_method :deletePost,
     :expects => [ {:appkey => :string}, {:postid => :int}, {:username => :string}, {:password => :string}, {:publish => :int} ],
     :returns => [:bool]
+
+  api_method :getUserInfo,
+    :expects => [ {:appkey => :string}, {:username => :string}, {:password => :string} ],
+    :returns => [BloggerStructs::User]
+    
+  api_method :getUsersBlogs,
+    :expects => [ {:appkey => :string}, {:username => :string}, {:password => :string} ],
+    :returns => [[BloggerStructs::Blog]]
 end
 
 
@@ -34,6 +46,17 @@ class BloggerService < TypoWebService
     article = Article.find(postid)
     article.destroy
     true
+  end
+  
+  def getUserInfo(appkey, username, password)
+    BloggerStructs::User.new(
+      :userid => username,
+      :firstname => "",
+      :lastname => "",
+      :nickname => username,
+      :email => "",
+      :url => controller.url_for(:controller => "/")
+    )
   end
   
   def getUsersBlogs(appkey, username, password)

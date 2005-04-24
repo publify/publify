@@ -2,7 +2,7 @@ module MetaWeblogStructs
   class Article < ActionWebService::Struct
     member :description,        :string
     member :title,              :string
-    member :postid,             :int
+    member :postid,             :string
     member :url,                :string
     member :link,               :string
     member :permaLink,          :string
@@ -33,31 +33,31 @@ class MetaWeblogApi < ActionWebService::API::Base
   inflect_names false
 
   api_method :getCategories,
-    :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string} ],
+    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [[:string]]
 
   api_method :getPost,
-    :expects => [ {:postid => :int}, {:username => :string}, {:password => :string} ],
+    :expects => [ {:postid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [MetaWeblogStructs::Article]
 
   api_method :getRecentPosts,
-    :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string}, {:numberOfPosts => :int} ],
+    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string}, {:numberOfPosts => :int} ],
     :returns => [[MetaWeblogStructs::Article]]
 
   api_method :deletePost,
-    :expects => [ {:appkey => :string}, {:postid => :int}, {:username => :string}, {:password => :string}, {:publish => :int} ],
+    :expects => [ {:appkey => :string}, {:postid => :string}, {:username => :string}, {:password => :string}, {:publish => :int} ],
     :returns => [:bool]
 
   api_method :editPost,
-    :expects => [ {:postid => :int}, {:username => :string}, {:password => :string}, {:struct => MetaWeblogStructs::Article}, {:publish => :int} ],
+    :expects => [ {:postid => :string}, {:username => :string}, {:password => :string}, {:struct => MetaWeblogStructs::Article}, {:publish => :int} ],
     :returns => [:bool]
 
   api_method :newPost,
-    :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string}, {:struct => MetaWeblogStructs::Article}, {:publish => :int} ],
-    :returns => [:int]
+    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string}, {:struct => MetaWeblogStructs::Article}, {:publish => :int} ],
+    :returns => [:string]
 
   api_method :newMediaObject,
-    :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string}, {:data => MetaWeblogStructs::MediaObject} ],
+    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string}, {:data => MetaWeblogStructs::MediaObject} ],
     :returns => [MetaWeblogStructs::Url]
 
 end

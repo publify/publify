@@ -1,20 +1,20 @@
 module MovableTypeStructs
   class ArticleTitle < ActionWebService::Struct
-    member :dateCreated,  :datetime
-    member :userid,       :int
-    member :postid,       :int
+    member :dateCreated,  :time
+    member :userid,       :string
+    member :postid,       :string
     member :title,        :string
   end
 
   class CategoryList < ActionWebService::Struct
-    member :categoryId,   :int
+    member :categoryId,   :string
     member :categoryName, :string
   end
 
   class CategoryPerPost < ActionWebService::Struct
     member :categoryName, :string
-    member :categoryId,   :int
-    member :isPrimary,    :int
+    member :categoryId,   :string
+    member :isPrimary,    :bool
   end
 
   class TextFilter < ActionWebService::Struct
@@ -34,30 +34,30 @@ class MovableTypeApi < ActionWebService::API::Base
   inflect_names false
 
   api_method :getCategoryList,
-    :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string} ],
+    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [[MovableTypeStructs::CategoryList]]
 
   api_method :getPostCategories,
-    :expects => [ {:postid => :int}, {:username => :string}, {:password => :string} ],
+    :expects => [ {:postid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [[MovableTypeStructs::CategoryPerPost]]
 
   api_method :getRecentPostTitles,
-    :expects => [ {:blogid => :int}, {:username => :string}, {:password => :string}, {:numberOfPosts => :int} ],
+    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string}, {:numberOfPosts => :int} ],
     :returns => [[MovableTypeStructs::ArticleTitle]]
 
   api_method :setPostCategories,
-    :expects => [ {:postid => :int}, {:username => :string}, {:password => :string}, {:categories => [MovableTypeStructs::CategoryPerPost]} ],
+    :expects => [ {:postid => :string}, {:username => :string}, {:password => :string}, {:categories => [MovableTypeStructs::CategoryPerPost]} ],
     :returns => [:bool]
 
   api_method :supportedTextFilters,
     :returns => [[MovableTypeStructs::TextFilter]]
 
   api_method :getTrackbackPings,
-    :expects => [ {:postid => :int}],
+    :expects => [ {:postid => :string}],
     :returns => [[MovableTypeStructs::TrackBack]]
 
   api_method :publishPost,
-    :expects => [ {:postid => :int}, {:username => :string}, {:password => :string} ],
+    :expects => [ {:postid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [:bool]
 end
 
