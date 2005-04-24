@@ -3,8 +3,7 @@ require_dependency 'blacklist_pattern'
 class SpamProtection
   def initialize
     @IP_RBL = [ 'opm.blitzed.us', 'bsb.empty.us' ]
-#    @HOST_RBL = [ 'sc.surbl.org', 'bsb.empty.us' ]
-    @HOST_RBL = [ 'bsb.empty.us' ]
+    @HOST_RBL = [ 'sc.surbl.org', 'bsb.empty.us' ]
     @SECOND_LEVEL = [ 'co', 'com', 'net', 'org', 'gov' ]
   end
 
