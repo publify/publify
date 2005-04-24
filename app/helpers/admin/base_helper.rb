@@ -71,5 +71,13 @@ module Admin::BaseHelper
   def link_to_destroy(record)
     link_to image_tag('delete'), :action => 'destroy', :id => record.id
   end    
-  
+
+  def text_filter_options  
+    text_filter_options = Array.new
+    text_filter_options << [ 'None', 'none' ]
+    text_filter_options << [ 'Textile', 'textile' ] if defined?(RedCloth)
+    text_filter_options << [ 'Markdown', 'markdown' ] if defined?(BlueCloth)
+
+    text_filter_options
+  end
 end

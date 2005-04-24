@@ -1,8 +1,3 @@
-<% 
-text_filter_options = Array.new
-text_filter_options << [ 'Textile', 'textile' ] if defined?(RedCloth)
-text_filter_options << [ 'Markdown', 'markdown' ] if defined?(BlueCloth)
-%>
 <div id="sidebar">
   <h1>Tasks:</h1>
   <ul>
@@ -20,7 +15,6 @@ text_filter_options << [ 'Markdown', 'markdown' ] if defined?(BlueCloth)
       <%= field.desc %><br/>
       <% if field.name == :text_filter %>	
      	   <select name="fields[text_filter]">
-            <option value="none">none</option>
             <%= options_for_select( text_filter_options, config["text_filter"] ) -%>
          </select>
       <% else %>
