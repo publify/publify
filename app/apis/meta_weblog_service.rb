@@ -13,7 +13,7 @@ module MetaWeblogStructs
     member :mt_allow_comments,  :int
     member :mt_allow_pings,     :int
     member :mt_convert_breaks,  :string
-    member :mt_tb_ping_urls,    :string
+    member :mt_tb_ping_urls,    [:string]
     member :dateCreated,        :time
   end
 
@@ -231,6 +231,7 @@ class MetaWeblogService < TypoWebService
       :mt_allow_comments => article.allow_comments.to_i,
       :mt_allow_pings    => article.allow_pings.to_i,
       :mt_convert_breaks => article.text_filter.to_s,
+      :mt_tb_ping_urls   => article.pings.collect { |p| p.url },
       :dateCreated       => article.created_at || ""
       )
   end
