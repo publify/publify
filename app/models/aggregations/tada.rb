@@ -69,5 +69,7 @@ private
       
       tasks << task
     end
+
+    self.tasks = tasks.sort_by { |task| task.status.to_s }
   end
 end
