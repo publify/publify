@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   
   def index
     @pages = Paginator.new self, Article.count, 10, @params['page']
-    @articles = Article.find(:all,  :condition => 'published!=0',  :order => 'articles.created_at DESC', :limit => 10, :offset => @pages.current.offset)
+    @articles = Article.find(:all, :conditions => 'published != 0',  :order => 'articles.created_at DESC', :limit => 10, :offset => @pages.current.offset)
   end
   
   def search
