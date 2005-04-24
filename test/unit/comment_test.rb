@@ -17,14 +17,14 @@ class CommentTest < Test::Unit::TestCase
   
   def test_save_spam
     assert @spam_comment.save
-    assert_equal 'Test <a href="http://fakeurl.co.uk" rel="nofollow">body</a>', @spam_comment.body
+    assert_equal 'Test &lt;a href="http://fakeurl.co.uk" rel="nofollow"&gt;body&lt;/a&gt;', @spam_comment.body
     assert_equal "http://fakeurl.com", @spam_comment.url
   end
   
   def test_reject_spam_rbl
     c = Comment.new
     c.author "Spammer"
-    c.body = %{This is just some random text. <a href="http://chinaaircatering.com">without any senses.</a>. Please disregard.}
+    c.body = %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}
     c.url = "http://buy-computer.us"
     c.ip = "212.42.230.206"
 
