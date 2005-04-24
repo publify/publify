@@ -23,7 +23,7 @@ class Admin::ContentController < Admin::BaseController
     if @request.post? and @article.save
       flash['notice'] = 'Article was successfully created.'
       redirect_to :action => 'show', :id => @article.id
-    end      
+    end
   end
 
   def edit
@@ -60,7 +60,7 @@ class Admin::ContentController < Admin::BaseController
   end
   
   def preview
-    render_text RedCloth.new(request.raw_post, config[:text_filter]).to_html
+    render_text HtmlEngine.transform(request.raw_post, config[:text_filter]).to_html
   end
   
 end
