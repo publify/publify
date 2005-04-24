@@ -24,16 +24,26 @@ class ArticlesController < ApplicationController
   def permalink
     @article    = Article.find_by_permalink(@params["year"], @params["month"], @params["day"], @params["title"])
     @comment    = Comment.new
-    @page_title = @article.title
 
     fill_from_cookies(@comment)    
-    render_action "read"
+    
+    if @article.nil?
+      error("Post not found..")
+    else
+      @page_title = @article.title
+      render_action "read"
+    end
   end
   
   def find_by_date
     @pages = Paginator.new self, Article.count_by_date(@params["year"], @params["month"], @params["day"]), 10, @params['page']
     @articles = Article.find_all_by_date(@params["year"], @params["month"], @params["day"], @pages.current.to_sql)
-    render_action "index"              
+    
+    if @articles.empty?
+      error("No posts found...")
+    else
+      render_action "index"              
+    end
   end  
   
   def error(message = "Record not found")

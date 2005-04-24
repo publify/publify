@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "1.6.8"
+PKG_VERSION = "2.0.0"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
@@ -198,7 +198,7 @@ end
 spec = Gem::Specification.new do |s|
   s.name = PKG_NAME
   s.version = PKG_VERSION
-  s.summary = "Tiny minimal weblog supporting metaweblog API."
+  s.summary = "Modern weblog engine."
   s.has_rdoc = false
   s.files  = Dir['**/*'].delete_if{ |f| f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ } << "public/.htaccess"
   s.require_path = '.'
@@ -212,9 +212,4 @@ Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
   p.need_tar = true
   p.need_zip = true
-end
-
-desc "Publish to RubyForge"
-task :rubyforge do
-    Rake::RubyForgePublisher.new('typo', 'xal').upload
 end
