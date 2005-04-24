@@ -76,6 +76,8 @@ class ArticlesController < ApplicationController
       
       cookies['author']  = { :value => @comment.author, :expires => 2.weeks.from_now } 
       cookies['url']     = { :value => @comment.url, :expires => 2.weeks.from_now } 
+
+      @headers["Content-Type"] = "text/html; charset=utf-8"
       
       render_partial("comment", @comment)      
     else

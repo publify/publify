@@ -16,5 +16,6 @@ class HtmlEngine
   def self.encode_html( str )
     str.gsub!( "<", "&lt;" )
     str.gsub!( ">", "&gt;" )
+    str
   end  
 end
