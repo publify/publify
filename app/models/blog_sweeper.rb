@@ -11,7 +11,7 @@ class BlogSweeper < ActiveRecord::Observer
 
   def filter(controller)
     if @article
-      controller.expire_page :controller => "xml", :action => ["atom", "rss", "commentrss"]
+      controller.expire_page :controller => "/xml", :action => ["atom", "rss", "commentrss"]
     end
   end
 end
