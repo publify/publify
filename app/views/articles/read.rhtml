@@ -9,7 +9,7 @@ function item_added() {
 }
 function item_loading() {
   $('form-submit-button').disabled = true;
-  new Effect.Appear('comment_loading');
+  Element.show('comment_loading');
 }
 
 window.onload = function() {
