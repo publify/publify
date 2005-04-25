@@ -92,8 +92,7 @@ class MetaWeblogService < TypoWebService
   def newPost(blogid, username, password, struct, publish)
     article = Article.new 
     article.body        = struct['description'] || ''
-    category_commands, newtitle   = split_title(struct['title'])
-    article.title       = newtitle || ''
+    article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
     article.created_at  = Time.now
@@ -105,33 +104,11 @@ class MetaWeblogService < TypoWebService
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''
     article.text_filter    = struct['mt_convert_breaks'] || ''
-
-    # Build new categories from the keywords
-    # I'll probably push most of this code to category model
-    # so that it can handle category "commands" on its own. (all assuming we stick with this)
-    new_categories = []
-    if category_commands != nil
-      category_commands.each do |cc|
-        case cc.sub(/^(.).*$/, "\\1")
-          when "+"
-            c = Category.new
-            c.name = cc.sub(/^.(.*)$/, "\\1")
-            c.save
-            article.categories << c
-          when "-"
-            c = Category.find_by_name(cc.sub(/^.(.*)$/, "\\1"))
-            c.destroy
-          else
-            # Users should only be using the + and - commands.  Do nothing.
-        end
-      end
-    end
     
     if struct['categories']
-      new_categories += struct['categories']
       article.categories.clear
       Category.find_all.each do |c|
-        article.categories << c if new_categories.include?(c.name)
+        article.categories << c if struct['categories'].include?(c.name)
       end
     end
 
@@ -150,8 +127,7 @@ class MetaWeblogService < TypoWebService
   def editPost(postid, username, password, struct, publish)
     article = Article.find(postid)
     article.body        = struct['description'] || ''
-    category_commands, newtitle   = split_title(struct['title'])
-    article.title       = newtitle || ''
+    article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
     # article.dateCreated
@@ -164,32 +140,10 @@ class MetaWeblogService < TypoWebService
     article.keywords       = struct['mt_keywords'] || ''
     article.text_filter    = struct['mt_convert_breaks'] || ''
 
-    # Build new categories from the keywords
-    # I'll probably push most of this code to the category model
-    # so that it can handle category "commands" on its own.
-    new_categories = []
-    if category_commands != nil
-      category_commands.each do |cc|
-        case cc.sub(/^(.).*$/, "\\1")
-          when "+"
-            c = Category.new
-            c.name = cc.sub(/^.(.*)$/, "\\1")
-            c.save
-            article.categories << c
-          when "-"
-            c = Category.find_by_name(cc.sub(/^.(.*)$/, "\\1"))
-            c.destroy
-          else
-            # Users should only be using the + and - commands.  Do nothing.
-        end
-      end
-    end
-
     if struct['categories']
-      new_categories += struct['categories']
       article.categories.clear
       Category.find_all.each do |c|
-        article.categories << c if new_categories.include?(c.name)
+        article.categories << c if struct['categories'].include?(c.name)
       end
     end
     RAILS_DEFAULT_LOGGER.info(struct['mt_tb_ping_urls'])
@@ -254,15 +208,4 @@ class MetaWeblogService < TypoWebService
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
   end
 
-  # for splitting the category commands out of the title.. ugly, but workable (seth)
-  def split_title(title)
-    if title =~ /^\[(.*?)\].*/
-      ary = title.scan(/^\[(.*?)\]\s*(.*)$/)
-      # return a 2 element array, first element is array of category commands
-      #                           second element is title
-      [ ary[0][0].split(/\s+/), ary[0][1] ]
-    else
-      [nil, title]
-    end
-  end
 end
