@@ -1,5 +1,3 @@
-require 'syntax/convertors/html'
-
 class HtmlEngine
   
   def self.transform(txt, text_filter = 'textile', restrictions = [])
