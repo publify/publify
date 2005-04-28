@@ -1,3 +1,5 @@
+require 'syntax/convertors/html'
+
 class HtmlEngine
   
   def self.transform(txt, text_filter = 'textile', restrictions = [])
@@ -17,5 +19,11 @@ class HtmlEngine
     str.gsub!( "<", "&lt;" )
     str.gsub!( ">", "&gt;" )
     str
-  end  
+	end 
+	
+	def self.colorcode( str )
+	  
+	end
+
+
 end

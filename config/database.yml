@@ -1,6 +1,6 @@
 development:
   adapter: mysql
-  database: typo_dev
+  database: typo
   host: localhost
   username: root
   password: 

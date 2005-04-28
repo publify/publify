@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     @comment      = Comment.new
     @page_title   = @article.title
 
-    fill_from_cookies(@comment)    
+    fill_from_cookies(@comment) 
   end
     
   def permalink
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     else
       @page_title = @article.title
       render_action "read"
-    end
+  	end
   end
   
   def find_by_date

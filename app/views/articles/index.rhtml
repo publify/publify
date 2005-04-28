@@ -1,6 +1,8 @@
 <% for article in @articles -%>
+ <div class="post">
   <%= render_partial "article", article %>
-  <p class="postmetadata"><%= article_links article %></p> 
+  <p class="meta"><%= article_links article %></p> 
+  </div>
 <% end -%>
 
 <% unless @pages.item_count < 10 %>

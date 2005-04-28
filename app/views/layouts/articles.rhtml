@@ -1,66 +1,71 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title><%= page_title %></title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= server_url_for :controller => 'xml', :action => 'rsd' %>" />
-	<%= auto_discovery_link_tag :rss, :controller => 'xml', :action => 'rss' %>
-	<%= auto_discovery_link_tag :atom, :controller => 'xml', :action => 'atom' %>
-  <%= stylesheet_link_tag "typo" %>
+  <%= auto_discovery_link_tag :rss, :controller => 'xml', :action => 'rss' %>
+  <%= auto_discovery_link_tag :atom, :controller => 'xml', :action => 'atom' %>
+  <%= stylesheet_link_tag "azure" %>
   <%= javascript_include_tag "prototype" %>
   <%= javascript_include_tag "typo" %>
   <script type="text/javascript"><%= @content_for_script %></script>
 </head>
 <body>
-<div id="page">
+	<div id="container" class="clearfix">
+			<div id="header">
+				<div id="logo">
+					<h1 id="sitename"><%= link_to config_value('blog_name'), { :controller => '/' } %></h1>
+				</div>
+			</div>
+			
+			<div id="search"> <%= render_partial "shared/search" %></div>
+			
+			<div id="content" class="clearfix">
+				<div id="main">
+				<%= @content_for_layout %>
+				</div>
+				<div id="sidebar">
+					
+  					<div id="search-results"></div>
+<%= observe_field "q", 
+                  :frequency => 1, 
+                  :url => { :controller => "live", :action => "search" }, 
+                  :loading => "Toggle.display('search_spinner')",
+                  :complete => "Toggle.display('search_spinner')",
+                  :update => "search-results" -%>
+  					 <%= categorylist %>
+  				
+					  <%= render_partial "shared/links"  %>
+					 
+					  <%=
+						 #deliciouslist "http://del.icio.us/rss/caged" 
+					  -%>   
+					 
+					  <%=
+						 #tadalist "http://caged.tadalist.com/lists/feed_all?token=6b9f5a99bec8c1c563c4bad1657d889d" 
+					  -%>   
+					  
+					  <%=
+						# fortythreelist "http://www.43things.com/rss/uber/author?username=caged"
+					  -%>   
+					 
+					  <%= render_partial "shared/xml" %>
+					 
+					  <%=
+					#	flickrlist "http://www.flickr.com/services/feeds/photos_public.gne?id=26443529@N00&format=rss_200"
+					  -%>   
+						<%= link_to image_tag("powered.gif"),  "http://typo.leetsoft.com/", {:class => "powered" } %>
 
-<!-- head -->
-<div id="header">
-  <div id="headerimg">
-    <h1><%= link_to config_value('blog_name'), { :controller => '/' } %></h1>
-    <div class="description"></div>  
-  </div>
-</div>
-
-<!-- left -->
-<div id="content" class="narrowcolumn">
-  <%= @content_for_layout %>
-</div>
-
-<!-- right -->
-<div id="sidebar">
-  <%= render_partial "shared/search" %>
-  <br/>
-  <%= categorylist %>
-  <br/>
-  <%= render_partial "shared/links"  %>
-  <br/>
-  <%=
-    # deliciouslist "http://del.icio.us/rss/username" 
-  -%>   
-  <br/>
-  <%=
-    # tadalist "http://<nick>.tadalist.com/l..." 
-  -%>   
-  <br/>
-  <%=
-    # fortythreelist "http://www.43things.com/rss/uber/author?username=<nick>"
-  -%>   
-  <br/>
-  <%= render_partial "shared/xml" %>
-  <br/><br/><br/><br/>
-  <%=
-    #flickrlist "http://www.flickr.com/services/feeds/..."
-  -%>   
-  <a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a><br/>
-  <a href="http://jigsaw.w3.org/css-validator/validator?uri=<%= server_url_for :controller => 'articles' %>">Valid CSS</a>
-</div>
-
-<!-- footer -->
-<div id="footer">
-    <%= link_to image_tag("powered.gif"), "http://typo.leetsoft.com/" %>
-</div>
-</div> <!-- end "page" div -->
-
+						</div>
+						<br clear="all" />
+			</div>
+			<div id="footer">
+				<ul>
+					<li><a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a></li>
+					<li><a href="http://jigsaw.w3.org/css-validator/validator?uri=<%= server_url_for :controller => 'articles' %>">Valid CSS</a></li>
+				</ul>
+			</div>
+	</div>
 </body>
 </html>
