@@ -20,10 +20,5 @@ class HtmlEngine
     str.gsub!( ">", "&gt;" )
     str
 	end 
-	
-	def self.colorcode( str )
-	  
-	end
-
 
 end
