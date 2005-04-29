@@ -1,4 +1,4 @@
-<form action="/articles/search" method="get" id="sform">
+<%= start_form_tag({:controller => 'articles',  :action => 'search'}, {:method => 'get', :id => 'sform'}) %>
  <label for="q">Live Search:</label><input type="text" id="q" name="q" value="" size="15" />
 <%= image_tag "spinner.gif", :id => 'search_spinner', :style => 'display:none;' %>
-</form>
+<%= end_form_tag %>
