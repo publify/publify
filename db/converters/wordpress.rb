@@ -22,7 +22,7 @@ class WPMigrate
   def convert_categories
     wp_categories = ActiveRecord::Base.connection.select_all(%{
       SELECT cat_name AS name
-      FROM `#{self.options[:wp_db]}`.wp_categories
+      FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_categories`
     })
 
     puts "Converting #{wp_categories.size} categories.."
@@ -35,7 +35,7 @@ class WPMigrate
   def convert_entries
     wp_entries = ActiveRecord::Base.connection.select_all(%{
       SELECT
-        wp_posts.ID,
+        `#{self.options[:wp_prefix]}_posts`.ID,
         (CASE comment_status WHEN 'closed' THEN '0' ELSE '1' END) AS allow_comments,
         (CASE ping_status WHEN 'closed' THEN '0' ELSE '1' END) AS allow_pings,
         post_title AS title,
@@ -46,8 +46,8 @@ class WPMigrate
         (CASE LENGTH(user_nickname) WHEN '0' THEN user_login ELSE user_nickname END) AS author,
         (CASE post_status WHEN 'publish' THEN '1' ELSE '0' END) AS published,
         post_category
-      FROM `#{self.options[:wp_db]}`.wp_posts, `#{self.options[:wp_db]}`.wp_users
-      WHERE wp_users.ID = wp_posts.post_author
+      FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_posts`, `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_users`
+      WHERE `#{self.options[:wp_prefix]}_users`.ID = `#{self.options[:wp_prefix]}_posts`.post_author
     })
     
     puts "Converting #{wp_entries.size} entries.."
@@ -63,7 +63,7 @@ class WPMigrate
 
         ActiveRecord::Base.connection.select_all(%{
           SELECT cat_name
-          FROM `#{self.options[:wp_db]}`.wp_categories
+          FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_categories`
           WHERE cat_ID = '#{entry['post_category']}'
         }).each do |c|
           a.categories.push_with_attributes(Category.find_by_name(c['cat_name']), :is_primary => 1) rescue nil
@@ -74,9 +74,9 @@ class WPMigrate
       puts "Assign remaining categories for entry #{entry['ID']}"
       ActiveRecord::Base.connection.select_all(%{
         SELECT cat_name
-        FROM `#{self.options[:wp_db]}`.wp_categories, `#{self.options[:wp_db]}`.wp_post2cat
+        FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_categories`, `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_post2cat`
         WHERE post_id = #{entry['ID']}
-        AND wp_post2cat.category_id = wp_categories.cat_ID
+        AND `#{self.options[:wp_prefix]}_post2cat`.category_id = `#{self.options[:wp_prefix]}_categories`.cat_ID
       }).each do |c|
         a.categories.push_with_attributes(Category.find_by_name(c['cat_name']), :is_primary => 0)
       end
@@ -90,7 +90,7 @@ class WPMigrate
           comment_content AS body,
           comment_date AS created_at,
           comment_author_IP AS ip
-        FROM `#{self.options[:wp_db]}`.wp_comments
+        FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_comments`
         WHERE comment_post_ID = #{entry['ID']}
         AND comment_type != 'trackback'
         AND comment_approved = 1
@@ -106,7 +106,7 @@ class WPMigrate
           comment_content AS excerpt,
           comment_date AS created_at,
           comment_author_IP AS ip
-        FROM `#{self.options[:wp_db]}`.wp_comments
+        FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_comments`
         WHERE comment_post_ID = #{entry['ID']}
         AND comment_type = 'trackback'
         AND comment_approved = 1
@@ -129,7 +129,7 @@ class WPMigrate
           WHEN 'default_ping_status' THEN 'default_allow_pings'
          END) AS name,
         option_value AS value
-      FROM `#{self.options[:wp_db]}`.wp_options
+      FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_options`
       WHERE option_name IN ('blogname', 'default_comment_status', 'default_ping_status')        
     }).each do |pref|
       if pref['name'] =~ /^default_allow/
@@ -149,6 +149,7 @@ class WPMigrate
       opt.banner = "Usage: wordpress.rb [options]"
 
       opt.on('--db DBNAME', String, 'WordPress database name.') { |d| self.options[:wp_db] = d }
+      opt.on('--prefix PREFIX', String, 'WordPress table prefix (defaults to \'wp\').') { |d| self.options[:wp_prefix] = d }
 
       opt.on_tail('-h', '--help', 'Show this message.') do
         puts opt
@@ -161,6 +162,10 @@ class WPMigrate
     unless self.options.include?(:wp_db)
       puts "See wordpress.rb --help for help."
       exit
+    end
+    
+    unless self.options.include?(:wp_prefix)
+      self.options[:wp_prefix] = "wp"
     end
   end
 end
