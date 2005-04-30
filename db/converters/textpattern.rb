@@ -1,6 +1,6 @@
 #!/usr/local/bin/ruby
 
-# TextPattern 2.x converter for typo by Patrick Lenz <patrick@lenz.sh>
+# TextPattern 1.x converter for typo by Patrick Lenz <patrick@lenz.sh>
 # 
 # MAKE BACKUPS OF EVERYTHING BEFORE RUNNING THIS SCRIPT!
 # THIS SCRIPT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND
