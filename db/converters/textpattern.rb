@@ -5,7 +5,7 @@
 # MAKE BACKUPS OF EVERYTHING BEFORE RUNNING THIS SCRIPT!
 # THIS SCRIPT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND
 
-require File.dirname(__FILE__) + '/../config/environment'
+require File.dirname(__FILE__) + '/../../config/environment'
 require 'optparse'
 
 class TXPMigrate
