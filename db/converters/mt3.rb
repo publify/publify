@@ -16,6 +16,7 @@ class MTMigrate
     self.parse_options
     self.convert_categories
     self.convert_entries
+    self.convert_prefs
   end
 
   def convert_categories
@@ -101,6 +102,26 @@ class MTMigrate
         a.trackbacks.create(tb)
       end
     end
+  end
+
+  def convert_prefs
+    puts "Converting prefs"
+    
+    ActiveRecord::Base.connection.select_one(%{
+      SELECT
+        blog_name,
+        blog_allow_comments_default AS default_allow_comments,
+        blog_allow_pings_default AS default_allow_pings
+      FROM `#{self.options[:mt_db]}`.mt_blog         
+      WHERE blog_id = '#{self.options[:blog_id]}'
+    }).each do |pref_name, pref_value|
+      begin
+        Setting.find_by_name(pref_name).update_attribute("value", pref_value)
+      rescue
+        Setting.create({'name' => pref_name, 'value' => pref_value})
+      end
+    end
+    
   end
 
   def parse_options
