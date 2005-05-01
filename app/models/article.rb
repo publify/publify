@@ -20,11 +20,12 @@ class Article < ActiveRecord::Base
     
     urllist.to_a.each do |url|            
       begin
-        
-        ping = pings.build("url" => url)
+        unless pings.collect { |p| p.url }.include?(url.strip) 
+          ping = pings.build("url" => url)
 
-        ping.send_ping(articleurl)               
-        ping.save
+          ping.send_ping(articleurl)               
+          ping.save
+        end
         
       rescue
         # in case the remote server doesn't respond or gives an error, 
