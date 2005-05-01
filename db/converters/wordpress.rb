@@ -93,7 +93,7 @@ class WPMigrate
         FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_comments`
         WHERE comment_post_ID = #{entry['ID']}
         AND comment_type != 'trackback'
-        AND comment_approved = 1
+        AND comment_approved = '1'
       }).each do |c|
         a.comments.create(c)
       end
@@ -109,7 +109,7 @@ class WPMigrate
         FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_comments`
         WHERE comment_post_ID = #{entry['ID']}
         AND comment_type = 'trackback'
-        AND comment_approved = 1
+        AND comment_approved = '1'
       }).each do |c|
         c['title'] = c['excerpt'].match("<(strong)>(.+?)</\\1>")[2] rescue c['blog_name']                                                                       
         a.trackbacks.create(c)
