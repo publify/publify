@@ -39,7 +39,9 @@ window.onload = function() {
     <span class="light-bg"><%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %></span>
     </p>
     
-  <ol class="trackback-list"><%= render_collection_of_partials "trackback", @article.trackbacks %></ol>
+  <ol class="trackback-list">
+  	<%= render_collection_of_partials "trackback", @article.trackbacks %>
+  </ol>
   
 <% end -%>
 
