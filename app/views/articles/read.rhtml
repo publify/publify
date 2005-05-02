@@ -1,6 +1,7 @@
 <% content_for("script") do %>
 function item_added() {
-  new Effect.Appear($('commentList').lastChild);
+  var li = $('commentList').getElementsByTagName('LI');
+  new Effect.Appear(li[li.length-1]);
   Element.hide('comment_loading');
   Element.show('commentform');
   $('commentform').elements[2].value = '';
@@ -36,10 +37,10 @@ window.onload = function() {
   <p>
     Use the following link to trackback from your own site:<br/>
     <span class="light-bg"><%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %></span>
-  </p>
-  <ol class="trackback-list">
-    <%= render_collection_of_partials "trackback", @article.trackbacks %>
-  </ol>
+    </p>
+    
+  <ol class="trackback-list"><%= render_collection_of_partials "trackback", @article.trackbacks %></ol>
+  
 <% end -%>
 
 <% if @article.allow_comments > 0 -%>
@@ -69,7 +70,7 @@ window.onload = function() {
       </tr>
       <tr>
         <td colspan="2" id="frm-btns">
-          <span id="comment_loading" style="display:none;"><%= image_tag "spinner.gif" %></span>&nbsp;&nbsp;
+        <span id="comment_loading" style="display:none;"><%= image_tag "spinner.gif" %></span>&nbsp;&nbsp;
           <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
         </td>
       </tr>
