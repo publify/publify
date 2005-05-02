@@ -53,11 +53,18 @@ class ArticlesController < ApplicationController
   
   def category
     if category = Category.find_by_name(@params['id'])
-      @pages = Paginator.new self, category.articles.size, 10, @params['page']
+      @articles = Article.find(:all, :conditions => [%{ published != 0
+          AND articles.id = articles_categories.article_id
+          AND articles_categories.category_id = ? }, category.id],
+        :joins => ', articles_categories',
+        :order => "created_at DESC")
+      
+      @pages = Paginator.new self, @articles.size, 10, @params['page']
 
       start = @pages.current.offset
-      stop  = @pages.current.next.offset rescue category.articles.size
-      @articles = category.articles.slice(start..stop)
+      stop  = (@pages.current.next.offset - 1) rescue @articles.size
+      # Why won't this work? @articles.slice!(start..stop)
+      @articles = @articles.slice(start..stop)
 
       render_action "index"
     else
