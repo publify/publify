@@ -5,7 +5,7 @@
   <rdf:Description
       rdf:about=""
       trackback:ping="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>article.id %>"
-      dc:title="<%= article.title %>"
+      dc:title="<%=h article.title %>"
       dc:identifier="<%= server_url_for :controller=>"articles", :action=>"read", :id=>article.id %>"
       dc:description="<%=h strip_html(article.body_html[0..255]) %>"
       dc:creator="<%= h article.author %>"
