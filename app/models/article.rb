@@ -86,7 +86,11 @@ class Article < ActiveRecord::Base
 
   protected  
 
-  before_save :transform_body
+  before_save :transform_body, :set_defaults
+  
+  def set_defaults
+    self.published ||= 1
+  end
   
   def transform_body
     self.body_html = HtmlEngine.transform(body, self.text_filter)
