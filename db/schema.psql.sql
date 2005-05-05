@@ -36,7 +36,7 @@ CREATE TABLE categories (
 CREATE TABLE articles_categories (
   article_id int REFERENCES articles,
   category_id int REFERENCES categories,
-  primary_item int default NULL
+  is_primary int NOT NULL DEFAULT 0
 );
 
 CREATE TABLE blacklist_patterns (
