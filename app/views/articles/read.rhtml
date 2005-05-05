@@ -28,7 +28,7 @@ window.onload = function() {
     <small><a href="#respond">Leave a response</a></small>
   </p>
   <ol id="commentList" class="comment-list">
-    <%= render_collection_of_partials "comment", @article.comments %>
+    <%= render_collection_of_partials "comment", @article.comments.sort_by {|c| c.id} %>
   </ol>
 <% end -%>
 
@@ -40,7 +40,7 @@ window.onload = function() {
     </p>
     
   <ol class="trackback-list">
-  	<%= render_collection_of_partials "trackback", @article.trackbacks %>
+    <%= render_collection_of_partials "trackback", @article.trackbacks.sort_by {|t| t.id} %>
   </ol>
   
 <% end -%>
