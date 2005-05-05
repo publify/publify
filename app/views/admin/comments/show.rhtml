@@ -2,6 +2,7 @@
   <h1>Tasks:</h1>
   <ul>
     <li><%= link_to 'Edit this comment', :action => 'edit', :id => @comment.id %></li>
+    <li><%= comment_url_link 'View comment on your blog', @comment %></li>
     <li><%= link_to 'Back to overview', :action => 'list' %></li>
   </ul>
 </div>
