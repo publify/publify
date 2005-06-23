@@ -92,7 +92,7 @@ CREATE TABLE `settings` (
   `name` varchar(40) default NULL,
   `value` varchar(40) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE `trackbacks` (
   `id` int(11) NOT NULL auto_increment,
