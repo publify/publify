@@ -40,7 +40,7 @@ If you choose to go with sqlite you will need to create the databases.
 Customization
 =============
 
-Your first point of customization should be app/views/layout/articles.rhtml. This is the
+Your first point of customization should be app/views/layouts/articles.rhtml. This is the
 layout used for the weblog. You will see some commented out blocks which indicate on how
 to use the syndication helpers.
 
