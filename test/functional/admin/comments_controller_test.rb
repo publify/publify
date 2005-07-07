@@ -14,29 +14,28 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
     
     @request.session = { :user => @tobi }
-    @request.request_parameters[:article_id] = 2
   end
 
   def test_index
-    get :index
+    get :index, :article_id => 2
     assert_rendered_file 'list'
   end
 
   def test_list
-    get :list
+    get :list, :article_id => 2
     assert_rendered_file 'list'
     assert_template_has 'comments'
   end
 
   def test_show
-    get :show, 'id' => 1
+    get :show, :id => 1, :article_id => 2
     assert_rendered_file 'show'
     assert_template_has 'comment'
     assert_valid_record 'comment'
   end
 
   def test_new
-    get :new
+    get :new, :article_id => 2
     assert_rendered_file 'new'
     assert_template_has 'comment'
   end
@@ -44,31 +43,31 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
   def test_create
     num_comments = Comment.find_all.size
 
-    post :new, 'comment' => { 'author' => 'author', 'body' => 'body' }
+    post :new, :comment => { 'author' => 'author', 'body' => 'body' }, :article_id => 2
     assert_redirected_to :action => 'show'
 
     assert_equal num_comments + 1, Comment.find_all.size
   end
 
   def test_edit
-    get :edit, 'id' => 1
+    get :edit, :id => 1, :article_id => 2
     assert_rendered_file 'edit'
     assert_template_has 'comment'
     assert_valid_record 'comment'
   end
 
   def test_update
-    post :edit, 'id' => 1
+    post :edit, :id => 1, :article_id => 2
     assert_redirected_to :action => 'show', :id => 1
   end
 
   def test_destroy
     assert_not_nil Comment.find(1)
 
-    get :destroy, 'id' => 1
+    get :destroy, :id => 1, :article_id => 2
     assert_success
     
-    post :destroy, 'id' => 1
+    post :destroy, :id => 1, :article_id => 2
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {

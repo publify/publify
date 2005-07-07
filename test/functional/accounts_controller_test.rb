@@ -25,10 +25,11 @@ class AccountsControllerTest < Test::Unit::TestCase
 
     assert_equal @bob, @response.session[:user]
     
-    assert_redirect_url "/bogus/location"
+    assert_redirect_url "http://localhost/bogus/location"
   end
   
   def test_signup
+    User.destroy_all # Need to trick AccountController#signup into thinking this is a brand new blog
     post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "newpassword" }
     assert_session_has :user
     

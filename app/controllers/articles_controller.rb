@@ -131,7 +131,7 @@ class ArticlesController < ApplicationController
         if User.count == 0 
           redirect_to :controller => "accounts", :action => "signup"
         else
-          redirect_to :controller => "accounts", :action => "login"
+          redirect_to :controller => "admin/general", :action => "index"
         end
         return false
       end

@@ -17,7 +17,10 @@ class AccountsController < ApplicationController
   end
   
   def signup
-    redirect_to :action => "login" unless User.count.zero?
+    unless User.count.zero?
+      redirect_to :action => "login" 
+      return
+    end
     
     @user = User.new(@params[:user])
     
@@ -25,6 +28,7 @@ class AccountsController < ApplicationController
       @session[:user] = User.authenticate(@user.login, @params[:user][:password])
       flash['notice']  = "Signup successful"
       redirect_to :controller => "admin/general", :action => "index"
+      return
     end      
   end  
   

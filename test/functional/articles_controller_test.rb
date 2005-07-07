@@ -37,34 +37,38 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
   
   def test_no_settings
-    Setting.find_all.each { |setting|
-      setting.destroy
-    }
-    
-    assert Setting.find_all.empty?
+    Setting.destroy_all
+    assert Setting.count.zero?
     
     # save this because the AWS stuff needs it later
     old_config = $config
     $config = nil
-    
+
     get :index
     
     assert_redirect
     assert_redirected_to :controller => "admin/general", :action => "index"
     
-    # reassing so the AWS stuff doesn't barf
+    # reassign so the AWS stuff doesn't barf
     $config = old_config
   end
   
   def test_no_users_exist
-    User.find_all.each { |user|
-      user.destroy
-    }
-  
-    assert User.find_all.empty?
+    Setting.destroy_all
+    assert Setting.count.zero?
+
+    # save this because the AWS stuff needs it later
+    old_config = $config
+    $config = nil
+
+    User.destroy_all
+    assert User.count.zero?
     
     get :index
     assert_redirect
     assert_redirected_to :controller => "accounts", :action => "signup"
+
+    # reassign so the AWS stuff doesn't barf
+    $config = old_config
   end
 end
