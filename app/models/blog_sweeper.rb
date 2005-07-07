@@ -1,4 +1,4 @@
-class BlogSweeper < ActiveRecord::Sweeper
+class BlogSweeper < ActionController::Caching::Sweeper
   observe Article, Comment, Trackback
 
   def after_save(record)
