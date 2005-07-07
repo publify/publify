@@ -2,7 +2,7 @@ class XmlController < ApplicationController
   caches_page :rss, :atom, :articlerss, :commentrss, :rsd
 
   def articlerss
-    @article = Article.find(@params[:id])
+    @article = Article.find(params[:id])
     @comments = @article.comments.find(:all, :order_by => 'created_at DESC', :limit => 25)     
   end
   

@@ -6,7 +6,7 @@ class Admin::GeneralController < Admin::BaseController
           
     if request.post? 
       Setting.transaction do 
-        for field, value in @params["fields"]
+        for field, value in params["fields"]
           setting = find_or_create(field)
           setting.value = value
           setting.save

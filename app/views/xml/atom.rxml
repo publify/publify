@@ -3,7 +3,7 @@ xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom
 
   xml.title blog_title
   xml.tagline "mode"=>"escaped", "type"=>"text/html"
-  xml.id "tag:#{@request.host},2005:Typo"
+  xml.id "tag:#{controller.request.host},2005:Typo"
   xml.generator "Typo", "url" => "http://typo.leetsoft.com"
   xml.link "rel" => "alternate", "type" => "text/html", "href" => server_url_for(:controller => "articles")
 
@@ -14,7 +14,7 @@ xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom
     xml.entry do
   
       xml.author { xml.name entry.author }
-      xml.id "tag:#{@request.host},2005:Typo-#{entry.id}"
+      xml.id "tag:#{controller.request.host},2005:Typo-#{entry.id}"
 
       xml.issued entry.created_at.xmlschema
       xml.modified entry.updated_at.xmlschema

@@ -13,30 +13,30 @@ class Admin::CommentsController < Admin::BaseController
   end
 
   def show
-    @comment = @article.comments.find(@params['id'])
+    @comment = @article.comments.find(params['id'])
   end
 
   def new
-    @comment = @article.comments.build(@params["comment"])
+    @comment = @article.comments.build(params["comment"])
 
-    if @request.post? and @comment.save
+    if request.post? and @comment.save
       flash['notice'] = 'Comment was successfully created.'
       redirect_to :action => 'show', :id => @comment.id
     end      
   end
 
   def edit
-    @comment = @article.comments.find(@params['id'])
-    @comment.attributes = @params["comment"]
-    if @request.post? and @comment.save
+    @comment = @article.comments.find(params['id'])
+    @comment.attributes = params["comment"]
+    if request.post? and @comment.save
       flash['notice'] = 'Comment was successfully updated.'
       redirect_to :action => 'show', :id => @comment.id
     end      
   end
 
   def destroy
-    @comment = @article.comments.find(@params['id'])
-    if @request.post?
+    @comment = @article.comments.find(params['id'])
+    if request.post?
       @comment.destroy
       redirect_to :action => 'list'
     end
@@ -45,7 +45,7 @@ class Admin::CommentsController < Admin::BaseController
   private
   
     def get_article
-      @article = Article.find(@params[:article_id])
+      @article = Article.find(params[:article_id])
 
       if @article.nil?
         redirect_to '/admin'
