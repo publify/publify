@@ -50,6 +50,7 @@ ActiveRecord::Base.establish_connection
 # Configure defaults if the included environment did not.
 begin
   RAILS_DEFAULT_LOGGER = Logger.new("#{RAILS_ROOT}/log/#{RAILS_ENV}.log")
+  RAILS_DEFAULT_LOGGER.level = (RAILS_ENV == 'production' ? Logger::INFO : Logger::DEBUG)
 rescue StandardError
   RAILS_DEFAULT_LOGGER = Logger.new(STDERR)
   RAILS_DEFAULT_LOGGER.level = Logger::WARN
@@ -77,4 +78,4 @@ require_dependency 'configuration'
 require_dependency 'spam_protection'
 require_dependency 'xmlrpc_fix'
 
-ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)                                                              
+ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)      

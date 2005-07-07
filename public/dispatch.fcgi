@@ -1,27 +1,24 @@
-#!/usr/local/bin/ruby
+#!/opt/local/bin/ruby
+#
+# You may specify the path to the FastCGI crash log (a log of unhandled
+# exceptions which forced the FastCGI instance to exit, great for debugging)
+# and the number of requests to process before running garbage collection.
+#
+# By default, the FastCGI crash log is RAILS_ROOT/log/fastcgi.crash.log
+# and the GC period is nil (turned off).  A reasonable number of requests
+# could range from 10-100 depending on the memory footprint of your app.
+#
+# Example:
+#   # Default log path, normal GC behavior.
+#   RailsFCGIHandler.process!
+#
+#   # Default log path, 50 requests between GC.
+#   RailsFCGIHandler.process! nil, 50
+#
+#   # Custom log path, normal GC behavior.
+#   RailsFCGIHandler.process! '/var/log/myapp_fcgi_crash.log'
+#
+require File.dirname(__FILE__) + "/../config/environment"
+require 'fcgi_handler'
 
-def dispatcher_error(path,e,msg="")
-  error_message =
-    "[#{Time.now}] Dispatcher failed to catch: #{e} (#{e.class})\n  #{e.backtrace.join("\n  ")}\n#{msg}"
-  Logger.new(path).fatal(error_message)
-rescue Object => log_error
-  STDERR << "Couldn't write to #{path} (#{e} [#{e.class}])\n" << error_message
-end
-
-begin
-  require File.dirname(__FILE__) + "/../config/environment"
-  require 'dispatcher'
-  require 'fcgi'
-
-  log_file_path = "#{RAILS_ROOT}/log/fastcgi.crash.log"
-
-  FCGI.each_cgi do |cgi| 
-    begin
-      Dispatcher.dispatch(cgi)
-    rescue Object => rails_error
-      dispatcher_error(log_file_path, rails_error)
-    end
-  end
-rescue Object => fcgi_error
-  dispatcher_error(log_file_path, fcgi_error, "FCGI process #{$$} killed by this error\n")
-end
+RailsFCGIHandler.process!
