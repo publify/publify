@@ -13,11 +13,11 @@ function item_loading() {
   Element.show('comment_loading');
 }
 
-window.onload = function() {
+register_onload( function(){
   if( $('commentform').elements[1].value != '' ) {
     Element.show('guest_url');
   }
-}
+})
 <% end %>
 <div class="post">
 <%= render_partial "article", @article %>

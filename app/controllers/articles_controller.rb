@@ -1,7 +1,6 @@
 class ArticlesController < ApplicationController
-  cache_sweeper :blog_sweeper, :only => "comment"
+  cache_sweeper :blog_sweeper, :only => ["comment", "trackback"]
   
-  before_filter :verify_user_exists
   before_filter :verify_config
   
   def index
@@ -31,7 +30,7 @@ class ArticlesController < ApplicationController
       error("Post not found..")
     else
       @page_title = @article.title
-      render_action "read"
+      render :action => "read"
   	end
   end
   
@@ -42,13 +41,13 @@ class ArticlesController < ApplicationController
     if @articles.empty?
       error("No posts found...")
     else
-      render_action "index"              
+      render :action => "index"              
     end
   end  
   
   def error(message = "Record not found")
     @message = message
-    render_action "error"
+    render :action => "error"
   end
   
   def category
@@ -66,7 +65,7 @@ class ArticlesController < ApplicationController
       # Why won't this work? @articles.slice!(start..stop)
       @articles = @articles.slice(start..stop)
 
-      render_action "index"
+      render :action => "index"
     else
       error("Can't find posts in category #{params['id']}")
     end
@@ -122,17 +121,20 @@ class ArticlesController < ApplicationController
         end
       end
     end
-    render_without_layout
+    render :layout => nil
   end
   
   private
-  
-    def verify_user_exists
-      redirect_to :controller => "accounts", :action => "signup" if User.find_all.length == 0
-    end
 
     def verify_config      
-      redirect_to :controller => "admin/general", :action => "index" if !config.is_ok?
+      if !config.is_ok?
+        if User.count == 0 
+          redirect_to :controller => "accounts", :action => "signup"
+        else
+          redirect_to :controller => "accounts", :action => "login"
+        end
+        return false
+      end
     end
     
     def fill_from_cookies(comment)      

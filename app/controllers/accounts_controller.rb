@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
       if @session[:user] = User.authenticate(@params[:user_login], @params[:user_password])
 
         flash['notice']  = "Login successful"
-        redirect_back_or_default :action => "welcome"
+        redirect_back_or_default :controller => "admin/general", :action => "index"
       else
         flash.now['notice']  = "Login unsuccessful"
 

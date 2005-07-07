@@ -36,4 +36,4 @@ function distance_of_time_in_words(minutes) {
 }
 
 register_onload(function () { $('q').setAttribute('autocomplete', 'off'); })
-register_onload(function () { show_date_as_local_time(); })
+//register_onload(function () { show_date_as_local_time(); })

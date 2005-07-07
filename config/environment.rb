@@ -79,3 +79,4 @@ require_dependency 'spam_protection'
 require_dependency 'xmlrpc_fix'
 
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)      
+ActiveRecord::Base.default_timezone = :utc
