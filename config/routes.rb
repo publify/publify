@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   # this improves caches_page because now apache and webrick will send out the 
   # cached feeds with the correct xml mime type. 
   map.connect 'xml/:action/feed.xml', :controller  => 'xml'
+  map.connect 'xml/articlerss/:id/feed.xml', :controller => 'xml', :action=>'articlerss'
 
   # allow neat perma urls
   map.connect 'articles/:year/:month/:day', :controller  => 'articles', :action => 'find_by_date', :year => /\d{4}/, :day => nil, :month => nil

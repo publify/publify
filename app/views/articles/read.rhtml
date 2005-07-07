@@ -22,6 +22,9 @@ window.onload = function() {
 <div class="post">
 <%= render_partial "article", @article %>
 </div>
+<p class="postmetadata alt">
+  <small><a href="<%= url_for :controller=>'xml', :action=>'articlerss', :id=>@article.id %>" title="RSS Feed">Subscribe to this article via RSS</a></small>
+</p>
 <% if @article.allow_comments > 0 -%>
   <a name="comments"></a><h4 class="blueblk">Comments</h4> 
   <p class="postmetadata alt">

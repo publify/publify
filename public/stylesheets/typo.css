@@ -623,3 +623,7 @@ margin: 0 !important; margin: 0 0 0 1px; padding: 1px; height: 198px; width: 758
 #headerimg  { 
 margin: 7px 9px 0; height: 192px; width: 740px; 
 } 
+
+.typo_date {
+  display: none;
+}

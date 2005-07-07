@@ -94,4 +94,8 @@ module ApplicationHelper
     hash = "#{aggregator.to_s}_#{Digest::SHA1.hexdigest(url)}".to_sym
     controller.cache[hash] ||= aggregator.new(url)
   end  
+  
+  def js_distance_of_time_in_words_to_now(date)
+    "<span class=\"typo_date\">#{date.gmtime.strftime("%m/%d/%Y %H:%M:%S")}</span>"
+  end
 end

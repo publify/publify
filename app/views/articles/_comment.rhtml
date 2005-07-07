@@ -1,5 +1,5 @@
 <li class="graybox" id="comment-<%= comment.id %>" <%= 'style="display:none"' if @request.xml_http_request? %>>
   <a name="comment-<%= comment.id %>"></a>
-  <cite><%= (comment.url.blank?) ? comment.author : link_to(comment.author, comment.url) %> </cite> said <%= distance_of_time_in_words @article.created_at, comment.created_at %> later:<br />
+  <cite><%= (comment.url.blank?) ? comment.author : link_to(comment.author, comment.url) %> </cite> said <%= js_distance_of_time_in_words @article.created_at, comment.created_at %> later:<br />
   <%= comment.body_html %>
 </li>
