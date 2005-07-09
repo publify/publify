@@ -67,6 +67,8 @@ module Admin::BaseHelper
     text_filter_options << [ 'None', 'none' ]
     text_filter_options << [ 'Textile', 'textile' ] if defined?(RedCloth)
     text_filter_options << [ 'Markdown', 'markdown' ] if defined?(BlueCloth)
+    text_filter_options << [ 'SmartyPants', 'smartypants' ] if defined?(RubyPants)
+    text_filter_options << [ 'Markdown with SmartyPants', 'markdown smartypants' ] if defined?(RubyPants) and defined?(BlueCloth)
 
     text_filter_options
   end

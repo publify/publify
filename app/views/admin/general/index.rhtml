@@ -15,12 +15,16 @@
     <div><label for="blog_name">Name your blog:</label>
     <input name="setting[blog_name]" id="blog_name" type="text" value="<%= config_value(:blog_name) %>" /></div>
 
-    <p>Choose a text filter for your blog. Your options depend on which gems you have installed. If RedCloth is installed
-    Typo will offer you to use Textile. If you want to use markdown you will need the BlueCloth gem.</p>
+    <p>Choose a text filter for your blog. Your options depend on which gems you have installed. Following configurations are supported. RedCloth, BlueCloth and RubyPants gems are supported</p> 
 
     <div><label for="text_filter">Text filter:</label>
     <select name="setting[text_filter]" id="text_filter">
     <%= options_for_select text_filter_options, config_value(:text_filter) %>
+    </select></div>
+
+    <div><label for="comment_text_filter">Comments filter:</label>
+    <select name="setting[comment_text_filter]" id="comment_text_filter">
+    <%= options_for_select text_filter_options, config_value(:comment_text_filter) %>
     </select></div>
 
     <p>Do you want comments and trackbacks to be enabled by default?</p>
@@ -59,9 +63,6 @@
     <div><label for="sp_url_limit">Max URLs:</label>
     <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= config_value(:sp_url_limit) %>" /> links</div>
   </div>  
-  
-  
-  
 
   <div id="operations">
     <%= save %>  

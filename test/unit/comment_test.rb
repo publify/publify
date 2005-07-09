@@ -11,7 +11,6 @@ class CommentTest < Test::Unit::TestCase
 
   def test_save_regular
     assert @comment2.save
-    assert_equal HtmlEngine.transform(@comment2.body), @comment2.body_html
     assert_equal "http://www.google.com", @comment2.url
   end
   

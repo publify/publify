@@ -25,7 +25,8 @@ class Comment < ActiveRecord::Base
   end
 
   def transform_body
-    self.body_html = HtmlEngine.transform(body, config["text_filter"], [:filter_html]) # Escape HTML in comments
+    # Escape HTML in comments
+    self.body_html = HtmlEngine.transform(body, config["comment_text_filter"], [:filter_html]) 
   end
 
 end

@@ -16,6 +16,7 @@ class ConfigurationTest < Test::Unit::TestCase
   
   def test_fields
     assert_equal ["blog_name",
+     "comment_text_filter",
      "default_allow_comments",
      "default_allow_pings",
      "limit_article_display",

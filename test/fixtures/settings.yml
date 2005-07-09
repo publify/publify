@@ -43,3 +43,8 @@ limit_rss_display:
   id: 9
   name: limit_rss_display
   value: 10
+  
+comment_text_filter:
+  id: 10
+  name: comment_text_filter
+  value: textile

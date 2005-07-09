@@ -119,6 +119,8 @@ class MovableTypeService < TypoWebService
   def supportedTextFilters()
     filters = []
     filters << MovableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown') if defined?(BlueCloth)
+    filters << MovableTypeStructs::TextFilter.new(:key => 'smartypants', :label => 'SmartyPants') if defined?(RubyPants)
+    filters << MovableTypeStructs::TextFilter.new(:key => 'markdown smartypants', :label => 'Markdown with SmartyPants') if defined?(RubyPants) and defined?(BlueCloth)
     filters << MovableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile') if defined?(RedCloth)
     filters
   end
