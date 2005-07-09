@@ -77,8 +77,13 @@ require_dependency 'aggregations/fortythree'
 require_dependency 'configuration'
 require_dependency 'spam_protection'
 require_dependency 'xmlrpc_fix'
-require 'rubypants' rescue nil
 
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)      
 ActiveRecord::Base.default_timezone = :utc
 
+begin
+  require 'redcloth' 
+  require 'bluecloth' 
+  require 'rubypants' 
+rescue MissingSourceFile => e 
+end
