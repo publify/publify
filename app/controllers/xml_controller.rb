@@ -3,7 +3,7 @@ class XmlController < ApplicationController
 
   def articlerss
     @article = Article.find(params[:id])
-    @comments = @article.comments.find(:all, :order_by => 'created_at DESC', :limit => 25)     
+    @comments = @article.comments.find(:all, :order => 'created_at DESC', :limit => 25)     
   end
   
   def commentrss

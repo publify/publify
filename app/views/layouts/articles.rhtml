@@ -8,6 +8,7 @@
   <%= auto_discovery_link_tag :atom, :controller => 'xml', :action => 'atom' %>
   <%= stylesheet_link_tag "azure" %>
   <%= javascript_include_tag "prototype" %>
+  <%= javascript_include_tag "effects" %>
   <%= javascript_include_tag "typo" %>
   <script type="text/javascript"><%= @content_for_script %></script>
 </head>
@@ -28,13 +29,13 @@
 				<div id="sidebar">
 					
   					<div id="search-results"></div>
-<%= observe_field "q", 
+              <%= observe_field "q", 
                   :frequency => 1, 
                   :url => { :controller => "live", :action => "search" }, 
                   :loading => "Toggle.display('search_spinner')",
                   :complete => "Toggle.display('search_spinner')",
                   :update => "search-results" -%>
-  					 <%= categorylist %>
+  					<%= categorylist %>
   				
 					  <%= render_partial "shared/links"  %>
 					 
@@ -53,7 +54,7 @@
 					  <%= render_partial "shared/xml" %>
 					 
 					  <%=
-					#	flickrlist "http://www.flickr.com/services/feeds/photos_public.gne?id=...."
+					  #	flickrlist "http://www.flickr.com/services/feeds/photos_public.gne?id=...."
 					  -%>   
 						<%= link_to image_tag("powered.gif"),  "http://typo.leetsoft.com/", {:class => "powered" } %>
 

@@ -1,11 +1,8 @@
 function register_onload(func) {
   var old_event = window.onload;
-  if (typeof window.onload != 'function')
-    window.onload = func;
-  else  
-    window.onload = function() { old_event(); func(); };
+  if (typeof window.onload != 'function') { window.onload = func; }
+  else { window.onload = function() { old_event(); func(); }; }
 }
-
   
 function show_date_as_local_time() {
   var spans = document.getElementsByTagName('span');
@@ -35,5 +32,30 @@ function distance_of_time_in_words(minutes) {
   else return (Math.round(minutes / 1440) + ' days')
 }
 
-register_onload(function () { $('q').setAttribute('autocomplete', 'off'); })
+function commentAdded() {
+  new Effect.BlindDown($('commentList').lastChild);
+  $('commentform').elements[2].value = '';
+  $('commentform').elements[2].focus();
+  doneLoading();
+}
+
+function commentNotAdded() {
+  new Effect.Highlight('errors');
+  doneLoading();
+}
+
+function loading() {
+  $('form-submit-button').disabled = true;
+  $('errors').innerHTML = '';
+  Element.show('comment_loading');
+}
+
+function doneLoading() {
+  Element.hide('comment_loading');
+  Element.show('commentform');
+  $('form-submit-button').disabled = false;  
+}
+
+register_onload(function() { if( $('commentform') && $('commentform').elements[1].value != '' ) { Element.show('guest_url');} })
+register_onload(function() { $('q').setAttribute('autocomplete', 'off'); })
 //register_onload(function () { show_date_as_local_time(); })

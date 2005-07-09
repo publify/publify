@@ -80,14 +80,14 @@ class ArticlesController < ApplicationController
     if request.post? and @comment.save      
       @comment.body = ""
       
-      cookies['author']  = { :value => @comment.author, :expires => 2.weeks.from_now } 
-      cookies['url']     = { :value => @comment.url, :expires => 2.weeks.from_now } 
+      cookies['author']  = { :value => @comment.author, :expires => 6.weeks.from_now } 
+      cookies['url']     = { :value => @comment.url, :expires => 6.weeks.from_now } 
 
       @headers["Content-Type"] = "text/html; charset=utf-8"
       
-      render_partial("comment", @comment)      
+      render :partial => "comment", :object => @comment
     else
-      render_partial("comment_error", @comment)
+      render :text => @comment.errors.full_messages, :status => 500
     end
   end  
 

@@ -2,9 +2,9 @@ require 'uri'
 require 'net/http'
 
 class Article < ActiveRecord::Base
-  has_many :pings, :dependent => true, :order => "id ASC"
-  has_many :comments, :dependent => true, :order => "id ASC"
-  has_many :trackbacks, :dependent => true, :order => "id ASC"
+  has_many :pings, :dependent => true, :order => "created_at ASC"
+  has_many :comments, :dependent => true, :order => "created_at ASC"
+  has_many :trackbacks, :dependent => true, :order => "created_at ASC"
   
   has_and_belongs_to_many :categories
   
@@ -83,7 +83,7 @@ class Article < ActiveRecord::Base
     
     result
   end
-
+  
   protected  
 
   before_save :transform_body, :set_defaults

@@ -270,6 +270,10 @@ body {
     clear: both; 
     visibility: hidden;
  }
+ 
+ #errors {
+   font-color: red;
+ }
 
  /* Hides from IE-mac \*/
  * html .clearfix {height: 1%;}
