@@ -54,16 +54,16 @@ module ApplicationHelper
     config[name]
   end
   
-  def article_link(title, article)
-    link_to title, article_url(article)
+  def article_link(title, article,anchor=nil)
+    link_to title, article_url(article,true,anchor)
   end
   
   def comment_url_link(title, comment)
     link_to title, comment_url(comment)
   end  
   
-  def article_url(article, only_path = true)
-    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
+  def article_url(article, only_path = true, anchor = nil)
+    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor => anchor
   end
 
   def comment_url(comment, only_path = true)
@@ -83,11 +83,11 @@ module ApplicationHelper
   end
     
   def comments_link(article)
-    article_link  responses(article.comments, "comment"), article
+    article_link  responses(article.comments, "comment"), article, 'comments'
   end
 
   def trackbacks_link(article)  
-    article_link responses(article.trackbacks, "trackback"), article
+    article_link responses(article.trackbacks, "trackback"), article, 'trackbacks'
   end
   
   def check_cache(aggregator, url)
