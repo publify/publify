@@ -34,6 +34,13 @@ class MTMigrate
   end
   
   def convert_entries
+    default_filter = translate_filter ActiveRecord::Base.connection.select_all(%{
+      SELECT
+        blog_convert_paras 
+      FROM `#{self.options[:mt_db]}`.mt_blog
+      WHERE blog_id = '#{self.options[:blog_id]}'
+    })[0]["blog_convert_paras"]
+
     mt_entries = ActiveRecord::Base.connection.select_all(%{
       SELECT
         entry_id,
@@ -43,6 +50,7 @@ class MTMigrate
         entry_text AS body,
         entry_text_more AS extended,
         entry_excerpt AS excerpt,
+        entry_convert_breaks AS convert_breaks,
         entry_keywords AS keywords,
         entry_created_on AS created_at,
         entry_modified_on AS updated_at,
@@ -56,9 +64,16 @@ class MTMigrate
     
     mt_entries.each do |entry|
       a = Article.new
-      a.attributes = entry.reject { |k,v| k == "entry_id" }
+      a.attributes = entry.reject { |k,v| k =~ /entry_id|convert_breaks/ }
+
+      if entry["convert_breaks"] == "__default__"
+        a.text_filter = default_filter
+      else
+        a.text_filter = translate_filter entry["convert_breaks"]
+      end
+
       a.save
-      
+
       # Fetch category assignments
       ActiveRecord::Base.connection.select_all(%{
         SELECT category_label, placement_is_primary
@@ -142,6 +157,14 @@ class MTMigrate
     unless self.options.include?(:blog_id) and self.options.include?(:mt_db)
       puts "See mt3.rb --help for help."
       exit
+    end
+  end
+
+  def translate_filter(input)
+    return case input
+      when 'textile_2': 'textile'
+      when 'markdown' : 'markdown'
+      else              nil
     end
   end
 end
