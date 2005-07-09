@@ -5,6 +5,6 @@
   </div>
 <% end -%>
 
-<% unless @pages.item_count < 10 %>
+<% unless @pages.item_count <= 10 %>
   <p id="pagination">Older posts: <%= pagination_links @pages, :params => { :action => @controller.action_name } %></p>
 <% end %>
