@@ -1,6 +1,5 @@
 todo: 
 
-- move uploaded files into the DB
 - add ajax comments moderation ( http://www.danga.com/demo/comment​manage.html )
 - add ajax based article posting/editing
 - add some statistics
