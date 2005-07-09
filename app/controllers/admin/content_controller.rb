@@ -13,7 +13,7 @@ class Admin::ContentController < Admin::BaseController
 
   def show
     @article = Article.find(params['id'])
-    @categories = Category.find(:all)
+    @categories = Category.find(:all, :order => 'name')
   end
 
   def new

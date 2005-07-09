@@ -6,7 +6,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def list
-    @categories = Category.find_all
+    @categories = Category.find(:all, :order => 'name')
   end
 
   def show
