@@ -5,9 +5,15 @@ require_dependency 'login_system'
 class ApplicationController < ActionController::Base
   include LoginSystem
   model :user
+  
+  before_filter :reload_settings
       
   def cache
     $cache ||= SimpleCache.new 1.hour
+  end
+  
+  def reload_settings
+    config.reload
   end
   
 end

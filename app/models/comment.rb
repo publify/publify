@@ -9,23 +9,23 @@ class Comment < ActiveRecord::Base
  
   protected
   
-    before_save :make_nofollow, :correct_url, :transform_body
+  before_save :correct_url, :make_nofollow, :transform_body, :make_nofollow
 
-    def correct_url
-      unless url.to_s.empty?
-        unless url =~ /^http\:\/\//
-          self.url = "http://#{url}"
-        end
+  def correct_url
+    unless url.to_s.empty?
+      unless url =~ /^http\:\/\//
+        self.url = "http://#{url}"
       end
     end
+  end
 
-    def make_nofollow
-      self.author = nofollowify(author)
-      self.body = nofollowify(body)
-    end
+  def make_nofollow
+    self.author = nofollowify(author)
+    self.body = nofollowify(body)
+  end
 
-    def transform_body
-      self.body_html = HtmlEngine.transform(body, config["text_filter"], [:filter_html]) # Escape HTML in comments
-    end
+  def transform_body
+    self.body_html = HtmlEngine.transform(body, config["text_filter"], [:filter_html]) # Escape HTML in comments
+  end
 
 end

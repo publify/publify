@@ -1,45 +1,45 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-login:
-  id: 1
-  name: login
-  value: tobi
-  
-password:
-  id: 2
-  name: password
-  value: whatever
-
 blogName:
-  id: 3
+  id: 1
   name: blog_name
   value: test blog
   
 defaultAllowPings:
-  id: 4
+  id: 2
   name: default_allow_pings
-  value: 1
+  value: 0
 
 defaultAllowComments:
-  id: 5
+  id: 3
   name: default_allow_comments
   value: 1
 
 spUrlLimit:
-  id: 6
+  id: 4
   name: sp_url_limit
   value: 3
 
 spArticleAutoClose:
-  id: 7
+  id: 5
   name: sp_article_auto_close
   value: 300
 
 spGlobal:
-  id: 8
+  id: 6
   name: sp_global
   value: 1
   
 textFilter:
-  id: 9
+  id: 7
   name: text_filter
   value: textile
+  
+limit_article_display:
+  id: 8
+  name: limit_article_display
+  value: 10
+  
+limit_rss_display:
+  id: 9
+  name: limit_rss_display
+  value: 10

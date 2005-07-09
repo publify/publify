@@ -5,33 +5,45 @@ class ConfigManager
   end
 
   def is_ok?
-    Configuration.fields.collect{ |f| f.name}.all? { |key| settings.include?(key.to_s) }    
+    Configuration.fields.keys.all? { |key| settings.include?(key.to_s) }    
   end
 
   def reload
     settings.clear
-    Setting.find_all.each do |line|
-      settings[line.name.to_s] = line.value.to_s
+    Setting.find(:all).each do |line|
+      settings[line.name.to_s] = normalize_value(line)
     end
   end
     
   def [](key)
-    settings[key.to_s]
+    value = settings[key.to_s]
+    (value.nil?) ? Configuration.fields[key.to_s].default : value rescue nil 
   end  
 
   def self.fields 
-    @fields ||= []
+    @fields ||= {}
   end
 
   protected
 
-  class Item < Struct.new(:name, :type, :desc)
+  class Item < Struct.new(:name, :ruby_type, :default)
+  end
+  
+  def normalize_value(line)
+    case (Configuration.fields[line.name.to_s].ruby_type rescue :string)
+    when :bool
+      ( line.value.to_i != 0 ) ? true : false
+    when :int
+      line.value.to_i
+    else
+      line.value
+    end
   end
     
-  def self.setting(name, type, desc)
+  def self.setting(name, type, default)
     item = Configuration::Item.new 
-    item.name, item.type, item.desc = name, type, desc
-    fields << item
+    item.name, item.ruby_type, item.default = name, type, default
+    fields[item.name.to_s] = item
   end
 
   def settings

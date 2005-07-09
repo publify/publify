@@ -18,21 +18,21 @@ class ArticlesControllerTest < Test::Unit::TestCase
   # Category subpages
   def test_category
     get :category, :id => "Software"
-    assert_success
+    assert_response :success
     assert_rendered_file "index"
   end
   
   # Main index
   def test_index
     get :index
-    assert_success
+    assert_response :success
     assert_rendered_file "index"
   end
   
   # Posts for given day
   def test_find_by_date
     get :find_by_date, :year => 2005, :month => 01, :day => 01
-    assert_success
+    assert_response :success
     assert_rendered_file "index"
   end
   

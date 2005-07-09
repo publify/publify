@@ -1,11 +1,13 @@
 class Configuration < ConfigManager
-  setting :blog_name, :string, "Name of the blog"
-  setting :default_allow_pings, :bool, "Allow trackbacks by default"  
-  setting :default_allow_comments, :bool, "Allow comments by default"  
-  setting :sp_global, :bool, "Use SpamProtection functionality"
-  setting :sp_article_auto_close, :int, "Auto-close ability to comment/trackback articles after X days"
-  setting :sp_url_limit, :int, "Limit for URLs in comments and trackbacks"
-  setting :text_filter, :string, "Default HTML transformation style"
+  setting :blog_name, :string, 'My Shiny Weblog!'
+  setting :default_allow_pings, :bool, false
+  setting :default_allow_comments, :bool, true
+  setting :sp_global, :bool, true
+  setting :sp_article_auto_close, :int, 30
+  setting :sp_url_limit, :int, 10
+  setting :text_filter, :string, ''
+  setting :limit_article_display, :int, 10
+  setting :limit_rss_display, :int, 10
 end
 
 def config

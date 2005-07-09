@@ -7,30 +7,61 @@
 
 <div id="content">
   <h1>Blog settings</h1>
-  <%= start_form_tag %>
+  <%= start_form_tag :action => 'update'%>
 
-  <div class="form">	
-    <h2>General settings</h2>
-    <% for field in @fields -%>
-      <%= field.desc %><br/>
-      <% if field.name == :text_filter %>	
-     	   <select name="fields[text_filter]">
-            <%= options_for_select( text_filter_options, config["text_filter"] ) -%>
-         </select>
-      <% else %>
-         <%= settings_field field %><br/>
-      <% end %>
-    <% end %>
+  <div class="form">
+    <h2>General Settings</h2>
+
+    <div><label for="blog_name">Name your blog:</label>
+    <input name="setting[blog_name]" id="blog_name" type="text" value="<%= config_value(:blog_name) %>" /></div>
+
+    <p>Choose a text filter for your blog. Your options depend on which gems you have installed. If RedCloth is installed
+    Typo will offer you to use Textile. If you want to use markdown you will need the BlueCloth gem.</p>
+
+    <div><label for="text_filter">Text filter:</label>
+    <select name="setting[text_filter]" id="text_filter">
+    <%= options_for_select text_filter_options, config_value(:text_filter) %>
+    </select></div>
+
+    <p>Do you want comments and trackbacks to be enabled by default?</p>
+
+    <div><label for="default_allow_comments">Comments:</label>
+    <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_comments)%> /><input name="setting[default_allow_comments]" type="hidden" value="0"/></div>
+
+    <div><label for="default_allow_pings">Trackbacks:</label>
+    <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_pings)%> /><input name="setting[default_allow_pings]" type="hidden" value="0"/></div>
+
+    <p>How many Articles do you want to display by default on frontpage, as search results or in your RSS feeds?</p>
+
+    <div><label for="limit_article_display">Limit Articles:</label>
+    <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= config_value(:limit_article_display) %>" /></div>
+
+    <div><label for="limit_rss_display">Limit RSS Articles:</label>
+    <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /></div>
+  
   </div>
+  
+  <div class="form">
+    <h2>Spam Protection</h2>
 
-  <div class="form">	
-    <h2>Spam Protection settings</h2>
-    <% for field in @sp_fields -%>
+    <p>Choose if you want to use Spam Protection at all.</p>
 
-      <%= field.desc %><br/>
-      <%= settings_field field %><br/>
-    <% end %>
-  </div>
+    <div><label for="sp_global">Enable:</label>
+    <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_global)%> /><input name="setting[sp_global]" type="hidden" value="0"/></div>
+
+    <p>Typo can automatically close articles for you after a certain amount of days. Typically spammers send their spam to old posts.</p>
+
+    <div><label for="sp_article_auto_close">Max Age:</label>
+    <input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= config_value(:sp_article_auto_close) %>" /> days</div>
+
+    <p>Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them.</p>
+
+    <div><label for="sp_url_limit">Max URLs:</label>
+    <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= config_value(:sp_url_limit) %>" /> links</div>
+  </div>  
+  
+  
+  
 
   <div id="operations">
     <%= save %>  

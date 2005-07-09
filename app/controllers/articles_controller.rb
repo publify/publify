@@ -4,8 +4,8 @@ class ArticlesController < ApplicationController
   before_filter :verify_config
   
   def index
-    @pages = Paginator.new self, Article.count, 10, params['page']
-    @articles = Article.find(:all, :conditions => 'published != 0',  :order => 'articles.created_at DESC', :limit => 10, :offset => @pages.current.offset)
+    @pages = Paginator.new self, Article.count, config['limit_article_display'], @params['page']
+    @articles = Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC', :limit => config['limit_article_display'], :offset => @pages.current.offset)
   end
   
   def search
@@ -35,8 +35,8 @@ class ArticlesController < ApplicationController
   end
   
   def find_by_date
-    @pages = Paginator.new self, Article.count_by_date(params["year"], params["month"], params["day"]), 10, params['page']
-    @articles = Article.find_all_by_date(params["year"], params["month"], params["day"], @pages.current.to_sql)
+    @pages = Paginator.new self, Article.count_by_date(@params["year"], @params["month"], @params["day"]), config['limit_article_display'], @params['page']
+    @articles = Article.find_all_by_date(@params["year"], @params["month"], @params["day"], @pages.current.to_sql)
     
     if @articles.empty?
       error("No posts found...")
@@ -51,14 +51,15 @@ class ArticlesController < ApplicationController
   end
   
   def category
-    if category = Category.find_by_name(params['id'])
+
+    if category = Category.find_by_name(@params['id'])
       @articles = Article.find(:all, :conditions => [%{ published != 0
           AND articles.id = articles_categories.article_id
           AND articles_categories.category_id = ? }, category.id],
         :joins => ', articles_categories',
         :order => "created_at DESC")
       
-      @pages = Paginator.new self, @articles.size, 10, params['page']
+      @pages = Paginator.new self, @articles.size, config['limit_article_display'], @params['page']
 
       start = @pages.current.offset
       stop  = (@pages.current.next.offset - 1) rescue @articles.size

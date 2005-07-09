@@ -1,20 +1,19 @@
 class Admin::GeneralController < Admin::BaseController
   def index
-    @fields = Configuration.fields.reject { |f| f.name.to_s =~ /^sp_/ }
-    @sp_fields = Configuration.fields.reject { |f| @fields.include?(f) }
-    @text_filter = config["text_filter"]
-          
+  end
+  
+  def update
     if request.post? 
       Setting.transaction do 
-        for field, value in params["fields"]
+        for field, value in params[:setting]
           setting = find_or_create(field)
           setting.value = value
           setting.save
         end
       end
-      config.reload
-      flash.now['notice'] = 'config updated.'
-    end
+      flash[:notice] = 'config updated.'
+      redirect_to :action => 'index'
+    end    
   end
       
   private

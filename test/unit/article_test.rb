@@ -8,7 +8,7 @@ class ArticleTest < Test::Unit::TestCase
   def setup
     config.reload
   end
-
+  
   def test_permalink
     assert_equal @article1, Article.find_by_date(2005,01,01)  
     assert_equal @article3, Article.find_by_date(2004,06,01)

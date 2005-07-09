@@ -1,15 +1,14 @@
 require_dependency 'blacklist_pattern'
 
 class SpamProtection
-  def initialize
-    @IP_RBL = [ 'opm.blitzed.us', 'bsb.empty.us' ]
-    @HOST_RBL = [ 'sc.surbl.org', 'bsb.empty.us' ]
-    @SECOND_LEVEL = [ 'co', 'com', 'net', 'org', 'gov' ]
-  end
+
+  IP_RBL = [ 'opm.blitzed.us', 'bsb.empty.us' ]
+  HOST_RBL = [ 'sc.surbl.org', 'bsb.empty.us' ]
+  SECOND_LEVEL = [ 'co', 'com', 'net', 'org', 'gov' ]
 
   def article_closed?(record)
-    if config['sp_article_auto_close'].to_i > 0
-      if record.article.created_at.to_i < config['sp_article_auto_close'].to_i.days.ago.to_i
+    if config['sp_article_auto_close'] > 0
+      if record.article.created_at.to_i < config['sp_article_auto_close'].days.ago.to_i
         logger.info("[SP] Blocked interaction with #{record.article.title}") 
         return true
       end
@@ -17,8 +16,8 @@ class SpamProtection
   end
 
   def is_spam?(string)
-    return false if config['sp_global'].to_i != 1
-    return false if string.nil?
+    return false unless config['sp_global']
+    return false if string.blank?
 
     reason = catch(:hit) do
       case string
@@ -39,7 +38,7 @@ class SpamProtection
   def scan_ip(ip_address)
     logger.info("[SP] Scanning IP #{ip_address}")
     
-    @IP_RBL.each do |rbl|
+    IP_RBL.each do |rbl|
       begin
         if IPSocket.getaddress((ip_address.split('.').reverse + [rbl]).join('.')) == "127.0.0.2"
           throw :hit, "#{rbl} positively resolved #{ip_address}"
@@ -56,8 +55,8 @@ class SpamProtection
     uri_list = string.scan(/(http:\/\/[^\s"]+)/m).flatten
 
     # Check for URL count limit    
-    if config['sp_url_limit'].to_i > 0
-      throw :hit, "Hard URL Limit hit: #{uri_list.size} > #{config['sp_url_limit']}" if uri_list.size > config['sp_url_limit'].to_i
+    if config['sp_url_limit'] > 0
+      throw :hit, "Hard URL Limit hit: #{uri_list.size} > #{config['sp_url_limit']}" if uri_list.size > config['sp_url_limit']
     end
     
     uri_list.collect { |uri| URI.parse(uri).host rescue nil }.uniq.compact.each do |host|
@@ -83,15 +82,16 @@ class SpamProtection
 
     host_parts = host.split('.').reverse
     domain = Array.new
+    
 
     # Check for two level TLD
-    (@SECOND_LEVEL.include?(host_parts[1]) ? 3:2).times do
+    (SECOND_LEVEL.include?(host_parts[1]) ? 3:2).times do
       domain.unshift(host_parts.shift)
     end
 
     logger.info("[SP] Scanning domain #{domain.join('.')}")
 
-    @HOST_RBL.each do |rbl|
+    HOST_RBL.each do |rbl|
       begin
         if [
             IPSocket.getaddress([host, rbl].join('.')),

@@ -9,6 +9,6 @@ class SettingTest < Test::Unit::TestCase
 
   # Replace this with your real tests.
   def test_truth
-    assert_kind_of Setting,  @setting
+    assert_kind_of Setting, @setting
   end
 end
