@@ -34,8 +34,8 @@ CREATE TABLE categories (
 );
 
 CREATE TABLE articles_categories (
-  article_id int REFERENCES articles,
-  category_id int REFERENCES categories,
+  article_id int,
+  category_id int,
   is_primary int NOT NULL DEFAULT 0
 );
 
@@ -49,7 +49,7 @@ CREATE INDEX idx_blacklist_pattern ON blacklist_patterns (pattern);
 
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY NOT NULL,
-  article_id int NOT NULL REFERENCES articles,
+  article_id int NOT NULL,
   title varchar(255) default NULL,
   author varchar(255) default NULL,
   email varchar(255) default NULL,
@@ -65,7 +65,7 @@ CREATE INDEX idx_comments_article_id ON comments (article_id);
 
 CREATE TABLE pings (
   id SERIAL PRIMARY KEY NOT NULL,
-  article_id int NOT NULL REFERENCES articles,
+  article_id int NOT NULL,
   url varchar(255) DEFAULT NULL,
   created_at TIMESTAMP DEFAULT now()
 );
@@ -98,7 +98,7 @@ CREATE TABLE settings (
 
 CREATE TABLE trackbacks (
   id SERIAL PRIMARY KEY NOT NULL,
-  article_id int REFERENCES articles,
+  article_id int,
   blog_name varchar(255) default NULL,
   title varchar(255) default NULL,
   excerpt varchar(255) default NULL,
