@@ -81,8 +81,8 @@ class ArticlesController < ApplicationController
     if request.post? and @comment.save      
       @comment.body = ""
       
-      cookies['author']  = { :value => @comment.author, :expires => 6.weeks.from_now } 
-      cookies['url']     = { :value => @comment.url, :expires => 6.weeks.from_now } 
+      cookies['author']  = { :value => @comment.author, :path => '/' + controller_name, :expires => 6.weeks.from_now } 
+      cookies['url']     = { :value => @comment.url, :path => '/' + controller_name, :expires => 6.weeks.from_now } 
 
       @headers["Content-Type"] = "text/html; charset=utf-8"
       
