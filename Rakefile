@@ -62,7 +62,7 @@ desc "Run the functional tests in test/functional"
 Rake::TestTask.new("test_functional") { |t|
   t.libs << "test"
   t.pattern = 'test/functional/**/*_test.rb'
-  t.verbose = true
+  t.verbose = false
 }
 task :test_functional => [ :clone_structure_to_test ]
 
