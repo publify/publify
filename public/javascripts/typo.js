@@ -36,21 +36,19 @@ function commentAdded() {
   new Effect.BlindDown($('commentList').lastChild);
   $('commentform').elements[2].value = '';
   $('commentform').elements[2].focus();
-  doneLoading();
 }
 
-function commentNotAdded() {
+function commentNotAdded(request) {
+  $('errors').innerHTML = request.responseText;
   new Effect.Highlight('errors');
-  doneLoading();
 }
 
 function loading() {
   $('form-submit-button').disabled = true;
-  $('errors').innerHTML = '';
   Element.show('comment_loading');
 }
 
-function doneLoading() {
+function completed() {
   Element.hide('comment_loading');
   Element.show('commentform');
   $('form-submit-button').disabled = false;  

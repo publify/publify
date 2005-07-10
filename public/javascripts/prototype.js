@@ -271,7 +271,11 @@ Ajax.Request.prototype = (new Ajax.Base()).extend({
        || this.options.onFailure
        || Prototype.emptyFunction)(this.transport);
 
-    (this.options['on' + event] || Prototype.emptyFunction)(this.transport);    
+    (this.options['on' + event] || Prototype.emptyFunction)(this.transport);
+
+    /* Avoid memory leak in MSIE: clean up the oncomplete event handler */
+    if (event == 'Complete')
+      this.transport.onreadystatechange = Prototype.emptyFunction;
   }
 });
 
@@ -292,7 +296,7 @@ Ajax.Updater.prototype.extend(Ajax.Request.prototype).extend({
     var onComplete = this.options.onComplete || Prototype.emptyFunction;
     this.options.onComplete = (function() {
       this.updateContent();
-      onComplete(this.transport);      
+      onComplete(this.transport);
     }).bind(this);
 
     this.request(url);

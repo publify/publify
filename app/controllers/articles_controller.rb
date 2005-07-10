@@ -88,7 +88,7 @@ class ArticlesController < ApplicationController
       
       render :partial => "comment", :object => @comment
     else
-      render :text => @comment.errors.full_messages, :status => 500
+      render :text => @comment.errors.full_messages.join(", "), :status => 500
     end
   end  
 

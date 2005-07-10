@@ -1,9 +1,10 @@
-<%= form_remote_tag :url => {:action => "comment", :id => @article.id}, 
-                    :update => { :success => "commentList", :failure => 'errors' },
+<%= form_remote_tag :url => {:action => "comment", :id => @article}, 
                     :position=> :bottom, 
+                    :update => {:success => 'commentList'},
                     :loading => "loading()", 
-                    :complete => "commentAdded()",
-                    :failure => "commentNotAdded()",
+                    :complete => "completed()",
+                    :success => "commentAdded()",
+                    :failure => "commentNotAdded(request)",
                     :html => {:id=>"commentform",:class=>"commentform"} %>
 
 
