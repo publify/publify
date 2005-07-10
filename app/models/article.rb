@@ -60,7 +60,7 @@ class Article < ActiveRecord::Base
   def self.search(query)
     if !query.to_s.strip.empty?
       tokens = query.split.collect {|c| "%#{c.downcase}%"}
-      find_by_sql(["SELECT * from articles WHERE #{ (["(LOWER(body) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND ") } AND published != 0 ORDER by created_at DESC", *tokens * 2])
+      find_by_sql(["SELECT * from articles WHERE #{ (["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND ") } AND published != 0 ORDER by created_at DESC", *tokens.collect { |token| [token] * 3 }.flatten])
     else
       []
     end
@@ -84,6 +84,11 @@ class Article < ActiveRecord::Base
     result
   end
   
+  # Does this article have a extended entry?
+  def has_extended?
+    extended_html.size > 0
+  end
+  
   protected  
 
   before_save :transform_body, :set_defaults
@@ -94,6 +99,7 @@ class Article < ActiveRecord::Base
   
   def transform_body
     self.body_html = HtmlEngine.transform(body, self.text_filter)
+    self.extended_html = HtmlEngine.transform(extended, self.text_filter)
   end  
 
   def self.time_delta(year, month = nil, day = nil)

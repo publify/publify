@@ -25,7 +25,9 @@ xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom
         xml.dc :subject, category.name
       end
 
-      xml.content entry.body_html, "type"=>"text/html", "mode"=>"escaped"
+      content = entry.body_html
+      content += "\n" + entry.extended_html if entry.has_extended?
+      xml.content content, "type"=>"text/html", "mode"=>"escaped"
 
     end
   end   

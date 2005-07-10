@@ -1,6 +1,25 @@
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    trackback:ping="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article %>"
+    dc:title="<%=h @article.title %>"
+    dc:identifier="<%= server_url_for :controller=>"articles", :action=>"read", :id=>@article %>"
+    dc:description="<%=h strip_html(@article.body_html[0..255]) %>"
+    dc:creator="<%= h @article.author %>"
+    dc:date="<%= @article.updated_at.xmlschema %>" />
+</rdf:RDF>
+-->
+
 <div class="post">
-<%= render_partial "article", @article %>
+  <h2><%= @article.title %></h2>
+  <p class="auth">Posted by <%=h @article.author %> <%= distance_of_time_in_words_to_now @article.created_at %> ago</p>
+  <%= @article.body_html %>
+  <%= @article.extended_html %>
 </div>
+
 <p class="postmetadata alt">
   <small><a href="<%= xml_url(:action=>'articlerss', :id=>@article) %>" title="RSS Feed">Subscribe to this article via RSS</a></small>
 </p>
