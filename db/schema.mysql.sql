@@ -13,6 +13,7 @@ CREATE TABLE `articles` (
   `body` text,
   `body_html` text,
   `extended` text,
+  `extended_html` text,
   `excerpt` text,
   `keywords` varchar(255) default NULL,
   `allow_comments` tinyint(1) default NULL,
@@ -109,3 +110,8 @@ CREATE TABLE `trackbacks` (
   KEY `article_id` (`article_id`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `schema_info` (
+  `version` int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT into `schema_info` VALUES (1);

@@ -17,6 +17,7 @@ CREATE TABLE articles (
   body text,
   body_html text,
   extended text,
+  extended_html text,
   excerpt text,
   keywords varchar(255) default NULL,
   allow_comments int default NULL,
@@ -110,3 +111,8 @@ CREATE TABLE trackbacks (
 
 CREATE INDEX idx_trackbacks_article_id ON trackbacks (article_id);
 
+CREATE TABLE schema_info (
+  version integer
+);
+
+INSERT into schema_info VALUES (1);

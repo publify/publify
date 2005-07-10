@@ -11,6 +11,7 @@ CREATE TABLE 'articles' (
   'body'        TEXT DEFAULT NULL,
   'body_html'   TEXT DEFAULT NULL,
   'extended'    TEXT DEFAULT NULL,
+  'extended_html'  TEXT DEFAULT NULL,
   'excerpt'     TEXT DEFAULT NULL,
   'keywords'    TEXT DEFAULT NULL,
   'allow_comments' INTEGER DEFAULT 1,  
