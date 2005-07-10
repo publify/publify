@@ -1,4 +1,4 @@
-#!/opt/local/bin/ruby
+#!/usr/bin/env ruby
 
 if ARGV.empty?
   puts "Usage: benchmarker times 'Person.expensive_way' 'Person.another_expensive_way' ..."

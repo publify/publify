@@ -1,4 +1,4 @@
-#!/opt/local/bin/ruby
+#!/usr/bin/env ruby
 require 'rubygems'
 require_gem 'rails'
 require 'breakpoint_client'

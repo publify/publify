@@ -87,11 +87,6 @@ class Article < ActiveRecord::Base
     result
   end
   
-  # Does this article have a extended entry?
-  def has_extended?
-    extended_html.size > 0
-  end
-  
   protected  
 
   before_save :transform_body, :set_defaults

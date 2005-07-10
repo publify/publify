@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # MovableType 3.x converter for typo by Patrick Lenz <patrick@lenz.sh>
 # 

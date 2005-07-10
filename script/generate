@@ -1,4 +1,4 @@
-#!/opt/local/bin/ruby
+#!/usr/bin/env ruby
 require File.dirname(__FILE__) + '/../config/environment'
 require 'rails_generator'
 require 'rails_generator/scripts/generate'

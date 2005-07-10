@@ -1,4 +1,4 @@
-#!/opt/local/bin/ruby
+#!/usr/bin/env ruby
 require 'optparse'
 
 options = { :environment => "development" }
@@ -23,7 +23,7 @@ end
 
 ENV["RAILS_ENV"] = options[:environment]
 
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 require File.dirname(__FILE__) + '/../config/environment'
 eval(ARGV.first)

@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # TextPattern 1.x converter for typo by Patrick Lenz <patrick@lenz.sh>
 # 

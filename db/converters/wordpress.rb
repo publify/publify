@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 # WordPress 1.5x converter for typo by Patrick Lenz <patrick@lenz.sh>
 # 

@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 lighttpd -D -f config/lighttpd.conf
