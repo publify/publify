@@ -4,7 +4,7 @@ require 'digest/sha1'
 module ApplicationHelper
   
   def categorylist()
-    categories = Category.find_all(nil, "position")
+    categories = Category.find_all_with_article_counters
     render_partial("shared/categories", categories)
   end
   

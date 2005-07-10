@@ -1,8 +1,8 @@
 <% unless categories.blank? %>
 <h3>Categories</h3>
-<ul>
+<ul id="categories">
 <% for category in categories -%>
-  <li><%= link_to category.name, :controller=>"articles", :action=>"category", :id=>category.name  %></li>
+  <li><%= link_to category.name, :controller => "articles", :action => "category", :id => category.name  %> <em>(<%= category.article_counter %>)</em></li>
 <% end -%>
 </ul>
 <% end %>

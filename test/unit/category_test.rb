@@ -1,14 +1,23 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CategoryTest < Test::Unit::TestCase
-  fixtures :categories
+  fixtures :articles, :categories
 
   def setup
     @category = Category.find(1)
   end
 
-  # Replace this with your real tests.
   def test_truth
     assert_kind_of Category,  @category
+  end
+  
+  def test_find_all_with_article_counters
+    @software.articles << @article1 << @article2
+    @personal.articles << @article3
+
+    c = Category.find_all_with_article_counters
+    
+    assert_equal @software.articles_count, c.first.article_counter.to_i
+    assert_equal @personal.articles_count, c.last.article_counter.to_i
   end
 end

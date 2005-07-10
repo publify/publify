@@ -295,3 +295,9 @@ a[name] { border: none; }
  /* Hides from IE-mac \*/
  * html .clearfix {height: 1%;}
  /* End hide from IE-mac */
+
+#categories li em
+{
+  color: #98B4D1;
+  font-size: smaller;
+}
