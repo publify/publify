@@ -25,6 +25,7 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal "article-3", Article.strip_title("Article 3!?#")
     assert_equal "article", Article.strip_title("-article-")
     assert_equal "lorem-ipsum-dolor-sit-amet-consectetaur-adipisicing-elit", Article.strip_title("Lorem ipsum dolor sit amet, consectetaur adipisicing elit")
+    assert_equal "my-cats-best-friend", Article.strip_title("My Cat's Best Friend")
   end
   
   def test_perma_title

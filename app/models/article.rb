@@ -71,6 +71,9 @@ class Article < ActiveRecord::Base
   def self.strip_title(title)
     result = title.downcase
 
+    # replace quotes by nothing
+    result.gsub!(/['"]/, '')
+
     # strip all non word chars
     result.gsub!(/\W/, ' ')
 
