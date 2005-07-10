@@ -5,7 +5,7 @@ require 'articles_controller'
 class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings, :users
+  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks
 
   def setup
     @controller = ArticlesController.new
@@ -52,6 +52,20 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :find_by_date, :year => 2005, :month => 01, :day => 01
     assert_response :success
     assert_rendered_file "index"
+  end
+  
+  def test_comment_nuking 
+    num_comments = Comment.count
+    post :nuke_comment, { :id => 1 }, { :user => users(:bob)}
+    assert_response :success
+    assert_equal num_comments -1, Comment.count    
+  end
+
+  def test_trackback_nuking 
+    num_comments = Trackback.count
+    post :nuke_trackback, { :id => 1 }, { :user => users(:bob)}
+    assert_response :success
+    assert_equal num_comments -1, Trackback.count    
   end
   
   def test_no_settings

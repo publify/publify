@@ -1,5 +1,15 @@
 module ArticlesHelper
   
+  def admin_tools_for(model)
+    return unless controller.session[:user]
+    type = model.class.to_s.downcase
+    tag = []
+    tag << link_to_remote('nuke', :url => { :action => "nuke_#{type}", :id => model }, 
+                                            :complete => visual_effect(:puff, "#{type}-#{model.id}", :duration => 0.6))                                            
+    tag.join(" | ")
+  end
+
+  
   def render_errors(obj)
     return "" unless obj
     tag = String.new

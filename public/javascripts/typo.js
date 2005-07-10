@@ -32,13 +32,13 @@ function distance_of_time_in_words(minutes) {
   else return (Math.round(minutes / 1440) + ' days')
 }
 
-function commentAdded() {
+function commentAdded(request) {
   new Effect.BlindDown($('commentList').lastChild);
   $('commentform').elements[2].value = '';
   $('commentform').elements[2].focus();
 }
 
-function commentNotAdded(request) {
+function failure(request) {
   $('errors').innerHTML = request.responseText;
   new Effect.Highlight('errors');
 }
@@ -48,10 +48,12 @@ function loading() {
   Element.show('comment_loading');
 }
 
-function completed() {
+function complete(request) {
   Element.hide('comment_loading');
   Element.show('commentform');
   $('form-submit-button').disabled = false;  
+
+  if (request.status == 200) {commentAdded()};  
 }
 
 register_onload(function() { if( $('commentform') && $('commentform').elements[1].value != '' ) { Element.show('guest_url');} })

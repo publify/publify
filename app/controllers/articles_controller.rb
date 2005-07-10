@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   cache_sweeper :blog_sweeper, :only => ["comment", "trackback"]
   
   before_filter :verify_config
-  
+    
   def index
     @pages = Paginator.new self, Article.count, config['limit_article_display'], @params['page']
     @articles = Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC', :limit => config['limit_article_display'], :offset => @pages.current.offset)
@@ -123,6 +123,22 @@ class ArticlesController < ApplicationController
       end
     end
     render :layout => nil
+  end
+  
+  
+  #verify :session => "user", :method => :post, :only => [:nuke_comment, :nuke_trackback], :status => 403  
+  
+  
+  def nuke_comment
+    comment = Comment.find(params[:id])
+    comment.destroy 
+    render :nothing => true 
+  end
+
+  def nuke_trackback
+    trackback = Trackback.find(params[:id])
+    trackback.destroy 
+    render :nothing => true 
   end
   
   private

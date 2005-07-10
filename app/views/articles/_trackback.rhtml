@@ -1,7 +1,7 @@
-<li class="graybox">
-  <a name="comment-<%= trackback.id %>"></a>
+<li class="graybox" id="trackback-<%= trackback.id %>">
+  <a name="trackback-<%= trackback.id %>"></a>
   From <strong><%= trackback.blog_name %></strong><br />
-  <a href="#trackback-<%= trackback.id  %>" title=""></a>
   <a href="<%= trackback.url %>" rel="nofollow"><%= trackback.title %></a><br/>
   <%= trackback.excerpt %>
+  <%= admin_tools_for trackback %>
 </li>
