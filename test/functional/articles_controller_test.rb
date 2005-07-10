@@ -15,6 +15,24 @@ class ArticlesControllerTest < Test::Unit::TestCase
     config.reload
   end
 
+  def test_category_partial
+    get :index
+    assert_response :success
+    assert_tag :tag => "h3",
+      :content => "Categories",
+      :sibling => { :tag => "ul",
+        :children => { :count => Category.count,
+          :only => { :tag => "li" } } }
+  end
+
+  def test_category_partial_no_categories
+    Category.destroy_all
+    get :index
+    assert_response :success
+    assert_no_tag :tag => "h3",
+      :content => "Categories"
+  end
+
   # Category subpages
   def test_category
     get :category, :id => "Software"
