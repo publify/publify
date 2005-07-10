@@ -3,9 +3,9 @@
 
 <label for="articles_title">Title:</label><%= text_field 'article', 'title'  %><br/>
 
-<label for="articles_body">Body:</label><%= text_area 'article', 'body'  %><br/>
+<label for="articles_body">Article:</label><%= text_area 'article', 'body', :rows => 7  %><br/>
 
-<label for="articles_extended">Extended:</label><%= text_area 'article', 'extended'  %><br/>
+<label for="articles_extended">Extended:</label><%= text_area 'article', 'extended', :rows => 18  %><br/>
 
 <label for="articles_allow_comments">Allow comments:</label><%= check_box 'article', 'allow_comments'  %><br/>
 <label for="articles_allow_pings">Allow pings:</label><%= check_box 'article', 'allow_pings'  %><br/>
