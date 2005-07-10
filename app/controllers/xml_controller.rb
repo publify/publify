@@ -7,15 +7,15 @@ class XmlController < ApplicationController
   end
   
   def commentrss
-    @comments = Comment.find(:all, :order => 'created_at DESC', :limit => config['limit_rss_display'])
+    @comments = Comment.find(:all, :order => 'created_at DESC', :limit => config[:limit_rss_display])
   end
   
   def rss
-    @articles = Article.find(:all, :conditions => 'published=1', :order => 'created_at DESC', :limit => config['limit_rss_display'])
+    @articles = Article.find(:all, :conditions => 'published=1', :order => 'created_at DESC', :limit => config[:limit_rss_display])
   end
 
   def atom
-    @articles = Article.find(:all, :conditions => 'published=1', :order => 'created_at DESC', :limit => config['limit_rss_display'])
+    @articles = Article.find(:all, :conditions => 'published=1', :order => 'created_at DESC', :limit => config[:limit_rss_display])
   end
 
   def rsd

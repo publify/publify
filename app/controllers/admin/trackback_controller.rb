@@ -12,29 +12,29 @@ class Admin::TrackbackController < Admin::BaseController
   end
 
   def show
-    @trackback = @article.trackbacks.find(params['id'])
+    @trackback = @article.trackbacks.find(params[:id])
   end
 
   def new
-    @trackback = @article.trackbacks.build(params["trackback"])
+    @trackback = @article.trackbacks.build(params[:trackback])
     
     if request.post? and @trackback.save
-      flash['notice'] = 'Trackback was successfully created.'
+      flash[:notice] = 'Trackback was successfully created.'
       redirect_to :action => 'show', :id => @trackback.id
     end      
   end
 
   def edit
-    @trackback = @article.trackbacks.find(params['id'])
-    @trackback.attributes = params["trackback"]
+    @trackback = @article.trackbacks.find(params[:id])
+    @trackback.attributes = params[:trackback]
     if request.post? and @trackback.save
-      flash['notice'] = 'Trackback was successfully updated.'
+      flash[:notice] = 'Trackback was successfully updated.'
       redirect_to :action => 'show', :id => @trackback.id
     end      
   end
 
   def destroy
-    @trackback = @article.trackbacks.find(params['id'])
+    @trackback = @article.trackbacks.find(params[:id])
     if request.post?
       @trackback.destroy
       redirect_to :action => 'list'

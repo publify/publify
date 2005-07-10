@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
       when :post
       if session[:user] = User.authenticate(params[:user_login], params[:user_password])
 
-        flash['notice']  = "Login successful"
+        flash[:notice]  = "Login successful"
         redirect_back_or_default :controller => "admin/general", :action => "index"
       else
         flash.now['notice']  = "Login unsuccessful"
@@ -23,7 +23,7 @@ class AccountsController < ApplicationController
     
     if request.post? and @user.save
       session[:user] = User.authenticate(@user.login, params[:user][:password])
-      flash['notice']  = "Signup successful"
+      flash[:notice]  = "Signup successful"
       redirect_to :controller => "admin/general", :action => "index"
       return
     end      

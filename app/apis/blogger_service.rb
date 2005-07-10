@@ -63,7 +63,7 @@ class BloggerService < TypoWebService
     [BloggerStructs::Blog.new(
       :url      => controller.url_for(:controller => "/"),
       :blogid   => 1,
-      :blogName => config['blog_name']
+      :blogName => config[:blog_name]
     )]
   end
 end

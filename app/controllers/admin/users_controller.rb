@@ -10,29 +10,29 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @user = User.find(params['id'])
+    @user = User.find(params[:id])
   end
 
   def new
-    @user = User.new(params["user"])
+    @user = User.new(params[:user])
     if request.post? and @user.save
-      flash['notice'] = 'User was successfully created.'
+      flash[:notice] = 'User was successfully created.'
       redirect_to :action => 'show', :id => @user.id
     end      
   end
 
   def edit
-    @user = User.find(params['id'])
-    @user.attributes = params["user"]
+    @user = User.find(params[:id])
+    @user.attributes = params[:user]
     if request.post? and @user.save
-      flash['notice'] = 'User was successfully updated.'
+      flash[:notice] = 'User was successfully updated.'
       redirect_to :action => 'show', :id => @user.id
     end      
     @user.password = @user.password_confirmation =  ''
   end
 
   def destroy
-    @user = User.find(params['id'])
+    @user = User.find(params[:id])
     if request.post?
       @user.destroy
       redirect_to :action => 'list'
