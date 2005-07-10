@@ -4,11 +4,20 @@ module ArticlesHelper
     return unless controller.session[:user]
     type = model.class.to_s.downcase
     tag = []
-    tag << link_to_remote('nuke', :url => { :action => "nuke_#{type}", :id => model }, 
-                                            :complete => visual_effect(:puff, "#{type}-#{model.id}", :duration => 0.6))                                            
+    tag << link_to_remote('nuke', {
+        :url => { :action => "nuke_#{type}", :id => model }, 
+        :complete => visual_effect(:puff, "#{type}-#{model.id}", :duration => 0.6),
+        :confirm => "Are you sure you want to delete this #{type}?"
+      }, :class => "admintools", :id => "admin_#{type}_#{model.id}", :style => "display: none")
     tag.join(" | ")
   end
 
+  def onhover_show_admin_tools(type, id = nil)
+    return unless controller.session[:user]
+    tag = []
+    %w{ onmouseover onmouseout }.each { |t| tag << %{ #{t}="#{type}Block.hover(#{ id unless id.nil? })" } }
+    tag
+  end
   
   def render_errors(obj)
     return "" unless obj

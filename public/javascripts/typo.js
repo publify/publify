@@ -59,3 +59,21 @@ function complete(request) {
 register_onload(function() { if( $('commentform') && $('commentform').elements[1].value != '' ) { Element.show('guest_url');} })
 register_onload(function() { $('q').setAttribute('autocomplete', 'off'); })
 //register_onload(function () { show_date_as_local_time(); })
+
+var articleBlock = {
+  hover: function() {
+    Toggle.display($('admin_article'));
+  }
+}
+
+var commentBlock = {
+  hover: function(comment_id) {
+    Toggle.display($('admin_comment_' + comment_id));
+  }
+}
+
+var trackbackBlock = {
+  hover: function(trackback_id) {
+    Toggle.display($('admin_trackback_' + trackback_id));
+  }
+}

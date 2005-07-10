@@ -275,6 +275,22 @@ body {
    font-color: red;
  }
 
+.admintools {
+  float: right;
+  background-color: #fff;
+  font-size: smaller;
+  padding: 0 2px;
+  color: #ccc;
+  border: 1px solid #ccc;
+}
+
+.admintools:hover {
+  color: #c00;
+  border: 1px solid #c00;
+}
+
+a[name] { border: none; }
+
  /* Hides from IE-mac \*/
  * html .clearfix {height: 1%;}
  /* End hide from IE-mac */
