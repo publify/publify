@@ -9,7 +9,7 @@ class HtmlEngine
       when "markdown": 
         txt = BlueCloth.new(txt, restrictions).to_html
       when "textile": 
-        txt = self.encode_html(txt)
+        txt = self.encode_html(txt) if restrictions.include?(:filter_html)
         txt = RedCloth.new(txt, restrictions).to_html(:textile)
       when "smartypants":
         txt = RubyPants.new(txt).to_html

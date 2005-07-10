@@ -45,7 +45,7 @@ Rake::TestTask.new(:recent => [ :clone_structure_to_test ]) do |t|
     recent_tests('app/controllers/*.rb', 'test/functional', since)
 
   t.libs << 'test'
-  t.verbose = true
+  t.verbose = false
   t.test_files = touched.uniq
 end
 task :test_recent => [ :clone_structure_to_test ]
@@ -54,7 +54,7 @@ desc "Run the unit tests in test/unit"
 Rake::TestTask.new("test_units") { |t|
   t.libs << "test"
   t.pattern = 'test/unit/**/*_test.rb'
-  t.verbose = true
+  t.verbose = false
 }
 task :test_units => [ :clone_structure_to_test ]
 
