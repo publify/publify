@@ -5,7 +5,7 @@ require 'xml_controller'
 class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
-  fixtures :articles, :comments 
+  fixtures :articles, :comments, :trackbacks
   def setup
     @controller = XmlController.new
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
@@ -21,14 +21,22 @@ class XmlControllerTest < Test::Unit::TestCase
   end
 
   def test_commentrss
-    get :commentrss, :id => 1 
+    get :commentrss
     assert_response :success
     assert_nothing_raised do
       assert REXML::Document.new(@response.body)
     end
   end
+  
+  def test_trackbackrss
+    get :trackbackrss
+    assert_response :success
+    assert_nothing_raised do
+      assert REXML::Document.new(@response.body)
+    end
+  end  
 
-  def rss
+  def test_rss
     get :rss
     assert_response :success
     assert_nothing_raised do

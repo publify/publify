@@ -4,7 +4,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   def after_save(record)
     case record
     when Comment, Trackback:
-      expire_page :controller => "/xml", :action => ["commentrss"]
+      expire_page :controller => "/xml", :action => ["commentrss", "trackbackrss"]
       expire_page :controller => "/xml", :action => ["articlerss"], :id => record.article.id
     when Article
       expire_page :controller => "/xml", :action => ["atom", "rss"]

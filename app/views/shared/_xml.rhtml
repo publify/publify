@@ -1,9 +1,6 @@
 <h3>Syndicate</h3>
-<ul>
-  <li>
-    <a href="<%= url_for :controller=>'xml', :action=>'rss' %>" title="XML feed">RSS</a>
-    <strong>|</strong>
-    <a href="<%= url_for :controller=>'xml', :action=>'atom' %>" title="XML feed">atom</a>
-  </li>
-  <li><a href="<%= url_for :controller=>'xml', :action=>'commentrss' %>" title="XML feed">Comments</a></li>
-</ul>
+<p>
+<a href="<%= url_for :controller=>'xml', :action=>'rss' %>" title="RSS 2.0 feed">Articles</a><br/>
+<a href="<%= url_for :controller=>'xml', :action=>'commentrss' %>" title="Comments RSS 2.0 feed">Comments</a><br/>
+<a href="<%= url_for :controller=>'xml', :action=>'trackbackrss' %>" title="Trackbacks RSS 2.0 feed">Trackbacks</a>
+</p>

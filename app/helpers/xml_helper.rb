@@ -13,7 +13,11 @@ module XmlHelper
   
   def comment_link(comment)
     comment_url(comment, false)
-  end  
+  end
+  
+  def trackback_link(trackback)
+    trackback_url(trackback, false)
+  end
   
   def blog_title
     config_value("blog_name") || "Unnamed blog"

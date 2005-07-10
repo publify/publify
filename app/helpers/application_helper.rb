@@ -69,7 +69,12 @@ module ApplicationHelper
   def comment_url(comment, only_path = true)
     article = comment.article
     url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "comment-#{comment.id}"
-  end  
+  end
+  
+  def trackback_url(trackback, only_path = true)
+    article = trackback.article
+    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor=> "trackback-#{trackback.id}"
+  end
   
   def responses(collection, word)
     case collection.size

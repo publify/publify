@@ -1,5 +1,5 @@
 class XmlController < ApplicationController  
-  caches_page :rss, :atom, :articlerss, :commentrss, :rsd
+  caches_page :rss, :atom, :articlerss, :commentrss, :rsd, :trackbackrss
 
   def articlerss
     @article = Article.find(params[:id])
@@ -8,6 +8,10 @@ class XmlController < ApplicationController
   
   def commentrss
     @comments = Comment.find(:all, :order => 'created_at DESC', :limit => config[:limit_rss_display])
+  end
+  
+  def trackbackrss
+    @trackbacks = Trackback.find(:all, :order => 'created_at DESC', :limit => config[:limit_rss_display])
   end
   
   def rss
