@@ -26,7 +26,7 @@ xml.feed "version" => "0.3", "xml:lang"=>"en-US", "xmlns"=>"http://purl.org/atom
       end
 
       content = entry.body_html
-      content += "\n" + entry.extended_html if entry.has_extended?
+      content += "\n" + entry.extended_html if entry.extended?
       xml.content content, "type"=>"text/html", "mode"=>"escaped"
 
     end

@@ -5,9 +5,9 @@
 <rdf:Description
     rdf:about=""
     trackback:ping="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article %>"
-    dc:title="<%=h @article.title %>"
+    dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
     dc:identifier="<%= server_url_for :controller=>"articles", :action=>"read", :id=>@article %>"
-    dc:description="<%=h strip_html(@article.body_html[0..255]) %>"
+    dc:description="<%=h strip_html(@article.body_html[0..255]).gsub(/-+/, '-') %>"
     dc:creator="<%= h @article.author %>"
     dc:date="<%= @article.updated_at.xmlschema %>" />
 </rdf:RDF>
