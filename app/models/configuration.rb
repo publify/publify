@@ -3,8 +3,8 @@ class Configuration < ConfigManager
   setting :default_allow_pings, :bool, false
   setting :default_allow_comments, :bool, true
   setting :sp_global, :bool, false
-  setting :sp_article_auto_close, :int, 30
-  setting :sp_url_limit, :int, 10
+  setting :sp_article_auto_close, :int, 0
+  setting :sp_url_limit, :int, 0
   setting :text_filter, :string, ''
   setting :comment_text_filter, :string, ''
   setting :limit_article_display, :int, 10
