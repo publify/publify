@@ -34,8 +34,8 @@ function distance_of_time_in_words(minutes) {
 
 function commentAdded(request) {
   new Effect.BlindDown($('commentList').lastChild);
-  $('commentform').elements[2].value = '';
-  $('commentform').elements[2].focus();
+  $('commentform').elements[3].value = '';
+  $('commentform').elements[3].focus();
 }
 
 function failure(request) {
@@ -56,6 +56,6 @@ function complete(request) {
   if (request.status == 200) {commentAdded()};  
 }
 
-register_onload(function() { if( $('commentform') && $('commentform').elements[1].value != '' ) { Element.show('guest_url');} })
+register_onload(function() { if( $('commentform') && $('commentform').elements[1].value != '' || $('commentform').elements[2].value != '' ) { Element.show('guest_url'); Element.show('guest_email');} })
 register_onload(function() { $('q').setAttribute('autocomplete', 'off'); })
 //register_onload(function () { show_date_as_local_time(); })

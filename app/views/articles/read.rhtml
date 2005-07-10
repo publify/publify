@@ -22,10 +22,6 @@
   <%= @article.extended_html %>
 </div>
 
-<p class="postmetadata alt">
-  <small><a href="<%= xml_url(:action=>'articlerss', :id=>@article) %>" title="RSS Feed">Subscribe to this article via RSS</a></small>
-</p>
-
 <% if @article.allow_comments? -%>
   <a name="comments"></a><h4 class="blueblk">Comments</h4> 
   <p class="postmetadata alt">
@@ -39,10 +35,16 @@
   <p>
     Use the following link to trackback from your own site:<br/>
     <span class="light-bg"><%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %></span>
-    </p>
-    
+    </p>    
   <%= content_tag(:ol, render(:partial => "trackback", :collection => @article.trackbacks), :id => 'trackbackList', :class => 'trackback-list') %>  
 <% end -%>
+
+<p class="postmetadata alt">
+  <small>
+  <a href="<%= xml_url(:action=>'articlerss', :id=>@article) %>" title="RSS Feed">RSS feed for this post</a>
+  <a href="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>">trackback uri</a>  
+  </small>
+</p>
 
 <% if @article.allow_comments? -%>
   <%= render :partial => 'comment_box' %>
