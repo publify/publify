@@ -56,6 +56,12 @@ class ArticlesControllerTest < Test::Unit::TestCase
   
   def test_comment_nuking 
     num_comments = Comment.count
+    post :nuke_comment, { :id => 1 }, {}
+    assert_response 403
+
+    get :nuke_comment, { :id => 1 }, { :user => users(:bob)}
+    assert_response 403
+      
     post :nuke_comment, { :id => 1 }, { :user => users(:bob)}
     assert_response :success
     assert_equal num_comments -1, Comment.count    
@@ -63,6 +69,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_trackback_nuking 
     num_comments = Trackback.count
+
+    post :nuke_trackback, { :id => 1 }, {}
+    assert_response 403
+
+    get :nuke_trackback, { :id => 1 }, { :user => users(:bob)}
+    assert_response 403
+
     post :nuke_trackback, { :id => 1 }, { :user => users(:bob)}
     assert_response :success
     assert_equal num_comments -1, Trackback.count    

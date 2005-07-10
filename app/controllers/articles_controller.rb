@@ -126,8 +126,10 @@ class ArticlesController < ApplicationController
   end
   
   
-  verify :session => "user", :method => :post, :only => [:nuke_comment, :nuke_trackback], :status => 403  
-  
+  verify :only => [:nuke_comment, :nuke_trackback], 
+         :session => :user, 
+         :method => :post,
+         :render => { :text => 'Forbidden', :status => 403 }
   
   def nuke_comment
     comment = Comment.find(params[:id])
