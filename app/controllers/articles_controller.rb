@@ -126,7 +126,7 @@ class ArticlesController < ApplicationController
   end
   
   
-  #verify :session => "user", :method => :post, :only => [:nuke_comment, :nuke_trackback], :status => 403  
+  verify :session => "user", :method => :post, :only => [:nuke_comment, :nuke_trackback], :status => 403  
   
   
   def nuke_comment
