@@ -62,6 +62,7 @@ class Admin::ContentController < Admin::BaseController
   end
   
   def preview
+    @headers["Content-Type"] = "text/html; charset=utf-8"
     render_text HtmlEngine.transform(request.raw_post, config[:text_filter])
   end
   

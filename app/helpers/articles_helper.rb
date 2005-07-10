@@ -1,19 +1,19 @@
 module ArticlesHelper
   
-  
   def render_errors(obj)
     return "" unless obj
-  	tag = String.new
+    tag = String.new
 
-  	unless obj.errors.empty?
-  		tag << %{<ul class="objerrors">}
-  		
-  		obj.errors.each_full do |message| 
-  			tag << "<li>#{message}</li>"
-  		end
-  		
-  		tag << "</ul>"
-  	end
+    unless obj.errors.empty?
+      tag << %{<ul class="objerrors">}
+
+      obj.errors.each_full do |message| 
+        tag << "<li>#{message}</li>"
+      end
+
+      tag << "</ul>"
+    end
+
     tag
   end  
   
