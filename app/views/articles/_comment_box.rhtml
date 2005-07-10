@@ -14,11 +14,15 @@
   <table cellpadding="4" cellspacing="0" class="frm-tbl">
     <tr>
       <td><p><label for="comment_author">Your name</label></p></td>
-      <td> <%= text_field "comment", "author", :size => 20 %> <small><a href="javascript:Element.toggle('guest_url')">(leave url &#187;)</a></small></td>
+      <td> <%= text_field "comment", "author", :size => 20 %> <small><%= link_to_function("(leave url/email &#187;)", "Element.toggle('guest_url'); Element.toggle('guest_email')") %></small></td>
     </tr>
     <tr id="guest_url" style="display:none;">
       <td><p><label for="comment_url">Your blog</label></p></td>
       <td> <%= text_field "comment", "url" %></td>
+    </tr>
+    <tr id="guest_email" style="display:none;">
+      <td><p><label for="comment_email">Your email</label></p></td>
+      <td> <%= text_field "comment", "email" %></td>
     </tr>
     <tr>
       <td><p><label for="comment_body">Your message</label></p></td>

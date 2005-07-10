@@ -4,11 +4,17 @@ module ArticlesHelper
     return unless controller.session[:user]
     type = model.class.to_s.downcase
     tag = []
-    tag << link_to_remote('nuke', {
-        :url => { :action => "nuke_#{type}", :id => model }, 
-        :complete => visual_effect(:puff, "#{type}-#{model.id}", :duration => 0.6),
-        :confirm => "Are you sure you want to delete this #{type}?"
-      }, :class => "admintools", :id => "admin_#{type}_#{model.id}", :style => "display: none")
+    tag << content_tag("div",
+      link_to_remote('nuke', {
+          :url => { :action => "nuke_#{type}", :id => model }, 
+          :complete => visual_effect(:puff, "#{type}-#{model.id}", :duration => 0.6),
+          :confirm => "Are you sure you want to delete this #{type}?"
+        }, :class => "admintools") <<
+      link_to('edit', {
+        :controller => "admin/#{case type when 'trackback': type else type.pluralize end}/article/#{model.article.id}",
+        :action => "edit", :id => model 
+        }, :class => "admintools"),
+      :id => "admin_#{type}_#{model.id}", :style => "display: none")
     tag.join(" | ")
   end
 
