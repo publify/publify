@@ -21,7 +21,8 @@ module ArticlesHelper
   def onhover_show_admin_tools(type, id = nil)
     return unless controller.session[:user]
     tag = []
-    %w{ onmouseover onmouseout }.each { |t| tag << %{ #{t}="#{type}Block.hover(#{ id unless id.nil? })" } }
+    tag << %{ onmouseover="Element.show('admin_#{[type, id].compact.join('_')}');" }
+    tag << %{ onmouseout="Element.hide('admin_#{[type, id].compact.join('_')}');" }
     tag
   end
   
