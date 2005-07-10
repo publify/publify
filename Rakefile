@@ -214,3 +214,8 @@ Rake::GemPackageTask.new(spec) do |p|
   p.need_tar = true
   p.need_zip = true
 end
+
+desc "Migrate the database according to the migrate scripts in db/migrate"
+task :migrate => :environment do
+  ActiveRecord::Migrator.up(File.dirname(__FILE__) + '/db/migrate/')
+end
