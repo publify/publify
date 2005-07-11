@@ -56,6 +56,6 @@ function complete(request) {
   if (request.status == 200) {commentAdded()};  
 }
 
-register_onload(function() { if( $('commentform') && $('commentform').elements[1].value != '' || $('commentform').elements[2].value != '' ) { Element.show('guest_url'); Element.show('guest_email');} })
+register_onload(function() { if( $('commentform') && ($('commentform').elements[1].value != '' || $('commentform').elements[2].value != '') ) { Element.show('guest_url'); Element.show('guest_email');} })
 register_onload(function() { $('q').setAttribute('autocomplete', 'off'); })
 //register_onload(function () { show_date_as_local_time(); })
