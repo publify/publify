@@ -16,8 +16,9 @@ class CategoryTest < Test::Unit::TestCase
     @personal.articles << @article3
 
     c = Category.find_all_with_article_counters
-    
-    assert_equal @software.articles_count, c.first.article_counter.to_i
-    assert_equal @personal.articles_count, c.last.article_counter.to_i
+
+    assert_equal @hardware.articles_count, c[0].article_counter.to_i
+    assert_equal @personal.articles_count, c[1].article_counter.to_i
+    assert_equal @software.articles_count, c[2].article_counter.to_i
   end
 end

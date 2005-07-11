@@ -4,10 +4,10 @@ class Category < ActiveRecord::Base
   
   def self.find_all_with_article_counters
     self.find_by_sql(%{
-      SELECT *, COUNT(*) AS article_counter
+      SELECT *, IF(article_id IS NULL, 0, COUNT(*)) AS article_counter
       FROM categories LEFT JOIN articles_categories ON articles_categories.category_id = categories.id
       GROUP BY categories.id
-      ORDER BY position
+      ORDER BY position, name
       })
   end
 end
