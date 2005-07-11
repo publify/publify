@@ -35,12 +35,16 @@ class ArticlesController < ApplicationController
   end
   
   def find_by_date
-    @pages = Paginator.new self, Article.count_by_date(params[:year], params[:month], params[:day]), config[:limit_article_display], params[:page]
-    @articles = Article.find_all_by_date(params[:year], params[:month], params[:day], @pages.current.to_sql)
-    
+    @articles = Article.find_all_by_date(params[:year], params[:month], params[:day])
+    @pages = Paginator.new self, @articles.size, config[:limit_article_display], params[:page]
+
     if @articles.empty?
       error("No posts found...")
     else
+      start = @pages.current.offset
+      stop  = (@pages.current.next.offset - 1) rescue @articles.size
+      @articles = @articles.slice(start..stop)
+
       render :action => "index"              
     end
   end  

@@ -41,9 +41,9 @@ class Article < ActiveRecord::Base
   end
   
   # Find all articles on a certain date
-  def self.find_all_by_date(year, month = nil, day = nil, limit = nil)  
+  def self.find_all_by_date(year, month = nil, day = nil)
     from, to = self.time_delta(year, month, day)
-    Article.find(:all, :conditions => ["articles.created_at BETWEEN ? AND ?", from, to], :order => 'articles.created_at DESC', :limit => limit, :include => [:categories, :trackbacks, :comments])
+    Article.find(:all, :conditions => ["articles.created_at BETWEEN ? AND ?", from, to], :order => 'articles.created_at DESC', :include => [:categories, :trackbacks, :comments])
   end
 
   # Find one article on a certain date
