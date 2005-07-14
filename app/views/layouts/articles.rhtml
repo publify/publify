@@ -31,8 +31,8 @@
               <%= observe_field "q", 
                   :frequency => 1, 
                   :url => { :controller => "live", :action => "search" }, 
-                  :loading => "Toggle.display('search_spinner')",
-                  :complete => "Toggle.display('search_spinner')",
+                  :loading => "Element.show('search_spinner')",
+                  :complete => "Element.hide('search_spinner')",
                   :update => "search-results" -%>
   					<%= categorylist %>
   				
