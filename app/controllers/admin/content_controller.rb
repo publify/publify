@@ -49,7 +49,7 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find(params[:id])
     @category = Category.find(params[:category_id])
     @article.categories << @category
-    
+    @article.save
     redirect_to :action => 'show', :id => @article.id
   end
 
@@ -57,7 +57,7 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find(params[:id])
     @category = Category.find(params[:category_id])
     @article.categories.delete(@category)
-    
+    @article.save    
     redirect_to :action => 'show', :id => @article.id
   end
   

@@ -1,7 +1,10 @@
 class ArticlesController < ApplicationController
-  cache_sweeper :blog_sweeper, :only => ["comment", "trackback"]
-  
   before_filter :verify_config
+
+  cache_sweeper :blog_sweeper
+  caches_page :index, :read, :permalink, :category, :find_by_date
+
+  verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
   def index
     @pages = Paginator.new self, Article.count, config[:limit_article_display], params[:page]
@@ -128,12 +131,6 @@ class ArticlesController < ApplicationController
     end
     render :layout => nil
   end
-  
-  
-  verify :only => [:nuke_comment, :nuke_trackback], 
-         :session => :user, 
-         :method => :post,
-         :render => { :text => 'Forbidden', :status => 403 }
   
   def nuke_comment
     comment = Comment.find(params[:id])

@@ -100,7 +100,7 @@ module ApplicationHelper
     controller.cache[hash] ||= aggregator.new(url)
   end  
   
-  def js_distance_of_time_in_words_to_now(date)
-    "<span class=\"typo_date\">#{date.gmtime.strftime("%m/%d/%Y %H:%M:%S")}</span>"
+  def date(date)
+    "<span class=\"typo_date\">#{date.gmtime.strftime("%d. %b")}</span>"
   end
 end

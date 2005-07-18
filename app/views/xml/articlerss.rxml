@@ -19,9 +19,7 @@ xml.rss "version"=>"2.0", "xmlns:dc"=>"http://purl.org/dc/elements/1.1/" do
 
     xml.item do
       xml.title "\"#{@article.title}\" by #{@article.author}"
-      content = @article.body_html
-      content += "\n" + @article.extended_html if @article.extended?
-      xml.description content
+      xml.description @article.full_html
       xml.pubDate pub_date(@article.created_at)
       xml.guid article_link(@article.title,@article)
       xml.link article_link(@article.title,@article)

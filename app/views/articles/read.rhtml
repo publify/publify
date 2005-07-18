@@ -17,9 +17,8 @@
   <%= link_to("edit", { :controller => "admin/content", :action => "edit", :id => @article },
         :class => "admintools", :style => "display: none", :id => "admin_article") if controller.session[:user] %>
   <h2><%= @article.title %></h2>
-  <p class="auth">Posted by <%=h @article.author %> <%= distance_of_time_in_words_to_now @article.created_at %> ago</p>
-  <%= @article.body_html %>
-  <%= @article.extended_html %>
+  <p class="auth">Posted by <%=h @article.author %> on <%= date @article.created_at.utc %></p>
+  <%= @article.full_html %>
 </div>
 
 <% if @article.allow_comments? -%>

@@ -66,6 +66,11 @@ class Article < ActiveRecord::Base
     end
   end
   
+  # Get the full html body
+  def full_html
+    "#{body_html}\n\n#{extended_html}"
+  end
+  
   # Converts a post title to its-title-using-dashes
   # All special chars are stripped in the process  
   def self.strip_title(title)
