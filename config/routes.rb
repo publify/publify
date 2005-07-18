@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
 
   # default   
-  map.index '', :controller  => 'articles'
-  map.index_page 'page/:page', :controller  => 'articles', :page => /\d/
-  map.admim 'admin', :controller  => 'admin/content'
+  map.index '', :controller  => 'articles', :action => 'index'
+  map.index_page 'page/:page', :controller  => 'articles', :action => 'index', :page => /\d/
+  map.admim 'admin', :controller  => 'admin/content', :action => 'index'
   
   # admin/comments controller needs parent article id
   map.connect 'admin/comments/article/:article_id/:action/:id', :controller  => 'admin/comments', :action => nil, :id => nil
