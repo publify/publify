@@ -7,9 +7,10 @@ Options +FollowSymLinks +ExecCGI
 RewriteEngine On
 # try to suggest current rss subscribers that the url moved permently
 RewriteRule ^xml/([a-z]+)$ /xml/$1/feed.xml [R=301]
-
+RewriteRule ^$ index.html [QSA]
+RewriteRule ^([^.]+)$ $1.html [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
 # In case Rails experiences terminal errors
-ErrorDocument 500 /500.html
+ErrorDocument 500 "<h2>Application Errror</h2>Typo could not be reached
