@@ -63,4 +63,39 @@ module ArticlesHelper
     "Posted in " + article.categories.collect { |c| link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name }.join(", ")
   end
 
+  # copied from ActionPack's pagination_helper.rb,
+  # but passes each page to the given block instead of using link_to directly
+  def pagination_custom_links(paginator, options={})
+    options.merge!(ActionView::Helpers::PaginationHelper::DEFAULT_OPTIONS) {|key, old, new| old}
+
+    window_pages = paginator.current.window(options[:window_size]).pages
+
+    return if window_pages.length <= 1 unless
+      options[:link_to_current_page]
+
+    first, last = paginator.first, paginator.last
+
+    returning html = '' do
+      if options[:always_show_anchors] and not window_pages[0].first?
+        html << yield(first)
+        html << ' ... ' if window_pages[0].number - first.number > 1
+        html << ' '
+      end
+
+      window_pages.each do |page|
+        if paginator.current == page && !options[:link_to_current_page]
+          html << page.number.to_s
+        else
+          html << yield(page)
+        end
+        html << ' '
+      end
+
+      if options[:always_show_anchors] && !window_pages.last.last?
+        html << ' ... ' if last.number - window_pages[-1].number > 1
+        html << yield(last)
+      end
+    end
+  end
+
 end

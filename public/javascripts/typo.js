@@ -8,12 +8,14 @@ function show_date_as_local_time() {
   var spans = document.getElementsByTagName('span');
   for (var i=0; i<spans.length; i++) {
     if (spans[i].className.match(/\btypo_date\b/i)) {
-      system_date = Date.parse(spans[i].innerHTML);
-      with (new Date()) {
-        user_date = Date.UTC(getUTCFullYear(), getUTCMonth() , getUTCDate(), getUTCHours(), getUTCMinutes(), getUTCSeconds());
+      system_date = new Date(spans[i].title);
+      user_date = new Date();
+      delta_minutes = Math.round((user_date - system_date) / (60 * 1000));
+      if (Math.abs(delta_minutes) <= (8*7*24*60)) { // eight weeks... I'm lazy to count days for longer than that
+        spans[i].innerHTML = distance_of_time_in_words(delta_minutes) + ' ago';
+      } else {
+        spans[i].innerHTML = 'on ' + post_date.toLocaleDateString();
       }
-      delta = (user_date - system_date) / (60 * 1000);
-      spans[i].innerHTML = distance_of_time_in_words(delta);
     }
   }
 }
@@ -24,7 +26,7 @@ function distance_of_time_in_words(minutes) {
   if (minutes.isNaN) return "";
   minutes = Math.abs(minutes);
   if (minutes < 1) return ('less than a minute');
-  if (minutes < 45) return (minutes + ' minutes');
+  if (minutes < 50) return (minutes + ' minutes');
   if (minutes < 90) return ('about one hour');
   if (minutes < 1080) return (Math.round(minutes / 60) + ' hours');
   if (minutes < 1440) return ('one day');
@@ -58,4 +60,4 @@ function complete(request) {
 
 register_onload(function() { if( $('commentform') && ($('commentform').elements[1].value != '' || $('commentform').elements[2].value != '') ) { Element.show('guest_url'); Element.show('guest_email');} })
 register_onload(function() { $('q').setAttribute('autocomplete', 'off'); })
-//register_onload(function () { show_date_as_local_time(); })
+register_onload(function () { show_date_as_local_time(); })

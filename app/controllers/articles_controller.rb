@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
   def index
-    @pages = Paginator.new self, Article.count, config[:limit_article_display], params[:page]
+    @pages = Paginator.new self, Article.count, config[:limit_article_display], page_number
     @articles = Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC', :limit => config[:limit_article_display], :offset => @pages.current.offset)
   end
   
@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
     fill_from_cookies(@comment)    
     
     if @article.nil?
-      error("Post not found..")
+      error("Post not found...")
     else
       @page_title = @article.title
       render :action => "read"
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
   
   def find_by_date
     @articles = Article.find_all_by_date(params[:year], params[:month], params[:day])
-    @pages = Paginator.new self, @articles.size, config[:limit_article_display], params[:page]
+    @pages = Paginator.new self, @articles.size, config[:limit_article_display], page_number
 
     if @articles.empty?
       error("No posts found...")
@@ -52,13 +52,12 @@ class ArticlesController < ApplicationController
     end
   end  
   
-  def error(message = "Record not found")
+  def error(message = "Record not found...")
     @message = message
     render :action => "error"
   end
   
   def category
-
     if category = Category.find_by_name(params[:id])
       @articles = Article.find(:all, :conditions => [%{ published != 0
           AND articles.id = articles_categories.article_id
@@ -66,7 +65,7 @@ class ArticlesController < ApplicationController
         :joins => ', articles_categories',
         :order => "created_at DESC")
       
-      @pages = Paginator.new self, @articles.size, config[:limit_article_display], params[:page]
+      @pages = Paginator.new self, @articles.size, config[:limit_article_display], page_number
 
       start = @pages.current.offset
       stop  = (@pages.current.next.offset - 1) rescue @articles.size
@@ -79,6 +78,7 @@ class ArticlesController < ApplicationController
     end
   end
     
+  # Receive comments to articles
   def comment 
     @article = Article.find(params[:id])    
     @comment = Comment.new(params[:comment])
@@ -109,7 +109,7 @@ class ArticlesController < ApplicationController
       # url is required
       unless params.has_key?(:url) and params.has_key?(:id)
         @result = false
-        @error_message = "A url is required."
+        @error_message = "A URL is required."
       else
         begin
           article = Article.find(params[:id])
@@ -146,6 +146,12 @@ class ArticlesController < ApplicationController
   
   private
 
+    def page_number
+      page = params[:page]
+      page = page[/\d+/] unless page.nil?
+      return page
+    end
+    
     def verify_config      
       if !config.is_ok?
         if User.count == 0 
