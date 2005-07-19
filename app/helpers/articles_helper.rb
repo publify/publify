@@ -1,7 +1,6 @@
 module ArticlesHelper
   
   def admin_tools_for(model)
-    return unless controller.session[:user]
     type = model.class.to_s.downcase
     tag = []
     tag << content_tag("div",
@@ -19,9 +18,8 @@ module ArticlesHelper
   end
 
   def onhover_show_admin_tools(type, id = nil)
-    return unless controller.session[:user]
     tag = []
-    tag << %{ onmouseover="Element.show('admin_#{[type, id].compact.join('_')}');" }
+    tag << %{ onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_#{[type, id].compact.join('_')}'); }" }
     tag << %{ onmouseout="Element.hide('admin_#{[type, id].compact.join('_')}');" }
     tag
   end

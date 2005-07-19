@@ -7,6 +7,7 @@ class AccountsController < ApplicationController
       if session[:user] = User.authenticate(params[:user_login], params[:user_password])
 
         flash[:notice]  = "Login successful"
+        cookies[:is_admin] = "yes"
         redirect_back_or_default :controller => "admin/general", :action => "index"
       else
         flash.now['notice']  = "Login unsuccessful"
@@ -31,6 +32,7 @@ class AccountsController < ApplicationController
   
   def logout
     session[:user] = nil
+    cookies.delete :is_admin
   end
     
   def welcome

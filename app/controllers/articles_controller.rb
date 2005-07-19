@@ -19,15 +19,11 @@ class ArticlesController < ApplicationController
     @article      = Article.find(params[:id], :include => [:categories])    
     @comment      = Comment.new
     @page_title   = @article.title
-
-    fill_from_cookies(@comment) 
   end
     
   def permalink
     @article    = Article.find_by_permalink(params[:year], params[:month], params[:day], params[:title])
     @comment    = Comment.new
-
-    fill_from_cookies(@comment)    
     
     if @article.nil?
       error("Post not found...")
@@ -161,11 +157,6 @@ class ArticlesController < ApplicationController
         end
         return false
       end
-    end
-    
-    def fill_from_cookies(comment)      
-      comment.author  ||= cookies[:author]
-      comment.url     ||= cookies[:url]
     end
     
     def rescue_action_in_public(exception)

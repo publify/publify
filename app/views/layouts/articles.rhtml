@@ -6,6 +6,7 @@
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= server_url_for :controller => 'xml', :action => 'rsd' %>" />
   <%= auto_discovery_link_tag :rss, :controller => 'xml', :action => 'rss' %>
   <%= stylesheet_link_tag "azure" %>
+  <%= javascript_include_tag "cookies" %>
   <%= javascript_include_tag "prototype" %>
   <%= javascript_include_tag "effects" %>
   <%= javascript_include_tag "typo" %>

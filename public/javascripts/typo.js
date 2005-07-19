@@ -55,9 +55,19 @@ function complete(request) {
   Element.show('commentform');
   $('form-submit-button').disabled = false;  
 
-  if (request.status == 200) {commentAdded()};  
+  if (request.status == 200) { commentAdded() };  
 }
 
-register_onload(function() { if( $('commentform') && ($('commentform').elements[1].value != '' || $('commentform').elements[2].value != '') ) { Element.show('guest_url'); Element.show('guest_email');} })
+register_onload(function() {
+  if ($('commentform')) {
+    $('commentform').elements('comment[author]').value = getCookie('author');
+    $('commentform').elements('comment[url]').value = getCookie('url');
+    
+    if ($('commentform').elements('comment[url]').value != ''
+        || $('commentform').elements('comment[email]').value != '') {
+      Element.show('guest_url'); Element.show('guest_email');
+    }
+  }
+})
 register_onload(function() { $('q').setAttribute('autocomplete', 'off'); })
 register_onload(function () { show_date_as_local_time(); })
