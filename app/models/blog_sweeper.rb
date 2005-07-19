@@ -6,7 +6,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     expire_static_pages_for(record)
   end
 
-  def after_delete(record)
+  def after_destroy(record)
     expire_xml_feeds_for(record)
     expire_static_pages_for(record)    
   end
