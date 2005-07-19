@@ -1,7 +1,7 @@
 module BloggerStructs
   class Blog < ActionWebService::Struct
     member :url,      :string
-    member :blogid,   :int
+    member :blogid,   :string
     member :blogName, :string
   end
   class User < ActionWebService::Struct
