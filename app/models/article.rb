@@ -37,13 +37,13 @@ class Article < ActiveRecord::Base
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)  
     from, to = self.time_delta(year, month, day)
-    Article.count(["articles.created_at BETWEEN ? AND ?", from, to])
+    Article.count(["articles.created_at BETWEEN ? AND ? AND articles.published != 0", from, to])
   end
   
   # Find all articles on a certain date
   def self.find_all_by_date(year, month = nil, day = nil)
     from, to = self.time_delta(year, month, day)
-    Article.find(:all, :conditions => ["articles.created_at BETWEEN ? AND ?", from, to], :order => 'articles.created_at DESC', :include => [:categories, :trackbacks, :comments])
+    Article.find(:all, :conditions => ["articles.created_at BETWEEN ? AND ? AND articles.published != 0", from, to], :order => 'articles.created_at DESC', :include => [:categories, :trackbacks, :comments])
   end
 
   # Find one article on a certain date
