@@ -125,7 +125,7 @@ class ArticlesController < ApplicationController
         end
       end
     end
-    render :layout => nil
+    render :layout => false
   end
   
   def nuke_comment

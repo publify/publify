@@ -10,7 +10,7 @@ module ArticlesHelper
           :confirm => "Are you sure you want to delete this #{type}?"
         }, :class => "admintools") <<
       link_to('edit', {
-        :controller => "admin/#{case type when 'trackback': type else type.pluralize end}/article/#{model.article.id}",
+        :controller => "admin/#{type.pluralize}/article/#{model.article.id}",
         :action => "edit", :id => model 
         }, :class => "admintools"),
       :id => "admin_#{type}_#{model.id}", :style => "display: none")
