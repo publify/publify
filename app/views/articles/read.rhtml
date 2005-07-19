@@ -17,7 +17,7 @@
   <%= link_to("edit", { :controller => "admin/content", :action => "edit", :id => @article },
         :class => "admintools", :style => "display: none", :id => "admin_article") %>
   <h2><%= @article.title %></h2>
-  <p class="auth">Posted by <%=h @article.author %> on <%= js_distance_of_time_in_words_to_now @article.created_at.utc %></p>
+  <p class="auth">Posted by <%=h @article.author %> <%= js_distance_of_time_in_words_to_now @article.created_at.utc %></p>
   <%= @article.full_html %>
 </div>
 

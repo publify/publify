@@ -60,11 +60,11 @@ function complete(request) {
 
 register_onload(function() {
   if ($('commentform')) {
-    $('commentform').elements('comment[author]').value = getCookie('author');
-    $('commentform').elements('comment[url]').value = getCookie('url');
+    $('commentform').elements['comment[author]'].value = getCookie('author');
+    $('commentform').elements['comment[url]'].value = getCookie('url');
     
-    if ($('commentform').elements('comment[url]').value != ''
-        || $('commentform').elements('comment[email]').value != '') {
+    if ($('commentform').elements['comment[url]'].value != ''
+        || $('commentform').elements['comment[email]'].value != '') {
       Element.show('guest_url'); Element.show('guest_email');
     }
   }
