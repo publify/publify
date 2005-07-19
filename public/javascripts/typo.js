@@ -14,7 +14,7 @@ function show_date_as_local_time() {
       if (Math.abs(delta_minutes) <= (8*7*24*60)) { // eight weeks... I'm lazy to count days for longer than that
         spans[i].innerHTML = distance_of_time_in_words(delta_minutes) + ' ago';
       } else {
-        spans[i].innerHTML = 'on ' + post_date.toLocaleDateString();
+        spans[i].innerHTML = 'on ' + system_date.toLocaleDateString();
       }
     }
   }
