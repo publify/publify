@@ -9,6 +9,7 @@ class Configuration < ConfigManager
   setting :comment_text_filter, :string, ''
   setting :limit_article_display, :int, 10
   setting :limit_rss_display, :int, 10  
+  setting :geourl_location, :string, ''
 end
 
 def config

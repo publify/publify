@@ -38,6 +38,11 @@
 
     <div><label for="limit_rss_display">Limit RSS Articles:</label>
     <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /></div>
+
+    <p>Would you like to include your latitude and longitude in your blog's HTML pages? See <a href="http://geourl.org">GeoURL</a> for details.  <br/>Example: <tt>47.774,-122.201</tt></p>
+
+    <div><label for="geourl_location">Latitude, Longitude:</label>
+    <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" /></div>
   
   </div>
   
