@@ -7,6 +7,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   login varchar(40) default NULL,
   password varchar(40) default NULL,
+  name text default NULL,
+  email text default NULL,
   UNIQUE (login)
 );
 
@@ -24,6 +26,7 @@ CREATE TABLE articles (
   allow_pings int default NULL,
   published int NOT NULL default '1',
   text_filter varchar(20) default NULL,
+  user_id int default NULL,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
 );
@@ -115,4 +118,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (1);
+INSERT into schema_info VALUES (3);

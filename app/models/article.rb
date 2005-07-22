@@ -7,6 +7,7 @@ class Article < ActiveRecord::Base
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
   
   has_and_belongs_to_many :categories
+  belongs_to :user
   
   def stripped_title
     self.class.strip_title(title)

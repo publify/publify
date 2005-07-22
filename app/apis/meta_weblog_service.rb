@@ -96,6 +96,7 @@ class MetaWeblogService < TypoWebService
     article.published   = publish ? 1 : 0
     article.author      = username
     article.created_at  = Time.now
+    article.user        = @user
 
     # Movable Type API support
     article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
@@ -207,5 +208,4 @@ class MetaWeblogService < TypoWebService
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
   end
-
 end

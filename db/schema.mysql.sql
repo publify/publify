@@ -2,6 +2,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
   `login` varchar(80) default NULL,
   `password` varchar(40) default NULL,
+  `name` varchar(80) default NULL,
+  `email` varchar(80) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `login` (`login`)
 ) TYPE=MyISAM;
@@ -20,6 +22,7 @@ CREATE TABLE `articles` (
   `allow_pings` tinyint(1) default NULL,
   `published` tinyint(1) NOT NULL default '1',
   `text_filter` varchar(20) default NULL,
+  `user_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
@@ -114,4 +117,4 @@ CREATE TABLE `schema_info` (
   `version` int(11) default NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT into `schema_info` VALUES (1);
+INSERT into `schema_info` VALUES (3);

@@ -31,6 +31,10 @@
     <div><label for="default_allow_pings">Trackbacks:</label>
     <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_pings)%> /><input name="setting[default_allow_pings]" type="hidden" value="0"/></div>
 
+    <p>Should articles provide a <tt>mailto:</tt> link to mail the author?</p>
+    <div><label for="link_to_author">Link to author:</label>
+    <input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/></div>
+
     <p>How many Articles do you want to display by default on frontpage, as search results or in your RSS feeds?</p>
 
     <div><label for="limit_article_display">Limit Articles:</label>

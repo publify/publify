@@ -12,12 +12,16 @@
     <table>
     <tr>
       <th>User Login name</th>
+      <th>Display Name</th>
+      <th>Email Address</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
     <% for user in @users -%>
     <tr>
       <td class="field"><%= image_tag 'checked.gif' %> <%=h user.login %></td>
+      <td class="field"><%=h user.name %></td>
+      <td class="field"><%=h user.email %></td>
       <td class="operation"><%= link_to_edit user %></td>
       <td class="operation"><%= link_to_destroy user %></td>    
     </tr>  
