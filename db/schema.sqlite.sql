@@ -3,7 +3,7 @@ CREATE TABLE 'users' (
   'login'       VARCHAR(80) DEFAULT NULL,
   'password'    VARCHAR(40) DEFAULT NULL,
   'name'	VARCHAR(80) DEFAULT NULL,
-  'email'	VARCHAR(80) DEFAULT NULL,
+  'email'	VARCHAR(80) DEFAULT NULL
 );
 
 CREATE TABLE 'articles' (
