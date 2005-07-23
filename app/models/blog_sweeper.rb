@@ -17,6 +17,8 @@ class BlogSweeper < ActionController::Caching::Sweeper
       expire_static_pages_for(record.article)
     when Article
       y, m, d = record.created_at.year, sprintf("%.2d", record.created_at.month), sprintf("%.2d", record.created_at.day)
+
+      expire_page :controller => "/articles", :action => "archives"
       
       expire_page :controller => "/articles", :action => "read", :id => record.id
       expire_page :controller => "/articles", :action => "permalink", :year => y, :month => m, :day => d, :title => record.stripped_title

@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :verify_config
 
   cache_sweeper :blog_sweeper
-  caches_page :index, :read, :permalink, :category, :find_by_date
+  caches_page :index, :read, :permalink, :category, :find_by_date, :archives
 
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
@@ -13,6 +13,10 @@ class ArticlesController < ApplicationController
   
   def search
     @articles = Article.search(params[:q])
+  end
+
+  def archives
+    @articles = Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC', :include => [:categories])
   end
   
   def read    

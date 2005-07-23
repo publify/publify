@@ -47,6 +47,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_rendered_file "index"
   end
   
+  # Archives page
+  def test_archives
+    get :archives
+    assert_response :success
+    assert_rendered_file "archives"
+  end
+  
   # Posts for given day
   def test_find_by_date
     get :find_by_date, :year => 2005, :month => 01, :day => 01
