@@ -2,9 +2,10 @@
   <p>Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button.</p>
 
   <%= form_remote_tag :update=>'messages',:url=>{:action=>'publish'} %>
-    <input value="Publish changes" type="submit"/>
-  <%= end_form_tag %>
+  <input value="Publish changes" class="space" type="submit"/>
+ 
   <div id="messages"></div>
+  
   <div id="sidebar-config">
     <div id="available" class="dropbox">
       <h3>Available Items</h3>
@@ -18,4 +19,8 @@
       </div>
     </div>
     <br clear="all" />
+    
+    <input value="Publish changes" class="space" type="submit"/>
+    
+    <%= end_form_tag %>
   </div>

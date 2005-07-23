@@ -408,7 +408,7 @@ label {
 
 .r { text-align: right; }
 .c { text-align: center; }
-
+.space { margin: 10px; }
 /*
  *=Users
  */

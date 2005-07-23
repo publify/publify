@@ -3,7 +3,7 @@ require 'rexml/document'
 
 # Example:
 # 
-# upcoming = Upcoming.new('http://www.flickr.com/services/feeds/photos_public.gne?id=40235412@N00&format=rss_200')
+# upcoming = Upcoming.new('http://upcoming.org/syndicate/my_events/<your_user_id>')
 # upcoming.events.each do |event|
 #   puts "#{event.title} @  #{event.timespan} #{event.link} : #{event.description}"
 # end
