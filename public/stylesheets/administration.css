@@ -325,17 +325,22 @@ label {
    width: 300px;
  }
 
- #active {
+ #active, #cnt-active {
    width: 300px;
-   margin-left: 320px;
    min-height: 200px;
  }
 
+ #cnt-active {
+   margin-left: 320px;
+   border: 1px solid #333;
+   background: #c8d9ed;
+ }
+ 
  #available , #active {
    background: #c8d9ed;
  }
 
- #available h3, #active h3 {
+ #available h3, #active h3, #cnt-active h3 {
    background: #859aa8;
    color: #333;
    margin: 0 0 10px 0;
@@ -344,7 +349,6 @@ label {
  
  .dropbox { 
    width: 270px;
-   margin:1em;
  }
 
  .handle { 

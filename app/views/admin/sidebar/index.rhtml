@@ -11,9 +11,11 @@
       <%= render :partial => 'availables', :object => @available %>
     </div>
 
-    <div id="active" class="dropbox">
+    <div id="cnt-active">
       <h3>Active Sidebar items</h3>
-      <%= render :partial => 'actives', :object => @active %>
+      <div id="active" class="dropbox">
+        <%= render :partial => 'actives', :object => @active %>
+      </div>
     </div>
     <br clear="all" />
   </div>
