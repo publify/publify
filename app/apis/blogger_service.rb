@@ -19,7 +19,8 @@ class BloggerApi < ActionWebService::API::Base
   inflect_names false
 
   api_method :deletePost,
-    :expects => [ {:appkey => :string}, {:postid => :int}, {:username => :string}, {:password => :string}, {:publish => :int} ],
+    :expects => [ {:appkey => :string}, {:postid => :int}, {:username => :string}, {:password => :string},
+                  {:publish => :bool} ],
     :returns => [:bool]
 
   api_method :getUserInfo,
@@ -29,6 +30,11 @@ class BloggerApi < ActionWebService::API::Base
   api_method :getUsersBlogs,
     :expects => [ {:appkey => :string}, {:username => :string}, {:password => :string} ],
     :returns => [[BloggerStructs::Blog]]
+
+  api_method :newPost,
+    :expects => [ {:appkey => :string}, {:blogid => :string}, {:username => :string}, {:password => :string},
+                  {:content => :string}, {:publish => :bool} ],
+    :returns => [:int]
 end
 
 
@@ -66,4 +72,20 @@ class BloggerService < TypoWebService
       :blogName => config[:blog_name]
     )]
   end
+
+  def newPost(appkey, blogid, username, password, content, publish)
+    title, body = content.match(%r{^<title>(.+?)</title>(.+)$}i).captures rescue nil
+
+    article = Article.new 
+    article.body        = body || content || ''
+    article.title       = title || content[0..30] || ''
+    article.published   = publish ? 1 : 0
+    article.author      = username
+    article.created_at  = Time.now
+    article.user        = @user
+
+    article.save
+    article.id
+  end
+
 end

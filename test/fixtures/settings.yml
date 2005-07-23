@@ -48,3 +48,13 @@ comment_text_filter:
   id: 10
   name: comment_text_filter
   value: textile
+
+link_to_author:
+  id: 11
+  name: link_to_author
+  value: 0
+
+geourl_location:
+  id: 12
+  name: geourl_location
+  value: ""

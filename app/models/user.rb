@@ -60,8 +60,6 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
   validates_length_of :login, :within => 3..40
-  validates_presence_of :login
-
-  #validates_presence_of :password, :password_confirmation
-  #validates_length_of :password, :within => 5..40
+  validates_length_of :password, :within => 5..40, :on => :create
+  validates_presence_of :login, :password, :password_confirmation
 end

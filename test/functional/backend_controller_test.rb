@@ -31,6 +31,34 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal result.first['blogName'], 'test blog'
   end
 
+  def test_blogger_get_user_info
+    args = [ 'foo', 'tobi', 'whatever' ]
+    
+    result = invoke_layered :blogger, :getUserInfo, *args
+    assert_equal 'tobi', result['userid']
+  end
+  
+  def test_blogger_new_post
+    args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title>new post body', 1]
+
+    result = invoke_layered :blogger, :newPost, *args
+    assert_not_nil result
+    new_post = Article.find(result)
+    assert_equal "new post title", new_post.title
+    assert_equal "new post body", new_post.body
+    assert_equal @tobi, new_post.user
+  end
+  
+  def test_blogger_new_post_no_title
+    args = [ 'foo', '1', 'tobi', 'whatever', 'new post body for post without title but with a lenghty body', 1]
+
+    result = invoke_layered :blogger, :newPost, *args
+    assert_not_nil result
+    new_post = Article.find(result)
+    assert_equal "new post body for post without", new_post.title
+    assert_equal "new post body for post without title but with a lenghty body", new_post.body
+  end
+
   def test_blogger_fail_authentication
     args = [ 'foo', 'tobi', 'using a wrong password' ]
     # This will be a little more useful with the upstream changes in [1093]
