@@ -1,0 +1,20 @@
+  <%= start_form_tag :action=>"new" %>
+<p>
+  <label for="articles_title">Title:</label><br />
+  <%= text_field 'article', 'title'  %>
+</p>
+<p>
+<p>
+  <label for="categories[]">Categories:</label><br />
+  <select name="categories[]" multiple="multiple" size="3" style="width:250px;">
+  <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
+  </select>
+</p>
+<p>
+  <label for="articles_body">Article:</label><br />
+  <%= text_area 'article', 'body', :rows => 10  %>
+</p>
+<div id="operations">
+  <%= save("Save Post") %> or <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" >Cancel</a>
+</div>
+<%= end_form_tag %>
