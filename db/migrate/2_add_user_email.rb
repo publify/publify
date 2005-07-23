@@ -5,6 +5,7 @@ class AddUserEmail < ActiveRecord::Migration
 
     User.find(:all).each do |u|
       u.name=u.login
+      u.password = ''
       u.save
     end
   end

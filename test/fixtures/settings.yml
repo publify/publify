@@ -58,3 +58,8 @@ geourl_location:
   id: 12
   name: geourl_location
   value: ""
+  
+blog_subtitle:
+  id: 13
+  name: blog_subtitle
+  value: test subtitle  

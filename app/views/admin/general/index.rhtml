@@ -14,10 +14,14 @@
   <div id="settings">
   <div id="gensettings" class="set" style="margin-top:10px;">
   <h3>General Settings</h3>
-  <p>
-        <label for="blog_name">Blog name:</label> 
-        <input name="setting[blog_name]" id="blog_name" type="text" value="<%= config_value(:blog_name) %>" />
-  </p>
+    <p>
+      <label for="blog_name">Blog name:</label> 
+      <input name="setting[blog_name]" id="blog_name" type="text" value="<%= config_value(:blog_name) %>" />
+    </p>
+    <p>
+      <label for="blog_subtitle">Blog subtitle:</label> 
+      <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%= config_value(:blog_subtitle) %>" />
+    </p>
       <p>
       <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_comments)%> />
       <input name="setting[default_allow_comments]" type="hidden" value="0"/>
