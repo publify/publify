@@ -9,6 +9,7 @@ class Admin::ContentController < Admin::BaseController
 
   def list
     @articles = Article.find(:all, :order => "created_at DESC")
+    @categories = Category.find(:all)
   end
 
   def show

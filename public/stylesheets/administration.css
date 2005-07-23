@@ -409,6 +409,7 @@ label {
 .r { text-align: right; }
 .c { text-align: center; }
 .space { margin: 10px; }
+
 /*
  *=Users
  */
@@ -420,4 +421,16 @@ div.user {
   background: #eee;
   float: left;
   padding: 5px;
+}
+
+/*
+ *=MISC CONTAINERS
+ */
+
+#quick-post {
+  background: #c8d9ed;
+  padding: 10px;
+  border: 1px solid #9cabba;
+  margin-left: 10px;
+  border-top: none;
 }
