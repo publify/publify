@@ -1,77 +1,91 @@
-<div id="sidebar">
-</div>
+  <% @page_heading = 'Blog settings' %>
 
-<div id="content">
-  <h1>Blog settings</h1>
   <%= start_form_tag :action => 'update'%>
-
-  <div class="form">
-    <h2>General Settings</h2>
-
-    <div><label for="blog_name">Name your blog:</label>
-    <input name="setting[blog_name]" id="blog_name" type="text" value="<%= config_value(:blog_name) %>" /></div>
-
-    <p>Choose a text filter for your blog. Your options depend on which gems you have installed. Following configurations are supported. RedCloth, BlueCloth and RubyPants gems are supported</p> 
-
-    <div><label for="text_filter">Text filter:</label>
-    <select name="setting[text_filter]" id="text_filter">
-    <%= options_for_select text_filter_options, config_value(:text_filter) %>
-    </select></div>
-
-    <div><label for="comment_text_filter">Comments filter:</label>
-    <select name="setting[comment_text_filter]" id="comment_text_filter">
-    <%= options_for_select text_filter_options, config_value(:comment_text_filter) %>
-    </select></div>
-
-    <p>Do you want comments and trackbacks to be enabled by default?</p>
-
-    <div><label for="default_allow_comments">Comments:</label>
-    <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_comments)%> /><input name="setting[default_allow_comments]" type="hidden" value="0"/></div>
-
-    <div><label for="default_allow_pings">Trackbacks:</label>
-    <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_pings)%> /><input name="setting[default_allow_pings]" type="hidden" value="0"/></div>
-
-    <p>Should articles provide a <tt>mailto:</tt> link to mail the author?</p>
-    <div><label for="link_to_author">Link to author:</label>
-    <input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/></div>
-
-    <p>How many Articles do you want to display by default on frontpage, as search results or in your RSS feeds?</p>
-
-    <div><label for="limit_article_display">Limit Articles:</label>
-    <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= config_value(:limit_article_display) %>" /></div>
-
-    <div><label for="limit_rss_display">Limit RSS Articles:</label>
-    <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /></div>
-
-    <p>Would you like to include your latitude and longitude in your blog's HTML pages? See <a href="http://geourl.org">GeoURL</a> for details.  <br/>Example: <tt>47.774,-122.201</tt></p>
-
-    <div><label for="geourl_location">Latitude, Longitude:</label>
-    <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" /></div>
-
+  
+  <div class="tasks">
+    <h3>Which settings group would you like to edit?</h3>
+    <ul>
+      <li><a href="#gensettings" onclick="new Effect.ScrollTo('gensettings')">General Settings</a></li>
+      <li><a href="#textfilter" onclick="new Effect.ScrollTo('textfilter')">Text Filter</a></li>
+      <li><a href="#spam" onclick="new Effect.ScrollTo('spam')">Spam Protection</a></li>
+    </ul>
   </div>
+  
+  <div id="settings">
+  <div id="gensettings" class="set" style="margin-top:10px;">
+  <h3>General Settings</h3>
+  <p>
+        <label for="blog_name">Blog name:</label> 
+        <input name="setting[blog_name]" id="blog_name" type="text" value="<%= config_value(:blog_name) %>" />
+  </p>
+      <p>
+      <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_comments)%> />
+      <input name="setting[default_allow_comments]" type="hidden" value="0"/>
+        <label for="default_allow_comments">Enable comments by default</label>
+      </p>
+      <p>
+      <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_pings)%> />
+      <input name="setting[default_allow_pings]" type="hidden" value="0"/>
+        <label for="default_allow_pings">Enable Trackbacks by default</label>
+      </p>
+      <p>
+        <label for="limit_article_display">Display </label>
+        <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= config_value(:limit_article_display) %>" /> articles on my homepage by default.
+      </p>
+      <p>
+        <label for="limit_rss_display">Display </label>
+        <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /> articles in my rss feed by default.
+      </p>
+      <p>Would you like to include your latitude and longitude in your blog's HTML pages? See <a href="http://geourl.org">GeoURL</a> for details.  <br/>Example: <tt>47.774,-122.201</tt></p>
 
-  <div class="form">
-    <h2>Spam Protection</h2>
-
-    <p>Choose if you want to use Spam Protection at all.</p>
-
-    <div><label for="sp_global">Enable:</label>
-    <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_global)%> /><input name="setting[sp_global]" type="hidden" value="0"/></div>
-
-    <p>Typo can automatically close articles for you after a certain amount of days. Typically spammers send their spam to old posts.</p>
-
-    <div><label for="sp_article_auto_close">Max Age:</label>
-    <input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= config_value(:sp_article_auto_close) %>" /> days</div>
-
-    <p>Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them.</p>
-
-    <div><label for="sp_url_limit">Max URLs:</label>
-    <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= config_value(:sp_url_limit) %>" /> links</div>
-  </div>  
-
-  <div id="operations">
-    <%= save %>  
+      <p><label for="geourl_location">Latitude, Longitude:</label>
+      <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" /></p>      
+      
+      <p class="r"><%= save("Save My Settings") %></p>
+  </div>
+  
+  
+  <div id="textfilter" class="set">
+  <h3>Text Filter</h3>
+        <p class="note">Your options depend on which gems you have installed. Following configurations are supported. <a href="http://www.whytheluckystiff.net/ruby/redcloth/" title="gem install redcloth">RedCloth</a>, <a href="http://www.deveiate.org/projects/BlueCloth">BlueCloth</a> and <a href="http://chneukirchen.org/blog/static/projects/rubypants.html">RubyPants</a> gems are supported.</p> 
+      <p>
+        <select name="setting[text_filter]" id="text_filter">
+          <%= options_for_select text_filter_options, config_value(:text_filter) %>
+        </select>
+        <label for="text_filter">Article filter</label> 
+      </p>
+      <p>
+        <select name="setting[comment_text_filter]" id="comment_text_filter">
+        <%= options_for_select text_filter_options, config_value(:comment_text_filter) %>
+        </select>
+        <label for="comment_text_filter">Comments filter</label> 
+      </p>
+      <p class="r"><%= save("Save My Settings") %></p>
+    </div>
+    
+    
+    <div id="spam" class="set">
+        <h3>Spam Protection</h3>
+        <p>
+          <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_global)%> /><input name="setting[sp_global]" type="hidden" value="0"/>
+          <label for="sp_global">Enable spam protection</label>
+        </p>
+        <p>
+          <label for="sp_article_auto_close">Disable comments after</label>
+          <input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= config_value(:sp_article_auto_close) %>" /> days
+          <br /><small>(Set to 0 to never disable comments)</small>
+        </p>
+        <p>Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them.</p>
+        <p>
+          <label for="sp_url_limit">Max URLs:</label> 
+          <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= config_value(:sp_url_limit) %>" /> links
+          <br /><small>(Set to 0 to never reject comments)</small>
+        </p>
+        <p class="r"><%= save("Save My Settings") %></p>
+    </div>
+ </div>
+  <div id="operations" class="tasks">
+    <%= save("Save My Settings") %>  
   </div>
 
   <%= end_form_tag %>
-</div>

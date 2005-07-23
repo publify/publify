@@ -77,7 +77,9 @@
  #tabs-container {
    width: 100%;
    padding: 0;
+   height: 16px;
    margin-top: 8px;
+   border-bottom: 1px solid #637987;
    }
 
   #tabs {
@@ -112,9 +114,15 @@
     border-color: #900;
    }
 
-  #tabs li a#current {
+  #tabs li a.active {
     background: white;
    }
+
+  #tabs li a.active:hover {
+   color: #777;
+   background: #fff;
+   border-color: #637987;
+  }
 
 
 /*
@@ -145,13 +153,13 @@
   padding: 2px 5px;
   margin-right: 5px;
   text-decoration: none;
-  border-bottom: 1px dotted #666;
   }
 
 .tasks li a:hover {
   background: #4A611C;
   color: #fff;
   }
+  
 
 /*
  * =HEADINGS             
@@ -307,7 +315,6 @@ label {
 
 #info a {
   color: #fff;
-  border-bottom: 1px dotted #fff;
   }
 
 #info a:hover {

@@ -27,11 +27,11 @@
       	
   	<div id="tabs-container">
   	  <ul id="tabs">
-  	    <li><%= link_to_section "General", :controller=>"/admin/general" rescue nil %></li>
-  	    <li><%= link_to_section "Articles", :controller=>"/admin/content" rescue nil %></li>
-  	    <li><%= link_to_section "Users", :controller=>"/admin/users" rescue nil %></li>
-  	    <li><%= link_to_section "Categories", :controller=>"/admin/categories" rescue nil %></li>
-  	    <li><%= link_to_section "Blacklist", :controller=>"/admin/blacklist" rescue nil %></li>
+  	    <%= tab "General", :controller=>"/admin/general", :action => 'index' %>
+  	    <%= tab "Articles", :controller=>"/admin/content", :action => 'index' %>
+  	    <%= tab "Users", :controller=>"/admin/users", :action => 'index' %>
+  	    <%= tab "Categories", :controller=>"/admin/categories", :action => 'index' %>
+  	    <%= tab "Blacklist", :controller=>"/admin/blacklist", :action => 'index' %>
   	  </ul>
   	</div>  
 
