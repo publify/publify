@@ -37,9 +37,8 @@
         <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /> articles in my rss feed by default.
       </p>
       
-      <p>Should articles provide a <tt>mailto:</tt> link to mail the author?</p>
-      <p><label for="link_to_author">Link to author:</label>
-      <input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/></p>
+      <p>Should the blog show mailto: links to your email address?</p>
+      <p><input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/> <label for="link_to_author">Enable E-Mail public display</label></p>
       
       <p>Would you like to include your latitude and longitude in your blog's HTML pages? See <a href="http://geourl.org">GeoURL</a> for details.  <br/>Example: <tt>47.774,-122.201</tt></p>
 
@@ -71,6 +70,7 @@
     
     <div id="spam" class="set">
         <h3>Spam Protection</h3>
+        <p>Enabling spam protection will make typo compare the IP address of posters against blacklists. Good defense against spam bots.</p>
         <p>
           <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_global)%> /><input name="setting[sp_global]" type="hidden" value="0"/>
           <label for="sp_global">Enable spam protection</label>

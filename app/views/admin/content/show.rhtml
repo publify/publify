@@ -11,6 +11,7 @@
     <div><%=@article.body_html %></div>
     <div><%=@article.extended_html %></div>
     <p class="meta">Posted: <%=h @article.created_at %> by <%=h @article.author %></p>
+    <p class="meta">Published: <%=h (@article.published.zero? ? "No" : "Yes") %></p>
     <p>Lasted updated <%=h @article.updated_at %></p>    
   </div>
     
