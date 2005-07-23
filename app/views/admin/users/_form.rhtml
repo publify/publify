@@ -4,8 +4,14 @@
   <label for="user_login">Login:</label><br />
   <%= text_field 'user', 'login'  %>
 </p>
-<label for="user_login">Display Name:</label><%= text_field 'user', 'name'  %><br/>
-<label for="user_email">Email:</label><%= text_field 'user', 'email'  %><br/>
+<p>
+  <label for="user_login">Display Name:</label><br/>
+  <%= text_field 'user', 'name'  %>
+</p>
+<p>
+<label for="user_email">Email:</label> <small>(this will be shown publically if supplied)</small><br/>
+<%= text_field 'user', 'email'  %>
+</p>
 <p>
   <label for="user_password">Password:</label><br />
   <%= password_field 'user', 'password'  %>

@@ -3,6 +3,6 @@
   <% content_for('tasks') do %>
     <%= task_new 'Add new user' %>
   <% end %> 
-  <div class="list" id="users">	
-    <%= render :partial => 'users' %>
+  <div id="users">	
+    <%= render :partial => 'user', :collection => @users  %>
   </div>

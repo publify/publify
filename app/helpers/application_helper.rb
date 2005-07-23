@@ -108,7 +108,8 @@ module ApplicationHelper
   end  
   
   def js_distance_of_time_in_words_to_now(date)
-    "<span class=\"typo_date\" title=\"#{date.utc.strftime("%a, %d %b %Y %H:%M:%S %Z")}\"></span>"
+    time = date.utc.strftime("%a, %d %b %Y %H:%M:%S %Z")
+    %{<script type="text/javascript">document.write(get_local_time_for_date("#{time}"));</script><noscript>on #{time}</noscript>}
   end
   
   def date(date)

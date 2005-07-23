@@ -37,10 +37,10 @@ module Admin::BaseHelper
   end    
   
   def cancel(url = {:action => 'list'})
-    "<input type=\"button\" value=\"Cancel\" style=\"width: auto;\" onclick=\"window.location.href = '#{url_for url}';\" />"
+    link_to "Cancel", url
   end
 
-  def save(val = "OK")
+  def save(val = "Store")
     '<input type="submit" value="' + val + '" class="primary" />'
   end
 

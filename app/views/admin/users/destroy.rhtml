@@ -3,8 +3,12 @@
   <% content_for('tasks') do %>
     <%= task_show 'Show this user', @user.id %>
   <% end %> 
+
+  <h3>Really delete user "<%= @user.name || @user.login %>" ?</h3>
+  <br/>
+
+
   <%= start_form_tag %>
   <%= hidden_field "user", "id" %>
-
-  <%= confirm_delete("Delete this user") %>
+  <%= confirm_delete("Yes...") %>
   <%= end_form_tag %>

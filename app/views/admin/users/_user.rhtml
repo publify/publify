@@ -1,0 +1,4 @@
+<div class="user">
+  <strong><%= link_to h(user.login), {:action => "show", :id => user.id} %><strong><br/>
+  <%= link_to 'Edit', :action => 'edit', :id => user  %></td> <strong>|</strong> <%= link_to 'Delete', :action => 'destroy', :id => user %>
+</div>

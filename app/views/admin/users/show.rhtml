@@ -6,7 +6,7 @@
   <% end %> 
 
   <div class="form">	
-    <% for column in User.content_columns -%>
-    <label><%= column.human_name %>:</label> <span class="static"><%=h @user.send(column.name) %></span><br/>
-    <% end -%>
+    <label>Name:</label> <span class="static"><%=h @user.name %></span><br/>
+    <label>Login:</label> <span class="static"><%=h @user.login %></span><br/>
+    <label>Email:</label> <span class="static"><%=h @user.email %></span><br/>
   </div>
