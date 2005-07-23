@@ -1,5 +1,5 @@
 <% if actives.blank? %>
-  <div>  Drag some plugins here to fill your sidebar!  </div>
+  <div class="target">  Drag some plugins here to fill your sidebar!  </div>
 <% else %>
  <%= render :partial => 'active', :collection => actives %>
 <% end %>

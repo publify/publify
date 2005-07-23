@@ -309,86 +309,72 @@ label {
  * =SIDEBAR
  */
 
-.dropbox { 
-  border: 1px dashed #ccc;
-  width:312px;
-  margin:1em;
+
+ #sidebar-config {
+  /* Safari Fix */
+   border-top: 1px solid #fff;
+ }
+
+ #sidebar-config p {
+   margin: 0;
+   padding-left: 5px;
+ }
+
+ #available {
+   float: left;
+   width: 300px;
+ }
+
+ #active {
+   width: 300px;
+   margin-left: 320px;
+   min-height: 200px;
+ }
+
+ #available , #active {
+   background: #c8d9ed;
+ }
+
+ #available h3, #active h3 {
+   background: #859aa8;
+   color: #333;
+   margin: 0 0 10px 0;
+   padding: 2px 5px;
+ }
+ 
+ .dropbox { 
+   width: 270px;
+   margin:1em;
+ }
+
+ .handle { 
+   cursor: move;
+   font-size: 130%;
+   font-weight: normal;
+   padding-left: 5px;
+   margin: 0;
+ }
+
+ .dragitem, .dropitem {
+   margin: 0 0 5px 12px;
+ }
+ 
+ .dragitem { 
+   border: 1px solid #9cabba;
+   border-top: 1px solid #bacddf;
+   border-left: 1px solid #bacddf;
+   background: #fff;
+   width: 270px;
+ }
+
+.handle {
+  background: #f7f7f7;
 }
 
-#available, #waste { 
-  width:212px;
-}
-
-#waste { 
-  height:100px;
-}
-
-.handle { 
-  background-color: #4e87df;
-  color: white;
-  cursor: move;
-  font-size:1.2em;
-  margin: 0;
-}
-
-.dragitem { 
-  border: 1px solid #888;
-  background-color: #eee;
-  width: 300px;
+.target {
+  background: #cde0f3;
   margin: 5px;
-  font: 70%;
-  line-height:normal;
-}
-
-.dragitem h4 { 
-  padding: 0;
-}
-
-#available .dragitem, #waste .dragitem { 
-  width: 200px;
-}
-
-#available .configblock { 
-  visibility:hidden;
-}
-
-.dragitem p { 
-  margin-top:2px;
-  margin-bottom:2px;
-  color: black;
-}
-
-div.header { 
-  font-weight:bold;
-  font-size: 1.5em;
-}
-
-#available .dragitem { 
-  cursor: move;
-}
-
-.configblock { 
-  margin-top: 5px;
-  margin-left: 1em;
-  margin-bottom: 5px;
-}
-
-.configblock input.text, .configblock textarea { 
-  font-size: 0.9em;
-  width: 278px;
-}
-
-.configblock label { 
-  margin-top:5px
-}
-
-#plugins td{ 
-  vertical-align: top;
-}
-
-#messages { 
-  font-size:1.5em;
-  margin:1em;
+  padding: 5px;
 }
 
 /*
