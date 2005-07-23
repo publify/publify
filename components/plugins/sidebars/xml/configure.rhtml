@@ -1,0 +1,13 @@
+<%= form_tag({},{:id => 'configure_'+@sidebar.id.to_s, :class=>'configblock'}) %>
+  <input type="checkbox" name="configure[articles]" <% if @sidebar.staged_config['articles'] %>checked="checked"<% end %>/>
+  <label for="configure[articles]">Show Articles feed</label><br/>
+  <input type="checkbox" name="configure[comments]" <% if @sidebar.staged_config['comments'] %>checked="checked"<% end %>/>
+  <label for="configure[comments]">Show Comments feed</label><br/>
+  <input type="checkbox" name="configure[trackbacks]" <% if @sidebar.staged_config['trackbacks'] %>checked="checked"<% end %>/>
+  <label for="configure[trackbacks]">Show Trackbacks feed</label>
+<%= end_form_tag %>
+
+<%= observe_form "configure_"+@sidebar.id.to_s, 
+    :url => { :action => "save_config", :id=>@sidebar.id},
+    :with => 'value'
+ %>
