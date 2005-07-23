@@ -67,6 +67,17 @@ class UserTest < Test::Unit::TestCase
       
   end
 
+  def test_change_name
+    u = User.new
+    u.password = u.password_confirmation = "a_password"
+    u.login = 'xxx'
+    assert u.save
+
+    u.password = u.password_confirmation = ''
+    u.name = 'X X X'
+    u.email = 'x@example.com'
+    assert u.save
+  end
 
   def test_collision
     u = User.new
@@ -93,6 +104,4 @@ class UserTest < Test::Unit::TestCase
         
     assert_equal '98740ff87bade6d895010bceebbd9f718e7856bb', u.password    
   end
-
-  
 end
