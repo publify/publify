@@ -1,13 +1,8 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Edit this trackback', :action => 'edit', :id => @trackback.id %></li>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul>
-</div>
+  <% @page_heading = "Trackbacks for #{ link_to @article.title, :controller => 'content', :action => 'show', :id => @article }" %>
 
-<div id="content">
-  <h1>Trackbacks for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
+  <% content_for('tasks') do %>
+    <%= task_edit 'Edit this trackback', @trackback.id %>
+  <% end %>
 
   <div class="form">
     <label>Blog name:</label> <span class="static"><%=h @trackback.blog_name %></span><br/>
@@ -17,4 +12,3 @@
     <label>Created at:</label> <span class="static"><%=h @trackback.created_at %></span><br/>
     <label>Excerpt:</label> <span class="static"><%=h @trackback.excerpt %></span><br/>
   </div>
-</div>

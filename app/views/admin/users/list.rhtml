@@ -1,31 +1,8 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Create new user', :action => 'new' %></li>
-  </ul> 
-</div>
+  <% @page_heading = 'Users' %>
 
-<div id="content">
-  <h1>Users</h1>
-
-  <div class="list">	
-    <table>
-    <tr>
-      <th>User Login name</th>
-      <th>Display Name</th>
-      <th>Email Address</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-    <% for user in @users -%>
-    <tr>
-      <td class="field"><%= image_tag 'checked.gif' %> <%=h user.login %></td>
-      <td class="field"><%=h user.name %></td>
-      <td class="field"><%=h user.email %></td>
-      <td class="operation"><%= link_to_edit user %></td>
-      <td class="operation"><%= link_to_destroy user %></td>    
-    </tr>  
-    <% end -%>
-    </table>
-  </div>                      
-</div>
+  <% content_for('tasks') do %>
+    <%= task_new 'Add new user' %>
+  <% end %> 
+  <div class="list" id="users">	
+    <%= render :partial => 'users' %>
+  </div>

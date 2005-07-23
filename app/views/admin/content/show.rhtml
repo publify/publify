@@ -1,34 +1,28 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Edit this article', :action => 'edit', :id => @article.id %></li>
+  <% @page_heading = 'Articles' %>
+  
+  <% content_for('tasks') do %>
+    <%= task_edit 'Edit this article', @article.id %>
     <li><%= link_to 'View article on your blog', article_url(@article) %></li>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul>
-</div>
+  <% end %> 
 
-<div id="content">
-  <h1>Articles</h1>
+  <h3><%=h @article.title %></h3>
 
   <div class="form">	
-    <label>title:</label> <span class="static"><%=h @article.title %></span><br/>
-    <label>body:</label><br/> <span class="static"><%=@article.body_html %></span><br/>
-    <label>extended:</label><br/> <span class="static"><%=@article.extended_html %></span><br/>
-    <label>author:</label> <span class="static"><%=h @article.author %></span><br/>
-    <label>created at:</label> <span class="static"><%=h @article.created_at %></span><br/>
-    <label>updated at:</label> <span class="static"><%=h @article.updated_at %></span><br/>    
+    <div><%=@article.body_html %></div>
+    <div><%=@article.extended_html %></div>
+    <p class="meta">Posted: <%=h @article.created_at %> by <%=h @article.author %></p>
+    <p>Lasted updated <%=h @article.updated_at %></p>    
   </div>
     
-  <div class="form"
-  <h2>Categories</h2>
-  
-  <h3>Currently this article is listed in following categories:</h3>
+  <h3>Categories</h3>
+  <div class="form">  
+  <h4>Currently this article is listed in following categories:</h4>
   <% for category in @article.categories %>
     <%= link_to "- #{category.name}", :action => "category_remove", :id => @article.id, :category_id => category.id %><br/>
   <% end %>
 
-  <h3>You can add it to the following categories:</h3>
+  <h4>You can add it to the following categories:</h4>
   <% for category in @categories - @article.categories %>
     <%= link_to "+ #{category.name}", :action => "category_add", :id => @article.id, :category_id => category.id %><br/>
   <% end %>
-</div>
+

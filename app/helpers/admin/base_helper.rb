@@ -29,7 +29,6 @@ module Admin::BaseHelper
   end
 
   def link_to_section(label, options = {})
-        
     if controller.controller_name == options[:controller]
       link_to(label, options, {"class"=> "active"})
     else
@@ -42,12 +41,12 @@ module Admin::BaseHelper
     "<input type=\"button\" value=\"Cancel\" style=\"width: auto;\" onclick=\"window.location.href = '#{url_for url}';\" />"
   end
 
-  def save
-    '<input type="submit" value="OK" class="primary" />'
+  def save(val = "OK")
+    '<input type="submit" value="' + val + '" class="primary" />'
   end
 
-  def confirm_delete
-   '<input type="submit" value="Delete" />'
+  def confirm_delete(val = "Delete")
+   '<input type="submit" value="' + val + '" />'
   end
 
   def link_to_show(record)
@@ -72,4 +71,33 @@ module Admin::BaseHelper
 
     text_filter_options
   end
+  
+  def alternate_class
+    @class = @class != '' ? '' : 'class="shade"'
+  end
+
+  def task_overview
+    task('Back to overview', 'list')
+  end
+
+  def task_new(title)
+    task(title, 'new')
+  end
+
+  def task_destroy(title, id)
+    task(title, 'destroy', id)
+  end
+
+  def task_edit(title, id)
+    task(title, 'edit', id)
+  end
+
+  def task_show(title, id)
+    task(title, 'show', id)
+  end
+
+  def task(title, action, id = nil)
+    '<li>' + link_to(title, :action => action, :id => id) + '</li>'
+  end
+
 end

@@ -1,17 +1,10 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul> 
-</div>
+  <% @page_heading = 'Blacklist Patterns' %>
 
-<div id="content">
-  <h1>Blacklist Patterns</h1>
+  <h3>Creating pattern</h3>
 
   <%= start_form_tag :action=>"new" %>
 
   <div class="form">	
-    <h2>Creating pattern</h2>
     <%= render_partial "form" %>
   </div>
 
@@ -20,4 +13,3 @@
   </div>
 
   <%= end_form_tag %>
-</div>

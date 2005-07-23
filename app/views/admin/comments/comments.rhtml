@@ -1,4 +1,4 @@
 <% for comment in @comments %>
-by <b><%= comment.author %></b> on <%= comment.created_at %>  <%= link_to '[x]', :action => 'comment_destroy', :id => comment.id %> <br />
+by <strong><%= comment.author %></strong> on <%= comment.created_at %>  <%= link_to '[x]', :action => 'comment_destroy', :id => comment.id %> <br />
 <%= comment.body %><br /><br />
 <% end %>

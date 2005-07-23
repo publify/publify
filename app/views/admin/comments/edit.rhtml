@@ -1,18 +1,13 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= comment_url_link 'View comment on your blog', @comment %></li>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul> 
-</div>
+  <% @page_heading = "Comments for #{ link_to @article.title, :controller => 'content', :action => 'show', :id => @article }" %>
 
-<div id="content">
-  <h1>Comments for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
+  <% content_for('tasks') do %>
+    <li><%= comment_url_link 'View comment on your blog', @comment %></li>
+  <% end %> 
 
   <%= start_form_tag :action=>"edit", :id => @comment.id %>
 
+  <h3>Editing comment</h3>
   <div class="form">	
-    <h2>Editing comment</h2>
     <%= render_partial "form" %>
   </div>
 
@@ -21,4 +16,3 @@
   </div>
 
   <%= end_form_tag %>
-</div>

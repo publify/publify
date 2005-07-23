@@ -1,8 +1,17 @@
 <%= error_messages_for 'user' %>
 <!--[form:user]-->
-<label for="user_login">Login:</label><%= text_field 'user', 'login'  %><br/>
+<p>
+  <label for="user_login">Login:</label><br />
+  <%= text_field 'user', 'login'  %>
+</p>
 <label for="user_login">Display Name:</label><%= text_field 'user', 'name'  %><br/>
 <label for="user_email">Email:</label><%= text_field 'user', 'email'  %><br/>
-<label for="user_password">Password:</label><%= password_field 'user', 'password'  %><br/>
-<label for="user_password">Confirmation:</label><%= password_field 'user', 'password_confirmation'  %><br/>
+<p>
+  <label for="user_password">Password:</label><br />
+  <%= password_field 'user', 'password'  %>
+</p>
+<p>
+  <label for="user_password">Confirmation:</label><br />
+  <%= password_field 'user', 'password_confirmation'  %>
+</p>
 <!--[eoform:user]-->

@@ -1,17 +1,9 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul> 
-</div>
-
-<div id="content">
-  <h1>Trackbacks for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
+  <% @page_heading = "Trackbacks for #{ link_to @article.title, :controller => 'content', :action => 'show', :id => @article }" %>
 
   <%= start_form_tag :action=>"edit", :id => @trackback.id %>
 
   <div class="form">	
-    <h2>Editing trackback</h2>
+    <h3>Editing trackback</h3>
     <%= render_partial "form" %>
   </div>
 
@@ -20,4 +12,3 @@
   </div>
 
   <%= end_form_tag %>
-</div>

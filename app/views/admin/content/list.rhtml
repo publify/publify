@@ -1,16 +1,9 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Create new article', :action => 'new' %></li>
-  </ul>
-  <%= render_partial '/admin/base/recent_comments' %> 
-  <%= render_partial '/admin/base/recent_trackbacks' %> 
-</div>
+  <% @page_heading = 'Articles' %>
 
-<div id="content">
-  <h1>Articles</h1>
+  <% content_for('tasks') do %>
+    <%= task_new 'Create new article' %>
+  <% end %> 
 
   <div class="list" id="articles">	
-    <%= render_partial 'articles'  %>
+    <%= render_partial 'articles' %>
   </div>                      
-</div>

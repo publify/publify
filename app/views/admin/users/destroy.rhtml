@@ -1,17 +1,10 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-    <li><%= link_to 'Show this user', :action => 'show', :id => @user.id %></li>
-  </ul> 
-</div>
+  <% @page_heading = 'Users' %>
 
-<div id="content">
-  <h1>Users</h1>
-
-  <p>Are you sure you want to delete this item?</p>
+  <% content_for('tasks') do %>
+    <%= task_show 'Show this user', @user.id %>
+  <% end %> 
   <%= start_form_tag %>
   <%= hidden_field "user", "id" %>
-  <%= confirm_delete %>
+
+  <%= confirm_delete("Delete this user") %>
   <%= end_form_tag %>
-</div>

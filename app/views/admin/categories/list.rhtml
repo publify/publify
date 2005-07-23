@@ -1,27 +1,9 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Create new category', :action => 'new' %></li>
-  </ul> 
-</div>
+  <% @page_heading = 'Categories' %>
 
-<div id="content">
-  <h1>Categories</h1>
+  <% content_for('tasks') do %>
+    <%= task_new('Create new category') %>
+  <% end %> 
 
   <div class="list">	
-    <table>
-    <tr>
-      <th>Category title</th>
-      <th>Articles</th>
-      <th>Delete</th>
-    </tr>
-    <% for category in @categories -%>
-    <tr>
-      <td><%= image_tag 'checked.gif' %> <%= link_to category.name, :action => 'show', :id => category.id %></td>
-      <td><%= link_to responses(category.articles, 'article'), :action => 'show', :id => category.id %></td>
-      <td class="operation"><%= link_to_destroy category %></td>    
-    </tr>  
-    <% end -%>
-    </table>
+    <%= render_partial 'categories' %>  
   </div>                      
-</div>

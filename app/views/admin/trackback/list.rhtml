@@ -1,13 +1,9 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Back to articles', :controller => 'content', :action => 'list' %></li>
-    <li><%= link_to 'Create new trackback', :action => 'new' %></li>
-  </ul> 
-</div>
+  <% @page_heading = "Trackbacks for #{ link_to @article.title, :controller => 'content', :action => 'show', :id => @article }" %>
 
-<div id="content">
-  <h1>Trackbacks for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
+  <% content_for('tasks') do %>
+    <%= task_new 'Create new trackback' %>
+    <li><%= link_to 'Back to articles', :controller => 'content', :action => 'list' %></li>
+  <% end %> 
 
   <div class="list">	
     <table>
@@ -32,5 +28,4 @@
     </tr>  
     <% end -%>
     </table>
-  </div>                      
-</div>
+  </div>

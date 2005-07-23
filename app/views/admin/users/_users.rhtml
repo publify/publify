@@ -1,0 +1,14 @@
+<table cellspacing="1" cellpadding="0">
+<tr>
+  <th>User Login name</th>
+  <th>Edit</th>
+  <th>Delete</th>
+</tr>
+<% for user in @users -%>
+<tr <%= alternate_class -%>>  
+  <td class="field"><%= image_tag 'checked.gif' %> <%= link_to h(user.login), {:action => "show", :id => user.id} %></td>
+  <td class="operation"><%= link_to_edit user %></td>
+  <td class="operation"><%= link_to_destroy user %></td>    
+</tr>  
+<% end -%>
+</table>

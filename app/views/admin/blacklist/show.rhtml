@@ -1,13 +1,9 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Edit this pattern', :action => 'edit', :id => @blacklist_pattern.id %></li>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul>
-</div>
+  <% @page_heading = 'Blacklist Patterns' %>
 
-<div id="content">
-  <h1>Blacklist Patterns</h1>
+  <% content_for('tasks') do %>
+    <%= task_new 'New Pattern' %>
+    <%= task_edit 'Edit this pattern', @blacklist_pattern.id %>
+  <% end %>
 
   <div class="form">	
     <% for column in BlacklistPattern.content_columns -%>
@@ -15,4 +11,3 @@
     <% end -%>
     <label>Type:</label> <span class="static"><%= @blacklist_pattern.class %></span><br />
   </div>
-</div>

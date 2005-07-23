@@ -1,14 +1,4 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Edit this comment', :action => 'edit', :id => @comment.id %></li>
-    <li><%= comment_url_link 'View comment on your blog', @comment %></li>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul>
-</div>
-
-<div id="content">
-  <h1>Comments for "<%= link_to @article.title, :controller => 'content', :action => 'show', :id => @article %>"</h1>
+  <% @page_heading = "Comments for #{ link_to @article.title, :controller => 'content', :action => 'show', :id => @article }" %>
 
   <div class="form">	
     <label>Author:</label> <span class="static"><%=h @comment.author %></span><br/>
@@ -16,4 +6,3 @@
     <label>IP Address:</label> <span class="static"><%=h @comment.ip %></span><br/>
     <label>Created at:</label> <span class="static"><%=h @comment.created_at %></span><br/>
   </div>
-</div>

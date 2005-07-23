@@ -1,29 +1,18 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Edit this category', :action => 'edit', :id => @category.id %></li>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul>
-</div>
+  <% @page_heading = "Articles in #{h @category.name}" %>
 
-<div id="content">
-  <h1>Categories</h1>
+  <% content_for('tasks') do %>
+    <%= task_edit 'Edit this category', @category.id %>
+  <% end %> 
 
-  <%= start_form_tag :action=>"new" %>
-
-  <div class="form">	
-    <label>Category name:</label> <span class="static"><%=h @category.name %></span><br/>
-  </div>
-  
+  <%= start_form_tag :action=>"new" %>  
   <div class="list">	
-    <table>
+    <table cellspacing="1" cellpadding="0">
     <% for article in @category.articles -%>
-    <tr>  
+    <tr  <%= alternate_class -%>>  
       <td><%= image_tag 'checked.gif' %> <%= link_to article.title, :controller => "content", :action => "show", :id => article.id %></td>
       <td><%= distance_of_time_in_words_to_now article.created_at %> ago</td>
       <td><%= link_to responses(article.comments, 'comment'), :controller => 'comments', :article_id => article, :action => 'list' %></td>
     </tr>  
     <% end -%>
     </table>
-  </div>     
-</div>
+  </div>

@@ -1,0 +1,323 @@
+/*
+ * =GENERAL/MASTER CONTAINERS             
+ */
+
+ body {
+  margin: 0;
+  background: #fff url(../images/admin/hdr-tile.gif) repeat-x;
+  font: 1em/1.6em Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #000;
+  }
+
+
+ #container {
+  text-align: left;
+  font-size: 80%;
+  margin: 0 auto;
+ }
+
+ #header {
+  height: 92px;
+  color: #fff;
+ }
+
+ #overall {
+  background: #fff;
+  width: 85%;
+  margin: 0 auto;
+  }
+
+ #content {
+  background: #fff;
+  margin: 20px 0 0 0;
+  padding: 10px;
+  }
+
+ #main {
+  padding-left: 10px;
+  }
+
+#info {
+  float: right;
+  margin-right: 20px;
+  margin-top: 5px;
+  font-size: 80%;
+  }
+
+ #footer {
+
+ }
+
+/*
+ * =UTILITY             
+ */
+
+ form {
+  margin: 0;
+  padding: 0;
+  }
+
+ img { border: none; }
+
+  a { 
+    color: #c00;
+    text-decoration: none;
+    }
+
+  a:hover {
+    color: #333;
+    }
+
+/*
+ * =PRIMARY NAVIGATION             
+ */
+
+
+ #tabs-container {
+   width: 100%;
+   padding: 0;
+   margin-top: 8px;
+   }
+
+  #tabs {
+    padding: 0;
+    margin: 0 0 0 30px;
+    font-family: sans-serif, Arial, Helvetica;
+    font-size: 12px;
+    line-height: normal;
+   }
+
+  #tabs li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+   }
+
+  #tabs li a {
+    padding: 3px 8px 3px 8px;
+    margin-left: 3px;
+    background: #859AA8;
+    text-decoration: none;
+    color: #003;
+    border: 1px solid #637987;
+    border-bottom: 0;
+    line-height: normal;
+   }
+
+  #tabs li a:hover {
+    color: #fff;
+    background: #c00;
+    border-color: #900;
+   }
+
+  #tabs li a#current {
+    background: white;
+   }
+
+
+/*
+ * =TASKS LINKS             
+ */
+
+.tasks {
+  background: #D9ECB6;
+  border: 1px solid #8DBA47;
+  padding: 5px;
+  height: 40px;
+  }
+
+.tasks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  }
+
+.tasks ul li {
+  display: inline;
+  line-height: normal;
+  }
+
+.tasks li a {
+  display: block;
+  float: left;
+  padding: 2px 5px;
+  margin-right: 5px;
+  text-decoration: none;
+  border-bottom: 1px dotted #666;
+  }
+
+.tasks li a:hover {
+  background: #4A611C;
+  color: #fff;
+  }
+
+/*
+ * =HEADINGS             
+ */
+
+  h2 {
+    font: normal 170% Georgia, Times, Helvetica;
+    background: url(../images/admin/h-tile.gif) repeat-x;
+    color: #930;
+    padding: 25px 0 0 5px;
+    }
+
+   h3 {
+    font-size: 130%;
+    padding: 5px;
+    margin-bottom: 0;
+    }
+
+  #header h1 {
+    margin: 0;
+    padding: 25px 0 0 10px;
+    font: normal 170% Helvetica, Sans-serif, Arial;
+    }
+
+  #header h1 a {
+    color: #fff;
+    margin: 20px 0 0 0;
+    text-decoration: none;
+    border: none;
+    }
+
+  .form h3,  h3 {
+    background: #333;
+    color: #fff;
+    font-weight: normal;
+    }
+
+  .form h4 {
+    padding: 2px;
+    margin: 0;
+    font-size: 120%;
+    }
+
+  .tasks h3 {
+    font: normal 120%/normal "Trebuchet MS", Arial, Verdana;
+    background: transparent;
+    margin: 0 0 5px 0;
+    padding: 0;
+    color: #4A611C;
+    }
+
+  .set h3 {
+    background: none;
+    margin: 0 0 5px 0;
+    color: #1F273F;
+  }
+/*
+ * =TABLE LISTINGS             
+ */
+
+ .list { clear: left; }
+
+ .list table {
+    width: 98%;
+    }
+
+  .list table th {
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 4px solid #ccc;
+    }
+
+  .list table tr td {
+    padding: 0 2px;
+    }
+
+  tr.shade {
+    background: #E4E4D7;
+    }
+
+/*
+ * =FORM ELEMENTS             
+ */
+label {
+  font-weight: bold;
+  }
+
+.form {
+  background: #f7f7f7;
+  margin-bottom: 10px;
+  padding: 0 0 0 10px;
+  }
+
+.form div {
+  padding: 5px;
+  }
+
+#blog_name {
+  font-size: 130%;
+}
+
+/*
+ * =POPUPS/TOOLTIPS             
+ */
+
+ .tip-catlist {
+  width: 200px;
+  background: #EEF1FE;
+  border: 2px solid #C2D2E7;
+  padding: 5px;
+  }
+
+
+/*
+ * =LIVE PREVIEW             
+ */
+
+#preview, #preview_extended {
+  background: #fff;
+  border: 4px double #ccc;
+  padding: 5px;
+  z-index: 9999;
+  width: 50%;
+  float: right;
+  clear: right;
+  margin-bottom: 10px;
+  line-height: 1.3em;
+  }
+
+/*
+ *=GENERAL SETTINGS SCREEN
+ */
+
+.set {
+  background: #D7DFE4;
+  border: 1px solid #7D8692;
+  padding: 0 10px 5px 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+#gensettings {
+
+}
+
+/*
+ * =MISC             
+ */
+.form p {
+  margin: 0;
+  padding: 0 0 5px;
+  }
+
+#info a {
+  color: #fff;
+  border-bottom: 1px dotted #fff;
+  }
+
+#info a:hover {
+  background: #c00;
+  }
+
+ .form .note {
+  font-style: italic;
+  font-size: 90%;
+  }
+
+.r { text-align: right; }
+.c { text-align: center; }

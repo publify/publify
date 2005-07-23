@@ -1,17 +1,9 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul> 
-</div>
+  <% @page_heading = 'Categories' %>
 
-<div id="content">
-  <h1>Categories</h1>
-
+  <h3>Creating category</h3>
   <%= start_form_tag :action=>"new" %>
 
   <div class="form">	
-    <h2>Creating category</h2>
     <%= render_partial "form" %>
   </div>
 
@@ -20,4 +12,3 @@
   </div>
 
   <%= end_form_tag %>
-</div>

@@ -1,17 +1,15 @@
-<div id="sidebar">
-  <h1>Tasks:</h1>
-  <ul>
-    <li><%= link_to 'Back to overview', :action => 'list' %></li>
-  </ul> 
-</div>
+  <% @page_heading = 'Articles' %>
 
-<div id="content">
-  <h1>Articles</h1>
+  <h3>Creating article</h3>
 
   <%= start_form_tag :action=>"new" %>
-
+  
+  
   <div class="form">	
-    <h2>Creating article</h2>
+    <!-- LIVE PREVIEW --> 
+    <div id="preview" class="post" style="display: none;"></div>
+    <div id="preview_extended" class="post" style="display: none;"></div>
+    <!-- /LIVE PREVIEW -->
     <%= render_partial "form" %>
   </div>
 
@@ -20,12 +18,6 @@
   </div>
 
   <%= end_form_tag %>
-</div>
-
-<div id="preview" class="post" style="display: none; position: absolute; border:1px solid #eee; background-color: #f5f5f5; padding:8px; left:670px; top:180px; width:300px; height:85px; overflow:auto; z-index:-1">
-</div>
-<div id="preview_extended" class="post" style="display: none; position: absolute; border:1px solid #eee; background-color: #f5f5f5; padding:8px; left:670px; top:290px; width:300px; height:255px; overflow:auto;">
-</div>
 
 <%= observe_field "article_body", 
       :frequency => 2, 
@@ -37,4 +29,5 @@
       :update => "preview_extended",
       :complete => "Element.show('preview_extended')",
       :url => { :action => "preview" } %>
+
       

@@ -22,18 +22,29 @@ class Admin::ContentController < Admin::BaseController
     @article.allow_comments = config["default_allow_comments"]
     @article.allow_pings = config["default_allow_pings"]
     @article.text_filter = config["text_filter"]
-    if request.post? and @article.save
-      flash[:notice] = 'Article was successfully created.'
-      redirect_to :action => 'show', :id => @article.id
+    @categories = Category.find_all
+    if request.post?
+      @article.categories.clear
+      @article.categories << Category.find(@params[:categories])
+      if @article.save 
+        flash[:notice] = 'Article was successfully created.'
+        redirect_to :action => 'show', :id => @article.id
+      end
     end
   end
 
   def edit
     @article = Article.find(params[:id])
     @article.attributes = params[:article]
-    if request.post? and @article.save
-      flash[:notice] = 'Article was successfully updated.'
-      redirect_to :action => 'show', :id => @article.id
+    @categories = Category.find_all
+    @selected = @article.categories.collect { |cat| cat.id.to_i }
+    if request.post? 
+      @article.categories.clear
+      @article.categories << Category.find(@params[:categories])
+      if @article.save 
+        flash[:notice] = 'Article was successfully updated.'
+        redirect_to :action => 'show', :id => @article.id
+      end
     end      
   end
 

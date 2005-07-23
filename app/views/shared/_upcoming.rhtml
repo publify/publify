@@ -1,0 +1,6 @@
+<h3>Upcoming Events in {#your-metro#}</h3>
+<ul id="upcoming">
+<% for event in upcoming.choose(4) %>
+  <li><%= link_to event.title, event.link, {:title => event.description } %> -  <%= event.timespan %></li>
+  <% end %>
+</ul>

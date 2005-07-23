@@ -1,10 +1,19 @@
 <%= error_messages_for 'comment' %>
 <!--[form:comment]-->
-<label for="comment_author">Author:</label><%= text_field 'comment', 'author'  %><br/>
-
-<label for="comment_url">Url:</label><%= text_field 'comment', 'url'  %><br/>
-
-<label for="comment_email">Email:</label><%= text_field 'comment', 'email'  %><br/>
-
-<label for="comment_body">Body:</label><%= text_area 'comment', 'body'  %><br/>
+<p>
+  <label for="comment_author">Author:</label><br/>
+  <%= text_field 'comment', 'author'  %>
+</p>
+<p>
+  <label for="comment_url">Url:</label><br/>
+  <%= text_field 'comment', 'url'  %>
+</p>
+<p>
+  <label for="comment_email">Email:</label><br/>
+  <%= text_field 'comment', 'email'  %>
+</p>
+<p>
+  <label for="comment_body">Body:</label><br/>
+  <%= text_area 'comment', 'body'  %>
+</p>
 <!--[eoform:comment]-->

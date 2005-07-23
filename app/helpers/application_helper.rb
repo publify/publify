@@ -34,7 +34,14 @@ module ApplicationHelper
       render_partial("shared/fortythree", check_cache(Fortythree, url))
     rescue 
     end 
-  end
+	end
+	
+  def upcominglist(url)
+	  begin 
+	 	  render_partial("shared/upcoming", check_cache(Upcoming, url))
+	 	rescue
+		end
+	end
 
   def server_url_for(options = {})
     url_for options.update(:only_path => false)
