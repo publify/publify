@@ -8,7 +8,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
-    @articles = Article.find(:all, :order => "id DESC")
+    @articles = Article.find(:all, :order => "created_at DESC")
   end
 
   def show
