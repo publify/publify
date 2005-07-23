@@ -1,0 +1,13 @@
+<p>Put other stuff here</p>
+<% @items.each do |item| %>
+  <div id="item_<%= item %>" class="sidebaritem">
+    <div class="dragme">dragme</div>
+    <p><%= item %></p>
+  </div>
+<% end %>
+<%= sortable_element 'enabled_list',
+     :containment => ["enabled_list", "available_list", 'wastebasket'],
+     :update => 'enabled_list', :url => { :action => 'test_drop'},
+     :tag => "div",
+     :handle => '"dragme"'
+     %>

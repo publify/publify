@@ -20,7 +20,7 @@ class Upcoming
     bag
   end
   
-  attr_accessor :events, :link, :title, :description
+  attr_accessor :events, :link, :title, :description, :url
     
   # This object holds given information for an Event
   class Event < Struct.new(:link, :title, :description)

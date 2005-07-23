@@ -1,0 +1,7 @@
+<% @sidebars.each do |sidebar| -%>
+  <% begin %>
+    <%= render_component :layout=>false, :controller=>sidebar.sidebar_controller.component_name, :action=>'index', :params => {:sidebar => sidebar } %>
+  <% rescue => err
+      STDERR.puts "ERROR displaying #{sidebar.inspect}: #{err.to_s}.  #{err.bt.join(' -> ')}"
+     end %>
+<% end %>

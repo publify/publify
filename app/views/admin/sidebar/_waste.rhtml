@@ -1,0 +1,7 @@
+<div id="waste_HEADERHEADER" class="header">Drag here to discard</div>
+<%= sortable_element "waste",
+    :update => "waste", :url => { :action => "show_waste" },
+    :tag => 'div',
+    :containment => ['active','available','waste']
+ %>
+

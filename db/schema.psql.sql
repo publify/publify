@@ -100,6 +100,24 @@ CREATE TABLE settings (
   position int default NULL
 );
 
+CREATE TABLE sidebars (
+  id SERIAL PRIMARY KEY NOT NULL,
+  controller text,
+  active_position integer,
+  active_config text,
+  staged_position integer,
+  staged_config text,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+insert into sidebars (id,controller,active_position,staged_position)
+  values (1,'category',0,0);
+insert into sidebars (id,controller,active_position,staged_position)
+  values (2,'static',1,1);
+insert into sidebars (id,controller,active_position,staged_position)
+  values (3,'xml',2,2);
+
 CREATE TABLE trackbacks (
   id SERIAL PRIMARY KEY NOT NULL,
   article_id int,
@@ -118,4 +136,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (3);
+INSERT into schema_info VALUES (4);

@@ -1,6 +1,0 @@
-<div id="flickr">
-<h3><%= flickr.title  %> (<%= link_to "flickr", flickr.link %>)</h3>
-<% for pic in flickr.choose(4) -%>
-  <div><%= link_to image_tag(pic.thumb, :alt => pic.title),pic.link %></div>
-  <% end -%>
-  </div>

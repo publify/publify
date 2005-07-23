@@ -77,14 +77,31 @@ CREATE TABLE 'sessions' (
   'sessid'      VARCHAR(32) DEFAULT NULL,
   'data'        TEXT,
   'updated_at'  DATETIME DEFAULT NULL
-);                                                                                                                                                                  
-
+);
+                                                                               
 CREATE TABLE 'settings' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'        VARCHAR(255) DEFAULT NULL,
   'value'       VARCHAR(255) DEFAULT NULL,
   'position'    INTEGER
 );
+
+CREATE TABLE 'sidebars' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'controller'  VARCHAR(32) DEFAULT NULL,
+  'active_position' INTEGER,
+  'active_config' TEXT,
+  'staged_position' INTEGER,
+  'staged_config' TEXT,
+  'created_at'  DATETIME DEFAULT NULL,
+  'updated_at'  DATETIME DEFAULT NULL
+);                                                                                                                                                             
+insert into sidebars (id,controller,active_position,staged_position)
+  values (1,'category',0,0);
+insert into sidebars (id,controller,active_position,staged_position)
+  values (2,'static',1,1);
+insert into sidebars (id,controller,active_position,staged_position)
+  values (3,'xml',2,2);
 
 CREATE TABLE 'trackbacks' (
   'id'          INTEGER PRIMARY KEY NOT NULL,

@@ -1,0 +1,20 @@
+class Plugins::Sidebars::FlickrController < Sidebars::Plugin
+  def self.display_name
+    "Flickr"
+  end
+
+  def self.description
+    "Pictures from flickr.com"
+  end
+
+  def self.default_config
+    {'count'=>4,'format'=>'rectangle'}
+  end
+
+  def content
+    @flickr=check_cache(Flickr, @sb_config['feed']) rescue nil
+  end
+
+  def configure
+  end
+end

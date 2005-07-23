@@ -32,6 +32,9 @@ class Flickr
     def thumb
       image.gsub( /\_(m)\./, '_t.' )
     end
+    def square
+      image.gsub( /\_(m)\./, '_s.' )
+    end
   end
     
   # Pass the url to the RSS feed you would like to keep tabs on

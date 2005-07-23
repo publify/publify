@@ -1,0 +1,12 @@
+<%= form_tag({},{:id => 'configure_'+@sidebar.id.to_s, :class=>'configblock'}) %>
+  <label>Title</label>
+  <input class="text" type="text" name="configure[title]" value="<%=h @sidebar.staged_config['title'] %>"/><br/>
+  <label>Linked URLs</label>
+  <textarea rows="10" name="configure[body]">
+<%=h @sidebar.staged_config['body'] %></textarea>
+<%= end_form_tag %>
+
+<%= observe_form "configure_"+@sidebar.id.to_s, 
+    :url => { :action => "save_config", :id=>@sidebar.id},
+    :with => 'value'
+ %>

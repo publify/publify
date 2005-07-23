@@ -1,0 +1,10 @@
+<% if @delicious -%>
+  <div id="delicious">
+    <h3><%= @delicious.title %></h3>
+    <ul>
+      <% for item in @delicious.items.to_a.slice(0,@sb_config['count'].to_i) -%>
+        <li><a href="<%= item.link %>" title="<%= item.title %>"><%= item.title %> </a></li>
+      <% end -%>
+    </ul>
+  </div>
+<% end -%>

@@ -1,4 +1,4 @@
-class AccountsController < ApplicationController
+class AccountsController < Admin::BaseController
   layout  'administration'
 
   def login

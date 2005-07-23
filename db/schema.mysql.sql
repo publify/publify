@@ -89,7 +89,7 @@ CREATE TABLE `sessions` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `sessid` (`sessid`)
-) TYPE=MyISAM;                                                                                                                                                                  
+) TYPE=MyISAM;
 
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL auto_increment,
@@ -97,6 +97,25 @@ CREATE TABLE `settings` (
   `value` varchar(40) default NULL,
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
+
+CREATE TABLE `sidebars` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `controller` varchar(32) default NULL,
+  `active_position` int(11),
+  `active_config` text,
+  `staged_position` int(11),
+  `staged_config` text,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `sessid` (`sessid`)
+) TYPE=MyISAM;
+
+insert into sidebars (id,controller,active_position,staged_position)
+  values (1,'category',0,0);
+insert into sidebars (id,controller,active_position,staged_position)
+  values (2,'static',1,1);
+insert into sidebars (id,controller,active_position,staged_position)
+  values (3,'xml',2,2);
 
 CREATE TABLE `trackbacks` (
   `id` int(11) NOT NULL auto_increment,
@@ -117,4 +136,4 @@ CREATE TABLE `schema_info` (
   `version` int(11) default NULL
 ) TYPE=MyISAM;
 
-INSERT into `schema_info` VALUES (3);
+INSERT into `schema_info` VALUES (4);

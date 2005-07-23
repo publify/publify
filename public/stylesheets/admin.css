@@ -185,3 +185,99 @@ a:hover.link {
   text-align: center;
   border-left: 1px solid #e8e8e8;
 }
+
+.sortable { 
+  margin-left: 1em;
+  margin: 1em;
+  border: 1px dashed #e8e8e8;
+  width: 200px;
+}
+
+.sortable li { 
+  cursor: move;
+  margin: 2px;
+  width: 194px;
+  border: 1px solid #888888;
+  background-color: #e8e8e8;
+  
+}
+
+.sidebaritem { 
+  margin: 2px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.dropbox { 
+  border: 1px dashed #ccc;
+  margin: 1em;
+  width:312px;
+}
+
+#available, #waste { 
+  width:212px;
+}
+
+#waste { 
+  height:100px;
+}
+.handle { 
+  background-color: #4e87df;
+  color: white;
+  cursor: move;
+  font-size:1.2em;
+}
+
+.dragitem { 
+  border: 1px solid #888;
+  background-color: #eee;
+  width: 300px;
+  margin: 5px;
+}
+
+#available .dragitem, #waste .dragitem { 
+  width: 200px;
+}
+
+#available .configblock { 
+  visibility:hidden;
+}
+
+.dragitem p { 
+  margin-top:2px;
+  margin-bottom:2px;
+  color: black;
+}
+
+div.header { 
+  font-weight:bold;
+  font-size: 1.5em;
+}
+
+#available .dragitem { 
+  cursor: move;
+}
+
+.configblock { 
+  margin-left: 1em;
+  margin-bottom: 5px;
+}
+
+.configblock input, .configblock textarea { 
+  font-size: 0.9em;
+  width: 278px;
+}
+
+.configblock label { 
+  margin-top:5px
+}
+
+#plugins td{ 
+  vertical-align: top;
+}
+
+#messages { 
+  font-size:1.5em;
+  margin:1em;
+}

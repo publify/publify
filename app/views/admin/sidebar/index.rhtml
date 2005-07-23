@@ -1,0 +1,33 @@
+<div id="sidebar">
+  <h1>Sidebars:</h1>
+
+  <%= form_remote_tag :update=>'messages',:url=>{:action=>'publish'} %>
+    <input value="Publish changes" type="submit"/>
+  <%= end_form_tag %>
+</div>
+
+<div id="content">
+  <h2>Edit sidebars</h2>
+
+  <div id="messages">
+  </div>
+
+  <p class="directions">Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar, drag them to the discard box.  Changes are saved immediately, but not activated until you click the 'Publish' button.</p>
+
+  <table id="plugins"><tr><td>
+  <div id="available" class="dropbox">
+    <%= render :partial => 'available' %>
+  </div>
+
+  <div id="waste" class="dropbox">
+    <%= render :partial => 'waste' %>
+  </div>
+
+  </td><td>
+
+  <div id="active" class="dropbox">
+    <%= render :partial => 'active' %>
+  </div>
+
+  </td></tr></table>
+</div>

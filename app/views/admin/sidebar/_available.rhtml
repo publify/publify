@@ -1,0 +1,15 @@
+<div id="available_HEADERHEADER" class="header">Available Items</div>
+<% @available.each do |item| %>
+  <div id="available_<%= item.short_name %>" class="dragitem">
+    <h4 class="handle"><%= item.display_name %></h4>
+    <p><%= item.description %></p>
+  </div>
+  <%= #draggable_element "available_#{item.name}", :revert => true 
+  %>
+<% end %>
+<%= sortable_element "available",
+    :update=>'available', :url => {:action=>'show_available'},
+    :tag => 'div',
+    :handle => 'handle',
+    :containment => ['active','available','waste']
+ %>

@@ -199,11 +199,19 @@ body {
  	border: 4px solid #fff;
  	}
  	
- 	#flickr div {
- 		width: 108px;
- 		border: 2px solid #dbd1c1;
- 		margin-bottom: 5px;
- 		}
+ #flickr div {
+        width: 108px;
+ 	border: 2px solid #dbd1c1;
+ 	margin-bottom: 5px;
+ 	}
+
+ #flickr div.flickrsquare { 
+        width: 82px;
+        border-right: 3px solid #dbd1c1;
+        float:left;
+        margin-right: 5px;
+        margin-right: 5px;
+        }
 
   #flickr div a { border: none; }
   
