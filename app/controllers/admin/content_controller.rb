@@ -25,7 +25,7 @@ class Admin::ContentController < Admin::BaseController
     @categories = Category.find_all
     if request.post?
       @article.categories.clear
-      @article.categories << Category.find(@params[:categories])
+      @article.categories << Category.find(params[:categories]) if params[:categories]
       if @article.save 
         flash[:notice] = 'Article was successfully created.'
         redirect_to :action => 'show', :id => @article.id
@@ -40,7 +40,7 @@ class Admin::ContentController < Admin::BaseController
     @selected = @article.categories.collect { |cat| cat.id.to_i }
     if request.post? 
       @article.categories.clear
-      @article.categories << Category.find(@params[:categories])
+      @article.categories << Category.find(params[:categories]) if params[:categories]
       if @article.save 
         flash[:notice] = 'Article was successfully updated.'
         redirect_to :action => 'show', :id => @article.id
