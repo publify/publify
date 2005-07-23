@@ -3,20 +3,15 @@ function register_onload(func) {
   if (typeof window.onload != 'function') { window.onload = func; }
   else { window.onload = function() { old_event(); func(); }; }
 }
-  
-function show_date_as_local_time() {
-  var spans = document.getElementsByTagName('span');
-  for (var i=0; i<spans.length; i++) {
-    if (spans[i].className.match(/\btypo_date\b/i)) {
-      system_date = new Date(spans[i].title);
-      user_date = new Date();
-      delta_minutes = Math.round((user_date - system_date) / (60 * 1000));
-      if (Math.abs(delta_minutes) <= (8*7*24*60)) { // eight weeks... I'm lazy to count days for longer than that
-        spans[i].innerHTML = distance_of_time_in_words(delta_minutes) + ' ago';
-      } else {
-        spans[i].innerHTML = 'on ' + system_date.toLocaleDateString();
-      }
-    }
+
+function get_local_time_for_date(time) {
+  system_date = new Date(time);
+  user_date = new Date();
+  delta_minutes = Math.round((user_date - system_date) / (60 * 1000));
+  if (Math.abs(delta_minutes) <= (8*7*24*60)) { // eight weeks... I'm lazy to count days for longer than that
+    return distance_of_time_in_words(delta_minutes) + ' ago';
+  } else {
+    return 'on ' + system_date.toLocaleDateString();
   }
 }
 
@@ -69,4 +64,4 @@ register_onload(function() {
     }
   }
 })
-register_onload(function() { $('q').setAttribute('autocomplete', 'off'); })
+register_onload(function() { if ($('q')) {$('q').setAttribute('autocomplete', 'off');} })

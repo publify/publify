@@ -406,6 +406,10 @@ div.header {
 #info a:hover {
   background: #c00;
   }
+  
+.form p>small {
+  color: gray;
+}
 
  .form .note {
   font-style: italic;
@@ -415,3 +419,15 @@ div.header {
 .r { text-align: right; }
 .c { text-align: center; }
 
+/*
+ *=Users
+ */
+ 
+div.user {
+  margin: 10px 20px 10px 0;
+  border: 1px solid #ccc;
+  width: 160px;
+  background: #eee;
+  float: left;
+  padding: 5px;
+}

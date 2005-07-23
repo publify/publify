@@ -1,33 +1,41 @@
-<div id="sidebar">
-  <h1>Sidebars:</h1>
-
-  <%= form_remote_tag :update=>'messages',:url=>{:action=>'publish'} %>
-    <input value="Publish changes" type="submit"/>
-  <%= end_form_tag %>
-</div>
-
 <div id="content">
-  <h2>Edit sidebars</h2>
+  <h2>Sidebars</h2>
 
   <div id="messages">
   </div>
 
-  <p class="directions">Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar, drag them to the discard box.  Changes are saved immediately, but not activated until you click the 'Publish' button.</p>
+  <p class="directions">Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button.</p>
 
+  <%= form_remote_tag :update=>'messages',:url=>{:action=>'publish'} %>
+    <input value="Publish changes" type="submit"/>
+  <%= end_form_tag %>
+  
+  <br/>
   <table id="plugins"><tr><td>
-  <div id="available" class="dropbox">
-    <%= render :partial => 'available' %>
-  </div>
 
-  <div id="waste" class="dropbox">
-    <%= render :partial => 'waste' %>
+  <div id="available_HEADERHEADER" class="header">Available Items</div>
+  <div id="available" class="dropbox">
+    <% if @available.blank? %>
+      <p>  You have no plugins installed....  </p>
+    <% else %>
+      <%= render :partial => 'available', :collection => @available %>
+    <% end %>
   </div>
 
   </td><td>
 
+  <div id="active_HEADERHEADER" class="header">Active elements</div>
   <div id="active" class="dropbox">
-    <%= render :partial => 'active' %>
+    <% if @active.blank? %>
+      <div>  Drag some plugins here to fill your sidebar!  </div>
+      <%= sortable_element "active", 
+        :update => 'active', 
+        :url=> {:action=>'set_active'}, 
+        :tag => 'div', :handle => 'handle', :containment => ['active','available'] %>
+    <% else %>
+      <%= render :partial => 'actives', :object => @active %>
+    <% end %>
   </div>
-
+  
   </td></tr></table>
 </div>

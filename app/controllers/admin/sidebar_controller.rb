@@ -2,60 +2,51 @@ require_dependency 'sidebars/sidebar_controller'
 
 class Admin::SidebarController < Admin::BaseController
   def index
-    @sidebars=Sidebars::SidebarController.available_sidebars.inject({}) do |h,sidebar|
-      h[sidebar.short_name]=sidebar; h
+    @sidebars = Sidebars::SidebarController.available_sidebars.inject({}) do |hash,sidebar|
+      hash[sidebar.short_name]=sidebar
+      hash
     end
 
-    @active=Sidebar.find_all_staged.select {|s| @sidebars[s.controller] }
-
-    @available=@sidebars.values.sort { |a,b| a.name <=> b.name }
+    @active = Sidebar.find_all_staged.select {|s| @sidebars[s.controller] }
+    @available = @sidebars.values.sort { |a,b| a.name <=> b.name }
   end
 
   def show_available
-    @available=Sidebars::SidebarController.available_sidebars.sort { |a,b| a.name <=> b.name }
-    render :partial => 'available'
-  end
-
-  def show_waste
-    render :partial => 'waste'
+    render :partial => 'available', :collection => available
   end
 
   def set_active
-    @active=Sidebar.find_all_staged
-    activemap=Hash.new
-
-    availablemap=available_types
-
-    @active.each do |a|
-      activemap[a.html_id]=a
+    
+    # Get all available plugins
+    availablemap = available.inject({}) do |hash, item| 
+      hash[item.short_name] = item 
+      hash
     end
-    @active=[]
 
-    activelist=@params["active"]
+    # Get all already active plugins
+    activemap = Sidebar.find_all_staged.inject({}) do |hash, item|
+      hash[item.html_id] = item
+      hash
+    end
+    
 
-    activelist.each do |name|
-      if(name=~/HEADERHEADER/)
-        # nothing -- this is the header.  It's technically a sortable
-        # part of the container, but that's just to work around a
-        # limitation in script.aculo.us's sortable
-        # implementation--it's currently impossible to drag something
-        # into an empty sortable.  So we cheat by making sure that the
-        # header block is always in the sortable.  Yeah, it means that
-        # users can drag things into a list *above* the header, but it
-        # fixes itself soon enough.
-      elsif(activemap[name])
-        @active.push activemap[name]
-      elsif (availablemap[name])
-        newitem=Sidebar.new
-        newitem.controller=name
-        newitem.staged_config=availablemap[name].default_config
+    # Figure out which plugins are referenced by the params[:active] array and 
+    # lay them out in a easy accessible sequencial array
+    @active = params[:active].inject([]) do |array, name|      
+      if availablemap.has_key?(name)
+        newitem = Sidebar.new
+        newitem.controller = name
+        newitem.staged_config= availablemap[name].default_config
 
-        @active.push newitem
-      else
-        raise "I don't know where to find #{name}"
+        array.push newitem
+      elsif activemap.has_key?(name)        
+        array.push activemap[name]
       end
+      array
     end
 
+    # Update the staged_position of all the sidebar items in accordance with 
+    # the params[:active] array
     Sidebar.transaction do
       Sidebar.update_all('staged_position=null')
       @active.each_index do |i|
@@ -65,19 +56,27 @@ class Admin::SidebarController < Admin::BaseController
       Sidebar.purge
     end
 
-    render :partial => 'active'
+    render :partial => 'actives', :object => @active
   end
 
   def save_config
-    sidebar=Sidebar.find(params[:id])
+    sidebar = Sidebar.find(params[:id])
     sidebar.staged_config=params[:configure]
     sidebar.save
 
-    render_text ''
+    render :nothing => true
   end
 
   def nothing
-    render_text ''
+    render :nothing => true
+  end
+  
+  def remove
+    sidebar = Sidebar.find(params[:id])
+    sidebar.staged_position = nil
+    sidebar.save
+
+    render :nothing => true    
   end
 
   def publish
@@ -94,10 +93,6 @@ class Admin::SidebarController < Admin::BaseController
   private
 
   def available
-    Sidebars::SidebarController.available_sidebars
-  end
-  
-  def available_types
-    available.inject({}) { |h,i| h[i.short_name]=i; h }
+    Sidebars::SidebarController.available_sidebars.sort { |a,b| a.name <=> b.name }
   end
 end

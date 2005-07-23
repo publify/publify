@@ -1,0 +1,5 @@
+<%= render :partial => 'active', :collection => actives %>
+<%= sortable_element "active", 
+  :update => 'active', 
+  :url=> {:action=>'set_active'}, 
+  :tag => 'div', :handle => 'handle', :containment => ['active','available'] %>

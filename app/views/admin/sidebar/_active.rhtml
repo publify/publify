@@ -1,17 +1,6 @@
-<div id="active_HEADERHEADER" class="header">Active elements</div>
-<% @active.each do |item| %>
-  <div id="active_<%= item.html_id %>" class="dragitem">
-    <h4 class="handle"><%= item.sidebar_controller.display_name %></h4>
-    <p><%= item.sidebar_controller.description %></p>
-    <%= render_component :layout=>false, :controller=>item.sidebar_controller.component_name, :action=>'configure_wrapper', :params => {:sidebar => item } %>
-   
-  </div>
-  <%= #draggable_element "active_#{item.html_id}", :revert => true
- %>
-<% end %>
-<%= sortable_element "active",
-    :update => 'active', :url=>{:action=>'set_active'},
-    :tag => 'div',
-    :handle => 'handle',
-    :containment => ['active','available','waste']
- %>
+<div id="active_<%= active.html_id %>" class="dragitem">
+  <h4 class="handle"><%= active.sidebar_controller.display_name %></h4>
+  <p><%= active.sidebar_controller.description %></p>
+  <%= render_component :layout=>false, :controller=>active.sidebar_controller.component_name, :action=>'configure_wrapper', :params => {:sidebar => active } %>
+  <div style="width:96%;text-align:right"><%= link_to_remote 'remove', :url => {:action => 'remove', :id => active}, :before => "new Effect.DropOut('active_#{active.html_id}');" %></div>
+</div>
