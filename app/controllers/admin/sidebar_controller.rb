@@ -12,7 +12,7 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   def show_available
-    render :partial => 'available', :collection => available
+    render :partial => 'availables', :object => available
   end
 
   def set_active
@@ -29,7 +29,6 @@ class Admin::SidebarController < Admin::BaseController
       hash
     end
     
-
     # Figure out which plugins are referenced by the params[:active] array and 
     # lay them out in a easy accessible sequencial array
     @active = params[:active].inject([]) do |array, name|      

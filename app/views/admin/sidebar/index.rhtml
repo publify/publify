@@ -13,28 +13,16 @@
   <br/>
   <table id="plugins"><tr><td>
 
-  <div id="available_HEADERHEADER" class="header">Available Items</div>
+  <h1>Available Items</h1>
   <div id="available" class="dropbox">
-    <% if @available.blank? %>
-      <p>  You have no plugins installed....  </p>
-    <% else %>
-      <%= render :partial => 'available', :collection => @available %>
-    <% end %>
+    <%= render :partial => 'availables', :object => @available %>
   </div>
 
   </td><td>
 
-  <div id="active_HEADERHEADER" class="header">Active elements</div>
+  <h1>Active Sidebar items</h1>
   <div id="active" class="dropbox">
-    <% if @active.blank? %>
-      <div>  Drag some plugins here to fill your sidebar!  </div>
-      <%= sortable_element "active", 
-        :update => 'active', 
-        :url=> {:action=>'set_active'}, 
-        :tag => 'div', :handle => 'handle', :containment => ['active','available'] %>
-    <% else %>
-      <%= render :partial => 'actives', :object => @active %>
-    <% end %>
+    <%= render :partial => 'actives', :object => @active %>
   </div>
   
   </td></tr></table>

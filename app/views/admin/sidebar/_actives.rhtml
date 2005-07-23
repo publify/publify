@@ -1,4 +1,9 @@
-<%= render :partial => 'active', :collection => actives %>
+<% if actives.blank? %>
+  <div>  Drag some plugins here to fill your sidebar!  </div>
+<% else %>
+ <%= render :partial => 'active', :collection => actives %>
+<% end %>
+  
 <%= sortable_element "active", 
   :update => 'active', 
   :url=> {:action=>'set_active'}, 
