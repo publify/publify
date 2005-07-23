@@ -115,6 +115,6 @@ CREATE TABLE `trackbacks` (
 
 CREATE TABLE `schema_info` (
   `version` int(11) default NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) TYPE=MyISAM;
 
 INSERT into `schema_info` VALUES (3);
