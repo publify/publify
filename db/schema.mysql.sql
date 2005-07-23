@@ -106,8 +106,7 @@ CREATE TABLE `sidebars` (
   `staged_position` int(11),
   `staged_config` text,
   `updated_at` datetime default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `sessid` (`sessid`)
+  PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
 insert into sidebars (id,controller,active_position,staged_position)
