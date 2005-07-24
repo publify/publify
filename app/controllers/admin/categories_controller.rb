@@ -18,7 +18,7 @@ class Admin::CategoriesController < Admin::BaseController
     
     if request.post? and @category.save
       flash[:notice] = 'Category was successfully created.'
-      redirect_to :action => 'show', :id => @category.id
+      redirect_to :action => 'list'
     end      
   end
 
@@ -27,7 +27,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category.attributes = params[:category]
     if request.post? and @category.save
       flash[:notice] = 'Category was successfully updated.'
-      redirect_to :action => 'show', :id => @category.id
+      redirect_to :action => 'list'
     end      
   end
 
