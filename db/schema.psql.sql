@@ -154,4 +154,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (5);
+INSERT into schema_info VALUES (6);
