@@ -120,3 +120,9 @@ CREATE TABLE 'trackbacks' (
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
 );
+
+CREATE TABLE 'schema_info' (
+  'version' INTEGER
+);
+
+INSERT into schema_info VALUES (5);
