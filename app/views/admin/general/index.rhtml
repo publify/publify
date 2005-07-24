@@ -24,37 +24,35 @@
       <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%= config_value(:blog_subtitle) %>" />
     </p>
     <p>
-      <label for="theme">Blog theme:</label> 
-      <input name="setting[theme]" id="theme" type="text" value="<%= config_value(:theme) %>" />
-    </p>
-      <p>
       <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_comments)%> />
       <input name="setting[default_allow_comments]" type="hidden" value="0"/>
         <label for="default_allow_comments">Enable comments by default</label>
-      </p>
-      <p>
+    </p>
+    <p>
       <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_pings)%> />
       <input name="setting[default_allow_pings]" type="hidden" value="0"/>
         <label for="default_allow_pings">Enable Trackbacks by default</label>
-      </p>
-      <p>
-        <label for="limit_article_display">Display </label>
-        <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= config_value(:limit_article_display) %>" /> articles on my homepage by default.
-      </p>
-      <p>
-        <label for="limit_rss_display">Display </label>
-        <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /> articles in my rss feed by default.
-      </p>
+    </p>
+    <p>
+      <label for="limit_article_display">Display </label>
+      <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= config_value(:limit_article_display) %>" /> articles on my homepage by default.
+    </p>
+    <p>
+      <label for="limit_rss_display">Display </label>
+      <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /> articles in my rss feed by default.
+    </p>
       
-      <p>Should the blog show mailto: links to your email address?</p>
-      <p><input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/> <label for="link_to_author">Enable E-Mail public display</label></p>
+    <p>Should the blog show mailto: links to your email address?</p>
+    <p><input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/> <label for="link_to_author">Enable E-Mail public display</label></p>
       
-      <p>Would you like to include your latitude and longitude in your blog's HTML pages? See <a href="http://geourl.org">GeoURL</a> for details.  <br/>Example: <tt>47.774,-122.201</tt></p>
+    <p>Would you like to include your latitude and longitude in your blog's HTML pages? See <a href="http://geourl.org">GeoURL</a> for details.  <br/>Example: <tt>47.774,-122.201</tt></p>
 
-      <p><label for="geourl_location">Latitude, Longitude:</label>
-      <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" /></p>      
+    <p>
+      <label for="geourl_location">Latitude, Longitude:</label>
+      <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" />
+    </p>      
       
-      <p class="r"><%= save("Save My Settings") %></p>
+    <p class="r"><%= save("Save My Settings") %></p>
   </div>
   
   
