@@ -1,5 +1,5 @@
 /*
- * =GENERAL/MASTER CONTAINERS             
+ * =GENERAL/MASTER CONTAINERS
  */
 
  body {
@@ -46,11 +46,13 @@
   }
 
  #footer {
-
- }
+  margin-top: 7px;
+  height: 35px;
+  text-align: center;
+  }
 
 /*
- * =UTILITY             
+ * =UTILITY
  */
 
  form {
@@ -60,7 +62,7 @@
 
  img { border: none; }
 
-  a { 
+  a {
     color: #c00;
     text-decoration: none;
     }
@@ -70,7 +72,7 @@
     }
 
 /*
- * =PRIMARY NAVIGATION             
+ * =PRIMARY NAVIGATION
  */
 
 
@@ -126,7 +128,7 @@
 
 
 /*
- * =TASKS LINKS             
+ * =TASKS LINKS
  */
 
 .tasks {
@@ -158,10 +160,10 @@
   background: #4A611C;
   color: #fff;
   }
-  
+
 
 /*
- * =HEADINGS             
+ * =HEADINGS
  */
 
   h2 {
@@ -216,7 +218,7 @@
     color: #1F273F;
   }
 /*
- * =TABLE LISTINGS             
+ * =TABLE LISTINGS
  */
 
  .list { clear: left; }
@@ -240,7 +242,7 @@
     }
 
 /*
- * =FORM ELEMENTS             
+ * =FORM ELEMENTS
  */
 label {
   font-weight: bold;
@@ -261,7 +263,7 @@ label {
 }
 
 /*
- * =POPUPS/TOOLTIPS             
+ * =POPUPS/TOOLTIPS
  */
 
  .tip-catlist {
@@ -273,7 +275,7 @@ label {
 
 
 /*
- * =LIVE PREVIEW             
+ * =LIVE PREVIEW
  */
 
 #preview, #preview_extended {
@@ -334,7 +336,7 @@ label {
    border: 1px solid #333;
    background: #c8d9ed;
  }
- 
+
  #available , #active {
    background: #c8d9ed;
  }
@@ -345,12 +347,12 @@ label {
    margin: 0 0 10px 0;
    padding: 2px 5px;
  }
- 
- .dropbox { 
+
+ .dropbox {
    width: 270px;
  }
 
- .handle { 
+ .handle {
    cursor: move;
    font-size: 130%;
    font-weight: normal;
@@ -361,8 +363,8 @@ label {
  .dragitem, .dropitem {
    margin: 0 0 5px 12px;
  }
- 
- .dragitem { 
+
+ .dragitem {
    border: 1px solid #9cabba;
    border-top: 1px solid #bacddf;
    border-left: 1px solid #bacddf;
@@ -381,7 +383,7 @@ label {
 }
 
 /*
- * =MISC             
+ * =MISC
  */
 .form p {
   margin: 0;
@@ -395,7 +397,7 @@ label {
 #info a:hover {
   background: #c00;
   }
-  
+
 .form p>small {
   color: gray;
 }
@@ -412,7 +414,7 @@ label {
 /*
  *=Users
  */
- 
+
 div.user {
   margin: 10px 20px 10px 0;
   border: 1px solid #ccc;
