@@ -31,11 +31,9 @@ CREATE TABLE articles (
   updated_at TIMESTAMP DEFAULT now()
 );
 
-CREATE TABLE caches (
+CREATE TABLE page_caches (
   id SERIAL PRIMARY KEY NOT NULL,
-  page_name text,
-  created_at TIMESTAMP DEFAULT now(),
-  updated_at TIMESTAMP DEFAULT now()
+  name varchar(255)
 );
 
 CREATE INDEX idx_caches ON caches (page_name);

@@ -41,12 +41,11 @@ CREATE TABLE `blacklist_patterns` (
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
-CREATE TABLE `caches` (
+CREATE TABLE `page_caches` (
   `id` int(11) NOT NULL auto_increment,
-  `page_name` text NOT NULL,
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
+  `name` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`),
+  KEY `name` (`name`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `categories` (
