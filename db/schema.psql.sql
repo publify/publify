@@ -28,8 +28,11 @@ CREATE TABLE articles (
   text_filter varchar(20) default NULL,
   user_id int default NULL,
   created_at TIMESTAMP DEFAULT now(),
-  updated_at TIMESTAMP DEFAULT now()
+  updated_at TIMESTAMP DEFAULT now(),
+  permalink varchar(255) default NULL
 );
+
+CREATE INDEX articles_permalink_index ON articles (permalink);
 
 CREATE TABLE page_caches (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -52,8 +55,11 @@ CREATE TABLE pages (
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
   name varchar(255) default NULL,
-  position int NOT NULL default '0'
+  position int NOT NULL default '0',
+  permalink varchar(255) default NULL
 );
+
+CREATE INDEX categories_permalink_index ON categories (permalink);
 
 CREATE TABLE articles_categories (
   article_id int,
@@ -154,4 +160,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (6);
+INSERT into schema_info VALUES (7);

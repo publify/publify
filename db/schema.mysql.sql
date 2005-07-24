@@ -25,7 +25,9 @@ CREATE TABLE `articles` (
   `user_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
-  PRIMARY KEY  (`id`)
+  `permalink` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `articles_permalink_index` (`permalink`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `articles_categories` (
@@ -64,7 +66,9 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) default NULL,
   `position` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`id`)
+  `permalink` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `categories_permalink_index` (`permalink`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `comments` (
@@ -154,4 +158,4 @@ CREATE TABLE `schema_info` (
   `version` int(11) default NULL
 ) TYPE=MyISAM;
 
-INSERT into `schema_info` VALUES (6);
+INSERT into `schema_info` VALUES (7);

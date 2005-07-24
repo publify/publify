@@ -22,7 +22,8 @@ CREATE TABLE 'articles' (
   'text_filter' VARCHAR(20) DEFAULT NULL,
   'user_id'     INTEGER DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,
-  'updated_at'  DATETIME DEFAULT NULL
+  'updated_at'  DATETIME DEFAULT NULL,
+  'permalink'   VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE 'articles_categories' (
@@ -56,7 +57,8 @@ CREATE TABLE 'pages' (
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'        VARCHAR(255) DEFAULT NULL,
-  'position'    INTEGER
+  'position'    INTEGER,
+  'permalink'   VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE 'comments' (
@@ -136,4 +138,4 @@ CREATE TABLE 'schema_info' (
   'version' INTEGER
 );
 
-INSERT into schema_info VALUES (6);
+INSERT into schema_info VALUES (7);
