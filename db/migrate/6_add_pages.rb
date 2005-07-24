@@ -6,8 +6,8 @@ class AddPages < ActiveRecord::Migration
       t.column :body, :text
       t.column :body_html, :text
       t.column :text_filter, :string
-      t.column :created_at, :timestamp
-      t.column :updated_at, :timestamp
+      t.column :created_at, :datetime
+      t.column :updated_at, :datetime
     end
   end
 
