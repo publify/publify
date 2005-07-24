@@ -34,11 +34,10 @@ class Admin::GeneralController < Admin::BaseController
       
   private
 
-
-    def find_or_create(name)
-      unless setting = Setting.find_by_name(name)
-        setting = Setting.new("name" => name)
-      end
-      setting
+  def find_or_create(name)
+    unless setting = Setting.find_by_name(name)
+      setting = Setting.new("name" => name)
     end
+    setting
+  end
 end

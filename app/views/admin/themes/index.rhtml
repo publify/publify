@@ -1,0 +1,9 @@
+<% for theme in @themes %>
+<img src="<%= url_for :action => 'preview', :theme => theme.name %>" alt="<%= theme.name %>" align="right" />
+<div id="gensettings" class="set" style="margin-right: 300px; margin-top:10px;">
+  <%= theme.description %>
+  
+  <%= link_to "Activate", :action => 'switchto', :theme => theme.name %>
+</div>
+<br clear="all">
+<% end %>
