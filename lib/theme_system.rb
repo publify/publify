@@ -7,7 +7,7 @@ module ThemeSystem
   end
   
   def self.relative_theme_path
-    "/components/plugins/themes/#{theme}" 
+    "/themes/#{theme}" 
   end
   
   def self.theme
@@ -23,7 +23,7 @@ module ThemeSystem
   end
   
   def self.search_theme_directory
-    Dir["#{RAILS_ROOT}/components/plugins/themes/[_a-z]"].inject([]) do |array, file|
+    Dir["#{current_theme_path}/[_a-z]"].inject([]) do |array, file|
       array << file if File.directory?(file)
       array
     end    
