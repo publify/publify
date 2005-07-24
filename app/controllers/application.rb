@@ -10,13 +10,14 @@ class ApplicationController < ActionController::Base
       
   def self.cache_page(content,path)
     super(content,path)
-    c = Cache.create(:page_name => path) rescue nil
+    PageCache.create(:page_name => path) rescue nil
   end
 
   def self.expire_page(path)
     super(path)
-    c = Cache.find :first, :conditions => ['page_name = ?',path]
-    c.destroy if c
+    if cache = PageCache.find(:first, :conditions => ['page_name = ?', path])
+      cache.destroy
+    end
   end
 
   def cache
