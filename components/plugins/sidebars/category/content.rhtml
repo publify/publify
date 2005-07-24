@@ -3,7 +3,7 @@
 <ul id="categories">
 <% for category in @categories -%>
   <% if @sb_config['empty'] or category.article_counter.to_i>0 %>
-  <li><%= link_to category.name, :controller => "articles", :action => "category", :id => category.name  %> <% if @sb_config['count'] %><em>(<%= category.article_counter %>)</em><% end %></li>
+  <li><%= link_to category.name, :controller => "articles", :action => "category", :id => category.permalink  %> <% if @sb_config['count'] %><em>(<%= category.article_counter %>)</em><% end %></li>
   <% end %>
 <% end -%>
 </ul>
