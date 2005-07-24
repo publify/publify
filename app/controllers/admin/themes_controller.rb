@@ -11,7 +11,8 @@ class Admin::ThemesController < Admin::BaseController
   
   def switchto
     
-    setting = Setting.find_by_name('theme')    
+    setting = (Setting.find_by_name('theme') or Setting.new("name" => 'theme'))
+
     setting.value = params[:theme]
     setting.save
     
