@@ -36,11 +36,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
 
   map.connect 'stylesheets/theme/:filename',
-    :controller => 'themes/theme', :action => 'stylesheets'
+    :controller => 'theme', :action => 'stylesheets'
   map.connect 'javascript/theme/:filename',
-    :controller => 'themes/theme', :action => 'javascript'
+    :controller => 'theme', :action => 'javascript'
   map.connect 'images/theme/:filename',
-    :controller => 'themes/theme', :action => 'images'
+    :controller => 'theme', :action => 'images'
      
   # Allow legacy urls to still work
   map.connect ':controller/:action/:id/:page', :page => nil,

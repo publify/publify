@@ -1,4 +1,3 @@
-require_dependency 'login_system'
 
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
@@ -30,12 +29,7 @@ class ApplicationController < ActionController::Base
     config.reload
   end
 
-  def render_theme(options)
-    options[:controller] = Themes::ThemeController.active_theme_name
-    render_component(options)
-  end
-
   def theme_layout
-    Themes::ThemeController.active_theme.theme_layout
+    ThemeSystem.theme_layout
   end
 end

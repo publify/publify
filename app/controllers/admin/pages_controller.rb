@@ -1,5 +1,5 @@
 class Admin::PagesController < Admin::BaseController
-
+  layout :theme_layout
   cache_sweeper :blog_sweeper
 
   def index

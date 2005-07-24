@@ -1,0 +1,51 @@
+class ThemeController < ApplicationController
+  caches_page :stylesheets, :javascript, :images
+  
+  def stylesheets
+    render_theme_item(:stylesheets, params[:filename], 'text/css')
+  end
+
+  def javascript
+    render_theme_item(:javascript, params[:filename], 'text/javascript')
+  end
+
+  def images
+    render_theme_item(:images, params[:filename])
+  end
+  
+  private
+  
+  def render_theme_item(type, file, mime = mime_for(file))
+    send_file ThemeSystem.current_theme_path + "/#{type}/#{file}", :type => mime, :disposition => 'inline', :stream => false
+  end
+  
+  def theme
+    ThemeSystem.theme
+  end
+
+  def active_theme_name
+    "plugins/themes/#{theme}"
+  end
+  
+  def mime_for(filename)
+    case filename.downcase
+    when /\.js$/
+      'text/javascript'
+    when /\.css$/
+      'text/css'
+    when /\.gif$/
+      'image/gif'
+    when /(\.jpg|\.jpeg)$/
+      'image/jpeg'
+    when /\.png$/
+      'image/png'
+    when /\.swf$/
+      'application/x-shockwave-flash'
+    else
+      'application/binary'
+    end
+  end  
+  
+
+end
+
