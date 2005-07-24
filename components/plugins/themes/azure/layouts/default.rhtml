@@ -3,10 +3,10 @@
 <head>
   <title><%= page_title %></title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <% if config['geourl_location'].to_s.size >0 %><meta name="ICBM" content="<%= config['geourl_location'] %>" /><% end %>
+  <%= meta_tag 'ICBM', config_value(:geourl_location)  %>
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= server_url_for :controller => 'xml', :action => 'rsd' %>" />
   <%= auto_discovery_link_tag :rss, :controller => 'xml', :action => 'rss' %>
-  <%= stylesheet_link_tag "/stylesheets/theme/azure" %>
+  <%= stylesheet_link_tag "azure" %>
   <%= javascript_include_tag "cookies" %>
   <%= javascript_include_tag "prototype" %>
   <%= javascript_include_tag "effects" %>
@@ -14,23 +14,23 @@
   <script type="text/javascript"><%= @content_for_script %></script>
 </head>
 <body>
-	<div id="container" class="clearfix">
-			<div id="header">
-				<div id="logo">
-					<h1 id="sitename"><%= link_to config_value('blog_name'), { :controller => '/' } %></h1>
-					<h2 id="subtitle"><%= config_value('blog_subtitle') %></h2>
-				</div>
-			</div>
-			
-			<div id="search"> <%= render_partial "shared/search" %></div>
-			
-			<div id="content" class="clearfix">
-				<div id="main">
-				<%= @content_for_layout %>
-				</div>
-				<div id="sidebar">
-					
-  					<div id="search-results"></div>
+  <div id="container" class="clearfix">
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><%= link_to config_value('blog_name'), { :controller => '/' } %></h1>
+          <h2 id="subtitle"><%= config_value('blog_subtitle') %></h2>
+        </div>
+      </div>
+      
+      <div id="search"> <%= render :partial => "shared/search" %></div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+        <%= @content_for_layout %>
+        </div>
+        <div id="sidebar">
+          
+            <div id="search-results"></div>
               <%= observe_field "q", 
                   :frequency => 1, 
                   :url => { :controller => "live", :action => "search" }, 
@@ -38,23 +38,18 @@
                   :complete => "Element.hide('search_spinner')",
                   :update => "search-results" -%>
 
-		<%= render_component(:controller => 'sidebars/sidebar',
-				     :action => 'display_plugins') %>
+            <%= render_component(:controller => 'sidebars/sidebar', :action => 'display_plugins') %>
+            <%= link_to image_tag("powered.gif"),  "http://typo.leetsoft.com/", {:class => "powered" } %>
+            </div>
 
-						
-						<%= link_to image_tag("powered.gif"),  "http://typo.leetsoft.com/", {:class => "powered" } %>
-
-						</div>
-
-
-						<br clear="all" />
-			</div>
-			<div id="footer">
-				<ul>
-					<li><a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a></li>
-					<li><a href="http://jigsaw.w3.org/css-validator/validator?uri=<%= server_url_for :controller => 'articles' %>">Valid CSS</a></li>
-				</ul>
-			</div>
-	</div>
+            <br clear="all" />
+      </div>
+      <div id="footer">
+        <ul>
+          <li><a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a></li>
+          <li><a href="http://jigsaw.w3.org/css-validator/validator?uri=<%= server_url_for :controller => 'articles' %>">Valid CSS</a></li>
+        </ul>
+      </div>
+  </div>
 </body>
 </html>

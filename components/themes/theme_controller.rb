@@ -2,38 +2,38 @@ class Themes::Plugin < ApplicationController
   uses_component_template_root
 
   def images
-    filename=params[:filename]
+    filename = params[:filename]
     case filename.downcase
     when /.gif$/
-      contenttype='image/gif'
+      contenttype = 'image/gif'
     when /(.jpg|.jpeg)$/
-      contenttype='image/jpeg'
+      contenttype = 'image/jpeg'
     when /.png$/
-      contenttype='image/png'
+      contenttype = 'image/png'
     when /.swf$/
-      contenttype='application/x-shockwave-flash'
+      contenttype = 'application/x-shockwave-flash'
     else
-      contenttype='application/binary'
+      contenttype = 'application/binary'
     end
       
-    file_object('images',filename,contenttype)
+    file_object('images', filename, contenttype)
   end
 
   def javascript
-    file_object('javascript',params[:filename],'application/x-javascript')
+    file_object('javascript', params[:filename], 'application/x-javascript')
   end
 
   def stylesheets
-    file_object('stylesheets',params[:filename],'text/css')
+    file_object('stylesheets', params[:filename], 'text/css')
   end
 
-  def file_object(type,name,contenttype)
+  def file_object(type, name, contenttype)
     # We need :steam => false or weird things happen with webrick in 0.13.1
     send_file "components/plugins/themes/#{self.class.themename}/#{type}/#{name}" ,:type => contenttype, :disposition=>'inline', :stream=>false
   end
 
   def self.theme_layout
-    "../../components/plugins/themes/#{themename}/layouts/default"
+    "#{RAILS_ROOT}/components/plugins/themes/#{themename}/layouts/default"
   end
 end
 
@@ -42,11 +42,11 @@ class Themes::ThemeController < ApplicationController
   cache_sweeper :theme_sweeper
   caches_page :stylesheets, :javascript, :images
 
-  @@theme=config[:theme] #||'azure'
+  @@theme = config[:theme] #||'azure'
 
   def self.check_theme
     if config[:theme] and config[:theme] != @@theme
-      @@theme=config[:theme]
+      @@theme = config[:theme]
     end
   end
 
