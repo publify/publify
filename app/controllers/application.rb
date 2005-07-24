@@ -8,13 +8,15 @@ class ApplicationController < ActionController::Base
   
   before_filter :reload_settings
       
-  def self.cache_page(content,path)
-    super(content,path)
-    PageCache.create(:name => path) rescue nil
+  def self.cache_page(content, path)
+    # Don't cache the page if there are any questionmark characters in the url
+    unless path =~ /\?\w+/
+      super(content,path)
+      PageCache.create(:name => page_cache_file(path))
+    end
   end
 
   def self.expire_page(path)
-    super(path)
     if cache = PageCache.find(:first, :conditions => ['name = ?', path])
       cache.destroy
     end

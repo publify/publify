@@ -120,6 +120,18 @@ module ApplicationHelper
     %{<script type="text/javascript">document.write(get_local_time_for_date("#{time}"));</script><noscript>on #{time}</noscript>}
   end
   
+  def render_sidebar(sidebar)
+    begin
+      render_component :layout => false, :controller => sidebar.sidebar_controller.component_name, :action=>'index', :params => {:sidebar => sidebar }
+    rescue => e 
+      content_tag :p, e.message, :class => 'error'
+    end
+  end
+  
+  def meta_tag(name, value)
+    tag :meta, :name => name, :content => value unless value.blank?
+  end
+  
   def date(date)
     "<span class=\"typo_date\">#{date.utc.strftime("%d. %b")}</span>"
   end
