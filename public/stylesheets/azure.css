@@ -185,6 +185,14 @@ body {
  		margin-top: 10px;
  		}
  		
+
+ #sidebar h3 a {
+		color: #d75a20;
+		border-bottom: 1px dotted #d75a20;
+		}
+
+ #sidebar h3 a:hover { color: #85ab02; border-bottom-color: #85ab02; }
+
  #sidebar ul {
  		margin: 0;
  		padding: 0;
