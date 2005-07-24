@@ -435,3 +435,11 @@ div.user {
   margin-left: 10px;
   border-top: none;
 }
+
+#advanced { line-height: 1.3em; }
+
+#advanced label {
+  clear: left;
+  float: left;
+  width: 15em;
+}

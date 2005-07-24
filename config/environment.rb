@@ -83,6 +83,10 @@ require_dependency 'xmlrpc_fix'
 
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)      
 
+ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+  :long_weekday => '%a %B %e, %Y %H:%M'
+)
+
 begin
   require 'redcloth' 
   require 'bluecloth' 
