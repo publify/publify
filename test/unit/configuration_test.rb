@@ -27,7 +27,8 @@ class ConfigurationTest < Test::Unit::TestCase
      "sp_article_auto_close",
      "sp_global",
      "sp_url_limit",
-     "text_filter"], Configuration.fields.keys.sort 
+     "text_filter",
+     "theme"], Configuration.fields.keys.sort 
   end
   
   def test_booleans
