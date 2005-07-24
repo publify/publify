@@ -135,6 +135,7 @@
   background: #F1F8E4;
   border: 1px solid #8DBA47;
   padding: 5px;
+  margin-bottom: 5px;
   }
 
 .tasks ul {
@@ -415,15 +416,41 @@ label {
  *=Users
  */
 
-div.user {
-  margin: 10px 20px 10px 0;
-  border: 1px solid #ccc;
-  width: 160px;
-  background: #eee;
-  float: left;
-  padding: 5px;
+div#users {
+  background: #c8d9ed;
+  margin-top: 10px;
 }
 
+div.user {
+  border: 1px solid #9cabba;
+  border-top: 1px solid #bacddf;
+  border-left: 1px solid #bacddf;
+  background: #fff;
+  width: 30%;
+  float: left;
+  margin: 10px;
+}
+
+.user h4 {
+  margin: 0 0 2px 0;
+  padding: 0;
+}
+
+.user h4 a {
+  color: #333;
+  background: #f7f7f7;
+  padding-left: 5px;
+  display: block;
+}
+
+.user h4 a:hover {
+  background: #D7DFE4;
+}
+
+.user p {
+  margin: 0;
+  padding: 5px;
+}
 /*
  *=MISC CONTAINERS
  */

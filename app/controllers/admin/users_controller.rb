@@ -17,7 +17,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(params[:user])
     if request.post? and @user.save
       flash[:notice] = 'User was successfully created.'
-      redirect_to :action => 'show', :id => @user.id
+      redirect_to :action => 'list'
     end      
   end
 
