@@ -43,7 +43,7 @@ class Admin::BlacklistControllerTest < Test::Unit::TestCase
     num_blacklist_patterns = BlacklistPattern.find_all.size
 
     post :new, 'blacklist_pattern' => { }
-    assert_redirected_to :action => 'show'
+    assert_redirected_to :action => 'list'
 
     assert_equal num_blacklist_patterns + 1, BlacklistPattern.find_all.size
   end
@@ -57,7 +57,7 @@ class Admin::BlacklistControllerTest < Test::Unit::TestCase
 
   def test_update
     post :edit, 'id' => 1
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'list'
   end
 
   def test_destroy

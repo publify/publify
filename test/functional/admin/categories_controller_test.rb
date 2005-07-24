@@ -42,8 +42,8 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
   def test_create
     num_categories = Category.find_all.size
 
-    post :new, 'category' => { }
-    assert_redirected_to :action => 'show'
+    post :new, 'category' => { :name => "test category" }
+    assert_redirected_to :action => 'list'
 
     assert_equal num_categories + 1, Category.find_all.size
   end
@@ -57,7 +57,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
 
   def test_update
     post :edit, 'id' => 1
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'list'
   end
 
   def test_destroy
