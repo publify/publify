@@ -1,7 +1,7 @@
   <% @page_heading = 'Articles' %>
 
   <% content_for('tasks') do %>
-    <li><a href="#" onclick="new Effect.BlindDown('quick-post', {duration:0.4}); return false;">Quick Post</a></li>
+    <%= task_quickpost('Quick Post') %>
     <%= task_new 'Create new article' %>
   <% end %> 
 

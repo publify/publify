@@ -28,7 +28,7 @@ class Admin::BlacklistController < Admin::BaseController
     
     if request.post? and @blacklist_pattern.save
       flash[:notice] = 'BlacklistPattern was successfully created.'
-      redirect_to :action => 'show', :id => @blacklist_pattern.id
+      redirect_to :action => 'list'
     end      
   end
 
@@ -37,7 +37,7 @@ class Admin::BlacklistController < Admin::BaseController
     @blacklist_pattern.attributes = params[:blacklist_pattern]
     if request.post? and @blacklist_pattern.save
       flash[:notice] = 'BlacklistPattern was successfully updated.'
-      redirect_to :action => 'show', :id => @blacklist_pattern.id
+      redirect_to :action => 'list'
     end      
   end
 

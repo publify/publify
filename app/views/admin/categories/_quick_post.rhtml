@@ -1,0 +1,11 @@
+<%= start_form_tag :action=>"new" %>
+
+<p>
+  <label for="category_name">Title:</label><br/>
+  <%= text_field 'category', 'name'  %>  
+</p>
+
+<div id="operations">
+  <%= save("Add category") %> or <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" >Close</a>
+</div>
+<%= end_form_tag %>

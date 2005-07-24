@@ -74,6 +74,10 @@ module Admin::BaseHelper
   def alternate_class
     @class = @class != '' ? '' : 'class="shade"'
   end
+  
+  def task_quickpost(title)
+    content_tag :li, link_to_function(title, "new Effect.BlindDown('quick-post', {duration:0.4}); return false;")
+  end
 
   def task_overview
     task('Back to overview', 'list')
@@ -96,7 +100,7 @@ module Admin::BaseHelper
   end
 
   def task(title, action, id = nil)
-    '<li>' + link_to(title, :action => action, :id => id) + '</li>'
+    content_tag :li, link_to(title, :action => action, :id => id)
   end
 
 end
