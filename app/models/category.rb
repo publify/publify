@@ -11,5 +11,17 @@ class Category < ActiveRecord::Base
       ORDER BY position, name
       })
   end
+  
+  def stripped_name
+    self.name.to_url
+  end
+  
+  protected  
+  
+  before_save :set_defaults
+  
+  def set_defaults
+    self.permalink ||= self.stripped_name
+  end
 end
 

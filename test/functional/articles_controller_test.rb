@@ -36,6 +36,15 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_rendered_file "archives"
   end
   
+  # Permalinks
+  def test_permalink
+    get :permalink, :year => 2005, :month => 01, :day => 01, :title => "article-1"
+    assert_response :success
+    assert_template "read"
+    assert_not_nil assigns(:article)
+    assert_equal @article1, assigns(:article)
+  end
+
   # Posts for given day
   def test_find_by_date
     get :find_by_date, :year => 2005, :month => 01, :day => 01

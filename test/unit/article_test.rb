@@ -16,16 +16,16 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_permalink_with_title
-    assert_equal @article2, Article.find_by_permalink(2005,01,01, "article-2")  
-    assert_nil Article.find_by_permalink(2005,01,01, "article-3")  
+    assert_equal @article2, Article.find_by_permalink(2005, 01, 01, "article-2")  
+    assert_nil Article.find_by_permalink(2005, 06, 01, "article-5")  
   end
   
   def test_strip_title
-    assert_equal "article-3", Article.strip_title("Article-3")
-    assert_equal "article-3", Article.strip_title("Article 3!?#")
-    assert_equal "article", Article.strip_title("-article-")
-    assert_equal "lorem-ipsum-dolor-sit-amet-consectetaur-adipisicing-elit", Article.strip_title("Lorem ipsum dolor sit amet, consectetaur adipisicing elit")
-    assert_equal "my-cats-best-friend", Article.strip_title("My Cat's Best Friend")
+    assert_equal "article-3", "Article-3".to_url
+    assert_equal "article-3", "Article 3!?#".to_url
+    assert_equal "article", "-article-".to_url
+    assert_equal "lorem-ipsum-dolor-sit-amet-consectetaur-adipisicing-elit", "Lorem ipsum dolor sit amet, consectetaur adipisicing elit".to_url
+    assert_equal "my-cats-best-friend", "My Cat's Best Friend".to_url
   end
   
   def test_perma_title

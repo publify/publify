@@ -3,8 +3,12 @@
 <p>
   <label for="articles_title">Title:</label><br />
   <%= text_field 'article', 'title'  %>
+  (<%= link_to_function "&raquo; edit permalink", "Toggle.display('permalink')" %>)<br/>
 </p>
-<p>
+<p id="permalink" style="display: none">
+  <label for="articles_permalink">Permalink:</label><br />
+  <%= text_field 'article', 'permalink'  %>
+</p>
 <p>
   <label for="categories[]">Categories:</label><br />
   <select name="categories[]" multiple="multiple" size="10" style="width:250px;">

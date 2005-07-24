@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
   belongs_to :user
   
   def stripped_title
-    self.class.strip_title(title)
+    self.title.to_url
   end
   
   def send_pings(articleurl, urllist)
@@ -54,7 +54,12 @@ class Article < ActiveRecord::Base
   
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   def self.find_by_permalink(year, month, day, title)
-    find_all_by_date(year, month, day).find { |a| a.stripped_title == title}
+    from, to = self.time_delta(year, month, day)
+    find(:first, :conditions => [ %{
+      permalink = ?
+      AND articles.created_at BETWEEN ? AND ?
+      AND articles.published != 0
+    }, title, from, to ])
   end
 
   # Fulltext searches the body of published articles
@@ -72,33 +77,13 @@ class Article < ActiveRecord::Base
     "#{body_html}\n\n#{extended_html}"
   end
   
-  # Converts a post title to its-title-using-dashes
-  # All special chars are stripped in the process  
-  def self.strip_title(title)
-    result = title.downcase
-
-    # replace quotes by nothing
-    result.gsub!(/['"]/, '')
-
-    # strip all non word chars
-    result.gsub!(/\W/, ' ')
-
-    # replace all white space sections with a dash
-    result.gsub!(/\ +/, '-')
-
-    # trim dashes
-    result.gsub!(/(-)$/, '')
-    result.gsub!(/^(-)/, '')
-    
-    result
-  end
-  
   protected  
 
   before_save :transform_body, :set_defaults
   
   def set_defaults
     self.published ||= 1
+    self.permalink ||= self.stripped_title
   end
   
   def transform_body

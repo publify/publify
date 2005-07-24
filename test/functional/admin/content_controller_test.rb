@@ -41,7 +41,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_create
     num_articles = Article.find_all.size
 
-    post :new, 'article' => { }
+    post :new, 'article' => { :title => "posted via tests!" }
     assert_redirected_to :action => 'show'
 
     assert_equal num_articles + 1, Article.find_all.size

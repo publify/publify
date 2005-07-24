@@ -9,6 +9,7 @@ article1:
   updated_at: 2005-01-01 20:00:00
   allow_comments: 1
   allow_pings: 1
+  permalink: article-1
   
 article2:
   id: 2
@@ -19,6 +20,7 @@ article2:
   updated_at: 2005-01-01 20:00:00
   allow_comments: 1
   allow_pings: 1
+  permalink: article-2
 
 article3:
   id: 3
@@ -29,6 +31,7 @@ article3:
   updated_at: 2004-06-01 20:00:00
   allow_comments: 1
   allow_pings: 1
+  permalink: article-3
 
 article4:
   id: 4
@@ -40,3 +43,4 @@ article4:
   updated_at: 2004-06-01 20:00:00
   allow_comments: 1
   allow_pings: 1
+  permalink: article-4

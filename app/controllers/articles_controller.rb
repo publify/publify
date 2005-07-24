@@ -58,7 +58,7 @@ class ArticlesController < ApplicationController
   end
   
   def category
-    if category = Category.find_by_name(params[:id])
+    if category = Category.find_by_permalink(params[:id])
       @articles = Article.find(:all, :conditions => [%{ published != 0
           AND articles.id = articles_categories.article_id
           AND articles_categories.category_id = ? }, category.id],
