@@ -1,0 +1,218 @@
+in: |
+  This is a regular paragraph.
+
+  <table>
+      <tr>
+          <td>Foo</td>
+      </tr>
+  </table>
+  
+  This is another regular paragraph.
+out: |-
+  <p>This is a regular paragraph.</p>
+
+
+  <table>
+      <tr>
+          <td>Foo</td>
+      </tr>
+  </table>
+  	<p>This is another regular paragraph.</p>
+---
+in: '"Larry Bird":http://images.google.com/images?num=30&q=larry+bird'
+out: '<p>"Larry Bird":http://images.google.com/images?num=30&#38;q=larry+bird</p>'
+---
+in: '&copy;'
+out: <p>&copy;</p>
+---
+in: AT&T
+out: <p>AT&#38;T</p>
+
+# We don't do this.
+# ---
+# in: 4 < 5
+# out: 4 &lt; 5
+---
+in: |
+  This is an H1
+  =============
+  
+  This is an H2
+  -------------
+out: |-
+  <h1>This is an H1</h1>
+
+  <h2>This is an H2</h2>
+---
+in: |
+  # This is an H1
+  
+  ## This is an H2
+  
+  ###### This is an H6
+out: |-
+  <h1>This is an H1</h1>
+
+  <h2>This is an H2</h2>
+
+  <h6>This is an H6</h6>
+---
+in: |
+  > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+  > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+  > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+  > 
+  > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+  > id sem consectetuer libero luctus adipiscing.
+out: |-
+  <blockquote>
+  	<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+  	consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+  	Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
+  
+  	<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+  	id sem consectetuer libero luctus adipiscing.</p>
+  
+  </blockquote>
+---
+in: |
+  > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+  consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+  Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+  >
+  > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+  id sem consectetuer libero luctus adipiscing.
+out: |-
+  <blockquote>
+  	<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+  	consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+  	Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
+  
+  	<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+  	id sem consectetuer libero luctus adipiscing.</p>
+  
+  </blockquote>
+---
+in: |
+  > This is the first level of quoting.
+  >
+  > > This is nested blockquote.
+  >
+  > Back to the first level.
+out: |-
+  <blockquote>
+  	<p>This is the first level of quoting.</p>
+  	<blockquote>
+  	<p>This is nested blockquote.</p>
+  
+  	</blockquote>
+  
+  
+  
+  	<p>Back to the first level.</p>
+  
+  </blockquote>
+---
+in: |
+  > ## This is a header.
+  > 
+  > 1.   This is the first list item.
+  > 2.   This is the second list item.
+  > 
+  > Here's some example code:
+  > 
+  >     return shell_exec("echo $input | $markdown_script");
+out: |-
+  <blockquote>
+  	<h2>This is a header.</h2>
+  
+  
+  
+  	<p>1.   This is the first list item.
+  	2.   This is the second list item.</p>
+  
+  	<p>Here's some example code:</p>
+  	<pre><code>return shell_exec("echo $input | $markdown_script");</code></pre>
+  
+  </blockquote>
+---
+in: |
+  * * *
+
+  ***
+  
+  *****
+  
+  - - -
+  
+  ---------------------------------------
+  
+  _ _ _
+out: |-
+  <hr />
+
+  <hr />
+
+  <hr />
+
+  <hr />
+
+  <hr />
+
+  <hr />
+---
+in: |
+  This is [an example](http://example.com/ "Title") inline link.
+
+  [This link](http://example.net/) has no title attribute.
+out: |-
+  <p>This is <a href="http://example.com/" title="Title">an example</a> inline link.</p>
+
+  	<p><a href="http://example.net/">This link</a> has no title attribute.</p>
+---
+in: See my [About](/about/) page for details.
+out: <p>See my <a href="/about/">About</a> page for details.</p>
+---
+in: |
+  This is [an example][id] reference-style link.
+
+  This is [an example] [id] reference-style link.
+
+  [id]: http://example.com/  "Optional Title Here"
+out: |-
+  <p>This is <a href="http://example.com/" title="Optional Title Here">an example</a> reference-style link.</p>
+  
+  	<p>This is <a href="http://example.com/" title="Optional Title Here">an example</a> reference-style link.</p>
+---
+in: |
+  [Google][]
+  [Google]: http://google.com/
+out: <p><a href="http://google.com/">Google</a></p>
+---
+in: |
+  Visit [Daring Fireball][] for more information.
+  [Daring Fireball]: http://daringfireball.net/
+out: <p>Visit <a href="http://daringfireball.net/">Daring Fireball</a> for more information.</p>
+---
+in: |
+  I get 10 times more traffic from [Google] [1] than from
+  [Yahoo] [2] or [MSN] [3].
+  
+    [1]: http://google.com/        "Google"
+    [2]: http://search.yahoo.com/  "Yahoo Search"
+    [3]: http://search.msn.com/    "MSN Search"
+
+out: |-
+  <p>I get 10 times more traffic from <a href="http://google.com/" title="Google">Google</a> than from
+  <a href="http://search.yahoo.com/" title="Yahoo Search">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search">MSN</a>.</p>
+---
+in: |
+  I get 10 times more traffic from [Google][] than from
+  [Yahoo][] or [MSN][].
+  
+    [google]: http://google.com/        "Google"
+    [yahoo]:  http://search.yahoo.com/  "Yahoo Search"
+    [msn]:    http://search.msn.com/    "MSN Search"
+out: |-
+  <p>I get 10 times more traffic from <a href="http://google.com/" title="Google">Google</a> than from
+  <a href="http://search.yahoo.com/" title="Yahoo Search">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search">MSN</a>.</p>

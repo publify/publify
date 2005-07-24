@@ -20,6 +20,9 @@ ADDITIONAL_LOAD_PATHS.concat %w(
   config 
   lib 
   vendor 
+  vendor/rubypants
+  vendor/redcloth/lib
+  vendor/bluecloth/lib
   vendor/rails/railties
   vendor/rails/railties/lib
   vendor/rails/actionpack/lib
@@ -31,6 +34,11 @@ ADDITIONAL_LOAD_PATHS.concat %w(
 
 # Prepend to $LOAD_PATH
 ADDITIONAL_LOAD_PATHS.reverse.each { |dir| $:.unshift(dir) if File.directory?(dir) }
+
+# Load included libraries.
+require 'redcloth' 
+require 'bluecloth' 
+require 'rubypants' 
 
 # Require Rails libraries.
 require 'rubygems' unless File.directory?("#{RAILS_ROOT}/vendor/rails")
@@ -89,10 +97,3 @@ ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager =
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'
 )
-
-begin
-  require 'redcloth' 
-  require 'bluecloth' 
-  require 'rubypants' 
-rescue MissingSourceFile => e 
-end

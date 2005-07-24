@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>File: rubypants.rb</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+	<script type="text/javascript">
+	// <![CDATA[
+
+	function popupCode( url ) {
+		window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+	}
+
+	function toggleCode( id ) {
+		if ( document.getElementById )
+			elem = document.getElementById( id );
+		else if ( document.all )
+			elem = eval( "document.all." + id );
+		else
+			return false;
+
+		elemStyle = elem.style;
+		
+		if ( elemStyle.display != "block" ) {
+			elemStyle.display = "block"
+		} else {
+			elemStyle.display = "none"
+		}
+
+		return true;
+	}
+	
+	// Make codeblocks hidden by default
+	document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+	
+	// ]]>
+	</script>
+
+</head>
+<body>
+
+
+
+	<div id="fileHeader">
+		<h1>rubypants.rb</h1>
+		<table class="header-table">
+		<tr class="top-aligned-row">
+			<td><strong>Path:</strong></td>
+			<td>rubypants.rb
+			</td>
+		</tr>
+		<tr class="top-aligned-row">
+			<td><strong>Last Update:</strong></td>
+			<td>Fri Nov 12 13:58:59 CET 2004</td>
+		</tr>
+		</table>
+	</div>
+  <!-- banner header -->
+
+	<div id="bodyContent">
+
+
+	<div id="contextContent">
+
+		<div id="description">
+			<h1><a href="../classes/RubyPants.html">RubyPants</a> &#8212; SmartyPants ported to Ruby</h1>
+<p>
+Ported by Christian Neukirchen &lt;<a
+href="mailto:chneukirchen@gmail.com">chneukirchen@gmail.com</a>&gt;
+</p>
+<pre>
+  Copyright (C) 2004 Christian Neukirchen
+</pre>
+<p>
+Incooporates ideas, comments and documentation by Chad Miller
+</p>
+<pre>
+  Copyright (C) 2004 Chad Miller
+</pre>
+<p>
+Original SmartyPants by John Gruber
+</p>
+<pre>
+  Copyright (C) 2003 John Gruber
+</pre>
+
+		</div>
+
+
+
+
+
+
+			
+		<div id="class-list">
+			<h2 class="section-bar">Classes and Modules</h2>
+
+			Class <a href="../classes/RubyPants.html" class="link">RubyPants</a><br />
+
+		</div>
+
+	</div>
+
+
+
+		<!-- if includes -->
+
+
+		<!-- if method_list -->
+
+
+	</div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
