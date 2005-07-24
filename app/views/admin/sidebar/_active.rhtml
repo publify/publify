@@ -1,6 +1,8 @@
 <div id="active_<%= active.html_id %>" class="dragitem">
   <h4 class="handle"><%= active.sidebar_controller.display_name %></h4>
   <p><%= active.sidebar_controller.description %></p>
+  <div class="space">
   <%= render_component :layout=>false, :controller=>active.sidebar_controller.component_name, :action=>'configure_wrapper', :params => {:sidebar => active } %>
   <%= link_to_remote 'remove', :url => {:action => 'remove', :id => active}, :before => "new Effect.DropOut('active_#{active.html_id}');" %>
+  </div>
 </div>
