@@ -37,6 +37,13 @@ CREATE TABLE 'blacklist_patterns' (
   'pattern'     VARCHAR(255) DEFAULT NULL
 );
 
+CREATE TABLE 'caches' (
+  'id'		INTEGER PRIMARY KEY NOT NULL,
+  'page_name'   TEXT,
+  'created_at'  DATETIME,
+  'updated_at'  DATETIME
+);
+
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'        VARCHAR(255) DEFAULT NULL,

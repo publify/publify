@@ -31,6 +31,15 @@ CREATE TABLE articles (
   updated_at TIMESTAMP DEFAULT now()
 );
 
+CREATE TABLE caches (
+  id SERIAL PRIMARY KEY NOT NULL,
+  page_name text,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+CREATE INDEX idx_caches ON caches (page_name);
+
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
   name varchar(255) default NULL,
@@ -136,4 +145,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (4);
+INSERT into schema_info VALUES (5);

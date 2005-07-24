@@ -41,6 +41,14 @@ CREATE TABLE `blacklist_patterns` (
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `caches` (
+  `id` int(11) NOT NULL auto_increment,
+  `page_name` text NOT NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+) TYPE=MyISAM;
+
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) default NULL,
@@ -135,4 +143,4 @@ CREATE TABLE `schema_info` (
   `version` int(11) default NULL
 ) TYPE=MyISAM;
 
-INSERT into `schema_info` VALUES (4);
+INSERT into `schema_info` VALUES (5);
