@@ -5,6 +5,9 @@ class Admin::BaseController < ApplicationController
   layout 'administration'
   before_filter :login_required, :except => [ :login, :signup ]
   before_filter :look_for_needed_db_updates, :except => [:login, :signup, :update_database, :migrate]
+
+  cache_sweeper :blog_sweeper
+
   private
   
   def look_for_needed_db_updates
