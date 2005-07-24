@@ -38,6 +38,17 @@ CREATE TABLE page_caches (
 
 CREATE INDEX idx_caches ON caches (page_name);
 
+CREATE TABLE pages (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name varchar(255) default NULL,
+  body text,
+  body_html text,
+  text_filter varchar(20) default NULL,
+  user_id int default NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
   name varchar(255) default NULL,

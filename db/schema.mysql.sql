@@ -48,6 +48,18 @@ CREATE TABLE `page_caches` (
   KEY `name` (`name`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `pages` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `body` text,
+  `body_html` text,
+  `text_filter` varchar(20) default NULL,
+  `user_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) default NULL,

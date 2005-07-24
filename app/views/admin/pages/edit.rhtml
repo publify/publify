@@ -1,0 +1,30 @@
+  <% @page_heading = 'pages' %>
+  
+  <% content_for('tasks') do %>
+    <%= task_new 'Create new page' %>
+    <li><%= link_to 'View page on your blog', page_url(@page) %></li>
+  <% end %> 
+
+  <%= start_form_tag :action=>"edit", :id => @page.id %>
+  <h3>Editing page</h3>
+
+  <div class="form">
+    <!-- LIVE PREVIEW -->
+    <div id="preview" class="post" style="display:none;"></div>
+    <div id="preview_extended" class="post" style="display: none;"></div>
+    <!-- /LIVE PREVIEW -->	
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations">
+    <%= save %> or <%= cancel %>  
+  </div>
+
+  <%= end_form_tag %>
+
+
+<%= observe_field "page_body", 
+      :frequency => 2, 
+      :update => "preview",
+      :complete => "Element.show('preview')",
+      :url => { :action => "preview" } %>

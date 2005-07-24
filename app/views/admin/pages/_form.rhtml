@@ -1,0 +1,15 @@
+<%= error_messages_for 'page' %>
+<!--[form:pages]-->
+<p>
+  <label for="pages_name">Page name:</label><br />
+  <%= text_field 'page', 'name'  %>
+</p>
+<p>
+  <label for="pages_body">Article:</label><br />
+  <%= text_area 'page', 'body', :rows => 25  %>
+</p>
+
+<label for="pages_text_filter">Textfilter: </label><%= select 'pages', 'text_filter', text_filter_options %><br/>
+<br clear="all"/>
+
+<!--[eoform:pages]-->

@@ -64,6 +64,10 @@ module ApplicationHelper
   def article_link(title, article,anchor=nil)
     link_to title, article_url(article,true,anchor)
   end
+
+  def page_link(title, page,anchor=nil)
+    link_to title, page_url(page,true,anchor)
+  end
   
   def comment_url_link(title, comment)
     link_to title, comment_url(comment)
@@ -71,6 +75,10 @@ module ApplicationHelper
   
   def article_url(article, only_path = true, anchor = nil)
     url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title, :anchor => anchor
+  end
+
+  def page_url(page, only_path = true, anchor = nil)
+    url_for :only_path => only_path, :controller => "/articles", :action => "view_page", :name => page.name, :anchor => anchor
   end
 
   def comment_url(comment, only_path = true)

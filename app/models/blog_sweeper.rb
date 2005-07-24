@@ -1,5 +1,5 @@
 class BlogSweeper < ActionController::Caching::Sweeper
-  observe Article, Comment, Trackback
+  observe Article, Comment, Trackback, Page
 
   def after_save(record)
     expire_xml_feeds_for(record)
@@ -15,6 +15,9 @@ class BlogSweeper < ActionController::Caching::Sweeper
     case record
     when Comment, Trackback:      
       expire_static_pages_for(record.article)
+    when Page:
+      STDERR.puts "*** sweeping: #{record.name}"
+      PageCache.sweep("/pages/#{record.name}.html")
     when Article
       y, m, d = record.created_at.year, sprintf("%.2d", record.created_at.month), sprintf("%.2d", record.created_at.day)
 

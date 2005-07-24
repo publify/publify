@@ -42,6 +42,17 @@ CREATE TABLE 'page_caches' (
   'name'   VARCHAR(255)
 );
 
+CREATE TABLE 'pages' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'name'       VARCHAR(255) DEFAULT NULL,
+  'body'        TEXT DEFAULT NULL,
+  'body_html'   TEXT DEFAULT NULL,
+  'text_filter' VARCHAR(20) DEFAULT NULL,
+  'user_id'     INTEGER DEFAULT NULL,
+  'created_at'  DATETIME DEFAULT NULL,
+  'updated_at'  DATETIME DEFAULT NULL
+);
+
 CREATE TABLE 'categories' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'        VARCHAR(255) DEFAULT NULL,

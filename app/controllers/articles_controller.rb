@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :verify_config
 
   cache_sweeper :blog_sweeper
-  caches_page :index, :read, :permalink, :category, :find_by_date, :archives
+  caches_page :index, :read, :permalink, :category, :find_by_date, :archives, :view_page
 
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
@@ -142,6 +142,14 @@ class ArticlesController < ApplicationController
     trackback = Trackback.find(params[:id])
     trackback.destroy 
     render :nothing => true 
+  end
+
+  def view_page
+    if(@page = Page.find_by_name(params[:name].to_a.join('/')))
+      render
+    else
+      render :nothing, :status => 404
+    end
   end
   
   private

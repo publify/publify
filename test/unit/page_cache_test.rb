@@ -22,7 +22,7 @@ class CacheTest < Test::Unit::TestCase
   def test_sweep_all
     PageCache.sweep_all
     
-    assert_equal ['/index.html', '/articles/2005/05/05/title'], PageCache.deleted_pages
+    assert_equal ['/index.html', '/articles/2005/05/05/title'].sort, PageCache.deleted_pages.sort
   end
   
   def test_sweep_by_pattern

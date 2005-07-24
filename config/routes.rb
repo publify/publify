@@ -32,6 +32,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'articles/:year/:month/:day/:title',
     :controller => 'articles', :action => 'permalink',
     :requirements => { :year => /\d{4}/, :day => /\d{1,2}/, :month => /\d{1,2}/ }
+
+  map.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
       
   # Allow legacy urls to still work
   map.connect ':controller/:action/:id/:page', :page => nil,

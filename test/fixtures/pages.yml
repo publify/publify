@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first_page:
+  id: 1
+  name: page_one
+another_page:
+  id: 2
+  name: page/two

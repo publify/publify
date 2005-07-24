@@ -1,0 +1,13 @@
+  <% @page_heading = 'Pages' %>
+
+  <% content_for('tasks') do %>
+    <%= task_quickpost('Quick Post') %>
+    <%= task_new 'Create new page' %>
+  <% end %> 
+
+  <div id="quick-post" style="display:none;position:absolute;">
+    <%= render :partial => "quick_post" %>
+  </div>
+  <div class="list" id="pages">	
+    <%= render :partial => 'pages' %>
+  </div>                      
