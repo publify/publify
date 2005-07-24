@@ -9,6 +9,8 @@ class Admin::PagesController < Admin::BaseController
 
   def list
     @pages = Page.find(:all, :order => "id DESC")
+    @page = Page.new(params[:page])
+    @page.text_filter ||= config[:text_filter]
   end
 
   def show
@@ -18,7 +20,7 @@ class Admin::PagesController < Admin::BaseController
   def new
     @page = Page.new(params[:page])
     @page.user_id = session[:user].id
-    @page.text_filter = config["text_filter"]
+    @page.text_filter ||= config[:text_filter]
     if request.post? and @page.save
       flash[:notice] = 'Page was successfully created.'
       redirect_to :action => 'show', :id => @page.id
@@ -44,7 +46,7 @@ class Admin::PagesController < Admin::BaseController
   
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
-    render_text HtmlEngine.transform(request.raw_post, config[:text_filter])
+    render :layout => false, :text => HtmlEngine.transform(request.raw_post, config[:text_filter])
   end
   
 end

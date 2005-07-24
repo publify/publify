@@ -10,6 +10,8 @@ class Admin::ContentController < Admin::BaseController
   def list
     @articles = Article.find(:all, :order => "created_at DESC")
     @categories = Category.find(:all)
+    @article = Article.new(params[:article])
+    @article.text_filter = config[:text_filter]
   end
 
   def show
@@ -20,9 +22,9 @@ class Admin::ContentController < Admin::BaseController
   def new
     @article = Article.new(params[:article])
     @article.author = session[:user].login
-    @article.allow_comments = config["default_allow_comments"]
-    @article.allow_pings = config["default_allow_pings"]
-    @article.text_filter = config["text_filter"]
+    @article.allow_comments ||= config[:default_allow_comments]
+    @article.allow_pings ||= config[:default_allow_pings]
+    @article.text_filter ||= config[:text_filter]
     @categories = Category.find_all
     if request.post?
       @article.categories.clear

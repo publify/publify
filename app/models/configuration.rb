@@ -1,6 +1,6 @@
 class Configuration < ConfigManager
   setting :blog_name, :string, 'My Shiny Weblog!'
-  setting :blog_subtitle, :string, 'Pearly white with AJAX!'
+  setting :blog_subtitle, :string, ''
   setting :default_allow_pings, :bool, false
   setting :default_allow_comments, :bool, true
   setting :sp_global, :bool, false

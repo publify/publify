@@ -1,12 +1,16 @@
-  <%= start_form_tag :action=>"new" %>
+<%= start_form_tag :action=>"new" %>
 <p>
-  <label for="pages_title">Name:</label><br />
-  <%= text_field 'page', 'name'  %>
+  <label for="pages_title">Location:</label><br/>
+   /pages/<%= text_field 'page', 'name', :size => 16  %>
 </p>
 <p>
-  <label for="pages_body">Page:</label><br />
+  <label for="pages_body">Content:</label><br />
   <%= text_area 'page', 'body', :rows => 10  %>
 </p>
+<p>
+<label for="page_text_filter">Textfilter: </label><%= select 'page', 'text_filter', text_filter_options %><br/>
+</p>
+
 <div id="operations">
   <%= save("Save Post") %> or <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" >Close</a>
 </div>
