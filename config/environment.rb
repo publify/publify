@@ -40,6 +40,7 @@ require 'active_record'
 require 'action_controller'
 require 'action_mailer'
 require 'action_web_service'
+require 'migrator'
 
 # Environment-specific configuration.
 require_dependency "environments/#{RAILS_ENV}"
