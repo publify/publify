@@ -34,9 +34,15 @@ ActionController::Routing::Routes.draw do |map|
     :requirements => { :year => /\d{4}/, :day => /\d{1,2}/, :month => /\d{1,2}/ }
 
   map.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
-      
+
+  map.connect 'stylesheets/theme/:filename',
+    :controller => 'themes/theme', :action => 'stylesheets'
+  map.connect 'javascript/theme/:filename',
+    :controller => 'themes/theme', :action => 'javascript'
+  map.connect 'images/theme/:filename',
+    :controller => 'themes/theme', :action => 'images'
+     
   # Allow legacy urls to still work
   map.connect ':controller/:action/:id/:page', :page => nil,
     :requirements => { :page => /page\d+/ }
-  
 end

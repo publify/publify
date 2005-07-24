@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :verify_config
+  layout :theme_layout
 
   cache_sweeper :blog_sweeper
   caches_page :index, :read, :permalink, :category, :find_by_date, :archives, :view_page

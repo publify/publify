@@ -135,4 +135,9 @@ module ApplicationHelper
   def date(date)
     "<span class=\"typo_date\">#{date.utc.strftime("%d. %b")}</span>"
   end
+  
+  def render_theme(options)
+    options[:controller]=Themes::ThemeController.active_theme_name
+    render_component(options)
+  end
 end

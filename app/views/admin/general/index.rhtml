@@ -22,6 +22,10 @@
       <label for="blog_subtitle">Blog subtitle:</label> 
       <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%= config_value(:blog_subtitle) %>" />
     </p>
+    <p>
+      <label for="theme">Blog theme:</label> 
+      <input name="setting[theme]" id="theme" type="text" value="<%= config_value(:theme) %>" />
+    </p>
       <p>
       <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_comments)%> />
       <input name="setting[default_allow_comments]" type="hidden" value="0"/>

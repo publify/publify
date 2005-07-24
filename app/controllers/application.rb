@@ -29,5 +29,13 @@ class ApplicationController < ActionController::Base
   def reload_settings
     config.reload
   end
-  
+
+  def render_theme(options)
+    options[:controller] = Themes::ThemeController.active_theme_name
+    render_component(options)
+  end
+
+  def theme_layout
+    Themes::ThemeController.active_theme.theme_layout
+  end
 end
