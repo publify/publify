@@ -83,7 +83,7 @@ class Article < ActiveRecord::Base
   
   def set_defaults
     self.published ||= 1
-    self.permalink ||= self.stripped_title
+    self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
   end
   
   def transform_body

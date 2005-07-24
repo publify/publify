@@ -14,6 +14,5 @@ class AddCacheTable < ActiveRecord::Migration
   def self.down
     PageCache.sweep('/')
     drop_table :page_caches
-    remove_index :page_caches,:name
   end
 end

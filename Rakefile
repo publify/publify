@@ -215,9 +215,9 @@ Rake::GemPackageTask.new(spec) do |p|
   p.need_zip = true
 end
 
-desc "Migrate the database according to the migrate scripts in db/migrate"
+desc "Migrate the database according to the migrate scripts in db/migrate (only supported on PG/MySQL). A specific version can be targetted with VERSION=x"
 task :migrate => :environment do
-  ActiveRecord::Migrator.up(File.dirname(__FILE__) + '/db/migrate/')
+  ActiveRecord::Migrator.migrate(File.dirname(__FILE__) + '/db/migrate/', ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
 end
 
 desc "Publish the release files to RubyForge."

@@ -12,6 +12,6 @@ class AddUserEmail < ActiveRecord::Migration
 
   def self.down
     remove_column :users, :email
-    remove_column :users, :text
+    remove_column :users, :name
   end
 end

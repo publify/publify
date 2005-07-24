@@ -13,6 +13,6 @@ class AddArticleUserId < ActiveRecord::Migration
   end
 
   def self.down
-    drop_column :articles, :user_id
+    remove_column :articles, :user_id
   end
 end
