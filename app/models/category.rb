@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
   
   def self.find_all_with_article_counters
     self.find_by_sql(%{
-      SELECT id, name, position, COUNT(article_id) AS article_counter
+      SELECT id, name, permalink, position, COUNT(article_id) AS article_counter
       FROM categories LEFT OUTER JOIN articles_categories 
         ON articles_categories.category_id = categories.id
       GROUP BY categories.id, categories.name, categories.position
