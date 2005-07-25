@@ -461,6 +461,13 @@ div.user {
   margin-left: 10px;
   border-top: none;
 }
+#quick-navigate {
+  background: #c8d9ed;
+  padding: 2px 5px 0px 5px;
+  border: 1px solid #9cabba;
+  margin-left: 10px;
+  border-top: none;
+}
 
 #advanced { line-height: 1.3em; }
 

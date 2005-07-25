@@ -140,4 +140,8 @@ module ApplicationHelper
     options[:controller]=Themes::ThemeController.active_theme_name
     render_component(options)
   end
+
+  def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
+    "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
+  end
 end

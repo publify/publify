@@ -75,7 +75,11 @@ module Admin::BaseHelper
   end
   
   def task_quickpost(title)
-    content_tag :li, link_to_function(title, "new Effect.BlindDown('quick-post', {duration:0.4}); return false;")
+    content_tag :li, link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+  end
+  
+  def task_quicknav(title)
+    content_tag :li, link_to_function(title, toggle_effect('quick-navigate', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
 
   def task_overview
