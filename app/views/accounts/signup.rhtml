@@ -11,6 +11,11 @@
   <label for="user_password_confirmation">Confirm password:</label><br/>
   <%= password_field "user", "password_confirmation", :size => 30 %><br/>
 
+  <label for="user_name">Display name:</label><br/>
+  <%= text_field "user", "name", :size => 30 %><br/>
+  <label for="user_email">Email address:</label><br/>
+  <%= text_field "user", "email", :size => 30 %><br/>
+
 <input type="submit" value="Signup &#187;" class="primary" />
 
 <%= end_form_tag %>
