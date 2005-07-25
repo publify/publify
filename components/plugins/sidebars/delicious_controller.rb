@@ -4,7 +4,7 @@ class Plugins::Sidebars::DeliciousController < Sidebars::Plugin
   end
 
   def self.description
-    "Bookmarks from del.icio.us"
+    'Bookmarks from <a href="http://del.icio.us">del.icio.us</a>'
   end
 
   def self.default_config

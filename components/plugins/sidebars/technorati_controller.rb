@@ -4,7 +4,7 @@ class Plugins::Sidebars::TechnoratiController < Sidebars::Plugin
   end
 
   def self.description
-    "Display a Technorati Watchlist"
+    'Display a <a href="http://www.technorati.com">Technorati</a> Watchlist'
   end
 
   def self.default_config

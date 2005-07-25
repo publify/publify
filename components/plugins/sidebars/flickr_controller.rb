@@ -4,7 +4,7 @@ class Plugins::Sidebars::FlickrController < Sidebars::Plugin
   end
 
   def self.description
-    "Pictures from flickr.com"
+    'Pictures from <a href="http://www.flickr.com">flickr.com</a>'
   end
 
   def self.default_config

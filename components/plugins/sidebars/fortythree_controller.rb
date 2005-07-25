@@ -4,7 +4,7 @@ class Plugins::Sidebars::FortythreeController < Sidebars::Plugin
   end
 
   def self.description
-    "Goals from <a href=""http://www.43things.com/"">43things.com</a>."
+    'Goals from <a href="http://www.43things.com/">43things.com</a>.'
   end
 
   def self.default_config

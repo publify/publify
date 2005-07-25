@@ -4,7 +4,7 @@ class Plugins::Sidebars::FortythreeplacesController < Sidebars::Plugin
   end
 
   def self.description
-    "List of your <a href=""http://www.43places.com/"">43places.com</a>."
+    'List of your <a href="http://www.43places.com/">43places.com</a>.'
   end
 
   def self.default_config

@@ -4,7 +4,7 @@ class Plugins::Sidebars::TadaController < Sidebars::Plugin
   end
 
   def self.description
-    "To-do list from tadalist.com"
+    'To-do list from <a href="http://www.tadalist.com">tadalist.com</a>'
   end
 
   def self.default_config

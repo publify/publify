@@ -4,7 +4,7 @@ class Plugins::Sidebars::UpcomingController < Sidebars::Plugin
   end
 
   def self.description
-    "Events from upcoming.org"
+    'Events from <a href="http://www.upcoming.org">upcoming.org</a>'
   end
 
   def self.default_config
