@@ -21,13 +21,17 @@ class Theme
     RAILS_ROOT + "/themes"
   end
 
+  def self.current_theme_path
+    "#{themes_root}/#{config[:theme]}"
+  end
+
   def self.current
-    theme_from_path("#{themes_root}/#{config[:theme]}")
+    theme_from_path(current_theme_path)
   end
   
   def self.theme_from_path(path)
     name = path.scan(/[\w_]+$/).flatten.first
-    self.new(name, path)    
+    self.new(name, path)
   end
 
   def self.find_all
