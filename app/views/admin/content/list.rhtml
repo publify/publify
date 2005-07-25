@@ -6,9 +6,7 @@
     <%= task_quicknav('Navigate') %>
   <% end %> 
   <div id="quick-navigate" style="display:none;position:absolute;">
-    <%= link_to "Previous page", { :page => @articles_pages.current.previous } if @articles_pages.current.previous -%>
-    <%= pagination_links @articles_pages -%>
-    <%= link_to "Next page", { :page => @articles_pages.current.next } if @articles_pages.current.next -%>
+    <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>
   </div>
 
   <div id="quick-post" style="display:none;position:absolute;">
@@ -18,7 +16,5 @@
     <%= render :partial => 'articles' %>
   </div>                      
   <div class="tasks">
-    <%= link_to "Previous page", { :page => @articles_pages.current.previous } if @articles_pages.current.previous -%>
-    <%= pagination_links @articles_pages -%>
-    <%= link_to "Next page", { :page => @articles_pages.current.next } if @articles_pages.current.next -%>
+    <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>
   </div>

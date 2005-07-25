@@ -8,7 +8,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
-    @articles_pages, @articles = paginate :article, :per_page => 15, :order_by => "created_at DESC"
+    @articles_pages, @articles = paginate :article, :per_page => 15, :order_by => "created_at DESC", :parameter => 'id'
     @categories = Category.find(:all)
     @article = Article.new(params[:article])
     @article.text_filter = config[:text_filter]
