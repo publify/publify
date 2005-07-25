@@ -220,6 +220,12 @@ task :migrate => :environment do
   ActiveRecord::Migrator.migrate(File.dirname(__FILE__) + '/db/migrate/', ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
 end
 
+desc "Force a sweeping run of typo's static page caches (all of them!)"
+task :sweep_cache => :environment do
+  PageCache.sweep_all
+  puts "Cache swept."
+end
+
 desc "Publish the release files to RubyForge."
 task :release => [:package] do
   files = ["tgz", "zip"].map { |ext| "pkg/#{PKG_FILE_NAME}.#{ext}" }
