@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
       SELECT id, name, permalink, position, COUNT(article_id) AS article_counter
       FROM categories LEFT OUTER JOIN articles_categories 
         ON articles_categories.category_id = categories.id
-      GROUP BY categories.id, categories.name, categories.position
+      GROUP BY categories.id, categories.name, categories.position, categories.permalink
       ORDER BY position, name
       })
   end
