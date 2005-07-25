@@ -23,5 +23,8 @@ class Category < ActiveRecord::Base
   def set_defaults
     self.permalink ||= self.stripped_name
   end
+  
+  validates_presence_of :name
+  validates_uniqueness_of :name, :on => :create
 end
 

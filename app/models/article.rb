@@ -101,4 +101,6 @@ class Article < ActiveRecord::Base
 
     return [from, to]
   end
+  
+  validates_presence_of :title
 end

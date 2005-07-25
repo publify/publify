@@ -411,6 +411,30 @@ label {
 .c { text-align: center; }
 .space { margin: 10px; }
 
+.errorExplanation {
+  background: #FFE6E6;
+  color: #000;
+  border: 1px solid #FF8080;
+  margin: 0 30px 10px 30px;
+}
+
+.errorExplanation h2 {
+  padding: 2px 5px;
+  border: none;
+  background: none;
+  font-size: 120%;
+}
+
+.errorExplanation p {
+  padding: 5px;
+}
+
+.errorExplanation ul {
+  margin: 0;
+  padding: 0 0 0 15px;
+  list-style: none;
+}
+
 /*
  *=Users
  */
