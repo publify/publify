@@ -79,7 +79,7 @@ class Article < ActiveRecord::Base
   
   protected  
 
-  before_save :transform_body, :set_defaults
+  before_save :set_defaults, :transform_body
   
   def set_defaults
     self.published ||= 1
