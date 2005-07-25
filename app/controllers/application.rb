@@ -8,10 +8,14 @@ class ApplicationController < ActionController::Base
   before_filter :reload_settings
       
   def self.cache_page(content, path)
-    # Don't cache the page if there are any questionmark characters in the url
-    unless path =~ /\?\w+/
-      super(content,path)
-      PageCache.create(:name => page_cache_file(path))
+    begin
+      # Don't cache the page if there are any questionmark characters in the url
+      unless path =~ /\?\w+/
+        super(content,path)
+        PageCache.create(:name => page_cache_file(path))
+      end
+    rescue # if there's a caching error, then just return the content.
+      content
     end
   end
 
