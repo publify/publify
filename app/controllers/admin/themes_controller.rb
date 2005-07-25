@@ -1,12 +1,12 @@
 class Admin::ThemesController < Admin::BaseController
   
   def index
-    @themes = ThemeSystem.themes
-    @active = ThemeSystem.theme
+    @themes = Theme.find_all
+    @active = Theme.current
   end
   
   def preview
-    send_file RAILS_ROOT + "#{ThemeSystem.themes_root}/#{params[:theme]}/preview.png", :type => 'image/png', :disposition => 'inline', :stream => false
+    send_file RAILS_ROOT + "#{Theme.themes_root}/#{params[:theme]}/preview.png", :type => 'image/png', :disposition => 'inline', :stream => false
   end
   
   def switchto

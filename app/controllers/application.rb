@@ -34,6 +34,6 @@ class ApplicationController < ActionController::Base
   end
 
   def theme_layout
-    ThemeSystem.theme_layout
+    Theme.current.layout
   end
 end

@@ -16,17 +16,9 @@ class ThemeController < ApplicationController
   private
   
   def render_theme_item(type, file, mime = mime_for(file))
-    send_file ThemeSystem.current_theme_path + "/#{type}/#{file}", :type => mime, :disposition => 'inline', :stream => false
+    send_file Theme.current_theme_path + "/#{type}/#{file}", :type => mime, :disposition => 'inline', :stream => false
   end
-  
-  def theme
-    ThemeSystem.theme
-  end
-
-  def active_theme_name
-    "plugins/themes/#{theme}"
-  end
-  
+    
   def mime_for(filename)
     case filename.downcase
     when /\.js$/
