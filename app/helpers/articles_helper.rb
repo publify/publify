@@ -58,7 +58,10 @@ module ArticlesHelper
   end
   
   def category_links(article)
-    "Posted in " + article.categories.collect { |c| link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name }.join(", ")
+    "Posted in " + article.categories.collect { |c| link_to c.name,
+      { :controller=>"articles", :action=>"category", :id=>c.name },
+      :rel => "category tag"
+    }.join(", ")
   end
 
   # copied from ActionPack's pagination_helper.rb,
