@@ -116,8 +116,8 @@ CREATE TABLE `sessions` (
 
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL auto_increment,
-  `name` varchar(40) default NULL,
-  `value` varchar(40) default NULL,
+  `name` varchar(255) default NULL,
+  `value` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
