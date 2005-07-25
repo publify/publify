@@ -1,5 +1,3 @@
-require_dependency "user"
-
 module LoginSystem 
   
   protected
