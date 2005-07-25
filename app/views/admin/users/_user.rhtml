@@ -1,4 +1,5 @@
 <div class="user">
   <h4><%= link_to h(user.login), {:action => "show", :id => user.id} %></h4>
+	<p>Number of Articles: <%= Article.count "user_id = #{user.id}"  %></p>
   <p><%= link_to 'Edit', :action => 'edit', :id => user  %><strong> |</strong> <%= link_to 'Delete', :action => 'destroy', :id => user %></p>
 </div>

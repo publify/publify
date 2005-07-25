@@ -11,7 +11,7 @@ class TypoWebService < ActionWebService::Base
       raise "Invalid login" unless @user=User.authenticate(h[:username], h[:password])  
     rescue NoMethodError
       username, password = method[:expects].index(:username=>String), method[:expects].index(:password=>String)
-      raise "Invalid login" unless @user=User.authenticate(args[username], args[password])  
+      raise "Invalid login" unless @user = User.authenticate(args[username], args[password])  
     end
   end
 end

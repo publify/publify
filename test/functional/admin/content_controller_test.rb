@@ -45,6 +45,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_redirected_to :action => 'show'
 
     assert_equal num_articles + 1, Article.find_all.size
+
+    new_article = Article.find(:first, :order => "id DESC")
+    assert_equal @tobi, new_article.user
   end
 
   def test_edit

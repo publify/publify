@@ -25,6 +25,8 @@ class Admin::ContentController < Admin::BaseController
     @article.allow_comments ||= config[:default_allow_comments]
     @article.allow_pings ||= config[:default_allow_pings]
     @article.text_filter ||= config[:text_filter]
+    @article.user = session[:user]
+    
     @categories = Category.find_all
     if request.post?
       @article.categories.clear
