@@ -74,7 +74,7 @@ class BloggerService < TypoWebService
   end
 
   def newPost(appkey, blogid, username, password, content, publish)
-    title, body = content.match(%r{^<title>(.+?)</title>(.+)$}i).captures rescue nil
+    title, categories, body = content.match(%r{^<title>(.+?)</title>(?:<category>(.+?)</category>)?(.+)$}mi).captures rescue nil
 
     article = Article.new 
     article.body        = body || content || ''
@@ -83,6 +83,12 @@ class BloggerService < TypoWebService
     article.author      = username
     article.created_at  = Time.now
     article.user        = @user
+
+    if categories
+      categories.split(",").each do |c|
+        article.categories << Category.find_by_name(c.strip) rescue nil
+      end
+    end
 
     article.save
     article.id

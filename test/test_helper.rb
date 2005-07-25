@@ -11,6 +11,9 @@ require 'action_controller/test_process'
 require 'action_web_service/test_invoke'
 require 'breakpoint'
 
+# Set salt to 'change-me' because thats what the fixtures assume. 
+User.salt = 'change-me'
+
 Test::Unit::TestCase.fixture_path = File.dirname(__FILE__) + "/fixtures/"
 
 class Test::Unit::TestCase

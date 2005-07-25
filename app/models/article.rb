@@ -83,6 +83,7 @@ class Article < ActiveRecord::Base
   
   def set_defaults
     self.published ||= 1
+    self.text_filter = $config['text_filter'] if self.text_filter.blank?
     self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
   end
   

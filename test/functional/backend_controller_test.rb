@@ -46,6 +46,7 @@ class BackendControllerTest < Test::Unit::TestCase
     new_post = Article.find(result)
     assert_equal "new post title", new_post.title
     assert_equal "new post body", new_post.body
+    assert_equal "textile", new_post.text_filter
     assert_equal @tobi, new_post.user
   end
   
@@ -57,6 +58,26 @@ class BackendControllerTest < Test::Unit::TestCase
     new_post = Article.find(result)
     assert_equal "new post body for post without", new_post.title
     assert_equal "new post body for post without title but with a lenghty body", new_post.body
+  end
+
+  def test_blogger_new_post_with_categories
+    args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title><category>Software, Hardware</category>new post body', 1]
+
+    result = invoke_layered :blogger, :newPost, *args
+    assert_not_nil result
+    new_post = Article.find(result)
+    assert_equal "new post title", new_post.title
+    assert_equal "new post body", new_post.body
+    assert_equal [@software, @hardware], new_post.categories
+  end
+
+  def test_blogger_new_post_with_non_existing_categories
+    args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title><category>Idontexist, Hardware</category>new post body', 1]
+
+    result = invoke_layered :blogger, :newPost, *args
+    assert_not_nil result
+    new_post = Article.find(result)
+    assert_equal [@hardware], new_post.categories
   end
 
   def test_blogger_fail_authentication
@@ -115,7 +136,9 @@ class BackendControllerTest < Test::Unit::TestCase
 
     result = invoke_layered :metaWeblog, :newPost, *args
     assert result
-    assert_equal Article.find(result).title, "Posted via Test"
+    new_post = Article.find(result)
+    assert_equal "Posted via Test", new_post.title
+    assert_equal "textile", new_post.text_filter
   end
 
   def test_meta_weblog_new_media_object

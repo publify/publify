@@ -84,9 +84,7 @@ class MetaWeblogService < TypoWebService
   end    
 
   def getRecentPosts(blogid, username, password, numberOfPosts)
-    articles = Article.find_all(nil, "created_at DESC", numberOfPosts)
-
-    articles.to_a.collect{ |c| article_dto_from(c) }
+    Article.find(:all, :order => "created_at DESC", :limit => numberOfPosts).collect{ |c| article_dto_from(c) }
   end
 
   def newPost(blogid, username, password, struct, publish)
