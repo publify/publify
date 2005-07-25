@@ -1,5 +1,4 @@
-class AccountsController < Admin::BaseController
-  layout  'administration'
+class AccountsController < ApplicationController
 
   def login
     case request.method

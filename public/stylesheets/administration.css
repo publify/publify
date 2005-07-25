@@ -469,3 +469,19 @@ div.user {
   float: left;
   width: 15em;
 }
+
+#loginform {
+  width: 300px;
+  margin-left: 110px;  
+  padding: 0px;
+}
+
+#loginform div.form {
+  padding:10px;
+}
+
+#loginform .fieldWithErrors {
+  display: table;
+  border: 1px solid red;
+}
+
