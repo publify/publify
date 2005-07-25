@@ -9,7 +9,9 @@
   <div id="sidebar-config">
     <div id="available" class="dropbox">
       <h3>Available Items</h3>
-      <%= render :partial => 'availables', :object => @available %>
+      <div id="available_box">
+        <%= render :partial => 'availables', :object => @available %>
+      </div>
     </div>
 
     <div id="cnt-active">
