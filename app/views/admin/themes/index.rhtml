@@ -3,7 +3,11 @@
 <div id="gensettings" class="set" style="margin-right: 300px; margin-top:10px;">
   <%= theme.description %>
   
+  <% if theme.path == @active.path -%>
+  <em>(Active theme)</em>
+  <% else -%>
   <%= link_to "Activate", :action => 'switchto', :theme => theme.name %>
+  <% end -%>
 </div>
 <br clear="all">
 <% end %>
