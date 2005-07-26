@@ -68,7 +68,7 @@ class BackendControllerTest < Test::Unit::TestCase
     new_post = Article.find(result)
     assert_equal "new post title", new_post.title
     assert_equal "new post body", new_post.body
-    assert_equal [@software, @hardware], new_post.categories
+    assert_equal [@software, @hardware], new_post.categories.sort_by { |c| c.id }
   end
 
   def test_blogger_new_post_with_non_existing_categories
