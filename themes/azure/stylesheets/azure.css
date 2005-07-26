@@ -313,7 +313,7 @@ a[name] { border: none; }
  * html .clearfix {height: 1%;}
  /* End hide from IE-mac */
 
-#categories li em
+#categories li em, #archives li em
 {
   color: #98B4D1;
   font-size: smaller;
