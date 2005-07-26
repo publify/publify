@@ -5,6 +5,12 @@ Options +FollowSymLinks +ExecCGI
 
 # Redirect all requests not available on the filesystem to Rails
 RewriteEngine On
+
+# Uncomment this if you're not running Typo in the root of your
+# webserver's URL space (i.e. http://www.example.com/blog):
+#
+# RewriteBase /blog/
+
 # try to suggest current rss subscribers that the url moved permently
 RewriteRule ^xml/([a-z]+)$ /xml/$1/feed.xml [R=301]
 RewriteRule ^$ index.html [QSA]
