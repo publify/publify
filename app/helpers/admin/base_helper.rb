@@ -102,6 +102,10 @@ module Admin::BaseHelper
     task(title, 'show', id)
   end
 
+  def task_sweep(title)
+    task(title, 'sweep')
+  end
+
   def task(title, action, id = nil)
     content_tag :li, link_to(title, :action => action, :id => id)
   end
