@@ -9,7 +9,12 @@ function get_local_time_for_date(time) {
   user_date = new Date();
   delta_minutes = Math.round((user_date - system_date) / (60 * 1000));
   if (Math.abs(delta_minutes) <= (8*7*24*60)) { // eight weeks... I'm lazy to count days for longer than that
-    return distance_of_time_in_words(delta_minutes) + ' ago';
+    distance = distance_of_time_in_words(delta_minutes);
+    if (delta_minutes < 0) {
+      return distance + ' from now';
+    } else {
+      return distance + ' ago';
+    }
   } else {
     return 'on ' + system_date.toLocaleDateString();
   }
