@@ -1,13 +1,15 @@
 <table cellspacing="1" cellpadding="0">
 <tr>
   <th>Name</th>
+  <th>Title</th>
   <th>Created</th>
   <th>Edit</th>
   <th>Delete</th>
 </tr>
 <% for page in @pages %>
 <tr <%= alternate_class %>>
-  <td><%= link_to page.name, {:action => "show", :id => page.id} %> <%= page_link(image_tag('go'), page) %> </td>
+  <td><%= link_to page.name, {:action => "show", :id => page.id} %> <%= page_link(image_tag('go'), page) %></td>
+  <td><%= page.title %></td>
   <td><%= distance_of_time_in_words_to_now page.created_at %> ago</td>
   <td class="operation"><%= link_to_edit page %></td>
   <td class="operation"><%= link_to_destroy page %></td>    

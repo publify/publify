@@ -114,4 +114,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
     # reassign so the AWS stuff doesn't barf
     $config = old_config
   end
+
+  def test_pages_static
+    get :view_page, :name => 'page_one'
+    assert_response :success
+    assert_rendered_file "view_page"
+    
+    get :view_page, :name => 'page one'
+    assert_response 404
+  end
 end

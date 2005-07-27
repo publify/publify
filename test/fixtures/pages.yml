@@ -2,6 +2,10 @@
 first_page:
   id: 1
   name: page_one
+  title: Page One Title
+  body: ho ho ho
 another_page:
   id: 2
   name: page/two
+  title: Another Page Title
+  body: another body for yet another page

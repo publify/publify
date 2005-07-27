@@ -1,11 +1,15 @@
 <%= error_messages_for 'page' %>
 <!--[form:pages]-->
 <p>
-  <label for="pages_name">Location:</label><br />
+  <label for="page_name">Location:</label><br />
   /page/ <%= text_field 'page', 'name', :size => 16  %>
 </p>
 <p>
-  <label for="pages_body">Content:</label><br />
+  <label for="page_title">Title:</label><br />
+  <%= text_field 'page', 'title', :size => 20  %>
+</p>
+<p>
+  <label for="page_body">Content:</label><br />
   <%= text_area 'page', 'body', :rows => 25  %>
 </p>
 

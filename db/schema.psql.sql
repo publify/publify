@@ -44,6 +44,7 @@ CREATE INDEX idx_caches ON caches (page_name);
 CREATE TABLE pages (
   id SERIAL PRIMARY KEY NOT NULL,
   name varchar(255) default NULL,
+  title varchar(255) default NULL,
   body text,
   body_html text,
   text_filter varchar(20) default NULL,
@@ -160,4 +161,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (7);
+INSERT into schema_info VALUES (8);

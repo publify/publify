@@ -1,10 +1,14 @@
 <%= start_form_tag :action=>"new" %>
 <p>
-  <label for="pages_title">Location:</label><br/>
+  <label for="page_title">Location:</label><br/>
    /pages/<%= text_field 'page', 'name', :size => 16  %>
 </p>
 <p>
-  <label for="pages_body">Content:</label><br />
+  <label for="page_title">Title:</label><br />
+  <%= text_field 'page', 'title', :size => 20  %>
+</p>
+<p>
+  <label for="page_body">Content:</label><br />
   <%= text_area 'page', 'body', :rows => 10  %>
 </p>
 <p>

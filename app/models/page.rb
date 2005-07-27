@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   belongs_to :user
   before_save :transform_body
-  validates_presence_of :name, :body
+  validates_presence_of :name, :title, :body
   validates_uniqueness_of :name
 
   protected

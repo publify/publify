@@ -11,6 +11,7 @@ class PageTest < Test::Unit::TestCase
     a = Page.new
     a.name = 'foo'
     a.body = 'abcdabcd'
+    a.title = 'The Page of Foo'
     assert a.save
 
     assert a.body_html == a.body
@@ -19,12 +20,15 @@ class PageTest < Test::Unit::TestCase
   def test_validate
     a = Page.new
     a.name = 'a-new-name'
+    a.title = 'A Fabulous Page yo!'
     a.body = 'x'
+
     assert a.save
 
     b = Page.new
     b.name = a.name
     b.body = a.body
+    b.title = a.title
 
     assert !b.save
   end

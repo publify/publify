@@ -147,9 +147,10 @@ class ArticlesController < ApplicationController
 
   def view_page
     if(@page = Page.find_by_name(params[:name].to_a.join('/')))
+      @page_title = @page.title
       render
     else
-      render :nothing, :status => 404
+      render :nothing => true, :status => 404
     end
   end
   

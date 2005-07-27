@@ -46,6 +46,7 @@ CREATE TABLE 'page_caches' (
 CREATE TABLE 'pages' (
   'id'          INTEGER PRIMARY KEY NOT NULL,
   'name'       VARCHAR(255) DEFAULT NULL,
+  'title'       VARCHAR(255) DEFAULT NULL,
   'body'        TEXT DEFAULT NULL,
   'body_html'   TEXT DEFAULT NULL,
   'text_filter' VARCHAR(20) DEFAULT NULL,
@@ -138,4 +139,4 @@ CREATE TABLE 'schema_info' (
   'version' INTEGER
 );
 
-INSERT into schema_info VALUES (7);
+INSERT into schema_info VALUES (8);
