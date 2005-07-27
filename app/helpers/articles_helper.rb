@@ -99,4 +99,14 @@ module ArticlesHelper
     end
   end
 
+  def author_link(article)
+    if config['link_to_author'] and article.user and article.user.email.to_s.size>0 
+      "<a href=\"mailto:#{article.user.email}\">#{article.user.name}</a>"
+    elsif article.user and article.user.name.to_s.size>0
+      article.user.name
+    else
+      article.author
+    end
+  end
+
 end

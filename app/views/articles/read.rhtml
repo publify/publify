@@ -17,11 +17,7 @@
   <%= link_to("edit", { :controller => "admin/content", :action => "edit", :id => @article },
         :class => "admintools", :style => "display: none", :id => "admin_article") %>
   <h2><%= @article.title %></h2>
-  <p class="auth">Posted by <% if config[:link_to_author] and @article.user and @article.user.email.to_s.size>0 -%>
-    <a href="mailto:<%=h @article.user.email %>"><%=h @article.user.name %></a>
-  <% else -%>
-    <%=h @article.author %>
-  <% end -%>
+  <p class="auth">Posted by <%= author_link(@article) %>
   <%= js_distance_of_time_in_words_to_now @article.created_at.utc %></p>
   <%= @article.full_html %>
 </div>
