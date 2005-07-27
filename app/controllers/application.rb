@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def self.cache_page(content, path)
     begin
       # Don't cache the page if there are any questionmark characters in the url
-      unless path =~ /\?\w+/
+      unless path =~ /\?\w+/ or path =~ /page\d+$/
         super(content,path)
         PageCache.create(:name => page_cache_file(path))
       end
