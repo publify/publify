@@ -45,7 +45,8 @@ class Admin::PagesController < Admin::BaseController
   
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
-    render :layout => false, :text => HtmlEngine.transform(request.raw_post, config[:text_filter])
+    @page = params[:page]
+    render :layout => false
   end
   
 end

@@ -5,13 +5,12 @@
     <li><%= link_to 'View article on your blog', article_url(@article) %></li>
   <% end %> 
 
-  <%= start_form_tag :action=>"edit", :id => @article.id %>
+  <%= start_form_tag({ :action => "edit", :id => @article }, :id => "article_form") %>
   <h3>Editing article</h3>
 
   <div class="form">
     <!-- LIVE PREVIEW -->
     <div id="preview" class="post" style="display:none;"></div>
-    <div id="preview_extended" class="post" style="display: none;"></div>
     <!-- /LIVE PREVIEW -->	
     <%= render_partial "form" %>
   </div>
@@ -22,16 +21,8 @@
 
   <%= end_form_tag %>
 
-
-<%= observe_field "article_body", 
-      :frequency => 2, 
-      :update => "preview",
-      :complete => "Element.show('preview')",
-      :url => { :action => "preview" } %>
-<%= observe_field "article_extended", 
-      :frequency => 2, 
-      :update => "preview_extended",
-      :complete => "Element.show('preview_extended')",
-      :url => { :action => "preview" } %>
-
-      
+  <%= observe_form "article_form", 
+        :frequency => 2, 
+        :update => "preview",
+        :complete => "Element.show('preview')",
+        :url => { :action => "preview" } %>      

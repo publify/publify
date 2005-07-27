@@ -1,0 +1,5 @@
+<h4><%= @article[:title] %></h4>
+
+<% [:body, :extended].each do |text| -%>
+<p><%= HtmlEngine.transform(@article[text], @article[:text_filter]) %></p>
+<% end -%>
