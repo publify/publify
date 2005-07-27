@@ -1,39 +1,39 @@
 <%= error_messages_for 'article' %>
 <!--[form:articles]-->
 <p>
-  <label for="articles_title">Title:</label><br />
+  <label for="article_title">Title:</label><br />
   <%= text_field 'article', 'title'  %>
   (<%= link_to_function "&raquo; edit permalink", "Toggle.display('permalink')" %>)<br/>
 </p>
 <p id="permalink" style="display: none">
-  <label for="articles_permalink">Permalink:</label><br />
+  <label for="article_permalink">Permalink:</label><br />
   <%= text_field 'article', 'permalink'  %>
 </p>
 <p>
-  <label for="categories[]">Categories:</label><br />
-  <select name="categories[]" multiple="multiple" size="10" style="width:250px;">
+  <label for="categories">Categories:</label><br />
+  <select id="categories" name="categories[]" multiple="multiple" size="10" style="width:250px;">
   <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
   </select>
 </p>
 <p>
-  <label for="articles_body">Article:</label><br />
+  <label for="article_body">Article:</label><br />
   <%= text_area 'article', 'body', :rows => 25  %>
 </p>
 <p>
   <a href="#" onclick="Element.toggle('extended'); return false">Add Extended Content</a><br />
   <div id="extended" style="display:none;">
-  <label for="articles_extended">Extended:</label><br />
+  <label for="article_extended">Extended:</label><br />
   <%= text_area 'article', 'extended', :rows => 30  %>
   </div>
 </p>
 
 <a href="#" onclick="Element.toggle('advanced'); return false;">Toggle Advanced Options (+/-)</a>
 <div id="advanced" style="display:none;">
-<label for="articles_allow_comments">Allow comments: </label><%= check_box 'article', 'allow_comments'  %><br />
-<label for="articles_allow_pings">Allow pings: </label><%= check_box 'article', 'allow_pings'  %><br />
-<label for="articles_published">Published:</label><%= check_box 'article', 'published'  %><br />
-<label for="articles_text_filter">Textfilter: </label><%= select 'article', 'text_filter', text_filter_options %><br />
-<label for="articles_created_at">Creation date:</label><%= datetime_select 'article', 'created_at'  %><br />
+<label for="article_allow_comments">Allow comments: </label><%= check_box 'article', 'allow_comments'  %><br />
+<label for="article_allow_pings">Allow pings: </label><%= check_box 'article', 'allow_pings'  %><br />
+<label for="article_published">Published:</label><%= check_box 'article', 'published'  %><br />
+<label for="article_text_filter">Textfilter: </label><%= select 'article', 'text_filter', text_filter_options %><br />
+<label for="article_created_at">Creation date:</label><%= datetime_select 'article', 'created_at'  %><br />
 </div>
 <br clear="all"/>
 
