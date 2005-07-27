@@ -30,7 +30,7 @@ class Theme
   end
   
   def self.theme_from_path(path)
-    name = path.scan(/[\w_]+$/).flatten.first
+    name = path.scan(/[-\w]+$/i).flatten.first
     self.new(name, path)
   end
 
@@ -45,7 +45,7 @@ class Theme
   end  
 
   def self.search_theme_directory
-    Dir["#{themes_root}/[_a-z]*"].collect do |file|
+    Dir.glob("#{themes_root}/[-_a-zA-Z0-9]*").collect do |file|
       file if File.directory?(file)      
     end.compact
   end  
