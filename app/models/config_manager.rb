@@ -5,7 +5,7 @@ class ConfigManager
   end
 
   def is_ok?
-    Configuration.fields.keys.all? { |key| settings.include?(key.to_s) }    
+    settings.include?("blog_name")
   end
 
   def reload
