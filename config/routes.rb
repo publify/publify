@@ -18,21 +18,42 @@ ActionController::Routing::Routes.draw do |map|
   map.xml 'xml/articlerss/:id/feed.xml', :controller => 'xml', :action => 'articlerss'
 
   # allow neat perma urls
-  map.connect 'articles/:page',
-    :controller => 'articles', :action => 'index', :page => nil,
-    :requirements => { :page => /page\d+/ }
-  map.connect 'articles/:year/:page',
-    :controller => 'articles', :action => 'find_by_date', :page => nil,
-    :requirements => { :page => /page\d+/, :year => /\d{4}/ }
-  map.connect 'articles/:year/:month/:page',
-    :controller => 'articles', :action => 'find_by_date', :page => nil,
-    :requirements => { :page => /page\d+/, :year => /\d{4}/, :month => /\d{1,2}/ }
-  map.connect 'articles/:year/:month/:day/:page',
-    :controller => 'articles', :action => 'find_by_date', :page => nil,
-    :requirements => { :page => /page\d+/, :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/ }
+  map.connect 'articles',
+    :controller => 'articles', :action => 'index'
+  map.connect 'articles/page/:page',
+    :controller => 'articles', :action => 'index',
+    :page => /\d+/
+
+  map.connect 'articles/:year',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/
+  map.connect 'articles/:year/page/:page',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :page => /\d+/
+
+  map.connect 'articles/:year/:month',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :month => /\d{1,2}/
+  map.connect 'articles/:year/:month/page/:page',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :month => /\d{1,2}/, :page => /\d+/
+
+  map.connect 'articles/:year/:month/:day',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/
+  map.connect 'articles/:year/:month/:day/page/:page',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/, :page => /\d+/
+
   map.connect 'articles/:year/:month/:day/:title',
     :controller => 'articles', :action => 'permalink',
-    :requirements => { :year => /\d{4}/, :day => /\d{1,2}/, :month => /\d{1,2}/ }
+    :year => /\d{4}/, :day => /\d{1,2}/, :month => /\d{1,2}/
+
+  map.connect 'articles/category/:id',
+    :controller => 'articles', :action => 'category'
+  map.connect 'articles/category/:id/page/:page',
+    :controller => 'articles', :action => 'category',
+    :page => /\d+/
 
   map.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
 
@@ -44,6 +65,5 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'theme', :action => 'images'
      
   # Allow legacy urls to still work
-  map.connect ':controller/:action/:id/:page', :page => nil,
-    :requirements => { :page => /page\d+/ }
+  map.connect ':controller/:action/:id'
 end

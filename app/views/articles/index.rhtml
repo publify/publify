@@ -7,9 +7,5 @@
 <% end -%>
 
 <% unless @pages.item_count <= config[:limit_article_display] %>
-  <p id="pagination">Older posts: <%=
-    pagination_custom_links(@pages) do |p|
-     link_to p.number, @params.merge("page" => "page#{p.number}")
-    end
-  %></p>
-<% end %>
+  <p id="pagination">Older posts: <%= pagination_links @pages, @params => { :action => @controller.action_name } %></p>
+<% end -%>
