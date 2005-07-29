@@ -39,7 +39,7 @@ CREATE TABLE page_caches (
   name varchar(255)
 );
 
-CREATE INDEX idx_caches ON caches (page_name);
+CREATE INDEX idx_caches ON page_caches (name);
 
 CREATE TABLE pages (
   id SERIAL PRIMARY KEY NOT NULL,
