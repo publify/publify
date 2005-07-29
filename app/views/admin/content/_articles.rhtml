@@ -12,7 +12,7 @@
   <td><%= (article.published?) ? image_tag('checked.gif') : image_tag('x-ed.gif') %> <%= link_to article.title, {:action => "show", :id => article.id} %> <%= article_link(image_tag('go'), article) %> </td>
   <td><%= distance_of_time_in_words_to_now article.created_at %> ago</td>
   <td><%= link_to responses(article.comments, 'comment'), :controller => 'comments', :article_id => article, :action => 'list' %></td>
-  <td><%= link_to responses(article.trackbacks, 'trackback'), :controller => 'trackback', :article_id => article, :action => 'list' %></td>
+  <td><%= link_to responses(article.trackbacks, 'trackback'), :controller => 'trackbacks', :article_id => article, :action => 'list' %></td>
   <td class="operation"><%= link_to_edit article %></td>
   <td class="operation"><%= link_to_destroy article %></td>    
 </tr>  

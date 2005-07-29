@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../../test_helper'
-require 'admin/trackback_controller'
+require 'admin/trackbacks_controller'
 
 # Re-raise errors caught by the controller.
-class Admin::TrackbackController; def rescue_action(e) raise e end; end
+class Admin::TrackbacksController; def rescue_action(e) raise e end; end
 
-class Admin::TrackbackControllerTest < Test::Unit::TestCase
+class Admin::TrackbacksControllerTest < Test::Unit::TestCase
   fixtures :articles, :trackbacks, :users
 
   def setup
