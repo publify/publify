@@ -59,7 +59,7 @@ module ArticlesHelper
   
   def category_links(article)
     "Posted in " + article.categories.collect { |c| link_to c.name,
-      { :controller=>"articles", :action=>"category", :id=>c.name },
+      { :controller=>"articles", :action=>"category", :id=>c.permalink },
       :rel => "category tag"
     }.join(", ")
   end
