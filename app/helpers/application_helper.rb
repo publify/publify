@@ -117,7 +117,7 @@ module ApplicationHelper
   
   def js_distance_of_time_in_words_to_now(date)
     time = date.utc.strftime("%a, %d %b %Y %H:%M:%S GMT")
-    %{<script type="text/javascript">document.write(get_local_time_for_date("#{time}"));</script><noscript>on #{time}</noscript>}
+    "<span class=\"typo_date\" title=\"#{time}\">#{time}</span>"
   end
   
   def render_sidebar(sidebar)

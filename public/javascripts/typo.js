@@ -4,6 +4,15 @@ function register_onload(func) {
   else { window.onload = function() { old_event(); func(); }; }
 }
 
+function show_dates_as_local_time() {
+  var spans = document.getElementsByTagName('span');
+  for (var i=0; i<spans.length; i++) {
+    if (spans[i].className.match(/\btypo_date\b/i)) {
+      spans[i].innerHTML = get_local_time_for_date(spans[i].title);
+    }
+  }
+}
+
 function get_local_time_for_date(time) {
   system_date = new Date(time);
   user_date = new Date();
