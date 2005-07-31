@@ -12,7 +12,11 @@ class ThemeController < ApplicationController
   def images
     render_theme_item(:images, params[:filename])
   end
-  
+
+  def error
+    render :nothing => true, :status => 404
+  end
+
   private
   
   def render_theme_item(type, file, mime = mime_for(file))

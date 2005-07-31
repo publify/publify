@@ -63,6 +63,12 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'theme', :action => 'javascript'
   map.connect 'images/theme/:filename',
     :controller => 'theme', :action => 'images'
+
+  # Kill attempts to connect directly to the theme controller.
+  # Ideally we'd disable these by removing the default route (below),
+  # but that breaks too many things for Typo 2.5.
+  map.connect 'theme/*stuff',
+    :controller => 'theme', :action => 'error'
      
   # Allow legacy urls to still work
   map.connect ':controller/:action/:id'
