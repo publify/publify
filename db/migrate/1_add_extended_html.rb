@@ -1,6 +1,6 @@
 class AddExtendedHtml < ActiveRecord::Migration
   def self.up
-    add_column :articles, :extended_html, :text
+    add_column :articles, :extended_html, :text rescue nil
     
     # now to re-process articles to set extended_html
     articles = Article.find(:all)

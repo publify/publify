@@ -29,7 +29,8 @@ CREATE TABLE articles (
   user_id int default NULL,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now(),
-  permalink varchar(255) default NULL
+  permalink varchar(255) default NULL,
+  guid varchar(255) default NULL
 );
 
 CREATE INDEX articles_permalink_index ON articles (permalink);
@@ -161,4 +162,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (8);
+INSERT into schema_info VALUES (9);

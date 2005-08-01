@@ -23,7 +23,8 @@ CREATE TABLE 'articles' (
   'user_id'     INTEGER DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL,
-  'permalink'   VARCHAR(255) DEFAULT NULL
+  'permalink'   VARCHAR(255) DEFAULT NULL,
+  'guid' 	VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE 'articles_categories' (
@@ -139,4 +140,4 @@ CREATE TABLE 'schema_info' (
   'version' INTEGER
 );
 
-INSERT into schema_info VALUES (8);
+INSERT into schema_info VALUES (9);

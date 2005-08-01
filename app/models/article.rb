@@ -1,5 +1,6 @@
 require 'uri'
 require 'net/http'
+require 'md5'
 
 class Article < ActiveRecord::Base
   has_many :pings, :dependent => true, :order => "created_at ASC"
@@ -85,6 +86,7 @@ class Article < ActiveRecord::Base
     self.published ||= 1
     self.text_filter = $config['text_filter'] if self.text_filter.blank?
     self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
+    self.guid = MD5.new(self.body.to_s+self.extended.to_s+self.title.to_s+self.permalink.to_s+self.author.to_s+Time.now.to_f.to_s).to_s if self.guid.blank?
   end
   
   def transform_body
@@ -101,6 +103,7 @@ class Article < ActiveRecord::Base
     to   = to.tomorrow    unless month.blank?
     return [from, to]
   end
-  
+
+  validates_uniqueness_of :guid
   validates_presence_of :title
 end
