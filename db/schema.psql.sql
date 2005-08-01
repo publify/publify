@@ -136,12 +136,12 @@ CREATE TABLE sidebars (
   updated_at TIMESTAMP DEFAULT now()
 );
 
-insert into sidebars (id,controller,active_position,staged_position)
-  values (1,'category',0,0);
-insert into sidebars (id,controller,active_position,staged_position)
-  values (2,'static',1,1);
-insert into sidebars (id,controller,active_position,staged_position)
-  values (3,'xml',2,2);
+insert into sidebars (controller,active_position,staged_position)
+  values ('category',0,0);
+insert into sidebars (controller,active_position,staged_position)
+  values ('static',1,1);
+insert into sidebars (controller,active_position,staged_position)
+  values ('xml',2,2);
 
 CREATE TABLE trackbacks (
   id SERIAL PRIMARY KEY NOT NULL,
