@@ -1,7 +1,7 @@
 class AddArticleGuid < ActiveRecord::Migration
   def self.up
     puts "Adding GUID to articles"
-    add_column :articles, :guid, :string
+    add_column :articles, :guid, :string rescue nil    
     Article.find(:all).each do |a|
       a.save
     end
