@@ -2,8 +2,8 @@ class AddPermalink < ActiveRecord::Migration
   def self.up
     Article.reset_column_information
     
-    add_column :articles, :permalink, :string
-    add_index :articles, :permalink
+    add_column :articles, :permalink, :string rescue nil
+    add_index :articles, :permalink, rescue nil
 
     add_column :categories, :permalink, :string
     add_index :categories, :permalink
