@@ -3,7 +3,7 @@ class AddPermalink < ActiveRecord::Migration
     Article.reset_column_information
     
     add_column :articles, :permalink, :string rescue nil
-    add_index :articles, :permalink, rescue nil
+    add_index :articles, :permalink rescue nil
 
     add_column :categories, :permalink, :string
     add_index :categories, :permalink
