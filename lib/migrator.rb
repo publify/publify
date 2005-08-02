@@ -11,7 +11,7 @@ module Migrator
   end
 
   def self.current_schema_version
-    ActiveRecord::Migrator.current_version
+    ActiveRecord::Migrator.current_version rescue 0
   end
 
   def self.max_schema_version
