@@ -22,11 +22,13 @@
   <%= @article.full_html %>
 </div>
 
-<% if @article.allow_comments? -%>
+<% if @article.allow_comments? or @article.comments.size > 0 -%>
   <a name="comments"></a><h4 class="blueblk">Comments</h4> 
+<% if @article.allow_comments? -%>
   <p class="postmetadata alt">
     <small><a href="#respond">Leave a response</a></small>
   </p>
+<% end -%>
   <%= content_tag(:ol, render(:partial => "comment", :collection => @article.comments), :id => 'commentList', :class => 'comment-list') %>
 <% end -%>
 
