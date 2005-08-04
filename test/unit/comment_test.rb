@@ -72,4 +72,31 @@ class CommentTest < Test::Unit::TestCase
     assert_equal true, @comment2.has_article?
     assert_equal 1, @comment2.article.id
   end
+
+  def test_xss_rejection
+    c = Comment.new
+    c.body = "Test foo <script>do_evil();</script>"
+    c.author = 'Bob'
+    c.article_id = 1
+
+    # Test each filter to make sure that we don't allow scripts through.
+    # Yes, this is ugly.
+    ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
+      setting = find_or_create("comment_text_filter")
+      setting.value = filter
+      setting.save
+
+      assert c.save
+      assert c.errors.empty?
+
+      assert c.body_html !~ /<script>/
+    end
+  end
+
+  def find_or_create(name)
+    unless setting = Setting.find_by_name(name)
+      setting = Setting.new("name" => name)
+    end
+    setting
+  end
 end
