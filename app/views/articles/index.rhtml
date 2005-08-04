@@ -7,5 +7,5 @@
 <% end -%>
 
 <% unless @pages.item_count <= config[:limit_article_display] %>
-  <p id="pagination">Older posts: <%= pagination_links @pages, @params => { :action => @controller.action_name } %></p>
+  <p id="pagination">Older posts: <%= pagination_links @pages, :params => { :action => @controller.action_name } %></p>
 <% end -%>
