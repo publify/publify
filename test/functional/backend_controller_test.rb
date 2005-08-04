@@ -8,7 +8,7 @@ require 'base64'
 class BackendController; def rescue_action(e) raise e end; end
 
 class BackendControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings, :trackbacks, :users
+  fixtures :articles, :categories, :settings, :trackbacks, :users, :articles_categories
 
   def setup
     @controller = BackendController.new
