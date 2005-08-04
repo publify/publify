@@ -25,7 +25,7 @@ The first decision you have to make is whether to use sqlite or mysql. Both are 
 There is no reason why postgres or others shouldn't work, I just don't have a sql file for
 them yet.
 
-  * Create a database for typo. You can find matching schemas in teh db/ folder. 
+  * Create a database for typo. You can find matching schemas in the db/ folder. 
     If you choose sqlite make sure to create the files using the db/schema.sqlite.sql 
     file.      
   * Change the config/database.yml to reflect your newly created database configuration  
