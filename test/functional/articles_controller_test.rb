@@ -5,7 +5,7 @@ require 'articles_controller'
 class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks
+  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages
 
   def setup
     @controller = ArticlesController.new
