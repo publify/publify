@@ -23,6 +23,7 @@ class ArticleTest < Test::Unit::TestCase
   def test_strip_title
     assert_equal "article-3", "Article-3".to_url
     assert_equal "article-3", "Article 3!?#".to_url
+    assert_equal "there-is-sex-in-my-violence", "There is Sex in my Violence!".to_url
     assert_equal "article", "-article-".to_url
     assert_equal "lorem-ipsum-dolor-sit-amet-consectetaur-adipisicing-elit", "Lorem ipsum dolor sit amet, consectetaur adipisicing elit".to_url
     assert_equal "my-cats-best-friend", "My Cat's Best Friend".to_url

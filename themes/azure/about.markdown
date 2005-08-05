@@ -1,5 +1,4 @@
-Azure
-=====
+### Azure
 
 Typo's default theme by [Justin Palmer][1]
 

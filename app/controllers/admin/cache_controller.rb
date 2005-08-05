@@ -11,7 +11,8 @@ class Admin::CacheController < Admin::BaseController
 
   def sweep
     PageCache.sweep_all
-    redirect_to :action => 'list'
+    flash['notice'] = 'Cache was cleared'
+    redirect_to :controller => 'general'
   end
   
 end

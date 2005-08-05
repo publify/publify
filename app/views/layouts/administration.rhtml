@@ -16,8 +16,9 @@
 	  <div id="header">
 
 	  <div id="info">
+	    <%= link_to "settings", :controller=>"/admin/general", :action => 'index' %> | 
 	    <%= current_user_notice rescue nil %> | 
-	    <%= link_to 'Your blog &raquo;', :controller => "/" %>
+	    <%= link_to 'your blog &raquo;', :controller => "/" %>
 	    
 	  </div> 
 	    <h1><%= link_to "Typo admin - #{config_value('blog_name')}", :controller => "/admin/" %></h1>
@@ -27,7 +28,6 @@
       	
   	<div id="tabs-container">
   	  <ul id="tabs">
-  	    <%= tab "General", :controller=>"/admin/general", :action => 'index' %>
   	    <%= tab "Articles", :controller=>"/admin/content", :action => 'index' %>
   	    <%= tab "Pages", :controller=>"/admin/pages", :action => 'index' %>
   	    <%= tab "Categories", :controller=>"/admin/categories", :action => 'index' %>
@@ -35,15 +35,16 @@
   	    <%= tab "Sidebar", :controller=>"/admin/sidebar", :action => 'index' %>
   	    <%= tab "Themes", :controller=>"/admin/themes", :action => 'index' %>
   	    <%= tab "Users", :controller=>"/admin/users", :action => 'index' %>
-  	    <%= tab "Cache", :controller=>"/admin/cache", :action => 'index' %>
   	  </ul>
   	</div>  
 
  
 	<div id="overall">
+	  <% if @flash["notice"] %>
   	<div id="flash">
   	  <%= render_flash rescue nil %>
   	</div>  
+  	<% end %>
 
   	<div id="content">
   	  <div id="main">

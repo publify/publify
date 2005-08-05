@@ -7,7 +7,7 @@
 </tr>
 <% for blacklist_pattern in @blacklist_patterns -%>
 <tr <%= alternate_class -%>>  
-  <td class="field"><%= link_to blacklist_pattern.pattern, :action => "show", :id => blacklist_pattern.id %></td>
+  <td class="field"><%= link_to blacklist_pattern.pattern, :action => "edit", :id => blacklist_pattern.id %></td>
   <td class="field"><%= blacklist_pattern.class %></td>
   <td class="operation"><%= link_to_edit blacklist_pattern %></td>
   <td class="operation"><%= link_to_destroy blacklist_pattern %></td>    

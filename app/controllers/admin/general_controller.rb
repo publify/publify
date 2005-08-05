@@ -1,5 +1,6 @@
 class Admin::GeneralController < Admin::BaseController
   def index
+    @page_cache_size = PageCache.count
   end
   
   def update_database

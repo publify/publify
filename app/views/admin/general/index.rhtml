@@ -8,6 +8,7 @@
       <li><a href="#gensettings" onclick="new Effect.ScrollTo('gensettings')">General Settings</a></li>
       <li><a href="#textfilter" onclick="new Effect.ScrollTo('textfilter')">Text Filter</a></li>
       <li><a href="#spam" onclick="new Effect.ScrollTo('spam')">Spam Protection</a></li>
+      <li><a href="#spam" onclick="new Effect.ScrollTo('misc')">Cache</a></li>
     </ul>
     <div style="clear:both;"></div>
   </div>
@@ -96,6 +97,16 @@
         <p class="r"><%= save("Save My Settings") %></p>
     </div>
  </div>
+ 
+ <div id="misc" class="set">
+   <h3>Cache</h3>
+     <%= link_to 'Empty Page Cache', :controller => 'cache', :action => 'sweep' %>
+   <div id="users">	
+     <p>There are <%= @page_cache_size %> entries in the page cache</p>
+   </div>
+</div>
+
+
   <div id="operations" class="tasks">
     <%= save("Save My Settings") %>  
   </div>

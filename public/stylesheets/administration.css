@@ -30,7 +30,7 @@
 
  #content {
   background: #fff;
-  margin: 20px 0 0 0;
+  margin: 5px 0 0 0;
   padding: 10px;
   }
 
@@ -435,6 +435,18 @@ label {
   list-style: none;
 }
 
+.preview {
+  border: 4px solid #656D79;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  margin: 5px;
+  float: right;
+}
+
+.theme h3 {
+  margin: 0;
+}
 /*
  *=Users
  */
@@ -516,3 +528,12 @@ div.user {
   border: 1px solid red;
 }
 
+
+#flash {
+    background: #CBE4C3;
+    color: #0C2504;
+    padding: 5px;
+    border-top: 1px solid #2E9410;
+    border-bottom: 1px solid #2E9410;
+    margin-top: 10px;
+}
