@@ -12,7 +12,7 @@ class ThemeTest < Test::Unit::TestCase
   end
 
   def test_description
-    assert_equal "<h1>Azure</h1>\n\n<p>Typo&#8217;s default theme by <a href=\"http://www.encytemedia.com/\" title=\"Encyte Media\">Justin Palmer</a></p>",
+    assert_equal "<h3>Azure</h3>\n\n<p>Typo&#8217;s default theme by <a href=\"http://www.encytemedia.com/\" title=\"Encyte Media\">Justin Palmer</a></p>",
       Theme.current.description
   end
   
