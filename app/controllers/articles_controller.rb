@@ -161,14 +161,13 @@ class ArticlesController < ApplicationController
       @params[:page] = nil unless @request.path =~ /\/page\// # assumes all page routes use /page/:page
     end
 
-    def verify_config      
-      if !config.is_ok?
-        if User.count == 0 
-          redirect_to :controller => "accounts", :action => "signup"
-        else
-          redirect_to :controller => "admin/general", :action => "index"
-        end
-        return false
+    def verify_config
+      if User.count == 0
+        redirect_to :controller => "accounts", :action => "signup"
+      elsif !config.is_ok?
+        redirect_to :controller => "admin/general", :action => "index"
+      else
+        return true
       end
     end
     
