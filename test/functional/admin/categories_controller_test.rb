@@ -25,6 +25,13 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_rendered_file 'list'
     assert_template_has 'categories'
   end
+  
+  def test_show
+    get :show, 'id' => 1
+    assert_rendered_file 'show'
+    assert_template_has 'category'
+    assert_valid_record 'category'
+  end
 
   def test_create
     num_categories = Category.find_all.size
