@@ -1,20 +1,17 @@
 development:
-  adapter: mysql
+  adapter: postgresql
   database: typo_dev
   host: localhost
-  username: root
-  password: 
+  username: typo
 
 test:
-  adapter: mysql
+  adapter: postgresql
   database: typo_tests
   host: localhost
-  username: root
-  password: 
+  username: typo
 
 production:
-  adapter: mysql
+  adapter: postgresql
   database: typo
   host: localhost
-  username: root
-  password: 
+  username: typo

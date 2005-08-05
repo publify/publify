@@ -21,13 +21,11 @@ Installation
 
 Unpack the tgz or zip in some directory.
 
-The first decision you have to make is whether to use sqlite or mysql. Both are supported.
-There is no reason why postgres or others shouldn't work, I just don't have a sql file for
-them yet.
+The first decision you have to make is whether to use Sqlite, MySQL, or Postgres.  All 
+three are supported, although Sqlite doesn't have full support for database migrations in
+Rails 0.13.1.
 
   * Create a database for typo. You can find matching schemas in the db/ folder. 
-    If you choose sqlite make sure to create the files using the db/schema.sqlite.sql 
-    file.      
   * Change the config/database.yml to reflect your newly created database configuration  
   * Run script/server -e production and see if it works  
   * Point your browser to http://your.domain.com:3000/ and follow the install process
