@@ -26,19 +26,6 @@ class Admin::BlacklistControllerTest < Test::Unit::TestCase
     assert_template_has 'blacklist_patterns'
   end
 
-  def test_show
-    get :show, 'id' => 1
-    assert_rendered_file 'show'
-    assert_template_has 'blacklist_pattern'
-    assert_valid_record 'blacklist_pattern'
-  end
-
-  def test_new
-    get :new
-    assert_rendered_file 'new'
-    assert_template_has 'blacklist_pattern'
-  end
-
   def test_create
     num_blacklist_patterns = BlacklistPattern.find_all.size
 
