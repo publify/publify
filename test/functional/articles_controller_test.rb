@@ -5,7 +5,7 @@ require 'articles_controller'
 class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages
+  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages, :articles_categories
 
   def setup
     @controller = ArticlesController.new
@@ -17,7 +17,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   # Category subpages
   def test_category
-    get :category, :id => "Software"
+    get :category, :id => "software"
+
     assert_response :success
     assert_rendered_file "index"
   end
