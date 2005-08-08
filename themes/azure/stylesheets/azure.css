@@ -4,7 +4,7 @@ body {
 	margin: 20px 0;
 	text-align: center;
 	background: #8ab3d1 url(../../images/theme/bg-tile.gif) repeat-x;
-	font: 1em/1.2em Arial, Verdana, Helvetica;
+	font: 1em/1.2em Arial, Verdana, Helvetica, sans-serif;
 	color: #333;
 	}
 	
@@ -130,7 +130,7 @@ body {
 	}
 	
   .post h2 {
-  	font: normal 140%/1.3em Arial, Verdana, Helvetica;
+  	font: normal 140%/1.3em Arial, Verdana, Helvetica, sans-serif;
 	}
 	
   .post h2 a {
@@ -180,7 +180,7 @@ body {
   +-------------------------------------------+*/
   
  #sidebar h3 {
- 		font: 110%/1.5em Arial, Verdana, Helvetica;
+ 		font: 110%/1.5em Arial, Verdana, Helvetica, sans-serif;
  		color: #d75a20;
  		margin-top: 10px;
  		}
@@ -265,7 +265,7 @@ body {
  .pullquote {
 		width: 30%;
 		float:right;
-		font: 150%/1.5em Times, Helvetica, "Times New Roman";
+		font: 150%/1.5em Times, Helvetica, "Times New Roman", serif;
 		color: #666;
 		margin:10px;
 		background: url(../../images/theme/q-close.gif) no-repeat 70% 100% !important;
@@ -289,7 +289,7 @@ body {
  }
  
  #errors {
-   font-color: red;
+   color: red;
  }
 
 .admintools {
