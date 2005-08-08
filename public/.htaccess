@@ -19,4 +19,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
 # In case Rails experiences terminal errors
-ErrorDocument 500 "<h2>Application Errror</h2>Typo could not be reached
+ErrorDocument 500 "<h2>Application Error</h2>Typo could not be reached

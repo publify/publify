@@ -12,10 +12,13 @@ Requirements
 Currently you need all of those things to get typo to run:
 
  * Ruby -v of 1.8.2 (25-05-2004) or higher 
- * Rails. Most likely the latest version. If something
-   doesn't work try to run gem update.
- * Redcloth. You can get it by running "gem install redcloth"
- 
+ * Rails 0.13.1
+ * A database.  Typo supports MySQL, PostgreSQL, and SQLite.
+ * Ruby drivers for your database.
+ * For best performance, you should have a web server running either Apache or Lighttpd
+   along with FastCGI, although these aren't strictly required--you can use Ruby's built-in
+   web server for low-volume testing.
+
 Installation
 ============
 
@@ -35,22 +38,13 @@ the typo page at http://typo.leetsoft.com/trac.cgi/wiki/FastCgi
 
 If you choose to go with sqlite you will need to create the databases. 
 
-Customization
-=============
-
-Your first point of customization should be app/views/layouts/articles.rhtml. This is the
-layout used for the weblog. You will see some commented out blocks which indicate on how
-to use the syndication helpers.
-
 Usage
 ======
 
-Typo was made to be used from a desktop client. I personally use MarsEdit but all
-metaweblog and movable type compatible clients will be able to talk to typo. For a short
+Typo's administrative interface is available at http://your.domain.com/admin.  You can use this
+to post articles and change Typo's configuration settings.  For posting new content, you can either
+use this administrative web interface or a desktop blog editor like MarsEdit or Ecto.  For a short
 list of clients which are confirmed to work please visit http://typo.leetsoft.com.
-A real admin interface was added recently. You can find it under http://your.domain.com/admin
-Most features of typo like sending of pingbacks still require the use of a desktop client 
-with the moveable type api. 
 
 Client setup
 ============
