@@ -1,6 +1,6 @@
 <li class="graybox" id="comment-<%= comment.id %>" <%= 'style="display:none"' if controller.request.xhr? %><%= onhover_show_admin_tools(:comment, comment.id) %>>
   <%= admin_tools_for comment %>
   <a name="comment-<%= comment.id %>"></a>
-  <cite><strong><%= (comment.url.blank?) ? comment.author : link_to(comment.author, comment.url) %></strong> </cite> said <%= distance_of_time_in_words @article.created_at, comment.created_at %> later:<br />
+  <cite><strong><%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url) %></strong> </cite> said <%= distance_of_time_in_words @article.created_at, comment.created_at %> later:<br />
   <%= comment.body_html %>
 </li>
