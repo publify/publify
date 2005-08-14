@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "2.5.3"
+PKG_VERSION = "2.5.4"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
@@ -195,7 +195,7 @@ spec = Gem::Specification.new do |s|
   s.summary = "Modern weblog engine."
   s.has_rdoc = false
   s.files  = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
-    f =~ /\.$/ || f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ || f =~ /^vendor\/rails/ || f =~ /^public\/(files|xml|articles|pages)/ || f =~ /^public\/(stylesheets|javascripts|images)\/theme/
+    f =~ /\.$/ || f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ || f =~ /^vendor\/rails/ || f =~ /^public\/(files|xml|articles|pages)/ || f =~ /^public\/(stylesheets|javascripts|images)\/theme/ || f =~ /\~$/ || f =~ /\/\._/ || f =~ /\/#/
   end
   s.require_path = '.'
   s.author = "Tobias Luetke"
