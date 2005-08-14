@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
       FROM categories LEFT OUTER JOIN articles_categories 
         ON articles_categories.category_id = categories.id
       GROUP BY categories.id, categories.name, categories.position, categories.permalink
-      ORDER BY position, name
+      ORDER BY name
       })
   end
   
