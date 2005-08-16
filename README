@@ -1,10 +1,11 @@
 What is it?
 ===========
 
-Typo is a lean and mean weblog. Weblogs are cool, weblogs are "in" and everyone who writes
-code has an different opinion on how a weblog should be written. Typo is our take on it.
-Its meant for programmers who can extend and change the source to make it fit to their
-needs but will eventually be useful to normal users as well.
+Typo is a lean and mean weblog. Weblogs are cool, weblogs are "in" and
+everyone who writes code has an different opinion on how a weblog
+should be written. Typo is our take on it. Its meant for programmers
+who can extend and change the source to make it fit to their needs but
+will eventually be useful to normal users as well.
 
 Requirements
 ============
@@ -15,61 +16,68 @@ Currently you need all of those things to get typo to run:
  * Rails 0.13.1
  * A database.  Typo supports MySQL, PostgreSQL, and SQLite.
  * Ruby drivers for your database.
- * For best performance, you should have a web server running either Apache or Lighttpd
-   along with FastCGI, although these aren't strictly required--you can use Ruby's built-in
-   web server for low-volume testing.
+ * For best performance, you should have a web server running either
+   Apache or Lighttpd along with FastCGI, although these aren't
+   strictly required--you can use Ruby's built-in web server for
+   low-volume testing.
 
 Installation
 ============
 
 Unpack the tgz or zip in some directory.
 
-The first decision you have to make is whether to use Sqlite, MySQL, or Postgres.  All 
-three are supported, although Sqlite doesn't have full support for database migrations in
-Rails 0.13.1.
+Decide which database to use. We support Sqlite, MySQL, and Postgres,
+but Sqlite doesn't have full support for database migrations in Rails
+0.13.1.
 
-  * Create a database for typo. You can find matching schemas in the db/ folder. 
-  * Change the config/database.yml to reflect your newly created database configuration  
+  * Create a database for typo. You can find matching schemas in the
+    db/ folder. 
+  * Change the config/database.yml to reflect your newly created
+    database configuration  
   * Run script/server -e production and see if it works  
-  * Point your browser to http://your.domain.com:3000/ and follow the install process
+  * Point your browser to http://your.domain.com:3000/ and follow the
+    install process
 
-If you want to deploy on fastcgi you will need to follow the setup instructions on
-the typo page at http://typo.leetsoft.com/trac.cgi/wiki/FastCgi
-
-If you choose to go with sqlite you will need to create the databases. 
+If you want to deploy on fastcgi you will need to follow the setup
+instructions on the typo page at
+http://typo.leetsoft.com/trac.cgi/wiki/FastCgi
 
 Permissions
 ===========
 
-Typo needs write access to several directories in order to function correctly.  These need
-to be writable by the user that runs the Typo process--in a hosted environment this may be
-your user; on dedicated systems it may be something like 'httpd' or 'www-data'.
+Typo needs write access to several directories in order to function
+correctly. These need to be writable by the user that runs the Typo
+process--in a hosted environment this may be your user; on dedicated
+systems it may be something like 'httpd' or 'www-data'.
 
-The specific directories in question are 'log/' (and everything underneath it) and 'public/'.
-Strictly speaking, Rails will continue to work if public isn't writable, but none of Typo's
-caching code will work properly.  For the security conscious, Rails really only needs the
-ability to change a half-dozen files and subdirectories under public/, ask on the Typo
-mailing list for more details.
+The specific directories in question are 'log/' (and everything
+underneath it) and 'public/'. Strictly speaking, Rails will continue
+to work if public isn't writable, but none of Typo's caching code will
+work properly. For the security conscious, Rails really only needs the
+ability to change a half-dozen files and subdirectories under public/,
+ask on the Typo mailing list for more details.
 
 Usage
 ======
 
-Typo's administrative interface is available at http://your.domain.com/admin.  You can use this
-to post articles and change Typo's configuration settings.  For posting new content, you can either
-use this administrative web interface or a desktop blog editor like MarsEdit or Ecto.  For a short
-list of clients which are confirmed to work please visit http://typo.leetsoft.com.
+Typo's administrative interface is available at
+http://your.domain.com/admin. You can use this to post articles and
+change Typo's configuration settings. For posting new content, you can
+either use this administrative web interface or a desktop blog editor
+like MarsEdit or Ecto. For a short list of clients which are confirmed
+to work please visit http://typo.leetsoft.com.
 
 Client setup
 ============
 
-Set your desktop client to movable type api and enter http://your.domain.com/backend/xmlrpc 
-as endpoint address.
+Set your desktop client to Movable Type API and enter
+http://your.domain.com/backend/xmlrpc as endpoint address.
 
 Tell me about your blog
 =======================
 
-Add yourself to the list of typo blogs at http://typo.leetsoft.com and subscribe to the
-typo mailing list. 
+Add yourself to the list of typo blogs at http://typo.leetsoft.com and
+subscribe to the typo mailing list.
 
 
 Enjoy,
