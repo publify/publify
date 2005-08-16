@@ -195,7 +195,7 @@ spec = Gem::Specification.new do |s|
   s.summary = "Modern weblog engine."
   s.has_rdoc = false
   s.files  = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
-    f =~ /\.$/ || f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ || f =~ /^vendor\/rails/ || f =~ /^public\/(files|xml|articles|pages)/ || f =~ /^public\/(stylesheets|javascripts|images)\/theme/ || f =~ /\~$/ || f =~ /\/\._/ || f =~ /\/#/
+    f =~ /\.$/ || f =~ /sqlite$/ || f =~ /\.log$/ || f =~ /^pkg/ || f =~ /\.svn/ || f =~ /^vendor\/rails/ || f =~ /^public\/(files|xml|articles|pages)/ || f =~ /^public\/(stylesheets|javascripts|images)\/theme/ || f=~ /^public\/index\.html/ || f =~ /\~$/ || f =~ /\/\._/ || f =~ /\/#/
   end
   s.require_path = '.'
   s.author = "Tobias Luetke"
