@@ -104,6 +104,7 @@ CREATE TABLE `resources` (
   `mime` varchar(255) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
+  `article_id` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
@@ -140,6 +141,19 @@ insert into sidebars (id,controller,active_position,staged_position)
   values (2,'static',1,1);
 insert into sidebars (id,controller,active_position,staged_position)
   values (3,'xml',2,2);
+  
+CREATE TABLE `tags` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+) TYPE=MyISAM;
+
+CREATE TABLE `articles_tags` (
+  `article_id` int(11) NOT NULL,
+  `tag_id` int(11) NOT NULL
+) TYPE=MyISAM;
 
 CREATE TABLE `trackbacks` (
   `id` int(11) NOT NULL auto_increment,

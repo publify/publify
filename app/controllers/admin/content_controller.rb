@@ -1,5 +1,4 @@
 class Admin::ContentController < Admin::BaseController
-
   cache_sweeper :blog_sweeper
 
   def index
@@ -17,6 +16,7 @@ class Admin::ContentController < Admin::BaseController
   def show
     @article = Article.find(params[:id])
     @categories = Category.find(:all, :order => 'name')
+    @resources = Resource.find(:all, :order => 'created_at DESC')
   end
 
   def new
@@ -27,10 +27,16 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter ||= config[:text_filter]
     @article.user = session[:user]
     
-    @categories = Category.find_all
+    @categories = Category.find(:all)
     if request.post?
       @article.categories.clear
       @article.categories << Category.find(params[:categories]) if params[:categories]
+
+      params[:attachments].each do |k,v|
+        a = attachment_save(params[:attachments][k])
+        @article.resources << a unless a.nil?
+      end unless params[:attachments].nil?
+
       if @article.save 
         flash[:notice] = 'Article was successfully created.'
         redirect_to :action => 'show', :id => @article.id
@@ -41,11 +47,17 @@ class Admin::ContentController < Admin::BaseController
   def edit
     @article = Article.find(params[:id])
     @article.attributes = params[:article]
-    @categories = Category.find_all
+    @categories = Category.find(:all)
     @selected = @article.categories.collect { |cat| cat.id.to_i }
     if request.post? 
       @article.categories.clear
       @article.categories << Category.find(params[:categories]) if params[:categories]
+      
+      params[:attachments].each do |k,v|
+        a = attachment_save(params[:attachments][k])        
+        @article.resources << a unless a.nil?
+      end unless params[:attachments].nil?
+
       if @article.save 
         flash[:notice] = 'Article was successfully updated.'
         redirect_to :action => 'show', :id => @article.id
@@ -64,17 +76,19 @@ class Admin::ContentController < Admin::BaseController
   def category_add
     @article = Article.find(params[:id])
     @category = Category.find(params[:category_id])
+    @categories = Category.find(:all)
     @article.categories << @category
     @article.save
-    redirect_to :action => 'show', :id => @article.id
+    render :partial => 'show_categories'
   end
 
   def category_remove
     @article = Article.find(params[:id])
     @category = Category.find(params[:category_id])
+    @categories = Category.find(:all)
     @article.categories.delete(@category)
-    @article.save    
-    redirect_to :action => 'show', :id => @article.id
+    @article.save
+    render :partial => 'show_categories'
   end
   
   def preview
@@ -83,4 +97,40 @@ class Admin::ContentController < Admin::BaseController
     render :layout => false
   end
   
+  def resource_add
+    @article = Article.find(params[:id])
+    @resource = Resource.find(params[:resource_id])
+    @resources = Resource.find(:all, :order => 'created_at DESC')
+    @article.resources << @resource
+    @article.save
+    render :partial => 'show_resources'
+  end
+
+  def resource_remove
+    @article = Article.find(params[:id])
+    @resource = Resource.find(params[:resource_id])
+    @resources = Resource.find(:all, :order => 'created_at DESC')
+    @article.resources.delete(@resource)
+    @article.save
+    render :partial => 'show_resources'
+  end
+
+  def attachment_box_add
+    render :partial => 'admin/content/attachment', :locals => { :attachment_num => params[:id] }
+  end
+
+  def attachment_box_remove
+    render :inline => "<%= javascript_tag 'document.getElementById(\"attachments\").removeChild(document.getElementById(\"attachment_#{params[:id]}\")); return false;' -%>", :layout => false
+  end
+
+  def attachment_save(attachment)
+    begin
+      up = Resource.create(:filename => attachment.original_filename, :mime => attachment.content_type.chomp, :created_at => Time.now)
+      up.write_to_disk(attachment)
+      up
+    rescue => e
+      logger.info(e.message)
+      nil
+    end
+  end
 end

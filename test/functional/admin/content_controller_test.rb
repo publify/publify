@@ -5,7 +5,7 @@ require 'admin/content_controller'
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
-  fixtures :articles, :users
+  fixtures :articles, :users, :categories, :resources
 
   def setup
     @controller = Admin::ContentController.new
@@ -30,6 +30,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_rendered_file 'show'
     assert_template_has 'article'
     assert_valid_record 'article'
+    assert_not_nil assigns(:article)
+    assert_not_nil assigns(:categories)
+    assert_not_nil assigns(:resources)
   end
 
   def test_new
@@ -74,5 +77,64 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       article = Article.find(1)
     }
+  end
+
+  def test_category_add
+    get :category_add, :id => 1, :category_id => 1
+    
+    assert_rendered_file '_show_categories'
+    assert_valid_record 'article'
+    assert_valid_record 'category'
+    assert Article.find(1).categories.include?(Category.find(1))
+    assert_not_nil assigns(:article)
+    assert_not_nil assigns(:category)
+    assert_not_nil assigns(:categories)
+  end
+
+  def test_category_remove
+    get :category_remove, :id => 1, :category_id => 1
+    
+    assert_rendered_file '_show_categories'
+    assert_valid_record 'article'
+    assert_valid_record 'category'
+    assert !Article.find(1).categories.include?(Category.find(1))
+    assert_not_nil assigns(:article)
+    assert_not_nil assigns(:category)
+    assert_not_nil assigns(:categories)
+  end
+
+  def test_resource_add
+    get :resource_add, :id => 1, :resource_id => 1
+    
+    assert_rendered_file '_show_resources'
+    assert_valid_record 'article'
+    assert_valid_record 'resource'
+    assert Article.find(1).resources.include?(Resource.find(1))
+    assert_not_nil assigns(:article)
+    assert_not_nil assigns(:resource)
+    assert_not_nil assigns(:resources)
+  end
+
+  def test_resource_remove
+    get :resource_remove, :id => 1, :resource_id => 1
+    
+    assert_rendered_file '_show_resources'
+    assert_valid_record 'article'
+    assert_valid_record 'resource'
+    assert !Article.find(1).resources.include?(Resource.find(1))
+    assert_not_nil assigns(:article)
+    assert_not_nil assigns(:resource)
+    assert_not_nil assigns(:resources)
+  end
+
+  def test_attachment_box_add
+    get :attachment_box_add, :id => 2
+    assert_rendered_file '_attachment'
+    #assert_tag :tag => 'script'
+  end
+  
+  def test_attachment_box_remove
+    get :attachment_box_remove, :id => 1
+    assert_tag :tag => 'script', :attributes => {:type => 'text/javascript'}
   end
 end

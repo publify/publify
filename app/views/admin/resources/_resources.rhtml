@@ -1,0 +1,20 @@
+<table cellspacing="1" cellpadding="0">
+<tr>
+  <th>Filename</th>
+  <th>Link</th>
+  <th>Content Type</th>
+  <th>File Size</th>
+  <th>Uploaded</th>
+  <th>Delete</th>
+</tr>
+<% for upload in resources %>
+<tr <%= alternate_class %>>
+  <td><%= upload.filename -%></td>
+  <td><%= link_to "/files/#{upload.filename}", "/files/#{upload.filename}" -%></td>
+  <td><%= upload.mime -%></td>
+  <td><%= upload.size.kilobytes rescue 0 -%></td>
+  <td><%= upload.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
+  <td class="operation"><%= link_to_destroy upload -%></td>    
+</tr>  
+<% end %>
+</table>

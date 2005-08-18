@@ -97,3 +97,5 @@ ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager =
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'
 )
+
+ActionController::Base.enable_upload_progress

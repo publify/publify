@@ -1,0 +1,17 @@
+<% str = update_element_function('attachments', :position => :bottom) do -%>
+  <div id="attachment_<%= attachment_num -%>">
+    <%= file_field 'attachments', "filename_#{attachment_num}" -%>
+    <%= link_to_remote 'Remove',
+	:url => { :action => "attachment_box_remove", :id => attachment_num },
+	:update => "attachment_#{attachment_num}",
+	:confirm => "Really delete attachment #{attachment_num}?" -%>
+    <br />
+  </div>
+  <div id="attachment_<%= attachment_num.succ -%>">
+    <%= link_to_remote 'Add Another Attachment',
+	:url => { :action => "attachment_box_add", :id => attachment_num.succ },
+	:update => "attachment_#{attachment_num.succ}",
+	:asynchronus => false -%>
+  </div>
+<% end -%>
+<%= javascript_tag(str) -%>

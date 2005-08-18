@@ -5,7 +5,7 @@
     <li><%= link_to 'View article on your blog', article_url(@article) %></li>
   <% end %> 
 
-  <%= start_form_tag({ :action => "edit", :id => @article }, :id => "article_form") %>
+  <%= start_form_tag({ :action => "edit", :id => @article }, :id => "article_form", :enctype => "multipart/form-data") %>
   <h3>Editing article</h3>
 
   <div class="form">

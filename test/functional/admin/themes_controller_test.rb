@@ -19,6 +19,16 @@ class Admin::ThemesControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
-    assert assigns(:themes)
+    assert_not_nil assigns(:themes)
+  end
+
+  def test_switchto
+    get :switchto, :theme => 'azure'
+    assert_redirected_to :action => 'index'
+  end
+
+  def test_preview
+    get :preview, :theme => 'azure'
+    assert_response :success
   end
 end

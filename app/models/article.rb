@@ -6,10 +6,13 @@ class Article < ActiveRecord::Base
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
+  has_many :resources, :order => "created_at DESC"
   
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :tags
   belongs_to :user
+  
+  after_destroy :fix_resources
   
   def stripped_title
     self.title.to_url
@@ -149,4 +152,12 @@ class Article < ActiveRecord::Base
 
   validates_uniqueness_of :guid
   validates_presence_of :title
+
+  private
+  def fix_resources
+    Resource.find(:all, :conditions => "article_id = #{id}").each do |fu|
+      fu.article_id = nil
+      fu.save
+    end
+  end
 end

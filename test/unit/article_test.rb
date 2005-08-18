@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :articles, :settings, :articles_tags, :tags
+  fixtures :articles, :settings, :articles_tags, :tags, :resources
   
   def setup
     config.reload
@@ -95,4 +95,10 @@ class ArticleTest < Test::Unit::TestCase
     assert [@article1, @article2].sort_by {|a| a.id}, articles.sort_by {|a| a.id}
   end
 
+  def test_destroy_file_upload_associations
+    @article1.resources << @resource1 << @resource2
+    assert_equal 2, @article1.resources.size
+    @article1.destroy
+    assert_equal 0, Resource.find(:all, :conditions => "article_id = #{@article1.id}").size
+  end
 end

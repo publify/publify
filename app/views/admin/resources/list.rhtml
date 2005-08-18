@@ -1,0 +1,12 @@
+  <% @page_heading = 'Resources Available' %>
+  <% @page_title = 'Upload a File' %>
+  <% content_for('tasks') do %>
+    <%= task_new 'Upload a new Resource' %>
+  <% end %> 
+
+  <div class="list" id="resources">	
+    <%= render :partial => 'resources', :object => @resources -%>
+  </div>
+  <div class="list" id="pages">	
+    <%= render :partial => 'pages', :object => @resources_pages %>
+  </div>                      

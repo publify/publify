@@ -34,7 +34,7 @@ class Admin::UsersController < Admin::BaseController
   def destroy
     @user = User.find(params[:id])
     if request.post?
-      @user.destroy
+      @user.destroy if User.count > 1
       redirect_to :action => 'list'
     end
   end

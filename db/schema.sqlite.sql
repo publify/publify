@@ -89,7 +89,8 @@ CREATE TABLE 'resources' (
   'filename'    VARCHAR(255) DEFAULT NULL,
   'mime'        VARCHAR(255) DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,
-  'updated_at'  DATETIME DEFAULT NULL
+  'updated_at'  DATETIME DEFAULT NULL,
+  'article_id'  INTEGER DEFAULT NULL
 );
 
 CREATE TABLE 'sessions' (
@@ -122,6 +123,18 @@ insert into sidebars (id,controller,active_position,staged_position)
   values (2,'static',1,1);
 insert into sidebars (id,controller,active_position,staged_position)
   values (3,'xml',2,2);
+
+CREATE TABLE 'tags' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'name'        VARCHAR(255) DEFAULT NULL,
+  'created_at'  DATETIME DEFAULT NULL,
+  'updated_at'  DATETIME DEFAULT NULL
+);
+
+CREATE TABLE 'articles_tags' (
+  'article_id'  INTEGER,
+  'tag_id'      INTEGER
+);
 
 CREATE TABLE 'trackbacks' (
   'id'          INTEGER PRIMARY KEY NOT NULL,

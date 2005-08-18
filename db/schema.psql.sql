@@ -108,7 +108,8 @@ CREATE TABLE resources (
   filename varchar(255) default NULL,
   mime varchar(255) default NULL,
   created_at TIMESTAMP DEFAULT now(),
-  updated_at TIMESTAMP DEFAULT now()
+  updated_at TIMESTAMP DEFAULT now(),
+  article_id int default NULL
 );
 
 CREATE TABLE sessions (
@@ -143,6 +144,18 @@ insert into sidebars (controller,active_position,staged_position)
   values ('static',1,1);
 insert into sidebars (controller,active_position,staged_position)
   values ('xml',2,2);
+  
+CREATE TABLE tags (
+  id SERIAL PRIMARY KEY,
+  name varchar,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+CREATE TABLE articles_tags (
+  article_id int,
+  tag_id int
+);
 
 CREATE TABLE trackbacks (
   id SERIAL PRIMARY KEY NOT NULL,

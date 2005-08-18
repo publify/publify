@@ -74,7 +74,7 @@ class MetaWeblogService < TypoWebService
   end
 
   def getCategories(blogid, username, password)
-    Category.find_all.collect { |c| c.name }
+    Category.find(:all).collect { |c| c.name }
   end
 
   def getPost(postid, username, password)
@@ -106,7 +106,7 @@ class MetaWeblogService < TypoWebService
     
     if struct['categories']
       article.categories.clear
-      Category.find_all.each do |c|
+      Category.find(:all).each do |c|
         article.categories << c if struct['categories'].include?(c.name)
       end
     end
@@ -141,7 +141,7 @@ class MetaWeblogService < TypoWebService
 
     if struct['categories']
       article.categories.clear
-      Category.find_all.each do |c|
+      Category.find(:all).each do |c|
         article.categories << c if struct['categories'].include?(c.name)
       end
     end
@@ -153,20 +153,10 @@ class MetaWeblogService < TypoWebService
   end
     
   def newMediaObject(blogid, username, password, data)
-    path      = "#{RAILS_ROOT}/public/files/#{data["name"].split('/')[0..-2].join('/')}"
-    filepath  = "#{RAILS_ROOT}/public/files/#{data["name"]}"
+    resource = Resource.create(:filename => data['name'], :mime => data['type'], :created_at => Time.now)
+    resource.write_to_disk(data['bits'])
       
-    FileUtils.mkpath(path)
-      
-    File.open(filepath, "wb") { |f| f << data["bits"] }
-
-    resource = Resource.new
-    resource.filename   = data["name"]
-    resource.size       = File.size(path)
-    resource.mime       = data["type"]    
-    resource.save
-      
-    MetaWeblogStructs::Url.new("url" => controller.url_for(:controller => "/files/#{data["name"]}"))
+    MetaWeblogStructs::Url.new("url" => controller.url_for(:controller => "/files/#{resource.filename}"))
   end             
 
   def article_dto_from(article)
