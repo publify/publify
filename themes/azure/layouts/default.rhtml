@@ -33,12 +33,6 @@
         <div id="sidebar">
           
             <div id="search-results"></div>
-              <%= observe_field "q", 
-                  :frequency => 1, 
-                  :url => { :controller => "live", :action => "search" }, 
-                  :loading => "Element.show('search_spinner')",
-                  :complete => "Element.hide('search_spinner')",
-                  :update => "search-results" -%>
 
             <%= render_component(:controller => 'sidebars/sidebar', :action => 'display_plugins') %>
             <%= link_to image_tag("powered.gif"),  "http://typo.leetsoft.com/", {:class => "powered" } %>
