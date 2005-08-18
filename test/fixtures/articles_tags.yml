@@ -1,0 +1,11 @@
+article1_foo:
+  article_id: 1
+  tag_id: 1
+
+article1_bar:
+  article_id: 1
+  tag_id: 2
+
+article2_foo:
+  article_id: 2
+  tag_id: 1

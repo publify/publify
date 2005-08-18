@@ -52,6 +52,7 @@ module ArticlesHelper
   def article_links(article)
     returning code = [] do
       code << category_links(article)   unless article.categories.empty?
+      code << tag_links(article)        unless article.tags.empty?
       code << comments_link(article)    if article.allow_comments?
       code << trackbacks_link(article)  if article.allow_pings?
     end.join("&nbsp;<strong>|</strong>&nbsp;")
@@ -62,6 +63,13 @@ module ArticlesHelper
       { :controller=>"articles", :action=>"category", :id=>c.permalink },
       :rel => "category tag"
     }.join(", ")
+  end
+
+  def tag_links(article)
+    "Tags " + article.tags.collect { |tag| link_to tag.name,
+      { :controller=>"articles", :action=>"tag", :id=> tag.name },
+      :rel => "tag"
+    }.sort.join(", ")
   end
 
   def author_link(article)

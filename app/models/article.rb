@@ -8,6 +8,7 @@ class Article < ActiveRecord::Base
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
   
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :tags
   belongs_to :user
   
   def stripped_title
@@ -48,6 +49,20 @@ class Article < ActiveRecord::Base
     Article.find(:all, :conditions => ["articles.created_at BETWEEN ? AND ? AND articles.published != 0", from, to], :order => 'articles.created_at DESC', :include => [:categories, :trackbacks, :comments])
   end
 
+  def self.find_by_tag(tag_name)
+    Article.find_by_sql([%{
+      SELECT a.* 
+      FROM 
+       articles a 
+       INNER JOIN articles_tags at ON a.id = at.article_id
+       INNER JOIN tags t ON at.tag_id = t.id
+      WHERE
+       t.name = ?
+      ORDER BY
+       a.created_at DESC
+    },tag_name])
+  end
+
   # Find one article on a certain date
   def self.find_by_date(year, month, day)  
     find_all_by_date(year, month, day).first
@@ -77,16 +92,44 @@ class Article < ActiveRecord::Base
   def full_html
     "#{body_html}\n\n#{extended_html}"
   end
+
+  def keywords_to_tags
+    return if keywords.to_s.blank?
+    Article.transaction do
+      tags.clear
+      keywords.split.uniq.each do |tagword|
+        tags << Tag.get(tagword)
+      end
+    end
+  end
   
   protected  
 
   before_save :set_defaults, :transform_body
   
   def set_defaults
+    begin
+      schema_info=Article.connection.select_one("select * from schema_info limit 1")
+      schema_version=schema_info["version"].to_i
+    rescue
+      # The test DB doesn't currently support schema_info.
+      schema_version=10
+    end
+
     self.published ||= 1
     self.text_filter = config['text_filter'] if self.text_filter.blank?
-    self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
-    self.guid = Digest::MD5.new(self.body.to_s+self.extended.to_s+self.title.to_s+self.permalink.to_s+self.author.to_s+Time.now.to_f.to_s).to_s if self.guid.blank?
+    
+    if schema_version >= 7
+      self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
+    end
+
+    if schema_version >= 9
+      self.guid = Digest::MD5.new(self.body.to_s+self.extended.to_s+self.title.to_s+self.permalink.to_s+self.author.to_s+Time.now.to_f.to_s).to_s if self.guid.blank?
+    end
+    
+    if schema_version >= 10
+      keywords_to_tags
+    end
   end
   
   def transform_body

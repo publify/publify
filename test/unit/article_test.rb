@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :articles, :settings
+  fixtures :articles, :settings, :articles_tags, :tags
   
   def setup
     config.reload
@@ -60,4 +60,39 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
   end
   
+  def test_tags
+    a=Article.new(:title => 'Test tag article',
+                     :keywords => 'test tag tag stuff');
+
+    assert_kind_of Article, a
+    assert 0, a.tags.size
+
+    a.keywords_to_tags
+    
+    assert 3, a.tags.size
+    assert ["test", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
+    assert a.save
+
+    a.keywords='tag bar stuff foo'
+    a.keywords_to_tags
+
+    assert a.tags.size == 4
+    assert ["foo", "bar", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
+
+    b=Article.new(:title => 'Tag Test 2',
+                  :keywords => 'tag test article one two three')
+
+    assert_kind_of Article,b
+    assert 0, b.tags.size
+    assert a.save
+    assert 5, b.tags.size
+  end
+
+  def test_find_by_tag
+    articles=Article.find_by_tag(@foo_tag.name)
+
+    assert 2, articles.size
+    assert [@article1, @article2].sort_by {|a| a.id}, articles.sort_by {|a| a.id}
+  end
+
 end

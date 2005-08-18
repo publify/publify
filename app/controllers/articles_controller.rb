@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   layout :theme_layout
 
   cache_sweeper :blog_sweeper
-  caches_page :index, :read, :permalink, :category, :find_by_date, :archives, :view_page
+  caches_page :index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag
 
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
@@ -77,6 +77,23 @@ class ArticlesController < ApplicationController
       render :action => "index"
     else
       error("Can't find posts in category #{params[:id]}")
+    end
+  end
+    
+  def tag
+    @articles=Article.find_by_tag(params[:id])
+    
+    if(not @articles.empty?)
+      @pages = Paginator.new self, @articles.size, config[:limit_article_display], @params[:page]
+      
+      start = @pages.current.offset
+      stop  = (@pages.current.next.offset - 1) rescue @articles.size
+      # Why won't this work? @articles.slice!(start..stop)
+      @articles = @articles.slice(start..stop)
+      
+      render :action => "index"
+    else
+      error("Can't find posts with tag #{params[:id]}")
     end
   end
     
