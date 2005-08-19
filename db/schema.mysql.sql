@@ -147,7 +147,7 @@ CREATE TABLE `tags` (
   `name` varchar(255) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `articles_tags` (
