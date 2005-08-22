@@ -21,6 +21,9 @@
   <%= js_distance_of_time_in_words_to_now @article.created_at.utc %></p>
   <%= @article.full_html %>
 </div>
+<p class="meta">
+  <%= article_links @article %>
+</p>
 
 <% if @article.allow_comments? or @article.comments.size > 0 -%>
   <a name="comments"></a><h4 class="blueblk">Comments</h4> 
