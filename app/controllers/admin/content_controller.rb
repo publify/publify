@@ -27,7 +27,7 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter ||= config[:text_filter]
     @article.user = session[:user]
     
-    @categories = Category.find(:all, :order => 'name')
+    @categories = Category.find(:all, :order => 'UPPER(name)')
     if request.post?
       @article.categories.clear
       @article.categories << Category.find(params[:categories]) if params[:categories]
@@ -47,7 +47,7 @@ class Admin::ContentController < Admin::BaseController
   def edit
     @article = Article.find(params[:id])
     @article.attributes = params[:article]
-    @categories = Category.find(:all, :order => 'name')
+    @categories = Category.find(:all, :order => 'UPPER(name)')
     @selected = @article.categories.collect { |cat| cat.id.to_i }
     if request.post? 
       @article.categories.clear
