@@ -65,19 +65,29 @@ class ArticleTest < Test::Unit::TestCase
                      :keywords => 'test tag tag stuff');
 
     assert_kind_of Article, a
-    assert 0, a.tags.size
+    assert_equal 0, a.tags.size
 
     a.keywords_to_tags
     
-    assert 3, a.tags.size
-    assert ["test", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
+    assert_equal 3, a.tags.size
+    assert_equal ["test", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
     assert a.save
 
     a.keywords='tag bar stuff foo'
     a.keywords_to_tags
 
-    assert a.tags.size == 4
-    assert ["foo", "bar", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
+    assert_equal 4, a.tags.size
+    assert_equal ["foo", "bar", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
+    
+    a.keywords='tag bar'
+    a.keywords_to_tags
+    
+    assert_equal 2, a.tags.size
+    
+    a.keywords=''
+    a.keywords_to_tags
+    
+    assert_equal 0, a.tags.size
 
     b=Article.new(:title => 'Tag Test 2',
                   :keywords => 'tag test article one two three')

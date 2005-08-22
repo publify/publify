@@ -97,10 +97,9 @@ class Article < ActiveRecord::Base
   end
 
   def keywords_to_tags
-    return if keywords.to_s.blank?
     Article.transaction do
       tags.clear
-      keywords.split.uniq.each do |tagword|
+      keywords.to_s.split.uniq.each do |tagword|
         tags << Tag.get(tagword)
       end
     end
