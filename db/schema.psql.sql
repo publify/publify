@@ -175,4 +175,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (11);
+INSERT into schema_info VALUES (12);
