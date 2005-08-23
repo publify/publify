@@ -124,4 +124,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :view_page, :name => 'page one'
     assert_response 404
   end
+  
+  def test_read_non_published
+    get :read, :id => 4
+    assert_response :success
+    assert_template "error"
+  end
 end

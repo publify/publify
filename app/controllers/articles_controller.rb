@@ -22,9 +22,13 @@ class ArticlesController < ApplicationController
   end
   
   def read    
-    @article      = Article.find(params[:id], :include => [:categories])    
-    @comment      = Comment.new
-    @page_title   = @article.title
+    begin
+      @article      = Article.find(params[:id], :conditions => "published != 0", :include => [:categories])    
+      @comment      = Comment.new
+      @page_title   = @article.title
+    rescue
+      error("Post not found...") and return
+    end
   end
     
   def permalink
