@@ -214,7 +214,6 @@ class BackendControllerTest < Test::Unit::TestCase
     result = invoke_layered :mt, :supportedMethods
     assert_equal 8, result.size
     assert result.include?("publishPost")
-    breakpoint
   end
 
   def test_mt_get_trackback_pings
