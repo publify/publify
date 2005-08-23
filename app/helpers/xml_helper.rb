@@ -1,6 +1,6 @@
 module XmlHelper
   def pub_date(time)
-    time.strftime "%a, %e %b %Y %H:%M:%S %Z"
+    time.rfc822
   end
 
   def post_title(post)
