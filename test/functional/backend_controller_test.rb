@@ -209,6 +209,13 @@ class BackendControllerTest < Test::Unit::TestCase
     assert result.map {|f| f['label']}.include?('Markdown') if  BlueCloth.new rescue false 
     assert result.map {|f| f['label']}.include?('Textile') if  RedCloth.new rescue false 
   end
+  
+  def test_mt_supported_methods
+    result = invoke_layered :mt, :supportedMethods
+    assert_equal 8, result.size
+    assert result.include?("publishPost")
+    breakpoint
+  end
 
   def test_mt_get_trackback_pings
     args = [ 1 ]

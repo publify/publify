@@ -49,6 +49,9 @@ class MovableTypeApi < ActionWebService::API::Base
     :expects => [ {:postid => :string}, {:username => :string}, {:password => :string}, {:categories => [MovableTypeStructs::CategoryPerPost]} ],
     :returns => [:bool]
 
+  api_method :supportedMethods,
+    :returns => [[:string]]
+
   api_method :supportedTextFilters,
     :returns => [[MovableTypeStructs::TextFilter]]
 
@@ -109,9 +112,8 @@ class MovableTypeService < TypoWebService
     article.save
   end
 
-  # Wow, this should really do something.
-  # It's a little vague in the spec though.
   def supportedMethods()
+    MovableTypeApi.api_methods.keys.collect { |method| method.to_s }
   end
 
   # Support for markdown and textile formatting dependant on the relevant 
