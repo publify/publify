@@ -1,4 +1,4 @@
-class Admin::TrackbackController < Admin::BaseController
+class Admin::TrackbacksController < Admin::BaseController
   
   before_filter :get_article
 

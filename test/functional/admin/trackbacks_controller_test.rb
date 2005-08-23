@@ -8,7 +8,7 @@ class Admin::TrackbacksControllerTest < Test::Unit::TestCase
   fixtures :articles, :trackbacks, :users
 
   def setup
-    @controller = Admin::TrackbackController.new
+    @controller = Admin::TrackbacksController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     
