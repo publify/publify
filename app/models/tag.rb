@@ -14,7 +14,7 @@ class Tag < ActiveRecord::Base
   def self.find_all_with_article_counters
     self.find_by_sql(%{
       SELECT id, name, COUNT(article_id) AS article_counter
-      FROM tags LEFT OUTER JOIN articles_tags
+      FROM #{Tag.table_name} tags LEFT OUTER JOIN #{Tag.table_name_prefix}articles_tags#{Tag.table_name_suffix} articles_tags
         ON articles_tags.tag_id = tags.id
       GROUP BY tags.id, tags.name
       ORDER BY name

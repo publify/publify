@@ -66,9 +66,9 @@ class ArticlesController < ApplicationController
   def category
     if category = Category.find_by_permalink(params[:id])
       @articles = Article.find(:all, :conditions => [%{ published != 0
-          AND articles.id = articles_categories.article_id
-          AND articles_categories.category_id = ? }, category.id],
-        :joins => ', articles_categories',
+          AND #{Article.table_name}.id = articles_categories.article_id
+          AND articles_categories.category_id = ? }, category.id], 
+        :joins => ", #{Article.table_name_prefix}articles_categories#{Article.table_name_suffix} articles_categories",
         :order => "created_at DESC")
       
       @pages = Paginator.new self, @articles.size, config[:limit_article_display], @params[:page]

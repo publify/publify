@@ -43,22 +43,22 @@ class Article < ActiveRecord::Base
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)  
     from, to = self.time_delta(year, month, day)
-    Article.count(["articles.created_at BETWEEN ? AND ? AND articles.published != 0", from, to])
+    Article.count(["#{Article.table_name}.created_at BETWEEN ? AND ? AND #{Article.table_name}.published != 0", from, to])
   end
   
   # Find all articles on a certain date
   def self.find_all_by_date(year, month = nil, day = nil)
     from, to = self.time_delta(year, month, day)
-    Article.find(:all, :conditions => ["articles.created_at BETWEEN ? AND ? AND articles.published != 0", from, to], :order => 'articles.created_at DESC', :include => [:categories, :trackbacks, :comments])
+    Article.find(:all, :conditions => ["#{Article.table_name}.created_at BETWEEN ? AND ? AND #{Article.table_name}.published != 0", from, to], :order => "#{Article.table_name}.created_at DESC")
   end
 
   def self.find_by_tag(tag_name)
     Article.find_by_sql([%{
       SELECT a.* 
       FROM 
-       articles a 
-       INNER JOIN articles_tags at ON a.id = at.article_id
-       INNER JOIN tags t ON at.tag_id = t.id
+       #{Article.table_name} a 
+       INNER JOIN #{Article.table_name_prefix}articles_tags#{Article.table_name_suffix} at ON a.id = at.article_id
+       INNER JOIN #{Tag.table_name} t ON at.tag_id = t.id
       WHERE
        t.name = ?
       ORDER BY
@@ -76,8 +76,8 @@ class Article < ActiveRecord::Base
     from, to = self.time_delta(year, month, day)
     find(:first, :conditions => [ %{
       permalink = ?
-      AND articles.created_at BETWEEN ? AND ?
-      AND articles.published != 0
+      AND #{Article.table_name}.created_at BETWEEN ? AND ?
+      AND #{Article.table_name}.published != 0
     }, title, from, to ])
   end
 
@@ -85,7 +85,7 @@ class Article < ActiveRecord::Base
   def self.search(query)
     if !query.to_s.strip.empty?
       tokens = query.split.collect {|c| "%#{c.downcase}%"}
-      find_by_sql(["SELECT * from articles WHERE articles.published != 0 AND #{ (["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND ") } AND published != 0 ORDER by created_at DESC", *tokens.collect { |token| [token] * 3 }.flatten])
+      find_by_sql(["SELECT * FROM #{Article.table_name} WHERE #{Article.table_name}.published != 0 AND #{ (["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND ") } AND published != 0 ORDER by created_at DESC", *tokens.collect { |token| [token] * 3 }.flatten])
     else
       []
     end
