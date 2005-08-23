@@ -119,18 +119,21 @@ class BackendControllerTest < Test::Unit::TestCase
   def test_meta_weblog_edit_post
     article = Article.find(1)
     article.title = "Modified!"
+    article.created_at = Time.now.midnight
 
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
     result = invoke_layered :metaWeblog, :editPost, *args
     assert result
-    assert_equal Article.find(1).title, "Modified!"
+    assert_equal "Modified!", Article.find(1).title
+    assert_equal Time.now.midnight.to_s, Article.find(1).created_at.to_s
   end
 
   def test_meta_weblog_new_post
     article = Article.new
     article.title = "Posted via Test"
     article.body = "body"
+    article.created_at = Time.now.midnight
     
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
@@ -139,6 +142,7 @@ class BackendControllerTest < Test::Unit::TestCase
     new_post = Article.find(result)
     assert_equal "Posted via Test", new_post.title
     assert_equal "textile", new_post.text_filter
+    assert_equal Time.now.midnight.to_s, new_post.created_at.to_s
   end
 
   def test_meta_weblog_new_media_object

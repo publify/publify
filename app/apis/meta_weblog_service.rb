@@ -14,7 +14,7 @@ module MetaWeblogStructs
     member :mt_allow_pings,     :int
     member :mt_convert_breaks,  :string
     member :mt_tb_ping_urls,    [:string]
-    member :dateCreated,        :time
+    member :dateCreated,        :string
   end
 
   class MediaObject < ActionWebService::Struct
@@ -93,7 +93,7 @@ class MetaWeblogService < TypoWebService
     article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
-    article.created_at  = Time.now
+    article.created_at = struct['dateCreated'].to_time rescue Time.now
     article.user        = @user
 
     # Movable Type API support
@@ -129,7 +129,7 @@ class MetaWeblogService < TypoWebService
     article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
-    # article.dateCreated
+    article.created_at  = struct['dateCreated'].to_time unless struct['dateCreated'].blank?
 
     # Movable Type API support
     article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
@@ -175,7 +175,7 @@ class MetaWeblogService < TypoWebService
       :mt_allow_pings    => article.allow_pings.to_i,
       :mt_convert_breaks => article.text_filter.to_s,
       :mt_tb_ping_urls   => article.pings.collect { |p| p.url },
-      :dateCreated       => article.created_at || ""
+      :dateCreated       => (article.created_at.to_formatted_s(:db) rescue "")
       )
   end
 
