@@ -43,16 +43,29 @@
       <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /> articles in my rss feed by default.
     </p>
       
+    <hr />
+
     <p>Should the blog show mailto: links to your email address?</p>
     <p><input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/> <label for="link_to_author">Enable E-Mail public display</label></p>
       
+    <hr />
+
+    <p>Should the blog use of the <a href="http://www.gravatar.com/">Globally Recognized Avatar (Gravatar)</a> service in comments?</p>
+    <p>
+      <input name="setting[use_gravatar]" id="use_gravatar" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:use_gravatar) %> />
+      <input name="setting[use_gravatar]" type="hidden" value="0"/>
+      <label for="use_gravatar">Enable Gravatar integration</label>
+    </p>
+
+    <hr />
+
     <p>Would you like to include your latitude and longitude in your blog's HTML pages? See <a href="http://geourl.org">GeoURL</a> for details.  <br/>Example: <tt>47.774,-122.201</tt></p>
 
     <p>
       <label for="geourl_location">Latitude, Longitude:</label>
       <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" />
     </p>      
-      
+    
     <p class="r"><%= save("Save My Settings") %></p>
   </div>
   

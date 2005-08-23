@@ -71,6 +71,10 @@
     color: #333;
     }
 
+  hr {
+    border: none;
+    border-bottom: 1px solid #7D8692;
+  }
 /*
  * =PRIMARY NAVIGATION
  */

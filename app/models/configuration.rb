@@ -13,6 +13,7 @@ class Configuration < ConfigManager
   setting :geourl_location, :string, ''
   setting :link_to_author, :bool, false
   setting :theme, :string, 'azure'
+  setting :use_gravatar, :bool, false
 end
 
 def config

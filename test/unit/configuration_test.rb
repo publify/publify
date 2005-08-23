@@ -28,7 +28,8 @@ class ConfigurationTest < Test::Unit::TestCase
      "sp_global",
      "sp_url_limit",
      "text_filter",
-     "theme"], Configuration.fields.keys.sort 
+     "theme",
+     "use_gravatar"], Configuration.fields.keys.sort 
   end
   
   def test_booleans

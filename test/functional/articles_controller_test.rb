@@ -130,4 +130,25 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "error"
   end
+  
+  def test_gravatar
+    assert ! config[:use_gravatar]
+    get :read, :id => 1
+    assert_response :success
+    assert_template "read"
+    assert_no_tag :tag => "img",
+      :attributes => { :class => "gravatar" }
+
+    # Switch gravatar integration to on
+    Setting.find_by_name("use_gravatar").update_attribute :value, 1
+    config.reload
+    get :read, :id => 1
+    assert_response :success
+    assert_template "read"
+    assert_tag :tag => "img",
+      :attributes => {
+        :class => "gravatar",
+        :src => "http://www.gravatar.com/avatar.php?size=60&amp;gravatar_id=740618d2fe0450ec244d8b86ac1fe3f8"
+      }
+  end
 end

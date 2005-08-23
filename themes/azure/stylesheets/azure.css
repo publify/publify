@@ -173,8 +173,14 @@ body {
   	padding: 5px;
   	margin-bottom: 8px;
   	color: #555;
+  	clear: right;
+  	min-height: 60px;
   	}
   	
+  .gravatar {
+  	float: right;
+  	padding: 0 5px;
+  	}
  /*+-------------------------------------------+
   |   			SIDEBAR 						               |
   +-------------------------------------------+*/

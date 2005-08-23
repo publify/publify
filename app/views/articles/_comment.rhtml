@@ -1,6 +1,7 @@
 <li class="graybox" id="comment-<%= comment.id %>" <%= 'style="display:none"' if controller.request.xhr? %><%= onhover_show_admin_tools(:comment, comment.id) %>>
   <%= admin_tools_for comment %>
   <a name="comment-<%= comment.id %>"></a>
+  <%= gravatar_tag(comment.email) if config_value(:use_gravatar) and comment.email %>
   <cite><strong><%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url) %></strong> </cite> said <%= distance_of_time_in_words @article.created_at, comment.created_at %> later:<br />
   <%= comment.body_html %>
 </li>

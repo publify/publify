@@ -68,3 +68,8 @@ theme:
   id: 14
   name: theme
   value: azure
+
+use_gravatar:
+  id: 15
+  name: use_gravatar
+  value: 0
