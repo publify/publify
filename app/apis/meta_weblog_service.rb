@@ -97,8 +97,8 @@ class MetaWeblogService < TypoWebService
     article.user        = @user
 
     # Movable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings'] || $config['default_allow_pings']
+    article.allow_comments = struct['mt_allow_comments'] || config['default_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings'] || config['default_allow_pings']
     article.extended       = struct['mt_text_more'] || ''
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''
@@ -132,8 +132,8 @@ class MetaWeblogService < TypoWebService
     article.created_at  = struct['dateCreated'].to_time unless struct['dateCreated'].blank?
 
     # Movable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || $config['default_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings'] || $config['default_allow_pings']
+    article.allow_comments = struct['mt_allow_comments'] || config['default_allow_comments']
+    article.allow_pings    = struct['mt_allow_pings'] || config['default_allow_pings']
     article.extended       = struct['mt_text_more'] || ''
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''

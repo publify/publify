@@ -21,10 +21,10 @@ class XmlControllerTest < Test::Unit::TestCase
   end
 
   def test_pubdate_conformance
-    get :articlerss, :id => 1
+    get :rss
     assert_response :success
     xml = REXML::Document.new(@response.body)
-    assert_equal "Sat, 01 Jan 2005 01:00:00 +0100", REXML::XPath.match(xml, '/rss/channel/item/pubDate').first.text
+    assert_equal @article1.created_at.rfc822, REXML::XPath.match(xml, '/rss/channel/item/pubDate').first.text
   end
 
   def test_commentrss
