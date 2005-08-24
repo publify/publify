@@ -532,12 +532,21 @@ div.user {
   border: 1px solid red;
 }
 
+#flash span {
+  padding: 5px;
+  margin-top: 10px;
+  color: #0C2504;
+  display: block;
+}
 
-#flash {
+#flash .notice {
     background: #CBE4C3;
-    color: #0C2504;
-    padding: 5px;
     border-top: 1px solid #2E9410;
     border-bottom: 1px solid #2E9410;
-    margin-top: 10px;
+}
+
+#flash .error {
+    background: #e99;
+    border-top: 1px solid #822;
+    border-bottom: 1px solid #822;
 }

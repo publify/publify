@@ -18,8 +18,11 @@ class Admin::CategoriesController < Admin::BaseController
     
     if request.post? and @category.save
       flash[:notice] = 'Category was successfully created.'
-      redirect_to :action => 'list'
-    end      
+    else
+      flash[:error] = 'Category could not be created.'
+    end
+    
+    redirect_to :action => 'list'
   end
 
   def edit

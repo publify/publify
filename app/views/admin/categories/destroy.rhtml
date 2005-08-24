@@ -4,7 +4,7 @@
     <%= task_show 'Show this category', @category.id %>
   <% end %> 
 
-  <p>Are you sure you want to delete this category?</p>
+  <p>Are you sure you want to delete the category '<%= @category.name %>'?</p>
   <%= start_form_tag :action => "destroy", :id => @category.id %>
   <%= confirm_delete("Delete this category") %>
   <%= end_form_tag %>

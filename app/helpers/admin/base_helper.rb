@@ -2,10 +2,10 @@ module Admin::BaseHelper
 
   def render_flash
     output = []
-    
-    for key,value in @flash
-      output << "<span class=\"#{key.downcase}\">#{value}</span>"
-    end if @flash
+
+    for key,value in flash
+      output << "<span class=\"#{key.to_s.downcase}\">#{value}</span>"
+    end if flash
       
     output.join("<br/>\n")
   end
