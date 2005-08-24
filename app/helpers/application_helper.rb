@@ -3,46 +3,6 @@ require 'digest/sha1'
 
 module ApplicationHelper
   
-  def categorylist()
-    categories = Category.find_all_with_article_counters
-    render_partial("shared/categories", categories)
-  end
-  
-  def flickrlist(url)
-    begin
-      render_partial("shared/flickr", check_cache(Flickr, url))
-    rescue 
-    end 
-  end
-
-  def tadalist(url)    
-    begin
-      render_partial("shared/tada", check_cache(Tada, url))
-    rescue 
-    end 
-  end
-
-  def deliciouslist(url)    
-    begin
-      render_partial("shared/delicious", check_cache(Delicious, url))
-    rescue 
-    end 
-  end
-
-  def fortythreelist(url)    
-    begin
-      render_partial("shared/fortythree", check_cache(Fortythree, url))
-    rescue 
-    end 
-	end
-	
-  def upcominglist(url)
-	  begin 
-	 	  render_partial("shared/upcoming", check_cache(Upcoming, url))
-	 	rescue
-		end
-	end
-
   def server_url_for(options = {})
     url_for options.update(:only_path => false)
   end
