@@ -7,16 +7,6 @@ class PageTest < Test::Unit::TestCase
     @page = Page.find(1)
   end
 
-  def test_transform
-    a = Page.new
-    a.name = 'foo'
-    a.body = 'abcdabcd'
-    a.title = 'The Page of Foo'
-    assert a.save
-
-    assert a.body_html == a.body
-  end
-
   def test_validate
     a = Page.new
     a.name = 'a-new-name'

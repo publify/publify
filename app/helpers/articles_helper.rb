@@ -90,6 +90,6 @@ module ArticlesHelper
     options[:size] ||= 60
 
     image_tag("http://www.gravatar.com/avatar.php?" <<
-      options.map { |key, value| "#{key}=#{value}" }.join("&"), :class => "gravatar")
+      options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")
   end
 end

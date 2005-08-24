@@ -40,13 +40,7 @@ end
 
 class BloggerService < TypoWebService
   web_service_api BloggerApi
-
   before_invocation :authenticate  
-  attr_reader :controller
-  
-  def initialize(controller)
-    @controller = controller
-  end
   
   def deletePost(appkey, postid, username, password, publish)
     article = Article.find(postid)
@@ -83,6 +77,7 @@ class BloggerService < TypoWebService
     article.author      = username
     article.created_at  = Time.now
     article.user        = @user
+    article.text_filter ||= TextFilter.find_by_name(config[:text_filter])
 
     if categories
       categories.split(",").each do |c|
@@ -90,8 +85,10 @@ class BloggerService < TypoWebService
       end
     end
 
+    update_html(article)
+    
     article.save
     article.id
   end
-
+  
 end

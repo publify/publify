@@ -11,8 +11,21 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :tags
   belongs_to :user
+  belongs_to :text_filter
   
   after_destroy :fix_resources
+  
+  # Compatibility hack, so Article.attributes(params[:article]) still works.
+  def text_filter=(filter)
+    if filter.nil?
+      self.text_filter_id = nil
+    elsif filter.kind_of? TextFilter
+      self.text_filter_id = filter.id
+    else
+      new_filter = TextFilter.find_by_name(filter.to_s)
+      self.text_filter_id = (new_filter.nil? ? nil : new_filter.id)
+    end
+  end
   
   def stripped_title
     self.title.to_url
@@ -107,7 +120,7 @@ class Article < ActiveRecord::Base
   
   protected  
 
-  before_save :set_defaults, :transform_body
+  before_save :set_defaults
   
   def set_defaults
     begin
@@ -119,7 +132,7 @@ class Article < ActiveRecord::Base
     end
 
     self.published ||= 1
-    self.text_filter = config['text_filter'] if self.text_filter.blank?
+    self.text_filter = TextFilter.find_by_name(config['text_filter']) if self.text_filter_id.blank?
     
     if schema_version >= 7
       self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
@@ -135,8 +148,8 @@ class Article < ActiveRecord::Base
   end
   
   def transform_body
-    self.body_html = HtmlEngine.transform(body, self.text_filter)
-    self.extended_html = HtmlEngine.transform(extended, self.text_filter)
+#    self.body_html = TextFilter.filter_by_name(body,text_filter)
+#    self.extended_html = TextFilter.filter_by_name(extended,text_filter)
   end  
 
   def self.time_delta(year, month = nil, day = nil)

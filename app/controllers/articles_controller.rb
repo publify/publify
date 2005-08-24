@@ -107,6 +107,7 @@ class ArticlesController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.article = @article
     @comment.ip = request.remote_ip
+    @comment.body_html = filter_text_by_name(@comment.body, config[:comment_text_filter],true)
 
     if request.post? and @comment.save      
       @comment.body = ""
@@ -118,6 +119,7 @@ class ArticlesController < ApplicationController
       
       render :partial => "comment", :object => @comment
     else
+      STDERR.puts @comment.errors.inspect
       render :text => @comment.errors.full_messages.join(", "), :status => 500
     end
   end  

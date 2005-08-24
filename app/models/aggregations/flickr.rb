@@ -9,7 +9,7 @@ require 'rexml/document'
 #   puts "#{pic.title} @ #{pic.link} updated at #{pic.date}"
 # end
 #
-class Flickr
+class FlickrAggregation
   include REXML
 
   def choose(num)
@@ -23,9 +23,17 @@ class Flickr
   attr_accessor :url, :pics, :link, :title, :description
     
   # This object holds given information of a picture
-  class Picture < Struct.new(:link, :title, :date, :description)
-    def to_s; title end          
-    def date=(value); super(Time.parse(value)) end
+  class Picture
+    attr_accessor :link, :title, :date, :description
+
+    def to_s
+      title
+    end
+
+    def date=(value)
+      @date = Time.parse(value)
+    end
+
     def image 
       description.scan( /http\:\/\/photo.*\.jpg/ ).to_s
     end

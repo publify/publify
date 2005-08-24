@@ -1,0 +1,15 @@
+  <% @page_heading = 'Text Filters' %>
+
+  <% content_for('tasks') do %>
+    <%= task_new 'Create new text filter' %>
+  <% end %> 
+
+  <div class="list" id="textfilters">	
+    <%= render :partial => 'textfilters' %>
+  </div>                      
+
+  <h2>Macros</h2>
+  <div class="list" id="macros">
+    <% reset_alternation -%>
+    <%= render :partial => "macros" %>
+  </div>

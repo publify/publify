@@ -63,6 +63,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'images/theme/:filename',
     :controller => 'theme', :action => 'images'
 
+  map.connect 'plugins/filters/:filter/:public_action',
+    :controller => 'textfilter', :action => 'public_action'
+
   # Kill attempts to connect directly to the theme controller.
   # Ideally we'd disable these by removing the default route (below),
   # but that breaks too many things for Typo 2.5.

@@ -24,8 +24,9 @@ class Admin::ContentController < Admin::BaseController
     @article.author = session[:user].login
     @article.allow_comments ||= config[:default_allow_comments]
     @article.allow_pings ||= config[:default_allow_pings]
-    @article.text_filter ||= config[:text_filter]
+    @article.text_filter ||= TextFilter.find_by_name(config[:text_filter])
     @article.user = session[:user]
+    update_html(@article)
     
     @categories = Category.find(:all, :order => 'UPPER(name)')
     if request.post?
@@ -52,6 +53,7 @@ class Admin::ContentController < Admin::BaseController
     if request.post? 
       @article.categories.clear
       @article.categories << Category.find(params[:categories]) if params[:categories]
+      update_html(@article)
       
       params[:attachments].each do |k,v|
         a = attachment_save(params[:attachments][k])        
@@ -93,7 +95,9 @@ class Admin::ContentController < Admin::BaseController
   
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = params[:article]
+    @article = Article.new
+    @article.attributes = params[:article]
+    update_html(@article)
     render :layout => false
   end
   
@@ -133,4 +137,11 @@ class Admin::ContentController < Admin::BaseController
       nil
     end
   end
+
+  private
+  def update_html(article)
+    article.body_html = filter_text_by_name(article.body, article.text_filter.name) rescue article.body
+    article.extended_html = filter_text_by_name(article.extended, article.text_filter.name) rescue article.extended
+  end
+  
 end

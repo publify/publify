@@ -9,3 +9,10 @@ another_page:
   name: page/two
   title: Another Page Title
   body: another body for yet another page
+markdown_page:
+  id: 3
+  name: markdown-page
+  title: Markdown Page
+  text_filter_id: 1
+  body: this is *markdown*.
+

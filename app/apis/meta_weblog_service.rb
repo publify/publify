@@ -65,13 +65,7 @@ end
 
 class MetaWeblogService < TypoWebService
   web_service_api MetaWeblogApi
-  
   before_invocation :authenticate  
-  attr_reader :controller
-
-  def initialize(controller)
-    @controller = controller
-  end
 
   def getCategories(blogid, username, password)
     Category.find(:all).collect { |c| c.name }
@@ -97,12 +91,12 @@ class MetaWeblogService < TypoWebService
     article.user        = @user
 
     # Movable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || config['default_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings'] || config['default_allow_pings']
+    article.allow_comments = struct['mt_allow_comments'] || config[:default_allow_comments]
+    article.allow_pings    = struct['mt_allow_pings'] || config[:default_allow_pings]
     article.extended       = struct['mt_text_more'] || ''
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''
-    article.text_filter    = struct['mt_convert_breaks'] || ''
+    article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || config[:text_filter])
     
     if struct['categories']
       article.categories.clear
@@ -112,6 +106,7 @@ class MetaWeblogService < TypoWebService
     end
 
     article.send_pings(article_url(article), struct['mt_tb_ping_urls'])
+    update_html(article)
     
     article.save
     article.id.to_s
@@ -137,7 +132,7 @@ class MetaWeblogService < TypoWebService
     article.extended       = struct['mt_text_more'] || ''
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''
-    article.text_filter    = struct['mt_convert_breaks'] || ''
+    article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || config[:text_filter])
 
     if struct['categories']
       article.categories.clear
@@ -147,7 +142,7 @@ class MetaWeblogService < TypoWebService
     end
     RAILS_DEFAULT_LOGGER.info(struct['mt_tb_ping_urls'])
     article.send_pings(article_url(article), struct['mt_tb_ping_urls'])
-
+    update_html(article)
     article.save    
     true
   end
@@ -173,7 +168,7 @@ class MetaWeblogService < TypoWebService
       :mt_keywords       => article.keywords.to_s,
       :mt_allow_comments => article.allow_comments.to_i,
       :mt_allow_pings    => article.allow_pings.to_i,
-      :mt_convert_breaks => article.text_filter.to_s,
+      :mt_convert_breaks => (article.text_filter.name.to_s rescue ''),
       :mt_tb_ping_urls   => article.pings.collect { |p| p.url },
       :dateCreated       => (article.created_at.to_formatted_s(:db) rescue "")
       )
@@ -195,5 +190,5 @@ class MetaWeblogService < TypoWebService
 
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
-  end
+  end  
 end

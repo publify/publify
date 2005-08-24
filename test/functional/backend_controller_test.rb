@@ -39,14 +39,15 @@ class BackendControllerTest < Test::Unit::TestCase
   end
   
   def test_blogger_new_post
-    args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title>new post body', 1]
+    args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title>new post *body*', 1]
 
     result = invoke_layered :blogger, :newPost, *args
     assert_not_nil result
     new_post = Article.find(result)
     assert_equal "new post title", new_post.title
-    assert_equal "new post body", new_post.body
-    assert_equal "textile", new_post.text_filter
+    assert_equal "new post *body*", new_post.body
+    assert_equal "<p>new post <strong>body</strong></p>", new_post.body_html
+    assert_equal "textile", new_post.text_filter.name
     assert_equal @tobi, new_post.user
   end
   
@@ -58,6 +59,7 @@ class BackendControllerTest < Test::Unit::TestCase
     new_post = Article.find(result)
     assert_equal "new post body for post without", new_post.title
     assert_equal "new post body for post without title but with a lenghty body", new_post.body
+    assert_equal "<p>new post body for post without title but with a lenghty body</p>", new_post.body_html
   end
 
   def test_blogger_new_post_with_categories
@@ -119,20 +121,29 @@ class BackendControllerTest < Test::Unit::TestCase
   def test_meta_weblog_edit_post
     article = Article.find(1)
     article.title = "Modified!"
+    article.body = "this is a *test*"
+    article.text_filter = TextFilter.find_by_name("textile")
     article.created_at = Time.now.midnight
 
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
     result = invoke_layered :metaWeblog, :editPost, *args
     assert result
-    assert_equal "Modified!", Article.find(1).title
-    assert_equal Time.now.midnight.to_s, Article.find(1).created_at.to_s
+
+    new_article = Article.find(1)
+    
+    assert_equal article.title, new_article.title
+    assert_equal article.body, new_article.body
+    assert_equal "<p>this is a <strong>test</strong></p>", new_article.body_html
+    assert_equal Time.now.midnight.to_s, new_article.created_at.to_s
   end
 
   def test_meta_weblog_new_post
     article = Article.new
     article.title = "Posted via Test"
     article.body = "body"
+    article.extended = "extend me"
+    article.text_filter = TextFilter.find_by_name("textile")
     article.created_at = Time.now.midnight
     
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
@@ -141,7 +152,11 @@ class BackendControllerTest < Test::Unit::TestCase
     assert result
     new_post = Article.find(result)
     assert_equal "Posted via Test", new_post.title
-    assert_equal "textile", new_post.text_filter
+    assert_equal "textile", new_post.text_filter.name
+    assert_equal article.body, new_post.body
+    assert_equal "<p>body</p>", new_post.body_html
+    assert_equal article.extended, new_post.extended
+    assert_equal "<p>extend me</p>", new_post.extended_html
     assert_equal Time.now.midnight.to_s, new_post.created_at.to_s
   end
 
@@ -210,8 +225,8 @@ class BackendControllerTest < Test::Unit::TestCase
 
   def test_mt_supported_text_filters
     result = invoke_layered :mt, :supportedTextFilters
-    assert result.map {|f| f['label']}.include?('Markdown') if  BlueCloth.new rescue false 
-    assert result.map {|f| f['label']}.include?('Textile') if  RedCloth.new rescue false 
+    assert result.map {|f| f['label']}.include?('Markdown')
+    assert result.map {|f| f['label']}.include?('Textile')
   end
   
   def test_mt_supported_methods

@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class FlickrTest < Test::Unit::TestCase
   
   def setup
-    @flickr  = Flickr.new("",false)
+    @flickr = FlickrAggregation.new("",false)
     @flickr.send(:parse, fixture)    
   end
 

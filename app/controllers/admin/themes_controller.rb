@@ -2,6 +2,9 @@ class Admin::ThemesController < Admin::BaseController
   
   def index
     @themes = Theme.find_all
+    @themes.each do |theme|
+      theme.description_html = filter_text(theme.description,[:markdown,:smartypants])
+    end
     @active = Theme.current
   end
   

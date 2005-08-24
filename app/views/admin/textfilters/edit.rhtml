@@ -1,0 +1,17 @@
+  <% @page_heading = 'Text Filters' %>
+  
+  <% content_for('tasks') do %>
+  <% end %> 
+
+  <%= start_form_tag({ :action => "edit", :id => @textfilter }, :id => "textfilter_form") %>
+  <h3>Editing textfilter</h3>
+
+  <div class="form">
+    <%= render :partial => "form" %>
+  </div>
+
+  <div id="operations">
+    <%= save %> or <%= cancel %>  
+  </div>
+
+  <%= end_form_tag %>

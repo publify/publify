@@ -23,6 +23,8 @@ ADDITIONAL_LOAD_PATHS.concat %w(
   vendor/rubypants
   vendor/redcloth/lib
   vendor/bluecloth/lib
+  vendor/flickr
+  vendor/sparklines/lib
   vendor/rails/railties
   vendor/rails/railties/lib
   vendor/rails/actionpack/lib
@@ -39,6 +41,7 @@ ADDITIONAL_LOAD_PATHS.reverse.each { |dir| $:.unshift(dir) if File.directory?(di
 require 'redcloth' 
 require 'bluecloth' 
 require 'rubypants' 
+require 'flickr'
 
 # Require Rails libraries.
 require 'rubygems' unless File.directory?("#{RAILS_ROOT}/vendor/rails")
@@ -94,6 +97,7 @@ require_dependency 'spam_protection'
 require_dependency 'xmlrpc_fix'
 
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)      
+ActionController::Base.fragment_cache_store = ActionController::Caching::Fragments::FileStore.new("#{RAILS_ROOT}/cache/fragment/")
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'

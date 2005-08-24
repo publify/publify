@@ -61,8 +61,8 @@ class ArticleTest < Test::Unit::TestCase
   end
   
   def test_tags
-    a=Article.new(:title => 'Test tag article',
-                     :keywords => 'test tag tag stuff');
+    a = Article.new(:title => 'Test tag article',
+                    :keywords => 'test tag tag stuff');
 
     assert_kind_of Article, a
     assert_equal 0, a.tags.size
@@ -73,7 +73,7 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal ["test", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
     assert a.save
 
-    a.keywords='tag bar stuff foo'
+    a.keywords = 'tag bar stuff foo'
     a.keywords_to_tags
 
     assert_equal 4, a.tags.size
@@ -89,20 +89,18 @@ class ArticleTest < Test::Unit::TestCase
     
     assert_equal 0, a.tags.size
 
-    b=Article.new(:title => 'Tag Test 2',
-                  :keywords => 'tag test article one two three')
+    b = Article.new(:title => 'Tag Test 2',
+                    :keywords => 'tag test article one two three')
 
     assert_kind_of Article,b
-    assert 0, b.tags.size
-    assert a.save
-    assert 5, b.tags.size
+    assert_equal 0, b.tags.size
   end
 
   def test_find_by_tag
-    articles=Article.find_by_tag(@foo_tag.name)
+    articles = Article.find_by_tag(@foo_tag.name)
 
-    assert 2, articles.size
-    assert [@article1, @article2].sort_by {|a| a.id}, articles.sort_by {|a| a.id}
+    assert_equal 2, articles.size
+    assert_equal [@article1, @article2].sort_by {|a| a.id}, articles.sort_by {|a| a.id}
   end
 
   def test_destroy_file_upload_associations

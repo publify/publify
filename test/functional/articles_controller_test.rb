@@ -5,7 +5,7 @@ require 'articles_controller'
 class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages, :articles_categories
+  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages, :articles_categories, :text_filters
 
   def setup
     @controller = ArticlesController.new
@@ -53,6 +53,54 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_rendered_file "index"
   end
   
+  def test_comment_posting
+    post :comment, { :id => 1, :comment => {'body' => 'This is *textile*', 'author' => 'bob' }}
+    
+    assert_response :success
+    assert_tag :tag => 'strong', :content => 'textile'
+    
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+    
+    assert_equal '<p>This is <strong>textile</strong></p>', comment.body_html
+  end
+  
+  def test_comment_spam1
+    post :comment, {
+      :id => 1, 
+      :comment => {
+        'body' => 'Link to <a href="http://spammer.example.com">spammy goodness</a>',
+        'author' => 'bob',
+        'url' => 'http://spam2.example.com',
+        'email' => 'foo'}}
+
+    assert_response :success
+
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+
+    assert_equal '<p>Link to &lt;a href=&#8221;http://spammer.example.com&#8221;&gt;spammy goodness&lt;/a&gt;</p>',
+      comment.body_html
+  end
+
+  def test_comment_spam2
+    post :comment, {
+      :id => 1, 
+      :comment => {
+        'body' => 'Link to "spammy goodness":http://spammer.example.com',
+        'author' => 'bob',
+        'url' => 'http://spam2.example.com',
+        'email' => 'foo'}}
+
+    assert_response :success
+
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+
+    assert_equal '<p>Link to <a href="http://spammer.example.com" rel="nofollow">spammy goodness</a></p>',
+      comment.body_html
+  end
+
   def test_comment_nuking 
     num_comments = Comment.count
     post :nuke_comment, { :id => 1 }, {}

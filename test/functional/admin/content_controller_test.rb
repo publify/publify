@@ -5,7 +5,7 @@ require 'admin/content_controller'
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
-  fixtures :articles, :users, :categories, :resources
+  fixtures :articles, :users, :categories, :resources, :text_filters, :settings
 
   def setup
     @controller = Admin::ContentController.new
@@ -52,6 +52,20 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     new_article = Article.find(:first, :order => "id DESC")
     assert_equal @tobi, new_article.user
   end
+    
+  def test_create_filtered
+    body = "body via *textile*"
+    extended="*foo*"
+    post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
+    assert_redirected_to :action => 'show'
+    
+    new_article = Article.find(:first, :order => "id DESC")
+    assert_equal body, new_article.body
+    assert_equal extended, new_article.extended
+    assert_equal "textile", new_article.text_filter.name
+    assert_equal '<p>body via <strong>textile</strong></p>', new_article.body_html
+    assert_equal '<p><strong>foo</strong></p>', new_article.extended_html
+  end
 
   def test_edit
     get :edit, 'id' => 1
@@ -61,8 +75,14 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :edit, 'id' => 1
+    body = "another *textile* test"
+    post :edit, 'id' => 1, 'article' => {:body => body, :text_filter => 'textile'}
     assert_redirected_to :action => 'show', :id => 1
+
+    article = Article.find(1)
+    assert_equal "textile", article.text_filter.name
+    assert_equal body, article.body
+    assert_equal '<p>another <strong>textile</strong> test</p>', article.body_html
   end
 
   def test_destroy

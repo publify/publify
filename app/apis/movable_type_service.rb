@@ -108,7 +108,7 @@ class MovableTypeService < TypoWebService
       category = Category.find(c['categoryId'])
       article.categories.push_with_attributes(category, :is_primary => c['isPrimary'])
     end
-    
+    update_html(article)
     article.save
   end
 
@@ -119,12 +119,9 @@ class MovableTypeService < TypoWebService
   # Support for markdown and textile formatting dependant on the relevant 
   # translators being available.
   def supportedTextFilters()
-    filters = []
-    filters << MovableTypeStructs::TextFilter.new(:key => 'markdown', :label => 'Markdown') if defined?(BlueCloth)
-    filters << MovableTypeStructs::TextFilter.new(:key => 'smartypants', :label => 'SmartyPants') if defined?(RubyPants)
-    filters << MovableTypeStructs::TextFilter.new(:key => 'markdown smartypants', :label => 'Markdown with SmartyPants') if defined?(RubyPants) and defined?(BlueCloth)
-    filters << MovableTypeStructs::TextFilter.new(:key => 'textile', :label => 'Textile') if defined?(RedCloth)
-    filters
+    TextFilter.find(:all).collect do |filter|
+      MovableTypeStructs::TextFilter.new(:key => filter.name, :label => filter.description)
+    end
   end
 
   def getTrackbackPings(postid)
@@ -149,4 +146,5 @@ class MovableTypeService < TypoWebService
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
   end
+  
 end

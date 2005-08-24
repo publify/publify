@@ -2,7 +2,7 @@ class Theme
   cattr_accessor :cache_theme_lookup
   @@cache_theme_lookup = false
 
-  attr_accessor :name, :path
+  attr_accessor :name, :path, :description_html
 
   def initialize(name, path)
     @name, @path = name, path
@@ -13,8 +13,7 @@ class Theme
   end
 
   def description
-    readme = File.read("#{path}/about.markdown")
-    HtmlEngine.transform(readme, "markdown smartypants")
+    File.read("#{path}/about.markdown")
   end
   
   def self.themes_root

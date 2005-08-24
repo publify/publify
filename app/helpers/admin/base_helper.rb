@@ -60,18 +60,18 @@ module Admin::BaseHelper
     link_to image_tag('delete'), :action => 'destroy', :id => record.id
   end    
 
-  def text_filter_options  
-    text_filter_options = Array.new
-    text_filter_options << [ 'None', 'none' ]
-    text_filter_options << [ 'Textile', 'textile' ] if defined?(RedCloth)
-    text_filter_options << [ 'Markdown', 'markdown' ] if defined?(BlueCloth)
-    text_filter_options << [ 'SmartyPants', 'smartypants' ] if defined?(RubyPants)
-    text_filter_options << [ 'Markdown with SmartyPants', 'markdown smartypants' ] if defined?(RubyPants) and defined?(BlueCloth)
-    text_filter_options
+  def text_filter_options
+    TextFilter.find(:all).collect do |filter|
+      [ filter.description, filter ]
+    end
   end
   
   def alternate_class
     @class = @class != '' ? '' : 'class="shade"'
+  end
+  
+  def reset_alternation
+    @class = nil
   end
   
   def task_quickpost(title)
@@ -100,6 +100,10 @@ module Admin::BaseHelper
 
   def task_show(title, id)
     task(title, 'show', id)
+  end
+
+  def task_help(title, id)
+    task(title, 'show_help', id)
   end
 
   def task(title, action, id = nil)
