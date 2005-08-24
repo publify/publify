@@ -1,13 +1,15 @@
   <% @page_heading = 'Categories' %>
 
-  <% content_for('tasks') do %>
-    <%= task_quickpost('Create new category') %>
-  <% end %> 
+  <% content_for('tasks') do -%>
+    <%= task_quickpost('Create new category') -%>
+    <li><%= link_to_remote('Reorder', :update => 'category_container', :url => { :action => 'reorder' }) %></li>
+    <li><%= link_to_remote('Sort alphabetically', :update => 'category_container', :url => { :action => 'asort' }) -%></li>
+  <% end -%> 
 
   <div id="quick-post" style="display:none;position:absolute;">
     <%= render :partial => "quick_post" %>
   </div>
   
-  <div class="list">	
+  <div id="category_container" class="list">	
     <%= render :partial => 'categories' %>  
   </div>                      

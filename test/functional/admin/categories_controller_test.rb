@@ -25,6 +25,8 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     get :list
     assert_rendered_file 'list'
     assert_template_has 'categories'
+    assert_tag :tag => "div",
+      :attributes => { :id => "category_container" }
   end
   
   def test_show
@@ -66,5 +68,45 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) { Category.find(1) }
+  end
+
+  def test_order
+    assert_equal @software, Category.find(:first, :order => :position)
+    get :order, :category_list => [@personal.id, @hardware.id, @software.id]
+    assert_response :success
+    assert_equal @personal, Category.find(:first, :order => :position)
+  end
+  
+  def test_asort
+    assert_equal @software, Category.find(:first, :order => :position)
+    get :asort
+    assert_response :success
+    assert_template "_categories"
+    assert_equal @hardware, Category.find(:first, :order => :position)
+  end
+  
+  def test_category_container
+    get :category_container
+    assert_response :success
+    assert_template "_categories"
+    assert_tag :tag => "table",
+      :children => { :count => Category.count + 1,
+        :only => { :tag => "tr",
+          :children => { :count => 3,
+            :only => { :tag => /t[dh]/ } } } }
+  end
+  
+  def test_reorder
+    get :reorder
+    assert_response :success
+    assert_template "reorder"
+    assert_tag :tag => "ul",
+      :attributes => { :id => "category_list" },
+      :children => { :count => Category.count,
+        :only => { :tag => "li",
+          :attributes => { :id => /category_\d+/ } } }
+
+    assert_tag :tag => "a",
+      :content => "(Done)"
   end
 end

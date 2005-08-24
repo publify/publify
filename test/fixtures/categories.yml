@@ -2,13 +2,16 @@ software:
   id: 1
   name: Software
   permalink: software
+  position: 1
 
 hardware:
   id: 2
   name: Hardware
   permalink: hardware
+  position: 2
 
 personal:
   id: 3
   name: Personal
   permalink: personal
+  position: 3

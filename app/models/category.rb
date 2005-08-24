@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
       FROM #{Category.table_name} categories LEFT OUTER JOIN #{Category.table_name_prefix}articles_categories#{Category.table_name_suffix} articles_categories 
         ON articles_categories.category_id = categories.id
       GROUP BY categories.id, categories.name, categories.position, categories.permalink
-      ORDER BY UPPER(name)
+      ORDER BY position
       })
   end
   
@@ -16,6 +16,18 @@ class Category < ActiveRecord::Base
     self.name.to_url
   end
   
+  def self.reorder(serialized_list)
+    self.transaction do
+      serialized_list.each_with_index do |cid,index|
+        find(cid).update_attribute "position", index rescue nil
+      end
+    end
+  end
+  
+  def self.reorder_alpha
+    reorder find(:all, :order => :name).collect { |c| c.id }
+  end
+
   protected  
   
   before_save :set_defaults

@@ -1,14 +1,14 @@
-<table cellspacing="1" cellpadding="0">
-<tr>
-  <th>Category title</th>
-  <th>Articles</th>
-  <th>Delete</th>
-</tr>
-<% for category in @categories -%>
-<tr  <%= alternate_class -%>>
-  <td><%= image_tag 'checked.gif' %> <%= link_to category.name, :action => 'show', :id => category.id %></td>
-  <td><%= link_to responses(category.articles, 'article'), :action => 'show', :id => category.id %></td>
-  <td class="operation"><%= link_to_destroy category %></td>    
-</tr>  
-<% end -%>
+<table>
+  <tr>
+    <th>Category title</th>
+    <th>Articles</th>
+    <th>Delete</th>
+  </tr>
+  <% for category in @categories -%>
+  <tr <%= alternate_class -%> id="category_<%= category.id -%>">
+    <td><%= image_tag 'checked.gif', :class => "handle" %> <%= link_to category.name, :action => 'show', :id => category.id %></td>
+    <td><%= link_to responses(category.articles, 'article'), :action => 'show', :id => category.id %></td>
+    <td class="operation"><%= link_to_destroy category %></td>    
+  </tr>  
+  <% end -%>
 </table>

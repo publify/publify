@@ -550,3 +550,16 @@ div.user {
     border-top: 1px solid #822;
     border-bottom: 1px solid #822;
 }
+
+#category_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  width: 300px;
+}
+
+#category_list li {
+  cursor: move;
+  border-bottom: 1px dotted #ccc;
+}
