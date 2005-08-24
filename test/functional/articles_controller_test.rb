@@ -199,4 +199,22 @@ class ArticlesControllerTest < Test::Unit::TestCase
         :src => "http://www.gravatar.com/avatar.php?gravatar_id=740618d2fe0450ec244d8b86ac1fe3f8&amp;size=60"
       }
   end
+
+  def test_comment_preview
+    get :comment_preview
+    assert_response :success
+    assert_template nil
+    
+    get :comment_preview, :comment => { :author => "bob", :body => "comment preview" }
+    assert_response :success
+    assert_template "comment_preview"
+    
+    assert_tag :tag => "cite",
+      :children => { :count => 1,
+        :only => { :tag => "strong",
+          :content => "bob" } }
+    
+    assert_tag :tag => "p",
+      :content => "comment preview"
+  end
 end

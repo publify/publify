@@ -1,3 +1,5 @@
+require 'dns_mock'
+
 class ArticlesController < ApplicationController
   before_filter :verify_config
   before_filter :ignore_page_query_param
@@ -14,6 +16,16 @@ class ArticlesController < ApplicationController
   
   def search
     @articles = Article.search(params[:q])
+  end
+
+  def comment_preview
+    render :nothing => true and return if params[:comment].blank? or params[:comment][:body].blank?
+    
+    @headers["Content-Type"] = "text/html; charset=utf-8"
+    @comment = Comment.new(params[:comment])
+    @comment.body_html = filter_text_by_name(@comment.body, config[:comment_text_filter], true) rescue @comment.body
+    
+    render :layout => false
   end
 
   def archives

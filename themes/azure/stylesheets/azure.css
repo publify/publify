@@ -168,7 +168,7 @@ body {
  /*+-------------------------------------------+
   |   			      COMMENTS						         |
   +-------------------------------------------+*/
-  .comment-list li {
+  .comment-list li, #preview {
   	background: #d3e0ea;
   	padding: 5px;
   	margin-bottom: 8px;

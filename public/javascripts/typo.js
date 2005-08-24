@@ -57,6 +57,7 @@ function failure(request) {
 function loading() {
   $('form-submit-button').disabled = true;
   Element.show('comment_loading');
+  new Element.hide('preview');
 }
 
 function complete(request) {

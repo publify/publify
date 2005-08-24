@@ -9,6 +9,7 @@
 
 <div class="comment-box">
   <div id="errors"></div>
+  <div id="preview" style="display: none"></div>
 
   <a name="respond"></a>
   <table cellpadding="4" cellspacing="0" class="frm-tbl">
@@ -39,3 +40,9 @@
   </table>
 </div>
 <%= end_form_tag %>
+
+<%= observe_form 'commentform',
+  :frequency => 0.5,
+  :update => 'preview',
+  :url => { :controller => 'articles', :action => 'comment_preview' },
+  :complete => "Element.show('preview')" %>
