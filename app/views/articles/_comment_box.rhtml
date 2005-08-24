@@ -34,15 +34,10 @@
     <tr>
       <td colspan="2" id="frm-btns">
       <span id="comment_loading" style="display:none;"><%= image_tag "spinner.gif" %></span>&nbsp;&nbsp;
-        <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
+      <a href="#" onclick="new Ajax.Updater('preview', '/articles/comment_preview', {asynchronous:true, evalScripts:true, parameters:Form.serialize('commentform'), onComplete:function(request){Element.show('preview')}}); return false;">Preview comment</a>      
+      <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
       </td>
     </tr>
   </table>
 </div>
 <%= end_form_tag %>
-
-<%= observe_form 'commentform',
-  :frequency => 0.5,
-  :update => 'preview',
-  :url => { :controller => 'articles', :action => 'comment_preview' },
-  :complete => "Element.show('preview')" %>
