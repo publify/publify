@@ -148,7 +148,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_tag :tag => "img",
       :attributes => {
         :class => "gravatar",
-        :src => "http://www.gravatar.com/avatar.php?size=60&amp;gravatar_id=740618d2fe0450ec244d8b86ac1fe3f8"
+        :src => "http://www.gravatar.com/avatar.php?gravatar_id=740618d2fe0450ec244d8b86ac1fe3f8&amp;size=60"
       }
   end
 end
