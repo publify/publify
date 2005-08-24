@@ -24,16 +24,6 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'articles', :action => 'index',
     :page => /\d+/
 
-  map.connect 'articles/:year/:month/:day/page/:page',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/, :page => /\d+/
-  map.connect 'articles/:year/:month/page/:page',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :month => /\d{1,2}/, :page => /\d+/
-  map.connect 'articles/:year/page/:page',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :page => /\d+/
-
   map.connect 'articles/:year/:month/:day',
     :controller => 'articles', :action => 'find_by_date',
     :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/
@@ -43,6 +33,16 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'articles/:year',
     :controller => 'articles', :action => 'find_by_date',
     :year => /\d{4}/
+
+  map.connect 'articles/:year/:month/:day/page/:page',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/, :page => /\d+/
+  map.connect 'articles/:year/:month/page/:page',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :month => /\d{1,2}/, :page => /\d+/
+  map.connect 'articles/:year/page/:page',
+    :controller => 'articles', :action => 'find_by_date',
+    :year => /\d{4}/, :page => /\d+/
 
   map.connect 'articles/:year/:month/:day/:title',
     :controller => 'articles', :action => 'permalink',
