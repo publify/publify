@@ -1,5 +1,3 @@
-require 'dns_mock'
-
 class ArticlesController < ApplicationController
   before_filter :verify_config
   before_filter :ignore_page_query_param
