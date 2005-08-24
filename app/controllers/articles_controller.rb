@@ -9,8 +9,7 @@ class ArticlesController < ApplicationController
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
   def index
-    @pages = Paginator.new self, Article.count, config[:limit_article_display], @params[:page]
-    @articles = Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC', :limit => config[:limit_article_display], :offset => @pages.current.offset)
+    @pages, @articles = paginate :article, :per_page => config[:limit_article_display], :conditions => 'published != 0', :order_by => "created_at DESC"
   end
   
   def search
