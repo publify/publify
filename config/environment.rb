@@ -83,6 +83,7 @@ Controllers = Dependencies::LoadingModule.root(
 # Include your app's configuration here:
 $KCODE = 'u'
 require_dependency 'jcode'
+require_dependency 'aggregations/audioscrobbler'
 require_dependency 'aggregations/delicious'
 require_dependency 'aggregations/tada'
 require_dependency 'aggregations/flickr'

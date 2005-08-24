@@ -1,0 +1,10 @@
+<% if @audioscrobbler -%>
+  <div id="audioscrobbler">
+    <h3><%= @audioscrobbler.title %></h3>
+    <ul>
+      <% for item in @audioscrobbler.items.to_a.slice(0,@sb_config['count'].to_i) -%>
+        <li><a href="<%= item.link %>" title="<%= item.title %>"><%= item.artist %> / <%= item.title %> </a></li>
+      <% end -%>
+    </ul>
+  </div>
+<% end -%>
