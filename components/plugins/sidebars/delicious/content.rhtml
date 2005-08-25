@@ -11,10 +11,10 @@
         <a href="<%= item.link %>" title="<%= item.title%>"><%= item.title %></a>
         <% if @sb_config['description'] -%>
           <br /><span class="desc"><%= @sb_config['desclink'] ? item.description_link : item.description %></span>
-        <% end %>
+        <% end -%>
       </li>
-      <% end %>
-    <% end -%>
+      <% end -%>
     </ul>
+    <% end -%>
   </div>
 <% end -%>
