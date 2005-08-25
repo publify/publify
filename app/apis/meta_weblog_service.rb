@@ -14,7 +14,7 @@ module MetaWeblogStructs
     member :mt_allow_pings,     :int
     member :mt_convert_breaks,  :string
     member :mt_tb_ping_urls,    [:string]
-    member :dateCreated,        :string
+    member :dateCreated,        :time
   end
 
   class MediaObject < ActionWebService::Struct

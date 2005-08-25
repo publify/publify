@@ -33,10 +33,6 @@ class Article < ActiveRecord::Base
   
   def send_pings(articleurl, urllist)
     
-    # we need to transform the body now 
-    # because we need to sent out an except based on the html representation
-    transform_body
-    
     urllist.to_a.each do |url|            
       begin
         unless pings.collect { |p| p.url }.include?(url.strip) 
@@ -147,11 +143,6 @@ class Article < ActiveRecord::Base
     end
   end
   
-  def transform_body
-#    self.body_html = TextFilter.filter_by_name(body,text_filter)
-#    self.extended_html = TextFilter.filter_by_name(extended,text_filter)
-  end  
-
   def self.time_delta(year, month = nil, day = nil)
     from = Time.mktime(year, month || 1, day || 1)
     
