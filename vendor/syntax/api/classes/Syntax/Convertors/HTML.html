@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Syntax::Convertors::HTML</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Syntax::Convertors::HTML</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../../../files/lib/syntax/convertors/html_rb.html">lib/syntax/convertors/html.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="Abstract.html">
+Abstract
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><p>
+A simple class for converting a text into <a href="HTML.html">HTML</a>.
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000003">convert</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000003"></a><b>convert</b>( text, pre=true )
+  </div>
+  <div class="description">
+  <p>
+Converts the given text to <a href="HTML.html">HTML</a>, using spans to
+represent token groups of any type but <tt>:normal</tt> (which is always
+unhighlighted). If <tt>pre</tt> is <tt>true</tt>, the html is automatically
+wrapped in pre tags.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show source</a> ]</p>
+  <div id="M000003_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/convertors/html.rb, line 12</span>
+12:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">convert</span>( <span class="ruby-identifier">text</span>, <span class="ruby-identifier">pre</span>=<span class="ruby-keyword kw">true</span> )
+13:         <span class="ruby-identifier">html</span> = <span class="ruby-value str">&quot;&quot;</span>
+14:         <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;pre&gt;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pre</span>
+15:         <span class="ruby-identifier">regions</span> = []
+16:         <span class="ruby-ivar">@tokenizer</span>.<span class="ruby-identifier">tokenize</span>( <span class="ruby-identifier">text</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tok</span><span class="ruby-operator">|</span>
+17:           <span class="ruby-identifier">value</span> = <span class="ruby-identifier">html_escape</span>(<span class="ruby-identifier">tok</span>)
+18:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">tok</span>.<span class="ruby-identifier">instruction</span>
+19:             <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:region_close</span> <span class="ruby-keyword kw">then</span>
+20:               <span class="ruby-identifier">regions</span>.<span class="ruby-identifier">pop</span>
+21:               <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/span&gt;&quot;</span>
+22:             <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:region_open</span> <span class="ruby-keyword kw">then</span>
+23:               <span class="ruby-identifier">regions</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">tok</span>.<span class="ruby-identifier">group</span>
+24:               <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;span class=\&quot;#{tok.group}\&quot;&gt;#{value}&quot;</span>
+25:             <span class="ruby-keyword kw">else</span>
+26:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tok</span>.<span class="ruby-identifier">group</span> <span class="ruby-operator">==</span> ( <span class="ruby-identifier">regions</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">:normal</span> )
+27:                 <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">value</span>
+28:               <span class="ruby-keyword kw">else</span>
+29:                 <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;span class=\&quot;#{tok.group}\&quot;&gt;#{value}&lt;/span&gt;&quot;</span>
+30:               <span class="ruby-keyword kw">end</span>
+31:           <span class="ruby-keyword kw">end</span>
+32:         <span class="ruby-keyword kw">end</span>
+33:         <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/span&gt;&quot;</span> <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">regions</span>.<span class="ruby-identifier">pop</span>
+34:         <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/pre&gt;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pre</span>
+35:         <span class="ruby-identifier">html</span>
+36:       <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

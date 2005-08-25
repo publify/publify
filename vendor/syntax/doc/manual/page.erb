@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title><%= manual.product.name %> Manual<% if object %> :: <%= object.page_title %><% end %></title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/manual.css" />
+  </head>
+  
+  <body>
+    <div id="banner">
+      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+        <tr><td valign='top' align='left'>
+          <div class="title">
+            <span class="product"><%= manual.product.name %>&mdash;</span><br />
+            <span class="tagline"><%= manual.product.tagline %></span>
+          </div>
+        </td><td valign='middle' align='right'>
+          <div class="info">
+            <%= manual.product.name %> Version: <strong><%= manual.product.version %></strong><br />
+            Manual Last Updated: <strong><%= Time.now.gmtime.strftime('%Y-%m-%d %H:%M %Z') %></strong>
+          </div>
+        </td></tr>
+      </table>
+    </div>
+
+    <table border='0' width='100%' cellpadding='0' cellspacing='0'>
+      <tr><td valign='top'>
+
+        <div id="navigation">
+          <h1><%= manual.product.name %> Manual</h1>
+
+          <h2>Chapters</h2>
+          <ol type="I">
+          <% manual.chapters.each do |c| %>
+            <li><%= "<strong>" if c == object %>
+                <a href="chapter-<%= c.index %>.html">
+                <%= c.title %>
+                </a>
+                <%= "</strong> <big>&larr;</big>" if c == object %>
+              <ol type="1">
+                <% c.sections.each do |s|
+                     next unless s.title %>
+                  <li><a href="chapter-<%= c.index %>.html#s<%= s.index %>"><%= s.title %></a></li>
+                <% end %>
+              </ol>
+            </li>
+          <% end %>
+          </ol>
+
+          <h2>Other Documentation</h2>
+
+          <ul>
+            <li><a href="http://net-ssh.rubyforge.org/api/index.html">Net::SSH API</a></li>
+            <li><a href="http://rubyforge.org/tracker/?atid=1842&group_id=274&func=browse">Net::SSH FAQ</a></li>
+          </ul>
+
+          <h2>Tutorials</h2>
+          <ol>
+          <% manual.tutorials.each do |t| %>
+            <li><%= "<strong>" if t == object %>
+                <a href="tutorial-<%= t.index %>.html">
+                <%= t.title %>
+                </a>
+                <%= "</strong> <big>&larr;</big>" if t == object %><br />
+            <%= t.brief.to_html %>
+            </li>
+          <% end %>
+          </ol>
+
+          <p align="center"><strong>More To Come...</strong></p>
+
+          <div class="license">
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />
+            This manual is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.
+          </div>
+        </div>
+
+      </td><td valign='top' width="100%">
+
+        <div id="content">
+
+          <%= guts %>
+
+        </div>
+
+      </td></tr>
+    </table>
+  </body>
+</html>

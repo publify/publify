@@ -1,0 +1,32 @@
+Lexical analysis is performed by obtaining a tokenizer of the appropriate class and calling @tokenize@ on it, passing the text to be tokenized. Each token is yielded to the associated block as it is discovered.
+
+{{{lang=ruby,number=true,caption=Tokenizing a Ruby script
+require 'syntax'
+
+tokenizer = Syntax.load "ruby"
+tokenizer.tokenize( File.read( "program.rb" ) ) do |token|
+  puts token
+  puts "  group: #{token.group}"
+  puts "  instruction: #{token.instruction}"
+end
+}}}
+
+If you need finer control over the process, you can use the lower-level API:
+
+{{{lang=ruby,number=true,caption=Tokenizing a Ruby script via step
+require 'syntax'
+
+tokenizer = Syntax.load "ruby"
+tokenizer.start( File.read( "program.rb" ) ) do |token|
+  puts token
+  puts "  group: #{token.group}"
+  puts "  instruction: #{token.instruction}"
+end
+
+tokenizer.step
+tokenizer.step
+...
+tokenizer.finish
+}}}
+
+In this case, each time @#step@ is invoked, it results in tokens being consumed and yielded to the block. However, a single step may result in multiple tokens being detected and yielded--there is no way to guarantee a single token at a time, unless the corresponding syntax module was written to work that way. For efficiency, the existing modules will yield multiple tokens when processing (for instance) strings, regular expressions, and heredocs.

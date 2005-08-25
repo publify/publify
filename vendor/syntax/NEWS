@@ -1,0 +1,16 @@
+Syntax: a syntax highlighting library for Ruby.
+
+1.0.0: 18 Jun 2005
+  Added user manual
+  Fixed various bugs
+
+0.7.0: 23 Mar 2005
+  Added Syntax.all to enumerate all supported syntaxes.
+  Much improved heredoc support.
+  Support for syntax "regions"
+  Added sample CSS files for the supported syntaxes
+  Added the example "to_html.rb" script
+  Bug fixes.
+
+0.5.0: 11 Jan 2005
+  First release.

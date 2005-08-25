@@ -128,7 +128,6 @@ class Article < ActiveRecord::Base
     end
 
     self.published ||= 1
-    self.text_filter = TextFilter.find_by_name(config['text_filter']) if self.text_filter_id.blank?
     
     if schema_version >= 7
       self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
@@ -140,6 +139,10 @@ class Article < ActiveRecord::Base
     
     if schema_version >= 10
       keywords_to_tags
+    end
+
+    if schema_version >= 13
+      self.text_filter = TextFilter.find_by_name(config['text_filter']) if self.text_filter_id.blank?
     end
   end
   

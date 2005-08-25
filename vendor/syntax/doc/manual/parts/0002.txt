@@ -1,0 +1,24 @@
+Lexical analysis is (at least in part) the process of converting a body of text into _tokens_. It is also the process of identifying the _class_ of each token. The Syntax library refers to these classes as _groups_.
+
+Each syntax module may define its own groups. The Ruby module, for instance, defines 18 different groups:
+
+# normal: whitespace and the like. Basically, any text not grouped in any of the other groups.
+# comment: the delimiters and contents of a comment
+# keyword: any recognized keyword of the Ruby language
+# method: the name of a method when it is being declared
+# class: the name of a class when it is being declared
+# module: the name of a module when it is being declared
+# punct: any punctuation character
+# symbol: a Ruby symbol token
+# string: the contents (but not delimiters) of a string
+# char: a character literal (@?g@)
+# ident: an identifier, not otherwise recognized as a keyword
+# constant: a constant (beginning with an uppercase letter)
+# regex: the contents (but not delimiters) of a regular expression
+# number: a numeric literal
+# attribute: an instance variable
+# global: a global variable
+# expr: a nested (interpolated) expression within a string or regex
+# escape: an escape squence within a string or regex
+
+The only group common to all modules is @normal@. (When converting text to HTML, the name of the class used in a span will be the name of the corresponding group--this makes it straightforward to determine what CSS classes need to be defined.)

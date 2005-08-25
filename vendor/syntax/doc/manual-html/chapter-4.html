@@ -1,0 +1,267 @@
+<html>
+  <head>
+    <title>Syntax Manual :: Chapter 4: Extending Syntax</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/manual.css" />
+  </head>
+  
+  <body>
+    <div id="banner">
+      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+        <tr><td valign='top' align='left'>
+          <div class="title">
+            <span class="product">Syntax&mdash;</span><br />
+            <span class="tagline">Lexical Analysis for Syntax Highlighting</span>
+          </div>
+        </td><td valign='middle' align='right'>
+          <div class="info">
+            Syntax Version: <strong>1.0.0</strong><br />
+            Manual Last Updated: <strong>2005-06-18 20:25 UTC</strong>
+          </div>
+        </td></tr>
+      </table>
+    </div>
+
+    <table border='0' width='100%' cellpadding='0' cellspacing='0'>
+      <tr><td valign='top'>
+
+        <div id="navigation">
+          <h1>Syntax Manual</h1>
+
+          <h2>Chapters</h2>
+          <ol type="I">
+          
+            <li>
+                <a href="chapter-1.html">
+                Introduction
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-1.html#s1">What is Syntax?</a></li>
+                
+                  <li><a href="chapter-1.html#s2">Quick Start</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-2.html">
+                Lexical Analysis
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-2.html#s1">Groups</a></li>
+                
+                  <li><a href="chapter-2.html#s2">Instructions</a></li>
+                
+                  <li><a href="chapter-2.html#s3">Analyzing</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-3.html">
+                Syntax Highlighting
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-3.html#s1">Converting Text</a></li>
+                
+                  <li><a href="chapter-3.html#s2">Custom Highlighters</a></li>
+                
+              </ol>
+            </li>
+          
+            <li><strong>
+                <a href="chapter-4.html">
+                Extending Syntax
+                </a>
+                </strong> <big>&larr;</big>
+              <ol type="1">
+                
+                  <li><a href="chapter-4.html#s1">Introduction</a></li>
+                
+                  <li><a href="chapter-4.html#s2">Interface</a></li>
+                
+                  <li><a href="chapter-4.html#s3">Scanning <span class="caps">API</span></a></li>
+                
+                  <li><a href="chapter-4.html#s4">Registering Your New Syntax</a></li>
+                
+              </ol>
+            </li>
+          
+          </ol>
+
+          <h2>Other Documentation</h2>
+
+          <ul>
+            <li><a href="http://net-ssh.rubyforge.org/api/index.html">Net::SSH API</a></li>
+            <li><a href="http://rubyforge.org/tracker/?atid=1842&group_id=274&func=browse">Net::SSH FAQ</a></li>
+          </ul>
+
+          <h2>Tutorials</h2>
+          <ol>
+          
+          </ol>
+
+          <p align="center"><strong>More To Come...</strong></p>
+
+          <div class="license">
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />
+            This manual is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.
+          </div>
+        </div>
+
+      </td><td valign='top' width="100%">
+
+        <div id="content">
+
+           <div class="top"><div class="prevnext">
+  
+    <a href="chapter-3.html">Previous (3. Syntax Highlighting)</a> |
+  
+  <a href="index.html">Up</a>
+  
+</div></div>
+
+<h1>4. Extending Syntax</h1>
+
+
+
+     <h2>
+       <a name="s1"></a>
+       4.1. Introduction
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Because of Syntax&#8217;s modular design, it is pretty straightforward to create your own syntax modules. The hardest part is doing the actual tokenizing of your chosen syntax.</p>
+
+
+	<p>You can use the existing syntax modules to guide your own implementation if you wish, but note that each module will have to solve unique problems, because of the uniqueness of each different syntax.</p>
+   </div>
+
+
+
+     <h2>
+       <a name="s2"></a>
+       4.2. Interface
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Your new syntax implementation should extend <code>Syntax::Tokenizer</code>&#8212;this sets up a rich domain-specific language for scanning and tokenizing.</p>
+
+
+	<p>Then, all you need to implement is the <code>#step</code> method, which should take no parameters. Each invocation of <code>#step</code> should extract at least one token, but may extract as many as you need it to. (Fewer is generally better, though.)</p>
+
+
+	<p>Additionally, you may also implement <code>#setup</code>, to perform any initialization that should occur when tokenizing begins. Similarly, <code>#teardown</code> may be implemented to do any cleanup that is needed.</p>
+   </div>
+
+
+
+     <h2>
+       <a name="s3"></a>
+       4.3. Scanning <span class="caps">API</span>
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Within a tokenizer, you have access to a rich set of methods for scanning the text. These methods correspond to the methods of the StringScanner class (i.e., <code>scan</code>, <code>scan_until</code>, <code>bol?</code>, etc.).</p>
+
+
+	<p>Additionally, subgroups of recent regexps (used in <code>scan</code>, etc.) can be obtained via <code>subgroup</code>, which takes as a parameter the group you want to query.</p>
+
+
+	<p>Tokenizing proceeds as follows:</p>
+
+
+	<ol>
+	<li>Identify a token (using <code>#peek</code>, <code>#scan</code>, etc.).</li>
+		<li>Start a new token group (using <code>#start_group</code>, passing the symbol for the group and optionally any text you want to seed the group with).</li>
+		<li>Append text to the current group either with additional calls to <code>#start_group</code> using the same group, or with <code>#append</code> (which just takes the text to append to the current group)</li>
+	</ol>
+
+
+	<p>Instead of <code>#start_group</code>, you can also use <code>#start_region</code>, which begins a new region for the given group, and <code>#end_region</code>, which closes the region.</p>
+
+
+	<p>Here is an example of a very, very simple tokenizer, that simple extracts words and numbers from the text:</p>
+
+
+	<div class='figure'>
+<span class='caption'>Simple tokenizer [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="ident">require</span> <span class="punct">'</span><span class="string">syntax</span><span class="punct">'</span>
+
+<span class="keyword">class </span><span class="class">SimpleTokenizer</span> <span class="punct">&lt;</span> <span class="constant">Syntax</span><span class="punct">::</span><span class="constant">Tokenizer</span>
+  <span class="keyword">def </span><span class="method">step</span>
+    <span class="keyword">if</span> <span class="ident">digits</span> <span class="punct">=</span> <span class="ident">scan</span><span class="punct">(/</span><span class="regex"><span class="escape">\d</span>+</span><span class="punct">/)</span>
+      <span class="ident">start_group</span> <span class="symbol">:digits</span><span class="punct">,</span> <span class="ident">digits</span>
+    <span class="keyword">elsif</span> <span class="ident">words</span> <span class="punct">=</span> <span class="ident">scan</span><span class="punct">(/</span><span class="regex"><span class="escape">\w</span>+</span><span class="punct">/)</span>
+      <span class="ident">start_group</span> <span class="symbol">:words</span><span class="punct">,</span> <span class="ident">words</span>
+    <span class="keyword">else</span>
+      <span class="ident">start_group</span> <span class="symbol">:normal</span><span class="punct">,</span> <span class="ident">scan</span><span class="punct">(/</span><span class="regex">.</span><span class="punct">/)</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></pre></div></td></tr></table></div></div>
+   </div>
+
+
+
+     <h2>
+       <a name="s4"></a>
+       4.4. Registering Your New Syntax
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Once you&#8217;ve written your new syntax module, you need to register it with the Syntax library so that it can be found and used by the framework. To do this, just add it to the <code>Syntax::SYNTAX</code> hash:</p>
+
+
+	<div class='figure'>
+<span class='caption'>Registering a new syntax [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br />6<br />7<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="ident">require</span> <span class="punct">'</span><span class="string">syntax</span><span class="punct">'</span>
+
+<span class="keyword">class </span><span class="class">SimpleTokenizer</span> <span class="punct">&lt;</span> <span class="constant">Syntax</span><span class="punct">::</span><span class="constant">Tokenizer</span>
+  <span class="punct">...</span>
+<span class="keyword">end</span>
+
+<span class="constant">Syntax</span><span class="punct">::</span><span class="constant">SYNTAX</span><span class="punct">['</span><span class="string">simple</span><span class="punct">']</span> <span class="punct">=</span> <span class="constant">SimpleTokenizer</span></pre></div></td></tr></table></div></div>
+
+
+	<p>That&#8217;s it! Once you&#8217;ve done that, you can now use your syntax just by requiring the file that defines it, and then using the standard Syntax framework methods:</p>
+
+
+	<div class='figure'>
+<span class='caption'>Using your new syntax [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="ident">require</span> <span class="punct">'</span><span class="string">simple-tokenizer</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">syntax/convertor/html</span><span class="punct">'</span>
+
+<span class="ident">convertor</span> <span class="punct">=</span> <span class="constant">Syntax</span><span class="punct">::</span><span class="constant">Convertors</span><span class="punct">::</span><span class="constant">HTML</span><span class="punct">.</span><span class="ident">for_syntax</span> <span class="punct">&quot;</span><span class="string">simple</span><span class="punct">&quot;</span>
+<span class="ident">puts</span> <span class="ident">convertor</span><span class="punct">.</span><span class="ident">convert</span><span class="punct">(</span> <span class="punct">&quot;</span><span class="string">hello 15 worlds!</span><span class="punct">&quot;</span> <span class="punct">)</span></pre></div></td></tr></table></div></div>
+   </div>
+
+
+
+<div class="bottom"><div class="prevnext">
+  
+    <a href="chapter-3.html">Previous (3. Syntax Highlighting)</a> |
+  
+  <a href="index.html">Up</a>
+  
+</div></div>
+
+
+        </div>
+
+      </td></tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+In addition to groups, each token has an associated _instruction_. For most tokens, this instruction is the symbol @:none@, meaning "do nothing special". However, there are two other instructions defined by the framework:
+
+* @:region_open@: begin a "region". This region is a sequence of tokens that are all nested inside the group of the current token. This is useful for strings and regular expressions, which may contain other kinds of tokens (like @expr@ and @escape@, in Ruby's case).
+* @:region_close@: close the current region.
+
+The HTML convertors uses these instructions to know whether to emit just an opened span tag, or a closed one, or whether to emit both. Other convertors may use these instructions in similar ways.

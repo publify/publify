@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>File: README</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table border='0' cellpadding='0' cellspacing='0' width="100%" class='banner'>
+  <tr><td>
+    <table width="100%" border='0' cellpadding='0' cellspacing='0'><tr>
+      <td class="file-title" colspan="2"><span class="file-title-prefix">File</span><br />README</td>
+      <td align="right">
+        <table border='0' cellspacing="0" cellpadding="2">
+          <tr>
+            <td>Path:</td>
+            <td>README
+            </td>
+          </tr>
+          <tr>
+            <td>Modified:</td>
+            <td>Sat Jun 18 13:36:02 MDT 2005</td>
+          </tr>
+        </table>
+      </td></tr>
+    </table>
+  </td></tr>
+</table><br>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h1><a href="../classes/Syntax.html">Syntax</a></h1>
+<p>
+A syntax highlighting a library for Ruby.
+</p>
+<h2>About</h2>
+<p>
+This is a simple syntax highlighting library for Ruby. It is a naive syntax
+analysis tool, meaning that it does not &quot;understand&quot; the syntaxes
+of the languages it processes, but merely does some semi-intelligent
+pattern matching.
+</p>
+<h2>Usage</h2>
+<p>
+There are primarily two uses for the <a
+href="../classes/Syntax.html">Syntax</a> library:
+</p>
+<p>
+# Convert text from a supported syntax to a supported highlight format
+(like HTML). # Tokenize text in a supported syntax and process the tokens
+directly.
+</p>
+<h3>Highlighting a supported syntax</h3>
+<pre>
+  require 'syntax/convertors/html'
+
+  convertor = Syntax::Convertors::HTML.for_syntax &quot;ruby&quot;
+  puts convertor.convert( File.read( &quot;file.rb&quot; ) )
+</pre>
+<p>
+The above snippet will emit HTML, using spans and CSS to indicate the
+different highlight &quot;groups&quot;. (Sample CSS files are included in
+the &quot;data&quot; directory.)
+</p>
+<h3>Tokenize text</h3>
+<pre>
+  require 'syntax'
+
+  tokenizer = Syntax.load &quot;ruby&quot;
+  tokenizer.tokenize( File.read( &quot;file.rb&quot; ) ) do |token|
+    puts &quot;group(#{token.group}, #{token.instruction}) lexeme(#{token})&quot;
+  end
+</pre>
+<p>
+Tokenizing is straightforward process. Each time a new token is discovered
+by the tokenizer, it is yielded to the given block.
+</p>
+<ul>
+<li><tt>token.group</tt> is the lexical group to which the token belongs. Each
+supported syntax may have it&#8217;s own set of lexical groups.
+
+</li>
+<li><tt>token.instruction</tt> is an instruction used to determine how this
+token should be treated. It will be <tt>:none</tt> for normal tokens,
+<tt>:region_open</tt> if the token starts a nested region, and
+<tt>:region_close</tt> if it closes the last opened region.
+
+</li>
+<li><tt>token</tt> is itself a subclass of String, so you can use it just as
+you would a string. It represents the lexeme that was actually parsed.
+
+</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+  </div>
+
+    </body>
+</html>

@@ -24,6 +24,7 @@ ADDITIONAL_LOAD_PATHS.concat %w(
   vendor/redcloth/lib
   vendor/bluecloth/lib
   vendor/flickr
+  vendor/syntax/lib
   vendor/sparklines/lib
   vendor/rails/railties
   vendor/rails/railties/lib

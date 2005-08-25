@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Syntax::Tokenizer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Syntax::Tokenizer</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../../files/lib/syntax/common_rb.html">lib/syntax/common.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><p>
+The base class of all tokenizers. It sets up the scanner and manages the
+looping until all tokens have been extracted. It also provides convenience
+methods to make sure adjacent tokens of identical groups are returned as a
+single token.
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000012">finish</a></li>
+  <li><a href="#M000017">option</a></li>
+  <li><a href="#M000016">set</a></li>
+  <li><a href="#M000011">setup</a></li>
+  <li><a href="#M000010">start</a></li>
+  <li><a href="#M000014">step</a></li>
+  <li><a href="#M000013">teardown</a></li>
+  <li><a href="#M000015">tokenize</a></li>
+  </ul>
+
+
+
+
+  <div class="sectiontitle">Constants</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class="attr-name">EOL</td>
+    <td>=</td>
+    <td class="attr-value">/(?=\r\n?|\n|$)/</td>
+  </tr>
+  </table>
+
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>chunk</td>
+    <td class='attr-desc'>
+The current chunk of text being accumulated
+
+</td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>group</td>
+    <td class='attr-desc'>
+The current group being processed by the tokenizer
+
+</td>
+  </tr>
+  </table>
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000012"></a><b>finish</b>()
+  </div>
+  <div class="description">
+  <p>
+Finish tokenizing. This flushes the buffer, yielding any remaining text to
+the client.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
+  <div id="M000012_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 57</span>
+57:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">finish</span>
+58:       <span class="ruby-identifier">start_group</span> <span class="ruby-keyword kw">nil</span>
+59:       <span class="ruby-identifier">teardown</span>
+60:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000017"></a><b>option</b>(opt)
+  </div>
+  <div class="description">
+  <p>
+Get the value of the specified option.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
+  <div id="M000017_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 89</span>
+89:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">option</span>(<span class="ruby-identifier">opt</span>)
+90:       <span class="ruby-ivar">@options</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">opt</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+91:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000016"></a><b>set</b>( opts={} )
+  </div>
+  <div class="description">
+  <p>
+Specify a set of tokenizer-specific options. Each tokenizer may (or may
+not) publish any options, but if a tokenizer does those options may be used
+to specify optional behavior.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
+  <div id="M000016_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 84</span>
+84:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set</span>( <span class="ruby-identifier">opts</span>={} )
+85:       ( <span class="ruby-ivar">@options</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> ).<span class="ruby-identifier">update</span> <span class="ruby-identifier">opts</span>
+86:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000011"></a><b>setup</b>()
+  </div>
+  <div class="description">
+  <p>
+Subclasses may override this method to provide implementation-specific
+setup logic.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show source</a> ]</p>
+  <div id="M000011_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 52</span>
+52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+53:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000010"></a><b>start</b>( text, &amp;block )
+  </div>
+  <div class="description">
+  <p>
+Start tokenizing. This sets up the state in preparation for tokenization,
+such as creating a new scanner for the text and saving the callback block.
+The block will be invoked for each token extracted.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show source</a> ]</p>
+  <div id="M000010_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>( <span class="ruby-identifier">text</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+43:       <span class="ruby-ivar">@chunk</span> = <span class="ruby-value str">&quot;&quot;</span>
+44:       <span class="ruby-ivar">@group</span> = <span class="ruby-identifier">:normal</span>
+45:       <span class="ruby-ivar">@callback</span> = <span class="ruby-identifier">block</span>
+46:       <span class="ruby-ivar">@text</span> = <span class="ruby-constant">StringScanner</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">text</span> )
+47:       <span class="ruby-identifier">setup</span>
+48:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000014"></a><b>step</b>()
+  </div>
+  <div class="description">
+  <p>
+Subclasses must implement this method, which is called for each iteration
+of the tokenization process. This method may extract multiple tokens.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
+  <div id="M000014_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 69</span>
+69:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">step</span>
+70:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-value str">&quot;subclasses must implement #step&quot;</span>
+71:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000013"></a><b>teardown</b>()
+  </div>
+  <div class="description">
+  <p>
+Subclasses may override this method to provide implementation-specific
+teardown logic.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
+  <div id="M000013_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 64</span>
+64:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+65:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000015"></a><b>tokenize</b>( text, &amp;block )
+  </div>
+  <div class="description">
+  <p>
+Begins tokenizing the given text, calling <a
+href="Tokenizer.html#M000014">step</a> until the text has been exhausted.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
+  <div id="M000015_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/common.rb, line 75</span>
+75:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tokenize</span>( <span class="ruby-identifier">text</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+76:       <span class="ruby-identifier">start</span> <span class="ruby-identifier">text</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+77:       <span class="ruby-identifier">step</span> <span class="ruby-keyword kw">until</span> <span class="ruby-ivar">@text</span>.<span class="ruby-identifier">eos?</span>
+78:       <span class="ruby-identifier">finish</span>
+79:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

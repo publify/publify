@@ -1,0 +1,266 @@
+<html>
+  <head>
+    <title>Syntax Manual :: Chapter 3: Syntax Highlighting</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/manual.css" />
+  </head>
+  
+  <body>
+    <div id="banner">
+      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+        <tr><td valign='top' align='left'>
+          <div class="title">
+            <span class="product">Syntax&mdash;</span><br />
+            <span class="tagline">Lexical Analysis for Syntax Highlighting</span>
+          </div>
+        </td><td valign='middle' align='right'>
+          <div class="info">
+            Syntax Version: <strong>1.0.0</strong><br />
+            Manual Last Updated: <strong>2005-06-18 20:25 UTC</strong>
+          </div>
+        </td></tr>
+      </table>
+    </div>
+
+    <table border='0' width='100%' cellpadding='0' cellspacing='0'>
+      <tr><td valign='top'>
+
+        <div id="navigation">
+          <h1>Syntax Manual</h1>
+
+          <h2>Chapters</h2>
+          <ol type="I">
+          
+            <li>
+                <a href="chapter-1.html">
+                Introduction
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-1.html#s1">What is Syntax?</a></li>
+                
+                  <li><a href="chapter-1.html#s2">Quick Start</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-2.html">
+                Lexical Analysis
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-2.html#s1">Groups</a></li>
+                
+                  <li><a href="chapter-2.html#s2">Instructions</a></li>
+                
+                  <li><a href="chapter-2.html#s3">Analyzing</a></li>
+                
+              </ol>
+            </li>
+          
+            <li><strong>
+                <a href="chapter-3.html">
+                Syntax Highlighting
+                </a>
+                </strong> <big>&larr;</big>
+              <ol type="1">
+                
+                  <li><a href="chapter-3.html#s1">Converting Text</a></li>
+                
+                  <li><a href="chapter-3.html#s2">Custom Highlighters</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-4.html">
+                Extending Syntax
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-4.html#s1">Introduction</a></li>
+                
+                  <li><a href="chapter-4.html#s2">Interface</a></li>
+                
+                  <li><a href="chapter-4.html#s3">Scanning <span class="caps">API</span></a></li>
+                
+                  <li><a href="chapter-4.html#s4">Registering Your New Syntax</a></li>
+                
+              </ol>
+            </li>
+          
+          </ol>
+
+          <h2>Other Documentation</h2>
+
+          <ul>
+            <li><a href="http://net-ssh.rubyforge.org/api/index.html">Net::SSH API</a></li>
+            <li><a href="http://rubyforge.org/tracker/?atid=1842&group_id=274&func=browse">Net::SSH FAQ</a></li>
+          </ul>
+
+          <h2>Tutorials</h2>
+          <ol>
+          
+          </ol>
+
+          <p align="center"><strong>More To Come...</strong></p>
+
+          <div class="license">
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />
+            This manual is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.
+          </div>
+        </div>
+
+      </td><td valign='top' width="100%">
+
+        <div id="content">
+
+           <div class="top"><div class="prevnext">
+  
+    <a href="chapter-2.html">Previous (2. Lexical Analysis)</a> |
+  
+  <a href="index.html">Up</a>
+  
+    | <a href="chapter-4.html">Next (4. Extending Syntax)</a>
+  
+</div></div>
+
+<h1>3. Syntax Highlighting</h1>
+
+
+
+     <h2>
+       <a name="s1"></a>
+       3.1. Converting Text
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Colorizing code has already been touched on briefly in the Introduction chapter (under &#8220;Quick Start&#8221;). To review, the process is a mere three steps:</p>
+
+
+	<ol>
+	<li>Require the class for the type of the output you want (currently, only <span class="caps">HTML</span> is supported).</li>
+		<li>Obtain an instance of the convertor, for the syntax you wish to convert.</li>
+		<li>Call <code>#convert</code> on that convertor, passing in the text you want to convert. The return value is the <span class="caps">HTML</span> representation of the colorized text.</li>
+	</ol>
+
+
+	<p>For example:</p>
+
+
+	<div class='figure'>
+<span class='caption'>Colorizing a Ruby script [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="comment"># Step 1: require the HTML convertor</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">syntax/convertor/html</span><span class="punct">'</span>
+
+<span class="comment"># Step 2: get an instance of the HTML convertor for the Ruby syntax</span>
+<span class="ident">convertor</span> <span class="punct">=</span> <span class="constant">Syntax</span><span class="punct">::</span><span class="constant">Convertor</span><span class="punct">::</span><span class="constant">HTML</span><span class="punct">.</span><span class="ident">for_syntax</span> <span class="punct">&quot;</span><span class="string">ruby</span><span class="punct">&quot;</span>
+
+<span class="comment"># Step 3: convert the text to HTML</span>
+<span class="ident">puts</span> <span class="ident">convertor</span><span class="punct">.</span><span class="ident">convert</span><span class="punct">(</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">read</span><span class="punct">(</span> <span class="punct">&quot;</span><span class="string">program.rb</span><span class="punct">&quot;</span> <span class="punct">)</span> <span class="punct">)</span></pre></div></td></tr></table></div></div>
+   </div>
+
+
+
+     <h2>
+       <a name="s2"></a>
+       3.2. Custom Highlighters
+     </h2>
+
+   
+
+   <div class="section">
+     <p>To write your own custom highlighter module, you just need to:</p>
+
+
+	<ol>
+	<li>inherit from <code>Syntax::Convertors::Abstract</code></li>
+		<li>implement the <code>convert</code> method</li>
+	</ol>
+
+
+	<p>You can use the <code>syntax/convertors/html.rb</code> file as an example:</p>
+
+
+	<div class='figure'>
+<span class='caption'>syntax/convertors/html.rb [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br />30<br />31<br />32<br />33<br />34<br />35<br />36<br />37<br />38<br />39<br />40<br />41<br />42<br />43<br />44<br />45<br />46<br />47<br />48<br />49<br />50<br />51<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="ident">require</span> <span class="punct">'</span><span class="string">syntax/convertors/abstract</span><span class="punct">'</span>
+
+<span class="keyword">module </span><span class="module">Syntax</span>
+  <span class="keyword">module </span><span class="module">Convertors</span>
+
+ <span class="comment"># A simple class for converting a text into HTML.</span>
+    <span class="keyword">class </span><span class="class">HTML</span> <span class="punct">&lt;</span> <span class="constant">Abstract</span>
+
+      <span class="comment"># Converts the given text to HTML, using spans to represent token groups</span>
+      <span class="comment"># of any type but &lt;tt&gt;:normal&lt;/tt&gt; (which is always unhighlighted). If</span>
+      <span class="comment"># +pre+ is +true+, the html is automatically wrapped in pre tags.</span>
+      <span class="keyword">def </span><span class="method">convert</span><span class="punct">(</span> <span class="ident">text</span><span class="punct">,</span> <span class="ident">pre</span><span class="punct">=</span><span class="constant">true</span> <span class="punct">)</span>
+        <span class="ident">html</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string"></span><span class="punct">&quot;</span>
+        <span class="ident">html</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">&lt;pre&gt;</span><span class="punct">&quot;</span> <span class="keyword">if</span> <span class="ident">pre</span>
+        <span class="ident">regions</span> <span class="punct">=</span> <span class="punct">[]</span>
+        <span class="attribute">@tokenizer</span><span class="punct">.</span><span class="ident">tokenize</span><span class="punct">(</span> <span class="ident">text</span> <span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">tok</span><span class="punct">|</span>
+          <span class="ident">value</span> <span class="punct">=</span> <span class="ident">html_escape</span><span class="punct">(</span><span class="ident">tok</span><span class="punct">)</span>
+   <span class="keyword">case</span> <span class="ident">tok</span><span class="punct">.</span><span class="ident">instruction</span>
+            <span class="keyword">when</span> <span class="symbol">:region_close</span> <span class="keyword">then</span>
+              <span class="ident">regions</span><span class="punct">.</span><span class="ident">pop</span>
+              <span class="ident">html</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">&lt;/span&gt;</span><span class="punct">&quot;</span>
+            <span class="keyword">when</span> <span class="symbol">:region_open</span> <span class="keyword">then</span>
+              <span class="ident">regions</span><span class="punct">.</span><span class="ident">push</span> <span class="ident">tok</span><span class="punct">.</span><span class="ident">group</span>
+              <span class="ident">html</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">&lt;span class=<span class="escape">\&quot;</span><span class="expr">#{tok.group}</span><span class="escape">\&quot;</span>&gt;<span class="expr">#{value}</span></span><span class="punct">&quot;</span>
+            <span class="keyword">else</span>
+         <span class="keyword">if</span> <span class="ident">tok</span><span class="punct">.</span><span class="ident">group</span> <span class="punct">==</span> <span class="punct">(</span> <span class="ident">regions</span><span class="punct">.</span><span class="ident">last</span> <span class="punct">||</span> <span class="symbol">:normal</span> <span class="punct">)</span>
+                <span class="ident">html</span> <span class="punct">&lt;&lt;</span> <span class="ident">value</span>
+ <span class="keyword">else</span>
+                <span class="ident">html</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">&lt;span class=<span class="escape">\&quot;</span><span class="expr">#{tok.group}</span><span class="escape">\&quot;</span>&gt;<span class="expr">#{value}</span>&lt;/span&gt;</span><span class="punct">&quot;</span>
+              <span class="keyword">end</span>
+          <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="ident">html</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">&lt;/span&gt;</span><span class="punct">&quot;</span> <span class="keyword">while</span> <span class="ident">regions</span><span class="punct">.</span><span class="ident">pop</span>
+        <span class="ident">html</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">&lt;/pre&gt;</span><span class="punct">&quot;</span> <span class="keyword">if</span> <span class="ident">pre</span>
+        <span class="ident">html</span>
+      <span class="keyword">end</span>
+
+      <span class="ident">private</span>
+
+        <span class="comment"># Replaces some characters with their corresponding HTML entities.</span>
+        <span class="keyword">def </span><span class="method">html_escape</span><span class="punct">(</span> <span class="ident">string</span> <span class="punct">)</span>
+          <span class="ident">string</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(</span> <span class="punct">/</span><span class="regex">&amp;</span><span class="punct">/,</span> <span class="punct">&quot;</span><span class="string">&amp;amp;</span><span class="punct">&quot;</span> <span class="punct">).</span>
+                 <span class="ident">gsub</span><span class="punct">(</span> <span class="punct">/</span><span class="regex">&lt;</span><span class="punct">/,</span> <span class="punct">&quot;</span><span class="string">&amp;lt;</span><span class="punct">&quot;</span> <span class="punct">).</span>
+                 <span class="ident">gsub</span><span class="punct">(</span> <span class="punct">/</span><span class="regex">&gt;</span><span class="punct">/,</span> <span class="punct">&quot;</span><span class="string">&amp;gt;</span><span class="punct">&quot;</span> <span class="punct">).</span>
+                 <span class="ident">gsub</span><span class="punct">(</span> <span class="punct">/</span><span class="regex">&quot;</span><span class="punct">/,</span> <span class="punct">&quot;</span><span class="string">&amp;quot;</span><span class="punct">&quot;</span> <span class="punct">)</span>
+        <span class="keyword">end</span>
+
+    <span class="keyword">end</span>
+
+  <span class="keyword">end</span>
+<span class="keyword">end</span></pre></div></td></tr></table></div></div>
+
+
+	<p>Within the <code>#convert</code> method, you will automatically have access to the <code>tokenizer</code> instance variable&#8212;instantiated for you by the framework. The rest is up to you.</p>
+   </div>
+
+
+
+<div class="bottom"><div class="prevnext">
+  
+    <a href="chapter-2.html">Previous (2. Lexical Analysis)</a> |
+  
+  <a href="index.html">Up</a>
+  
+    | <a href="chapter-4.html">Next (4. Extending Syntax)</a>
+  
+</div></div>
+
+
+        </div>
+
+      </td></tr>
+    </table>
+  </body>
+</html>

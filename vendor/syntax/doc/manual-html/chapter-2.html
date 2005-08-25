@@ -1,0 +1,262 @@
+<html>
+  <head>
+    <title>Syntax Manual :: Chapter 2: Lexical Analysis</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/manual.css" />
+  </head>
+  
+  <body>
+    <div id="banner">
+      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+        <tr><td valign='top' align='left'>
+          <div class="title">
+            <span class="product">Syntax&mdash;</span><br />
+            <span class="tagline">Lexical Analysis for Syntax Highlighting</span>
+          </div>
+        </td><td valign='middle' align='right'>
+          <div class="info">
+            Syntax Version: <strong>1.0.0</strong><br />
+            Manual Last Updated: <strong>2005-06-18 20:25 UTC</strong>
+          </div>
+        </td></tr>
+      </table>
+    </div>
+
+    <table border='0' width='100%' cellpadding='0' cellspacing='0'>
+      <tr><td valign='top'>
+
+        <div id="navigation">
+          <h1>Syntax Manual</h1>
+
+          <h2>Chapters</h2>
+          <ol type="I">
+          
+            <li>
+                <a href="chapter-1.html">
+                Introduction
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-1.html#s1">What is Syntax?</a></li>
+                
+                  <li><a href="chapter-1.html#s2">Quick Start</a></li>
+                
+              </ol>
+            </li>
+          
+            <li><strong>
+                <a href="chapter-2.html">
+                Lexical Analysis
+                </a>
+                </strong> <big>&larr;</big>
+              <ol type="1">
+                
+                  <li><a href="chapter-2.html#s1">Groups</a></li>
+                
+                  <li><a href="chapter-2.html#s2">Instructions</a></li>
+                
+                  <li><a href="chapter-2.html#s3">Analyzing</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-3.html">
+                Syntax Highlighting
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-3.html#s1">Converting Text</a></li>
+                
+                  <li><a href="chapter-3.html#s2">Custom Highlighters</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-4.html">
+                Extending Syntax
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-4.html#s1">Introduction</a></li>
+                
+                  <li><a href="chapter-4.html#s2">Interface</a></li>
+                
+                  <li><a href="chapter-4.html#s3">Scanning <span class="caps">API</span></a></li>
+                
+                  <li><a href="chapter-4.html#s4">Registering Your New Syntax</a></li>
+                
+              </ol>
+            </li>
+          
+          </ol>
+
+          <h2>Other Documentation</h2>
+
+          <ul>
+            <li><a href="http://net-ssh.rubyforge.org/api/index.html">Net::SSH API</a></li>
+            <li><a href="http://rubyforge.org/tracker/?atid=1842&group_id=274&func=browse">Net::SSH FAQ</a></li>
+          </ul>
+
+          <h2>Tutorials</h2>
+          <ol>
+          
+          </ol>
+
+          <p align="center"><strong>More To Come...</strong></p>
+
+          <div class="license">
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />
+            This manual is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.
+          </div>
+        </div>
+
+      </td><td valign='top' width="100%">
+
+        <div id="content">
+
+           <div class="top"><div class="prevnext">
+  
+    <a href="chapter-1.html">Previous (1. Introduction)</a> |
+  
+  <a href="index.html">Up</a>
+  
+    | <a href="chapter-3.html">Next (3. Syntax Highlighting)</a>
+  
+</div></div>
+
+<h1>2. Lexical Analysis</h1>
+
+
+
+     <h2>
+       <a name="s1"></a>
+       2.1. Groups
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Lexical analysis is (at least in part) the process of converting a body of text into <em>tokens</em>. It is also the process of identifying the <em>class</em> of each token. The Syntax library refers to these classes as <em>groups</em>.</p>
+
+
+	<p>Each syntax module may define its own groups. The Ruby module, for instance, defines 18 different groups:</p>
+
+
+	<ol>
+	<li>normal: whitespace and the like. Basically, any text not grouped in any of the other groups.</li>
+		<li>comment: the delimiters and contents of a comment</li>
+		<li>keyword: any recognized keyword of the Ruby language</li>
+		<li>method: the name of a method when it is being declared</li>
+		<li>class: the name of a class when it is being declared</li>
+		<li>module: the name of a module when it is being declared</li>
+		<li>punct: any punctuation character</li>
+		<li>symbol: a Ruby symbol token</li>
+		<li>string: the contents (but not delimiters) of a string</li>
+		<li>char: a character literal (<code>?g</code>)</li>
+		<li>ident: an identifier, not otherwise recognized as a keyword</li>
+		<li>constant: a constant (beginning with an uppercase letter)</li>
+		<li>regex: the contents (but not delimiters) of a regular expression</li>
+		<li>number: a numeric literal</li>
+		<li>attribute: an instance variable</li>
+		<li>global: a global variable</li>
+		<li>expr: a nested (interpolated) expression within a string or regex</li>
+		<li>escape: an escape squence within a string or regex</li>
+	</ol>
+
+
+	<p>The only group common to all modules is <code>normal</code>. (When converting text to <span class="caps">HTML</span>, the name of the class used in a span will be the name of the corresponding group&#8212;this makes it straightforward to determine what <span class="caps">CSS</span> classes need to be defined.)</p>
+   </div>
+
+
+
+     <h2>
+       <a name="s2"></a>
+       2.2. Instructions
+     </h2>
+
+   
+
+   <div class="section">
+     <p>In addition to groups, each token has an associated <em>instruction</em>. For most tokens, this instruction is the symbol <code>:none</code>, meaning &#8220;do nothing special&#8221;. However, there are two other instructions defined by the framework:</p>
+
+
+	<ul>
+	<li><code>:region_open</code>: begin a &#8220;region&#8221;. This region is a sequence of tokens that are all nested inside the group of the current token. This is useful for strings and regular expressions, which may contain other kinds of tokens (like <code>expr</code> and <code>escape</code>, in Ruby&#8217;s case).</li>
+		<li><code>:region_close</code>: close the current region.</li>
+	</ul>
+
+
+	<p>The <span class="caps">HTML</span> convertors uses these instructions to know whether to emit just an opened span tag, or a closed one, or whether to emit both. Other convertors may use these instructions in similar ways.</p>
+   </div>
+
+
+
+     <h2>
+       <a name="s3"></a>
+       2.3. Analyzing
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Lexical analysis is performed by obtaining a tokenizer of the appropriate class and calling <code>tokenize</code> on it, passing the text to be tokenized. Each token is yielded to the associated block as it is discovered.</p>
+
+
+	<div class='figure'>
+<span class='caption'>Tokenizing a Ruby script [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="ident">require</span> <span class="punct">'</span><span class="string">syntax</span><span class="punct">'</span>
+
+<span class="ident">tokenizer</span> <span class="punct">=</span> <span class="constant">Syntax</span><span class="punct">.</span><span class="ident">load</span> <span class="punct">&quot;</span><span class="string">ruby</span><span class="punct">&quot;</span>
+<span class="ident">tokenizer</span><span class="punct">.</span><span class="ident">tokenize</span><span class="punct">(</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">read</span><span class="punct">(</span> <span class="punct">&quot;</span><span class="string">program.rb</span><span class="punct">&quot;</span> <span class="punct">)</span> <span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">token</span><span class="punct">|</span>
+  <span class="ident">puts</span> <span class="ident">token</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">  group: <span class="expr">#{token.group}</span></span><span class="punct">&quot;</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">  instruction: <span class="expr">#{token.instruction}</span></span><span class="punct">&quot;</span>
+<span class="keyword">end</span></pre></div></td></tr></table></div></div>
+
+
+	<p>If you need finer control over the process, you can use the lower-level <span class="caps">API</span>:</p>
+
+
+	<div class='figure'>
+<span class='caption'>Tokenizing a Ruby script via step [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="ident">require</span> <span class="punct">'</span><span class="string">syntax</span><span class="punct">'</span>
+
+<span class="ident">tokenizer</span> <span class="punct">=</span> <span class="constant">Syntax</span><span class="punct">.</span><span class="ident">load</span> <span class="punct">&quot;</span><span class="string">ruby</span><span class="punct">&quot;</span>
+<span class="ident">tokenizer</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">read</span><span class="punct">(</span> <span class="punct">&quot;</span><span class="string">program.rb</span><span class="punct">&quot;</span> <span class="punct">)</span> <span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">token</span><span class="punct">|</span>
+  <span class="ident">puts</span> <span class="ident">token</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">  group: <span class="expr">#{token.group}</span></span><span class="punct">&quot;</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">  instruction: <span class="expr">#{token.instruction}</span></span><span class="punct">&quot;</span>
+<span class="keyword">end</span>
+
+<span class="ident">tokenizer</span><span class="punct">.</span><span class="ident">step</span>
+<span class="ident">tokenizer</span><span class="punct">.</span><span class="ident">step</span>
+<span class="punct">...</span>
+<span class="ident">tokenizer</span><span class="punct">.</span><span class="ident">finish</span></pre></div></td></tr></table></div></div>
+
+
+	<p>In this case, each time <code>#step</code> is invoked, it results in tokens being consumed and yielded to the block. However, a single step may result in multiple tokens being detected and yielded&#8212;there is no way to guarantee a single token at a time, unless the corresponding syntax module was written to work that way. For efficiency, the existing modules will yield multiple tokens when processing (for instance) strings, regular expressions, and heredocs.</p>
+   </div>
+
+
+
+<div class="bottom"><div class="prevnext">
+  
+    <a href="chapter-1.html">Previous (1. Introduction)</a> |
+  
+  <a href="index.html">Up</a>
+  
+    | <a href="chapter-3.html">Next (3. Syntax Highlighting)</a>
+  
+</div></div>
+
+
+        </div>
+
+      </td></tr>
+    </table>
+  </body>
+</html>
