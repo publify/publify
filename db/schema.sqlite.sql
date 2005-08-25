@@ -166,6 +166,8 @@ CREATE TABLE 'text_filters' (
 
 INSERT INTO text_filters VALUES (1,'none','None','none','--- []','--- {}');
 INSERT INTO text_filters VALUES (2,'markdown','Markdown','markdown','--- []','--- {}');
-INSERT INTO text_filters VALUES (3,'smartypants','SmartyPants','none','--- \n- :smartypants','--- {}');
-INSERT INTO text_filters VALUES (4,'markdown smartypants','Markdown with SmartyPants','markdown','--- \n- :smartypants','--- {}');
+INSERT INTO text_filters VALUES (3,'smartypants','SmartyPants','none','--- 
+- :smartypants','--- {}');
+INSERT INTO text_filters VALUES (4,'markdown smartypants','Markdown with SmartyPants','markdown','--- 
+- :smartypants','--- {}');
 INSERT INTO text_filters VALUES (5,'textile','Textile','textile','--- []','--- {}');
