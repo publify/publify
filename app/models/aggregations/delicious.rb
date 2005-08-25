@@ -5,10 +5,10 @@ require 'rexml/document'
 class Delicious
   include REXML
 
-  attr_accessor :url, :items, :link, :title
+  attr_accessor :url, :items, :link, :title, :days
     
   # This object holds given information of an item
-  class DeliciousItem < Struct.new(:link, :title, :date)  
+  class DeliciousItem < Struct.new(:link, :title, :description, :description_link, :date)  
     def to_s; title end          
   end
     
@@ -16,9 +16,10 @@ class Delicious
   # by default this will request the rss from the server right away and 
   # fill the items array
   def initialize(url, refresh = true)
-	self.items  = []
-	self.url    = url
-	self.refresh if refresh
+    self.items  = []
+    self.url    = url
+    self.days   = {}
+    self.refresh if refresh
   end
   
   # This method lets you refresh the items in the items array
@@ -44,7 +45,11 @@ private
       item = DeliciousItem.new
       item.title       = XPath.match(elem, "title/text()").to_s                  
       item.link        = XPath.match(elem, "link/text()").to_s
+      item.description = XPath.match(elem, "description/text()").to_s
       item.date        = Time.mktime(*ParseDate.parsedate(XPath.match(elem, "dc:date/text()").to_s))
+
+      item.description_link = item.description.sub(/&lt;a/, "<a").sub(/&lt\;\/a>/, "<\/a>")
+      item.description.gsub!(/&lt\;a.*?>|&lt\;\/a>/, "")
       items << item
     end
     

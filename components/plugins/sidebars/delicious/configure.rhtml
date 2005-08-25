@@ -3,6 +3,12 @@
   <input class="text" type="text" name="configure[feed]" value="<%=h @sidebar.staged_config['feed'] %>"/><br/>
   <label>Items limit</label>
   <input class="text" type="text" name="configure[count]" value="<%=h @sidebar.staged_config['count'] %>"/><br/>
+  <label>Group links by day</label>
+  <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_groupdate" name="configure[groupdate]" <% if @sidebar.staged_config['groupdate'] %>checked="checked"<% end %>><br />
+  <label>Show Description</label>
+  <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_description" name="configure[description]" <% if @sidebar.staged_config['description'] %>checked="checked"<% end %>><br />
+  <label>Allow links in Description</label>
+  <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_desclink" name="configure[desclink]" <% if @sidebar.staged_config['desclink'] %>checked="checked"<% end %>>
 <%= end_form_tag %>
 
 <%= observe_form "configure_"+@sidebar.id.to_s, 

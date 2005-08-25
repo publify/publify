@@ -1,10 +1,20 @@
 <% if @delicious -%>
   <div id="delicious">
-    <h3><%= @delicious.title %></h3>
+    <h3><a href="http://<%= @delicious.title %>" alt="<%= @delicious.title %>"><%= @delicious.title %></a></h3>
+    <% (@sb_config['groupdate'] ? @delicious.days : [{ :container => @delicious.items }]).each do |group| -%>
     <ul>
-      <% for item in @delicious.items.to_a.slice(0,@sb_config['count'].to_i) -%>
-        <li><a href="<%= item.link %>" title="<%= item.title %>"><%=h item.title %> </a></li>
+      <% if @sb_config['groupdate'] -%>
+      <span class="date"><%= group[:date].to_s.to_date.strftime("%b %d") %></span>
       <% end -%>
+      <% for item in group[:container] %>
+      <li>
+        <a href="<%= item.link %>" title="<%= item.title%>"><%= item.title %></a>
+        <% if @sb_config['description'] -%>
+          <br /><span class="desc"><%= @sb_config['desclink'] ? item.description_link : item.description %></span>
+        <% end %>
+      </li>
+      <% end %>
+    <% end -%>
     </ul>
   </div>
 <% end -%>

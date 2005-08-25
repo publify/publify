@@ -12,7 +12,21 @@ class Plugins::Sidebars::DeliciousController < Sidebars::Plugin
   end
 
   def content
-    @delicious=check_cache(Delicious, @sb_config['feed']) rescue nil
+    @delicious = check_cache(Delicious, @sb_config['feed']) rescue nil
+
+    return unless @delicious
+    
+    if @sb_config['groupdate']
+      @delicious.days = {}
+      @delicious.items.each_with_index do |d,i|
+        break if i >= @sb_config['count'].to_i
+        index = d.date.strftime("%Y-%m-%d").to_sym
+        (@delicious.days[index] ||= Array.new) << d
+      end
+      @delicious.days = @delicious.days.sort_by { |d| d.to_s }.reverse.collect { |d| {:container => d.last, :date => d.first} }
+    else
+      @delicious.items = @delicious.items.slice(0, @sb_config['count'].to_i)
+    end
   end
 
   def configure
