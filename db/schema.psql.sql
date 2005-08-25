@@ -25,7 +25,7 @@ CREATE TABLE articles (
   allow_comments int default NULL,
   allow_pings int default NULL,
   published int NOT NULL default '1',
-  text_filter varchar(20) default NULL,
+  text_filter_id int default NULL,
   user_id int default NULL,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now(),
@@ -48,7 +48,7 @@ CREATE TABLE pages (
   title varchar(255) default NULL,
   body text,
   body_html text,
-  text_filter varchar(20) default NULL,
+  text_filter_id int default NULL,
   user_id int default NULL,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
@@ -175,4 +175,19 @@ CREATE TABLE schema_info (
   version integer
 );
 
-INSERT into schema_info VALUES (12);
+INSERT into schema_info VALUES (14);
+
+CREATE TABLE text_filters (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name varchar(255) default NULL,
+  description varchar(255) default NULL,
+  markup varchar(255) default NULL,
+  filters text,
+  params text
+);
+
+INSERT INTO text_filters VALUES (1,'none','None','none','--- []','--- {}');
+INSERT INTO text_filters VALUES (2,'markdown','Markdown','markdown','--- []','--- {}');
+INSERT INTO text_filters VALUES (3,'smartypants','SmartyPants','none','--- \n- :smartypants','--- {}');
+INSERT INTO text_filters VALUES (4,'markdown smartypants','Markdown with SmartyPants','markdown','--- \n- :smartypants','--- {}');
+INSERT INTO text_filters VALUES (5,'textile','Textile','textile','--- []','--- {}');

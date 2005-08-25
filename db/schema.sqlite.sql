@@ -19,7 +19,7 @@ CREATE TABLE 'articles' (
   'allow_comments' INTEGER DEFAULT 1,  
   'allow_pings'    INTEGER DEFAULT 1,  
   'published'   INTEGER DEFAULT 1,  
-  'text_filter' VARCHAR(20) DEFAULT NULL,
+  'text_filter_id' INTEGER DEFAULT NULL,
   'user_id'     INTEGER DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE 'pages' (
   'title'       VARCHAR(255) DEFAULT NULL,
   'body'        TEXT DEFAULT NULL,
   'body_html'   TEXT DEFAULT NULL,
-  'text_filter' VARCHAR(20) DEFAULT NULL,
+  'text_filter_id' INTEGER DEFAULT NULL,
   'user_id'     INTEGER DEFAULT NULL,
   'created_at'  DATETIME DEFAULT NULL,
   'updated_at'  DATETIME DEFAULT NULL
@@ -153,4 +153,19 @@ CREATE TABLE 'schema_info' (
   'version' INTEGER
 );
 
-INSERT into schema_info VALUES (12);
+INSERT into schema_info VALUES (14);
+
+CREATE TABLE 'text_filters' (
+  'id'          INTEGER PRIMARY KEY NOT NULL,
+  'name'        VARCHAR(255) DEFAULT NULL,
+  'description' VARCHAR(255) DEFAULT NULL,
+  'markup'      VARCHAR(255) DEFAULT NULL,
+  'filters'     TEXT DEFAULT NULL,
+  'params'      TEXT DEFAULT NULL
+);
+
+INSERT INTO text_filters VALUES (1,'none','None','none','--- []','--- {}');
+INSERT INTO text_filters VALUES (2,'markdown','Markdown','markdown','--- []','--- {}');
+INSERT INTO text_filters VALUES (3,'smartypants','SmartyPants','none','--- \n- :smartypants','--- {}');
+INSERT INTO text_filters VALUES (4,'markdown smartypants','Markdown with SmartyPants','markdown','--- \n- :smartypants','--- {}');
+INSERT INTO text_filters VALUES (5,'textile','Textile','textile','--- []','--- {}');

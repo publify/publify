@@ -21,7 +21,7 @@ CREATE TABLE `articles` (
   `allow_comments` tinyint(1) default NULL,
   `allow_pings` tinyint(1) default NULL,
   `published` tinyint(1) NOT NULL default '1',
-  `text_filter` varchar(20) default NULL,
+  `text_filter_id` int(11) default NULL,
   `user_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `pages` (
   `title` varchar(255) default NULL,
   `body` text,
   `body_html` text,
-  `text_filter` varchar(20) default NULL,
+  `text_filter_id` int(11) default NULL,
   `user_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
@@ -174,4 +174,20 @@ CREATE TABLE `schema_info` (
   `version` int(11) default NULL
 ) TYPE=MyISAM;
 
-INSERT into `schema_info` VALUES (12);
+INSERT into `schema_info` VALUES (14);
+
+CREATE TABLE `text_filters` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `markup` varchar(255) default NULL,
+  `filters` text,
+  `params` text,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+
+INSERT INTO `text_filters` VALUES (1,'none','None','none','--- []','--- {}');
+INSERT INTO `text_filters` VALUES (2,'markdown','Markdown','markdown','--- []','--- {}');
+INSERT INTO `text_filters` VALUES (3,'smartypants','SmartyPants','none','--- \n- :smartypants','--- {}');
+INSERT INTO `text_filters` VALUES (4,'markdown smartypants','Markdown with SmartyPants','markdown','--- \n- :smartypants','--- {}');
+INSERT INTO `text_filters` VALUES (5,'textile','Textile','textile','--- []','--- {}');
