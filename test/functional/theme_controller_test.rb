@@ -29,6 +29,13 @@ class ThemeControllerTest < Test::Unit::TestCase
     assert_response 404
   end
   
+  def test_view_theming
+    get :static_view_test
+    assert_response :success
+
+    assert @response.body =~ /Static View Test from azure/
+  end
+    
   def disabled_test_javascript
     get :stylesheets, :filename => "typo.js"
     assert_response :success

@@ -55,6 +55,7 @@ require 'action_web_service'
 
 # Environment-specific configuration.
 require_dependency 'migrator'
+require_dependency 'renderfix'
 require_dependency 'theme'
 require_dependency 'login_system'
 require_dependency "environments/#{RAILS_ENV}"

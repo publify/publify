@@ -16,6 +16,9 @@ class ThemeController < ApplicationController
   def error
     render :nothing => true, :status => 404
   end
+  
+  def static_view_test
+  end
 
   private
   
