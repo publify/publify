@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'articles_controller'
 require 'dns_mock'
-
+#
 # Re-raise errors caught by the controller.
 class ArticlesController; def rescue_action(e) raise e end; end
 
@@ -217,5 +217,36 @@ class ArticlesControllerTest < Test::Unit::TestCase
     
     assert_tag :tag => "p",
       :content => "comment preview"
+  end
+
+  def test_read_article_with_comments_and_trackbacks
+    get :read, :id => @article1.id
+    assert_response :success
+    assert_template "read"
+    
+    assert_tag :tag => "ol",
+      :attributes => { :id => "commentList"},
+      :children => { :count => @article1.comments.size,
+        :only => { :tag => "li" } }
+
+    assert_tag :tag => "ol",
+      :attributes => { :id => "trackbackList" },
+      :children => { :count => @article1.trackbacks.size,
+        :only => { :tag => "li" } }
+  end
+
+  def test_read_article_no_comments_no_trackbacks
+    get :read, :id => @article3.id
+    assert_response :success
+    assert_template "read"
+
+    assert_tag :tag => "ol",
+      :attributes => { :id => "commentList"},
+      :children => { :count => 1,
+        :only => { :tag => "li",
+          :attributes => { :id => "dummy_comment", :style => "display: none" } } }
+
+    assert_no_tag :tag => "ol",
+      :attributes => { :id => "trackbackList" }
   end
 end

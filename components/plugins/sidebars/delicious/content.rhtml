@@ -1,6 +1,6 @@
 <% if @delicious -%>
   <div id="delicious">
-    <h3><a href="http://<%= @delicious.title %>" alt="<%= @delicious.title %>"><%= @delicious.title %></a></h3>
+    <h3><a href="http://<%= @delicious.title %>"><%= @delicious.title %></a></h3>
     <% (@sb_config['groupdate'] ? @delicious.days : [{ :container => @delicious.items }]).each do |group| -%>
     <ul>
       <% if @sb_config['groupdate'] -%>

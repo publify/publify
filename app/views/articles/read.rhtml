@@ -32,7 +32,13 @@
     <small><a href="#respond">Leave a response</a></small>
   </p>
 <% end -%>
-  <%= content_tag(:ol, render(:partial => "comment", :collection => @article.comments), :id => 'commentList', :class => 'comment-list') %>
+  <ol class="comment-list" id="commentList">
+  <% if @article.comments.blank? %>
+    <li id="dummy_comment" style="display: none"></li>
+  <% else %>
+    <%= render(:partial => "comment", :collection => @article.comments) %>
+  <% end %>
+  </ol>
 <% end -%>
 
 <% if @article.allow_pings? -%>
@@ -41,7 +47,9 @@
     Use the following link to trackback from your own site:<br/>
     <span class="light-bg"><%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %></span>
     </p>    
-  <%= content_tag(:ol, render(:partial => "trackback", :collection => @article.trackbacks), :id => 'trackbackList', :class => 'trackback-list') %>  
+  <%= content_tag(:ol,
+        render(:partial => "trackback", :collection => @article.trackbacks),
+        :id => 'trackbackList', :class => 'trackback-list') unless @article.trackbacks.blank? %>  
 <% end -%>
 
 <p class="postmetadata alt">
