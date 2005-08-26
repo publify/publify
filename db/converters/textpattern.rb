@@ -42,6 +42,7 @@ class TXPMigrate
         1 AS allow_pings,
         Title AS title,
         (CASE LENGTH(Body) WHEN 0 THEN Excerpt ELSE Body END) AS body,
+        Body_html AS body_html,
         Excerpt AS excerpt,
         Keywords AS keywords,
         Posted AS created_at,
@@ -73,6 +74,7 @@ class TXPMigrate
           email AS email,
           web AS url,
           message AS body,
+          message as body_html,
           posted AS created_at,
           ip AS ip
         FROM `#{self.options[:txp_db]}`.txp_discuss
