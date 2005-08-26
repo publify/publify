@@ -12,7 +12,7 @@ class Plugins::Sidebars::FlickrController < Sidebars::Plugin
   end
 
   def content
-    @flickr=check_cache(FlickrAggregration, @sb_config['feed']) rescue nil
+    @flickr=check_cache(FlickrAggregation, @sb_config['feed']) rescue nil
   end
 
   def configure
