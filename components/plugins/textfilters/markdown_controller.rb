@@ -32,7 +32,7 @@ is available from the author's site, but here's a short summary:
   end
 
   def filtertext
-    text = params[:text]
+    text = params[:text].gsub(%r{</?notextile>}, '')
     render :text => BlueCloth.new(text).to_html
   end
 end

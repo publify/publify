@@ -42,8 +42,8 @@ have syntax highlighting.
 
     convertor = Syntax::Convertors::HTML.for_syntax lang
     text = convertor.convert(text)
-    text.gsub!(/<pre>/,"<pre><code class=\"typocode_#{lang} #{cssclass}\">")
-    text.gsub!(/<\/pre>/,"</code></pre>")
+    text.gsub!(/<pre>/,"<pre><code class=\"typocode_#{lang} #{cssclass}\"><notextile>")
+    text.gsub!(/<\/pre>/,"</notextile></code></pre>")
     
     if(linenumber)
       lines = text.split(/\n/).size

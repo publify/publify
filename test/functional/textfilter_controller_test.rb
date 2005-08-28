@@ -120,18 +120,18 @@ class TextfilterControllerTest < Test::Unit::TestCase
   end
   
   def test_code
-    assert_equal %{<div class="typocode"><pre><code class="typocode_default ">foo-code</code></pre></div>},
+    assert_equal %{<div class="typocode"><pre><code class="typocode_default "><notextile>foo-code</notextile></code></pre></div>},
       @controller.filter_text('<typo:code>foo-code</typo:code>',[:macropre,:macropost])
 
-    assert_equal %{<div class="typocode"><pre><code class="typocode_ruby "><span class="ident">foo</span><span class="punct">-</span><span class="ident">code</span></code></pre></div>},
+    assert_equal %{<div class="typocode"><pre><code class="typocode_ruby "><notextile><span class="ident">foo</span><span class="punct">-</span><span class="ident">code</span></notextile></code></pre></div>},
       @controller.filter_text('<typo:code lang="ruby">foo-code</typo:code>',[:macropre,:macropost])
 
-    assert_equal %{<div class="typocode"><pre><code class="typocode_ruby "><span class="ident">foo</span><span class="punct">-</span><span class="ident">code</span></code></pre></div> blah blah <div class="typocode"><pre><code class="typocode_xml ">zzz</code></pre></div>},
+    assert_equal %{<div class="typocode"><pre><code class="typocode_ruby "><notextile><span class="ident">foo</span><span class="punct">-</span><span class="ident">code</span></notextile></code></pre></div> blah blah <div class="typocode"><pre><code class="typocode_xml "><notextile>zzz</notextile></code></pre></div>},
       @controller.filter_text('<typo:code lang="ruby">foo-code</typo:code> blah blah <typo:code lang="xml">zzz</typo:code>',[:macropre,:macropost])
   end
   
   def test_code_multiline
-    assert_equal %{\n<div class="typocode"><pre><code class="typocode_ruby "><span class="keyword">class </span><span class="class">Foo</span>\n  <span class="keyword">def </span><span class="method">bar</span>\n    <span class="attribute">@a</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">zzz</span><span class="punct">&quot;</span>\n  <span class="keyword">end</span>\n<span class="keyword">end</span></code></pre></div>\n},
+    assert_equal %{\n<div class="typocode"><pre><code class="typocode_ruby "><notextile><span class="keyword">class </span><span class="class">Foo</span>\n  <span class="keyword">def </span><span class="method">bar</span>\n    <span class="attribute">@a</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">zzz</span><span class="punct">&quot;</span>\n  <span class="keyword">end</span>\n<span class="keyword">end</span></notextile></code></pre></div>\n},
       @controller.filter_text(%{
 <typo:code lang="ruby">
 class Foo
@@ -146,5 +146,50 @@ end
   def test_named_filter
     assert_equal '<p><em>&#8220;foo&#8221;</em></p>', 
       @controller.filter_text_by_name('*"foo"*','markdown smartypants')
+  end
+  
+  def test_code_plus_markup_chain
+    text = <<-EOF
+*header text here*
+
+<typo:code lang="ruby">
+class test
+  def method
+    "foo"
+  end
+end
+</typo:code>
+
+_footer text here_
+
+EOF
+    
+    expects_markdown = <<-EOF
+<p><em>header text here</em></p>
+
+<div class="typocode"><pre><code class="typocode_ruby "><span class="keyword">class </span><span class="class">test</span>
+  <span class="keyword">def </span><span class="method">method</span>
+    <span class="punct">&quot;</span><span class="string">foo</span><span class="punct">&quot;</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+<p><em>footer text here</em></p>
+EOF
+
+    expects_textile = <<-EOF
+<p><strong>header text here</strong></p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby "><span class="keyword">class </span><span class="class">test</span>
+  <span class="keyword">def </span><span class="method">method</span>
+    <span class="punct">&quot;</span><span class="string">foo</span><span class="punct">&quot;</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+\t<p><em>footer text here</em></p>
+EOF
+
+    assert_equal expects_markdown.strip, @controller.filter_text_by_name(text, 'markdown')
+    assert_equal expects_textile.strip, @controller.filter_text_by_name(text, 'textile')
   end
 end
