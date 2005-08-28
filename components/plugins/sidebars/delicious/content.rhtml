@@ -8,7 +8,7 @@
       <% end -%>
       <% for item in group[:container] %>
       <li>
-        <a href="<%= item.link %>" title="<%= item.title%>"><%= item.title %></a>
+        <a href="<%= item.link %>" title="<%=h item.title%>"><%=h item.title %></a>
         <% if @sb_config['description'] -%>
           <br /><span class="desc"><%= @sb_config['desclink'] ? item.description_link : item.description %></span>
         <% end -%>

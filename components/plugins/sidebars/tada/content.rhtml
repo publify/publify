@@ -3,9 +3,9 @@
 <ul>
 <% for task in @tada.tasks.to_a.slice(0,@sb_config['count'].to_i) -%>
   <% if task.status == :completed  -%>
-    <li><del><a href="<%= task.link %>" title="<%= task.title %>"><%=h task.title %> </a></del></li>
+    <li><del><a href="<%= task.link %>" title="<%=h task.title %>"><%=h task.title %> </a></del></li>
   <% else -%>
-    <li><a href="<%= task.link %>" title="<%= task.title %>"><%=h task.title %> </a></li>
+    <li><a href="<%= task.link %>" title="<%=h task.title %>"><%=h task.title %> </a></li>
   <% end -%>
 <% end -%>
 </ul>
