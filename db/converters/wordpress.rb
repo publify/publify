@@ -54,7 +54,15 @@ class WPMigrate
     
     wp_entries.each do |entry|
       a = Article.new
-      a.attributes = entry.reject { |k,v| k =~ /^(ID|post_category)/ }
+      a.attributes = entry.reject { |k,v| k =~ /^(ID|post_category|body)/ }
+      body = entry['body']
+      more_index = body.index('<!--more-->')
+      if more_index
+      	a.body = body[0...more_index]
+      	a.extended = body[more_index+11...body.length]
+      else
+      	a.body = body
+      end
       a.save
       
       # Assign primary category
