@@ -95,6 +95,7 @@ class ArticlesController < ApplicationController
     
   def tag
     @articles=Article.find_by_tag(params[:id])
+    @articles.reject! { |a| a.published == 0 }
     
     if(not @articles.empty?)
       @pages = Paginator.new self, @articles.size, config[:limit_article_display], @params[:page]

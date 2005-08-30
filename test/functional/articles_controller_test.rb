@@ -6,7 +6,7 @@ require 'dns_mock'
 class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages, :articles_categories, :text_filters
+  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages, :articles_categories, :text_filters, :articles_tags, :tags
 
   def setup
     @controller = ArticlesController.new
@@ -22,6 +22,16 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     assert_response :success
     assert_rendered_file "index"
+  end
+  
+  def test_tag
+    get :tag, :id => "foo"
+    
+    assert_response :success
+    assert_rendered_file "index"
+        
+    assert_tag :tag => 'h2', :content => 'Article 2!'
+    assert_tag :tag => 'h2', :content => 'Article 1!'
   end
   
   # Main index
@@ -178,6 +188,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :read, :id => 4
     assert_response :success
     assert_template "error"
+  end
+  
+  def test_tags_non_published
+    get :tag, :id => 'bar'
+    assert_response :success
+    assert_equal 1, assigns(:articles).size
+    assert ! assigns(:articles).include?(@article4), "Unpublished article displayed"
   end
   
   def test_gravatar

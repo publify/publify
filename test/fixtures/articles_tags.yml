@@ -9,3 +9,7 @@ article1_bar:
 article2_foo:
   article_id: 2
   tag_id: 1
+
+article4_bar:
+  article_id: 4
+  tag_id: 2
