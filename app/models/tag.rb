@@ -17,7 +17,7 @@ class Tag < ActiveRecord::Base
       FROM #{Tag.table_name} tags LEFT OUTER JOIN #{Tag.table_name_prefix}articles_tags#{Tag.table_name_suffix} articles_tags
         ON articles_tags.tag_id = tags.id
       GROUP BY tags.id, tags.name
-      ORDER BY name
+      ORDER BY UPPER(name)
       })
   end
 
