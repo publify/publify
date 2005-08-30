@@ -13,3 +13,7 @@ article2_foo:
 article4_bar:
   article_id: 4
   tag_id: 2
+
+article4_bazz:
+  article_id: 4
+  tag_id: 3

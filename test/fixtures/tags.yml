@@ -5,3 +5,7 @@ foo_tag:
 bar_tag:
   id: 2
   name: bar
+
+bazz_tag:
+  id: 3
+  name: bazz
