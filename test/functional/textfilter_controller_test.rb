@@ -53,19 +53,19 @@ class TextfilterControllerTest < Test::Unit::TestCase
   def test_amazon
     text = @controller.filter_text('<a href="amazon:097669400X" title="Rails">Rails book</a>',
       [:amazon],
-      'amazon-affiliateid' => 'scottstuff-20')
+      'amazon-associate-id' => 'scottstuff-20')
     assert_equal "<a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\" title=\"Rails\">Rails book</a>",
       text
 
     text = @controller.filter_text('[Rails book](amazon:097669400X)',
       [:markdown,:amazon],
-      'amazon-affiliateid' => 'scottstuff-20')
+      'amazon-associate-id' => 'scottstuff-20')
     assert_equal "<p><a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\">Rails book</a></p>",
       text
 
     text = @controller.filter_text("Foo\n\n[Rails book](amazon:097669400X)",
       [:markdown,:amazon],
-      'amazon-affiliateid' => 'scottstuff-20')
+      'amazon-associate-id' => 'scottstuff-20')
     assert_equal "<p>Foo</p>\n\n<p><a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\">Rails book</a></p>",
           text
   end
