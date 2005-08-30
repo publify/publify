@@ -4,14 +4,14 @@ class Plugins::Textfilters::AmazonController < TextFilterPlugin::PostProcess
   end
 
   def self.description
-    "Automatically turn amazon:ASIN URLs into affiliate links to Amazon items"
+    "Automatically turn amazon:ASIN URLs into affiliate links to Amazon items using your Amazon Associate ID"
   end
 
   def filtertext
     text=params[:text]
-    affiliateid=(params[:filterparams])['amazon-affiliateid']
+    associateid=(params[:filterparams])['amazon-associate-id']
     render :text => text.gsub(/<a href="amazon:([^"]+)"/,
-      "<a href=\"http://www.amazon.com/exec/obidos/ASIN/\\1/#{affiliateid}\"")
+      "<a href=\"http://www.amazon.com/exec/obidos/ASIN/\\1/#{associateid}\"")
   end
 
   def self.default_config
