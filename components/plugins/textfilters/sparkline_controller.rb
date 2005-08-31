@@ -60,6 +60,12 @@ For other options, see the [Ruby Sparkline][] website.
     # From the sparkline_controller that comes with sparklines.
     def plot
       ary = params['data'].split(',').collect { |i| i.to_i }
+      params.delete('filename')
+      
+      if(params['type'] and not ['smooth', 'pie', 'discreet', 'area'].include?(params['type']))
+        render :text => 'bad params', :status => 500
+        return
+      end
     
       fragmentname = @request.path+'?'+@request.parameters.keys.sort.collect {|k| "#{k}=#{@request.parameters[k]}"}.join('&')    
       fragment_cache = read_fragment(fragmentname)

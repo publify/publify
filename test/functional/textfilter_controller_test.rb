@@ -117,6 +117,12 @@ class TextfilterControllerTest < Test::Unit::TestCase
     
     get 'public_action', :filter => 'sparkline', :public_action => 'plot2', :data => '1,2,3'
     assert_response :missing
+    
+    get 'public_action', :filter => 'sparkline', :public_action => 'plot', :data => '1,2,3', :type => 'smooth'
+    assert_response :success
+    
+    get 'public_action', :filter => 'sparkline', :public_action => 'plot', :data => '1,2,3', :type => 'instance_methods'
+    assert_response :error
   end
   
   def test_code
