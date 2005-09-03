@@ -190,4 +190,4 @@ CREATE TABLE schema_info (
   version int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (14);
+insert into schema_info (version) values (15);
