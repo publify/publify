@@ -30,7 +30,7 @@ class Category < ActiveRecord::Base
   end
   
   def self.reorder_alpha
-    reorder find(:all, :order => :name).collect { |c| c.id }
+    reorder find(:all, :order => 'UPPER(name)').collect { |c| c.id }
   end
 
   protected  
