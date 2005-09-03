@@ -218,6 +218,12 @@ task :migrate => :environment do
   ActiveRecord::Migrator.migrate(File.dirname(__FILE__) + '/db/migrate/', ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
 end
 
+desc "Create new db/schema files using the migrations.  Requires schema_generator."
+task :schemas do
+  `./script/generate --force schema`
+  `sed s/InnoDB/MyISAM/ < db/schema.mysql.sql > db/schema.mysql-v3.sql`
+end
+
 desc "Force a sweeping run of typo's static page caches (all of them!)"
 task :sweep_cache => :environment do
   PageCache.sweep_all
