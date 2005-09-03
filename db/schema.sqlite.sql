@@ -190,4 +190,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-insert into schema_info (version) values (15);
+insert into schema_info (version) values (16);
