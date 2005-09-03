@@ -17,3 +17,7 @@ articles_categories4:
 articles_categories5:
   article_id: 3
   category_id: 3
+  
+articles_categories6:
+  article_id: 4
+  category_id: 3
