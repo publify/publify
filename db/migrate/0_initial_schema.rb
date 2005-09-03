@@ -15,7 +15,7 @@ class InitialSchema < ActiveRecord::Migration
       t.column :keywords, :string
       t.column :allow_comments, :integer
       t.column :allow_pings, :integer
-      t.column :published, :integer
+      t.column :published, :integer, :default => 1
       t.column :text_filter, :string
       t.column :created_at, :datetime
       t.column :updated_at, :datetime
@@ -29,6 +29,7 @@ class InitialSchema < ActiveRecord::Migration
     create_table :articles_categories, :id => false do |t|
       t.column :article_id, :integer
       t.column :category_id, :integer
+      t.column :is_primary, :integer
     end
     
     create_table :blacklist_patterns do |t|
