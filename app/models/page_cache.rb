@@ -1,7 +1,7 @@
 class PageCache < ActiveRecord::Base
   
   cattr_accessor :public_path
-  @@public_path = RAILS_ROOT + "/public"
+  @@public_path = ActionController::Base.page_cache_directory
 
   def self.sweep(pattern)
     destroy_all("name like '#{pattern}'")
