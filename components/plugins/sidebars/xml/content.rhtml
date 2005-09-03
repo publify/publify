@@ -1,12 +1,12 @@
 <h3>Syndicate</h3>
 <ul>
   <% if @sb_config['articles'] -%>
-  <li><a href="<%= url_for :controller=>'xml', :action=>'rss' %>" title="RSS 2.0 feed">Articles</a></li>
+  <li><a href="<%= url_for :controller=>'xml', :action=>'feed', :format => 'rss20', :type => 'feed' %>" title="RSS 2.0 feed">Articles</a></li>
   <% end %>
   <% if @sb_config['comments'] -%>
-  <li><a href="<%= url_for :controller=>'xml', :action=>'commentrss' %>" title="Comments RSS 2.0 feed">Comments</a></li>
+  <li><a href="<%= url_for :controller=>'xml', :action=>'feed', :format => 'rss20', :type => 'comments' %>" title="Comments RSS 2.0 feed">Comments</a></li>
   <% end %>
   <% if @sb_config['trackbacks'] -%>
-  <li><a href="<%= url_for :controller=>'xml', :action=>'trackbackrss' %>" title="Trackbacks RSS 2.0 feed">Trackbacks</a></li>
+  <li><a href="<%= url_for :controller=>'xml', :action=>'feed', :format => 'rss20', :type => 'trackbacks' %>" title="Trackbacks RSS 2.0 feed">Trackbacks</a></li>
   <% end %>
 </ul>

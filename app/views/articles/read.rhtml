@@ -27,11 +27,11 @@
 
 <% if @article.allow_comments? or @article.comments.size > 0 -%>
   <a name="comments"></a><h4 class="blueblk">Comments</h4> 
-<% if @article.allow_comments? -%>
-  <p class="postmetadata alt">
-    <small><a href="#respond">Leave a response</a></small>
-  </p>
-<% end -%>
+  <% if @article.allow_comments? -%>
+    <p class="postmetadata alt">
+      <small><a href="#respond">Leave a response</a></small>
+    </p>
+  <% end -%>
   <ol class="comment-list" id="commentList">
   <% if @article.comments.blank? %>
     <li id="dummy_comment" style="display: none"></li>
@@ -54,8 +54,8 @@
 
 <p class="postmetadata alt">
   <small>
-  <a href="<%= xml_url(:action=>'articlerss', :id=>@article) %>" title="RSS Feed">RSS feed for this post</a>
-  <a href="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %>">trackback uri</a>  
+  <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'rss20', :id => @article %>" title="RSS Feed">RSS feed for this post</a>
+  <a href="<%= server_url_for :controller=>"articles", :action=>"trackback", :id => @article.id %>" >trackback uri</a>  
   </small>
 </p>
 

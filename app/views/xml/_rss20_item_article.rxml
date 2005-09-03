@@ -1,0 +1,16 @@
+xm.item do
+  xm.title post_title(item)
+  if config[:show_extended_on_rss]
+    content = item.full_html 
+  else
+    content = item.body_html
+  end
+  xm.description content
+  xm.pubDate pub_date(item.created_at)
+  xm.guid post_link(item)
+  xm.link post_link(item)
+  for category in item.categories
+    xm.category category.name
+  end
+  xm.trackback :ping, server_url_for(:controller => "articles", :action =>"trackback", :id => item.id)
+end

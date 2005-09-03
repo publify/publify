@@ -15,3 +15,9 @@ personal:
   name: Personal
   permalink: personal
   position: 3
+
+lifeonmars:
+  id: 4
+  name: Life On Mars
+  permalink: life-on-mars
+  position: 4

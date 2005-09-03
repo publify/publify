@@ -1,0 +1,22 @@
+xm.entry do
+  xm.author do
+    xm.name item.author
+  end
+  xm.id "urn:uuid:#{item.guid}"
+
+  xm.published item.created_at.xmlschema
+  xm.updated item.updated_at.xmlschema
+  xm.title post_title(item)
+
+  xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
+  for category in item.categories
+    xm.dc :subject, category.name
+  end
+
+  if config[:show_extended_on_rss]
+    content = item.full_html 
+  else
+    content = item.body_html
+  end
+  xm.content content, "type"=>"html"
+end

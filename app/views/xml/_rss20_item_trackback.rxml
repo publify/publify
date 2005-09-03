@@ -1,0 +1,7 @@
+xm.item do
+  xm.title "\"#{item.title}\" from #{item.blog_name} (#{item.article.title})"
+  xm.description item.excerpt
+  xm.pubDate pub_date(item.created_at)
+  xm.guid trackback_link(item)
+  xm.link item.url
+end

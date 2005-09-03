@@ -12,6 +12,7 @@ class Configuration < ConfigManager
   setting :limit_rss_display, :int, 10  
   setting :geourl_location, :string, ''
   setting :link_to_author, :bool, false
+  setting :show_extended_on_rss, :bool, true
   setting :theme, :string, 'azure'
   setting :use_gravatar, :bool, false
 end

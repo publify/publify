@@ -1,0 +1,18 @@
+xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
+xml.feed "version" => "0.3", "xml:lang" => "en-US",
+  "xmlns" => 'http://purl.org/atom/ns#', "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+  xml.title @feed_title
+  if(not config[:blog_subtitle].blank?)
+    xml.tagline config[:blog_subtitle], "mode" => "escaped", "type"=>"text/html"
+  end
+  xml.id "tag:#{@controller.request.host},2005:Typo"
+  xml.generator "Typo", "url" => "http://typo.leetsoft.com"
+  xml.link "rel" => "alternate", "type" => "text/html", "href" => @link
+
+  xml.modified @items.first.updated_at.xmlschema unless @items.empty?
+
+  @items.each do |item|
+    render :partial => "atom03_item_#{item.class.name.to_s.downcase}",
+      :locals => {:item => item, :xm => xml}
+  end
+end

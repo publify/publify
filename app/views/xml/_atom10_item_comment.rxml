@@ -1,0 +1,13 @@
+xm.entry do
+  xm.author { xm.name item.author }
+  xm.id "tag:#{controller.request.host},2005:Typo-#{item.id}"
+
+  xm.published item.created_at.xmlschema
+  xm.updated item.updated_at.xmlschema
+  xm.title "Comment on #{item.article.title} by #{item.author}"
+
+  xm.link "rel" => "alternate", "type" => "text/html", "href" => comment_link(item)
+
+  content = item.body_html
+  xm.content content, "type"=>"html"
+end

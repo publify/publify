@@ -24,6 +24,12 @@ class Test::Unit::TestCase
   def create_fixtures(*table_names)
     Fixtures.create_fixtures(File.dirname(__FILE__) + "/fixtures", table_names)
   end
+  
+  def assert_xml(xml)
+    assert_nothing_raised do
+      assert REXML::Document.new(xml)
+    end
+  end
 
   # Add more helper methods to be used by all tests here...
 end

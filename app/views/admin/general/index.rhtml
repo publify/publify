@@ -42,6 +42,11 @@
       <label for="limit_rss_display">Display </label>
       <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /> articles in my rss feed by default.
     </p>
+    <p>
+      <input name="setting[show_extended_on_rss]" id="show_extended_on_rss" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:show_extended_on_rss)%> />
+      <input name="setting[show_extended_on_rss]" type="hidden" value="0"/>
+        <label for="show_extended_on_rss">Show full article on rss feed</label>
+    </p>
       
     <hr />
 

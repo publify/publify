@@ -6,7 +6,9 @@ spam_comment:
   author: Bob Foo
   url: http://fakeurl.com
   body: Test <a href="http://fakeurl.co.uk">body</a>
-  created_at: 2005-01-01 01:00:00
+  body_html: Test <a rel="nofollow" href="http://fakeurl.co.uk">body</a>
+  created_at: 2005-01-01 02:00:00
+  updated_at: 2005-01-01 02:00:00
 
 comment2:
   id: 2
@@ -15,4 +17,6 @@ comment2:
   url: www.google.com
   email: john.bar@google.com
   body: Comment body _italic_ *bold*
-  created_at: 2005-01-01 01:00:00
+  body_html: <p>Comment body <em>italic</em> <strong>bold</strong>
+  created_at: 2005-01-01 02:00:01
+  updated_at: 2005-01-01 02:00:01

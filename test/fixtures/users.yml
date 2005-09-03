@@ -4,18 +4,22 @@ tobi:
   id: 1000000
   login: tobi
   password: ea0f5fd4398054c1c7aa0fbc7aaea30914a14441 # whatever
+  name: Tobi
 
 bob:
   id: 1000001
   login: bob
   password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
+  name: Bob
   
 existingbob:
   id: 1000002
   login: existingbob
   password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
+  name: Also Bob
   
 longbob:
   id: 1000003
   login: longbob
   password: 8e9b1a9a38e66ca572a5e8fdac8e256848842dfa # longtest
+  name: More Bob
