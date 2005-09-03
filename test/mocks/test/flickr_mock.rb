@@ -19,5 +19,9 @@ class Flickr
     def title
       "Matz"
     end
+    
+    def url
+      "http://www.flickr.com/users/scottlaird/31366117"
+    end
   end
 end

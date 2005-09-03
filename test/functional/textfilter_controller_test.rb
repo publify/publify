@@ -71,19 +71,19 @@ class TextfilterControllerTest < Test::Unit::TestCase
   end
 
   def test_flickr
-    assert_equal "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/photo_zoom.gne?id=31366117&size=sq\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
+    assert_equal "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
       @controller.filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',
         [:macropre,:macropost],
         'flickr-user' => 'scott@sigkill.org')
 
     # Test default image size
-    assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/photo_zoom.gne?id=31366117&size=sq\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
+    assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
       @controller.filter_text('<typo:flickr img="31366117"/>',
         [:macropre,:macropost],
         'flickr-user' => 'scott@sigkill.org')
 
     # Test with caption=""
-    assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/photo_zoom.gne?id=31366117&size=sq\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a></div>",
+    assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a></div>",
       @controller.filter_text('<typo:flickr img="31366117" caption=""/>',
         [:macropre,:macropost],
         'flickr-user' => 'scott@sigkill.org')

@@ -66,7 +66,7 @@ This macro takes a number of parameters:
     width = details['width']
     height = details['height']
     imageurl = details['source']
-    imagelink = details['url']
+    imagelink = flickrimage.url
     
     caption ||= flickrimage.description
     title ||= flickrimage.title
