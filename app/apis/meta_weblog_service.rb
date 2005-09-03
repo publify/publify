@@ -87,7 +87,7 @@ class MetaWeblogService < TypoWebService
     article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
-    article.created_at = struct['dateCreated'].to_time rescue Time.now
+    article.created_at = struct['dateCreated'].to_time.getlocal rescue Time.now
     article.user        = @user
 
     # Movable Type API support
@@ -124,7 +124,7 @@ class MetaWeblogService < TypoWebService
     article.title       = struct['title'] || ''
     article.published   = publish ? 1 : 0
     article.author      = username
-    article.created_at  = struct['dateCreated'].to_time unless struct['dateCreated'].blank?
+    article.created_at  = struct['dateCreated'].to_time.getlocal unless struct['dateCreated'].blank?
 
     # Movable Type API support
     article.allow_comments = struct['mt_allow_comments'] || config['default_allow_comments']
