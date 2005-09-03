@@ -7,8 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   # admin/comments controller needs parent article id
   map.connect 'admin/comments/article/:article_id/:action/:id',
     :controller => 'admin/comments', :action => nil, :id => nil
-  map.connect 'admin/trackback/article/:article_id/:action/:id',
-    :controller => 'admin/trackback', :action => nil, :id => nil
+  map.connect 'admin/trackbacks/article/:article_id/:action/:id',
+    :controller => 'admin/trackbacks', :action => nil, :id => nil
   map.connect 'admin/content/:action/:id', :controller => 'admin/content'
 
   # make rss feed urls pretty and let them end in .xml
