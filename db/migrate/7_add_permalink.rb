@@ -10,11 +10,11 @@ class AddPermalink < ActiveRecord::Migration
 
     # now to re-process articles and categories to set permalinks
     articles = Article.find(:all)
-    puts "Processing #{articles.length} article#{'s' unless articles.length == 1}"
+    STDERR.puts "Processing #{articles.length} article#{'s' unless articles.length == 1}"
     articles.each { |a| a.save }
     
     categories = Category.find(:all)
-    puts "Processing #{categories.length} categorie#{'s' unless categories.length == 1}"
+    STDERR.puts "Processing #{categories.length} categorie#{'s' unless categories.length == 1}"
     categories.each { |c| c.save }
   end
 

@@ -2,7 +2,7 @@ class AddArticleUserId < ActiveRecord::Migration
   def self.up
     add_column :articles, :user_id, :integer
 
-    puts "Linking article authors to users"
+    STDERR.puts "Linking article authors to users"
     Article.find(:all).each do |a|
       u=User.find_by_name(a.author)
       if(u)

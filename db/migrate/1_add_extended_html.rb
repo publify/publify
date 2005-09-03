@@ -7,7 +7,7 @@ class AddExtendedHtml < ActiveRecord::Migration
     
     # now to re-process articles to set extended_html
     articles = Article.find(:all)
-    puts "Processing #{articles.length} article#{'s' unless articles.length == 0}"
+    STDERR.puts "Processing #{articles.length} article#{'s' unless articles.length == 0}"
     articles.each { |a| a.save }
   end
 

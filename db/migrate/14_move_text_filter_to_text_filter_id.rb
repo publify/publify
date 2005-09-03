@@ -1,6 +1,6 @@
 class MoveTextFilterToTextFilterId < ActiveRecord::Migration
   def self.up
-    puts "Converting Article and Page to use text_filter_id instead of text_filter"
+    STDERR.puts "Converting Article and Page to use text_filter_id instead of text_filter"
     filters=Hash.new
     TextFilter.find(:all).each do |filter|
       # Performance hack; if there are 500 articles but only 5 filters, then 
@@ -29,7 +29,7 @@ class MoveTextFilterToTextFilterId < ActiveRecord::Migration
   end
 
   def self.down
-    puts "Dropping text_filter_id in favor of text_filter"
+    STDERR.puts "Dropping text_filter_id in favor of text_filter"
     Article.transaction do
       add_column :articles, :text_filter, :string
       Article.find(:all).each do |article|

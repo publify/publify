@@ -1,6 +1,6 @@
 class AddTextfilters < ActiveRecord::Migration
   def self.up
-    puts "Adding TextFilters table"
+    STDERR.puts "Adding TextFilters table"
     create_table :text_filters do |t|
       t.column :name, :string
       t.column :description, :string
