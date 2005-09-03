@@ -2,10 +2,10 @@
   <div id="delicious">
     <h3><a href="http://<%= @delicious.title %>"><%= @delicious.title %></a></h3>
     <% (@sb_config['groupdate'] ? @delicious.days : [{ :container => @delicious.items }]).each do |group| -%>
+    <% if @sb_config['groupdate'] -%>
+    <span class="date"><%= group[:date].to_s.to_date.strftime("%b %d") %></span>
+    <% end -%>
     <ul>
-      <% if @sb_config['groupdate'] -%>
-      <span class="date"><%= group[:date].to_s.to_date.strftime("%b %d") %></span>
-      <% end -%>
       <% for item in group[:container] %>
       <li>
         <a href="<%= item.link %>" title="<%=h item.title%>"><%=h item.title %></a>
