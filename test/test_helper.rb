@@ -20,7 +20,7 @@ class Test::Unit::TestCase
   # Turn these off to use instantiated fixtures.  This is really only useful with MySQL with
   # MyISAM tables.
   self.use_transactional_fixtures = true
-  self.use_instantiated_fixtures  = false
+  #self.use_instantiated_fixtures  = false
 
   def create_fixtures(*table_names)
     Fixtures.create_fixtures(File.dirname(__FILE__) + "/fixtures", table_names)
