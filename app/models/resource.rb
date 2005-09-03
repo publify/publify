@@ -9,6 +9,8 @@ class Resource < ActiveRecord::Base
   
   def write_to_disk(up)
     begin
+      # create the public/files dir if it doesn't exist
+      FileUtils.mkdir(fullpath('')) unless File.directory?(fullpath(''))
       if up.kind_of?(Tempfile) and !up.local_path.nil? and File.exist?(up.local_path)
         File.chmod(0600, up.local_path)
         FileUtils.copy(up.local_path, fullpath)
