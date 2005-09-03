@@ -26,31 +26,31 @@ CREATE TABLE articles (
   permalink varchar(255),
   user_id int(11),
   text_filter_id int(11)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE articles_categories (
   article_id int(11),
   category_id int(11),
   is_primary int(11)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE articles_tags (
   article_id int(11),
   tag_id int(11)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE blacklist_patterns (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   type varchar(255),
   pattern varchar(255)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE categories (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   name varchar(255),
   position int(11),
   permalink varchar(255)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE comments (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -64,12 +64,12 @@ CREATE TABLE comments (
   body_html text,
   created_at datetime,
   updated_at datetime
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE page_caches (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   name varchar(255)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE pages (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -81,14 +81,14 @@ CREATE TABLE pages (
   updated_at datetime,
   title varchar(255),
   text_filter_id int(11)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE pings (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   article_id int(11),
   url varchar(255),
   created_at datetime
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE resources (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -98,7 +98,7 @@ CREATE TABLE resources (
   created_at datetime,
   updated_at datetime,
   article_id int(11)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE sessions (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -106,14 +106,14 @@ CREATE TABLE sessions (
   data text,
   created_at datetime,
   updated_at datetime
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE settings (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   name varchar(255),
   value varchar(255),
   position int(11)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE sidebars (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -122,14 +122,14 @@ CREATE TABLE sidebars (
   active_config text,
   staged_position int(11),
   staged_config text
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE tags (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   name varchar(255),
   created_at datetime,
   updated_at datetime
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE text_filters (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -138,7 +138,7 @@ CREATE TABLE text_filters (
   markup varchar(255),
   filters text,
   params text
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE trackbacks (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -150,7 +150,7 @@ CREATE TABLE trackbacks (
   ip varchar(255),
   created_at datetime,
   updated_at datetime
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 CREATE TABLE users (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -158,7 +158,7 @@ CREATE TABLE users (
   password varchar(255),
   email text,
   name text
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 
 -- indexes 
@@ -188,6 +188,6 @@ INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) 
 
 CREATE TABLE schema_info (
   version int(11)
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 insert into schema_info (version) values (14);
