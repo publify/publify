@@ -266,4 +266,38 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_no_tag :tag => "ol",
       :attributes => { :id => "trackbackList" }
   end
+  
+  def test_autodiscovery_default
+    get :index
+    assert_response :success
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+        :href => 'http://test.host/xml/rss/feed.xml'}
+  end
+
+
+  def test_autodiscovery_article
+    get :read, :id => 1
+    assert_response :success
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+        :href => 'http://test.host/xml/rss/article/1/feed.xml'}
+  end
+
+  def test_autodiscovery_category
+    get :category, :id => 'hardware'
+    assert_response :success
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+        :href => 'http://test.host/xml/rss/category/hardware/feed.xml'}
+  end
+  
+  def test_autodiscovery_tag
+    get :tag, :id => 'hardware'
+    assert_response :success
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+        :href => 'http://test.host/xml/rss/tag/hardware/feed.xml'}
+  end
+  
 end

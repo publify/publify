@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   model :user
   
   before_filter :reload_settings
-      
+  before_filter :auto_discovery_defaults
+  
   def self.cache_page(content, path)
     begin
       # Don't cache the page if there are any questionmark characters in the url
@@ -22,6 +23,16 @@ class ApplicationController < ActionController::Base
     if cache = PageCache.find(:first, :conditions => ['name = ?', path])
       cache.destroy
     end
+  end
+  
+  def auto_discovery_defaults
+    auto_discovery_feed(:type => 'feed')
+  end
+  
+  def auto_discovery_feed(options)
+    options = {:only_path => false, :action => 'feed', :controller => 'xml'}.merge options
+    @auto_discovery_url_rss = url_for(({:format => 'rss'}.merge options))
+    @auto_discovery_url_atom = url_for(({:format => 'atom'}.merge options))
   end
   
   def article_url(article, only_path = true, anchor = nil)

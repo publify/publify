@@ -30,11 +30,12 @@ class ArticlesController < ApplicationController
     @articles = Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC', :include => [:categories])
   end
   
-  def read    
+  def read  
     begin
       @article      = Article.find(params[:id], :conditions => "published != 0", :include => [:categories])    
       @comment      = Comment.new
       @page_title   = @article.title
+      auto_discovery_feed :type => 'article', :id => @article.id
     rescue
       error("Post not found...") and return
     end
@@ -43,10 +44,11 @@ class ArticlesController < ApplicationController
   def permalink
     @article    = Article.find_by_permalink(params[:year], params[:month], params[:day], params[:title])
     @comment    = Comment.new
-    
+
     if @article.nil?
       error("Post not found...")
     else
+      auto_discovery_feed :type => 'article', :id => @article.id
       @page_title = @article.title
       render :action => "read"
   	end
@@ -74,6 +76,7 @@ class ArticlesController < ApplicationController
   
   def category
     if category = Category.find_by_permalink(params[:id])
+      auto_discovery_feed :type => 'category', :id => category.permalink
       @articles = Article.find(:all, :conditions => [%{ published != 0
           AND #{Article.table_name}.id = articles_categories.article_id
           AND articles_categories.category_id = ? }, category.id], 
@@ -96,6 +99,7 @@ class ArticlesController < ApplicationController
   def tag
     @articles=Article.find_by_tag(params[:id])
     @articles.reject! { |a| a.published == 0 }
+    auto_discovery_feed :type => 'tag', :id => params[:id]
     
     if(not @articles.empty?)
       @pages = Paginator.new self, @articles.size, config[:limit_article_display], @params[:page]

@@ -5,7 +5,8 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <%= meta_tag 'ICBM', config_value(:geourl_location)  %>
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= server_url_for :controller => 'xml', :action => 'rsd' %>" />
-  <%= auto_discovery_link_tag :rss, :controller => 'xml', :action => 'rss' %>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= @auto_discovery_url_rss %>" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= @auto_discovery_url_atom %>" />
   <%= stylesheet_link_tag "/stylesheets/theme/azure" %>
   <%= stylesheet_link_tag "/stylesheets/user-styles" %>
   <%= javascript_include_tag "cookies" %>
