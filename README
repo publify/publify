@@ -48,7 +48,6 @@ mode. To change the default, edit the second line of config/environment.rb and
 change 'development' to 'production', or follow the directions on the FastCGI
 configuration page on the Typo wiki.
 
-
 Permissions
 ===========
 
