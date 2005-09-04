@@ -1,11 +1,11 @@
 What is it?
 ===========
 
-Typo is a lean and mean weblog. Weblogs are cool, weblogs are "in" and
-everyone who writes code has an different opinion on how a weblog
-should be written. Typo is our take on it. Its meant for programmers
-who can extend and change the source to make it fit to their needs but
-will eventually be useful to normal users as well.
+Typo is a weblog system written in Ruby using Ruby on Rails. Weblogs are cool,
+weblogs are "in" and everyone who writes code has an different opinion on how
+a weblog should be written. Typo is our take on it. Typo is designed to be
+usable by programmers and non-programmers, while being easy for programmers to
+extend.
 
 Requirements
 ============
@@ -30,17 +30,24 @@ Decide which database to use. We support Sqlite, MySQL, and Postgres,
 but Sqlite doesn't have full support for database migrations in Rails
 0.13.1.
 
-  * Create a database for typo. You can find matching schemas in the
-    db/ folder. 
-  * Change the config/database.yml to reflect your newly created
-    database configuration  
+  * Create a database for typo. You can find schemas in the db/ folder. 
+  * Create config/database.yml using database.yml.example to reflect your
+    newly created database configuration  
   * Run script/server -e production and see if it works  
   * Point your browser to http://your.domain.com:3000/ and follow the
     install process
 
-If you want to deploy on fastcgi you will need to follow the setup
-instructions on the typo page at
-http://typo.leetsoft.com/trac.cgi/wiki/FastCgi
+Typo, like all Rails apps, doesn't work well as a CGI. Seriously consider
+using FastCGI instead. To deploy on FastCGI you will need to follow the setup
+instructions on the typo page at http://typo.leetsoft.com/trac/wiki/FastCgi
+
+By default, Typo runs in *development* mode. This is very useful for
+developers, but it can cause horrible performance for users who aren't
+changing Typo's code. Production mode can easily be 20x as fast as development
+mode. To change the default, edit the second line of config/environment.rb and
+change 'development' to 'production', or follow the directions on the FastCGI
+configuration page on the Typo wiki.
+
 
 Permissions
 ===========
@@ -50,12 +57,13 @@ correctly. These need to be writable by the user that runs the Typo
 process--in a hosted environment this may be your user; on dedicated
 systems it may be something like 'httpd' or 'www-data'.
 
-The specific directories in question are 'log/' (and everything
-underneath it) and 'public/'. Strictly speaking, Rails will continue
-to work if public isn't writable, but none of Typo's caching code will
-work properly. For the security conscious, Rails really only needs the
-ability to change a half-dozen files and subdirectories under public/,
-ask on the Typo mailing list for more details.
+The specific directories in question are 'log/' (and everything underneath
+it), 'cache/', and 'public/'. Strictly speaking, Rails will continue to work
+if public isn't writable, but Typo's page caching code will work properly and
+this will cause Typo to be slower and use much more CPU time. For the security
+conscious, Rails really only needs the ability to change a half-dozen files
+and subdirectories under public/, ask on the Typo mailing list for more
+details.
 
 Usage
 ======
