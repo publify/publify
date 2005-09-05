@@ -60,7 +60,6 @@ class TextFilterTest < Test::Unit::TestCase
     assert types['markup'].include?(Plugins::Textfilters::TextileController)
 
     assert types['macropost'].include?(Plugins::Textfilters::FlickrController)
-    assert types['macropost'].include?(Plugins::Textfilters::SparklineController)
 
     assert types['macropre'].include?(Plugins::Textfilters::CodeController)
 

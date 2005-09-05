@@ -18,6 +18,14 @@ class TextfilterControllerTest < Test::Unit::TestCase
     @controller.assigns ||= []
   end
   
+  def sparklines_available
+    begin
+      Plugins::Textfilters::SparklineController
+    rescue
+      false
+    end
+  end
+  
   def test_unknown
     text = @controller.filter_text('*foo*',[:unknowndoesnotexist])
     assert_equal '*foo*', text
@@ -90,6 +98,8 @@ class TextfilterControllerTest < Test::Unit::TestCase
   end
 
   def test_sparkline
+    return unless sparklines_available
+    
     tag = @controller.filter_text('<typo:sparkline foo="bar"/>',[:macropre,:macropost])
     # url_for returns query params in hash order, which isn't stable, so we can't just compare
     # with a static string.  Yuck.
@@ -112,6 +122,8 @@ class TextfilterControllerTest < Test::Unit::TestCase
   end
       
   def test_sparkline_plot
+    return unless sparklines_available
+
     get 'public_action', :filter => 'sparkline', :public_action => 'plot', :data => '1,2,3'
     assert_response :success
     
