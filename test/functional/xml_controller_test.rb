@@ -77,7 +77,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-#    assert_tag :tag => 'channel', :children => {:count => 3, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 3, :only => {:tag => 'item' }}
   end
   
   def test_feed_rss20_comments
@@ -86,7 +86,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
   end
 
   def test_feed_rss20_trackbacks
@@ -95,7 +95,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
   end
 
   def test_feed_rss20_article
@@ -104,7 +104,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-#    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
   end
 
   def test_feed_rss20_category
@@ -113,7 +113,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'channel', :children => {:count => 3, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 3, :only => {:tag => 'item' }}
   end
   
   def test_feed_rss20_tag
@@ -122,7 +122,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
   end
 
   def test_feed_atom03_feed
@@ -131,7 +131,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-#    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom03_comments
@@ -140,7 +140,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom03_trackbacks
@@ -149,7 +149,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom03_article
@@ -158,7 +158,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
   
   def test_feed_atom03_category
@@ -167,7 +167,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom03_tag
@@ -176,7 +176,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_feed
@@ -186,7 +186,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_comments
@@ -195,7 +195,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_trackbacks
@@ -204,7 +204,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_article
@@ -213,7 +213,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_category
@@ -222,7 +222,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_tag
@@ -231,7 +231,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-#    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
   end
 
   def test_articlerss
