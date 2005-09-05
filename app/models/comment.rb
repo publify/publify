@@ -2,6 +2,7 @@ require_dependency 'transforms'
 
 class Comment < ActiveRecord::Base
   belongs_to :article
+  belongs_to :user
 
   validates_presence_of :author, :body
   validates_against_spamdb :body, :url, :ip

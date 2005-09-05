@@ -1,4 +1,4 @@
-<li id="comment-<%= comment.id %>" <%= 'style="display:none"' if controller.request.xhr? %><%= onhover_show_admin_tools(:comment, comment.id) %>>
+<li id="comment-<%= comment.id %>" <%= 'class="author_comment"' if comment.user %> <%= 'style="display:none"' if controller.request.xhr? %><%= onhover_show_admin_tools(:comment, comment.id) %>>
   <%= admin_tools_for comment %>
   <a name="comment-<%= comment.id %>"></a>
   <%= gravatar_tag(comment.email) if config_value(:use_gravatar) and comment.email %>

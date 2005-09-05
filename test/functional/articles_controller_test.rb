@@ -73,7 +73,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
     
-    assert_equal "", comment.body_html.to_s
+    assert_equal "<p>This is <strong>textile</strong></p>", comment.body_html.to_s
   end
   
   def test_comment_spam1
@@ -90,7 +90,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
 
-    assert_equal "", comment.body_html.to_s
+    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.body_html.to_s
   end
 
   def test_comment_spam2
@@ -107,7 +107,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
 
-    assert_equal "", comment.body_html.to_s
+    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.body_html.to_s
   end
 
   def test_comment_nuking 
@@ -121,6 +121,36 @@ class ArticlesControllerTest < Test::Unit::TestCase
     post :nuke_comment, { :id => 1 }, { :user => users(:bob)}
     assert_response :success
     assert_equal num_comments -1, Comment.count    
+  end
+  
+  def test_comment_user_blank
+    post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
+    assert_response :success
+
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+    assert_nil comment.user_id
+    
+    get :read, {:id => 2}
+    assert_response :success
+    assert_no_tag :tag => "li",
+       :attributes => { :class => "author_comment"}
+    
+  end
+  
+  def test_comment_user_set
+    @request.session = { :user => @tobi }
+    post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
+    assert_response :success
+
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+    assert_equal @tobi, comment.user
+
+    get :read, {:id => 2}
+    assert_response :success
+    assert_tag :tag => "li",
+       :attributes => { :class => "author_comment"}
   end
 
   def test_trackback_nuking 
@@ -243,6 +273,9 @@ class ArticlesControllerTest < Test::Unit::TestCase
       :attributes => { :id => "commentList"},
       :children => { :count => @article1.comments.size,
         :only => { :tag => "li" } }
+        
+    assert_tag :tag => "li",
+       :attributes => { :class => "author_comment"}
 
     assert_tag :tag => "ol",
       :attributes => { :id => "trackbackList" },

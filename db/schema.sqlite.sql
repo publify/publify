@@ -63,7 +63,8 @@ CREATE TABLE comments (
   body text,
   body_html text,
   created_at datetime,
-  updated_at datetime
+  updated_at datetime,
+  user_id integer
 );
 
 CREATE TABLE page_caches (
@@ -190,4 +191,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-insert into schema_info (version) values (16);
+insert into schema_info (version) values (17);

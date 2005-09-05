@@ -122,6 +122,7 @@ class ArticlesController < ApplicationController
     @comment.article = @article
     @comment.ip = request.remote_ip
     @comment.body_html = nil
+    @comment.user = session[:user]
 
     if request.post? and @comment.save    
       cookies[:author]  = { :value => @comment.author, :path => '/' + controller_name, :expires => 6.weeks.from_now } 
