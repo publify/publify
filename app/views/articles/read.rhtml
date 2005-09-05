@@ -7,7 +7,7 @@
     trackback:ping="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article %>"
     dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
     dc:identifier="<%= server_url_for :controller=>"articles", :action=>"read", :id=>@article %>"
-    dc:description="<%=h strip_html(@article.body_html[0..255]).gsub(/-+/, '-') %>"
+    dc:description="<%=h strip_html(article_html(@article)[0..255]).gsub(/-+/, '-') %>"
     dc:creator="<%= h @article.author %>"
     dc:date="<%= @article.updated_at.xmlschema %>" />
 </rdf:RDF>
@@ -19,7 +19,7 @@
   <h2><%= @article.title %></h2>
   <p class="auth">Posted by <%= author_link(@article) %>
   <%= js_distance_of_time_in_words_to_now @article.created_at.utc %></p>
-  <%= @article.full_html %>
+  <%= article_html(@article) %>
 </div>
 <p class="meta">
   <%= article_links @article %>

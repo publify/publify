@@ -1,9 +1,9 @@
 xm.item do
   xm.title post_title(item)
   if config[:show_extended_on_rss]
-    content = item.full_html 
+    content = article_html(item)
   else
-    content = item.body_html
+    content = article_html(item,:body)
   end
   xm.description content
   xm.pubDate pub_date(item.created_at)

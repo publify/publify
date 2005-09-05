@@ -7,16 +7,6 @@ module ApplicationHelper
     url_for options.update(:only_path => false)
   end
 
-  def strip_html(text)
-    attribute_key = /[\w:_-]+/
-    attribute_value = /(?:[A-Za-z0-9]+|(?:'[^']*?'|"[^"]*?"))/
-    attribute = /(?:#{attribute_key}(?:\s*=\s*#{attribute_value})?)/
-    attributes = /(?:#{attribute}(?:\s+#{attribute})*)/
-    tag_key = attribute_key
-    tag = %r{<[!/?\[]?(?:#{tag_key}|--)(?:\s+#{attributes})?\s*(?:[!/?\]]+|--)?>}
-    text.gsub(tag, '').gsub(/\s+/, ' ').strip
-  end
-
   def config_value(name)  
     config[name]
   end
@@ -103,5 +93,49 @@ module ApplicationHelper
 
   def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
+  end
+  
+  def article_html(article, what = :all)
+    if(article.body_html.blank?)
+      article.body_html = @controller.filter_text_by_name(article.body, article.text_filter.name) rescue article.body
+      article.extended_html = @controller.filter_text_by_name(article.extended, article.text_filter.name) rescue article.extended
+    end
+    
+    case what
+    when :all
+      article.body_html+"\n"+article.extended_html
+    when :body
+      article.body_html
+    when :extended
+      article.extended_html
+    else
+      raise "Unknown 'what' in article_html"
+    end
+  end
+  
+  def comment_html(comment)
+    if(comment.body_html.blank?)
+      comment.body_html = @controller.filter_text_by_name(comment.body, config[:comment_text_filter]) rescue comment.body
+    end
+    
+    comment.body_html
+  end
+  
+  def page_html(page)
+    if(page.body_html.blank?)
+      page.body_html = @controller.filter_text_by_name(page.body, page.text_filter.name) rescue page.body
+    end
+    
+    page.body_html
+  end
+  
+  def strip_html(text)
+    attribute_key = /[\w:_-]+/
+    attribute_value = /(?:[A-Za-z0-9]+|(?:'[^']*?'|"[^"]*?"))/
+    attribute = /(?:#{attribute_key}(?:\s*=\s*#{attribute_value})?)/
+    attributes = /(?:#{attribute}(?:\s+#{attribute})*)/
+    tag_key = attribute_key
+    tag = %r{<[!/?\[]?(?:#{tag_key}|--)(?:\s+#{attributes})?\s*(?:[!/?\]]+|--)?>}
+    text.gsub(tag, '').gsub(/\s+/, ' ').strip
   end
 end

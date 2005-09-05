@@ -100,11 +100,6 @@ class Article < ActiveRecord::Base
     end
   end
   
-  # Get the full html body
-  def full_html
-    "#{body_html}\n\n#{extended_html}"
-  end
-
   def keywords_to_tags
     Article.transaction do
       tags.clear

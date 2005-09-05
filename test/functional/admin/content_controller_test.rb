@@ -63,8 +63,8 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal body, new_article.body
     assert_equal extended, new_article.extended
     assert_equal "textile", new_article.text_filter.name
-    assert_equal '<p>body via <strong>textile</strong></p>', new_article.body_html
-    assert_equal '<p><strong>foo</strong></p>', new_article.extended_html
+    assert_nil new_article.body_html
+    assert_nil new_article.extended_html
   end
 
   def test_edit
@@ -82,7 +82,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     article = Article.find(1)
     assert_equal "textile", article.text_filter.name
     assert_equal body, article.body
-    assert_equal '<p>another <strong>textile</strong> test</p>', article.body_html
+    assert_nil article.body_html
   end
 
   def test_destroy

@@ -14,9 +14,9 @@ xm.entry do
   end
 
   if config[:show_extended_on_rss]
-    content = item.full_html 
+    content = article_html(item)
   else
-    content = item.body_html
+    content = article_html(item,:body)
   end
   xm.content content, "type"=>"text/html", "mode"=>"escaped"
 end

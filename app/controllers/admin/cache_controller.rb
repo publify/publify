@@ -11,7 +11,19 @@ class Admin::CacheController < Admin::BaseController
 
   def sweep
     PageCache.sweep_all
+        
     flash['notice'] = 'Cache was cleared'
+    redirect_to :controller => 'general'
+  end
+  
+  def sweep_html
+    Article.transaction do
+      Article.update_all 'body_html = null'
+      Comment.update_all 'body_html = null'
+      Page.update_all 'body_html = null'
+    end
+
+    flash['notice'] = 'HTML was cleared'
     redirect_to :controller => 'general'
   end
   

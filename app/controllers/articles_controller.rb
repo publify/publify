@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     
     @headers["Content-Type"] = "text/html; charset=utf-8"
     @comment = Comment.new(params[:comment])
-    @comment.body_html = filter_text_by_name(@comment.body, config[:comment_text_filter], true) rescue @comment.body
+    @comment.body_html = nil
     
     render :layout => false
   end
@@ -121,11 +121,9 @@ class ArticlesController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.article = @article
     @comment.ip = request.remote_ip
-    @comment.body_html = filter_text_by_name(@comment.body, config[:comment_text_filter],true)
+    @comment.body_html = nil
 
-    if request.post? and @comment.save      
-      @comment.body = ""
-      
+    if request.post? and @comment.save    
       cookies[:author]  = { :value => @comment.author, :path => '/' + controller_name, :expires => 6.weeks.from_now } 
       cookies[:url]     = { :value => @comment.url, :path => '/' + controller_name, :expires => 6.weeks.from_now } 
 

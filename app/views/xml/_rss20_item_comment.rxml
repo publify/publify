@@ -1,6 +1,6 @@
 xm.item do
   xm.title "\"#{item.article.title}\" by #{item.author}"
-  xm.description item.body_html
+  xm.description comment_html(item)
   xm.pubDate pub_date(item.created_at)
   xm.guid comment_link(item)
   xm.link comment_link(item)

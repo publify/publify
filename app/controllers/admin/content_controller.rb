@@ -140,8 +140,8 @@ class Admin::ContentController < Admin::BaseController
 
   private
   def update_html(article)
-    article.body_html = filter_text_by_name(article.body, article.text_filter.name) rescue article.body
-    article.extended_html = filter_text_by_name(article.extended, article.text_filter.name) rescue article.extended
+    article.body_html = nil
+    article.extended_html = nil
   end
   
 end

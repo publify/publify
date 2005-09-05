@@ -56,6 +56,6 @@ class Admin::PagesController < Admin::BaseController
   private
 
   def update_html(page)
-    page.body_html = filter_text_by_name(page.body, page.text_filter.name) rescue page.body
+    page.body_html = nil
   end
 end

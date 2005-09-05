@@ -18,8 +18,8 @@ class Admin::CommentsController < Admin::BaseController
 
   def new
     @comment = @article.comments.build(params[:comment])
-    @comment.body_html = filter_text_by_name(@comment.body, config[:comment_text_filter],true)
-
+    @comment.body_html = nil
+    
     if request.post? and @comment.save
       flash[:notice] = 'Comment was successfully created.'
       redirect_to :action => 'show', :id => @comment.id
@@ -29,7 +29,8 @@ class Admin::CommentsController < Admin::BaseController
   def edit
     @comment = @article.comments.find(params[:id])
     @comment.attributes = params[:comment]
-    @comment.body_html = filter_text_by_name(@comment.body, config[:comment_text_filter],true)
+    @comment.body_html = nil
+    
     if request.post? and @comment.save
       flash[:notice] = 'Comment was successfully updated.'
       redirect_to :action => 'show', :id => @comment.id

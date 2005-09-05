@@ -8,8 +8,7 @@
   <h3><%=h @article.title %></h3>
 
   <div class="form">	
-    <div><%=@article.body_html %></div>
-    <div><%=@article.extended_html %></div>
+    <div><%= article_html(@article) %></div>
     <p class="meta"><label>Posted:</label> <%=h @article.created_at.to_formatted_s(:long_weekday) %> by <%=h @article.author %></p>
     <p class="meta"><label>Lasted updated:</label> <%=h @article.updated_at.to_formatted_s(:long_weekday) %></p>    
     <p class="meta"><label>Published:</label> <%=h (@article.published.zero? ? "No" : "Yes") %></p>
