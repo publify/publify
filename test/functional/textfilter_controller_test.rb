@@ -104,9 +104,9 @@ class TextfilterControllerTest < Test::Unit::TestCase
     assert_equal "<img  alt=\"ccc\" src=\"http://test.host/plugins/filters/sparkline/plot?data=\"/>",
       @controller.filter_text('<typo:sparkline alt="ccc"/>',[:macropre,:macropost])
       
-    assert_equal "<img  src=\"http://test.host/plugins/filters/sparkline/plot?data=1%2C2%2C3%2C4&type=smooth\"/>",
-      @controller.filter_text('<typo:sparkline type="smooth" data="1 2 3 4"/>',[:macropre,:macropost])
-      
+    tag = @controller.filter_text('<typo:sparkline type="smooth" data="1 2 3 4"/>',[:macropre,:macropost])
+    assert tag =~ %r{^<img  src=\"http://test.host/plugins/filters/sparkline/plot\?(data=1%2C2%2C3%2C4|type=smooth|&)+\"/>}
+
     assert_equal "<img  src=\"http://test.host/plugins/filters/sparkline/plot?data=1%2C2%2C3%2C4%2C5%2C6\"/>",
       @controller.filter_text('<typo:sparkline>1 2 3 4 5 6</typo:sparkline>',[:macropre,:macropost])
   end
