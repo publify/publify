@@ -38,17 +38,13 @@ class XmlController < ApplicationController
       @link = article_url(article, false)
     when 'category'
       category = Category.find_by_permalink(params[:id])
-      @items = category.articles.sort_by {|a| a.created_at}.
-        reject {|a| a.published != 1 }.
-        slice(0,config[:limit_rss_display])
+      @items = Article.find_published_by_category_permalink(params[:id], :limit => config[:limit_rss_display])
       @feed_title = "#{config[:blog_name]}: Category #{category.name}"
       @link = url_for({:controller => "articles", :action => "category", :id => category.permalink},
         {:only_path => false})
     when 'tag'
       tag = Tag.find_by_name(params[:id])
-      @items = tag.articles.sort_by {|a| a.created_at}.
-        reject {|a| a.published != 1 }.
-        slice(0,config[:limit_rss_display])
+      @items = Article.find_published_by_tag_name(params[:id], :limit => config[:limit_rss_display])
       @feed_title = "#{config[:blog_name]}: Tag #{tag.name}"
       @link = url_for({:controller => "articles", :action => 'tag', :tag => tag.name},
         {:only_path => false})

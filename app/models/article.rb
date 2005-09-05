@@ -61,20 +61,6 @@ class Article < ActiveRecord::Base
     Article.find(:all, :conditions => ["#{Article.table_name}.created_at BETWEEN ? AND ? AND #{Article.table_name}.published != 0", from, to], :order => "#{Article.table_name}.created_at DESC")
   end
 
-  def self.find_by_tag(tag_name)
-    Article.find_by_sql([%{
-      SELECT a.* 
-      FROM 
-       #{Article.table_name} a 
-       INNER JOIN #{Article.table_name_prefix}articles_tags#{Article.table_name_suffix} at ON a.id = at.article_id
-       INNER JOIN #{Tag.table_name} t ON at.tag_id = t.id
-      WHERE
-       t.name = ?
-      ORDER BY
-       a.created_at DESC
-    },tag_name])
-  end
-
   # Find one article on a certain date
   def self.find_by_date(year, month, day)  
     find_all_by_date(year, month, day).first
@@ -88,6 +74,30 @@ class Article < ActiveRecord::Base
       AND #{Article.table_name}.created_at BETWEEN ? AND ?
       AND #{Article.table_name}.published != 0
     }, title, from, to ])
+  end
+  
+  def self.find_published_by_category_permalink(category_permalink, options = {})
+    category = Category.find_by_permalink(category_permalink)
+    return [] unless category
+    
+    Article.find(:all, 
+      { :conditions => [%{ published != 0 
+        AND #{Article.table_name}.id = articles_categories.article_id
+        AND articles_categories.category_id = ? }, category.id], 
+      :joins => ", #{Article.table_name_prefix}articles_categories#{Article.table_name_suffix} articles_categories",
+      :order => "created_at DESC"}.merge(options))
+  end
+
+  def self.find_published_by_tag_name(tag_name, options = {})
+    tag = Tag.find_by_name(tag_name)
+    return [] unless tag
+
+    Article.find(:all, 
+      { :conditions => [%{ published != 0 
+        AND #{Article.table_name}.id = articles_tags.article_id
+        AND articles_tags.tag_id = ? }, tag.id], 
+      :joins => ", #{Article.table_name_prefix}articles_tags#{Article.table_name_suffix} articles_tags",
+      :order => "created_at DESC"}.merge(options))
   end
 
   # Fulltext searches the body of published articles

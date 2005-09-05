@@ -77,12 +77,7 @@ class ArticlesController < ApplicationController
   def category
     if category = Category.find_by_permalink(params[:id])
       auto_discovery_feed :type => 'category', :id => category.permalink
-      @articles = Article.find(:all, :conditions => [%{ published != 0
-          AND #{Article.table_name}.id = articles_categories.article_id
-          AND articles_categories.category_id = ? }, category.id], 
-        :joins => ", #{Article.table_name_prefix}articles_categories#{Article.table_name_suffix} articles_categories",
-        :order => "created_at DESC")
-      
+      @articles = Article.find_published_by_category_permalink(category.permalink)      
       @pages = Paginator.new self, @articles.size, config[:limit_article_display], @params[:page]
 
       start = @pages.current.offset
@@ -97,8 +92,7 @@ class ArticlesController < ApplicationController
   end
     
   def tag
-    @articles=Article.find_by_tag(params[:id])
-    @articles.reject! { |a| a.published == 0 }
+    @articles = Article.find_published_by_tag_name(params[:id])
     auto_discovery_feed :type => 'tag', :id => params[:id]
     
     if(not @articles.empty?)

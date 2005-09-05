@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :articles, :settings, :articles_tags, :tags, :resources
+  fixtures :articles, :settings, :articles_tags, :tags, :resources, :categories, :articles_categories
   
   def setup
     config.reload
@@ -96,11 +96,34 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal 0, b.tags.size
   end
 
-  def test_find_by_tag
-    articles = Article.find_by_tag(@foo_tag.name)
+  def test_find_published_by_tag_name
+    articles = Article.find_published_by_tag_name(@foo_tag.name)
 
     assert_equal 2, articles.size
-    assert_equal [@article1, @article2].sort_by {|a| a.id}, articles.sort_by {|a| a.id}
+    assert_equal [@article1, @article2], articles
+  end
+  
+  def test_find_published_by_category
+    articles = Article.find_published_by_category_permalink('personal')
+    assert_equal 3, articles.size
+    assert articles.include?(@article1)
+    assert articles.include?(@article2)
+    assert articles.include?(@article3)
+    
+    articles = Article.find_published_by_category_permalink('foobar')
+    assert_equal 0, articles.size
+
+    articles = Article.find_published_by_category_permalink('software')
+    assert_equal 1, articles.size
+    assert articles.include?(@article1)
+
+    articles = Article.find_published_by_category_permalink('personal', :limit => 1)
+    assert_equal 1, articles.size
+    assert articles.include?(@article1)
+
+    articles = Article.find_published_by_category_permalink('personal', :limit => 1, :order => 'created_at ASC')
+    assert_equal 1, articles.size
+    assert articles.include?(@article3)
   end
 
   def test_destroy_file_upload_associations
