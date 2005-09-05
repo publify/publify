@@ -1,16 +1,12 @@
 require 'application'
+require 'plugins'
 
 class TextFilterPlugin < ApplicationController
   uses_component_template_root
   include ApplicationHelper
   
-  def self.plugin_public_action(action)
-    @@plugin_public_actions ||= []
-    @@plugin_public_actions.push action
-  end
-  
-  def self.plugin_public_actions
-    @@plugin_public_actions
+  class << self
+    include TypoPlugins
   end
   
   # Disable HTML errors for subclasses
