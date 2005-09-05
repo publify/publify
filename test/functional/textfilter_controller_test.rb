@@ -21,7 +21,7 @@ class TextfilterControllerTest < Test::Unit::TestCase
   def sparklines_available
     begin
       Plugins::Textfilters::SparklineController
-    rescue
+    rescue NameError
       false
     end
   end
