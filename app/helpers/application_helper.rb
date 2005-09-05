@@ -99,6 +99,7 @@ module ApplicationHelper
     if(article.body_html.blank?)
       article.body_html = @controller.filter_text_by_name(article.body, article.text_filter.name) rescue article.body
       article.extended_html = @controller.filter_text_by_name(article.extended, article.text_filter.name) rescue article.extended
+      article.save
     end
     
     case what
@@ -116,6 +117,7 @@ module ApplicationHelper
   def comment_html(comment)
     if(comment.body_html.blank?)
       comment.body_html = @controller.filter_text_by_name(comment.body, config[:comment_text_filter]) rescue comment.body
+      comment.save
     end
     
     comment.body_html
@@ -124,6 +126,7 @@ module ApplicationHelper
   def page_html(page)
     if(page.body_html.blank?)
       page.body_html = @controller.filter_text_by_name(page.body, page.text_filter.name) rescue page.body
+      page.save
     end
     
     page.body_html
