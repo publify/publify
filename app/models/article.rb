@@ -1,8 +1,9 @@
 require 'uri'
 require 'net/http'
-require 'md5'
 
 class Article < ActiveRecord::Base
+  include TypoGuid
+  
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
@@ -121,7 +122,7 @@ class Article < ActiveRecord::Base
   
   protected  
 
-  before_save :set_defaults
+  before_save :set_defaults, :create_guid
   
   def set_defaults
     begin
@@ -138,10 +139,6 @@ class Article < ActiveRecord::Base
       self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
     end
 
-    if schema_version >= 9
-      self.guid = Digest::MD5.new(self.body.to_s+self.extended.to_s+self.title.to_s+self.permalink.to_s+self.author.to_s+Time.now.to_f.to_s).to_s if self.guid.blank?
-    end
-    
     if schema_version >= 10
       keywords_to_tags
     end

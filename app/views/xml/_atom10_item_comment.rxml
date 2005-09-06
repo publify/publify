@@ -1,6 +1,6 @@
 xm.entry do
   xm.author { xm.name item.author }
-  xm.id "tag:#{controller.request.host},2005:Typo-#{item.id}"
+  xm.id "urn:uuid:#{item.guid}"
 
   xm.published item.created_at.xmlschema
   xm.updated item.updated_at.xmlschema

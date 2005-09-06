@@ -1,5 +1,5 @@
 xm.entry do
-  xm.id "tag:#{controller.request.host},2005:Typo-#{item.id}"
+  xm.id "urn:uuid:#{item.guid}"
 
   xm.author do
     xm.name item.blog_name

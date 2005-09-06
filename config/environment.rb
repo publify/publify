@@ -97,6 +97,7 @@ require_dependency 'aggregations/upcoming'
 require_dependency 'configuration'
 require_dependency 'spam_protection'
 require_dependency 'xmlrpc_fix'
+require_dependency 'guid'
 
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => CGI::Session::ActiveRecordStore)      
 ActionController::Base.fragment_cache_store = ActionController::Caching::Fragments::FileStore.new("#{RAILS_ROOT}/cache/fragment/")

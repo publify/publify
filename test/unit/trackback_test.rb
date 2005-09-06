@@ -21,6 +21,7 @@ class TrackbackTest < Test::Unit::TestCase
     tb.url = "http://foo.com"
     assert tb.save
     assert tb.errors.empty?
+    assert tb.guid.size > 15
   end
 
   def test_reject_spam_rbl

@@ -1,6 +1,8 @@
 require_dependency 'transforms'
 
 class Comment < ActiveRecord::Base
+  include TypoGuid
+  
   belongs_to :article
   belongs_to :user
 
@@ -10,7 +12,7 @@ class Comment < ActiveRecord::Base
  
   protected
   
-  before_save :correct_url, :make_nofollow
+  before_save :correct_url, :make_nofollow, :create_guid
   
   def correct_url
     unless url.to_s.empty?

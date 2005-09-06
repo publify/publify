@@ -64,7 +64,8 @@ CREATE TABLE comments (
   body_html text,
   created_at timestamp,
   updated_at timestamp,
-  user_id integer
+  user_id integer,
+  guid character varying(255)
 );
 
 CREATE TABLE page_caches (
@@ -150,7 +151,8 @@ CREATE TABLE trackbacks (
   url character varying(255),
   ip character varying(255),
   created_at timestamp,
-  updated_at timestamp
+  updated_at timestamp,
+  guid character varying(255)
 );
 
 CREATE TABLE users (
@@ -191,4 +193,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-insert into schema_info (version) values (17);
+insert into schema_info (version) values (18);

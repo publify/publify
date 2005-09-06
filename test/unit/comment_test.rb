@@ -19,6 +19,17 @@ class CommentTest < Test::Unit::TestCase
     assert_equal "http://fakeurl.com", @spam_comment.url
   end
   
+  def test_create_comment
+    c = Comment.new
+    c.author = 'Bob'
+    c.article_id = 1
+    c.body = 'nice post'
+    c.ip = '1.2.3.4'
+    
+    assert c.save
+    assert c.guid.size > 15
+  end
+  
   def test_reject_spam_rbl
     c = Comment.new
     c.author "Spammer"

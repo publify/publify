@@ -64,7 +64,8 @@ CREATE TABLE comments (
   body_html text,
   created_at datetime,
   updated_at datetime,
-  user_id int(11)
+  user_id int(11),
+  guid varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE page_caches (
@@ -150,7 +151,8 @@ CREATE TABLE trackbacks (
   url varchar(255),
   ip varchar(255),
   created_at datetime,
-  updated_at datetime
+  updated_at datetime,
+  guid varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE users (
@@ -191,4 +193,4 @@ CREATE TABLE schema_info (
   version int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (17);
+insert into schema_info (version) values (18);
