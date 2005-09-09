@@ -69,7 +69,14 @@
     <p>
       <label for="geourl_location">Latitude, Longitude:</label>
       <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" />
-    </p>      
+    </p>
+    
+    <hr/>
+    
+    <p>
+      <label for="ping_urls">URLs to ping automatically:</label><br/>
+      <textarea name="setting[ping_urls]" id="ping_urls" rows="5" cols="50"><%=h config[:ping_urls] %></textarea>
+    </p>
     
     <p class="r"><%= save("Save My Settings") %></p>
   </div>

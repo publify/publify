@@ -24,6 +24,7 @@ class ConfigurationTest < Test::Unit::TestCase
      "limit_article_display",
      "limit_rss_display",
      "link_to_author",
+     "ping_urls",
      "show_extended_on_rss",
      "sp_article_auto_close",
      "sp_global",

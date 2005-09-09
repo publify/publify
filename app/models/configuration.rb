@@ -15,6 +15,7 @@ class Configuration < ConfigManager
   setting :show_extended_on_rss, :bool, true
   setting :theme, :string, 'azure'
   setting :use_gravatar, :bool, false
+  setting :ping_urls, :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
 end
 
 def config

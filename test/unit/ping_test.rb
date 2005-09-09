@@ -13,13 +13,10 @@ class PingTest < Test::Unit::TestCase
     ping = @article1.pings.build("url" => "http://localhost/post/5?param=1")
     ping.send_ping("example.com")
     
-    ping = Net::HTTP.pings.first
+    ping = Net::HTTP.pings.last
     assert_equal "localhost",ping.host
     assert_equal 80, ping.port
     assert_equal "/post/5?param=1", ping.query
     assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
   end
-
-
-  
 end

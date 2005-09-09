@@ -33,8 +33,10 @@ class Article < ActiveRecord::Base
   end
   
   def send_pings(articleurl, urllist)
+    ping_urls = config[:ping_urls].gsub(/ +/,'').split("\n")
+    ping_urls += urllist.to_a
     
-    urllist.to_a.each do |url|            
+    ping_urls.each do |url|            
       begin
         unless pings.collect { |p| p.url }.include?(url.strip) 
           ping = pings.build("url" => url)

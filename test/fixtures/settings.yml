@@ -73,3 +73,8 @@ use_gravatar:
   id: 15
   name: use_gravatar
   value: 0
+  
+ping_urls:
+  id: 16
+  name: ping_urls
+  value: "http://ping.example.com/ping\nhttp://alsoping.example.com/rpc/ping"

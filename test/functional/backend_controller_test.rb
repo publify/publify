@@ -158,6 +158,10 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal article.extended, new_post.extended
     assert_equal "<p>extend me</p>", new_post.extended_html
     assert_equal Time.now.midnight.to_s, new_post.created_at.to_s
+    
+    assert_equal 2, new_post.pings.size
+    assert_equal 'http://ping.example.com/ping', new_post.pings[0].url
+    assert_equal 'http://alsoping.example.com/rpc/ping', new_post.pings[1].url
   end
 
   def test_meta_weblog_new_media_object
