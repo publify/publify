@@ -32,16 +32,50 @@ class Article < ActiveRecord::Base
     self.title.to_url
   end
   
+  def html(controller,what = :all)
+    if(self.body_html.blank?)
+      self.body_html = controller.filter_text_by_name(body, text_filter.name) rescue body.to_s
+      self.extended_html = controller.filter_text_by_name(extended, text_filter.name) rescue extended.to_s
+      save if self.id
+    end
+    
+    case what
+    when :all
+      body_html+"\n"+extended_html.to_s
+    when :body
+      body_html
+    when :extended
+      extended_html.to_s
+    else
+      raise "Unknown 'what' in article.html"
+    end
+  end
+  
+  def html_urls
+    urls = Array.new
+    
+    (body_html.to_s + extended_html.to_s).gsub(/<a [^>]*>/) do |tag|
+      if(tag =~ /href="([^"]+)"/)
+        urls.push($1)
+      end
+    end
+    
+    urls
+  end
+  
   def send_pings(articleurl, urllist)
-    ping_urls = config[:ping_urls].gsub(/ +/,'').split("\n")
+    return unless config[:send_outbound_pings]
+    
+    ping_urls = config[:ping_urls].gsub(/ +/,'').split(/[\n\r]+/)
+    ping_urls += self.html_urls
     ping_urls += urllist.to_a
     
-    ping_urls.each do |url|            
+    ping_urls.uniq.each do |url|            
       begin
         unless pings.collect { |p| p.url }.include?(url.strip) 
           ping = pings.build("url" => url)
 
-          ping.send_ping(articleurl)               
+          ping.send_ping(articleurl)
           ping.save
         end
         

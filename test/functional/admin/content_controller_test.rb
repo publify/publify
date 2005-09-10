@@ -44,7 +44,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_create
     num_articles = Article.find_all.size
 
-    post :new, 'article' => { :title => "posted via tests!" }
+    post :new, 'article' => { :title => "posted via tests!", :body => "Foo" }
     assert_redirected_to :action => 'show'
 
     assert_equal num_articles + 1, Article.find_all.size
@@ -63,8 +63,8 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal body, new_article.body
     assert_equal extended, new_article.extended
     assert_equal "textile", new_article.text_filter.name
-    assert_nil new_article.body_html
-    assert_nil new_article.extended_html
+    assert_equal "<p>body via <strong>textile</strong></p>", new_article.body_html
+    assert_equal "<p><strong>foo</strong></p>", new_article.extended_html
   end
 
   def test_edit

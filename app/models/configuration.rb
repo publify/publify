@@ -16,6 +16,7 @@ class Configuration < ConfigManager
   setting :theme, :string, 'azure'
   setting :use_gravatar, :bool, false
   setting :ping_urls, :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
+  setting :send_outbound_pings, :bool, true
 end
 
 def config

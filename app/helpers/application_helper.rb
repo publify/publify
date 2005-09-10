@@ -96,22 +96,7 @@ module ApplicationHelper
   end
   
   def article_html(article, what = :all)
-    if(article.body_html.blank?)
-      article.body_html = @controller.filter_text_by_name(article.body, article.text_filter.name) rescue article.body.to_s
-      article.extended_html = @controller.filter_text_by_name(article.extended, article.text_filter.name) rescue article.extended.to_s
-      article.save if article.id
-    end
-    
-    case what
-    when :all
-      article.body_html+"\n"+article.extended_html.to_s
-    when :body
-      article.body_html
-    when :extended
-      article.extended_html.to_s
-    else
-      raise "Unknown 'what' in article_html"
-    end
+    article.html(@controller,what)
   end
   
   def comment_html(comment)

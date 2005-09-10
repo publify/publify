@@ -51,8 +51,8 @@ article3:
 article4:
   id: 4
   title: Article 4!
-  body: I'm not public!
-  body_html: I'm not public!
+  body: I'm not "public":http://www.example.com/public!
+  body_html: I'm not <a href="http://www.example.com/public">public</a>!
   published: 0
   created_at: 2004-06-01 20:00:01
   updated_at: 2004-06-01 20:00:01
