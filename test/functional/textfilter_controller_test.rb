@@ -101,22 +101,15 @@ class TextfilterControllerTest < Test::Unit::TestCase
     return unless sparklines_available
     
     tag = @controller.filter_text('<typo:sparkline foo="bar"/>',[:macropre,:macropost])
-    #assert tag =~ %r{^<img  src="http://test.host/plugins/filters/sparkline/plot\?(data=|foo=bar|&)+"/>$}
-    assert_tag_in tag, :tag => 'img', :attributes => {
-        'src' => URI.parse('http://test.host/plugins/filters/sparkline/plot?data=&foo=bar')
-    }, :children => { :count => 0 }
+    # url_for returns query params in hash order, which isn't stable, so we can't just compare
+    # with a static string.  Yuck.
+    assert tag =~ %r{^<img  src="http://test.host/plugins/filters/sparkline/plot\?(data=|foo=bar|&)+"/>$}
 
-    tag = @controller.filter_text('<typo:sparkline title="aaa"/>',[:macropre,:macropost])
-    assert_tag_in tag, :tag => 'img', :attributes => {
-        'title' => 'aaa',
-        'src' => URI.parse('http://test.host/plugins/filters/sparkline/plot?data=')
-    }, :children => { :count => 0 }
+    assert_equal "<img  title=\"aaa\" src=\"http://test.host/plugins/filters/sparkline/plot?data=\"/>",
+      @controller.filter_text('<typo:sparkline title="aaa"/>',[:macropre,:macropost])
 
-    tag = @controller.filter_text('<typo:sparkline style="bbb"/>',[:macropre,:macropost])
-    assert_tag_in tag, :tag => 'img', :attributes => {
-        'style' => 'bbb',
-        'src' => URI.parse('http://test.host/plugins/filters/sparkline/plot?data=')
-    }, :children => { :count => 0 }
+    assert_equal "<img  style=\"bbb\" src=\"http://test.host/plugins/filters/sparkline/plot?data=\"/>",
+      @controller.filter_text('<typo:sparkline style="bbb"/>',[:macropre,:macropost])
 
     tag = @controller.filter_text('<typo:sparkline alt="ccc"/>',[:macropre,:macropost])
     assert_tag_in tag, :tag => 'img', :attributes => {
