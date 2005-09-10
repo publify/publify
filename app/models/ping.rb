@@ -8,10 +8,8 @@ class Ping < ActiveRecord::Base
     post << "&url=#{origin_url}"
     post << "&blog_name=#{URI.escape(config[:blog_name])}"
 
-    unless uri.host =~ /example.com/
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        http.post("#{uri.path}?#{uri.query}", post)
-      end
-    end 
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      http.post("#{uri.path}?#{uri.query}", post)
+    end
   end
 end

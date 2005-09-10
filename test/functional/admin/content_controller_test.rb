@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 require 'admin/content_controller'
 
+require 'http_mock'
+
 # Re-raise errors caught by the controller.
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
