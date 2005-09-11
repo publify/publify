@@ -113,10 +113,16 @@
     
     <div id="spam" class="set">
         <h3>Spam Protection</h3>
-        <p>Enabling spam protection will make typo compare the IP address of posters against blacklists. Good defense against spam bots.</p>
+        <p>Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots.</p>
         <p>
           <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_global)%> /><input name="setting[sp_global]" type="hidden" value="0"/>
           <label for="sp_global">Enable spam protection</label>
+        </p>
+        <p>
+          <input name="setting[sp_allow_non_ajax_comments]" id="sp_allow_non_ajax_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_allow_non_ajax_comments)%> />
+          <input name="setting[sp_allow_non_ajax_comments]" type="hidden" value="0" />
+          <label for="sp_allow_non_ajax_comments">Allow non-ajax comments</label>
+          <br /><small>(Spam bots usually don't know anything about ajax comments)</small>
         </p>
         <p>
           <label for="sp_article_auto_close">Disable comments after</label>

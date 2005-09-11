@@ -332,4 +332,19 @@ class ArticlesControllerTest < Test::Unit::TestCase
         :href => 'http://test.host/xml/rss/tag/hardware/feed.xml'}
   end
   
+  def test_disabled_ajax_comments
+    Setting.find_by_name("sp_allow_non_ajax_comments").update_attribute :value, 0
+    config.reload
+    assert_equal false, config[:sp_allow_non_ajax_comments]
+    
+    post :comment, :id => 1, :comment => {'body' => 'This is posted without ajax', 'author' => 'bob' }
+    assert_response 500
+    assert_equal "non-ajax commenting is disabled", @response.body
+
+    @request.env['HTTP_X_REQUESTED_WITH'] = "XMLHttpRequest"  
+    post :comment, :id => 1, :comment => {'body' => 'This is posted *with* ajax', 'author' => 'bob' }
+    assert_response :success
+    ajax_comment = Comment.find(:first, :order => "id DESC")
+    assert_equal "This is posted *with* ajax", ajax_comment.body
+  end
 end

@@ -111,6 +111,8 @@ class ArticlesController < ApplicationController
     
   # Receive comments to articles
   def comment 
+    render :text => "non-ajax commenting is disabled", :status => 500 and return unless @request.xhr? or config[:sp_allow_non_ajax_comments]
+    
     @article = Article.find(params[:id])    
     @comment = Comment.new(params[:comment])
     @comment.article = @article

@@ -73,7 +73,7 @@ use_gravatar:
   id: 15
   name: use_gravatar
   value: 0
-  
+
 ping_urls:
   id: 16
   name: ping_urls
@@ -82,4 +82,9 @@ ping_urls:
 send_outbound_pings:
   id: 17
   name: send_outbound_pings
+  value: 1
+
+sp_allow_non_ajax_comments:
+  id: 18
+  name: sp_allow_non_ajax_comments
   value: 1

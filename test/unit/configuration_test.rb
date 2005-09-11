@@ -27,6 +27,7 @@ class ConfigurationTest < Test::Unit::TestCase
      "ping_urls",
      "send_outbound_pings",
      "show_extended_on_rss",
+     "sp_allow_non_ajax_comments",
      "sp_article_auto_close",
      "sp_global",
      "sp_url_limit",
@@ -37,6 +38,7 @@ class ConfigurationTest < Test::Unit::TestCase
   
   def test_booleans
     assert_equal true, config[:sp_global]
+    assert_equal true, config[:sp_allow_non_ajax_comments]
     assert_equal true, config[:default_allow_comments]
     assert_equal false, config[:default_allow_pings]
     

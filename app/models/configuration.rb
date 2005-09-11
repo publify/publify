@@ -5,6 +5,7 @@ class Configuration < ConfigManager
   setting :default_allow_comments, :bool, true
   setting :sp_global, :bool, false
   setting :sp_article_auto_close, :int, 0
+  setting :sp_allow_non_ajax_comments, :bool, true
   setting :sp_url_limit, :int, 0
   setting :text_filter, :string, ''
   setting :comment_text_filter, :string, ''
