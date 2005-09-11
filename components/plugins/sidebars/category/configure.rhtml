@@ -1,7 +1,9 @@
 <%= form_tag({},{:id => 'configure_'+@sidebar.id.to_s, :class=>'configblock'}) %>
-  <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_count" name="configure[count]" <% if @sidebar.staged_config['count'] %>checked="checked"<% end %>/>
+  <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_count" name="configure[count]" <% unless @sidebar.staged_config['count'].blank? %>checked="checked"<% end %>/>
+  <input name="configure[count]" type="hidden" value="" />
   <label for="configure_<%= @sidebar.id.to_s %>_count">Show article count</label><br/>
-  <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_empty" name="configure[empty]" <% if @sidebar.staged_config['empty'] %>checked="checked"<% end %>/>
+  <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_empty" name="configure[empty]" <% unless @sidebar.staged_config['empty'].blank? %>checked="checked"<% end %>/>
+  <input name="configure[empty]" type="hidden" value="" />
   <label for="configure_<%= @sidebar.id.to_s %>_empty">Show empty categories</label>
 <%= end_form_tag %>
 
