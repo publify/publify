@@ -13,7 +13,7 @@ class Theme
   end
 
   def description
-    File.read("#{path}/about.markdown")
+    File.read("#{path}/about.markdown") rescue "### #{name}"
   end
   
   def self.themes_root
