@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
   
   def auto_discovery_feed(options)
     options = {:only_path => false, :action => 'feed', :controller => 'xml'}.merge options
-    @auto_discovery_url_rss = url_for(({:format => 'rss'}.merge options))
-    @auto_discovery_url_atom = url_for(({:format => 'atom'}.merge options))
+    @auto_discovery_url_rss = url_for(({:format => 'rss20'}.merge options))
+    @auto_discovery_url_atom = url_for(({:format => 'atom10'}.merge options))
   end
   
   def article_url(article, only_path = true, anchor = nil)

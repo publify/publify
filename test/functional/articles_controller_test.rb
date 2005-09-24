@@ -304,7 +304,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes => 
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
-        :href => 'http://test.host/xml/rss/feed.xml'}
+        :href => 'http://test.host/xml/rss20/feed.xml'}
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+        :href => 'http://test.host/xml/atom10/feed.xml'}
   end
 
 
@@ -313,7 +316,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes => 
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
-        :href => 'http://test.host/xml/rss/article/1/feed.xml'}
+        :href => 'http://test.host/xml/rss20/article/1/feed.xml'}
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+        :href => 'http://test.host/xml/atom10/article/1/feed.xml'}
   end
 
   def test_autodiscovery_category
@@ -321,7 +327,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes => 
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
-        :href => 'http://test.host/xml/rss/category/hardware/feed.xml'}
+        :href => 'http://test.host/xml/rss20/category/hardware/feed.xml'}
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+        :href => 'http://test.host/xml/atom10/category/hardware/feed.xml'}
   end
   
   def test_autodiscovery_tag
@@ -329,7 +338,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes => 
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
-        :href => 'http://test.host/xml/rss/tag/hardware/feed.xml'}
+        :href => 'http://test.host/xml/rss20/tag/hardware/feed.xml'}
+    assert_tag :tag => 'link', :attributes => 
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+        :href => 'http://test.host/xml/atom10/tag/hardware/feed.xml'}
   end
   
   def test_disabled_ajax_comments
