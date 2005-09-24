@@ -94,7 +94,7 @@
   
   <div id="textfilter" class="set">
   <h3>Text Filter</h3>
-        <p class="note">Your options depend on which gems you have installed. Following configurations are supported. <a href="http://www.whytheluckystiff.net/ruby/redcloth/" title="gem install redcloth">RedCloth</a>, <a href="http://www.deveiate.org/projects/BlueCloth">BlueCloth</a> and <a href="http://chneukirchen.org/blog/static/projects/rubypants.html">RubyPants</a> gems are supported.</p> 
+        <p class="note">Typo supports a number of text filtering options.  To add new filters, see the "filters" tab on the toolbar above.</p> 
       <p>
         <select name="setting[text_filter]" id="text_filter">
           <%= options_for_select text_filter_options, TextFilter.find_by_name(config_value(:text_filter)) %>
