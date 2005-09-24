@@ -7,7 +7,7 @@ xm.item do
   end
   xm.description content
   xm.pubDate pub_date(item.created_at)
-  xm.guid post_link(item)
+  xm.guid "urn:uuid:#{item.guid}"
   xm.link post_link(item)
   for category in item.categories
     xm.category category.name
