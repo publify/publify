@@ -26,6 +26,7 @@ ADDITIONAL_LOAD_PATHS.concat %w(
   vendor/flickr
   vendor/syntax/lib
   vendor/sparklines/lib
+  vendor/uuidtools/lib
   vendor/rails/railties
   vendor/rails/railties/lib
   vendor/rails/actionpack/lib
@@ -43,6 +44,7 @@ require 'redcloth'
 require 'bluecloth' 
 require 'rubypants' 
 require 'flickr'
+require 'uuidtools'
 
 # Require Rails libraries.
 require 'rubygems' unless File.directory?("#{RAILS_ROOT}/vendor/rails")
