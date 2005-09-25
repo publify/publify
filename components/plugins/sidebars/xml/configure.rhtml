@@ -4,7 +4,14 @@
   <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_comments" name="configure[comments]" <% if @sidebar.staged_config['comments'] %>checked="checked"<% end %>/>
   <label for="configure_<%= @sidebar.id.to_s %>_comments">Show Comments feed</label><br/>
   <input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_trackbacks" name="configure[trackbacks]" <% if @sidebar.staged_config['trackbacks'] %>checked="checked"<% end %>/>
-  <label for="configure_<%= @sidebar.id.to_s %>_trackbacks">Show Trackbacks feed</label>
+  <label for="configure_<%= @sidebar.id.to_s %>_trackbacks">Show Trackbacks feed</label><br/>
+  <label>Format:</label><br/>
+  <input type="radio" id="configure_<%= @sidebar.id.to_s %>_format1" name="configure[format]" value="rss20" <% if @sidebar.staged_config['type'] %>checked="checked"<% end %>/>
+  <label for="configure_<%= @sidebar.id.to_s %>_format1">RSS 2.0</label><br/>
+  <input type="radio" id="configure_<%= @sidebar.id.to_s %>_format2" name="configure[format]" value="atom10" <% if @sidebar.staged_config['type'] %>checked="checked"<% end %>/>
+  <label for="configure_<%= @sidebar.id.to_s %>_format2">Atom 1.0</label><br/>
+  <input type="radio" id="configure_<%= @sidebar.id.to_s %>_format3" name="configure[format]" value="atom03" <% if @sidebar.staged_config['type'] %>checked="checked"<% end %>/>
+  <label for="configure_<%= @sidebar.id.to_s %>_format3">Atom 0.3</label>
 <%= end_form_tag %>
 
 <%= observe_form "configure_"+@sidebar.id.to_s, 

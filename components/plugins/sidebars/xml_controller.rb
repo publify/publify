@@ -8,7 +8,7 @@ class Plugins::Sidebars::XmlController < Sidebars::Plugin
   end
   
   def self.default_config
-    {'articles' => true, 'comments' => true, 'trackbacks' => false }
+    {'articles' => true, 'comments' => true, 'trackbacks' => false, 'format' => 'rss20' }
   end
   
   def configure
