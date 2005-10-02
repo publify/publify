@@ -6,7 +6,7 @@ require 'dns_mock'
 class Admin::CommentsController; def rescue_action(e) raise e end; end
 
 class Admin::CommentsControllerTest < Test::Unit::TestCase
-  fixtures :articles, :comments, :users
+  fixtures :contents, :users
 
   def setup
     @controller = Admin::CommentsController.new
@@ -28,7 +28,7 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => 1, :article_id => 2
+    get :show, :id => 5, :article_id => 2
     assert_rendered_file 'show'
     assert_template_has 'comment'
     assert_valid_record 'comment'
@@ -50,28 +50,28 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => 1, :article_id => 2
+    get :edit, :id => 5, :article_id => 2
     assert_rendered_file 'edit'
     assert_template_has 'comment'
     assert_valid_record 'comment'
   end
 
   def test_update
-    post :edit, :id => 1, :article_id => 2
-    assert_redirected_to :action => 'show', :id => 1
+    post :edit, :id => 5, :article_id => 2
+    assert_redirected_to :action => 'show', :id => 5
   end
 
   def test_destroy
-    assert_not_nil Comment.find(1)
+    assert_not_nil Comment.find(5)
 
-    get :destroy, :id => 1, :article_id => 2
+    get :destroy, :id => 5, :article_id => 2
     assert_success
     
-    post :destroy, :id => 1, :article_id => 2
+    post :destroy, :id => 5, :article_id => 2
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      comment = Comment.find(1)
+      comment = Comment.find(5)
     }
   end
 end

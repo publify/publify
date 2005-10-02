@@ -7,7 +7,7 @@ require 'http_mock'
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
-  fixtures :articles, :users, :categories, :resources, :text_filters, :settings
+  fixtures :contents, :users, :categories, :resources, :text_filters, :settings
 
   def setup
     @controller = Admin::ContentController.new
@@ -61,12 +61,12 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
     assert_redirected_to :action => 'show'
     
-    new_article = Article.find(:first, :order => "id DESC")
+    new_article = Article.find(:first, :order => "created_at DESC")
     assert_equal body, new_article.body
     assert_equal extended, new_article.extended
     assert_equal "textile", new_article.text_filter.name
-    assert_equal "<p>body via <strong>textile</strong></p>", new_article.body_html
-    assert_equal "<p><strong>foo</strong></p>", new_article.extended_html
+    assert_equal "<p>body via <strong>textile</strong></p>", new_article.html(@controller, :body)
+    assert_equal "<p><strong>foo</strong></p>", new_article.html(@controller, :extended)
   end
 
   def test_edit
@@ -84,7 +84,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     article = Article.find(1)
     assert_equal "textile", article.text_filter.name
     assert_equal body, article.body
-    assert_nil article.body_html
+    # Deliberately *not* using the mediating protocol, we want to ensure that the 
+    # body_html got reset to nil.
+    assert_nil article.body_html 
   end
 
   def test_destroy

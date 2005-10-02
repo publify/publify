@@ -29,7 +29,7 @@ end
 class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
-  fixtures :articles, :comments, :trackbacks, :categories,
+  fixtures :contents, :categories,
     :articles_categories, :tags, :articles_tags, :users, :settings
 
   def setup

@@ -5,7 +5,7 @@ module ArticlesHelper
     tag = []
     tag << content_tag("div",
       link_to_remote('nuke', {
-          :url => { :action => "nuke_#{type}", :id => model }, 
+          :url => { :action => "nuke_#{type}", :id => model },
           :complete => visual_effect(:puff, "#{type}-#{model.id}", :duration => 0.6),
           :confirm => "Are you sure you want to delete this #{type}?"
         }, :class => "admintools") <<
@@ -80,6 +80,12 @@ module ArticlesHelper
     else
       article.author
     end
+  end
+  
+  def render_sidebars
+    render_component(:controller => 'sidebars/sidebar',
+                     :action => 'display_plugins',
+                     :params => {:contents => contents})
   end
 
   # Generate the image tag for a commenters gravatar based on their email address

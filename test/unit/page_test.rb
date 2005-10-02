@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PageTest < Test::Unit::TestCase
-  fixtures :pages
+  fixtures :contents
 
   def setup
-    @page = Page.find(1)
+    @page = Page.find(9)
   end
 
   def test_validate

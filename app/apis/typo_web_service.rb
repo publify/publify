@@ -19,10 +19,4 @@ class TypoWebService < ActionWebService::Base
       raise "Invalid login" unless @user = User.authenticate(args[username], args[password])  
     end
   end
-
-  private
-  def update_html(article)
-    article.body_html = controller.filter_text_by_name(article.body, (article.text_filter.name rescue nil))
-    article.extended_html = controller.filter_text_by_name(article.extended, (article.text_filter.name rescue nil))
-  end  
 end

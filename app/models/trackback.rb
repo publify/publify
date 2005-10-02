@@ -1,8 +1,10 @@
 require_dependency 'transforms'
 
-class Trackback < ActiveRecord::Base
+class Trackback < Content
   include TypoGuid
   belongs_to :article
+
+  content_fields :excerpt
 
   validates_age_of :article_id
   validates_against_spamdb :title, :excerpt, :ip, :url

@@ -108,7 +108,6 @@ class MovableTypeService < TypoWebService
       category = Category.find(c['categoryId'])
       article.categories.push_with_attributes(category, :is_primary => c['isPrimary'])
     end
-    update_html(article)
     article.save
   end
 

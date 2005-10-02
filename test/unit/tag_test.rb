@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TagTest < Test::Unit::TestCase
-  fixtures :tags, :articles, :articles_tags
+  fixtures :tags, :contents, :articles_tags
 
   def setup
     @tag = Tag.find(1)

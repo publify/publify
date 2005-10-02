@@ -7,7 +7,7 @@ require 'http_mock'
 class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :settings, :users, :comments, :trackbacks, :pages, :articles_categories, :text_filters, :articles_tags, :tags
+  fixtures :contents, :categories, :settings, :users, :articles_categories, :text_filters, :articles_tags, :tags
 
   def setup
     @controller = ArticlesController.new
@@ -74,7 +74,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
     
-    assert_equal "<p>This is <strong>textile</strong></p>", comment.body_html.to_s
+    assert_equal "<p>This is <strong>textile</strong></p>", comment.html(@controller).to_s
   end
   
   def test_comment_spam1
@@ -85,13 +85,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
         'author' => 'bob',
         'url' => 'http://spam2.example.com',
         'email' => 'foo'}}
-
+    
     assert_response :success
-
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
 
-    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.body_html.to_s
+    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller).to_s
+    $do_breakpoints
   end
 
   def test_comment_spam2
@@ -108,18 +108,18 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
 
-    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.body_html.to_s
+    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller, :body).to_s
   end
 
   def test_comment_nuking 
     num_comments = Comment.count
-    post :nuke_comment, { :id => 1 }, {}
+    post :nuke_comment, { :id => 5 }, {}
     assert_response 403
 
-    get :nuke_comment, { :id => 1 }, { :user => users(:bob)}
+    get :nuke_comment, { :id => 5 }, { :user => users(:bob)}
     assert_response 403
       
-    post :nuke_comment, { :id => 1 }, { :user => users(:bob)}
+    post :nuke_comment, { :id => 5 }, { :user => users(:bob)}
     assert_response :success
     assert_equal num_comments -1, Comment.count    
   end
@@ -157,13 +157,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def test_trackback_nuking 
     num_comments = Trackback.count
 
-    post :nuke_trackback, { :id => 1 }, {}
+    post :nuke_trackback, { :id => 7 }, {}
     assert_response 403
 
-    get :nuke_trackback, { :id => 1 }, { :user => users(:bob)}
+    get :nuke_trackback, { :id => 7 }, { :user => users(:bob)}
     assert_response 403
 
-    post :nuke_trackback, { :id => 1 }, { :user => users(:bob)}
+    post :nuke_trackback, { :id => 7 }, { :user => users(:bob)}
     assert_response :success
     assert_equal num_comments -1, Trackback.count    
   end

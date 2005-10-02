@@ -1,7 +1,9 @@
 require_dependency 'transforms'
 
-class Comment < ActiveRecord::Base
+class Comment < Content
   include TypoGuid
+
+  content_fields :body
   
   belongs_to :article
   belongs_to :user
@@ -12,8 +14,12 @@ class Comment < ActiveRecord::Base
  
   protected
   
-  before_save :correct_url, :make_nofollow, :create_guid
+  def default_text_filter_config_key
+    'comment_text_filter'
+  end
   
+  before_save :correct_url, :make_nofollow, :create_guid
+    
   def correct_url
     unless url.to_s.empty?
       unless url =~ /^http\:\/\//

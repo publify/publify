@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class CommentTest < Test::Unit::TestCase
-  fixtures :articles, :comments, :blacklist_patterns, :settings, :text_filters
+  fixtures :contents, :blacklist_patterns, :settings, :text_filters
 
   def setup
     config.reload

@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CategoryTest < Test::Unit::TestCase
-  fixtures :articles, :categories, :articles_categories
+  fixtures :contents, :categories, :articles_categories
 
   def setup
     @category = Category.find(1)

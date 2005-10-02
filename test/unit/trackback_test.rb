@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class TrackbackTest < Test::Unit::TestCase
-  fixtures :articles, :blacklist_patterns, :settings
+  fixtures :contents, :blacklist_patterns, :settings
 
   def setup
     config.reload

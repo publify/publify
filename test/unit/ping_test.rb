@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class PingTest < Test::Unit::TestCase
-  fixtures :articles, :settings
+  fixtures :contents, :settings
   
   def setup
     config.reload

@@ -5,7 +5,7 @@ require 'admin/pages_controller'
 class Admin::PagesController; def rescue_action(e) raise e end; end
 
 class Admin::PagesControllerTest < Test::Unit::TestCase
-  fixtures :pages, :users, :text_filters, :settings
+  fixtures :contents, :users, :text_filters, :settings
 
   def setup
     @controller = Admin::PagesController.new
@@ -56,6 +56,9 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     new_page = Page.find(:first, :order => "id DESC")
 
     assert_equal "new_page", new_page.name
+    
+    # XXX: Should we be testing this here -- makes assumptions about the workings of 
+    # the model that aren't necessarily always going to be valid.
     assert_nil new_page.body_html
 
     assert_redirected_to :action => "show", :id => new_page.id
@@ -73,6 +76,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     post :edit, :id => @markdown_page.id, :page => { :name => "markdown-page", :title => "Markdown Page",
         :body => "Adding a [link](http://typo.leetsoft.com/) here" }
 
+    
     assert_equal "", @markdown_page.reload.body_html.to_s
 
     assert_redirected_to :action => "show", :id => @markdown_page.id

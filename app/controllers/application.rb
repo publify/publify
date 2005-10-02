@@ -51,35 +51,21 @@ class ApplicationController < ActionController::Base
     Theme.current.layout
   end
   
-  def filter_text(text, filters, filterparams={}, filter_html=false)
-    map=TextFilter.filters_map
-
-    if(filter_html)
-      filters = [:htmlfilter, filters].flatten
-    end
-
-    filters.each do |filter|
-      begin
-        filter_component = map[filter.to_s].controller_path
-        text = render_component_as_string(:controller => filter_component, 
-          :action => 'filtertext', 
-          :params => {:text => text, :filterparams => filterparams} )
-      rescue => err
-        logger.error "Filter #{filter} failed: #{err}"
-      end
-    end
-
-    text
-  end
-
-  def filter_text_by_name(text, filtername, filter_html=false)
-    f = TextFilter.find_by_name(filtername)
-    if (f)
-      filters = [:macropre, f.markup, :macropost, f.filters].flatten
-      filter_text(text,filters,f.params,filter_html)
+  helper_method :contents
+  def contents    
+    if @articles
+      @articles
+    elsif @article
+      [@article]
+    elsif @page
+      [@page]
     else
-      filter_text(text,[:macropre,:macropost],{},filter_html)
+      []
     end
+  end
+  
+  def render_for_model(method, *args)
+    self.send(method, *args)
   end
 end
 

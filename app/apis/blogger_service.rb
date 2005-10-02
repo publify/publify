@@ -77,7 +77,8 @@ class BloggerService < TypoWebService
     article.author      = username
     article.created_at  = Time.now
     article.user        = @user
-    article.text_filter ||= TextFilter.find_by_name(config[:text_filter])
+    
+    article.html(@controller)
 
     if categories
       categories.split(",").each do |c|
@@ -85,8 +86,6 @@ class BloggerService < TypoWebService
       end
     end
 
-    update_html(article)
-    
     article.save
     article.id
   end

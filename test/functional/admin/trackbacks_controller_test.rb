@@ -5,7 +5,7 @@ require 'admin/trackbacks_controller'
 class Admin::TrackbacksController; def rescue_action(e) raise e end; end
 
 class Admin::TrackbacksControllerTest < Test::Unit::TestCase
-  fixtures :articles, :trackbacks, :users
+  fixtures :contents, :users
 
   def setup
     @controller = Admin::TrackbacksController.new
@@ -27,7 +27,7 @@ class Admin::TrackbacksControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => 1, :article_id => 2
+    get :show, :id => 7, :article_id => 2
     assert_rendered_file 'show'
     assert_template_has 'trackback'
     assert_valid_record 'trackback'
@@ -49,28 +49,28 @@ class Admin::TrackbacksControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => 1, :article_id => 2
+    get :edit, :id => 7, :article_id => 2
     assert_rendered_file 'edit'
     assert_template_has 'trackback'
     assert_valid_record 'trackback'
   end
 
   def test_update
-    post :edit, :id => 1, :article_id => 2
-    assert_redirected_to :action => 'show', :id => 1
+    post :edit, :id => 7, :article_id => 2
+    assert_redirected_to :action => 'show', :id => 7
   end
 
   def test_destroy
-    assert_not_nil Trackback.find(1)
+    assert_not_nil Trackback.find(7)
 
-    get :destroy, :id => 1, :article_id => 2
+    get :destroy, :id => 7, :article_id => 2
     assert_success
     
-    post :destroy, :id => 1, :article_id => 2
+    post :destroy, :id => 7, :article_id => 2
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      trackback = Trackback.find(1)
+      trackback = Trackback.find(7)
     }
   end
 end

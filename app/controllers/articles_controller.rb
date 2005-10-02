@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   def index
     @pages, @articles = paginate :article, :per_page => config[:limit_article_display], :conditions => 'published != 0', :order_by => "created_at DESC"
   end
-  
+
   def search
     @articles = Article.search(params[:q])
   end
@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     
     @headers["Content-Type"] = "text/html; charset=utf-8"
     @comment = Comment.new(params[:comment])
-    @comment.body_html = nil
+    @controller = self
     
     render :layout => false
   end
@@ -111,27 +111,36 @@ class ArticlesController < ApplicationController
     
   # Receive comments to articles
   def comment 
-    render :text => "non-ajax commenting is disabled", :status => 500 and return unless @request.xhr? or config[:sp_allow_non_ajax_comments]
+    unless @request.xhr? || config[:sp_allow_non_ajax_comments]
+      render \
+        :text => "non-ajax commenting is disabled", 
+        :status => 500
+      return
+    end
     
     @article = Article.find(params[:id])    
     @comment = Comment.new(params[:comment])
     @comment.article = @article
     @comment.ip = request.remote_ip
-    @comment.body_html = nil
     @comment.user = session[:user]
 
-    if request.post? and @comment.save    
-      cookies[:author]  = { :value => @comment.author, :path => '/' + controller_name, :expires => 6.weeks.from_now } 
-      cookies[:url]     = { :value => @comment.url, :path => '/' + controller_name, :expires => 6.weeks.from_now } 
+    if request.post? and @comment.save
+      add_to_cookies(:author, @comment.author)
+      add_to_cookies(:url, @comment.url)
 
       @headers["Content-Type"] = "text/html; charset=utf-8"
-      
+
       render :partial => "comment", :object => @comment
     else
       STDERR.puts @comment.errors.inspect
       render :text => @comment.errors.full_messages.join(", "), :status => 500
     end
   end  
+  
+  def add_to_cookies(name, value, path=nil, expires=nil)
+    cookies[:name] = { :value => value, :path => path || "/#{controller_name}",
+                       :expires => 6.weeks.from_now }
+  end
 
   # Receive trackbacks linked to articles
   def trackback

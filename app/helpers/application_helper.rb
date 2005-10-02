@@ -72,7 +72,9 @@ module ApplicationHelper
   
   def render_sidebar(sidebar)
     begin
-      render_component :layout => false, :controller => sidebar.sidebar_controller.component_name, :action=>'index', :params => {:sidebar => sidebar }
+      render_component :layout => false, :controller => sidebar.sidebar_controller.component_name, 
+        :action=>'index', :params => {:sidebar => sidebar,
+                                      :contents => (@params[:contents])}
     rescue => e 
       content_tag :p, e.message, :class => 'error'
     end
@@ -100,21 +102,11 @@ module ApplicationHelper
   end
   
   def comment_html(comment)
-    if(comment.body_html.blank?)
-      comment.body_html = @controller.filter_text_by_name(comment.body, config[:comment_text_filter]) rescue comment.body
-      comment.save if comment.id and comment.article_id
-    end
-    
-    comment.body_html
+    comment.html(@controller,:body)
   end
   
   def page_html(page)
-    if(page.body_html.blank?)
-      page.body_html = @controller.filter_text_by_name(page.body, page.text_filter.name) rescue page.body
-      page.save if page.id
-    end
-    
-    page.body_html
+    page.html(@controller,:body)
   end
   
   def strip_html(text)

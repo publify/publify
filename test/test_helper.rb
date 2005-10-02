@@ -19,7 +19,7 @@ Test::Unit::TestCase.fixture_path = File.dirname(__FILE__) + "/fixtures/"
 class Test::Unit::TestCase
   # Turn these off to use instantiated fixtures.  This is really only useful with MySQL with
   # MyISAM tables.
-  self.use_transactional_fixtures = true
+  # self.use_transactional_fixtures = true
   #self.use_instantiated_fixtures  = false
 
   def create_fixtures(*table_names)

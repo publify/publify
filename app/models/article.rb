@@ -1,60 +1,30 @@
 require 'uri'
 require 'net/http'
 
-class Article < ActiveRecord::Base
+class Article < Content
   include TypoGuid
+
+  content_fields :body, :extended
   
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
   has_many :resources, :order => "created_at DESC"
   
-  has_and_belongs_to_many :categories
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :categories, :foreign_key => 'article_id'
+  has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
-  belongs_to :text_filter
   
   after_destroy :fix_resources
-  
-  # Compatibility hack, so Article.attributes(params[:article]) still works.
-  def text_filter=(filter)
-    if filter.nil?
-      self.text_filter_id = nil
-    elsif filter.kind_of? TextFilter
-      self.text_filter_id = filter.id
-    else
-      new_filter = TextFilter.find_by_name(filter.to_s)
-      self.text_filter_id = (new_filter.nil? ? nil : new_filter.id)
-    end
-  end
   
   def stripped_title
     self.title.to_url
   end
   
-  def html(controller,what = :all)
-    if(self.body_html.blank?)
-      self.body_html = controller.filter_text_by_name(body, text_filter.name) rescue body.to_s
-      self.extended_html = controller.filter_text_by_name(extended, text_filter.name) rescue extended.to_s
-      save if self.id
-    end
-    
-    case what
-    when :all
-      body_html+"\n"+extended_html.to_s
-    when :body
-      body_html
-    when :extended
-      extended_html.to_s
-    else
-      raise "Unknown 'what' in article.html"
-    end
-  end
-  
   def html_urls
     urls = Array.new
     
-    (body_html.to_s + extended_html.to_s).gsub(/<a [^>]*>/) do |tag|
+    html(:all).gsub(/<a [^>]*>/) do |tag|
       if(tag =~ /href="([^"]+)"/)
         urls.push($1)
       end
@@ -178,10 +148,10 @@ class Article < ActiveRecord::Base
     if schema_version >= 10
       keywords_to_tags
     end
-
-    if schema_version >= 13
-      self.text_filter = TextFilter.find_by_name(config['text_filter']) if self.text_filter_id.blank?
-    end
+  end
+  
+  def default_text_filter_config_key
+    'text_filter'
   end
   
   def self.time_delta(year, month = nil, day = nil)
