@@ -1,0 +1,142 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+article1:
+  id: 1 
+  title: Article 1!
+  body: body
+  body_html: body
+  extended: extended content
+  extended_html: extended content
+  created_at: 2005-01-01 20:00:04
+  updated_at: 2005-01-01 20:00:04
+  allow_comments: 1
+  allow_pings: 1
+  permalink: article-1
+  user_id: 1
+  author: Tobi
+  guid: a87c4220-18d4-11da-aadd-0002a5d5c51b
+  type: Article
+  
+article2:
+  type: Article
+  id: 2
+  title: Article 2!
+  body: body
+  body_html: body
+  extended: extended content
+  extended_html: extended content
+  created_at: 2005-01-01 20:00:03
+  updated_at: 2005-01-01 20:00:03
+  allow_comments: 1
+  allow_pings: 1
+  permalink: article-2
+  user_id: 2
+  author: Bob
+  guid: bbbbb
+
+article3:
+  type: Article
+  id: 3
+  title: Article 3!
+  body: body
+  body_html: body
+  extended: extended content
+  extended_html: extended content
+  created_at: 2004-06-01 20:00:02
+  updated_at: 2004-06-01 20:00:02
+  allow_comments: 1
+  allow_pings: 1
+  permalink: article-3
+  user_id: 1
+  author: Tobi
+  guid: ccccc
+
+article4:
+  type: Article
+  id: 4
+  title: Article 4!
+  body: I'm not "public":http://www.example.com/public!
+  body_html: I'm not <a href="http://www.example.com/public">public</a>!
+  published: 0
+  created_at: 2004-06-01 20:00:01
+  updated_at: 2004-06-01 20:00:01
+  allow_comments: 1
+  allow_pings: 1
+  permalink: article-4
+  user_id: 1
+  author: Tobi
+  guid: ddddd
+
+spam_comment:
+  type: Comment
+  id: 5
+  article_id: 2
+  author: Bob Foo
+  url: http://fakeurl.com
+  body: Test <a href="http://fakeurl.co.uk">body</a>
+  created_at: 2005-01-01 02:00:00
+  updated_at: 2005-01-01 02:00:00
+  guid: 12313123123123123
+
+comment2:
+  type: Comment
+  id: 6
+  article_id: 1
+  author: John Bar
+  user_id: 1000001
+  url: www.google.com
+  email: john.bar@google.com
+  body: Comment body _italic_ *bold*
+  created_at: 2005-01-01 02:00:01
+  updated_at: 2005-01-01 02:00:01
+  guid: 453456456456456
+
+trackback1:
+  type: Trackback
+  id: 7
+  article_id: 2
+  blog_name: Trackback Blog
+  title: Trackback Entry
+  url: http://www.example.com
+  excerpt: This is an excerpt
+  created_at: 2005-01-01 03:00:00
+  updated_at: 2005-01-01 03:00:00
+  guid: dsafsadffsdsf
+
+trackback2:
+  type: Trackback
+  id: 8
+  article_id: 1
+  blog_name: Trackback Blog
+  title: Trackback Entry
+  url: http://www.example.com
+  excerpt: This is an excerpt
+  created_at: 2005-01-01 03:00:01
+  updated_at: 2005-01-01 03:00:01
+  guid: qweqweqddsfcs
+
+first_page:
+  type: Page
+  id: 9
+  name: page_one
+  title: Page One Title
+  body: ho ho ho
+  created_at: 2005-05-05 01:00:00
+  user_id: 1000000
+another_page:
+  type: Page
+  id: 10
+  name: page/two
+  title: Another Page Title
+  body: another body for yet another page
+  created_at: 2005-05-05 01:00:00
+  user_id: 1000000
+markdown_page:
+  type: Page
+  id: 11
+  name: markdown-page
+  title: Markdown Page
+  text_filter_id: 1
+  body: this is *markdown*.
+  created_at: 2005-05-05 01:00:00
+  user_id: 1000000
