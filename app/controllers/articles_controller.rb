@@ -147,12 +147,18 @@ class ArticlesController < ApplicationController
       else
         begin
           article = Article.find(params[:id])
-          tb = article.build_to_trackbacks
-          tb.url       = params[:url]
-          tb.title     = params[:title] || params[:url]
-          tb.excerpt   = params[:excerpt]
-          tb.blog_name = params[:blog_name]
-          tb.ip        = request.remote_ip
+          unless article.allow_pings?
+            @result = false
+            @error_message = "Article doesn't allow pings"
+          else
+            tb = article.build_to_trackbacks
+            tb.url       = params[:url]
+            tb.title     = params[:title] || params[:url]
+            tb.excerpt   = params[:excerpt]
+            tb.blog_name = params[:blog_name]
+            tb.ip        = request.remote_ip
+          end
+          
           unless article.save
             @result = false
             @error_message = "Trackback not saved.  Database problem most likely."
