@@ -7,27 +7,6 @@
 
 -- tables 
 
-CREATE TABLE articles (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  title varchar(255),
-  author varchar(255),
-  body text,
-  body_html text,
-  extended text,
-  excerpt text,
-  keywords varchar(255),
-  allow_comments int(11),
-  allow_pings int(11),
-  published int(11) DEFAULT '1',
-  created_at datetime,
-  updated_at datetime,
-  extended_html text,
-  guid varchar(255),
-  permalink varchar(255),
-  user_id int(11),
-  text_filter_id int(11)
-) ENGINE=InnoDB;
-
 CREATE TABLE articles_categories (
   article_id int(11),
   category_id int(11),
@@ -52,37 +31,39 @@ CREATE TABLE categories (
   permalink varchar(255)
 ) ENGINE=InnoDB;
 
-CREATE TABLE comments (
+CREATE TABLE contents (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  article_id int(11),
   title varchar(255),
   author varchar(255),
+  body text,
+  body_html text,
+  extended text,
+  excerpt text,
+  keywords varchar(255),
+  allow_comments int(11),
+  allow_pings int(11),
+  published int(11) DEFAULT '1',
+  text_filter varchar(255),
+  created_at datetime,
+  updated_at datetime,
+  extended_html text,
+  user_id int(11),
+  permalink varchar(255),
+  guid varchar(255),
+  text_filter_id int(11),
+  whiteboard text,
+  type varchar(255),
+  article_id int(11),
   email varchar(255),
   url varchar(255),
   ip varchar(255),
-  body text,
-  body_html text,
-  created_at datetime,
-  updated_at datetime,
-  user_id int(11),
-  guid varchar(255)
+  blog_name varchar(255),
+  name varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE page_caches (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   name varchar(255)
-) ENGINE=InnoDB;
-
-CREATE TABLE pages (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  name varchar(255),
-  user_id int(11),
-  body text,
-  body_html text,
-  created_at datetime,
-  updated_at datetime,
-  title varchar(255),
-  text_filter_id int(11)
 ) ENGINE=InnoDB;
 
 CREATE TABLE pings (
@@ -142,19 +123,6 @@ CREATE TABLE text_filters (
   params text
 ) ENGINE=InnoDB;
 
-CREATE TABLE trackbacks (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  article_id int(11),
-  blog_name varchar(255),
-  title varchar(255),
-  excerpt varchar(255),
-  url varchar(255),
-  ip varchar(255),
-  created_at datetime,
-  updated_at datetime,
-  guid varchar(255)
-) ENGINE=InnoDB;
-
 CREATE TABLE users (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   login varchar(255),
@@ -166,13 +134,11 @@ CREATE TABLE users (
 
 -- indexes 
 
-CREATE  INDEX articles_permalink_index ON articles (permalink);
 CREATE  INDEX blacklist_patterns_pattern_index ON blacklist_patterns (pattern);
 CREATE  INDEX categories_permalink_index ON categories (permalink);
-CREATE  INDEX comments_article_id_index ON comments (article_id);
+CREATE  INDEX contents_article_id_index ON contents (article_id);
 CREATE  INDEX page_caches_name_index ON page_caches (name);
 CREATE  INDEX pings_article_id_index ON pings (article_id);
-CREATE  INDEX trackbacks_article_id_index ON trackbacks (article_id);
 
 -- data 
 
@@ -193,4 +159,4 @@ CREATE TABLE schema_info (
   version int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (18);
+insert into schema_info (version) values (23);

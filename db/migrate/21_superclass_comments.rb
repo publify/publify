@@ -10,19 +10,21 @@ class SuperclassComments < ActiveRecord::Migration
 
       add_index :contents, :article_id
 
-      STDERR.puts "Converting comments"
-
-      ActiveRecord::Base.connection.select_all(%{
-        SELECT
-          article_id, title, author, email, url, ip, body, created_at,
-          updated_at, user_id, guid, whiteboard
-          FROM comments
-      }).each do |c|
-        Article.find(c["article_id"]).comments.create(c)
-      end
+      if not $schema_generator
+        STDERR.puts "Converting comments"
+        ActiveRecord::Base.connection.select_all(%{
+          SELECT
+            article_id, title, author, email, url, ip, body, created_at,
+            updated_at, user_id, guid, whiteboard
+            FROM comments
+        }).each do |c|
+          Article.find(c["article_id"]).comments.create(c)
+        end
+      end  
     end
-
-    drop_table :comments
+    
+    remove_index :comments, :article_id rescue nil
+    drop_table :comments rescue nil
   end
 
   def self.down

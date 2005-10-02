@@ -7,27 +7,6 @@
 
 -- tables 
 
-CREATE TABLE articles (
-  id serial primary key,
-  title character varying(255),
-  author character varying(255),
-  body text,
-  body_html text,
-  extended text,
-  excerpt text,
-  keywords character varying(255),
-  allow_comments integer,
-  allow_pings integer,
-  published integer DEFAULT '1',
-  created_at timestamp,
-  updated_at timestamp,
-  extended_html text,
-  guid character varying(255),
-  permalink character varying(255),
-  user_id integer,
-  text_filter_id integer
-);
-
 CREATE TABLE articles_categories (
   article_id integer,
   category_id integer,
@@ -52,37 +31,39 @@ CREATE TABLE categories (
   permalink character varying(255)
 );
 
-CREATE TABLE comments (
+CREATE TABLE contents (
   id serial primary key,
-  article_id integer,
   title character varying(255),
   author character varying(255),
+  body text,
+  body_html text,
+  extended text,
+  excerpt text,
+  keywords character varying(255),
+  allow_comments integer,
+  allow_pings integer,
+  published integer DEFAULT '1',
+  text_filter character varying(255),
+  created_at timestamp,
+  updated_at timestamp,
+  extended_html text,
+  user_id integer,
+  permalink character varying(255),
+  guid character varying(255),
+  text_filter_id integer,
+  whiteboard text,
+  type character varying(255),
+  article_id integer,
   email character varying(255),
   url character varying(255),
   ip character varying(255),
-  body text,
-  body_html text,
-  created_at timestamp,
-  updated_at timestamp,
-  user_id integer,
-  guid character varying(255)
+  blog_name character varying(255),
+  name character varying(255)
 );
 
 CREATE TABLE page_caches (
   id serial primary key,
   name character varying(255)
-);
-
-CREATE TABLE pages (
-  id serial primary key,
-  name character varying(255),
-  user_id integer,
-  body text,
-  body_html text,
-  created_at timestamp,
-  updated_at timestamp,
-  title character varying(255),
-  text_filter_id integer
 );
 
 CREATE TABLE pings (
@@ -142,19 +123,6 @@ CREATE TABLE text_filters (
   params text
 );
 
-CREATE TABLE trackbacks (
-  id serial primary key,
-  article_id integer,
-  blog_name character varying(255),
-  title character varying(255),
-  excerpt character varying(255),
-  url character varying(255),
-  ip character varying(255),
-  created_at timestamp,
-  updated_at timestamp,
-  guid character varying(255)
-);
-
 CREATE TABLE users (
   id serial primary key,
   login character varying(255),
@@ -166,13 +134,11 @@ CREATE TABLE users (
 
 -- indexes 
 
-CREATE  INDEX articles_permalink_index ON articles (permalink);
 CREATE  INDEX blacklist_patterns_pattern_index ON blacklist_patterns (pattern);
 CREATE  INDEX categories_permalink_index ON categories (permalink);
-CREATE  INDEX comments_article_id_index ON comments (article_id);
+CREATE  INDEX contents_article_id_index ON contents (article_id);
 CREATE  INDEX page_caches_name_index ON page_caches (name);
 CREATE  INDEX pings_article_id_index ON pings (article_id);
-CREATE  INDEX trackbacks_article_id_index ON trackbacks (article_id);
 
 -- data 
 
@@ -193,4 +159,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-insert into schema_info (version) values (18);
+insert into schema_info (version) values (23);

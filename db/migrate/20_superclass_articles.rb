@@ -1,6 +1,6 @@
 class SuperclassArticles < ActiveRecord::Migration
   def self.up
-    raise "Back up your database and then remove line 3 from db/migrate/20_superclass_articles.rb"
+#    raise "Back up your database and then remove line 3 from db/migrate/20_superclass_articles.rb"
     
     STDERR.puts "Renaming Articles table"
 
@@ -29,7 +29,12 @@ class SuperclassArticles < ActiveRecord::Migration
 
       if not $schema_generator
         STDERR.puts "Copying article data"
-        execute "insert into contents (select * from articles)"
+        execute "insert into contents (
+          id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,text_filter,
+          created_at,updated_at,extended_html,user_id,permalink,guid,text_filter_id,whiteboard) (
+            select id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,text_filter,
+                   created_at,updated_at,extended_html,user_id,permalink,guid,text_filter_id,whiteboard
+            from articles)"
         
         config = ActiveRecord::Base.configurations
         if config[RAILS_ENV]['adapter'] == 'postgresql'
@@ -39,6 +44,7 @@ class SuperclassArticles < ActiveRecord::Migration
         end
       end
 
+      remove_index :articles, :permalink
       drop_table :articles
 
       STDERR.puts "Adding a type column"

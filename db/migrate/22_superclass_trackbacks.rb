@@ -7,17 +7,19 @@ class SuperclassTrackbacks < ActiveRecord::Migration
 
       STDERR.puts "Converting trackbacks"
 
-      ActiveRecord::Base.connection.select_all(%{
-        SELECT
-          article_id, blog_name, title, excerpt, url, ip,
-          created_at, updated_at, guid
-        FROM trackbacks
-      }).each do |tb|
-        Article.find(tb["article_id"]).trackbacks.create(tb)
+      if not $schema_generator
+        ActiveRecord::Base.connection.select_all(%{
+          SELECT
+            article_id, blog_name, title, excerpt, url, ip,
+            created_at, updated_at, guid
+          FROM trackbacks
+        }).each do |tb|
+          Article.find(tb["article_id"]).trackbacks.create(tb)
+        end
       end
-
-      drop_table :trackbacks
     end
+    remove_index :trackbacks, :article_id rescue nil
+    drop_table :trackbacks rescue nil
   end
 
   def self.down

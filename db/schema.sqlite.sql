@@ -7,27 +7,6 @@
 
 -- tables 
 
-CREATE TABLE articles (
-  id INTEGER PRIMARY KEY NOT NULL,
-  title varchar(255),
-  author varchar(255),
-  body text,
-  body_html text,
-  extended text,
-  excerpt text,
-  keywords varchar(255),
-  allow_comments integer,
-  allow_pings integer,
-  published integer DEFAULT '1',
-  created_at datetime,
-  updated_at datetime,
-  extended_html text,
-  guid varchar(255),
-  permalink varchar(255),
-  user_id integer,
-  text_filter_id integer
-);
-
 CREATE TABLE articles_categories (
   article_id integer,
   category_id integer,
@@ -52,37 +31,39 @@ CREATE TABLE categories (
   permalink varchar(255)
 );
 
-CREATE TABLE comments (
+CREATE TABLE contents (
   id INTEGER PRIMARY KEY NOT NULL,
-  article_id integer,
   title varchar(255),
   author varchar(255),
+  body text,
+  body_html text,
+  extended text,
+  excerpt text,
+  keywords varchar(255),
+  allow_comments integer,
+  allow_pings integer,
+  published integer DEFAULT '1',
+  text_filter varchar(255),
+  created_at datetime,
+  updated_at datetime,
+  extended_html text,
+  user_id integer,
+  permalink varchar(255),
+  guid varchar(255),
+  text_filter_id integer,
+  whiteboard text,
+  type varchar(255),
+  article_id integer,
   email varchar(255),
   url varchar(255),
   ip varchar(255),
-  body text,
-  body_html text,
-  created_at datetime,
-  updated_at datetime,
-  user_id integer,
-  guid varchar(255)
+  blog_name varchar(255),
+  name varchar(255)
 );
 
 CREATE TABLE page_caches (
   id INTEGER PRIMARY KEY NOT NULL,
   name varchar(255)
-);
-
-CREATE TABLE pages (
-  id INTEGER PRIMARY KEY NOT NULL,
-  name varchar(255),
-  user_id integer,
-  body text,
-  body_html text,
-  created_at datetime,
-  updated_at datetime,
-  title varchar(255),
-  text_filter_id integer
 );
 
 CREATE TABLE pings (
@@ -142,19 +123,6 @@ CREATE TABLE text_filters (
   params text
 );
 
-CREATE TABLE trackbacks (
-  id INTEGER PRIMARY KEY NOT NULL,
-  article_id integer,
-  blog_name varchar(255),
-  title varchar(255),
-  excerpt varchar(255),
-  url varchar(255),
-  ip varchar(255),
-  created_at datetime,
-  updated_at datetime,
-  guid varchar(255)
-);
-
 CREATE TABLE users (
   id INTEGER PRIMARY KEY NOT NULL,
   login varchar(255),
@@ -166,13 +134,11 @@ CREATE TABLE users (
 
 -- indexes 
 
-CREATE  INDEX articles_permalink_index ON articles (permalink);
 CREATE  INDEX blacklist_patterns_pattern_index ON blacklist_patterns (pattern);
 CREATE  INDEX categories_permalink_index ON categories (permalink);
-CREATE  INDEX comments_article_id_index ON comments (article_id);
+CREATE  INDEX contents_article_id_index ON contents (article_id);
 CREATE  INDEX page_caches_name_index ON page_caches (name);
 CREATE  INDEX pings_article_id_index ON pings (article_id);
-CREATE  INDEX trackbacks_article_id_index ON trackbacks (article_id);
 
 -- data 
 
@@ -193,4 +159,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-insert into schema_info (version) values (18);
+insert into schema_info (version) values (23);

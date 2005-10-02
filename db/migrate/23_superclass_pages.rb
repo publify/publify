@@ -7,13 +7,15 @@ class SuperclassPages < ActiveRecord::Migration
 
       STDERR.puts "Converting pages"
 
-      ActiveRecord::Base.connection.select_all(%{
-        SELECT
-          name, user_id, body, body_html, created_at,
-          updated_at, title, text_filter_id
-        FROM pages
-      }).each { |p| Page.create(p) }
-
+      if not $schema_generator
+        ActiveRecord::Base.connection.select_all(%{
+          SELECT
+            name, user_id, body, body_html, created_at,
+            updated_at, title, text_filter_id
+          FROM pages
+        }).each { |p| Page.create(p) }
+      end
+      
       drop_table :pages
     end
   end
