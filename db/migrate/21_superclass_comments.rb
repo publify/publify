@@ -14,7 +14,7 @@ class SuperclassComments < ActiveRecord::Migration
         STDERR.puts "Converting comments"
         ActiveRecord::Base.connection.select_all(%{
           SELECT
-            article_id, title, author, email, url, ip, body, created_at,
+            article_id, author, email, url, ip, body, created_at,
             updated_at, user_id, guid, whiteboard
             FROM comments
         }).each do |c|

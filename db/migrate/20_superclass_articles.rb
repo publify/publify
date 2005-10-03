@@ -16,7 +16,6 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :allow_comments, :integer
         t.column :allow_pings, :integer
         t.column :published, :integer, :default => 1
-        t.column :text_filter, :string
         t.column :created_at, :datetime
         t.column :updated_at, :datetime
         t.column :extended_html, :text
@@ -30,9 +29,9 @@ class SuperclassArticles < ActiveRecord::Migration
       if not $schema_generator
         STDERR.puts "Copying article data"
         execute "insert into contents (
-          id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,text_filter,
+          id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,
           created_at,updated_at,extended_html,user_id,permalink,guid,text_filter_id,whiteboard) (
-            select id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,text_filter,
+            select id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,
                    created_at,updated_at,extended_html,user_id,permalink,guid,text_filter_id,whiteboard
             from articles)"
         
@@ -70,7 +69,6 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :allow_comments, :integer
         t.column :allow_pings, :integer
         t.column :published, :integer, :default => 1
-        t.column :text_filter, :string
         t.column :created_at, :datetime
         t.column :updated_at, :datetime
         t.column :extended_html, :text
