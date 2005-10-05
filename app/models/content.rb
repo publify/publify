@@ -5,6 +5,8 @@ class Content < ActiveRecord::Base
   include Observable  
   
   belongs_to :text_filter
+
+  serialize :whiteboard
     
   @@content_fields = Hash.new
   @@html_map       = Hash.new
@@ -53,21 +55,29 @@ class Content < ActiveRecord::Base
   def html(controller,what = :all)
     html_map.each do |field, html_field|
       if !self.send(field).blank? && self.send(html_field).blank?
-        unformatted_value = self.send(field)
-        self.update_attribute \
-          html_field, 
+        unformatted_value = self.send(field).to_s
+        formatted_value =
           text_filter.filter_text_for_controller( \
-            unformatted_value, controller, false, self ) rescue unformatted_value.to_s
+            unformatted_value, controller, false, self ) rescue unformatted_value
+        if self.id
+          self.update_attribute html_field, formatted_value
+        else
+          self[html_field] = formatted_value
+        end
       end
     end
     
     if what == :all
-      self.all_html rescue (self.body_html + (self.extended_html rescue nil).to_s)
+      self.all_html rescue (self.body_html.to_s + (self.extended_html rescue nil).to_s)
     elsif self.class.html_map(what)
       self.send(html_map(what))
     else
       raise "Unknown 'what' in article.html"
     end
+  end
+
+  def whiteboard
+    self[:whiteboard] ||= Hash.new
   end
   
   alias_method :orig_text_filter, :text_filter
