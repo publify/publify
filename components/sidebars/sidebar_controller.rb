@@ -74,6 +74,7 @@ end
   
 module Sidebars
   class SidebarController < ApplicationController
+    @@available_sidebars = nil
 
     uses_component_template_root
     
@@ -91,6 +92,8 @@ module Sidebars
     end
 
     def self.available_sidebars
+      return @@available_sidebars if @@available_sidebars
+      
       objects=[]
       ObjectSpace.each_object(Class) do |o|
         if Plugin > o
@@ -98,7 +101,7 @@ module Sidebars
         end
       end
 
-      objects
+      @@available_sidebars = objects
     end
   end
 end

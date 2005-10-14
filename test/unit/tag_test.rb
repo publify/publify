@@ -48,13 +48,14 @@ class TagTest < Test::Unit::TestCase
   end
 
   def test_find_all_with_article_counters
-    tags=Tag.find_all_with_article_counters
+    tags=Tag.find_all_with_article_counters(10)
 
     assert_equal 2, tags.size
-    assert_equal "bar", tags.first.name
-    assert_equal 1, tags.first.article_counter.to_i
-
-    assert_equal "foo", tags.last.name
-    assert_equal 2, tags.last.article_counter.to_i
+    
+    assert_equal "foo", tags.first.name
+    assert_equal 1, tags.last.article_counter.to_i
+    
+    assert_equal "bar", tags.last.name
+    assert_equal 2, tags.first.article_counter.to_i
   end
 end
