@@ -1,3 +1,7 @@
-<% @sidebars.each do |sidebar| -%>
-  <%= render_sidebar(sidebar) %>
+<% benchmark "BENCHMARK: display_plugins" do %>
+  <% @sidebars.each do |sidebar| -%>
+    <% benchmark "BENCHMARK: display_plugins: #{sidebar.controller}" do %>
+      <%= render_sidebar(sidebar) %>
+    <% end %>
+  <% end %>
 <% end %>

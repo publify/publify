@@ -13,8 +13,11 @@
   <%= javascript_include_tag "prototype" %>
   <%= javascript_include_tag "effects" %>
   <%= javascript_include_tag "typo" %>
+  <% benchmark "BENCHMARK: layout/script" do %>
   <script type="text/javascript"><%= @content_for_script %></script>
+  <% end %>
 </head>
+<% benchmark "BENCHMARK: layout/body" do %>
 <body>
   <div id="container" class="clearfix">
       <div id="header">
@@ -25,17 +28,21 @@
       </div>
       
       <div id="search"> <%= render :partial => "shared/search" %></div>
-      
+      <% benchmark "BENCHMARK: layout/content" do %>
+
       <div id="content" class="clearfix">
         <div id="main">
           <%= @content_for_layout %>
           <%= javascript_tag "show_dates_as_local_time()" %>
         </div>
+        <% end %>
         <div id="sidebar">
           
             <div id="search-results"></div>
+            <% benchmark "BENCHMARK: layout/sidebars" do %>
+              <%= render_sidebars %>
+            <% end %>
             
-            <%= render_sidebars %>
             <%= link_to image_tag("powered.gif"),  "http://typo.leetsoft.com/", {:class => "powered" } %>
             </div>
 
@@ -50,3 +57,4 @@
   </div>
 </body>
 </html>
+<% end %>

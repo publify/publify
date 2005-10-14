@@ -70,6 +70,11 @@ class Sidebars::Plugin < ApplicationController
   def controller
     self
   end
+  
+  def log_processing
+    logger.info "\n\nProcessing #{controller_class_name}\##{action_name} (for #{request_origin})"
+  end
+
 end
   
 module Sidebars
@@ -86,7 +91,7 @@ module Sidebars
     def self.enabled_sidebars
       available=available_sidebars.inject({}) { |h,i| h[i.short_name]=i; h}
       
-      enabled=Sidebar.find_all_visible.select do |sidebar|
+      Sidebar.find_all_visible.select do |sidebar|
         sidebar.controller and available[sidebar.controller]
       end
     end
@@ -103,6 +108,11 @@ module Sidebars
 
       @@available_sidebars = objects
     end
+    
+    def log_processing
+      logger.info "\n\nProcessing #{controller_class_name}\##{action_name} (for #{request_origin})"
+    end
+    
   end
 end
 

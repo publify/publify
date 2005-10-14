@@ -72,9 +72,11 @@ module ApplicationHelper
   
   def render_sidebar(sidebar)
     begin
-      render_component :layout => false, :controller => sidebar.sidebar_controller.component_name, 
-        :action=>'index', :params => {:sidebar => sidebar,
-                                      :contents => (@params[:contents])}
+      benchmark "BENCHMARK: render_sidebar: #{sidebar.sidebar_controller.component_name}" do
+        render_component :layout => false, :controller => sidebar.sidebar_controller.component_name, 
+          :action=>'index', :params => {:sidebar => sidebar,
+                                        :contents => (@params[:contents])}
+      end
     rescue => e 
       content_tag :p, e.message, :class => 'error'
     end
