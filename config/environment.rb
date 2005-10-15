@@ -49,11 +49,18 @@ require 'uuidtools'
 # Require Rails libraries.
 require 'rubygems' unless File.directory?("#{RAILS_ROOT}/vendor/rails")
 
-require 'active_support'
-require 'active_record'
-require 'action_controller'
-require 'action_mailer'
-require 'action_web_service'
+# force Rails 0.13.1
+require_gem 'activesupport',     '= 1.1.1'
+require_gem 'activerecord',      '= 1.11.1'
+require_gem 'actionpack',  '= 1.9.1'
+require_gem 'actionmailer',      '= 1.0.1'
+require_gem 'actionwebservice', '= 0.8.1'
+
+#require 'active_support'
+#require 'active_record'
+#require 'action_controller'
+#require 'action_mailer'
+#require 'action_web_service'
 
 # Environment-specific configuration.
 require_dependency 'migrator'
