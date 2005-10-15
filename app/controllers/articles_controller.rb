@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   
   def read  
     begin
-      @article      = Article.find(params[:id], :conditions => "published != 0", :include => [:categories])    
+      @article      = Article.find(params[:id], :conditions => "published != 0", :include => [:categories, :tags])    
       @comment      = Comment.new
       @page_title   = @article.title
       auto_discovery_feed :type => 'article', :id => @article.id
