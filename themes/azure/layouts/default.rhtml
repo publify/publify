@@ -7,8 +7,9 @@
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= server_url_for :controller => 'xml', :action => 'rsd' %>" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= @auto_discovery_url_rss %>" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= @auto_discovery_url_atom %>" />
-  <%= stylesheet_link_tag "/stylesheets/theme/azure" %>
-  <%= stylesheet_link_tag "/stylesheets/user-styles" %>
+  <%= stylesheet_link_tag "/stylesheets/theme/azure", :media => 'all' %>
+  <%= stylesheet_link_tag "/stylesheets/user-styles", :media => 'all' %>
+  <%= stylesheet_link_tag "/stylesheets/theme/print", :media => 'print' %>
   <%= javascript_include_tag "cookies" %>
   <%= javascript_include_tag "prototype" %>
   <%= javascript_include_tag "effects" %>

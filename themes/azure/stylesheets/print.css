@@ -1,0 +1,30 @@
+#sidebar, #search, .comment-box, #footer {
+  display: none;
+}
+
+#container, #main {
+  width: auto;
+  height: auto;
+  float: none;
+}
+
+#header {
+  display: none;
+}
+
+h4.blueblk {
+  background: white;
+  border: none;
+}
+
+.post {
+  margin-bottom: 5px;
+}
+
+.admintools {
+  display: none;
+}
+
+.comment-list li, input, textarea, select, body, #header, #content {
+  background: white;
+}
