@@ -98,13 +98,11 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
 
 #    assert_equal "<p>testing the <em>preview</em></p>", assigns(:page).body_html
 
-    assert_tag :tag => "h3",
-      :content => "Preview Page",
-      :sibling => { :tag => "p",
+    assert_tag :tag => "p",
         :children => { :count => 1,
           :only => { :tag => "p",
             :children => { :count => 1,
               :only => { :tag => "em",
-                :content => "preview" } } } } }
+                :content => "preview" } } } }
   end
 end
