@@ -32,7 +32,7 @@ class CommentTest < Test::Unit::TestCase
   
   def test_reject_spam_rbl
     c = Comment.new
-    c.author "Spammer"
+    c.author = "Spammer"
     c.body = %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}
     c.url = "http://buy-computer.us"
     c.ip = "212.42.230.206"
