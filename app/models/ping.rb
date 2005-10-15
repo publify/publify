@@ -8,8 +8,12 @@ class Ping < ActiveRecord::Base
     post << "&url=#{origin_url}"
     post << "&blog_name=#{URI.escape(config[:blog_name])}"
 
-    Net::HTTP.start(uri.host, uri.port) do |http|
-      http.post("#{uri.path}?#{uri.query}", post)
+    begin
+      Net::HTTP.start(uri.host, uri.port) do |http|
+        http.post("#{uri.path}?#{uri.query}", post)
+      end
+    rescue Timeout::Error => err
+      # ignore
     end
   end
 end
