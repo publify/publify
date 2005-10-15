@@ -1,11 +1,16 @@
+class TempComment < ActiveRecord::Base
+  belongs_to :text_filter
+  set_table_name 'comments'
+end
+
 class AddCommentUserId < ActiveRecord::Migration
   def self.up
     users = Hash.new
     
-    Comment.transaction do
+    TempComment.transaction do
       add_column :comments, :user_id, :integer
       
-      Comment.find(:all).each do |c|
+      TempComment.find(:all).each do |c|
         userid = nil
         if users[c.email]
           c.user_id = users[c.email]

@@ -11,9 +11,9 @@ class AddTags < ActiveRecord::Migration
       t.column :tag_id, :integer
     end
 
-    Article.find(:all, :conditions => ['keywords is not null and length(keywords)>0']).each do |article|
-      article.save
-    end
+#    Article.find(:all, :conditions => ['keywords is not null and length(keywords)>0']).each do |article|
+#      article.save
+#    end
   end
 
   def self.down

@@ -1,3 +1,13 @@
+class TempArticle < ActiveRecord::Base
+  belongs_to :text_filter
+  set_table_name 'articles'
+end
+
+class TempPage < ActiveRecord::Base
+  belongs_to :text_filter
+  set_table_name 'pages'
+end
+
 class MoveTextFilterToTextFilterId < ActiveRecord::Migration
   def self.up
     STDERR.puts "Converting Article and Page to use text_filter_id instead of text_filter"
@@ -8,18 +18,18 @@ class MoveTextFilterToTextFilterId < ActiveRecord::Migration
       filters[filter.name] = filter
     end
     
-    Article.transaction do
+    TempArticle.transaction do
       add_column :articles, :text_filter_id, :integer
-      Article.find(:all).each do |article|
+      TempArticle.find(:all).each do |article|
         article.text_filter = filters[article.attributes['text_filter']]
         article.save
       end
       remove_column :articles, :text_filter
     end
     
-    Page.transaction do
+    TempPage.transaction do
       add_column :pages, :text_filter_id, :integer
-      Page.find(:all).each do |page|
+      TempPage.find(:all).each do |page|
         page.text_filter = filters[page.attributes['text_filter']]
         page.save
       end
