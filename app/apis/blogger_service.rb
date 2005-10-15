@@ -77,7 +77,9 @@ class BloggerService < TypoWebService
     article.author      = username
     article.created_at  = Time.now
     article.user        = @user
-    
+    article.allow_comments = config[:default_allow_comments]
+    article.allow_pings    = config[:default_allow_pings]
+    article.text_filter    = config[:text_filter]
     article.html(@controller)
 
     if categories
