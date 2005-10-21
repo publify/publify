@@ -32,7 +32,7 @@ have syntax highlighting.
 }    
   end
 
-  def macrofilter(attrib,params,text="")
+  def self.macrofilter(controller,attrib,params,text="")
     lang       = attrib['lang'] || 'default'
     title      = attrib['title']
     cssclass   = attrib['class']

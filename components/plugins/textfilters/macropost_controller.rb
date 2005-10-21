@@ -7,17 +7,13 @@ class Plugins::Textfilters::MacroPostController < TextFilterPlugin
     "Macro expansion meta-filter (post-markup)"
   end
 
-  def filtertext
-    text = params[:text]
+  def self.filtertext(controller,text,params)
     filterparams = params[:filterparams]
     
     macros = TextFilter.available_filter_types['macropost']
-    text = macros.inject(text) do |text,macro|
-      render_component_as_string(:controller => macro.controller_path,
-        :action => 'filtertext', :params => {:text => text, :filterparams => filterparams})
+    macros.inject(text) do |text,macro|
+      macro.filtertext(controller,text,params)
     end
-
-    render :text => text
   end
 end
 

@@ -32,7 +32,7 @@ class ConfigManager
   def normalize_value(line)
     case (Configuration.fields[line.name.to_s].ruby_type rescue :string)
     when :bool
-      ( line.value.to_i != 0 ) ? true : false
+      (line.value == 'f' or line.value == '0') ? false : true
     when :int
       line.value.to_i
     else

@@ -50,7 +50,7 @@ This macro takes a number of parameters:
 }
   end
 
-  def macrofilter(attrib,params,text="")
+  def self.macrofilter(controller,attrib,params,text="")
     img     = attrib['img']
     size    = attrib['size'] || "square"
     style   = attrib['style']

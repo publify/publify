@@ -312,9 +312,7 @@ class XmlControllerTest < Test::Unit::TestCase
 
 
   def set_extended_on_rss(value)
-    unless setting = Setting.find_by_name("show_extended_on_rss")
-      setting = Setting.create("name" => "show_extended_on_rss", "value" => value)
-    end
+    setting = Setting.find_by_name('show_extended_on_rss') || Setting.new(:name => 'show_extended_on_rss')
     setting.value = value
     setting.save
     config.reload

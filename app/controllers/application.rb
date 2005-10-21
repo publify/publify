@@ -63,10 +63,6 @@ class ApplicationController < ActionController::Base
       []
     end
   end
-  
-  def render_for_model(method, *args)
-    self.send(method, *args)
-  end
 end
 
 require_dependency 'controllers/textfilter_controller'

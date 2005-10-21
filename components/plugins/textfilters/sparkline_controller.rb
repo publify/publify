@@ -34,7 +34,7 @@ For other options, see the [Ruby Sparkline][] website.
 }
     end
   
-    def opt(attrib,optname)
+    def self.opt(attrib,optname)
       if(attrib[optname])
         " #{optname}=\"#{attrib.delete(optname)}\""
       else  
@@ -42,7 +42,7 @@ For other options, see the [Ruby Sparkline][] website.
       end
     end
   
-    def macrofilter(attrib,params,text="")
+    def self.macrofilter(controller,attrib,params,text="")
       img_opts = opt(attrib,'style') + opt(attrib,'alt') + opt(attrib,'title')
       data = text.to_s.split(/\s+/).join(',')
     
@@ -50,7 +50,7 @@ For other options, see the [Ruby Sparkline][] website.
         data = attrib.delete('data').to_s.split.join(',')
       end
     
-      url = url_for(
+      url = controller.url_for(
         {:controller => '/textfilter', :action => 'public_action', :filter => 'sparkline',
         :public_action => 'plot', :data => data}.update(attrib))
       

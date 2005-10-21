@@ -34,7 +34,6 @@ class Test::Unit::TestCase
 
   # Add more helper methods to be used by all tests here...
   def find_tag_in(source, conditions)
-    require_html_scanner
     HTML::Document.new(source).find(conditions)
   end
   

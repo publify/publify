@@ -66,23 +66,21 @@ class TextFilterPlugin::Macro < TextFilterPlugin
     attributes
   end
 
-  def filtertext
-    text = params[:text]
+  def self.filtertext(controller, text, params)
     filterparams = params[:filterparams]
-    regex1 = /<typo:#{self.class.short_name}[^>]*\/>/
-    regex2 = /<typo:#{self.class.short_name}([^>]*)>(.*?)<\/typo:#{self.class.short_name}>/m
+    regex1 = /<typo:#{short_name}[^>]*\/>/
+    regex2 = /<typo:#{short_name}([^>]*)>(.*?)<\/typo:#{short_name}>/m
     
     new_text = text.gsub(regex1) do |match|
-      macrofilter(self.class.attributes_parse(match),filterparams)
+      macrofilter(controller,attributes_parse(match),params)
     end
     
     new_text = new_text.gsub(regex2) do |match|
-      macrofilter(self.class.attributes_parse($1.to_s),filterparams,$2.to_s)
+      macrofilter(controller,attributes_parse($1.to_s),params,$2.to_s)
     end
-
-    render :text => new_text
+    
+    new_text
   end
-
 end
 
 class TextFilterPlugin::MacroPre < TextFilterPlugin::Macro
@@ -106,6 +104,10 @@ class TextfilterController < ApplicationController
     else
       render :text => '', :status => 404
     end
+  end
+  
+  def test_action
+    render :text => ''
   end
 end
 

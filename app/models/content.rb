@@ -57,8 +57,7 @@ class Content < ActiveRecord::Base
       if !self.send(field).blank? && self.send(html_field).blank?
         unformatted_value = self.send(field).to_s
         formatted_value =
-          text_filter.filter_text_for_controller( \
-            unformatted_value, controller, false, self ) rescue unformatted_value
+          text_filter.filter_text_for_controller( unformatted_value, controller, false, self ) rescue unformatted_value
         if self.id
           self.update_attribute html_field, formatted_value
         else

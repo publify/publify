@@ -17,6 +17,10 @@ class TextfilterControllerTest < Test::Unit::TestCase
     @controller.request = @request
     @controller.response = @response
     @controller.assigns ||= []
+    
+    get :test_action # set up @url; In Rails 1.0, we can't do url_for without it.
+    
+#    @controller.initialize_current_url #rescue nil
   end
   
   def filter_text(text, filters, filterparams={}, filter_html=false)

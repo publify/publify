@@ -46,14 +46,11 @@ class TextFilter < ActiveRecord::Base
     filters = [:htmlfilter, filters].flatten if filter_html
 
     filters.each do |filter|
+      next if filter == nil
       begin
-        filter_component = map[filter.to_s].controller_path
-        text = controller.render_for_model :render_component_as_string, 
-          :controller => filter_component, 
-          :action => 'filtertext', 
-          :params => {:text => text, :filterparams => filterparams,
-                      :text_holder => text_holder,
-                      :reset_holder => nil}
+        filter_controller = map[filter.to_s]
+        next unless filter_controller
+        text = filter_controller.filtertext(controller, text, :filterparams => filterparams)
       rescue => err
         logger.error "Filter #{filter} failed: #{err}"
       end

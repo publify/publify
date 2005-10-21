@@ -7,7 +7,7 @@ class Plugins::Textfilters::NoneController < TextFilterPlugin::Markup
     'Raw HTML only'
   end
 
-  def self.filter(text,params)
+  def self.filter(controller,text,params)
     text
   end
 end

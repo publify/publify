@@ -7,8 +7,7 @@ class Plugins::Textfilters::SmartypantsController < TextFilterPlugin::PostProces
     'Converts HTML to use typographically correct quotes and dashes'
   end
 
-  def filtertext
-    text = params[:text]
-    render :text => RubyPants.new(text).to_html
+  def self.filtertext(controller,text,params)
+    RubyPants.new(text).to_html
   end
 end
