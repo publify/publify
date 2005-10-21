@@ -8,9 +8,13 @@ xm.item do
   xm.description content
   xm.pubDate pub_date(item.created_at)
   xm.guid "urn:uuid:#{item.guid}"
+  xm.author item.user.name rescue nil
   xm.link post_link(item)
   for category in item.categories
     xm.category category.name
+  end
+  for tag in item.tags
+    xm.category tag.name
   end
   xm.trackback :ping, server_url_for(:controller => "articles", :action =>"trackback", :id => item.id)
 end
