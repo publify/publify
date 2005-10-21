@@ -1,14 +1,8 @@
 require 'syntax/convertors/html'
 
 class Plugins::Textfilters::CodeController < TextFilterPlugin::MacroPre
-
-  def self.display_name
-    "Code"
-  end
-
-  def self.description
-    "Apply syntax highlighting to a code block"
-  end
+  plugin_display_name "Code"
+  plugin_description "Apply syntax highlighting to a code block"
 
   def self.help_text
     %{

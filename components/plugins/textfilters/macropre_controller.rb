@@ -1,11 +1,6 @@
 class Plugins::Textfilters::MacroPreController < TextFilterPlugin
-  def self.display_name
-    "MacroPre"
-  end
-
-  def self.description
-    "Macro expansion meta-filter (pre-markup)"
-  end
+  plugin_display_name "MacroPre"
+  plugin_description "Macro expansion meta-filter (pre-markup)"
 
   def self.filtertext(controller,text,params)
     filterparams = params[:filterparams]

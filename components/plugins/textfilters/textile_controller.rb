@@ -1,11 +1,6 @@
 class Plugins::Textfilters::TextileController < TextFilterPlugin::Markup
-  def self.display_name
-    "Textile"
-  end
-
-  def self.description
-    'Textile markup language'
-  end
+  plugin_display_name "Textile"
+  plugin_description 'Textile markup language'
 
   def self.filtertext(controller,text,params)
     RedCloth.new(text).to_html

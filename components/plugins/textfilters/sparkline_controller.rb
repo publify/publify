@@ -5,16 +5,10 @@ begin
 
   class Plugins::Textfilters::SparklineController < TextFilterPlugin::MacroPost
     plugin_public_action :plot
+    plugin_display_name "Sparkline"
+    plugin_description "Produce Sparklines"
 
-    def self.display_name
-      "Sparkline"
-      end
-
-      def self.description
-        "Produce Sparklines"
-        end
-  
-        def self.help_text
+    def self.help_text
     %{
 You can use `<typo:sparkline>` to generate [Sparklines][], which are essentially small inline charts.
 Example:

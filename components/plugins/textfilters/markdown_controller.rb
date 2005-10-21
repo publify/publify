@@ -1,11 +1,6 @@
 class Plugins::Textfilters::MarkdownController < TextFilterPlugin::Markup
-  def self.display_name
-    "Markdown"
-  end
-
-  def self.description
-    'Markdown markup language from <a href="http://daringfireball.com/">Daring Fireball</a>'
-  end
+  plugin_display_name "Markdown"
+  plugin_description 'Markdown markup language from <a href="http://daringfireball.com/">Daring Fireball</a>'
   
   def self.help_text
     %{

@@ -2,16 +2,9 @@ require 'net/http'
 require 'flickr/flickr'
 
 class Plugins::Textfilters::FlickrController < TextFilterPlugin::MacroPost
-
   KEY='84f652422f05b96b29b9a960e0081c50'
-
-  def self.display_name
-    "Flickr"
-  end
-
-  def self.description
-    "Automatically generate image tags for Flickr images"
-  end
+  plugin_display_name "Flickr"
+  plugin_description "Automatically generate image tags for Flickr images"
 
 #  def self.default_config
 #    {"flickr-user-id" => {:default => "",

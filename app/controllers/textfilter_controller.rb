@@ -3,6 +3,8 @@ require 'plugins'
 
 class TextFilterPlugin < ApplicationController
   uses_component_template_root
+  @@plugin_display_name = "Unknown Text Filter"
+  @@plugin_description = "Unknown Text Filter Description"
   include ApplicationHelper
   
   class << self
@@ -30,14 +32,12 @@ class TextFilterPlugin < ApplicationController
     component_name.split(%r{/}).last
   end
   
-  # The name that shows up in the UI
   def self.display_name
-    # This is the default, but it's best to override it
-    short_name
+    @@plugin_display_name
   end
   
   def self.description
-    short_name
+    @@plugin_description
   end
   
   def self.default_config
