@@ -251,12 +251,12 @@ class BackendControllerTest < Test::Unit::TestCase
   def test_mt_publish_post
     args = [ 4, 'tobi', 'whatever' ]
 
-    assert_equal 0, Article.find(4).published
+    assert (not Article.find(4).published?)
     
     result = invoke_layered :mt, :publishPost, *args
     
     assert result
-    assert_equal 1, Article.find(4).published
+    assert Article.find(4).published?
   end
 
   def test_mt_fail_authentication
