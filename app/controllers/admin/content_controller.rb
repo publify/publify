@@ -28,7 +28,7 @@ class Admin::ContentController < Admin::BaseController
     @categories = Category.find(:all, :order => 'UPPER(name)')
     if request.post?
       @article.categories.clear
-      @article.categories << Category.find(params[:categories]) if params[:categories]
+      @article.categories = Category.find(params[:categories]) if params[:categories]
 
       params[:attachments].each do |k,v|
         a = attachment_save(params[:attachments][k])

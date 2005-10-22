@@ -7,7 +7,7 @@ require 'http_mock'
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :categories, :resources, :text_filters, :settings
+  fixtures :contents, :users, :categories, :resources, :text_filters, :settings, :articles_categories
 
   def setup
     @controller = Admin::ContentController.new
@@ -46,13 +46,15 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_create
     num_articles = Article.find_all.size
 
-    post :new, 'article' => { :title => "posted via tests!", :body => "Foo" }
+    post :new, 'article' => { :title => "posted via tests!", :body => "Foo"}, 'categories' => [1]
     assert_redirected_to :action => 'show'
 
     assert_equal num_articles + 1, Article.find_all.size
 
     new_article = Article.find(:first, :order => "id DESC")
     assert_equal @tobi, new_article.user
+    assert_equal 1, new_article.categories.size
+    assert_equal [1], new_article.categories.collect {|c| c.id}
   end
     
   def test_create_filtered
