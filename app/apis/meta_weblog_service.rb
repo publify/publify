@@ -168,8 +168,8 @@ class MetaWeblogService < TypoWebService
       :mt_text_more      => article.extended.to_s,
       :mt_excerpt        => article.excerpt.to_s,
       :mt_keywords       => article.keywords.to_s,
-      :mt_allow_comments => article.allow_comments.to_i,
-      :mt_allow_pings    => article.allow_pings.to_i,
+      :mt_allow_comments => article.allow_comments? ? 1 : 0,
+      :mt_allow_pings    => article.allow_pings? ? 1 : 0,
       :mt_convert_breaks => (article.text_filter.name.to_s rescue ''),
       :mt_tb_ping_urls   => article.pings.collect { |p| p.url },
       :dateCreated       => (article.created_at.to_formatted_s(:db) rescue "")
