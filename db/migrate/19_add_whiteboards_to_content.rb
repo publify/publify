@@ -2,7 +2,7 @@ require 'set'
 
 class AddWhiteboardsToContent < ActiveRecord::Migration
   def self.up
-    begin
+    Article.transaction do
       STDERR.print "Trying to add whiteboard to: articles..."
       add_column :articles, :whiteboard, :text
       STDERR.print " comments..."
@@ -10,8 +10,6 @@ class AddWhiteboardsToContent < ActiveRecord::Migration
       STDERR.print " pages..."
       add_column :pages, :whiteboard, :text
       STDERR.puts " done."
-    rescue
-      STDERR.puts "\nERROR unable to add whiteboard column"
     end
   end
 
