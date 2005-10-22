@@ -161,4 +161,16 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     get :attachment_box_remove, :id => 1
     assert_tag :tag => 'script', :attributes => {:type => 'text/javascript'}
   end
+
+  def test_resource_container
+    get :show, :id => @article1.id # article without attachments 
+    Resource.find(:all).each do |resource|
+      assert_tag( :tag => 'a',
+                  :attributes =>{
+                    :onclick =>
+                      /^new Ajax.Updater('resources')*/
+                  },
+                  :content => "+ #{resource.filename}")
+    end
+  end
 end
