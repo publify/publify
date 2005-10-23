@@ -16,5 +16,15 @@ xm.item do
   for tag in item.tags
     xm.category tag.name
   end
+  
+  # RSS 2.0 only allows a single enclosure per item, so only include the first one here.
+  if not item.resources.empty?
+    resource = item.resources.first
+    xm.enclosure(
+      :url => server_url_for(:controller => "files", 
+      :action => resource.filename),
+      :length => resource.size,
+      :type => resource.mime)
+  end
   xm.trackback :ping, server_url_for(:controller => "articles", :action =>"trackback", :id => item.id)
 end

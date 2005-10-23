@@ -9,10 +9,17 @@ xm.entry do
   xm.title post_title(item)
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
-  for category in item.categories
+  item.categories.each do |category|
     xm.dc :subject, category.name
   end
-
+  item.resources.each do |resource|
+    next unless resource.size > 0  # The Atom spec disallows files with size=0
+    xm.link "rel" => "enclosure", 
+            :type => resource.mime,
+            :title => item.title,
+            :href => server_url_for(:controller => "files", :action => resource.filename),
+            :length => resource.size
+  end
   if config[:show_extended_on_rss]
     content = article_html(item)
   else

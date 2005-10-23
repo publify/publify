@@ -29,8 +29,8 @@ end
 class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
-  fixtures :contents, :categories,
-    :articles_categories, :tags, :articles_tags, :users, :settings
+  fixtures :contents, :categories, :articles_categories, :tags, 
+    :articles_tags, :users, :settings, :resources
 
   def setup
     @controller = XmlController.new
@@ -309,7 +309,37 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success  	
     assert_no_match /extended content/, @response.body
   end
+  
+  def test_enclosure_rss20
+    get :feed, :format => 'rss20', :type => 'feed'
+    assert_response :success
+  
+    # There's an enclosure in there somewhere
+    assert_xpath('/rss/channel/item/enclosure')
+    
+    # There's an enclosure attached to the node with the title "Article 1!"
+    assert_xpath('/rss/channel/item[title="Article 1!"]/enclosure')    
+    assert_xpath('/rss/channel/item[title="Article 2!"]/enclosure')
+    
+    # Article 3 exists, but has no enclosure
+    assert_xpath('/rss/channel/item[title="Article 3!"]')
+    assert_not_xpath('/rss/channel/item[title="Article 3!"]/enclosure')
+  end
 
+  def get_xpath(xpath)
+    rexml = REXML::Document.new(@response.body)
+    assert rexml
+
+    rexml.get_elements(xpath)
+  end
+  
+  def assert_xpath(xpath)
+    assert !(get_xpath(xpath).empty?)
+  end
+  
+  def assert_not_xpath(xpath)
+    assert get_xpath(xpath).empty?
+  end
 
   def set_extended_on_rss(value)
     setting = Setting.find_by_name('show_extended_on_rss') || Setting.new(:name => 'show_extended_on_rss')

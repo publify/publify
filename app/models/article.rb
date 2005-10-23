@@ -9,8 +9,8 @@ class Article < Content
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
-  has_many :resources, :order => "created_at DESC"
-  
+  has_many :resources, :order => "created_at DESC",
+           :class_name => "Resource"
   has_and_belongs_to_many :categories, :foreign_key => 'article_id'
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
