@@ -35,7 +35,7 @@ class FlickrAggregation
     end
 
     def image 
-      description.scan( /(http:\/\/(static|photos).*\.jpg)/ ).first.first
+      description.scan( /(http:\/\/(static|photos).*?\.jpg)/ ).first.first
     end
     def thumb
       image.gsub( /\_m\./, '_t.' )
