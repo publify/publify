@@ -9,10 +9,11 @@ module TypoPlugins
   end
   
   def plugin_description(description)
-    @@plugin_description = description
+    eval "def self.description; '#{description}'; end"
+
   end
   
   def plugin_display_name(name)
-    @@plugin_display_name = name
+    eval "def self.display_name; '#{name}'; end"
   end
 end

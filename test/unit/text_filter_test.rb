@@ -44,6 +44,15 @@ class TextFilterTest < Test::Unit::TestCase
     assert !filters.include?(TextFilterPlugin::Macro)
     assert !filters.include?(TextFilterPlugin::PostProcess)
   end
+  
+  def test_descriptions
+    TextFilter.available_filters.each do |filter|
+      assert filter.display_name.to_s.size > 0, "Blank display name for #{filter}"
+      assert filter.description.to_s.size > 0, "Blank description for #{filter}"
+      assert_not_equal 'Unknown Text Filter ',filter.display_name
+      assert_not_equal 'Unknown Text Filter Description',filter.description
+    end
+  end
 
   def test_filtertypes
     types = TextFilter.available_filter_types

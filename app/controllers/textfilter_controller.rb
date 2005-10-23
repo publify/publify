@@ -3,14 +3,15 @@ require 'plugins'
 
 class TextFilterPlugin < ApplicationController
   uses_component_template_root
-  @@plugin_display_name = "Unknown Text Filter"
-  @@plugin_description = "Unknown Text Filter Description"
   include ApplicationHelper
   
   class << self
     include TypoPlugins
   end
   
+  plugin_display_name "Unknown Text Filter"
+  plugin_description "Unknown Text Filter Description"
+    
   # Disable HTML errors for subclasses
   def rescue_action(e) 
     raise e 
@@ -30,14 +31,6 @@ class TextFilterPlugin < ApplicationController
   # controller name, like 'markdown' or 'smartypants'. 
   def self.short_name
     component_name.split(%r{/}).last
-  end
-  
-  def self.display_name
-    @@plugin_display_name
-  end
-  
-  def self.description
-    @@plugin_description
   end
   
   def self.default_config
