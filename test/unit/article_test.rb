@@ -9,6 +9,19 @@ class ArticleTest < Test::Unit::TestCase
     config.reload
   end
   
+  def test_create
+    a = Article.new
+    a.user_id = 1
+    a.body = "Foo"
+    a.title = "Zzz"
+    a.categories = [Category.find(1)]
+    assert_equal 1, a.categories.size
+    assert a.save
+    
+    b = Article.find(a.id)
+    assert_equal 1, b.categories.size
+  end
+  
   def test_permalink
     assert_equal @article1, Article.find_by_date(2005,01,01)  
     assert_equal @article3, Article.find_by_date(2004,06,01)
