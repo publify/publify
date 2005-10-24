@@ -51,18 +51,13 @@ class Content < ActiveRecord::Base
   
   def html_map(field=nil); self.class.html_map(field); end
   
-  
   def html(controller,what = :all)
     html_map.each do |field, html_field|
       if !self.send(field).blank? && self.send(html_field).blank?
         unformatted_value = self.send(field).to_s
-        formatted_value =
-          text_filter.filter_text_for_controller( unformatted_value, controller, false, self ) rescue unformatted_value
-        if self.id
-          self.update_attribute html_field, formatted_value
-        else
-          self[html_field] = formatted_value
-        end
+        self[html_field] = 
+          text_filter.filter_text_for_controller( unformatted_value, controller, false ) #rescue unformatted_value
+        save if self.id
       end
     end
     

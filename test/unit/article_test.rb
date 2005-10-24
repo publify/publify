@@ -19,7 +19,7 @@ class ArticleTest < Test::Unit::TestCase
     assert a.save
     
     b = Article.find(a.id)
-    assert_equal 1, b.categories.size
+    assert_equal 1, b.categories.size 
   end
   
   def test_permalink

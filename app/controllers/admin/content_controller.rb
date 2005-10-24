@@ -20,13 +20,14 @@ class Admin::ContentController < Admin::BaseController
 
   def new
     @article = Article.new(params[:article])
-    @article.author = session[:user].login
-    @article.allow_comments ||= config[:default_allow_comments]
-    @article.allow_pings ||= config[:default_allow_pings]
-    @article.user = session[:user]
-    
     @categories = Category.find(:all, :order => 'UPPER(name)')
+
     if request.post?
+      @article.author = session[:user].login
+      @article.allow_comments ||= config[:default_allow_comments]
+      @article.allow_pings ||= config[:default_allow_pings]
+      @article.user = session[:user]
+      
       @article.categories.clear
       @article.categories = Category.find(params[:categories]) if params[:categories]
 

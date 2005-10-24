@@ -39,8 +39,7 @@ class TextFilter < ActiveRecord::Base
     available_filters.inject({}) { |map,filter| map[filter.short_name] = filter; map }
   end
 
-  def self.filter_text(text, controller, filters, filterparams={},
-                       filter_html=false, text_holder=nil)
+  def self.filter_text(text, controller, filters, filterparams={}, filter_html=false)
 
     map=TextFilter.filters_map
     filters = [:htmlfilter, filters].flatten if filter_html
@@ -59,19 +58,17 @@ class TextFilter < ActiveRecord::Base
     text
   end
 
-  def self.filter_text_by_name(text, controller, filtername,
-                               filter_html=false, text_holder = nil)
+  def self.filter_text_by_name(text, controller, filtername, filter_html=false)
     f = TextFilter.find_by_name(filtername)
-    f.filter_text_for_controller text, controller, filter_html, text_holder
+    f.filter_text_for_controller text, controller, filter_html
   end
 
-  def filter_text_for_controller(text, controller, filter_html=false, text_holder=nil)
-    self.class.filter_text \
+  def filter_text_for_controller(text, controller, filter_html=false)
+    self.class.filter_text(
       text, controller,
       [:macropre, markup, :macropost, filters].flatten, nil,
-      filter_html, text_holder
+      filter_html)
   end
-      
 
   def filter(text,filter_html=false)
     self.class.filter(text,self.filters,self.params,filter_html)
