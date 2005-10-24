@@ -170,9 +170,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
       assert_tag( :tag => 'a',
                   :attributes =>{
                     :onclick =>
-                      /^new Ajax.Updater('resources')*/
+                      /^new Ajax.Updater\('resources/
                   },
-                  :content => "+ #{resource.filename}")
+                  :content => /[-+] #{resource.filename}/)
     end
   end
 end
