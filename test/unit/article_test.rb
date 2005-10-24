@@ -140,8 +140,9 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_destroy_file_upload_associations
-    @article1.resources << @resource1 << @resource2
     assert_equal 2, @article1.resources.size
+    @article1.resources << @resource1 << @resource2
+    assert_equal 4, @article1.resources.size
     @article1.destroy
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{@article1.id}").size
   end
