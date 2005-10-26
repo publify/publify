@@ -19,7 +19,7 @@ Options:
 
 * **data** This is the data to be plotted.  You may also include the data between `<typo:sparkline>` 
 and `</typo:sparkline>` tags.
-* **type** This is the type of sparkline to be generated.  Options include `area`, `discreet`, `pie`, and `smooth`.
+* **type** This is the type of sparkline to be generated.  Options include `area`, `discrete`, `pie`, and `smooth`.
 
 For other options, see the [Ruby Sparkline][] website.
 
@@ -56,7 +56,7 @@ For other options, see the [Ruby Sparkline][] website.
       ary = params['data'].split(',').collect { |i| i.to_i }
       params.delete('filename')
       
-      if(params['type'] and not ['smooth', 'pie', 'discreet', 'area'].include?(params['type']))
+      if(params['type'] and not ['smooth', 'pie', 'discrete', 'area'].include?(params['type']))
         render :text => 'bad params', :status => 500
         return
       end
