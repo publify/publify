@@ -6,4 +6,5 @@
     :url => { :controller => "live", :action => "search" }, 
     :loading => "Element.show('search_spinner')",
     :complete => "Element.hide('search_spinner')",
-    :update => "search-results" -%>
+    :update => "search-results",
+    :with => "'q=' + escape($F('q'))" -%>
