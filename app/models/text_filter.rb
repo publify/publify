@@ -66,7 +66,7 @@ class TextFilter < ActiveRecord::Base
   def filter_text_for_controller(text, controller, filter_html=false)
     self.class.filter_text(
       text, controller,
-      [:macropre, markup, :macropost, filters].flatten, nil,
+      [:macropre, markup, :macropost, filters].flatten, params,
       filter_html)
   end
 
