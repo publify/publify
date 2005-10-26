@@ -42,8 +42,7 @@ CREATE TABLE contents (
   keywords varchar(255),
   allow_comments integer,
   allow_pings integer,
-  published integer DEFAULT '1',
-  text_filter varchar(255),
+  published integer DEFAULT 1,
   created_at datetime,
   updated_at datetime,
   extended_html text,
@@ -159,4 +158,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-insert into schema_info (version) values (23);
+insert into schema_info (version) values (24);

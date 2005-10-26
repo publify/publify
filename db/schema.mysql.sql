@@ -42,8 +42,7 @@ CREATE TABLE contents (
   keywords varchar(255),
   allow_comments int(11),
   allow_pings int(11),
-  published int(11) DEFAULT '1',
-  text_filter varchar(255),
+  published int(11) DEFAULT 1,
   created_at datetime,
   updated_at datetime,
   extended_html text,
@@ -159,4 +158,4 @@ CREATE TABLE schema_info (
   version int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (23);
+insert into schema_info (version) values (24);

@@ -42,8 +42,7 @@ CREATE TABLE contents (
   keywords character varying(255),
   allow_comments integer,
   allow_pings integer,
-  published integer DEFAULT '1',
-  text_filter character varying(255),
+  published integer DEFAULT 1,
   created_at timestamp,
   updated_at timestamp,
   extended_html text,
@@ -159,4 +158,4 @@ CREATE TABLE schema_info (
   version integer
 );
 
-insert into schema_info (version) values (23);
+insert into schema_info (version) values (24);

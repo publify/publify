@@ -7,4 +7,8 @@ class CleanupContents < ActiveRecord::Migration
       a.save
     end
   end
+  
+  def self.down
+    # nothing
+  end
 end
