@@ -2,7 +2,7 @@
 <h3>Tags</h3>
 <p style="overflow:hidden">
 <% @tags.each do |tag| -%>
-<span style="font-size:<%= tag.article_counter.to_f * @font_multiplier %>%"><%= link_to tag.name, :controller => "articles", :action => "tag", :id => tag.name %></span>
+<span style="font-size:<%= tag.article_counter * @font_multiplier %>%"><%= link_to tag.name, :controller => "articles", :action => "tag", :id => tag.name %></span>
 <% end -%>
 </p>
 <% end %>

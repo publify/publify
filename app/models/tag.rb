@@ -13,7 +13,7 @@ class Tag < ActiveRecord::Base
 
   def self.find_all_with_article_counters(limit = 20)
     # Only count published articles
-    self.find_by_sql [%{
+    self.find_by_sql([%{
       SELECT tags.id, tags.name, COUNT(articles_tags.article_id) AS article_counter
       FROM #{Tag.table_name} tags LEFT OUTER JOIN #{Tag.table_name_prefix}articles_tags#{Tag.table_name_suffix} articles_tags
         ON articles_tags.tag_id = tags.id
@@ -23,7 +23,7 @@ class Tag < ActiveRecord::Base
       GROUP BY tags.id, tags.name
       ORDER BY article_counter DESC
       LIMIT ?
-      },limit]
+      },limit]).each{|item| item.article_counter = item.article_counter.to_i }
   end
 
 end

@@ -75,6 +75,12 @@ class ArticlesController < ApplicationController
   end
   
   def category
+    unless params[:id]
+      @categories = Category.find_all_with_article_counters
+      render :action => "categorylist"
+      return
+    end
+    
     if category = Category.find_by_permalink(params[:id])
       auto_discovery_feed :type => 'category', :id => category.permalink
       @articles = Article.find_published_by_category_permalink(category.permalink)      
@@ -92,6 +98,12 @@ class ArticlesController < ApplicationController
   end
     
   def tag
+    unless params[:id]
+      @tags = Tag.find_all_with_article_counters 1000
+      render :action => "taglist"
+      return
+    end
+  
     @articles = Article.find_published_by_tag_name(params[:id])
     auto_discovery_feed :type => 'tag', :id => params[:id]
     

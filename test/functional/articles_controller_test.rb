@@ -8,6 +8,7 @@ class ArticlesController; def rescue_action(e) raise e end; end
 
 class ArticlesControllerTest < Test::Unit::TestCase
   fixtures :contents, :categories, :settings, :users, :articles_categories, :text_filters, :articles_tags, :tags
+  include ArticlesHelper
 
   def setup
     @controller = ArticlesController.new
@@ -359,4 +360,32 @@ class ArticlesControllerTest < Test::Unit::TestCase
     ajax_comment = Comment.find(:first, :order => "id DESC")
     assert_equal "This is posted *with* ajax", ajax_comment.body
   end
+  
+  def test_tag_max_article_count_is_first
+    tags = Tag.find_all_with_article_counters
+    assert tags.size > 1
+    max = tags[0].article_counter
+    tags.each do |tag|
+      assert tag.article_counter <= max
+    end
+  end
+
+  def test_calc_distributed_class_basic
+    assert_equal "prefix5", calc_distributed_class(0, 0, "prefix", 5, 15)
+    (0..10).each do |article|
+      assert_equal "prefix#{article}", calc_distributed_class(article, 10, "prefix", 0, 10)
+    end
+    (0..20).each do |article|
+      assert_equal "prefix#{article/2}", calc_distributed_class(article, 20, "prefix", 0, 10)
+    end
+    (0..5).each do |article|
+      assert_equal "prefix#{article*2}", calc_distributed_class(article, 5, "prefix", 0, 10)
+    end
+  end
+  
+  def test_calc_distributed_class_offset
+    (0..10).each do |article|
+      assert_equal "prefix#{article+6}", calc_distributed_class(article, 10, "prefix", 6, 16)
+    end
+  end  
 end

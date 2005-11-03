@@ -392,3 +392,24 @@ a[name] { border: none; }
 code {
   font-size:120%;
 }
+
+ /*+-------------------------------------------+
+   |   		          	TAGLIST 						         |
+   +-------------------------------------------+*/
+
+ul#taglist li {
+	display: inline;
+	line-height: 2em;
+}
+
+.tags .tags0  { font-size: 1.0em; }
+.tags .tags1  { font-size: 1.2em; }
+.tags .tags2  { font-size: 1.4em; }
+.tags .tags3  { font-size: 1.6em; }
+.tags .tags4  { font-size: 1.8em; }
+.tags .tags5  { font-size: 2.0em; }
+.tags .tags6  { font-size: 2.2em; }
+.tags .tags7  { font-size: 2.4em; }
+.tags .tags8  { font-size: 2.6em; }
+.tags .tags9  { font-size: 2.8em; }
+.tags .tags10 { font-size: 3.0em; }

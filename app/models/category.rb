@@ -12,7 +12,7 @@ class Category < ActiveRecord::Base
           ON (articles_categories.article_id = articles.id AND articles.published = 1)
       GROUP BY categories.id, categories.name, categories.position, categories.permalink
       ORDER BY position
-      })
+      }).each {|item| item.article_counter = item.article_counter.to_i }
   end
   
   def stripped_name

@@ -53,9 +53,9 @@ class TagTest < Test::Unit::TestCase
     assert_equal 2, tags.size
     
     assert_equal "foo", tags.first.name
-    assert_equal 1, tags.last.article_counter.to_i
+    assert_equal 1, tags.last.article_counter
     
     assert_equal "bar", tags.last.name
-    assert_equal 2, tags.first.article_counter.to_i
+    assert_equal 2, tags.first.article_counter
   end
 end

@@ -98,4 +98,9 @@ module ArticlesHelper
     image_tag("http://www.gravatar.com/avatar.php?" <<
       options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")
   end
+
+  def calc_distributed_class(articles, max_articles, prefix, min_class, max_class)
+    return prefix + min_class.to_s if max_articles == 0 #exit early, otherwise div by zero
+    prefix + (min_class + ((max_class-min_class) * articles.to_f / max_articles).to_i).to_s
+  end
 end

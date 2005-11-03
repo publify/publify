@@ -18,9 +18,9 @@ class CategoryTest < Test::Unit::TestCase
     assert_equal @hardware, c[1]
     assert_equal @personal, c[2]
 
-    assert_equal 1, c[0].article_counter.to_i
-    assert_equal 1, c[1].article_counter.to_i
-    assert_equal 3, c[2].article_counter.to_i
+    assert_equal 1, c[0].article_counter
+    assert_equal 1, c[1].article_counter
+    assert_equal 3, c[2].article_counter
   end
 
   def test_reorder

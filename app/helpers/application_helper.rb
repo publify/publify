@@ -41,23 +41,23 @@ module ApplicationHelper
     url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor=> "trackback-#{trackback.id}"
   end
   
-  def responses(collection, word)
-    case collection.size
+  def pluralize(size, word)
+    case size
     when 0
       "no #{word}s"
     when 1
       "1 #{word}"
     else
-      "#{collection.size} #{word}s"
+      "#{size} #{word}s"
     end
   end
     
   def comments_link(article)
-    article_link  responses(article.comments, "comment"), article, 'comments'
+    article_link  pluralize(article.comments.size, "comment"), article, 'comments'
   end
 
   def trackbacks_link(article)  
-    article_link responses(article.trackbacks, "trackback"), article, 'trackbacks'
+    article_link pluralize(article.trackbacks.size, "trackback"), article, 'trackbacks'
   end
   
   def check_cache(aggregator, url)
