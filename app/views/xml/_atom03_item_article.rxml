@@ -5,7 +5,7 @@ xm.entry do
     xm.name name
     xm.email email if email and not email.empty?
   end
-  xm.id "tag:#{controller.request.host},2005:Typo-#{item.id}"
+  xm.id "urn:uuid:#{item.guid}"
 
   xm.issued item.created_at.xmlschema
   xm.modified item.updated_at.xmlschema
