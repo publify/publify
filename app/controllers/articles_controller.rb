@@ -4,7 +4,10 @@ class ArticlesController < ApplicationController
   layout :theme_layout
 
   cache_sweeper :blog_sweeper
-  caches_page :index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag
+  
+  cached_pages = [:index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag]
+  caches_page *cached_pages
+  session :off, :only => cached_pages
 
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
@@ -218,7 +221,7 @@ class ArticlesController < ApplicationController
 
     def check_page_query_param_for_missing_routes
       unless request.path =~ /\/page\//  # check if all page routes use /page/:page
-        assert { params[:page].nil? }
+        raise "Page param problem" unless params[:page].nil?
       end
     end
 
