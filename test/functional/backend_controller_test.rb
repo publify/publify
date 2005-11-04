@@ -108,7 +108,7 @@ class BackendControllerTest < Test::Unit::TestCase
     
     result = invoke_layered :metaWeblog, :getRecentPosts, *args
     assert_equal result.size, 2
-    assert_equal result.last['title'], 'Article 2!'
+    assert_equal result.last['title'], 'Article 1!'
   end
 
   def test_meta_weblog_delete_post
@@ -208,7 +208,7 @@ class BackendControllerTest < Test::Unit::TestCase
     args = [ 1, 'tobi', 'whatever', 2 ]    
     
     result = invoke_layered :mt, :getRecentPostTitles, *args
-    assert_equal result.first['title'], Article.find(1).title
+    assert_equal result.first['title'], Article.find(2).title
   end
 
   def test_mt_set_post_categories

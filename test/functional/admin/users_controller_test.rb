@@ -39,17 +39,17 @@ class Admin::UsersControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => 1000000
+    get :show, :id => 1
     assert_rendered_file 'show'
     assert_valid_record 'user'
   end
   
   def test_edit
-    get :edit, :id => 1000000
+    get :edit, :id => 1
     assert_rendered_file 'edit'
     assert_valid_record 'user'
     
-    post :edit, :id => 1000000, :user => { :login => 'errand', 
+    post :edit, :id => 1, :user => { :login => 'errand', 
       :email => 'corey@test.com', :password => 'testpass',
       :password_confirmation => 'testpass' }
     assert_redirected_to :action => 'show'
@@ -59,11 +59,11 @@ class Admin::UsersControllerTest < Test::Unit::TestCase
   end
   
   def test_destroy
-    get :destroy, :id => 1000000
+    get :destroy, :id => 1
     assert_rendered_file 'destroy'
     assert_valid_record 'user'
     
-    post :destroy, :id => 1000000
+    post :destroy, :id => 1
     assert_redirected_to :action => 'list'
     follow_redirect
     assert_rendered_file 'list'

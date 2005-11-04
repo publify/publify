@@ -24,7 +24,7 @@ class ArticleTest < Test::Unit::TestCase
   
   def test_permalink
     assert_equal @article3, Article.find_by_date(2004,06,01)
-    assert_equal [@article1, @article2], Article.find_all_by_date(Time.now.year)  
+    assert_equal [@article2, @article1], Article.find_all_by_date(Time.now.year)  
   end
 
   def test_permalink_with_title
@@ -125,7 +125,7 @@ class ArticleTest < Test::Unit::TestCase
     articles = Article.find_published_by_tag_name(@foo_tag.name)
 
     assert_equal 2, articles.size
-    assert_equal [@article1, @article2], articles
+    assert_equal [@article2, @article1], articles
   end
   
   def test_find_published_by_category
@@ -144,7 +144,7 @@ class ArticleTest < Test::Unit::TestCase
 
     articles = Article.find_published_by_category_permalink('personal', :limit => 1)
     assert_equal 1, articles.size
-    assert articles.include?(@article1)
+    assert articles.include?(@article2)
 
     articles = Article.find_published_by_category_permalink('personal', :limit => 1, :order => 'created_at ASC')
     assert_equal 1, articles.size

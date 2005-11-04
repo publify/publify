@@ -54,7 +54,7 @@ class XmlControllerTest < Test::Unit::TestCase
 
       okay, messages = parse_validator_messages(messages)
 
-      assert okay, messages
+      assert okay, messages + "\nFeed text:\n"+rss
     end
   end
   
@@ -263,7 +263,7 @@ class XmlControllerTest < Test::Unit::TestCase
     get :feed, :format => 'rss20', :type => 'feed'
     assert_response :success
     xml = REXML::Document.new(@response.body)
-    assert_equal @article1.created_at.rfc822, REXML::XPath.match(xml, '/rss/channel/item/pubDate').first.text
+    assert_equal @article2.created_at.rfc822, REXML::XPath.match(xml, '/rss/channel/item/pubDate').first.text
   end
   
   def test_rsd

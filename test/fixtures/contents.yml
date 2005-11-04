@@ -7,8 +7,8 @@ article1:
   body_html: body
   extended: extended content
   extended_html: extended content
-  created_at: <%= (Time.now - 100).strftime("%Y-%m-%d") %>
-  updated_at: <%= (Time.now - 100).strftime("%Y-%m-%d") %>
+  created_at: <%= (Time.now - 2.days).strftime("%Y-%m-%d") %>
+  updated_at: <%= (Time.now - 2.days).strftime("%Y-%m-%d") %>
   allow_comments: 1
   allow_pings: 1
   permalink: article-1
@@ -25,8 +25,8 @@ article2:
   body_html: body
   extended: extended content
   extended_html: extended content
-  created_at: <%= (Time.now - 90).strftime("%Y-%m-%d") %>
-  updated_at: <%= (Time.now - 90).strftime("%Y-%m-%d") %>
+  created_at: <%= (Time.now - 1.days).strftime("%Y-%m-%d") %>
+  updated_at: <%= (Time.now - 1.days).strftime("%Y-%m-%d") %>
   allow_comments: 1
   allow_pings: 1
   permalink: article-2
@@ -83,7 +83,7 @@ comment2:
   id: 6
   article_id: 1
   author: John Bar
-  user_id: 1000001
+  user_id: 2
   url: www.google.com
   email: john.bar@google.com
   body: Comment body _italic_ *bold*
@@ -122,7 +122,7 @@ first_page:
   title: Page One Title
   body: ho ho ho
   created_at: 2005-05-05 01:00:00
-  user_id: 1000000
+  user_id: 1
 another_page:
   type: Page
   id: 10
@@ -130,7 +130,7 @@ another_page:
   title: Another Page Title
   body: another body for yet another page
   created_at: 2005-05-05 01:00:00
-  user_id: 1000000
+  user_id: 1
 markdown_page:
   type: Page
   id: 11
@@ -139,4 +139,4 @@ markdown_page:
   text_filter_id: 1
   body: this is *markdown*.
   created_at: 2005-05-05 01:00:00
-  user_id: 1000000
+  user_id: 1
