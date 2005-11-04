@@ -8,7 +8,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
     xml.link @link
     xml.language "en-us"
     xml.ttl "40"
-    xml.description blog_title
+    xml.description config_value(:blog_subtitle)
 
     @items.each do |item|
       render :partial => "rss20_item_#{item.class.name.to_s.downcase}",

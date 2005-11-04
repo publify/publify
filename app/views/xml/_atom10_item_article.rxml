@@ -1,6 +1,9 @@
 xm.entry do
   xm.author do
-    xm.name item.author
+    name = item.user.name rescue item.author
+    email = item.user.email rescue nil
+    xm.name name
+    xm.email email if email and not email.empty?
   end
   xm.id "urn:uuid:#{item.guid}"
 
@@ -9,9 +12,14 @@ xm.entry do
   xm.title post_title(item)
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
+  
   item.categories.each do |category|
-    xm.dc :subject, category.name
+    xm.category "term" => category.permalink, "label" => category.name, "scheme" => (url_for :controller => "articles", :action => "category", :only_path => false)
   end
+  item.tags.each do |tag|
+    xm.category "term" => tag.name, "scheme" => (url_for :controller => "articles", :action => "tag", :only_path => false)
+  end
+  
   item.resources.each do |resource|
     next unless resource.size > 0  # The Atom spec disallows files with size=0
     xm.link "rel" => "enclosure", 

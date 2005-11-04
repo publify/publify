@@ -1,6 +1,9 @@
 xm.entry do
   xm.author do
-    xm.name item.author
+    name = item.user.name rescue item.author
+    email = item.user.email rescue nil
+    xm.name name
+    xm.email email if email and not email.empty?
   end
   xm.id "tag:#{controller.request.host},2005:Typo-#{item.id}"
 
@@ -9,8 +12,12 @@ xm.entry do
   xm.title post_title(item)
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
+  
   for category in item.categories
     xm.dc :subject, category.name
+  end
+  for tag in item.tags
+    xm.dc :subject, tag.name
   end
 
   if config[:show_extended_on_rss]

@@ -8,7 +8,10 @@ xm.item do
   xm.description content
   xm.pubDate pub_date(item.created_at)
   xm.guid "urn:uuid:#{item.guid}"
-  xm.author item.user.name rescue nil
+  author = item.user.name rescue item.author
+  email = item.user.email rescue nil
+  author = "#{email} (#{author})" if email and not email.empty?
+  xm.author author
   xm.link post_link(item)
   for category in item.categories
     xm.category category.name

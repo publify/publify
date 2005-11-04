@@ -1,7 +1,5 @@
 xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
-xml.feed "xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom', 
-  "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
-  
+xml.feed "xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom' do
   xml.title @feed_title
   if(not config[:blog_subtitle].blank?)
     xml.subtitle config[:blog_subtitle], "type"=>"html"
