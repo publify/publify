@@ -1,5 +1,6 @@
 class LiveController < ApplicationController
-
+  session :off
+  
   def search
     @search = params[:q]
     @articles = Article.search(@search)

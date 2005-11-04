@@ -1,5 +1,6 @@
 class ThemeController < ApplicationController
   caches_page :stylesheets, :javascript, :images
+  session :off
   
   def stylesheets
     render_theme_item(:stylesheets, params[:filename], 'text/css')

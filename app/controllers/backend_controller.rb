@@ -1,5 +1,6 @@
 class BackendController < ApplicationController
   cache_sweeper :blog_sweeper
+  session :off
 
   web_service_dispatching_mode :layered
   web_service(:metaWeblog)  { MetaWeblogService.new(self) }
