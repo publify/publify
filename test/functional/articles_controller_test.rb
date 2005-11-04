@@ -42,7 +42,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_simple_tag_pagination
-    @limit_article_display.update_attribute(:value, 1)
+    settings(:limit_article_display).update_attribute(:value, 1)
     get :tag, :id => "foo"
     assert_equal 1, assigns(:articles).size
     assert_tag(:tag => 'p',
@@ -75,7 +75,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "read"
     assert_not_nil assigns(:article)
-    assert_equal @article3, assigns(:article)
+    assert_equal contents(:article3), assigns(:article)
   end
 
   # Posts for given day
@@ -160,13 +160,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
   
   def test_comment_user_set
-    @request.session = { :user => @tobi }
+    @request.session = { :user => users(:tobi) }
     post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
     assert_response :success
 
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
-    assert_equal @tobi, comment.user
+    assert_equal users(:tobi), comment.user
 
     get :read, {:id => 2}
     assert_response :success
@@ -286,13 +286,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_read_article_with_comments_and_trackbacks
-    get :read, :id => @article1.id
+    get :read, :id => contents(:article1).id
     assert_response :success
     assert_template "read"
     
     assert_tag :tag => "ol",
       :attributes => { :id => "commentList"},
-      :children => { :count => @article1.comments.size,
+      :children => { :count => contents(:article1).comments.size,
         :only => { :tag => "li" } }
         
     assert_tag :tag => "li",
@@ -300,12 +300,12 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     assert_tag :tag => "ol",
       :attributes => { :id => "trackbackList" },
-      :children => { :count => @article1.trackbacks.size,
+      :children => { :count => contents(:article1).trackbacks.size,
         :only => { :tag => "li" } }
   end
 
   def test_read_article_no_comments_no_trackbacks
-    get :read, :id => @article3.id
+    get :read, :id => contents(:article3).id
     assert_response :success
     assert_template "read"
 

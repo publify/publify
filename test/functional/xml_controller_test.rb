@@ -263,7 +263,7 @@ class XmlControllerTest < Test::Unit::TestCase
     get :feed, :format => 'rss20', :type => 'feed'
     assert_response :success
     xml = REXML::Document.new(@response.body)
-    assert_equal @article2.created_at.rfc822, REXML::XPath.match(xml, '/rss/channel/item/pubDate').first.text
+    assert_equal contents(:article2).created_at.rfc822, REXML::XPath.match(xml, '/rss/channel/item/pubDate').first.text
   end
   
   def test_rsd

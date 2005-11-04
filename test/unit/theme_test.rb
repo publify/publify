@@ -19,7 +19,7 @@ class ThemeTest < Test::Unit::TestCase
   
   def test_themes_root
     # Overridden in theme_mock
-    assert_equal RAILS_ROOT + "test/mocks/themes", Theme.themes_root
+    assert_equal RAILS_ROOT + "/test/mocks/themes", Theme.themes_root
   end
 
   def test_current_theme_path

@@ -5,8 +5,7 @@ class UserTest < Test::Unit::TestCase
   fixtures :users
     
   def test_auth
-    
-    assert_equal  @bob, User.authenticate("bob", "test")    
+    assert_equal  users(:bob), User.authenticate("bob", "test")    
     assert_nil    User.authenticate("nonbob", "test")
     
   end
@@ -19,7 +18,6 @@ class UserTest < Test::Unit::TestCase
   end
   
   def test_disallowed_passwords
-    
     u = User.new    
     u.login = "nonbob"
 
@@ -42,7 +40,6 @@ class UserTest < Test::Unit::TestCase
   end
   
   def test_bad_logins
-
     u = User.new  
     u.password = u.password_confirmation = "bobs_secure_password"
 
@@ -90,7 +87,6 @@ class UserTest < Test::Unit::TestCase
     u.password = u.password_confirmation = "bobs_secure_password"
       
     assert u.save  
-    
   end
   
   def test_sha1

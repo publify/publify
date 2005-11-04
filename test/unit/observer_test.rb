@@ -21,7 +21,7 @@ class ObserverTest < Test::Unit::TestCase
   end
 
   def test_simple_observation
-    art = Article.find(@article1.id)
+    art = Article.find(contents(:article1).id)
     assert art.add_observer(self)
     art.changed
     art.notify_observers(art, :test)
@@ -31,10 +31,10 @@ class ObserverTest < Test::Unit::TestCase
   end
 
   def test_content_observation
-    @article1.add_observer(self)
-    @article1.body = 'A new body'
+    contents(:article1).add_observer(self)
+    contents(:article1).body = 'A new body'
 
-    assert_equal @article1, @informant
+    assert_equal contents(:article1), @informant
     assert_equal :body, @symbol
   end
 end

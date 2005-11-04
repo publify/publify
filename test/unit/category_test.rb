@@ -14,9 +14,9 @@ class CategoryTest < Test::Unit::TestCase
   def test_find_all_with_article_counters
     c = Category.find_all_with_article_counters
     
-    assert_equal @software, c[0]
-    assert_equal @hardware, c[1]
-    assert_equal @personal, c[2]
+    assert_equal categories(:software), c[0]
+    assert_equal categories(:hardware), c[1]
+    assert_equal categories(:personal), c[2]
 
     assert_equal 1, c[0].article_counter
     assert_equal 1, c[1].article_counter
@@ -24,14 +24,14 @@ class CategoryTest < Test::Unit::TestCase
   end
 
   def test_reorder
-    assert_equal @software, Category.find(:first, :order => :position)
-    Category.reorder([@personal.id, @hardware.id, @software.id])
-    assert_equal @personal, Category.find(:first, :order => :position)
+    assert_equal categories(:software), Category.find(:first, :order => :position)
+    Category.reorder([categories(:personal).id, categories(:hardware).id, categories(:software).id])
+    assert_equal categories(:personal), Category.find(:first, :order => :position)
   end
   
   def test_reorder_alpha
-    assert_equal @software, Category.find(:first, :order => :position)
+    assert_equal categories(:software), Category.find(:first, :order => :position)
     Category.reorder_alpha
-    assert_equal @hardware, Category.find(:first, :order => :position)
+    assert_equal categories(:hardware), Category.find(:first, :order => :position)
   end
 end

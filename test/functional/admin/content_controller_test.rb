@@ -13,7 +13,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     @controller = Admin::ContentController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    @request.session = { :user => @tobi }
+    @request.session = { :user => users(:tobi) }
   end
 
   def test_index
@@ -52,7 +52,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal num_articles + 1, Article.find_all.size
 
     new_article = Article.find(:first, :order => "id DESC")
-    assert_equal @tobi, new_article.user
+    assert_equal users(:tobi), new_article.user
     assert_equal 1, new_article.categories.size
     assert_equal [1], new_article.categories.collect {|c| c.id}
   end
@@ -165,7 +165,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   end
 
   def test_resource_container
-    get :show, :id => @article1.id # article without attachments 
+    get :show, :id => contents(:article1).id # article without attachments 
     Resource.find(:all).each do |resource|
       assert_tag( :tag => 'a',
                   :attributes =>{

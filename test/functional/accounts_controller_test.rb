@@ -23,7 +23,7 @@ class AccountsControllerTest < Test::Unit::TestCase
     post :login, :user_login => "bob", :user_password => "test"
     assert_session_has :user
 
-    assert_equal @bob, @response.session[:user]
+    assert_equal users(:bob), @response.session[:user]
     
     assert_redirect_url "http://localhost/bogus/location"
   end

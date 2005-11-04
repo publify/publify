@@ -10,7 +10,7 @@ class PingTest < Test::Unit::TestCase
   end
 
   def test_send_ping
-    ping = @article1.pings.build("url" => "http://localhost/post/5?param=1")
+    ping = contents(:article1).pings.build("url" => "http://localhost/post/5?param=1")
     ping.send_ping("example.com")
     
     ping = Net::HTTP.pings.last

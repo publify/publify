@@ -12,7 +12,7 @@ class Admin::ThemesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     
-    @request.session = { :user => @tobi }
+    @request.session = { :user => users(:tobi) }
   end
 
   # Replace this with your real tests.

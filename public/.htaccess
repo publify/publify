@@ -3,20 +3,32 @@ AddHandler fastcgi-script .fcgi
 AddHandler cgi-script .cgi
 Options +FollowSymLinks +ExecCGI
 
+# If you don't want Rails to look in certain directories,
+# use the following rewrite rules so that Apache won't rewrite certain requests
+# 
+# Example:
+#   RewriteCond %{REQUEST_URI} ^/notrails.*
+#   RewriteRule .* - [L]
+
 # Redirect all requests not available on the filesystem to Rails
 RewriteEngine On
 
-# Uncomment this if you're not running Typo in the root of your
-# webserver's URL space (i.e. http://www.example.com/blog):
+# If Typo is accessed via an Alias directive, then you MUST also set 
+# the RewriteBase in this htaccess file.
 #
-# RewriteBase /blog/
+# Example:
+#   Alias /blog /path/to/typo/public
+#   RewriteBase /blog
 
-# try to suggest current rss subscribers that the url moved permently
-RewriteRule ^xml/([a-z]+)$ /xml/$1/feed.xml [R=301]
 RewriteRule ^$ index.html [QSA]
 RewriteRule ^([^.]+)$ $1.html [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
-# In case Rails experiences terminal errors
-ErrorDocument 500 "<h2>Application Error</h2>Typo could not be reached
+# In case Typo experiences terminal errors
+# Instead of displaying this message you can supply a file here which will be rendered instead
+# 
+# Example:
+#   ErrorDocument 500 /500.html
+
+ErrorDocument 500 "<h2>Application error</h2>Typo failed to start properly"

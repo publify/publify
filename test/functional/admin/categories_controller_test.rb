@@ -12,7 +12,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @request.session = { :user => @tobi }
+    @request.session = { :user => users(:tobi) }
   end
 
   def test_index
@@ -71,18 +71,18 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
   end
 
   def test_order
-    assert_equal @software, Category.find(:first, :order => :position)
-    get :order, :category_list => [@personal.id, @hardware.id, @software.id]
+    assert_equal categories(:software), Category.find(:first, :order => :position)
+    get :order, :category_list => [categories(:personal).id, categories(:hardware).id, categories(:software).id]
     assert_response :success
-    assert_equal @personal, Category.find(:first, :order => :position)
+    assert_equal categories(:personal), Category.find(:first, :order => :position)
   end
   
   def test_asort
-    assert_equal @software, Category.find(:first, :order => :position)
+    assert_equal categories(:software), Category.find(:first, :order => :position)
     get :asort
     assert_response :success
     assert_template "_categories"
-    assert_equal @hardware, Category.find(:first, :order => :position)
+    assert_equal categories(:hardware), Category.find(:first, :order => :position)
   end
   
   def test_category_container

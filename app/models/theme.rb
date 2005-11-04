@@ -44,7 +44,8 @@ class Theme
   end  
 
   def self.search_theme_directory
-    Dir.glob("#{themes_root}/[-_a-zA-Z0-9]*").collect do |file|
+    glob = "#{themes_root}/[-_a-zA-Z0-9]*"
+    Dir.glob(glob).collect do |file|
       file if File.directory?(file)      
     end.compact
   end  

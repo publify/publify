@@ -14,7 +14,7 @@ class TagTest < Test::Unit::TestCase
 
   def test_get
     tag=Tag.get('foo')
-    assert_equal @foo_tag, tag
+    assert_equal tags(:foo_tag), tag
 
     tag2=Tag.get('zzz')
     assert_kind_of Tag, tag2
@@ -40,11 +40,11 @@ class TagTest < Test::Unit::TestCase
   def test_article
     a1=Article.create(:title => 'Article 1')
     assert_kind_of Article, a1
-    a1.tags << @foo_tag
-    a1.tags << @bar_tag
+    a1.tags << tags(:foo_tag)
+    a1.tags << tags(:bar_tag)
 
     assert_equal 2, a1.tags.size
-    assert_equal [@foo_tag,@bar_tag].sort_by {|i| i.id}, a1.tags.sort_by {|i| i.id}
+    assert_equal [tags(:foo_tag),tags(:bar_tag)].sort_by {|i| i.id}, a1.tags.sort_by {|i| i.id}
   end
 
   def test_find_all_with_article_counters

@@ -10,13 +10,13 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_save_regular
-    assert @comment2.save
-    assert_equal "http://www.google.com", @comment2.url
+    assert contents(:comment2).save
+    assert_equal "http://www.google.com", contents(:comment2).url
   end
   
   def test_save_spam
-    assert @spam_comment.save
-    assert_equal "http://fakeurl.com", @spam_comment.url
+    assert contents(:spam_comment).save
+    assert_equal "http://fakeurl.com", contents(:spam_comment).url
   end
   
   def test_create_comment
@@ -67,7 +67,7 @@ class CommentTest < Test::Unit::TestCase
     c = Comment.new
     c.author = "Old Spammer"
     c.body = "Old trackback body"
-    c.article = @article3
+    c.article = contents(:article3)
 
     assert ! c.save
     assert c.errors.invalid?('article_id')
@@ -79,8 +79,8 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_article_relation
-    assert_equal true, @comment2.has_article?
-    assert_equal 1, @comment2.article.id
+    assert_equal true, contents(:comment2).has_article?
+    assert_equal 1, contents(:comment2).article.id
   end
 
   def test_xss_rejection

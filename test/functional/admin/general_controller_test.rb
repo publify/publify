@@ -11,7 +11,7 @@ class Admin::GeneralControllerTest < Test::Unit::TestCase
     @controller = Admin::GeneralController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    @request.session = { :user => @tobi }
+    @request.session = { :user => users(:tobi) }
   end
 
   def test_index

@@ -1,4 +1,3 @@
 #!/usr/bin/env ruby
-require 'rubygems'
-require_gem 'rails'
-require 'breakpoint_client'
+require File.dirname(__FILE__) + '/../config/boot'
+require 'commands/breakpointer'

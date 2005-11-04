@@ -17,7 +17,7 @@ class TextFilterTest < Test::Unit::TestCase
   def test_markdownsmartypants_fixture
     ms = TextFilter.find_by_name('markdown smartypants')
 
-    assert_equal @markdownsmartypants_filter, ms
+    assert_equal text_filters(:markdownsmartypants_filter), ms
     assert_equal 'markdown', ms.markup
     assert_equal [:smartypants], ms.filters
     assert_equal Hash.new, ms.params
@@ -25,7 +25,7 @@ class TextFilterTest < Test::Unit::TestCase
 
   def test_textile_fixture
     tx = TextFilter.find_by_name('textile')
-    assert_equal @textile_filter, tx
+    assert_equal text_filters(:textile_filter), tx
     assert_equal 'textile', tx.markup
     assert_equal [], tx.filters
   end

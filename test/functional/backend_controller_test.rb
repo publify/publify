@@ -48,7 +48,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "new post *body*", new_post.body
     assert_equal "<p>new post <strong>body</strong></p>", new_post.html(@controller, :body)
     assert_equal "textile", new_post.text_filter.name
-    assert_equal @tobi, new_post.user
+    assert_equal users(:tobi), new_post.user
   end
   
   def test_blogger_new_post_no_title
@@ -70,7 +70,7 @@ class BackendControllerTest < Test::Unit::TestCase
     new_post = Article.find(result)
     assert_equal "new post title", new_post.title
     assert_equal "new post body", new_post.body
-    assert_equal [@software, @hardware], new_post.categories.sort_by { |c| c.id }
+    assert_equal [categories(:software), categories(:hardware)], new_post.categories.sort_by { |c| c.id }
   end
 
   def test_blogger_new_post_with_non_existing_categories
@@ -79,7 +79,7 @@ class BackendControllerTest < Test::Unit::TestCase
     result = invoke_layered :blogger, :newPost, *args
     assert_not_nil result
     new_post = Article.find(result)
-    assert_equal [@hardware], new_post.categories
+    assert_equal [categories(:hardware)], new_post.categories
   end
 
   def test_blogger_fail_authentication
@@ -196,7 +196,7 @@ class BackendControllerTest < Test::Unit::TestCase
 
   def test_mt_get_post_categories
     article = Article.find(1)
-    article.categories << @software
+    article.categories << categories(:software)
 
     args = [ 1, 'tobi', 'whatever' ]
     
@@ -216,7 +216,7 @@ class BackendControllerTest < Test::Unit::TestCase
       [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => 3, 'isPrimary' => 1)] ]
     
     result = invoke_layered :mt, :setPostCategories, *args
-    assert_equal [@personal], Article.find(2).categories
+    assert_equal [categories(:personal)], Article.find(2).categories
 
     args = [ 2, 'tobi', 'whatever',
       [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software', 'categoryId' => 1, 'isPrimary' => 1),
@@ -224,7 +224,7 @@ class BackendControllerTest < Test::Unit::TestCase
 
      result = invoke_layered :mt, :setPostCategories, *args
 
-     assert Article.find(2).categories.include?(@hardware)
+     assert Article.find(2).categories.include?(categories(:hardware))
 
   end
 

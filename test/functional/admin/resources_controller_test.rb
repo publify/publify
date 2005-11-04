@@ -11,7 +11,7 @@ class Admin::ResourcesControllerTest < Test::Unit::TestCase
     @controller = Admin::ResourcesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    @request.session = { :user => @tobi }
+    @request.session = { :user => users(:tobi) }
   end
 
   def test_list
