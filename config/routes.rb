@@ -60,6 +60,12 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'articles', :action => 'category',
     :page => /\d+/
 
+  map.connect 'articles/tag/:id',
+    :controller => 'articles', :action => 'tag'
+  map.connect 'articles/tag/:id/page/:page',
+    :controller => 'articles', :action => 'tag',
+    :page => /\d+/
+
   map.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
 
   map.connect 'stylesheets/theme/:filename',

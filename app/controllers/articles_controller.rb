@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :verify_config
-  before_filter :ignore_page_query_param
+  before_filter :check_page_query_param_for_missing_routes
   layout :theme_layout
 
   cache_sweeper :blog_sweeper
@@ -216,8 +216,10 @@ class ArticlesController < ApplicationController
   
   private
 
-    def ignore_page_query_param
-      @params[:page] = nil unless @request.path =~ /\/page\// # assumes all page routes use /page/:page
+    def check_page_query_param_for_missing_routes
+      unless request.path =~ /\/page\//  # check if all page routes use /page/:page
+        assert { params[:page].nil? }
+      end
     end
 
     def verify_config

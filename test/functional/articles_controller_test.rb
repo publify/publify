@@ -35,6 +35,25 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_tag :tag => 'h2', :content => 'Article 2!'
     assert_tag :tag => 'h2', :content => 'Article 1!'
   end
+
+  def test_tag_routes
+    opts = {:controller => "articles", :action => "tag", :id => "foo", :page => "2"}
+    assert_routing("articles/tag/foo/page/2", opts)
+  end
+
+  def test_simple_tag_pagination
+    @limit_article_display.update_attribute(:value, 1)
+    get :tag, :id => "foo"
+    assert_equal 1, assigns(:articles).size
+    assert_tag(:tag => 'p',
+               :attributes =>{ 
+                  :id => 'pagination'},
+               :content => 'Older posts: 1',
+               :descendant => {:tag => 'a',
+                               :attributes =>{
+                                  :href => "/articles/tag/foo/page/2"},
+                               :content => "2"})
+  end
   
   # Main index
   def test_index
