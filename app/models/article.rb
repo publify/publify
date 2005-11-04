@@ -92,7 +92,7 @@ class Article < Content
         AND #{Article.table_name}.id = articles_categories.article_id
         AND articles_categories.category_id = ? }, category.id], 
       :joins => ", #{Article.table_name_prefix}articles_categories#{Article.table_name_suffix} articles_categories",
-      :order => "created_at DESC"}.merge(options))
+      :order => "created_at DESC", :readonly => false}.merge(options))
   end
 
   def self.find_published_by_tag_name(tag_name, options = {})
@@ -104,7 +104,7 @@ class Article < Content
         AND #{Article.table_name}.id = articles_tags.article_id
         AND articles_tags.tag_id = ? }, tag.id], 
       :joins => ", #{Article.table_name_prefix}articles_tags#{Article.table_name_suffix} articles_tags",
-      :order => "created_at DESC"}.merge(options))
+      :order => "created_at DESC", :readonly => false}.merge(options))
   end
 
   # Fulltext searches the body of published articles
