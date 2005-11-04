@@ -1,5 +1,6 @@
 class XmlController < ApplicationController  
   caches_page :feed
+  session :off
   
   FORMATS = {'atom' => 'atom03', 'rss' => 'rss20', 
     'atom03' => nil, 'atom10' => nil, 'rss20' => nil}
