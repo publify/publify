@@ -23,13 +23,12 @@ class ArticleTest < Test::Unit::TestCase
   end
   
   def test_permalink
-    assert_equal @article1, Article.find_by_date(2005,01,01)  
     assert_equal @article3, Article.find_by_date(2004,06,01)
-    assert_equal [@article1, @article2], Article.find_all_by_date(2005)  
+    assert_equal [@article1, @article2], Article.find_all_by_date(Time.now.year)  
   end
 
   def test_permalink_with_title
-    assert_equal @article2, Article.find_by_permalink(2005, 01, 01, "article-2")  
+    assert_equal @article3, Article.find_by_permalink(2004, 06, 01, "article-3")  
     assert_nil Article.find_by_permalink(2005, 06, 01, "article-5")  
   end
   

@@ -52,16 +52,16 @@ class ArticlesControllerTest < Test::Unit::TestCase
   
   # Permalinks
   def test_permalink
-    get :permalink, :year => 2005, :month => 01, :day => 01, :title => "article-1"
+    get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
     assert_response :success
     assert_template "read"
     assert_not_nil assigns(:article)
-    assert_equal @article1, assigns(:article)
+    assert_equal @article3, assigns(:article)
   end
 
   # Posts for given day
   def test_find_by_date
-    get :find_by_date, :year => 2005, :month => 01, :day => 01
+    get :find_by_date, :year => 2004, :month => 06, :day => 01
     assert_response :success
     assert_rendered_file "index"
   end
@@ -376,10 +376,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
       assert_equal "prefix#{article}", calc_distributed_class(article, 10, "prefix", 0, 10)
     end
     (0..20).each do |article|
-      assert_equal "prefix#{article/2}", calc_distributed_class(article, 20, "prefix", 0, 10)
+      assert_equal "prefix#{(article/2).to_i}", calc_distributed_class(article, 20, "prefix", 0, 10)
     end
     (0..5).each do |article|
-      assert_equal "prefix#{article*2}", calc_distributed_class(article, 5, "prefix", 0, 10)
+      assert_equal "prefix#{(article*2).to_i}", calc_distributed_class(article, 5, "prefix", 0, 10)
     end
   end
   

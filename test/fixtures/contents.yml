@@ -7,8 +7,8 @@ article1:
   body_html: body
   extended: extended content
   extended_html: extended content
-  created_at: 2005-01-01 20:00:04
-  updated_at: 2005-01-01 20:00:04
+  created_at: <%= (Time.now - 100).strftime("%Y-%m-%d") %>
+  updated_at: <%= (Time.now - 100).strftime("%Y-%m-%d") %>
   allow_comments: 1
   allow_pings: 1
   permalink: article-1
@@ -25,8 +25,8 @@ article2:
   body_html: body
   extended: extended content
   extended_html: extended content
-  created_at: 2005-01-01 20:00:03
-  updated_at: 2005-01-01 20:00:03
+  created_at: <%= (Time.now - 90).strftime("%Y-%m-%d") %>
+  updated_at: <%= (Time.now - 90).strftime("%Y-%m-%d") %>
   allow_comments: 1
   allow_pings: 1
   permalink: article-2
