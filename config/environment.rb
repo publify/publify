@@ -74,7 +74,7 @@ require 'flickr'
 require 'uuidtools'
 
 require_dependency 'migrator'
-require_dependency 'renderfix'
+require_dependency 'rails_patch/renderfix'
 require_dependency 'rails_patch/components'
 require_dependency 'theme'
 require_dependency 'login_system'
