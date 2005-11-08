@@ -55,6 +55,14 @@ class Article < Content
       end      
     end
   end
+  
+  def next
+    Article.find(:first, :conditions => ['created_at > ?', created_at], :order => 'created_at asc')
+  end
+
+  def previous
+    Article.find(:first, :conditions => ['created_at < ?', created_at], :order => 'created_at desc')
+  end
 
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)  

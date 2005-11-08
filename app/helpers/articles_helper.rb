@@ -80,8 +80,18 @@ module ArticlesHelper
     else
       article.author
     end
-  end
+  end 
   
+  def next_link(article)
+    n = article.next
+    return  n ? article_link("#{n.title} &raquo;", n) : ''
+  end
+
+  def prev_link(article)
+    p = article.previous
+    return p ? article_link("&laquo; #{p.title}", p) : ''
+  end   
+    
   def render_sidebars
     render_component(:controller => 'sidebars/sidebar',
                      :action => 'display_plugins',
