@@ -2,6 +2,7 @@ class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
   after_destroy :delete_filename_on_disk
   before_validation_on_create :uniq_filename_on_disk
+  belongs_to :article
 
   def fullpath(file = nil)
     "#{RAILS_ROOT}/public/files/#{file.nil? ? filename : file}"
