@@ -1,1 +1,1 @@
-TYPO_VERSION = '$'
+TYPO_VERSION = '$Revision$'
