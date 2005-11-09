@@ -197,15 +197,19 @@ class ArticlesController < ApplicationController
   end
   
   def nuke_comment
-    comment = Comment.find(params[:id])
-    comment.destroy 
-    render :nothing => true 
+    if(session[:user])
+      comment = Comment.find(params[:id])
+      comment.destroy 
+      render :nothing => true 
+    end
   end
 
   def nuke_trackback
-    trackback = Trackback.find(params[:id])
-    trackback.destroy 
-    render :nothing => true 
+    if(session[:user])
+      trackback = Trackback.find(params[:id])
+      trackback.destroy 
+      render :nothing => true 
+    end
   end
 
   def view_page
