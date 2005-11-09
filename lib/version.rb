@@ -1,0 +1,1 @@
+TYPO_VERSION = '$'
