@@ -47,6 +47,14 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal "article-3", contents(:article3).stripped_title
   end
   
+  def test_html_title
+    a = Article.new
+    a.title = "This <i>is</i> a <b>test</b>"
+    assert a.save
+    
+    assert_equal 'this-is-a-test', a.permalink
+  end
+  
   def test_urls
     urls = contents(:article4).html_urls
     assert_equal ["http://www.example.com/public"], urls

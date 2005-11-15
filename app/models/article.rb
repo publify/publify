@@ -18,7 +18,7 @@ class Article < Content
   after_destroy :fix_resources
   
   def stripped_title
-    self.title.to_url
+    self.title.gsub(/<[^>]*>/,'').to_url
   end
   
   def html_urls
@@ -144,7 +144,7 @@ class Article < Content
       schema_version=schema_info["version"].to_i
     rescue
       # The test DB doesn't currently support schema_info.
-      schema_version=10
+      schema_version=25
     end
 
     self.published ||= 1
