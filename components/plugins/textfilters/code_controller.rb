@@ -1,6 +1,6 @@
 require 'syntax/convertors/html'
 
-class Textfilters::CodeController < TextFilterPlugin::MacroPre
+class Plugins::Textfilters::CodeController < TextFilterPlugin::MacroPre
   plugin_display_name "Code"
   plugin_description "Apply syntax highlighting to a code block"
 

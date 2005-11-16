@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 require 'flickr_mock'
-require 'application'
 
 class TextFilterTest < Test::Unit::TestCase
   fixtures :text_filters
@@ -34,12 +33,12 @@ class TextFilterTest < Test::Unit::TestCase
   def test_available
     filters = TextFilter.available_filters
 
-    assert filters.include?(Textfilters::MarkdownController)
-    assert filters.include?(Textfilters::SmartypantsController)
-    assert filters.include?(Textfilters::HtmlfilterController)
-    assert filters.include?(Textfilters::TextileController)
-    assert filters.include?(Textfilters::AmazonController)
-    assert filters.include?(Textfilters::FlickrController)
+    assert filters.include?(Plugins::Textfilters::MarkdownController)
+    assert filters.include?(Plugins::Textfilters::SmartypantsController)
+    assert filters.include?(Plugins::Textfilters::HtmlfilterController)
+    assert filters.include?(Plugins::Textfilters::TextileController)
+    assert filters.include?(Plugins::Textfilters::AmazonController)
+    assert filters.include?(Plugins::Textfilters::FlickrController)
 
     assert !filters.include?(TextFilterPlugin::Markup)
     assert !filters.include?(TextFilterPlugin::Macro)
@@ -66,19 +65,19 @@ class TextFilterTest < Test::Unit::TestCase
     assert types['postprocess']
     assert types['other']
 
-    assert types['markup'].include?(Textfilters::MarkdownController)
-    assert types['markup'].include?(Textfilters::TextileController)
+    assert types['markup'].include?(Plugins::Textfilters::MarkdownController)
+    assert types['markup'].include?(Plugins::Textfilters::TextileController)
 
-    assert types['macropost'].include?(Textfilters::FlickrController)
+    assert types['macropost'].include?(Plugins::Textfilters::FlickrController)
 
-    assert types['macropre'].include?(Textfilters::CodeController)
+    assert types['macropre'].include?(Plugins::Textfilters::CodeController)
 
-    assert types['postprocess'].include?(Textfilters::SmartypantsController)
-    assert types['postprocess'].include?(Textfilters::AmazonController)
+    assert types['postprocess'].include?(Plugins::Textfilters::SmartypantsController)
+    assert types['postprocess'].include?(Plugins::Textfilters::AmazonController)
 
-    assert types['other'].include?(Textfilters::HtmlfilterController)
-    assert types['other'].include?(Textfilters::MacroPreController)
-    assert types['other'].include?(Textfilters::MacroPostController)
+    assert types['other'].include?(Plugins::Textfilters::HtmlfilterController)
+    assert types['other'].include?(Plugins::Textfilters::MacroPreController)
+    assert types['other'].include?(Plugins::Textfilters::MacroPostController)
 
     # There shouldn't be any 'other' plugins coming from users; they
     # should all be part of the core 
@@ -88,12 +87,18 @@ class TextFilterTest < Test::Unit::TestCase
   def test_map
     map = TextFilter.filters_map
 
-    assert_equal Textfilters::MarkdownController, map['markdown']
-    assert_equal Textfilters::SmartypantsController, map['smartypants']
-    assert_equal Textfilters::HtmlfilterController, map['htmlfilter']
-    assert_equal Textfilters::TextileController, map['textile']
-    assert_equal Textfilters::AmazonController, map['amazon']
-    assert_equal Textfilters::FlickrController, map['flickr']
+    assert_equal Plugins::Textfilters::MarkdownController,
+          map['markdown']
+    assert_equal Plugins::Textfilters::SmartypantsController,
+          map['smartypants']
+    assert_equal Plugins::Textfilters::HtmlfilterController,
+          map['htmlfilter']
+    assert_equal Plugins::Textfilters::TextileController,
+          map['textile']
+    assert_equal Plugins::Textfilters::AmazonController,
+          map['amazon']
+    assert_equal Plugins::Textfilters::FlickrController,
+          map['flickr']
   end
 
   def test_help

@@ -110,4 +110,11 @@ module Admin::BaseHelper
     content_tag :li, link_to(title, :action => action, :id => id)
   end
 
+  def task_add_resource_metadata(title,id)
+    link_to_function(title, toggle_effect('add-resource-metadata-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+  end
+
+  def task_edit_resource_metadata(title,id)
+     link_to_function(title, toggle_effect('edit-resource-metadata-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+  end
 end

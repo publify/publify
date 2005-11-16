@@ -1,4 +1,4 @@
-class Textfilters::SmartypantsController < TextFilterPlugin::PostProcess
+class Plugins::Textfilters::SmartypantsController < TextFilterPlugin::PostProcess
   plugin_display_name "Smartypants"
   plugin_description 'Converts HTML to use typographically correct quotes and dashes'
 

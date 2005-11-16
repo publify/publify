@@ -8,6 +8,7 @@
       <li><a href="#gensettings" onclick="new Effect.ScrollTo('gensettings'); return false">General Settings</a></li>
       <li><a href="#textfilter" onclick="new Effect.ScrollTo('textfilter'); return false">Text Filter</a></li>
       <li><a href="#spam" onclick="new Effect.ScrollTo('spam'); return false">Spam Protection</a></li>
+      <li><a href="#resources" onclick="new Effect.ScrollTo('resources'); return false">Resource Defaults</a></li>
       <li><a href="#misc" onclick="new Effect.ScrollTo('misc'); return false">Cache</a></li>
     </ul>
     <div style="clear:both;"></div>
@@ -134,6 +135,43 @@
           <label for="sp_url_limit">Max URLs:</label> 
           <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= config_value(:sp_url_limit) %>" /> links
           <br /><small>(Set to 0 to never reject comments)</small>
+        </p>
+        <p class="r"><%= save("Save My Settings") %></p>
+    </div>
+    <div id="resources" class="set">
+        <h3>Resource Defaults</h3>
+        <p>
+          The below settings act as defaults when you choose to publish an enclosure with iTunes metadata.
+        </p>
+        <p>
+          <label for="itunes_author">Author:</label> 
+          <input name="setting[itunes_author]" size="25" id="itunes_author" type="text" value="<%= config_value(:itunes_author) %>" /> 
+        </p>
+        <p>
+          <label for="itunes_subtitle">Subtitle:</label> 
+          <input name="setting[itunes_subtitle]" size="25" id="itunes_subtitle" type="text" value="<%= config_value(:itunes_subtitle) %>" /><small>(setting for channel)</small>
+        </p>
+        <p>
+        <label for="itunes_summary">Summary:<small>(setting for channel)</small>
+</label> <br />
+          <textarea name="setting[itunes_summary]" cols="40" rows="3"><%= config_value(:itunes_summary) %></textarea>
+        </p>
+        <p>
+          <label for="itunes_email">Email:</label> 
+          <input name="setting[itunes_email]" size="25" id="itunes_email" type="text" value="<%= config_value(:itunes_email) %>" /> <small> Not Published by Apple</small>
+        </p>
+        <p>
+          <label for="itunes_name">Optional Name:</label> 
+          <input name="setting[itunes_name]" size="25" id="itunes_name" type="text" value="<%= config_value(:itunes_name) %>" /> <small> Not Published by Apple</small>
+
+        </p>
+        <p>
+          <label for="itunes_copyright">Copyright Information:</label> 
+          <input name="setting[itunes_copyright]" size="25" id="itunes_copyright" type="text" value="<%= config_value(:itunes_copyright) %>" /> 
+        </p>
+        <p>
+          <label for="itunes_explicit">Explicit:</label> 
+          <input name="setting[itunes_explicit]" id="itunes_explicit" type="checkbox"  value="1" <%= 'checked="checked"' if config_value(:itunes_explicit)%> /><input name="setting[itunes_explicit]" type="hidden" value="0" /> 
         </p>
         <p class="r"><%= save("Save My Settings") %></p>
     </div>

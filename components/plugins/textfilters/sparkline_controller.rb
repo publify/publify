@@ -3,7 +3,7 @@ require 'net/http'
 begin
   Kernel.require 'sparklines'
 
-  class Textfilters::SparklineController < TextFilterPlugin::MacroPost
+  class Plugins::Textfilters::SparklineController < TextFilterPlugin::MacroPost
     plugin_public_action :plot
     plugin_display_name "Sparkline"
     plugin_description "Produce Sparklines"

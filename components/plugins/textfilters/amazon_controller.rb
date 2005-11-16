@@ -1,4 +1,4 @@
-class Textfilters::AmazonController < TextFilterPlugin::PostProcess
+class Plugins::Textfilters::AmazonController < TextFilterPlugin::PostProcess
   plugin_display_name "Amazon"
   plugin_description "Automatically turn amazon:ASIN URLs into affiliate links to Amazon items using your Amazon Associate ID"
 

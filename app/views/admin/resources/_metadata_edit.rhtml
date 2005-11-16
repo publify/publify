@@ -1,0 +1,23 @@
+<%= start_form_tag({ :action => "update" }, :id => id, :enctype => "multipart/form-data") %>
+<div class="form">
+  <b>Resource MetaData</b><br />
+  <%= link_to "Remove iTunes Metadata", { :action => "remove_itunes_metadata", :id => resource.id}, :confirm => "Are you sure?"%><br />
+    <label for="resource_author">Author:</label><br />
+    <input name="resource[itunes_author]" size="25" id="itunes_author" type="text" value="<%= resource.itunes_author %>" /><br />
+    <label for="resource_subtitle">Subtitle:</label><br />
+    <input name="resource[itunes_subtitle]" size="25" id="itunes_subtitle" type="text" value="<%= resource.itunes_subtitle %>" /><br />
+    <label for="resource_duration">Duration:</label><br />
+    <input name="resource[itunes_duration]" size="8" id="itunes_duration" type="text" value="<%= resource.itunes_duration %>" /><small>(HH:MM:SS)</small><br />
+    <label for="resource_summary">Summary:</label><br />
+    <textarea name="resource[itunes_summary]" rows="5" cols="35"><%= resource.itunes_summary %></textarea><br />
+    <label for="resource_category">Category:</label><br />
+    <%= render :partial => "itunes_category_edit", :locals => {:categories => resource.itunes_category} %><br />
+    <label for="resource_keywords">Key Words:</label><br />
+    <input name="resource[itunes_keywords]" size="25" id="itunes_keywords" type="text" value="<%= resource.itunes_keywords %>" /><small>(seperate with spaces)</small><br />
+    <label for="resource_explicit">Explicit</label>
+          <input name="resource[itunes_explicit]" id="itunes_explicit" type="checkbox"  value="1" <%= 'checked="checked"' if resource.itunes_explicit%> /><input name="resource[itunes_explicit]" type="hidden" value="0" /> 
+  <br />
+  <input name="resource[id]" type="hidden" value="<%= id %>" /> 
+<%= save("Save") %> or <a href="#" onclick="new Effect.BlindUp('add-resource-metadata', {duration: 0.4}); return false;" >Cancel</a>
+</div>
+<%= end_form_tag %>

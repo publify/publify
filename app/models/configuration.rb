@@ -7,6 +7,12 @@ class Configuration < ConfigManager
   setting :sp_article_auto_close, :int, 0
   setting :sp_allow_non_ajax_comments, :bool, true
   setting :sp_url_limit, :int, 0
+  setting :itunes_explicit, :bool, false
+  setting :itunes_author, :string, ''
+  setting :itunes_owner, :string, ''
+  setting :itunes_email, :string, ''
+  setting :itunes_name, :string, ''
+  setting :itunes_copyright, :string, ''
   setting :text_filter, :string, ''
   setting :comment_text_filter, :string, ''
   setting :limit_article_display, :int, 10

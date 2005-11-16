@@ -8,126 +8,134 @@
 -- tables 
 
 CREATE TABLE articles_categories (
-  article_id int(11),
-  category_id int(11),
-  is_primary int(11)
+  `article_id` int(11),
+  `category_id` int(11),
+  `is_primary` int(11)
 ) ENGINE=InnoDB;
 
 CREATE TABLE articles_tags (
-  article_id int(11),
-  tag_id int(11)
+  `article_id` int(11),
+  `tag_id` int(11)
 ) ENGINE=InnoDB;
 
 CREATE TABLE blacklist_patterns (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  type varchar(255),
-  pattern varchar(255)
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `type` varchar(255),
+  `pattern` varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE categories (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  name varchar(255),
-  position int(11),
-  permalink varchar(255)
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `name` varchar(255),
+  `position` int(11),
+  `permalink` varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE contents (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  title varchar(255),
-  author varchar(255),
-  body text,
-  body_html text,
-  extended text,
-  excerpt text,
-  keywords varchar(255),
-  allow_comments int(11),
-  allow_pings int(11),
-  published int(11) DEFAULT 1,
-  created_at datetime,
-  updated_at datetime,
-  extended_html text,
-  user_id int(11),
-  permalink varchar(255),
-  guid varchar(255),
-  text_filter_id int(11),
-  whiteboard text,
-  type varchar(255),
-  article_id int(11),
-  email varchar(255),
-  url varchar(255),
-  ip varchar(255),
-  blog_name varchar(255),
-  name varchar(255)
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `title` varchar(255),
+  `author` varchar(255),
+  `body` text,
+  `body_html` text,
+  `extended` text,
+  `excerpt` text,
+  `keywords` varchar(255),
+  `allow_comments` int(11),
+  `allow_pings` int(11),
+  `published` int(11) DEFAULT 1,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `extended_html` text,
+  `user_id` int(11),
+  `permalink` varchar(255),
+  `guid` varchar(255),
+  `text_filter_id` int(11),
+  `whiteboard` text,
+  `type` varchar(255),
+  `article_id` int(11),
+  `email` varchar(255),
+  `url` varchar(255),
+  `ip` varchar(255),
+  `blog_name` varchar(255),
+  `name` varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE page_caches (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  name varchar(255)
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `name` varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE pings (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  article_id int(11),
-  url varchar(255),
-  created_at datetime
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `article_id` int(11),
+  `url` varchar(255),
+  `created_at` datetime
 ) ENGINE=InnoDB;
 
 CREATE TABLE resources (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  size int(11),
-  filename varchar(255),
-  mime varchar(255),
-  created_at datetime,
-  updated_at datetime,
-  article_id int(11)
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `size` int(11),
+  `filename` varchar(255),
+  `mime` varchar(255),
+  `created_at` datetime,
+  `updated_at` datetime,
+  `article_id` int(11),
+  `itunes_metadata` tinyint(1),
+  `itunes_author` varchar(255),
+  `itunes_subtitle` varchar(255),
+  `itunes_duration` int(11),
+  `itunes_summary` text,
+  `itunes_keywords` varchar(255),
+  `itunes_category` varchar(255),
+  `itunes_explicit` tinyint(1)
 ) ENGINE=InnoDB;
 
 CREATE TABLE sessions (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  sessid varchar(255),
-  data text,
-  created_at datetime,
-  updated_at datetime
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `sessid` varchar(255),
+  `data` text,
+  `created_at` datetime,
+  `updated_at` datetime
 ) ENGINE=InnoDB;
 
 CREATE TABLE settings (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  name varchar(255),
-  value varchar(255),
-  position int(11)
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `name` varchar(255),
+  `value` varchar(255),
+  `position` int(11)
 ) ENGINE=InnoDB;
 
 CREATE TABLE sidebars (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  controller varchar(255),
-  active_position int(11),
-  active_config text,
-  staged_position int(11),
-  staged_config text
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `controller` varchar(255),
+  `active_position` int(11),
+  `active_config` text,
+  `staged_position` int(11),
+  `staged_config` text
 ) ENGINE=InnoDB;
 
 CREATE TABLE tags (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  name varchar(255),
-  created_at datetime,
-  updated_at datetime
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `name` varchar(255),
+  `created_at` datetime,
+  `updated_at` datetime
 ) ENGINE=InnoDB;
 
 CREATE TABLE text_filters (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  name varchar(255),
-  description varchar(255),
-  markup varchar(255),
-  filters text,
-  params text
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `name` varchar(255),
+  `description` varchar(255),
+  `markup` varchar(255),
+  `filters` text,
+  `params` text
 ) ENGINE=InnoDB;
 
 CREATE TABLE users (
-  id int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  login varchar(255),
-  password varchar(255),
-  email text,
-  name text
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `login` varchar(255),
+  `password` varchar(255),
+  `email` text,
+  `name` text
 ) ENGINE=InnoDB;
 
 
@@ -155,7 +163,7 @@ INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) 
 -- schema version meta-info 
 
 CREATE TABLE schema_info (
-  version int(11)
+  `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (24);
+insert into schema_info (version) values (25);

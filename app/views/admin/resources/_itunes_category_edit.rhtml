@@ -1,0 +1,28 @@
+<%
+#Ssince the data is in yaml coming out of the DB it is converted here from
+#comparission. This is  a hack to get things working.
+selected = YAML::load(categories)
+%>
+<select name="itunes_category[]" size="3" multiple>
+  <% @itunes_category_list.each do |h| 
+    h.each_pair do |cat,subcats| %>
+    <!-- not a great way of handling this but it looks better -->
+    <% if selected.key?(cat.gsub(/#38\;/,''))  %>
+        <option value="<%= cat %>" selected><%= cat %></option>
+      <% else %>
+        <option value="<%= cat %>"><%= cat %></option>
+      <% end %>
+      <% subcats.each do |subcat|  %>
+        <% unless selected[cat].nil? %>
+          <% if selected[cat].include?(subcat) %>
+            <option value="<%= cat %>-<%= subcat %>" selected>&nbsp;-<%= subcat %></option>
+          <% else %>
+            <option value="<%= cat %>-<%= subcat %>">&nbsp;-<%= subcat %></option>
+          <% end %>
+        <% else %>
+          <option value="<%= cat %>-<%= subcat %>">&nbsp;-<%= subcat %></option>
+        <% end %>
+      <% end unless subcats.nil?  %>
+    <% end %>
+  <% end %>
+</select>

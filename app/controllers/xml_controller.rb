@@ -49,6 +49,10 @@ class XmlController < ApplicationController
       @feed_title = "#{config[:blog_name]}: Tag #{tag.name}"
       @link = url_for({:controller => "articles", :action => 'tag', :tag => tag.name},
         {:only_path => false})
+    when 'itunes'
+      @feed_title = "#{config[:blog_name]} iTunes Feed"
+      @items = Resource.find(:all, :order => 'created_at DESC',
+        :conditions => 'itunes_metadata = 1', :limit => config[:limit_rss_display])
     else
       render :text => 'Unsupported action', :status => 404
       return

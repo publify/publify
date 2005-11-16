@@ -8,126 +8,134 @@
 -- tables 
 
 CREATE TABLE articles_categories (
-  article_id integer,
-  category_id integer,
-  is_primary integer
+  "article_id" integer,
+  "category_id" integer,
+  "is_primary" integer
 );
 
 CREATE TABLE articles_tags (
-  article_id integer,
-  tag_id integer
+  "article_id" integer,
+  "tag_id" integer
 );
 
 CREATE TABLE blacklist_patterns (
-  id serial primary key,
-  type character varying(255),
-  pattern character varying(255)
+  "id" serial primary key,
+  "type" character varying(255),
+  "pattern" character varying(255)
 );
 
 CREATE TABLE categories (
-  id serial primary key,
-  name character varying(255),
-  position integer,
-  permalink character varying(255)
+  "id" serial primary key,
+  "name" character varying(255),
+  "position" integer,
+  "permalink" character varying(255)
 );
 
 CREATE TABLE contents (
-  id serial primary key,
-  title character varying(255),
-  author character varying(255),
-  body text,
-  body_html text,
-  extended text,
-  excerpt text,
-  keywords character varying(255),
-  allow_comments integer,
-  allow_pings integer,
-  published integer DEFAULT 1,
-  created_at timestamp,
-  updated_at timestamp,
-  extended_html text,
-  user_id integer,
-  permalink character varying(255),
-  guid character varying(255),
-  text_filter_id integer,
-  whiteboard text,
-  type character varying(255),
-  article_id integer,
-  email character varying(255),
-  url character varying(255),
-  ip character varying(255),
-  blog_name character varying(255),
-  name character varying(255)
+  "id" serial primary key,
+  "title" character varying(255),
+  "author" character varying(255),
+  "body" text,
+  "body_html" text,
+  "extended" text,
+  "excerpt" text,
+  "keywords" character varying(255),
+  "allow_comments" integer,
+  "allow_pings" integer,
+  "published" integer DEFAULT 1,
+  "created_at" timestamp,
+  "updated_at" timestamp,
+  "extended_html" text,
+  "user_id" integer,
+  "permalink" character varying(255),
+  "guid" character varying(255),
+  "text_filter_id" integer,
+  "whiteboard" text,
+  "type" character varying(255),
+  "article_id" integer,
+  "email" character varying(255),
+  "url" character varying(255),
+  "ip" character varying(255),
+  "blog_name" character varying(255),
+  "name" character varying(255)
 );
 
 CREATE TABLE page_caches (
-  id serial primary key,
-  name character varying(255)
+  "id" serial primary key,
+  "name" character varying(255)
 );
 
 CREATE TABLE pings (
-  id serial primary key,
-  article_id integer,
-  url character varying(255),
-  created_at timestamp
+  "id" serial primary key,
+  "article_id" integer,
+  "url" character varying(255),
+  "created_at" timestamp
 );
 
 CREATE TABLE resources (
-  id serial primary key,
-  size integer,
-  filename character varying(255),
-  mime character varying(255),
-  created_at timestamp,
-  updated_at timestamp,
-  article_id integer
+  "id" serial primary key,
+  "size" integer,
+  "filename" character varying(255),
+  "mime" character varying(255),
+  "created_at" timestamp,
+  "updated_at" timestamp,
+  "article_id" integer,
+  "itunes_metadata" boolean,
+  "itunes_author" character varying(255),
+  "itunes_subtitle" character varying(255),
+  "itunes_duration" integer,
+  "itunes_summary" text,
+  "itunes_keywords" character varying(255),
+  "itunes_category" character varying(255),
+  "itunes_explicit" boolean
 );
 
 CREATE TABLE sessions (
-  id serial primary key,
-  sessid character varying(255),
-  data text,
-  created_at timestamp,
-  updated_at timestamp
+  "id" serial primary key,
+  "sessid" character varying(255),
+  "data" text,
+  "created_at" timestamp,
+  "updated_at" timestamp
 );
 
 CREATE TABLE settings (
-  id serial primary key,
-  name character varying(255),
-  value character varying(255),
-  position integer
+  "id" serial primary key,
+  "name" character varying(255),
+  "value" character varying(255),
+  "position" integer
 );
 
 CREATE TABLE sidebars (
-  id serial primary key,
-  controller character varying(255),
-  active_position integer,
-  active_config text,
-  staged_position integer,
-  staged_config text
+  "id" serial primary key,
+  "controller" character varying(255),
+  "active_position" integer,
+  "active_config" text,
+  "staged_position" integer,
+  "staged_config" text
 );
 
 CREATE TABLE tags (
-  id serial primary key,
-  name character varying(255),
-  created_at timestamp,
-  updated_at timestamp
+  "id" serial primary key,
+  "name" character varying(255),
+  "created_at" timestamp,
+  "updated_at" timestamp
 );
 
 CREATE TABLE text_filters (
-  id serial primary key,
-  name character varying(255),
-  description character varying(255),
-  markup character varying(255),
-  filters text,
-  params text
+  "id" serial primary key,
+  "name" character varying(255),
+  "description" character varying(255),
+  "markup" character varying(255),
+  "filters" text,
+  "params" text
 );
 
 CREATE TABLE users (
-  id serial primary key,
-  login character varying(255),
-  password character varying(255),
-  email text,
-  name text
+  "id" serial primary key,
+  "login" character varying(255),
+  "password" character varying(255),
+  "email" text,
+  "name" text
 );
 
 
@@ -155,7 +163,7 @@ INSERT INTO text_filters ("name", "filters", "description", "params", "markup") 
 -- schema version meta-info 
 
 CREATE TABLE schema_info (
-  version integer
+  "version" integer
 );
 
-insert into schema_info (version) values (24);
+insert into schema_info (version) values (25);

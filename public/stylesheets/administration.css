@@ -501,6 +501,7 @@ div.user {
   margin-left: 10px;
   border-top: none;
 }
+
 #quick-navigate {
   background: #c8d9ed;
   padding: 2px 5px 0px 5px;
@@ -508,7 +509,20 @@ div.user {
   margin-left: 10px;
   border-top: none;
 }
+#edit-resource-metadata {
+  background: #c8d9ed;
+  padding: 1px;
+  border: 1px solid #9cabba;
+  margin-left: 0px;
+  border-top: none;
+}
 
+#add-resource-metadata {
+  background: #c8d9ed;
+  padding: 1px;
+  border: 1px solid #9cabba;
+  margin-left: 0px;
+}
 #advanced { line-height: 1.3em; }
 
 #advanced label {

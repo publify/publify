@@ -1,4 +1,4 @@
-class Textfilters::MacroPostController < TextFilterPlugin
+class Plugins::Textfilters::MacroPostController < TextFilterPlugin
   plugin_display_name "MacroPost"
   plugin_description "Macro expansion meta-filter (post-markup)"
 

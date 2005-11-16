@@ -1,4 +1,4 @@
-class Textfilters::MarkdownController < TextFilterPlugin::Markup
+class Plugins::Textfilters::MarkdownController < TextFilterPlugin::Markup
   plugin_display_name "Markdown"
   plugin_description 'Markdown markup language from <a href="http://daringfireball.com/">Daring Fireball</a>'
   

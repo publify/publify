@@ -1,8 +1,6 @@
 require 'application'
 require 'plugins'
 
-module Textfilters; end
-
 class TextFilterPlugin < ApplicationController
   uses_component_template_root
   include ApplicationHelper
