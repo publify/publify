@@ -1,4 +1,4 @@
-class Plugins::Textfilters::TextileController < TextFilterPlugin::Markup
+class Textfilters::TextileController < TextFilterPlugin::Markup
   plugin_display_name "Textile"
   plugin_description 'Textile markup language'
 

@@ -1,4 +1,4 @@
-class Plugins::Textfilters::MacroPreController < TextFilterPlugin
+class Textfilters::MacroPreController < TextFilterPlugin
   plugin_display_name "MacroPre"
   plugin_description "Macro expansion meta-filter (pre-markup)"
 

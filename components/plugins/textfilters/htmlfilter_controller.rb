@@ -1,4 +1,4 @@
-class Plugins::Textfilters::HtmlfilterController < TextFilterPlugin
+class Textfilters::HtmlfilterController < TextFilterPlugin
   plugin_display_name "HTML Filter"
   plugin_description 'Strip HTML tags'
 

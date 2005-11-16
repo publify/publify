@@ -1,7 +1,7 @@
 require 'net/http'
 require 'flickr/flickr'
 
-class Plugins::Textfilters::FlickrController < TextFilterPlugin::MacroPost
+class Textfilters::FlickrController < TextFilterPlugin::MacroPost
   KEY='84f652422f05b96b29b9a960e0081c50'
   plugin_display_name "Flickr"
   plugin_description "Automatically generate image tags for Flickr images"
