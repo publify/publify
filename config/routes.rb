@@ -86,4 +86,6 @@ ActionController::Routing::Routes.draw do |map|
      
   # Allow legacy urls to still work
   map.connect ':controller/:action/:id'
+  
+  map.connect '*from', :controller => 'redirect', :action => 'redirect'
 end
