@@ -105,7 +105,6 @@ class Admin::ContentController < Admin::BaseController
     @resource = Resource.find(params[:resource_id])
     @resources = Resource.find(:all, :order => 'created_at DESC')
     @article.resources << @resource
-    puts "\n\n"+@article.resources.inspect+"\n\n"
     @article.save
     render :partial => 'show_resources'
   end
