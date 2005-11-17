@@ -36,7 +36,7 @@
   <% if @article.comments.blank? %>
     <li id="dummy_comment" style="display: none"></li>
   <% else %>
-    <%= render(:partial => "comment", :collection => @article.comments) %>
+    <%= render(:partial => "comment", :collection => @article.comments.to_a.select {|c| c.published? }) %>
   <% end %>
   </ol>
 <% end -%>

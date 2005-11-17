@@ -138,6 +138,7 @@ class ArticlesController < ApplicationController
     @comment.article = @article
     @comment.ip = request.remote_ip
     @comment.user = session[:user]
+    @comment.published = true
 
     if request.post? and @comment.save
       add_to_cookies(:author, @comment.author)
@@ -181,6 +182,7 @@ class ArticlesController < ApplicationController
             tb.excerpt   = params[:excerpt]
             tb.blog_name = params[:blog_name]
             tb.ip        = request.remote_ip
+            tb.published = true
           end
           
           unless article.save

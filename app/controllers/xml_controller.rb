@@ -26,14 +26,14 @@ class XmlController < ApplicationController
       @items = Article.find(:all, :order => 'created_at DESC', 
         :conditions => 'published=1', :limit => config[:limit_rss_display])
     when 'comments'
-      @items = Comment.find(:all, :order => 'created_at DESC', :limit => config[:limit_rss_display])
+      @items = Comment.find(:all, :order => 'created_at DESC', :conditions => 'published = 1', :limit => config[:limit_rss_display])
       @feed_title = "#{config[:blog_name]} comments"
     when 'trackbacks'
-      @items = Trackback.find(:all, :order => 'created_at DESC', :limit => config[:limit_rss_display])
+      @items = Trackback.find(:all, :order => 'created_at DESC', :conditions => 'published = 1', :limit => config[:limit_rss_display])
       @feed_title = "#{config[:blog_name]} trackbacks"
     when 'article'
       article = Article.find(params[:id])
-      @items = article.comments.find(:all, :order => 'created_at DESC', :limit => 25)
+      @items = article.comments.find(:all, :order => 'created_at DESC', :conditions => 'published = 1', :limit => 25)
       @items.push(article)
       @feed_title = "#{config[:blog_name]}: #{article.title}"
       @link = article_url(article, false)

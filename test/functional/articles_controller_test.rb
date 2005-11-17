@@ -292,7 +292,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     
     assert_tag :tag => "ol",
       :attributes => { :id => "commentList"},
-      :children => { :count => contents(:article1).comments.size,
+      :children => { :count => contents(:article1).comments.to_a.select{|c| c.published?}.size,
         :only => { :tag => "li" } }
         
     assert_tag :tag => "li",
