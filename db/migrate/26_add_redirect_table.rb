@@ -4,7 +4,7 @@ class AddRedirectTable < ActiveRecord::Migration
     Content.transaction do
       create_table :redirects do |t|
         t.column :from_path, :string
-        t.column :to, :string
+        t.column :to_path, :string
       end
     end
   end

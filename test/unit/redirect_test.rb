@@ -13,7 +13,7 @@ class RedirectTest < Test::Unit::TestCase
     assert_equal redirects(:foo_redirect), Redirect.find_by_from_path('foo/bar')
     redir = Redirect.new
     redir.from_path = 'foo/bar'
-    redir.to = '/'
+    redir.to_path = '/'
     assert !redir.save
   end
 end

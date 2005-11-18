@@ -2,8 +2,8 @@
 foo_redirect:
   id: 1
   from_path: foo/bar
-  to: /someplace/else
+  to_path: /someplace/else
 archive1_redirect:
   id: 2
   from_path: archives/000001.html
-  to: /articles/read/1
+  to_path: /articles/read/1
