@@ -45,8 +45,8 @@ class Theme
 
   def self.search_theme_directory
     glob = "#{themes_root}/[-_a-zA-Z0-9]*"
-    Dir.glob(glob).collect do |file|
-      file if File.directory?(file)      
+    Dir.glob(glob).select do |file|
+      File.readable?("#{file}/about.markdown")
     end.compact
   end  
 end
