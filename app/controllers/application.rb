@@ -25,10 +25,27 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def auto_discovery_defaults
-    auto_discovery_feed(:type => 'feed')
+  def reload_settings
+    unless @request.instance_variable_get(:@config_reloaded)
+      @request.instance_variable_set(:@config_reloaded, true)
+      config.reload
+    end
   end
-  
+
+  def auto_discovery_defaults
+    @auto_discovery_url_rss = 
+        @request.instance_variable_get(:@auto_discovery_url_rss)
+    @auto_discovery_url_atom =
+         @request.instance_variable_get(:@auto_discovery_url_atom)
+    unless @auto_discovery_url_rss && @auto_discovery_url_atom
+      auto_discovery_feed(:type => 'feed')
+      @request.instance_variable_set(:@auto_discovery_url_rss,
+                                      @auto_discovery_url_rss)
+      @request.instance_variable_set(:@auto_discovery_url_atom, 
+                                      @auto_discovery_url_atom)
+    end
+  end
+    
   def auto_discovery_feed(options)
     options = {:only_path => false, :action => 'feed', :controller => 'xml'}.merge options
     @auto_discovery_url_rss = url_for(({:format => 'rss20'}.merge options))
@@ -43,10 +60,6 @@ class ApplicationController < ActionController::Base
     $cache ||= SimpleCache.new 1.hour
   end
   
-  def reload_settings
-    config.reload
-  end
-
   def theme_layout
     Theme.current.layout
   end
