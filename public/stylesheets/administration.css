@@ -577,3 +577,9 @@ div.user {
   cursor: move;
   border-bottom: 1px dotted #ccc;
 }
+
+#footer {
+	font-size: 0.8em;
+	color: #888;
+	font-style: italic;
+}
