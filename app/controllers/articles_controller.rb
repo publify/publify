@@ -135,6 +135,11 @@ class ArticlesController < ApplicationController
     
     @article = Article.find(params[:id])    
     @comment = Comment.new(params[:comment])
+    
+    # A little paranoid security checking.
+    @comment.body_html = nil
+    @comment.body = ActionView::Helpers::TextHelper.sanitize(ActionView::Helpers::TextHelper.auto_link(@comment.body))
+    
     @comment.article = @article
     @comment.ip = request.remote_ip
     @comment.user = session[:user]

@@ -118,7 +118,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
 
-    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller).to_s
+    assert_equal "<p>Link to <a href='http://spammer.example.com' rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller).to_s
     $do_breakpoints
   end
 
@@ -137,6 +137,57 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert comment
 
     assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller, :body).to_s
+  end
+
+  def test_comment_xss1
+    post :comment, {
+      :id => 1, 
+      :comment => {
+        'body' => 'Have you ever <script lang="javascript">alert("foo");</script> been hacked?',
+        'author' => 'bob',
+        'url' => 'http://spam2.example.com',
+        'email' => 'foo'}}
+
+    assert_response :success
+
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+
+    assert_equal "<p>Have you ever &lt;script lang=&#8217;javascript&#8217;>alert(&#8220;foo&#8221;);&lt;/script> been hacked?</p>", comment.html(@controller, :body).to_s
+  end
+  
+  def test_comment_xss2
+    post :comment, {
+      :id => 1, 
+      :comment => {
+        'body' => 'Have you ever <a href="#" onclick="javascript">been hacked?</a>',
+        'author' => 'bob',
+        'url' => 'http://spam2.example.com',
+        'email' => 'foo'}}
+
+    assert_response :success
+
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+
+    assert_equal "<p>Have you ever <a href='#' rel=\"nofollow\">been hacked?</a></p>", comment.html(@controller, :body).to_s
+  end
+  
+  def test_comment_autolink
+    post :comment, {
+      :id => 1, 
+      :comment => {
+        'body' => "What's up with http://slashdot.org these days?",
+        'author' => 'bob',
+        'url' => 'http://spam2.example.com',
+        'email' => 'foo'}}
+
+    assert_response :success
+
+    comment = Comment.find(:first, :order => 'created_at desc')
+    assert comment
+
+    assert_equal "<p>What&#8217;s up with <a href='http://slashdot.org' rel=\"nofollow\">http://slashdot.org</a> these days?</p>", comment.html(@controller, :body).to_s
   end
   
   def test_comment_nuking 
