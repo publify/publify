@@ -24,6 +24,7 @@ module ActionView
           end
           return __render_file(theme_path, use_full_path, local_assigns)
         end
+        raise "Can't locate theme #{config[:theme]}"
       else
         __render_file(template_path, use_full_path, local_assigns)
       end
