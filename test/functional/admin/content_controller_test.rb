@@ -45,6 +45,8 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_create
     num_articles = Article.find_all.size
+    emails = ActionMailer::Base.deliveries
+    emails.clear
 
     post :new, 'article' => { :title => "posted via tests!", :body => "Foo"}, 'categories' => [1]
     assert_redirected_to :action => 'show'
@@ -55,6 +57,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal users(:tobi), new_article.user
     assert_equal 1, new_article.categories.size
     assert_equal [1], new_article.categories.collect {|c| c.id}
+    
+    assert_equal(1, emails.size)
+    assert_equal('randomuser@example.com', emails.first.to[0])
   end
     
   def test_create_filtered
@@ -79,6 +84,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   end
 
   def test_update
+    emails = ActionMailer::Base.deliveries
+    emails.clear
+    
     body = "another *textile* test"
     post :edit, 'id' => 1, 'article' => {:body => body, :text_filter => 'textile'}
     assert_redirected_to :action => 'show', :id => 1
@@ -89,6 +97,8 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     # Deliberately *not* using the mediating protocol, we want to ensure that the 
     # body_html got reset to nil.
     assert_nil article.body_html 
+    
+    assert_equal 0, emails.size
   end
 
   def test_destroy

@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :contents, :settings, :articles_tags, :tags, :resources, :categories, :articles_categories
+  fixtures :contents, :settings, :articles_tags, :tags, :resources, :categories, :articles_categories, :users, :notifications
   
   def setup
     config.reload
@@ -166,4 +166,13 @@ class ArticleTest < Test::Unit::TestCase
     contents(:article1).destroy
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{contents(:article1).id}").size
   end
+  
+  def test_notifications
+    a = Article.new(:title => 'New Article', :body => 'Foo', :author => 'Tobi', :user => users(:tobi))
+    assert a.save
+    
+    assert_equal 2, a.notify_users.size
+    assert_equal ['bob', 'randomuser'], a.notify_users.collect {|u| u.login }.sort
+  end
+  
 end

@@ -72,6 +72,12 @@ CREATE TABLE pings (
   `created_at` datetime
 ) ENGINE=InnoDB;
 
+CREATE TABLE redirects (
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `from_path` varchar(255),
+  `to_path` varchar(255)
+) ENGINE=InnoDB;
+
 CREATE TABLE resources (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `size` int(11),
@@ -135,7 +141,9 @@ CREATE TABLE users (
   `login` varchar(255),
   `password` varchar(255),
   `email` text,
-  `name` text
+  `name` text,
+  `notify_via_email` tinyint(1),
+  `notify_on_new_articles` tinyint(1)
 ) ENGINE=InnoDB;
 
 
@@ -146,6 +154,7 @@ CREATE  INDEX categories_permalink_index ON categories (permalink);
 CREATE  INDEX contents_article_id_index ON contents (article_id);
 CREATE  INDEX page_caches_name_index ON page_caches (name);
 CREATE  INDEX pings_article_id_index ON pings (article_id);
+CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
@@ -166,4 +175,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (25);
+insert into schema_info (version) values (30);

@@ -24,6 +24,9 @@ class Configuration < ConfigManager
   setting :use_gravatar, :bool, false
   setting :ping_urls, :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings, :bool, true
+  setting :email_from, :string, 'scott@sigkill.org'
+  setting :jabber_address, :string, ''
+  setting :jabber_password, :string, ''
 end
 
 def config

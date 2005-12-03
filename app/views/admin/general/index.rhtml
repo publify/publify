@@ -111,6 +111,24 @@
       <p class="r"><%= save("Save My Settings") %></p>
     </div>
     
+    <div id="notification" class="set">
+    <h3>Notification</h3>
+    <p>Typo can notify you when new articles or comments are posted</p>
+    <p>
+      <label for="email_from">Email address to use in From: field when Typo sends mail:</label>
+      <input name="setting[email_from]" size="20" id="email_from" type="text" value="<%= config_value(:email_from) %>" />
+    </p>
+    <p>
+      <label for="jabber_address">Jabber account to use when sending Jabber notifications:</label>
+      <input name="setting[jabber_address]" size="20" id="jabber_address" type="text" value="<%= config_value(:jabber_address) %>" />
+    </p>
+    <p>
+      <label for="jabber_password">Password for Jabber account:</label>
+      <input name="setting[jabber_password]" size="20" id="jabber_password" type="password" value="<%= config_value(:jabber_password) %>" />
+    </p>
+      <p class="r"><%= save("Save My Settings") %></p>
+    </div>
+    
     
     <div id="spam" class="set">
         <h3>Spam Protection</h3>

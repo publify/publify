@@ -21,6 +21,7 @@ Rails::Initializer.run do |config|
     vendor/syntax/lib
     vendor/sparklines/lib
     vendor/uuidtools/lib
+    vendor/jabber4r/lib
     vendor/rails/railties
     vendor/rails/railties/lib
     vendor/rails/actionpack/lib
@@ -79,6 +80,8 @@ require_dependency 'rails_patch/components'
 require_dependency 'theme'
 require_dependency 'login_system'
 require_dependency 'typo_version'
+require_dependency 'jabber'
+require_dependency 'email'
 $KCODE = 'u'
 require_dependency 'jcode'
 require_dependency 'aggregations/audioscrobbler'
@@ -98,3 +101,17 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
 )
 
 ActionController::Base.enable_upload_progress
+
+ActionMailer::Base.default_charset = 'utf-8'
+
+if RAILS_ENV != 'test'
+  begin
+    mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
+  
+    ActionMailer::Base.delivery_method = mail_settings['method']
+    ActionMailer::Base.server_settings = mail_settings['settings']
+  rescue
+    # Fall back to using sendmail by default
+    ActionMailer::Base.delivery_method = :sendmail
+  end
+end

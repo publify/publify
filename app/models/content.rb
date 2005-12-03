@@ -5,6 +5,10 @@ class Content < ActiveRecord::Base
   include Observable  
   
   belongs_to :text_filter
+  
+  has_and_belongs_to_many :notify_users, :class_name => 'User',
+    :join_table => 'notifications', :foreign_key => 'notify_content_id', 
+    :association_foreign_key => 'notify_user_id', :uniq => true
 
   serialize :whiteboard
     

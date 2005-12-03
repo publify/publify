@@ -13,6 +13,10 @@
 <%= text_field 'user', 'email'  %>
 </p>
 <p>
+<label for="user_jabber">Jabber:</label> <small>(this can be blank)</small><br/>
+<%= text_field 'user', 'jabber'  %>
+</p>
+<p>
   <label for="user_password">Password:</label><br />
   <%= password_field 'user', 'password'  %>
 </p>
@@ -20,4 +24,25 @@
   <label for="user_password">Confirmation:</label><br />
   <%= password_field 'user', 'password_confirmation'  %>
 </p>
+
+<p>
+  <label for="user_notify_via_email">Send notification messages via email?</label><br />
+  <%= check_box 'user', 'notify_via_email'  %>
+</p>
+
+<p>
+  <label for="user_notify_via_jabber">Send notification messages via jabber?</label><br />
+  <%= check_box 'user', 'notify_via_jabber'  %>
+</p>
+
+<p>
+  <label for="user_notify_on_new_articles">Send notification messages when new articles are posted?</label><br />
+  <%= check_box 'user', 'notify_on_new_articles'  %>
+</p>
+
+<p>
+  <label for="user_notify_on_comments">Send notification messages when comments are posted?</label><br />
+  <%= check_box 'user', 'notify_on_comments'  %>
+</p>
+
 <!--[eoform:user]-->

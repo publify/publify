@@ -106,10 +106,10 @@ class MetaWeblogService < TypoWebService
         article.categories << c if struct['categories'].include?(c.name)
       end
     end
-
-    article.send_pings(article_url(article), struct['mt_tb_ping_urls'])
     
     article.save
+    article.send_notifications(@controller)
+    article.send_pings(article_url(article), struct['mt_tb_ping_urls'])
     article.id.to_s
   end
     

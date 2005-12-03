@@ -145,8 +145,8 @@ class ArticlesController < ApplicationController
       add_to_cookies(:url, @comment.url)
 
       @headers["Content-Type"] = "text/html; charset=utf-8"
-
       render :partial => "comment", :object => @comment
+      @comment.send_notifications(self)
     else
       STDERR.puts @comment.errors.inspect
       render :text => @comment.errors.full_messages.join(", "), :status => 500

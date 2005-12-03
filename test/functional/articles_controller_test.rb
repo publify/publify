@@ -86,6 +86,11 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
   
   def test_comment_posting
+    emails = ActionMailer::Base.deliveries
+    emails.clear
+    
+    Article.find(1).notify_users << users(:tobi)
+
     post :comment, { :id => 1, :comment => {'body' => 'This is *textile*', 'author' => 'bob' }}
     
     assert_response :success
@@ -95,6 +100,9 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert comment
     
     assert_equal "<p>This is <strong>textile</strong></p>", comment.html(@controller).to_s
+    
+    assert_equal 1, emails.size
+    assert_equal 'tobi@example.com', emails.first.to[0]
   end
   
   def test_comment_spam1
@@ -130,7 +138,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller, :body).to_s
   end
-
+  
   def test_comment_nuking 
     num_comments = Comment.count
     post :nuke_comment, { :id => 5 }, {}

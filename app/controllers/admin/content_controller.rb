@@ -39,6 +39,7 @@ class Admin::ContentController < Admin::BaseController
 
       if @article.save
         @article.html(self)
+        @article.send_notifications(self)
         @article.send_pings(article_url(@article),[])
         flash[:notice] = 'Article was successfully created.'
         redirect_to :action => 'show', :id => @article.id

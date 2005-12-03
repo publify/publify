@@ -134,9 +134,28 @@ class Article < Content
     end
   end
   
+  def send_notifications(controller)
+    users = User.find(:all).to_a.select{ |u| u.notify_on_new_articles?}
+    
+    users.each do |u|
+      send_notification_to_user(controller, u)
+    end
+  end
+  
+  def send_notification_to_user(controller, user)
+    if user.notify_via_email? 
+      EmailNotify.send_article(controller, self, user)
+    end
+    
+    if user.notify_via_jabber?
+      JabberNotify.send_message(user, "New post", "A new message was posted to #{config[:blog_name]}",article.body_html)
+    end
+  end
+  
   protected  
 
   before_save :set_defaults, :create_guid
+  before_create :add_notifications
   
   def set_defaults
     begin
@@ -158,6 +177,17 @@ class Article < Content
     end
   end
   
+  def add_notifications
+    # Grr, how do I do :conditions => 'notify_on_new_articles = true' when on MySQL boolean DB tables
+    # are integers, Postgres booleans are booleans, and sqlite is basically just a string?
+    #
+    # I'm punting for now and doing the test in Ruby.  Feel free to rewrite.
+    
+    self.notify_users = User.find(:all).to_a.select{ |u| u.notify_on_new_articles?}
+    self.notify_users << self.user if self.user and self.user.notify_watch_my_articles?
+    self.notify_users.uniq!
+  end
+  
   def default_text_filter_config_key
     'text_filter'
   end
@@ -171,6 +201,7 @@ class Article < Content
     to   = to.tomorrow    unless month.blank?
     return [from, to]
   end
+  
 
   validates_uniqueness_of :guid
   validates_presence_of :title

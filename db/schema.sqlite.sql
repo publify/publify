@@ -72,6 +72,12 @@ CREATE TABLE pings (
   'created_at' datetime
 );
 
+CREATE TABLE redirects (
+  'id' INTEGER PRIMARY KEY NOT NULL,
+  'from_path' varchar(255),
+  'to_path' varchar(255)
+);
+
 CREATE TABLE resources (
   'id' INTEGER PRIMARY KEY NOT NULL,
   'size' integer,
@@ -135,7 +141,9 @@ CREATE TABLE users (
   'login' varchar(255),
   'password' varchar(255),
   'email' text,
-  'name' text
+  'name' text,
+  'notify_via_email' boolean,
+  'notify_on_new_articles' boolean
 );
 
 
@@ -146,6 +154,7 @@ CREATE  INDEX categories_permalink_index ON categories (permalink);
 CREATE  INDEX contents_article_id_index ON contents (article_id);
 CREATE  INDEX page_caches_name_index ON page_caches (name);
 CREATE  INDEX pings_article_id_index ON pings (article_id);
+CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
@@ -166,4 +175,4 @@ CREATE TABLE schema_info (
   'version' integer
 );
 
-insert into schema_info (version) values (25);
+insert into schema_info (version) values (30);
