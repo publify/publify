@@ -148,7 +148,7 @@ class Article < Content
     end
     
     if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New post", "A new message was posted to #{config[:blog_name]}",article.body_html)
+      JabberNotify.send_message(user, "New post", "A new message was posted to #{config[:blog_name]}",body_html)
     end
   end
   
