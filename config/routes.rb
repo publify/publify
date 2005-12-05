@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   # make rss feed urls pretty and let them end in .xml
   # this improves caches_page because now apache and webrick will send out the 
   # cached feeds with the correct xml mime type. 
+  map.xml 'xml/itunes/feed.xml', :controller => 'xml', :action => 'itunes'
   map.xml 'xml/articlerss/:id/feed.xml', :controller => 'xml', :action => 'articlerss'
   map.xml 'xml/commentrss/feed.xml', :controller => 'xml', :action => 'commentrss'
   map.xml 'xml/trackbackrss/feed.xml', :controller => 'xml', :action => 'trackbackrss'

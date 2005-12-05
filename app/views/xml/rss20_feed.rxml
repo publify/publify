@@ -10,17 +10,6 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
     xml.ttl "40"
     xml.description config_value(:blog_subtitle)
   
-    if params[:type] == 'itunes'
-      xml.itunes :author,(config_value(:itunes_author))
-      xml.itunes :subtitle,(config_value(:itunes_subtitle))
-      xml.itunes :summary,(config_value(:itunes_summary))
-      xml.itunes :owner do
-        xml.itunes :name,(config_value(:itunes_name))
-        xml.itunes :email,(config_value(:itunes_email))
-      end
-      xml.copyright(config_value(:itunes_copyright))
-    end
-    
     @items.each do |item|
       render :partial => "rss20_item_#{item.class.name.to_s.downcase}",
         :locals => {:item => item, :xm => xml}

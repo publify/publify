@@ -325,6 +325,13 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xpath('/rss/channel/item[title="Article 3!"]')
     assert_not_xpath('/rss/channel/item[title="Article 3!"]/enclosure')
   end
+  
+  def test_itunes
+    get :itunes
+    assert_response :success
+    assert_xml @response.body
+    assert_feedvalidator @response.body
+  end
 
   def get_xpath(xpath)
     rexml = REXML::Document.new(@response.body)
