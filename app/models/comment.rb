@@ -38,7 +38,8 @@ class Comment < Content
     'comment_text_filter'
   end
   
-  before_create :correct_url, :make_nofollow, :create_guid
+  before_create :create_guid
+  before_save :correct_url, :make_nofollow
     
   def correct_url
     unless url.to_s.empty?
