@@ -2,7 +2,9 @@ require 'observer'
 require 'set'
 
 class Content < ActiveRecord::Base
-  include Observable  
+  include Observable
+
+  has_and_belongs_to_many :cached_dependents, :class_name => 'PageCache', :uniq => true
   
   belongs_to :text_filter
   
@@ -56,6 +58,7 @@ class Content < ActiveRecord::Base
   def html_map(field=nil); self.class.html_map(field); end
   
   def html(controller,what = :all)
+    controller.add_source(self) rescue nil
     html_map.each do |field, html_field|
       if !self.send(field).blank? && self.send(html_field).blank?
         unformatted_value = self.send(field).to_s
