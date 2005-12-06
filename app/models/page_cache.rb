@@ -1,6 +1,4 @@
 class PageCache < ActiveRecord::Base
-  has_and_belongs_to_many :sources, :class_name => 'Content', :uniq => true
-  
   cattr_accessor :public_path
   @@public_path = ActionController::Base.page_cache_directory
 

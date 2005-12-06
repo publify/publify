@@ -3,7 +3,7 @@ require 'set'
 
 class Content < ActiveRecord::Base
   include Observable
-
+  
   belongs_to :text_filter
   
   has_and_belongs_to_many :notify_users, :class_name => 'User',
