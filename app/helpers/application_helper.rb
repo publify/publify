@@ -97,25 +97,11 @@ module ApplicationHelper
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
   
-  def article_html(article, what = :all)
-    article.html(@controller,what)
-  end
+  def article_html(article, what = :all) article.html(@controller,what) end
   
-  def comment_html(comment)
-    comment.html(@controller,:body)
-  end
+  def comment_html(comment) comment.html(@controller,:body) end
   
-  def page_html(page)
-    page.html(@controller,:body)
-  end
+  def page_html(page) page.html(@controller,:body) end
   
-  def strip_html(text)
-    attribute_key = /[\w:_-]+/
-    attribute_value = /(?:[A-Za-z0-9]+|(?:'[^']*?'|"[^"]*?"))/
-    attribute = /(?:#{attribute_key}(?:\s*=\s*#{attribute_value})?)/
-    attributes = /(?:#{attribute}(?:\s+#{attribute})*)/
-    tag_key = attribute_key
-    tag = %r{<[!/?\[]?(?:#{tag_key}|--)(?:\s+#{attributes})?\s*(?:[!/?\]]+|--)?>}
-    text.gsub(tag, '').gsub(/\s+/, ' ').strip
-  end
+  def strip_html(text) text.strip_html end
 end

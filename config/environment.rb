@@ -96,6 +96,7 @@ require_dependency 'configuration'
 require_dependency 'spam_protection'
 require_dependency 'xmlrpc_fix'
 require_dependency 'guid'
+require_dependency 'transforms'
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'

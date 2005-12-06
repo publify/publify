@@ -4,7 +4,7 @@ class Ping < ActiveRecord::Base
   def send_ping(origin_url)
     uri = URI.parse(self.url)
     post = "title=#{URI.escape(article.title)}"
-    post << "&excerpt=#{URI.escape(strip_html(article.body_html)[0..254])}"
+    post << "&excerpt=#{URI.escape(article.body_html.strip_html[0..254])}"
     post << "&url=#{origin_url}"
     post << "&blog_name=#{URI.escape(config[:blog_name])}"
 

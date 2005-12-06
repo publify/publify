@@ -1,5 +1,3 @@
-require_dependency 'transforms'
-
 class Comment < Content
   include TypoGuid
 
@@ -50,7 +48,7 @@ class Comment < Content
   end
 
   def make_nofollow
-    self.author = nofollowify(author)
-    self.body_html = nofollowify(body_html.to_s)
+    self.author    = author.nofollowify
+    self.body_html = body_html.to_s.nofollowify
   end
 end

@@ -1,5 +1,3 @@
-require_dependency 'transforms'
-
 class Trackback < Content
   include TypoGuid
   belongs_to :article, :counter_cache => true
@@ -14,9 +12,9 @@ class Trackback < Content
     before_create :make_nofollow, :process_trackback, :create_guid
 
     def make_nofollow
-      self.blog_name = strip_html(blog_name)
-      self.title = strip_html(title)
-      self.excerpt = strip_html(excerpt)
+      self.blog_name = blog_name.strip_html
+      self.title     = title.strip_html
+      self.excerpt   = excerpt.strip_html
     end
 
     def process_trackback
