@@ -104,6 +104,11 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_equal 1, emails.size
     assert_equal 'tobi@example.com', emails.first.to[0]
   end
+
+  def test_comment_spam_markdown_smarty
+    settings(:comment_text_filter).update_attribute(:value, "markdown smartypants")
+    test_comment_spam1
+  end
   
   def test_comment_spam1
     post :comment, {
