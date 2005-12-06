@@ -2,7 +2,7 @@ require_dependency 'transforms'
 
 class Trackback < Content
   include TypoGuid
-  belongs_to :article
+  belongs_to :article, :counter_cache => true
 
   content_fields :excerpt
 
@@ -11,7 +11,7 @@ class Trackback < Content
   validates_presence_of :title, :excerpt, :blog_name, :url
 
   protected
-    before_save :make_nofollow, :process_trackback, :create_guid
+    before_create :make_nofollow, :process_trackback, :create_guid
 
     def make_nofollow
       self.blog_name = strip_html(blog_name)

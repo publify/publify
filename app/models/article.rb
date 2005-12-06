@@ -154,7 +154,12 @@ class Article < Content
   
   protected  
 
-  before_save :set_defaults, :create_guid
+  before_create :set_defaults, :create_guid
+
+  def correct_counts
+    self.comments_count = self.comments_count
+    self.trackbacks_count = self.trackbacks_count
+  end
   before_create :add_notifications
   
   def set_defaults
@@ -174,6 +179,10 @@ class Article < Content
 
     if schema_version >= 10
       keywords_to_tags
+    end
+
+    if schema_version >= 29
+      correct_counts
     end
   end
   

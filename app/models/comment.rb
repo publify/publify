@@ -5,7 +5,7 @@ class Comment < Content
 
   content_fields :body
   
-  belongs_to :article
+  belongs_to :article, :counter_cache => true
   belongs_to :user
 
   validates_presence_of :author, :body
@@ -33,12 +33,12 @@ class Comment < Content
   end
  
   protected
-  
+
   def default_text_filter_config_key
     'comment_text_filter'
   end
   
-  before_save :correct_url, :make_nofollow, :create_guid
+  before_create :correct_url, :make_nofollow, :create_guid
     
   def correct_url
     unless url.to_s.empty?
