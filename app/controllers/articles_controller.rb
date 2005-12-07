@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::TextHelper
   before_filter :verify_config
   before_filter :check_page_query_param_for_missing_routes
   layout :theme_layout
@@ -138,7 +140,7 @@ class ArticlesController < ApplicationController
     
     # A little paranoid security checking.
     @comment.body_html = nil
-    @comment.body = ActionView::Helpers::TextHelper.sanitize(ActionView::Helpers::TextHelper.auto_link(@comment.body))
+    @comment.body = sanitize(auto_link(@comment.body))
     
     @comment.article = @article
     @comment.ip = request.remote_ip
