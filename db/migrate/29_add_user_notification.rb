@@ -15,6 +15,7 @@ class AddUserNotification < ActiveRecord::Migration
         u.notify_on_new_articles = false
         u.notify_on_comments = true
         u.notify_watch_my_articles = true
+        u.password = '' # keeps it from re-hashing the password
         u.save
       end
     end
