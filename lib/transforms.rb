@@ -4,22 +4,7 @@ class String
   def to_url
     return if self.nil?
     
-    result = self.downcase
-
-    # replace quotes by nothing
-    result.gsub!(/['"]/, '')
-
-    # strip all non word chars
-    result.gsub!(/\W/, ' ')
-
-    # replace all white space sections with a dash
-    result.gsub!(/\ +/, '-')
-
-    # trim dashes
-    result.gsub!(/(-)$/, '')
-    result.gsub!(/^(-)/, '')
-
-    result
+    self.downcase.tr("\"'", '').gsub(/\W/, ' ').strip.tr_s(' ', '-').tr(' ', '-')
   end
 
   # A quick and dirty fix to add 'nofollow' to any urls in a string.
