@@ -1,6 +1,4 @@
 class ArticlesController < ApplicationController
-  include ActionView::Helpers::TagHelper
-  include ActionView::Helpers::TextHelper
   before_filter :verify_config
   before_filter :check_page_query_param_for_missing_routes
   layout :theme_layout
@@ -225,27 +223,40 @@ class ArticlesController < ApplicationController
       render :nothing => true, :status => 404
     end
   end
+
+  protected
+
+  def self.include_protected(*modules)
+    self.send(:include, *modules)
+    modules.each do |mod|
+      mod.public_instance_methods.each do |meth|
+        protected meth
+      end
+    end
+  end
   
+  include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
+
   private
 
-    def check_page_query_param_for_missing_routes
-      unless request.path =~ /\/page\//  # check if all page routes use /page/:page
-        raise "Page param problem" unless params[:page].nil?
-      end
+  def check_page_query_param_for_missing_routes
+    unless request.path =~ /\/page\//  # check if all page routes use /page/:page
+      raise "Page param problem" unless params[:page].nil?
     end
-
-    def verify_config
-      if User.count == 0
-        redirect_to :controller => "accounts", :action => "signup"
-      elsif !config.is_ok?
-        redirect_to :controller => "admin/general", :action => "index"
-      else
-        return true
-      end
+  end
+  
+  def verify_config
+    if User.count == 0
+      redirect_to :controller => "accounts", :action => "signup"
+    elsif !config.is_ok?
+      redirect_to :controller => "admin/general", :action => "index"
+    else
+      return true
     end
-    
-    def rescue_action_in_public(exception)
-      error(exception.message)
-    end
-
+  end
+  
+  def rescue_action_in_public(exception)
+    error(exception.message)
+  end
+  
 end

@@ -3,7 +3,12 @@ require 'digest/sha1'
 
 module ApplicationHelper
 
-  def render_file(template_path, use_full_path = true, local_assigns = {})
+  # NB: This overrides an undocumented rails function in order to add
+  # a search path. We need this to get themes working, but I'd be
+  # happier if we didn't have to override undocumented methods. Ho
+  # hum. -- pdcawley
+  
+  def render_file(template_path, use_full_path = true, local_assigns = {}) #:nodoc:
     search_path = [
                    "../themes/#{config[:theme]}/views",     # for components
                    "../../themes/#{config[:theme]}/views",  # for normal views
