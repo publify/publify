@@ -2,6 +2,29 @@
 require 'digest/sha1'
 
 module ApplicationHelper
+
+  def render_file(template_path, use_full_path = true, local_assigns = {})
+    search_path = [
+                   "../themes/#{config[:theme]}/views",     # for components
+                   "../../themes/#{config[:theme]}/views",  # for normal views
+                   "."                                      # fallback
+                  ]
+    
+    if use_full_path
+      search_path.each do |prefix|
+        theme_path = prefix+'/'+template_path
+        begin
+          template_extension = pick_template_extension(theme_path)
+        rescue ActionView::ActionViewError => err
+          next
+        end
+        return super(theme_path, use_full_path, local_assigns)
+      end
+      raise "Can't locate theme #{config[:theme]}"
+    else
+      super(template_path, use_full_path, local_assigns)
+    end
+  end
   
   def server_url_for(options = {})
     url_for options.update(:only_path => false)
