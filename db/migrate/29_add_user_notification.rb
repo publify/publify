@@ -21,5 +21,9 @@ class AddUserNotification < ActiveRecord::Migration
   end
 
   def self.down
+    remove_column :users, :notify_via_email
+    remove_column :users, :notify_on_new_articles
+    remove_column :users, :notify_on_comments
+    remove_column :users, :notify_watch_my_articles
   end
 end

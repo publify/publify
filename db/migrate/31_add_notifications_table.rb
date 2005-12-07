@@ -9,5 +9,6 @@ class AddNotificationsTable < ActiveRecord::Migration
   end
 
   def self.down
+    drop_table :notifications
   end
 end

@@ -7,5 +7,7 @@ class AddJabberNotification < ActiveRecord::Migration
   end
 
   def self.down
+    remove_column :users, :notify_via_jabber
+    remove_column :users, :jabber
   end
 end

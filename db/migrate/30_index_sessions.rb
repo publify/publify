@@ -4,5 +4,6 @@ class IndexSessions < ActiveRecord::Migration
   end
 
   def self.down
+    remove_index :sessions, :sessid
   end
 end
