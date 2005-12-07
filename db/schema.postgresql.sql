@@ -57,7 +57,16 @@ CREATE TABLE contents (
   "url" character varying(255),
   "ip" character varying(255),
   "blog_name" character varying(255),
-  "name" character varying(255)
+  "name" character varying(255),
+  "comments_count" integer,
+  "trackbacks_count" integer
+);
+
+CREATE TABLE notifications (
+  "notify_user_id" integer,
+  "notify_content_id" integer,
+  "created_at" timestamp,
+  "updated_at" timestamp
 );
 
 CREATE TABLE page_caches (
@@ -143,7 +152,11 @@ CREATE TABLE users (
   "email" text,
   "name" text,
   "notify_via_email" boolean,
-  "notify_on_new_articles" boolean
+  "notify_on_new_articles" boolean,
+  "notify_on_comments" boolean,
+  "notify_watch_my_articles" boolean,
+  "notify_via_jabber" boolean,
+  "jabber" character varying(255)
 );
 
 
@@ -175,4 +188,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (30);
+insert into schema_info (version) values (33);

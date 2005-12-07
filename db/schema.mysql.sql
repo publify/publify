@@ -57,7 +57,16 @@ CREATE TABLE contents (
   `url` varchar(255),
   `ip` varchar(255),
   `blog_name` varchar(255),
-  `name` varchar(255)
+  `name` varchar(255),
+  `comments_count` int(11),
+  `trackbacks_count` int(11)
+) ENGINE=InnoDB;
+
+CREATE TABLE notifications (
+  `notify_user_id` int(11),
+  `notify_content_id` int(11),
+  `created_at` datetime,
+  `updated_at` datetime
 ) ENGINE=InnoDB;
 
 CREATE TABLE page_caches (
@@ -143,7 +152,11 @@ CREATE TABLE users (
   `email` text,
   `name` text,
   `notify_via_email` tinyint(1),
-  `notify_on_new_articles` tinyint(1)
+  `notify_on_new_articles` tinyint(1),
+  `notify_on_comments` tinyint(1),
+  `notify_watch_my_articles` tinyint(1),
+  `notify_via_jabber` tinyint(1),
+  `jabber` varchar(255)
 ) ENGINE=InnoDB;
 
 
@@ -175,4 +188,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (30);
+insert into schema_info (version) values (33);
