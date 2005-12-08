@@ -24,6 +24,8 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :guid, :string
         t.column :text_filter_id, :integer
         t.column :whiteboard, :text
+        t.column :comments_count, :integer
+        t.column :trackbacks_count, :integer
       end
 
       if not $schema_generator

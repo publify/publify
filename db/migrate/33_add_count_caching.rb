@@ -3,8 +3,11 @@ class AddCountCaching < ActiveRecord::Migration
     STDERR.puts "Adding comments_count, trackbacks_count"
 
     Content.transaction do
-      add_column :contents, :comments_count, :integer
-      add_column :contents, :trackbacks_count, :integer
+      begin
+        add_column :contents, :comments_count, :integer
+        add_column :contents, :trackbacks_count, :integer
+      rescue ActiveRecord::StatementInvalid
+      end
 
       if not $schema_generator
         STDERR.puts "Counting comments"
