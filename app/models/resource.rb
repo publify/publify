@@ -15,8 +15,8 @@ class Resource < ActiveRecord::Base
   end
 
   def validate_on_update
-    if itunes_explicit
-      errors.add_to_base("You must check the box to activate metadata.") unless itunes_metadata
+    if itunes_explicit?
+      errors.add_to_base("You must check the box to activate metadata.") unless itunes_metadata?
       errors.add_to_base("You must specify an author.") if itunes_author.blank?
       errors.add_to_base("You must specify an subtitle.") if itunes_subtitle.blank?
       errors.add_to_base("You must specify a summary.") if itunes_summary.blank?

@@ -76,6 +76,7 @@ require 'uuidtools'
 
 require_dependency 'migrator'
 require_dependency 'rails_patch/components'
+require_dependency 'rails_patch/active_record'
 require_dependency 'theme'
 require_dependency 'login_system'
 require_dependency 'typo_version'

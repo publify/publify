@@ -13,7 +13,7 @@ xm.item do
   xm.itunes :summary,(item.itunes_summary)
   xm.itunes :duration,(item.itunes_duration)
   xm.itunes :keywords,(item.itunes_keywords)
-  if item.itunes_explicit
+  if item.itunes_explicit?
     xm.itunes :explicit,('yes')
   end
   

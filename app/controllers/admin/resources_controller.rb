@@ -22,7 +22,7 @@ class Admin::ResourcesController < Admin::BaseController
 
   def remove_itunes_metadata
     @resource = Resource.find(params[:id])
-    @resource.itunes_metadata = nil
+    @resource.itunes_metadata = false
     @resource.save(false)
     flash[:notice] = 'Metadata was successfully removed.'
     redirect_to :action => 'list'

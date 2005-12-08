@@ -135,9 +135,7 @@ class Article < Content
   end
   
   def send_notifications(controller)
-    users = User.find(:all).to_a.select{ |u| u.notify_on_new_articles?}
-    
-    users.each do |u|
+    User.find_boolean(:all, :notify_on_new_articles).each do |u|
       send_notification_to_user(controller, u)
     end
   end
@@ -192,8 +190,8 @@ class Article < Content
     #
     # I'm punting for now and doing the test in Ruby.  Feel free to rewrite.
     
-    self.notify_users = User.find(:all).to_a.select{ |u| u.notify_on_new_articles?}
-    self.notify_users << self.user if self.user and self.user.notify_watch_my_articles?
+    self.notify_users = User.find_boolean(:all, :notify_on_new_articles)
+    self.notify_users << self.user if (self.user.notify_watch_my_articles? rescue false)
     self.notify_users.uniq!
   end
   

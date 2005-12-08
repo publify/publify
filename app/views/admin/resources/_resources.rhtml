@@ -12,7 +12,7 @@
 <tr <%= alternate_class -%>>
   <td><%= link_to "#{blog_root}/files/#{upload.filename}", "#{blog_root}/files/#{upload.filename}" -%></td>
   <td><%= upload.mime -%></td>
-  <% if upload.itunes_metadata %>
+  <% if upload.itunes_metadata? %>
   <td>
     <%= task_edit_resource_metadata('Edit MetaData (+/-)', upload.id) %>
     <div id="edit-resource-metadata-<%= upload.id%>" style="display:none;position:absolute;">
