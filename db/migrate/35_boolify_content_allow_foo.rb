@@ -1,4 +1,4 @@
-class BoolifyPublished < ActiveRecord::Migration
+class BoolifyContentAllowFoo < ActiveRecord::Migration
   class << self
     def boolify_field(fieldname, options={})
       Content.transaction do
@@ -22,8 +22,9 @@ class BoolifyPublished < ActiveRecord::Migration
     end
 
     def up
-      STDERR.puts "Boolifying contents.published"
-      boolify_field("published", :default => true)
+      STDERR.puts "Boolifying contents.allow_(comments|pings)"
+      boolify_field "allow_comments"
+      boolify_field "allow_pings"
       
     end
     def self.down

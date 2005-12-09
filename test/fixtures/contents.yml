@@ -9,8 +9,8 @@ article1:
   extended_html: extended content
   created_at: <%= (Time.now - 2.days).strftime("%Y-%m-%d") %>
   updated_at: <%= (Time.now - 2.days).strftime("%Y-%m-%d") %>
-  allow_comments: 1
-  allow_pings: 1
+  allow_comments: true
+  allow_pings: true
   permalink: article-1
   user_id: 1
   author: Tobi
@@ -27,8 +27,8 @@ article2:
   extended_html: extended content
   created_at: <%= (Time.now - 1.days).strftime("%Y-%m-%d") %>
   updated_at: <%= (Time.now - 1.days).strftime("%Y-%m-%d") %>
-  allow_comments: 1
-  allow_pings: 1
+  allow_comments: true
+  allow_pings: true
   permalink: article-2
   user_id: 2
   author: Bob
@@ -44,8 +44,8 @@ article3:
   extended_html: extended content
   created_at: 2004-06-01 20:00:02
   updated_at: 2004-06-01 20:00:02
-  allow_comments: 1
-  allow_pings: 1
+  allow_comments: true
+  allow_pings: true
   permalink: article-3
   user_id: 1
   author: Tobi
@@ -60,8 +60,8 @@ article4:
   published: false
   created_at: 2004-06-01 20:00:01
   updated_at: 2004-06-01 20:00:01
-  allow_comments: 1
-  allow_pings: 1
+  allow_comments: true
+  allow_pings: true
   permalink: article-4
   user_id: 1
   author: Tobi

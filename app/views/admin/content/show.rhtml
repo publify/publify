@@ -11,7 +11,7 @@
     <div><%= article_html(@article) %></div>
     <p class="meta"><label>Posted:</label> <%=h @article.created_at.to_formatted_s(:long_weekday) %> by <%=h @article.author %></p>
     <p class="meta"><label>Lasted updated:</label> <%=h @article.updated_at.to_formatted_s(:long_weekday) %></p>    
-    <p class="meta"><label>Published:</label> <%=h (@article.published? ? "No" : "Yes") %></p>
+    <p class="meta"><label>Published:</label> <%=h (@article.published? ? "Yes" : "No") %></p>
   </div>
     
   <h3>Categories</h3>
