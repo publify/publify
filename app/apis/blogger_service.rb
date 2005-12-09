@@ -73,7 +73,7 @@ class BloggerService < TypoWebService
     article = Article.new 
     article.body        = body || content || ''
     article.title       = title || content.split.slice(0..5).join(' ') || ''
-    article.published   = publish ? 1 : 0
+    article.published   = publish
     article.author      = username
     article.created_at  = Time.now
     article.user        = @user

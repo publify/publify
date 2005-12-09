@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
     
   def index
-    @pages, @articles = paginate :article, :per_page => config[:limit_article_display], :conditions => 'published != 0', :order_by => "created_at DESC"
+    @pages, @articles = paginate :article, :per_page => config[:limit_article_display], :conditions => ['published = ?', true], :order_by => "created_at DESC"
   end
 
   def search
@@ -30,12 +30,12 @@ class ArticlesController < ApplicationController
   end
 
   def archives
-    @articles = Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC', :include => [:categories])
+    @articles = Article.find_published(:all, :order => 'created_at DESC', :include => [:categories])
   end
   
-  def read  
+  def read
     begin
-      @article      = Article.find(params[:id], :conditions => "published != 0", :include => [:categories, :tags])    
+      @article      = Article.find_published(params[:id], :include => [:categories, :tags])    
       @comment      = Comment.new
       @page_title   = @article.title
       auto_discovery_feed :type => 'article', :id => @article.id

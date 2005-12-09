@@ -7,6 +7,14 @@ class ArticleTest < Test::Unit::TestCase
   
   def setup
     config.reload
+    @articles = []
+  end
+
+  def assert_results_are(*expected)
+    assert_equal expected.size, @articles.size
+    expected.each do |i|
+      assert @articles.include?(i.is_a?(Symbol) ? contents(i) : i)
+    end
   end
   
   def test_create
@@ -130,33 +138,36 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_find_published_by_tag_name
-    articles = Article.find_published_by_tag_name(tags(:foo_tag).name)
+    @articles = Article.find_published_by_tag_name(tags(:foo_tag).name)
 
-    assert_equal 2, articles.size
-    assert_equal [contents(:article2), contents(:article1)], articles
+    assert_results_are(:article1, :article2)
+  end
+
+
+  def test_find_published
+    @articles = Article.find_published
+    assert_results_are  :article1, :article2, :article3
+
+    @articles = Article.find_published(:all,
+                                       :conditions => "title = 'Article 1!'")
+    assert_results_are :article1
   end
   
   def test_find_published_by_category
-    articles = Article.find_published_by_category_permalink('personal')
-    assert_equal 3, articles.size
-    assert articles.include?(contents(:article1))
-    assert articles.include?(contents(:article2))
-    assert articles.include?(contents(:article3))
+    @articles = Article.find_published_by_category_permalink('personal')
+    assert_results_are :article1, :article2, :article3
     
-    articles = Article.find_published_by_category_permalink('foobar')
-    assert_equal 0, articles.size
+    @articles = Article.find_published_by_category_permalink('foobar')
+    assert @articles.empty?
 
-    articles = Article.find_published_by_category_permalink('software')
-    assert_equal 1, articles.size
-    assert articles.include?(contents(:article1))
+    @articles = Article.find_published_by_category_permalink('software')
+    assert_results_are :article1
 
-    articles = Article.find_published_by_category_permalink('personal', :limit => 1)
-    assert_equal 1, articles.size
-    assert articles.include?(contents(:article2))
+    @articles = Article.find_published_by_category_permalink('personal', :limit => 1)
+    assert_results_are :article2
 
-    articles = Article.find_published_by_category_permalink('personal', :limit => 1, :order => 'created_at ASC')
-    assert_equal 1, articles.size
-    assert articles.include?(contents(:article3))
+    @articles = Article.find_published_by_category_permalink('personal', :limit => 1, :order => 'created_at ASC')
+    assert_results_are :article3
   end
 
   def test_destroy_file_upload_associations

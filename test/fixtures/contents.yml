@@ -57,7 +57,7 @@ article4:
   title: Article 4!
   body: I'm not "public":http://www.example.com/public!
   body_html: I'm not <a href="http://www.example.com/public">public</a>!
-  published: 0
+  published: false
   created_at: 2004-06-01 20:00:01
   updated_at: 2004-06-01 20:00:01
   allow_comments: 1
@@ -70,7 +70,7 @@ article4:
 spam_comment:
   type: Comment
   id: 5
-  published: 1
+  published: true
   article_id: 2
   author: Bob Foo
   url: http://fakeurl.com
@@ -82,7 +82,7 @@ spam_comment:
 comment2:
   type: Comment
   id: 6
-  published: 1
+  published: true
   article_id: 1
   author: John Bar
   user_id: 2
@@ -95,7 +95,7 @@ comment2:
 comment3:
   type: Comment
   id: 12
-  published: 0
+  published: false
   article_id: 1
   author: Foo Bar
   body: Zzzzzz
@@ -107,7 +107,7 @@ trackback1:
   type: Trackback
   id: 7
   article_id: 2
-  published: 1
+  published: false
   blog_name: Trackback Blog
   title: Trackback Entry
   url: http://www.example.com
@@ -120,7 +120,7 @@ trackback2:
   type: Trackback
   id: 8
   article_id: 1
-  published: 1
+  published: true
   blog_name: Trackback Blog
   title: Trackback Entry
   url: http://www.example.com
@@ -132,7 +132,7 @@ trackback3:
   type: Trackback
   id: 13
   article_id: 1
-  published: 0
+  published: true
   blog_name: Trackback Blog 2
   title: Trackback Entry 2
   url: http://www.example.com

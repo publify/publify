@@ -85,7 +85,7 @@ class MetaWeblogService < TypoWebService
     article = Article.new 
     article.body        = struct['description'] || ''
     article.title       = struct['title'] || ''
-    article.published   = publish ? 1 : 0
+    article.published   = publish
     article.author      = username
     article.created_at = struct['dateCreated'].to_time.getlocal rescue Time.now
     article.user        = @user
@@ -123,7 +123,7 @@ class MetaWeblogService < TypoWebService
     article = Article.find(postid)
     article.body        = struct['description'] || ''
     article.title       = struct['title'] || ''
-    article.published   = publish ? 1 : 0
+    article.published   = publish
     article.author      = username
     article.created_at  = struct['dateCreated'].to_time.getlocal unless struct['dateCreated'].blank?
 

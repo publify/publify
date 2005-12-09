@@ -67,27 +67,28 @@ class Article < Content
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)  
     from, to = self.time_delta(year, month, day)
-    Article.count(["#{Article.table_name}.created_at BETWEEN ? AND ? AND #{Article.table_name}.published != 0", from, to])
+    Article.count(["created_at BETWEEN ? AND ? AND published = ?", from, to, true])
   end
   
   # Find all articles on a certain date
   def self.find_all_by_date(year, month = nil, day = nil)
     from, to = self.time_delta(year, month, day)
-    Article.find(:all, :conditions => ["#{Article.table_name}.created_at BETWEEN ? AND ? AND #{Article.table_name}.published != 0", from, to], :order => "#{Article.table_name}.created_at DESC")
+    Article.find_published(:all, :conditions => ["created_at BETWEEN ? AND ?",
+                                                 from, to],
+                           :order => "#{Article.table_name}.created_at DESC")
   end
 
   # Find one article on a certain date
-  def self.find_by_date(year, month, day)  
+
+  def self.find_by_date(year, month, day)
     find_all_by_date(year, month, day).first
   end
   
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   def self.find_by_permalink(year, month, day, title)
     from, to = self.time_delta(year, month, day)
-    find(:first, :conditions => [ %{
-      permalink = ?
-      AND #{Article.table_name}.created_at BETWEEN ? AND ?
-      AND #{Article.table_name}.published != 0
+    find_published(:first, :conditions => [ %{permalink = ?
+      AND  #{Article.table_name}.created_at BETWEEN ? AND ?
     }, title, from, to ])
   end
   
@@ -95,21 +96,18 @@ class Article < Content
     category = Category.find_by_permalink(category_permalink)
     return [] unless category
     
-    Article.find(:all, 
-      { :conditions => [%{ published != 0 
-        AND #{Article.table_name}.id = articles_categories.article_id
-        AND articles_categories.category_id = ? }, category.id], 
-      :joins => ", #{Article.table_name_prefix}articles_categories#{Article.table_name_suffix} articles_categories",
-      :order => "created_at DESC", :readonly => false}.merge(options))
+    Article.find_published(:all,
+      { :conditions => ["#{Article.table_name}.id = articles_categories.article_id AND articles_categories.category_id = ?", category.id], 
+        :joins => ", #{Article.table_name_prefix}articles_categories#{Article.table_name_suffix} articles_categories",
+        :order => "created_at DESC", :readonly => false }.merge(options))
   end
 
   def self.find_published_by_tag_name(tag_name, options = {})
     tag = Tag.find_by_name(tag_name)
     return [] unless tag
 
-    Article.find(:all, 
-      { :conditions => [%{ published != 0 
-        AND #{Article.table_name}.id = articles_tags.article_id
+    Article.find_published(:all, 
+      { :conditions => [%{ #{Article.table_name}.id = articles_tags.article_id
         AND articles_tags.tag_id = ? }, tag.id], 
       :joins => ", #{Article.table_name_prefix}articles_tags#{Article.table_name_suffix} articles_tags",
       :order => "created_at DESC", :readonly => false}.merge(options))
@@ -119,7 +117,9 @@ class Article < Content
   def self.search(query)
     if !query.to_s.strip.empty?
       tokens = query.split.collect {|c| "%#{c.downcase}%"}
-      find_by_sql(["SELECT * FROM #{Article.table_name} WHERE #{Article.table_name}.published != 0 AND #{ (["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND ") } AND published != 0 AND type = 'Article' ORDER by created_at DESC", *tokens.collect { |token| [token] * 3 }.flatten])
+     find_published(:all,
+                     :conditions => [(["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 3 }.flatten],
+                     :order => 'created_at DESC')
     else
       []
     end
@@ -169,7 +169,7 @@ class Article < Content
       schema_version=25
     end
 
-    self.published ||= 1
+#    self.published = true if self.published.nil?
     
     if schema_version >= 7
       self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?

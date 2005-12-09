@@ -136,7 +136,7 @@ class MovableTypeService < TypoWebService
 
   def publishPost(postid, username, password)
     article = Article.find(postid)
-    article.published = 1
+    article.published = true
     article.save    
   end
 

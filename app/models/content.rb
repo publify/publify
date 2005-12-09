@@ -51,6 +51,29 @@ class Content < ActiveRecord::Base
         @@html_map[self]
       end
     end
+
+    def find_published(what = :all, options = {})
+      options[:conditions] = if options[:conditions]
+                               merge_conditions(options[:conditions],
+                                                ['published = ?', true])
+                             else
+                               ['published = ?', true]
+                             end
+      find(what, options)
+    end
+
+    def merge_conditions(cond_a, *rest)
+      return cond_a if rest.empty?
+      cond_a = ["(#{cond_a})"] if cond_a.is_a?(String)
+      
+      cond_b = rest.shift
+      cond_b = [cond_b] if cond_b.is_a?(String)
+
+      cond_a.first << " AND ( #{cond_b.shift} )"
+      cond_a = cond_a + cond_b
+      
+      merge_conditions cond_a, *rest
+    end
   end
   
   def html_map(field=nil); self.class.html_map(field); end

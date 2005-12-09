@@ -3,16 +3,16 @@ class Category < ActiveRecord::Base
   has_and_belongs_to_many :articles, :order => "created_at DESC"
   
   def self.find_all_with_article_counters
-    self.find_by_sql(%{
+    self.find_by_sql([%{
       SELECT categories.id, categories.name, categories.permalink, categories.position, COUNT(articles.id) AS article_counter
       FROM #{Category.table_name} categories 
         LEFT OUTER JOIN #{Category.table_name_prefix}articles_categories#{Category.table_name_suffix} articles_categories 
           ON articles_categories.category_id = categories.id
         LEFT OUTER JOIN #{Article.table_name} articles 
-          ON (articles_categories.article_id = articles.id AND articles.published = 1)
+          ON (articles_categories.article_id = articles.id AND articles.published = ?)
       GROUP BY categories.id, categories.name, categories.position, categories.permalink
       ORDER BY position
-      }).each {|item| item.article_counter = item.article_counter.to_i }
+      }, true]).each {|item| item.article_counter = item.article_counter.to_i }
   end
   
   def stripped_name
