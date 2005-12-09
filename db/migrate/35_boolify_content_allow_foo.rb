@@ -1,31 +1,30 @@
 class BoolifyContentAllowFoo < ActiveRecord::Migration
   class << self
-    def boolify_field(fieldname, options={})
+    def up
+      STDERR.puts "Boolifying contents.allow_(comments|pings)"
       Content.transaction do
-        rename_column :contents, fieldname, "old_#{fieldname}"
-        add_column :contents, fieldname, :boolean, options
+        rename_column :contents, :allow_pings, :old_ap
+        add_column :contents, :allow_pings, :boolean
+        rename_column :contents, :allow_comments, :old_ac
+        add_column :contents, :allow_comments, :boolean
         
         if not $schema_generator
           STDERR.puts "Boolifying #{fieldname}"
           Content.connection.select_all(%{
           SELECT
-            id, old_#{fieldname} as oldval
+            id, old_ap, old_ac
           FROM contents}).each do |res|
             if !res["oldval"].nil?
               c = Content.find(res["id"])
-              c.update_attribute(fieldname, !res["oldval"].to_i.zero?)
+              c.allow_pings = !res["old_ap"].to_i.zero?
+              c.allow_comments = res["old_ac"].to_i.zero?
+              c.save
             end
           end
         end
-        remove_column :contents, "old_#{fieldname}"
+        remove_column :contents, :old_ap
+        remove_column :contents, :old_ac
       end
-    end
-
-    def up
-      STDERR.puts "Boolifying contents.allow_(comments|pings)"
-      boolify_field "allow_comments"
-      boolify_field "allow_pings"
-      
     end
     def self.down
       raise "Can't downgrade"
