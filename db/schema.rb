@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 33) do
+ActiveRecord::Schema.define(:version => 35) do
 
   create_table "articles_categories", :id => false, :force => true do |t|
     t.column "article_id", :integer
@@ -38,9 +38,6 @@ ActiveRecord::Schema.define(:version => 33) do
     t.column "extended", :text
     t.column "excerpt", :text
     t.column "keywords", :string
-    t.column "allow_comments", :integer
-    t.column "allow_pings", :integer
-    t.column "published", :integer, :default => 1
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "extended_html", :text
@@ -58,6 +55,9 @@ ActiveRecord::Schema.define(:version => 33) do
     t.column "name", :string
     t.column "comments_count", :integer
     t.column "trackbacks_count", :integer
+    t.column "published", :boolean, :default => true
+    t.column "allow_comments", :boolean
+    t.column "allow_pings", :boolean
   end
 
   add_index "contents", ["article_id"], :name => "contents_article_id_index"
