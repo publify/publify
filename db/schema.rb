@@ -20,15 +20,11 @@ ActiveRecord::Schema.define(:version => 35) do
     t.column "pattern", :string
   end
 
-  add_index "blacklist_patterns", ["pattern"], :name => "blacklist_patterns_pattern_index"
-
   create_table "categories", :force => true do |t|
     t.column "name", :string
     t.column "position", :integer
     t.column "permalink", :string
   end
-
-  add_index "categories", ["permalink"], :name => "categories_permalink_index"
 
   create_table "contents", :force => true do |t|
     t.column "title", :string
@@ -46,6 +42,8 @@ ActiveRecord::Schema.define(:version => 35) do
     t.column "guid", :string
     t.column "text_filter_id", :integer
     t.column "whiteboard", :text
+    t.column "comments_count", :integer
+    t.column "trackbacks_count", :integer
     t.column "type", :string
     t.column "article_id", :integer
     t.column "email", :string
@@ -53,18 +51,9 @@ ActiveRecord::Schema.define(:version => 35) do
     t.column "ip", :string
     t.column "blog_name", :string
     t.column "name", :string
-    t.column "comments_count", :integer
-    t.column "trackbacks_count", :integer
     t.column "published", :boolean, :default => true
-    t.column "allow_comments", :boolean
     t.column "allow_pings", :boolean
-  end
-
-  add_index "contents", ["article_id"], :name => "contents_article_id_index"
-
-  create_table "contents_page_caches", :id => false, :force => true do |t|
-    t.column "page_cache_id", :integer
-    t.column "content_id", :integer
+    t.column "allow_comments", :boolean
   end
 
   create_table "notifications", :id => false, :force => true do |t|
@@ -78,15 +67,11 @@ ActiveRecord::Schema.define(:version => 35) do
     t.column "name", :string
   end
 
-  add_index "page_caches", ["name"], :name => "page_caches_name_index"
-
   create_table "pings", :force => true do |t|
     t.column "article_id", :integer
     t.column "url", :string
     t.column "created_at", :datetime
   end
-
-  add_index "pings", ["article_id"], :name => "pings_article_id_index"
 
   create_table "redirects", :force => true do |t|
     t.column "from_path", :string
@@ -117,11 +102,9 @@ ActiveRecord::Schema.define(:version => 35) do
     t.column "updated_at", :datetime
   end
 
-  add_index "sessions", ["sessid"], :name => "sessions_sessid_index"
-
   create_table "settings", :force => true do |t|
-    t.column "name", :string
-    t.column "value", :string
+    t.column "name", :string, :limit => 255
+    t.column "value", :string, :limit => 255
     t.column "position", :integer
   end
 
@@ -159,5 +142,13 @@ ActiveRecord::Schema.define(:version => 35) do
     t.column "notify_via_jabber", :boolean
     t.column "jabber", :string
   end
+
+
+  add_index "blacklist_patterns", ["pattern"], :name => "blacklist_patterns_pattern_index" 
+  add_index "categories", ["permalink"], :name => "categories_permalink_index" 
+  add_index "contents", ["article_id"], :name => "contents_article_id_index" 
+  add_index "page_caches", ["name"], :name => "page_caches_name_index" 
+  add_index "pings", ["article_id"], :name => "pings_article_id_index" 
+  add_index "sessions", ["sessid"], :name => "sessions_sessid_index" 
 
 end

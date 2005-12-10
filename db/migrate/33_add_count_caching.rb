@@ -4,8 +4,8 @@ class AddCountCaching < ActiveRecord::Migration
 
     Content.transaction do
       begin
-        add_column :contents, :comments_count, :integer
-        add_column :contents, :trackbacks_count, :integer
+        add_column :contents, :comments_count, :integer rescue nil
+        add_column :contents, :trackbacks_count, :integer rescue nil
       rescue ActiveRecord::StatementInvalid
       end
 

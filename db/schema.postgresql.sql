@@ -40,9 +40,6 @@ CREATE TABLE contents (
   "extended" text,
   "excerpt" text,
   "keywords" character varying(255),
-  "allow_comments" integer,
-  "allow_pings" integer,
-  "published" integer DEFAULT 1,
   "created_at" timestamp,
   "updated_at" timestamp,
   "extended_html" text,
@@ -51,6 +48,8 @@ CREATE TABLE contents (
   "guid" character varying(255),
   "text_filter_id" integer,
   "whiteboard" text,
+  "comments_count" integer,
+  "trackbacks_count" integer,
   "type" character varying(255),
   "article_id" integer,
   "email" character varying(255),
@@ -58,8 +57,9 @@ CREATE TABLE contents (
   "ip" character varying(255),
   "blog_name" character varying(255),
   "name" character varying(255),
-  "comments_count" integer,
-  "trackbacks_count" integer
+  "published" boolean DEFAULT 't',
+  "allow_pings" boolean,
+  "allow_comments" boolean
 );
 
 CREATE TABLE notifications (
@@ -188,4 +188,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (33);
+insert into schema_info (version) values (35);

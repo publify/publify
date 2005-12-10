@@ -8,155 +8,155 @@
 -- tables 
 
 CREATE TABLE articles_categories (
-  'article_id' integer,
-  'category_id' integer,
-  'is_primary' integer
+  "article_id" integer,
+  "category_id" integer,
+  "is_primary" integer
 );
 
 CREATE TABLE articles_tags (
-  'article_id' integer,
-  'tag_id' integer
+  "article_id" integer,
+  "tag_id" integer
 );
 
 CREATE TABLE blacklist_patterns (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'type' varchar(255),
-  'pattern' varchar(255)
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "type" varchar(255),
+  "pattern" varchar(255)
 );
 
 CREATE TABLE categories (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'name' varchar(255),
-  'position' integer,
-  'permalink' varchar(255)
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "name" varchar(255),
+  "position" integer,
+  "permalink" varchar(255)
 );
 
 CREATE TABLE contents (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'title' varchar(255),
-  'author' varchar(255),
-  'body' text,
-  'body_html' text,
-  'extended' text,
-  'excerpt' text,
-  'keywords' varchar(255),
-  'allow_comments' integer,
-  'allow_pings' integer,
-  'published' integer DEFAULT 1,
-  'created_at' datetime,
-  'updated_at' datetime,
-  'extended_html' text,
-  'user_id' integer,
-  'permalink' varchar(255),
-  'guid' varchar(255),
-  'text_filter_id' integer,
-  'whiteboard' text,
-  'type' varchar(255),
-  'article_id' integer,
-  'email' varchar(255),
-  'url' varchar(255),
-  'ip' varchar(255),
-  'blog_name' varchar(255),
-  'name' varchar(255),
-  'comments_count' integer,
-  'trackbacks_count' integer
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "title" varchar(255),
+  "author" varchar(255),
+  "body" text,
+  "body_html" text,
+  "extended" text,
+  "excerpt" text,
+  "keywords" varchar(255),
+  "created_at" datetime,
+  "updated_at" datetime,
+  "extended_html" text,
+  "user_id" integer,
+  "permalink" varchar(255),
+  "guid" varchar(255),
+  "text_filter_id" integer,
+  "whiteboard" text,
+  "comments_count" integer,
+  "trackbacks_count" integer,
+  "type" varchar(255),
+  "article_id" integer,
+  "email" varchar(255),
+  "url" varchar(255),
+  "ip" varchar(255),
+  "blog_name" varchar(255),
+  "name" varchar(255),
+  "published" boolean DEFAULT 't',
+  "allow_pings" boolean,
+  "allow_comments" boolean
 );
 
 CREATE TABLE notifications (
-  'notify_user_id' integer,
-  'notify_content_id' integer,
-  'created_at' datetime,
-  'updated_at' datetime
+  "notify_user_id" integer,
+  "notify_content_id" integer,
+  "created_at" datetime,
+  "updated_at" datetime
 );
 
 CREATE TABLE page_caches (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'name' varchar(255)
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "name" varchar(255)
 );
 
 CREATE TABLE pings (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'article_id' integer,
-  'url' varchar(255),
-  'created_at' datetime
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "article_id" integer,
+  "url" varchar(255),
+  "created_at" datetime
 );
 
 CREATE TABLE redirects (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'from_path' varchar(255),
-  'to_path' varchar(255)
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "from_path" varchar(255),
+  "to_path" varchar(255)
 );
 
 CREATE TABLE resources (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'size' integer,
-  'filename' varchar(255),
-  'mime' varchar(255),
-  'created_at' datetime,
-  'updated_at' datetime,
-  'article_id' integer,
-  'itunes_metadata' boolean,
-  'itunes_author' varchar(255),
-  'itunes_subtitle' varchar(255),
-  'itunes_duration' integer,
-  'itunes_summary' text,
-  'itunes_keywords' varchar(255),
-  'itunes_category' varchar(255),
-  'itunes_explicit' boolean
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "size" integer,
+  "filename" varchar(255),
+  "mime" varchar(255),
+  "created_at" datetime,
+  "updated_at" datetime,
+  "article_id" integer,
+  "itunes_metadata" boolean,
+  "itunes_author" varchar(255),
+  "itunes_subtitle" varchar(255),
+  "itunes_duration" integer,
+  "itunes_summary" text,
+  "itunes_keywords" varchar(255),
+  "itunes_category" varchar(255),
+  "itunes_explicit" boolean
 );
 
 CREATE TABLE sessions (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'sessid' varchar(255),
-  'data' text,
-  'created_at' datetime,
-  'updated_at' datetime
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "sessid" varchar(255),
+  "data" text,
+  "created_at" datetime,
+  "updated_at" datetime
 );
 
 CREATE TABLE settings (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'name' varchar(255),
-  'value' varchar(255),
-  'position' integer
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "name" varchar(255),
+  "value" varchar(255),
+  "position" integer
 );
 
 CREATE TABLE sidebars (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'controller' varchar(255),
-  'active_position' integer,
-  'active_config' text,
-  'staged_position' integer,
-  'staged_config' text
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "controller" varchar(255),
+  "active_position" integer,
+  "active_config" text,
+  "staged_position" integer,
+  "staged_config" text
 );
 
 CREATE TABLE tags (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'name' varchar(255),
-  'created_at' datetime,
-  'updated_at' datetime
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "name" varchar(255),
+  "created_at" datetime,
+  "updated_at" datetime
 );
 
 CREATE TABLE text_filters (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'name' varchar(255),
-  'description' varchar(255),
-  'markup' varchar(255),
-  'filters' text,
-  'params' text
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "name" varchar(255),
+  "description" varchar(255),
+  "markup" varchar(255),
+  "filters" text,
+  "params" text
 );
 
 CREATE TABLE users (
-  'id' INTEGER PRIMARY KEY NOT NULL,
-  'login' varchar(255),
-  'password' varchar(255),
-  'email' text,
-  'name' text,
-  'notify_via_email' boolean,
-  'notify_on_new_articles' boolean,
-  'notify_on_comments' boolean,
-  'notify_watch_my_articles' boolean,
-  'notify_via_jabber' boolean,
-  'jabber' varchar(255)
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "login" varchar(255),
+  "password" varchar(255),
+  "email" text,
+  "name" text,
+  "notify_via_email" boolean,
+  "notify_on_new_articles" boolean,
+  "notify_on_comments" boolean,
+  "notify_watch_my_articles" boolean,
+  "notify_via_jabber" boolean,
+  "jabber" varchar(255)
 );
 
 
@@ -171,21 +171,21 @@ CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
-INSERT INTO sidebars ('staged_position', 'active_config', 'active_position', 'controller', 'staged_config') VALUES(NULL, NULL, 0, 'category', NULL);
-INSERT INTO sidebars ('staged_position', 'active_config', 'active_position', 'controller', 'staged_config') VALUES(NULL, NULL, 1, 'static', NULL);
-INSERT INTO sidebars ('staged_position', 'active_config', 'active_position', 'controller', 'staged_config') VALUES(NULL, NULL, 2, 'xml', NULL);
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('none', '--- []', 'None', '--- {}', 'none');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('markdown', '--- []', 'Markdown', '--- {}', 'markdown');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('smartypants', '--- 
+INSERT INTO sidebars ("staged_position", "active_config", "active_position", "controller", "staged_config") VALUES(NULL, NULL, 0, 'category', NULL);
+INSERT INTO sidebars ("staged_position", "active_config", "active_position", "controller", "staged_config") VALUES(NULL, NULL, 1, 'static', NULL);
+INSERT INTO sidebars ("staged_position", "active_config", "active_position", "controller", "staged_config") VALUES(NULL, NULL, 2, 'xml', NULL);
+INSERT INTO text_filters ("name", "filters", "description", "params", "markup") VALUES('none', '--- []', 'None', '--- {}', 'none');
+INSERT INTO text_filters ("name", "filters", "description", "params", "markup") VALUES('markdown', '--- []', 'Markdown', '--- {}', 'markdown');
+INSERT INTO text_filters ("name", "filters", "description", "params", "markup") VALUES('smartypants', '--- 
 - :smartypants', 'SmartyPants', '--- {}', 'none');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('markdown smartypants', '--- 
+INSERT INTO text_filters ("name", "filters", "description", "params", "markup") VALUES('markdown smartypants', '--- 
 - :smartypants', 'Markdown with SmartyPants', '--- {}', 'markdown');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('textile', '--- []', 'Textile', '--- {}', 'textile');
+INSERT INTO text_filters ("name", "filters", "description", "params", "markup") VALUES('textile', '--- []', 'Textile', '--- {}', 'textile');
 
 -- schema version meta-info 
 
 CREATE TABLE schema_info (
-  'version' integer
+  "version" integer
 );
 
-insert into schema_info (version) values (33);
+insert into schema_info (version) values (35);
