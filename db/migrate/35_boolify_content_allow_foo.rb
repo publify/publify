@@ -16,7 +16,7 @@ class BoolifyContentAllowFoo < ActiveRecord::Migration
             if !res["oldval"].nil?
               c = Content.find(res["id"])
               c.allow_pings = !res["old_ap"].to_i.zero?
-              c.allow_comments = res["old_ac"].to_i.zero?
+              c.allow_comments = !res["old_ac"].to_i.zero?
               c.save
             end
           end
