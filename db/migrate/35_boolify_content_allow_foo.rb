@@ -9,7 +9,6 @@ class BoolifyContentAllowFoo < ActiveRecord::Migration
         add_column :contents, :allow_comments, :boolean
         
         if not $schema_generator
-          STDERR.puts "Boolifying #{fieldname}"
           Content.connection.select_all(%{
           SELECT
             id, old_ap, old_ac
