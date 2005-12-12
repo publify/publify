@@ -9,8 +9,8 @@ class BoolifyContentAllowFoo < ActiveRecord::Migration
 
       unless $schema_generator
         Article.find(:all).each do |c|
-          c.allow_pings = !c.old_ap.zero? ? true : false unless c.old_ap.nil?
-          c.allow_comments = !c.old_ac.zero? ? true : false unless c.old_ac.nil?
+          c.allow_pings = !c.old_ap.to_i.zero? ? true : false unless c.old_ap.nil?
+          c.allow_comments = !c.old_ac.to_i.zero? ? true : false unless c.old_ac.nil?
           c.save
         end
       end
