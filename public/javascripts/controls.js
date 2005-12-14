@@ -80,7 +80,10 @@ Autocompleter.Base.prototype = {
 
   show: function() {
     if(Element.getStyle(this.update, 'display')=='none') this.options.onShow(this.element, this.update);
-    if(!this.iefix && (navigator.appVersion.indexOf('MSIE')>0) && (Element.getStyle(this.update, 'position')=='absolute')) {
+    if(!this.iefix && 
+      (navigator.appVersion.indexOf('MSIE')>0) &&
+      (navigator.userAgent.indexOf('Opera')<0) &&
+      (Element.getStyle(this.update, 'position')=='absolute')) {
       new Insertion.After(this.update, 
        '<iframe id="' + this.update.id + '_iefix" '+
        'style="display:none;position:absolute;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);" ' +
@@ -184,7 +187,10 @@ Autocompleter.Base.prototype = {
         this.show();
         this.active = true;
       }
-    } else this.hide();
+    } else {
+      this.active = false;
+      this.hide();
+    }
   },
   
   markPrevious: function() {
@@ -425,6 +431,15 @@ Autocompleter.Local.prototype = Object.extend(new Autocompleter.Base(), {
 //
 // see documentation on http://wiki.script.aculo.us/scriptaculous/show/Ajax.InPlaceEditor
 
+// Use this if you notice weird scrolling problems on some browsers,
+// the DOM might be a bit confused when this gets called so do this
+// waits 1 ms (with setTimeout) until it does the activation
+Field.scrollFreeActivate = function(field) {
+  setTimeout(function() {
+    Field.activate(field);
+  }, 1);
+}
+
 Ajax.InPlaceEditor = Class.create();
 Ajax.InPlaceEditor.defaultHighlightColor = "#FFFF99";
 Ajax.InPlaceEditor.prototype = {
@@ -490,7 +505,7 @@ Ajax.InPlaceEditor.prototype = {
       Event.observe(this.options.externalControl, 'mouseout', this.mouseoutListener);
     }
   },
-  enterEditMode: function() {
+  enterEditMode: function(evt) {
     if (this.saving) return;
     if (this.editing) return;
     this.editing = true;
@@ -501,11 +516,12 @@ Ajax.InPlaceEditor.prototype = {
     Element.hide(this.element);
     this.createForm();
     this.element.parentNode.insertBefore(this.form, this.element);
-    Field.focus(this.editField);
+    Field.scrollFreeActivate(this.editField);
     // stop the event to avoid a page refresh in Safari
-    if (arguments.length > 1) {
-      Event.stop(arguments[0]);
+    if (evt) {
+      Event.stop(evt);
     }
+    return false;
   },
   createForm: function() {
     this.form = document.createElement("form");
@@ -704,5 +720,31 @@ Ajax.InPlaceEditor.prototype = {
       Event.stopObserving(this.options.externalControl, 'mouseover', this.mouseoverListener);
       Event.stopObserving(this.options.externalControl, 'mouseout', this.mouseoutListener);
     }
+  }
+};
+
+// Delayed observer, like Form.Element.Observer, 
+// but waits for delay after last key input
+// Ideal for live-search fields
+
+Form.Element.DelayedObserver = Class.create();
+Form.Element.DelayedObserver.prototype = {
+  initialize: function(element, delay, callback) {
+    this.delay     = delay || 0.5;
+    this.element   = $(element);
+    this.callback  = callback;
+    this.timer     = null;
+    this.lastValue = $F(this.element); 
+    Event.observe(this.element,'keyup',this.delayedListener.bindAsEventListener(this));
+  },
+  delayedListener: function(event) {
+    if(this.lastValue == $F(this.element)) return;
+    if(this.timer) clearTimeout(this.timer);
+    this.timer = setTimeout(this.onTimerEvent.bind(this), this.delay * 1000);
+    this.lastValue = $F(this.element);
+  },
+  onTimerEvent: function() {
+    this.timer = null;
+    this.callback(this.element, $F(this.element));
   }
 };
