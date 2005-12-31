@@ -81,6 +81,7 @@ class BloggerService < TypoWebService
     article.allow_pings    = config[:default_allow_pings]
     article.text_filter    = config[:text_filter]
     article.html(@controller)
+    article.save
 
     if categories
       categories.split(",").each do |c|
@@ -88,7 +89,6 @@ class BloggerService < TypoWebService
       end
     end
 
-    article.save
     article.send_notifications(@controller)
     article.id
   end
