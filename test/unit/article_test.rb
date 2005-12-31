@@ -22,10 +22,11 @@ class ArticleTest < Test::Unit::TestCase
     a.user_id = 1
     a.body = "Foo"
     a.title = "Zzz"
-    a.categories = [Category.find(1)]
-    assert_equal 1, a.categories.size
     assert a.save
     
+    a.categories << Category.find(1)
+    assert_equal 1, a.categories.size
+
     b = Article.find(a.id)
     assert_equal 1, b.categories.size 
   end
@@ -184,6 +185,12 @@ class ArticleTest < Test::Unit::TestCase
     
     assert_equal 2, a.notify_users.size
     assert_equal ['bob', 'randomuser'], a.notify_users.collect {|u| u.login }.sort
+  end
+
+  def test_tags_on_update
+    contents(:article3).update_attribute :keywords, "my new tags"
+    assert_equal 3, contents(:article3).reload.tags.size
+    assert contents(:article3).tags.include?(Tag.find_by_name("new"))
   end
   
 end

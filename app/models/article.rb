@@ -126,6 +126,8 @@ class Article < Content
   end
   
   def keywords_to_tags
+    return unless schema_version >= 10
+
     Article.transaction do
       tags.clear
       keywords.to_s.split.uniq.each do |tagword|
@@ -152,31 +154,19 @@ class Article < Content
   
   protected  
 
-  before_create :set_defaults, :create_guid
+  before_create :set_defaults, :create_guid, :add_notifications
+  after_save :keywords_to_tags
 
   def correct_counts
     self.comments_count = self.comments_count
     self.trackbacks_count = self.trackbacks_count
   end
-  before_create :add_notifications
   
   def set_defaults
-    begin
-      schema_info=Article.connection.select_one("select * from schema_info limit 1")
-      schema_version=schema_info["version"].to_i
-    rescue
-      # The test DB doesn't currently support schema_info.
-      schema_version=25
-    end
-
 #    self.published = true if self.published.nil?
     
     if schema_version >= 7
       self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
-    end
-
-    if schema_version >= 10
-      keywords_to_tags
     end
 
     if schema_version >= 29
@@ -214,10 +204,21 @@ class Article < Content
   validates_presence_of :title
 
   private
+
   def fix_resources
     Resource.find(:all, :conditions => "article_id = #{id}").each do |fu|
       fu.article_id = nil
       fu.save
+    end
+  end
+
+  def schema_version
+    @schema_version ||= begin
+      schema_info=Article.connection.select_one("select * from schema_info limit 1")
+      schema_info["version"].to_i
+    rescue
+      # The test DB doesn't currently support schema_info.
+      25
     end
   end
 end
