@@ -29,15 +29,15 @@ class Admin::ContentController < Admin::BaseController
       @article.author = session[:user].login
       @article.user = session[:user]
       
-      @article.categories.clear
-      @article.categories = Category.find(params[:categories]) if params[:categories]
-
       params[:attachments].each do |k,v|
         a = attachment_save(params[:attachments][k])
         @article.resources << a unless a.nil?
       end unless params[:attachments].nil?
 
       if @article.save
+        @article.categories.clear
+        @article.categories = Category.find(params[:categories]) if params[:categories]
+
         @article.html(self)
         @article.send_notifications(self)
         @article.send_pings(article_url(@article),[])

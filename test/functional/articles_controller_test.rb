@@ -158,7 +158,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
 
-    assert_equal "<p>Have you ever &lt;script lang=&#8217;javascript&#8217;>alert(&#8220;foo&#8221;);&lt;/script> been hacked?</p>", comment.html(@controller, :body).to_s
+    assert_equal "<p>Have you ever &lt;script lang=&#8217;javascript&#8217;&gt;alert(&#8220;foo&#8221;);&lt;/script&gt; been hacked?</p>", comment.html(@controller, :body).to_s
   end
   
   def test_comment_xss2

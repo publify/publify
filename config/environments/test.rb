@@ -22,3 +22,5 @@ config.action_mailer.delivery_method = :test
 #config.transactional_fixtures = true
 #config.instantiated_fixtures = false
 #onfig.pre_loaded_fixtures = false
+
+Migrator.offer_migration_when_available            = false
