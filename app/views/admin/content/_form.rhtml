@@ -10,6 +10,10 @@
   <%= text_field 'article', 'permalink'  %>
 </p>
 <p>
+  <label for="article_body">Body:</label><br />
+  <%= text_area 'article', 'body', :rows => 25, :style => 'width: 48%;'  %> 
+</p>
+<p>
   <label for="categories">Categories:</label><br />
   <select id="categories" name="categories[]" multiple="multiple" size="10" style="width:250px;">
   <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
@@ -18,15 +22,12 @@
 <p>
   <label for="article_keywords">Keywords:</label><br/>
   <%= text_field 'article', 'keywords'  %>
-<p>
-  <label for="article_body">Article:</label><br />
-  <%= text_area 'article', 'body', :rows => 25  %>
 </p>
 <p>
   <a href="#" onclick="Element.toggle('extended'); return false">Add Extended Content</a><br />
   <div id="extended" style="display:none;">
   <label for="article_extended">Extended:</label><br />
-  <%= text_area 'article', 'extended', :rows => 30  %>
+  <%= text_area 'article', 'extended', :rows => 30, :style => 'width: 48%;'  %> 
   </div>
 </p>
 
