@@ -1,0 +1,26 @@
+---
+in: |
+  |This|is|a|row|
+  {background:#ddd}. |This|is|grey|row|
+  |This|is|another|row|
+out: |-
+  <table>
+  		<tr>
+  			<td>This</td>
+  			<td>is</td>
+  			<td>a</td>
+  			<td>row</td>
+  		</tr>
+  		<tr style="background:#ddd;">
+  			<td>This</td>
+  			<td>is</td>
+  			<td>grey</td>
+  			<td>row</td>
+  		</tr>
+  		<tr>
+  			<td>This</td>
+  			<td>is</td>
+  			<td>another</td>
+  			<td>row</td>
+  		</tr>
+  	</table>

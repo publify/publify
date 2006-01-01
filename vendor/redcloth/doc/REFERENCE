@@ -24,9 +24,9 @@
     if it's found in a @pre@ or @code@ block.
   - !!example "I am <b>very</b> serious.\n\n<pre>\n  I am <b>very</b> serious.\n</pre>"
   - h4. Line Breaks
-  - Line breaks are converted to HTML breaks.
+  - Line breaks are ignored.
   - !!example "I spoke.\nAnd none replied."
-  - Line breaks can be disabled in RedCloth by turning on @fold_lines@.
+  - Line breaks can be converted to HTML breaks by setting @hard_breaks@.
   - h4. Entities
   - Single- and double-quotes around words or phrases are converted to curly quotations, much easier on the eye.
   - !!example '"Observe!"'
@@ -78,9 +78,9 @@
   - Pluses around a passage indicate its insertion.
   - !!example "You are a +pleasant+ child."
   - To superscript a phrase, surround with carets.
-  - !!example "a ^2^ + b ^2^ = c ^2^"
+  - !!example "a^2^ + b^2^ = c^2^"
   - To subscript, surround with tildes.
-  - !!example "log ~2~ x"
+  - !!example "log~2~x"
   - h4. HTML-Specific
   - Lastly, if you find yourself needing to customize the style of a passage, use percent symbols
     to translate the passage as an HTML span.

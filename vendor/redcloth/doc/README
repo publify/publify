@@ -4,9 +4,7 @@ p=. !redcloth3-title.png!
 
 h4. Get RedCloth 3
 
-p(example1). *Stable version:* "2.0.11":http://rubyforge.org/frs/download.php/698/redcloth-2.0.11.tar.gz
-
-p(example1). *Unstable version:* "3.0.2":http://rubyforge.org/frs/download.php/2852/RedCloth-3.0.2.tar.gz
+p(example1). *Stable version:* "3.0.3":http://rubyforge.org/frs/download.php/2896/RedCloth-3.0.3.tar.gz
 
 Take a complete tour of Textile at "A Textile Reference":http://hobix.com/textile/.
 
@@ -91,7 +89,7 @@ To install RedCloth via RubyGems:
   gem install RedCloth
 </pre>
 
-Or "download RedCloth":http://rubyforge.org/frs/download.php/2852/RedCloth-3.0.2.tar.gz and simply run the install.rb like so:
+Or "download RedCloth":http://rubyforge.org/frs/download.php/2896/RedCloth-3.0.3.tar.gz and simply run the install.rb like so:
 
 <pre>
   ruby install.rb config

@@ -166,7 +166,7 @@
 
 class RedCloth < String
 
-    VERSION = '3.0.3'
+    VERSION = '3.0.4'
     DEFAULT_RULES = [:textile, :markdown]
 
     #
@@ -192,6 +192,18 @@ class RedCloth < String
     # default behavior for traditional RedCloth.
     #
     attr_accessor :hard_breaks
+
+    # Accessor for toggling lite mode.
+    #
+    # In lite mode, block-level rules are ignored.  This means
+    # that tables, paragraphs, lists, and such aren't available.
+    # Only the inline markup for bold, italics, entities and so on.
+    #
+    #   r = RedCloth.new( "And then? She *fell*!", [:lite_mode] )
+    #   r.to_html
+    #   #=> "And then? She <strong>fell</strong>!"
+    #
+    attr_accessor :lite_mode
 
     #
     # Accessor for toggling span caps.
@@ -219,7 +231,7 @@ class RedCloth < String
     # inline_textile_image::  Textile inline images
     # inline_textile_link::   Textile inline links
     # inline_textile_span::   Textile inline spans
-    # inline_textile_glyphs:: Textile entities (such as em-dashes and smart quotes)
+    # glyphs_textile:: Textile entities (such as em-dashes and smart quotes)
     #
     # == Markdown
     #
@@ -260,7 +272,7 @@ class RedCloth < String
         @shelf = []
         textile_rules = [:refs_textile, :block_textile_table, :block_textile_lists,
                          :block_textile_prefix, :inline_textile_image, :inline_textile_link,
-                         :inline_textile_code, :inline_textile_glyphs, :inline_textile_span]
+                         :inline_textile_code, :inline_textile_span, :glyphs_textile]
         markdown_rules = [:refs_markdown, :block_markdown_setext, :block_markdown_atx, :block_markdown_rule,
                           :block_markdown_bq, :block_markdown_lists, 
                           :inline_markdown_reflink, :inline_markdown_link]
@@ -278,14 +290,16 @@ class RedCloth < String
         # standard clean up
         incoming_entities text 
         clean_white_space text 
-        no_textile text
 
         # start processor
         @pre_list = []
         rip_offtags text
-        hard_break text
-        refs text
-        blocks text
+        no_textile text
+        hard_break text 
+        unless @lite_mode
+            refs text
+            blocks text
+        end
         inline text
         smooth_offtags text
 
@@ -333,6 +347,8 @@ class RedCloth < String
     C = "(?:#{C_CLAS}?#{C_STYL}?#{C_LNGE}?|#{C_STYL}?#{C_LNGE}?#{C_CLAS}?|#{C_LNGE}?#{C_STYL}?#{C_CLAS}?)"
     # PUNCT = Regexp::quote( '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' )
     PUNCT = Regexp::quote( '!"#$%&\'*+,-./:;=?@\\^_`|~' )
+    PUNCT_NOQ = Regexp::quote( '!"#$&\',./:;=?@\\`|' )
+    PUNCT_Q = Regexp::quote( '*-_+^~%' )
     HYPERLINK = '(\S+?)([^\w\s/;=\?]*?)(?=\s|<|$)'
 
     # Text markup tags, don't conflict with block tags
@@ -341,41 +357,6 @@ class RedCloth < String
         'samp', 'kbd', 'var', 'cite', 'abbr', 'acronym', 'a', 'img', 'br',
         'br', 'map', 'q', 'sub', 'sup', 'span', 'bdo'
     ]
-
-    # Elements to handle
-    GLYPHS = [
-    #   [ /([^\s\[{(>])?\'([dmst]\b|ll\b|ve\b|\s|:|$)/, '\1&#8217;\2' ], # single closing
-        [ /([^\s\[{(>])\'/, '\1&#8217;' ], # single closing
-        [ /\'(?=\s|s\b|[#{PUNCT}])/, '&#8217;' ], # single closing
-        [ /\'/, '&#8216;' ], # single opening
-    #   [ /([^\s\[{(])?"(\s|:|$)/, '\1&#8221;\2' ], # double closing
-        [ /([^\s\[{(>])"/, '\1&#8221;' ], # double closing
-        [ /"(?=\s|[#{PUNCT}])/, '&#8221;' ], # double closing
-        [ /"/, '&#8220;' ], # double opening
-        [ /\b( )?\.{3}/, '\1&#8230;' ], # ellipsis
-        [ /\b([A-Z][A-Z0-9]{2,})\b(?:[(]([^)]*)[)])/, '<acronym title="\2">\1</acronym>' ], # 3+ uppercase acronym
-        [ /(^|[^"][>\s])([A-Z][A-Z0-9 ]{2,})([^<a-z0-9]|$)/, '\1<span class="caps">\2</span>\3', :no_span_caps ], # 3+ uppercase caps
-        [ /(\.\s)?\s?--\s?/, '\1&#8212;' ], # em dash
-        [ /\s->\s/, ' &rarr; ' ], # right arrow
-        [ /\s-\s/, ' &#8211; ' ], # en dash
-        [ /(\d+) ?x ?(\d+)/, '\1&#215;\2' ], # dimension sign
-        [ /\b ?[(\[]TM[\])]/i, '&#8482;' ], # trademark
-        [ /\b ?[(\[]R[\])]/i, '&#174;' ], # registered
-        [ /\b ?[(\[]C[\])]/i, '&#169;' ] # copyright
-    ]
-
-    H_ALGN_VALS = {
-        '<' => 'left',
-        '=' => 'center',
-        '>' => 'right',
-        '<>' => 'justify'
-    }
-
-    V_ALGN_VALS = {
-        '^' => 'top',
-        '-' => 'middle',
-        '~' => 'bottom'
-    }
 
     QTAGS = [
         ['**', 'b'],
@@ -398,18 +379,55 @@ class RedCloth < String
                 (#{rcq})
                 (#{C})
                 (?::(\S+?))?
-                (.+?)
+                (\S.*?\S|\S)
                 #{rcq}
                 (?=\W)/x
             else
                 /(#{rcq})
                 (#{C})
-                (?::(\S+?))?
-                (.+?)
+                (?::(\S+))?
+                (\S.*?\S|\S)
                 #{rcq}/xm 
             end
         [rc, ht, re, rtype]
     end
+
+    # Elements to handle
+    GLYPHS = [
+    #   [ /([^\s\[{(>])?\'([dmst]\b|ll\b|ve\b|\s|:|$)/, '\1&#8217;\2' ], # single closing
+        [ /([^\s\[{(>#{PUNCT_Q}][#{PUNCT_Q}]*)\'/, '\1&#8217;' ], # single closing
+        [ /\'(?=[#{PUNCT_Q}]*(s\b|[\s#{PUNCT_NOQ}]))/, '&#8217;' ], # single closing
+        [ /\'/, '&#8216;' ], # single opening
+        [ /</, '&lt;' ], # less-than
+        [ />/, '&gt;' ], # greater-than
+    #   [ /([^\s\[{(])?"(\s|:|$)/, '\1&#8221;\2' ], # double closing
+        [ /([^\s\[{(>#{PUNCT_Q}][#{PUNCT_Q}]*)"/, '\1&#8221;' ], # double closing
+        [ /"(?=[#{PUNCT_Q}]*[\s#{PUNCT_NOQ}])/, '&#8221;' ], # double closing
+        [ /"/, '&#8220;' ], # double opening
+        [ /\b( )?\.{3}/, '\1&#8230;' ], # ellipsis
+        [ /\b([A-Z][A-Z0-9]{2,})\b(?:[(]([^)]*)[)])/, '<acronym title="\2">\1</acronym>' ], # 3+ uppercase acronym
+        [ /(^|[^"][>\s])([A-Z][A-Z0-9 ]+[A-Z0-9])([^<A-Za-z0-9]|$)/, '\1<span class="caps">\2</span>\3', :no_span_caps ], # 3+ uppercase caps
+        [ /(\.\s)?\s?--\s?/, '\1&#8212;' ], # em dash
+        [ /\s->\s/, ' &rarr; ' ], # right arrow
+        [ /\s-\s/, ' &#8211; ' ], # en dash
+        [ /(\d+) ?x ?(\d+)/, '\1&#215;\2' ], # dimension sign
+        [ /\b ?[(\[]TM[\])]/i, '&#8482;' ], # trademark
+        [ /\b ?[(\[]R[\])]/i, '&#174;' ], # registered
+        [ /\b ?[(\[]C[\])]/i, '&#169;' ] # copyright
+    ]
+
+    H_ALGN_VALS = {
+        '<' => 'left',
+        '=' => 'center',
+        '>' => 'right',
+        '<>' => 'justify'
+    }
+
+    V_ALGN_VALS = {
+        '^' => 'top',
+        '-' => 'middle',
+        '~' => 'bottom'
+    }
 
     #
     # Flexible HTML escaping
@@ -530,7 +548,7 @@ class RedCloth < String
                                 depth.pop
                             end
                         end
-                        if depth.last.length == tl.length
+                        if depth.last and depth.last.length == tl.length
                             lines[line_id - 1] << '</li>'
                         end
                     end
@@ -577,7 +595,7 @@ class RedCloth < String
     end
 
     def hard_break( text )
-        text.gsub!( /(.)\n(?! *[#*\s|]|$)/, "\\1<br />" ) if hard_breaks
+        text.gsub!( /(.)\n(?!\Z| *([#*=]+(\s|$)|[{|]))/, "\\1<br />" ) if hard_breaks
     end
 
     BLOCKS_GROUP_RE = /\n{2,}(?! )/m
@@ -705,9 +723,9 @@ class RedCloth < String
         end
     end
 
-    MARKDOWN_RULE_RE = /^#{
+    MARKDOWN_RULE_RE = /^(#{
         ['*', '-', '_'].collect { |ch| '( ?' + Regexp::quote( ch ) + ' ?){3,}' }.join( '|' )
-    }$/
+    })$/
 
     def block_markdown_rule( text )
         text.gsub!( MARKDOWN_RULE_RE ) do |blk|
@@ -717,9 +735,6 @@ class RedCloth < String
 
     # XXX TODO XXX
     def block_markdown_lists( text )
-    end
-
-    def inline_markdown_link( text )
     end
 
     def inline_textile_span( text ) 
@@ -903,12 +918,12 @@ class RedCloth < String
 
     def shelve( val ) 
         @shelf << val
-        " <#{ @shelf.length }>"
+        " :redsh##{ @shelf.length }:"
     end
     
     def retrieve( text ) 
         @shelf.each_with_index do |r, i|
-            text.gsub!( " <#{ i + 1 }>", r )
+            text.gsub!( " :redsh##{ i + 1 }:", r )
         end
     end
 
@@ -965,7 +980,7 @@ class RedCloth < String
     HASTAG_MATCH = /(<\/?\w[^\n]*?>)/m
     ALLTAG_MATCH = /(<\/?\w[^\n]*?>)|.*?(?=<\/?\w[^\n]*?>|$)/m
 
-    def inline_textile_glyphs( text, level = 0 )
+    def glyphs_textile( text, level = 0 )
         if text !~ HASTAG_MATCH
             pgl text
             footnote_ref text
@@ -981,11 +996,11 @@ class RedCloth < String
                         codepre = 0 if codepre < 0
                     end 
                 elsif codepre.zero?
-                    inline_textile_glyphs( line, level + 1 )
+                    glyphs_textile( line, level + 1 )
                 else
                     htmlesc( line, :NoQuotes )
                 end
-                ## p [level, codepre, orig_line, line]
+                # p [level, codepre, line]
 
                 line
             end
@@ -1033,8 +1048,10 @@ class RedCloth < String
     end
 
     def inline( text ) 
-        @rules.each do |rule_name|
-            method( rule_name ).call( text ) if rule_name.to_s.match /^inline_/
+        [/^inline_/, /^glyphs_/].each do |meth_re|
+            @rules.each do |rule_name|
+                method( rule_name ).call( text ) if rule_name.to_s.match( meth_re )
+            end
         end
     end
 
@@ -1097,7 +1114,7 @@ class RedCloth < String
                         q2 = ( q != '' ? q : '\s' )
                         if raw[3] =~ /#{prop}\s*=\s*#{q}([^#{q2}]+)#{q}/i
                             attrv = $1
-                            next if prop == 'src' and attrv !~ /^http/
+                            next if prop == 'src' and attrv =~ %r{^(?!http)\w+:}
                             pcs << "#{prop}=\"#{$1.gsub('"', '\\"')}\""
                             break
                         end

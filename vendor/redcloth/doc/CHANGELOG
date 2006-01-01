@@ -1,4 +1,15 @@
 --- %YAML:1.0
+- version: 3.0.4
+  date: 2005-02-18
+  changes:
+    - The caps class doesn't swallow spaces.
+    - Horizontal rules required to be on an empty line.
+    - Hard breaks don't screw with Markdown headers any longer.
+    - Fixed error triggered by complex lists.
+    - Inline markups need to be butted up against enclosing text, no spaces.
+    - Fixed problem with intermingled single and double quotes.
+    - Brought back lite_mode.
+
 - version: 3.0.3
   date: 2005-02-06
   changes:

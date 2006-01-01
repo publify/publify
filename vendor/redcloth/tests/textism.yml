@@ -71,6 +71,12 @@ out: <p><strong>a phrase</strong></p>
 in: '**a phrase**'
 out: <p><b>a phrase</b></p>
 ---
+in: '*(a)* a'
+out: <p><strong>(a)</strong> a</p>
+---
+in: '*(a)* *'
+out: <p><strong>(a)</strong> *</p>
+---
 in: Nabokov's ??Pnin??
 out: <p>Nabokov&#8217;s <cite>Pnin</cite></p>
 ---
@@ -395,3 +401,6 @@ out: |-
   		<li>We must act</li>
   	</ul>
 
+---
+in: '"test":http://foo.com/b---ar'
+out: <p><a href="http://foo.com/b---ar">test</a></p>
