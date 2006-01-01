@@ -67,13 +67,20 @@ class CommentTest < Test::Unit::TestCase
     c = Comment.new
     c.author = "Old Spammer"
     c.body = "Old trackback body"
-    c.article = contents(:article3)
+    c.article = contents(:inactive_article)
 
     assert ! c.save
     assert c.errors.invalid?('article_id')
       
     c.article = @article1
       
+    assert c.save
+    assert c.errors.empty?
+  end
+
+  def test_modify_old_comment
+    c = contents(:inactive_article).comments.first
+    c.body = 'Comment body <em>italic</em> <strong>bold</strong>'
     assert c.save
     assert c.errors.empty?
   end

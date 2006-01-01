@@ -33,7 +33,7 @@ class ArticleTest < Test::Unit::TestCase
   
   def test_permalink
     assert_equal contents(:article3), Article.find_by_date(2004,06,01)
-    assert_equal [contents(:article2), contents(:article1)], Article.find_all_by_date(Time.now.year)  
+    assert_equal [contents(:article2), contents(:article1)], Article.find_all_by_date(2.days.ago.year)  
   end
 
   def test_permalink_with_title
@@ -147,7 +147,7 @@ class ArticleTest < Test::Unit::TestCase
 
   def test_find_published
     @articles = Article.find_published
-    assert_results_are  :article1, :article2, :article3
+    assert_results_are  :article1, :article2, :article3, :inactive_article
 
     @articles = Article.find_published(:all,
                                        :conditions => "title = 'Article 1!'")

@@ -92,6 +92,7 @@ comment2:
   created_at: 2005-01-01 02:00:01
   updated_at: 2005-01-01 02:00:01
   guid: 453456456456456
+
 comment3:
   type: Comment
   id: 12
@@ -128,6 +129,7 @@ trackback2:
   created_at: 2005-01-01 03:00:01
   updated_at: 2005-01-01 03:00:01
   guid: qweqweqddsfcs
+
 trackback3:
   type: Trackback
   id: 13
@@ -149,6 +151,7 @@ first_page:
   body: ho ho ho
   created_at: 2005-05-05 01:00:00
   user_id: 1
+
 another_page:
   type: Page
   id: 10
@@ -157,6 +160,7 @@ another_page:
   body: another body for yet another page
   created_at: 2005-05-05 01:00:00
   user_id: 1
+
 markdown_page:
   type: Page
   id: 11
@@ -166,3 +170,31 @@ markdown_page:
   body: this is *markdown*.
   created_at: 2005-05-05 01:00:00
   user_id: 1
+
+inactive_article:
+  type: Article
+  id: 14
+  title: Inactive Article
+  body: body
+  body_html: body
+  extended: extended content
+  extended_html: extended content
+  created_at: 2004-05-01 20:00:02
+  updated_at: 2004-05-01 20:00:02
+  allow_comments: 1
+  allow_pings: 1
+  permalink: inactive-article
+  user_id: 1
+  author: Tobi
+  guid: i1n2a3c4t5i6v7e
+
+old_comment:
+  type: Comment
+  id: 15
+  article_id: 14
+  author: John Bar
+  url: www.google.com
+  email: john.bar@google.com
+  body: Comment body _italic_ *bold*
+  created_at: 2004-05-02 20:00:02
+  updated_at: 2004-05-02 20:00:02

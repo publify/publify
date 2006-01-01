@@ -7,11 +7,11 @@ class SpamProtection
   SECOND_LEVEL = [ 'co', 'com', 'net', 'org', 'gov' ]
 
   def article_closed?(record)
-    if config['sp_article_auto_close'] > 0
-      if record.article.created_at.to_i < config['sp_article_auto_close'].days.ago.to_i
-        logger.info("[SP] Blocked interaction with #{record.article.title}") 
-        return true
-      end
+    return false if config['sp_article_auto_close'].zero? or not record.new_record?
+
+    if record.article.created_at.to_i < config['sp_article_auto_close'].days.ago.to_i
+      logger.info("[SP] Blocked interaction with #{record.article.title}") 
+      return true
     end
   end
 

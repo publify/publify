@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'xml_controller'
+require 'dns_mock'
 
 # This test now has optional support for validating the generated RSS feeds.
 # Since Ruby doesn't have a RSS/Atom validator, I'm using the Python source
@@ -77,7 +78,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-    assert_tag :tag => 'channel', :children => {:count => 3, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 4, :only => {:tag => 'item' }}
   end
   
   def test_feed_rss20_comments
@@ -86,7 +87,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_tag :tag => 'channel', :children => {:count => 2, :only => {:tag => 'item' }}
+    assert_tag :tag => 'channel', :children => {:count => 3, :only => {:tag => 'item' }}
   end
 
   def test_feed_rss20_trackbacks
@@ -131,7 +132,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 4, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom03_comments
@@ -140,7 +141,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
     
-    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom03_trackbacks
@@ -186,7 +187,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 4, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_comments
@@ -195,7 +196,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_tag :tag => 'feed', :children => {:count => 2, :only => {:tag => 'entry' }}
+    assert_tag :tag => 'feed', :children => {:count => 3, :only => {:tag => 'entry' }}
   end
 
   def test_feed_atom10_trackbacks
