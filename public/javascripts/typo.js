@@ -71,8 +71,11 @@ function complete(request) {
 
 register_onload(function() {
   if ($('commentform')) {
-    $('commentform').elements['comment[author]'].value = getCookie('author');
-    $('commentform').elements['comment[url]'].value = getCookie('url');
+	var _author = getCookie('author');
+	var _url = getCookie('url');
+
+    if(_author != null) { $('commentform').elements['comment[author]'].value = _author }
+    if(_url != null) { $('commentform').elements['comment[url]'].value = _url }
     
     if ($('commentform').elements['comment[url]'].value != ''
         || $('commentform').elements['comment[email]'].value != '') {
