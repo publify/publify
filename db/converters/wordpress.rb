@@ -55,6 +55,7 @@ class WPMigrate
     wp_entries.each do |entry|
       a = Article.new
       a.attributes = entry.reject { |k,v| k =~ /^(ID|post_category|body)/ }
+      a.text_filter = self.options[:text_filter]
       body = entry['body']
       more_index = body.index('<!--more-->')
       if more_index
@@ -158,6 +159,7 @@ class WPMigrate
 
       opt.on('--db DBNAME', String, 'WordPress database name.') { |d| self.options[:wp_db] = d }
       opt.on('--prefix PREFIX', String, 'WordPress table prefix (defaults to \'wp\').') { |d| self.options[:wp_prefix] = d }
+      opt.on('--filter TEXTFILTER', String, 'Textfilter for imported articles (defaults to markdown).') { |d| self.options[:text_filter] = d }
 
       opt.on_tail('-h', '--help', 'Show this message.') do
         puts opt
@@ -174,6 +176,10 @@ class WPMigrate
     
     unless self.options.include?(:wp_prefix)
       self.options[:wp_prefix] = "wp"
+    end
+
+    unless self.options.include?(:text_filter)
+      self.options[:text_filter] = 'markdown'
     end
   end
 end
