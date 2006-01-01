@@ -22,7 +22,7 @@ class TXPMigrate
   def convert_categories
     txp_categories = ActiveRecord::Base.connection.select_all(%{
       SELECT name
-      FROM `#{self.options[:txp_db]}`.txp_category
+      FROM `#{self.options[:txp_db]}`.`#{self.options[:txp_pfx]}`txp_category
       WHERE parent = 'root'
       AND type = 'article'
     })
@@ -51,7 +51,7 @@ class TXPMigrate
         (CASE textile_body WHEN '1' THEN 'textile' ELSE 'none' END) AS text_filter,
         (CASE Status WHEN '1' THEN '0' ELSE '1' END) AS published,
         Category1, Category2
-      FROM `#{self.options[:txp_db]}`.textpattern
+      FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`textpattern
     })
     
     puts "Converting #{txp_entries.size} entries.."
@@ -77,7 +77,7 @@ class TXPMigrate
           message as body_html,
           posted AS created_at,
           ip AS ip
-        FROM `#{self.options[:txp_db]}`.txp_discuss
+        FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`txp_discuss
         WHERE parentid = #{entry['ID']}
       }).each do |c|
         a.comments.create(c)
@@ -97,7 +97,7 @@ class TXPMigrate
           WHEN 'use_textile' THEN 'text_filter'
          END) AS name,
         val AS value
-      FROM `#{self.options[:txp_db]}`.txp_prefs
+      FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`txp_prefs
       WHERE name IN ('sitename', 'comments_on_default', 'use_textile')        
     }).each do |pref|
       if pref['name'] == "text_filter" and pref['value'].to_i > 0 
@@ -117,6 +117,7 @@ class TXPMigrate
       opt.banner = "Usage: textpattern.rb [options]"
 
       opt.on('--db DBNAME', String, 'Text Pattern database name.') { |d| self.options[:txp_db] = d }
+      opt.on('--pf PREFIX', String, 'Textpattern table prefix.') { |p| self.options[:txp_pfx] = p }
 
       opt.on_tail('-h', '--help', 'Show this message.') do
         puts opt
