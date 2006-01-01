@@ -158,11 +158,6 @@ class ArticlesController < ApplicationController
     end
   end  
   
-  def add_to_cookies(name, value, path=nil, expires=nil)
-    cookies[:name] = { :value => value, :path => path || "/#{controller_name}",
-                       :expires => 6.weeks.from_now }
-  end
-
   # Receive trackbacks linked to articles
   def trackback
     @result = true
@@ -242,6 +237,11 @@ class ArticlesController < ApplicationController
   include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
 
   private
+
+  def add_to_cookies(name, value, path=nil, expires=nil)
+    cookies[name] = { :value => value, :path => path || "/#{controller_name}",
+                       :expires => 6.weeks.from_now }
+  end
 
   def check_page_query_param_for_missing_routes
     unless request.path =~ /\/page\//  # check if all page routes use /page/:page

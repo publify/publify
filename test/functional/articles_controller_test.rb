@@ -99,6 +99,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find(:first, :order => 'created_at desc')
     assert comment
     
+    assert_not_nil cookies["author"]
+    
     assert_equal "<p>This is <strong>textile</strong></p>", comment.html(@controller).to_s
     
     assert_equal 1, emails.size
