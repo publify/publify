@@ -1,9 +1,12 @@
 <h3>Logoff</h3>
 <div class="memo">
 
-    <p>You are now logged out of the system...</p>
+    <p>
+      You are now logged out of the system.
+      <%= link_to "Do you want to go to your blog?", :controller => "/" %>
+    </p>
       
-    <%= link_to "&#171; login", :action=>"login"%>  
+    <%= link_to "&#171; login", :action => "login" %><br />
       
 </div>
 
