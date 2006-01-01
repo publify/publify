@@ -22,8 +22,8 @@ class AddCountCaching < ActiveRecord::Migration
   def self.down
     STDERR.puts "Removing counts columns"
 
-    drop_column :contents, :comments_count
-    drop_column :contents, :trackbacks_count
+    remove_column :contents, :comments_count
+    remove_column :contents, :trackbacks_count
   end
 end
       
