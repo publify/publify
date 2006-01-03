@@ -6,6 +6,12 @@ require 'http_mock'
 # Re-raise errors caught by the controller.
 class ArticlesController; def rescue_action(e) raise e end; end
 
+class Content
+  def self.find_last_posted
+    self.find(:first, :order => 'created_at desc')
+  end
+end
+
 class ArticlesControllerTest < Test::Unit::TestCase
   fixtures :contents, :categories, :settings, :users, :articles_categories, :text_filters, :articles_tags, :tags
   include ArticlesHelper
@@ -96,7 +102,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'strong', :content => 'textile'
     
-    comment = Comment.find(:first, :order => 'created_at desc')
+    comment = Comment.find_last_posted
     assert comment
     
     assert_not_nil cookies["author"]
@@ -111,91 +117,49 @@ class ArticlesControllerTest < Test::Unit::TestCase
     settings(:comment_text_filter).update_attribute(:value, "markdown smartypants")
     test_comment_spam1
   end
-  
-  def test_comment_spam1
+
+  def comment_template_test(expected_html, source_text,
+                            art_id=1, author='bob', email='foo', args={})
     post :comment, {
-      :id => 1, 
+      :id => art_id,
       :comment => {
-        'body' => 'Link to <a href="http://spammer.example.com">spammy goodness</a>',
-        'author' => 'bob',
-        'url' => 'http://spam2.example.com',
-        'email' => 'foo'}}
-    
+        'body' => source_text,
+        'author' => author,
+        'email' => email }.merge(args) }
+
     assert_response :success
-    comment = Comment.find(:first, :order => 'created_at desc')
+    comment = Comment.find_last_posted
     assert comment
 
-    assert_equal "<p>Link to <a href='http://spammer.example.com' rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller).to_s
+    assert_equal expected_html, comment.html(@controller).to_s
     $do_breakpoints
   end
 
-  def test_comment_spam2
-    post :comment, {
-      :id => 1, 
-      :comment => {
-        'body' => 'Link to "spammy goodness":http://spammer.example.com',
-        'author' => 'bob',
-        'url' => 'http://spam2.example.com',
-        'email' => 'foo'}}
-
-    assert_response :success
-
-    comment = Comment.find(:first, :order => 'created_at desc')
-    assert comment
-
-    assert_equal "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", comment.html(@controller, :body).to_s
+  def test_comment_spam1
+    comment_template_test "<p>Link to <a href='http://spammer.example.com' rel=\"nofollow\">spammy goodness</a></p>", 'Link to <a href="http://spammer.example.com">spammy goodness</a>'
   end
 
+  def test_comment_spam2
+    comment_template_test "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", 'Link to "spammy goodness":http://spammer.example.com'
+  end
+  
   def test_comment_xss1
-    post :comment, {
-      :id => 1, 
-      :comment => {
-        'body' => 'Have you ever <script lang="javascript">alert("foo");</script> been hacked?',
-        'author' => 'bob',
-        'url' => 'http://spam2.example.com',
-        'email' => 'foo'}}
-
-    assert_response :success
-
-    comment = Comment.find(:first, :order => 'created_at desc')
-    assert comment
-
-    assert_equal "<p>Have you ever &lt;script lang=&#8217;javascript&#8217;&gt;alert(&#8220;foo&#8221;);&lt;/script&gt; been hacked?</p>", comment.html(@controller, :body).to_s
+    comment_template_test "<p>Have you ever &lt;script lang=&#8217;javascript&#8217;&gt;alert(&#8220;foo&#8221;);&lt;/script&gt; been hacked?</p>",
+    "Have you ever <script lang=\"javascript\">alert(\"foo\");</script> been hacked?"
   end
   
   def test_comment_xss2
-    post :comment, {
-      :id => 1, 
-      :comment => {
-        'body' => 'Have you ever <a href="#" onclick="javascript">been hacked?</a>',
-        'author' => 'bob',
-        'url' => 'http://spam2.example.com',
-        'email' => 'foo'}}
-
-    assert_response :success
-
-    comment = Comment.find(:first, :order => 'created_at desc')
-    assert comment
-
-    assert_equal "<p>Have you ever <a href='#' rel=\"nofollow\">been hacked?</a></p>", comment.html(@controller, :body).to_s
+    comment_template_test "<p>Have you ever <a href='#' rel=\"nofollow\">been hacked?</a></p>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
   end
   
   def test_comment_autolink
-    post :comment, {
-      :id => 1, 
-      :comment => {
-        'body' => "What's up with http://slashdot.org these days?",
-        'author' => 'bob',
-        'url' => 'http://spam2.example.com',
-        'email' => 'foo'}}
+    comment_template_test "<p>What&#8217;s up with <a href='http://slashdot.org' rel=\"nofollow\">http://slashdot.org</a> these days?</p>", "What's up with http://slashdot.org these days?"
+  end #"
 
-    assert_response :success
-
-    comment = Comment.find(:first, :order => 'created_at desc')
-    assert comment
-
-    assert_equal "<p>What&#8217;s up with <a href='http://slashdot.org' rel=\"nofollow\">http://slashdot.org</a> these days?</p>", comment.html(@controller, :body).to_s
-  end
+  ### TODO -- there's a bug in Rails with auto_links
+#   def test_comment_autolink2
+#     comment_template_test "<p>My web page is <a href='http://somewhere.com/~me/index.html' rel=\"nofollow\">http://somewhere.com/~me/index.html</a></p>", "My web page is http://somewhere.com/~me/index.html"
+#   end
   
   def test_comment_nuking 
     num_comments = Comment.count
@@ -214,7 +178,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
     assert_response :success
 
-    comment = Comment.find(:first, :order => 'created_at desc')
+    comment = Comment.find_last_posted
     assert comment
     assert_nil comment.user_id
     
@@ -230,7 +194,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
     assert_response :success
 
-    comment = Comment.find(:first, :order => 'created_at desc')
+    comment = Comment.find_last_posted
     assert comment
     assert_equal users(:tobi), comment.user
 
@@ -442,7 +406,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     @request.env['HTTP_X_REQUESTED_WITH'] = "XMLHttpRequest"  
     post :comment, :id => 1, :comment => {'body' => 'This is posted *with* ajax', 'author' => 'bob' }
     assert_response :success
-    ajax_comment = Comment.find(:first, :order => "id DESC")
+    ajax_comment = Comment.find_last_posted
     assert_equal "This is posted *with* ajax", ajax_comment.body
   end
   

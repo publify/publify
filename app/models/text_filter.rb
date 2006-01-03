@@ -105,7 +105,7 @@ class TextFilter < ActiveRecord::Base
     return help_text
   end
   
-  def to_s
-    self.name
-  end
+  def to_s; self.name; end
+
+  def to_text_filter; self; end
 end

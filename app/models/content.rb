@@ -53,26 +53,17 @@ class Content < ActiveRecord::Base
     end
 
     def find_published(what = :all, options = {})
-      options[:conditions] = if options[:conditions]
-                               merge_conditions(options[:conditions],
-                                                ['published = ?', true])
-                             else
-                               ['published = ?', true]
-                             end
+      options[:conditions] = merge_conditions(['published = ?', true], options[:conditions])
       find(what, options)
     end
 
-    def merge_conditions(cond_a, *rest)
-      return cond_a if rest.empty?
-      cond_a = ["(#{cond_a})"] if cond_a.is_a?(String)
-      
-      cond_b = rest.shift
-      cond_b = [cond_b] if cond_b.is_a?(String)
-
-      cond_a.first << " AND ( #{cond_b.shift} )"
-      cond_a = cond_a + cond_b
-      
-      merge_conditions cond_a, *rest
+    def merge_conditions(*conditions)
+      first_cond = conditions.shift.to_conditions_array
+      conditions.compact.inject(first_cond) do |merged, cond|
+        cond = cond.to_conditions_array
+        merged.first << " AND ( #{cond.shift} )"
+        merged + cond
+      end
     end
   end
   
@@ -101,25 +92,18 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= Hash.new
   end
   
-  alias_method :orig_text_filter, :text_filter
+  alias_method :orig_text_filter=, :text_filter=; alias_method :orig_text_filter, :text_filter
   
   def text_filter
-    unless orig_text_filter
-      self.text_filter = TextFilter.find_by_name(config[default_text_filter_config_key])
-    end
-    orig_text_filter  
+    self.orig_text_filter ||= config[default_text_filter_config_key].to_text_filter
   end
       
-  
   def text_filter=(filter)
-    if filter.nil?
-      self.text_filter_id = nil
-    elsif filter.kind_of? TextFilter
-      self.text_filter_id = filter.id
-    else
-      filter = TextFilter.find_by_name(filter.to_s)
-      self.text_filter_id = (filter.nil? ? nil : filter.id)
-    end
-    filter
+    self.orig_text_filter = filter.to_text_filter
   end
 end
+
+class Object; def to_text_filter; TextFilter.find_by_name(self.to_s); end; end
+
+class String; def to_conditions_array; ["(#{self})"]; end; end
+class Array; def to_conditions_array; self; end; end
