@@ -7,14 +7,12 @@ class ApplicationController < ActionController::Base
   before_filter :reload_settings
   before_filter :auto_discovery_defaults
   
-  def self.cache_page(content, path, content_objects)
+  def self.cache_page(content, path)
     begin
       # Don't cache the page if there are any questionmark characters in the url
       unless path =~ /\?\w+/ or path =~ /page\d+$/
         super(content,path)
-        pc = PageCache.create(:name => page_cache_file(path))
-        pc.contents = content_objects
-        pc.save
+        PageCache.create(:name => page_cache_file(path))
       end
     rescue # if there's a caching error, then just return the content.
       content
@@ -25,14 +23,6 @@ class ApplicationController < ActionController::Base
     if cache = PageCache.find(:first, :conditions => ['name = ?', path])
       cache.destroy
     end
-  end
-
-  def cache_page(content = nil, options = {})
-    return unless perform_caching && caching_allowed
-    self.class.cache_page(content || @response.body,
-                          url_for(options.merge({ :only_path => true,
-                                                  :skip_relative_url_root => true})),
-                          self.contents)
   end
   
   def reload_settings
@@ -82,8 +72,6 @@ class ApplicationController < ActionController::Base
       [@article]
     elsif @page
       [@page]
-    elsif @items
-      @items
     else
       []
     end
