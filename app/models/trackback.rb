@@ -19,7 +19,8 @@ class Trackback < Content
 
     def process_trackback
       if excerpt.length >= 251
-        self.excerpt = excerpt[0..251] << "..."
+        # this limits excerpt to 250 chars, including the trailing "..."
+        self.excerpt = excerpt[0..246] << "..."
       end
     end
 end
