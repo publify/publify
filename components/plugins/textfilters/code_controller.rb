@@ -14,6 +14,7 @@ You can use `<typo:code>` to include syntax-highlighted code blocks.  Example:
         "abcde"
       end
     end
+    </typo:code>
     
 This uses the Ruby [Syntax](http://syntax.rubyforge.org/) module.  Options:
 
