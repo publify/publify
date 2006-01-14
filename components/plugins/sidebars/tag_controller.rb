@@ -17,6 +17,6 @@ class Plugins::Sidebars::TagController < Sidebars::Plugin
   def content
     @tags = Tag.find_all_with_article_counters(@sb_config['maximum_tags'].to_i).sort_by {|t| t.name}
     total=@tags.inject(1) {|total,tag| total += tag.article_counter }
-    @font_multiplier = @tags.size*100.0/total
+    @font_multiplier = 80
   end
 end
