@@ -1,0 +1,25 @@
+<%= form_tag({},{:id => 'configure_'+@sidebar.id.to_s, :class=>'configblock'}) %>
+<table>
+  <tr>
+    <td align="right"><label>Username</label></td>
+    <td><input class="text" type="text" name="configure[username]" value="<%=h @sidebar.staged_config['username'] %>"/></td>
+  </tr>
+  <tr>
+    <td align="right"><label>Token</label></td>
+    <td><input class="text" type="text" name="configure[token]" value="<%=h @sidebar.staged_config['token'] %>"/></td>
+  </tr>
+  <tr>
+    <td align="right"><label>Page ID</label></td>
+    <td><input class="text" type="text" name="configure[page_id]" value="<%=h @sidebar.staged_config['page_id'] %>"/></td>
+  </tr>
+  <tr>
+    <td align="right"><label>Items limit</label></td>
+    <td><input class="text" type="text" name="configure[count]" value="<%=h @sidebar.staged_config['count'] %>"/></td>
+  </tr>
+</table>
+<%= end_form_tag %>
+
+<%= observe_form "configure_"+@sidebar.id.to_s, 
+    :url => { :action => "save_config", :id=>@sidebar.id},
+    :with => 'value'
+ %>

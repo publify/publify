@@ -88,9 +88,9 @@ module ApplicationHelper
     article_link pluralize(article.trackbacks.size, "trackback"), article, 'trackbacks'
   end
   
-  def check_cache(aggregator, url)
-    hash = "#{aggregator.to_s}_#{Digest::SHA1.hexdigest(url)}".to_sym
-    controller.cache[hash] ||= aggregator.new(url)
+  def check_cache(aggregator, *args)
+    hash = "#{aggregator.to_s}_#{args.collect { |arg| Digest::SHA1.hexdigest(arg) }.join('_') }".to_sym
+    controller.cache[hash] ||= aggregator.new(*args)
   end  
   
   def js_distance_of_time_in_words_to_now(date)
