@@ -61,7 +61,7 @@ For other options, see the [Ruby Sparkline][] website.
         return
       end
     
-      fragmentname = @request.path+'?'+@request.parameters.keys.sort.collect {|k| "#{k}=#{@request.parameters[k]}"}.join('&')    
+      fragmentname = @request.path+'?'+@request.parameters.keys.sort.collect {|k| "#{k}=#{@request.parameters[k]}"}.join('&amp;')
       fragment_cache = read_fragment(fragmentname)
 
       if(not fragment_cache)
