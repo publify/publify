@@ -6,27 +6,27 @@ unless categories.nil?
 else
   selected = Hash.new
 end
-%>
-<select name="itunes_category[]" id="resource_itunes_category_<%= id %>" size="3" multiple>
-  <% @itunes_category_list.each do |h| 
-    h.each_pair do |cat,subcats| %>
-    <!-- not a great way of handling this but it looks better -->
-      <% if selected.key?(cat)  %>
+-%>
+<select name="itunes_category[]" id="resource_itunes_category_<%= id %>" size="3" multiple="multiple">
+  <% @itunes_category_list.each do |h|
+    h.each_pair do |cat,subcats| -%>
+    <% # not a great way of handling this but it looks better -%>
+      <% if selected.key?(cat)  -%>
         <option value="<%=h cat %>" selected="selected"><%=h cat %></option>
-      <% else %>
+      <% else -%>
         <option value="<%=h cat %>"><%=h cat %></option>
-      <% end %>
-      <% subcats.each do |subcat|  %>
-        <% unless selected[cat].nil? %>
-          <% if selected[cat].include?(subcat) %>
+      <% end -%>
+      <% subcats.each do |subcat| -%>
+        <% unless selected[cat].nil? -%>
+          <% if selected[cat].include?(subcat) -%>
             <option value="<%=h cat %>-<%=h subcat %>" selected="selected">&nbsp;-<%=h subcat %></option>
-          <% else %>
+          <% else -%>
             <option value="<%=h cat %>-<%=h subcat %>">&nbsp;-<%=h subcat %></option>
-          <% end %>
-        <% else %>
+          <% end -%>
+        <% else -%>
           <option value="<%=h cat %>-<%=h subcat %>">&nbsp;-<%=h subcat %></option>
-        <% end %>
+        <% end -%>
       <% end unless subcats.nil?  %>
-    <% end %>
-  <% end %>
+    <% end -%>
+  <% end -%>
 </select>
