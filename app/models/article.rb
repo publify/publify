@@ -64,6 +64,14 @@ class Article < Content
     Article.find(:first, :conditions => ['created_at < ?', created_at], :order => 'created_at desc')
   end
 
+  def responses
+    comments + trackbacks
+  end
+
+  def with_responses
+    [self] + responses
+  end
+
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)  
     from, to = self.time_delta(year, month, day)
