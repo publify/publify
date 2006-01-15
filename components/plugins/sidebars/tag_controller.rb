@@ -16,7 +16,11 @@ class Plugins::Sidebars::TagController < Sidebars::Plugin
 
   def content
     @tags = Tag.find_all_with_article_counters(@sb_config['maximum_tags'].to_i).sort_by {|t| t.name}
-    total=@tags.inject(1) {|total,tag| total += tag.article_counter }
-    @font_multiplier = 80
+    total=@tags.inject(0) {|total,tag| total += tag.article_counter }
+    average = total.to_f / @tags.size.to_f
+    @sizes = @tags.inject({}) {|h,tag| h[tag] = (tag.article_counter.to_f / average) * 100; h} # create a percentage
+    # apply a lower limit of 50% and an upper limit of 200%
+    @sizes.each {|tag,size| @sizes[tag] = [[50.0, size].max, 200.0].min}
+    @font_multiplier = 80 # remove this once themes stop using it
   end
 end
