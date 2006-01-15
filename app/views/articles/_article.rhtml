@@ -1,4 +1,4 @@
-<h2><%= article_link article.title, article %></h2>
+<h2><%= article_link h(article.title), article %></h2>
 <p class="auth">Posted by <%= author_link(article) %>
 <%= js_distance_of_time_in_words_to_now article.created_at %></p>
 <%= article_html(article,:body) %>
