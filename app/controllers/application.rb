@@ -7,25 +7,16 @@ class ApplicationController < ActionController::Base
   before_filter :reload_settings
   before_filter :auto_discovery_defaults
   
-  def self.cache_page(content, path, contributors)
+  def self.cache_page(content, path)
     begin
       # Don't cache the page if there are any questionmark characters in the url
       unless path =~ /\?\w+/ or path =~ /page\d+$/
         super(content,path)
-        PageCache.create(:name => page_cache_file(path),
-                         :contributors => contributors)
+        PageCache.create(:name => page_cache_file(path))
       end
     rescue # if there's a caching error, then just return the content.
       content
     end
-  end
-
-  def cache_page(content = nil, options = {})
-    return unless perform_caching && caching_allowed
-    self.class.cache_page(
-      content || @response.body,
-      url_for(options.merge( {:only_path => true,
-                              :skip_relative_url_root => true})), contributors)
   end
 
   def self.expire_page(path)
@@ -84,10 +75,6 @@ class ApplicationController < ActionController::Base
     else
       []
     end
-  end
-
-  def contributors
-    contents + (@article.responses rescue [])
   end
 end
 
