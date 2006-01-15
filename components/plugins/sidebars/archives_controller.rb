@@ -14,7 +14,7 @@ class Plugins::Sidebars::ArchivesController < Sidebars::Plugin
   def content
     @archives = Hash.new
 
-    Article.find(:all, :conditions => 'published != 0', :order => 'created_at DESC').each do |a|
+    Article.find(:all, :conditions => ['published != ?', false], :order => 'created_at DESC').each do |a|
       index = a.created_at.strftime("%Y-%m").to_sym
 
       if @archives[index].nil?
