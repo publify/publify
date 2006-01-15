@@ -3,7 +3,7 @@
 <ul id="archives">
   <% @archives.each do |month| %>
     <li>
-      <%= link_to month[:name], :controller => "articles", :action => "find_by_date", :year => month[:year], :month => month[:month] %>
+      <%= link_to month[:name], :controller => "articles", :action => "find_by_date", :year => month[:year], :month => month[:month], :day => nil %>
       <%= "<em>(#{month[:count]})</em>" if @sb_config['show_count'] %>
     </li>
   <% end %>
