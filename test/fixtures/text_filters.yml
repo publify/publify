@@ -32,3 +32,11 @@ textile_filter:
   markup: textile
   filters: --- []
   params: --- {}
+
+none_filter:
+   id: 5
+   name: "none"
+   description: "None"
+   markup: none
+   filters: --- []
+   params: --- {}

@@ -144,12 +144,14 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
   
   def test_comment_xss1
-    comment_template_test "<p>Have you ever &lt;script lang=&#8217;javascript&#8217;>alert(&#8220;foo&#8221;);&lt;/script> been hacked?</p>",
-    "Have you ever <script lang=\"javascript\">alert(\"foo\");</script> been hacked?"
+    settings(:comment_text_filter).update_attribute(:value, "none")
+    comment_template_test %{Have you ever &lt;script lang='javascript'>alert("foo");&lt;/script> been hacked?},
+    %{Have you ever <script lang="javascript">alert("foo");</script> been hacked?}
   end
   
   def test_comment_xss2
-    comment_template_test "<p>Have you ever <a href='#' rel=\"nofollow\">been hacked?</a></p>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
+    settings(:comment_text_filter).update_attribute(:value, "none")
+    comment_template_test "Have you ever <a href='#' rel=\"nofollow\">been hacked?</a>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
   end
   
   def test_comment_autolink
