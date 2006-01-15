@@ -10,8 +10,6 @@ class Content < ActiveRecord::Base
     :join_table => 'notifications', :foreign_key => 'notify_content_id', 
     :association_foreign_key => 'notify_user_id', :uniq => true
 
-  has_and_belongs_to_many :cached_pages, :class_name => 'PageCache'
-
   serialize :whiteboard
     
   @@content_fields = Hash.new
