@@ -18,6 +18,6 @@
           <input name="resource[itunes_explicit]" id="itunes_explicit" type="checkbox"  value="1" <%= 'checked="checked"' if resource.itunes_explicit%> /><input name="resource[itunes_explicit]" type="hidden" value="0" /> 
   <br />
   <input name="resource[id]" type="hidden" value="<%= id %>" /> 
-<%= save("Save") %> or <a href="#" onclick="new Effect.BlindUp('add-resource-metadata', {duration: 0.4}); return false;" >Cancel</a>
+<%= save("Save") %> or <a href="#" onclick="new Effect.BlindUp('edit-resource-metadata-<%= id %>', {duration: 0.4}); return false;" >Cancel</a>
 </div>
 <%= end_form_tag %>
