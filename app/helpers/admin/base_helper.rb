@@ -115,6 +115,10 @@ module Admin::BaseHelper
   end
 
   def task_edit_resource_metadata(title,id)
-     link_to_function(title, toggle_effect('edit-resource-metadata-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+    link_to_function(title, toggle_effect('edit-resource-metadata-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+  end
+  
+  def task_edit_resource_mime(title,id)
+    link_to_function(title, toggle_effect('edit-resource-mime-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
 end

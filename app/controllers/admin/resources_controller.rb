@@ -44,16 +44,26 @@ class Admin::ResourcesController < Admin::BaseController
     end
     if request.post? and @resource.save
       flash[:notice] = 'Metadata was successfully updated.'
-      redirect_to :action => 'list'
     else
       flash[:error] = 'Not all metadata was defined correctly.'
       @resource.errors.each do |meta_key,val|
         flash[:error] << "<br />" + val
       end
-      redirect_to :action => 'list'
     end
-      
+    redirect_to :action => 'list'
   end
+  
+  def set_mime
+    @resource = Resource.find(params[:resource][:id])
+    @resource.mime = params[:resource][:mime] unless params[:resource][:mime].empty?
+    if request.post? and @resource.save
+      flash[:notice] = 'Content Type was successfully updated.'
+    else
+      flash[:error] = "Error occurred while updating Content Type."
+    end
+    redirect_to :action => "list"
+  end
+  
 
   def upload_status
     render :inline => "<%= upload_progress.completed_percent rescue 0 %> % complete", :layout => false

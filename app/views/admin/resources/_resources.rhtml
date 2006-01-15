@@ -11,7 +11,12 @@
 <% for upload in resources -%>
 <tr <%= alternate_class -%>>
   <td><%= link_to "#{blog_root}/files/#{upload.filename}", "#{blog_root}/files/#{upload.filename}" -%></td>
-  <td><%= upload.mime -%></td>
+  <td>
+    <%= task_edit_resource_mime(upload.mime, upload.id) %>
+    <div id="edit-resource-mime-<%= upload.id %>" style="display:none;position:absolute;">
+      <%= render :partial => "mime_edit", :locals => {:id => upload.id, :mime => upload.mime} %>
+    </div>
+  </td>
   <% if upload.itunes_metadata? %>
   <td>
     <%= task_edit_resource_metadata('Edit MetaData (+/-)', upload.id) %>
@@ -27,8 +32,8 @@
     </div>
   </td>
   <% end -%>
-  <td><%= upload.size rescue 0 -%> bytes</td>
-  <td><%= upload.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
+  <td><%=h upload.size rescue 0 -%> bytes</td>
+  <td><%=h upload.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
   <td class="operation"><%= link_to_destroy upload -%></td>    
 </tr>  
 <% end -%>
