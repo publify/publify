@@ -1,4 +1,4 @@
-  <% @page_heading = "Comments for #{ link_to @article.title, :controller => 'content', :action => 'show', :id => @article }" %>
+  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => 'content', :action => 'show', :id => @article }" %>
 
   <% content_for('tasks') do %>
     <li><%= link_to 'Back to articles', :controller => 'content', :action => 'list' %></li>

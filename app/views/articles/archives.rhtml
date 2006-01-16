@@ -13,7 +13,7 @@
  	   <% end -%>
   <div class="archivepost">
   <%= article.created_at.mday %> -
-  <%= article_link article.title, article %> 
+  <%= article_link h(article.title), article %> 
   <% if !article.categories.empty? %> posted in 
   <%= article.categories.collect {|c| link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name }.join(", ") -%>
   <% end -%>

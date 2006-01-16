@@ -2,6 +2,6 @@
   <%= admin_tools_for trackback %>
   <a name="trackback-<%= trackback.id %>"></a>
   From <strong><%= trackback.blog_name %></strong><br />
-  <a href="<%= trackback.url %>" rel="nofollow"><%= trackback.title %></a><br/>
+  <a href="<%= trackback.url %>" rel="nofollow"><%=h trackback.title %></a><br/>
   <%= trackback.excerpt %>
 </li>

@@ -1,4 +1,4 @@
-  <% @page_heading = "Comments for #{ link_to @article.title, :controller => 'content', :action => 'show', :id => @article }" %>
+  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => 'content', :action => 'show', :id => @article }" %>
 
   <h3>Creating comment</h3>
   

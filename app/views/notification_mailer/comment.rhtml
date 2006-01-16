@@ -1,6 +1,6 @@
 <p>A new comment has been posted on 
     <%= link_to config[:blog_name], @controller.url_for(:controller => 'articles', :action => 'index') %>, responding to 
-    <%= link_to @comment.article.title, article_url(@controller, @comment.article) %>.</p>
+    <%= link_to h(@comment.article.title), article_url(@controller, @comment.article) %>.</p>
 
 <%= render :partial => './mail_header' %>
 <h2><%=h @comment.title %></h2>
