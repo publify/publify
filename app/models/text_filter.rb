@@ -39,7 +39,7 @@ class TextFilter < ActiveRecord::Base
     available_filters.inject({}) { |map,filter| map[filter.short_name] = filter; map }
   end
 
-  def self.filter_text(text, controller, filters, filterparams={}, filter_html=false)
+  def self.filter_text(text, controller, content, filters, filterparams={}, filter_html=false)
 
     map=TextFilter.filters_map
     filters = [:htmlfilter, filters].flatten if filter_html
@@ -49,7 +49,7 @@ class TextFilter < ActiveRecord::Base
       begin
         filter_controller = map[filter.to_s]
         next unless filter_controller
-        text = filter_controller.filtertext(controller, text, :filterparams => filterparams)
+        text = filter_controller.filtertext(controller, content, text, :filterparams => filterparams)
       rescue => err
         logger.error "Filter #{filter} failed: #{err}"
       end
@@ -60,12 +60,12 @@ class TextFilter < ActiveRecord::Base
 
   def self.filter_text_by_name(text, controller, filtername, filter_html=false)
     f = TextFilter.find_by_name(filtername)
-    f.filter_text_for_controller text, controller, filter_html
+    f.filter_text_for_controller text, controller, nil, filter_html
   end
 
-  def filter_text_for_controller(text, controller, filter_html=false)
+  def filter_text_for_controller(text, controller, content, filter_html=false)
     self.class.filter_text(
-      text, controller,
+      text, controller, content,
       [:macropre, markup, :macropost, filters].flatten, params,
       filter_html)
   end

@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   end
   
   helper_method :contents
-  def contents    
+  def contents
     if @articles
       @articles
     elsif @article

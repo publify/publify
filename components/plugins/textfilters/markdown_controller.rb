@@ -26,7 +26,7 @@ is available from the author's site, but here's a short summary:
     }
   end
 
-  def self.filtertext(controller,text,params)
+  def self.filtertext(controller,content,text,params)
     BlueCloth.new(text.gsub(%r{</?notextile>}, '')).to_html
   end
 end

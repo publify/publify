@@ -59,17 +59,17 @@ class TextFilterPlugin::Macro < TextFilterPlugin
     attributes
   end
 
-  def self.filtertext(controller, text, params)
+  def self.filtertext(controller, content, text, params)
     filterparams = params[:filterparams]
     regex1 = /<typo:#{short_name}[^>]*\/>/
     regex2 = /<typo:#{short_name}([^>]*)>(.*?)<\/typo:#{short_name}>/m
     
     new_text = text.gsub(regex1) do |match|
-      macrofilter(controller,attributes_parse(match),params)
+      macrofilter(controller,content,attributes_parse(match),params)
     end
     
     new_text = new_text.gsub(regex2) do |match|
-      macrofilter(controller,attributes_parse($1.to_s),params,$2.to_s)
+      macrofilter(controller,content,attributes_parse($1.to_s),params,$2.to_s)
     end
     
     new_text

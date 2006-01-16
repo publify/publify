@@ -36,7 +36,7 @@ For other options, see the [Ruby Sparkline][] website.
       end
     end
   
-    def self.macrofilter(controller,attrib,params,text="")
+    def self.macrofilter(controller,content,attrib,params,text="")
       img_opts = opt(attrib,'style') + opt(attrib,'alt') + opt(attrib,'title')
       data = text.to_s.split(/\s+/).join(',')
     

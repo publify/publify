@@ -49,6 +49,25 @@ module ArticlesHelper
     end    
   end
   
+  def page_header
+    page_header_includes = contents.collect { |c| c.whiteboard }.collect { |w| w.select {|k,v| k =~ /^page_header_/}.collect {|(k,v)| v} }.flatten.uniq
+    (
+    <<-HTML
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  #{ meta_tag 'ICBM', config_value(:geourl_location) unless config_value(:geourl_location).empty? }
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ server_url_for :controller => 'xml', :action => 'rsd' }" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ @auto_discovery_url_rss }" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ @auto_discovery_url_atom }" />
+  #{ javascript_include_tag "cookies" }
+  #{ javascript_include_tag "prototype" }
+  #{ javascript_include_tag "effects" }
+  #{ javascript_include_tag "typo" }
+  #{ page_header_includes.join("\n") }
+  <script type="text/javascript">#{ @content_for_script }</script>
+    HTML
+    ).chomp
+  end
+  
   def article_links(article)
     returning code = [] do
       code << category_links(article)   unless article.categories.empty?

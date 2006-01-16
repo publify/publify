@@ -24,7 +24,7 @@ class TextfilterControllerTest < Test::Unit::TestCase
   end
   
   def filter_text(text, filters, filterparams={}, filter_html=false)
-    TextFilter.filter_text(text, @controller, filters, filterparams, filter_html)
+    TextFilter.filter_text(text, @controller, nil, filters, filterparams, filter_html)
   end
   
   def sparklines_available
@@ -223,5 +223,30 @@ EOF
 
     assert_equal expects_markdown.strip, TextFilter.filter_text_by_name(text, @controller, 'markdown')
     assert_equal expects_textile.strip, TextFilter.filter_text_by_name(text, @controller, 'textile')
+  end
+  
+  def test_lightbox
+    assert_equal "<div style=\"float:left\" class=\"lightboxplugin\"><a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_t.jpg\" width=\"67\" height=\"100\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p></div>",
+      filter_text('<typo:lightbox img="31366117" thumbsize="Thumbnail" displaysize="Large" style="float:left"/>',
+        [:macropre,:macropost],
+        {})
+
+#     Test default thumb image size
+    assert_equal "<div style=\"\" class=\"lightboxplugin\"><a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
+      filter_text('<typo:lightbox img="31366117" displaysize="Large"/>',
+        [:macropre,:macropost],
+        {})
+
+#     Test default display image size
+    assert_equal "<div style=\"\" class=\"lightboxplugin\"><a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
+      filter_text('<typo:lightbox img="31366117"/>',
+        [:macropre,:macropost],
+        {})
+
+#     Test with caption=""
+    assert_equal "<div style=\"\" class=\"lightboxplugin\"><a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a></div>",
+      filter_text('<typo:lightbox img="31366117" caption=""/>',
+        [:macropre,:macropost],
+        {})
   end
 end
