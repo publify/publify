@@ -116,3 +116,5 @@ if RAILS_ENV != 'test'
     ActionMailer::Base.delivery_method = :sendmail
   end
 end
+
+FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
