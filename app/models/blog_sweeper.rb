@@ -13,8 +13,10 @@ class BlogSweeper < ActionController::Caching::Sweeper
     case record
     when Setting, Sidebar, Category, Comment, Trackback, Article
       PageCache.sweep_all
+      expire_fragment(/.*/)
     when Page
       PageCache.sweep("/pages/#{record.name}.html")
+      expire_fragment(/.*\/pages\/.*/)
     end
   end
 end

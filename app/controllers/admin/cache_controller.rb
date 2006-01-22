@@ -11,6 +11,7 @@ class Admin::CacheController < Admin::BaseController
 
   def sweep
     PageCache.sweep_all
+    expire_fragment(/.*/)
         
     flash['notice'] = 'Cache was cleared'
     redirect_to :controller => 'general'

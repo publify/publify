@@ -6,7 +6,8 @@ class ArticlesController < ApplicationController
   cache_sweeper :blog_sweeper
   
   cached_pages = [:index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag]
-  caches_page *cached_pages
+  # If you're really memory-constrained, then consider replacing caches_action_with_params with caches_page
+  caches_action_with_params *cached_pages
   session :off, :only => cached_pages
 
   verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }

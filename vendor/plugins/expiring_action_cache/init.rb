@@ -1,0 +1,2 @@
+require 'metafragment'
+require 'actionparamcache'
