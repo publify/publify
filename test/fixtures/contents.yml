@@ -181,8 +181,8 @@ inactive_article:
   extended_html: extended content
   created_at: 2004-05-01 20:00:02
   updated_at: 2004-05-01 20:00:02
-  allow_comments: 1
-  allow_pings: 1
+  allow_comments: true
+  allow_pings: true
   permalink: inactive-article
   user_id: 1
   author: Tobi
