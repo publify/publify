@@ -12,6 +12,7 @@ class Plugins::Sidebars::TechnoratiController < Sidebars::Plugin
   end
 
   def content
+    response.lifetime = 1.hour
     @cosmos = check_cache(Technorati, @sb_config['feed']) rescue nil
   end
 

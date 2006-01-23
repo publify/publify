@@ -12,6 +12,7 @@ class Plugins::Sidebars::AudioscrobblerController < Sidebars::Plugin
   end
 
   def content
+    response.lifetime = 1.day
     @audioscrobbler=check_cache(Audioscrobbler, @sb_config['feed']) rescue nil
   end
 

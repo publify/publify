@@ -12,6 +12,7 @@ class Plugins::Sidebars::TadaController < Sidebars::Plugin
   end
 
   def content
+    response.lifetime = 1.day
     @tada=check_cache(Tada, @sb_config['feed']) rescue nil
   end
 

@@ -12,6 +12,7 @@ class Plugins::Sidebars::DeliciousController < Sidebars::Plugin
   end
 
   def content
+    response.lifetime = 1.hour
     @delicious = check_cache(Delicious, @sb_config['feed']) rescue nil
 
     return unless @delicious

@@ -12,6 +12,7 @@ class Plugins::Sidebars::UpcomingController < Sidebars::Plugin
   end
 
   def content
+    response.lifetime = 6.hours
     @upcoming=check_cache(Upcoming, @sb_config['feed']) rescue nil
   end
 

@@ -12,6 +12,7 @@ class Plugins::Sidebars::FortythreeController < Sidebars::Plugin
   end
 
   def content
+    response.lifetime = 1.day
     @fortythree=check_cache(Fortythree, @sb_config['feed']) rescue nil
   end
 

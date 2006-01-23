@@ -12,6 +12,7 @@ class Plugins::Sidebars::BackpackController < Sidebars::Plugin
   end
 
   def content
+    response.lifetime = 1.day
     @backpack = check_cache(Backpack, @sb_config['username'], @sb_config['token'], @sb_config['page_id']) rescue nil
     @items = @backpack.items
     @items = @items.slice(0,@sb_config['count'].to_i) if @sb_config['count'].to_i > 0
