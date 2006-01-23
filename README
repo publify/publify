@@ -56,12 +56,13 @@ correctly. These need to be writable by the user that runs the Typo
 process--in a hosted environment this may be your user; on dedicated
 systems it may be something like 'httpd' or 'www-data'.
 
-The specific directories in question are 'log/' (and everything underneath it)
-and 'public/'. Strictly speaking, Rails will continue to work if public isn't
-writable, but Typo's page caching code will not work properly and this will
-cause Typo to be slower and use much more CPU time. For the security conscious,
-Rails really only needs the ability to change a half-dozen files and
-subdirectories under public/, ask on the Typo mailing list for more details.
+The specific directories in question are 'log/' (and everything underneath
+it), 'cache/', and 'public/'. Strictly speaking, Rails will continue to work
+if public isn't writable, but Typo's page caching code will work properly and
+this will cause Typo to be slower and use much more CPU time. For the security
+conscious, Rails really only needs the ability to change a half-dozen files
+and subdirectories under public/, ask on the Typo mailing list for more
+details.
 
 Usage
 ======
