@@ -47,8 +47,8 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     num_articles = Article.find_all.size
     emails = ActionMailer::Base.deliveries
     emails.clear
-
-    post :new, 'article' => { :title => "posted via tests!", :body => "Foo"}, 'categories' => [1]
+    tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
+    post :new, 'article' => { :title => "posted via tests!", :body => "Foo", :keywords => "foo bar 'baz bliz' \"gorp gack gar\""}, 'categories' => [1]
     assert_redirected_to :action => 'show'
 
     assert_equal num_articles + 1, Article.find_all.size
@@ -57,6 +57,11 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal users(:tobi), new_article.user
     assert_equal 1, new_article.categories.size
     assert_equal [1], new_article.categories.collect {|c| c.id}
+    assert_equal 4, new_article.tags.size
+    new_article.tags.each { |x|
+      tags.delete(x.name)
+    }
+    assert_equal 0, tags.size
     
     assert_equal(1, emails.size)
     assert_equal('randomuser@example.com', emails.first.to[0])
