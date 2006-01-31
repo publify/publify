@@ -17,7 +17,7 @@ xm.entry do
     xm.dc :subject, category.name
   end
   for tag in item.tags
-    xm.dc :subject, tag.name
+    xm.dc :subject, tag.display_name
   end
 
   if config[:show_extended_on_rss]

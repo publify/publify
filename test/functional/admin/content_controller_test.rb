@@ -58,10 +58,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal 1, new_article.categories.size
     assert_equal [1], new_article.categories.collect {|c| c.id}
     assert_equal 4, new_article.tags.size
-    new_article.tags.each { |x|
-      tags.delete(x.name)
-    }
-    assert_equal 0, tags.size
     
     assert_equal(1, emails.size)
     assert_equal('randomuser@example.com', emails.first.to[0])

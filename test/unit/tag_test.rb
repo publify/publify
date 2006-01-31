@@ -23,18 +23,23 @@ class TagTest < Test::Unit::TestCase
   end
 
   def test_uniqueness
-    tag1=Tag.create(:name => 'test')
+    tag1 = Tag.create(:name => 'test')
     assert_kind_of Tag, tag1
-    assert 'test', tag1.name
+    assert_equal 'test', tag1.name
 
-    tag2=Tag.new(:name => 'test')
+    tag2 = Tag.new(:name => 'test')
     assert_kind_of Tag, tag2
-    assert 'test', tag2.name
+    assert_equal 'test', tag2.name
 
     assert_not_equal tag1, tag2
 
-    assert ! tag2.save
-    assert tag2.errors.invalid?('name')
+    assert ! tag2.save, "Duplicate tag save did not fail"
+    assert tag2.errors.invalid?('name'), "name field did not have error"
+    
+    tag3 = Tag.create(:name => 'Monty Python')
+    assert_kind_of Tag, tag3
+    assert_equal 'montypython', tag3.name
+    assert_equal 'Monty Python', tag3.display_name
   end
 
   def test_article

@@ -14,10 +14,10 @@ xm.entry do
   xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
   
   item.categories.each do |category|
-    xm.category "term" => category.permalink, "label" => category.name, "scheme" => (url_for :controller => "articles", :action => "category", :only_path => false)
+    xm.category "term" => category.permalink, "label" => category.name, "scheme" => (url_for :controller => "articles", :action => "category", :id => category.permalink, :only_path => false)
   end
   item.tags.each do |tag|
-    xm.category "term" => tag.name, "scheme" => (url_for :controller => "articles", :action => "tag", :only_path => false)
+    xm.category "term" => tag.display_name, "scheme" => (url_for :controller => "articles", :action => "tag", :id => tag.name, :only_path => false)
   end
   
   item.resources.each do |resource|

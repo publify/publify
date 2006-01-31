@@ -79,14 +79,14 @@ module ArticlesHelper
   
   def category_links(article)
     "Posted in " + article.categories.collect { |c| link_to c.name,
-    { :controller=>"articles", :action => "category", :id => c.permalink },
+    { :controller => "articles", :action => "category", :id => c.permalink },
       :rel => "tag"
     }.join(", ")
   end
 
   def tag_links(article)
-    "Tags " + article.tags.collect { |tag| link_to tag.name,
-      { :controller=>"articles", :action=>"tag", :id=> tag.name },
+    "Tags " + article.tags.collect { |tag| link_to tag.display_name,
+      { :controller => "articles", :action => "tag", :id => tag.name },
       :rel => "tag"
     }.sort.join(", ")
   end

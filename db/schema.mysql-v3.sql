@@ -40,9 +40,6 @@ CREATE TABLE contents (
   `extended` text,
   `excerpt` text,
   `keywords` varchar(255),
-  `allow_comments` int(11),
-  `allow_pings` int(11),
-  `published` int(11) DEFAULT 1,
   `created_at` datetime,
   `updated_at` datetime,
   `extended_html` text,
@@ -51,6 +48,8 @@ CREATE TABLE contents (
   `guid` varchar(255),
   `text_filter_id` int(11),
   `whiteboard` text,
+  `comments_count` int(11),
+  `trackbacks_count` int(11),
   `type` varchar(255),
   `article_id` int(11),
   `email` varchar(255),
@@ -58,8 +57,9 @@ CREATE TABLE contents (
   `ip` varchar(255),
   `blog_name` varchar(255),
   `name` varchar(255),
-  `comments_count` int(11),
-  `trackbacks_count` int(11)
+  `published` tinyint(1) DEFAULT 1,
+  `allow_pings` tinyint(1),
+  `allow_comments` tinyint(1)
 ) ENGINE=MyISAM;
 
 CREATE TABLE notifications (
@@ -133,7 +133,8 @@ CREATE TABLE tags (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `name` varchar(255),
   `created_at` datetime,
-  `updated_at` datetime
+  `updated_at` datetime,
+  `display_name` varchar(255)
 ) ENGINE=MyISAM;
 
 CREATE TABLE text_filters (
@@ -188,4 +189,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=MyISAM;
 
-insert into schema_info (version) values (33);
+insert into schema_info (version) values (36);

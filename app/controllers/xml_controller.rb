@@ -48,7 +48,7 @@ class XmlController < ApplicationController
     when 'tag'
       tag = Tag.find_by_name(params[:id])
       @items = Article.find_published_by_tag_name(params[:id], :limit => config[:limit_rss_display])
-      @feed_title = "#{config[:blog_name]}: Tag #{tag.name}"
+      @feed_title = "#{config[:blog_name]}: Tag #{tag.display_name}"
       @link = url_for({:controller => "articles", :action => 'tag', :tag => tag.name},
         {:only_path => false})
     else

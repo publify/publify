@@ -17,7 +17,7 @@ xm.item do
     xm.category category.name
   end
   for tag in item.tags
-    xm.category tag.name
+    xm.category tag.display_name
   end
   
   # RSS 2.0 only allows a single enclosure per item, so only include the first one here.

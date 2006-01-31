@@ -133,7 +133,8 @@ CREATE TABLE tags (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `name` varchar(255),
   `created_at` datetime,
-  `updated_at` datetime
+  `updated_at` datetime,
+  `display_name` varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE text_filters (
@@ -171,16 +172,16 @@ CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
-INSERT INTO sidebars (staged_position, active_config, active_position, controller, staged_config) VALUES(NULL, NULL, 0, 'category', NULL);
-INSERT INTO sidebars (staged_position, active_config, active_position, controller, staged_config) VALUES(NULL, NULL, 1, 'static', NULL);
-INSERT INTO sidebars (staged_position, active_config, active_position, controller, staged_config) VALUES(NULL, NULL, 2, 'xml', NULL);
-INSERT INTO text_filters (name, filters, description, params, markup) VALUES('none', '--- []', 'None', '--- {}', 'none');
-INSERT INTO text_filters (name, filters, description, params, markup) VALUES('markdown', '--- []', 'Markdown', '--- {}', 'markdown');
-INSERT INTO text_filters (name, filters, description, params, markup) VALUES('smartypants', '--- 
+INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 0, 'category', NULL);
+INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 1, 'static', NULL);
+INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 2, 'xml', NULL);
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('none', '--- []', 'None', '--- {}', 'none');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('markdown', '--- []', 'Markdown', '--- {}', 'markdown');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('smartypants', '--- 
 - :smartypants', 'SmartyPants', '--- {}', 'none');
-INSERT INTO text_filters (name, filters, description, params, markup) VALUES('markdown smartypants', '--- 
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('markdown smartypants', '--- 
 - :smartypants', 'Markdown with SmartyPants', '--- {}', 'markdown');
-INSERT INTO text_filters (name, filters, description, params, markup) VALUES('textile', '--- []', 'Textile', '--- {}', 'textile');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('textile', '--- []', 'Textile', '--- {}', 'textile');
 
 -- schema version meta-info 
 
@@ -188,4 +189,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (35);
+insert into schema_info (version) values (36);

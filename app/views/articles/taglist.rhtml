@@ -2,12 +2,12 @@
 <% unless @tags.empty? -%>
 <% max_counter = @tags[0].article_counter -%>
 <ul id="taglist" class="tags">
-<% for tag in @tags.sort_by{|tag|tag.name} -%>
+<% for tag in @tags.sort_by{|tag|tag.display_name} -%>
 	<li class="<%= calc_distributed_class(tag.article_counter, max_counter, "tags", 0, 10) %>">
-		<%= link_to( tag.name, 
-			{ :controller=>"articles", :action=>"tag", :id=> tag.name }, 
+		<%= link_to( tag.display_name, 
+			{ :controller => "articles", :action => "tag", :id => tag.name }, 
 			:rel => "tag",
-			:title => "#{pluralize(tag.article_counter, 'post')} tagged '#{tag.name}'")
+			:title => "#{pluralize(tag.article_counter, 'post')} tagged '#{tag.display_name}'")
 		%>
 	</li>
 <% end -%>
