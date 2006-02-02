@@ -139,7 +139,15 @@ class ArticlesController < ApplicationController
     
     # A little paranoid security checking.
     @comment.body_html = nil
-    @comment.body = sanitize(auto_link(@comment.body))
+    if not (@comment.text_filter.name =~ /markdown/)
+      # don't auto-link if we're using markdown, because
+      # markdown link syntax conflicts with this. Ugly hack.
+      # Please figure out a better way to do this, say to
+      # apply auto_link to the resulting body_html, but it's
+      # just not possible for now
+      @comment.body = auto_link(@comment.body)
+    end
+    @comment.body = sanitize(@comment.body)
     
     @comment.article = @article
     @comment.ip = request.remote_ip
