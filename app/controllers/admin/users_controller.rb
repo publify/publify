@@ -27,8 +27,7 @@ class Admin::UsersController < Admin::BaseController
     if request.post? and @user.save
       flash[:notice] = 'User was successfully updated.'
       redirect_to :action => 'show', :id => @user.id
-    end      
-    @user.password = @user.password_confirmation =  ''
+    end
   end
 
   def destroy

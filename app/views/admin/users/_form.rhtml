@@ -18,7 +18,7 @@
 </p>
 <p>
   <label for="user_password">Password:</label><br />
-  <%= password_field 'user', 'password'  %>
+  <%= password_field_tag 'user[password]', '', :id => 'user_password', :size => 30 %>
 </p>
 <p>
   <label for="user_password">Confirmation:</label><br />
