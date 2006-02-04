@@ -14,7 +14,7 @@
     <%= render :partial => "itunes_category_add", :locals => { :id => id } %><br />
     <label for="resource_itunes_keywords_<%= id %>">Key Words:</label><br />
     <%= text_field 'resource', "itunes_keywords", :id => "resource_itunes_keywords_#{id}" %><small>(seperate with spaces)</small><br />
-    <input name="resource[itunes_explicit]" type="checkbox"  value="1" <%= 'checked="checked"' if config_value(:itunes_explicit)%>>Explicit</input>
+    <input name="resource[itunes_explicit]" type="checkbox"  value="1" <%= 'checked="checked"' if config_value(:itunes_explicit)%>>Explicit</input><input name="resource[itunes_explicit]" type="hidden" value="0" />
   <br />
   <input name="resource[id]" type="hidden" value="<%= id %>" /> 
 <%= save("Save") %> or <a href="#" onclick="new Effect.BlindUp('add-resource-metadata-<%= id %>', {duration: 0.4}); return false;" >Cancel</a>
