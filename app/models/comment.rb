@@ -11,7 +11,7 @@ class Comment < Content
   validates_age_of :article_id
  
   def send_notification_to_user(controller, user)
-    if user.notify_on_comments?
+    #if user.notify_on_comments?
       if user.notify_via_email? 
         EmailNotify.send_comment(controller, self, user)
       end
@@ -19,11 +19,11 @@ class Comment < Content
       if user.notify_via_jabber?
         JabberNotify.send_message(user, "New comment", "A new comment was posted to '#{article.title}' on #{config[:blog_name]} by #{author}: #{body}", self.body_html)
       end
-    end
+    #end
   end
   
   def send_notifications(controller)
-    users = self.article.notify_users
+    users = User.find_boolean(:all, :notify_on_comments)
     self.notify_users = users
     users.each do |u|
       send_notification_to_user(controller,u)
