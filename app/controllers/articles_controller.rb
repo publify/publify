@@ -126,7 +126,7 @@ class ArticlesController < ApplicationController
   end
     
   # Receive comments to articles
-  def comment 
+  def comment
     unless @request.xhr? || config[:sp_allow_non_ajax_comments]
       render \
         :text => "non-ajax commenting is disabled", 
@@ -136,18 +136,6 @@ class ArticlesController < ApplicationController
     
     @article = Article.find(params[:id])    
     @comment = Comment.new(params[:comment])
-    
-    # A little paranoid security checking.
-    @comment.body_html = nil
-    if not (@comment.text_filter.name =~ /markdown/)
-      # don't auto-link if we're using markdown, because
-      # markdown link syntax conflicts with this. Ugly hack.
-      # Please figure out a better way to do this, say to
-      # apply auto_link to the resulting body_html, but it's
-      # just not possible for now
-      @comment.body = auto_link(@comment.body)
-    end
-    @comment.body = sanitize(@comment.body)
     
     @comment.article = @article
     @comment.ip = request.remote_ip

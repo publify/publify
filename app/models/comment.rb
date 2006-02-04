@@ -31,6 +31,10 @@ class Comment < Content
   end
  
   protected
+  
+  def body_html_postprocess(value, controller)
+    controller.send(:sanitize, controller.send(:auto_link, value))
+  end
 
   def default_text_filter_config_key
     'comment_text_filter'

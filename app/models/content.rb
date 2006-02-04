@@ -73,8 +73,9 @@ class Content < ActiveRecord::Base
     html_map.each do |field, html_field|
       if !self.send(field).blank? && self.send(html_field).blank?
         unformatted_value = self.send(field).to_s
-        self[html_field] = 
-          text_filter.filter_text_for_controller( unformatted_value, controller, self, false ) #rescue unformatted_value
+        formatted_value = text_filter.filter_text_for_controller( unformatted_value, controller, self, false )
+        formatted_value = self.send("%s_postprocess" % html_field, formatted_value, controller) if self.respond_to?("%s_postprocess" % html_field, true)
+        self[html_field] = formatted_value
         save if self.id
       end
     end
