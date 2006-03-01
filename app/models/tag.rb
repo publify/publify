@@ -34,7 +34,7 @@ class Tag < ActiveRecord::Base
       LEFT OUTER JOIN #{Tag.table_name_prefix + Article.table_name + Tag.table_name_prefix} articles
         ON articles_tags.article_id = articles.id
       WHERE articles.published = ?
-      GROUP BY tags.id, tags.name
+      GROUP BY tags.id, tags.name, tags.display_name
       ORDER BY article_counter DESC
       LIMIT ?
       },true, limit]).each{|item| item.article_counter = item.article_counter.to_i }
