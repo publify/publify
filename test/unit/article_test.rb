@@ -68,38 +68,13 @@ class ArticleTest < Test::Unit::TestCase
     urls = contents(:article4).html_urls
     assert_equal ["http://www.example.com/public"], urls
   end
-  
+
+  ### XXX: Should we have a test here?  
   def test_send_pings
-#    contents(:article1).send_pings("example.com", "http://localhost/post/5?param=1")
-#    ping = Net::HTTP.pings.last
-#    assert_equal "localhost",ping.host
-#    assert_equal 80, ping.port
-#    assert_equal "/post/5?param=1", ping.query
-#    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
   end
 
+  ### XXX: Should we have a test here?
   def test_send_multiple_pings
-    contents(:article1).send_pings("example.com", ["http://localhost/post/5?param=1", "http://127.0.0.1/article/5"])
-    assert_equal 4, contents(:article1).pings.size
-    assert_equal 4, Net::HTTP.pings.size # we don't actually ping example.com domains
-    
-    ping = Net::HTTP.pings[0]
-    assert_equal "ping.example.com",ping.host
-
-    ping = Net::HTTP.pings[1]
-    assert_equal "alsoping.example.com",ping.host
-
-    ping = Net::HTTP.pings[2]
-    assert_equal "localhost",ping.host
-    assert_equal 80, ping.port
-    assert_equal "/post/5?param=1", ping.query
-    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
-
-    ping = Net::HTTP.pings[3]
-    assert_equal "127.0.0.1",ping.host
-    assert_equal 80, ping.port
-    assert_equal "/article/5?", ping.query
-    assert_equal "title=Article%201!&excerpt=body&url=example.com&blog_name=test%20blog", ping.post_data
   end
   
   def test_tags

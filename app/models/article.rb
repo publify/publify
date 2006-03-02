@@ -33,19 +33,28 @@ class Article < Content
     urls
   end
   
-  def send_pings(articleurl, urllist)
+  def send_pings(serverurl, articleurl, urllist)
     return unless config[:send_outbound_pings]
     
-    ping_urls = config[:ping_urls].gsub(/ +/,'').split(/[\n\r]+/)
-    ping_urls += self.html_urls
-    ping_urls += urllist.to_a
+    weblogupdatesping_urls = config[:ping_urls].gsub(/ +/,'').split(/[\n\r]+/)
+    pingback_or_tracback_urls = self.html_urls
+    trackback_urls = urllist.to_a
+
+    ping_urls = weblogupdatesping_urls + pingback_or_tracback_urls + trackback_urls
     
     ping_urls.uniq.each do |url|            
       begin
         unless pings.collect { |p| p.url }.include?(url.strip) 
           ping = pings.build("url" => url)
 
-          ping.send_ping(articleurl)
+          if weblogupdatesping_urls.include?(url)
+            ping.send_weblogupdatesping(serverurl, articleurl)
+          elsif pingback_or_tracback_urls.include?(url)
+            ping.send_pingback_or_trackback(articleurl)
+          else
+            ping.send_trackback(articleurl)
+          end
+
           ping.save
         end
         
