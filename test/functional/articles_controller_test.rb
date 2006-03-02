@@ -95,6 +95,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
     emails = ActionMailer::Base.deliveries
     emails.clear
     
+    assert_equal 0, emails.size
+    
     Article.find(1).notify_users << users(:tobi)
 
     post :comment, { :id => 1, :comment => {'body' => 'This is *textile*', 'author' => 'bob' }}
@@ -109,8 +111,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
     
     assert_equal "<p>This is <strong>textile</strong></p>", comment.html(@controller).to_s
     
-    assert_equal 1, emails.size
-    assert_equal 'tobi@example.com', emails.first.to[0]
+    assert_equal User.find(:all, 
+                           :conditions => ['(notify_via_email = ?) and (notify_on_comments = ?)', true, true], 
+                           :order => 'email').collect { |each| each.email },
+                 emails.collect { |each| each.to[0] }.sort
   end
 
   def test_comment_spam_markdown_smarty
@@ -131,7 +135,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Comment.find_last_posted
     assert comment
 
-    assert_equal expected_html, comment.html(@controller).to_s
+    assert_match expected_html, comment.html(@controller).to_s
     $do_breakpoints
   end
 
@@ -140,7 +144,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_spam2
-    comment_template_test "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", 'Link to "spammy goodness":http://spammer.example.com'
+    comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com["'] rel=["']nofollow["']>spammy goodness</a></p>}, 'Link to "spammy goodness":http://spammer.example.com'
   end
   
   def test_comment_xss1

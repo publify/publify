@@ -193,6 +193,7 @@ old_comment:
   id: 15
   article_id: 14
   author: John Bar
+  guid: b1i2n3g4o5t6i7v
   url: www.google.com
   email: john.bar@google.com
   body: Comment body _italic_ *bold*

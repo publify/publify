@@ -3,7 +3,7 @@ xml.instruct! 'xml-stylesheet', :type=>"text/css", :href => url_for("/stylesheet
 
 xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", 
         "xmlns:trackback" => "http://madskills.com/public/xml/rss/module/trackback/",
-        "xmlns:itunes" => "http://example.com/DTDs/Podcast-1.0.dtd" do
+        "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd" do
           
   xml.channel do
     xml.title @feed_title
