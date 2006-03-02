@@ -125,11 +125,17 @@ module ApplicationHelper
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
   
-  def article_html(article, what = :all) article.html(@controller,what) end
+  def article_html(article, what = :all) 
+    article.html(@controller,what) 
+  end
   
-  def comment_html(comment) comment.html(@controller,:body) end
+  def comment_html(comment) 
+    comment.html(@controller,:body)
+  end
   
-  def page_html(page) page.html(@controller,:body) end
+  def page_html(page)
+    page.html(@controller,:body) 
+  end
   
   def strip_html(text) text.strip_html end
 end
