@@ -2,8 +2,8 @@ require_dependency 'blacklist_pattern'
 
 class SpamProtection
 
-  IP_RBL = [ 'opm.blitzed.us', 'bsb.empty.us' ]
-  HOST_RBL = [ 'sc.surbl.org', 'bsb.empty.us' ]
+  IP_RBLS = [ 'opm.blitzed.us', 'bsb.empty.us' ]
+  HOST_RBLS = [ 'multi.surbl.org', 'bsb.empty.us' ]
   SECOND_LEVEL = [ 'co', 'com', 'net', 'org', 'gov' ]
 
   def article_closed?(record)
@@ -37,17 +37,7 @@ class SpamProtection
   
   def scan_ip(ip_address)
     logger.info("[SP] Scanning IP #{ip_address}")
-    
-    IP_RBL.each do |rbl|
-      begin
-        if IPSocket.getaddress((ip_address.split('.').reverse + [rbl]).join('.')) == "127.0.0.2"
-          throw :hit, "#{rbl} positively resolved #{ip_address}"
-        end
-      rescue SocketError
-      end
-    end
-    
-    return false
+    query_rbls(IP_RBLS, ip_address.split('.').reverse.join('.'))
   end
   
   def scan_text(string)
@@ -83,26 +73,26 @@ class SpamProtection
     host_parts = host.split('.').reverse
     domain = Array.new
     
-
     # Check for two level TLD
     (SECOND_LEVEL.include?(host_parts[1]) ? 3:2).times do
       domain.unshift(host_parts.shift)
     end
 
     logger.info("[SP] Scanning domain #{domain.join('.')}")
+    query_rbls(HOST_RBLS, host, domain.join('.'))
+  end
 
-    HOST_RBL.each do |rbl|
-      begin
-        if [
-            IPSocket.getaddress([host, rbl].join('.')),
-            IPSocket.getaddress((domain + [rbl]).join('.'))
-           ].include?("127.0.0.2")
-          throw :hit, "#{rbl} positively resolved #{domain.join('.')}"
+  def query_rbls(rbls, *subdomains)
+    rbls.each do |rbl|
+      subdomains.uniq.each do |d|
+        begin
+          response = IPSocket.getaddress([d, rbl].join('.'))
+          throw :hit, "#{rbl} positively resolved subdomain #{d} => #{response}"
+        rescue SocketError
+          # NXDOMAIN response => negative:  d is not in RBL
         end
-      rescue SocketError
       end
     end
-    
     return false
   end
 

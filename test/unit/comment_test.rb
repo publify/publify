@@ -40,6 +40,7 @@ class CommentTest < Test::Unit::TestCase
     assert ! c.save
     assert c.errors.invalid?('body')
     assert c.errors.invalid?('url')
+    assert c.errors.invalid?('ip')
   end
 
   def test_reject_spam_pattern

@@ -3,11 +3,11 @@ class IPSocket
     if %w{
       buy-computer.us.bsb.empty.us
       chinaaircatering.com.bsb.empty.us
-      212.42.230.206.opm.blitzed.us
+      206.230.42.212.opm.blitzed.us
     }.include?(host)
       "127.0.0.2"
     else
-      "10.10.10.10"
+      raise SocketError.new("getaddrinfo: Name or service not known")
     end
   end
 end
