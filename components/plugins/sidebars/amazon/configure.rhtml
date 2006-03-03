@@ -1,0 +1,13 @@
+<% @configure = @sidebar.staged_config %>
+<%= form_tag({}, {:id => 'configure_'+@sidebar.id.to_s,:class=>'configblock'}) %>
+  <label>Associate ID</label>
+  <%= text_field_tag "configure[associate_id]", @configure['associate_id'] %><br />
+  <label>Max links</label>
+  <%= text_field_tag "configure[maxlinks]", @configure['maxlinks'] %><br />
+  <label>Sidebar Title</label>
+  <%= text_field_tag "configure[title]", @configure['title'] %>
+<%= end_form_tag %>
+
+<%= observe_form "configure_"+@sidebar.id.to_s, 
+    :url => { :action => "save_config", :id=>@sidebar.id},
+    :with => 'value' %>

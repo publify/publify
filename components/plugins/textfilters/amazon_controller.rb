@@ -4,8 +4,11 @@ class Plugins::Textfilters::AmazonController < TextFilterPlugin::PostProcess
 
   def self.filtertext(controller, content, text, params)
     associateid = (params[:filterparams])['amazon-associate-id']
-    text.gsub(/<a href="amazon:([^"]+)"/,
-      "<a href=\"http://www.amazon.com/exec/obidos/ASIN/\\1/#{associateid}\"")
+    content.whiteboard[:asins] = []
+    text.gsub(/<a href="amazon:([^"]+)"/) do |match|
+      content.whiteboard[:asins] = content.whiteboard[:asins].to_a | [$1]
+      "<a href=\"http://www.amazon.com/exec/obidos/ASIN/#{$1}/#{associateid}\""
+    end
   end
 
   def self.default_config

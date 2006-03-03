@@ -17,6 +17,7 @@ class TextfilterControllerTest < Test::Unit::TestCase
     @controller.request = @request
     @controller.response = @response
     @controller.assigns ||= []
+    reset_whiteboard
     
     get :test_action # set up @url; In Rails 1.0, we can't do url_for without it.
     
@@ -24,7 +25,15 @@ class TextfilterControllerTest < Test::Unit::TestCase
   end
   
   def filter_text(text, filters, filterparams={}, filter_html=false)
-    TextFilter.filter_text(text, @controller, nil, filters, filterparams, filter_html)
+    TextFilter.filter_text(text, @controller, self, filters, filterparams, filter_html)
+  end
+  
+  def whiteboard
+    @whiteboard ||= Hash.new
+  end
+  
+  def reset_whiteboard
+    @whiteboard = nil
   end
   
   def sparklines_available
@@ -73,18 +82,25 @@ class TextfilterControllerTest < Test::Unit::TestCase
       'amazon-associate-id' => 'scottstuff-20')
     assert_equal "<a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\" title=\"Rails\">Rails book</a>",
       text
+    assert_equal %w{097669400X}, whiteboard[:asins]
+    reset_whiteboard
 
     text = filter_text('[Rails book](amazon:097669400X)',
       [:markdown,:amazon],
       'amazon-associate-id' => 'scottstuff-20')
     assert_equal "<p><a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\">Rails book</a></p>",
       text
+    assert_equal %w{097669400X}, whiteboard[:asins]
+    reset_whiteboard
+    
 
     text = filter_text("Foo\n\n[Rails book](amazon:097669400X)",
       [:markdown,:amazon],
       'amazon-associate-id' => 'scottstuff-20')
     assert_equal "<p>Foo</p>\n\n<p><a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\">Rails book</a></p>",
           text
+    assert_equal %w{097669400X}, whiteboard[:asins]
+    reset_whiteboard
   end
 
   def test_flickr
