@@ -27,6 +27,12 @@ module Net
       @pings
     end
     
-  end  
+    def self.next_response=(mock_response)
+      @@response = mock_response
+    end
+    
+    def self.get_response(*args)
+      @@response
+    end
+  end
 end
-

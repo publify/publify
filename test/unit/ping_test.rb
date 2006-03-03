@@ -8,24 +8,44 @@ class PingTest < Test::Unit::TestCase
   
   def setup
     config.reload
+    @pingback_header = nil
+    @body = ''
+  end
+  
+  def teardown
+    Net::HTTP.next_response = nil
   end
 
-  def test_send_pingback
+  def test_send_pingback_found_in_pingback_header
 
     # We've linked to http://anotherblog.org/a-post from
     # http://myblog.net/referring-post and discovered a pingback
     # listener at http://anotherblog.org/xml-rpc
+    # Set up the mocking
+    
 
+    @pingback_header = "http://anotherblog.org/xml-rpc"
+    assert_pingback_sent
+  end
+  
+  def test_send_pingback_found_in_body
+    @body = %{<link rel="pingback" href="http://anotherblog.org/xml-rpc" />}
+    
+    assert_pingback_sent
+  end
+  
+  def assert_pingback_sent
+    Net::HTTP.next_response = self
     ping = contents(:article1).pings.build("url" =>
                                            "http://anotherblog.org/a-post")
-    ping.send_pingback("http://myblog.net/referring-post",
-                       "http://anotherblog.org/xml-rpc")
-
-    ping = XMLRPC::Client.pings.last
-    assert_equal "http://anotherblog.org/xml-rpc", ping.uri
-    assert_equal "pingback.ping", ping.method_name
-    assert_equal "http://myblog.net/referring-post", ping.args[0]
-    assert_equal "http://anotherblog.org/a-post", ping.args[1]
+                                           
+    ping.send_pingback_or_trackback("http://myblog.net/referring-post")
+    
+    sent_ping = XMLRPC::Client.pings.last
+    assert_equal "http://anotherblog.org/xml-rpc", sent_ping.uri
+    assert_equal "pingback.ping", sent_ping.method_name
+    assert_equal "http://myblog.net/referring-post", sent_ping.args[0]
+    assert_equal "http://anotherblog.org/a-post", sent_ping.args[1]
   end
 
   def test_send_trackback
@@ -33,11 +53,26 @@ class PingTest < Test::Unit::TestCase
     # We've linked to http://anotherblog.org/a-post from
     # http://myblog.net/referring-post and discovered the trackback
     # URL http://anotherblog.org/a-post/trackback
+    Net::HTTP.next_response = self
+    
+    @body = <<-eobody
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <rdf:Description
+        rdf:about=""
+        trackback:ping="http://anotherblog.org/a-post/trackback"
+        dc:title="Track me, track me!"
+        dc:identifier="http://anotherblog.org/a-post"
+        dc:description="Track me 'til I fart!'"
+        dc:creator="pdcawley"
+        dc:date="2006-03-01T04:31:00-05:00" />
+    </rdf:RDF>
+    eobody
 
     ping = contents(:article1).pings.build("url" =>
                                            "http://anotherblog.org/a-post")
-    ping.send_trackback("http://myblog.net/referring-post",
-                        "http://anotherblog.org/a-post/trackback")
+    ping.send_pingback_or_trackback("http://myblog.net/referring-post")
 
     ping = Net::HTTP.pings.last
     assert_equal "anotherblog.org", ping.host
@@ -63,5 +98,15 @@ class PingTest < Test::Unit::TestCase
     assert_equal config[:blog_name], ping.args[0]
     assert_equal "http://myblog.net/", ping.args[1]
     assert_equal "http://myblog.net/new-post", ping.args[2]
+  end
+  
+  # Mock stuff
+  
+  def [](key)
+    @pingback_header
+  end
+  
+  def body
+    @body
   end
 end
