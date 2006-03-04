@@ -1,11 +1,29 @@
+class Bare20Article < ActiveRecord::Base
+  include BareMigration
+
+  # need to point the primary key somewhere else so we can manually
+  # set this field for each article.
+  set_primary_key :boguskey
+end
+
+class Bare20Content < ActiveRecord::Base
+  include BareMigration
+
+# From active_record/base.rb: "the primary key and inheritance column can
+# never be set by mass-assignment for security reasons."  Because this
+# script wants to set 'id' and 'type', we need to fool activerecord by
+# setting them to bogus values.
+  set_inheritance_column :bogustype
+  set_primary_key :boguskey
+end
+
 class SuperclassArticles < ActiveRecord::Migration
   def self.up
-#    raise "Back up your database and then remove line 3 from db/migrate/20_superclass_articles.rb"
-    
-    STDERR.puts "Renaming Articles table"
-
-    Comment.transaction do
+    STDERR.puts "Merging Articles into Contents table"
+    Bare20Article.transaction do
       create_table :contents do |t|
+#       ActiveRecord::Base.connection.send(:create_table, [:contents]) do |t|
+        t.column :type, :string
         t.column :title, :string
         t.column :author, :string
         t.column :body, :text
@@ -24,19 +42,36 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :guid, :string
         t.column :text_filter_id, :integer
         t.column :whiteboard, :text
-        t.column :comments_count, :integer
-        t.column :trackbacks_count, :integer
       end
 
       if not $schema_generator
-        STDERR.puts "Copying article data"
-        execute "insert into contents (
-          id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,
-          created_at,updated_at,extended_html,user_id,permalink,guid,text_filter_id,whiteboard) (
-            select id,title,author,body,body_html,extended,excerpt,keywords,allow_comments,allow_pings,published,
-                   created_at,updated_at,extended_html,user_id,permalink,guid,text_filter_id,whiteboard
-            from articles)"
-        
+
+        Bare20Article.find(:all).each do |a|
+          t = Bare20Content.new(
+            :type => 'Article',
+            :title => a.title,
+            :author => a.author,
+            :body => a.body,
+            :body_html => a.body_html,
+            :extended => a.extended,
+            :excerpt => a.excerpt,
+            :keywords => a.keywords,
+            :allow_comments => a.allow_comments,
+            :allow_pings => a.allow_pings,
+            :published => a.published,
+            :created_at => a.created_at,
+            :updated_at => a.updated_at,
+            :extended_html => a.extended_html,
+            :user_id => a.user_id,
+            :permalink => a.permalink,
+            :guid => a.guid,
+            :text_filter_id => a.text_filter_id,
+            :whiteboard => a.whiteboard)
+          # can't use id accessor because it uses the bogus primary key
+          t.send(:write_attribute, :id, a.send(:read_attribute, :id))
+          t.save!
+        end
+
         config = ActiveRecord::Base.configurations
         if config[RAILS_ENV]['adapter'] == 'postgresql'
           STDERR.puts "Resetting PostgreSQL sequences"
@@ -47,18 +82,12 @@ class SuperclassArticles < ActiveRecord::Migration
 
       remove_index :articles, :permalink
       drop_table :articles
-
-      STDERR.puts "Adding a type column"
-
-      add_column :contents, :type, :string
-      Content.update_all("type = 'Article'")
     end
   end
 
   def self.down
-    Comment.transaction do
-      STDERR.puts "Removing type column"
-      remove_column :contents, :type
+    Bare20Content.transaction do
+      STDERR.puts "Recreating Articles from Contents table."
 
       create_table :articles do |t|
         t.column :title, :string
@@ -81,20 +110,44 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :whiteboard, :text
       end
 
+      add_index :articles, :permalink
+
       if not $schema_generator
-        STDERR.puts "Copying article data"
-        execute "insert into articles (select * from contents)"
+        Bare20Content.find(:all, :conditions => "type = 'Article'").each do |a|
+          t = Bare20Article.new(
+             :title => a.title,
+             :author => a.author,
+             :body => a.body,
+             :body_html => a.body_html,
+             :extended => a.extended,
+             :excerpt => a.excerpt,
+             :keywords => a.keywords,
+             :allow_comments => a.allow_comments,
+             :allow_pings => a.allow_pings,
+             :published => a.published,
+             :created_at => a.created_at,
+             :updated_at => a.updated_at,
+             :extended_html => a.extended_html,
+             :user_id => a.user_id,
+             :permalink => a.permalink,
+             :guid => a.guid,
+             :text_filter_id => a.text_filter_id,
+             :whiteboard => a.whiteboard)
+           # can't use id accessor because it uses the bogus primary key
+           t.send(:write_attribute, :id, a.send(:read_attribute, :id))
+           t.save!
+        end
 
         config = ActiveRecord::Base.configurations
         if config[RAILS_ENV]['adapter'] == 'postgres'
           STDERR.puts "Resetting PostgreSQL sequences"
           execute "select setval('articles_id_seq',max(id)+1) from articles"
         end
+
       end
 
+      # script 21 saved the comments, this script saved the articles.
       drop_table :contents
     end
   end
 end
-  
-    

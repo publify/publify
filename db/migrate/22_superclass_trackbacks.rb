@@ -1,62 +1,73 @@
+class Bare22Content < ActiveRecord::Base
+  include BareMigration
+  set_inheritance_column :bogustype     # see migration #20 for why
+end
+
+class Bare22Trackback < ActiveRecord::Base
+  include BareMigration
+end
+
 class SuperclassTrackbacks < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Extending Content table"
-
-    Content.transaction do
+    STDERR.puts "Merging Trackbacks into Content table"
+    Bare22Content.transaction do
       add_column :contents, :blog_name, :string
 
-      STDERR.puts "Converting trackbacks"
-
       if not $schema_generator
-        ActiveRecord::Base.connection.select_all(%{
-          SELECT
-            article_id, blog_name, title, excerpt, url, ip,
-            created_at, updated_at, guid
-          FROM trackbacks
-        }).each do |tb|
-          Article.find(tb["article_id"]).trackbacks.create(tb)
+        Bare22Trackback.reset_column_information
+        Bare22Trackback.find(:all).each do |tb|
+          a = Bare22Content.find(tb.article_id)
+          Bare22Content.create(
+            :type => 'Trackback',
+            :article_id => tb.article_id,
+            :blog_name => tb.blog_name,
+            :title => tb.title,
+            :excerpt => tb.excerpt,
+            :url => tb.url,
+            :ip => tb.ip,
+            :created_at => tb.created_at,
+            :updated_at => tb.updated_at,
+            :guid => tb.guid)
         end
       end
+
+      remove_index :trackbacks, :article_id
+      drop_table :trackbacks
     end
-    remove_index :trackbacks, :article_id rescue nil
-    drop_table :trackbacks rescue nil
   end
 
   def self.down
-    STDERR.puts "Recreating trackbacks table"
-    
-    create_table :trackbacks do |t|
-      t.column :article_id, :integer
-      t.column :blog_name, :string
-      t.column :title, :string
-      t.column :excerpt, :string
-      t.column :url, :string
-      t.column :ip, :string
-      t.column :created_at, :datetime
-      t.column :updated_at, :datetime
-      t.column :guid, :string
+    STDERR.puts "Recreating Trackbacks from Contents table"
+
+    Bare22Content.transaction do
+      create_table :trackbacks do |t|
+        t.column :article_id, :integer
+        t.column :blog_name, :string
+        t.column :title, :string
+        t.column :excerpt, :string
+        t.column :url, :string
+        t.column :ip, :string
+        t.column :created_at, :datetime
+        t.column :updated_at, :datetime
+        t.column :guid, :string
+      end
+
+      Bare22Content.find(:all, :conditions => "type = 'Trackback'").each do |tb|
+        Bare22Trackback.create(
+            :article_id => tb.article_id,
+            :blog_name => tb.blog_name,
+            :title => tb.title,
+            :excerpt => tb.excerpt,
+            :url => tb.url,
+            :ip => tb.ip,
+            :created_at => tb.created_at,
+            :updated_at => tb.updated_at,
+            :guid => tb.guid)
+      end
+      Bare22Content.delete_all "type = 'Trackback'"
+  
+      add_index :trackbacks, :article_id
+      remove_column :contents, :blog_name
     end
-
-    add_index :trackbacks, :article_id
-
-    STDERR.puts "Converting trackbacks"
-
-    ActiveRecord::Base.connection.select_all(%{
-      SELECT
-        article_id, blog_name, title, excerpt, url, ip,
-        created_at, updated_at, guid
-      FROM contents
-    }).each do |tb|
-      Article.find(tb["article_id"].trackbacks.create(tb))
-    end
-
-    STDERR.puts "Reducing Content table"
-    
-    execute "DELETE FROM contents WHERE type = 'Trackback'"
-    
-    remove_column :contents, :blog_name
   end
 end
-
-
-

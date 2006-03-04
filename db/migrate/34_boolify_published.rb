@@ -1,33 +1,43 @@
+class Bare34Content < ActiveRecord::Base
+  include BareMigration
+end
+
 class BoolifyPublished < ActiveRecord::Migration
-  class << self
-    def boolify_field(fieldname, options={})
-      Content.transaction do
-        rename_column :contents, fieldname, "old_#{fieldname}"
-        add_column :contents, fieldname, :boolean, options
-        
-        if not $schema_generator
-          STDERR.puts "Boolifying #{fieldname}"
-          Content.connection.select_all(%{
-          SELECT
-            id, old_#{fieldname} as oldval
-          FROM contents}).each do |res|
-            if !res["oldval"].nil?
-              c = Content.find(res["id"])
-              c.update_attribute(fieldname, !res["oldval"].to_i.zero?)
-            end
+  def self.up
+    STDERR.puts "Boolifying contents.published"
+    Bare34Content.transaction do
+      rename_column :contents, :published, :old_pub
+      add_column :contents, :published, :boolean, :default => true
+
+      unless $schema_generator
+        Bare34Content.reset_column_information
+        Bare34Content.find(:all).each do |c|
+          unless c.old_pub.nil?
+            c.published = (!c.old_pub.to_i.zero? ? true : false) 
+            c.save!
           end
         end
-        remove_column :contents, "old_#{fieldname}"
       end
+      remove_column :contents, :old_pub
     end
+  end
 
-    def up
-      STDERR.puts "Boolifying contents.published"
-      boolify_field("published", :default => true)
-      
-    end
-    def self.down
-      raise "Can't downgrade"
+  def self.down
+    STDERR.puts "Un-Boolifying contents.published"
+    Bare34Content.transaction do
+      rename_column :contents, :published, :old_pub
+      add_column :contents, :published, :integer
+
+      unless $schema_generator
+        Bare34Content.reset_column_information
+        Bare34Content.find(:all).each do |c|
+          unless c.old_pub.nil?
+            c.published = c.old_pub ? 1 : 0
+            c.save!
+          end
+        end
+      end
+      remove_column :contents, :old_pub
     end
   end
 end

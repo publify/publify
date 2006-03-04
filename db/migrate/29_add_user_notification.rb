@@ -1,11 +1,17 @@
+class Bare29User < ActiveRecord::Base
+  include BareMigration
+end
+
 class AddUserNotification < ActiveRecord::Migration
   def self.up
-    User.transaction do
+    Bare29User.transaction do
       add_column :users, :notify_via_email, :boolean
       add_column :users, :notify_on_new_articles, :boolean
       add_column :users, :notify_on_comments, :boolean
       add_column :users, :notify_watch_my_articles, :boolean
-      User.find(:all).each do |u|
+
+      Bare29User.reset_column_information
+      Bare29User.find(:all).each do |u|
         # Definitions: 
         #  notify_via_email: use email to deliver notifications
         #  notify_on_new_articles: send a notification message (email, etc) when new articles added.
@@ -15,15 +21,17 @@ class AddUserNotification < ActiveRecord::Migration
         u.notify_on_new_articles = false
         u.notify_on_comments = true
         u.notify_watch_my_articles = true
-        u.save
+        u.save!
       end
     end
   end
 
   def self.down
-    remove_column :users, :notify_via_email
-    remove_column :users, :notify_on_new_articles
-    remove_column :users, :notify_on_comments
-    remove_column :users, :notify_watch_my_articles
+    Bare29User.transaction do
+      remove_column :users, :notify_via_email
+      remove_column :users, :notify_on_new_articles
+      remove_column :users, :notify_on_comments
+      remove_column :users, :notify_watch_my_articles
+    end
   end
 end

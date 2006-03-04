@@ -6,5 +6,7 @@ class RenameRedirectTo < ActiveRecord::Migration
   end
 
   def self.down
+    # don't rename column back to broken name.
+    # there's little chance this column will be used before now anyway.
   end
 end
