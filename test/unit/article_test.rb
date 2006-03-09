@@ -168,4 +168,24 @@ class ArticleTest < Test::Unit::TestCase
     assert contents(:article3).tags.include?(Tag.find_by_name("new"))
   end
   
+  # this also tests time_delta, indirectly
+  def test_find_all_by_date
+    feb28 = Article.new
+    mar1 = Article.new
+    mar2 = Article.new
+    
+    feb28.title = "February 28"
+    mar1.title = "March 1"
+    mar2.title = "March 2"
+    
+    feb28.created_at = "2004-02-28"
+    mar1.created_at = "2004-03-01"
+    mar2.created_at = "2004-03-02"
+    
+    [feb28, mar1, mar2].each {|x| x.save }
+    assert_equal(1, Article.find_all_by_date(2004,02).size)
+    assert_equal(2, Article.find_all_by_date(2004,03).size)
+    assert_equal(1, Article.find_all_by_date(2004,03,01).size)
+    
+  end
 end

@@ -201,10 +201,9 @@ class Article < Content
   def self.time_delta(year, month = nil, day = nil)
     from = Time.mktime(year, month || 1, day || 1)
     
-    to   = from + 1.year
-    to   = from + 1.month unless month.blank?    
-    to   = from + 1.day   unless day.blank?
-    to   = to.tomorrow    unless month.blank?
+    to = from.next_year
+    to = from.next_month unless month.blank?
+    to = from + 1.day unless day.blank?
     return [from, to]
   end
   
