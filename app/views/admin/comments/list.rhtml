@@ -9,6 +9,7 @@
     <table>
     <tr>
       <th>Author</th>
+      <th>Email</th>
       <th>Body</th>
       <th>IP</th>
       <th>Posted date</th>
@@ -17,7 +18,8 @@
     </tr>
     <% for comment in @comments -%>
     <tr>
-      <td class="field"><%= image_tag 'checked.gif' %> <%=h comment.author %></td>
+      <td class="field"><%= image_tag 'checked.gif' %> <%=link_to_unless comment.url.blank?, comment.author, comment.url %></td>
+      <td class="field"><%=h comment.email %></td>
       <td class="field"><%=link_to truncate(strip_html(comment.body)), :action => 'show', :id => comment.id %> <%= comment_url_link image_tag('go'), comment %></td>
       <td class="field"><%=h comment.ip %></td>
       <td class="field"><%=h distance_of_time_in_words_to_now(comment.created_at) %></td>
