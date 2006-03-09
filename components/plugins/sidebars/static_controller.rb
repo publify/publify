@@ -10,7 +10,7 @@ class Plugins::Sidebars::StaticController < Sidebars::Plugin
   def self.default_config
     {'title'=>'Links',
      'body'=>%q{<ul>
-  <li><a href="http://typo.leetsoft.com" title="Typo">Typo</a></li>
+  <li><a href="http://www.typosphere.org" title="Typo">Typo</a></li>
   <li><a href="http://blog.leetsoft.com" title="too-biased">too-biased</a></li>
   <li><a href="http://www.poocs.net/" title="poocs.net">poocs.net</a></li>
   <li><a href="http://blog.remor.com/" title="seth hall">Seth Hall</a></li>

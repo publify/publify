@@ -22,7 +22,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = '.'
   s.author = "Tobias Luetke"
   s.email = "tobi@leetsoft.com"
-  s.homepage = "http://typo.leetsoft.com"  
+  s.homepage = "http://www.typosphere.org"  
   s.rubyforge_project = "typo"
 end
 
@@ -41,7 +41,7 @@ end
 
 desc "Publish the release files to RubyForge."
 task :tag_svn do
-  system("svn cp svn://leetsoft.com/typo/trunk svn://leetsoft.com/typo/tags/release_#{PKG_VERSION.gsub(/\./,'_')} -m 'tag release #{PKG_VERSION}'")
+  system("svn cp svn://typosphere.org/typo/trunk svn://typosphere.org/typo/tags/release_#{PKG_VERSION.gsub(/\./,'_')} -m 'tag release #{PKG_VERSION}'")
 end
 
 desc "Publish the release files to RubyForge."

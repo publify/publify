@@ -39,7 +39,7 @@ but Sqlite doesn't have full support for database migrations in Rails
 
 Typo, like all Rails apps, doesn't work well as a CGI. Seriously consider
 using FastCGI instead. To deploy on FastCGI you will need to follow the setup
-instructions on the typo page at http://typo.leetsoft.com/trac/wiki/FastCgi
+instructions on the typo page at http://www.typosphere.org/trac/wiki/FastCgi
 
 By default, Typo runs in *development* mode. This is very useful for
 developers, but it can cause horrible performance for users who aren't
@@ -72,7 +72,7 @@ http://your.domain.com/admin. You can use this to post articles and
 change Typo's configuration settings. For posting new content, you can
 either use this administrative web interface or a desktop blog editor
 like MarsEdit or Ecto. For a short list of clients which are confirmed
-to work please visit http://typo.leetsoft.com.
+to work please visit http://typosphere.org/trac/wiki/DesktopClients.
 
 Client setup
 ============
@@ -83,8 +83,8 @@ http://your.domain.com/backend/xmlrpc as endpoint address.
 Tell me about your blog
 =======================
 
-Add yourself to the list of typo blogs at http://typo.leetsoft.com and
-subscribe to the typo mailing list.
+Add yourself to the list of typo blogs at http://typosphere.org/trac/wiki/TypoPowered
+and subscribe to the typo mailing list.
 
 
 Enjoy,

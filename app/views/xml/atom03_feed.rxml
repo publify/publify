@@ -6,7 +6,7 @@ xml.feed "version" => "0.3", "xml:lang" => "en-US",
     xml.tagline config[:blog_subtitle], "mode" => "escaped", "type"=>"text/html"
   end
   xml.id "tag:#{@controller.request.host},2005:Typo"
-  xml.generator "Typo", "url" => "http://typo.leetsoft.com"
+  xml.generator "Typo", "url" => "http://www.typosphere.org"
   xml.link "rel" => "alternate", "type" => "text/html", "href" => @link
 
   xml.modified @items.first.updated_at.xmlschema unless @items.empty?

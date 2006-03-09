@@ -76,7 +76,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     assert_equal contents(:markdown_page), assigns(:page)
 
     post :edit, :id => contents(:markdown_page).id, :page => { :name => "markdown-page", :title => "Markdown Page",
-        :body => "Adding a [link](http://typo.leetsoft.com/) here" }
+        :body => "Adding a [link](http://www.typosphere.org/) here" }
 
     
     assert_equal "", contents(:markdown_page).reload.body_html.to_s
