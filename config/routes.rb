@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.xml 'xml/:format/feed.xml', :controller => 'xml', :action => 'feed', :type => 'feed'
   map.xml 'xml/:format/:type/feed.xml', :controller => 'xml', :action => 'feed'
   map.xml 'xml/:format/:type/:id/feed.xml', :controller => 'xml', :action => 'feed'
-  map.xml 'xml/rss', :controller => 'xml', :action => 'feed', :type => 'feed'
+  map.xml 'xml/rss', :controller => 'xml', :action => 'feed', :type => 'feed', :format => 'rss'
   
   # allow neat perma urls
   map.connect 'articles',
