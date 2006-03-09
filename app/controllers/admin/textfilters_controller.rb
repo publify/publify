@@ -37,7 +37,9 @@ class Admin::TextfiltersController < Admin::BaseController
 
     if request.post?
       @textfilter.attributes = params[:textfilter]
-      @textfilter.filters = params[:filter].keys.collect {|k| k.to_sym }
+      if params.has_key?(:filter)
+        @textfilter.filters = params[:filter].keys.collect {|k| k.to_sym }
+      end
       if request.post? and @textfilter.save
         flash[:notice] = 'TextFilter was successfully updated.'
         redirect_to :action => 'show', :id => @textfilter.id
@@ -52,7 +54,9 @@ class Admin::TextfiltersController < Admin::BaseController
     
     if request.post?
       @textfilter.attributes = params[:textfilter]
-      @textfilter.filters = params[:filter].keys.collect {|k| k.to_sym }
+      if params.has_key?(:filter)
+        @textfilter.filters = params[:filter].keys.collect {|k| k.to_sym }
+      end
       @textfilter.params = params[:params]
       if request.post? and @textfilter.save
         flash[:notice] = 'TextFilter was successfully updated.'
