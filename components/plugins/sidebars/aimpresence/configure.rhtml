@@ -1,0 +1,12 @@
+<%= form_tag({},{:id => 'configure_'+@sidebar.id.to_s, :class=>'configblock'}) %>
+  <label>Screen Name</label><br/>
+  <input class="text" type="text" name="configure[sn]" value="<%=h @sidebar.staged_config['sn'] %>"/><br/>
+  <label>Key</label> (register <a href="http://www.aim.com/presence/">here</a>)<br/>
+  <input class="text" type="text" name="configure[devkey]" value="<%=h @sidebar.staged_config['devkey'] %>"/><br/>
+
+<%= end_form_tag %>
+
+<%= observe_form "configure_"+@sidebar.id.to_s, 
+    :url => { :action => "save_config", :id=>@sidebar.id},
+    :with => 'value'
+ %>
