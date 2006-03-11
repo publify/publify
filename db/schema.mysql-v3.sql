@@ -11,25 +11,25 @@ CREATE TABLE articles_categories (
   `article_id` int(11),
   `category_id` int(11),
   `is_primary` int(11)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE articles_tags (
   `article_id` int(11),
   `tag_id` int(11)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE blacklist_patterns (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `type` varchar(255),
   `pattern` varchar(255)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE categories (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `name` varchar(255),
   `position` int(11),
   `permalink` varchar(255)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE contents (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -60,32 +60,32 @@ CREATE TABLE contents (
   `published` tinyint(1) DEFAULT 1,
   `allow_pings` tinyint(1),
   `allow_comments` tinyint(1)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE notifications (
   `notify_user_id` int(11),
   `notify_content_id` int(11),
   `created_at` datetime,
   `updated_at` datetime
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE page_caches (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `name` varchar(255)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE pings (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `article_id` int(11),
   `url` varchar(255),
   `created_at` datetime
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE redirects (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `from_path` varchar(255),
   `to_path` varchar(255)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE resources (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -103,7 +103,7 @@ CREATE TABLE resources (
   `itunes_keywords` varchar(255),
   `itunes_category` varchar(255),
   `itunes_explicit` tinyint(1)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE sessions (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -111,14 +111,14 @@ CREATE TABLE sessions (
   `data` text,
   `created_at` datetime,
   `updated_at` datetime
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE settings (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `name` varchar(255),
   `value` varchar(255),
   `position` int(11)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE sidebars (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -127,7 +127,7 @@ CREATE TABLE sidebars (
   `active_config` text,
   `staged_position` int(11),
   `staged_config` text
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE tags (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -135,7 +135,7 @@ CREATE TABLE tags (
   `created_at` datetime,
   `updated_at` datetime,
   `display_name` varchar(255)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE text_filters (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -144,7 +144,7 @@ CREATE TABLE text_filters (
   `markup` varchar(255),
   `filters` text,
   `params` text
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 CREATE TABLE users (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
@@ -158,7 +158,7 @@ CREATE TABLE users (
   `notify_watch_my_articles` tinyint(1),
   `notify_via_jabber` tinyint(1),
   `jabber` varchar(255)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 
 -- indexes 
@@ -205,6 +205,6 @@ INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) 
 
 CREATE TABLE schema_info (
   `version` int(11)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 insert into schema_info (version) values (37);
