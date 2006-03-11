@@ -1,5 +1,5 @@
 module ArticlesHelper
-  
+
   def admin_tools_for(model)
     type = model.class.to_s.downcase
     tag = []
@@ -11,7 +11,7 @@ module ArticlesHelper
         }, :class => "admintools") <<
       link_to('edit', {
         :controller => "admin/#{type.pluralize}/article/#{model.article.id}",
-        :action => "edit", :id => model 
+        :action => "edit", :id => model
         }, :class => "admintools"),
       :id => "admin_#{type}_#{model.id}", :style => "display: none")
     tag.join(" | ")
@@ -23,7 +23,7 @@ module ArticlesHelper
     tag << %{ onmouseout="Element.hide('admin_#{[type, id].compact.join('_')}');" }
     tag
   end
-  
+
   def render_errors(obj)
     return "" unless obj
     tag = String.new
@@ -31,7 +31,7 @@ module ArticlesHelper
     unless obj.errors.empty?
       tag << %{<ul class="objerrors">}
 
-      obj.errors.each_full do |message| 
+      obj.errors.each_full do |message|
         tag << "<li>#{message}</li>"
       end
 
@@ -39,16 +39,16 @@ module ArticlesHelper
     end
 
     tag
-  end  
-  
+  end
+
   def page_title
     if @page_title
       @page_title
     else
       config_value("blog_name") || "Typo"
-    end    
+    end
   end
-  
+
   def page_header
     page_header_includes = contents.collect { |c| c.whiteboard }.collect { |w| w.select {|k,v| k =~ /^page_header_/}.collect {|(k,v)| v} }.flatten.uniq
     (
@@ -67,7 +67,7 @@ module ArticlesHelper
     HTML
     ).chomp
   end
-  
+
   def article_links(article)
     returning code = [] do
       code << category_links(article)   unless article.categories.empty?
@@ -76,7 +76,7 @@ module ArticlesHelper
       code << trackbacks_link(article)  if article.allow_pings?
     end.join("&nbsp;<strong>|</strong>&nbsp;")
   end
-  
+
   def category_links(article)
     "Posted in " + article.categories.collect { |c| link_to h(c.name),
     { :controller => "articles", :action => "category", :id => c.permalink },
@@ -92,15 +92,15 @@ module ArticlesHelper
   end
 
   def author_link(article)
-    if config['link_to_author'] and article.user and article.user.email.to_s.size>0 
+    if config['link_to_author'] and article.user and article.user.email.to_s.size>0
       "<a href=\"mailto:#{h article.user.email}\">#{h article.user.name}</a>"
     elsif article.user and article.user.name.to_s.size>0
       h article.user.name
     else
       h article.author
     end
-  end 
-  
+  end
+
   def next_link(article)
     n = article.next
     return  n ? article_link("#{n.title} &raquo;", n) : ''
@@ -109,12 +109,13 @@ module ArticlesHelper
   def prev_link(article)
     p = article.previous
     return p ? article_link("&laquo; #{p.title}", p) : ''
-  end   
-    
+  end
+
   def render_sidebars
     render_component(:controller => 'sidebars/sidebar',
                      :action => 'display_plugins',
-                     :params => {:contents => contents})
+                     :params => {:contents => contents,
+                                 :request_params => params})
   end
 
   # Generate the image tag for a commenters gravatar based on their email address

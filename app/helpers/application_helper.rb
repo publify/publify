@@ -7,14 +7,14 @@ module ApplicationHelper
   # a search path. We need this to get themes working, but I'd be
   # happier if we didn't have to override undocumented methods. Ho
   # hum. -- pdcawley
-  
+
   def render_file(template_path, use_full_path = true, local_assigns = {}) #:nodoc:
     search_path = [
                    "../themes/#{config[:theme]}/views",     # for components
                    "../../themes/#{config[:theme]}/views",  # for normal views
                    "."                                      # fallback
                   ]
-    
+
     if use_full_path
       search_path.each do |prefix|
         theme_path = prefix+'/'+template_path
@@ -30,15 +30,15 @@ module ApplicationHelper
       super(template_path, use_full_path, local_assigns)
     end
   end
-  
+
   def server_url_for(options = {})
     url_for options.update(:only_path => false)
   end
 
-  def config_value(name)  
+  def config_value(name)
     config[name]
   end
-  
+
   def article_link(title, article,anchor=nil)
     link_to title, article_url(article,true,anchor)
   end
@@ -46,11 +46,11 @@ module ApplicationHelper
   def page_link(title, page,anchor=nil)
     link_to title, page_url(page,true,anchor)
   end
-  
+
   def comment_url_link(title, comment)
     link_to title, comment_url(comment)
-  end  
-  
+  end
+
   def article_url(article, only_path = true, anchor = nil)
     url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor => anchor
   end
@@ -63,12 +63,12 @@ module ApplicationHelper
     article = comment.article
     url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor=> "comment-#{comment.id}"
   end
-  
+
   def trackback_url(trackback, only_path = true)
     article = trackback.article
     url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor=> "trackback-#{trackback.id}"
   end
-  
+
   def pluralize(size, word)
     case size
     when 0
@@ -79,43 +79,44 @@ module ApplicationHelper
       "#{size} #{word}s"
     end
   end
-    
+
   def comments_link(article)
     article_link  pluralize(article.comments.size, "comment"), article, 'comments'
   end
 
-  def trackbacks_link(article)  
+  def trackbacks_link(article)
     article_link pluralize(article.trackbacks.size, "trackback"), article, 'trackbacks'
   end
-  
+
   def check_cache(aggregator, *args)
     hash = "#{aggregator.to_s}_#{args.collect { |arg| Digest::SHA1.hexdigest(arg) }.join('_') }".to_sym
     controller.cache[hash] ||= aggregator.new(*args)
-  end  
-  
+  end
+
   def js_distance_of_time_in_words_to_now(date)
     time = date.utc.strftime("%a, %d %b %Y %H:%M:%S GMT")
     "<span class=\"typo_date\" title=\"#{time}\">#{time}</span>"
   end
-  
+
   def render_sidebar(sidebar)
     begin
-      render_component :layout => false, :controller => sidebar.sidebar_controller.component_name, 
-        :action=>'index', :params => {:sidebar => sidebar,
-                                      :contents => (@params[:contents])}
-    rescue => e 
+      render_component :layout => false, :controller => sidebar.sidebar_controller.component_name,
+      :action=>'index', :params => {:sidebar        => sidebar,
+                                    :contents       => params[:contents],
+                                    :request_params => params[:request_params] }
+    rescue => e
       content_tag :p, e.message, :class => 'error'
     end
   end
-  
+
   def meta_tag(name, value)
     tag :meta, :name => name, :content => value unless value.blank?
   end
-  
+
   def date(date)
     "<span class=\"typo_date\">#{date.utc.strftime("%d. %b")}</span>"
   end
-  
+
   def render_theme(options)
     options[:controller]=Themes::ThemeController.active_theme_name
     render_component(options)
@@ -124,18 +125,18 @@ module ApplicationHelper
   def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
-  
-  def article_html(article, what = :all) 
-    article.html(@controller,what) 
+
+  def article_html(article, what = :all)
+    article.html(@controller,what)
   end
-  
-  def comment_html(comment) 
+
+  def comment_html(comment)
     comment.html(@controller,:body)
   end
-  
+
   def page_html(page)
-    page.html(@controller,:body) 
+    page.html(@controller,:body)
   end
-  
+
   def strip_html(text) text.strip_html end
 end
