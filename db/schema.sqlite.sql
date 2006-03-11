@@ -33,6 +33,7 @@ CREATE TABLE categories (
 
 CREATE TABLE contents (
   "id" INTEGER PRIMARY KEY NOT NULL,
+  "type" varchar(255),
   "title" varchar(255),
   "author" varchar(255),
   "body" text,
@@ -48,15 +49,14 @@ CREATE TABLE contents (
   "guid" varchar(255),
   "text_filter_id" integer,
   "whiteboard" text,
-  "comments_count" integer,
-  "trackbacks_count" integer,
-  "type" varchar(255),
   "article_id" integer,
   "email" varchar(255),
   "url" varchar(255),
-  "ip" varchar(255),
+  "ip" varchar(40),
   "blog_name" varchar(255),
   "name" varchar(255),
+  "comments_count" integer,
+  "trackbacks_count" integer,
   "published" boolean DEFAULT 't',
   "allow_pings" boolean,
   "allow_comments" boolean
@@ -172,16 +172,34 @@ CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
-INSERT INTO sidebars ('staged_position', 'active_config', 'active_position', 'controller', 'staged_config') VALUES(NULL, NULL, 0, 'category', NULL);
-INSERT INTO sidebars ('staged_position', 'active_config', 'active_position', 'controller', 'staged_config') VALUES(NULL, NULL, 1, 'static', NULL);
-INSERT INTO sidebars ('staged_position', 'active_config', 'active_position', 'controller', 'staged_config') VALUES(NULL, NULL, 2, 'xml', NULL);
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('none', '--- []', 'None', '--- {}', 'none');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('markdown', '--- []', 'Markdown', '--- {}', 'markdown');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('smartypants', '--- 
-- :smartypants', 'SmartyPants', '--- {}', 'none');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('markdown smartypants', '--- 
-- :smartypants', 'Markdown with SmartyPants', '--- {}', 'markdown');
-INSERT INTO text_filters ('name', 'filters', 'description', 'params', 'markup') VALUES('textile', '--- []', 'Textile', '--- {}', 'textile');
+INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 0, 'category', NULL);
+INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 1, 'static', NULL);
+INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 2, 'xml', NULL);
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('none', '--- []
+
+', 'None', '--- {}
+
+', 'none');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('markdown', '--- []
+
+', 'Markdown', '--- {}
+
+', 'markdown');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('smartypants', '--- 
+- :smartypants
+', 'SmartyPants', '--- {}
+
+', 'none');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('markdown smartypants', '--- 
+- :smartypants
+', 'Markdown with SmartyPants', '--- {}
+
+', 'markdown');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('textile', '--- []
+
+', 'Textile', '--- {}
+
+', 'textile');
 
 -- schema version meta-info 
 
@@ -189,4 +207,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (36);
+insert into schema_info (version) values (37);

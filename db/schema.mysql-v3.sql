@@ -33,6 +33,7 @@ CREATE TABLE categories (
 
 CREATE TABLE contents (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `type` varchar(255),
   `title` varchar(255),
   `author` varchar(255),
   `body` text,
@@ -48,15 +49,14 @@ CREATE TABLE contents (
   `guid` varchar(255),
   `text_filter_id` int(11),
   `whiteboard` text,
-  `comments_count` int(11),
-  `trackbacks_count` int(11),
-  `type` varchar(255),
   `article_id` int(11),
   `email` varchar(255),
   `url` varchar(255),
-  `ip` varchar(255),
+  `ip` varchar(40),
   `blog_name` varchar(255),
   `name` varchar(255),
+  `comments_count` int(11),
+  `trackbacks_count` int(11),
   `published` tinyint(1) DEFAULT 1,
   `allow_pings` tinyint(1),
   `allow_comments` tinyint(1)
@@ -175,13 +175,31 @@ CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 0, 'category', NULL);
 INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 1, 'static', NULL);
 INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 2, 'xml', NULL);
-INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('none', '--- []', 'None', '--- {}', 'none');
-INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('markdown', '--- []', 'Markdown', '--- {}', 'markdown');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('none', '--- []
+
+', 'None', '--- {}
+
+', 'none');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('markdown', '--- []
+
+', 'Markdown', '--- {}
+
+', 'markdown');
 INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('smartypants', '--- 
-- :smartypants', 'SmartyPants', '--- {}', 'none');
+- :smartypants
+', 'SmartyPants', '--- {}
+
+', 'none');
 INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('markdown smartypants', '--- 
-- :smartypants', 'Markdown with SmartyPants', '--- {}', 'markdown');
-INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('textile', '--- []', 'Textile', '--- {}', 'textile');
+- :smartypants
+', 'Markdown with SmartyPants', '--- {}
+
+', 'markdown');
+INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('textile', '--- []
+
+', 'Textile', '--- {}
+
+', 'textile');
 
 -- schema version meta-info 
 
@@ -189,4 +207,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=MyISAM;
 
-insert into schema_info (version) values (36);
+insert into schema_info (version) values (37);
