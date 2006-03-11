@@ -6,8 +6,8 @@
     <h3>Please login</h3>  
     
     <div class="form">
-      <% if @flash['notice'] %>
-        <h4><%= @flash['notice'] %></h4>
+      <% if @flash[:notice] %>
+        <h4><%= @flash[:notice] %></h4>
       <% end %>    
     <label for="user_login">Login:</label><br/>
     <input type="text" name="user_login" id="user_login" size="20" value=""/><br/>

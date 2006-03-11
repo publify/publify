@@ -13,7 +13,7 @@ class Admin::CacheController < Admin::BaseController
     PageCache.sweep_all
     expire_fragment(/.*/)
         
-    flash['notice'] = 'Cache was cleared'
+    flash[:notice] = 'Cache was cleared'
     redirect_to :controller => 'general'
   end
   
@@ -24,7 +24,7 @@ class Admin::CacheController < Admin::BaseController
       Page.update_all 'body_html = null'
     end
 
-    flash['notice'] = 'HTML was cleared'
+    flash[:notice] = 'HTML was cleared'
     redirect_to :controller => 'general'
   end
   
