@@ -4,9 +4,9 @@
 <% for pic in @flickr.choose(@sb_config['count'].to_i) -%>
   <div class="flickr<%= @sb_config['format']%>"><%= case @sb_config['format']
           when 'square':
-            link_to image_tag(pic.square, :alt => pic.title),pic.link
+            link_to image_tag(pic.square, :alt => pic.title, :title => pic.title),pic.link
           when 'rectangle':
-            link_to image_tag(pic.thumb, :alt => pic.title),pic.link
+            link_to image_tag(pic.thumb, :alt => pic.title, :title => pic.title),pic.link
           end
  %>
 </div>
