@@ -18,13 +18,14 @@ class Plugins::Sidebars::ArchivesController < Sidebars::Plugin
       index = a.created_at.strftime("%Y-%m").to_sym
 
       if @archives[index].nil?
+        break if @archives.size == @sb_config['count'].to_i # exit before we go over the limit
+        
         @archives[index] = Hash.new(0)
         @archives[index][:name] = a.created_at.strftime("%B %Y")
         @archives[index][:year], @archives[index][:month] = index.to_s.split("-")
       end
       @archives[index][:count] += 1
       
-      break if @archives.size == @sb_config['count'].to_i
     end
     
     @archives = @archives.sort_by { |index, month| index.to_s }.reverse.collect { |a| a.last }
