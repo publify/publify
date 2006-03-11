@@ -42,6 +42,7 @@ function distance_of_time_in_words(minutes) {
 }
 
 function commentAdded(request) {
+  Element.cleanWhitespace('commentList');
   new Effect.BlindDown($('commentList').lastChild);
   if ($('dummy_comment')) { Element.remove('dummy_comment'); }
   $('commentform').elements[3].value = '';
