@@ -1,1 +1,1 @@
-TYPO_VERSION = '$Revision$'.gsub(/\$/,'').gsub(/Revision: /,'r')
+TYPO_VERSION = 'svn'
