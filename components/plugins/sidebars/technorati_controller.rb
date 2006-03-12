@@ -1,6 +1,6 @@
 class Plugins::Sidebars::TechnoratiController < Sidebars::Plugin
   def self.display_name
-    "Technorati Watchlist"
+    "Technorati"
   end
 
   def self.description
@@ -8,7 +8,7 @@ class Plugins::Sidebars::TechnoratiController < Sidebars::Plugin
   end
 
   def self.default_config
-    {'feed'=>'http://www.technorati.com/watchlists/rss.html?wid=WATCHLISTID','count'=>4}
+    {'name'=>'Watchlist','feed'=>'http://www.technorati.com/watchlists/rss.html?wid=WATCHLISTID','count'=>4}
   end
 
   def content

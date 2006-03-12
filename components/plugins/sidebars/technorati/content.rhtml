@@ -1,5 +1,5 @@
 <% if @cosmos -%>
-<h3>Technorati Watchlist</h3>
+<h3><%= @sb_config['name'] -%> @Technorati</h3>
 <ul id="technorati">
 <% for item in @cosmos.choose(@sb_config['count'].to_i) -%>
   <li><%= link_to item.title, item.link, {:title => item.title } %>
