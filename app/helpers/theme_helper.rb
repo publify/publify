@@ -1,0 +1,2 @@
+module ThemeHelper
+end

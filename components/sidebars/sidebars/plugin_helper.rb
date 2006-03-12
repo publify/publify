@@ -1,0 +1,2 @@
+module Sidebars::PluginHelper
+end
