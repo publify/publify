@@ -6,6 +6,9 @@ class Flickr
 
   class Photo
     def initialize(photoid)
+      unless photoid == '31366117'
+        raise 'Photo not found'
+      end
     end
 
     def sizes
@@ -19,7 +22,7 @@ class Flickr
     def title
       "Matz"
     end
-    
+
     def url
       "http://www.flickr.com/users/scottlaird/31366117"
     end

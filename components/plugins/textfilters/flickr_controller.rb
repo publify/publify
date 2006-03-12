@@ -14,15 +14,15 @@ class Plugins::Textfilters::FlickrController < TextFilterPlugin::MacroPost
   def self.help_text
     %{
 You can use `<typo:flickr>` to display images from [Flickr](http://flickr.com).  Example:
-      
+
     <typo:flickr img="31367273" size="small"/>
-          
+
 will produce an `<img>` tag showing image number 31367273 from Flickr.  This image will be linked to
 the Flickr page for this image, so you can zoom in and see larger versions.  It will also have a
 comment block attached if a description has been attached to the picture in Flickr.
-      
+
 This macro takes a number of parameters:
-      
+
 * **img** The Flickr image ID of the picture that you wish to use.  This shows up in the URL whenever
   you're viewing a picture in Flickr; for example, the image ID for <http://flickr.com/photos/scottlaird/31367273>
   is 31367273.
@@ -50,27 +50,32 @@ This macro takes a number of parameters:
     title   = attrib['title']
     alt     = attrib['alt']
 
-    flickr = Flickr.new(FLICKR_KEY)
-    flickrimage = Flickr::Photo.new(img)
-    sizes = flickrimage.sizes
-    
-    details = sizes.find {|s| s['label'].downcase == size.downcase } || sizes.first
-    width = details['width']
-    height = details['height']
-    imageurl = details['source']
-    imagelink = flickrimage.url
-    
-    caption ||= flickrimage.description
-    title ||= flickrimage.title
-    alt ||= title
-    
-    if(caption.blank?)
-      captioncode=""
-    else
-      captioncode = "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
-    end
-    
-    "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
-  end
+    begin
+      flickr      = Flickr.new(FLICKR_KEY)
+      flickrimage = Flickr::Photo.new(img)
+      sizes       = flickrimage.sizes
 
+      details     = sizes.find {|s| s['label'].downcase == size.downcase } || sizes.first
+      width       = details['width']
+      height      = details['height']
+      imageurl    = details['source']
+      imagelink   = flickrimage.url
+
+      caption   ||= flickrimage.description
+      title     ||= flickrimage.title
+      alt       ||= title
+
+      if(caption.blank?)
+        captioncode=""
+      else
+        captioncode = "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
+      end
+
+      "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
+
+    rescue Exception => e
+      logger.info e
+      %{<div class='broken_flickr_link'>`#{img}' could not be displayed because: <br />#{e}</div>}
+    end
+  end
 end
