@@ -36,20 +36,19 @@ private
   
     xml = Document.new(body)
   
-    self.items        = []    
-    self.link         = XPath.match(xml, "//channel/link/text()").to_s
-    self.title        = XPath.match(xml, "//channel/title/text()").to_s
-          
-    XPath.each(xml, "//item/") do |elem| 
+    self.items        = []
+    self.link         = XPath.match(xml, "//channel/link/text()").first.value rescue ""
+    self.title        = XPath.match(xml, "//channel/title/text()").first.value rescue ""
     
+    XPath.each(xml, "//item/") do |elem|
       item = DeliciousItem.new
-      item.title       = XPath.match(elem, "title/text()").to_s                  
-      item.link        = XPath.match(elem, "link/text()").to_s
-      item.description = XPath.match(elem, "description/text()").to_s
-      item.date        = Time.mktime(*ParseDate.parsedate(XPath.match(elem, "dc:date/text()").to_s))
-
-      item.description_link = item.description.sub(/&lt;a/, "<a").sub(/&lt\;\/a>/, "<\/a>")
-      item.description.gsub!(/&lt\;a.*?>|&lt\;\/a>/, "")
+      item.title       = XPath.match(elem, "title/text()").first.value rescue ""
+      item.link        = XPath.match(elem, "link/text()").first.value rescue ""
+      item.description = XPath.match(elem, "description/text()").first.value rescue ""
+      item.date        = Time.mktime(*ParseDate.parsedate(XPath.match(elem, "dc:date/text()").first.value)) rescue Time.now
+      
+      item.description_link = item.description
+      item.description.gsub!(/<\/?a\b.*?>/, "") # remove all <a> tags
       items << item
     end
     
