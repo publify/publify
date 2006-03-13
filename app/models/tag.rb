@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :articles
+  has_and_belongs_to_many :articles, :order => 'created_at DESC'
   validates_uniqueness_of :name
 
   def self.get(name)
@@ -11,18 +11,18 @@ class Tag < ActiveRecord::Base
 
     tag
   end
-  
+
   def self.find_by_name_or_display_name(tagname, name)
     self.find(:first, :conditions => [%{name = ? OR display_name = ? OR display_name = ?}, tagname, tagname, name])
   end
-  
+
   def ensure_naming_conventions
     if self.display_name.blank?
       self.display_name = self.name
     end
     self.name = self.name.tr(' ', '').downcase
   end
-  
+
   before_save :ensure_naming_conventions
 
   def self.find_all_with_article_counters(limit = 20)

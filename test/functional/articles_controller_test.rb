@@ -8,7 +8,8 @@ class ArticlesController; def rescue_action(e) raise e end; end
 
 class Content
   def self.find_last_posted
-    self.find(:first, :order => 'created_at desc')
+    self.find(:first, :conditions => ['created_at < ?', Time.now],
+              :order => 'created_at desc')
   end
 end
 
@@ -19,6 +20,11 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def setup
     @controller = ArticlesController.new
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
+
+    Article.create!(:title => "News from the future!",
+                    :body => "The future is cool!",
+                    :keywords => "future",
+                    :created_at => Time.now + 12.minutes)
 
     # Complete settings fixtures
     config.reload
@@ -31,13 +37,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_rendered_file "index"
   end
-  
+
   def test_tag
     get :tag, :id => "foo"
-    
+
     assert_response :success
     assert_rendered_file "index"
-        
+
     assert_tag :tag => 'h2', :content => 'Article 2!'
     assert_tag :tag => 'h2', :content => 'Article 1!'
   end
@@ -52,7 +58,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :tag, :id => "foo"
     assert_equal 1, assigns(:articles).size
     assert_tag(:tag => 'p',
-               :attributes =>{ 
+               :attributes =>{
                   :id => 'pagination'},
                :content => 'Older posts: 1',
                :descendant => {:tag => 'a',
@@ -60,21 +66,21 @@ class ArticlesControllerTest < Test::Unit::TestCase
                                   :href => "/articles/tag/foo/page/2"},
                                :content => "2"})
   end
-  
+
   # Main index
   def test_index
     get :index
     assert_response :success
     assert_rendered_file "index"
   end
-  
+
   # Archives page
   def test_archives
     get :archives
     assert_response :success
     assert_rendered_file "archives"
   end
-  
+
   # Permalinks
   def test_permalink
     get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
@@ -90,29 +96,29 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_rendered_file "index"
   end
-  
+
   def test_comment_posting
     emails = ActionMailer::Base.deliveries
     emails.clear
-    
+
     assert_equal 0, emails.size
-    
+
     Article.find(1).notify_users << users(:tobi)
 
     post :comment, { :id => 1, :comment => {'body' => 'This is *textile*', 'author' => 'bob' }}
-    
+
     assert_response :success
     assert_tag :tag => 'strong', :content => 'textile'
-    
-    comment = Comment.find_last_posted
+
+    comment = Article.find(1).comments.last
     assert comment
-    
+
     assert_not_nil cookies["author"]
-    
+
     assert_equal "<p>This is <strong>textile</strong></p>", comment.html(@controller).to_s
-    
-    assert_equal User.find(:all, 
-                           :conditions => ['(notify_via_email = ?) and (notify_on_comments = ?)', true, true], 
+
+    assert_equal User.find(:all,
+                           :conditions => ['(notify_via_email = ?) and (notify_on_comments = ?)', true, true],
                            :order => 'email').collect { |each| each.email },
                  emails.collect { |each| each.to[0] }.sort
   end
@@ -132,7 +138,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
         'email' => email }.merge(args) }
 
     assert_response :success
-    comment = Comment.find_last_posted
+    comment = Article.find(art_id).comments.last
     assert comment
 
     assert_match expected_html, comment.html(@controller).to_s
@@ -146,18 +152,18 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def test_comment_spam2
     comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com["'] rel=["']nofollow["']>spammy goodness</a></p>}, 'Link to "spammy goodness":http://spammer.example.com'
   end
-  
+
   def test_comment_xss1
     settings(:comment_text_filter).update_attribute(:value, "none")
     comment_template_test %{Have you ever &lt;script lang='javascript'>alert("foo");&lt;/script> been hacked?},
     %{Have you ever <script lang="javascript">alert("foo");</script> been hacked?}
   end
-  
+
   def test_comment_xss2
     settings(:comment_text_filter).update_attribute(:value, "none")
     comment_template_test "Have you ever <a href='#' rel=\"nofollow\">been hacked?</a>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
   end
-  
+
   def test_comment_autolink
     comment_template_test "<p>What&#8217;s up with <a href='http://slashdot.org' rel=\"nofollow\">http://slashdot.org</a> these days?</p>", "What's up with http://slashdot.org these days?"
   end #"
@@ -166,41 +172,41 @@ class ArticlesControllerTest < Test::Unit::TestCase
 #   def test_comment_autolink2
 #     comment_template_test "<p>My web page is <a href='http://somewhere.com/~me/index.html' rel=\"nofollow\">http://somewhere.com/~me/index.html</a></p>", "My web page is http://somewhere.com/~me/index.html"
 #   end
-  
-  def test_comment_nuking 
+
+  def test_comment_nuking
     num_comments = Comment.count
     post :nuke_comment, { :id => 5 }, {}
     assert_response 403
 
     get :nuke_comment, { :id => 5 }, { :user => users(:bob)}
     assert_response 403
-      
+
     post :nuke_comment, { :id => 5 }, { :user => users(:bob)}
     assert_response :success
-    assert_equal num_comments -1, Comment.count    
+    assert_equal num_comments -1, Comment.count
   end
-  
+
   def test_comment_user_blank
     post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
     assert_response :success
 
-    comment = Comment.find_last_posted
+    comment = Article.find(2).comments.last
     assert comment
     assert_nil comment.user_id
-    
+
     get :read, {:id => 2}
     assert_response :success
     assert_no_tag :tag => "li",
        :attributes => { :class => "author_comment"}
-    
+
   end
-  
+
   def test_comment_user_set
     @request.session = { :user => users(:tobi) }
     post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
     assert_response :success
 
-    comment = Comment.find_last_posted
+    comment = Article.find(2).comments.last
     assert comment
     assert_equal users(:tobi), comment.user
 
@@ -210,7 +216,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
        :attributes => { :class => "author_comment"}
   end
 
-  def test_trackback_nuking 
+  def test_trackback_nuking
     num_comments = Trackback.count
 
     post :nuke_trackback, { :id => 7 }, {}
@@ -221,26 +227,26 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     post :nuke_trackback, { :id => 7 }, { :user => users(:bob)}
     assert_response :success
-    assert_equal num_comments -1, Trackback.count    
+    assert_equal num_comments -1, Trackback.count
   end
-  
+
   def test_no_settings
     Setting.destroy_all
     assert Setting.count.zero?
-    
+
     # save this because the AWS stuff needs it later
     old_config = $config
     $config = nil
 
     get :index
-    
+
     assert_redirect
     assert_redirected_to :controller => "admin/general", :action => "index"
-    
+
     # reassign so the AWS stuff doesn't barf
     $config = old_config
   end
-  
+
   def test_no_users_exist
     Setting.destroy_all
     assert Setting.count.zero?
@@ -251,7 +257,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     User.destroy_all
     assert User.count.zero?
-    
+
     get :index
     assert_redirect
     assert_redirected_to :controller => "accounts", :action => "signup"
@@ -264,24 +270,24 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :view_page, :name => 'page_one'
     assert_response :success
     assert_rendered_file "view_page"
-    
+
     get :view_page, :name => 'page one'
     assert_response 404
   end
-  
+
   def test_read_non_published
     get :read, :id => 4
     assert_response :success
     assert_template "error"
   end
-  
+
   def test_tags_non_published
     get :tag, :id => 'bar'
     assert_response :success
     assert_equal 1, assigns(:articles).size
     assert ! assigns(:articles).include?(@article4), "Unpublished article displayed"
   end
-  
+
   def test_gravatar
     assert ! config[:use_gravatar]
     get :read, :id => 1
@@ -307,16 +313,16 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :comment_preview
     assert_response :success
     assert_template nil
-    
+
     get :comment_preview, :comment => { :author => "bob", :body => "comment preview" }
     assert_response :success
     assert_template "comment_preview"
-    
+
     assert_tag :tag => "cite",
       :children => { :count => 1,
         :only => { :tag => "strong",
           :content => "bob" } }
-    
+
     assert_tag :tag => "p",
       :content => "comment preview"
   end
@@ -325,12 +331,12 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :read, :id => contents(:article1).id
     assert_response :success
     assert_template "read"
-    
+
     assert_tag :tag => "ol",
       :attributes => { :id => "commentList"},
       :children => { :count => contents(:article1).comments.to_a.select{|c| c.published?}.size,
         :only => { :tag => "li" } }
-        
+
     assert_tag :tag => "li",
        :attributes => { :class => "author_comment"}
 
@@ -354,15 +360,15 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_no_tag :tag => "ol",
       :attributes => { :id => "trackbackList" }
   end
-  
+
   def test_autodiscovery_default
     get :index
     assert_response :success
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
         :href => 'http://test.host/xml/rss20/feed.xml'}
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
         :href => 'http://test.host/xml/atom10/feed.xml'}
   end
 
@@ -370,52 +376,52 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def test_autodiscovery_article
     get :read, :id => 1
     assert_response :success
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
         :href => 'http://test.host/xml/rss20/article/1/feed.xml'}
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
         :href => 'http://test.host/xml/atom10/article/1/feed.xml'}
   end
 
   def test_autodiscovery_category
     get :category, :id => 'hardware'
     assert_response :success
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
         :href => 'http://test.host/xml/rss20/category/hardware/feed.xml'}
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
         :href => 'http://test.host/xml/atom10/category/hardware/feed.xml'}
   end
-  
+
   def test_autodiscovery_tag
     get :tag, :id => 'hardware'
     assert_response :success
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
         :href => 'http://test.host/xml/rss20/tag/hardware/feed.xml'}
-    assert_tag :tag => 'link', :attributes => 
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom', 
+    assert_tag :tag => 'link', :attributes =>
+      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
         :href => 'http://test.host/xml/atom10/tag/hardware/feed.xml'}
   end
-  
+
   def test_disabled_ajax_comments
     Setting.find_by_name("sp_allow_non_ajax_comments").update_attribute :value, 0
     config.reload
     assert_equal false, config[:sp_allow_non_ajax_comments]
-    
+
     post :comment, :id => 1, :comment => {'body' => 'This is posted without ajax', 'author' => 'bob' }
     assert_response 500
     assert_equal "non-ajax commenting is disabled", @response.body
 
-    @request.env['HTTP_X_REQUESTED_WITH'] = "XMLHttpRequest"  
+    @request.env['HTTP_X_REQUESTED_WITH'] = "XMLHttpRequest"
     post :comment, :id => 1, :comment => {'body' => 'This is posted *with* ajax', 'author' => 'bob' }
     assert_response :success
-    ajax_comment = Comment.find_last_posted
+    ajax_comment = Article.find(1).comments.last
     assert_equal "This is posted *with* ajax", ajax_comment.body
   end
-  
+
   def test_tag_max_article_count_is_first
     tags = Tag.find_all_with_article_counters
     assert tags.size > 1
@@ -437,10 +443,22 @@ class ArticlesControllerTest < Test::Unit::TestCase
       assert_equal "prefix#{(article*2).to_i}", calc_distributed_class(article, 5, "prefix", 0, 10)
     end
   end
-  
+
   def test_calc_distributed_class_offset
     (0..10).each do |article|
       assert_equal "prefix#{article+6}", calc_distributed_class(article, 10, "prefix", 6, 16)
     end
-  end  
+  end
+
+  def test_hide_future_article
+    @article = Article.find_last_posted
+
+    Article.create!(:title => "News from the future!",
+                    :body => "The future is cool!",
+                    :keywords => "future",
+                    :created_at => Time.now + 12.minutes)
+    get :index
+    assert_equal @article, assigns(:articles).first
+    assert @response.lifetime <= 12.minutes
+  end
 end
