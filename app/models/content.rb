@@ -3,15 +3,15 @@ require 'set'
 
 class Content < ActiveRecord::Base
   include Observable
-  
+
   belongs_to :text_filter
-  
+
   has_and_belongs_to_many :notify_users, :class_name => 'User',
-    :join_table => 'notifications', :foreign_key => 'notify_content_id', 
+    :join_table => 'notifications', :foreign_key => 'notify_content_id',
     :association_foreign_key => 'notify_user_id', :uniq => true
 
   serialize :whiteboard
-    
+
   @@content_fields = Hash.new
   @@html_map       = Hash.new
 
@@ -28,13 +28,13 @@ class Content < ActiveRecord::Base
             if html_map(field)
               self[html_map(field)] = nil
             end
-            notify_observers(self, field.to_sym)            
+            notify_observers(self, field.to_sym)
           end
           self[field]
         end
       end
     end
-    
+
     def html_map(field=nil)
       unless @@html_map[self]
         @@html_map[self] = Hash.new
@@ -57,6 +57,15 @@ class Content < ActiveRecord::Base
       find(what, options)
     end
 
+    def find_already_published(at = Time.now, options = { })
+      if at.respond_to?(:has_key?)
+        options = at
+        at = options[:at] || Time.now
+      end
+      options[:conditions] = merge_conditions(['created_at < ?', at], options[:conditions])
+      find_published(:all, options)
+    end
+
     def merge_conditions(*conditions)
       first_cond = conditions.shift.to_conditions_array
       conditions.compact.inject(first_cond) do |merged, cond|
@@ -66,9 +75,9 @@ class Content < ActiveRecord::Base
       end
     end
   end
-  
+
   def html_map(field=nil); self.class.html_map(field); end
-  
+
   def html(controller,what = :all)
     html_map.each do |field, html_field|
       if !self.send(field).blank? && self.send(html_field).blank?
@@ -83,7 +92,7 @@ class Content < ActiveRecord::Base
         end
       end
     end
-    
+
     if what == :all
       self.all_html rescue (self.body_html.to_s + (self.extended_html rescue nil).to_s)
     elsif self.class.html_map(what)
@@ -96,13 +105,13 @@ class Content < ActiveRecord::Base
   def whiteboard
     self[:whiteboard] ||= Hash.new
   end
-  
+
   alias_method :orig_text_filter=, :text_filter=; alias_method :orig_text_filter, :text_filter
-  
+
   def text_filter
     self.orig_text_filter ||= config[default_text_filter_config_key].to_text_filter
   end
-      
+
   def text_filter=(filter)
     self.orig_text_filter = filter.to_text_filter
   end

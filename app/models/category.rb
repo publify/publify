@@ -15,6 +15,10 @@ class Category < ActiveRecord::Base
       }, true]).each {|item| item.article_counter = item.article_counter.to_i }
   end
 
+  def self.find_by_permalink(*args)
+    self.send(:method_missing, :find_by_permalink, *args) || self.new
+  end
+
   def stripped_name
     self.name.to_url
   end

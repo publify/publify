@@ -16,6 +16,11 @@ class Tag < ActiveRecord::Base
     self.find(:first, :conditions => [%{name = ? OR display_name = ? OR display_name = ?}, tagname, tagname, name])
   end
 
+  def self.find_by_name(name, *args)
+    self.send(:method_missing, :find_by_name, name, *args) ||
+      self.new(:name => name)
+  end
+
   def ensure_naming_conventions
     if self.display_name.blank?
       self.display_name = self.name
