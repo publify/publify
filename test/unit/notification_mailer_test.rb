@@ -11,7 +11,7 @@ class NotificationMailerTest < Test::Unit::TestCase
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    
+
     @controller = nil
     @article = Article.find(1)
     @user = User.find(1)

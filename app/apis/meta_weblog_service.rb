@@ -65,7 +65,7 @@ end
 
 class MetaWeblogService < TypoWebService
   web_service_api MetaWeblogApi
-  before_invocation :authenticate  
+  before_invocation :authenticate
 
   def getCategories(blogid, username, password)
     Category.find(:all).collect { |c| c.name }
@@ -73,23 +73,23 @@ class MetaWeblogService < TypoWebService
 
   def getPost(postid, username, password)
     article = Article.find(postid)
-                    
+
     article_dto_from(article)
-  end    
+  end
 
   def getRecentPosts(blogid, username, password, numberOfPosts)
     Article.find(:all, :order => "created_at DESC", :limit => numberOfPosts).collect{ |c| article_dto_from(c) }
   end
 
   def newPost(blogid, username, password, struct, publish)
-    article = Article.new 
+    article = Article.new
     article.body        = struct['description'] || ''
     article.title       = struct['title'] || ''
     article.published   = publish
     article.author      = username
     article.created_at = struct['dateCreated'].to_time.getlocal rescue Time.now
     article.user        = @user
-    
+
     # Movable Type API support
     article.allow_comments = struct['mt_allow_comments'] || config[:default_allow_comments]
     article.allow_pings    = struct['mt_allow_pings'] || config[:default_allow_pings]
@@ -97,16 +97,16 @@ class MetaWeblogService < TypoWebService
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || config[:text_filter])
-    
+
     article.html(@controller)
-    
+
     if struct['categories']
       article.categories.clear
       Category.find(:all).each do |c|
         article.categories << c if struct['categories'].include?(c.name)
       end
     end
-    
+
     if article.save
       article.send_notifications(@controller)
       article.send_pings(server_url, article_url(article), struct['mt_tb_ping_urls'])
@@ -115,7 +115,7 @@ class MetaWeblogService < TypoWebService
       raise article.errors.full_messages * ", "
     end
   end
-    
+
   def deletePost(appkey, postid, username, password, publish)
     article = Article.find(postid)
     article.destroy
@@ -137,7 +137,7 @@ class MetaWeblogService < TypoWebService
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || config[:text_filter])
-    
+
     article.html(@controller)
 
     if struct['categories']
@@ -148,16 +148,16 @@ class MetaWeblogService < TypoWebService
     end
     RAILS_DEFAULT_LOGGER.info(struct['mt_tb_ping_urls'])
     article.send_pings(server_url, article_url(article), struct['mt_tb_ping_urls'])
-    article.save    
+    article.save
     true
   end
-    
+
   def newMediaObject(blogid, username, password, data)
     resource = Resource.create(:filename => data['name'], :mime => data['type'], :created_at => Time.now)
     resource.write_to_disk(data['bits'])
-      
+
     MetaWeblogStructs::Url.new("url" => controller.url_for(:controller => "/files/#{resource.filename}"))
-  end             
+  end
 
   def article_dto_from(article)
     MetaWeblogStructs::Article.new(
@@ -200,5 +200,5 @@ class MetaWeblogService < TypoWebService
 
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
-  end  
+  end
 end

@@ -22,7 +22,7 @@ class Resource < ActiveRecord::Base
       errors.add_to_base("You must specify a summary.") if itunes_summary.blank?
       errors.add_to_base("You must specify keywords.") if itunes_keywords.blank?
       if !itunes_duration.blank?
-        errors.add_to_base("You must specify duration in a HH:MM:SS format.") unless itunes_duration =~ /^(\d{0,2}:)?\d{1,2}:?\d{2}$/ 
+        errors.add_to_base("You must specify duration in a HH:MM:SS format.") unless itunes_duration =~ /^(\d{0,2}:)?\d{1,2}:?\d{2}$/
       end
       if !itunes_category.nil?
         errors.add_to_base("You can only specify one parent category, but you can choose multiple sub categories.") if itunes_category.length > 1
@@ -32,7 +32,7 @@ class Resource < ActiveRecord::Base
   def fullpath(file = nil)
     "#{RAILS_ROOT}/public/files/#{file.nil? ? filename : file}"
   end
-  
+
   def write_to_disk(up)
     begin
       # create the public/files dir if it doesn't exist
@@ -48,7 +48,7 @@ class Resource < ActiveRecord::Base
         end
         File.open(fullpath, "wb") { |f| f.write(bytes) }
       end
-      File.chmod(0644, fullpath) 
+      File.chmod(0644, fullpath)
       self.size = File.stat(fullpath).size rescue 0
       update
     rescue

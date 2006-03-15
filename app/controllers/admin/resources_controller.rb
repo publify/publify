@@ -1,6 +1,6 @@
 class Admin::ResourcesController < Admin::BaseController
   upload_status_for :file_upload, :status => :upload_status
-  
+
   def upload
     begin
       case request.method
@@ -9,7 +9,7 @@ class Admin::ResourcesController < Admin::BaseController
           @up = Resource.create(:filename => file.original_filename, :mime => file.content_type.chomp, :created_at => Time.now)
 
           @up.write_to_disk(file)
-    
+
           @message = 'File uploaded: '+file.size.to_s
           finish_upload_status "'#{@message}'"
       end
@@ -28,13 +28,13 @@ class Admin::ResourcesController < Admin::BaseController
     redirect_to :action => 'list'
   end
 
-  def update 
+  def update
     @resource = Resource.find(params[:resource][:id])
     @resource.attributes = params[:resource]
 
     unless params[:itunes_category].nil?
       itunes_categories = params[:itunes_category]
-      itunes_category_pre = Hash.new {|h, k| h[k] = [] } 
+      itunes_category_pre = Hash.new {|h, k| h[k] = [] }
       itunes_categories.each do |cat|
         cat_split = cat.split('-')
         itunes_category_pre[cat_split[0]] << cat_split[1] unless
@@ -52,7 +52,7 @@ class Admin::ResourcesController < Admin::BaseController
     end
     redirect_to :action => 'list'
   end
-  
+
   def set_mime
     @resource = Resource.find(params[:resource][:id])
     @resource.mime = params[:resource][:mime] unless params[:resource][:mime].empty?
@@ -63,7 +63,7 @@ class Admin::ResourcesController < Admin::BaseController
     end
     redirect_to :action => "list"
   end
-  
+
 
   def upload_status
     render :inline => "<%= upload_progress.completed_percent rescue 0 %> % complete", :layout => false

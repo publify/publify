@@ -19,7 +19,7 @@ Example:
 The first will produce an `<img>` tag showing image number 31367273 from Flickr using the thumbnail image size.  The image will be linked to the original image file from Flickr.  When the link is clicked, the larger picture will be overlaid
 on top of the existing page instead of taking you over to the Flickr site.
 The second will do the same but use the `src` URL as the large picture and the `thumbsrc` URL as the thumbnail image.
-To understand what this looks like, have a peek at Lokesh Dhakar's 
+To understand what this looks like, have a peek at Lokesh Dhakar's
 [examples](http://www.huddletogether.com/projects/lightbox/).
 It will also have a
 comment block attached if a description has been attached to the picture in Flickr or the caption attribute is used.
@@ -66,7 +66,7 @@ Common attributes:
     caption       = attrib['caption']
     title         = attrib['title']
     alt           = attrib['alt']
-    
+
     img           = attrib['img']
     if img
       thumbsize     = attrib['thumbsize'] || "square"
@@ -75,14 +75,14 @@ Common attributes:
       flickr = Flickr.new(FLICKR_KEY)
       flickrimage = Flickr::Photo.new(img)
       sizes = flickrimage.sizes
-    
+
       thumbdetails = sizes.find {|s| s['label'].downcase == thumbsize.downcase } || sizes.first
       displaydetails = sizes.find {|s| s['label'].downcase == displaysize.downcase } || sizes.first
 
       width  = thumbdetails['width']
       height = thumbdetails['height']
       thumburl    = thumbdetails['source']
-    
+
       displayurl    = displaydetails['source']
 
       caption ||= flickrimage.description
@@ -91,7 +91,7 @@ Common attributes:
     else
       thumburl = attrib['thumbsrc']
       displayurl = attrib['src']
-      
+
       if thumburl.empty?
         thumburl = displayurl
         width = 100
@@ -100,18 +100,18 @@ Common attributes:
         width = height = nil
       end
     end
-    
+
     if(caption.blank?)
       captioncode=""
     else
       captioncode = "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
     end
-    
+
     set_whiteboard controller, content unless content.nil?
-    
+
     %{<div style="#{style}" class="lightboxplugin"><a href="#{displayurl}" rel="lightbox" title="#{title}"><img src="#{thumburl}" #{%{width="#{width}" } unless width.nil?}#{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}</div>}
   end
-  
+
   def self.set_whiteboard controller, content
     content.whiteboard['page_header_lightbox'] = <<-HTML
 <link href="#{controller.request.relative_url_root}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />

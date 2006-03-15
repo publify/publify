@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  
+
   def index
     list
     render_action 'list'
@@ -18,7 +18,7 @@ class Admin::UsersController < Admin::BaseController
     if request.post? and @user.save
       flash[:notice] = 'User was successfully created.'
       redirect_to :action => 'list'
-    end      
+    end
   end
 
   def edit
@@ -37,5 +37,5 @@ class Admin::UsersController < Admin::BaseController
       redirect_to :action => 'list'
     end
   end
-  
+
 end

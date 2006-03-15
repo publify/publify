@@ -14,11 +14,11 @@ class Article
   def got_saved
     @saved
   end
-  
+
   protected
 
   before_save :set_saved_var
-  
+
   def set_saved_var
     @saved = true
   end
@@ -32,7 +32,7 @@ class AssumptionsTest < Test::Unit::TestCase
   # 'visible' save/update/whatever hooks in Activerecord. (Which would
   # be a shame, because we rely on it). So, we'll continue to check
   # that Rails does what we expect.
-  
+
   def test_adding_a_comment_saves_the_article
     a = Article.new(:title => 'A title', :body => 'Some body')
 
@@ -51,4 +51,4 @@ class AssumptionsTest < Test::Unit::TestCase
     a.comments << c
     assert a.got_saved
   end
-end 
+end

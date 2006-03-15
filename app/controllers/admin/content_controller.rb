@@ -28,7 +28,7 @@ class Admin::ContentController < Admin::BaseController
     if request.post?
       @article.author = session[:user].login
       @article.user = session[:user]
-      
+
       params[:attachments].each do |k,v|
         a = attachment_save(params[:attachments][k])
         @article.resources << a unless a.nil?
@@ -52,20 +52,20 @@ class Admin::ContentController < Admin::BaseController
     @article.attributes = params[:article]
     @categories = Category.find(:all, :order => 'UPPER(name)')
     @selected = @article.categories.collect { |cat| cat.id.to_i }
-    if request.post? 
+    if request.post?
       @article.categories.clear
       @article.categories << Category.find(params[:categories]) if params[:categories]
-      
+
       params[:attachments].each do |k,v|
-        a = attachment_save(params[:attachments][k])        
+        a = attachment_save(params[:attachments][k])
         @article.resources << a unless a.nil?
       end unless params[:attachments].nil?
 
-      if @article.save 
+      if @article.save
         flash[:notice] = 'Article was successfully updated.'
         redirect_to :action => 'show', :id => @article.id
       end
-    end      
+    end
   end
 
   def destroy
@@ -75,7 +75,7 @@ class Admin::ContentController < Admin::BaseController
       redirect_to :action => 'list'
     end
   end
-  
+
   def category_add
     @article = Article.find(params[:id])
     @category = Category.find(params[:category_id])
@@ -93,14 +93,14 @@ class Admin::ContentController < Admin::BaseController
     @article.save
     render :partial => 'show_categories'
   end
-  
+
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
     @article = Article.new
     @article.attributes = params[:article]
     render :layout => false
   end
-  
+
   def resource_add
     @article = Article.find(params[:id])
     @resource = Resource.find(params[:resource_id])

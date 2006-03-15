@@ -13,16 +13,16 @@ class AddTextfilters < ActiveRecord::Migration
         t.column :filters, :text
         t.column :params, :text
       end
-      
-      Bare13TextFilter.create(:name => 'none', :description => 'None', 
+
+      Bare13TextFilter.create(:name => 'none', :description => 'None',
                         :markup => 'none', :filters => [], :params => {})
-      Bare13TextFilter.create(:name => 'markdown', :description => 'Markdown', 
+      Bare13TextFilter.create(:name => 'markdown', :description => 'Markdown',
                         :markup => "markdown", :filters => [], :params => {})
-      Bare13TextFilter.create(:name => 'smartypants', :description => 'SmartyPants', 
+      Bare13TextFilter.create(:name => 'smartypants', :description => 'SmartyPants',
                         :markup => 'none', :filters => [:smartypants], :params => {})
-      Bare13TextFilter.create(:name => 'markdown smartypants', :description => 'Markdown with SmartyPants', 
+      Bare13TextFilter.create(:name => 'markdown smartypants', :description => 'Markdown with SmartyPants',
                         :markup => 'markdown', :filters => [:smartypants], :params => {})
-      Bare13TextFilter.create(:name => 'textile', :description => 'Textile', 
+      Bare13TextFilter.create(:name => 'textile', :description => 'Textile',
                         :markup => 'textile', :filters => [], :params => {})
     end
   end

@@ -26,7 +26,7 @@ class BoolifyContentAllowFoo < ActiveRecord::Migration
 
   def self.down
     STDERR.puts "Un-Boolifying contents.allow_(comments|pings)"
-    Bare35Content.transaction do 
+    Bare35Content.transaction do
       rename_column :contents, :allow_pings, :old_ap
       add_column :contents, :allow_pings, :integer
       rename_column :contents, :allow_comments, :old_ac

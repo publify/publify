@@ -3,34 +3,34 @@ module Net
   class Request < Struct.new(:host, :port, :query, :post_data, :headers)
     def post(query, post, headers = {})
       self.query = query
-      self.post_data = post    
+      self.post_data = post
       self.headers = headers
-    end    
+    end
   end
-  
+
   class Net::HTTP
-      
-    
-    def self.start(host, port) 
+
+
+    def self.start(host, port)
       request = Request.new
       request.host = host
-      request.port = port    
-      
+      request.port = port
+
       @pings ||= []
       @pings << request
 
       yield request
-    
+
     end
-    
+
     def self.pings
       @pings
     end
-    
+
     def self.next_response=(mock_response)
       @@response = mock_response
     end
-    
+
     def self.get_response(*args)
       @@response
     end

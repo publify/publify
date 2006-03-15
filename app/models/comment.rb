@@ -2,17 +2,17 @@ class Comment < Content
   include TypoGuid
 
   content_fields :body
-  
+
   belongs_to :article, :counter_cache => true
   belongs_to :user
 
   validates_presence_of :author, :body
   validates_against_spamdb :body, :url, :ip
   validates_age_of :article_id
- 
+
   def send_notification_to_user(controller, user)
     #if user.notify_on_comments?
-      if user.notify_via_email? 
+      if user.notify_via_email?
         EmailNotify.send_comment(controller, self, user)
       end
 
@@ -21,7 +21,7 @@ class Comment < Content
       end
     #end
   end
-  
+
   def send_notifications(controller)
     users = User.find_boolean(:all, :notify_on_comments)
     self.notify_users = users
@@ -29,9 +29,9 @@ class Comment < Content
       send_notification_to_user(controller,u)
     end
   end
- 
+
   protected
-  
+
   def body_html_postprocess(value, controller)
     controller.send(:sanitize, controller.send(:auto_link, value))
   end
@@ -39,10 +39,10 @@ class Comment < Content
   def default_text_filter_config_key
     'comment_text_filter'
   end
-  
+
   before_create :create_guid
   before_save :correct_url, :make_nofollow
-    
+
   def correct_url
     unless url.to_s.empty?
       unless url =~ /^http\:\/\//

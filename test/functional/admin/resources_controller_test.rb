@@ -22,7 +22,7 @@ class Admin::ResourcesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:resources)
     assert_not_nil assigns(:resources_pages)
   end
-  
+
   def test_destroy
     assert_not_nil Resource.find(1)
 
@@ -30,7 +30,7 @@ class Admin::ResourcesControllerTest < Test::Unit::TestCase
     assert_success
     assert_rendered_file 'destroy'
     assert_not_nil assigns(:file)
-    
+
     post :destroy, :id => 1
     assert_response 302
     follow_redirect
@@ -42,7 +42,7 @@ class Admin::ResourcesControllerTest < Test::Unit::TestCase
     assert_success
     assert_rendered_file 'new'
   end
-  
+
   def test_upload
     # unsure how to test upload constructs :'(
   end

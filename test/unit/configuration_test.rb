@@ -13,7 +13,7 @@ class ConfigurationTest < Test::Unit::TestCase
     config.reload
     assert_equal "test", config['test']
   end
-  
+
   def test_fields
     assert_equal ["blog_name",
      "blog_subtitle",
@@ -42,22 +42,22 @@ class ConfigurationTest < Test::Unit::TestCase
      "sp_url_limit",
      "text_filter",
      "theme",
-     "use_gravatar"], Configuration.fields.keys.sort 
+     "use_gravatar"], Configuration.fields.keys.sort
   end
-  
+
   def test_booleans
     assert_equal true, config[:sp_global]
     assert_equal true, config[:sp_allow_non_ajax_comments]
     assert_equal true, config[:default_allow_comments]
     assert_equal false, config[:default_allow_pings]
-    
+
     assert TrueClass === config[:sp_global]
     assert String === config[:blog_name]
     assert Fixnum === config[:limit_rss_display]
   end
-  
+
   def test_is_ok
-    assert config.is_ok?  
+    assert config.is_ok?
   end
-  
+
 end

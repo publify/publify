@@ -67,7 +67,7 @@ end
 
 class MovableTypeService < TypoWebService
   web_service_api MovableTypeApi
-  
+
   before_invocation :authenticate, :except => [:getTrackbackPings, :supportedMethods, :supportedTextFilters]
 
   def getRecentPostTitles(blogid, username, password, numberOfPosts)
@@ -77,12 +77,12 @@ class MovableTypeService < TypoWebService
             :userid      => blogid.to_s,
             :postid      => article.id.to_s,
             :title       => article.title
-          )      
+          )
     end
   end
 
   def getCategoryList(blogid, username, password)
-    Category.find_all.collect do |c| 
+    Category.find_all.collect do |c|
       MovableTypeStructs::CategoryList.new(
           :categoryId   => c.id,
           :categoryName => c.name
@@ -115,7 +115,7 @@ class MovableTypeService < TypoWebService
     MovableTypeApi.api_methods.keys.collect { |method| method.to_s }
   end
 
-  # Support for markdown and textile formatting dependant on the relevant 
+  # Support for markdown and textile formatting dependant on the relevant
   # translators being available.
   def supportedTextFilters()
     TextFilter.find(:all).collect do |filter|
@@ -137,7 +137,7 @@ class MovableTypeService < TypoWebService
   def publishPost(postid, username, password)
     article = Article.find(postid)
     article.published = true
-    article.save    
+    article.save
   end
 
   private
@@ -145,5 +145,5 @@ class MovableTypeService < TypoWebService
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"
   end
-  
+
 end

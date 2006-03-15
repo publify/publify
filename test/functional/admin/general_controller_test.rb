@@ -6,7 +6,7 @@ class Admin::GeneralController; def rescue_action(e) raise e end; end
 
 class Admin::GeneralControllerTest < Test::Unit::TestCase
   fixtures :users
-  
+
   def setup
     @controller = Admin::GeneralController.new
     @request    = ActionController::TestRequest.new

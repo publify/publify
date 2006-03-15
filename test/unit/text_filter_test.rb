@@ -44,7 +44,7 @@ class TextFilterTest < Test::Unit::TestCase
     assert !filters.include?(TextFilterPlugin::Macro)
     assert !filters.include?(TextFilterPlugin::PostProcess)
   end
-  
+
   def test_descriptions
     TextFilter.available_filters.each do |filter|
       assert filter.display_name.to_s.size > 0, "Blank display name for #{filter}"
@@ -80,10 +80,10 @@ class TextFilterTest < Test::Unit::TestCase
     assert types['other'].include?(Plugins::Textfilters::MacroPostController)
 
     # There shouldn't be any 'other' plugins coming from users; they
-    # should all be part of the core 
+    # should all be part of the core
     assert_equal 3, types['other'].size
   end
-  
+
   def test_map
     map = TextFilter.filters_map
 
@@ -112,11 +112,11 @@ class TextFilterTest < Test::Unit::TestCase
     assert help =~ /daringfireball/
     assert help =~ /<em>/
   end
-  
+
   def test_commenthelp
     filter = TextFilter.find_by_name('markdown')
     help = filter.commenthelp.to_s
-    
+
     assert help
     assert help.size>100
     assert help !~ /Flickr/

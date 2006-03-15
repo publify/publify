@@ -6,18 +6,18 @@ require 'net/https'
 
 class BackpackAPI
   attr_accessor :username, :token, :current_page_id
-  
+
   def initialize(username, token)
     @username, @token = username, token
     connect
   end
-  
+
   def connect(use_ssl = false)
     @connection = Net::HTTP.new("#{@username}.backpackit.com", use_ssl ? 443 : 80)
     @connection.use_ssl = use_ssl
     @connection.verify_mode = OpenSSL::SSL::VERIFY_NONE if use_ssl
   end
-  
+
   def page_id=(id)
     self.current_page_id = id
   end
@@ -25,9 +25,9 @@ class BackpackAPI
 
   def request(path, parameters = {}, second_try = false)
     parameters = { "token" => @token }.merge(parameters)
-    
+
     response = @connection.post("/ws/#{path}", parameters.to_yaml, "X-POST_DATA_FORMAT" => "yaml")
-    
+
     if response.code == "200"
       result = XmlSimple.xml_in(response.body)
       result.delete "success"
@@ -58,17 +58,17 @@ class BackpackAPI
     request "page/#{page_id}/items/update/#{item_id}", "item" => { "content" => content }
   end
   alias :ui :update_item
-  
+
   def destroy_item(item_id, page_id = current_page_id)
     request "page/#{page_id}/items/destroy/#{item_id}"
   end
   alias :di :destroy_item
-  
+
   def toggle_item(item_id, page_id = current_page_id)
     request "page/#{page_id}/items/toggle/#{item_id}"
   end
   alias :ti :toggle_item
-  
+
   def move_item(item_id, direction, page_id = current_page_id)
     request "page/#{page_id}/items/move/#{item_id}", "direction" => "move_#{direction}"
   end
@@ -140,12 +140,12 @@ class BackpackAPI
     request "pages/new", "page" => { "title" => title, "description" => body }
   end
   alias :cp :create_page
-  
+
   def show_page(page_id = current_page_id)
     request "page/#{page_id}"
   end
   alias :sp :show_page
-  
+
   def destroy_page(page_id = current_page_id)
     request "page/#{page_id}/destroy"
   end
@@ -160,31 +160,31 @@ class BackpackAPI
     request "page/#{page_id}/update_body", "page" => { "description" => body }
   end
   alias :ub :update_body
-  
+
   def link_page(linked_page_id, page_id = current_page_id)
     request "page/#{page_id}/link", "linked_page_id" => linked_page_id
   end
   alias :lip :link_page
-  
+
   def unlink_page(linked_page_id, page_id = current_page_id)
     request "page/#{page_id}/unlink", "linked_page_id" => linked_page_id
   end
   alias :ulip :unlink_page
-  
+
   def share_page(email_addresses, public_page = nil, page_id = current_page_id)
     parameters = { "email_addresses" => email_addresses }
     parameters = parameters.merge({ "page" => { "public" => public_page ? "1" : "0" }}) unless public_page.nil?
     request "page/#{page_id}/share", parameters
   end
-  
-  
+
+
   # Reminders ---
-  
+
   def list_reminders
     request "reminders"
   end
   alias :lr :list_reminders
-  
+
   def create_reminder(content, remind_at = "")
     request "reminders/create", "reminder" => { "content" => content, "remind_at" => remind_at }
   end

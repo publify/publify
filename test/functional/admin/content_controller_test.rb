@@ -58,17 +58,17 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal 1, new_article.categories.size
     assert_equal [1], new_article.categories.collect {|c| c.id}
     assert_equal 4, new_article.tags.size
-    
+
     assert_equal(1, emails.size)
     assert_equal('randomuser@example.com', emails.first.to[0])
   end
-    
+
   def test_create_filtered
     body = "body via *textile*"
     extended="*foo*"
     post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
     assert_redirected_to :action => 'show'
-    
+
     new_article = Article.find(:first, :order => "created_at DESC")
     assert_equal body, new_article.body
     assert_equal extended, new_article.extended
@@ -87,7 +87,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_update
     emails = ActionMailer::Base.deliveries
     emails.clear
-    
+
     body = "another *textile* test"
     post :edit, 'id' => 1, 'article' => {:body => body, :text_filter => 'textile'}
     assert_redirected_to :action => 'show', :id => 1
@@ -95,10 +95,10 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     article = Article.find(1)
     assert_equal "textile", article.text_filter.name
     assert_equal body, article.body
-    # Deliberately *not* using the mediating protocol, we want to ensure that the 
+    # Deliberately *not* using the mediating protocol, we want to ensure that the
     # body_html got reset to nil.
-    assert_nil article.body_html 
-    
+    assert_nil article.body_html
+
     assert_equal 0, emails.size
   end
 
@@ -107,7 +107,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
     get :destroy, 'id' => 1
     assert_success
-    
+
     post :destroy, 'id' => 1
     assert_redirected_to :action => 'list'
 
@@ -118,7 +118,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_category_add
     get :category_add, :id => 1, :category_id => 1
-    
+
     assert_rendered_file '_show_categories'
     assert_valid_record 'article'
     assert_valid_record 'category'
@@ -130,7 +130,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_category_remove
     get :category_remove, :id => 1, :category_id => 1
-    
+
     assert_rendered_file '_show_categories'
     assert_valid_record 'article'
     assert_valid_record 'category'
@@ -142,7 +142,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_resource_add
     get :resource_add, :id => 1, :resource_id => 1
-    
+
     assert_rendered_file '_show_resources'
     assert_valid_record 'article'
     assert_valid_record 'resource'
@@ -154,7 +154,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_resource_remove
     get :resource_remove, :id => 1, :resource_id => 1
-    
+
     assert_rendered_file '_show_resources'
     assert_valid_record 'article'
     assert_valid_record 'resource'
@@ -169,14 +169,14 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_rendered_file '_attachment'
     #assert_tag :tag => 'script'
   end
-  
+
   def test_attachment_box_remove
     get :attachment_box_remove, :id => 1
     assert_tag :tag => 'script', :attributes => {:type => 'text/javascript'}
   end
 
   def test_resource_container
-    get :show, :id => contents(:article1).id # article without attachments 
+    get :show, :id => contents(:article1).id # article without attachments
     Resource.find(:all).each do |resource|
       assert_tag( :tag => 'a',
                   :attributes =>{

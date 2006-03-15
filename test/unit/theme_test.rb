@@ -16,7 +16,7 @@ class ThemeTest < Test::Unit::TestCase
     assert_equal "### Azure\n\nTypo's default theme by [Justin Palmer][1]\n\n[1]: http://www.encytemedia.com/ \"Encyte Media\"\n",
       Theme.current.description
   end
-  
+
   def test_themes_root
     # Overridden in theme_mock
     assert_equal RAILS_ROOT + "/test/mocks/themes", Theme.themes_root
@@ -25,7 +25,7 @@ class ThemeTest < Test::Unit::TestCase
   def test_current_theme_path
     assert_equal Theme.themes_root + "/azure", Theme.current_theme_path
   end
-  
+
   def test_current
     assert_equal "azure", Theme.current.name
   end

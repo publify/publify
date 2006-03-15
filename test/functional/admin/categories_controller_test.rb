@@ -28,7 +28,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_tag :tag => "div",
       :attributes => { :id => "category_container" }
   end
-  
+
   def test_show
     get :show, 'id' => 1
     assert_rendered_file 'show'
@@ -63,7 +63,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     get :destroy, :id => 1
     assert_success
     assert_rendered_file 'destroy'
-    
+
     post :destroy, :id => 1
     assert_redirected_to :action => 'list'
 
@@ -76,7 +76,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_equal categories(:personal), Category.find(:first, :order => :position)
   end
-  
+
   def test_asort
     assert_equal categories(:software), Category.find(:first, :order => :position)
     get :asort
@@ -84,7 +84,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_template "_categories"
     assert_equal categories(:hardware), Category.find(:first, :order => :position)
   end
-  
+
   def test_category_container
     get :category_container
     assert_response :success
@@ -95,7 +95,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
           :children => { :count => 3,
             :only => { :tag => /t[dh]/ } } } }
   end
-  
+
   def test_reorder
     get :reorder
     assert_response :success

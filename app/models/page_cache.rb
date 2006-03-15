@@ -13,7 +13,7 @@ class PageCache < ActiveRecord::Base
   private
 
   after_destroy :expire_cache
-  
+
   def expire_cache
     # It'd be better to call expire_page here, except it's a
     # controller method and we can't get to it.
@@ -22,8 +22,8 @@ class PageCache < ActiveRecord::Base
     logger.info "Sweeping #{self.name}"
     delete_file(path)
   end
-  
+
   def delete_file(path)
-    File.delete(path) if File.file?(path)     
+    File.delete(path) if File.file?(path)
   end
 end

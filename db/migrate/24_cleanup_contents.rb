@@ -47,7 +47,7 @@ class CleanupContents < ActiveRecord::Migration
       end
     end
   end
-  
+
   def self.down
     # nothing
   end

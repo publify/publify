@@ -6,7 +6,7 @@ class Plugins::Sidebars::AmazonController < Sidebars::Plugin
   def self.description
     "Adds sidebar links to any amazon books linked in the body of the page"
   end
-  
+
   def self.default_config
     {'associate_id' => 'justasummary-20', 'maxlinks' => 4, 'title' => 'Cited books'}
   end
@@ -20,7 +20,7 @@ class Plugins::Sidebars::AmazonController < Sidebars::Plugin
       return
     end
   end
-  
+
   def configure
   end
 end

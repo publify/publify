@@ -4,7 +4,7 @@ class Plugins::Textfilters::MacroPostController < TextFilterPlugin
 
   def self.filtertext(controller,content,text,params)
     filterparams = params[:filterparams]
-    
+
     macros = TextFilter.available_filter_types['macropost']
     macros.inject(text) do |text,macro|
       macro.filtertext(controller,content,text,params)

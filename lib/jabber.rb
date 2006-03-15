@@ -2,7 +2,7 @@ require 'jabber4r/jabber4r'
 
 class JabberNotify
   @@jabber = nil
-  
+
   def self.send_message(user, subject, body, html)
     return if user.jabber.blank?
 
@@ -17,16 +17,16 @@ class JabberNotify
       logger.error "Attempt to use jabber failed: #{err.inspect}" if logger
     end
   end
-  
+
   private
   def self.session
     return @@jabber if @@jabber
-    
+
     address = config[:jabber_address]
     unless address =~ /\//
       address = address + '/typo'
     end
-        
+
     @@jabber ||= Jabber::Session.bind(address, config[:jabber_password])
   end
 end

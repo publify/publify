@@ -4,7 +4,7 @@ class Plugins::Textfilters::MacroPreController < TextFilterPlugin
 
   def self.filtertext(controller,content,text,params)
     filterparams = params[:filterparams]
-    
+
     macros = TextFilter.available_filter_types['macropre']
     macros.inject(text) do |text,macro|
       macro.filtertext(controller,content,text,params)

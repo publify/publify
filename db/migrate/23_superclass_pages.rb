@@ -29,7 +29,7 @@ class SuperclassPages < ActiveRecord::Migration
             :text_filter_id => p.text_filter_id)
         end
       end
-      
+
       drop_table :pages
     end
   end
@@ -49,7 +49,7 @@ class SuperclassPages < ActiveRecord::Migration
         t.column :text_filter_id, :integer
         t.column :whiteboard, :text
       end
-  
+
       Bare23Content.find(:all, :conditions => "type = 'Page'").each do |p|
         Bare23Page.create(
             :name => p.title,

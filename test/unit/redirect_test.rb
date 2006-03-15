@@ -8,7 +8,7 @@ class RedirectTest < Test::Unit::TestCase
     assert_kind_of Redirect, redirects(:foo_redirect)
     assert_kind_of Redirect, redirects(:archive1_redirect)
   end
-  
+
   def test_uniqueness
     assert_equal redirects(:foo_redirect), Redirect.find_by_from_path('foo/bar')
     redir = Redirect.new

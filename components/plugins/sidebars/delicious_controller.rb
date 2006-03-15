@@ -16,7 +16,7 @@ class Plugins::Sidebars::DeliciousController < Sidebars::Plugin
     @delicious = check_cache(Delicious, @sb_config['feed']) rescue nil
 
     return unless @delicious
-    
+
     if @sb_config['groupdate']
       @delicious.days = {}
       @delicious.items.each_with_index do |d,i|

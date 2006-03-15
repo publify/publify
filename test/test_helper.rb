@@ -7,7 +7,7 @@ User.salt = 'change-me'
 class Test::Unit::TestCase
   # Turn off transactional fixtures if you're working with MyISAM tables in MySQL
   self.use_transactional_fixtures = true
-  
+
   # Instantiated fixtures are slow, but give you @david where you otherwise would need people(:david)
   self.use_instantiated_fixtures  = false
 
@@ -22,18 +22,18 @@ class Test::Unit::TestCase
   def find_tag_in(source, conditions)
     HTML::Document.new(source).find(conditions)
   end
-  
+
   def assert_tag_in(source, opts)
     tag = find_tag_in(source, opts)
     assert tag, "expected tag, but no tag found matching #{opts.inspect} in:\n#{source.inspect}"
   end
-  
+
   def assert_no_tag_in(source, opts)
     tag = find_tag_in(source, opts)
     assert !tag, "expected no tag, but tag found matching #{opts.inspect} in:\n#{source.inspect}"
   end
 end
-  
+
 # Extend HTML::Tag to understand URI matching
 begin
   require 'html/document'
@@ -44,7 +44,7 @@ require 'uri'
 
 class HTML::Tag
   private
-  
+
   alias :match_condition_orig :match_condition unless private_method_defined? :match_condition_orig
   def match_condition(value, condition)
     case condition
@@ -54,7 +54,7 @@ class HTML::Tag
         match_condition_orig(value, condition)
     end
   end
-  
+
   def compare_uri(value, condition)
     valQuery = value.query
     condQuery = condition.query
@@ -62,7 +62,7 @@ class HTML::Tag
     condition.query = nil
     value == condition && compare_query(valQuery, condQuery)
   end
-  
+
   def compare_query(value, condition)
     def create_query_hash(str)
       str.split('&').inject({}) do |h,v|

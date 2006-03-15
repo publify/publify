@@ -5,7 +5,7 @@ class InitialSchema < ActiveRecord::Migration
         t.column :login, :string
         t.column :password, :string
       end
-      
+
       create_table :articles do |t|
         t.column :title, :string
         t.column :author, :string
@@ -23,27 +23,27 @@ class InitialSchema < ActiveRecord::Migration
         t.column :extended_html, :text
         t.column :permalink, :string
       end
-  
+
       add_index :articles, :permalink
-      
+
       create_table :categories do |t|
         t.column :name, :string
         t.column :position, :integer
       end
-      
+
       create_table :articles_categories, :id => false do |t|
         t.column :article_id, :integer
         t.column :category_id, :integer
         t.column :is_primary, :integer
       end
-      
+
       create_table :blacklist_patterns do |t|
         t.column :type, :string
         t.column :pattern, :string
       end
-      
+
       add_index :blacklist_patterns, :pattern
-      
+
       create_table :comments do |t|
         t.column :article_id, :integer
         t.column :title, :string
@@ -56,17 +56,17 @@ class InitialSchema < ActiveRecord::Migration
         t.column :created_at, :datetime
         t.column :updated_at, :datetime
       end
-      
+
       add_index :comments, :article_id
-      
+
       create_table :pings do |t|
         t.column :article_id, :integer
         t.column :url, :string
         t.column :created_at, :datetime
       end
-      
+
       add_index :pings, :article_id
-      
+
       create_table :resources do |t|
         t.column :size, :integer
         t.column :filename, :string
@@ -74,20 +74,20 @@ class InitialSchema < ActiveRecord::Migration
         t.column :created_at, :datetime
         t.column :updated_at, :datetime
       end
-      
+
       create_table :sessions do |t|
         t.column :sessid, :string
         t.column :data, :text
         t.column :created_at, :datetime
         t.column :updated_at, :datetime
       end
-      
+
       create_table :settings do |t|
         t.column :name, :string
         t.column :value, :string
         t.column :position, :integer
       end
-      
+
       create_table :trackbacks do |t|
         t.column :article_id, :integer
         t.column :blog_name, :string
@@ -98,7 +98,7 @@ class InitialSchema < ActiveRecord::Migration
         t.column :created_at, :datetime
         t.column :updated_at, :datetime
       end
-      
+
       add_index :trackbacks, :article_id
     end
   end

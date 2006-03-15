@@ -15,26 +15,26 @@ class AccountsController < ApplicationController
       end
     end
   end
-  
+
   def signup
-    redirect_to :action => "login" and return unless User.count.zero? 
-    
+    redirect_to :action => "login" and return unless User.count.zero?
+
     @user = User.new(params[:user])
-    
+
     if request.post? and @user.save
       session[:user] = User.authenticate(@user.login, params[:user][:password])
       flash[:notice]  = "Signup successful"
       redirect_to :controller => "admin/general", :action => "index"
       return
-    end      
-  end  
-  
+    end
+  end
+
   def logout
     session[:user] = nil
     cookies.delete :is_admin
   end
-    
+
   def welcome
   end
-  
+
 end

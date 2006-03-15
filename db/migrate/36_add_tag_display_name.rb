@@ -3,7 +3,7 @@ class AddTagDisplayName < ActiveRecord::Migration
     STDERR.puts 'Adding display name to tags'
     Tag.transaction do
       add_column :tags, :display_name, :string
-      
+
       unless $schema_generator
         Tag.find(:all).each do |tag|
           tag.display_name = tag.name
@@ -43,7 +43,7 @@ class AddTagDisplayName < ActiveRecord::Migration
           tag.save
         end
       end
-      
+
       remove_column :tags, :display_name
     end
   end

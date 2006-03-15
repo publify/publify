@@ -12,13 +12,13 @@ class TextFilter < ActiveRecord::Base
         objects.push o
       end
     end
-    
+
     objects
   end
 
   def self.available_filter_types
     filters=available_filters
-    types={"macropre" => [], 
+    types={"macropre" => [],
            "macropost" => [],
            "markup" => [],
            "postprocess" => [],
@@ -29,9 +29,9 @@ class TextFilter < ActiveRecord::Base
              TextFilterPlugin::MacroPost => "macropost",
              TextFilterPlugin::PostProcess => "postprocess",
              TextFilterPlugin => "other"}
-    
+
     filters.each { |filter| types[typemap[filter.superclass]].push(filter) }
-    
+
     types
   end
 
@@ -73,7 +73,7 @@ class TextFilter < ActiveRecord::Base
   def filter(text,filter_html=false)
     self.class.filter(text,self.filters,self.params,filter_html)
   end
-  
+
   def help
     filter_map = TextFilter.filters_map
     filter_types = TextFilter.available_filter_types
@@ -87,7 +87,7 @@ class TextFilter < ActiveRecord::Base
     help_text = help.collect do |f|
       f.help_text.blank? ? '' : "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
     end
-    
+
     help_text.join("\n")
   end
 
@@ -101,10 +101,10 @@ class TextFilter < ActiveRecord::Base
     help_text = help.collect do |f|
       f.help_text.blank? ? '' : "#{BlueCloth.new(f.help_text).to_html}\n"
     end
-    
+
     return help_text
   end
-  
+
   def to_s; self.name; end
 
   def to_text_filter; self; end

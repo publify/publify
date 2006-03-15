@@ -13,23 +13,23 @@ class CommentTest < Test::Unit::TestCase
     assert contents(:comment2).save
     assert_equal "http://www.google.com", contents(:comment2).url
   end
-  
+
   def test_save_spam
     assert contents(:spam_comment).save
     assert_equal "http://fakeurl.com", contents(:spam_comment).url
   end
-  
+
   def test_create_comment
     c = Comment.new
     c.author = 'Bob'
     c.article_id = 1
     c.body = 'nice post'
     c.ip = '1.2.3.4'
-    
+
     assert c.save
     assert c.guid.size > 15
   end
-  
+
   def test_reject_spam_rbl
     c = Comment.new
     c.author = "Spammer"
@@ -48,18 +48,18 @@ class CommentTest < Test::Unit::TestCase
     c.author = "Another Spammer"
     c.body = "Texas hold-em poker crap"
     c.url = "http://texas.hold-em.us"
-    
+
     assert ! c.save
     assert c.errors.invalid?('body')
   end
-  
+
   def test_reject_spam_uri_limit
     c = Comment.new
     c.author = "Yet Another Spammer"
     c.body = %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }
     c.url = "http://www.uri-limit.com"
     c.ip = "123.123.123.123"
-    
+
     assert ! c.save
     assert c.errors.invalid?('body')
   end
@@ -72,9 +72,9 @@ class CommentTest < Test::Unit::TestCase
 
     assert ! c.save
     assert c.errors.invalid?('article_id')
-      
+
     c.article = @article1
-      
+
     assert c.save
     assert c.errors.empty?
   end

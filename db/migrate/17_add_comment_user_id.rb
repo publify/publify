@@ -9,10 +9,10 @@ end
 class AddCommentUserId < ActiveRecord::Migration
   def self.up
     users = Hash.new
-    
+
     Bare17Comment.transaction do
       add_column :comments, :user_id, :integer
-      
+
       Bare17Comment.reset_column_information
       Bare17Comment.find(:all).each do |c|
         userid = nil

@@ -6,7 +6,7 @@ class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ArticlePreviewTest < Test::Unit::TestCase
   fixtures :contents, :users, :categories, :resources, :text_filters, :settings
-  
+
   def setup
     @controller = Admin::ContentController.new
     @request = ActionController::TestRequest.new

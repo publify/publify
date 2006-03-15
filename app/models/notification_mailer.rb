@@ -1,6 +1,6 @@
-class NotificationMailer < ActionMailer::Base 
+class NotificationMailer < ActionMailer::Base
   helper :mail
-   
+
   def article(controller, article, user)
     setup(controller, user)
     @subject        = "[#{config[:blog_name]}] New article: #{article.title}"
@@ -20,7 +20,7 @@ class NotificationMailer < ActionMailer::Base
     @body[:article]   = trackback.article
     @body[:trackback] = trackback
   end
-  
+
   private
   def setup(controller, user)
     @body[:user] = user
@@ -29,5 +29,5 @@ class NotificationMailer < ActionMailer::Base
     @from        = config[:email_from]
     @headers     = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
   end
-  
+
 end

@@ -6,23 +6,23 @@ class FortythreeTest < Test::Unit::TestCase
     @fortythree = Fortythree.new("", false)
     @fortythree.send(:parse, fixture)
   end
-  
+
   def test_parser
     assert_equal 3, @fortythree.things.size
   end
 
   def test_fields
-    assert_equal "43 Things: activity for anoop", @fortythree.title    
-    assert_equal "http://www.43things.com/people/view/anoop", @fortythree.link    
+    assert_equal "43 Things: activity for anoop", @fortythree.title
+    assert_equal "http://www.43things.com/people/view/anoop", @fortythree.link
   end
 
   def test_items
     assert_equal "Tidy my room and keep it that way", @fortythree.things[0].title
     assert_equal "http://www.43things.com/things/view/3500", @fortythree.things[0].link
   end
-  
+
   private
-  
+
   def fixture
     %{
   <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/">
@@ -62,5 +62,5 @@ class FortythreeTest < Test::Unit::TestCase
     </channel>
   </rss>
   }
-  end  
+  end
 end

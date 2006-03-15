@@ -1,8 +1,8 @@
 class Admin::CommentsController < Admin::BaseController
-  
+
   before_filter :get_article
   cache_sweeper :blog_sweeper
-  
+
   def index
     list
     render_action 'list'
@@ -18,21 +18,21 @@ class Admin::CommentsController < Admin::BaseController
 
   def new
     @comment = @article.comments.build(params[:comment])
-    
+
     if request.post? and @comment.save
       flash[:notice] = 'Comment was successfully created.'
       redirect_to :action => 'show', :id => @comment.id
-    end      
+    end
   end
 
   def edit
     @comment = @article.comments.find(params[:id])
     @comment.attributes = params[:comment]
-    
+
     if request.post? and @comment.save
       flash[:notice] = 'Comment was successfully updated.'
       redirect_to :action => 'show', :id => @comment.id
-    end      
+    end
   end
 
   def destroy
@@ -42,9 +42,9 @@ class Admin::CommentsController < Admin::BaseController
       redirect_to :action => 'list'
     end
   end
-  
+
   private
-  
+
     def get_article
       @article = Article.find(params[:article_id])
 
@@ -52,5 +52,5 @@ class Admin::CommentsController < Admin::BaseController
         redirect_to '/admin'
       end
     end
-  
+
 end

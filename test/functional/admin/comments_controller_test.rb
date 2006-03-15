@@ -12,7 +12,7 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
     @controller = Admin::CommentsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    
+
     @request.session = { :user => users(:tobi) }
   end
 
@@ -66,7 +66,7 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
 
     get :destroy, :id => 5, :article_id => 2
     assert_success
-    
+
     post :destroy, :id => 5, :article_id => 2
     assert_redirected_to :action => 'list'
 

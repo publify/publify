@@ -7,7 +7,7 @@ class AddUserEmail < ActiveRecord::Migration
     Bare2User.transaction do
       add_column :users, :email, :text
       add_column :users, :name, :text
-  
+
       Bare2User.reset_column_information
       Bare2User.find(:all).each do |u|
         u.name=u.login

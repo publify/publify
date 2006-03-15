@@ -65,7 +65,7 @@ class SuperclassTrackbacks < ActiveRecord::Migration
             :guid => tb.guid)
       end
       Bare22Content.delete_all "type = 'Trackback'"
-  
+
       add_index :trackbacks, :article_id
       remove_column :contents, :blog_name
     end

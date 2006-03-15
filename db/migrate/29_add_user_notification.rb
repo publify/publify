@@ -12,7 +12,7 @@ class AddUserNotification < ActiveRecord::Migration
 
       Bare29User.reset_column_information
       Bare29User.find(:all).each do |u|
-        # Definitions: 
+        # Definitions:
         #  notify_via_email: use email to deliver notifications
         #  notify_on_new_articles: send a notification message (email, etc) when new articles added.
         #  notify_on_comments: send a notification message when new comments are added to watched articles.

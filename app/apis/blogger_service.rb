@@ -26,7 +26,7 @@ class BloggerApi < ActionWebService::API::Base
   api_method :getUserInfo,
     :expects => [ {:appkey => :string}, {:username => :string}, {:password => :string} ],
     :returns => [BloggerStructs::User]
-    
+
   api_method :getUsersBlogs,
     :expects => [ {:appkey => :string}, {:username => :string}, {:password => :string} ],
     :returns => [[BloggerStructs::Blog]]
@@ -40,14 +40,14 @@ end
 
 class BloggerService < TypoWebService
   web_service_api BloggerApi
-  before_invocation :authenticate  
-  
+  before_invocation :authenticate
+
   def deletePost(appkey, postid, username, password, publish)
     article = Article.find(postid)
     article.destroy
     true
   end
-  
+
   def getUserInfo(appkey, username, password)
     BloggerStructs::User.new(
       :userid => username,
@@ -58,7 +58,7 @@ class BloggerService < TypoWebService
       :url => controller.url_for(:controller => "/")
     )
   end
-  
+
   def getUsersBlogs(appkey, username, password)
     [BloggerStructs::Blog.new(
       :url      => controller.url_for(:controller => "/"),
@@ -70,7 +70,7 @@ class BloggerService < TypoWebService
   def newPost(appkey, blogid, username, password, content, publish)
     title, categories, body = content.match(%r{^<title>(.+?)</title>(?:<category>(.+?)</category>)?(.+)$}mi).captures rescue nil
 
-    article = Article.new 
+    article = Article.new
     article.body        = body || content || ''
     article.title       = title || content.split.slice(0..5).join(' ') || ''
     article.published   = publish
@@ -92,5 +92,5 @@ class BloggerService < TypoWebService
     article.send_notifications(@controller)
     article.id
   end
-  
+
 end

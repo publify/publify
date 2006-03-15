@@ -13,7 +13,7 @@ class BoolifyPublished < ActiveRecord::Migration
         Bare34Content.reset_column_information
         Bare34Content.find(:all).each do |c|
           unless c.old_pub.nil?
-            c.published = (!c.old_pub.to_i.zero? ? true : false) 
+            c.published = (!c.old_pub.to_i.zero? ? true : false)
             c.save!
           end
         end

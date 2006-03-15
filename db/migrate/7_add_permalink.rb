@@ -24,7 +24,7 @@ class AddPermalink < ActiveRecord::Migration
     Bare7Article.transaction do
       add_column :categories, :permalink, :string
       add_index :categories, :permalink
-  
+
       Bare7Category.reset_column_information
       Bare7Category.find(:all).each do |c|
         c.permalink ||= c.stripped_name
@@ -36,7 +36,7 @@ class AddPermalink < ActiveRecord::Migration
         a.permalink = a.stripped_title() if a.attributes.include?("permalink") and a.permalink.blank?
         a.save!
       end
-      
+
     end
   end
 

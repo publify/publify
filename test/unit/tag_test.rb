@@ -35,7 +35,7 @@ class TagTest < Test::Unit::TestCase
 
     assert ! tag2.save, "Duplicate tag save did not fail"
     assert tag2.errors.invalid?('name'), "name field did not have error"
-    
+
     tag3 = Tag.create(:name => 'Monty Python')
     assert_kind_of Tag, tag3
     assert_equal 'montypython', tag3.name
@@ -56,10 +56,10 @@ class TagTest < Test::Unit::TestCase
     tags=Tag.find_all_with_article_counters(10)
 
     assert_equal 2, tags.size
-    
+
     assert_equal "foo", tags.first.name
     assert_equal 1, tags.last.article_counter
-    
+
     assert_equal "bar", tags.last.name
     assert_equal 2, tags.first.article_counter
   end

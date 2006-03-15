@@ -1,5 +1,5 @@
 class Admin::TrackbacksController < Admin::BaseController
-  
+
   before_filter :get_article
 
   def index
@@ -17,11 +17,11 @@ class Admin::TrackbacksController < Admin::BaseController
 
   def new
     @trackback = @article.trackbacks.build(params[:trackback])
-    
+
     if request.post? and @trackback.save
       flash[:notice] = 'Trackback was successfully created.'
       redirect_to :action => 'show', :id => @trackback.id
-    end      
+    end
   end
 
   def edit
@@ -30,7 +30,7 @@ class Admin::TrackbacksController < Admin::BaseController
     if request.post? and @trackback.save
       flash[:notice] = 'Trackback was successfully updated.'
       redirect_to :action => 'show', :id => @trackback.id
-    end      
+    end
   end
 
   def destroy
@@ -40,7 +40,7 @@ class Admin::TrackbacksController < Admin::BaseController
       redirect_to :action => 'list'
     end
   end
-  
+
   private
 
     def get_article

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # WordPress 1.5x converter for typo by Patrick Lenz <patrick@lenz.sh>
-# 
+#
 # MAKE BACKUPS OF EVERYTHING BEFORE RUNNING THIS SCRIPT!
 # THIS SCRIPT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND
 
@@ -10,7 +10,7 @@ require 'optparse'
 
 class WPMigrate
   attr_accessor :options
-  
+
   def initialize
     self.options = {}
     self.parse_options
@@ -26,12 +26,12 @@ class WPMigrate
     })
 
     puts "Converting #{wp_categories.size} categories.."
-    
+
     wp_categories.each do |cat|
       Category.create(cat) unless Category.find_by_name(cat['name'])
     end
   end
-  
+
   def convert_entries
     wp_entries = ActiveRecord::Base.connection.select_all(%{
       SELECT
@@ -49,9 +49,9 @@ class WPMigrate
       FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_posts`, `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_users`
       WHERE `#{self.options[:wp_prefix]}_users`.ID = `#{self.options[:wp_prefix]}_posts`.post_author
     })
-    
+
     puts "Converting #{wp_entries.size} entries.."
-    
+
     wp_entries.each do |entry|
       a = Article.new
       a.attributes = entry.reject { |k,v| k =~ /^(ID|post_category|body)/ }
@@ -65,7 +65,7 @@ class WPMigrate
       	a.body = body
       end
       a.save
-      
+
       # Assign primary category
       unless entry['post_category'].to_i.zero?
         puts "Assign primary category for entry #{entry['ID']}"
@@ -89,7 +89,7 @@ class WPMigrate
       }).each do |c|
         a.categories.push_with_attributes(Category.find_by_name(c['cat_name']), :is_primary => 0)
       end
-      
+
       # Fetch comments
       ActiveRecord::Base.connection.select_all(%{
         SELECT
@@ -106,7 +106,7 @@ class WPMigrate
       }).each do |c|
         a.comments.create(c)
       end
-      
+
       # Fetch trackbacks
       ActiveRecord::Base.connection.select_all(%{
         SELECT
@@ -120,7 +120,7 @@ class WPMigrate
         AND comment_type = 'trackback'
         AND comment_approved = '1'
       }).each do |c|
-        c['title'] = c['excerpt'].match("<(strong)>(.+?)</\\1>")[2] rescue c['blog_name']                                                                       
+        c['title'] = c['excerpt'].match("<(strong)>(.+?)</\\1>")[2] rescue c['blog_name']
         a.trackbacks.create(c)
       end
 
@@ -129,7 +129,7 @@ class WPMigrate
 
   def convert_prefs
     puts "Converting prefs"
-    
+
     ActiveRecord::Base.connection.select_all(%{
       SELECT
         (CASE option_name
@@ -139,12 +139,12 @@ class WPMigrate
          END) AS name,
         option_value AS value
       FROM `#{self.options[:wp_db]}`.`#{self.options[:wp_prefix]}_options`
-      WHERE option_name IN ('blogname', 'default_comment_status', 'default_ping_status')        
+      WHERE option_name IN ('blogname', 'default_comment_status', 'default_ping_status')
     }).each do |pref|
       if pref['name'] =~ /^default_allow/
         pref['value'] = (pref['value'] == "open" ? 1 : 0)
       end
-      
+
       begin
         Setting.find_by_name(pref['name']).update_attribute("value", pref['value'])
       rescue
@@ -173,7 +173,7 @@ class WPMigrate
       puts "See wordpress.rb --help for help."
       exit
     end
-    
+
     unless self.options.include?(:wp_prefix)
       self.options[:wp_prefix] = "wp"
     end

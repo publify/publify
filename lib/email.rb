@@ -9,7 +9,7 @@ class EmailNotify
       logger.error "Unable to send comment email: #{err.inspect}"
     end
   end
-  
+
   def self.send_article(controller, article, user)
     return if user.email.blank?
 
@@ -20,7 +20,7 @@ class EmailNotify
       logger.error "Unable to send article email: #{err.inspect}"
     end
   end
-  
+
   def self.send_message(user, email)
     email.content_type = "text/html; charset=utf-8"
     NotificationMailer.deliver(email)

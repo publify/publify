@@ -9,7 +9,7 @@ class ThemeControllerTest < Test::Unit::TestCase
     @controller = ThemeController.new
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
   end
-  
+
   def test_stylesheets
     get :stylesheets, :filename => "azure.css"
     assert_response :success
@@ -28,14 +28,14 @@ class ThemeControllerTest < Test::Unit::TestCase
     get :stylesheets, :filename => "../../../config/database.yml"
     assert_response 404
   end
-  
+
   def test_view_theming
     get :static_view_test
     assert_response :success
 
     assert @response.body =~ /Static View Test from azure/
   end
-    
+
   def disabled_test_javascript
     get :stylesheets, :filename => "typo.js"
     assert_response :success

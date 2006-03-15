@@ -6,7 +6,7 @@ class RedirectController; def rescue_action(e) raise e end; end
 
 class RedirectControllerTest < Test::Unit::TestCase
   fixtures :redirects
-  
+
   def setup
     @controller = RedirectController.new
     @request    = ActionController::TestRequest.new
@@ -19,7 +19,7 @@ class RedirectControllerTest < Test::Unit::TestCase
     assert_response 301
     assert_redirected_to "/someplace/else"
   end
-  
+
   def test_no_redirect
     get :redirect, :from => "something/that/isnt/there"
     assert_response 404

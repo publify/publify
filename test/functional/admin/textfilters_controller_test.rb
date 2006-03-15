@@ -11,18 +11,18 @@ class Admin::TextfiltersControllerTest < Test::Unit::TestCase
     @controller = Admin::TextfiltersController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    
-    @request.session = { :user => users(:tobi) }    
+
+    @request.session = { :user => users(:tobi) }
   end
 
   def test_new_without_filters
-    post :new, :textfilter => { :name => 'filterx', 
+    post :new, :textfilter => { :name => 'filterx',
       :description => 'Filter X', :markup => 'markdown' }
     assert_redirected_to :action => 'show'
   end
 
   def test_edit_without_filters
-    post :edit, :id => 1, :textfilter => { :name => 'filterx', 
+    post :edit, :id => 1, :textfilter => { :name => 'filterx',
       :description => 'Filter X', :markup => 'markdown' }
     assert_redirected_to :action => 'show'
   end

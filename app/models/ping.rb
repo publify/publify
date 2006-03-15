@@ -2,7 +2,7 @@ require 'rexml/document'
 
 class Ping < ActiveRecord::Base
   belongs_to :article
-  
+
   class Pinger
     def send_pingback_or_trackback
       begin
@@ -11,11 +11,11 @@ class Ping < ActiveRecord::Base
       rescue Timeout::Error => err
         return
       rescue => err
-        raise err 
+        raise err
         # Ignore
       end
     end
-        
+
     def pingback_url
       if @response["X-Pingback"]
         @response["X-Pingback"]
@@ -26,27 +26,27 @@ class Ping < ActiveRecord::Base
         nil
       end
     end
-    
+
     def origin_url
       @origin_url
     end
-    
+
     def response
       @response
     end
-    
+
     def ping
       @ping
     end
-    
+
     def article
       ping.article
     end
-    
+
     def config
       ping.config
     end
-    
+
     def send_xml_rpc(*args)
       ping.send(:send_xml_rpc, *args)
     end
@@ -73,13 +73,13 @@ class Ping < ActiveRecord::Base
         return false
       end
     end
-    
+
     def send_trackback
       ping.send_trackback(trackback_url, origin_url)
     end
-    
+
     private
-    
+
     def initialize(origin_url, ping)
       @origin_url = origin_url
       @ping       = ping
@@ -89,7 +89,7 @@ class Ping < ActiveRecord::Base
   def send_pingback_or_trackback(origin_url)
     Pinger.new(origin_url, self).send_pingback_or_trackback
   end
-  
+
   def send_trackback(trackback_url, origin_url)
     trackback_uri = URI.parse(trackback_url)
 
@@ -104,8 +104,8 @@ class Ping < ActiveRecord::Base
       http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
     end
   end
-  
-  
+
+
 
   def send_weblogupdatesping(server_url, origin_url)
     send_xml_rpc(self.url, "weblogUpdates.ping", config[:blog_name], server_url, origin_url)

@@ -23,7 +23,7 @@ class Plugins::Sidebars::StaticController < Sidebars::Plugin
 </ul>
 }}
   end
-  
+
   def configure
   end
 end

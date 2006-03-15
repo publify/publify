@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # TextPattern 1.x converter for typo by Patrick Lenz <patrick@lenz.sh>
-# 
+#
 # MAKE BACKUPS OF EVERYTHING BEFORE RUNNING THIS SCRIPT!
 # THIS SCRIPT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND
 
@@ -10,7 +10,7 @@ require 'optparse'
 
 class TXPMigrate
   attr_accessor :options
-  
+
   def initialize
     self.options = {}
     self.parse_options
@@ -28,12 +28,12 @@ class TXPMigrate
     })
 
     puts "Converting #{txp_categories.size} categories.."
-    
+
     txp_categories.each do |cat|
       Category.create(cat) unless Category.find_by_name(cat['name'])
     end
   end
-  
+
   def convert_entries
     txp_entries = ActiveRecord::Base.connection.select_all(%{
       SELECT
@@ -53,20 +53,20 @@ class TXPMigrate
         Category1, Category2
       FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`textpattern
     })
-    
+
     puts "Converting #{txp_entries.size} entries.."
-    
+
     txp_entries.each do |entry|
       a = Article.new
       a.attributes = entry.reject { |k,v| k =~ /^(Category|ID)/ }
       a.save
-      
+
       # Assign categories
       puts "Assign primary category for entry #{entry['ID']}"
       a.categories.push_with_attributes(Category.find_by_name(entry['Category1']), :is_primary => 1) rescue nil
       puts "Assign secondary category for entry #{entry['ID']}"
       a.categories.push_with_attributes(Category.find_by_name(entry['Category2']), :is_primary => 0) rescue nil
-      
+
       # Fetch comments
       ActiveRecord::Base.connection.select_all(%{
         SELECT
@@ -82,13 +82,13 @@ class TXPMigrate
       }).each do |c|
         a.comments.create(c)
       end
-      
+
     end
   end
 
   def convert_prefs
     puts "Converting prefs"
-    
+
     ActiveRecord::Base.connection.select_all(%{
       SELECT
         (CASE name
@@ -98,12 +98,12 @@ class TXPMigrate
          END) AS name,
         val AS value
       FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`txp_prefs
-      WHERE name IN ('sitename', 'comments_on_default', 'use_textile')        
+      WHERE name IN ('sitename', 'comments_on_default', 'use_textile')
     }).each do |pref|
-      if pref['name'] == "text_filter" and pref['value'].to_i > 0 
+      if pref['name'] == "text_filter" and pref['value'].to_i > 0
         pref['value'] = 'textile'
       end
-      
+
       begin
         Setting.find_by_name(pref['name']).update_attribute("value", pref['value'])
       rescue

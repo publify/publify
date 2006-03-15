@@ -6,12 +6,12 @@ class Admin::ThemesController; def rescue_action(e) raise e end; end
 
 class Admin::ThemesControllerTest < Test::Unit::TestCase
   fixtures :users
-  
+
   def setup
     @controller = Admin::ThemesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    
+
     @request.session = { :user => users(:tobi) }
   end
 

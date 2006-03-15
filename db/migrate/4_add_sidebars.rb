@@ -18,7 +18,7 @@ class AddSidebars < ActiveRecord::Migration
         t.column :staged_position, :integer
         t.column :staged_config, :text
       end
-      
+
       Bare4Sidebar.create(:active_position=>0, :controller=>'category')
       Bare4Sidebar.create(:active_position=>1, :controller=>'static')
       Bare4Sidebar.create(:active_position=>2, :controller=>'xml')

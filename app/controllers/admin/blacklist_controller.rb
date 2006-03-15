@@ -16,7 +16,7 @@ class Admin::BlacklistController < Admin::BaseController
 
   def new
     @blacklist_pattern = BlacklistPattern.new
-    
+
     if params[:blacklist_pattern].has_key?('type')
       @blacklist_pattern = case params[:blacklist_pattern][:type]
         when "StringPattern": StringPattern.new
@@ -25,11 +25,11 @@ class Admin::BlacklistController < Admin::BaseController
     end rescue nil
 
     @blacklist_pattern.attributes = params[:blacklist_pattern]
-    
+
     if request.post? and @blacklist_pattern.save
       flash[:notice] = 'BlacklistPattern was successfully created.'
       redirect_to :action => 'list'
-    end      
+    end
   end
 
   def edit
@@ -38,7 +38,7 @@ class Admin::BlacklistController < Admin::BaseController
     if request.post? and @blacklist_pattern.save
       flash[:notice] = 'BlacklistPattern was successfully updated.'
       redirect_to :action => 'list'
-    end      
+    end
   end
 
   def destroy
@@ -48,5 +48,5 @@ class Admin::BlacklistController < Admin::BaseController
       redirect_to :action => 'list'
     end
   end
-  
+
 end

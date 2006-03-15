@@ -52,7 +52,7 @@ class Admin::BlacklistControllerTest < Test::Unit::TestCase
 
     get :destroy, 'id' => 1
     assert_success
-    
+
     post :destroy, 'id' => 1
     assert_redirected_to :action => 'list'
 

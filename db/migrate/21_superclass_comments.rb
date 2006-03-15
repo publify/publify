@@ -38,7 +38,7 @@ class SuperclassComments < ActiveRecord::Migration
             :guid => c.guid,
             :whiteboard => c.whiteboard)
         end
-      end  
+      end
 
       remove_index :comments, :article_id
       drop_table :comments
@@ -64,7 +64,7 @@ class SuperclassComments < ActiveRecord::Migration
         t.column :guid, :string
         t.column :whiteboard, :text
       end
-  
+
       add_index :comments, :article_id
 
       Bare21Content.find(:all, :conditions => "type = 'Comment'").each do |c|

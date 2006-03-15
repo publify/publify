@@ -1,7 +1,7 @@
 module Migrator
   mattr_accessor :offer_migration_when_available
   @@offer_migration_when_available = true
-  
+
   def self.migrations_path
     "#{RAILS_ROOT}/db/migrate"
   end
@@ -17,12 +17,12 @@ module Migrator
   def self.max_schema_version
     available_migrations.size
   end
-  
+
   def self.db_supports_migrations?
     ActiveRecord::Base.connection.supports_migrations?
   end
-  
+
   def self.migrate(version = nil)
-    ActiveRecord::Migrator.migrate("#{migrations_path}/", version)    
-  end  
+    ActiveRecord::Migrator.migrate("#{migrations_path}/", version)
+  end
 end

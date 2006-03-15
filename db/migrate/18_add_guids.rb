@@ -11,7 +11,7 @@ class AddGuids < ActiveRecord::Migration
 
 #     Bare18Comment.reset_column_information
 #     Bare18Trackback.reset_column_information
-      
+
 # These blow up if you're running post-migration 20 code.
 # We can safely ignore them, because they'll get fixed
 # anyway when we convert comments and trackbacks into contents.
@@ -29,6 +29,6 @@ class AddGuids < ActiveRecord::Migration
     Bare18Comment.transaction do
       remove_column :comments, :guid
       remove_column :trackbacks, :guid
-    end 
+    end
   end
 end

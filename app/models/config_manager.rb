@@ -14,13 +14,13 @@ class ConfigManager
       settings[line.name.to_s] = normalize_value(line)
     end
   end
-    
+
   def [](key)
     value = settings[key.to_s]
-    (value.nil?) ? Configuration.fields[key.to_s].default : value rescue nil 
-  end  
+    (value.nil?) ? Configuration.fields[key.to_s].default : value rescue nil
+  end
 
-  def self.fields 
+  def self.fields
     @fields ||= {}
   end
 
@@ -28,7 +28,7 @@ class ConfigManager
 
   class Item < Struct.new(:name, :ruby_type, :default)
   end
-  
+
   def normalize_value(line)
     case (Configuration.fields[line.name.to_s].ruby_type rescue :string)
     when :bool
@@ -39,9 +39,9 @@ class ConfigManager
       line.value
     end
   end
-    
+
   def self.setting(name, type, default)
-    item = Configuration::Item.new 
+    item = Configuration::Item.new
     item.name, item.ruby_type, item.default = name, type, default
     fields[item.name.to_s] = item
   end
@@ -49,5 +49,5 @@ class ConfigManager
   def settings
     @hash ||= {}
   end
-  
+
 end

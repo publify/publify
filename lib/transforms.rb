@@ -1,9 +1,9 @@
 class String
   # Returns a-string-with-dashes when passed 'a string with dashes'.
-  # All special chars are stripped in the process  
+  # All special chars are stripped in the process
   def to_url
     return if self.nil?
-    
+
     self.downcase.tr("\"'", '').gsub(/\W/, ' ').strip.tr_s(' ', '-').tr(' ', '-')
   end
 
@@ -12,7 +12,7 @@ class String
   def nofollowify
     self.gsub(/<\s*a\s*(.+?)>/i, '<a \1 rel="nofollow">')
   end
-  
+
   # Strips any html markup from a string
   TYPO_TAG_KEY = TYPO_ATTRIBUTE_KEY = /[\w:_-]+/
   TYPO_ATTRIBUTE_VALUE = /(?:[A-Za-z0-9]+|(?:'[^']*?'|"[^"]*?"))/

@@ -7,7 +7,7 @@ class Theme
   def initialize(name, path)
     @name, @path = name, path
   end
-  
+
   def layout
     "../../themes/#{name}/layouts/default"
   end
@@ -15,7 +15,7 @@ class Theme
   def description
     File.read("#{path}/about.markdown") rescue "### #{name}"
   end
-  
+
   def self.themes_root
     RAILS_ROOT + "/themes"
   end
@@ -27,7 +27,7 @@ class Theme
   def self.current
     theme_from_path(current_theme_path)
   end
-  
+
   def self.theme_from_path(path)
     name = path.scan(/[-\w]+$/i).flatten.first
     self.new(name, path)
@@ -41,12 +41,12 @@ class Theme
 
   def self.installed_themes
     cache_theme_lookup ? @theme_cache ||= search_theme_directory : search_theme_directory
-  end  
+  end
 
   def self.search_theme_directory
     glob = "#{themes_root}/[a-zA-Z0-9]*"
     Dir.glob(glob).select do |file|
       File.readable?("#{file}/about.markdown")
     end.compact
-  end  
+  end
 end

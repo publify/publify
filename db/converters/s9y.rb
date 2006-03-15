@@ -12,7 +12,7 @@
 # Migrated users will have the default password "password", since the
 # MD5 hashes of S9Y cannot be converted to salted SHA1 hashes which are
 # used by Typo.
-# 
+#
 
 require File.dirname(__FILE__) + '/../../config/environment'
 require 'optparse'
@@ -171,7 +171,7 @@ def convert_users
       puts "See s9y.rb --help for help."
       exit
     end
-    
+
 	unless self.options.include?(:s9y_prefix)
       self.options[:s9y_prefix] = ""
     end

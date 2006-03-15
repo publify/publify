@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
 
-  # default   
+  # default
   map.index '', :controller  => 'articles', :action => 'index'
   map.admin 'admin', :controller  => 'admin/general', :action => 'index'
-  
+
   # admin/comments controller needs parent article id
   map.connect 'admin/comments/article/:article_id/:action/:id',
     :controller => 'admin/comments', :action => nil, :id => nil
@@ -12,18 +12,18 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'admin/content/:action/:id', :controller => 'admin/content'
 
   # make rss feed urls pretty and let them end in .xml
-  # this improves caches_page because now apache and webrick will send out the 
-  # cached feeds with the correct xml mime type. 
+  # this improves caches_page because now apache and webrick will send out the
+  # cached feeds with the correct xml mime type.
   map.xml 'xml/itunes/feed.xml', :controller => 'xml', :action => 'itunes'
   map.xml 'xml/articlerss/:id/feed.xml', :controller => 'xml', :action => 'articlerss'
   map.xml 'xml/commentrss/feed.xml', :controller => 'xml', :action => 'commentrss'
   map.xml 'xml/trackbackrss/feed.xml', :controller => 'xml', :action => 'trackbackrss'
-  
+
   map.xml 'xml/:format/feed.xml', :controller => 'xml', :action => 'feed', :type => 'feed'
   map.xml 'xml/:format/:type/feed.xml', :controller => 'xml', :action => 'feed'
   map.xml 'xml/:format/:type/:id/feed.xml', :controller => 'xml', :action => 'feed'
   map.xml 'xml/rss', :controller => 'xml', :action => 'feed', :type => 'feed', :format => 'rss'
-  
+
   # allow neat perma urls
   map.connect 'articles',
     :controller => 'articles', :action => 'index'
@@ -84,9 +84,9 @@ ActionController::Routing::Routes.draw do |map|
   # but that breaks too many things for Typo 2.5.
   map.connect 'theme/*stuff',
     :controller => 'theme', :action => 'error'
-     
+
   # Allow legacy urls to still work
   map.connect ':controller/:action/:id'
-  
+
   map.connect '*from', :controller => 'redirect', :action => 'redirect'
 end

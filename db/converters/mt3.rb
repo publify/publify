@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # MovableType 3.x converter for typo by Patrick Lenz <patrick@lenz.sh>
-# 
+#
 # MAKE BACKUPS OF EVERYTHING BEFORE RUNNING THIS SCRIPT!
 # THIS SCRIPT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND
 
@@ -10,7 +10,7 @@ require 'optparse'
 
 class MTMigrate
   attr_accessor :options
-  
+
   def initialize
     self.options = {}
     self.parse_options
@@ -27,16 +27,16 @@ class MTMigrate
     })
 
     puts "Converting #{mt_categories.size} categories.."
-    
+
     mt_categories.each do |cat|
       Category.create(cat) unless Category.find_by_name(cat['name'])
     end
   end
-  
+
   def convert_entries
     default_filter = translate_filter ActiveRecord::Base.connection.select_all(%{
       SELECT
-        blog_convert_paras 
+        blog_convert_paras
       FROM `#{self.options[:mt_db]}`.mt_blog
       WHERE blog_id = '#{self.options[:blog_id]}'
     })[0]["blog_convert_paras"]
@@ -54,14 +54,14 @@ class MTMigrate
         entry_keywords AS keywords,
         entry_created_on AS created_at,
         entry_modified_on AS updated_at,
-        author_name AS author        
+        author_name AS author
       FROM `#{self.options[:mt_db]}`.mt_entry, `#{self.options[:mt_db]}`.mt_author
       WHERE entry_blog_id = '#{self.options[:blog_id]}'
       AND author_id = entry_author_id
     })
-    
+
     puts "Converting #{mt_entries.size} entries.."
-    
+
     mt_entries.each do |entry|
       a = Article.new
       a.attributes = entry.reject { |k,v| k =~ /entry_id|convert_breaks/ }
@@ -84,7 +84,7 @@ class MTMigrate
       }).each do |c|
         a.categories.push_with_attributes(Category.find_by_name(c['category_label']), :is_primary => c['placement_is_primary'])
       end
-      
+
       # Fetch comments
       ActiveRecord::Base.connection.select_all(%{
         SELECT
@@ -93,13 +93,13 @@ class MTMigrate
           comment_url AS url,
           comment_text AS body,
           comment_created_on AS created_at,
-          comment_modified_on AS updated_at          
+          comment_modified_on AS updated_at
         FROM `#{self.options[:mt_db]}`.mt_comment
         WHERE comment_entry_id = #{entry['entry_id']}
       }).each do |c|
         a.comments.create(c)
       end
-      
+
       # Fetch trackbacks
       ActiveRecord::Base.connection.select_all(%{
         SELECT
@@ -121,13 +121,13 @@ class MTMigrate
 
   def convert_prefs
     puts "Converting prefs"
-    
+
     ActiveRecord::Base.connection.select_one(%{
       SELECT
         blog_name,
         blog_allow_comments_default AS default_allow_comments,
         blog_allow_pings_default AS default_allow_pings
-      FROM `#{self.options[:mt_db]}`.mt_blog         
+      FROM `#{self.options[:mt_db]}`.mt_blog
       WHERE blog_id = '#{self.options[:blog_id]}'
     }).each do |pref_name, pref_value|
       begin
@@ -136,7 +136,7 @@ class MTMigrate
         Setting.create({'name' => pref_name, 'value' => pref_value})
       end
     end
-    
+
   end
 
   def parse_options

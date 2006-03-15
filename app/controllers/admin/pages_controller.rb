@@ -27,12 +27,12 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def edit
-    @page = Page.find(params[:id])  
+    @page = Page.find(params[:id])
     @page.attributes = params[:page]
     if request.post? and @page.save
       flash[:notice] = 'Page was successfully updated.'
       redirect_to :action => 'show', :id => @page.id
-    end      
+    end
   end
 
   def destroy
@@ -42,12 +42,12 @@ class Admin::PagesController < Admin::BaseController
       redirect_to :action => 'list'
     end
   end
-  
+
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
     @page = Page.new
     @page.attributes = params[:page]
     render :layout => false
   end
-  
+
 end

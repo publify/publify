@@ -1,5 +1,5 @@
 class Admin::CategoriesController < Admin::BaseController
-  
+
   def index
     list
     render_action 'list'
@@ -15,13 +15,13 @@ class Admin::CategoriesController < Admin::BaseController
 
   def new
     @category = Category.new(params[:category])
-    
+
     if request.post? and @category.save
       flash[:notice] = 'Category was successfully created.'
     else
       flash[:error] = 'Category could not be created.'
     end
-    
+
     redirect_to :action => 'list'
   end
 
@@ -31,7 +31,7 @@ class Admin::CategoriesController < Admin::BaseController
     if request.post? and @category.save
       flash[:notice] = 'Category was successfully updated.'
       redirect_to :action => 'list'
-    end      
+    end
   end
 
   def destroy
@@ -51,7 +51,7 @@ class Admin::CategoriesController < Admin::BaseController
     Category.reorder_alpha
     render_component :action => "category_container"
   end
-  
+
   def category_container
     @categories = Category.find(:all, :order => :position)
     render :partial => "categories"

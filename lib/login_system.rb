@@ -1,9 +1,9 @@
-module LoginSystem 
-  
+module LoginSystem
+
   protected
-  
+
   # overwrite this if you want to restrict access to only a few actions
-  # or if you want to check if the user has the correct rights  
+  # or if you want to check if the user has the correct rights
   # example:
   #
   #  # only allow nonbobs
@@ -13,10 +13,10 @@ module LoginSystem
   def authorize?(user)
      true
   end
-  
+
   # overwrite this method if you only want to protect certain actions of the controller
   # example:
-  # 
+  #
   #  # don't protect the login and the about method
   #  def protect?(action)
   #    if ['action', 'about'].include?(action)
@@ -28,44 +28,44 @@ module LoginSystem
   def protect?(action)
     true
   end
-   
-  # login_required filter. add 
+
+  # login_required filter. add
   #
   #   before_filter :login_required
   #
-  # if the controller should be under any rights management. 
+  # if the controller should be under any rights management.
   # for finer access control you can overwrite
-  #   
+  #
   #   def authorize?(user)
-  # 
+  #
   def login_required
-    
+
     if not protect?(action_name)
-      return true  
+      return true
     end
 
     if session[:user] and authorize?(session[:user])
       return true
     end
 
-    # store current location so that we can 
+    # store current location so that we can
     # come back after the user logged in
     store_location
-  
+
     # call overwriteable reaction to unauthorized access
     access_denied
-    return false 
+    return false
   end
 
   # overwrite if you want to have special behavior in case the user is not authorized
-  # to access the current operation. 
+  # to access the current operation.
   # the default action is to redirect to the login screen
   # example use :
   # a popup window might just close itself for instance
   def access_denied
     redirect_to :controller=>"/accounts", :action =>"login"
-  end  
-  
+  end
+
   # store current uri in  the session.
   # we can return to this location by calling return_location
   def store_location

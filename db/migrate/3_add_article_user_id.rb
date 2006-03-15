@@ -14,7 +14,7 @@ class AddArticleUserId < ActiveRecord::Migration
     STDERR.puts "Linking article authors to users"
     Bare3Article.transaction do
       add_column :articles, :user_id, :integer
-  
+
       Bare3Article.reset_column_information
       Bare3Article.find(:all).each do |a|
         u=Bare3User.find_by_name(a.author)

@@ -4,8 +4,8 @@ class Page < Content
   validates_uniqueness_of :name
 
   content_fields :body
-  
+
   protected
-  
+
   def default_text_filter_config_key; 'text_filter'; end
 end

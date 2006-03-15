@@ -17,12 +17,12 @@ class Admin::TextfiltersController < Admin::BaseController
     @textfilters = TextFilter.filters_map
     @help_text = @textfilter.help
   end
-  
+
   def show_help
     @textfilter = TextFilter.find(params[:id])
     @help_text = @textfilter.help
   end
-  
+
   def macro_help
     @macro = TextFilter.available_filters.find { |filter| filter.short_name == params[:id] }
     @help_text = BlueCloth.new(@macro.help_text).to_html
@@ -51,7 +51,7 @@ class Admin::TextfiltersController < Admin::BaseController
     @textfilter = TextFilter.find(params[:id])
 
     setup_defaults
-    
+
     if request.post?
       @textfilter.attributes = params[:textfilter]
       if params.has_key?(:filter)
@@ -72,7 +72,7 @@ class Admin::TextfiltersController < Admin::BaseController
       redirect_to :action => 'list'
     end
   end
-  
+
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
     @textfilter = params[:textfilter]
@@ -85,7 +85,7 @@ class Admin::TextfiltersController < Admin::BaseController
     types=TextFilter.available_filter_types
 
     @markup_options = types['markup'].collect {|f| [f.short_name, f.display_name]}.sort_by{|f| f[0]}
-    @postprocess_options = types['postprocess'].collect do |f| 
+    @postprocess_options = types['postprocess'].collect do |f|
       [f.short_name, f.display_name, f.description, @textfilter.filters.include?(f.short_name.to_sym)]
     end.sort_by {|f| f[0]}
 

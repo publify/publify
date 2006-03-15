@@ -24,10 +24,10 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     get :list
     assert_response :success
     assert_template "list"
-    
+
     assert_not_nil assigns(:pages)
     assert_equal Page.count, assigns(:pages).size
-    
+
     assert_not_nil assigns(:page)
     assert_equal TextFilter.find_by_name(config[:text_filter]), assigns(:page).text_filter
   end
@@ -36,7 +36,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     get :show, :id => contents(:first_page).id
     assert_response :success
     assert_template "show"
-    
+
     assert_not_nil assigns(:page)
     assert_equal contents(:first_page), assigns(:page)
   end
@@ -46,7 +46,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "new"
     assert_not_nil assigns(:page)
-    
+
     assert_equal users(:tobi), assigns(:page).user
     assert_equal TextFilter.find_by_name(config[:text_filter]), assigns(:page).text_filter
 
@@ -56,29 +56,29 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     new_page = Page.find(:first, :order => "id DESC")
 
     assert_equal "new_page", new_page.name
-    
-    # XXX: Should we be testing this here -- makes assumptions about the workings of 
+
+    # XXX: Should we be testing this here -- makes assumptions about the workings of
     # the model that aren't necessarily always going to be valid.
     assert_nil new_page.body_html
 
     assert_redirected_to :action => "show", :id => new_page.id
-    
+
     # XXX: The flash is currently being made available improperly to tests (scoop)
     #assert_equal "Page was successfully created.", flash[:notice]
   end
-  
+
   def test_edit
     get :edit, :id => contents(:markdown_page).id
     assert_response :success
     assert_template "edit"
     assert_not_nil assigns(:page)
-    
+
     assert_equal contents(:markdown_page), assigns(:page)
 
     post :edit, :id => contents(:markdown_page).id, :page => { :name => "markdown-page", :title => "Markdown Page",
         :body => "Adding a [link](http://www.typosphere.org/) here" }
 
-    
+
     assert_equal "", contents(:markdown_page).reload.body_html.to_s
 
     assert_redirected_to :action => "show", :id => contents(:markdown_page).id

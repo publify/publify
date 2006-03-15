@@ -33,11 +33,11 @@ class BackendControllerTest < Test::Unit::TestCase
 
   def test_blogger_get_user_info
     args = [ 'foo', 'tobi', 'whatever' ]
-    
+
     result = invoke_layered :blogger, :getUserInfo, *args
     assert_equal 'tobi', result['userid']
   end
-  
+
   def test_blogger_new_post
     args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title>new post *body*', 1]
 
@@ -50,7 +50,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "textile", new_post.text_filter.name
     assert_equal users(:tobi), new_post.user
   end
-  
+
   def test_blogger_new_post_no_title
     args = [ 'foo', '1', 'tobi', 'whatever', 'new post body for post without title but with a lenghty body', 1]
 
@@ -91,21 +91,21 @@ class BackendControllerTest < Test::Unit::TestCase
   # Meta Weblog Tests
   def test_meta_weblog_get_categories
     args = [ 1, 'tobi', 'whatever' ]
-    
+
     result = invoke_layered :metaWeblog, :getCategories, *args
     assert_equal 'Software', result.first
   end
 
   def test_meta_weblog_get_post
     args = [ 1, 'tobi', 'whatever' ]
-    
+
     result = invoke_layered :metaWeblog, :getPost, *args
     assert_equal result['title'], 'Article 1!'
   end
 
   def test_meta_weblog_get_recent_posts
-    args = [ 1, 'tobi', 'whatever', 2 ]    
-    
+    args = [ 1, 'tobi', 'whatever', 2 ]
+
     result = invoke_layered :metaWeblog, :getRecentPosts, *args
     assert_equal result.size, 2
     assert_equal result.last['title'], 'Article 1!'
@@ -113,7 +113,7 @@ class BackendControllerTest < Test::Unit::TestCase
 
   def test_meta_weblog_delete_post
     args = [ 1, 2, 'tobi', 'whatever', 1 ]
-    
+
     result = invoke_layered :metaWeblog, :deletePost, *args
     assert_raise(ActiveRecord::RecordNotFound) { Article.find(2) }
   end
@@ -131,7 +131,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert result
 
     new_article = Article.find(1)
-    
+
     assert_equal article.title, new_article.title
     assert_equal article.body, new_article.body
     assert_equal "<p>this is a <strong>test</strong></p>", new_article.html(@controller, :body)
@@ -145,13 +145,13 @@ class BackendControllerTest < Test::Unit::TestCase
     article.extended = "extend me"
     article.text_filter = TextFilter.find_by_name("textile")
     article.created_at = Time.now.midnight
-    
+
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
     result = invoke_layered :metaWeblog, :newPost, *args
     assert result
     new_post = Article.find(result)
-    
+
     assert_equal "Posted via Test", new_post.title
     assert_equal "textile", new_post.text_filter.name
     assert_equal article.body, new_post.body
@@ -159,7 +159,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal article.extended, new_post.extended
     assert_equal "<p>extend me</p>", new_post.html(@controller, :extended)
     assert_equal Time.now.midnight.to_s, new_post.created_at.to_s
-    
+
 #    assert_equal 2, new_post.pings.size
 #    assert_equal 'http://ping.example.com/ping', new_post.pings[0].url
 #    assert_equal 'http://alsoping.example.com/rpc/ping', new_post.pings[1].url
@@ -171,9 +171,9 @@ class BackendControllerTest < Test::Unit::TestCase
       "type" => "image/jpeg",
       "bits" => Base64.encode64(File.open(File.expand_path(RAILS_ROOT) + "/public/images/header.jpg", "rb") { |f| f.read })
     )
-    
+
     args = [ 1, 'tobi', 'whatever', media_object ]
-    
+
     result = invoke_layered :metaWeblog, :newMediaObject, *args
     assert result['url'] =~ /#{media_object['name']}/
     assert File.unlink(File.expand_path(RAILS_ROOT) + "/public/files/#{media_object['name']}")
@@ -187,9 +187,9 @@ class BackendControllerTest < Test::Unit::TestCase
 
   # Movable Type Tests
 
-  def test_mt_get_category_list 
+  def test_mt_get_category_list
     args = [ 1, 'tobi', 'whatever' ]
-    
+
     result = invoke_layered :mt, :getCategoryList, *args
     assert result.map { |c| c['categoryName'] }.include?('Software')
   end
@@ -199,14 +199,14 @@ class BackendControllerTest < Test::Unit::TestCase
     article.categories << categories(:software)
 
     args = [ 1, 'tobi', 'whatever' ]
-    
+
     result = invoke_layered :mt, :getPostCategories, *args
     assert_equal result.first['categoryName'], article.categories.first['name']
   end
 
   def test_mt_get_recent_post_titles
-    args = [ 1, 'tobi', 'whatever', 2 ]    
-    
+    args = [ 1, 'tobi', 'whatever', 2 ]
+
     result = invoke_layered :mt, :getRecentPostTitles, *args
     assert_equal result.first['title'], Article.find(2).title
   end
@@ -214,7 +214,7 @@ class BackendControllerTest < Test::Unit::TestCase
   def test_mt_set_post_categories
     args = [ 2, 'tobi', 'whatever',
       [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => 3, 'isPrimary' => 1)] ]
-    
+
     result = invoke_layered :mt, :setPostCategories, *args
     assert_equal [categories(:personal)], Article.find(2).categories
 
@@ -233,7 +233,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert result.map {|f| f['label']}.include?('Markdown')
     assert result.map {|f| f['label']}.include?('Textile')
   end
-  
+
   def test_mt_supported_methods
     result = invoke_layered :mt, :supportedMethods
     assert_equal 8, result.size
@@ -242,9 +242,9 @@ class BackendControllerTest < Test::Unit::TestCase
 
   def test_mt_get_trackback_pings
     args = [ 1 ]
-    
+
     result = invoke_layered :mt, :getTrackbackPings, *args
-    
+
     assert_equal result.first['pingTitle'], 'Trackback Entry'
   end
 
@@ -252,9 +252,9 @@ class BackendControllerTest < Test::Unit::TestCase
     args = [ 4, 'tobi', 'whatever' ]
 
     assert (not Article.find(4).published?)
-    
+
     result = invoke_layered :mt, :publishPost, *args
-    
+
     assert result
     assert Article.find(4).published?
   end

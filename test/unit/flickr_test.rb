@@ -1,42 +1,42 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class FlickrTest < Test::Unit::TestCase
-  
+
   def setup
     @flickr = FlickrAggregation.new("",false)
-    @flickr.send(:parse, fixture)    
+    @flickr.send(:parse, fixture)
   end
 
   # Replace this with your real tests.
-  def test_parser    
-    assert_equal 6, @flickr.pics.size    
+  def test_parser
+    assert_equal 6, @flickr.pics.size
   end
-  
-  def test_random_chooser   
+
+  def test_random_chooser
     assert_equal 4, @flickr.choose(4).size
   end
-  
-  
+
+
   def test_fields
-    assert_equal "xal's Photos", @flickr.title    
-    assert_equal "http://www.flickr.com/photos/40235412@N00/", @flickr.link    
-    assert_equal "A feed of xal's Photos", @flickr.description    
+    assert_equal "xal's Photos", @flickr.title
+    assert_equal "http://www.flickr.com/photos/40235412@N00/", @flickr.link
+    assert_equal "A feed of xal's Photos", @flickr.description
   end
-  
+
   def test_image
-    assert_equal "p1010009", @flickr.pics[0].title    
-    assert_equal "http://www.flickr.com/photos/40235412@N00/4903142/", @flickr.pics[0].link    
-    assert_not_nil @flickr.pics[0].description    
-    assert_equal Time.parse("Wed, 16 Feb 2005 07:15:48 -0800"), @flickr.pics[0].date     
+    assert_equal "p1010009", @flickr.pics[0].title
+    assert_equal "http://www.flickr.com/photos/40235412@N00/4903142/", @flickr.pics[0].link
+    assert_not_nil @flickr.pics[0].description
+    assert_equal Time.parse("Wed, 16 Feb 2005 07:15:48 -0800"), @flickr.pics[0].date
   end
-  
+
   def test_image_desc_parsers
     assert_equal "http://photos3.flickr.com/4903142_ada4539ae8_m.jpg", @flickr.pics[0].image
-    assert_equal "http://photos3.flickr.com/4903142_ada4539ae8_t.jpg", @flickr.pics[0].thumb    
+    assert_equal "http://photos3.flickr.com/4903142_ada4539ae8_t.jpg", @flickr.pics[0].thumb
   end
-  
+
   private
-  
+
   def fixture
     %{<?xml version="1.0" encoding="utf-8"?>
     <rss version="2.0">
@@ -130,5 +130,5 @@ class FlickrTest < Test::Unit::TestCase
     </rss>
 }
   end
-  
+
 end

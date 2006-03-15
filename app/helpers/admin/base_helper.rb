@@ -6,7 +6,7 @@ module Admin::BaseHelper
     for key,value in flash
       output << "<span class=\"#{key.to_s.downcase}\">#{value}</span>"
     end if flash
-      
+
     output.join("<br/>\n")
   end
 
@@ -16,10 +16,10 @@ module Admin::BaseHelper
       for key,value in @tasks
    	  output << "<a href=\"#{value}\">#{key}</a>"
    	end if @tasks
-   	  
+
    	output.join("<br/>\n")
   end
-       
+
   def current_user_notice
     unless session[:user]
       link_to "log in", :controller => "/accounts", :action=>"login"
@@ -28,14 +28,14 @@ module Admin::BaseHelper
     end
   end
 
-  def tab(label, options = {})    
+  def tab(label, options = {})
     if controller.controller_name =~ /#{options[:controller].split('/').last}/
       content_tag :li, link_to(label, options, {"class"=> "active"}), {"class"=> "active"}
     else
-      content_tag :li, link_to(label, options)      
-    end    
-  end    
-  
+      content_tag :li, link_to(label, options)
+    end
+  end
+
   def cancel(url = {:action => 'list'})
     link_to "Cancel", url
   end
@@ -50,34 +50,34 @@ module Admin::BaseHelper
 
   def link_to_show(record)
     link_to image_tag('go'), :action => 'show', :id => record.id
-  end  
+  end
 
   def link_to_edit(record)
     link_to image_tag('go'), :action => 'edit', :id => record.id
-  end  
+  end
 
   def link_to_destroy(record)
     link_to image_tag('delete'), :action => 'destroy', :id => record.id
-  end    
+  end
 
   def text_filter_options
     TextFilter.find(:all).collect do |filter|
       [ filter.description, filter ]
     end
   end
-  
+
   def alternate_class
     @class = @class != '' ? '' : 'class="shade"'
   end
-  
+
   def reset_alternation
     @class = nil
   end
-  
+
   def task_quickpost(title)
     content_tag :li, link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
-  
+
   def task_quicknav(title)
     content_tag :li, link_to_function(title, toggle_effect('quick-navigate', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
@@ -117,7 +117,7 @@ module Admin::BaseHelper
   def task_edit_resource_metadata(title,id)
     link_to_function(title, toggle_effect('edit-resource-metadata-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
-  
+
   def task_edit_resource_mime(title,id)
     link_to_function(title, toggle_effect('edit-resource-mime-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
