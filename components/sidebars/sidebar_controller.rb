@@ -36,7 +36,7 @@ class Sidebars::Plugin < ApplicationController
   def index
     @sidebar=params['sidebar']
     @sb_config = self.class.default_config
-    @sb_config.merge! @sidebar.active_config
+    @sb_config.merge!(@sidebar.active_config || {})
     content
     render :action=>'content' unless performed?
   end
@@ -63,7 +63,9 @@ class Sidebars::Plugin < ApplicationController
 
   private
   def sb_config(key)
-    @sidebar.active_config[key.to_s]
+    config = @sidebar.class.default_config
+    config.merge!(@sidebar.active_config || {})
+    config[key.to_s]
   end
 
   # Horrid hack to make check_cache happy
