@@ -16,7 +16,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.find_by_permalink(*args)
-    self.send(:method_missing, :find_by_permalink, *args) || self.new
+    super || new
   end
 
   def stripped_name
