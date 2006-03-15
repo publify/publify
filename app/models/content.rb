@@ -63,6 +63,7 @@ class Content < ActiveRecord::Base
         at = options[:at] || Time.now
       end
       options[:conditions] = merge_conditions(['created_at < ?', at], options[:conditions])
+      options[:order] ||= 'created_at DESC'
       find_published(:all, options)
     end
 
