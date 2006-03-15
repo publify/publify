@@ -1,0 +1,36 @@
+#!/usr/bin/ruby
+
+require 'fileutils'
+
+def filelint(filename, fix = false)
+  newfile = ''
+  File.open(filename) do |file|
+    file.readlines.each_with_index do |line, lineno|
+      if(line=~/^.*[ \t]+$/)
+        puts "#{filename}:#{lineno+1} Trailing whitespace"
+        line.gsub!(/[ \t]*$/,'')
+      end
+      if(line.chomp == line)
+        puts "#{filename}:#{lineno+1} No trailing newline"
+        line << "\n"
+      end
+      newfile << line
+    end 
+  end
+  
+  if fix
+    newname = "#{filename}.new"
+    File::unlink("#{filename}.bak") rescue nil
+    File.open(newname,'w').write(newfile)
+    stat = File.stat(filename)
+    File.chmod(stat.mode, newname)
+    FileUtils.ln filename, "#{filename}.bak"
+    FileUtils.ln newname, filename, :force => true
+    File::unlink(newname)
+  end
+  
+end
+  
+ARGV.each do |f|  
+  filelint(f,true)
+end
