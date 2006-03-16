@@ -5,7 +5,15 @@
 
 require File.dirname(__FILE__) + '/../../config/environment'
 require 'optparse'
-require 'feed_tools'
+begin
+  require 'feed_tools'
+rescue LoadError
+  STDERR.puts <<-EOF
+This converter requires feedtools to be installed.
+Please run `gem install feedtools` and try again.
+EOF
+  exit 1
+end
 
 class FeedMigrate
   attr_accessor :options
