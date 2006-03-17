@@ -10,8 +10,8 @@ class AddBlogObject < ActiveRecord::Migration
   def self.up
     begin
       STDERR.puts "Adding a blogs table"
-      create_table :blogs do
-        # Do nothing
+      create_table :blogs do |t|
+	t.column :dummy, :string
       end
       Bare38Blog.reset_column_information
 
@@ -31,6 +31,7 @@ class AddBlogObject < ActiveRecord::Migration
           setting.save!
         end
       end
+      remove_column :blogs, :dummy
     rescue Exception => e
       STDERR.puts("Rolling back the changes")
       drop_table(:blogs) rescue nil
