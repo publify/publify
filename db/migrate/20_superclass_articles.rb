@@ -20,6 +20,8 @@ end
 class SuperclassArticles < ActiveRecord::Migration
   def self.up
     STDERR.puts "Merging Articles into Contents table"
+    config = ActiveRecord::Base.configurations
+
     Bare20Article.transaction do
       create_table :contents do |t|
 #       ActiveRecord::Base.connection.send(:create_table, [:contents]) do |t|
@@ -42,6 +44,10 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :guid, :string
         t.column :text_filter_id, :integer
         t.column :whiteboard, :text
+      end
+
+      if config[RAILS_ENV]['adapter] == 'postgresql'
+        execute "select nextval('contents_id_seq')"
       end
 
       if not $schema_generator
@@ -72,7 +78,6 @@ class SuperclassArticles < ActiveRecord::Migration
           t.save!
         end
 
-        config = ActiveRecord::Base.configurations
         if config[RAILS_ENV]['adapter'] == 'postgresql'
           STDERR.puts "Resetting PostgreSQL sequences"
           execute "select setval('contents_id_seq',max(id)) from contents"
