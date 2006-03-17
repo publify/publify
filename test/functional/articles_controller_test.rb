@@ -14,7 +14,7 @@ class Content
 end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :contents, :categories, :settings, :users, :articles_categories, :text_filters, :articles_tags, :tags
+  fixtures :contents, :categories, :blogs, :users, :articles_categories, :text_filters, :articles_tags, :tags
   include ArticlesHelper
 
   def setup
@@ -26,8 +26,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
                     :keywords => "future",
                     :created_at => Time.now + 12.minutes)
 
-    # Complete settings fixtures
-    config.reload
   end
 
   # Category subpages
@@ -54,7 +52,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_simple_tag_pagination
-    settings(:limit_article_display).update_attribute(:value, 1)
+    this_blog.limit_article_display = 1
     get :tag, :id => "foo"
     assert_equal 1, assigns(:articles).size
     assert_tag(:tag => 'p',
@@ -124,7 +122,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_spam_markdown_smarty
-    settings(:comment_text_filter).update_attribute(:value, "markdown smartypants")
+    this_blog.comment_text_filter = "markdown smartypants"
     test_comment_spam1
   end
 
@@ -150,17 +148,17 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_spam2
-    comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com["'] rel=["']nofollow["']>spammy goodness</a></p>}, 'Link to "spammy goodness":http://spammer.example.com'
+    comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com['"] rel=["']nofollow['"]>spammy goodness</a></p>}, 'Link to "spammy goodness":http://spammer.example.com'
   end
 
   def test_comment_xss1
-    settings(:comment_text_filter).update_attribute(:value, "none")
+    this_blog.comment_text_filter = "none"
     comment_template_test %{Have you ever &lt;script lang='javascript'>alert("foo");&lt;/script> been hacked?},
     %{Have you ever <script lang="javascript">alert("foo");</script> been hacked?}
   end
 
   def test_comment_xss2
-    settings(:comment_text_filter).update_attribute(:value, "none")
+    this_blog.comment_text_filter = "none"
     comment_template_test "Have you ever <a href='#' rel=\"nofollow\">been hacked?</a>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
   end
 
@@ -231,29 +229,17 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_no_settings
-    Setting.destroy_all
-    assert Setting.count.zero?
-
-    # save this because the AWS stuff needs it later
-    old_config = $config
-    $config = nil
+    this_blog.update_attribute(:settings, { })
 
     get :index
 
     assert_redirect
     assert_redirected_to :controller => "admin/general", :action => "index"
 
-    # reassign so the AWS stuff doesn't barf
-    $config = old_config
   end
 
   def test_no_users_exist
-    Setting.destroy_all
-    assert Setting.count.zero?
-
-    # save this because the AWS stuff needs it later
-    old_config = $config
-    $config = nil
+    this_blog.update_attribute(:settings, { })
 
     User.destroy_all
     assert User.count.zero?
@@ -262,8 +248,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_redirect
     assert_redirected_to :controller => "accounts", :action => "signup"
 
-    # reassign so the AWS stuff doesn't barf
-    $config = old_config
   end
 
   def test_pages_static
@@ -289,7 +273,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_gravatar
-    assert ! config[:use_gravatar]
+    assert ! this_blog.use_gravatar
     get :read, :id => 1
     assert_response :success
     assert_template "read"
@@ -297,8 +281,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
       :attributes => { :class => "gravatar" }
 
     # Switch gravatar integration to on
-    Setting.find_by_name("use_gravatar").update_attribute :value, 1
-    config.reload
+    this_blog.use_gravatar = true
+    assert this_blog.use_gravatar
     get :read, :id => 1
     assert_response :success
     assert_template "read"
@@ -407,9 +391,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_disabled_ajax_comments
-    Setting.find_by_name("sp_allow_non_ajax_comments").update_attribute :value, 0
-    config.reload
-    assert_equal false, config[:sp_allow_non_ajax_comments]
+    this_blog.sp_allow_non_ajax_comments = false
+    assert_equal false, this_blog.sp_allow_non_ajax_comments
 
     post :comment, :id => 1, :comment => {'body' => 'This is posted without ajax', 'author' => 'bob' }
     assert_response 500

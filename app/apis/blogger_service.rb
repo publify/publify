@@ -63,7 +63,7 @@ class BloggerService < TypoWebService
     [BloggerStructs::Blog.new(
       :url      => controller.url_for(:controller => "/"),
       :blogid   => 1,
-      :blogName => config[:blog_name]
+      :blogName => this_blog.blog_name
     )]
   end
 
@@ -77,9 +77,9 @@ class BloggerService < TypoWebService
     article.author      = username
     article.created_at  = Time.now
     article.user        = @user
-    article.allow_comments = config[:default_allow_comments]
-    article.allow_pings    = config[:default_allow_pings]
-    article.text_filter    = config[:text_filter]
+    article.allow_comments = this_blog.default_allow_comments
+    article.allow_pings    = this_blog.default_allow_pings
+    article.text_filter    = this_blog.text_filter
     article.html(@controller)
     article.save
 

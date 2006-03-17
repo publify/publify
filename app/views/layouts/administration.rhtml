@@ -1,75 +1,75 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />		
-		<title>Typo Administration:  <%= controller.controller_name %></title>
-		<meta http-equiv="imagetoolbar" content="no" />
-		<%= stylesheet_link_tag "administration.css" %>
-		<%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo" %>
-	</head>
-	
-	<body>
-	<div id="container">
-	
-	<!-- HEADER -->
-	  <div id="header">
+        <head>
+                <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+                <title>Typo Administration:  <%= controller.controller_name %></title>
+                <meta http-equiv="imagetoolbar" content="no" />
+                <%= stylesheet_link_tag "administration.css" %>
+                <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo" %>
+        </head>
 
-	  <div id="info">
-	    <%= link_to "settings", :controller=>"/admin/general", :action => 'index' %> | 
-	    <%= current_user_notice rescue nil %> | 
-	    <%= link_to 'your blog &raquo;', :controller => "/" %>
-	    
-	  </div> 
-	    <h1><%= link_to "Typo admin - #{config_value('blog_name')}", :controller => "/admin/" %></h1>
-	  </div>
-  	<!-- /HEADER -->
-      	
-      	
-  	<div id="tabs-container">
-  	  <ul id="tabs">
-  	    <%= tab "Articles", :controller=>"/admin/content", :action => 'index' %>
-  	    <%= tab "Pages", :controller=>"/admin/pages", :action => 'index' %>
-  	    <%= tab "Categories", :controller=>"/admin/categories", :action => 'index' %>
-  	    <%= tab "Blacklist", :controller=>"/admin/blacklist", :action => 'index' %>
-  	    <%= tab "Sidebar", :controller=>"/admin/sidebar", :action => 'index' %>
-  	    <%= tab "Themes", :controller=>"/admin/themes", :action => 'index' %>
-  	    <%= tab "Users", :controller=>"/admin/users", :action => 'index' %>
-  	    <%= tab "Resources", :controller=>"/admin/resources", :action => 'index' %>
-  	    <%= tab "Filters", :controller=>"/admin/textfilters", :action => 'index' %>
-  	  </ul>
-  	</div>  
+        <body>
+        <div id="container">
 
- 
-	<div id="overall">
-	  <% if flash[:notice] or flash[:error] %>
-  	<div id="flash">
-  	  <%= render_flash rescue nil %>
-  	</div>
-  	<% end %>
+        <!-- HEADER -->
+          <div id="header">
 
-  	<div id="content">
-  	  <div id="main">
-  	    <h2><%= @page_heading %></h2>
-  	    
-  	    <% if not first_render =~ /general|login|signup|logout|sidebar|themes/ %>
+          <div id="info">
+            <%= link_to "settings", :controller=>"/admin/general", :action => 'index' %> |
+            <%= current_user_notice rescue nil %> |
+            <%= link_to 'your blog &raquo;', :controller => "/" %>
+
+          </div>
+            <h1><%= link_to "Typo admin - #{this_blog.blog_name}", :controller => "/admin/" %></h1>
+          </div>
+        <!-- /HEADER -->
+
+
+        <div id="tabs-container">
+          <ul id="tabs">
+            <%= tab "Articles", :controller=>"/admin/content", :action => 'index' %>
+            <%= tab "Pages", :controller=>"/admin/pages", :action => 'index' %>
+            <%= tab "Categories", :controller=>"/admin/categories", :action => 'index' %>
+            <%= tab "Blacklist", :controller=>"/admin/blacklist", :action => 'index' %>
+            <%= tab "Sidebar", :controller=>"/admin/sidebar", :action => 'index' %>
+            <%= tab "Themes", :controller=>"/admin/themes", :action => 'index' %>
+            <%= tab "Users", :controller=>"/admin/users", :action => 'index' %>
+            <%= tab "Resources", :controller=>"/admin/resources", :action => 'index' %>
+            <%= tab "Filters", :controller=>"/admin/textfilters", :action => 'index' %>
+          </ul>
+        </div>
+
+
+        <div id="overall">
+          <% if flash[:notice] or flash[:error] %>
+        <div id="flash">
+          <%= render_flash rescue nil %>
+        </div>
+        <% end %>
+
+        <div id="content">
+          <div id="main">
+            <h2><%= @page_heading %></h2>
+
+            <% if not first_render =~ /general|login|signup|logout|sidebar|themes/ %>
        <div class="tasks">
-  	      <h3>Things you can do</h3>
-  	      <ul>
-	        <%= @content_for_tasks %>
+              <h3>Things you can do</h3>
+              <ul>
+                <%= @content_for_tasks %>
           <%= task_overview unless first_render =~ /\/list$/ %>
          </ul>
          <div style="clear:both;"></div>
-  	    </div>
+            </div>
        <% end %>
        <%= @content_for_layout %>
-  	  </div>
-  	  </div>
-  	</div>
-	<div id="footer">
-	    Typo <%=h TYPO_VERSION %>
-	</div>
-	</div>
-	</body>
+          </div>
+          </div>
+        </div>
+        <div id="footer">
+            Typo <%=h TYPO_VERSION %>
+        </div>
+        </div>
+        </body>
 </html>
 

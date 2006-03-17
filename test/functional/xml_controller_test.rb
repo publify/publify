@@ -31,7 +31,7 @@ class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
   fixtures :contents, :categories, :articles_categories, :tags,
-    :articles_tags, :users, :settings, :resources
+    :articles_tags, :users, :blogs, :resources
 
   def setup
     @controller = XmlController.new
@@ -367,10 +367,6 @@ class XmlControllerTest < Test::Unit::TestCase
   end
 
   def set_extended_on_rss(value)
-    setting = Setting.find_by_name('show_extended_on_rss') || Setting.new(:name => 'show_extended_on_rss')
-    setting.value = value
-    setting.save
-    config.reload
-    assert config["show_extended_on_rss"] == value
+    this_blog.show_extended_on_rss = value
   end
 end

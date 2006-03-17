@@ -91,12 +91,12 @@ class MetaWeblogService < TypoWebService
     article.user        = @user
 
     # Movable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || config[:default_allow_comments]
-    article.allow_pings    = struct['mt_allow_pings'] || config[:default_allow_pings]
+    article.allow_comments = struct['mt_allow_comments'] || this_blog.default_allow_comments
+    article.allow_pings    = struct['mt_allow_pings'] || this_blog.default_allow_pings
     article.extended       = struct['mt_text_more'] || ''
     article.excerpt        = struct['mt_excerpt'] || ''
     article.keywords       = struct['mt_keywords'] || ''
-    article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || config[:text_filter])
+    article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
 
     article.html(@controller)
 
@@ -131,12 +131,12 @@ class MetaWeblogService < TypoWebService
     article.created_at  = struct['dateCreated'].to_time.getlocal unless struct['dateCreated'].blank?
 
     # Movable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || config['default_allow_comments']
-    article.allow_pings    = struct['mt_allow_pings'] || config['default_allow_pings']
-    article.extended       = struct['mt_text_more'] || ''
-    article.excerpt        = struct['mt_excerpt'] || ''
-    article.keywords       = struct['mt_keywords'] || ''
-    article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || config[:text_filter])
+    article.allow_comments = struct['mt_allow_comments'] || this_blog.default_allow_comments
+    article.allow_pings    = struct['mt_allow_pings']    || this_blog.default_allow_pings
+    article.extended       = struct['mt_text_more']      || ''
+    article.excerpt        = struct['mt_excerpt']        || ''
+    article.keywords       = struct['mt_keywords']       || ''
+    article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
 
     article.html(@controller)
 

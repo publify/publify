@@ -1,7 +1,7 @@
   <% @page_heading = 'Blog settings' %>
 
   <%= start_form_tag :action => 'update'%>
-  
+
   <div class="tasks">
     <h3>Which settings group would you like to edit?</h3>
     <ul>
@@ -13,52 +13,52 @@
     </ul>
     <div style="clear:both;"></div>
   </div>
-  
+
   <div id="settings">
   <div id="gensettings" class="set" style="margin-top:10px;">
   <h3>General Settings</h3>
     <p>
-      <label for="blog_name">Blog name:</label> 
-      <input name="setting[blog_name]" id="blog_name" type="text" value="<%=h config_value(:blog_name) %>" />
+      <label for="blog_name">Blog name:</label>
+      <input name="setting[blog_name]" id="blog_name" type="text" value="<%=h this_blog.blog_name %>" />
     </p>
     <p>
-      <label for="blog_subtitle">Blog subtitle:</label> 
-      <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h config_value(:blog_subtitle) %>" />
+      <label for="blog_subtitle">Blog subtitle:</label>
+      <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h this_blog.blog_subtitle %>" />
     </p>
     <p>
-      <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_comments)%> />
+      <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />
       <input name="setting[default_allow_comments]" type="hidden" value="0"/>
         <label for="default_allow_comments">Enable comments by default</label>
     </p>
     <p>
-      <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:default_allow_pings)%> />
+      <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_pings%> />
       <input name="setting[default_allow_pings]" type="hidden" value="0"/>
         <label for="default_allow_pings">Enable Trackbacks by default</label>
     </p>
     <p>
       <label for="limit_article_display">Display </label>
-      <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= config_value(:limit_article_display) %>" /> articles on my homepage by default.
+      <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= this_blog.limit_article_display %>" /> articles on my homepage by default.
     </p>
     <p>
       <label for="limit_rss_display">Display </label>
-      <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= config_value(:limit_rss_display) %>" /> articles in my rss feed by default.
+      <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= this_blog.limit_rss_display %>" /> articles in my rss feed by default.
     </p>
     <p>
-      <input name="setting[show_extended_on_rss]" id="show_extended_on_rss" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:show_extended_on_rss)%> />
+      <input name="setting[show_extended_on_rss]" id="show_extended_on_rss" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.show_extended_on_rss%> />
       <input name="setting[show_extended_on_rss]" type="hidden" value="0"/>
         <label for="show_extended_on_rss">Show full article on rss feed</label>
     </p>
-      
+
     <hr />
 
     <p>Should the blog show mailto: links to your email address?</p>
-    <p><input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:link_to_author)%> /><input name="setting[link_to_author]" type="hidden" value="0"/> <label for="link_to_author">Enable E-Mail public display</label></p>
-      
+    <p><input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.link_to_author%> /><input name="setting[link_to_author]" type="hidden" value="0"/> <label for="link_to_author">Enable E-Mail public display</label></p>
+
     <hr />
 
     <p>Should the blog use of the <a href="http://www.gravatar.com/">Globally Recognized Avatar (Gravatar)</a> service in comments?</p>
     <p>
-      <input name="setting[use_gravatar]" id="use_gravatar" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:use_gravatar) %> />
+      <input name="setting[use_gravatar]" id="use_gravatar" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.use_gravatar %> />
       <input name="setting[use_gravatar]" type="hidden" value="0"/>
       <label for="use_gravatar">Enable Gravatar integration</label>
     </p>
@@ -69,89 +69,89 @@
 
     <p>
       <label for="geourl_location">Latitude, Longitude:</label>
-      <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= config_value(:geourl_location) %>" />
+      <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= this_blog.geourl_location %>" />
     </p>
-    
+
     <hr/>
-    
-    <p>Should Typo send trackbacks to websites that you link to?  This should be disabled 
+
+    <p>Should Typo send trackbacks to websites that you link to?  This should be disabled
        for private blogs, as it will leak non-public information to sites that you're discussing.
        For public blogs, there's no real point in disabling this.</p>
     <p>
-      <input name="setting[send_outbound_pings]" id="send_outbound_pings" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:send_outbound_pings)%> />
+      <input name="setting[send_outbound_pings]" id="send_outbound_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.send_outbound_pings%> />
          <input name="setting[send_outbound_pings]" type="hidden" value="0"/>
            <label for="send_outbound_pings">Send trackbacks to external sites</label>
-         
+
     </p>
-    
+
     <p>
       <label for="ping_urls">URLs to ping automatically:</label><br/>
-      <textarea name="setting[ping_urls]" id="ping_urls" rows="5" cols="50"><%=h config[:ping_urls] %></textarea>
+      <textarea name="setting[ping_urls]" id="ping_urls" rows="5" cols="50"><%=h this_blog.ping_urls %></textarea>
     </p>
-    
+
     <p class="r"><%= save("Save My Settings") %></p>
   </div>
-  
-  
+
+
   <div id="textfilter" class="set">
   <h3>Text Filter</h3>
-        <p class="note">Typo supports a number of text filtering options.  To add new filters, see the "filters" tab on the toolbar above.</p> 
+        <p class="note">Typo supports a number of text filtering options.  To add new filters, see the "filters" tab on the toolbar above.</p>
       <p>
         <select name="setting[text_filter]" id="text_filter">
-          <%= options_for_select text_filter_options, TextFilter.find_by_name(config_value(:text_filter)) %>
+          <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.text_filter) %>
         </select>
-        <label for="text_filter">Article filter</label> 
+        <label for="text_filter">Article filter</label>
       </p>
       <p>
         <select name="setting[comment_text_filter]" id="comment_text_filter">
-        <%= options_for_select text_filter_options, TextFilter.find_by_name(config_value(:comment_text_filter)) %>
+        <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
         </select>
-        <label for="comment_text_filter">Comments filter</label> 
+        <label for="comment_text_filter">Comments filter</label>
       </p>
       <p class="r"><%= save("Save My Settings") %></p>
     </div>
-    
+
     <div id="notification" class="set">
     <h3>Notification</h3>
     <p>Typo can notify you when new articles or comments are posted</p>
     <p>
       <label for="email_from">Email address to use in From: field when Typo sends mail:</label>
-      <input name="setting[email_from]" size="20" id="email_from" type="text" value="<%= config_value(:email_from) %>" />
+      <input name="setting[email_from]" size="20" id="email_from" type="text" value="<%= this_blog.email_from %>" />
     </p>
     <p>
       <label for="jabber_address">Jabber account to use when sending Jabber notifications:</label>
-      <input name="setting[jabber_address]" size="20" id="jabber_address" type="text" value="<%= config_value(:jabber_address) %>" />
+      <input name="setting[jabber_address]" size="20" id="jabber_address" type="text" value="<%= this_blog.jabber_address %>" />
     </p>
     <p>
       <label for="jabber_password">Password for Jabber account:</label>
-      <input name="setting[jabber_password]" size="20" id="jabber_password" type="password" value="<%= config_value(:jabber_password) %>" />
+      <input name="setting[jabber_password]" size="20" id="jabber_password" type="password" value="<%= this_blog.jabber_password %>" />
     </p>
       <p class="r"><%= save("Save My Settings") %></p>
     </div>
-    
-    
+
+
     <div id="spam" class="set">
         <h3>Spam Protection</h3>
         <p>Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots.</p>
         <p>
-          <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_global)%> /><input name="setting[sp_global]" type="hidden" value="0"/>
+          <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_global%> /><input name="setting[sp_global]" type="hidden" value="0"/>
           <label for="sp_global">Enable spam protection</label>
         </p>
         <p>
-          <input name="setting[sp_allow_non_ajax_comments]" id="sp_allow_non_ajax_comments" type="checkbox" value="1" <%= 'checked="checked"' if config_value(:sp_allow_non_ajax_comments)%> />
+          <input name="setting[sp_allow_non_ajax_comments]" id="sp_allow_non_ajax_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_allow_non_ajax_comments%> />
           <input name="setting[sp_allow_non_ajax_comments]" type="hidden" value="0" />
           <label for="sp_allow_non_ajax_comments">Allow non-ajax comments</label>
           <br /><small>(Spam bots usually don't know anything about ajax comments)</small>
         </p>
         <p>
           <label for="sp_article_auto_close">Disable comments after</label>
-          <input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= config_value(:sp_article_auto_close) %>" /> days
+          <input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= this_blog.sp_article_auto_close %>" /> days
           <br /><small>(Set to 0 to never disable comments)</small>
         </p>
         <p>Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them.</p>
         <p>
-          <label for="sp_url_limit">Max URLs:</label> 
-          <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= config_value(:sp_url_limit) %>" /> links
+          <label for="sp_url_limit">Max URLs:</label>
+          <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= this_blog.sp_url_limit %>" /> links
           <br /><small>(Set to 0 to never reject comments)</small>
         </p>
         <p class="r"><%= save("Save My Settings") %></p>
@@ -162,51 +162,51 @@
           The below settings act as defaults when you choose to publish an enclosure with iTunes metadata.
         </p>
         <p>
-          <label for="itunes_author">Author:</label> 
-          <input name="setting[itunes_author]" size="25" id="itunes_author" type="text" value="<%= config_value(:itunes_author) %>" /> 
+          <label for="itunes_author">Author:</label>
+          <input name="setting[itunes_author]" size="25" id="itunes_author" type="text" value="<%= this_blog.itunes_author %>" />
         </p>
         <p>
-          <label for="itunes_subtitle">Subtitle:</label> 
-          <input name="setting[itunes_subtitle]" size="25" id="itunes_subtitle" type="text" value="<%= config_value(:itunes_subtitle) %>" /><small>(setting for channel)</small>
+          <label for="itunes_subtitle">Subtitle:</label>
+          <input name="setting[itunes_subtitle]" size="25" id="itunes_subtitle" type="text" value="<%= this_blog.itunes_subtitle %>" /><small>(setting for channel)</small>
         </p>
         <p>
         <label for="itunes_summary">Summary:<small>(setting for channel)</small>
 </label> <br />
-          <textarea name="setting[itunes_summary]" cols="40" rows="3"><%= config_value(:itunes_summary) %></textarea>
+          <textarea name="setting[itunes_summary]" cols="40" rows="3"><%= this_blog.itunes_summary %></textarea>
         </p>
         <p>
-          <label for="itunes_email">Email:</label> 
-          <input name="setting[itunes_email]" size="25" id="itunes_email" type="text" value="<%= config_value(:itunes_email) %>" /> <small> Not Published by Apple</small>
+          <label for="itunes_email">Email:</label>
+          <input name="setting[itunes_email]" size="25" id="itunes_email" type="text" value="<%= this_blog.itunes_email %>" /> <small> Not Published by Apple</small>
         </p>
         <p>
-          <label for="itunes_name">Optional Name:</label> 
-          <input name="setting[itunes_name]" size="25" id="itunes_name" type="text" value="<%= config_value(:itunes_name) %>" /> <small> Not Published by Apple</small>
+          <label for="itunes_name">Optional Name:</label>
+          <input name="setting[itunes_name]" size="25" id="itunes_name" type="text" value="<%= this_blog.itunes_name %>" /> <small> Not Published by Apple</small>
 
         </p>
         <p>
-          <label for="itunes_copyright">Copyright Information:</label> 
-          <input name="setting[itunes_copyright]" size="25" id="itunes_copyright" type="text" value="<%= config_value(:itunes_copyright) %>" /> 
+          <label for="itunes_copyright">Copyright Information:</label>
+          <input name="setting[itunes_copyright]" size="25" id="itunes_copyright" type="text" value="<%= this_blog.itunes_copyright %>" />
         </p>
         <p>
-          <label for="itunes_explicit">Explicit:</label> 
-          <input name="setting[itunes_explicit]" id="itunes_explicit" type="checkbox"  value="1" <%= 'checked="checked"' if config_value(:itunes_explicit)%> /><input name="setting[itunes_explicit]" type="hidden" value="0" /> 
+          <label for="itunes_explicit">Explicit:</label>
+          <input name="setting[itunes_explicit]" id="itunes_explicit" type="checkbox"  value="1" <%= 'checked="checked"' if this_blog.itunes_explicit%> /><input name="setting[itunes_explicit]" type="hidden" value="0" />
         </p>
         <p class="r"><%= save("Save My Settings") %></p>
     </div>
  </div>
- 
+
  <div id="misc" class="set">
    <h3>Cache</h3>
    <%= link_to 'Empty Fragment Cache', :controller => 'cache', :action => 'sweep' %><br />
    <%= link_to 'Rebuild cached HTML', :controller => 'cache', :action => 'sweep_html' %><br />
-   <div id="users">	
+   <div id="users">
      <p>There are <%= @page_cache_size %> entries in the cache</p>
    </div>
 </div>
 
 
   <div id="operations" class="tasks">
-    <%= save("Save My Settings") %>  
+    <%= save("Save My Settings") %>
   </div>
 
   <%= end_form_tag %>

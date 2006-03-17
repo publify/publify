@@ -1,4 +1,4 @@
-class LiveController < ApplicationController
+class LiveController < ContentController
   session :off
 
   def search

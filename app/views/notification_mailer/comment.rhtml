@@ -1,10 +1,10 @@
-<p>A new comment has been posted on 
-    <%= link_to config[:blog_name], @controller.url_for(:controller => 'articles', :action => 'index') %>, responding to 
+<p>A new comment has been posted on
+    <%= link_to this_blog.blog_name, @controller.url_for(:controller => 'articles', :action => 'index') %>, responding to
     <%= link_to h(@comment.article.title), article_url(@controller, @comment.article) %>.</p>
 
 <%= render :partial => './mail_header' %>
 <h2><%=h @comment.title %></h2>
-<cite><strong><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></strong> </cite> 
+<cite><strong><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></strong> </cite>
  <%= link_to 'said', article_url(@controller, @comment.article,true,"comment-#{@comment.id}") %>
  <%= distance_of_time_in_words @article.created_at, @comment.created_at %> later:<br />
 <%= @comment.body_html %>

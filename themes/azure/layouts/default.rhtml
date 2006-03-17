@@ -12,8 +12,8 @@
   <div id="container" class="clearfix">
       <div id="header">
         <div id="logo">
-          <h1 id="sitename"><%= link_to config_value('blog_name'), { :controller => '/' } %></h1>
-          <h2 id="subtitle"><%= config_value('blog_subtitle') %></h2>
+          <h1 id="sitename"><%= link_to this_blog.blog_name, { :controller => '/' } %></h1>
+          <h2 id="subtitle"><%= this_blog.blog_subtitle %></h2>
         </div>
       </div>
       

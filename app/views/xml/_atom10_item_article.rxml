@@ -3,7 +3,7 @@ xm.entry do
     name = item.user.name rescue item.author
     email = item.user.email rescue nil
     xm.name name
-    xm.email email if config[:link_to_author] unless email.blank?
+    xm.email email if this_blog.link_to_author unless email.blank?
   end
   xm.id "urn:uuid:#{item.guid}"
 
@@ -12,23 +12,23 @@ xm.entry do
   xm.title post_title(item)
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
-  
+
   item.categories.each do |category|
     xm.category "term" => category.permalink, "label" => category.name, "scheme" => (url_for :controller => "articles", :action => "category", :id => category.permalink, :only_path => false)
   end
   item.tags.each do |tag|
     xm.category "term" => tag.display_name, "scheme" => (url_for :controller => "articles", :action => "tag", :id => tag.name, :only_path => false)
   end
-  
+
   item.resources.each do |resource|
     next unless resource.size > 0  # The Atom spec disallows files with size=0
-    xm.link "rel" => "enclosure", 
+    xm.link "rel" => "enclosure",
             :type => resource.mime,
             :title => item.title,
             :href => server_url_for(:controller => "files", :action => resource.filename),
             :length => resource.size
   end
-  if config[:show_extended_on_rss]
+  if this_blog.show_extended_on_rss
     content = article_html(item)
   else
     content = article_html(item,:body)

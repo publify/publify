@@ -3,7 +3,7 @@ xm.entry do
     name = item.user.name rescue item.author
     email = item.user.email rescue nil
     xm.name name
-    xm.email email if email and not email.empty? and config[:link_to_author]
+    xm.email email if email and not email.empty? and this_blog.link_to_author
   end
   xm.id "urn:uuid:#{item.guid}"
 
@@ -12,7 +12,7 @@ xm.entry do
   xm.title post_title(item)
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
-  
+
   for category in item.categories
     xm.dc :subject, category.name
   end
@@ -20,7 +20,7 @@ xm.entry do
     xm.dc :subject, tag.display_name
   end
 
-  if config[:show_extended_on_rss]
+  if this_blog.show_extended_on_rss
     content = article_html(item)
   else
     content = article_html(item,:body)

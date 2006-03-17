@@ -5,7 +5,7 @@ require 'admin/pages_controller'
 class Admin::PagesController; def rescue_action(e) raise e end; end
 
 class Admin::PagesControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :text_filters, :settings
+  fixtures :contents, :users, :text_filters, :blogs
 
   def setup
     @controller = Admin::PagesController.new
@@ -29,7 +29,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     assert_equal Page.count, assigns(:pages).size
 
     assert_not_nil assigns(:page)
-    assert_equal TextFilter.find_by_name(config[:text_filter]), assigns(:page).text_filter
+    assert_equal TextFilter.find_by_name(this_blog.text_filter), assigns(:page).text_filter
   end
 
   def test_show
@@ -48,7 +48,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:page)
 
     assert_equal users(:tobi), assigns(:page).user
-    assert_equal TextFilter.find_by_name(config[:text_filter]), assigns(:page).text_filter
+    assert_equal TextFilter.find_by_name(this_blog.text_filter), assigns(:page).text_filter
 
     post :new, :page => { :name => "new_page", :title => "New Page Title",
       :body => "Emphasis _mine_, arguments *strong*" }

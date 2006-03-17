@@ -1,7 +1,7 @@
 </div>
 
-<p><em>This is being sent to <%=h @user.name %> because you asked to be notified via email whenever 
-new content is posted to  <%= link_to config[:blog_name], @controller.url_for(:controller => 'articles', :action => 'index') %>
-To unsubscribe, go to 
+<p><em>This is being sent to <%=h @user.name %> because you asked to be notified via email whenever
+new content is posted to  <%= link_to this_blog.blog_name, @controller.url_for(:controller => 'articles', :action => 'index') %>
+To unsubscribe, go to
 <a href="<%= @link_url = @controller.url_for(:controller => 'admin/users', :action => 'edit', :id => @user.id) %>"><%=h @link_url%></a>
 and change your user settings.</p>

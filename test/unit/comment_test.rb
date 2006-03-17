@@ -3,11 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class CommentTest < Test::Unit::TestCase
-  fixtures :contents, :blacklist_patterns, :settings, :text_filters
-
-  def setup
-    config.reload
-  end
+  fixtures :contents, :blacklist_patterns, :text_filters, :blogs
 
   def test_save_regular
     assert contents(:comment2).save
@@ -100,21 +96,12 @@ class CommentTest < Test::Unit::TestCase
     # Test each filter to make sure that we don't allow scripts through.
     # Yes, this is ugly.
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
-      setting = find_or_create("comment_text_filter")
-      setting.value = filter
-      setting.save
+      this_blog.comment_text_filter = filter
 
       assert c.save
       assert c.errors.empty?
 
       assert c.body_html !~ /<script>/
     end
-  end
-
-  def find_or_create(name)
-    unless setting = Setting.find_by_name(name)
-      setting = Setting.new("name" => name)
-    end
-    setting
   end
 end

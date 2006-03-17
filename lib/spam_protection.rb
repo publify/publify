@@ -7,16 +7,16 @@ class SpamProtection
   SECOND_LEVEL = [ 'co', 'com', 'net', 'org', 'gov' ]
 
   def article_closed?(record)
-    return false if config['sp_article_auto_close'].zero? or not record.new_record?
+    return false if this_blog.sp_article_auto_close.zero? or not record.new_record?
 
-    if record.article.created_at.to_i < config['sp_article_auto_close'].days.ago.to_i
+    if record.article.created_at.to_i < this_blog.sp_article_auto_close.days.ago.to_i
       logger.info("[SP] Blocked interaction with #{record.article.title}")
       return true
     end
   end
 
   def is_spam?(string)
-    return false unless config['sp_global']
+    return false unless this_blog.sp_global
     return false if string.blank?
 
     reason = catch(:hit) do
@@ -45,8 +45,8 @@ class SpamProtection
     uri_list = string.scan(/(http:\/\/[^\s"]+)/m).flatten
 
     # Check for URL count limit
-    if config['sp_url_limit'] > 0
-      throw :hit, "Hard URL Limit hit: #{uri_list.size} > #{config['sp_url_limit']}" if uri_list.size > config['sp_url_limit']
+    if this_blog.sp_url_limit > 0
+      throw :hit, "Hard URL Limit hit: #{uri_list.size} > #{this_blog.sp_url_limit}" if uri_list.size > this_blog.sp_url_limit
     end
 
     uri_list.collect { |uri| URI.parse(uri).host rescue nil }.uniq.compact.each do |host|

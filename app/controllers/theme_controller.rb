@@ -1,4 +1,4 @@
-class ThemeController < ApplicationController
+class ThemeController < ContentController
   caches_page :stylesheets, :javascript, :images
   session :off
 

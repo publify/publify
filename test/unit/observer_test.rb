@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ObserverTest < Test::Unit::TestCase
-  fixtures :contents, :settings, :articles_tags, :tags,
+  fixtures :contents, :blogs, :articles_tags, :tags,
            :resources, :categories, :articles_categories
 
   def reset_observer

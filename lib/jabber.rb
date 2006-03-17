@@ -22,11 +22,11 @@ class JabberNotify
   def self.session
     return @@jabber if @@jabber
 
-    address = config[:jabber_address]
+    address = this_blog.jabber_address
     unless address =~ /\//
       address = address + '/typo'
     end
 
-    @@jabber ||= Jabber::Session.bind(address, config[:jabber_password])
+    @@jabber ||= Jabber::Session.bind(address, this_blog.jabber_password)
   end
 end

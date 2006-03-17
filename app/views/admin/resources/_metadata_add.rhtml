@@ -3,7 +3,7 @@
   <b>Resource MetaData</b><br />
     <input type="checkbox" name="resource[itunes_metadata]" value="1">Set iTunes metadata for this enclosure</input><br />
     <label for="resource_itunes_author_<%= id %>">Author:</label><br />
-    <input name="resource[itunes_author]" size="25" id="resource_itunes_author_<%= id %>" type="text" value="<%= config_value(:itunes_author) %>" /><br />
+    <input name="resource[itunes_author]" size="25" id="resource_itunes_author_<%= id %>" type="text" value="<%= this_blog.itunes_author %>" /><br />
     <label for="resource_itunes_subtitle_<%= id %>">Subtitle:</label><br />
     <%= text_field 'resource', "itunes_subtitle", :id => "resource_itunes_subtitle_#{id}"  %><br />
     <label for="resource_itunes_duration_<%= id %>">Duration:</label><br />
@@ -14,9 +14,9 @@
     <%= render :partial => "itunes_category_add", :locals => { :id => id } %><br />
     <label for="resource_itunes_keywords_<%= id %>">Key Words:</label><br />
     <%= text_field 'resource', "itunes_keywords", :id => "resource_itunes_keywords_#{id}" %><small>(seperate with spaces)</small><br />
-    <input name="resource[itunes_explicit]" type="checkbox"  value="1" <%= 'checked="checked"' if config_value(:itunes_explicit)%>>Explicit</input><input name="resource[itunes_explicit]" type="hidden" value="0" />
+    <input name="resource[itunes_explicit]" type="checkbox"  value="1" <%= 'checked="checked"' if this_blog.itunes_explicit%>>Explicit</input><input name="resource[itunes_explicit]" type="hidden" value="0" />
   <br />
-  <input name="resource[id]" type="hidden" value="<%= id %>" /> 
+  <input name="resource[id]" type="hidden" value="<%= id %>" />
 <%= save("Save") %> or <a href="#" onclick="new Effect.BlindUp('add-resource-metadata-<%= id %>', {duration: 0.4}); return false;" >Cancel</a>
 </div>
 <%= end_form_tag %>

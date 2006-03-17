@@ -7,7 +7,8 @@ require 'http_mock'
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :categories, :resources, :text_filters, :settings, :articles_categories
+  fixtures :contents, :users, :categories, :resources, :text_filters,
+           :blogs, :articles_categories
 
   def setup
     @controller = Admin::ContentController.new

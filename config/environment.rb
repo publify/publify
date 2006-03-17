@@ -93,7 +93,7 @@ require_dependency 'aggregations/flickr'
 require_dependency 'aggregations/fortythree'
 require_dependency 'aggregations/upcoming'
 require_dependency 'config_manager'
-require_dependency 'configuration'
+require_dependency 'blog'
 require_dependency 'spam_protection'
 require_dependency 'xmlrpc_fix'
 require_dependency 'guid'
@@ -120,3 +120,4 @@ if RAILS_ENV != 'test'
 end
 
 FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
+DEFAULT_BLOG_ID=1

@@ -21,7 +21,7 @@ class Theme
   end
 
   def self.current_theme_path
-    "#{themes_root}/#{config[:theme]}"
+    "#{themes_root}/#{this_blog.theme}"
   end
 
   def self.current

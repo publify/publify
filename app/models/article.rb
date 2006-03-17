@@ -34,9 +34,9 @@ class Article < Content
   end
 
   def send_pings(serverurl, articleurl, urllist)
-    return unless config[:send_outbound_pings]
+    return unless this_blog.send_outbound_pings
 
-    weblogupdatesping_urls = config[:ping_urls].gsub(/ +/,'').split(/[\n\r]+/)
+    weblogupdatesping_urls = this_blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
     pingback_or_tracback_urls = self.html_urls
     trackback_urls = urllist.to_a
 
@@ -136,7 +136,7 @@ class Article < Content
     end
 
     if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New post", "A new message was posted to #{config[:blog_name]}",body_html)
+      JabberNotify.send_message(user, "New post", "A new message was posted to #{this_blog.blog_name}",body_html)
     end
   end
 

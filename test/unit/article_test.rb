@@ -3,10 +3,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :contents, :settings, :articles_tags, :tags, :resources, :categories, :articles_categories, :users, :notifications
+  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories, :articles_categories, :users, :notifications
 
   def setup
-    config.reload
     @articles = []
   end
 

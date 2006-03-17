@@ -10,8 +10,8 @@ module ApplicationHelper
 
   def render_file(template_path, use_full_path = true, local_assigns = {}) #:nodoc:
     search_path = [
-                   "../themes/#{config[:theme]}/views",     # for components
-                   "../../themes/#{config[:theme]}/views",  # for normal views
+                   "../themes/#{this_blog.theme}/views",     # for components
+                   "../../themes/#{this_blog.theme}/views",  # for normal views
                    "."                                      # fallback
                   ]
 
@@ -25,7 +25,7 @@ module ApplicationHelper
         end
         return super(theme_path, use_full_path, local_assigns)
       end
-      raise "Can't locate theme #{config[:theme]}"
+      raise "Can't locate theme #{this_blog.theme}"
     else
       super(template_path, use_full_path, local_assigns)
     end
@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def config_value(name)
-    config[name]
+    this_blog[name]
   end
 
   def article_link(title, article,anchor=nil)

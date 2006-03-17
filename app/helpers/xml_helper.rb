@@ -20,6 +20,6 @@ module XmlHelper
   end
 
   def blog_title
-    config_value("blog_name") || "Unnamed blog"
+    this_blog.blog_name || "Unnamed blog"
   end
 end

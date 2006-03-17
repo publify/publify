@@ -1,4 +1,4 @@
-class BackendController < ApplicationController
+class BackendController < ContentController
   cache_sweeper :blog_sweeper
   session :off
 

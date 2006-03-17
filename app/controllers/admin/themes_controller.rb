@@ -13,14 +13,8 @@ class Admin::ThemesController < Admin::BaseController
   end
 
   def switchto
-
-    setting = (Setting.find_by_name('theme') or Setting.new("name" => 'theme'))
-
-    setting.value = params[:theme]
-    setting.save
-
+    this_blog.theme = params[:theme]
+    this_blog.save
     redirect_to :action => 'index'
-
   end
-
 end

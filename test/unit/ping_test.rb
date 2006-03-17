@@ -4,10 +4,9 @@ require 'http_mock'
 require 'xmlrpc_mock'
 
 class PingTest < Test::Unit::TestCase
-  fixtures :contents, :settings
+  fixtures :contents, :blogs
 
   def setup
-    config.reload
     @pingback_header = nil
     @body = ''
   end
@@ -83,7 +82,7 @@ class PingTest < Test::Unit::TestCase
 
   def test_send_weblogupdatesping
 
-    # Our blog, named config[:blog_name] at http://myblog.net/ has
+    # Our blog, named this_blog.blog_name at http://myblog.net/ has
     # changed through us posting http://myblog.net/new-post. This,
     # we'd like to tell to http://rpc.technorati.com/rpc/ping.
 
@@ -95,7 +94,7 @@ class PingTest < Test::Unit::TestCase
     ping = XMLRPC::Client.pings.last
     assert_equal "http://rpc.technorati.com/rpc/ping", ping.uri
     assert_equal "weblogUpdates.ping", ping.method_name
-    assert_equal config[:blog_name], ping.args[0]
+    assert_equal this_blog.blog_name, ping.args[0]
     assert_equal "http://myblog.net/", ping.args[1]
     assert_equal "http://myblog.net/new-post", ping.args[2]
   end

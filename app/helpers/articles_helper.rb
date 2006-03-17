@@ -45,7 +45,7 @@ module ArticlesHelper
     if @page_title
       @page_title
     else
-      config_value("blog_name") || "Typo"
+      this_blog.blog_name || "Typo"
     end
   end
 
@@ -54,7 +54,7 @@ module ArticlesHelper
     (
     <<-HTML
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  #{ meta_tag 'ICBM', config_value(:geourl_location) unless config_value(:geourl_location).empty? }
+  #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.empty? }
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ server_url_for :controller => 'xml', :action => 'rsd' }" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ @auto_discovery_url_rss }" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ @auto_discovery_url_atom }" />
@@ -92,7 +92,7 @@ module ArticlesHelper
   end
 
   def author_link(article)
-    if config['link_to_author'] and article.user and article.user.email.to_s.size>0
+    if this_blog.link_to_author and article.user and article.user.email.to_s.size>0
       "<a href=\"mailto:#{h article.user.email}\">#{h article.user.name}</a>"
     elsif article.user and article.user.name.to_s.size>0
       h article.user.name

@@ -1,53 +1,75 @@
-class ConfigManager
-
-  def initialize
-    reload
+module ConfigManager
+  def self.append_features(base)
+    super
+    base.extend(ClassMethods)
   end
 
-  def is_ok?
-    settings.include?("blog_name")
+  module ClassMethods
+    def fields
+      @fields ||= Hash.new { Item.new }
+    end
+
+    def setting(name, type=:object, default=nil)
+      item = Item.new
+      item.name, item.ruby_type, item.default = name.to_s, type, default
+      fields[name.to_s] = item
+      add_setting_accessor(item)
+    end
+
+    def default_for(key)
+      fields[key.to_s].default
+    end
+
+    private
+
+    def add_setting_accessor(item)
+      add_setting_reader(item)
+      add_setting_writer(item)
+    end
+
+    def add_setting_reader(item)
+      self.send(:define_method, item.name) do
+        raw_value = settings["#{item.name}"]
+        raw_value.nil? ? item.default : raw_value
+      end
+      if item.ruby_type == :boolean
+        self.send(:define_method, item.name + "?") do
+          raw_value = settings["#{item.name}"]
+          raw_value.nil? ? item.default : raw_value
+        end
+      end
+    end
+
+    def add_setting_writer(item)
+      self.send(:define_method, "#{item.name}=") do |newvalue|
+        retval = settings[%{#{item.name}}] = canonicalize(%{#{item.name}}, newvalue)
+        self.save! unless new_record?
+        retval
+      end
+    end
+
   end
 
-  def reload
-    settings.clear
-    Setting.find(:all).each do |line|
-      settings[line.name.to_s] = normalize_value(line)
+  def canonicalize(key, value)
+    self.class.fields[key.to_s].canonicalize(value)
+  end
+
+  class Item
+    attr_accessor :name, :ruby_type, :default
+
+    def canonicalize(value)
+      case ruby_type
+      when :boolean
+        value ? true : false
+      when :integer
+        value.to_i
+      when :string
+        value.to_s
+      when :yaml
+        value.to_yaml
+      else
+        value
+      end
     end
   end
-
-  def [](key)
-    value = settings[key.to_s]
-    (value.nil?) ? Configuration.fields[key.to_s].default : value rescue nil
-  end
-
-  def self.fields
-    @fields ||= {}
-  end
-
-  protected
-
-  class Item < Struct.new(:name, :ruby_type, :default)
-  end
-
-  def normalize_value(line)
-    case (Configuration.fields[line.name.to_s].ruby_type rescue :string)
-    when :bool
-      (line.value == 'f' or line.value == '0') ? false : true
-    when :int
-      line.value.to_i
-    else
-      line.value
-    end
-  end
-
-  def self.setting(name, type, default)
-    item = Configuration::Item.new
-    item.name, item.ruby_type, item.default = name, type, default
-    fields[item.name.to_s] = item
-  end
-
-  def settings
-    @hash ||= {}
-  end
-
 end
