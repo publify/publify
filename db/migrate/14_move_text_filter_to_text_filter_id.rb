@@ -24,7 +24,7 @@ class MoveTextFilterToTextFilterId < ActiveRecord::Migration
       add_column :articles, :text_filter_id, :integer
       Bare14Article.reset_column_information
       Bare14Article.find(:all).each do |article|
-        article.text_filter = filters[article.attributes['text_filter']]
+        article.text_filter_id = filters[article.attributes['text_filter']].id
         article.save!
       end
       remove_column :articles, :text_filter
@@ -32,7 +32,7 @@ class MoveTextFilterToTextFilterId < ActiveRecord::Migration
       add_column :pages, :text_filter_id, :integer
       Bare14Page.reset_column_information
       Bare14Page.find(:all).each do |page|
-        page.text_filter = filters[page.attributes['text_filter']]
+        page.text_filter_id = filters[page.attributes['text_filter']].id
         page.save!
       end
       remove_column :pages, :text_filter
