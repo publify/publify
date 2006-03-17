@@ -10,6 +10,8 @@ end
 class SuperclassComments < ActiveRecord::Migration
   def self.up
     STDERR.puts "Merging Comments into Contents table"
+    # Just in case...
+    add_index(:comments, :article_id) rescue nil
 
     Bare21Content.transaction do
       add_column :contents, :article_id, :integer
@@ -40,7 +42,7 @@ class SuperclassComments < ActiveRecord::Migration
         end
       end
 
-      remove_index :comments, :article_id
+      remove_index(:comments, :article_id)
       drop_table :comments
     end
   end
