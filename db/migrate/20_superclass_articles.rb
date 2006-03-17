@@ -46,7 +46,7 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :whiteboard, :text
       end
 
-      if config[RAILS_ENV]['adapter] == 'postgresql'
+      if config[RAILS_ENV]['adapter'] == 'postgresql'
         execute "select nextval('contents_id_seq')"
       end
 
