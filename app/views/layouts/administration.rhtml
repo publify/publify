@@ -21,7 +21,7 @@
             <%= link_to 'your blog &raquo;', :controller => "/" %>
 
           </div>
-            <h1><%= link_to "Typo admin - #{this_blog.blog_name}", :controller => "/admin/" %></h1>
+            <h1><%= link_to "Typo admin - #{this_blog.blog_name rescue nil}", :controller => "/admin/" %></h1>
           </div>
         <!-- /HEADER -->
 

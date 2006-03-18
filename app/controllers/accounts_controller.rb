@@ -1,4 +1,4 @@
-class AccountsController < ContentController
+class AccountsController < ApplicationController
 
   def login
     case request.method

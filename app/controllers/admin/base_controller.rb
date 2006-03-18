@@ -1,4 +1,4 @@
-class Admin::BaseController < ContentController
+class Admin::BaseController < ApplicationController
   cattr_accessor :look_for_migrations
   @@look_for_migrations = true
 
