@@ -2,6 +2,8 @@ class Sidebars::Plugin < ApplicationController
   uses_component_template_root
   include ApplicationHelper
 
+  helper :theme
+
 
   # The name that needs to be used when refering to the plugin's
   # controller in render statements

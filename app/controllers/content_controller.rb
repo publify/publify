@@ -21,6 +21,8 @@ class ContentController < ApplicationController
   include LoginSystem
   model :user
 
+  helper :theme
+
   before_filter :auto_discovery_defaults
   before_filter { $blog = nil; $blog = this_blog }
   after_filter :flush_the_blog_object
