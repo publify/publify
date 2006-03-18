@@ -73,10 +73,6 @@ class ContentController < ApplicationController
     @auto_discovery_url_atom = url_for(({:format => 'atom10'}.merge options))
   end
 
-  def cache
-    $cache ||= SimpleCache.new 1.hour
-  end
-
   def theme_layout
     Theme.current.layout
   end

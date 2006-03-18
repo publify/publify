@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
     url_for :only_path => false, :controller => "/"
   end
 
+  def cache
+    $cache ||= SimpleCache.new 1.hour
+  end
 end
 
 require_dependency 'controllers/textfilter_controller'
