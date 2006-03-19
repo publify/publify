@@ -230,6 +230,27 @@ body {
 
   #flickr div a { border: none; }
   
+  #magnolia-gallery {
+    text-align: center;
+  }  
+  #magnolia-gallery .magnolia-pic {
+	border: 1px solid #dbd1c1;
+	background: #ffffff;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	width: 112px;
+  }
+
+  #magnolia-gallery .magnolia-pic:hover {
+	background: #000000;
+  }
+
+  #magnolia-gallery .magnolia-pic img {
+    padding: 6px;
+  }
+
  /*+-------------------------------------------+
    |   			FOOTER 						                 |
    +-------------------------------------------+*/
