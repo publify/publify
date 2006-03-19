@@ -4,12 +4,32 @@ class Sidebars::Plugin < ApplicationController
 
   helper :theme
 
+  @@subclasses = { }
+
+  def self.inherited(child)
+    @@subclasses[self] ||= []
+    @@subclasses[self] |= [child]
+    super
+  end
+
+  def self.subclasses
+    @@subclasses[self] ||= []
+    @@subclasses[self] + extra =
+      @@subclasses[self].inject([]) {|list, subclass| list | subclass.subclasses }
+  end
+
+  def self.available_sidebars
+    @@available_sidebars ||= Sidebars::Plugin.subclasses.select do |sidebar|
+      sidebar.subclasses.empty?
+    end
+  end
+
 
   # The name that needs to be used when refering to the plugin's
   # controller in render statements
   def self.component_name
     if (self.to_s=~/::([a-zA-Z]+)Controller/)
-      "plugins/sidebars/#{$1}".downcase
+      "plugins/sidebars/#{$1}".underscore
     else
       raise "I don't know who I am: #{self.to_s}"
     end
@@ -85,8 +105,6 @@ end
 
 module Sidebars
   class SidebarController < ApplicationController
-    @@available_sidebars = nil
-
     uses_component_template_root
 
     def display_plugins
@@ -103,16 +121,7 @@ module Sidebars
     end
 
     def self.available_sidebars
-      return @@available_sidebars if @@available_sidebars
-
-      objects=[]
-      ObjectSpace.each_object(Class) do |o|
-        if Plugin > o
-          objects.push o
-        end
-      end
-
-      @@available_sidebars = objects
+      Plugin.available_sidebars
     end
 
     def log_processing

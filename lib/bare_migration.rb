@@ -27,28 +27,32 @@
 
 # To use:
 #
-# - Create bare classes instead of models in your migration script.
-#   For instance, this would declare a bare object that matches an
-#   Aritcle model:           12_migration.rb
+# - Create bare inner classes instead of models in your migration script.
+#   For instance, this would declare a bare object that matches an Article
+#   model:
 #
-#   class Bare12Article < ActiveRecord::Base
-#     include BareMigration
+#   class Migration < ActiveRecord::Migration
+#     class BareArticle
+#       include BareMigration
+#     end
+#     ...
 #   end
 #
-#   Don't forget to add the "12" to ensure this class is unique to this
-#   migration script.  When migration scripts share objects, they can
-#   interact in very unpredictable ways.
+#   Don't forget to nest the declaration of the bare model in order to ensure
+#   that the class name is unique. Another option is to declare it outside
+#   the scope of the migration with a number based on the migration
+#   number, say Bare3Article
 #
 #   Use set_table_name if the object doesn't calculate its table name
 #   properly.
 #
 # - Then, use the bare objects to migrate the data:
 #
-#   Bare12Article.find(:all).each do |a|
+#   BareArticle.find(:all).each do |a|
 #     a.published = 1
 #   end
 #
-# - Now your Artcile module can change all it wants and your migration
+# - Now your Article module can change all it wants and your migration
 #   script will still work.
 
 
@@ -56,9 +60,9 @@ module BareMigration
   def self.append_features(base)
     base.extend(ClassMethods)
 
-	# Set the table name by eradicating "Bare" from the calculated table name.
-	# You can still use set_table_name if this is wrong.
-	base.set_table_name(base.table_name.sub(/bare\d*_?/, ''))
+    # Set the table name by eradicating "Bare" from the calculated table name.
+    # You can still use set_table_name if this is wrong.
+    base.set_table_name(base.table_name.sub(/.*?bare\d*_?/, ''))
   end
 
   module ClassMethods
