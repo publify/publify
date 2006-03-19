@@ -11,27 +11,29 @@ class AddBlogObject < ActiveRecord::Migration
     begin
       STDERR.puts "Adding a blogs table"
       create_table :blogs do |t|
-	t.column :dummy, :string
+        t.column :dummy, :string unless $schema_generator
       end
-      Bare38Blog.reset_column_information
+      unless $schema_generator
+        Bare38Blog.reset_column_information
 
-      Bare38Setting.transaction do
-        STDERR.puts "Creating adding default blog"
-        default_blog = Bare38Blog.create!
+        Bare38Setting.transaction do
+          STDERR.puts "Creating adding default blog"
+          default_blog = Bare38Blog.create!
 
-        STDERR.puts "Connecting settings to the default blog"
-        add_column :settings, :blog_id, :integer
-        Bare38Setting.reset_column_information
+          STDERR.puts "Connecting settings to the default blog"
+          add_column :settings, :blog_id, :integer
+          Bare38Setting.reset_column_information
 
-        STDERR.puts "New Default blog has id: " + default_blog.id.to_s
-        STDERR.puts "Migrating #{Bare38Setting.find(:all).size} settings to the new Blog"
+          STDERR.puts "New Default blog has id: " + default_blog.id.to_s
+          STDERR.puts "Migrating #{Bare38Setting.find(:all).size} settings to the new Blog"
 
-        Bare38Setting.find(:all).each do |setting|
-          setting.blog_id = default_blog.id
-          setting.save!
+          Bare38Setting.find(:all).each do |setting|
+            setting.blog_id = default_blog.id
+            setting.save!
+          end
         end
+        remove_column :blogs, :dummy
       end
-      remove_column :blogs, :dummy
     rescue Exception => e
       STDERR.puts("Rolling back the changes")
       drop_table(:blogs) rescue nil

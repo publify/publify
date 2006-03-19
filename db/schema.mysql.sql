@@ -24,6 +24,11 @@ CREATE TABLE blacklist_patterns (
   `pattern` varchar(255)
 ) ENGINE=InnoDB;
 
+CREATE TABLE blogs (
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `settings` text
+) ENGINE=InnoDB;
+
 CREATE TABLE categories (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `name` varchar(255),
@@ -113,13 +118,6 @@ CREATE TABLE sessions (
   `updated_at` datetime
 ) ENGINE=InnoDB;
 
-CREATE TABLE settings (
-  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  `name` varchar(255),
-  `value` varchar(255),
-  `position` int(11)
-) ENGINE=InnoDB;
-
 CREATE TABLE sidebars (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `controller` varchar(255),
@@ -207,4 +205,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (37);
+insert into schema_info (version) values (39);

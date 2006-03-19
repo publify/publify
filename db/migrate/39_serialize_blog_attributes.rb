@@ -100,25 +100,27 @@ class SerializeBlogAttributes < ActiveRecord::Migration
 
 
   def self.up
-    begin
-      add_column :blogs, :settings, :text
-      BareSetting.transaction do
-        BareBlog.find(:all).each do |blog|
-          blog.settings = { }
-          BareSetting.with_scope(:find => { :conditions => "blog_id = #{blog.id}"}) do
-            BareBlog.fields.each do |key, spec|
-              next unless setting = BareSetting.find_by_name(key.to_s, :limit => 1)
-              blog.settings[key.to_s] =
-                spec.normalize_value(setting)
-              BareSetting.delete(setting.id)
+    add_column :blogs, :settings, :text
+    unless $schema_generator
+      begin
+        BareSetting.transaction do
+          BareBlog.find(:all).each do |blog|
+            blog.settings = { }
+            BareSetting.with_scope(:find => { :conditions => "blog_id = #{blog.id}"}) do
+              BareBlog.fields.each do |key, spec|
+                next unless setting = BareSetting.find_by_name(key.to_s, :limit => 1)
+                blog.settings[key.to_s] =
+                  spec.normalize_value(setting)
+                BareSetting.delete(setting.id)
+              end
             end
+            blog.save
           end
-          blog.save
         end
+      rescue Exception => e
+        remove_column :blogs, :settings rescue nil
+        raise e
       end
-    rescue Exception => e
-      remove_column :blogs, :settings rescue nil
-      raise e
     end
     drop_table :settings
   end
@@ -126,12 +128,14 @@ class SerializeBlogAttributes < ActiveRecord::Migration
   def self.down
     begin
       create_settings
-      BareBlog.find(:all).each do |blog|
-        BareSetting.with_scope(:create => { :blog_id => blog.id }) do
-          BareBlog.fields.each do |key, spec|
-            next unless blog.settings.has_key?(key.to_s)
-            BareSetting.create!(:name => key.to_s,
-                                :value => spec.stringify_value(blog.settings[key.to_s]))
+      unless $schema_generator
+        BareBlog.find(:all).each do |blog|
+          BareSetting.with_scope(:create => { :blog_id => blog.id }) do
+            BareBlog.fields.each do |key, spec|
+              next unless blog.settings.has_key?(key.to_s)
+              BareSetting.create!(:name => key.to_s,
+                                  :value => spec.stringify_value(blog.settings[key.to_s]))
+            end
           end
         end
       end

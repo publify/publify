@@ -24,6 +24,11 @@ CREATE TABLE blacklist_patterns (
   "pattern" varchar(255)
 );
 
+CREATE TABLE blogs (
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "settings" text
+);
+
 CREATE TABLE categories (
   "id" INTEGER PRIMARY KEY NOT NULL,
   "name" varchar(255),
@@ -113,13 +118,6 @@ CREATE TABLE sessions (
   "updated_at" datetime
 );
 
-CREATE TABLE settings (
-  "id" INTEGER PRIMARY KEY NOT NULL,
-  "name" varchar(255),
-  "value" varchar(255),
-  "position" integer
-);
-
 CREATE TABLE sidebars (
   "id" INTEGER PRIMARY KEY NOT NULL,
   "controller" varchar(255),
@@ -207,4 +205,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (37);
+insert into schema_info (version) values (39);

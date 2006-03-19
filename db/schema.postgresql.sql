@@ -24,6 +24,11 @@ CREATE TABLE blacklist_patterns (
   "pattern" character varying(255)
 );
 
+CREATE TABLE blogs (
+  "id" serial primary key,
+  "settings" text
+);
+
 CREATE TABLE categories (
   "id" serial primary key,
   "name" character varying(255),
@@ -113,13 +118,6 @@ CREATE TABLE sessions (
   "updated_at" timestamp
 );
 
-CREATE TABLE settings (
-  "id" serial primary key,
-  "name" character varying(255),
-  "value" character varying(255),
-  "position" integer
-);
-
 CREATE TABLE sidebars (
   "id" serial primary key,
   "controller" character varying(255),
@@ -207,4 +205,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (37);
+insert into schema_info (version) values (39);
