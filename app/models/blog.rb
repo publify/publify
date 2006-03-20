@@ -70,7 +70,7 @@ end
 
 
 def config
-  raise NoMethodError, "config is no longer a global method. If you get this error, please contact Piers Cawley <pdcawley@bofh.org.uk>", caller
+  this_blog
 end
 
 def this_blog
