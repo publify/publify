@@ -234,7 +234,7 @@ class ArticlesController < ContentController
     if User.count == 0
       redirect_to :controller => "accounts", :action => "signup"
     elsif ! this_blog.is_ok?
-      redirect_to :controller => "admin/general", :action => "index"
+      redirect_to :controller => "admin/general", :action => "redirect"
     else
       return true
     end

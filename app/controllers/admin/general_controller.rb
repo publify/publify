@@ -3,6 +3,11 @@ class Admin::GeneralController < Admin::BaseController
     @page_cache_size = PageCache.count
   end
 
+  def redirect
+    flash[:notice] = "Please review and save the settings before continuing"
+    redirect_to :action => "index"
+  end
+
   def update_database
     @current_version = Migrator.current_schema_version
     @needed_version = Migrator.max_schema_version
