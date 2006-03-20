@@ -24,8 +24,6 @@ class ContentController < ApplicationController
   helper :theme
 
   before_filter :auto_discovery_defaults
-  before_filter { $blog = nil; $blog = this_blog }
-  after_filter :flush_the_blog_object
 
   def self.caches_action_with_params(*actions)
     super
@@ -62,11 +60,6 @@ class ContentController < ApplicationController
       @request.instance_variable_set(:@auto_discovery_url_atom,
                                       @auto_discovery_url_atom)
     end
-  end
-
-  def flush_the_blog_object
-    $blog = nil
-    true
   end
 
   def auto_discovery_feed(options)
