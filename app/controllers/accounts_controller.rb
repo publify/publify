@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
 
+  before_filter :verify_users, :only => [:login]
+
   def login
     case request.method
       when :post
@@ -35,6 +37,16 @@ class AccountsController < ApplicationController
   end
 
   def welcome
+  end
+  
+  private
+  
+  def verify_users
+    if User.count == 0
+      redirect_to :controller => "accounts", :action => "signup"
+    else
+      true
+    end
   end
 
 end
