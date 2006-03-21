@@ -3,6 +3,9 @@ class Sidebars::Plugin < ApplicationController
   include ApplicationHelper
 
   helper :theme
+  
+  skip_before_filter :get_the_blog_object
+  skip_after_filter :flush_the_blog_object
 
   @@subclasses = { }
 

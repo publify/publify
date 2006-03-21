@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include LoginSystem
   model :user
 
-  before_filter { $blog = nil; $blog = this_blog }
+  before_filter :get_the_blog_object
   after_filter :flush_the_blog_object
 
   def article_url(article, only_path = true, anchor = nil)
@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
 
   def cache
     $cache ||= SimpleCache.new 1.hour
+  end
+  
+  def get_the_blog_object
+    $blog = this_blog
   end
 
   def flush_the_blog_object
