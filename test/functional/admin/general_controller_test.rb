@@ -18,4 +18,9 @@ class Admin::GeneralControllerTest < Test::Unit::TestCase
     get :index
     assert_rendered_file 'index'
   end
+
+  def test_redirect
+    get :redirect
+    assert_redirected_to :controller => 'admin/general', :action => 'index'
+  end
 end

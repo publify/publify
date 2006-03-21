@@ -234,7 +234,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :index
 
     assert_redirect
-    assert_redirected_to :controller => "admin/general", :action => "index"
+    assert_redirected_to :controller => "admin/general", :action => "redirect"
 
   end
 
