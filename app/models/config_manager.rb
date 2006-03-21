@@ -29,12 +29,12 @@ module ConfigManager
 
     def add_setting_reader(item)
       self.send(:define_method, item.name) do
-        raw_value = settings["#{item.name}"]
+        raw_value = settings[item.name]
         raw_value.nil? ? item.default : raw_value
       end
       if item.ruby_type == :boolean
         self.send(:define_method, item.name + "?") do
-          raw_value = settings["#{item.name}"]
+          raw_value = settings[item.name]
           raw_value.nil? ? item.default : raw_value
         end
       end
@@ -42,7 +42,7 @@ module ConfigManager
 
     def add_setting_writer(item)
       self.send(:define_method, "#{item.name}=") do |newvalue|
-        retval = settings[%{#{item.name}}] = canonicalize(%{#{item.name}}, newvalue)
+        retval = settings[item.name] = canonicalize(item.name, newvalue)
         self.save! unless new_record?
         retval
       end
@@ -60,7 +60,12 @@ module ConfigManager
     def canonicalize(value)
       case ruby_type
       when :boolean
-        value ? true : false
+        case value
+        when "0", 0, '', false, "false", "f", nil
+          false
+        else
+          true
+        end
       when :integer
         value.to_i
       when :string
