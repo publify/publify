@@ -27,7 +27,6 @@ class SuperclassComments < ActiveRecord::Migration
           Bare21Content.create(
             :type => 'Comment',
             :article_id => c.article_id,
-            :title => c.title,
             :author => c.author,
             :email => c.email,
             :url => c.url,
