@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
   end
   
   def get_the_blog_object
-    $blog = this_blog
+    $blog = Blog.find(:first) || Blog.create!
+    true
   end
 
   def flush_the_blog_object

@@ -74,5 +74,5 @@ def config
 end
 
 def this_blog
-  $blog || (Blog.find(DEFAULT_BLOG_ID) rescue nil) || Blog.find(:first) || Blog.create!
+  $blog || Blog.find(:first) || Blog.create!
 end
