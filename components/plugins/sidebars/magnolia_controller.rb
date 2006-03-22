@@ -8,7 +8,7 @@ class Plugins::Sidebars::MagnoliaController < Sidebars::Plugin
   end
 
   def self.default_config
-    {'count'=>5,'feed'=>'feed://ma.gnolia.com/rss/full/people/USERNAME/', 'dtitle'=>'Ma.gnolia Links'}
+    {'count'=>5,'feed'=>'http://ma.gnolia.com/rss/full/people/USERNAME/', 'dtitle'=>'Ma.gnolia Links'}
   end
 
   def content
