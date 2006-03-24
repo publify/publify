@@ -16,13 +16,14 @@ class AddBlogObject < ActiveRecord::Migration
       unless $schema_generator
         Bare38Blog.reset_column_information
 
+        add_column :settings, :blog_id, :integer
+        Bare38Setting.reset_column_information
+
         Bare38Setting.transaction do
-          STDERR.puts "Creating adding default blog"
+          STDERR.puts "Creating default blog"
           default_blog = Bare38Blog.create!
 
           STDERR.puts "Connecting settings to the default blog"
-          add_column :settings, :blog_id, :integer
-          Bare38Setting.reset_column_information
 
           STDERR.puts "New Default blog has id: " + default_blog.id.to_s
           STDERR.puts "Migrating #{Bare38Setting.find(:all).size} settings to the new Blog"
@@ -44,6 +45,7 @@ class AddBlogObject < ActiveRecord::Migration
 
   def self.down
     STDERR.puts "Unlinking settings and removing the blogs table"
+    Bare38Setting.delete_all(["blog_id != ?", Bare38Blog.find(:first)])
     remove_column :settings, :blog_id
     drop_table :blogs
   end

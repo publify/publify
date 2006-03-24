@@ -129,12 +129,15 @@ class SerializeBlogAttributes < ActiveRecord::Migration
     begin
       create_settings
       unless $schema_generator
-        BareBlog.find(:all).each do |blog|
-          BareSetting.with_scope(:create => { :blog_id => blog.id }) do
-            BareBlog.fields.each do |key, spec|
-              next unless blog.settings.has_key?(key.to_s)
-              BareSetting.create!(:name => key.to_s,
-                                  :value => spec.stringify_value(blog.settings[key.to_s]))
+        BareSetting.transaction do
+          BareBlog.find(:all).each do |blog|
+            blog.settings ||= { }
+            BareSetting.with_scope(:create => { :blog_id => blog.id }) do
+              BareBlog.fields.each do |key, spec|
+                next unless blog.settings.has_key?(key.to_s)
+                BareSetting.create!(:name => key.to_s,
+                                    :value => spec.stringify_value(blog.settings[key.to_s]))
+              end
             end
           end
         end
