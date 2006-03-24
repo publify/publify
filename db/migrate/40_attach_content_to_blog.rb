@@ -3,10 +3,15 @@ class AttachContentToBlog < ActiveRecord::Migration
     include BareMigration
   end
 
+  class BareBlog < ActiveRecord::Base
+    include BareMigration
+  end
+
   def self.up
     begin
       add_column :contents, :blog_id, :integer
-      BareContent.find(:all).each {|c| c.blog_id = 1 }
+      blog_id = BareBlog.find(:first).id
+      BareContent.find(:all).each {|c| c.blog_id = blog_id; c.save! }
       change_column :contents, :blog_id, :integer, :null => false
       add_index :contents, :blog_id
     rescue Exception => e
