@@ -1,4 +1,4 @@
-require_dependency 'sidebars/sidebar_controller'
+require 'sidebars/sidebar_controller'
 
 class Admin::SidebarController < Admin::BaseController
   def index

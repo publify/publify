@@ -45,4 +45,19 @@ class Tag < ActiveRecord::Base
       },true, limit]).each{|item| item.article_counter = item.article_counter.to_i }
   end
 
+  def self.find_by_permalink(*args)
+    self.find_by_name(*args)
+  end
+
+  def self.to_prefix
+    'tags'
+  end
+
+  def published_articles
+    articles.find_already_published
+  end
+
+  def permalink
+    self.name
+  end
 end

@@ -444,4 +444,9 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_equal @article, assigns(:articles).first
     assert @response.lifetime <= 12.minutes
   end
+
+  def test_search
+    get :search, :q => "search target"
+    assert_equal 1, assigns(:articles).size
+  end
 end

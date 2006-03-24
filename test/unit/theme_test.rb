@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
-
+require 'theme'
 require 'theme_mock'
 
 class ThemeTest < Test::Unit::TestCase

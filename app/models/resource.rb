@@ -51,6 +51,7 @@ class Resource < ActiveRecord::Base
       File.chmod(0644, fullpath)
       self.size = File.stat(fullpath).size rescue 0
       update
+      self
     rescue
       raise
     end

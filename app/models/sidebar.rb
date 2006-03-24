@@ -1,4 +1,4 @@
-require_dependency 'sidebars/sidebar_controller'
+require 'sidebars/sidebar_controller'
 
 class Sidebar < ActiveRecord::Base
 #  acts_as_list

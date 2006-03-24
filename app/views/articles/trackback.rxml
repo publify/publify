@@ -1,9 +1,5 @@
 xml.instruct! :xml, :version=>"1.0", :encoding=>"iso-8859-1"
 xml.response do
-  if @result
-    xml.error 0
-  else
-    xml.error 1
-    xml.message @error_message
-  end
+  xml.error(@error_message.blank? ? 0 : 1)
+  xml.message(@error_message) if @error_message
 end

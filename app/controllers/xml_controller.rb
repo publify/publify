@@ -23,9 +23,9 @@ class XmlController < ContentController
 
     case params[:type]
     when 'feed'
-      @items = Article.find_published(:all, :conditions => ['created_at < ?', Time.now],
-                                      :order => 'created_at DESC',
-                                      :limit => this_blog.limit_rss_display)
+      @items = this_blog.articles.find_published(:all, :conditions => ['created_at < ?', Time.now],
+                                                 :order => 'created_at DESC',
+                                                 :limit => this_blog.limit_rss_display)
     when 'comments'
       @items = Comment.find_published(:all, :order => 'created_at DESC',
                                       :limit => this_blog.limit_rss_display)

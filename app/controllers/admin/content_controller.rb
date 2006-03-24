@@ -7,66 +7,22 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
-    @articles_pages, @articles = paginate :article, :per_page => 15, :order_by => "created_at DESC", :parameter => 'id'
-    @categories = Category.find(:all)
-    @article = Article.new(params[:article])
+    @articles_pages, @articles = with_blog_scoped_classes do
+      paginate(:article, :per_page => 15, :order_by => "created_at DESC",
+               :parameter => 'id')
+    end
+    setup_categories
+    @article = this_blog.articles.build(params[:article])
   end
 
   def show
     @article = Article.find(params[:id])
-    @categories = Category.find(:all, :order => 'name')
+    setup_categories
     @resources = Resource.find(:all, :order => 'created_at DESC')
   end
 
-  def new
-    @article = Article.new(params[:article])
-    @article.allow_comments = this_blog.default_allow_comments
-    @article.allow_pings    = this_blog.default_allow_pings
-
-    @categories = Category.find(:all, :order => 'UPPER(name)')
-
-    if request.post?
-      @article.author = session[:user].login
-      @article.user = session[:user]
-
-      params[:attachments].each do |k,v|
-        a = attachment_save(params[:attachments][k])
-        @article.resources << a unless a.nil?
-      end unless params[:attachments].nil?
-
-      if @article.save
-        @article.categories.clear
-        @article.categories = Category.find(params[:categories]) if params[:categories]
-
-        @article.html(self)
-        @article.send_notifications(self)
-        @article.send_pings(server_url, article_url(@article, false),[])
-        flash[:notice] = 'Article was successfully created.'
-        redirect_to :action => 'show', :id => @article.id
-      end
-    end
-  end
-
-  def edit
-    @article = Article.find(params[:id])
-    @article.attributes = params[:article]
-    @categories = Category.find(:all, :order => 'UPPER(name)')
-    @selected = @article.categories.collect { |cat| cat.id.to_i }
-    if request.post?
-      @article.categories.clear
-      @article.categories << Category.find(params[:categories]) if params[:categories]
-
-      params[:attachments].each do |k,v|
-        a = attachment_save(params[:attachments][k])
-        @article.resources << a unless a.nil?
-      end unless params[:attachments].nil?
-
-      if @article.save
-        flash[:notice] = 'Article was successfully updated.'
-        redirect_to :action => 'show', :id => @article.id
-      end
-    end
-  end
+  def new; new_or_edit; end
+  def edit; new_or_edit; end
 
   def destroy
     @article = Article.find(params[:id])
@@ -76,47 +32,15 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  def category_add
-    @article = Article.find(params[:id])
-    @category = Category.find(params[:category_id])
-    @categories = Category.find(:all)
-    @article.categories << @category
-    @article.save
-    render :partial => 'show_categories'
-  end
-
-  def category_remove
-    @article = Article.find(params[:id])
-    @category = Category.find(params[:category_id])
-    @categories = Category.find(:all)
-    @article.categories.delete(@category)
-    @article.save
-    render :partial => 'show_categories'
-  end
+  def category_add; do_add_or_remove_fu; end
+  alias_method :category_remove, :category_add
+  alias_method :resource_add,    :category_add
+  alias_method :resource_remove, :category_add
 
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = Article.new
-    @article.attributes = params[:article]
+    @article = Article.new(params[:article])
     render :layout => false
-  end
-
-  def resource_add
-    @article = Article.find(params[:id])
-    @resource = Resource.find(params[:resource_id])
-    @resources = Resource.find(:all, :order => 'created_at DESC')
-    @article.resources << @resource
-    @article.save
-    render :partial => 'show_resources'
-  end
-
-  def resource_remove
-    @article = Article.find(params[:id])
-    @resource = Resource.find(params[:resource_id])
-    @resources = Resource.find(:all, :order => 'created_at DESC')
-    @article.resources.delete(@resource)
-    @article.save
-    render :partial => 'show_resources'
   end
 
   def attachment_box_add
@@ -124,18 +48,99 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def attachment_box_remove
-    render :inline => "<%= javascript_tag 'document.getElementById(\"attachments\").removeChild(document.getElementById(\"attachment_#{params[:id]}\")); return false;' -%>", :layout => false
+    render :inline => "<%= javascript_tag 'document.getElementById(\"attachments\").removeChild(document.getElementById(\"attachment_#{params[:id]}\")); return false;' -%>"
   end
 
   def attachment_save(attachment)
     begin
-      up = Resource.create(:filename => attachment.original_filename, :mime => attachment.content_type.chomp, :created_at => Time.now)
-      up.write_to_disk(attachment)
-      up
+      Resource.create(:filename => attachment.original_filename,
+                      :mime => attachment.content_type.chomp, :created_at => Time.now).write_to_disk(attachment)
     rescue => e
       logger.info(e.message)
       nil
     end
   end
 
+  protected
+
+  attr_accessor :resources, :categories, :resource, :category
+
+  def do_add_or_remove_fu
+    attrib, action = params[:action].split('_')
+    @article = Article.find(params[:id])
+    self.send("#{attrib}=", self.class.const_get(attrib.classify).find(params["#{attrib}_id"]))
+    send("setup_#{attrib.pluralize}")
+    @article.send(attrib.pluralize).send(real_action_for(action), send(attrib))
+    @article.save
+    render :partial => "show_#{attrib.pluralize}"
+  end
+
+  def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
+
+  def new_or_edit
+    get_or_build_article
+    @article.attributes =
+      (params[:article]||{}).reverse_merge({ :allow_comments => this_blog.default_allow_comments,
+                                             :allow_pings => this_blog.default_allow_pings })
+    setup_categories
+    if request.post?
+      set_article_author
+      save_attachments
+      if @article.save
+        set_article_categories
+        tidy_up_and_notify
+        redirect_to :action => 'show', :id => @article.id
+      end
+    end
+  end
+
+  def tidy_up_and_notify
+    case params[:action]
+    when 'new'
+      @article.html(self)
+      @article.send_notifications(self)
+      @article.send_pings(server_url, article_url(@article, false), [])
+      flash[:notice] = 'Article was successfully created'
+    when 'edit'
+      flash[:notice] = 'Article was successfully updated.'
+    else
+      raise "I don't know how to tidy up action: #{params[:action]}"
+    end
+  end
+
+  def set_article_author
+    return if @article.author
+    @article.author = session[:user].login
+    @article.user   = session[:user]
+  end
+
+  def save_attachments
+    return if params[:attachments].nil?
+    params[:attachments].each do |k,v|
+      a = attachment_save(v)
+      @article.resources << a unless a.nil?
+    end
+  end
+
+  def set_article_categories
+    @article.categories.clear
+    @article.categories = Category.find(params[:categories]) if params[:categories]
+    @selected = params[:categories] || []
+  end
+
+  ARTICLEMAKER_FOR = Hash.new(&lambda {|h,k| raise "Don't know how to get article for action #{k}"})\
+    .merge({'new'  => lambda {|id| this_blog.articles.build },
+            'edit' => lambda {|id| this_blog.articles.find(id) } })
+
+  def get_or_build_article
+    @article = ARTICLEMAKER_FOR[params[:action]][params[:id]]
+  end
+
+  def setup_categories
+    @categories = Category.find(:all, :order => 'UPPER(name)')
+  end
+
+  def setup_resources
+    @resources = Resource.find(:all, :order => 'created_at DESC')
+  end
 end

@@ -129,8 +129,32 @@ module ArticlesHelper
       options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")
   end
 
-  def calc_distributed_class(articles, max_articles, prefix, min_class, max_class)
-    return prefix + min_class.to_s if max_articles == 0 #exit early, otherwise div by zero
-    prefix + (min_class + ((max_class-min_class) * articles.to_f / max_articles).to_i).to_s
+  def calc_distributed_class(articles, max_articles, grp_class, min_class, max_class)
+    (grp_class.to_prefix rescue grp_class.to_s) +
+      ((max_articles == 0) ?
+           min_class.to_s :
+         (min_class + ((max_class-min_class) * articles.to_f / max_articles).to_i).to_s)
+  end
+
+  def link_to_grouping(grp)
+    link_to( grp.display_name, urlspec_for_grouping(grp),
+             :rel => "tag", :title => title_for_grouping(grp) )
+  end
+
+  def urlspec_for_grouping(grouping)
+    { :controller => "articles", :action => grouping.class.to_s.underscore, :id => grouping.permalink }
+  end
+
+  def title_for_grouping(grouping)
+    "#{pluralize(grouping.article_counter, 'post')} with #{grouping.class.to_s.underscore} '#{grouping.display_name}'"
+  end
+
+  def ul_tag_for(grouping_class)
+    case grouping_class
+    when Tag
+      %{<ul id="taglist" class="tags">}
+    when Category
+      %{<ul class="categorylist">}
+    end
   end
 end

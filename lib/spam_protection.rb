@@ -1,4 +1,4 @@
-require_dependency 'blacklist_pattern'
+require 'blacklist_pattern'
 
 class SpamProtection
 
@@ -113,7 +113,7 @@ module ActiveRecord
         end
       end
       def validates_age_of(*attr_names)
-        configuration = { :message => "points to an item that is no longer available for interaction"}
+        configuration = { :on => :create, :message => "points to an item that is no longer available for interaction"}
         configuration.update(attr_names.pop) if attr_names.last.is_a?(Hash)
 
         validates_each(attr_names, configuration) do |record, attr_name, value|

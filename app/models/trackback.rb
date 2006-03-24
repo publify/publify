@@ -1,27 +1,43 @@
+require_dependency 'spam_protection'
+
 class Trackback < Content
   include TypoGuid
   belongs_to :article, :counter_cache => true
+  belongs_to :blog
 
   content_fields :excerpt
 
   validates_age_of :article_id
   validates_against_spamdb :title, :excerpt, :ip, :url
   validates_presence_of :title, :excerpt, :blog_name, :url
+  validate_on_create :article_is_pingable
+
+  def initialize(*args, &block)
+    super(*args, &block)
+    self.title ||= self.url
+  end
 
   protected
-    before_create :make_nofollow, :process_trackback, :create_guid
+  before_create :make_nofollow, :process_trackback, :create_guid
 
-    def make_nofollow
-      self.blog_name = blog_name.strip_html
-      self.title     = title.strip_html
-      self.excerpt   = excerpt.strip_html
-    end
+  def make_nofollow
+    self.blog_name = blog_name.strip_html
+    self.title     = title.strip_html
+    self.excerpt   = excerpt.strip_html
+  end
 
-    def process_trackback
-      if excerpt.length >= 251
-        # this limits excerpt to 250 chars, including the trailing "..."
-        self.excerpt = excerpt[0..246] << "..."
-      end
+  def process_trackback
+    if excerpt.length >= 251
+      # this limits excerpt to 250 chars, including the trailing "..."
+      self.excerpt = excerpt[0..246] << "..."
     end
+  end
+
+  def article_is_pingable
+    return if article.nil?
+    unless article.allow_pings?
+      errors.add(:article, "Article is not pingable")
+    end
+  end
 end
 

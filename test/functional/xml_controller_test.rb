@@ -83,7 +83,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_rss20(4)
+    assert_rss20(5)
   end
 
   def test_feed_rss20_comments
@@ -137,7 +137,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_atom03(4)
+    assert_atom03(5)
   end
 
   def test_feed_atom03_comments
@@ -192,7 +192,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_atom10(4)
+    assert_atom10(5)
   end
 
   def test_feed_atom10_comments

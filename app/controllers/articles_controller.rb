@@ -2,7 +2,7 @@ class ArticlesController < ContentController
   before_filter :verify_config
   before_filter :check_page_query_param_for_missing_routes
 
-  layout :theme_layout
+  layout :theme_layout, :except => [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
 
@@ -11,207 +11,125 @@ class ArticlesController < ContentController
   caches_action_with_params *cached_pages
   session :off, :only => cached_pages
 
-  verify :only => [:nuke_comment, :nuke_trackback], :session => :user, :method => :post, :render => { :text => 'Forbidden', :status => 403 }
+  verify(:only => [:nuke_comment, :nuke_trackback],
+         :session => :user, :method => :post,
+         :render => { :text => 'Forbidden', :status => 403 })
 
   def index
-    @pages, @articles = paginate :article, :per_page => this_blog.limit_article_display, :conditions => ['published = ? AND created_at < ?', true, Time.now], :order_by => "created_at DESC"
+    @pages, @articles =
+      paginate(:article, :per_page => this_blog.limit_article_display,
+               :conditions =>
+                 ['published = ? AND contents.created_at < ? AND blog_id = ?',
+                             true,            Time.now,     this_blog.id],
+               :order_by => "contents.created_at DESC",
+               :include => [:categories, :tags])
   end
 
   def search
-    @articles = Article.search(params[:q])
+    @articles = this_blog.published_articles.search(params[:q])
+    render_paginated_index("No articles found...")
   end
 
   def comment_preview
     render :nothing => true and return if params[:comment].blank? or params[:comment][:body].blank?
 
-    @headers["Content-Type"] = "text/html; charset=utf-8"
-    @comment = Comment.new(params[:comment])
+    set_headers
+    @comment = this_blog.comments.build(params[:comment])
     @controller = self
-
-    render :layout => false
   end
 
   def archives
-    @articles = Article.find_published(:all, :order => 'created_at DESC', :include => [:categories])
+    @articles = this_blog.published_articles.before(Time.now)
   end
 
   def read
-    begin
-      @article      = Article.find_published(params[:id], :include => [:categories, :tags])
-      @comment      = Comment.new
-      @page_title   = @article.title
-      auto_discovery_feed :type => 'article', :id => @article.id
-    rescue
-      error("Post not found...") and return
-    end
+    display_article { this_blog.published_articles.find(params[:id]) }
   end
 
   def permalink
-    @article    = Article.find_by_permalink(params[:year], params[:month], params[:day], params[:title])
-    @comment    = Comment.new
-
-    if @article.nil?
-      error("Post not found...")
-    else
-      auto_discovery_feed :type => 'article', :id => @article.id
-      @page_title = @article.title
-      render :action => "read"
-    end
+    display_article(this_blog.published_articles.find_by_permalink(*params.values_at(:year, :month, :day, :title)))
   end
 
   def find_by_date
-    @articles = Article.find_all_by_date(params[:year], params[:month], params[:day])
-    @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, @params[:page]
-
-    if @articles.empty?
-      error("No posts found...")
-    else
-      start = @pages.current.offset
-      stop  = (@pages.current.next.offset - 1) rescue @articles.size
-      @articles = @articles.slice(start..stop)
-
-      render :action => "index"
-    end
+    @articles = this_blog.published_articles.find_all_by_date(params[:year], params[:month], params[:day])
+    render_paginated_index
   end
 
   def error(message = "Record not found...")
-    @message = message
+    @message = message.to_s
     render :action => "error"
   end
 
   def category
-    unless params[:id]
-      @categories = Category.find_all_with_article_counters
-      render :action => "categorylist"
-      return
-    end
-
-    if category = Category.find_by_permalink(params[:id])
-      auto_discovery_feed :type => 'category', :id => category.permalink
-      @articles = category.articles.find_already_published
-      @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, @params[:page]
-
-      start = @pages.current.offset
-      stop  = (@pages.current.next.offset - 1) rescue @articles.size
-      # Why won't this work? @articles.slice!(start..stop)
-      @articles = @articles.slice(start..stop)
-
-      render :action => "index"
-    else
-      error("Can't find posts in category #{params[:id]}")
-    end
+    render_grouping(Category)
   end
 
   def tag
-    unless params[:id]
-      @tags = Tag.find_all_with_article_counters 1000
-      render :action => "taglist"
-      return
-    end
-
-    @articles = Tag.find_by_name(params[:id]).articles.find_already_published
-    auto_discovery_feed :type => 'tag', :id => params[:id]
-
-    if(not @articles.empty?)
-      @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, @params[:page]
-
-      start = @pages.current.offset
-      stop  = (@pages.current.next.offset - 1) rescue @articles.size
-      # Why won't this work? @articles.slice!(start..stop)
-      @articles = @articles.slice(start..stop)
-
-      render :action => "index"
-    else
-      error("Can't find posts with tag #{params[:id]}")
-    end
+    render_grouping(Tag)
   end
 
   # Receive comments to articles
   def comment
     unless @request.xhr? || this_blog.sp_allow_non_ajax_comments
-      render \
-        :text => "non-ajax commenting is disabled",
-        :status => 500
+      render_error("non-ajax commenting is disabled")
       return
     end
 
-    @article = Article.find(params[:id])
-    @comment = Comment.new(params[:comment])
+    if request.post?
+      begin
+        params[:comment].merge({:ip => request.remote_ip,
+                                :published => true })
+        @comment = this_blog.published_articles.find(params[:id]).comments.build(params[:comment])
+        @comment.user = session[:user]
+        @comment.save!
+        add_to_cookies(:author, @comment.author)
+        add_to_cookies(:url, @comment.url)
 
-    @comment.article = @article
-    @comment.ip = request.remote_ip
-    @comment.user = session[:user]
-    @comment.published = true
-
-    if request.post? and @comment.save
-      add_to_cookies(:author, @comment.author)
-      add_to_cookies(:url, @comment.url)
-
-      @headers["Content-Type"] = "text/html; charset=utf-8"
-      render :partial => "comment", :object => @comment
-      @comment.send_notifications(self)
-    else
-      STDERR.puts @comment.errors.inspect
-      render :text => @comment.errors.full_messages.join(", "), :status => 500
+        set_headers
+        render :partial => "comment", :object => @comment
+        @comment.send_notifications(self)
+      rescue ActiveRecord::RecordInvalid
+        STDERR.puts @comment.errors.inspect
+        render_error(@comment)
+      end
     end
   end
 
   # Receive trackbacks linked to articles
   def trackback
-    @result = true
-
-    if params[:__mode] == "rss"
-      # Part of the trackback spec... will implement later
-    else
-      # url is required
-      unless params.has_key?(:url) and params.has_key?(:id)
-        @result = false
-        @error_message = "A URL is required."
+    @error_message = catch(:error) do
+      if params[:__mode] == "rss"
+        # Part of the trackback spec... will implement later
+        # XXX. Should this throw an error?
+      elsif !(params.has_key(:url) && params.has_key?(:id))
+        throw :error, "A URL is required"
       else
         begin
-          article = Article.find(params[:id])
-          unless article.allow_pings?
-            @result = false
-            @error_message = "Article doesn't allow pings"
-          else
-            tb = article.build_to_trackbacks
-            tb.url       = params[:url]
-            tb.title     = params[:title] || params[:url]
-            tb.excerpt   = params[:excerpt]
-            tb.blog_name = params[:blog_name]
-            tb.ip        = request.remote_ip
-            tb.published = true
-          end
-
-          unless article.save
-            @result = false
-            @error_message = "Trackback not saved.  Database problem most likely."
-          end
+          params[:ip] = request.remote_ip
+          params[:published] = true
+          this_blog.ping_article!(params)
         rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
-          @result = false
-          @error_message = "Article id #{params[:id]} not found."
+          throw :error, "Article id #{params[:id]} not found."
+        rescue ActiveRecord::RecordInvalid
+          throw :error, "Trackback not saved"
         end
       end
     end
-    render :layout => false
   end
 
   def nuke_comment
-    comment = Comment.find(params[:id])
-    comment.destroy
+    Comment.find(params[:id]).destroy
     render :nothing => true
   end
 
   def nuke_trackback
-    trackback = Trackback.find(params[:id])
-    trackback.destroy
+    Trackback.find(params[:id]).destroy
     render :nothing => true
   end
 
   def view_page
     if(@page = Page.find_by_name(params[:name].to_a.join('/')))
       @page_title = @page.title
-      render
     else
       render :nothing => true, :status => 404
     end
@@ -240,7 +158,50 @@ class ArticlesController < ContentController
     end
   end
 
-  def rescue_action_in_public(exception)
-    error(exception.message)
+  def display_article(article = nil)
+    begin
+      @article      = article || yield
+      @comment      = Comment.new
+      @page_title   = @article.title
+      auto_discovery_feed :type => 'article', :id => @article.id
+      render :action => 'read'
+    rescue ActiveRecord::RecordNotFound, NoMethodError => e
+      error("Post not found...")
+    end
+  end
+
+  alias_method :rescue_action_in_public, :error
+
+  def render_error(object = '', status = 500)
+    render(:text => (object.errors.full_messages.join(", ") rescue object.to_s), :status => status)
+  end
+
+  def set_headers
+    @headers["Content-Type"] = "text/html; charset=utf-8"
+  end
+
+  def list_groupings(klass)
+    @grouping_class = klass
+    @groupings = klass.find_all_with_article_counters(1000)
+    render :action => 'groupings'
+  end
+
+  def render_grouping(klass)
+    return list_groupings(klass) unless params[:id]
+
+    @articles = klass.find_by_name(params[:id]).articles.find_already_published
+    auto_discovery_feed :type => klass.to_s.underscore, :id => params[:id]
+    render_paginated_index("Can't find posts with #{klass.to_s.underscore} #{params[:id]}")
+  end
+
+  def render_paginated_index(on_empty = "No posts found...")
+    return error(on_empty) if @articles.empty?
+
+    @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, @params[:page]
+    start = @pages.current.offset
+    stop  = (@pages.current.next.offset - 1) rescue @articles.size
+    # Why won't this work? @articles.slice!(start..stop)
+    @articles = @articles.slice(start..stop)
+    render :action => 'index'
   end
 end

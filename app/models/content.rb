@@ -1,10 +1,10 @@
 require 'observer'
 require 'set'
-
 class Content < ActiveRecord::Base
   include Observable
 
   belongs_to :text_filter
+  validates_presence_of :blog_id
 
   has_and_belongs_to_many :notify_users, :class_name => 'User',
     :join_table => 'notifications', :foreign_key => 'notify_content_id',
@@ -15,65 +15,66 @@ class Content < ActiveRecord::Base
   @@content_fields = Hash.new
   @@html_map       = Hash.new
 
-  class << self
-
-    def content_fields(*attribs)
-      @@content_fields[self] = ((@@content_fields[self]||[]) + attribs).uniq
-      @@html_map[self] = nil
-      attribs.each do | field |
-        define_method("#{field}=") do | newval |
-          if self[field] != newval
-            changed
-            self[field] = newval
-            if html_map(field)
-              self[html_map(field)] = nil
-            end
-            notify_observers(self, field.to_sym)
+  def self.content_fields(*attribs)
+    @@content_fields[self] = ((@@content_fields[self]||[]) + attribs).uniq
+    @@html_map[self] = nil
+    attribs.each do | field |
+      define_method("#{field}=") do | newval |
+        if self[field] != newval
+          changed
+          self[field] = newval
+          if html_map(field)
+            self[html_map(field)] = nil
           end
-          self[field]
+          notify_observers(self, field.to_sym)
+        end
+        self[field]
+      end
+    end
+  end
+
+  def self.html_map(field=nil)
+    unless @@html_map[self]
+      @@html_map[self] = Hash.new
+      instance = self.new
+      @@content_fields[self].each do |attrib|
+        if instance.respond_to?("#{attrib}_html")
+          @@html_map[self][attrib] = "#{attrib}_html"
         end
       end
     end
-
-    def html_map(field=nil)
-      unless @@html_map[self]
-        @@html_map[self] = Hash.new
-        instance = self.new
-        @@content_fields[self].each do |attrib|
-          if instance.respond_to?("#{attrib}_html")
-            @@html_map[self][attrib] = "#{attrib}_html"
-          end
-        end
-      end
-      if field
-        @@html_map[self][field]
-      else
-        @@html_map[self]
-      end
+    if field
+      @@html_map[self][field]
+    else
+      @@html_map[self]
     end
+  end
 
-    def find_published(what = :all, options = {})
-      options[:conditions] = merge_conditions(['published = ?', true], options[:conditions])
-      find(what, options)
+  def self.find_published(what = :all, options = {})
+    options[:conditions] = merge_conditions(['published = ?', true], options[:conditions])
+    find(what, options)
+  end
+
+  def self.find_already_published(what = :all, at = Time.now, options = { })
+    if what.respond_to?(:has_key?)
+      options = what
+      what = :all
+      at = options.delete(:at) if options.has_key?(:at)
+    elsif at.respond_to?(:has_key?)
+      options = at
+      at = options.delete(:at) || Time.now
     end
+    options[:conditions] = merge_conditions(['created_at < ?', at], options[:conditions])
+    options[:order] ||= 'created_at DESC'
+    find_published(what, options)
+  end
 
-    def find_already_published(at = Time.now, options = { })
-      if at.respond_to?(:has_key?)
-        options = at
-        at = options[:at] || Time.now
-      end
-      options[:conditions] = merge_conditions(['created_at < ?', at], options[:conditions])
-      options[:order] ||= 'created_at DESC'
-      find_published(:all, options)
-    end
-
-    def merge_conditions(*conditions)
-      first_cond = conditions.shift.to_conditions_array
-      conditions.compact.inject(first_cond) do |merged, cond|
-        cond = cond.to_conditions_array
-        merged.first << " AND ( #{cond.shift} )"
-        merged + cond
-      end
+  def self.merge_conditions(*conditions)
+    first_cond = conditions.shift.to_conditions_array
+    conditions.compact.inject(first_cond) do |merged, cond|
+      cond = cond.to_conditions_array
+      merged.first << " AND ( #{cond.shift} )"
+      merged + cond
     end
   end
 
@@ -115,6 +116,21 @@ class Content < ActiveRecord::Base
 
   def text_filter=(filter)
     self.orig_text_filter = filter.to_text_filter
+  end
+
+  def default_initialization
+    if self.class.send(:scoped?, :create)
+      self.class.send(:scope, :create)
+    else
+      { :blog_id => Blog.find(:first).id }
+    end
+  end
+
+  def initialize(args=nil)
+    args ||= { }
+    args.reverse_merge!(default_initialization)
+    super(args)
+    yield self if block_given?
   end
 end
 

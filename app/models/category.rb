@@ -2,7 +2,7 @@ class Category < ActiveRecord::Base
   acts_as_list
   has_and_belongs_to_many :articles, :order => "created_at DESC"
 
-  def self.find_all_with_article_counters
+  def self.find_all_with_article_counters(maxcount=nil)
     self.find_by_sql([%{
       SELECT categories.id, categories.name, categories.permalink, categories.position, COUNT(articles.id) AS article_counter
       FROM #{Category.table_name} categories
@@ -19,6 +19,10 @@ class Category < ActiveRecord::Base
     super || new
   end
 
+  def self.to_prefix
+    'category'
+  end
+
   def stripped_name
     self.name.to_url
   end
@@ -33,6 +37,14 @@ class Category < ActiveRecord::Base
 
   def self.reorder_alpha
     reorder find(:all, :order => 'UPPER(name)').collect { |c| c.id }
+  end
+
+  def published_articles
+    self.articles.find_already_published
+  end
+
+  def display_name
+    name
   end
 
   protected

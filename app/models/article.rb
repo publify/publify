@@ -5,6 +5,7 @@ class Article < Content
   include TypoGuid
 
   content_fields :body, :extended
+  belongs_to :blog
 
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
@@ -118,7 +119,7 @@ class Article < Content
 
     Article.transaction do
       tags.clear
-      keywords.to_s.scan(/((['"]).*?\2|[[:alnum:]]+)/).collect { |x| x.first.tr(%{'"}, '') }.uniq.each do |tagword|
+      keywords.to_s.scan(/((['"]).*?\2|[[:alnum:]]+)/).collect { |x| x.first.tr("\"'", '') }.uniq.each do |tagword|
         tags << Tag.get(tagword)
       end
     end

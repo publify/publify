@@ -1,6 +1,28 @@
-require 'config_manager'
 class Blog < ActiveRecord::Base
   include ConfigManager
+
+  has_many :contents
+  has_many :trackbacks
+  has_many :articles
+  has_many(:published_articles, :class_name => "Article",
+           :conditions => ["published = ?", true],
+           :include => [:categories, :tags],
+           :order => "contents.created_at DESC") do
+    def before(date = Time.now)
+      find(:all, :conditions => ["contents.created_at < ?", date])
+    end
+
+    def size(date = nil)
+      if date.nil?
+        Article.count
+      else
+        Article.count ["created_at < ?", date]
+      end
+    end
+  end
+
+  has_many :pages
+  has_many :comments
 
   serialize :settings, Hash
 
@@ -43,6 +65,15 @@ class Blog < ActiveRecord::Base
   # Jabber config
   setting :jabber_address,             :string, ''
   setting :jabber_password,            :string, ''
+
+  def find_already_published(content_type)
+    self.send(content_type).find_already_published
+  end
+
+  def ping_article!(settings)
+    settings[:blog_id] = self.id
+    published_articles.find(params[:id]).trackbacks.create!(settings)
+  end
 
 
   def is_ok?

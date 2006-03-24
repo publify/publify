@@ -1,6 +1,6 @@
 require_dependency 'controllers/textfilter_controller'
-
 class Admin::TextfiltersController < Admin::BaseController
+  model :text_filter
   def index
     list
     render_action 'list'

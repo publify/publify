@@ -1,3 +1,4 @@
+require_dependency 'controllers/textfilter_controller'
 class Admin::ThemesController < Admin::BaseController
 
   def index

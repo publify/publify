@@ -1,3 +1,5 @@
+require_dependency 'spam_protection'
+
 class Comment < Content
   include TypoGuid
 
@@ -5,10 +7,12 @@ class Comment < Content
 
   belongs_to :article, :counter_cache => true
   belongs_to :user
+  belongs_to :blog
 
   validates_presence_of :author, :body
   validates_against_spamdb :body, :url, :ip
   validates_age_of :article_id
+  validate_on_create :check_article_is_open_to_comments
 
   def send_notification_to_user(controller, user)
     #if user.notify_on_comments?
@@ -31,6 +35,15 @@ class Comment < Content
   end
 
   protected
+
+  def check_article_is_open_to_comments
+    return unless article
+    unless article.allow_comments?
+      errors.add(:article, "Article is not open to comments")
+    end
+  end
+
+
 
   def body_html_postprocess(value, controller)
     controller.send(:sanitize, controller.send(:auto_link, value))
