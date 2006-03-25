@@ -189,7 +189,7 @@ class ArticlesController < ContentController
   def render_grouping(klass)
     return list_groupings(klass) unless params[:id]
 
-    @articles = klass.find_by_name(params[:id]).articles.find_already_published
+    @articles = klass.find_by_permalink(params[:id]).articles.find_already_published
     auto_discovery_feed :type => klass.to_s.underscore, :id => params[:id]
     render_paginated_index("Can't find posts with #{klass.to_s.underscore} #{params[:id]}")
   end

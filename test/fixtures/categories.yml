@@ -21,3 +21,9 @@ lifeonmars:
   name: Life On Mars
   permalink: life-on-mars
   position: 4
+
+strangelynamed:
+  id: 5
+  name: The Permalink doesn't match
+  permalink: weird-permalink
+  position: 5

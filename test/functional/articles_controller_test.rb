@@ -34,6 +34,24 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     assert_response :success
     assert_rendered_file "index"
+
+    # Check it works when permalink != name. Ticket #736
+    get :category, :id => "weird-permalink"
+
+    assert_response :success
+    assert_rendered_file "index"
+  end
+
+  def test_empty_category
+    get :category, :id => "life-on-mars"
+    assert_response :success
+    assert_rendered_file "error"
+  end
+
+  def test_nonexistent_category
+    get :category, :id => 'nonexistent-category'
+    assert_response :success
+    assert_rendered_file "error"
   end
 
   def test_tag
@@ -44,6 +62,12 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     assert_tag :tag => 'h2', :content => 'Article 2!'
     assert_tag :tag => 'h2', :content => 'Article 1!'
+  end
+
+  def test_nonexistent_tag
+    get :tag, :id => "nonexistent"
+    assert_response :success
+    assert_rendered_file "error"
   end
 
   def test_tag_routes
