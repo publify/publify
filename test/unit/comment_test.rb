@@ -39,6 +39,16 @@ class CommentTest < Test::Unit::TestCase
     assert c.errors.invalid?('ip')
   end
 
+  def test_not_spam_but_rbl_lookup_succeeds
+    c        = Comment.new
+    c.author = "Not a Spammer"
+    c.body   = "Useful commentary!"
+    c.url    = "http://www.bofh.org.uk"
+    c.ip     = "10.10.10.10"
+
+    assert c.save
+  end
+
   def test_reject_spam_pattern
     c = Comment.new
     c.author = "Another Spammer"

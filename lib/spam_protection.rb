@@ -87,7 +87,7 @@ class SpamProtection
       subdomains.uniq.each do |d|
         begin
           response = IPSocket.getaddress([d, rbl].join('.'))
-          throw :hit, "#{rbl} positively resolved subdomain #{d} => #{response}"
+          throw :hit, "#{rbl} positively resolved subdomain #{d} => #{response}" if response =~ /^127\.0\.0\./
         rescue SocketError
           # NXDOMAIN response => negative:  d is not in RBL
         end
