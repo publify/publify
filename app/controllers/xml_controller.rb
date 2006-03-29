@@ -5,6 +5,10 @@ class XmlController < ContentController
   NORMALIZED_FORMAT_FOR = {'atom' => 'atom03', 'rss' => 'rss20',
     'atom03' => 'atom03', 'atom10' => 'atom10', 'rss20' => 'rss20'}
 
+  CONTENT_TYPE_FOR = { 'rss20' => 'application/xml',
+    'atom03' => 'application/atom+xml', 'atom10' => 'application/atom+xml' }
+
+
   def feed
     @items = Array.new
     @format = params[:format]
@@ -18,6 +22,8 @@ class XmlController < ContentController
       render :text => 'Unsupported format', :status => 404
       return
     end
+
+    @headers["Content-Type"] = "#{CONTENT_TYPE_FOR[@format]}; charset=utf-8"
 
     if respond_to?("prep_#{params[:type]}")
       self.send("prep_#{params[:type]}")
