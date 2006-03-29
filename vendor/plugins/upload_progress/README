@@ -1,0 +1,45 @@
+=Overview
+
+The upload progress plugin will alter your rails CGI handling to track the uploaded status of multipart/form encoded posts.  The plugin will also add helper methods to create an AJAX updating progress bar.
+
+==Installing
+
+Run "script/plugin upload_progress" or checkout the source into your plugins folder.
+
+	svn checkout http://dev.rubyonrails.com/svn/plugins/upload_progress
+
+Expand this archive in your RAILS_ROOT/vendor/plugins directory.  The resulting plugin directory should look like:
+
+	RAILS_ROOT/vendor/plugins/upload_progress/
+	RAILS_ROOT/vendor/plugins/upload_progress/README.txt
+	RAILS_ROOT/vendor/plugins/upload_progress/Rakefile
+	RAILS_ROOT/vendor/plugins/upload_progress/init.rb
+	RAILS_ROOT/vendor/plugins/upload_progress/public/
+	RAILS_ROOT/vendor/plugins/upload_progress/public/stylesheets/
+	RAILS_ROOT/vendor/plugins/upload_progress/public/stylesheets/upload_progress.css
+	RAILS_ROOT/vendor/plugins/upload_progress/lib/
+	RAILS_ROOT/vendor/plugins/upload_progress/doc/
+	RAILS_ROOT/vendor/plugins/upload_progress/test/
+
+The stylesheets included in public/stylesheets are used as a guideline for styling your progress bar and status messages.  You can copy them directly into your own public/stylesheets folder or copy and paste.
+
+==Documentation
+
+You can create the documentation by running:
+
+	rake rdoc
+
+==Requirements
+
+The requirments for getting periodic upload progress updates can be found here:
+
+http://sean.treadway.info/articles/2005/07/18/upload-progress-checklist
+
+==Credits
+
+Sean Treadway <seant@superchannel.org> http://sean.treadway.info
+Thomas Fuchs <thomas@fesch.at> http://mir.aculo.us
+
+==License
+
+This plugin is released under the MIT license.  See MIT-LICENSE for details
