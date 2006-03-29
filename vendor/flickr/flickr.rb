@@ -71,7 +71,7 @@ class Flickr
   # If @email and @password are present, authentication information is included
   def request_url(method, *params)
     url = "#{@host}#{@api}/?api_key=#{@api_key}&method=flickr.#{method}"
-    params[0][0].each_key do |key| url += "&#{key}=" + CGI::escape(params[0][0][key]) end if params[0][0]
+    params[0][0].each_key do |key| url += "&#{key}=" + CGI::escape(params[0][0][key].to_s) end if params[0][0]
     url += "&email=#{@email}&password=#{@password}" if @email and @password
     url
   end
