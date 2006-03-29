@@ -64,7 +64,8 @@ CREATE TABLE contents (
   `trackbacks_count` int(11),
   `published` tinyint(1) DEFAULT 1,
   `allow_pings` tinyint(1),
-  `allow_comments` tinyint(1)
+  `allow_comments` tinyint(1),
+  `blog_id` int(11) NOT NULL
 ) TYPE=MyISAM;
 
 CREATE TABLE notifications (
@@ -163,6 +164,7 @@ CREATE TABLE users (
 
 CREATE  INDEX blacklist_patterns_pattern_index ON blacklist_patterns (pattern);
 CREATE  INDEX categories_permalink_index ON categories (permalink);
+CREATE  INDEX contents_blog_id_index ON contents (blog_id);
 CREATE  INDEX contents_article_id_index ON contents (article_id);
 CREATE  INDEX page_caches_name_index ON page_caches (name);
 CREATE  INDEX pings_article_id_index ON pings (article_id);
@@ -205,4 +207,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) TYPE=MyISAM;
 
-insert into schema_info (version) values (39);
+insert into schema_info (version) values (40);
