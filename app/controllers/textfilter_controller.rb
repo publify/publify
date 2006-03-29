@@ -1,5 +1,4 @@
-require 'application'
-require 'plugins'
+#require 'application'
 require 'text_filter_plugin'
 
 class TextfilterController < ApplicationController
