@@ -122,7 +122,7 @@ class Content < ActiveRecord::Base
     if self.class.send(:scoped?, :create)
       self.class.send(:scope, :create)
     else
-      { :blog_id => Blog.find(:first).id }
+      { :blog_id => Blog.default }
     end
   end
 

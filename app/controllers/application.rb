@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_the_blog_object
-    $blog = Blog.find(:first) || Blog.create!
+    $blog = Blog.default || Blog.create!
     true
   end
 

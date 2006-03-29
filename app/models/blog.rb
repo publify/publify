@@ -97,14 +97,16 @@ class Blog < ActiveRecord::Base
     super
     self.settings ||= { }
   end
+  
+  def self.default
+    Blog.find(:first, :order => 'id')
+  end
 end
-
-
 
 def config
   this_blog
 end
 
 def this_blog
-  $blog || Blog.find(:first) || Blog.create!
+  $blog || Blog.default || Blog.create!
 end
