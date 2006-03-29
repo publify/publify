@@ -6,6 +6,8 @@ require 'http_mock'
 # Re-raise errors caught by the controller.
 class ArticlesController; def rescue_action(e) raise e end; end
 
+require 'content'
+
 class Content
   def self.find_last_posted
     self.find(:first, :conditions => ['created_at < ?', Time.now],
