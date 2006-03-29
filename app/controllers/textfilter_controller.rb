@@ -2,9 +2,6 @@ require 'application'
 require 'plugins'
 require 'text_filter_plugin'
 
-module Plugins
-end
-
 class TextfilterController < ApplicationController
   def public_action
     filter = params[:filter]

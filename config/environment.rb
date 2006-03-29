@@ -101,6 +101,8 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'
 )
 
+ActionController::Base.enable_upload_progress
+
 ActionMailer::Base.default_charset = 'utf-8'
 
 if RAILS_ENV != 'test'

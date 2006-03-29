@@ -1,6 +1,3 @@
-module Plugins
-end
-
 class Sidebars::Plugin < ApplicationController
   uses_component_template_root
   include ApplicationHelper
@@ -121,7 +118,7 @@ module Sidebars
     def self.enabled_sidebars
       available=available_sidebars.inject({}) { |h,i| h[i.short_name]=i; h}
 
-      ::Sidebar.find_all_visible.select do |sidebar|
+      Sidebar.find_all_visible.select do |sidebar|
         sidebar.controller and available[sidebar.controller]
       end
     end
