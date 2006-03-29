@@ -1,3 +1,7 @@
+require 'application'
+require 'plugins'
+require 'text_filter_plugin'
+
 class TextfilterController < ApplicationController
   def public_action
     filter = params[:filter]

@@ -2,9 +2,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'articles_controller'
 require 'dns_mock'
 require 'http_mock'
-
-require 'content'
-
 #
 # Re-raise errors caught by the controller.
 class ArticlesController; def rescue_action(e) raise e end; end

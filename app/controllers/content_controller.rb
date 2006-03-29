@@ -102,3 +102,5 @@ class ContentController < ApplicationController
   include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
 
 end
+
+require_dependency 'controllers/textfilter_controller'
