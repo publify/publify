@@ -12,6 +12,10 @@ class Trackback < Content
   validates_presence_of :title, :excerpt, :blog_name, :url
   validate_on_create :article_is_pingable
 
+  def self.default_order
+    'created_at ASC'
+  end
+
   def initialize(*args, &block)
     super(*args, &block)
     self.title ||= self.url

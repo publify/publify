@@ -14,6 +14,10 @@ class Comment < Content
   validates_age_of :article_id
   validate_on_create :check_article_is_open_to_comments
 
+  def self.default_order
+    'created_at ASC'
+  end
+
   def send_notification_to_user(controller, user)
     #if user.notify_on_comments?
       if user.notify_via_email?

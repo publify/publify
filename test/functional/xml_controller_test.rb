@@ -192,6 +192,9 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
+    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
+                 assigns(:items))
+
     assert_atom10(5)
   end
 
@@ -200,6 +203,9 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_xml @response.body
     assert_feedvalidator @response.body
+
+    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
+                 assigns(:items))
 
     assert_atom10(3)
   end
@@ -210,6 +216,9 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
+    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
+                 assigns(:items))
+
     assert_atom10(2)
   end
 
@@ -218,6 +227,9 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_xml @response.body
     assert_feedvalidator @response.body
+
+    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
+                 assigns(:items))
 
     assert_atom10(2)
   end
@@ -228,6 +240,9 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
+    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
+                 assigns(:items))
+
     assert_atom10(3)
   end
 
@@ -236,6 +251,9 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_xml @response.body
     assert_feedvalidator @response.body
+
+    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
+                 assigns(:items))
 
     assert_atom10(2)
   end

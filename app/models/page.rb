@@ -6,6 +6,10 @@ class Page < Content
 
   content_fields :body
 
+  def self.default_order
+    'name ASC'
+  end
+
   protected
 
   def default_text_filter_config_key; 'text_filter'; end

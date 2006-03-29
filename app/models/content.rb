@@ -52,7 +52,12 @@ class Content < ActiveRecord::Base
 
   def self.find_published(what = :all, options = {})
     options[:conditions] = merge_conditions(['published = ?', true], options[:conditions])
+    options[:order] ||= default_order
     find(what, options)
+  end
+
+  def self.default_order
+    'created_at DESC'
   end
 
   def self.find_already_published(what = :all, at = Time.now, options = { })
@@ -65,7 +70,6 @@ class Content < ActiveRecord::Base
       at = options.delete(:at) || Time.now
     end
     options[:conditions] = merge_conditions(['created_at < ?', at], options[:conditions])
-    options[:order] ||= 'created_at DESC'
     find_published(what, options)
   end
 

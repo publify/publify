@@ -2,8 +2,8 @@ class XmlController < ContentController
   caches_action_with_params :feed
   session :off
 
-  FORMATS = {'atom' => 'atom03', 'rss' => 'rss20',
-    'atom03' => nil, 'atom10' => nil, 'rss20' => nil}
+  NORMALIZED_FORMAT_FOR = {'atom' => 'atom03', 'rss' => 'rss20',
+    'atom03' => 'atom03', 'atom10' => 'atom10', 'rss20' => 'rss20'}
 
   def feed
     @items = Array.new
@@ -12,50 +12,15 @@ class XmlController < ContentController
     @feed_title = this_blog.blog_name
     @link = url_for({:controller => "articles"},{:only_path => false})
 
-    if not FORMATS.include?(@format)
+    @format = NORMALIZED_FORMAT_FOR[@format]
+
+    if not @format
       render :text => 'Unsupported format', :status => 404
       return
     end
 
-    if FORMATS[@format]
-      @format = FORMATS[@format]
-    end
-
-    case params[:type]
-    when 'feed'
-      @items = this_blog.articles.find_published(:all, :conditions => ['created_at < ?', Time.now],
-                                                 :order => 'created_at DESC',
-                                                 :limit => this_blog.limit_rss_display)
-    when 'comments'
-      @items = Comment.find_published(:all, :order => 'created_at DESC',
-                                      :limit => this_blog.limit_rss_display)
-      @feed_title = "#{this_blog.blog_name} comments"
-    when 'trackbacks'
-      @items = Trackback.find_published(:all, :order => 'created_at DESC',
-                                        :limit => this_blog.limit_rss_display)
-      @feed_title = "#{this_blog.blog_name} trackbacks"
-    when 'article'
-      article = Article.find(params[:id])
-      @items = article.comments.find_published(:all, :order => 'created_at DESC', :limit => 25)
-      @items.push(article)
-      @feed_title = "#{this_blog.blog_name}: #{article.title}"
-      @link = article_url(article, false)
-    when 'category'
-      category = Category.find_by_permalink(params[:id])
-      @items = category.articles.find_published(:all,
-                                           :conditions => ['created_at < ?', Time.now],
-                                           :limit => this_blog.limit_rss_display)
-      @feed_title = "#{this_blog.blog_name}: Category #{category.name}"
-      @link = url_for({:controller => "articles", :action => "category", :id => category.permalink},
-        {:only_path => false})
-    when 'tag'
-      tag = Tag.find_by_name(params[:id])
-      @items = tag.articles.find_published(:all,
-                                      :conditions => ['created_at < ?', Time.now],
-                                      :limit => this_blog.limit_rss_display)
-      @feed_title = "#{this_blog.blog_name}: Tag #{tag.display_name}"
-      @link = url_for({:controller => "articles", :action => 'tag', :tag => tag.name},
-        {:only_path => false})
+    if respond_to?("prep_#{params[:type]}")
+      self.send("prep_#{params[:type]}")
     else
       render :text => 'Unsupported action', :status => 404
       return
@@ -83,5 +48,53 @@ class XmlController < ContentController
   end
 
   def rsd
+  end
+
+  protected
+
+  def fetch_items(association, order='created_at DESC', limit=nil)
+    if association.instance_of?(Symbol)
+      association = this_blog.send(association)
+    end
+    limit ||= this_blog.limit_rss_display
+    @items = association.find_already_published(:all, :limit => limit, :order => order)
+  end
+
+  def prep_feed
+    fetch_items(:articles)
+  end
+
+  def prep_comments
+    fetch_items(:comments)
+    @feed_title << " comments"
+  end
+
+  def prep_trackbacks
+    fetch_items(:trackbacks)
+    @feed_title << " trackbacks"
+  end
+
+  def prep_article
+    article = this_blog.articles.find(params[:id])
+    fetch_items(article.comments, 'created_at DESC', 25)
+    @items.unshift(article)
+    @feed_title << ": #{article.title}"
+    @link = article_url(article, false)
+  end
+
+  def prep_category
+    category = Category.find_by_permalink(params[:id])
+    fetch_items(category.articles)
+    @feed_title << ": Category #{category.name}"
+    @link = url_for({:controller => "articles", :action => "category", :id => category.permalink},
+                    {:only_path => false})
+  end
+
+  def prep_tag
+    tag = Tag.find_by_name(params[:id])
+    fetch_items(tag.articles)
+    @feed_title << ": Tag #{tag.display_name}"
+    @link = url_for({:controller => "articles_controller.rb", :action => 'tag', :tag => tag.name},
+                    {:only_path => false})
   end
 end
