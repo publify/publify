@@ -73,7 +73,7 @@ require 'bluecloth'
 require 'rubypants'
 require 'flickr'
 require 'uuidtools'
-require 'guid'
+require 'typo_guid'
 
 require_dependency 'spam_protection'
 require_dependency 'migrator'
