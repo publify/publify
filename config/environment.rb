@@ -101,8 +101,6 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'
 )
 
-ActionController::Base.enable_upload_progress
-
 ActionMailer::Base.default_charset = 'utf-8'
 
 if RAILS_ENV != 'test'
@@ -118,3 +116,10 @@ if RAILS_ENV != 'test'
 end
 
 FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
+
+require 'rails_version'
+
+if (Rails::VERSION::STRING == '1.1.0')
+  module Plugins
+  end
+end
