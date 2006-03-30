@@ -3,6 +3,8 @@ require 'theme'
 require 'theme_mock'
 
 class ThemeTest < Test::Unit::TestCase
+  fixtures :blogs
+
   def setup
     @theme = Theme.new("test", "test")
   end
@@ -14,7 +16,7 @@ class ThemeTest < Test::Unit::TestCase
   def test_description
     # Filtering now occurs in the controller, not the model
     assert_equal "### Azure\n\nTypo's default theme by [Justin Palmer][1]\n\n[1]: http://www.encytemedia.com/ \"Encyte Media\"\n",
-      Theme.current.description
+      this_blog.current_theme.description
   end
 
   def test_themes_root
@@ -22,16 +24,8 @@ class ThemeTest < Test::Unit::TestCase
     assert_equal RAILS_ROOT + "/test/mocks/themes", Theme.themes_root
   end
 
-  def test_current_theme_path
-    assert_equal Theme.themes_root + "/azure", Theme.current_theme_path
-  end
-
-  def test_current
-    assert_equal "azure", Theme.current.name
-  end
-
   def test_theme_from_path
-    assert_equal "azure", Theme.theme_from_path(Theme.current_theme_path).name
+    assert_equal "azure", Theme.theme_from_path(this_blog.current_theme_path).name
   end
 
   def test_search_theme_directory
@@ -44,7 +38,7 @@ class ThemeTest < Test::Unit::TestCase
   end
 
   def test_find_all
-    assert Theme.find_all.collect { |t| t.name }.include?(Theme.current.name)
+    assert Theme.find_all.collect { |t| t.name }.include?(this_blog.current_theme.name)
     assert_equal 4, Theme.find_all.size
   end
 end

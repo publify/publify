@@ -1,5 +1,3 @@
-require 'sidebars/sidebar_controller'
-
 class Sidebar < ActiveRecord::Base
 #  acts_as_list
   serialize :active_config

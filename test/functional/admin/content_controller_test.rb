@@ -44,6 +44,24 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_template_has 'article'
   end
 
+  def test_create_no_comments
+    post(:new, 'article' => { :title => "posted via tests!", :body => "You can't comment",
+                              :keywords => "tagged",
+                              :allow_comments => '0', :allow_pings => '1' },
+               'categories' => [1])
+    assert !assigns(:article).allow_comments?
+    assert  assigns(:article).allow_pings?
+  end
+
+  def test_create_with_no_pings
+    post(:new, 'article' => { :title => "posted via tests!", :body => "You can't ping!",
+                              :keywords => "tagged",
+                              :allow_comments => '1', :allow_pings => '0' },
+               'categories' => [1])
+    assert  assigns(:article).allow_comments?
+    assert !assigns(:article).allow_pings?
+  end
+
   def test_create
     num_articles = Article.find_all.size
     emails = ActionMailer::Base.deliveries
@@ -80,6 +98,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_edit
     get :edit, 'id' => 1
+    assert_equal assigns(:selected), Article.find(1).categories.collect {|c| c.id}
     assert_rendered_file 'edit'
     assert_template_has 'article'
     assert_valid_record 'article'

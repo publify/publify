@@ -5,6 +5,10 @@ class TypoWebService < ActionWebService::Base
     @controller = controller
   end
 
+  def this_blog
+    controller.send(:this_blog)
+  end
+
   protected
 
   def authenticate(name, args)

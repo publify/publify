@@ -96,7 +96,7 @@ class Ping < ActiveRecord::Base
     post = "title=#{URI.escape(article.title)}"
     post << "&excerpt=#{URI.escape(article.body_html.strip_html[0..254])}"
     post << "&url=#{origin_url}"
-    post << "&blog_name=#{URI.escape(this_blog.blog_name)}"
+    post << "&blog_name=#{URI.escape(article.blog.blog_name)}"
 
     Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
       path = trackback_uri.path
@@ -108,7 +108,7 @@ class Ping < ActiveRecord::Base
 
 
   def send_weblogupdatesping(server_url, origin_url)
-    send_xml_rpc(self.url, "weblogUpdates.ping", this_blog.blog_name, server_url, origin_url)
+    send_xml_rpc(self.url, "weblogUpdates.ping", article.blog.blog_name, server_url, origin_url)
   end
 
   protected

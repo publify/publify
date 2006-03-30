@@ -3,9 +3,9 @@ class Sidebars::Plugin < ApplicationController
   include ApplicationHelper
 
   helper :theme
-  
-  skip_before_filter :get_the_blog_object
-  skip_after_filter :flush_the_blog_object
+
+#  skip_before_filter :get_the_blog_object
+#  skip_after_filter :flush_the_blog_object
 
   @@subclasses = { }
 
@@ -118,7 +118,7 @@ module Sidebars
     def self.enabled_sidebars
       available=available_sidebars.inject({}) { |h,i| h[i.short_name]=i; h}
 
-      Sidebar.find_all_visible.select do |sidebar|
+      ::Sidebar.find_all_visible.select do |sidebar|
         sidebar.controller and available[sidebar.controller]
       end
     end

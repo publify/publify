@@ -11,6 +11,10 @@ module ApplicationHelper
     this_blog[name]
   end
 
+  def config
+    this_blog
+  end
+
   def article_link(title, article,anchor=nil)
     link_to title, article_url(article,true,anchor)
   end

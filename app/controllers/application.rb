@@ -2,7 +2,6 @@
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
   include LoginSystem
-  model :user
 
   before_filter :get_the_blog_object
   after_filter :flush_the_blog_object
@@ -31,13 +30,18 @@ class ApplicationController < ActionController::Base
   end
 
   def get_the_blog_object
-    $blog = Blog.default || Blog.create!
+    @blog = Blog.default || Blog.create!
     true
   end
 
   def flush_the_blog_object
-    $blog = nil
+    @blog = nil
     true
   end
+
+  def this_blog
+    @blog || Blog.default || Blog.new
+  end
+  helper_method :this_blog
 end
 

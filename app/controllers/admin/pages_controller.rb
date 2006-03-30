@@ -1,6 +1,4 @@
 class Admin::PagesController < Admin::BaseController
-  cache_sweeper :blog_sweeper
-
   def index
     list
     render_action 'list'

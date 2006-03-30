@@ -32,6 +32,10 @@ class Test::Unit::TestCase
     tag = find_tag_in(source, opts)
     assert !tag, "expected no tag, but tag found matching #{opts.inspect} in:\n#{source.inspect}"
   end
+
+  def this_blog
+    Blog.default || Blog.create!
+  end
 end
 
 # Extend HTML::Tag to understand URI matching

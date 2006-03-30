@@ -1,6 +1,4 @@
 class Admin::ContentController < Admin::BaseController
-  cache_sweeper :blog_sweeper
-
   def index
     list
     render_action 'list'
@@ -79,10 +77,9 @@ class Admin::ContentController < Admin::BaseController
 
   def new_or_edit
     get_or_build_article
-    @article.attributes =
-      (params[:article]||{}).reverse_merge({ :allow_comments => this_blog.default_allow_comments,
-                                             :allow_pings => this_blog.default_allow_pings })
+    @article.attributes = (params[:article]||{})
     setup_categories
+    @selected = @article.categories.collect { |c| c.id }
     if request.post?
       set_article_author
       save_attachments
@@ -128,12 +125,15 @@ class Admin::ContentController < Admin::BaseController
     @selected = params[:categories] || []
   end
 
-  ARTICLEMAKER_FOR = Hash.new(&lambda {|h,k| raise "Don't know how to get article for action #{k}"})\
-    .merge({'new'  => lambda {|id| this_blog.articles.build },
-            'edit' => lambda {|id| this_blog.articles.find(id) } })
-
   def get_or_build_article
-    @article = ARTICLEMAKER_FOR[params[:action]][params[:id]]
+    @article = case params[:action]
+               when 'new'
+                 this_blog.articles.build
+               when 'edit'
+                 this_blog.articles.find(params[:id])
+               else
+                 raise "Don't know how to get article for action: #{params[:action]}"
+               end
   end
 
   def setup_categories

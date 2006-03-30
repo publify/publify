@@ -73,7 +73,6 @@ require 'bluecloth'
 require 'rubypants'
 require 'flickr'
 require 'uuidtools'
-require 'guid'
 
 require_dependency 'spam_protection'
 require_dependency 'migrator'
@@ -81,8 +80,6 @@ require_dependency 'rails_patch/components'
 require_dependency 'rails_patch/active_record'
 require_dependency 'login_system'
 require_dependency 'typo_version'
-require_dependency 'jabber'
-require_dependency 'email'
 require_dependency 'metafragment'
 require_dependency 'actionparamcache'
 $KCODE = 'u'
@@ -100,8 +97,6 @@ require_dependency 'transforms'
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'
 )
-
-ActionController::Base.enable_upload_progress
 
 ActionMailer::Base.default_charset = 'utf-8'
 

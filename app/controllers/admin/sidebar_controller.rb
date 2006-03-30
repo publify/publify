@@ -1,5 +1,3 @@
-require 'sidebars/sidebar_controller'
-
 class Admin::SidebarController < Admin::BaseController
   def index
     @sidebars = Sidebars::SidebarController.available_sidebars.inject({}) do |hash,sidebar|

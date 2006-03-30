@@ -1,5 +1,5 @@
 require 'net/http'
-require 'controllers/textfilter_controller'
+require_dependency 'textfilter_controller'
 
 class TextFilter < ActiveRecord::Base
   serialize :filters

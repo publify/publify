@@ -20,14 +20,6 @@ class Theme
     RAILS_ROOT + "/themes"
   end
 
-  def self.current_theme_path
-    "#{themes_root}/#{this_blog.theme}"
-  end
-
-  def self.current
-    theme_from_path(current_theme_path)
-  end
-
   def self.theme_from_path(path)
     name = path.scan(/[-\w]+$/i).flatten.first
     self.new(name, path)

@@ -9,6 +9,10 @@ class TextFilterPlugin < ContentController
   plugin_display_name "Unknown Text Filter"
   plugin_description "Unknown Text Filter Description"
 
+  def self.reloadable?
+    false
+  end
+
   # Disable HTML errors for subclasses
   def rescue_action(e)
     raise e

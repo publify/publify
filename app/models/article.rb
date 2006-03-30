@@ -35,9 +35,9 @@ class Article < Content
   end
 
   def send_pings(serverurl, articleurl, urllist)
-    return unless this_blog.send_outbound_pings
+    return unless blog.send_outbound_pings
 
-    weblogupdatesping_urls = this_blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
+    weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
     pingback_or_tracback_urls = self.html_urls
     trackback_urls = urllist.to_a
 
@@ -137,7 +137,7 @@ class Article < Content
     end
 
     if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New post", "A new message was posted to #{this_blog.blog_name}",body_html)
+      JabberNotify.send_message(user, "New post", "A new message was posted to #{blog.blog_name}",body_html)
     end
   end
 
@@ -152,15 +152,16 @@ class Article < Content
   end
 
   def set_defaults
-#    self.published = true if self.published.nil?
-
-    if schema_version >= 7
-      self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
+    self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
+    correct_counts
+    if blog && self.allow_comments.nil?
+      self.allow_comments = blog.default_allow_comments
     end
 
-    if schema_version >= 29
-      correct_counts
+    if blog && self.allow_pings.nil?
+      self.allow_comments = blog.default_allow_pings
     end
+    true
   end
 
   def add_notifications

@@ -97,16 +97,17 @@ class Blog < ActiveRecord::Base
     super
     self.settings ||= { }
   end
-  
+
   def self.default
     Blog.find(:first, :order => 'id')
   end
+
+  def current_theme_path
+    Theme.themes_root + "/" + theme
+  end
+
+  def current_theme
+    Theme.theme_from_path(current_theme_path)
+  end
 end
 
-def config
-  this_blog
-end
-
-def this_blog
-  $blog || Blog.default || Blog.create!
-end

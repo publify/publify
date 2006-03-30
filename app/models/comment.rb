@@ -25,7 +25,7 @@ class Comment < Content
       end
 
       if user.notify_via_jabber?
-        JabberNotify.send_message(user, "New comment", "A new comment was posted to '#{article.title}' on #{this_blog.blog_name} by #{author}: #{body}", self.body_html)
+        JabberNotify.send_message(user, "New comment", "A new comment was posted to '#{article.title}' on #{blog.blog_name} by #{author}: #{body}", self.body_html)
       end
     #end
   end

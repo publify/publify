@@ -115,7 +115,7 @@ class Content < ActiveRecord::Base
   alias_method :orig_text_filter=, :text_filter=; alias_method :orig_text_filter, :text_filter
 
   def text_filter
-    self.orig_text_filter ||= this_blog[default_text_filter_config_key].to_text_filter
+    self.orig_text_filter ||= blog[default_text_filter_config_key].to_text_filter
   end
 
   def text_filter=(filter)

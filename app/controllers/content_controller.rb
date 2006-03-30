@@ -69,7 +69,7 @@ class ContentController < ApplicationController
   end
 
   def theme_layout
-    Theme.current.layout
+    this_blog.current_theme.layout
   end
 
   helper_method :contents
@@ -102,5 +102,3 @@ class ContentController < ApplicationController
   include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
 
 end
-
-require_dependency 'controllers/textfilter_controller'

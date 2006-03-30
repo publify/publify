@@ -1,4 +1,8 @@
 class EmailNotify
+  def self.logger
+    @@logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDOUT)
+  end
+
   def self.send_comment(controller, comment, user)
     return if user.email.blank?
 

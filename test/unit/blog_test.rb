@@ -47,4 +47,12 @@ class BlogTest < Test::Unit::TestCase
     assert comments.all? { |c| c.is_a?(Comment) }
   end
 
+  def test_current_theme_path
+    assert_equal Theme.themes_root + "/azure", @blog.current_theme_path
+  end
+
+  def test_current_theme
+    assert_equal "azure", @blog.current_theme.name
+  end
+
 end

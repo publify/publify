@@ -1,5 +1,3 @@
-require 'blacklist_pattern'
-
 class Admin::BlacklistController < Admin::BaseController
   def index
     list
