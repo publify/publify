@@ -78,9 +78,12 @@ class Admin::SidebarController < Admin::BaseController
 
   def publish
     Sidebar.transaction do
-      Sidebar.find(:all).each do |sidebar|
-        sidebar.publish
-        sidebar.save
+      params[:configure].each do |id, attribs|
+        sb = Sidebar.find(id)
+        sb.staged_config = attribs
+        sb.save
+        sb.publish
+        sb.save
       end
       Sidebar.purge
     end

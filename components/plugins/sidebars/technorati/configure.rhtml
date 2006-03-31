@@ -1,13 +1,6 @@
-<%= form_tag({},{:id => 'configure_'+@sidebar.id.to_s, :class=>'configblock'}) %>
-  <label>Name</label>
-  <input class="text" type="text" name="configure[name]" value="<%=h @sidebar.staged_config['name'] %>"/><br/>
-  <label>Feed URL</label>
-  <input class="text" type="text" name="configure[feed]" value="<%=h @sidebar.staged_config['feed'] %>"/><br/>
-  <label>Items limit</label>
-  <input class="text" type="text" name="configure[count]" value="<%=h @sidebar.staged_config['count'] %>"/><br/>
-<%= end_form_tag %>
-
-<%= observe_form "configure_"+@sidebar.id.to_s, 
-    :url => { :action => "save_config", :id=>@sidebar.id},
-    :with => 'value'
- %>
+<label>Name</label>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][name]" value="<%=h @sidebar.staged_config['name'] %>"/><br/>
+<label>Feed URL</label>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][feed]" value="<%=h @sidebar.staged_config['feed'] %>"/><br/>
+<label>Items limit</label>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][count]" value="<%=h @sidebar.staged_config['count'] %>"/><br/>

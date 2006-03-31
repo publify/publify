@@ -13,7 +13,7 @@ class Plugins::Sidebars::AmazonController < Sidebars::Plugin
 
   def content
     asin_list = params[:contents].to_a.inject([]) { |acc, item| acc | item.whiteboard[:asins].to_a }
-    @asins = asin_list.compact[0,@sb_config['maxlinks']]
+    @asins = asin_list.compact[0,@sb_config['maxlinks'].to_i]
     @assoc_id = @sb_config['associate_id']
     if @asins.empty?
       render :text => ""

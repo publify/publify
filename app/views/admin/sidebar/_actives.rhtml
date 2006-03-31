@@ -1,11 +1,10 @@
-<form action=""></form> <!-- Something eats the first form in actives when reloading via AJAX.  This causes massive havoc in Firefox, and minor havoc in Safari.  So we provide it with sacrificial fodder here. -->
 <% if actives.blank? %>
   <div class="target">  Drag some plugins here to fill your sidebar!  </div>
 <% else %>
  <%= render :partial => 'active', :collection => actives %>
 <% end %>
-  
-<%= sortable_element "active", 
+
+<%= sortable_element "active",
   :onUpdate => "function(){new Ajax.Updater('active','#{url_for(:action=>'set_active')}',{asynchronous:true, evalScripts:true, parameters:Sortable.serialize('active')});new Ajax.Updater('available_box','#{url_for(:action=>'show_available')}',{asynchronous:true, evalScripts:true})}",
-  :url=> {:action=>'set_active'}, 
+  :url=> {:action=>'set_active'},
   :tag => 'div', :handle => 'handle', :containment => ['active','available_box'] %>
