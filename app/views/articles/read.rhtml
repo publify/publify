@@ -55,7 +55,9 @@
 <p class="postmetadata alt">
   <small>
   <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'rss20', :id => @article %>" title="RSS Feed">RSS feed for this post</a>
+<% if @article.allow_pings? -%>
   <a href="<%= server_url_for :controller=>"articles", :action=>"trackback", :id => @article.id %>" >trackback uri</a>  
+<% end -%>
   </small>
 </p>
 
