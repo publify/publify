@@ -1,4 +1,6 @@
 class Plugins::Sidebars::CategoryController < Sidebars::Plugin
+  model :category
+
   def self.display_name
     "Categories"
   end

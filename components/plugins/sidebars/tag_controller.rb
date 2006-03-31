@@ -1,4 +1,6 @@
 class Plugins::Sidebars::TagController < Sidebars::Plugin
+  model :tag
+
   def self.display_name
     "Tags"
   end
