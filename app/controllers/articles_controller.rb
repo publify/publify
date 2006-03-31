@@ -79,7 +79,8 @@ class ArticlesController < ContentController
       begin
         params[:comment].merge({:ip => request.remote_ip,
                                 :published => true })
-        @comment = this_blog.published_articles.find(params[:id]).comments.build(params[:comment])
+        @article = this_blog.published_articles.find(params[:id])
+        @comment = @article.comments.build(params[:comment])
         @comment.user = session[:user]
         @comment.save!
         add_to_cookies(:author, @comment.author)
