@@ -60,8 +60,7 @@ class Sidebars::Plugin < ApplicationController
 
   def index
     @sidebar=params['sidebar']
-    @sb_config = self.class.default_config
-    @sb_config.merge!(@sidebar.active_config || {})
+    @sb_config = @sidebar.active_config.nil? ? self.class.default_config : @sidebar.active_config
     content
     render :action=>'content' unless performed?
   end
