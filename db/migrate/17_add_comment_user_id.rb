@@ -1,30 +1,19 @@
-class Bare17Comment < ActiveRecord::Base
-  include BareMigration
-end
-
-class Bare17User <  ActiveRecord::Base
-  include BareMigration
-end
-
 class AddCommentUserId < ActiveRecord::Migration
+  class BareComment < ActiveRecord::Base
+    include BareMigration
+  end
+
+  class BareUser <  ActiveRecord::Base
+    include BareMigration
+  end
+
   def self.up
-    users = Hash.new
+    id_for_address = BareUser.find(:all).inject({}) do |h, u|
+      h.merge({ u.email => u.id })
+    end
 
-    Bare17Comment.transaction do
-      add_column :comments, :user_id, :integer
-
-      Bare17Comment.reset_column_information
-      Bare17Comment.find(:all).each do |c|
-        userid = nil
-        if users[c.email]
-          c.user_id = users[c.email]
-          c.save!
-        elsif user = Bare17User.find_by_email(c.email)
-          c.user_id = user.id
-          users[c.email] = user.id
-          c.save!
-        end
-      end
+    modify_tables_and_update(:add_column, BareComment, :user_id, :integer) do |c|
+      c.user_id = id_for_address[c.email]
     end
   end
 

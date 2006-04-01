@@ -1,66 +1,43 @@
-class Bare14Article < ActiveRecord::Base
-  include BareMigration
-end
-
-class Bare14Page < ActiveRecord::Base
-  include BareMigration
-end
-
-class Bare14TextFilter < ActiveRecord::Base
-  include BareMigration
-end
-
 class MoveTextFilterToTextFilterId < ActiveRecord::Migration
+  class BareArticle < ActiveRecord::Base
+    include BareMigration
+  end
+
+  class BarePage < ActiveRecord::Base
+    include BareMigration
+  end
+
+  class BareTextFilter < ActiveRecord::Base
+    include BareMigration
+  end
+
   def self.up
     STDERR.puts "Converting Article and Page to use text_filter_id instead of text_filter"
-    Bare14TextFilter.transaction do
-      filters=Hash.new
-      Bare14TextFilter.find(:all).each do |filter|
-        # Performance hack; if there are 500 articles but only 5 filters, then
-        # it's a lot faster to load them all up front.
-        filters[filter.name] = filter
-      end
+    id_of = BareTextFilter.find(:all).inject({}) {|h, f| h.merge({ h[f.name] => f.id }) }
 
-      add_column :articles, :text_filter_id, :integer
-      Bare14Article.reset_column_information
-      Bare14Article.find(:all).each do |article|
-        article.text_filter_id = filters[article.attributes['text_filter']].id
-        article.save!
+    modify_tables_and_update([:add_column, BareArticle, :text_filter_id, :integer],
+                             [:add_column, BarePage,    :text_filter_id, :integer]) do
+      (BareArticle.find(:all) + BarePage.find(:all)).each do |content|
+        content.text_filter_id = id_of[content.attributes['text_filter']]
+        content.save!
       end
-      remove_column :articles, :text_filter
-
-      add_column :pages, :text_filter_id, :integer
-      Bare14Page.reset_column_information
-      Bare14Page.find(:all).each do |page|
-        page.text_filter_id = filters[page.attributes['text_filter']].id
-        page.save!
-      end
-      remove_column :pages, :text_filter
     end
+    remove_column :articles, :text_filter
+    remove_column :pages,    :text_filter
   end
 
   def self.down
     STDERR.puts "Dropping text_filter_id in favor of text_filter"
-    Bare14TextFilter.transaction do
-      add_column :articles, :text_filter, :string
-      Bare14Article.reset_column_information
-      Bare14Article.find(:all).each do |article|
-        if(article.text_filter)
-          article.attributes['text_filter'] = article.text_filter.name
-        end
-        article.save!
-      end
-      remove_column :articles, :text_filter_id
+    name_of = BareTextFilter.find(:all).inject({}) {|h, f| h.merge({ h[f.id] => f.name })}
 
-      add_column :pages, :text_filter, :string
-      Bare14Page.reset_column_information
-      Bare14Page.find(:all).each do |page|
-        if(page.text_filter)
-          page.attributes['text_filter'] = page.text_filter.name
-        end
-        page.save!
+    modify_tables_and_update([:add_column, BareArticle, :text_filter, :string],
+                             [:add_column, BarePage,    :text_filter, :string]) do
+      (BareArticle.find(:all) + BarePage.find(:all)).each do |content|
+        content.attributes['text_filter'] = name_of[content.text_filter_id]
+        content.save!
       end
-      remove_column :pages, :text_filter_id
     end
+    remove_column :articles, :text_filter_id
+    remove_column :pages,    :text_filter_id
   end
 end

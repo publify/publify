@@ -1,9 +1,11 @@
 class AddTagDisplayName < ActiveRecord::Migration
+  class Tag < ActiveRecord::Base
+    include BareMigration
+  end
+
   def self.up
     STDERR.puts 'Adding display name to tags'
-    Tag.transaction do
-      add_column :tags, :display_name, :string
-
+    modify_tables_and_update(:add_column, Tag, :display_name, :string) do
       unless $schema_generator
         Tag.find(:all).each do |tag|
           tag.display_name = tag.name
@@ -14,9 +16,7 @@ class AddTagDisplayName < ActiveRecord::Migration
             # Hopefully this code isn't necessary, but somebody may have tags "Monty Python" and "montypython"
             # Please note that this code isn't going to be tested very well, if at all, because of my limited
             # testing setup. But in my quickie tests it appears to be working right
-            origtag = Tag.find(:first, :conditions => [%{name = ? AND id != ?}, tag.name, tag.id])
-            unless origtag.nil?
-              # yep, duplicate tag
+            if origtag = Tag.find(:first, :conditions => [%{name = ? AND id != ?}, tag.name, tag.id])
               tag.articles.each do |article|
                 # replace our tag with origtag in article.tags
                 article.tags = article.tags.collect { |x| x.id == tag.id ? origtag : x }
@@ -24,10 +24,10 @@ class AddTagDisplayName < ActiveRecord::Migration
               tag.destroy
             else
               # ok, original tag
-              tag.save
+              tag.save!
             end
           else
-            tag.save
+            tag.save!
           end
         end
       end
@@ -36,15 +36,11 @@ class AddTagDisplayName < ActiveRecord::Migration
 
   def self.down
     STDERR.puts 'Removing display name from tags'
-    Tag.transaction do
-      unless $schema_generator
-        Tag.find(:all).each do |tag|
-          tag.name = tag.display_name
-          tag.save
-        end
+    unless $schema_generator
+      Tag.find_and_update(:all) do |tag|
+        tag.name = tag.display_name
       end
-
-      remove_column :tags, :display_name
     end
+    remove_column :tags, :display_name
   end
 end
