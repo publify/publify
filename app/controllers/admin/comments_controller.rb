@@ -1,7 +1,6 @@
 class Admin::CommentsController < Admin::BaseController
 
   before_filter :get_article
-  cache_sweeper :blog_sweeper
 
   def index
     list
