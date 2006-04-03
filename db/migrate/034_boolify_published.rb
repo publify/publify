@@ -6,8 +6,7 @@ class BoolifyPublished < ActiveRecord::Migration
   def self.up
     STDERR.puts "Boolifying contents.published"
     modify_tables_and_update([:rename_column, Bare34Content, :published, :old_pub],
-                             [:add_column,    Bare34Content, :published, :boolean,
-                               { :default => true, :null => false }]) do |c|
+                             [:add_column,    Bare34Content, :published, :boolean, { :default => true }]) do |c|
       unless $schema_generator
         if c.old_pub.nil?
           c.published = true
