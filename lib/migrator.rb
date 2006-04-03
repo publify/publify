@@ -7,7 +7,7 @@ module Migrator
   end
 
   def self.available_migrations
-    Dir["#{migrations_path}/[1-9]*_*.rb"].sort_by { |name| name.scan(/\d+/).first.to_i }
+    Dir["#{migrations_path}/[0-9]*_*.rb"].sort_by { |name| name.scan(/\d+/).first.to_i }
   end
 
   def self.current_schema_version
