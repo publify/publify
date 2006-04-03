@@ -11,6 +11,8 @@ class RedirectControllerTest < Test::Unit::TestCase
     @controller = RedirectController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    
+    @request.relative_url_root = nil # avoid failures if environment.rb defines a relative URL root
   end
 
   # Replace this with your real tests.
@@ -18,6 +20,17 @@ class RedirectControllerTest < Test::Unit::TestCase
     get :redirect, :from => "foo/bar"
     assert_response 301
     assert_redirected_to "/someplace/else"
+  end
+
+  def test_url_root_redirect
+    @request.relative_url_root = "/blog"
+    get :redirect, :from => "foo/bar"
+    assert_response 301
+    assert_redirected_to "/blog/someplace/else"
+    
+    get :redirect, :from => "bar/foo"
+    assert_response 301
+    assert_redirected_to "/blog/someplace/else"
   end
 
   def test_no_redirect
