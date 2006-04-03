@@ -161,7 +161,7 @@ class ArticlesController < ContentController
 
   def display_article(article = nil)
     begin
-      @article      = article || yield
+      @article      = block_given? ? yield : article
       @comment      = Comment.new
       @page_title   = @article.title
       auto_discovery_feed :type => 'article', :id => @article.id

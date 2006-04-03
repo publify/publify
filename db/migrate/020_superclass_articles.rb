@@ -25,6 +25,9 @@ class SuperclassArticles < ActiveRecord::Migration
   def self.up
     STDERR.puts "Merging Articles into Contents table"
 
+    # Make sure our index is in a known state
+    add_index :articles, :permalink rescue nil
+
     Bare20Article.transaction do
       create_table :contents do |t|
 #       ActiveRecord::Base.connection.send(:create_table, [:contents]) do |t|
