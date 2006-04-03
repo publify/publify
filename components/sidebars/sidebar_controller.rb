@@ -60,14 +60,14 @@ class Sidebars::Plugin < ApplicationController
 
   def index
     @sidebar=params['sidebar']
-    @sb_config = @sidebar.active_config.nil? ? self.class.default_config : @sidebar.active_config
+    @sb_config = @sidebar.config.nil? ? self.class.default_config : @sidebar.config
     content
     render :action=>'content' unless performed?
   end
 
   def configure_wrapper
     @sidebar=params['sidebar']
-    @sidebar.staged_config ||= (self.class.default_config)
+    @sidebar.config ||= (self.class.default_config)
     configure
     render :action=>'configure' unless performed?
   end
@@ -81,14 +81,10 @@ class Sidebars::Plugin < ApplicationController
     render_text ''
   end
 
-  def save_config
-    render_text ''
-  end
-
   private
   def sb_config(key)
     config = @sidebar.class.default_config
-    config.merge!(@sidebar.active_config || {})
+    config.merge!(@sidebar.config || {})
     config[key.to_s]
   end
 

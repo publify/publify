@@ -1,4 +1,4 @@
 <label>Screen Name</label><br/>
-<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][sn]" value="<%=h @sidebar.staged_config['sn'] %>"/><br/>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][sn]" value="<%=h @sidebar.config['sn'] %>"/><br/>
 <label>Key</label> (register <a href="http://www.aim.com/presence/">here</a>)<br/>
-<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][devkey]" value="<%=h @sidebar.staged_config['devkey'] %>"/><br/>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][devkey]" value="<%=h @sidebar.config['devkey'] %>"/><br/>

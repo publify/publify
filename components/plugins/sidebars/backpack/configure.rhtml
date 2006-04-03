@@ -1,19 +1,19 @@
 <table>
   <tr>
     <td align="right"><label>Username</label></td>
-    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][username]" value="<%=h @sidebar.staged_config['username'] %>"/></td>
+    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][username]" value="<%=h @sidebar.config['username'] %>"/></td>
   </tr>
   <tr>
     <td align="right"><label>Token</label></td>
-    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][token]" value="<%=h @sidebar.staged_config['token'] %>"/></td>
+    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][token]" value="<%=h @sidebar.config['token'] %>"/></td>
   </tr>
   <tr>
     <td align="right"><label>Page ID</label></td>
-    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][page_id]" value="<%=h @sidebar.staged_config['page_id'] %>"/></td>
+    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][page_id]" value="<%=h @sidebar.config['page_id'] %>"/></td>
   </tr>
   <tr>
     <td align="right"><label>Items limit</label></td>
-    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][count]" value="<%=h @sidebar.staged_config['count'] %>"/></td>
+    <td><input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][count]" value="<%=h @sidebar.config['count'] %>"/></td>
   </tr>
 </table>
 

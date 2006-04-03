@@ -1,4 +1,4 @@
 <label>Feed URL</label>
-<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][feed]" value="<%=h @sidebar.staged_config['feed'] %>"/><br/>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][feed]" value="<%=h @sidebar.config['feed'] %>"/><br/>
 <label>Items limit</label>
-<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][count]" value="<%=h @sidebar.staged_config['count'] %>"/><br/>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][count]" value="<%=h @sidebar.config['count'] %>"/><br/>

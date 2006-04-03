@@ -33,7 +33,7 @@ class Admin::SidebarController < Admin::BaseController
       if availablemap.has_key?(name)
         newitem = Sidebar.new
         newitem.controller = name
-        newitem.staged_config= availablemap[name].default_config
+        newitem.config= availablemap[name].default_config
 
         array.push newitem
       elsif activemap.has_key?(name)
@@ -56,14 +56,6 @@ class Admin::SidebarController < Admin::BaseController
     render :partial => 'actives', :object => @active
   end
 
-  def save_config
-    sidebar = Sidebar.find(params[:id])
-    sidebar.staged_config=params[:configure]
-    sidebar.save
-
-    render :nothing => true
-  end
-
   def nothing
     render :nothing => true
   end
@@ -80,7 +72,7 @@ class Admin::SidebarController < Admin::BaseController
     Sidebar.transaction do
       params[:configure].each do |id, attribs|
         sb = Sidebar.find(id)
-        sb.staged_config = attribs
+        sb.config = attribs
         sb.save
         sb.publish
         sb.save

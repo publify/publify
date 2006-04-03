@@ -1,6 +1,6 @@
 <label>Title</label><br/>
-<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][title]" value="<%=h @sidebar.staged_config['title'] %>"/><br/>
+<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][title]" value="<%=h @sidebar.config['title'] %>"/><br/>
 <label>Content</label><br/>
 <textarea rows="10" cols="30" style="width:265px" name="configure[<%= @sidebar.id.to_s %>][body]">
-  <%=h @sidebar.staged_config['body'] -%>
+  <%=h @sidebar.config['body'] -%>
 </textarea>
