@@ -23,7 +23,7 @@ class AddPermalink < ActiveRecord::Migration
     modify_tables_and_update([:add_column, BareCategory, :permalink, :string],
                              [:add_index,  BareCategory, :permalink]) do
       BareCategory.find_and_update {|c| c.permalink ||= c.stripped_name }
-      BareArticle.find_and_update {|a| (a.permalink ||= a.stripped_title) rescue nil }
+      BareArticle.find_and_update  {|a| a.permalink ||= a.stripped_title }
     end
   end
 
