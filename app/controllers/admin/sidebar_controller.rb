@@ -4,8 +4,13 @@ class Admin::SidebarController < Admin::BaseController
       hash[sidebar.short_name]=sidebar
       hash
     end
-
-    @active = Sidebar.find_all_staged.select {|s| @sidebars[s.controller] }
+    # Reset the staged position based on the active position.
+    Sidebar.delete_all('active_position is null')
+    @active = Sidebar.find(:all).select do |sb|
+      sb.staged_position = sb.active_position
+      sb.save
+      @sidebars[sb.controller]
+    end
     @available = @sidebars.values.sort { |a,b| a.name <=> b.name }
   end
 
@@ -74,6 +79,8 @@ class Admin::SidebarController < Admin::BaseController
         sb = Sidebar.find(id)
         sb.config = attribs
         sb.save
+      end
+      Sidebar.find(:all).each do |sb|
         sb.publish
         sb.save
       end
