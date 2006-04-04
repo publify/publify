@@ -3,9 +3,9 @@
 
   <%= form_remote_tag :update=>'messages',:url=>{:action=>'publish'} %>
   <input value="Publish changes" class="space" type="submit"/>
- 
+
   <div id="messages"></div>
-  
+
   <div id="sidebar-config">
     <div id="available" class="dropbox">
       <h3>Available Items</h3>
@@ -15,14 +15,18 @@
     </div>
 
     <div id="cnt-active">
-      <h3>Active Sidebar items</h3>
+      <h3 id="hdr-active">
+        Active Sidebar items
+        <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
+                      :style => 'display:none;' -%>
+      </h3>
       <div id="active" class="dropbox">
         <%= render :partial => 'actives', :object => @active %>
       </div>
     </div>
     <br clear="all" />
-    
+
     <input value="Publish changes" class="space" type="submit"/>
-    
+
   </div>
   <%= end_form_tag %>

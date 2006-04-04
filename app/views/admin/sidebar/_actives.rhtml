@@ -3,8 +3,6 @@
 <% else %>
  <%= render :partial => 'active', :collection => actives %>
 <% end %>
-
-<%= sortable_element "active",
-  :onUpdate => "function(){new Ajax.Updater('active','#{url_for(:action=>'set_active')}',{asynchronous:true, evalScripts:true, parameters:Sortable.serialize('active')});new Ajax.Updater('available_box','#{url_for(:action=>'show_available')}',{asynchronous:true, evalScripts:true})}",
-  :url=> {:action=>'set_active'},
-  :tag => 'div', :handle => 'handle', :containment => ['active','available_box'] %>
+<%= sortable_element "active", :url => {:action => 'set_active'}, :tag => 'div',
+     :handle => 'handle', :containment => ['active','available_box'],
+     :loading => "new Element.show('update_spinner')" %>

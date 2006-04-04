@@ -3,6 +3,8 @@
   <p><%= active.sidebar_controller.description %></p>
   <div class="space">
   <div><%= render_component :layout=>false, :controller=>active.sidebar_controller.component_name, :action=>'configure_wrapper', :params => {:sidebar => active } %></div>
-  <%= link_to_remote 'remove', :url => {:action => 'remove', :id => active}, :before => "new Effect.DropOut('active_#{active.html_id}');" %>
+  <%= link_to_remote 'remove', :url => {:action => 'remove', :id => active},
+        :before => "new Effect.DropOut('active_#{active.html_id}');",
+        :loading => "new Element.show('update_spinner')" %>
   </div>
 </div>

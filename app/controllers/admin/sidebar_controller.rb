@@ -19,7 +19,6 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   def set_active
-
     # Get all available plugins
     availablemap = available.inject({}) do |hash, item|
       hash[item.short_name] = item
@@ -33,7 +32,7 @@ class Admin::SidebarController < Admin::BaseController
     end
 
     # Figure out which plugins are referenced by the params[:active] array and
-    # lay them out in a easy accessible sequencial array
+    # lay them out in a easy accessible sequential array
     @active = params[:active].inject([]) do |array, name|
       if availablemap.has_key?(name)
         newitem = Sidebar.new
@@ -57,8 +56,6 @@ class Admin::SidebarController < Admin::BaseController
       end
       Sidebar.purge
     end
-
-    render :partial => 'actives', :object => @active
   end
 
   def nothing
@@ -69,13 +66,11 @@ class Admin::SidebarController < Admin::BaseController
     sidebar = Sidebar.find(params[:id])
     sidebar.staged_position = nil
     sidebar.save
-
-    render :nothing => true
   end
 
   def publish
     Sidebar.transaction do
-      params[:configure].each do |id, attribs|
+      (params[:configure]||[]).each do |id, attribs|
         sb = Sidebar.find(id)
         sb.config = attribs
         sb.save
@@ -89,9 +84,10 @@ class Admin::SidebarController < Admin::BaseController
     render :partial=>'publish'
   end
 
-  private
+  protected
 
   def available
     Sidebars::SidebarController.available_sidebars.sort { |a,b| a.name <=> b.name }
   end
+  helper_method :available
 end
