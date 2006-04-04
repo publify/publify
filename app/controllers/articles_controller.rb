@@ -102,19 +102,22 @@ class ArticlesController < ContentController
       if params[:__mode] == "rss"
         # Part of the trackback spec... will implement later
         # XXX. Should this throw an error?
-      elsif !(params.has_key(:url) && params.has_key?(:id))
+      elsif !(params.has_key?(:url) && params.has_key?(:id))
         throw :error, "A URL is required"
       else
         begin
-          params[:ip] = request.remote_ip
-          params[:published] = true
-          this_blog.ping_article!(params)
+          settings = { :id => params[:id],
+                       :url => params[:url],      :blog_name => params[:blog_name],
+                       :title => params[:title],  :excerpt => params[:excerpt],
+                       :ip  => request.remote_ip, :published => true }
+          this_blog.ping_article!(settings)
         rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
           throw :error, "Article id #{params[:id]} not found."
         rescue ActiveRecord::RecordInvalid
           throw :error, "Trackback not saved"
         end
       end
+      nil
     end
   end
 

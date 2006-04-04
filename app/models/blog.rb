@@ -73,7 +73,9 @@ class Blog < ActiveRecord::Base
 
   def ping_article!(settings)
     settings[:blog_id] = self.id
-    published_articles.find(params[:id]).trackbacks.create!(settings)
+    article_id = settings[:id]
+    settings.delete(:id)
+    published_articles.find(article_id).trackbacks.create!(settings)
   end
 
 

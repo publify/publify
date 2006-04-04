@@ -357,21 +357,6 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_feedvalidator @response.body
   end
 
-  def get_xpath(xpath)
-    rexml = REXML::Document.new(@response.body)
-    assert rexml
-
-    rexml.get_elements(xpath)
-  end
-
-  def assert_xpath(xpath)
-    assert !(get_xpath(xpath).empty?)
-  end
-
-  def assert_not_xpath(xpath)
-    assert get_xpath(xpath).empty?
-  end
-
   def assert_rss20(items)
     assert_equal 1, get_xpath(%{/rss[@version="2.0"]/channel[count(child::item)=#{items}]}).size, "RSS 2.0 feed has wrong number of channel/item nodes"
   end

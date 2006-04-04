@@ -241,6 +241,15 @@ class ArticlesControllerTest < Test::Unit::TestCase
        :attributes => { :class => "author_comment"}
   end
 
+  def test_trackback
+    num_trackbacks = Article.find(2).trackbacks.count
+    post :trackback, { :id => 2, :url => "http://www.google.com", :title => "My Trackback", :excerpt => "This is a test" }
+    assert_response :success
+    assert_not_xpath(%{/response/error[text()="1"]}, "Error: " + get_xpath("/response/message/text()").first.to_s)
+
+    assert_equal num_trackbacks+1, Article.find(2).trackbacks.count
+  end
+
   def test_trackback_nuking
     num_comments = Trackback.count
 

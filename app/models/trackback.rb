@@ -9,7 +9,7 @@ class Trackback < Content
 
   validates_age_of :article_id
   validates_against_spamdb :title, :excerpt, :ip, :url
-  validates_presence_of :title, :excerpt, :blog_name, :url
+  validates_presence_of :title, :excerpt, :url
   validate_on_create :article_is_pingable
 
   def self.default_order
@@ -19,6 +19,7 @@ class Trackback < Content
   def initialize(*args, &block)
     super(*args, &block)
     self.title ||= self.url
+    self.blog_name ||= ""
   end
 
   protected
