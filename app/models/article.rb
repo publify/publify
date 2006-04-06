@@ -119,7 +119,7 @@ class Article < Content
 
     Article.transaction do
       tags.clear
-      keywords.to_s.scan(/((['"]).*?\2|[[:alnum:]]+)/).collect { |x| x.first.tr("\"'", '') }.uniq.each do |tagword|
+      keywords.to_s.scan(/((['"]).*?\2|\w+)/).collect { |x| x.first.tr("\"'", '') }.uniq.each do |tagword|
         tags << Tag.get(tagword)
       end
     end
