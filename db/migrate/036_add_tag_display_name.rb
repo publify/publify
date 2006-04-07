@@ -1,6 +1,13 @@
 class AddTagDisplayName < ActiveRecord::Migration
   class Tag < ActiveRecord::Base
-    include BareMigration
+    has_and_belongs_to_many :articles
+  end
+
+  class Content < ActiveRecord::Base
+  end
+
+  class Article < Content
+    has_and_belongs_to_many :tags
   end
 
   def self.up
