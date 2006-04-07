@@ -1,0 +1,4 @@
+if Sidebar.count('staged_position is not null').zero?
+  page.replace_html 'active', :partial => 'actives', :object => []
+end
+page.hide('update_spinner')
