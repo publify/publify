@@ -1,4 +1,5 @@
-if Sidebar.count('staged_position is not null').zero?
-  page.replace_html 'active', :partial => 'actives', :object => []
+if flash[:sidebars].empty?
+  page.insert_html :top, 'active', :partial => 'target'
 end
+page.remove @element_to_remove
 page.hide('update_spinner')

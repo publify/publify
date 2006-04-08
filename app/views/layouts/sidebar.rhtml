@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Sidebar Preview</title>
+  <%= page_header %>
+  <%= stylesheet_link_tag "/stylesheets/theme/azure" %>
+  <%= stylesheet_link_tag "/stylesheets/user-styles", :media => 'all' %>
+</head>
+<body>
+  <div id="container" class="clearfix">
+    <div id="header">
+      <div id="logo">
+        <h1 id="sitename"><%= link_to "Sidebar Preview", '#' %></h1>
+        <h2 id="subtitle">How your sidebar will look</h2>
+      </div>
+    </div>
+    <div id="search">&nbsp;</div>
+    <div id="content">
+      <div id="main">
+        <div class="post">
+          <h2><%= link_to "Lorem Ipsum", "#"%></h2>
+          <p class="auth">Posted by an invisible demon moments ago</p>
+          <p>Dolor sit amet...</p>
+          <p><%= link_to "Return to sidebar admin", :controller => '/admin/sidebar', :action => 'index' %>
+        </div>
+      </div>
+    </div>
+
+
+    <div id=sidebar>
+      <div id="search-results"></div>
+      <% benchmark "BENCHMARK: layout/sidebars" do %>
+        <%= yield %>
+      <% end %>
+
+      <%= link_to image_tag("powered.gif"),  "http://www.typosphere.org/", {:class => "powered" } %>
+    </div>
+  </div>
+</body>
+</html>

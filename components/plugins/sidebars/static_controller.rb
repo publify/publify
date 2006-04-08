@@ -1,4 +1,4 @@
-class Plugins::Sidebars::StaticController < Sidebars::Plugin
+class Plugins::Sidebars::StaticController < Sidebars::ComponentPlugin
   def self.display_name
     "Static"
   end

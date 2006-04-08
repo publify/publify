@@ -1,5 +1,4 @@
 module ArticlesHelper
-
   def admin_tools_for(model)
     type = model.class.to_s.downcase
     tag = []

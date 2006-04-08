@@ -1,4 +1,4 @@
-class Plugins::Sidebars::UpcomingController < Sidebars::Plugin
+class Plugins::Sidebars::UpcomingController < Sidebars::ComponentPlugin
   def self.display_name
     "Upcoming"
   end

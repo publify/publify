@@ -1,4 +1,4 @@
-class Plugins::Sidebars::BackpackController < Sidebars::Plugin
+class Plugins::Sidebars::BackpackController < Sidebars::ComponentPlugin
   def self.display_name
     "Backpack"
   end

@@ -1,4 +1,4 @@
-class Plugins::Sidebars::ArchivesController < Sidebars::Plugin
+class Plugins::Sidebars::ArchivesController < Sidebars::ComponentPlugin
   def self.display_name
     "Archives"
   end

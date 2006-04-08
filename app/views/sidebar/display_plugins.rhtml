@@ -1,0 +1,5 @@
+<% benchmark "BENCHMARK: display_plugins" do %>
+  <% @sidebars.each do |sidebar| -%>
+    <%= render :partial => 'sidebar', :object => sidebar %>
+  <% end %>
+<% end %>

@@ -1,4 +1,4 @@
-class Plugins::Sidebars::TechnoratiController < Sidebars::Plugin
+class Plugins::Sidebars::TechnoratiController < Sidebars::ComponentPlugin
   def self.display_name
     "Technorati"
   end

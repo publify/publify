@@ -1,4 +1,4 @@
-class Plugins::Sidebars::AudioscrobblerController < Sidebars::Plugin
+class Plugins::Sidebars::AudioscrobblerController < Sidebars::ComponentPlugin
   def self.display_name
     "Audioscrobbler"
   end

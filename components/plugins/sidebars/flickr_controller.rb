@@ -1,4 +1,4 @@
-class Plugins::Sidebars::FlickrController < Sidebars::Plugin
+class Plugins::Sidebars::FlickrController < Sidebars::ComponentPlugin
   def self.display_name
     "Flickr"
   end

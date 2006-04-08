@@ -1,4 +1,4 @@
-class Plugins::Sidebars::TagController < Sidebars::Plugin
+class Plugins::Sidebars::TagController < Sidebars::ComponentPlugin
   model :tag
 
   def self.display_name

@@ -1,4 +1,4 @@
-class Plugins::Sidebars::MagnoliaController < Sidebars::Plugin
+class Plugins::Sidebars::MagnoliaController < Sidebars::ComponentPlugin
   def self.display_name
     "Magnolia"
   end

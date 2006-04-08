@@ -74,17 +74,6 @@ module ApplicationHelper
     "<span class=\"typo_date\" title=\"#{time}\">#{time}</span>"
   end
 
-  def render_sidebar(sidebar)
-    begin
-      render_component :layout => false, :controller => sidebar.sidebar_controller.component_name,
-      :action=>'index', :params => {:sidebar        => sidebar,
-                                    :contents       => params[:contents],
-                                    :request_params => params[:request_params] }
-    rescue => e
-      content_tag :p, e.message, :class => 'error'
-    end
-  end
-
   def meta_tag(name, value)
     tag :meta, :name => name, :content => value unless value.blank?
   end

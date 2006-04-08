@@ -1,4 +1,4 @@
-class Plugins::Sidebars::TadaController < Sidebars::Plugin
+class Plugins::Sidebars::TadaController < Sidebars::ComponentPlugin
   def self.display_name
     "Tada List"
   end

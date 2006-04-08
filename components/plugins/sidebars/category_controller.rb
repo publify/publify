@@ -1,4 +1,4 @@
-class Plugins::Sidebars::CategoryController < Sidebars::Plugin
+class Plugins::Sidebars::CategoryController < Sidebars::ComponentPlugin
   model :category
 
   def self.display_name

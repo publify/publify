@@ -1,4 +1,4 @@
-class Plugins::Sidebars::FortythreeplacesController < Sidebars::Plugin
+class Plugins::Sidebars::FortythreeplacesController < Sidebars::ComponentPlugin
   def self.display_name
     "43places"
   end

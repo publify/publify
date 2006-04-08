@@ -1,4 +1,4 @@
-class Plugins::Sidebars::XboxController < Sidebars::Plugin
+class Plugins::Sidebars::XboxController < Sidebars::ComponentPlugin
   def self.display_name
     "Xbox Gamer Card"
   end

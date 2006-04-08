@@ -1,4 +1,4 @@
-class Plugins::Sidebars::AmazonController < Sidebars::Plugin
+class Plugins::Sidebars::AmazonController < Sidebars::ComponentPlugin
   def self.display_name
     "Amazon"
   end

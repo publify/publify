@@ -19,7 +19,7 @@ class Sidebar < ActiveRecord::Base
   end
 
   def sidebar_controller
-    @sidebar_controller||=Sidebars::SidebarController.available_sidebars.find { |s| s.short_name == self.controller }
+    @sidebar_controller ||= SidebarController.available_sidebars.find { |s| s.short_name == self.controller }
   end
 
   def config

@@ -1,4 +1,4 @@
-class Plugins::Sidebars::XmlController < Sidebars::Plugin
+class Plugins::Sidebars::XmlController < Sidebars::ComponentPlugin
   def self.display_name
     "XML Syndication"
   end

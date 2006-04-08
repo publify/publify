@@ -1,4 +1,4 @@
-class Plugins::Sidebars::DeliciousController < Sidebars::Plugin
+class Plugins::Sidebars::DeliciousController < Sidebars::ComponentPlugin
   def self.display_name
     "Del.icio.us"
   end
