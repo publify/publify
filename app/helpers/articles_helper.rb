@@ -111,7 +111,7 @@ module ArticlesHelper
   end
 
   def render_sidebars
-    render_component(:controller => 'sidebars/sidebar',
+    render_component(:controller => SidebarController,
                      :action => 'display_plugins',
                      :params => {:contents => contents,
                                  :request_params => params})
