@@ -16,4 +16,6 @@ class Admin::BaseController < ApplicationController
     end
   end
 
+  include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
+
 end

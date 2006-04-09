@@ -29,9 +29,9 @@ xm.entry do
             :length => resource.size
   end
   if this_blog.show_extended_on_rss
-    content = article_html(item)
+    content = item.full_html
   else
-    content = article_html(item,:body)
+    content = item.body_html
   end
   xm.content content, "type"=>"html"
 end

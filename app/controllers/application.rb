@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_filter :get_the_blog_object
   after_filter :flush_the_blog_object
 
+  around_filter Blog
+
   protected
 
   def with_blog_scoped_classes(klasses=[Content, Article, Comment, Page, Trackback], &block)
@@ -18,11 +20,11 @@ class ApplicationController < ActionController::Base
   end
 
   def article_url(article, only_path = true, anchor = nil)
-    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor => anchor
+    article.url
   end
 
   def server_url
-    url_for :only_path => false, :controller => "/"
+    this_blog.server_url
   end
 
   def cache
@@ -43,5 +45,17 @@ class ApplicationController < ActionController::Base
     @blog || Blog.default || Blog.new
   end
   helper_method :this_blog
+
+  def self.include_protected(*modules)
+    modules.reverse.each do |mod|
+      included_methods = mod.public_instance_methods.reject do |meth|
+        self.method_defined?(meth)
+      end
+      self.send(:include, mod)
+      included_methods.each do |meth|
+        protected meth
+      end
+    end
+  end
 end
 

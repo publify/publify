@@ -8,6 +8,6 @@ xm.entry do
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => comment_link(item)
 
-  content = comment_html(item)
+  content = item.full_html
   xm.content content, "type"=>"text/html", "mode"=>"escaped"
 end

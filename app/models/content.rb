@@ -30,6 +30,15 @@ class Content < ActiveRecord::Base
         end
         self[field]
       end
+      unless self.method_defined?("#{field}_html")
+        define_method("#{field}_html") do
+          if blog.controller
+            html(blog.controller, field.to_sym)
+          else
+            self["#{field}_html"]
+          end
+        end
+      end
     end
   end
 
@@ -38,9 +47,7 @@ class Content < ActiveRecord::Base
       @@html_map[self] = Hash.new
       instance = self.new
       @@content_fields[self].each do |attrib|
-        if instance.respond_to?("#{attrib}_html")
-          @@html_map[self][attrib] = "#{attrib}_html"
-        end
+        @@html_map[self][attrib] = "#{attrib}_html"
       end
     end
     if field
@@ -84,25 +91,27 @@ class Content < ActiveRecord::Base
 
   def html_map(field=nil); self.class.html_map(field); end
 
+  def full_html
+    unless blog.controller
+      raise "full_html only works with an active controller"
+    end
+    html(blog.controller, :all)
+  end
+
   def html(controller,what = :all)
     html_map.each do |field, html_field|
-      if !self.send(field).blank? && self.send(html_field).blank?
-        unformatted_value = self.send(field).to_s
-        begin
-          formatted_value = text_filter.filter_text_for_controller( unformatted_value, controller, self, false )
-          formatted_value = self.send("%s_postprocess" % html_field, formatted_value, controller) if self.respond_to?("%s_postprocess" % html_field, true)
-          self[html_field] = formatted_value
-          save if self.id
-        rescue
-          self[html_field] = unformatted_value
-        end
+      if !self[field].blank? && self[html_field].blank?
+        html = text_filter.filter_text_for_controller( self[field].to_s, controller, self, false )
+        html = self.send("%s_postprocess" % html_field, html, controller) if self.respond_to?("%s_postprocess" % html_field, true)
+        self[html_field] = html
+        save if self.id
       end
     end
 
     if what == :all
-      self.all_html rescue (self.body_html.to_s + (self.extended_html rescue nil).to_s)
+      self[:body_html].to_s + (self[:extended_html].to_s rescue '')
     elsif self.class.html_map(what)
-      self.send(html_map(what))
+      self[html_map(what)]
     else
       raise "Unknown 'what' in article.html"
     end

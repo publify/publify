@@ -8,7 +8,7 @@
   <h3><%=h @page.name %></h3>
 
   <div class="form">	
-    <div><%= page_html(@page) %></div>
+    <div><%= @page.full_html %></div>
     <p class="meta">Posted: <%=h @page.created_at %> by <%=h @page.user.name %></p>
     <p>Lasted updated <%=h @page.updated_at %></p>    
   </div>

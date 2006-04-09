@@ -101,7 +101,25 @@ class Blog < ActiveRecord::Base
   end
 
   def self.default
-    Blog.find(:first, :order => 'id')
+    find(:first, :order => 'id')
+  end
+
+  @@controller_stack = []
+  cattr_accessor :controller_stack
+
+  def self.before(controller)
+    controller_stack << controller
+  end
+
+  def self.after(controller)
+    unless controller_stack.last == controller
+      raise "Controller stack got out of kilter!"
+    end
+    controller_stack.pop
+  end
+
+  def controller
+    controller_stack.last
   end
 
   def current_theme_path
@@ -110,6 +128,26 @@ class Blog < ActiveRecord::Base
 
   def current_theme
     Theme.theme_from_path(current_theme_path)
+  end
+
+  def url_for(*args)
+    if controller
+      controller.send(:url_for, *args)
+    else
+      raise "Can't find a URL without an active controller"
+    end
+  end
+
+  def article_url(article, only_path = true, anchor = nil)
+    url_for(:only_path => only_path, :controller=>"/articles",
+            :action =>"permalink", :year => article.created_at.year,
+            :month => sprintf("%.2d", article.created_at.month),
+            :day => sprintf("%.2d", article.created_at.day),
+            :title => article.permalink, :anchor => anchor)
+  end
+
+  def server_url
+    url_for :only_path => false, :controller => "/"
   end
 end
 

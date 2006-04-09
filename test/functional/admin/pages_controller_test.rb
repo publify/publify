@@ -57,10 +57,6 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
 
     assert_equal "new_page", new_page.name
 
-    # XXX: Should we be testing this here -- makes assumptions about the workings of
-    # the model that aren't necessarily always going to be valid.
-    assert_nil new_page.body_html
-
     assert_redirected_to :action => "show", :id => new_page.id
 
     # XXX: The flash is currently being made available improperly to tests (scoop)

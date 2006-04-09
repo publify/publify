@@ -22,10 +22,13 @@ class Article < Content
     self.title.gsub(/<[^>]*>/,'').to_url
   end
 
+  def url
+    blog.article_url(self)
+  end
+
   def html_urls
     urls = Array.new
-
-    html(:all).gsub(/<a [^>]*>/) do |tag|
+    (body_html.to_s + extended_html.to_s).gsub(/<a [^>]*>/) do |tag|
       if(tag =~ /href="([^"]+)"/)
         urls.push($1)
       end

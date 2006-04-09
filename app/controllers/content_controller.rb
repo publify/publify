@@ -87,18 +87,6 @@ class ContentController < ApplicationController
 
   protected
 
-  def self.include_protected(*modules)
-    modules.reverse.each do |mod|
-      included_methods = mod.public_instance_methods.reject do |meth|
-        self.method_defined?(meth)
-      end
-      self.send(:include, mod)
-      included_methods.each do |meth|
-        protected meth
-      end
-    end
-  end
-
   include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
 
 end
