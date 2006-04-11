@@ -6,7 +6,7 @@
              :controller=>active.sidebar_controller,
              :action=>'configure_wrapper', :params => {:sidebar => active } %></div>
   <%= link_to_remote('remove',
-        :url => {:action => 'remove', :id => 'active',
+        :url => {:action => 'remove', :id => active.id,
                  :element => "active_#{active.html_id}"},
         :before => "new Effect.Fade('active_#{active.html_id}')",
         :loading => "new Element.show('update_spinner')") %>
