@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
         cookies[:is_admin] = "yes"
         redirect_back_or_default :controller => "admin/content", :action => "index"
       else
-        flash.now['notice']  = "Login unsuccessful"
+        flash.now[:notice]  = "Login unsuccessful"
 
         @login = params[:user_login]
       end
