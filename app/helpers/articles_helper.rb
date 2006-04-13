@@ -111,10 +111,19 @@ module ArticlesHelper
   end
 
   def render_sidebars
-    render_component(:controller => SidebarController,
-                     :action => 'display_plugins',
-                     :params => {:contents => contents,
-                                 :request_params => params})
+    # ugly ugly hack to fix the extremely verbose sidebar logging
+    options = { :controller => SidebarController,
+                :action => 'display_plugins',
+                :params => {:contents => contents,
+                            :request_params => params} }
+    class << options
+      def inspect
+        { :controller => fetch(:controller),
+          :action => fetch(:action) }.inspect
+      end
+    end
+
+    render_component(options)
   end
 
   # Generate the image tag for a commenters gravatar based on their email address

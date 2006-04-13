@@ -1,10 +1,20 @@
 module SidebarHelper
   def render_sidebar(sidebar)
     begin
-      render_component(:layout => false,
-                       :controller => sidebar.sidebar_controller,
-                       :action=>'index',
-                       :params => params.merge({:sidebar => sidebar}))
+      # another ugly ugly hack like in articles_helper.rb
+      options = { :layout => false,
+                  :controller => sidebar.sidebar_controller,
+                  :action=>'index',
+                  :params => params.merge({:sidebar => sidebar}) }
+
+      class << options
+        def inspect
+          { :controller => fetch(:controller),
+            :action => fetch(:action) }.inspect
+        end
+      end
+
+      render_component(options)
     rescue => e
       content_tag :p, e.message, :class => 'error'
     end
