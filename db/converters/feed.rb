@@ -33,7 +33,7 @@ class FeedMigrate
       a.author = self.options[:author]
       a.title = item.title
       a.body = item.description
-      a.created_at = item.issued
+      a.created_at = item.published
       a.save
     end
   end
