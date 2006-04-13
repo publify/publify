@@ -16,7 +16,7 @@ class MagnoliaAggregation
     return pics unless pics.size > num
     bag = []
     set = pics.dup
-    (0..num-1).each {|x| bag << set.delete_at(rand(set.size))}
+    num.times {|x| bag << set.delete_at(rand(set.size))}
     bag
   end
 

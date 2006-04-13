@@ -13,11 +13,7 @@ class Upcoming
   include REXML
 
   def choose(num)
-    return events unless events.size > num
-    bag = []
-    set = events.dup
-    (0..num-1).each {|x| bag << set.delete_at(set.size)}
-    bag
+    events.last(num)
   end
 
   attr_accessor :events, :link, :title, :description, :url
