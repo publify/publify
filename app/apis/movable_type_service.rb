@@ -50,9 +50,11 @@ class MovableTypeApi < ActionWebService::API::Base
     :returns => [:bool]
 
   api_method :supportedMethods,
+    :expects => [],
     :returns => [[:string]]
 
   api_method :supportedTextFilters,
+    :expects => [],
     :returns => [[MovableTypeStructs::TextFilter]]
 
   api_method :getTrackbackPings,
