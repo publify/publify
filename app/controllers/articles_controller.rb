@@ -195,7 +195,7 @@ class ArticlesController < ContentController
 
     @articles = klass.find_by_permalink(params[:id]).articles.find_already_published
     auto_discovery_feed :type => klass.to_s.underscore, :id => params[:id]
-    render_paginated_index("Can't find posts with #{klass.to_s.underscore} #{params[:id]}")
+    render_paginated_index("Can't find posts with #{klass.to_s.underscore} #{h(params[:id])}")
   end
 
   def render_paginated_index(on_empty = "No posts found...")
