@@ -17,6 +17,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     when Page
       PageCache.sweep("/pages/#{record.name}.html")
       expire_fragment(/.*\/pages\/.*/)
+      expire_fragment(/.*\/view_page.*/)
     end
   end
 end
