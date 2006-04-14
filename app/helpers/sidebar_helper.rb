@@ -7,13 +7,6 @@ module SidebarHelper
                   :action=>'index',
                   :params => params.merge({:sidebar => sidebar}) }
 
-      class << options
-        def inspect
-          { :controller => fetch(:controller),
-            :action => fetch(:action) }.inspect
-        end
-      end
-
       render_component(options)
     rescue => e
       content_tag :p, e.message, :class => 'error'

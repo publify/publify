@@ -116,13 +116,6 @@ module ArticlesHelper
                 :action => 'display_plugins',
                 :params => {:contents => contents,
                             :request_params => params} }
-    class << options
-      def inspect
-        { :controller => fetch(:controller),
-          :action => fetch(:action) }.inspect
-      end
-    end
-
     render_component(options)
   end
 
