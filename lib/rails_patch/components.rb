@@ -5,9 +5,9 @@ module ActionController #:nodoc:
 
       # By default, this logs *WAY* too much data for us when we're doing sidebars--I've seen ~2M
       # per hit.  This has a negative impact on performance.
-      alias_method :orig_component_logging, :component_logging
+      alias_method :component_logging_with_unfiltered_options, :component_logging
       def component_logging(options, &block)
-        orig_component_logging(options.reject {|k,v| k==:params}, &block)
+        component_logging_with_unfiltered_options(options.reject {|k,v| k==:params}, &block)
       end
     end
   end
