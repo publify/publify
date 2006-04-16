@@ -1,21 +1,12 @@
 class Plugins::Sidebars::TadaController < Sidebars::ComponentPlugin
-  def self.display_name
-    "Tada List"
-  end
+  display_name "Tada List"
+  description 'To-do list from <a href="http://www.tadalist.com">tadalist.com</a>'
 
-  def self.description
-    'To-do list from <a href="http://www.tadalist.com">tadalist.com</a>'
-  end
-
-  def self.default_config
-    {'count'=>10}
-  end
+  setting :feed,  '', :label => 'Feed URL'
+  setting :count, 10, :label => 'Items limit'
 
   def content
     response.lifetime = 1.day
     @tada=check_cache(Tada, @sb_config['feed']) rescue nil
-  end
-
-  def configure
   end
 end

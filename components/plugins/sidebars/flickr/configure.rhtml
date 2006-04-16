@@ -1,9 +1,0 @@
-<label>Feed URL</label>
-<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][feed]" value="<%=h @sidebar.config['feed'] %>"/><br/>
-<label>Items limit</label>
-<input class="text" type="text" name="configure[<%= @sidebar.id.to_s %>][count]" value="<%=h @sidebar.config['count'] %>"/><br/>
-<label>Image format</label>
-<select name="configure[<%= @sidebar.id.to_s %>][format]">
-  <option value="square" <% if @sidebar.config['format']=='square' %>selected="selected"<% end %>>Square</option>
-  <option value="rectangle" <% if @sidebar.config['format']=='rectangle' %>selected="selected"<% end %>>Rectangular</option>
-</select>

@@ -18,7 +18,6 @@ class Admin::SidebarController < Admin::BaseController
     defaults_for = available.inject({}) do |hash, item|
       hash.merge({ item.short_name => item.default_config })
     end
-
     # Get all already active plugins
     activemap = flash[:sidebars].inject({}) do |h, sb_id|
       sb = Sidebar.find(sb_id.to_i)

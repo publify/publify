@@ -1,15 +1,9 @@
 class Plugins::Sidebars::MagnoliaController < Sidebars::ComponentPlugin
-  def self.display_name
-    "Magnolia"
-  end
+  description 'Pictures from <a href="http://ma.gnolia.com">ma.gnolia.com</a>'
 
-  def self.description
-    'Pictures from <a href="http://ma.gnolia.com">ma.gnolia.com</a>'
-  end
-
-  def self.default_config
-    {'count'=>5,'feed'=>'http://ma.gnolia.com/rss/full/people/USERNAME/', 'dtitle'=>'Ma.gnolia Links'}
-  end
+  setting :dtitle, 'Ma.gnolia Links', :label => 'Display Title'
+  setting :feed,   'http://ma.gnolia.com/rss/full/people/USERNAME/', :label => 'Feed URL'
+  setting :count,   5, :label => 'Items limit'
 
   def content
     begin
@@ -19,8 +13,5 @@ class Plugins::Sidebars::MagnoliaController < Sidebars::ComponentPlugin
       logger.info e
       ""
     end
-  end
-
-  def configure
   end
 end

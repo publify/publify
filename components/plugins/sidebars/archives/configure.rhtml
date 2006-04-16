@@ -1,5 +1,0 @@
-<input type="checkbox" id="configure_<%= @sidebar.id.to_s %>_show_count" name="configure[<%= @sidebar.id.to_s %>][show_count]"<% if @sidebar.config['show_count'] %> checked="checked"<% end %> />
-<label for="configure_<%= @sidebar.id.to_s %>_show_count">Show article count</label><br />
-<label for="configure_<%= @sidebar.id.to_s %>_count">Number of months</label>
-<input class="text" type="text" id="configure_<%= @sidebar.id.to_s %>_count" name="configure[<%= @sidebar.id.to_s %>][count]" value="<%=h @sidebar.config['count'] %>" />
-

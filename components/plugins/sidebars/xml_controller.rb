@@ -1,16 +1,11 @@
 class Plugins::Sidebars::XmlController < Sidebars::ComponentPlugin
-  def self.display_name
-    "XML Syndication"
-  end
+  display_name "XML Syndication"
+  description "RSS and Atom feeds"
 
-  def self.description
-    "RSS and Atom feeds"
-  end
+  setting :articles,   true,  :input_type => :checkbox
+  setting :comments,   true,  :input_type => :checkbox
+  setting :trackbacks, false, :input_type => :checkbox
 
-  def self.default_config
-    {'articles' => true, 'comments' => true, 'trackbacks' => false, 'format' => 'rss20' }
-  end
-
-  def configure
-  end
+  setting :format, 'rss20', :input_type => :radio,
+          :choices => [["rss20",  "RSS 2.0"], ["atom10", "Atom 1.0"], ["atom03", "Atom 0.3"]]
 end

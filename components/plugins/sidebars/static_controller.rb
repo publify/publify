@@ -1,15 +1,9 @@
 class Plugins::Sidebars::StaticController < Sidebars::ComponentPlugin
-  def self.display_name
-    "Static"
-  end
+  description "Static content, like links to other sites, advertisements, or blog meta-infomation"
 
-  def self.description
-    "Static content, like links to other sites, advertisements, or blog meta-infomation"
-  end
 
-  def self.default_config
-    {'title'=>'Links',
-     'body'=>%q{<ul>
+  DEFAULT_TEXT = %q{
+<ul>
   <li><a href="http://www.typosphere.org" title="Typo">Typo</a></li>
   <li><a href="http://blog.leetsoft.com" title="too-biased">too-biased</a></li>
   <li><a href="http://www.poocs.net/" title="poocs.net">poocs.net</a></li>
@@ -21,9 +15,9 @@ class Plugins::Sidebars::StaticController < Sidebars::ComponentPlugin
   <li><a href="http://planettypo.com" title="PlanetTypo">PlanetTypo</a></li>
   <li><a href="http://typoforums.org" title="Typo Forums">Typo Forums</a></li>
 </ul>
-}}
-  end
+}
 
-  def configure
-  end
+  setting :title, 'Links'
+  setting :body, DEFAULT_TEXT, :input_type => :text_area
+
 end

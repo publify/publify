@@ -9,7 +9,8 @@ module ThemeHelper
     search_path = [
                    "../themes/#{this_blog.theme}/views",     # for components
                    "../../themes/#{this_blog.theme}/views",  # for normal views
-                   "."                                      # fallback
+                   ".",                                      # fallback
+                   "../app/views",                           # Fallback from component to normal view
                   ]
 
     if use_full_path

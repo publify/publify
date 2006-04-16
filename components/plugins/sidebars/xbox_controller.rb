@@ -1,16 +1,6 @@
 class Plugins::Sidebars::XboxController < Sidebars::ComponentPlugin
-  def self.display_name
-    "Xbox Gamer Card"
-  end
+  display_name "Xbox Gamer Card"
+  description "Displays your Xbox Live Gamer Card"
 
-  def self.description
-    "Displays your Xbox Live Gamer Card"
-  end
-
-  def self.default_config
-    {'gamertag' => ''}
-  end
-
-  def configure
-  end
+  setting :gamertag, '', 'Xbox Live gamertag'
 end

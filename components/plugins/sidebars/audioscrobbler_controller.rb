@@ -1,21 +1,10 @@
 class Plugins::Sidebars::AudioscrobblerController < Sidebars::ComponentPlugin
-  def self.display_name
-    "Audioscrobbler"
-  end
-
-  def self.description
-    'Bookmarks from <a href="http://www.audioscrobbler.com">Audioscrobbler</a>'
-  end
-
-  def self.default_config
-    {'feed'=>'http://ws.audioscrobbler.com/rdf/history/USERNAME','count'=>10}
-  end
+  description 'Bookmarks from <a href="http://www.audioscrobbler.com">Audioscrobbler</a>'
+  setting :feed, 'http://ws.audioscrobbler.com/rdf/history/USERNAME'
+  setting :count, 10, :label => 'Items limit'
 
   def content
     response.lifetime = 1.day
     @audioscrobbler=check_cache(Audioscrobbler, @sb_config['feed']) rescue nil
-  end
-
-  def configure
   end
 end

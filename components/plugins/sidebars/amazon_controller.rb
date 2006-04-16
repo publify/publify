@@ -1,15 +1,9 @@
 class Plugins::Sidebars::AmazonController < Sidebars::ComponentPlugin
-  def self.display_name
-    "Amazon"
-  end
+  description "Adds sidebar links to any amazon books linked in the body of the page"
 
-  def self.description
-    "Adds sidebar links to any amazon books linked in the body of the page"
-  end
-
-  def self.default_config
-    {'associate_id' => 'justasummary-20', 'maxlinks' => 4, 'title' => 'Cited books'}
-  end
+  setting :title,        'Cited books'
+  setting :associate_id, 'justasummary-20'
+  setting :maxlinks,      4
 
   def content
     asin_list = params[:contents].to_a.inject([]) { |acc, item| acc | item.whiteboard[:asins].to_a }
@@ -19,8 +13,5 @@ class Plugins::Sidebars::AmazonController < Sidebars::ComponentPlugin
       render :text => ""
       return
     end
-  end
-
-  def configure
   end
 end

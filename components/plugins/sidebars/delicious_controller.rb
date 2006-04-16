@@ -1,15 +1,12 @@
 class Plugins::Sidebars::DeliciousController < Sidebars::ComponentPlugin
-  def self.display_name
-    "Del.icio.us"
-  end
+  display_name "Del.icio.us"
+  description 'Bookmarks from <a href="http://del.icio.us">del.icio.us</a>'
 
-  def self.description
-    'Bookmarks from <a href="http://del.icio.us">del.icio.us</a>'
-  end
-
-  def self.default_config
-    {'feed'=>'http://del.icio.us/rss/USERNAME','count'=>10}
-  end
+  setting :feed, nil, :label => 'Feed URL'
+  setting :count, 10, :label => 'Items Limit'
+  setting :groupdate,   false, :input_type => :checkbox, :label => 'Group links by day'
+  setting :description, false, :input_type => :checkbox, :label => 'Show description'
+  setting :desclink,    false, :input_type => :checkbox, :label => 'Allow links in description'
 
   def content
     response.lifetime = 1.hour
@@ -28,8 +25,5 @@ class Plugins::Sidebars::DeliciousController < Sidebars::ComponentPlugin
     else
       @delicious.items = @delicious.items.slice(0, @sb_config['count'].to_i)
     end
-  end
-
-  def configure
   end
 end

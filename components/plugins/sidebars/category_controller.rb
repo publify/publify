@@ -1,22 +1,13 @@
 class Plugins::Sidebars::CategoryController < Sidebars::ComponentPlugin
   model :category
 
-  def self.display_name
-    "Categories"
-  end
+  display_name "Categories"
+  description "List of categories for this blog"
 
-  def self.description
-    "List of categories for this blog"
-  end
-
-  def self.default_config
-    {'empty' => false, 'count' => true }
-  end
+  setting :count, true,  :label => 'Show article count',    :input_type => :checkbox
+  setting :empty, false, :label => 'Show empty categories', :input_type => :checkbox
 
   def content
     @categories = Category.find_all_with_article_counters
-  end
-
-  def configure
   end
 end
