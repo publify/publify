@@ -61,11 +61,7 @@ class SpamProtection
     BlacklistPattern.find_all.each do |pattern|
       logger.info("[SP] Scanning for #{pattern.class} #{pattern.pattern}")
 
-      if pattern.kind_of?(RegexPattern)
-        throw :hit, "Regex #{pattern.pattern} matched" if string.match(/#{pattern.pattern}/)
-      else
-        throw :hit, "String #{pattern.pattern} matched" if string.match(/\b#{Regexp.quote(pattern.pattern)}\b/)
-      end
+      throw :hit, "#{pattern} matched" if pattern.matches?(string)
     end
 
     return false
