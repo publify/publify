@@ -77,7 +77,8 @@ class Admin::ContentController < Admin::BaseController
 
   def new_or_edit
     get_or_build_article
-    @article.attributes = (params[:article]||{})
+    defaults = {:allow_comments => this_blog.default_allow_comments, :allow_pings => this_blog.default_allow_pings}
+    @article.attributes = (params[:article]||defaults)
     setup_categories
     @selected = @article.categories.collect { |c| c.id }
     if request.post?
