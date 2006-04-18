@@ -29,5 +29,7 @@ xm.item do
       :length => resource.size,
       :type => resource.mime)
   end
-  xm.trackback :ping, server_url_for(:controller => "articles", :action =>"trackback", :id => item.id)
+  if item.allow_pings?
+    xm.trackback :ping, server_url_for(:controller => "articles", :action =>"trackback", :id => item.id)
+  end
 end
