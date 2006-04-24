@@ -2,12 +2,23 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < Test::Unit::TestCase
 
-  fixtures :users
+  fixtures :users, :contents
 
   def test_auth
     assert_equal  users(:bob), User.authenticate("bob", "test")
     assert_nil    User.authenticate("nonbob", "test")
+  end
 
+  def test_articles_link
+    assert_equal 6, User.find(1).articles.size
+    assert_equal 5, User.find(1).articles.find_published.size
+    assert_equal 5, User.find(1).articles.published.size
+
+    articles = User.find(1).articles.published
+    assert_equal articles.sort_by { |a| a.created_at }.reverse, articles
+
+    articles = User.find(1).articles
+    assert_equal articles.sort_by { |a| a.created_at }.reverse, articles
   end
 
   def test_authenticate?

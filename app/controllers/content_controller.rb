@@ -64,6 +64,12 @@ class ContentController < ApplicationController
 
   def auto_discovery_feed(options)
     options = {:only_path => false, :action => 'feed', :controller => 'xml'}.merge options
+    # Special cased ugliness. Get rid of it when there's a user feed.
+    if options[:type] == 'user'
+      options[:type] = 'feed'
+      options[:id] = nil
+    end
+
     @auto_discovery_url_rss = url_for(({:format => 'rss20'}.merge options))
     @auto_discovery_url_atom = url_for(({:format => 'atom10'}.merge options))
   end

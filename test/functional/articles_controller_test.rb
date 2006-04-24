@@ -485,4 +485,38 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :search, :q => "search target"
     assert_equal 1, assigns(:articles).size
   end
+
+  def test_author
+    get :author, :id => 'tobi'
+
+    assert_success
+    assert_rendered_file 'index'
+    assert assigns(:articles)
+    assert_equal users(:tobi).articles.published, assigns(:articles)
+    # This is until we write a proper author feed
+    assert_equal('http://test.host/xml/rss20/feed.xml',
+                 assigns(:auto_discovery_url_rss))
+  end
+
+  def test_nonexistent_author
+    get :author, :id => 'nonexistent-chap'
+
+    assert_success
+    assert_rendered_file 'error'
+    assert assigns(:message)
+    assert_equal "Can't find posts with author 'nonexistent-chap'", assigns(:message)
+  end
+
+  def test_author_list
+    get :author
+
+    assert_success
+    assert_rendered_file 'groupings'
+
+    assert_tag(:tag => 'ul',
+               :descendant => {\
+                 :tag => 'a',
+                 :attributes => { :href => '/articles/author/tobi' },
+               })
+  end
 end

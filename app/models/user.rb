@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
     :join_table => 'notifications', :foreign_key => 'notify_user_id',
     :association_foreign_key => 'notify_content_id', :uniq => true
 
+  has_many :articles, :order => 'created_at DESC' do
+    def published
+      find_published(:all, :order => 'created_at DESC')
+    end
+  end
+
   # echo "typo" | sha1sum -
   @@salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
   cattr_accessor :salt
@@ -27,6 +33,19 @@ class User < ActiveRecord::Base
     false
   end
 
+  def self.find_by_permalink(permalink)
+    self.find_by_login(permalink)
+  end
+
+  # Let's be lazy, no need to fetch the counters, rails will handle it.
+  def self.find_all_with_article_counters(ignored_arg)
+    find(:all)
+  end
+
+  def self.to_prefix
+    'author'
+  end
+
   def password=(newpass)
     @password = newpass
   end
@@ -37,6 +56,18 @@ class User < ActiveRecord::Base
     else
       @password || read_attribute("password")
     end
+  end
+
+  def article_counter
+    articles.size
+  end
+
+  def display_name
+    name
+  end
+
+  def permalink
+    login
   end
 
   protected

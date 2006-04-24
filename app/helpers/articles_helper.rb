@@ -143,7 +143,7 @@ module ArticlesHelper
   end
 
   def urlspec_for_grouping(grouping)
-    { :controller => "articles", :action => grouping.class.to_s.underscore, :id => grouping.permalink }
+    { :controller => "articles", :action => grouping.class.to_prefix, :id => grouping.permalink }
   end
 
   def title_for_grouping(grouping)
@@ -156,6 +156,8 @@ module ArticlesHelper
       %{<ul id="taglist" class="tags">}
     when Category
       %{<ul class="categorylist">}
+    else
+      '<ul>'
     end
   end
 end

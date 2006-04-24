@@ -6,7 +6,7 @@ class ArticlesController < ContentController
 
   cache_sweeper :blog_sweeper
 
-  cached_pages = [:index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag]
+  cached_pages = [:index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag, :author]
   # If you're really memory-constrained, then consider replacing caches_action_with_params with caches_page
   caches_action_with_params *cached_pages
   session :off, :only => cached_pages
@@ -57,7 +57,11 @@ class ArticlesController < ContentController
 
   def error(message = "Record not found...")
     @message = message.to_s
-    render :action => "error"
+    render :action => 'error'
+  end
+
+  def author
+    render_grouping(User)
   end
 
   def category
@@ -193,9 +197,9 @@ class ArticlesController < ContentController
   def render_grouping(klass)
     return list_groupings(klass) unless params[:id]
 
-    @articles = klass.find_by_permalink(params[:id]).articles.find_already_published
+    @articles = klass.find_by_permalink(params[:id]).articles.find_already_published rescue []
     auto_discovery_feed :type => klass.to_s.underscore, :id => params[:id]
-    render_paginated_index("Can't find posts with #{klass.to_s.underscore} #{h(params[:id])}")
+    render_paginated_index("Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'")
   end
 
   def render_paginated_index(on_empty = "No posts found...")
