@@ -93,8 +93,8 @@ module ActionController
         end
 
         def after(controller)
-          return if not @actions.include?(controller.action_name.intern) || controller.rendered_action_cache
-          return if controller.response.headers['Status'] != "200 OK" # without this, we cache errors.  grr
+          return true if not @actions.include?(controller.action_name.intern) || controller.rendered_action_cache
+          return true if controller.response.headers['Status'] != "200 OK" # without this, we cache errors.  grr
 
           meta = Hash.new
           if controller.response.lifetime
