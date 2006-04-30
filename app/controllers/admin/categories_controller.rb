@@ -49,7 +49,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def asort
     Category.reorder_alpha
-    render_component :action => "category_container"
+    category_container
   end
 
   def category_container
