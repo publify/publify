@@ -21,4 +21,4 @@ resource3:
   filename: my_latest_typo_patch.diff
   mime: 'text/plain'
   created_at: <%= 1.day.ago.strftime("%Y-%m-%d %H:%M:%S") %>
-  size: 1000
+  size: 0

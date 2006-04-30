@@ -9,7 +9,7 @@ xm.entry do
 
   xm.published item.created_at.xmlschema
   xm.updated item.updated_at.xmlschema
-  xm.title post_title(item)
+  xm.title post_title(item), "type"=>"html"
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => post_link(item)
 
@@ -21,17 +21,19 @@ xm.entry do
   end
 
   item.resources.each do |resource|
-    next unless resource.size > 0  # The Atom spec disallows files with size=0
-    xm.link "rel" => "enclosure",
-            :type => resource.mime,
-            :title => item.title,
-            :href => server_url_for(:controller => "files", :action => resource.filename),
-            :length => resource.size
+    if resource.size > 0  # The Atom spec disallows files with size=0
+      xm.link "rel" => "enclosure",
+              :type => resource.mime,
+              :title => item.title,
+              :href => server_url_for(:controller => "files", :action => resource.filename),
+              :length => resource.size
+    else
+      xm.link "rel" => "enclosure",
+              :type => resource.mime,
+              :title => item.title,
+              :href => server_url_for(:controller => "files", :action => resource.filename)
+    end
   end
-  if this_blog.show_extended_on_rss
-    content = item.full_html
-  else
-    content = item.body_html
-  end
-  xm.content content, "type"=>"html"
+  xm.summary item.body_html, "type"=>"html"
+  xm.content item.full_html, "type"=>"html" if this_blog.show_extended_on_rss
 end

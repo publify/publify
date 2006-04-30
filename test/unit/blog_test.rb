@@ -40,7 +40,7 @@ class BlogTest < Test::Unit::TestCase
     assert articles = @blog.find_already_published(:articles)
     assert_kind_of Array, articles
     assert articles.all? { |a| a.is_a?(Article) }
-    assert_equal 5, articles.size
+    assert_equal 6, articles.size
 
     assert comments = @blog.find_already_published(:comments)
     assert_kind_of Array, comments

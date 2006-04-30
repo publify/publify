@@ -24,6 +24,12 @@ lifeonmars:
 
 strangelynamed:
   id: 5
-  name: The Permalink doesn't match
+  name: "The Permalink doesn't match"
   permalink: weird-permalink
   position: 5
+
+xmltest:
+  id: 6
+  name: "this & that"
+  permalink: this-and-that
+  position: 6

@@ -135,7 +135,7 @@ class ArticleTest < Test::Unit::TestCase
     with_default_scope do
       @articles = Article.find_published
       assert_results_are(:search_target, :article1, :article2,
-                         :article3, :inactive_article)
+                         :article3, :inactive_article,:xmltest)
 
       @articles = Article.find_published(:all,
                                          :conditions => "title = 'Article 1!'")

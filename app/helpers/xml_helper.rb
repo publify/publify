@@ -4,7 +4,7 @@ module XmlHelper
   end
 
   def post_title(post)
-    "#{h post.title}"
+    h(post.title)
   end
 
   def post_link(post)

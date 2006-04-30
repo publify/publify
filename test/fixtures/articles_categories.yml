@@ -25,3 +25,7 @@ articles_categories6:
 articles_categories7:
   article_id: 1
   category_id: 5
+
+articles_categories8:
+  article_id: 18
+  category_id: 6

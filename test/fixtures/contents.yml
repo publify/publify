@@ -251,3 +251,19 @@ search_target:
   author: Tobi
   guid: 2b1l0o6g4ar7
 
+xmltest:
+  type: Article
+  blog_id: 1
+  id: 18
+  title: Associations aren't :dependent => true anymore
+  body: originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
+  extended: extended content
+  extended_html: extended content
+  allow_comments: true
+  allow_pings: true
+  permalink: associations-arent-dependent-true-anymore
+  created_at: 2003-04-28 05:31:00
+  updated_at: 2003-04-28 05:31:00
+  user_id: 1
+  author: Tobi
+  guid: urn:uuid:0d676c66-4135-4a8b-9d65-b6a3248d3032

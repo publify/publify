@@ -382,6 +382,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_autodiscovery_default
+
     get :index
     assert_response :success
     assert_tag :tag => 'link', :attributes =>
