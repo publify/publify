@@ -390,7 +390,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
         :href => 'http://test.host/xml/rss20/feed.xml'}
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom10/feed.xml'}
+        :href => 'http://test.host/xml/atom/feed.xml'}
   end
 
 
@@ -402,7 +402,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
         :href => 'http://test.host/xml/rss20/article/1/feed.xml'}
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom10/article/1/feed.xml'}
+        :href => 'http://test.host/xml/atom/article/1/feed.xml'}
   end
 
   def test_autodiscovery_category
@@ -413,7 +413,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
         :href => 'http://test.host/xml/rss20/category/hardware/feed.xml'}
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom10/category/hardware/feed.xml'}
+        :href => 'http://test.host/xml/atom/category/hardware/feed.xml'}
   end
 
   def test_autodiscovery_tag
@@ -424,7 +424,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
         :href => 'http://test.host/xml/rss20/tag/hardware/feed.xml'}
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom10/tag/hardware/feed.xml'}
+        :href => 'http://test.host/xml/atom/tag/hardware/feed.xml'}
   end
 
   def test_disabled_ajax_comments

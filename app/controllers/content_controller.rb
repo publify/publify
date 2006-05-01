@@ -71,7 +71,7 @@ class ContentController < ApplicationController
     end
 
     @auto_discovery_url_rss = url_for(({:format => 'rss20'}.merge options))
-    @auto_discovery_url_atom = url_for(({:format => 'atom10'}.merge options))
+    @auto_discovery_url_atom = url_for(({:format => 'atom'}.merge options))
   end
 
   def theme_layout

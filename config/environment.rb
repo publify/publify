@@ -93,6 +93,34 @@ require_dependency 'aggregations/magnolia'
 require_dependency 'aggregations/upcoming'
 require_dependency 'xmlrpc_fix'
 require_dependency 'transforms'
+require_dependency 'builder'
+
+unless Builder::XmlMarkup.methods.include? '_attr_value'
+  # Builder 2.0 has many important fixes, but for now we will only backport
+  # this one... 
+  class Builder::XmlMarkup
+    # Insert the attributes (given in the hash).
+    def _insert_attributes(attrs, order=[])
+      return if attrs.nil?
+      order.each do |k|
+        v = attrs[k]
+        @target << %{ #{k}="#{_attr_value(v)}"} if v # " WART
+      end
+      attrs.each do |k, v|
+        @target << %{ #{k}="#{_attr_value(v)}"} unless order.member?(k) # " WART
+      end
+    end
+
+   def _attr_value(value)
+      case value
+      when Symbol
+        value.to_s
+      else
+        _escape(value.to_s).gsub(%r{"}, '&quot;')  # " WART
+      end
+    end
+  end
+end
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'

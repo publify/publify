@@ -2,16 +2,21 @@ class XmlController < ContentController
   caches_action_with_params :feed
   session :off
 
-  NORMALIZED_FORMAT_FOR = {'atom' => 'atom03', 'rss' => 'rss20',
-    'atom03' => 'atom03', 'atom10' => 'atom10', 'rss20' => 'rss20'}
+  NORMALIZED_FORMAT_FOR = {'atom' => 'atom10', 'rss' => 'rss20',
+    'atom10' => 'atom10', 'rss20' => 'rss20'}
 
   CONTENT_TYPE_FOR = { 'rss20' => 'application/xml',
-    'atom03' => 'application/atom+xml', 'atom10' => 'application/atom+xml' }
+    'atom10' => 'application/atom+xml' }
 
 
   def feed
     @items = Array.new
     @format = params[:format]
+
+    if @format == 'atom03'
+      @headers["Status"] = "301 Moved Permanently"
+      return redirect_to(:format=>'atom')
+    end
 
     @feed_title = this_blog.blog_name
     @link = url_for({:controller => "articles"},{:only_path => false})

@@ -16,7 +16,7 @@ if($validator_installed == nil)
   $validator_installed = false
   begin
     IO.popen("feedvalidator 2> /dev/null","r") do |pipe|
-      if (pipe.read =~ %r{Validating http://www.intertwingly.net/blog/index.rss2})
+      if (pipe.read =~ %r{Validating http://www.intertwingly.net/blog/index.})
         puts "Using locally installed Python feed validator"
         $validator_installed = true
       end
@@ -135,66 +135,12 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_rss20(2)
   end
 
-  def test_feed_atom03_feed
-    get :feed, :format => 'atom03', :type => 'feed'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :to_remove
-
-    assert_atom03(6)
-  end
-
-  def test_feed_atom03_comments
-    get :feed, :format => 'atom03', :type => 'comments'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :to_remove
-
-    assert_atom03(3)
-  end
-
-  def test_feed_atom03_trackbacks
-    get :feed, :format => 'atom03', :type => 'trackbacks'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :to_remove
-
-    assert_atom03(2)
-  end
-
-  def test_feed_atom03_article
-    get :feed, :format => 'atom03', :type => 'article', :id => 1
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :to_remove
-
-    assert_atom03(2)
-  end
-
-  def test_feed_atom03_category
-    get :feed, :format => 'atom03', :type => 'category', :id => 'personal'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :to_remove
-
-    assert_atom03(3)
-  end
-
-  def test_feed_atom03_tag
-    get :feed, :format => 'atom03', :type => 'tag', :id => 'foo'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :to_remove
-
-    assert_atom03(2)
-  end
-
   def test_feed_atom10_feed
     get :feed, :format => 'atom10', :type => 'feed'
 
     assert_response :success
     assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
+    assert_feedvalidator @response.body
 
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
@@ -319,16 +265,10 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_no_match /extended content/, @response.body
   end
 
-  def test_extended_atom03
-    set_extended_on_rss true
+  def test_atom03
     get :feed, :format => 'atom03', :type => 'feed'
-    assert_response :success
-    assert_match /extended content/, @response.body
-
-    set_extended_on_rss false
-    get :feed, :format => 'atom03', :type => 'feed'
-    assert_response :success
-    assert_no_match /extended content/, @response.body
+    assert_response :redirect
+    assert_redirected_to :format => 'atom'
   end
 
   def test_extended_atom10
@@ -355,7 +295,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xpath('//entry/title[text()="Associations aren\'t :dependent =&amp;gt; true anymore" and @type="html"]')
 
     # categories are well formed
-    #assert_match /this &amp; that/, @response.body # XXX: Uncomment when we can make builder 2 work
+    assert_match /this &amp; that/, @response.body
   end
 
   def test_enclosure_rss20
@@ -401,10 +341,6 @@ class XmlControllerTest < Test::Unit::TestCase
 
   def assert_rss20(items)
     assert_equal 1, get_xpath(%{/rss[@version="2.0"]/channel[count(child::item)=#{items}]}).size, "RSS 2.0 feed has wrong number of channel/item nodes"
-  end
-
-  def assert_atom03(entries)
-    assert_equal 1, get_xpath(%{/feed[@version="0.3" and count(child::entry)=#{entries}]}).size, "Atom 0.3 feed has wrong number of feed/entry nodes"
   end
 
   def assert_atom10(entries)
