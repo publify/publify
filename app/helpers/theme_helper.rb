@@ -5,27 +5,18 @@ module ThemeHelper
   # happier if we didn't have to override undocumented methods. Ho
   # hum. -- pdcawley
 
-  def render_file(template_path, use_full_path = true, local_assigns = {}) #:nodoc:
-    search_path = [
-                   "../themes/#{this_blog.theme}/views",     # for components
-                   "../../themes/#{this_blog.theme}/views",  # for normal views
-                   ".",                                      # fallback
-                   "../app/views",                           # Fallback from component to normal view
-                  ]
+  def search_paths
+    ["../themes/#{this_blog.theme}/views",     # for components
+     "../../themes/#{this_blog.theme}/views",  # for normal views
+     "."]
+  end
 
-    if use_full_path
-      search_path.each do |prefix|
-        theme_path = prefix+'/'+template_path
-        begin
-          template_extension = pick_template_extension(theme_path)
-        rescue ActionView::ActionViewError => err
-          next
-        end
-        return super(theme_path, use_full_path, local_assigns)
-      end
-      raise "Can't locate theme #{this_blog.theme}"
-    else
-      super(template_path, use_full_path, local_assigns)
+  def full_template_path(template_path, extension)
+    search_paths.each do |path|
+      themed_path = File.join(@base_path, path, "#{template_path}.#{extension}")
+      return themed_path if File.exist?(themed_path)
     end
+    # Can't find a themed version, so fall back to the default behaviour
+    super
   end
 end
