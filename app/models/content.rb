@@ -4,6 +4,7 @@ class Content < ActiveRecord::Base
   include Observable
 
   belongs_to :text_filter
+  belongs_to :blog
   validates_presence_of :blog_id
 
   has_and_belongs_to_many :notify_users, :class_name => 'User',
@@ -58,8 +59,9 @@ class Content < ActiveRecord::Base
   end
 
   def self.find_published(what = :all, options = {})
-    options[:conditions] = merge_conditions(['published = ?', true], options[:conditions])
-    options[:order] ||= default_order
+    options.reverse_merge!(:order => default_order)
+    options[:conditions] = merge_conditions(['published = ?', true],
+                                            options[:conditions])
     find(what, options)
   end
 
@@ -67,26 +69,22 @@ class Content < ActiveRecord::Base
     'created_at DESC'
   end
 
-  def self.find_already_published(what = :all, at = Time.now, options = { })
+  def self.find_already_published(what = :all, at = nil, options = { })
     if what.respond_to?(:has_key?)
-      options = what
-      what = :all
-      at = options.delete(:at) if options.has_key?(:at)
+      what, options = :all, what
     elsif at.respond_to?(:has_key?)
-      options = at
-      at = options.delete(:at) || Time.now
+      options, at = at, nil
     end
-    options[:conditions] = merge_conditions(['created_at < ?', at], options[:conditions])
+    at ||= options.delete(:at) || Time.now
+    options[:conditions] = merge_conditions(['created_at < ?', at],
+                                            options[:conditions])
     find_published(what, options)
   end
 
   def self.merge_conditions(*conditions)
-    first_cond = conditions.shift.to_conditions_array
-    conditions.compact.inject(first_cond) do |merged, cond|
-      cond = cond.to_conditions_array
-      merged.first << " AND ( #{cond.shift} )"
-      merged + cond
-    end
+    conditions.compact.collect do |cond|
+      '(' + sanitize_sql(cond) + ')'
+    end.join(' AND ')
   end
 
   def html_map(field=nil); self.class.html_map(field); end
@@ -98,15 +96,19 @@ class Content < ActiveRecord::Base
     html(blog.controller, :all)
   end
 
-  def html(controller,what = :all)
+  def populate_html_fields(controller)
     html_map.each do |field, html_field|
       if !self[field].blank? && self[html_field].blank?
         html = text_filter.filter_text_for_controller( self[field].to_s, controller, self, false )
-        html = self.send("%s_postprocess" % html_field, html, controller) if self.respond_to?("%s_postprocess" % html_field, true)
-        self[html_field] = html
-        save if self.id
+        self[html_field] = self.send("#{html_field}_postprocess",
+                                     html, controller)
+        save if ! new_record?
       end
     end
+  end
+
+  def html(controller,what = :all)
+    populate_html_fields(controller)
 
     if what == :all
       self[:body_html].to_s + (self[:extended_html].to_s rescue '')
@@ -117,37 +119,34 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def method_missing(method, *args, &block)
+    if method.to_s =~ /_postprocess$/
+      args[0]
+    else
+      super(method, *args, &block)
+    end
+  end
+
   def whiteboard
     self[:whiteboard] ||= Hash.new
   end
 
-  alias_method :orig_text_filter=, :text_filter=; alias_method :orig_text_filter, :text_filter
 
   def text_filter
-    self.orig_text_filter ||= blog[default_text_filter_config_key].to_text_filter
+    self[:text_filter] ||= if self[:text_filter_id]
+                             TextFilter.find(self[:text_filter_id])
+                           else
+                             blog[default_text_filter_config_key].to_text_filter
+                           end
   end
 
   def text_filter=(filter)
-    self.orig_text_filter = filter.to_text_filter
+    self[:text_filter] = filter.to_text_filter
   end
 
-  def default_initialization
-    if self.class.send(:scoped?, :create)
-      self.class.send(:scope, :create)
-    else
-      { :blog_id => Blog.default }
-    end
-  end
-
-  def initialize(args=nil)
-    args ||= { }
-    args.reverse_merge!(default_initialization)
-    super(args)
-    yield self if block_given?
+  def blog
+    self[:blog] ||= blog_id.to_i.zero? ? Blog.default : Blog.find(blog_id)
   end
 end
 
 class Object; def to_text_filter; TextFilter.find_by_name(self.to_s); end; end
-
-class String; def to_conditions_array; ["(#{self})"]; end; end
-class Array; def to_conditions_array; self; end; end

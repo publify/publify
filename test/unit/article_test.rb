@@ -9,12 +9,6 @@ class ArticleTest < Test::Unit::TestCase
     @articles = []
   end
 
-  def with_default_scope(&block)
-    Article.with_scope({ :find => { :conditions => "blog_id = #{this_blog.id}"},
-                         :create => { :blog_id => this_blog.id }},
-                       &block)
-  end
-
   def assert_results_are(*expected)
     assert_equal expected.size, @articles.size
     expected.each do |i|
@@ -37,19 +31,15 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_permalink
-    with_default_scope do
-      assert_equal( contents(:article3), Article.find_by_date(2004,06,01) )
-      assert_equal( [contents(:article2), contents(:article1)],
-                    Article.find_all_by_date(2.days.ago.year) )
-    end
+    assert_equal( contents(:article3), this_blog.articles.find_by_date(2004,06,01) )
+    assert_equal( [contents(:article2), contents(:article1)],
+                  this_blog.articles.find_all_by_date(2.days.ago.year) )
   end
 
   def test_permalink_with_title
-    with_default_scope do
-      assert_equal( contents(:article3),
-                    Article.find_by_permalink(2004, 06, 01, "article-3") )
-      assert_nil Article.find_by_permalink(2005, 06, 01, "article-5")
-    end
+    assert_equal( contents(:article3),
+                  this_blog.articles.find_by_permalink(2004, 06, 01, "article-3") )
+    assert_nil this_blog.articles.find_by_permalink(2005, 06, 01, "article-5")
   end
 
   def test_strip_title
@@ -132,15 +122,13 @@ class ArticleTest < Test::Unit::TestCase
 
 
   def test_find_published
-    with_default_scope do
-      @articles = Article.find_published
-      assert_results_are(:search_target, :article1, :article2,
-                         :article3, :inactive_article,:xmltest)
+    @articles = this_blog.articles.find_published
+    assert_results_are(:search_target, :article1, :article2,
+                       :article3, :inactive_article,:xmltest)
 
-      @articles = Article.find_published(:all,
-                                         :conditions => "title = 'Article 1!'")
-      assert_results_are :article1
-    end
+    @articles = this_blog.articles.find_published(:all,
+                                                  :conditions => "title = 'Article 1!'")
+    assert_results_are :article1
   end
 
   def test_find_published_by_category
@@ -183,23 +171,21 @@ class ArticleTest < Test::Unit::TestCase
 
   # this also tests time_delta, indirectly
   def test_find_all_by_date
-    with_default_scope do
-      feb28 = Article.new
-      mar1 = Article.new
-      mar2 = Article.new
+    feb28 = Article.new
+    mar1 = Article.new
+    mar2 = Article.new
 
-      feb28.title = "February 28"
-      mar1.title = "March 1"
-      mar2.title = "March 2"
+    feb28.title = "February 28"
+    mar1.title = "March 1"
+    mar2.title = "March 2"
 
-      feb28.created_at = "2004-02-28"
-      mar1.created_at = "2004-03-01"
-      mar2.created_at = "2004-03-02"
+    feb28.created_at = "2004-02-28"
+    mar1.created_at = "2004-03-01"
+    mar2.created_at = "2004-03-02"
 
-      [feb28, mar1, mar2].each {|x| x.save }
-      assert_equal(1, Article.find_all_by_date(2004,02).size)
-      assert_equal(2, Article.find_all_by_date(2004,03).size)
-      assert_equal(1, Article.find_all_by_date(2004,03,01).size)
-    end
+    [feb28, mar1, mar2].each {|x| x.save }
+    assert_equal(1, Article.find_all_by_date(2004,02).size)
+    assert_equal(2, Article.find_all_by_date(2004,03).size)
+    assert_equal(1, Article.find_all_by_date(2004,03,01).size)
   end
 end

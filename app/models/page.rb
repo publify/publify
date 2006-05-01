@@ -1,6 +1,5 @@
 class Page < Content
   belongs_to :user
-  belongs_to :blog
   validates_presence_of :name, :title, :body
   validates_uniqueness_of :name
 

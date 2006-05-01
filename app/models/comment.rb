@@ -7,7 +7,6 @@ class Comment < Content
 
   belongs_to :article, :counter_cache => true
   belongs_to :user
-  belongs_to :blog
 
   validates_presence_of :author, :body
   validates_against_spamdb :body, :url, :ip

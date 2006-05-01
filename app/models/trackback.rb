@@ -3,7 +3,6 @@ require_dependency 'spam_protection'
 class Trackback < Content
   include TypoGuid
   belongs_to :article, :counter_cache => true
-  belongs_to :blog
 
   content_fields :excerpt
 

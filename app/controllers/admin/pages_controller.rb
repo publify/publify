@@ -43,8 +43,7 @@ class Admin::PagesController < Admin::BaseController
 
   def preview
     @headers["Content-Type"] = "text/html; charset=utf-8"
-    @page = Page.new
-    @page.attributes = params[:page]
+    @page = this_blog.pages.build(params[:page])
     render :layout => false
   end
 

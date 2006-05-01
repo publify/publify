@@ -91,18 +91,13 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
 
   def test_preview
     get :preview, :page => { :name => "preview-page", :title => "Preview Page",
-      :text_filter_id => text_filters(:markdown_filter).id, :body => "testing the *preview*" }
+      :text_filter_id => text_filters(:markdown_filter).id,
+      :body => "testing the *preview*" }
     assert_response :success
     assert_not_nil assigns(:page)
     assert_template "preview"
 
-#    assert_equal "<p>testing the <em>preview</em></p>", assigns(:page).body_html
-
-    assert_tag :tag => "p",
-        :children => { :count => 1,
-          :only => { :tag => "p",
-            :children => { :count => 1,
-              :only => { :tag => "em",
-                :content => "preview" } } } }
+    assert_dom_equal "<div><p>testing the <em>preview</em></p></div>\n",
+                     @response.body
   end
 end

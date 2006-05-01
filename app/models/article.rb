@@ -5,7 +5,6 @@ class Article < Content
   include TypoGuid
 
   content_fields :body, :extended
-  belongs_to :blog
 
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
