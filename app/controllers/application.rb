@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def article_url(article, only_path = true, anchor = nil)
-    article.url
+    article.location(anchor, only_path)
   end
 
   def server_url

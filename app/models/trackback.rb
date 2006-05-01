@@ -21,6 +21,10 @@ class Trackback < Content
     self.blog_name ||= ""
   end
 
+  def location(anchor=:ignored, only_path=true)
+    blog.url_for(article, "trackback-#{id}", only_path)
+  end
+
   protected
   before_create :make_nofollow, :process_trackback, :create_guid
 

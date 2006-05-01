@@ -130,24 +130,35 @@ class Blog < ActiveRecord::Base
     Theme.theme_from_path(current_theme_path)
   end
 
-  def url_for(*args)
-    if controller
-      controller.send(:url_for, *args)
+  def url_for(options = {}, *extra_params)
+    case options
+    when String then options
+    when Hash
+      options.reverse_merge!(:only_path => true, :controller => 'articles',
+                             :action => 'permalink')
+      url = ActionController::UrlRewriter.new(request, {})
+      url.rewrite(options)
     else
-      raise "Can't find a URL without an active controller"
+      options.location(*extra_params)
     end
   end
 
   def article_url(article, only_path = true, anchor = nil)
-    url_for(:only_path => only_path, :controller=>"/articles",
-            :action =>"permalink", :year => article.created_at.year,
+    url_for(:year => article.created_at.year,
             :month => sprintf("%.2d", article.created_at.month),
             :day => sprintf("%.2d", article.created_at.day),
-            :title => article.permalink, :anchor => anchor)
+            :title => article.permalink, :anchor => anchor,
+            :only_path => only_path)
   end
 
   def server_url
-    url_for :only_path => false, :controller => "/"
+    controller.send :url_for, :only_path => false, :controller => "/"
+  end
+
+  private
+
+  def request
+    controller.request rescue ActionController::TestRequest.new
   end
 end
 

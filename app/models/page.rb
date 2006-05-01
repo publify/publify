@@ -9,6 +9,11 @@ class Page < Content
     'name ASC'
   end
 
+  def location(anchor=nil, only_path=true)
+    blog.url_for(:only_path => only_path, :action => 'view_page',
+                 :name => name, :anchor => anchor)
+  end
+
   protected
 
   def default_text_filter_config_key; 'text_filter'; end

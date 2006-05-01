@@ -1,15 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BlogTest < Test::Unit::TestCase
-  fixtures :blogs
+  fixtures :blogs, :contents
 
   def setup
     @blog = Blog.find(:first)
-  end
-
-  # Replace this with your real tests.
-  def test_truth
-    assert_kind_of Blog, blogs(:default)
   end
 
   def test_blog_name
@@ -55,4 +50,34 @@ class BlogTest < Test::Unit::TestCase
     assert_equal "azure", @blog.current_theme.name
   end
 
+  def test_url_for
+    assert_equal('/articles/read/1',
+                 @blog.url_for(:controller => 'articles',
+                               :action     => 'read',
+                               :id         => 1))
+  end
+
+  def test_url_for_article
+    assert_equal('/articles/2004/06/01/article-3',
+                 @blog.url_for(contents(:article3)))
+    assert_equal('/articles/2004/06/01/article-3#foo',
+                 @blog.url_for(contents(:article3), 'foo'))
+  end
+
+  def test_url_for_page
+    assert_equal('/pages/page_one',
+                 @blog.url_for(contents(:first_page)))
+  end
+
+  def test_url_for_comment
+    comment = contents(:comment2)
+    assert_equal(@blog.url_for(comment.article, "comment-#{comment.id}"),
+                 @blog.url_for(comment))
+  end
+
+  def test_url_for_trackback
+    tb = contents(:trackback1)
+    assert_equal(@blog.url_for(tb.article, "trackback-#{tb.id}"),
+                 @blog.url_for(tb))
+  end
 end

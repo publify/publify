@@ -37,6 +37,10 @@ class Comment < Content
     end
   end
 
+  def location(anchor=:ignored, only_path=true)
+    blog.url_for(article, "comment-#{id}", only_path)
+  end
+
   protected
 
   def check_article_is_open_to_comments

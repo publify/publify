@@ -21,8 +21,8 @@ class Article < Content
     self.title.gsub(/<[^>]*>/,'').to_url
   end
 
-  def url
-    blog.article_url(self)
+  def location(anchor=nil, only_path=true)
+    blog.article_url(self, only_path, anchor)
   end
 
   def html_urls

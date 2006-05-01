@@ -2,7 +2,6 @@
 require 'digest/sha1'
 
 module ApplicationHelper
-
   def server_url_for(options = {})
     url_for options.update(:only_path => false)
   end
@@ -15,53 +14,39 @@ module ApplicationHelper
     this_blog
   end
 
-  def article_link(title, article,anchor=nil)
-    link_to title, article_url(article,true,anchor)
+  def item_link(title, item, anchor=nil)
+    link_to title, item.location(anchor)
   end
 
-  def page_link(title, page,anchor=nil)
-    link_to title, page_url(page,true,anchor)
+  alias_method :article_link,     :item_link
+  alias_method :page_link,        :item_link
+  alias_method :comment_url_link, :item_link
+
+  def url_of(item, only_path=true, anchor=nil)
+    item.location(anchor, only_path)
   end
 
-  def comment_url_link(title, comment)
-    link_to title, comment_url(comment)
-  end
-
-  def article_url(article, only_path = true, anchor = nil)
-    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor => anchor
-  end
-
-  def page_url(page, only_path = true, anchor = nil)
-    url_for :only_path => only_path, :controller => "/articles", :action => "view_page", :name => page.name, :anchor => anchor
-  end
-
-  def comment_url(comment, only_path = true)
-    article = comment.article
-    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor=> "comment-#{comment.id}"
-  end
-
-  def trackback_url(trackback, only_path = true)
-    article = trackback.article
-    url_for :only_path => only_path, :controller=>"/articles", :action =>"permalink", :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month), :day => sprintf("%.2d", article.created_at.day), :title => article.permalink, :anchor=> "trackback-#{trackback.id}"
-  end
+  alias_method :trackback_url, :url_of
+  alias_method :comment_url,   :url_of
+  alias_method :article_url,   :url_of
+  alias_method :page_url,      :url_of
 
   def pluralize(size, word)
     case size
-    when 0
-      "no #{word}s"
-    when 1
-      "1 #{word}"
-    else
-      "#{size} #{word}s"
+    when 0 then "no #{word}s"
+    when 1 then "1 #{word}"
+    else        "#{size} #{word}s"
     end
   end
 
   def comments_link(article)
-    article_link  pluralize(article.comments.size, "comment"), article, 'comments'
+    article_link(pluralize(article.comments.size, "comment"),
+                 article, 'comments')
   end
 
   def trackbacks_link(article)
-    article_link pluralize(article.trackbacks.size, "trackback"), article, 'trackbacks'
+    article_link(pluralize(article.trackbacks.size, "trackback"),
+                 article, 'trackbacks')
   end
 
   def check_cache(aggregator, *args)
@@ -92,11 +77,11 @@ module ApplicationHelper
   end
 
   def article_html(article, what = :all)
-    article.html(@controller,what)
+    article.html(@controller, what)
   end
 
   def comment_html(comment)
-    comment.html(@controller,:body)
+    comment.html(@controller, :body)
   end
 
   def page_html(page)
