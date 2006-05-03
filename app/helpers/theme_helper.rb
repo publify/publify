@@ -8,7 +8,8 @@ module ThemeHelper
   def search_paths
     ["../themes/#{this_blog.theme}/views",     # for components
      "../../themes/#{this_blog.theme}/views",  # for normal views
-     "."]
+     ".",
+     "../app/views"]
   end
 
   def full_template_path(template_path, extension)
