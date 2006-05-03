@@ -1,6 +1,4 @@
 class SidebarController < ApplicationController
-
-
   def index
     if flash[:sidebars]
       @sidebars = flash[:sidebars].map {|sb_id| Sidebar.find(sb_id.to_i) }
