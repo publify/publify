@@ -43,7 +43,7 @@ class BloggerService < TypoWebService
   before_invocation :authenticate
 
   def deletePost(appkey, postid, username, password, publish)
-    article = Article.find(postid)
+    article = this_blog.articles.find(postid)
     article.destroy
     true
   end
@@ -70,7 +70,7 @@ class BloggerService < TypoWebService
   def newPost(appkey, blogid, username, password, content, publish)
     title, categories, body = content.match(%r{^<title>(.+?)</title>(?:<category>(.+?)</category>)?(.+)$}mi).captures rescue nil
 
-    article = Article.new
+    article = this_blog.articles.build
     article.body        = body || content || ''
     article.title       = title || content.split.slice(0..5).join(' ') || ''
     article.published   = publish

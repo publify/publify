@@ -49,6 +49,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "<p>new post <strong>body</strong></p>", new_post.html(@controller, :body)
     assert_equal "textile", new_post.text_filter.name
     assert_equal users(:tobi), new_post.user
+    assert_equal this_blog.id, new_post.blog_id
   end
 
   def test_blogger_new_post_no_title
@@ -71,6 +72,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "new post title", new_post.title
     assert_equal "new post body", new_post.body
     assert_equal [categories(:software), categories(:hardware)], new_post.categories.sort_by { |c| c.id }
+    assert_equal this_blog.id, new_post.blog_id
   end
 
   def test_blogger_new_post_with_non_existing_categories
@@ -80,6 +82,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_not_nil result
     new_post = Article.find(result)
     assert_equal [categories(:hardware)], new_post.categories
+    assert_equal this_blog.id, new_post.blog_id
   end
 
   def test_blogger_fail_authentication
@@ -136,6 +139,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal article.body, new_article.body
     assert_equal "<p>this is a <strong>test</strong></p>", new_article.html(@controller, :body)
     assert_equal Time.now.midnight.to_s, new_article.created_at.to_s
+    assert_equal this_blog.id, new_article.blog_id
   end
 
   def test_meta_weblog_new_post
@@ -159,10 +163,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal article.extended, new_post.extended
     assert_equal "<p>extend me</p>", new_post.html(@controller, :extended)
     assert_equal Time.now.midnight.to_s, new_post.created_at.to_s
-
-#    assert_equal 2, new_post.pings.size
-#    assert_equal 'http://ping.example.com/ping', new_post.pings[0].url
-#    assert_equal 'http://alsoping.example.com/rpc/ping', new_post.pings[1].url
+    assert_equal this_blog.id, new_post.blog_id
   end
 
   def test_meta_weblog_new_media_object
