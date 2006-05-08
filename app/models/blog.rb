@@ -134,7 +134,7 @@ class Blog < ActiveRecord::Base
     case options
     when String then options
     when Hash
-      options.reverse_merge!(:only_path => true, :controller => 'articles',
+      options.reverse_merge!(:only_path => true, :controller => '/articles',
                              :action => 'permalink')
       url = ActionController::UrlRewriter.new(request, {})
       url.rewrite(options)
