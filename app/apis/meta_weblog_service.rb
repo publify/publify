@@ -108,7 +108,6 @@ class MetaWeblogService < TypoWebService
     end
 
     if article.save
-      article.send_notifications(@controller)
       article.send_pings(server_url, article_url(article), struct['mt_tb_ping_urls'])
       article.id.to_s
     else

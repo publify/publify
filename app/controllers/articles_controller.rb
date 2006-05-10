@@ -92,7 +92,6 @@ class ArticlesController < ContentController
 
         set_headers
         render :partial => "comment", :object => @comment
-        @comment.send_notifications(self)
       rescue ActiveRecord::RecordInvalid
         STDERR.puts @comment.errors.inspect
         render_error(@comment)

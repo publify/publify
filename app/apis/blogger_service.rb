@@ -89,7 +89,6 @@ class BloggerService < TypoWebService
       end
     end
 
-    article.send_notifications(@controller)
     article.id
   end
 

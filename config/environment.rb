@@ -45,6 +45,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+  config.active_record.observers = :content_observer, :email_notifier
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
@@ -97,7 +98,7 @@ require_dependency 'builder'
 
 unless Builder::XmlMarkup.methods.include? '_attr_value'
   # Builder 2.0 has many important fixes, but for now we will only backport
-  # this one... 
+  # this one...
   class Builder::XmlMarkup
     # Insert the attributes (given in the hash).
     def _insert_attributes(attrs, order=[])

@@ -99,7 +99,6 @@ class Admin::ContentController < Admin::BaseController
     case params[:action]
     when 'new'
       @article.html(self)
-      @article.send_notifications(self)
       @article.send_pings(server_url, article_url(@article, false), [])
       flash[:notice] = 'Article was successfully created'
     when 'edit'

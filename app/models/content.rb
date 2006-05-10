@@ -106,7 +106,6 @@ class Content < ActiveRecord::Base
         html = text_filter.filter_text_for_controller( self[field].to_s, controller, self, false )
         self[html_field] = self.send("#{html_field}_postprocess",
                                      html, controller)
-        save if ! new_record?
       end
     end
   end
@@ -174,7 +173,6 @@ class Content < ActiveRecord::Base
 
   def set_publication_info
     if published
-      @just_published = true
       self.published_at ||= Time.now
     end
   end

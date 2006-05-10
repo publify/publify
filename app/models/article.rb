@@ -124,9 +124,9 @@ class Article < Content
     end
   end
 
-  def send_notifications(controller)
+  def send_notifications
     User.find_boolean(:all, :notify_on_new_articles).each do |u|
-      send_notification_to_user(controller, u)
+      send_notification_to_user(blog.controller, u)
     end
   end
 

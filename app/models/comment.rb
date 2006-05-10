@@ -29,11 +29,11 @@ class Comment < Content
     #end
   end
 
-  def send_notifications(controller)
+  def send_notifications(controller = nil)
     users = User.find_boolean(:all, :notify_on_comments)
     self.notify_users = users
     users.each do |u|
-      send_notification_to_user(controller,u)
+      send_notification_to_user(controller || blog.controller,u)
     end
   end
 
