@@ -4,11 +4,16 @@ class ApplicationController < ActionController::Base
   include LoginSystem
 
   before_filter :get_the_blog_object
+  before_filter :fire_triggers
   after_filter :flush_the_blog_object
 
   around_filter Blog
 
   protected
+
+  def fire_triggers
+    Trigger.fire
+  end
 
   def with_blog_scoped_classes(klasses=[Content, Article, Comment, Page, Trackback], &block)
     default_id = this_blog.id

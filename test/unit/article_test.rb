@@ -131,11 +131,44 @@ class ArticleTest < Test::Unit::TestCase
     assert_results_are :article1
   end
 
+  def test_just_published_flag
+    art = Article.create!(:title => 'title',
+                          :body => 'body',
+                          :published => true)
+    assert art.just_published?
+
+    art = Article.create!(:title => 'title2',
+                          :body => 'body',
+                          :published => false)
+
+    assert ! art.just_published?
+  end
+
+  def test_future_publishing
+    assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
+                                        :published => true,
+                                        :published_at => Time.now + 2.seconds))
+  end
+
+  def test_future_publishing_without_published_flag
+    assert_sets_trigger Article.create!(:title => 'title', :body => 'body',
+                                        :published_at => Time.now + 2.seconds)
+  end
+
+  def assert_sets_trigger(art)
+    assert_equal 1, Trigger.count
+    assert Trigger.find(:first, :conditions => ['pending_item_id = ?', art.id])
+    sleep 2
+    Trigger.fire
+    art.reload
+    assert art.published
+  end
+
   def test_find_published_by_category
     Article.create!(:title      => "News from the future!",
                     :body       => "The future is cool!",
                     :keywords   => "future",
-                    :created_at => Time.now + 12.minutes)
+                    :published_at => Time.now + 12.minutes)
 
     @articles = Category.find_by_permalink('personal').published_articles
     assert_results_are :article1, :article2, :article3
@@ -171,17 +204,17 @@ class ArticleTest < Test::Unit::TestCase
 
   # this also tests time_delta, indirectly
   def test_find_all_by_date
-    feb28 = Article.new
-    mar1 = Article.new
-    mar2 = Article.new
+    feb28 = Article.new(:published => true)
+    mar1  = Article.new(:published => true)
+    mar2  = Article.new(:published => true)
 
     feb28.title = "February 28"
-    mar1.title = "March 1"
-    mar2.title = "March 2"
+    mar1.title  = "March 1"
+    mar2.title  = "March 2"
 
-    feb28.created_at = "2004-02-28"
-    mar1.created_at = "2004-03-01"
-    mar2.created_at = "2004-03-02"
+    feb28.created_at = feb28.published_at = "2004-02-28"
+    mar1.created_at  = mar1.published_at = "2004-03-01"
+    mar2.created_at  = mar2.published_at = "2004-03-02"
 
     [feb28, mar1, mar2].each {|x| x.save }
     assert_equal(1, Article.find_all_by_date(2004,02).size)

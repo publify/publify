@@ -14,6 +14,7 @@ class Article < Content
   has_and_belongs_to_many :categories, :foreign_key => 'article_id'
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
+  has_many :triggers, :as => :pending_item
 
   after_destroy :fix_resources
 
@@ -69,25 +70,24 @@ class Article < Content
   end
 
   def next
-    Article.find(:first, :conditions => ['created_at > ?', created_at], :order => 'created_at asc')
+    Article.find(:first, :conditions => ['published_at > ?', published_at], :order => 'publishe_at asc')
   end
 
   def previous
-    Article.find(:first, :conditions => ['created_at < ?', created_at], :order => 'created_at desc')
+    Article.find(:first, :conditions => ['published_at < ?', published_at], :order => 'published_at desc')
   end
 
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)
     from, to = self.time_delta(year, month, day)
-    Article.count(["created_at BETWEEN ? AND ? AND published = ?", from, to, true])
+    Article.count(["published_at BETWEEN ? AND ? AND published = ?", from, to, true])
   end
 
   # Find all articles on a certain date
   def self.find_all_by_date(year, month = nil, day = nil)
     from, to = self.time_delta(year, month, day)
-    Article.find_published(:all, :conditions => ["created_at BETWEEN ? AND ?",
-                                                 from, to],
-                           :order => "#{Article.table_name}.created_at DESC")
+    Article.find_published(:all, :conditions => ["published_at BETWEEN ? AND ?",
+                                                 from, to])
   end
 
   # Find one article on a certain date
@@ -100,7 +100,7 @@ class Article < Content
   def self.find_by_permalink(year, month, day, title)
     from, to = self.time_delta(year, month, day)
     find_published(:first, :conditions => [ %{permalink = ?
-      AND  #{Article.table_name}.created_at BETWEEN ? AND ?
+      AND  published_at BETWEEN ? AND ?
     }, title, from, to ])
   end
 
@@ -109,16 +109,13 @@ class Article < Content
     if !query.to_s.strip.empty?
       tokens = query.split.collect {|c| "%#{c.downcase}%"}
      find_published(:all,
-                     :conditions => [(["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 3 }.flatten],
-                     :order => 'created_at DESC')
+                     :conditions => [(["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 3 }.flatten])
     else
       []
     end
   end
 
   def keywords_to_tags
-    return unless schema_version >= 10
-
     Article.transaction do
       tags.clear
       keywords.to_s.scan(/((['"]).*?\2|\w+)/).collect { |x| x.first.tr("\"'", '') }.uniq.each do |tagword|
@@ -139,7 +136,9 @@ class Article < Content
     end
 
     if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New post", "A new message was posted to #{blog.blog_name}",body_html)
+      JabberNotify.send_message(user, "New post",
+                                "A new message was posted to #{blog.blog_name}",
+                                body_html)
     end
   end
 
@@ -201,16 +200,6 @@ class Article < Content
     Resource.find(:all, :conditions => "article_id = #{id}").each do |fu|
       fu.article_id = nil
       fu.save
-    end
-  end
-
-  def schema_version
-    @schema_version ||= begin
-      schema_info=Article.connection.select_one("select * from schema_info limit 1")
-      schema_info["version"].to_i
-    rescue
-      # The test DB doesn't currently support schema_info.
-      25
     end
   end
 end

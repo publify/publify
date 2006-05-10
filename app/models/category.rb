@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
   acts_as_list
-  has_and_belongs_to_many :articles, :order => "created_at DESC"
+  has_and_belongs_to_many(:articles,
+                          :order => "published_at DESC, created_at DESC")
 
   def self.find_all_with_article_counters(maxcount=nil)
     self.find_by_sql([%{

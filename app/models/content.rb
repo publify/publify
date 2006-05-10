@@ -11,6 +11,10 @@ class Content < ActiveRecord::Base
     :join_table => 'notifications', :foreign_key => 'notify_content_id',
     :association_foreign_key => 'notify_user_id', :uniq => true
 
+  before_validation :set_publication_info
+  before_save :prep_trigger
+  after_save :post_trigger
+
   serialize :whiteboard
 
   @@content_fields = Hash.new
@@ -66,7 +70,7 @@ class Content < ActiveRecord::Base
   end
 
   def self.default_order
-    'created_at DESC'
+    'published_at DESC'
   end
 
   def self.find_already_published(what = :all, at = nil, options = { })
@@ -76,9 +80,9 @@ class Content < ActiveRecord::Base
       options, at = at, nil
     end
     at ||= options.delete(:at) || Time.now
-    options[:conditions] = merge_conditions(['created_at < ?', at],
-                                            options[:conditions])
-    find_published(what, options)
+    with_scope(:find => { :conditions => ['published_at < ?', at]}) do
+      find_published(what, options)
+    end
   end
 
   def self.merge_conditions(*conditions)
@@ -146,6 +150,51 @@ class Content < ActiveRecord::Base
 
   def blog
     self[:blog] ||= blog_id.to_i.zero? ? Blog.default : Blog.find(blog_id)
+  end
+
+  def publish!
+    self.published = true
+    self.save!
+  end
+
+  def published=(a_boolean)
+    if @just_published.nil?
+      @just_published = new_record? || ! published?
+    end
+    self[:published] = a_boolean
+  end
+
+  def just_published?
+    @just_published && published?
+  end
+
+  def publication_pending?
+    (new_record? || just_published?) && published_at && published_at > Time.now
+  end
+
+  def set_publication_info
+    if published
+      @just_published = true
+      self.published_at ||= Time.now
+    end
+  end
+
+  def prep_trigger
+    if @triggered
+      @should_post_trigger = false
+      return true
+    end
+    if publication_pending?
+      self[:published] = false
+      @should_post_trigger = true
+    end
+  end
+
+  def post_trigger
+    if @should_post_trigger
+      Trigger.post_action(published_at, self, 'publish!')
+      @triggered = true
+    end
   end
 end
 

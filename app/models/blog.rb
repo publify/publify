@@ -12,14 +12,6 @@ class Blog < ActiveRecord::Base
     def before(date = Time.now)
       find(:all, :conditions => ["contents.created_at < ?", date])
     end
-
-    def size(date = nil)
-      if date.nil?
-        Article.count
-      else
-        Article.count ["created_at < ?", date]
-      end
-    end
   end
 
   has_many :pages

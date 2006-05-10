@@ -51,6 +51,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
                'categories' => [1])
     assert !assigns(:article).allow_comments?
     assert  assigns(:article).allow_pings?
+    assert  assigns(:article).published?
   end
 
   def test_create_with_no_pings
@@ -60,17 +61,18 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
                'categories' => [1])
     assert  assigns(:article).allow_comments?
     assert !assigns(:article).allow_pings?
+    assert  assigns(:article).published?
   end
 
   def test_create
-    num_articles = Article.find_all.size
+    num_articles = this_blog.published_articles.size
     emails = ActionMailer::Base.deliveries
     emails.clear
     tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
     post :new, 'article' => { :title => "posted via tests!", :body => "Foo", :keywords => "foo bar 'baz bliz' \"gorp gack gar\""}, 'categories' => [1]
     assert_redirected_to :action => 'show'
 
-    assert_equal num_articles + 1, Article.find_all.size
+    assert_equal num_articles + 1, this_blog.published_articles.size
 
     new_article = Article.find(:first, :order => "id DESC")
     assert_equal users(:tobi), new_article.user
@@ -80,6 +82,29 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
     assert_equal(1, emails.size)
     assert_equal('randomuser@example.com', emails.first.to[0])
+  end
+
+  def test_create_future_article
+    num_articles = this_blog.published_articles.size
+    post(:new,
+         :article => { :title => "News from the future!",
+                       :body => "The future's cool!",
+                       :published_at => Time.now + 1.hour })
+    assert_redirected_to :action => 'show'
+    assert ! assigns(:article).published?
+    assert_equal num_articles, this_blog.published_articles.size
+    assert_equal 1, Trigger.count
+  end
+
+  def test_request_fires_triggers
+    art = this_blog.articles.create!(:title => 'future article',
+                                     :body => 'content',
+                                     :published_at => Time.now + 2.seconds,
+                                     :published => true)
+    assert !art.published?
+    sleep 3
+    get(:show, :id => art.id)
+    assert assigns(:article).published?
   end
 
   def test_create_filtered

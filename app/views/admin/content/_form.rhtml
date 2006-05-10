@@ -11,7 +11,7 @@
 </p>
 <p>
   <label for="article_body">Body:</label><br />
-  <%= text_area 'article', 'body', :rows => 25, :style => 'width: 48%;'  %> 
+  <%= text_area 'article', 'body', :rows => 25, :style => 'width: 48%;'  %>
 </p>
 <p>
   <label for="categories">Categories:</label><br />
@@ -27,7 +27,7 @@
   <a href="#" onclick="Element.toggle('extended'); return false">Add Extended Content</a><br />
   <div id="extended" style="display:none;">
   <label for="article_extended">Extended:</label><br />
-  <%= text_area 'article', 'extended', :rows => 30, :style => 'width: 48%;'  %> 
+  <%= text_area 'article', 'extended', :rows => 30, :style => 'width: 48%;'  %>
   </div>
 </p>
 
@@ -37,7 +37,7 @@
 <label for="article_allow_pings">Allow pings: </label><%= check_box 'article', 'allow_pings'  %><br />
 <label for="article_published">Published:</label><%= check_box 'article', 'published'  %><br />
 <label for="article_text_filter">Textfilter: </label><%= select 'article', 'text_filter', text_filter_options %><br />
-<label for="article_created_at">Creation date:</label><%= datetime_select 'article', 'created_at'  %><br />
+<label for="article_published_at">Publish at:</label><%= datetime_select 'article', 'published_at', :include_blank => true  %><br />
 </div>
 <br clear="all"/>
 

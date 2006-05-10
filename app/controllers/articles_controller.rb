@@ -81,7 +81,7 @@ class ArticlesController < ContentController
 
     if request.post?
       begin
-        params[:comment].merge({:ip => request.remote_ip,
+        params[:comment].merge!({:ip => request.remote_ip,
                                 :published => true })
         @article = this_blog.published_articles.find(params[:id])
         @comment = @article.comments.build(params[:comment])

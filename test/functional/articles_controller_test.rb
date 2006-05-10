@@ -217,6 +217,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     comment = Article.find(2).comments.last
     assert comment
+    assert comment.published?
     assert_nil comment.user_id
 
     get :read, {:id => 2}
@@ -473,9 +474,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def test_hide_future_article
     @article = Article.find_last_posted
 
-    Article.create!(:title => "News from the future!",
-                    :body => "The future is cool!",
-                    :keywords => "future",
+    Article.create!(:title      => "News from the future!",
+                    :body       => "The future is cool!",
+                    :keywords   => "future",
+                    :published  => true,
                     :created_at => Time.now + 12.minutes)
     get :index
     assert_equal @article, assigns(:articles).first
