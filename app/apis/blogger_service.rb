@@ -80,7 +80,6 @@ class BloggerService < TypoWebService
     article.allow_comments = this_blog.default_allow_comments
     article.allow_pings    = this_blog.default_allow_pings
     article.text_filter    = this_blog.text_filter
-    article.html(@controller)
     article.save
 
     if categories

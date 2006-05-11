@@ -98,8 +98,6 @@ class MetaWeblogService < TypoWebService
     article.keywords       = struct['mt_keywords'] || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
 
-    article.html(@controller)
-
     if struct['categories']
       article.categories.clear
       Category.find(:all).each do |c|
@@ -136,8 +134,6 @@ class MetaWeblogService < TypoWebService
     article.excerpt        = struct['mt_excerpt']        || ''
     article.keywords       = struct['mt_keywords']       || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
-
-    article.html(@controller)
 
     if struct['categories']
       article.categories.clear
