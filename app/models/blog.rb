@@ -23,6 +23,7 @@ class Blog < ActiveRecord::Base
   setting :blog_name,                  :string, 'My Shiny Weblog!'
   setting :blog_subtitle,              :string, ''
   setting :geourl_location,            :string, ''
+  setting :canonical_server_url,       :string, ''
 
   # Spam
   setting :sp_global,                  :boolean, false
@@ -144,7 +145,11 @@ class Blog < ActiveRecord::Base
   end
 
   def server_url
-    controller.send :url_for, :only_path => false, :controller => "/"
+    if controller
+      controller.send :url_for, :only_path => false, :controller => "/"
+    else
+      settings[:canonical_server_url]
+    end
   end
 
   private

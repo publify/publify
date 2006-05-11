@@ -25,6 +25,10 @@
       <label for="blog_subtitle">Blog subtitle:</label>
       <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h this_blog.blog_subtitle %>" />
     </p>
+  <p>
+    <label for="canonical_server_url">Canonical Server Url:</label>
+    <input name="setting[canonical_server_url]" id="canonical_server_url" type="text" value="<%= this_blog.canonical_server_url %>" />
+  </p>
     <p>
       <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />
       <input name="setting[default_allow_comments]" type="hidden" value="0"/>

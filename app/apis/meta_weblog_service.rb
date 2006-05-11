@@ -106,7 +106,6 @@ class MetaWeblogService < TypoWebService
     end
 
     if article.save
-      article.send_pings(server_url, article_url(article), struct['mt_tb_ping_urls'])
       article.id.to_s
     else
       raise article.errors.full_messages * ", "
@@ -142,7 +141,6 @@ class MetaWeblogService < TypoWebService
       end
     end
     RAILS_DEFAULT_LOGGER.info(struct['mt_tb_ping_urls'])
-    article.send_pings(server_url, article_url(article), struct['mt_tb_ping_urls'])
     article.save
     true
   end

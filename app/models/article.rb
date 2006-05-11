@@ -37,7 +37,7 @@ class Article < Content
     urls
   end
 
-  def send_pings(serverurl, articleurl, urllist)
+  def send_pings(serverurl = blog.server_url, articleurl = location(nil, false), urllist = [])
     return unless blog.send_outbound_pings
 
     weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)

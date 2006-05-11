@@ -89,17 +89,15 @@ class Admin::ContentController < Admin::BaseController
       save_attachments
       if @article.save
         set_article_categories
-        tidy_up_and_notify
+        set_the_flash
         redirect_to :action => 'show', :id => @article.id
       end
     end
   end
 
-  def tidy_up_and_notify
+  def set_the_flash
     case params[:action]
     when 'new'
-      @article.html(self)
-      @article.send_pings(server_url, article_url(@article, false), [])
       flash[:notice] = 'Article was successfully created'
     when 'edit'
       flash[:notice] = 'Article was successfully updated.'

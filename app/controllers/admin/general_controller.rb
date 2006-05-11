@@ -1,5 +1,8 @@
 class Admin::GeneralController < Admin::BaseController
   def index
+    if this_blog.canonical_server_url.blank?
+      this_blog.canonical_server_url = server_url
+    end
     @page_cache_size = PageCache.count
   end
 
