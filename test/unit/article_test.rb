@@ -155,6 +155,14 @@ class ArticleTest < Test::Unit::TestCase
                                         :published_at => Time.now + 2.seconds)
   end
 
+  def test_triggers_are_dependent
+    art = Article.create!(:title => 'title', :body => 'body',
+                          :published_at => Time.now + 1.hour)
+    assert_equal 1, Trigger.count
+    art.destroy
+    assert_equal 0, Trigger.count
+  end
+
   def assert_sets_trigger(art)
     assert_equal 1, Trigger.count
     assert Trigger.find(:first, :conditions => ['pending_item_id = ?', art.id])

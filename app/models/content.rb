@@ -11,6 +11,8 @@ class Content < ActiveRecord::Base
     :join_table => 'notifications', :foreign_key => 'notify_content_id',
     :association_foreign_key => 'notify_user_id', :uniq => true
 
+  has_many :triggers, :as => :pending_item, :dependent => :delete_all
+
   before_validation :set_publication_info
   before_save :prep_trigger
   after_save :post_trigger
