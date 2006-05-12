@@ -180,6 +180,10 @@ class Content < ActiveRecord::Base
     state.set_published_at(self, (a_time.to_time rescue nil))
   end
 
+  def published_at
+    self[:published_at] || self[:created_at]
+  end
+
   def just_published?
     state.just_published?
   end
