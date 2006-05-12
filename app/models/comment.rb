@@ -17,24 +17,22 @@ class Comment < Content
     'created_at ASC'
   end
 
-  def send_notification_to_user(controller, user)
-    #if user.notify_on_comments?
-      if user.notify_via_email?
-        EmailNotify.send_comment(controller, self, user)
-      end
-
-      if user.notify_via_jabber?
-        JabberNotify.send_message(user, "New comment", "A new comment was posted to '#{article.title}' on #{blog.blog_name} by #{author}: #{body}", self.body_html)
-      end
-    #end
+  def notify_user_via_email(controller, user)
+    if user.notify_via_email?
+      EmailNotify.send_comment(controller, self, user)
+    end
   end
 
-  def send_notifications(controller = nil)
+  def notify_user_via_jabber(controller, user)
+    if user.notify_via_jabber?
+      JabberNotify.send_message(user, "New comment", "A new comment was posted to '#{article.title}' on #{blog.blog_name} by #{author}: #{body}", self.body_html)
+    end
+  end
+
+  def interested_users
     users = User.find_boolean(:all, :notify_on_comments)
     self.notify_users = users
-    users.each do |u|
-      send_notification_to_user(controller || blog.controller,u)
-    end
+    users
   end
 
   def location(anchor=:ignored, only_path=true)

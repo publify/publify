@@ -130,8 +130,22 @@ class Article < Content
     end
   end
 
-  def send_notifications
-    state.send_notifications(self)
+  def interested_users
+    User.find_boolean(:all, :notify_on_new_articles)
+  end
+
+  def notify_user_via_email(controller, user)
+    if user.notify_via_email?
+      EmailNotify.send_article(controller, self, user)
+    end
+  end
+
+  def notify_user_via_jabber(controller, user)
+    if user.notify_via_jabber?
+      JabberNotify.send_message(user, "New post",
+                                "A new message was posted to #{blog.blog_name}",
+                                content.body_html)
+    end
   end
 
   protected

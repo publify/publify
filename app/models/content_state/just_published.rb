@@ -34,19 +34,9 @@ module ContentState
       content.state = Published.instance
     end
 
-    def send_notifications(content)
-      blog       = content.blog
-      controller = blog.controller
-      User.find_boolean(:all, :notify_on_new_articles).each do |u|
-        if u.notify_via_email?
-          EmailNotify.send_article(controller, content, u)
-        end
-
-        if u.notify_via_jabber?
-          JabberNotify.send_message(u, "New post",
-                                    "A new message was posted to #{blog.blog_name}",
-                                    content.body_html)
-        end
+    def send_notifications(content, controller)
+      content.interested_users.each do |user|
+        content.send_notification_to_user(controller, user)
       end
     end
   end

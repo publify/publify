@@ -199,6 +199,15 @@ class Content < ActiveRecord::Base
   def after_save
     state.after_save(self)
   end
+
+  def send_notification_to_user(controller, user)
+    notify_user_via_email(controller, user)
+    notify_user_via_jabber(controller, user)
+  end
+
+  def send_notifications(controller = nil)
+    state.send_notifications(self, controller || blog.controller)
+  end
 end
 
 class Object; def to_text_filter; TextFilter.find_by_name(self.to_s); end; end
