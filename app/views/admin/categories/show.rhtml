@@ -2,17 +2,17 @@
 
   <% content_for('tasks') do %>
     <%= task_edit 'Edit this category', @category.id %>
-  <% end %> 
+  <% end %>
 
-  <%= start_form_tag :action=>"new" %>  
-  <div class="list">	
+  <%= start_form_tag :action=>"new" %>
+  <div class="list">
     <table cellspacing="1" cellpadding="0">
     <% for article in @category.articles -%>
-    <tr  <%= alternate_class -%>>  
+    <tr  <%= alternate_class -%>>
       <td><%= image_tag 'checked.gif' %> <%= link_to h(article.title), :controller => "content", :action => "show", :id => article.id %></td>
-      <td><%= distance_of_time_in_words_to_now article.created_at %> ago</td>
+      <td><%= distance_of_time_in_words_to_now article.published_at %> ago</td>
       <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => 'comments', :article_id => article, :action => 'list' %></td>
-    </tr>  
+    </tr>
     <% end -%>
     </table>
   </div>

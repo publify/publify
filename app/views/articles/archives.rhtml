@@ -4,19 +4,19 @@
 </div>
 <% else
      currentmonth = 0
-     currentyear = 0 
-     for article in @articles 
-       if (article.created_at.month != currentmonth || article.created_at.year != currentyear) 
-       	 currentmonth = article.created_at.month
-       	 currentyear = article.created_at.year -%>
-       	  <h3 class="archivemonth"><%= Date::MONTHNAMES[article.created_at.month] %> <%= article.created_at.year %></h3>
- 	   <% end -%>
+     currentyear = 0
+     for article in @articles
+       if (article.published_at.month != currentmonth || article.published_at.year != currentyear)
+         currentmonth = article.published_at.month
+         currentyear = article.published_at.year -%>
+          <h3 class="archivemonth"><%= Date::MONTHNAMES[article.published_at.month] %> <%= article.published_at.year %></h3>
+           <% end -%>
   <div class="archivepost">
-  <%= article.created_at.mday %> -
-  <%= article_link h(article.title), article %> 
-  <% if !article.categories.empty? %> posted in 
+  <%= article.published_at.mday %> -
+  <%= article_link h(article.title), article %>
+  <% if !article.categories.empty? %> posted in
   <%= article.categories.collect {|c| link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name }.join(", ") -%>
   <% end -%>
  </div>
-<% end 
+<% end
   end -%>

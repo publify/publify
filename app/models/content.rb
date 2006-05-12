@@ -13,8 +13,7 @@ class Content < ActiveRecord::Base
 
   has_many :triggers, :as => :pending_item, :dependent => :delete_all
 
-  before_validation :set_publication_info
-  before_save :prep_trigger
+  before_save :state_before_save
   after_save :post_trigger
 
   serialize :whiteboard
@@ -22,75 +21,89 @@ class Content < ActiveRecord::Base
   @@content_fields = Hash.new
   @@html_map       = Hash.new
 
-  def self.content_fields(*attribs)
-    @@content_fields[self] = ((@@content_fields[self]||[]) + attribs).uniq
-    @@html_map[self] = nil
-    attribs.each do | field |
-      define_method("#{field}=") do | newval |
-        if self[field] != newval
-          changed
-          self[field] = newval
-          if html_map(field)
-            self[html_map(field)] = nil
+  class << self
+    def content_fields(*attribs)
+      @@content_fields[self] = ((@@content_fields[self]||[]) + attribs).uniq
+      @@html_map[self] = nil
+      attribs.each do | field |
+        define_method("#{field}=") do | newval |
+          if self[field] != newval
+            changed
+            self[field] = newval
+            if html_map(field)
+              self[html_map(field)] = nil
+            end
+            notify_observers(self, field.to_sym)
           end
-          notify_observers(self, field.to_sym)
+          self[field]
         end
-        self[field]
-      end
-      unless self.method_defined?("#{field}_html")
-        define_method("#{field}_html") do
-          if blog.controller
-            html(blog.controller, field.to_sym)
-          else
-            self["#{field}_html"]
+        unless self.method_defined?("#{field}_html")
+          define_method("#{field}_html") do
+            if blog.controller
+              html(blog.controller, field.to_sym)
+            else
+              self["#{field}_html"]
+            end
           end
         end
       end
     end
-  end
 
-  def self.html_map(field=nil)
-    unless @@html_map[self]
-      @@html_map[self] = Hash.new
-      instance = self.new
-      @@content_fields[self].each do |attrib|
-        @@html_map[self][attrib] = "#{attrib}_html"
+    def html_map(field=nil)
+      unless @@html_map[self]
+        @@html_map[self] = Hash.new
+        instance = self.new
+        @@content_fields[self].each do |attrib|
+          @@html_map[self][attrib] = "#{attrib}_html"
+        end
+      end
+      if field
+        @@html_map[self][field]
+      else
+        @@html_map[self]
       end
     end
-    if field
-      @@html_map[self][field]
-    else
-      @@html_map[self]
+
+    def find_published(what = :all, options = {})
+      options.reverse_merge!(:order => default_order)
+      options[:conditions] = merge_conditions(['published = ?', true],
+                                              options[:conditions])
+      find(what, options)
+    end
+
+    def default_order
+      'published_at DESC'
+    end
+
+    def find_already_published(what = :all, at = nil, options = { })
+      if what.respond_to?(:has_key?)
+        what, options = :all, what
+      elsif at.respond_to?(:has_key?)
+        options, at = at, nil
+      end
+      at ||= options.delete(:at) || Time.now
+      with_scope(:find => { :conditions => ['published_at < ?', at]}) do
+        find_published(what, options)
+      end
+    end
+
+    def merge_conditions(*conditions)
+      conditions.compact.collect do |cond|
+        '(' + sanitize_sql(cond) + ')'
+      end.join(' AND ')
     end
   end
 
-  def self.find_published(what = :all, options = {})
-    options.reverse_merge!(:order => default_order)
-    options[:conditions] = merge_conditions(['published = ?', true],
-                                            options[:conditions])
-    find(what, options)
+  def state
+    @state ||= ContentState::Factory.derived_from(self)
   end
 
-  def self.default_order
-    'published_at DESC'
+  def state=(new_state)
+    @state = new_state
   end
 
-  def self.find_already_published(what = :all, at = nil, options = { })
-    if what.respond_to?(:has_key?)
-      what, options = :all, what
-    elsif at.respond_to?(:has_key?)
-      options, at = at, nil
-    end
-    at ||= options.delete(:at) || Time.now
-    with_scope(:find => { :conditions => ['published_at < ?', at]}) do
-      find_published(what, options)
-    end
-  end
-
-  def self.merge_conditions(*conditions)
-    conditions.compact.collect do |cond|
-      '(' + sanitize_sql(cond) + ')'
-    end.join(' AND ')
+  def state_before_save
+    self.state.before_save(self)
   end
 
   def html_map(field=nil); self.class.html_map(field); end
@@ -159,42 +172,28 @@ class Content < ActiveRecord::Base
   end
 
   def published=(a_boolean)
-    if @just_published.nil?
-      @just_published = new_record? || ! published?
-    end
     self[:published] = a_boolean
+    state.change_published_state(self, a_boolean)
+  end
+
+  def published_at=(a_time)
+    state.set_published_at(self, (a_time.to_time rescue nil))
   end
 
   def just_published?
-    @just_published && published?
+    state.just_published?
   end
 
   def publication_pending?
-    (new_record? || just_published?) && published_at && published_at > Time.now
-  end
-
-  def set_publication_info
-    if published
-      self.published_at ||= Time.now
-    end
-  end
-
-  def prep_trigger
-    if @triggered
-      @should_post_trigger = false
-      return true
-    end
-    if publication_pending?
-      self[:published] = false
-      @should_post_trigger = true
-    end
+    state.publication_pending?
   end
 
   def post_trigger
-    if @should_post_trigger
-      Trigger.post_action(published_at, self, 'publish!')
-      @triggered = true
-    end
+    state.post_trigger(self)
+  end
+
+  def after_save
+    state.after_save(self)
   end
 end
 

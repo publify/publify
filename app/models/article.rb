@@ -70,17 +70,20 @@ class Article < Content
   end
 
   def next
-    Article.find(:first, :conditions => ['published_at > ?', published_at], :order => 'publishe_at asc')
+    Article.find(:first, :conditions => ['published_at > ?', published_at],
+                 :order => 'published_at asc')
   end
 
   def previous
-    Article.find(:first, :conditions => ['published_at < ?', published_at], :order => 'published_at desc')
+    Article.find(:first, :conditions => ['published_at < ?', published_at],
+                 :order => 'published_at desc')
   end
 
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)
     from, to = self.time_delta(year, month, day)
-    Article.count(["published_at BETWEEN ? AND ? AND published = ?", from, to, true])
+    Article.count(["published_at BETWEEN ? AND ? AND published = ?",
+                   from, to, true])
   end
 
   # Find all articles on a certain date
@@ -99,16 +102,17 @@ class Article < Content
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   def self.find_by_permalink(year, month, day, title)
     from, to = self.time_delta(year, month, day)
-    find_published(:first, :conditions => [ %{permalink = ?
-      AND  published_at BETWEEN ? AND ?
-    }, title, from, to ])
+    find_published(:first,
+                   :conditions => ['permalink = ? AND ' +
+                                   'published_at BETWEEN ? AND ?',
+                                   title, from, to ])
   end
 
   # Fulltext searches the body of published articles
   def self.search(query)
     if !query.to_s.strip.empty?
       tokens = query.split.collect {|c| "%#{c.downcase}%"}
-     find_published(:all,
+      find_published(:all,
                      :conditions => [(["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 3 }.flatten])
     else
       []
@@ -118,28 +122,16 @@ class Article < Content
   def keywords_to_tags
     Article.transaction do
       tags.clear
-      keywords.to_s.scan(/((['"]).*?\2|\w+)/).collect { |x| x.first.tr("\"'", '') }.uniq.each do |tagword|
+      keywords.to_s.scan(/((['"]).*?\2|\w+)/).collect do |x|
+        x.first.tr("\"'", '')
+      end.uniq.each do |tagword|
         tags << Tag.get(tagword)
       end
     end
   end
 
   def send_notifications
-    User.find_boolean(:all, :notify_on_new_articles).each do |u|
-      send_notification_to_user(blog.controller, u)
-    end
-  end
-
-  def send_notification_to_user(controller, user)
-    if user.notify_via_email?
-      EmailNotify.send_article(controller, self, user)
-    end
-
-    if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New post",
-                                "A new message was posted to #{blog.blog_name}",
-                                body_html)
-    end
+    state.send_notifications(self)
   end
 
   protected
@@ -153,7 +145,9 @@ class Article < Content
   end
 
   def set_defaults
-    self.permalink = self.stripped_title if self.attributes.include?("permalink") and self.permalink.blank?
+    if self.attributes.include?("permalink") and self.permalink.blank?
+      self.permalink = self.stripped_title
+    end
     correct_counts
     if blog && self.allow_comments.nil?
       self.allow_comments = blog.default_allow_comments

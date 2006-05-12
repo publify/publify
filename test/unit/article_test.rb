@@ -132,10 +132,12 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_just_published_flag
-    art = Article.create!(:title => 'title',
-                          :body => 'body',
-                          :published => true)
+    art = this_blog.articles.build(:title => 'title',
+                                   :body => 'body',
+                                   :published => true)
     assert art.just_published?
+    assert art.save
+    assert !art.just_published?
 
     art = Article.create!(:title => 'title2',
                           :body => 'body',
@@ -212,9 +214,9 @@ class ArticleTest < Test::Unit::TestCase
 
   # this also tests time_delta, indirectly
   def test_find_all_by_date
-    feb28 = Article.new(:published => true)
-    mar1  = Article.new(:published => true)
-    mar2  = Article.new(:published => true)
+    feb28 = this_blog.articles.build(:published => true)
+    mar1  = this_blog.articles.build(:published => true)
+    mar2  = this_blog.articles.build(:published => true)
 
     feb28.title = "February 28"
     mar1.title  = "March 1"
@@ -224,7 +226,11 @@ class ArticleTest < Test::Unit::TestCase
     mar1.created_at  = mar1.published_at = "2004-03-01"
     mar2.created_at  = mar2.published_at = "2004-03-02"
 
-    [feb28, mar1, mar2].each {|x| x.save }
+    [feb28, mar1, mar2].each do |x|
+      x.state = ContentState::Published.instance
+      x.save
+    end
+
     assert_equal(1, Article.find_all_by_date(2004,02).size)
     assert_equal(2, Article.find_all_by_date(2004,03).size)
     assert_equal(1, Article.find_all_by_date(2004,03,01).size)

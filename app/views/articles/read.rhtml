@@ -20,7 +20,7 @@
         :class => "admintools", :style => "display: none", :id => "admin_article") %>
   <h2><%=h @article.title %></h2>
   <p class="auth">Posted by <%= author_link(@article) %>
-  <%= js_distance_of_time_in_words_to_now @article.created_at.utc %></p>
+  <%= js_distance_of_time_in_words_to_now @article.published_at.utc %></p>
   <%= @article.full_html %>
 </div>
 <p class="meta">

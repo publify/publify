@@ -7,7 +7,7 @@ xm.entry do
   end
   xm.id "urn:uuid:#{item.guid}"
 
-  xm.published item.created_at.xmlschema
+  xm.published item.published_at.xmlschema
   xm.updated item.updated_at.xmlschema
   xm.title post_title(item), "type"=>"html"
 

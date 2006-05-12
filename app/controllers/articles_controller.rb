@@ -7,7 +7,8 @@ class ArticlesController < ContentController
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag, :author]
-  # If you're really memory-constrained, then consider replacing caches_action_with_params with caches_page
+  # If you're really memory-constrained, then consider replacing
+  # caches_action_with_params with caches_page
   caches_action_with_params *cached_pages
   session :off, :only => cached_pages
 
@@ -31,7 +32,10 @@ class ArticlesController < ContentController
   end
 
   def comment_preview
-    render :nothing => true and return if params[:comment].blank? or params[:comment][:body].blank?
+    if params[:comment].blank? or params[:comment][:body].blank?
+      render :nothing => true
+      return
+    end
 
     set_headers
     @comment = this_blog.comments.build(params[:comment])
@@ -39,7 +43,7 @@ class ArticlesController < ContentController
   end
 
   def archives
-    @articles = this_blog.published_articles.before(Time.now)
+    @articles = this_blog.published_articles
   end
 
   def read
@@ -150,7 +154,7 @@ class ArticlesController < ContentController
   end
 
   def check_page_query_param_for_missing_routes
-    unless request.path =~ /\/page\//  # check if all page routes use /page/:page
+    unless request.path =~ /\/page\//
       raise "Page param problem" unless params[:page].nil?
     end
   end
