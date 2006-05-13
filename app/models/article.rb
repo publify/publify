@@ -37,14 +37,13 @@ class Article < Content
     urls
   end
 
-  def send_pings(serverurl = blog.server_url, articleurl = location(nil, false), urllist = [])
+  def really_send_pings(serverurl = blog.server_url, articleurl = location(nil, false))
     return unless blog.send_outbound_pings
 
     weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
-    pingback_or_tracback_urls = self.html_urls
-    trackback_urls = urllist.to_a
+    pingback_or_trackback_urls = self.html_urls
 
-    ping_urls = weblogupdatesping_urls + pingback_or_tracback_urls + trackback_urls
+    ping_urls = weblogupdatesping_urls + pingback_or_trackback_urls
 
     ping_urls.uniq.each do |url|
       begin
@@ -53,20 +52,19 @@ class Article < Content
 
           if weblogupdatesping_urls.include?(url)
             ping.send_weblogupdatesping(serverurl, articleurl)
-          elsif pingback_or_tracback_urls.include?(url)
+          else pingback_or_trackback_urls.include?(url)
             ping.send_pingback_or_trackback(articleurl)
-          else
-            ping.send_trackback(articleurl)
           end
-
-          ping.save
         end
-
       rescue
         # in case the remote server doesn't respond or gives an error,
         # we should throw an xmlrpc error here.
       end
     end
+  end
+
+  def send_pings
+    state.send_pings(self)
   end
 
   def next

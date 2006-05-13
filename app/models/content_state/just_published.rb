@@ -39,5 +39,9 @@ module ContentState
         content.send_notification_to_user(controller, user)
       end
     end
+
+    def send_pings(content)
+      content.really_send_pings
+    end
   end
 end

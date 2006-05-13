@@ -42,6 +42,10 @@ module ContentState
     def send_notifications(content)
       true
     end
+
+    def send_pings(content)
+      true
+    end
   end
 end
 
