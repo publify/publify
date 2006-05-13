@@ -4,6 +4,7 @@ class Blog < ActiveRecord::Base
   has_many :contents
   has_many :trackbacks
   has_many :articles
+  has_many :comments
   has_many :pages, :order => "id DESC"
   has_many(:published_articles, :class_name => "Article",
            :conditions => ["published = ?", true],
