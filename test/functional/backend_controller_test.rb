@@ -50,6 +50,8 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "textile", new_post.text_filter.name
     assert_equal users(:tobi), new_post.user
     assert_equal this_blog.id, new_post.blog_id
+    assert new_post.published?
+    assert new_post[:published_at]
   end
 
   def test_blogger_new_post_no_title
@@ -73,6 +75,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "new post body", new_post.body
     assert_equal [categories(:software), categories(:hardware)], new_post.categories.sort_by { |c| c.id }
     assert_equal this_blog.id, new_post.blog_id
+    assert new_post.published?
   end
 
   def test_blogger_new_post_with_non_existing_categories
@@ -126,7 +129,7 @@ class BackendControllerTest < Test::Unit::TestCase
     article.title = "Modified!"
     article.body = "this is a *test*"
     article.text_filter = TextFilter.find_by_name("textile")
-    article.created_at = Time.now.midnight
+    article.published_at = Time.now.midnight
 
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
@@ -138,7 +141,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal article.title, new_article.title
     assert_equal article.body, new_article.body
     assert_equal "<p>this is a <strong>test</strong></p>", new_article.html(@controller, :body)
-    assert_equal Time.now.midnight.to_s, new_article.created_at.to_s
+    assert_equal Time.now.midnight.to_s, new_article.published_at.to_s
     assert_equal this_blog.id, new_article.blog_id
   end
 
@@ -148,7 +151,7 @@ class BackendControllerTest < Test::Unit::TestCase
     article.body = "body"
     article.extended = "extend me"
     article.text_filter = TextFilter.find_by_name("textile")
-    article.created_at = Time.now.midnight
+    article.published_at = Time.now.midnight
 
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
@@ -162,7 +165,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "<p>body</p>", new_post.html(@controller, :body)
     assert_equal article.extended, new_post.extended
     assert_equal "<p>extend me</p>", new_post.html(@controller, :extended)
-    assert_equal Time.now.midnight.to_s, new_post.created_at.to_s
+    assert_equal Time.now.midnight.to_s, new_post.published_at.to_s
     assert_equal this_blog.id, new_post.blog_id
   end
 
@@ -258,6 +261,7 @@ class BackendControllerTest < Test::Unit::TestCase
 
     assert result
     assert Article.find(4).published?
+    assert Article.find(4)[:published_at]
   end
 
   def test_mt_fail_authentication

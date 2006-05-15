@@ -7,7 +7,7 @@ module ContentState
       def derivable_from(content)
         content.new_record? &&
           content.published &&
-          content.published_at.nil?
+          content[:published_at].nil?
       end
     end
 
@@ -24,7 +24,7 @@ module ContentState
 
     def set_published_at(content, new_time)
       content[:published_at] = new_time
-      return if content.published_at.nil?
+      return if content[:published_at].nil?
       if content.published_at > Time.now
         content.state = PublicationPending.instance
       end

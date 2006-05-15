@@ -71,12 +71,12 @@ class BloggerService < TypoWebService
     title, categories, body = content.match(%r{^<title>(.+?)</title>(?:<category>(.+?)</category>)?(.+)$}mi).captures rescue nil
 
     article = this_blog.articles.build
-    article.body        = body || content || ''
-    article.title       = title || content.split.slice(0..5).join(' ') || ''
-    article.published   = publish
-    article.author      = username
-    article.created_at  = Time.now
-    article.user        = @user
+    article.body           = body || content || ''
+    article.title          = title || content.split.slice(0..5).join(' ') || ''
+    article.published      = publish
+    article.author         = username
+    article.published_at   = Time.now
+    article.user           = @user
     article.allow_comments = this_blog.default_allow_comments
     article.allow_pings    = this_blog.default_allow_pings
     article.text_filter    = this_blog.text_filter

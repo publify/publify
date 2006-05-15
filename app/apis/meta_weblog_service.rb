@@ -87,7 +87,7 @@ class MetaWeblogService < TypoWebService
     article.title       = struct['title'] || ''
     article.published   = publish
     article.author      = username
-    article.created_at = struct['dateCreated'].to_time.getlocal rescue Time.now
+    article.published_at = struct['dateCreated'].to_time.getlocal rescue Time.now
     article.user        = @user
 
     # Movable Type API support
@@ -124,7 +124,7 @@ class MetaWeblogService < TypoWebService
     article.title       = struct['title'] || ''
     article.published   = publish
     article.author      = username
-    article.created_at  = struct['dateCreated'].to_time.getlocal unless struct['dateCreated'].blank?
+    article.published_at  = struct['dateCreated'].to_time.getlocal unless struct['dateCreated'].blank?
 
     # Movable Type API support
     article.allow_comments = struct['mt_allow_comments'] || this_blog.default_allow_comments
@@ -168,7 +168,7 @@ class MetaWeblogService < TypoWebService
       :mt_allow_pings    => article.allow_pings? ? 1 : 0,
       :mt_convert_breaks => (article.text_filter.name.to_s rescue ''),
       :mt_tb_ping_urls   => article.pings.collect { |p| p.url },
-      :dateCreated       => (article.created_at.to_formatted_s(:db) rescue "")
+      :dateCreated       => (article.published_at.to_formatted_s(:db) rescue "")
       )
   end
 
@@ -177,10 +177,10 @@ class MetaWeblogService < TypoWebService
   def article_url(article)
     begin
       controller.url_for :controller=>"articles", :action =>"permalink",
-        :year => article.created_at.year, :month => sprintf("%.2d", article.created_at.month),
-        :day => sprintf("%.2d", article.created_at.day), :title => article.stripped_title
+        :year => article.published_at.year, :month => sprintf("%.2d", article.published_at.month),
+        :day => sprintf("%.2d", article.published_at.day), :title => article.stripped_title
     rescue
-      created = article.created_at
+      created = article.published_at
       sprintf("/articles/%.4d/%.2d/%.2d/#{article.stripped_title}", created.year, created.month, created.day)
       # FIXME: rescue is needed for functional tests as the test framework currently doesn't supply fully
       # fledged controller instances (yet?)
