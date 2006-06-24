@@ -62,10 +62,11 @@ CREATE TABLE contents (
   `name` varchar(255),
   `comments_count` int(11),
   `trackbacks_count` int(11),
-  `published` tinyint(1) DEFAULT 1,
+  `published` tinyint(1) DEFAULT 0,
   `allow_pings` tinyint(1),
   `allow_comments` tinyint(1),
-  `blog_id` int(11) NOT NULL
+  `blog_id` int(11) NOT NULL,
+  `published_at` datetime
 ) TYPE=MyISAM;
 
 CREATE TABLE notifications (
@@ -123,9 +124,8 @@ CREATE TABLE sidebars (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   `controller` varchar(255),
   `active_position` int(11),
-  `active_config` text,
-  `staged_position` int(11),
-  `staged_config` text
+  `config` text,
+  `staged_position` int(11)
 ) TYPE=MyISAM;
 
 CREATE TABLE tags (
@@ -143,6 +143,14 @@ CREATE TABLE text_filters (
   `markup` varchar(255),
   `filters` text,
   `params` text
+) TYPE=MyISAM;
+
+CREATE TABLE triggers (
+  `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
+  `pending_item_id` int(11),
+  `pending_item_type` varchar(255),
+  `due_at` datetime,
+  `trigger_method` varchar(255)
 ) TYPE=MyISAM;
 
 CREATE TABLE users (
@@ -172,9 +180,9 @@ CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
-INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 0, 'category', NULL);
-INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 1, 'static', NULL);
-INSERT INTO sidebars (`staged_position`, `active_config`, `active_position`, `controller`, `staged_config`) VALUES(NULL, NULL, 2, 'xml', NULL);
+INSERT INTO sidebars (`config`, `staged_position`, `active_position`, `controller`) VALUES(NULL, NULL, 0, 'category');
+INSERT INTO sidebars (`config`, `staged_position`, `active_position`, `controller`) VALUES(NULL, NULL, 1, 'static');
+INSERT INTO sidebars (`config`, `staged_position`, `active_position`, `controller`) VALUES(NULL, NULL, 2, 'xml');
 INSERT INTO text_filters (`name`, `filters`, `description`, `params`, `markup`) VALUES('none', '--- []
 
 ', 'None', '--- {}
@@ -207,4 +215,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) TYPE=MyISAM;
 
-insert into schema_info (version) values (40);
+insert into schema_info (version) values (46);

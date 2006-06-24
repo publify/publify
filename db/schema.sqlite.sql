@@ -62,10 +62,11 @@ CREATE TABLE contents (
   "name" varchar(255),
   "comments_count" integer,
   "trackbacks_count" integer,
-  "published" boolean DEFAULT 't',
+  "published" boolean DEFAULT 'f',
   "allow_pings" boolean,
   "allow_comments" boolean,
-  "blog_id" integer NOT NULL
+  "blog_id" integer NOT NULL,
+  "published_at" datetime
 );
 
 CREATE TABLE notifications (
@@ -123,9 +124,8 @@ CREATE TABLE sidebars (
   "id" INTEGER PRIMARY KEY NOT NULL,
   "controller" varchar(255),
   "active_position" integer,
-  "active_config" text,
-  "staged_position" integer,
-  "staged_config" text
+  "config" text,
+  "staged_position" integer
 );
 
 CREATE TABLE tags (
@@ -143,6 +143,14 @@ CREATE TABLE text_filters (
   "markup" varchar(255),
   "filters" text,
   "params" text
+);
+
+CREATE TABLE triggers (
+  "id" INTEGER PRIMARY KEY NOT NULL,
+  "pending_item_id" integer,
+  "pending_item_type" varchar(255),
+  "due_at" datetime,
+  "trigger_method" varchar(255)
 );
 
 CREATE TABLE users (
@@ -172,9 +180,9 @@ CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
-INSERT INTO sidebars ("staged_position", "active_config", "active_position", "controller", "staged_config") VALUES(NULL, NULL, 0, 'category', NULL);
-INSERT INTO sidebars ("staged_position", "active_config", "active_position", "controller", "staged_config") VALUES(NULL, NULL, 1, 'static', NULL);
-INSERT INTO sidebars ("staged_position", "active_config", "active_position", "controller", "staged_config") VALUES(NULL, NULL, 2, 'xml', NULL);
+INSERT INTO sidebars ("config", "staged_position", "active_position", "controller") VALUES(NULL, NULL, 0, 'category');
+INSERT INTO sidebars ("config", "staged_position", "active_position", "controller") VALUES(NULL, NULL, 1, 'static');
+INSERT INTO sidebars ("config", "staged_position", "active_position", "controller") VALUES(NULL, NULL, 2, 'xml');
 INSERT INTO text_filters ("name", "filters", "description", "params", "markup") VALUES('none', '--- []
 
 ', 'None', '--- {}
@@ -207,4 +215,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (40);
+insert into schema_info (version) values (46);

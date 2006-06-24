@@ -66,10 +66,11 @@ CREATE TABLE contents (
   [name] varchar(255),
   [comments_count] int,
   [trackbacks_count] int,
-  [published] bit DEFAULT 1,
+  [published] bit DEFAULT 0,
   [allow_pings] bit,
   [allow_comments] bit,
-  [blog_id] int NOT NULL
+  [blog_id] int NOT NULL,
+  [published_at] datetime
 );
 
 CREATE TABLE notifications (
@@ -133,9 +134,8 @@ CREATE TABLE sidebars (
   1) PRIMARY KEY,
   [controller] varchar(255),
   [active_position] int,
-  [active_config] text,
-  [staged_position] int,
-  [staged_config] text
+  [config] text,
+  [staged_position] int
 );
 
 CREATE TABLE tags (
@@ -155,6 +155,15 @@ CREATE TABLE text_filters (
   [markup] varchar(255),
   [filters] text,
   [params] text
+);
+
+CREATE TABLE triggers (
+  [id] int NOT NULL IDENTITY(1,
+  1) PRIMARY KEY,
+  [pending_item_id] int,
+  [pending_item_type] varchar(255),
+  [due_at] datetime,
+  [trigger_method] varchar(255)
 );
 
 CREATE TABLE users (
@@ -185,9 +194,9 @@ CREATE  INDEX sessions_sessid_index ON sessions (sessid);
 
 -- data 
 
-INSERT INTO sidebars ([staged_position], [active_config], [active_position], [controller], [staged_config]) VALUES(NULL, NULL, 0, 'category', NULL);
-INSERT INTO sidebars ([staged_position], [active_config], [active_position], [controller], [staged_config]) VALUES(NULL, NULL, 1, 'static', NULL);
-INSERT INTO sidebars ([staged_position], [active_config], [active_position], [controller], [staged_config]) VALUES(NULL, NULL, 2, 'xml', NULL);
+INSERT INTO sidebars ([config], [staged_position], [active_position], [controller]) VALUES(NULL, NULL, 0, 'category');
+INSERT INTO sidebars ([config], [staged_position], [active_position], [controller]) VALUES(NULL, NULL, 1, 'static');
+INSERT INTO sidebars ([config], [staged_position], [active_position], [controller]) VALUES(NULL, NULL, 2, 'xml');
 INSERT INTO text_filters ([name], [filters], [description], [params], [markup]) VALUES('none', '--- []
 
 ', 'None', '--- {}
@@ -220,4 +229,4 @@ CREATE TABLE schema_info (
   [version] int
 );
 
-insert into schema_info (version) values (40);
+insert into schema_info (version) values (46);
