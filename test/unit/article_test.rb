@@ -15,6 +15,13 @@ class ArticleTest < Test::Unit::TestCase
       assert @articles.include?(i.is_a?(Symbol) ? contents(i) : i)
     end
   end
+  
+  def test_blog
+    a = Article.new
+    
+    assert_equal(1, a.blog_id)
+    assert_kind_of(Blog, a.blog)
+  end
 
   def test_create
     a = Article.new

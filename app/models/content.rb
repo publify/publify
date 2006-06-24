@@ -20,6 +20,12 @@ class Content < ActiveRecord::Base
 
   @@content_fields = Hash.new
   @@html_map       = Hash.new
+  
+  def initialize(*args)
+    super(*args)
+    
+    self.blog_id ||= Blog.default
+  end
 
   class << self
     def content_fields(*attribs)
