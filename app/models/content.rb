@@ -24,7 +24,10 @@ class Content < ActiveRecord::Base
   def initialize(*args)
     super(*args)
     
-    self.blog_id ||= Blog.default
+    # 
+    if self.blog_id == nil or self.blog_id == 0
+      self.blog_id = Blog.default
+    end
   end
 
   class << self
