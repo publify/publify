@@ -5,12 +5,6 @@ class Plugins::Textfilters::FlickrController < TextFilterPlugin::MacroPost
   plugin_display_name "Flickr"
   plugin_description "Automatically generate image tags for Flickr images"
 
-#  def self.default_config
-#    {"flickr-user-id" => {:default => "",
-#                          :description => "Flickr User Email Address",
-#                          :help => "The email address that you used to register your Flickr account."}}
-#  end
-
   def self.help_text
     %{
 You can use `<typo:flickr>` to display images from [Flickr](http://flickr.com).  Example:

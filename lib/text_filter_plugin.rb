@@ -46,6 +46,11 @@ class TextFilterPlugin < ContentController
 
   def self.default_helper_module!
   end
+  
+  # Look up a config paramater, falling back to the default as needed.
+  def self.config_value(params,name)
+    params[:filterparams][name] || default_config[name][:default]
+  end
 end
 
 class TextFilterPlugin::PostProcess < TextFilterPlugin

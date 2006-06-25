@@ -3,18 +3,23 @@ class Plugins::Textfilters::AmazonController < TextFilterPlugin::PostProcess
   plugin_description "Automatically turn amazon:ASIN URLs into affiliate links to Amazon items using your Amazon Associate ID"
 
   def self.filtertext(controller, content, text, params)
-    associateid = (params[:filterparams])['amazon-associate-id']
+    associateid = config_value(params,'amazon-associate-id')
+    domain_suffix = config_value(params,'amazon-domain-suffix')
     content.whiteboard[:asins] = []
     text.gsub(/<a href="amazon:([^"]+)"/) do |match|
       content.whiteboard[:asins] = content.whiteboard[:asins].to_a | [$1]
-      "<a href=\"http://www.amazon.com/exec/obidos/ASIN/#{$1}/#{associateid}\""
+      "<a href=\"http://www.amazon.#{domain_suffix}/exec/obidos/ASIN/#{$1}/#{associateid}\""
     end
   end
 
   def self.default_config
     {"amazon-associate-id" => {:default => "",
                                :description => "Amazon Associate ID",
-                               :help => "Your Amazon Associate's ID (see http://amazon.com/associates).  Typo's Amazon filter will automatically add this ID to all amazon:ASIN URLs that you create."}}
+                               :help => "Your Amazon Associate's ID (see http://amazon.com/associates).  Typo's Amazon filter will automatically add this ID to all amazon:ASIN URLs that you create."},
+      "amazon-domain-suffix" => {:default => "com",
+                               :description => "Amazon Domain Suffix",
+                               :help => "Your Amazon Domain Suffix depends on the language or country you life in."}
+                               }
   end
 
   def self.help_text
