@@ -19,6 +19,8 @@ class Admin::CommentsController < Admin::BaseController
     @comment = @article.comments.build(params[:comment])
 
     if request.post? and @comment.save
+      # We should probably wave a spam filter over this, but for now, just mark it as published.
+      @comment.published = true
       flash[:notice] = 'Comment was successfully created.'
       redirect_to :action => 'show', :id => @comment.id
     end
