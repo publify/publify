@@ -1,0 +1,14 @@
+login: &login
+  adapter: sqlite3
+  database: db/database.sqlite
+
+development:
+  <<: *login
+
+test:
+  database: ":memory:"
+  database: db/database.sqlite.test
+  <<: *login
+
+production:
+  <<: *login
