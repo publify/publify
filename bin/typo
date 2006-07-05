@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'installer/typo-installer'
+
+# Installer program
+directory = ARGV[1]
+
+typo = TypoInstaller.new(directory)
+typo.message_proc = Proc.new do |msg|
+  STDERR.puts " #{msg}"
+end
+typo.execute_command(*ARGV)

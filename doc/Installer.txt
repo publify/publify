@@ -1,0 +1,55 @@
+How to use the Typo Rails installer
+===================================
+
+Typo 4.0 includes an installer that makes it easy to install Typo.
+
+Quick Start
+-----------
+
+Here's the short version:
+
+  $ gem install typo
+  $ typo install /var/www/my_typo_site
+
+
+Prerequisites
+-------------
+
+You'll need the following software installed on your system:
+
+1.  Ruby 1.8.4
+2.  RubyGems (http://www.rubygems.org)
+3.  SWIG (http://www.swig.org)
+4.  SQLite 3
+
+Most modern Unix systems should have all four of these easily available in pre-built form.
+
+Installing Typo
+---------------
+
+1. Install the Typo GEM.
+
+   Run 'gem install typo'.  This will install the current version of Typo
+   along with all dependencies.
+
+2. Create a working Typo installation in a directory somewhere.
+
+   Run 'typo install DIRECTORY'.  Replace DIRECTORY with the name of the
+   directory that you want Typo to live in.  This will copy all of Typo's
+   files into DIRECTORY, create a new database for Typo to use, and start
+   Typo running on a random port number.
+
+3. Verify that Typo works for you.  The installer will print a URL at the end
+   of the installation process; load it in a browser to test out Typo.
+
+4. Once you're happy with Typo's configuration, follow the directions in
+   installer/apache.conf.example to run your Typo installation under Apache.
+
+
+TODO
+----
+
+1.  Actually write the Apache HTTP proxy instructions (for 1.3 and 2.x)
+2.  Add lighttpd proxy directions.
+3.  Figure out how to best have Typo restart on reboot.
+4.  Handle the "missing swig" problem better.

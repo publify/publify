@@ -1,7 +1,7 @@
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "3.9.0"
+PKG_VERSION = "3.99.0"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
@@ -13,7 +13,8 @@ spec = Gem::Specification.new do |s|
   s.version = PKG_VERSION
   s.summary = "Modern weblog engine."
   s.has_rdoc = false
-  s.files  = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
+  
+  s.files = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
      [ /\.$/, /sqlite$/, /\.log$/, /^pkg/, /\.svn/, /^vendor\/rails/, 
      /^public\/(files|xml|articles|pages|index.html)/, 
      /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/, 
@@ -24,6 +25,12 @@ spec = Gem::Specification.new do |s|
   s.email = "tobi@leetsoft.com"
   s.homepage = "http://www.typosphere.org"  
   s.rubyforge_project = "typo"
+  s.platform = Gem::Platform::RUBY 
+  s.executables = ['typo']
+  
+  s.add_dependency("rails", "= 1.1.4")
+  s.add_dependency("mongrel", ">= 0.3.13.3")
+  s.add_dependency("sqlite3-ruby", ">= 1.1.0")
 end
 
 Rake::GemPackageTask.new(spec) do |p|
