@@ -138,9 +138,9 @@ class Blog < ActiveRecord::Base
   end
 
   def article_url(article, only_path = true, anchor = nil)
-    url_for(:year => article.created_at.year,
-            :month => sprintf("%.2d", article.created_at.month),
-            :day => sprintf("%.2d", article.created_at.day),
+		url_for(:year => article.published_at.year,
+            :month => sprintf("%.2d", article.published_at.month),
+            :day => sprintf("%.2d", article.published_at.day),
             :title => article.permalink, :anchor => anchor,
             :only_path => only_path)
   end

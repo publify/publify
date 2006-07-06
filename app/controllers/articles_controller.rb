@@ -22,7 +22,7 @@ class ArticlesController < ContentController
                :conditions =>
                  ['published = ? AND contents.created_at < ? AND blog_id = ?',
                              true,            Time.now,     this_blog.id],
-               :order_by => "contents.created_at DESC",
+               :order_by => "contents.published_at DESC",
                :include => [:categories, :tags])
   end
 
