@@ -239,8 +239,9 @@ class RailsInstaller
       return
     elsif old_version != nil
       rm_rf(vendor_rails)
-      mkdir_p(vendor_rails)
     end
+
+    mkdir_p(vendor_rails)
     
     package_map = {
       'rails' => File.join(vendor_rails,'railties'),

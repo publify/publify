@@ -15,7 +15,8 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = false
   
   s.files = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
-     [ /\.$/, /sqlite$/, /\.log$/, /^pkg/, /\.svn/, /^vendor\/rails/, 
+     [ /\.$/, /config\/database.yml$/, /config\database.yml-/, 
+     /\.log$/, /^pkg/, /\.svn/, /^vendor\/rails/, 
      /^public\/(files|xml|articles|pages|index.html)/, 
      /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/, 
      /\/\._/, /\/#/ ].any? {|regex| f =~ regex }
