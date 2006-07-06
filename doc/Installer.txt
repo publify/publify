@@ -24,6 +24,7 @@ You'll need the following software installed on your system:
 
 Most modern Unix systems should have all four of these easily available in pre-built form.
 
+
 Installing Typo
 ---------------
 
@@ -44,6 +45,14 @@ Installing Typo
 
 4. Once you're happy with Typo's configuration, follow the directions in
    installer/apache.conf.example to run your Typo installation under Apache.
+
+
+Starting and Stopping Typo
+--------------------------
+
+To stop Typo from running, run `typo stop /path/to/typo`. To restart it, run
+`typo start /path/to/typo`. Since this Typo install uses Mongrel, not FastCGI,
+you can't depend on your web server restarting it automatically on reboot.  You'll need to either create an init script or cron reboot entry to restart it, depending on your host and/or privilege level.
 
 
 TODO
