@@ -15,6 +15,7 @@ Rails::Initializer.run do |config|
   # config.load_paths += %W( #{RAILS_ROOT}/app/services )
   config.load_paths += %W(
     vendor/rubypants
+    vendor/akismet
     vendor/redcloth/lib
     vendor/bluecloth/lib
     vendor/flickr
