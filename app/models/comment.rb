@@ -1,4 +1,5 @@
 require_dependency 'spam_protection'
+require 'sanitize'
 
 class Comment < Content
   include TypoGuid
@@ -48,10 +49,8 @@ class Comment < Content
     end
   end
 
-
-
   def body_html_postprocess(value, controller)
-    controller.send(:sanitize, controller.send(:auto_link, value))
+    sanitize(controller.send(:auto_link, value),'a href, b, br, i, p, em, strong, pre, code')
   end
 
   def default_text_filter_config_key

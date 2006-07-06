@@ -173,7 +173,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_spam1
-    comment_template_test "<p>Link to <a href='http://spammer.example.com' rel=\"nofollow\">spammy goodness</a></p>", 'Link to <a href="http://spammer.example.com">spammy goodness</a>'
+    comment_template_test "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", 'Link to <a href="http://spammer.example.com">spammy goodness</a>'
   end
 
   def test_comment_spam2
@@ -182,17 +182,17 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_comment_xss1
     this_blog.comment_text_filter = "none"
-    comment_template_test %{Have you ever &lt;script lang='javascript'>alert("foo");&lt;/script> been hacked?},
+    comment_template_test %{Have you ever alert("foo"); been hacked?},
     %{Have you ever <script lang="javascript">alert("foo");</script> been hacked?}
   end
 
   def test_comment_xss2
     this_blog.comment_text_filter = "none"
-    comment_template_test "Have you ever <a href='#' rel=\"nofollow\">been hacked?</a>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
+    comment_template_test "Have you ever <a href=\"#\" rel=\"nofollow\">been hacked?</a>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
   end
 
   def test_comment_autolink
-    comment_template_test "<p>What&#8217;s up with <a href='http://slashdot.org' rel=\"nofollow\">http://slashdot.org</a> these days?</p>", "What's up with http://slashdot.org these days?"
+    comment_template_test "<p>What&#8217;s up with <a href=\"http://slashdot.org\" rel=\"nofollow\">http://slashdot.org</a> these days?</p>", "What's up with http://slashdot.org these days?"
   end #"
 
   ### TODO -- there's a bug in Rails with auto_links
