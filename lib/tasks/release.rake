@@ -1,7 +1,7 @@
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "3.99.0"
+PKG_VERSION = "3.99.1"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
