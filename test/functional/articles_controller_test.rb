@@ -37,6 +37,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     assert_response :success
     assert_rendered_file "index"
+    assert_tag :tag => 'title', :content => 'test blog - category software'
 
     # Check it works when permalink != name. Ticket #736
     get :category, :id => "weird-permalink"
@@ -63,6 +64,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_rendered_file "index"
 
+    assert_tag :tag => 'title', :content => 'test blog - tag foo'
     assert_tag :tag => 'h2', :content => 'Article 2!'
     assert_tag :tag => 'h2', :content => 'Article 1!'
   end
