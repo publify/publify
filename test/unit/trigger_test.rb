@@ -11,11 +11,11 @@ class TriggerTest < Test::Unit::TestCase
   fixtures :contents
 
   def test_post_action
-    assert Trigger.post_action(Time.now + 1.seconds,
+    assert Trigger.post_action(Time.now + 2.seconds,
                                contents(:first_page),
                                'tickle')
     assert_equal "ho ho ho", Page.find(contents(:first_page).id).body
-    sleep 2
+    sleep 3
     assert Trigger.fire
     assert_equal 0, Trigger.count
     assert_equal "I got tickled!", Page.find(contents(:first_page).id).body
