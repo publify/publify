@@ -3,6 +3,6 @@ class Plugins::Textfilters::TextileController < TextFilterPlugin::Markup
   plugin_description 'Textile markup language'
 
   def self.filtertext(controller,content,text,params)
-    RedCloth.new(text).to_html
+    RedCloth.new(text).to_html(:textile)
   end
 end
