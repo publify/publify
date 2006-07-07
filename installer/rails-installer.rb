@@ -26,7 +26,8 @@ class RailsInstaller
   end
 
   def initialize(install_directory)
-    @install_directory = install_directory
+    # use an absolute path, not a relative path.
+    @install_directory = File.expand_path(install_directory)
     
     @config = read_yml(config_file) rescue nil
     @config ||= Hash.new
@@ -124,6 +125,8 @@ class RailsInstaller
   # Backup the database
   def backup_database
     return unless File.exists? db_file
+    Dir.chdir(install_directory)
+
     return unless config['database'] == 'sqlite'
     new_db_file = db_file+"-#{Time.now.strftime('%Y%m%d-%H%M')}.sql"
     
@@ -139,6 +142,7 @@ class RailsInstaller
     
     message "Reading files from #{source_directory}"
     new_files = sha1_hash_directory_tree(source_directory)
+    new_files.delete('/config/database.yml') # Never copy this.
     
     # Next, we compare the original install hash to the current hash.  For each
     # entry:
@@ -179,6 +183,7 @@ class RailsInstaller
     end
     
     write_yml(files_yml,new_files)
+    Dir.chdir(install_directory)
   end
 
   # Copy one file from source_directory to install_directory, creating directories as needed.
@@ -343,7 +348,6 @@ class RailsInstaller
     
     return unless old_schema_version > 0
     
-    Dir.chdir(install_directory)
     
     # Are we downgrading?
     if old_schema_version > new_schema_version
@@ -358,7 +362,6 @@ class RailsInstaller
   
   # Migrate the database
   def migrate
-    Dir.chdir(install_directory)
     message "Migrating #{@@app_name.capitalize}'s database to newest release"
     status = system("rake -s migrate")
     
@@ -369,9 +372,8 @@ class RailsInstaller
 
   # Sweep the cache
   def run_rails_tests
-    Dir.chdir(install_directory)
     message "Running tests.  This may take a minute or two"
-    status = system("rake -s test > /dev/null 2> /dev/null")
+    status = system_silently("rake -s test")
     
     if status
       message "All tests pass.  Congratulations."
@@ -431,6 +433,16 @@ class RailsInstaller
     end
     
     specs.last.full_gem_path
+  end
+  
+  def system_silently(command)
+    if RUBY_PLATFORM =~ /mswin32/
+      null = 'NUL:'
+    else
+      null = '/dev/null'
+    end
+    
+    system("#{command} > #{null} 2> #{null}")
   end
   
   # Execute a command-line command

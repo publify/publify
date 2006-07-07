@@ -1,1 +1,1 @@
-TYPO_VERSION = 'svn'
+TYPO_VERSION = '3.99.2'
