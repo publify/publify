@@ -55,7 +55,7 @@ class RailsInstaller
     message ''
     message "#{@@app_name.capitalize} is now running on http://#{`hostname`.chomp}:#{config['port-number']}"
     message "Use '#{@@app_name} start #{install_directory}' to restart after boot."
-    message "Look in installer/apache.conf.example to see how to integrate with Apache."
+    message "Look in installer/*.conf.example to see how to integrate with your web server."
   end
   
   # The default install sequence.  Override this if you need to add extra
@@ -71,6 +71,7 @@ class RailsInstaller
     create_directories
     create_initial_database
     set_initial_port_number
+    expand_template_files
     
     migrate
     save
@@ -443,6 +444,24 @@ class RailsInstaller
     end
     
     system("#{command} > #{null} 2> #{null}")
+  end
+  
+  def expand_template_files
+    rails_host = config['bind-address'] || `hostname`.chomp
+    rails_port = config['port-number'].to_s
+    rails_url = "http://#{rails_host}:#{rails_port}"
+    Dir[File.join(install_directory,'installer','*.template')].each do |template_file|
+      output_file = template_file.gsub(/\.template/,'')
+      next if File.exists?(output_file) # don't overwrite files
+
+      message "expanding #{File.basename(output_file)} template"
+      
+      text = File.read(template_file).gsub(/\$RAILS_URL/,rails_url).gsub(/\$RAILS_HOST/,rails_host).gsub(/\$RAILS_PORT/,rails_port)
+      
+      File.open(output_file,'w') do |f|
+        f.write text
+      end
+    end
   end
   
   # Execute a command-line command

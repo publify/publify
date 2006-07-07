@@ -1,0 +1,6 @@
+# This is untested and incomplete.
+# See http://mongrel.rubyforge.org/docs/lighttpd.html
+# 
+proxy.balance = "fair" 
+proxy.server  = ( "/" => 
+     ( ( "host" => "$RAILS_HOST", "port" => $RAILS_PORT ) ) )

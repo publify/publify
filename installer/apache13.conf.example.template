@@ -1,0 +1,33 @@
+# Apache 1.3 HTTP proxy example for Typo with Mongrel
+#
+# Before any of this will work, you need to make sure that the mod_proxy 
+# modules are loaded.  For shared hosting, your provider will have do this 
+# globally.  The line required looks like this, although the exact path may 
+# vary:
+#
+#   LoadModule proxy_module /usr/lib/apache/modules/mod_proxy.so                   
+#
+# Then you'll want a VirtualHost section that looks about like this:
+
+<VirtualHost blog.example.com>
+  ServerName blog.example.com
+  ServerAlias www.blog.example.com
+
+  # Change this to your email address
+  ServerAdmin webmaster@localhost
+
+  # Change these to be valid paths for your host.  The DocumentRoot path
+  # isn't very important because we don't actually use it for anything.
+  # For security's sake, it's best that it points to an empty directory,
+  # but that's not critical.
+  DocumentRoot /var/www/blog
+  ErrorLog /var/log/apache2/blog_error.log
+  CustomLog /var/log/apache2/blog_access.log combined
+
+  ServerSignature On
+
+  # This is the important part--it sets up proxying.
+  ProxyRequests Off
+  ProxyPass / $RAILS_URL
+  ProxyPassReverse / $RAILS_URL
+</VirtualHost>

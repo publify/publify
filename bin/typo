@@ -18,6 +18,7 @@ class TypoInstaller < RailsInstaller
     create_directories
     create_initial_database
     set_initial_port_number
+    expand_template_files
     
     migrate
     sweep_cache
