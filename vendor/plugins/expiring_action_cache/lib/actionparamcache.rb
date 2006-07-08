@@ -38,7 +38,7 @@ module ActionController
       module ClassMethods #:nodoc:
         def caches_action_with_params(*actions)
           return unless perform_caching
-          around_filter(ActionParamCacheFilter.new(*actions))
+          prepend_around_filter(ActionParamCacheFilter.new(*actions))
         end
       end
 
@@ -71,6 +71,7 @@ module ActionController
         def before(controller)
           return unless @actions.include?(controller.action_name.intern)
           meta, cache = controller.read_meta_fragment_expire(cache_key(controller))
+          
           if cache
             # 304 handling from Tom Fakes,
             # http://craz8.com/svn/trunk/plugins/action_cache/lib/action_cache.rb
