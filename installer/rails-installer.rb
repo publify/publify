@@ -99,7 +99,9 @@ class RailsInstaller
     args_array = args.to_a.flatten.map {|e| e.to_s}
     args_array = ['mongrel_rails', 'start', install_directory] + args_array
     message "Starting #{@@app_name.capitalize} on port #{config['port-number']}"
-    system(args_array.join(' '))
+    in_directory install_directory do
+      system(args_array.join(' '))
+    end
   end
   
   # Stop application
@@ -113,7 +115,9 @@ class RailsInstaller
     args_array = args.to_a.flatten.map {|e| e.to_s}
     args_array = ['mongrel_rails', 'stop', install_directory] + args_array
     message "Stopping #{@@app_name.capitalize}"
-    system(args_array.join(' '))
+    in_directory install_directory do
+      system(args_array.join(' '))
+    end
   end
   
 #  private
@@ -126,7 +130,6 @@ class RailsInstaller
   # Backup the database
   def backup_database
     return unless File.exists? db_file
-    Dir.chdir(install_directory)
 
     return unless config['database'] == 'sqlite'
     new_db_file = db_file+"-#{Time.now.strftime('%Y%m%d-%H%M')}.sql"
@@ -184,7 +187,6 @@ class RailsInstaller
     end
     
     write_yml(files_yml,new_files)
-    Dir.chdir(install_directory)
   end
 
   # Copy one file from source_directory to install_directory, creating directories as needed.
@@ -353,10 +355,11 @@ class RailsInstaller
     # Are we downgrading?
     if old_schema_version > new_schema_version
       message "Downgrading schema from #{old_schema_version} to #{new_schema_version}"
-      status = system("rake -s migrate VERSION=#{new_schema_version}")
       
-      unless status
-        raise InstallFailed, "Downgrade migrating from #{old_schema_version} to #{new_schema_version} failed."
+      in_directory install_directory do
+        unless system("rake -s migrate VERSION=#{new_schema_version}")
+          raise InstallFailed, "Downgrade migrating from #{old_schema_version} to #{new_schema_version} failed."
+        end
       end
     end
   end
@@ -364,25 +367,27 @@ class RailsInstaller
   # Migrate the database
   def migrate
     message "Migrating #{@@app_name.capitalize}'s database to newest release"
-    status = system("rake -s migrate")
     
-    unless status
-      raise InstallFailed, "Migration failed"
+    in_directory install_directory do
+      unless system("rake -s migrate")
+        raise InstallFailed, "Migration failed"
+      end
     end
   end
 
   # Sweep the cache
   def run_rails_tests
     message "Running tests.  This may take a minute or two"
-    status = system_silently("rake -s test")
     
-    if status
-      message "All tests pass.  Congratulations."
-    else
-      message "***** Tests failed *****"
-      message "** Please run 'rake test' by hand in your install directory."
-      message "** Report problems to #{@@support_location}."
-      message "***** Tests failed *****"
+    in_directory instal_directory do
+      if system_silently("rake -s test")
+        message "All tests pass.  Congratulations."
+      else
+        message "***** Tests failed *****"
+        message "** Please run 'rake test' by hand in your install directory."
+        message "** Report problems to #{@@support_location}."
+        message "***** Tests failed *****"
+      end
     end
   end
 
@@ -500,6 +505,18 @@ class RailsInstaller
     else
       display_help('Unknown command')
     end
+  end
+  
+  def in_directory(directory)
+    begin
+      old_dir = Dir.pwd
+      Dir.chdir(directory)
+      value = yield
+    ensure
+      Dir.chdir(old_dir)
+    end
+    
+    return value
   end
   
   def display_help(error=nil)
