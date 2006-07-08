@@ -1,6 +1,5 @@
 class ArticlesController < ContentController
   before_filter :verify_config
-  before_filter :check_page_query_param_for_missing_routes
 
   layout :theme_layout, :except => [:comment_preview, :trackback]
 
@@ -17,13 +16,20 @@ class ArticlesController < ContentController
          :render => { :text => 'Forbidden', :status => 403 })
 
   def index
-    @pages, @articles =
-      paginate(:article, :per_page => this_blog.limit_article_display,
-               :conditions =>
-                 ['published = ? AND contents.created_at < ? AND blog_id = ?',
-                             true,            Time.now,     this_blog.id],
-               :order_by => "contents.published_at DESC",
-               :include => [:categories, :tags])
+    # On Postgresql, paginate's default count is *SLOW*, because it does a join against
+    # all of the eager-loaded tables.  I've seen it take up to 7 seconds on my test box.
+    count = Article.count(:conditions => ['published = ? AND contents.published_at < ? AND blog_id = ?',
+      true, Time.now, this_blog.id])
+    @pages = Paginator.new self, count, this_blog.limit_article_display, @params[:page]
+    @articles = Article.find( :all,
+      :offset => @pages.current.offset,
+      :limit => @pages.items_per_page,
+      :order => "contents.published_at DESC", 
+      :include => [:categories, :tags, :user, :blog],
+      :conditions =>
+         ['published = ? AND contents.published_at < ? AND blog_id = ?',
+          true, Time.now, this_blog.id]
+    )  
   end
 
   def search
@@ -151,12 +157,6 @@ class ArticlesController < ContentController
   def add_to_cookies(name, value, path=nil, expires=nil)
     cookies[name] = { :value => value, :path => path || "/#{controller_name}",
                        :expires => 6.weeks.from_now }
-  end
-
-  def check_page_query_param_for_missing_routes
-    unless request.path =~ /\/page\//
-      raise "Page param problem" unless params[:page].nil?
-    end
   end
 
   def verify_config

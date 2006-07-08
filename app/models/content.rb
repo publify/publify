@@ -77,6 +77,8 @@ class Content < ActiveRecord::Base
       options.reverse_merge!(:order => default_order)
       options[:conditions] = merge_conditions(['published = ?', true],
                                               options[:conditions])
+      options[:include] ||= []
+      options[:include] += [:blog]
       find(what, options)
     end
 

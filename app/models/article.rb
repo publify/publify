@@ -196,6 +196,11 @@ class Article < Content
     return [from, to]
   end
 
+  def find_published(what = :all, options = {})
+    options[:include] ||= []
+    options[:include] += [:user]
+    super(what, options)
+  end
 
   validates_uniqueness_of :guid
   validates_presence_of :title

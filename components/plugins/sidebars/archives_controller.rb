@@ -5,20 +5,27 @@ class Plugins::Sidebars::ArchivesController < Sidebars::ComponentPlugin
 
 
   def content
-    @archives = this_blog.published_articles.inject([]) do |archives, a|
-      name = a.created_at.strftime('%B %Y')
-
-      if archives.last and archives.last[:name] == name
-        archives.last[:article_count] += 1
-        archives
-      else
-        break if archives.size == count.to_i # exit before we go over the limit
-
-        archives << { :name          => name,
-                      :year          => a.created_at.year,
-                      :month         => a.created_at.month,
-                      :article_count => 1 }
-      end
+    # The original query that was here instantiated every article and every
+    # tag, and then sorted through them just to do a 'group by date'. 
+    # Unfortunately, there's no universally-supported way to do this
+    # across all three of our supported DBs.  So, we resort to a bit of
+    # DB-specific code.
+    if Content.connection.kind_of? ActiveRecord::ConnectionAdapters::SQLiteAdapter
+      date_func = "strftime('%Y %m')"
+    else
+      date_func = "extract(year from published_at)||' '||lpad(extract(month from published_at),2,'0')"
+    end
+    
+    article_counts = Content.find_by_sql(["select count(*) as count, #{date_func} as date from contents where type='Article' and published = ? and published_at < ? group by date order by date desc limit ?",true,Time.now,count])
+    
+    @archives = article_counts.map do |entry|
+      year,month=entry.date.split(/ /)
+      {
+        :name => entry.date,
+        :month => month.to_i,
+        :year => year.to_i,
+        :article_count => entry.count
+      }
     end
   end
 end

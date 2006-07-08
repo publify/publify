@@ -9,10 +9,10 @@ class ContentController < ApplicationController
     def after(controller)
        future_article =
          Article.find(:first,
-                      :conditions => ['published = ? AND created_at > ?', true, @request_time],
-                      :order =>  "created_at ASC" )
+                      :conditions => ['published = ? AND published_at > ?', true, @request_time],
+                      :order =>  "published_at ASC" )
        if future_article
-         delta = future_article.created_at - Time.now
+         delta = future_article.published_at - Time.now
          controller.response.lifetime = (delta <= 0) ? 0 : delta
        end
     end
@@ -20,9 +20,7 @@ class ContentController < ApplicationController
 
   include LoginSystem
   model :user
-
   helper :theme
-
   before_filter :auto_discovery_defaults
 
   def self.caches_action_with_params(*actions)

@@ -480,10 +480,10 @@ class ArticlesControllerTest < Test::Unit::TestCase
                     :body       => "The future is cool!",
                     :keywords   => "future",
                     :published  => true,
-                    :created_at => Time.now + 12.minutes)
+                    :published_at => Time.now + 12.minutes)
     get :index
     assert_equal @article, assigns(:articles).first
-    assert @response.lifetime <= 12.minutes
+    assert @response.lifetime.to_i <= 12.minutes
   end
 
   def test_search
