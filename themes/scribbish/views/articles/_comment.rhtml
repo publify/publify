@@ -1,0 +1,14 @@
+<ol id="comments" class="comments">
+  <% for comment in @article.comments -%>
+	<li class="comment" id="comment-<%= comment.id %>">
+	  <div class="author">
+	    <%= content_tag(:div, gravatar_tag(comment.email)) if config_value(:use_gravatar) and comment.email %>
+	    <cite><%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url) %></cite>
+		<abbr title="<%= comment.created_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now comment.created_at %></abbr>
+	  </div>
+	  <div class="content">
+	    <%= comment_html(comment) %>
+	  </div>
+	</li>
+	<% end -%>
+</ol>
