@@ -11,21 +11,18 @@ class Plugins::Sidebars::ArchivesController < Sidebars::ComponentPlugin
     # across all three of our supported DBs.  So, we resort to a bit of
     # DB-specific code.
     if Content.connection.kind_of? ActiveRecord::ConnectionAdapters::SQLiteAdapter
-      date_func = "strftime('%Y %m')"
-    elsif Content.connection.kind_of? ActiveRecord::ConnectionAdapters::MysqlAdapter
-      date_func = "concat(extract(year from published_at),' ',lpad(extract(month from published_at),2,'0'))"
+      date_func = "strftime('%Y') as year, strftime('%m') as month"
     else
-      date_func = "extract(year from published_at)||' '||lpad(extract(month from published_at),2,'0')"
+      date_func = "extract(year from published_at) as year,extract(month from published_at) as month"
     end
     
-    article_counts = Content.find_by_sql(["select count(*) as count, #{date_func} as date from contents where type='Article' and published = ? and published_at < ? group by date order by date desc limit ?",true,Time.now,count.to_i])
+    article_counts = Content.find_by_sql(["select count(*) as count, #{date_func} from contents where type='Article' and published = ? and published_at < ? group by year,month order by year desc,month desc limit ?",true,Time.now,count.to_i])
     
     @archives = article_counts.map do |entry|
-      year,month=entry.date.split(/ +/)
       {
-        :name => entry.date,
-        :month => month.to_i,
-        :year => year.to_i,
+        :name => "#{entry.year} #{entry.month}",
+        :month => entry.month.to_i,
+        :year => entry.year.to_i,
         :article_count => entry.count
       }
     end
