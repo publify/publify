@@ -20,10 +20,10 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
       xml.itunes :email,(this_blog.itunes_email)
     end
     xml.copyright(this_blog.itunes_copyright)
-  end
 
-  @items.each do |item|
-    render :partial => "itunes_item_resource",
-      :locals => {:item => item, :xm => xml}
+    @items.each do |item|
+      render :partial => "itunes_item_resource",
+        :locals => {:item => item, :xm => xml}
+    end
   end
 end
