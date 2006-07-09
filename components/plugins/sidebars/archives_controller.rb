@@ -12,6 +12,8 @@ class Plugins::Sidebars::ArchivesController < Sidebars::ComponentPlugin
     # DB-specific code.
     if Content.connection.kind_of? ActiveRecord::ConnectionAdapters::SQLiteAdapter
       date_func = "strftime('%Y %m')"
+    elsif Content.connection.kind_of? ActiveRecord::ConnectionAdapters::MysqlAdapter
+      date_func = "concat(extract(year from published_at),' ',lpad(extract(month from published_at),2,'0'))"
     else
       date_func = "extract(year from published_at)||' '||lpad(extract(month from published_at),2,'0')"
     end
