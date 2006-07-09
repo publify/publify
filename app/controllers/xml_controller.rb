@@ -3,10 +3,12 @@ class XmlController < ContentController
   session :off
 
   NORMALIZED_FORMAT_FOR = {'atom' => 'atom10', 'rss' => 'rss20',
-    'atom10' => 'atom10', 'rss20' => 'rss20'}
+    'atom10' => 'atom10', 'rss20' => 'rss20',
+    'googlesitemap' => 'googlesitemap' }
 
   CONTENT_TYPE_FOR = { 'rss20' => 'application/xml',
-    'atom10' => 'application/atom+xml' }
+    'atom10' => 'application/atom+xml',
+    'googlesitemap' => 'application/xml' }
 
 
   def feed
@@ -68,7 +70,7 @@ class XmlController < ContentController
       association = this_blog.send(association)
     end
     limit ||= this_blog.limit_rss_display
-    @items = association.find_already_published(:all, :limit => limit, :order => order)
+    @items += association.find_already_published(:all, :limit => limit, :order => order)
   end
 
   def prep_feed
@@ -108,4 +110,12 @@ class XmlController < ContentController
     @link = url_for({:controller => "articles_controller.rb", :action => 'tag', :tag => tag.name},
                     {:only_path => false})
   end
+
+  def prep_sitemap
+    fetch_items(:articles, 'created_at DESC', 1000)
+    fetch_items(:pages, 'created_at DESC', 1000)
+    @items += Category.find_all_with_article_counters(1000)
+    @items += Tag.find_all_with_article_counters(1000)
+  end
+
 end

@@ -338,6 +338,14 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body, :todo
   end
+  
+  # TODO(laird): make this more robust
+  def test_sitemap
+    get :feed, :format => 'googlesitemap', :type => 'sitemap'
+    
+    assert_response :success
+    assert_xml @response.body
+  end
 
   def assert_rss20(items)
     assert_equal 1, get_xpath(%{/rss[@version="2.0"]/channel[count(child::item)=#{items}]}).size, "RSS 2.0 feed has wrong number of channel/item nodes"

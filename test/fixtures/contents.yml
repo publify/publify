@@ -119,6 +119,7 @@ comment3:
   body: Zzzzzz
   created_at: 2005-01-01 02:00:07
   updated_at: 2005-01-01 02:00:07
+  published_at: 2005-01-01 02:00:07
   guid: 4534564564564567
 
 trackback1:
@@ -133,6 +134,7 @@ trackback1:
   excerpt: This is an excerpt
   created_at: 2005-01-01 03:00:00
   updated_at: 2005-01-01 03:00:00
+  published_at: 2005-01-01 03:00:00
   guid: dsafsadffsdsf
 
 trackback2:
@@ -174,6 +176,7 @@ first_page:
   body: ho ho ho
   created_at: 2005-05-05 01:00:00
   published_at: 2005-05-05 01:00:00
+  updated_at: 2005-05-05 01:00:00
   user_id: 1
   published: true
 
@@ -184,6 +187,7 @@ another_page:
   name: page/two
   title: Another Page Title
   body: another body for yet another page
+  updated_at: 2005-05-05 01:00:00
   created_at: 2005-05-05 01:00:00
   published_at: 2005-05-05 01:00:00
   user_id: 1
@@ -198,6 +202,7 @@ markdown_page:
   text_filter_id: 1
   body: this is *markdown*.
   created_at: 2005-05-05 01:00:00
+  updated_at: 2005-05-05 01:00:00
   published_at: 2005-05-05 01:00:00
   user_id: 1
   published: true
