@@ -87,43 +87,53 @@ class Ping < ActiveRecord::Base
   end
 
   def send_pingback_or_trackback(origin_url)
-    Pinger.new(origin_url, self).send_pingback_or_trackback
+    t = Thread.start do
+      Pinger.new(origin_url, self).send_pingback_or_trackback
+    end
+    t.join if defined? $TESTING
   end
 
   def send_trackback(trackback_url, origin_url)
-    trackback_uri = URI.parse(trackback_url)
+    t = Thread.start do
+      trackback_uri = URI.parse(trackback_url)
 
-    post = "title=#{URI.escape(article.title)}"
-    post << "&excerpt=#{URI.escape(article.body_html.strip_html[0..254])}"
-    post << "&url=#{origin_url}"
-    post << "&blog_name=#{URI.escape(article.blog.blog_name)}"
+      post = "title=#{URI.escape(article.title)}"
+      post << "&excerpt=#{URI.escape(article.body_html.strip_html[0..254])}"
+      post << "&url=#{origin_url}"
+      post << "&blog_name=#{URI.escape(article.blog.blog_name)}"
 
-    Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
-      path = trackback_uri.path
-      path += "?#{trackback_uri.query}" if trackback_uri.query
-      http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
+      Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
+        path = trackback_uri.path
+        path += "?#{trackback_uri.query}" if trackback_uri.query
+        http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
+      end
     end
+    t.join if defined? $TESTING
   end
 
-
-
   def send_weblogupdatesping(server_url, origin_url)
-    send_xml_rpc(self.url, "weblogUpdates.ping", article.blog.blog_name, server_url, origin_url)
+    t = Thread.start do
+      send_xml_rpc(self.url, "weblogUpdates.ping", article.blog.blog_name, server_url, origin_url)
+    end
+    t.join if defined? $TESTING
   end
 
   protected
 
   def send_xml_rpc(xml_rpc_url, name, *args)
-    begin
-      server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
-
+    t = Thread.start do
       begin
-        result = server.call(name, *args)
-      rescue XMLRPC::FaultException => e
+        server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
+
+        begin
+          result = server.call(name, *args)
+        rescue XMLRPC::FaultException => e
+          logger.error(e)
+        end
+      rescue Exception => e
         logger.error(e)
       end
-    rescue Exception => e
-      logger.error(e)
     end
+    t.join if defined? $TESTING
   end
 end

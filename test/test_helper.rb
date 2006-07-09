@@ -2,6 +2,8 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
+$TESTING = true
+
 User.salt = 'change-me'
 
 class Test::Unit::TestCase
