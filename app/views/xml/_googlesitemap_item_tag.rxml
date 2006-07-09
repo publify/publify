@@ -1,0 +1,4 @@
+xm.item do
+  xm.link tag_link(item)
+  xm.lastmod collection_lastmod(item)
+end
