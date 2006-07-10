@@ -55,7 +55,7 @@ This macro takes a number of parameters:
       imageurl    = details['source']
       imagelink   = flickrimage.url
 
-      caption   ||= sanitize(CGI.unescapeHTML(flickrimage.description)) if flickrimage.description
+      caption   ||= sanitize(CGI.unescapeHTML(flickrimage.description)) unless flickrimage.description.blank?
       title     ||= flickrimage.title
       alt       ||= title
 
