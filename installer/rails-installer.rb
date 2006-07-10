@@ -4,7 +4,8 @@ require 'rubygems'
 require 'yaml'
 require 'digest/sha1'
 
-require 'installer/rails-installer/web-server'
+require 'installer/rails-installer/web-servers'
+require 'installer/rails-installer/commands'
 
 class RailsInstaller
   include FileUtils
@@ -33,7 +34,9 @@ class RailsInstaller
 
   def initialize(install_directory)
     # use an absolute path, not a relative path.
-    @install_directory = File.expand_path(install_directory)
+    if install_directory
+      @install_directory = File.expand_path(install_directory)
+    end
     
     @config = read_yml(config_file) rescue nil
     @config ||= Hash.new
@@ -100,6 +103,8 @@ class RailsInstaller
   
   # Stop application
   def stop
+    return unless File.directory?(install_directory)
+    
     server_class = RailsInstaller::WebServer.servers[config['web-server']]
     if not server_class
       message "** warning: web-server #{config['web-server']} unknown.  Use 'web-server=external' to disable."
@@ -460,51 +465,27 @@ class RailsInstaller
       exit(1)
     end
     
-    case args[0]
-    when 'install'
-      install(args[2])
-    when 'upgrade'
-      install(args[2])
-    when 'start'
-      start
-    when 'stop'
-      stop
-    when 'run'
-      start(true)
-    when 'config'
-      if args.size < 3
-        config.keys.sort.each do |k|
-          puts "#{k}=#{config[k]}"
-        end
-      else
-        args[2..-1].each do |arg|
-          if(arg=~/^([^=]+)=(.*)$/)
-            config[$1.to_s]=$2.to_s
-          else
-            STDERR.puts "Unknown config command: #{arg}"
-          end
-        end
-        save
-      end
+    command_class = Command.commands[args.first]
+    
+    if command_class
+      command_class.command(self,*(args[2..-1]))
     else
-      display_help('Unknown command')
+      display_help
+      exit(1)
     end
   end
   
   def display_help(error=nil)
     STDERR.puts error if error
-    STDERR.puts "Commands:"
-    STDERR.puts "  typo install DIRECTORY [VERSION]"
-    STDERR.puts "     Installs Typo into DIRECTORY.  If there's an existing Typo install in"
-    STDERR.puts "     DIRECTORY, then the installer will upgrade the installation instead."
-    STDERR.puts "  typo start DIRECTORY"
-    STDERR.puts "     Starts a Typo server in DIRECTORY."
-    STDERR.puts "  typo stop DIRECTORY"
-    STDERR.puts "     Shuts down a Typo server in DIRECTORY."
-    STDERR.puts "  typo config DIRECTORY"
-    STDERR.puts "     Shows configuration variables for Typo."
-    STDERR.puts "  typo config DIRECTORY NAME=VALUE..."
-    STDERR.puts "     Sets configuration variables for Typo."
+    
+    commands = Command.commands.keys.sort
+    commands.each do |cmd|
+      cmd_class = Command.commands[cmd]
+      cmd_help = cmd_class.help(self)
+      
+      STDERR.puts "  #{app_name} #{cmd} DIRECTORY #{cmd_help.first}"
+      STDERR.puts "    #{cmd_help.last}"
+    end
   end
 end
 

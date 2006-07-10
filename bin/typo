@@ -37,6 +37,16 @@ class TypoInstaller < RailsInstaller
   end
 end
 
+class SweepCache < RailsInstaller::Command
+  def self.command(installer, *args)
+    installer.sweep_cache
+  end
+  
+  def self.help(installer)
+    ['',"Sweep Typo's cache"]
+  end
+end
+
 # Installer program
 directory = ARGV[1]
 
