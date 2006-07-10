@@ -119,6 +119,12 @@ class ArticleTest < Test::Unit::TestCase
 
     assert_kind_of Article,b
     assert_equal 0, b.tags.size
+    
+    c = Article.new(:title => 'Foo', :keywords => 'test "tag test" web2.0')
+    c.keywords_to_tags
+    
+    assert_equal 3, c.tags.size
+    assert_equal ['test', 'tagtest', 'web2.0'].sort, c.tags.collect(&:name).sort
   end
 
   def test_find_published_by_tag_name

@@ -120,7 +120,7 @@ class Article < Content
   def keywords_to_tags
     Article.transaction do
       tags.clear
-      keywords.to_s.scan(/((['"]).*?\2|\w+)/).collect do |x|
+      keywords.to_s.scan(/((['"]).*?\2|[\.\w]+)/).collect do |x|
         x.first.tr("\"'", '')
       end.uniq.each do |tagword|
         tags << Tag.get(tagword)
