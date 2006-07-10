@@ -4,6 +4,8 @@ require 'rubygems'
 require 'yaml'
 require 'digest/sha1'
 
+require 'installer/rails-installer/web-server'
+
 class RailsInstaller
   include FileUtils
   attr_accessor :install_directory, :source_directory, :config
@@ -23,6 +25,10 @@ class RailsInstaller
   
   def self.rails_version(svn_tag)
     @@rails_version = svn_tag
+  end
+  
+  def app_name
+    @@app_name
   end
 
   def initialize(install_directory)
@@ -84,40 +90,22 @@ class RailsInstaller
   
   # Start application in the background
   def start(foreground = false)
-    return unless config['web-server'] == 'mongrel'
-    
-    args = {}
-    args['-p'] = config['port-number']
-    args['-a'] = config['bind-address']
-    args['-e'] = config['rails-environment']
-    args['-d'] = foreground
-    args['-P'] = pid_file
-    
-    # Remove keys with nil values
-    args.delete_if {|k,v| v==nil}
-    
-    args_array = args.to_a.flatten.map {|e| e.to_s}
-    args_array = ['mongrel_rails', 'start', install_directory] + args_array
-    message "Starting #{@@app_name.capitalize} on port #{config['port-number']}"
-    in_directory install_directory do
-      system(args_array.join(' '))
+    server_class = RailsInstaller::WebServer.servers[config['web-server']]
+    if not server_class
+      message "** warning: web-server #{config['web-server']} unknown.  Use 'web-server=external' to disable."
     end
+    
+    server_class.start(self,foreground)
   end
   
   # Stop application
   def stop
-    return unless File.exists? pid_file
-    return unless config['web-server'] == 'mongrel'
-    
-    args = {}
-    args['-P'] = pid_file
-    
-    args_array = args.to_a.flatten.map {|e| e.to_s}
-    args_array = ['mongrel_rails', 'stop', install_directory] + args_array
-    message "Stopping #{@@app_name.capitalize}"
-    in_directory install_directory do
-      system(args_array.join(' '))
+    server_class = RailsInstaller::WebServer.servers[config['web-server']]
+    if not server_class
+      message "** warning: web-server #{config['web-server']} unknown.  Use 'web-server=external' to disable."
     end
+    
+    server_class.stop(self)
   end
   
 #  private
@@ -419,10 +407,6 @@ class RailsInstaller
     end
   end
   
-  def pid_file
-    File.join(install_directory,'tmp','pid.txt')
-  end
-  
   # Locate the source directory for a specific Version
   def find_source_directory(gem_name, version)
     if version == 'cwd'
@@ -507,18 +491,6 @@ class RailsInstaller
     end
   end
   
-  def in_directory(directory)
-    begin
-      old_dir = Dir.pwd
-      Dir.chdir(directory)
-      value = yield
-    ensure
-      Dir.chdir(old_dir)
-    end
-    
-    return value
-  end
-  
   def display_help(error=nil)
     STDERR.puts error if error
     STDERR.puts "Commands:"
@@ -535,3 +507,19 @@ class RailsInstaller
     STDERR.puts "     Sets configuration variables for Typo."
   end
 end
+
+# Run a block inside of a specific directory.  Chdir into the directory
+# before executing the block, then chdir back to the original directory
+# when the block exits.
+def in_directory(directory)
+  begin
+    old_dir = Dir.pwd
+    Dir.chdir(directory)
+    value = yield
+  ensure
+    Dir.chdir(old_dir)
+  end
+  
+  return value
+end
+

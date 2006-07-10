@@ -2,3 +2,4 @@
 rails-environment: production
 database: sqlite
 web-server: mongrel
+threads: 2
