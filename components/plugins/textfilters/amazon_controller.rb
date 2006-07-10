@@ -34,6 +34,6 @@ while using your link.  Example:
 
 turns into
 
-    <a href="http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20">}
+    <a href="http://www.amazon.com/.../097669400X/scottstuff-20">}
   end
 end

@@ -68,6 +68,14 @@ function complete(request) {
   if (request.status == 200) { commentAdded() };  
 }
 
+function popup(mylink, windowname)
+{
+  if (! window.focus) return true;
+  var href;
+  window.open(mylink, windowname, 'width=400,height=500,scrollbars=yes');
+  return false;
+}
+
 register_onload(function() {
   if ($('commentform')) {
 	var _author = getCookie('author');

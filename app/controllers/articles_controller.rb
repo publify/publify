@@ -154,6 +154,10 @@ class ArticlesController < ContentController
       render :nothing => true, :status => 404
     end
   end
+  
+  def markup_help
+    render :text => TextFilter.find(params[:id]).commenthelp
+  end
 
   private
 

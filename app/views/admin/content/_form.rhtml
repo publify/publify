@@ -12,6 +12,7 @@
 <p>
   <label for="article_body">Body:</label><br />
   <%= text_area 'article', 'body', :rows => 25, :style => 'width: 48%;'  %>
+  <br/><%= markup_help_popup @article.text_filter, "Markup Help" %>
 </p>
 <p>
   <label for="categories">Categories:</label><br />
