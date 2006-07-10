@@ -47,6 +47,15 @@ Installing Typo
    installer/apache.conf.example to run your Typo installation under Apache.
 
 
+Upgrading Typo
+--------------
+
+The Typo installer can upgrade an existing installer-created Typo install by 
+simple running 'typo install DIRECTORY'.  The installer will automatically
+detect that it's upgrading an existing install and will attempt to preserve
+the existing configuration as much as possible.
+
+
 Starting and Stopping Typo
 --------------------------
 
@@ -55,10 +64,18 @@ To stop Typo from running, run `typo stop /path/to/typo`. To restart it, run
 you can't depend on your web server restarting it automatically on reboot.  You'll need to either create an init script or cron reboot entry to restart it, depending on your host and/or privilege level.
 
 
+Configuration Variables
+-----------------------
+
+Each Typo installation maintains a list of configuration variables.  To see
+the list for an existing install, run 'typo config DIRECTORY'.  You can change
+them via 'typo config DIRECTORY name1=value1 name2=value2...'  For example:
+
+  typo config /var/www/typo web-server=mongrel_cluster
+
+
 TODO
 ----
 
-1.  Actually write the Apache HTTP proxy instructions (for 1.3 and 2.x)
-2.  Add lighttpd proxy directions.
-3.  Figure out how to best have Typo restart on reboot.
-4.  Handle the "missing swig" problem better.
+1.  Figure out how to best have Typo restart on reboot.
+2.  Handle the "missing swig" problem better.
