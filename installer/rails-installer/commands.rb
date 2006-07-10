@@ -27,7 +27,16 @@ class RailsInstaller
     
     class Install < RailsInstaller::Command
       def self.command(installer, *args)
-        installer.install(args.first)
+        version = nil
+        args.each do |arg|
+          if(arg =~ /^([^=]+)=(.*)$/)
+            installer.config[$1.to_s] = $2.to_s
+          else
+            version = arg
+          end
+        end
+        
+        installer.install(version)
       end
       
       def self.help(installer)
@@ -39,7 +48,7 @@ class RailsInstaller
       def self.command(installer, *args)
         if args.size == 0
           installer.config.keys.sort.each do |k|
-            puts "#{k}=#{config[k]}"
+            puts "#{k}=#{installer.config[k]}"
           end
         else
           args.each do |arg|

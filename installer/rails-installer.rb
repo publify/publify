@@ -54,10 +54,9 @@ class RailsInstaller
   # Install Application
   def install(version=nil)
     @source_directory = find_source_directory(@@app_name,version)
-    
-    if config.size == 0
-      @config = read_yml(backup_config_file)
-    end
+
+    # Merge default configuration settings
+    @config = read_yml(backup_config_file).merge(config)
     
     install_sequence
     
@@ -290,11 +289,14 @@ class RailsInstaller
   # Create the default database.yml
   def create_default_database_yml
     database_yml = File.join(install_directory,'config','database.yml')
-    return if File.exist?(database_yml)
-    return unless config['database'] == 'sqlite'
     
+    if File.exist?(database_yml)
+      message "Preserving database.yml"
+      return
+    end
+        
     message "Creating default database configuration file"
-    cp("#{database_yml}.sqlite",database_yml)
+    cp("#{database_yml}.#{config['database']}",database_yml)
   end
   
   # Create required directories, like tmp
