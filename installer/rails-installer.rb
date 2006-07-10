@@ -379,7 +379,7 @@ class RailsInstaller
   def run_rails_tests
     message "Running tests.  This may take a minute or two"
     
-    in_directory instal_directory do
+    in_directory install_directory do
       if system_silently("rake -s test")
         message "All tests pass.  Congratulations."
       else
