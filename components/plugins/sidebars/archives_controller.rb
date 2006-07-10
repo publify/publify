@@ -20,7 +20,7 @@ class Plugins::Sidebars::ArchivesController < Sidebars::ComponentPlugin
     
     @archives = article_counts.map do |entry|
       {
-        :name => "#{entry.year} #{entry.month}",
+        :name => "#{Date::MONTHNAMES[entry.month.to_i]} #{entry.year}",
         :month => entry.month.to_i,
         :year => entry.year.to_i,
         :article_count => entry.count
