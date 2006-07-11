@@ -7,5 +7,5 @@ class Plugins::Sidebars::XmlController < Sidebars::ComponentPlugin
   setting :trackbacks, false, :input_type => :checkbox
 
   setting :format, 'rss20', :input_type => :radio,
-          :choices => [["rss20",  "RSS 2.0"], ["atom10", "Atom 1.0"], ["atom03", "Atom 0.3"]]
+          :choices => [["rss20",  "RSS 2.0"], ["atom10", "Atom 1.0"]]
 end
