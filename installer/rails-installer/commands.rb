@@ -10,7 +10,20 @@ class RailsInstaller
       raise "Not Implemented"
     end
     
-    def self.help(installer)
+    def self.flag_help(text)
+      @flag_help = text
+    end
+    
+    def self.flag_help_text
+      @flag_help || ''
+    end
+    
+    def self.help(text)
+      @help = text
+    end
+    
+    def self.help_text
+      @help || ''
     end
   
     def self.inherited(sub)
@@ -26,6 +39,8 @@ class RailsInstaller
     end
     
     class Install < RailsInstaller::Command
+      help "Install or upgrade APPNAME in PATH."
+
       def self.command(installer, *args)
         version = nil
         args.each do |arg|
@@ -38,13 +53,12 @@ class RailsInstaller
         
         installer.install(version)
       end
-      
-      def self.help(installer)
-        ['',"Install or upgrade #{installer.app_name} in PATH."]
-      end
     end
     
     class Config < RailsInstaller::Command
+      help "Read or set a configuration variable"
+      flag_help '[KEY=VALUE]...'
+
       def self.command(installer, *args)
         if args.size == 0
           installer.config.keys.sort.each do |k|
@@ -64,52 +78,39 @@ class RailsInstaller
           end
           installer.save
         end
-        
-      end
-      
-      def self.help(installer)
-        ['[KEY=VALUE]...',"Read or set a #{installer.app_name} configuration variable"]
       end
     end
     
     class Start < RailsInstaller::Command
+      help "Start the web server in the background"
+
       def self.command(installer, *args)
         installer.start
-      end
-      
-      def self.help(installer)
-        ['',"Start the web server for #{installer.app_name} in the background"]
       end
     end
 
     class Run < RailsInstaller::Command
+      help "Start the web server in the foreground"
+      
       def self.command(installer, *args)
         installer.start(true)
-      end
-      
-      def self.help(installer)
-        ['',"Start the web server for #{installer.app_name} in the foreground"]
       end
     end
 
     class Restart < RailsInstaller::Command
+      help "Stop and restart the web server."
+      
       def self.command(installer, *args)
         installer.stop
         installer.start
       end
-      
-      def self.help(installer)
-        ['',"Stop and restart the web server for #{installer.app_name}."]
-      end
     end
     
     class Stop < RailsInstaller::Command
+      help "Stop the web server"
+      
       def self.command(installer, *args)
         installer.stop
-      end
-
-      def self.help(installer)
-        ['',"Stop the web server for #{installer.app_name}"]
       end
     end
   end

@@ -483,10 +483,11 @@ class RailsInstaller
     commands = Command.commands.keys.sort
     commands.each do |cmd|
       cmd_class = Command.commands[cmd]
-      cmd_help = cmd_class.help(self)
+      flag_help = cmd_class.flag_help_text.gsub(/APPNAME/,app_name)
+      help = cmd_class.help_text.gsub(/APPNAME/,app_name)
       
-      STDERR.puts "  #{app_name} #{cmd} DIRECTORY #{cmd_help.first}"
-      STDERR.puts "    #{cmd_help.last}"
+      STDERR.puts "  #{app_name} #{cmd} DIRECTORY #{flag_help}"
+      STDERR.puts "    #{help}"
     end
   end
 end
