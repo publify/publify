@@ -15,6 +15,7 @@ class TypoInstaller < RailsInstaller
     copy_files
     freeze_rails
     create_default_config_files
+    fix_permissions
     create_directories
     create_initial_database
     set_initial_port_number

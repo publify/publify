@@ -76,6 +76,7 @@ class RailsInstaller
     copy_files
     freeze_rails
     create_default_config_files
+    fix_permissions
     create_directories
     create_initial_database
     set_initial_port_number
@@ -299,9 +300,19 @@ class RailsInstaller
     cp("#{database_yml}.#{config['database']}",database_yml)
   end
   
+  def fix_permissions
+    unless RUBY_PLATFORM =~ /mswin32/
+      message "Making scripts executable"
+      chmod 0555, File.join(install_directory,'public','dispatch.fcgi')
+      chmod 0555, File.join(install_directory,'public','dispatch.cgi')
+      chmod 0555, Dir[File.join(install_directory,'script','*')]
+    end
+  end
+  
   # Create required directories, like tmp
   def create_directories
     mkdir_p(File.join(install_directory,'tmp','cache'))
+    chmod(755, File.join(install_directory,'tmp','cache'))
     mkdir_p(File.join(install_directory,'tmp','session'))
     mkdir_p(File.join(install_directory,'tmp','sockets'))
     mkdir_p(File.join(install_directory,'log'))
