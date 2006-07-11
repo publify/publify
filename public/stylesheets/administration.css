@@ -4,8 +4,7 @@
 
  body {
   margin: 0;
-  background: #fff url(../images/admin/hdr-tile.gif) repeat-x;
-  font: 1em/1.6em Helvetica, Arial, sans-serif;
+  font: 1em/1.6em Verdana, Helvetica, Arial, sans-serif;
   text-align: center;
   color: #000;
   }
@@ -13,7 +12,7 @@
 
  #container {
   text-align: left;
-  font-size: 80%;
+  font-size: 70%;
   margin: 0 auto;
  }
 
@@ -63,7 +62,7 @@
  img { border: none; }
 
   a {
-    color: #c00;
+    color: #8D805D;
     text-decoration: none;
     }
 
@@ -81,19 +80,21 @@
 
 
  #tabs-container {
+   height: 20px;
    width: 100%;
-   padding: 0;
+   padding: 14px 0 0 100px;
    height: 16px;
-   margin-top: 8px;
+   margin-top: -40px;
    border-bottom: 1px solid #637987;
+   background: #F8F7EF;
    }
 
   #tabs {
     padding: 0;
-    margin: 0 0 0 30px;
-    font-family: sans-serif, Arial, Helvetica;
-    font-size: 0.8em;
+    margin: 0 0 0 40px;
+    font: normal 100% Georgia, Garamond, Times ;
     line-height: normal;
+    text-transform: uppercase; 
    }
 
   #tabs li {
@@ -106,22 +107,21 @@
   #tabs li a {
     padding: 3px 8px 3px 8px;
     margin-left: 3px;
-    background: #859AA8;
+    background: #F8F7EF;
     text-decoration: none;
     color: #003;
-    border: 1px solid #637987;
-    border-bottom: 0;
     line-height: normal;
    }
 
   #tabs li a:hover {
-    #color: #fff;
-    background: #D7DFE4;
-    border-color: #859AA8;
+    color: #993300;
+    border-top: 12px solid #E8E4D3;    
    }
 
   #tabs li a.active {
-    background: white;
+     color: #993300;
+    border-top: 12px solid #E8E4D3;    
+    background: #F8F7EF;
    }
 
   #tabs li a.active:hover {
@@ -136,9 +136,11 @@
  */
 
 .tasks {
-  background: #F1F8E4;
-  border: 1px solid #8DBA47;
+  background: #F8F7EF;
+  border-top: 1px dotted #C2C0BB;
+  border-bottom: 1px dotted #C2C0BB;
   padding: 5px;
+  margin-bottom: 15px;
   }
 
 .tasks ul {
@@ -161,7 +163,7 @@
   }
 
 .tasks li a:hover {
-  background: #4A611C;
+  background: #637987;
   color: #fff;
   }
 
@@ -172,9 +174,8 @@
 
   h2 {
     font: normal 170% Georgia, Times, Helvetica;
-    background: url(../images/admin/h-tile.gif) repeat-x;
     color: #930;
-    padding: 25px 0 0 5px;
+    padding: 5px 0 0 5px;
     }
 
    h3 {
@@ -184,14 +185,19 @@
     }
 
   #header h1 {
+    background: #EDEBD5;
     margin: 0;
-    padding: 25px 0 0 10px;
-    font: normal 170% Helvetica, Sans-serif, Arial;
+    padding: 14px 0 12px 100px;
+    border-bottom: 1px dashed #A9A585;
+    border-top: 4px solid #4A4902;
+    font: normal 200% Georgia, Garamond, Times ;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     }
 
   #header h1 a {
-    color: #fff;
-    margin: 20px 0 0 0;
+    color: #000;
+    margin: 10px 0 10px 0;
     text-decoration: none;
     border: none;
     }
@@ -253,7 +259,8 @@ label {
   }
 
 .form {
-	background: #D7DFE4;
+  border: 1px solid #C2C0BB;
+  background: #F8F7EF;
   margin-bottom: 10px;
   padding: 0 0 0 10px;
   }
@@ -261,6 +268,21 @@ label {
 .form div {
   padding: 5px;
   }
+
+.form input {
+   font-family: Georgia;
+   font-size: 1em;
+   letter-spacing: 0.02em;   
+}
+
+.form textarea {
+   width: 350px;
+   font-family: Georgia;
+   line-height: 1.1em;
+   font-size: 1em;
+   letter-spacing: 0.02em;
+   word-spacing: 0.05em;   
+}
 
 #blog_name {
   font-size: 130%;
@@ -284,14 +306,17 @@ label {
 
 #preview, #preview_extended {
   background: #fff;
-  border: 4px double #ccc;
+  border: 1px dashed #ccc;
   padding: 5px;
   z-index: 9999;
-  width: 48%;
+  width: 50%;
   float: right;
   clear: right;
   margin-bottom: 10px;
-  line-height: 1.3em;
+  line-height: 1.5em;
+  letter-spacing: 0.02em;
+  word-spacing: 0.05em; 
+  font-size: 0.95em;  
   }
 
 /*
@@ -299,8 +324,8 @@ label {
  */
 
 .set {
-  background: #D7DFE4;
-  border: 1px solid #7D8692;
+  background: #F8F7EF;
+  border: 1px dotted #7D8692;
   padding: 0 10px 5px 10px;
   margin-bottom: 10px;
   position: relative;
@@ -317,7 +342,7 @@ label {
 
  #sidebar-config {
   /* Safari Fix */
-   border-top: 1px solid #fff;
+   border-top: 5px solid #fff;
  }
 
  #sidebar-config p {
@@ -337,16 +362,21 @@ label {
 
  #cnt-active {
    margin-left: 320px;
-   border: 1px solid #333;
-   background: #c8d9ed;
+   background: #F8F7EF;
  }
 
- #available , #active {
-   background: #c8d9ed;
+ #available {
+   background: #F8F7EF;
+    padding-bottom: 10px;
+ }
+
+ #active {
+   background: #F8F7EF;
+   padding-bottom: 10px;
  }
 
  #available h3, #active h3, #cnt-active h3 {
-   background: #859aa8;
+   background: #E4E4D7;
    color: #333;
    margin: 0 0 10px 0;
    padding: 2px 5px;
@@ -381,7 +411,7 @@ label {
 }
 
 .target {
-  background: #cde0f3;
+  background: #F8F7EF;
   margin: 5px;
   padding: 5px;
 }
@@ -394,12 +424,16 @@ label {
   padding: 0 0 5px;
   }
 
+#info {
+   color: #4A4902;
+}
+
 #info a {
-  color: #fff;
+  color: #4A4902;
   }
 
 #info a:hover {
-  background: #c00;
+  border-bottom: 1px dotted #222;
   }
 
 .form p>small {
@@ -456,7 +490,7 @@ label {
  */
 
 div#users {
-  background: #c8d9ed;
+  background: #F8F7EF;
   margin-top: 10px;
 }
 
@@ -495,34 +529,36 @@ div.user {
  */
 
 #quick-post {
-  background: #c8d9ed;
+  background: #EDEBD5;
   padding: 10px;
   border: 1px solid #9cabba;
   margin-left: 10px;
   border-top: none;
 }
 
+#quick-post input {
+   font-family: Georgia;
+   font-size: 13px;
+   letter-spacing: 0.02em;   
+}
+
+#quick-post textarea {
+   width: 350px;
+   font-family: Georgia;
+   line-height: 14px;
+   font-size: 12px;
+   letter-spacing: 0.02em;
+   word-spacing: 0.05em;   
+}
+
 #quick-navigate {
-  background: #c8d9ed;
+  background: #F8F7EF;
   padding: 2px 5px 0px 5px;
-  border: 1px solid #9cabba;
+  border: 1px dotted #9cabba;
   margin-left: 10px;
   border-top: none;
 }
-#edit-resource-metadata {
-  background: #c8d9ed;
-  padding: 1px;
-  border: 1px solid #9cabba;
-  margin-left: 0px;
-  border-top: none;
-}
 
-#add-resource-metadata {
-  background: #c8d9ed;
-  padding: 1px;
-  border: 1px solid #9cabba;
-  margin-left: 0px;
-}
 #advanced { line-height: 1.3em; }
 
 #advanced label {
@@ -533,8 +569,13 @@ div.user {
 
 #loginform {
   width: 300px;
-  margin-left: 110px;  
-  padding: 0px;
+  margin-left: auto;  
+  margin-right: auto;  
+  padding: 100px;
+}
+
+#loginform input {
+   margin-bottom: 10px;
 }
 
 #loginform div.form {
@@ -554,9 +595,11 @@ div.user {
 }
 
 #flash .notice {
-    background: #CBE4C3;
-    border-top: 1px solid #2E9410;
-    border-bottom: 1px solid #2E9410;
+   font-size: 11px;
+   color: #fff;
+    background: #637987;
+    border-top: 1px solid #336699;
+    border-bottom: 1px solid #336699;
 }
 
 #flash .error {
@@ -576,10 +619,4 @@ div.user {
 #category_list li {
   cursor: move;
   border-bottom: 1px dotted #ccc;
-}
-
-#footer {
-	font-size: 0.8em;
-	color: #888;
-	font-style: italic;
 }
