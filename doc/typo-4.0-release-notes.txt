@@ -1,0 +1,53 @@
+Changes
+=======
+
+* A new installer and a Typo .gem file.  Run 'gem install typo' and then
+  'typo install /some/path' to install Typo.
+
+* Text filter plugins, including easy inline Flickr image support and syntax
+  highlighting for code.
+
+* Enhanced feed support.  Atom 1.0 and RSS 2.0 are both supported.  Atom 0.3
+  has been removed.  Both feed types have better UUIDs.  There are also 
+  per-tag, -category, and -author feeds.  Most pages have their own 
+  content-specific feeds available via feed autodiscovery.
+
+* Tags.  The 'keywords' field in the Typo admin UI (as well as many blog 
+  editors) has been commandeered to provide tagging for Typo.  Tags are
+  separated by spaces (just like Flickr).  If you want to include a space
+  in a tag, then use quotes.
+
+* File uploads.  You can now upload images and other content directly from the 
+  admin UI.
+
+* Podcast support (experimental).
+
+* Email and/or Jabber notification of new content, including comments and 
+  trackbacks.
+
+* Support for posting articles with a future posting date.  Pre-posted 
+  articles don't appear on the blog or feeds until their posting date passes.
+
+* A new cache system that automatically times out stale entries.  Several 
+  types of content, including the Flickr sidebar, will automatically cause the
+  page to be rebuilt every few hours to ensure freshness.
+
+* Better theme support.  Some of this was back-ported to Typo 2.6.0.
+
+* A redirect table to help users migrating to Typo.  You can enter new URLs
+  into the Redirect table and Typo will look there whenever it doesn't 
+  recognize a URL.  So you can move from Movable Type-style permalinks to
+  Typo-style permalinks without losing the perma- in your links.
+
+* Cleaner migrations.
+
+* Rails 1.1 support.  Rails 1.1.4 is strongly recommended.  Rails 1.0 won't 
+  work at all.
+
+* Google sitemap support.
+
+* Gravatars support for comments.
+
+* Comment previews.
+
+* Markup help for comments, articles, and pages.
