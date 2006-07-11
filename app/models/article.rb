@@ -149,11 +149,18 @@ class Article < Content
   protected
 
   before_create :set_defaults, :create_guid, :add_notifications
+  before_save :set_published_at
   after_save :keywords_to_tags
 
   def correct_counts
     self.comments_count = self.comments_count
     self.trackbacks_count = self.trackbacks_count
+  end
+  
+  def set_published_at
+    if self.published and self[:published_at].nil?
+      self[:published_at] = self.created_at || Time.now
+    end
   end
 
   def set_defaults
@@ -168,6 +175,7 @@ class Article < Content
     if blog && self.allow_pings.nil?
       self.allow_pings = blog.default_allow_pings
     end
+    
     true
   end
 
