@@ -1,5 +1,6 @@
 class Bare23Content < ActiveRecord::Base
   include BareMigration
+  set_inheritance_column :bogustype     # see migration #20 for why
 end
 
 class Bare23Page < ActiveRecord::Base
@@ -9,12 +10,12 @@ end
 class SuperclassPages < ActiveRecord::Migration
   def self.up
     STDERR.puts "Merging Pages into Content table"
-    modify_tables_and_update(:add_column, :contents, :name, :string) do
+    modify_tables_and_update(:add_column, Bare23Content, :name, :string) do
       Bare23Content.transaction do
         if not $schema_generator
           Bare23Page.find(:all).each do |p|
             Bare23Content.create(:type           => 'Page',
-                                 :title          => p.name,
+                                 :name           => p.name,
                                  :user_id        => p.user_id,
                                  :body           => p.body,
                                  :body_html      => p.body_html,
@@ -46,7 +47,7 @@ class SuperclassPages < ActiveRecord::Migration
     modify_tables_and_update(:create_table, :pages, lambda {|t| init_pages(t)}) do
       Bare23Content.transaction do
         Bare23Content.find(:all, :conditions => "type = 'Page'").each do |p|
-          Bare23Page.create(:name           => p.title,
+          Bare23Page.create(:name           => p.name,
                             :user_id        => p.user_id,
                             :body           => p.body,
                             :body_html      => p.body_html,
