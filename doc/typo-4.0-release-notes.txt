@@ -1,5 +1,14 @@
-Changes
-=======
+Typo 4.0
+========
+
+Welcome to Typo 4.0.  Typo is a blogging platform, like Movable Typo or 
+Wordpress, written using Ruby on Rails.
+
+This is the first major release since Typo 2.6.  We skipped Typo 3.0 to avoid confusion with the Typo3 project.
+
+
+Changes since Typo 2.6
+----------------------
 
 * A new installer and a Typo .gem file.  Run 'gem install typo' and then
   'typo install /some/path' to install Typo.
@@ -43,6 +52,8 @@ Changes
 
 * Rails 1.1 support.  Rails 1.1.4 is strongly recommended.  Rails 1.0 won't 
   work at all.
+
+* Improved sidebar support, with a cleaner API and more built-in sidebars.
 
 * Google sitemap support.
 
