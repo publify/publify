@@ -1,0 +1,45 @@
+<% @page_heading = "Comments and Trackbacks for #{ this_blog.settings['blog_name'] }" %>
+
+<% content_for('tasks') do %>
+  <%= task_showmod 'Show only feedback needing moderation' %>
+<% end %> 
+
+<div clas="search">
+  <form>
+    <label for="search">Feedback Search:</label><input type="text" id="search" name="search" value="<%=h params[:search] %>" size="15" />
+  </form>
+</div>
+
+<div class="list">	
+  <table>
+  <tr>
+	<!-- ><th>Mod</th> -->
+	<th>Type</th>
+	<th>Article</th>
+    <th>Author</th>
+    <th>IP</th>
+    <th>Posted date</th>
+    <th>Delete</th>
+  </tr>
+  <% for feedback in @feedback -%>
+  <tr>
+	<!-- ><td class="field"><%=h feedback.published ? "" : "Yes" %></td> -->
+	<td class="field"><%=h feedback.class %></td>
+	<td class="field"><%= link_to_article_edit feedback.article %></td>
+    <td class="field">
+        <%=h (feedback.author || '(unknown)').slice(0,40) %><br/>
+	    <a href=<%=h feedback.url%>><%=h feedback.url.to_s.slice(0,40)%></a><br/>
+    	<%=h feedback.email.to_s.slice(0,40) %>
+	</td>
+    <td class="field"><%=h feedback.ip %></td>
+    <td class="field"><%=h distance_of_time_in_words_to_now(feedback.created_at) %></td>
+	<td class="field"><%= link_to image_tag('delete'), {:action => 'delete', :id => feedback.id },  :confirm => "Are you sure?", :post => true %></td>
+  </tr>  
+  <% end -%>
+  </table>
+</div>
+
+<%= link_to "Previous page", { :page => @pages.current.previous } if @pages.current.previous %>
+<%= pagination_links(@pages) %>
+<%= link_to "Next page", { :page => @pages.current.next } if @pages.current.next %>
+
