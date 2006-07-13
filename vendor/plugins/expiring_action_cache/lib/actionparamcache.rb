@@ -79,6 +79,7 @@ module ActionController
             cached_time = meta[:cached_at] rescue nil
             controller.response.headers['Cache-Control'] = 'max-age=1'
             controller.response.headers['Last-Modified'] = meta[:cached_at].httpdate rescue nil
+            controller.response.headers['Content-Type'] = meta[:content_type]
                         
             if request_time and cached_time <= (request_time + 1)
               controller.render(:text => "", :status => 304)
@@ -102,6 +103,7 @@ module ActionController
             meta[:expires] = Time.now + controller.response.lifetime
           end
           meta[:cached_at] = Time.now.utc
+          meta[:content_type] = controller.response.headers['Content-Type']
           controller.response.headers['Cache-Control'] = 'max-age=1'
           controller.response.headers['Last-Modified'] = meta[:cached_at].httpdate
           controller.write_meta_fragment(cache_key(controller), meta, controller.response.body)
