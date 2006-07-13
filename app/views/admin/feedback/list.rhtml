@@ -39,7 +39,7 @@
   </table>
 </div>
 
-<%= link_to "Previous page", { :page => @pages.current.previous } if @pages.current.previous %>
-<%= pagination_links(@pages) %>
-<%= link_to "Next page", { :page => @pages.current.next } if @pages.current.next %>
+<%= link_to "Previous page", { :page => @pages.current.previous, :search => params[:search] } if @pages.current.previous %>
+<%= pagination_links(@pages, :params => {:search => params[:search]}) %>
+<%= link_to "Next page", { :page => @pages.current.next, :search => params[:search] } if @pages.current.next %>
 
