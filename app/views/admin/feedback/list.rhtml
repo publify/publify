@@ -1,7 +1,7 @@
 <% @page_heading = "Comments and Trackbacks for #{ this_blog.settings['blog_name'] }" %>
 
 <% content_for('tasks') do %>
-  <%= task_showmod 'Show only feedback needing moderation' %>
+  <%= task_showmod 'Show only unpublished feedback' %>
 <% end %> 
 
 <div clas="search">
@@ -11,32 +11,33 @@
 </div>
 
 <div class="list">	
+  <%= form_tag({:action => 'bulkops'}, :method => :post) %>
+  <br/>
+  <%= submit_tag "Delete Checked Items" %> &nbsp;
+  <%= submit_tag "Publish Checked Items" %>
+  <%= submit_tag "Unpublish Checked Items" %>
+
+  <%= hidden_field_tag "search", params[:search]%>
+  <%= hidden_field_tag "page", params[:page]%>
+
   <table>
   <tr>
-	<!-- ><th>Mod</th> -->
+	<th><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+	<th>Pub</th>
 	<th>Type</th>
 	<th>Article</th>
     <th>Author</th>
+	<th>Body</th>
     <th>IP</th>
     <th>Posted date</th>
     <th>Delete</th>
   </tr>
-  <% for feedback in @feedback -%>
-  <tr>
-	<!-- ><td class="field"><%=h feedback.published ? "" : "Yes" %></td> -->
-	<td class="field"><%=h feedback.class %></td>
-	<td class="field"><%= link_to_article_edit feedback.article %></td>
-    <td class="field">
-        <%=h (feedback.author || '(unknown)').slice(0,40) %><br/>
-	    <a href=<%=h feedback.url%>><%=h feedback.url.to_s.slice(0,40)%></a><br/>
-    	<%=h feedback.email.to_s.slice(0,40) %>
-	</td>
-    <td class="field"><%=h feedback.ip %></td>
-    <td class="field"><%=h distance_of_time_in_words_to_now(feedback.created_at) %></td>
-	<td class="field"><%= link_to image_tag('delete'), {:action => 'delete', :id => feedback.id },  :confirm => "Are you sure?", :post => true %></td>
-  </tr>  
-  <% end -%>
+  <%= render :partial => 'item', :collection => @feedback %>
   </table>
+  <%= submit_tag "Delete Checked Items" %> &nbsp;
+  <%= submit_tag "Publish Checked Items" %>
+  <%= submit_tag "Unpublish Checked Items" %>
+  </form>
 </div>
 
 <%= link_to "Previous page", { :page => @pages.current.previous, :search => params[:search] } if @pages.current.previous %>

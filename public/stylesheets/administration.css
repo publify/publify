@@ -620,3 +620,11 @@ div.user {
   cursor: move;
   border-bottom: 1px dotted #ccc;
 }
+
+/*
+ * Feedback
+ */
+
+.feedbackbody td {
+  border-bottom: 1px dotted #ccc;
+}

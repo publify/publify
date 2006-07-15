@@ -16,7 +16,7 @@ class Admin::FeedbackController < Admin::BaseController
     @pages, @feedback = paginate(:contents, 
       :order => 'contents.created_at desc', 
       :conditions => conditions,
-      :per_page => 20)
+      :per_page => 40)
     
     render_action 'list'
   end
@@ -31,6 +31,39 @@ class Admin::FeedbackController < Admin::BaseController
         flash[:notice] = "Not found"
       end
     end
-    redirect_to :action => 'index'
+    redirect_to :action => 'index', :page => params[:page], :search => params[:search]
+  end
+  
+  def bulkops
+    STDERR.puts "Bulkops: #{params.inspect}"
+    
+    ids = (params[:feedback_check]||{}).keys.map(&:to_i)
+    
+    case params[:commit]
+    when 'Delete Checked Items'
+      count = 0
+      ids.each do |id|
+        count += Content.delete(id)
+      end
+      flash[:notice] = "Deleted #{count} item(s)"
+    when 'Publish Checked Items'
+      ids.each do |id|
+        feedback = Content.find(id)
+        feedback.attributes[:published] = true
+        feedback.save
+      end
+      flash[:notice]= "Published #{ids.size} item(s)"
+    when 'Unpublish Checked Items'
+      ids.each do |id|
+        feedback = Content.find(id)
+        feedback.withdraw!
+        feedback.save
+      end
+      flash[:notice]= "Unpublished #{ids.size} item(s)"
+    else
+      flash[:notice] = "Not implemented"
+    end
+
+    redirect_to :action => 'index', :page => params[:page], :search => params[:search]
   end
 end

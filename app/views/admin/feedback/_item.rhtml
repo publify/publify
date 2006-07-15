@@ -1,0 +1,15 @@
+<tr class="feedbackbody">
+  <td class="field"><input class= "feedback_check" type="checkbox" name="feedback_check[<%= item.id %>]"/></td>
+  <td class="field"><%= item.published ? "Yes" : "<strong>No</strong>" %></td>
+  <td class="field"><%=h item.class %></td>
+  <td class="field"><%= link_to_article_edit item.article %></td>
+  <td class="field">
+    <%=h (item.author || '(unknown)').slice(0,40) %><br/>
+	<a href=<%=h item.url%>><%=h truncate(item.url.to_s)%></a><br/>
+  	<%=h item.email.to_s.slice(0,40) %>
+  </td>
+  <td class="field"><%=h truncate(item.body,80)%></td>
+  <td class="field"><%=h item.ip %></td>
+  <td class="field"><%=h distance_of_time_in_words_to_now(item.created_at) %> ago</td>
+  <td class="field"><%= link_to image_tag('delete'), {:action => 'delete', :id => item.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :post => true %></td>
+</tr>  
