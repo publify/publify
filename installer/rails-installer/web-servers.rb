@@ -34,6 +34,7 @@ class RailsInstaller
         args['-e'] = installer.config['rails-environment']
         args['-d'] = foreground
         args['-P'] = pid_file(installer)
+        args['--prefix'] = installer.config['url-prefix']
 
         # Remove keys with nil values
         args.delete_if {|k,v| v==nil}
@@ -71,6 +72,7 @@ class RailsInstaller
         args['-a'] = installer.config['bind-address']
         args['-e'] = installer.config['rails-environment']
         args['-N'] = installer.config['threads']
+        args['--prefix'] = installer.config['url-prefix']
 
         # Remove keys with nil values
         args.delete_if {|k,v| v==nil}

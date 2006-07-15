@@ -7,27 +7,8 @@ class TypoInstaller < RailsInstaller
   support_location 'the Typo mailing list'
   rails_version '1.1.4'
   
-  def install_sequence
-    stop
-    
-    backup_database
-    pre_migrate_database
-    copy_files
-    freeze_rails
-    create_default_config_files
-    fix_permissions
-    create_directories
-    create_initial_database
-    set_initial_port_number
-    expand_template_files
-    
-    migrate
+  def install_post_hook
     sweep_cache
-    save
-    
-    run_rails_tests
-    
-    start
   end
   
   # Sweep the cache

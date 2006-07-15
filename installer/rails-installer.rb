@@ -72,6 +72,7 @@ class RailsInstaller
     stop
     
     backup_database
+    install_pre_hook
     pre_migrate_database
     copy_files
     freeze_rails
@@ -83,6 +84,7 @@ class RailsInstaller
     expand_template_files
     
     migrate
+    install_post_hook
     save
     
     run_rails_tests
@@ -90,6 +92,11 @@ class RailsInstaller
     start
   end
   
+  def install_pre_hook
+  end
+  
+  def install_post_hook
+  end
   
   # Start application in the background
   def start(foreground = false)
