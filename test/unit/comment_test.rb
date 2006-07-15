@@ -114,4 +114,12 @@ class CommentTest < Test::Unit::TestCase
       assert c.body_html !~ /<script>/
     end
   end
+
+  def test_withdraw
+    c = Comment.find(contents(:comment2).id)
+    assert c.withdraw!
+    assert ! c.published?
+    assert c.reload
+    assert ! c.published?
+  end
 end

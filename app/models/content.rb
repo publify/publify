@@ -20,11 +20,11 @@ class Content < ActiveRecord::Base
 
   @@content_fields = Hash.new
   @@html_map       = Hash.new
-  
+
   def initialize(*args)
     super(*args)
-    
-    # 
+
+    #
     if self.blog_id == nil or self.blog_id == 0
       self.blog_id = Blog.default
     end
@@ -179,6 +179,16 @@ class Content < ActiveRecord::Base
 
   def publish!
     self.published = true
+    self.save!
+  end
+
+  def withdraw
+    self.published    = false
+    self.published_at = nil
+  end
+
+  def withdraw!
+    self.withdraw
     self.save!
   end
 
