@@ -11,7 +11,7 @@ class Plugins::Sidebars::ArchivesController < Sidebars::ComponentPlugin
     # across all three of our supported DBs.  So, we resort to a bit of
     # DB-specific code.
     if Content.connection.kind_of? ActiveRecord::ConnectionAdapters::SQLiteAdapter
-      date_func = "strftime('%Y') as year, strftime('%m') as month"
+      date_func = "strftime('%Y', published_at) as year, strftime('%m', published_at) as month"
     else
       date_func = "extract(year from published_at) as year,extract(month from published_at) as month"
     end
