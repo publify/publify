@@ -1,7 +1,7 @@
 require 'net/http'
 
 begin
-  Kernel.require 'sparkline'
+  Kernel.require 'sparklines'
 
   class Plugins::Textfilters::SparklineController < TextFilterPlugin::MacroPost
     plugin_public_action :plot
