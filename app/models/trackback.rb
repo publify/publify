@@ -43,6 +43,9 @@ class Trackback < Content
 
   def article_is_pingable
     return if article.nil?
+    if blog.global_pings_disable
+      errors.add(:article, "Pings are disabled")
+    end
     unless article.allow_pings?
       errors.add(:article, "Article is not pingable")
     end
