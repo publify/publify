@@ -146,6 +146,18 @@ class Article < Content
     end
   end
 
+  def comments_closed?
+    if self.allow_comments?
+      if !self.blog.sp_article_auto_close.zero? and self.created_at.to_i < self.blog.sp_article_auto_close.days.ago.to_i
+        return true
+      else
+        return false
+      end
+    else
+      return true
+    end
+  end
+
   protected
 
   before_create :set_defaults, :create_guid, :add_notifications

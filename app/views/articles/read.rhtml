@@ -29,7 +29,7 @@
 
 <% if @article.allow_comments? or @article.comments.size > 0 -%>
   <a name="comments"></a><h4 class="blueblk">Comments</h4>
-  <% if @article.allow_comments? -%>
+  <% unless @article.comments_closed? -%>
     <p class="postmetadata alt">
       <small><a href="#respond">Leave a response</a></small>
     </p>
@@ -63,7 +63,7 @@
   </small>
 </p>
 
-<% if @article.allow_comments? -%>
+<% unless @article.comments_closed? -%>
   <%= render :partial => 'comment_box' %>
 <% else -%>
   <p>Comments are disabled</p>
