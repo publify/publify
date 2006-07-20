@@ -3,6 +3,8 @@ require 'net/http'
 begin
   Kernel.require 'sparklines'
 
+  Sparklines # this will throw an exception if the require failed.
+
   class Plugins::Textfilters::SparklineController < TextFilterPlugin::MacroPost
     plugin_public_action :plot
     plugin_display_name "Sparkline"
@@ -81,7 +83,6 @@ For other options, see the [Ruby Sparkline][] website.
       render :text => ''
     end
   end
-
 rescue LoadError
   # ignore load errors by not loading any of the library
 end
