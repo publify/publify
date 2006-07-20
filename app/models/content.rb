@@ -170,7 +170,7 @@ class Content < ActiveRecord::Base
   end
 
   def text_filter=(filter)
-    self[:text_filter] = filter.to_text_filter
+    self[:text_filter_id] = filter.to_text_filter.id
   end
 
   def blog
