@@ -78,9 +78,9 @@ class Admin::ContentController < Admin::BaseController
   def new_or_edit
     get_or_build_article
     params[:article] ||= {}
-    params[:article].reverse_merge!('allow_comments' => this_blog.default_allow_comments,
-                                    'allow_pings'    => this_blog.default_allow_pings,
-                                    'published'      => true)
+#    params[:article].reverse_merge!('allow_comments' => this_blog.default_allow_comments,
+#                                    'allow_pings'    => this_blog.default_allow_pings,
+#                                    'published'      => true)
     @article.attributes = (params[:article])
     setup_categories
     @selected = @article.categories.collect { |c| c.id }
@@ -129,7 +129,11 @@ class Admin::ContentController < Admin::BaseController
   def get_or_build_article
     @article = case params[:action]
                when 'new'
-                 this_blog.articles.build
+                 art = this_blog.articles.build
+                 art.allow_comments = this_blog.default_allow_comments
+                 art.allow_pings    = this_blog.default_allow_pings
+                 art.published      = true
+                 art
                when 'edit'
                  this_blog.articles.find(params[:id])
                else
