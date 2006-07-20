@@ -77,7 +77,7 @@ class PingTest < Test::Unit::TestCase
     assert_equal "anotherblog.org", ping.host
     assert_equal 80, ping.port
     assert_equal "/a-post/trackback", ping.query
-    assert_equal "title=Article%201!&excerpt=body&url=http://myblog.net/referring-post&blog_name=test%20blog", ping.post_data
+    assert_equal "title=Article+1%21&excerpt=body&url=http://myblog.net/referring-post&blog_name=test+blog", ping.post_data
   end
 
   def test_send_weblogupdatesping
