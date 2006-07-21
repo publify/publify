@@ -7,7 +7,6 @@ class Trackback < Content
   content_fields :excerpt
 
   validates_age_of :article_id
-  validates_against_spamdb :title, :excerpt, :ip, :url
   validates_presence_of :title, :excerpt, :url
   validate_on_create :article_is_pingable
 
@@ -49,6 +48,15 @@ class Trackback < Content
     unless article.allow_pings?
       errors.add(:article, "Article is not pingable")
     end
+  end
+
+  def akismet_options
+    {:user_ip => ip, :comment_type => 'trackback', :comment_author => blog_name, :comment_author_email => nil,
+      :comment_author_url => url, :comment_content => excerpt}
+  end
+  
+  def spam_fields
+    [:title, :excerpt, :ip, :url]
   end
 end
 

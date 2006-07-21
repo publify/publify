@@ -1,5 +1,6 @@
 require_dependency 'spam_protection'
 require 'sanitize'
+require 'timeout'
 
 class Comment < Content
   include TypoGuid
@@ -10,9 +11,9 @@ class Comment < Content
   belongs_to :user
 
   validates_presence_of :author, :body
-  validates_against_spamdb :body, :url, :ip
   validates_age_of :article_id
   validate_on_create :check_article_is_open_to_comments
+
 
   def self.default_order
     'created_at ASC'
@@ -71,5 +72,14 @@ class Comment < Content
   def make_nofollow
     self.author    = author.nofollowify
     self.body_html = body_html.to_s.nofollowify
+  end
+  
+  def akismet_options
+    {:user_ip => ip, :comment_type => 'comment', :comment_author => author, :comment_author_email => email,
+      :comment_author_url => url, :comment_content => body}
+  end
+  
+  def spam_fields
+    [:body, :url, :ip]
   end
 end

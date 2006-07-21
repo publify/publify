@@ -3,13 +3,16 @@
 # Author:: David Czarnecki
 # Copyright:: Copyright (c) 2005 - David Czarnecki
 # License:: BSD
+#
+# Heavily modified for Typo by Scott Laird
+#
 class Akismet
 
-  require 'net/HTTP'
+  require 'net/http'
   require 'uri'
   
   STANDARD_HEADERS = {
-    'User-Agent' => 'Akismet Ruby API/1.0',
+    'User-Agent' => "Typo/#{TYPO_VERSION} | Akismet Ruby API/1.0",
     'Content-Type' => 'application/x-www-form-urlencoded'
   }
   
@@ -83,19 +86,35 @@ class Akismet
   #    The content that was submitted.
   # Other server enviroment variables
   #    In PHP there is an array of enviroment variables called $_SERVER which contains information about the web server itself as well as a key/value for every HTTP header sent with the request. This data is highly useful to Akismet as how the submited content interacts with the server can be very telling, so please include as much information as possible.  
-  def callAkismet(akismet_function, user_ip, user_agent, referrer, permalink, comment_type, comment_author, comment_author_email, comment_author_url, comment_content, other)
+  #options[:user_ip] = user_ip
+  #options[:user_agent] = user_agent
+  #options[:referrer] = referrer
+  #options[:permalink] = permalink
+  #options[:comment_type] = comment_type
+  #options[:comment_author] = comment_author
+  #options[:comment_author_email] = comment_author_email
+  #options[:comment_author_url] = comment_author_url
+  #options[:comment_content] = comment_content
+  
+  def callAkismet(akismet_function, options = {})
     http = Net::HTTP.new("#{@apiKey}.rest.akismet.com", 80, @proxyHost, @proxyPort)
-    path = "/1.1/#{akismet_function}"        
+    path = "/1.1/#{akismet_function}"
     
-    data = "user_ip=#{user_ip}&user_agent=#{user_agent}&referrer=#{referrer}&permalink=#{permalink}&comment_type=#{comment_type}&comment_author=#{comment_author}&comment_author_email=#{comment_author_email}&comment_author_url=#{comment_author_url}&comment_content=#{comment_content}"
-    if (other != nil) 
-      other.each_pair {|key, value| data.concat("&#{key}=#{value}")}
+    options[:blog] = @blog
+    params=[]
+    
+    options.each_key do |key|
+      params.push "#{key}=#{CGI.escape(options[key].to_s)}"
     end
-    data = URI.escape(data)
-            
+    
+    data = params.join('&')
     resp, data = http.post(path, data, STANDARD_HEADERS)
-        
-    return (data != "false")
+    
+    unless data == 'true' or data == 'false' or data == ''
+      STDERR.puts "AKISMET error: #{data}"
+    end
+
+    return (data == "true" or data == '')
   end
   
   protected :callAkismet
@@ -122,19 +141,19 @@ class Akismet
   #    The content that was submitted.
   # Other server enviroment variables
   #    In PHP there is an array of enviroment variables called $_SERVER which contains information about the web server itself as well as a key/value for every HTTP header sent with the request. This data is highly useful to Akismet as how the submited content interacts with the server can be very telling, so please include as much information as possible.
-  def commentCheck(user_ip, user_agent, referrer, permalink, comment_type, comment_author, comment_author_email, comment_author_url, comment_content, other)
-    return callAkismet('comment-check', user_ip, user_agent, referrer, permalink, comment_type, comment_author, comment_author_email, comment_author_url, comment_content, other)
+  def commentCheck(options = {})
+    return callAkismet('comment-check', options)
   end
   
   # This call is for submitting comments that weren't marked as spam but should have been. It takes identical arguments as comment check.
   # The call parameters are the same as for the #commentCheck method.
-  def submitSpam(user_ip, user_agent, referrer, permalink, comment_type, comment_author, comment_author_email, comment_author_url, comment_content, other)
-    callAkismet('submit-spam', user_ip, user_agent, referrer, permalink, comment_type, comment_author, comment_author_email, comment_author_url, comment_content, other)
+  def submitSpam(options = {})
+    callAkismet('submit-spam', options)
   end
   
   # This call is intended for the marking of false positives, things that were incorrectly marked as spam. It takes identical arguments as comment check and submit spam.
   # The call parameters are the same as for the #commentCheck method.
-  def submitHam(user_ip, user_agent, referrer, permalink, comment_type, comment_author, comment_author_email, comment_author_url, comment_content, other)
-    callAkismet('submit-ham', user_ip, user_agent, referrer, permalink, comment_type, comment_author, comment_author_email, comment_author_url, comment_content, other)
+  def submitHam(options = {})
+    callAkismet('submit-ham', options)
   end
 end

@@ -71,7 +71,14 @@ class Blog < ActiveRecord::Base
     settings[:blog_id] = self.id
     article_id = settings[:id]
     settings.delete(:id)
-    published_articles.find(article_id).trackbacks.create!(settings)
+    trackback = published_articles.find(article_id).trackbacks.create!(settings)
+
+    if trackback.is_spam?
+      STDERR.puts "Moderating trackback as spam!"
+      trackback.withdraw!
+    end
+    
+    trackback
   end
 
 

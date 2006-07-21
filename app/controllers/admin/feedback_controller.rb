@@ -50,6 +50,7 @@ class Admin::FeedbackController < Admin::BaseController
       ids.each do |id|
         feedback = Content.find(id)
         feedback.attributes[:published] = true
+        feedback.set_spam(false)
         feedback.save
       end
       flash[:notice]= "Published #{ids.size} item(s)"
@@ -57,6 +58,7 @@ class Admin::FeedbackController < Admin::BaseController
       ids.each do |id|
         feedback = Content.find(id)
         feedback.withdraw!
+        feedback.set_spam(true)
         feedback.save
       end
       flash[:notice]= "Unpublished #{ids.size} item(s)"

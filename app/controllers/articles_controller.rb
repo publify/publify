@@ -99,6 +99,17 @@ class ArticlesController < ContentController
         @article = this_blog.published_articles.find(params[:id])
         @comment = @article.comments.build(params[:comment])
         @comment.user = session[:user]
+        
+        spam_options = {
+          :user_agent => request.env['HTTP_USER_AGENT'], 
+          :referrer => request.env['HTTP_REFERER'], 
+          :permalink => this_blog.article_url(@article, false)}
+          
+        if @comment.is_spam? spam_options
+          STDERR.puts "Moderating comment as spam!"
+          @comment.withdraw
+        end
+        
         @comment.save!
         add_to_cookies(:author, @comment.author)
         add_to_cookies(:url, @comment.url)

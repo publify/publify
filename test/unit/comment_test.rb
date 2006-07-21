@@ -33,10 +33,7 @@ class CommentTest < Test::Unit::TestCase
     c.url = "http://buy-computer.us"
     c.ip = "212.42.230.206"
 
-    assert ! c.save
-    assert c.errors.invalid?('body')
-    assert c.errors.invalid?('url')
-    assert c.errors.invalid?('ip')
+    assert_equal true, c.is_spam?
   end
 
   def test_not_spam_but_rbl_lookup_succeeds
@@ -46,7 +43,7 @@ class CommentTest < Test::Unit::TestCase
     c.url    = "http://www.bofh.org.uk"
     c.ip     = "10.10.10.10"
 
-    assert c.save
+    assert_equal false, c.is_spam?
   end
 
   def test_reject_spam_pattern
@@ -55,8 +52,7 @@ class CommentTest < Test::Unit::TestCase
     c.body = "Texas hold-em poker crap"
     c.url = "http://texas.hold-em.us"
 
-    assert ! c.save
-    assert c.errors.invalid?('body')
+    assert_equal true, c.is_spam?
   end
 
   def test_reject_spam_uri_limit
@@ -66,8 +62,7 @@ class CommentTest < Test::Unit::TestCase
     c.url = "http://www.uri-limit.com"
     c.ip = "123.123.123.123"
 
-    assert ! c.save
-    assert c.errors.invalid?('body')
+    assert_equal true, c.is_spam?
   end
 
   def test_reject_article_age

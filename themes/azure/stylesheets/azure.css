@@ -181,6 +181,13 @@ body {
   	float: right;
   	padding: 0 5px;
   	}
+
+  .spamwarning {
+	margin: 0.5em;
+	background: red;
+	font-weight: bold;
+	font-style: italic;
+  }
  /*+-------------------------------------------+
   |   			SIDEBAR 						               |
   +-------------------------------------------+*/
