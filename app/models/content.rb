@@ -1,5 +1,7 @@
 require 'observer'
 require 'set'
+require 'Akismet'
+
 class Content < ActiveRecord::Base
   include Observable
 
