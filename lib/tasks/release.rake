@@ -30,7 +30,7 @@ spec = Gem::Specification.new do |s|
   s.executables = ['typo']
   
   s.add_dependency("rails", "= 1.1.4")
-  s.add_dependency("mongrel", ">= 0.3.13.4")
+  s.add_dependency("mongrel", ">= 0.3.13.3")
   s.add_dependency("mongrel_cluster", ">= 0.2.0")
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
 end
