@@ -1,3 +1,17 @@
+# BlogRequest is a fake Request object, created so blog.url_for will work.
+# This isn't enabled yet, but it will be soon...
+class BlogRequest
+  include Reloadable
+  
+  attr_accessor :protocol, :host_with_port, :path, :symbolized_path_parameters, :relative_url_root
+  
+  def initialize(root)
+    @protocol = @host_with_port = @path = ''
+    @symbolized_path_parameters = {}
+    @relative_url_root = root.gsub(%r{/^},'')
+  end
+end
+
 class Blog < ActiveRecord::Base
   include ConfigManager
 
@@ -165,6 +179,7 @@ class Blog < ActiveRecord::Base
   private
 
   def request
+    #BlogRequest.new(self.canonical_server_url)
     controller.request rescue ActionController::TestRequest.new
   end
 end
