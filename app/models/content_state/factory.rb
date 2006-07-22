@@ -1,16 +1,13 @@
 module ContentState
   class Factory
-    def self.derived_from(content)
-      state = [New, Draft, PublicationPending,
-               JustPublished, Published].detect(self) do |k|
-        k.derivable_from(content)
-      end.instance
-
-      unless state
-        raise "No derivable state for #{content.inspect}"
-      else
-        return state
+    def self.new(state_name)
+      return ContentState::New.instance unless state_name
+      state_name = state_name.to_s.underscore
+      unless state_name.rindex('/')
+        state_name = 'content_state/' + state_name
       end
+      require state_name
+      state_name.camelize.constantize.instance
     end
   end
 end

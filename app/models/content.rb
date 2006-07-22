@@ -8,6 +8,9 @@ class Content < ActiveRecord::Base
   belongs_to :blog
   validates_presence_of :blog_id
 
+  composed_of :state, :class_name => 'ContentState::Factory',
+    :mapping => %w{ state memento }
+
   has_and_belongs_to_many :notify_users, :class_name => 'User',
     :join_table => 'notifications', :foreign_key => 'notify_content_id',
     :association_foreign_key => 'notify_user_id', :uniq => true
@@ -24,10 +27,12 @@ class Content < ActiveRecord::Base
 
   def initialize(*args)
     super(*args)
+    set_default_blog
+  end
 
-    #
+  def set_default_blog
     if self.blog_id == nil or self.blog_id == 0
-      self.blog_id = Blog.default
+      self.blog = Blog.default
     end
   end
 
@@ -104,14 +109,6 @@ class Content < ActiveRecord::Base
         '(' + sanitize_sql(cond) + ')'
       end.join(' AND ')
     end
-  end
-
-  def state
-    @state ||= ContentState::Factory.derived_from(self)
-  end
-
-  def state=(new_state)
-    @state = new_state
   end
 
   def state_before_save

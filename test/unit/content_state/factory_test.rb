@@ -2,32 +2,27 @@ require File.dirname(__FILE__) + '/../../test_helper'
 require 'content_state/factory'
 
 class ContentState::FactoryTest < Test::Unit::TestCase
-  def test_correctly_derives_new_state
-    assert_instance_of(ContentState::New,
-                       ContentState::Factory.derived_from(MockContent.new(true)))
+  def test_correctly_builds_new_state
+    [:new, 'new', 'content_state/new', 'New',
+     'ContentState::New', nil].each do |memento|
+      assert_instance_of(ContentState::New,
+                         ContentState::Factory.new(memento))
+    end
   end
 
-  def test_correctly_derives_draft_state
+  def test_correctly_builds_draft_state
     assert_instance_of(ContentState::Draft,
-                       ContentState::Factory.derived_from(MockContent.new(false, nil, nil)))
+                       ContentState::Factory.new('draft'))
   end
 
-  def test_correctly_derives_publication_pending_state
+  def test_correctly_builds_publication_pending_state
     assert_instance_of(ContentState::PublicationPending,
-                       ContentState::Factory.derived_from(MockContent.new(false, nil, 1.day.from_now)))
-    assert_instance_of(ContentState::PublicationPending,
-                       ContentState::Factory.derived_from(MockContent.new(true, true,
-                                                                          1.hour.from_now)))
-
-    assert_instance_of(ContentState::PublicationPending,
-                       ContentState::Factory.derived_from(MockContent.new(true, false,
-                                                                          1.hour.from_now)))
+                       ContentState::Factory.new('publication_pending'))
   end
 
-  def test_correct_derives_published_state
+  def test_correct_builds_published_state
     assert_instance_of(ContentState::Published,
-                       ContentState::Factory.derived_from(MockContent.new(false, true,
-                                                                          1.hour.ago)))
+                       ContentState::Factory.new('published'))
   end
 
   def test_cant_make_state_directly

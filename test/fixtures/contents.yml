@@ -19,6 +19,7 @@ article1:
   guid: a87c4220-18d4-11da-aadd-0002a5d5c51b
   type: Article
   published: true
+  state: ContentState::Published
   
 article2:
   type: Article
@@ -39,6 +40,7 @@ article2:
   author: Bob
   guid: bbbbb
   published: true
+  state: ContentState::Published
 
 
 article3:
@@ -60,6 +62,7 @@ article3:
   author: Tobi
   guid: ccccc
   published: true
+  state: ContentState::Published
 
 article4:
   type: Article
@@ -69,6 +72,7 @@ article4:
   body: I'm not "public":http://www.example.com/public!
   body_html: I'm not <a href="http://www.example.com/public">public</a>!
   published: false
+  state: ContentState::Draft
   created_at: 2004-06-01 20:00:01
   updated_at: 2004-06-01 20:00:01
   published_at: 2004-06-01 20:00:01
@@ -92,6 +96,7 @@ spam_comment:
   updated_at: 2005-01-01 02:00:00
   published_at: 2005-01-01 02:00:00
   guid: 12313123123123123
+  state: ContentState::Published
 
 comment2:
   type: Comment
@@ -108,12 +113,14 @@ comment2:
   updated_at: 2005-01-01 02:00:01
   published_at: 2005-01-01 02:00:01
   guid: 453456456456456
+  state: ContentState::Published
 
 comment3:
   type: Comment
   blog_id: 1
   id: 12
   published: false
+  state: ContentState::Draft
   article_id: 1
   author: Foo Bar
   body: Zzzzzz
@@ -128,6 +135,7 @@ trackback1:
   id: 7
   article_id: 2
   published: false
+  state: ContentState::Draft
   blog_name: Trackback Blog
   title: Trackback Entry
   url: http://www.example.com
@@ -142,6 +150,7 @@ trackback2:
   blog_id: 1
   id: 8
   article_id: 1
+  state: ContentState::Published
   published: true
   blog_name: Trackback Blog
   title: Trackback Entry
@@ -158,6 +167,7 @@ trackback3:
   id: 13
   article_id: 1
   published: true
+  state: ContentState::Published
   blog_name: Trackback Blog 2
   title: Trackback Entry 2
   url: http://www.example.com
@@ -179,6 +189,7 @@ first_page:
   updated_at: 2005-05-05 01:00:00
   user_id: 1
   published: true
+  state: ContentState::Published
 
 another_page:
   type: Page
@@ -192,6 +203,7 @@ another_page:
   published_at: 2005-05-05 01:00:00
   user_id: 1
   published: true
+  state: ContentState::Published
 
 markdown_page:
   type: Page
@@ -206,6 +218,7 @@ markdown_page:
   published_at: 2005-05-05 01:00:00
   user_id: 1
   published: true
+  state: ContentState::Published
 
 inactive_article:
   type: Article
@@ -226,6 +239,7 @@ inactive_article:
   author: Tobi
   guid: i1n2a3c4t5i6v7e
   published: true
+  state: ContentState::Published
 
 old_comment:
   type: Comment
@@ -241,6 +255,7 @@ old_comment:
   updated_at: 2004-05-02 20:00:02
   published_at: 2004-05-02 20:00:02
   published: true
+  state: ContentState::Published
 
 second_blog_article:
   type: Article
@@ -261,6 +276,7 @@ second_blog_article:
   author: Tobi
   guid: 2b1l0o6g4ar7
   published: true
+  state: ContentState::Published
 
 search_target:
   type: Article
@@ -281,6 +297,7 @@ search_target:
   author: Tobi
   guid: 2b1l0o6g4ar7
   published: true
+  state: ContentState::Published
 
 xmltest:
   type: Article
@@ -300,3 +317,4 @@ xmltest:
   author: Tobi
   guid: urn:uuid:0d676c66-4135-4a8b-9d65-b6a3248d3032
   published: true
+  state: ContentState::Published

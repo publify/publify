@@ -10,6 +10,10 @@ module ContentState
       protected :new
     end
 
+    def memento
+      self.class.to_s
+    end
+
     def before_save(content)
       serialize_on(content)
       true
