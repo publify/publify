@@ -100,7 +100,7 @@ class TextFilter < ActiveRecord::Base
 
     help_text = help.collect do |f|
       f.help_text.blank? ? '' : "#{BlueCloth.new(f.help_text).to_html}\n"
-    end
+    end.join("\n")
 
     return help_text
   end
