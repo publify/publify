@@ -1,6 +1,6 @@
 module Admin::FeedbackHelper
   def link_to_article_edit(article)
-    link_to truncate(article.title, 60), :controller => 'contents', :action => 'edit', :id => article.id
+    link_to truncate(article.title, 60), :controller => 'content', :action => 'edit', :id => article.id
   end
   
   def task_showmod(title)
