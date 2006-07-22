@@ -26,6 +26,10 @@ Changes since Typo 2.6
   separated by spaces (just like Flickr).  If you want to include a space
   in a tag, then use quotes.
 
+* Improved spam management.  There's a "Feedback" tab in the admin interface
+  that lists all comments and trackbacks so they can be bulk-deleted.  In
+  addition, Typo can now use Akismet for spam filtering.
+
 * File uploads.  You can now upload images and other content directly from the 
   admin UI.
 
