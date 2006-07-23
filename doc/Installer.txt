@@ -137,6 +137,10 @@ Troubleshooting
 You didn't install Swig before installing `sqlite3-ruby`. Uninstall the SQLite
 driver, install Swig, and then re-install `sqlite3-ruby`.
 
+### SQLite dies with "unsupported file format"
+
+You have multiple versions of SQLite3 installed, and you're using the command-line tool from one with the library from the other.  Most likely this is on OS X with Darwinports.  Make sure that `/opt/local/bin` is ahead of `/usr/bin` in your path.
+
 ### MySQL fails with timeout errors
 
 Install the MySQL GEM. It's faster then Rails' default MySQL driver, and it
