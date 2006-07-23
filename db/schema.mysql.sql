@@ -66,7 +66,8 @@ CREATE TABLE contents (
   `allow_pings` tinyint(1),
   `allow_comments` tinyint(1),
   `blog_id` int(11) NOT NULL,
-  `published_at` datetime
+  `published_at` datetime,
+  `state` text
 ) ENGINE=InnoDB;
 
 CREATE TABLE notifications (
@@ -215,4 +216,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (46);
+insert into schema_info (version) values (47);

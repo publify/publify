@@ -66,7 +66,8 @@ CREATE TABLE contents (
   "allow_pings" boolean,
   "allow_comments" boolean,
   "blog_id" integer NOT NULL,
-  "published_at" timestamp
+  "published_at" timestamp,
+  "state" text
 );
 
 CREATE TABLE notifications (
@@ -215,4 +216,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (46);
+insert into schema_info (version) values (47);
