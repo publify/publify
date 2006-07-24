@@ -52,7 +52,7 @@ class Article < Content
 
           if weblogupdatesping_urls.include?(url)
             ping.send_weblogupdatesping(serverurl, articleurl)
-          else pingback_or_trackback_urls.include?(url)
+          elsif pingback_or_trackback_urls.include?(url)
             ping.send_pingback_or_trackback(articleurl)
           end
         end
@@ -168,7 +168,7 @@ class Article < Content
     self.comments_count = self.comments_count
     self.trackbacks_count = self.trackbacks_count
   end
-  
+
   def set_published_at
     if self.published and self[:published_at].nil?
       self[:published_at] = self.created_at || Time.now
@@ -187,7 +187,7 @@ class Article < Content
     if blog && self.allow_pings.nil?
       self.allow_pings = blog.default_allow_pings
     end
-    
+
     true
   end
 
