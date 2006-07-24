@@ -2,7 +2,7 @@ require_dependency 'spam_protection'
 require 'sanitize'
 require 'timeout'
 
-class Comment < Content
+class Comment < Feedback
   include TypoGuid
 
   content_fields :body
@@ -73,12 +73,12 @@ class Comment < Content
     self.author    = author.nofollowify
     self.body_html = body_html.to_s.nofollowify
   end
-  
+
   def akismet_options
     {:user_ip => ip, :comment_type => 'comment', :comment_author => author, :comment_author_email => email,
       :comment_author_url => url, :comment_content => body}
   end
-  
+
   def spam_fields
     [:body, :url, :ip]
   end

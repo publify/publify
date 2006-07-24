@@ -1,6 +1,6 @@
 require_dependency 'spam_protection'
 
-class Trackback < Content
+class Trackback < Feedback
   include TypoGuid
   belongs_to :article, :counter_cache => true
 
@@ -54,7 +54,7 @@ class Trackback < Content
     {:user_ip => ip, :comment_type => 'trackback', :comment_author => blog_name, :comment_author_email => nil,
       :comment_author_url => url, :comment_content => excerpt}
   end
-  
+
   def spam_fields
     [:title, :excerpt, :ip, :url]
   end
