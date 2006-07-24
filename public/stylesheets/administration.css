@@ -81,9 +81,8 @@
 
  #tabs-container {
    height: 20px;
-   width: 100%;
+   width: auto;
    padding: 14px 0 0 100px;
-   height: 16px;
    margin-top: -40px;
    border-bottom: 1px solid #637987;
    background: #F8F7EF;
