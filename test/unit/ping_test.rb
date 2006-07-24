@@ -33,6 +33,20 @@ class PingTest < Test::Unit::TestCase
     assert_pingback_sent
   end
 
+  def test_ping_sent_on_save
+    Net::HTTP.next_response = self
+
+    art = Blog.default.articles.build \
+      :body => %{<link rel="pingback" href="http://anotherblog.org/xml-rpc" />},
+      :title => 'Test the pinging',
+      :published => true
+    assert art.save
+    sent_ping = XMLRPC::Client.pings.last
+    assert !art.just_published?
+    art.reload
+    assert !art.just_published?
+  end
+
   def assert_pingback_sent
     Net::HTTP.next_response = self
     ping = contents(:article1).pings.build("url" =>

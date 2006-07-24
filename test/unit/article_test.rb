@@ -15,10 +15,10 @@ class ArticleTest < Test::Unit::TestCase
       assert @articles.include?(i.is_a?(Symbol) ? contents(i) : i)
     end
   end
-  
+
   def test_blog
     a = Article.new
-    
+
     assert_equal(1, a.blog_id)
     assert_kind_of(Blog, a.blog)
   end
@@ -119,10 +119,10 @@ class ArticleTest < Test::Unit::TestCase
 
     assert_kind_of Article,b
     assert_equal 0, b.tags.size
-    
+
     c = Article.new(:title => 'Foo', :keywords => 'test "tag test" web2.0')
     c.keywords_to_tags
-    
+
     assert_equal 3, c.tags.size
     assert_equal ['test', 'tagtest', 'web2.0'].sort, c.tags.collect(&:name).sort
   end
@@ -247,5 +247,17 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal(1, Article.find_all_by_date(2004,02).size)
     assert_equal(2, Article.find_all_by_date(2004,03).size)
     assert_equal(1, Article.find_all_by_date(2004,03,01).size)
+  end
+
+  def test_withdrawal
+    art = Article.find(contents(:article1).id)
+    assert   art.published?
+    assert ! art.withdrawn?
+    art.withdraw!
+    assert ! art.published?
+    assert   art.withdrawn?
+    art.reload
+    assert ! art.published?
+    assert   art.withdrawn?
   end
 end

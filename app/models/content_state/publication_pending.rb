@@ -2,17 +2,10 @@ module ContentState
   class PublicationPending < Base
     include Reloadable
     include Singleton
-    class << self
-      def derivable_from(content)
-        !content.published && content.published_at ||
-          content.new_record? && content.published_at &&
-          content.published_at > Time.now
-      end
-    end
 
-    def serialize_on(content)
+    def enter_hook(content)
+      super
       content[:published] = false if content.new_record?
-      true
     end
 
     def change_published_state(content, boolean)

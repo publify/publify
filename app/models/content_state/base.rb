@@ -14,8 +14,15 @@ module ContentState
       self.class.to_s
     end
 
+    def exit_hook(content, target_state)
+      logger.debug("#{content} leaving state #{self.memento}")
+    end
+
+    def enter_hook(content)
+      logger.debug("#{content} entering state #{self.memento}")
+    end
+
     def before_save(content)
-      serialize_on(content)
       true
     end
 
@@ -35,6 +42,10 @@ module ContentState
       false
     end
 
+    def withdrawn?
+      false
+    end
+
     def after_save(content)
       true
     end
@@ -49,6 +60,10 @@ module ContentState
 
     def send_pings(content)
       true
+    end
+
+    def logger
+      @logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDERR)
     end
   end
 end

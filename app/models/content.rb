@@ -175,6 +175,15 @@ class Content < ActiveRecord::Base
     self[:blog] ||= blog_id.to_i.zero? ? Blog.default : Blog.find(blog_id)
   end
 
+  def state=(newstate)
+    if state
+      state.exit_hook(self, newstate)
+    end
+    @state = newstate
+    self[:state] = newstate.memento
+    newstate.enter_hook(self)
+  end
+
   def publish!
     self.published = true
     self.save!
@@ -207,6 +216,10 @@ class Content < ActiveRecord::Base
     state.just_published?
   end
 
+  def withdrawn?
+    state.withdrawn?
+  end
+
   def publication_pending?
     state.publication_pending?
   end
@@ -227,11 +240,11 @@ class Content < ActiveRecord::Base
   def send_notifications(controller = nil)
     state.send_notifications(self, controller || blog.controller)
   end
-  
+
   # is_spam? checks to see if this is spam.  This really belongs in a 'feedback' class
   # that is the parent of Comment and Trackback, but we aren't going to build one right
   # now.
-  # 
+  #
   # options are passed on to Akismet.  Recommended options (when available) are:
   #
   #  :permalink => the article's URL
@@ -256,10 +269,10 @@ class Content < ActiveRecord::Base
         spam ||= akismet.commentCheck(akismet_options.merge(options))
       end
     end
-    
+
     spam == true
   end
-  
+
   def set_spam(is_spam, options ={})
     unless blog.sp_akismet_key.blank?
       Timeout.timeout(5) do

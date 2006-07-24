@@ -3,23 +3,21 @@ module ContentState
     include Reloadable
     include Singleton
 
-    class << self
-      def derivable_from(content)
-        content.new_record? &&
-          content.published &&
-          content[:published_at].nil?
-      end
+    # We need to save the state as 'Published', but we need after_save
+    # to be handled by JustPublished. So, JustPublished tells Rails that
+    # it's *actually* Published and all shall be well.
+    def memento
+      'ContentState::Published'
     end
 
     def just_published?
       true
     end
 
-
-    def serialize_on(content)
+    def enter_hook(content)
+      super
       content[:published] = true
       content[:published_at] ||= Time.now
-      true
     end
 
     def set_published_at(content, new_time)
