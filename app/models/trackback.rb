@@ -1,18 +1,11 @@
 require_dependency 'spam_protection'
 
 class Trackback < Feedback
-  include TypoGuid
   belongs_to :article, :counter_cache => true
 
   content_fields :excerpt
 
-  validates_age_of :article_id
   validates_presence_of :title, :excerpt, :url
-  validate_on_create :article_is_pingable
-
-  def self.default_order
-    'created_at ASC'
-  end
 
   def initialize(*args, &block)
     super(*args, &block)
@@ -20,12 +13,8 @@ class Trackback < Feedback
     self.blog_name ||= ""
   end
 
-  def location(anchor=:ignored, only_path=true)
-    blog.url_for(article, "trackback-#{id}", only_path)
-  end
-
   protected
-  before_create :make_nofollow, :process_trackback, :create_guid
+  before_create :process_trackback
 
   def make_nofollow
     self.blog_name = blog_name.strip_html
@@ -40,14 +29,14 @@ class Trackback < Feedback
     end
   end
 
-  def article_is_pingable
-    return if article.nil?
-    if blog.global_pings_disable
-      errors.add(:article, "Pings are disabled")
-    end
-    unless article.allow_pings?
-      errors.add(:article, "Article is not pingable")
-    end
+  def article_denies_feedback?
+    return false if article.allow_pings?
+    errors.add(:article, 'Article is not pingable')
+  end
+
+  def blog_is_closed_to_feedback?
+    return false unless blog.global_pings_disable
+    errors.add(:article, "Pings are disabled")
   end
 
   def akismet_options

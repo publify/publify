@@ -3,21 +3,13 @@ require 'sanitize'
 require 'timeout'
 
 class Comment < Feedback
-  include TypoGuid
+  belongs_to :article, :counter_cache => true
 
   content_fields :body
 
-  belongs_to :article, :counter_cache => true
   belongs_to :user
 
   validates_presence_of :author, :body
-  validates_age_of :article_id
-  validate_on_create :check_article_is_open_to_comments
-
-
-  def self.default_order
-    'created_at ASC'
-  end
 
   def notify_user_via_email(controller, user)
     if user.notify_via_email?
@@ -37,17 +29,11 @@ class Comment < Feedback
     users
   end
 
-  def location(anchor=:ignored, only_path=true)
-    blog.url_for(article, "comment-#{id}", only_path)
-  end
-
   protected
 
-  def check_article_is_open_to_comments
-    return unless article
-    unless article.allow_comments?
-      errors.add(:article, "Article is not open to comments")
-    end
+  def article_denies_feedback?
+    return false if article.allow_comments?
+    errors.add(:article, "Article is not open to comments")
   end
 
   def body_html_postprocess(value, controller)
@@ -56,17 +42,6 @@ class Comment < Feedback
 
   def default_text_filter_config_key
     'comment_text_filter'
-  end
-
-  before_create :create_guid
-  before_save :correct_url, :make_nofollow
-
-  def correct_url
-    unless url.to_s.empty?
-      unless url =~ /^http\:\/\//
-        self.url = "http://#{url}"
-      end
-    end
   end
 
   def make_nofollow
