@@ -49,12 +49,7 @@ class Comment < Feedback
     self.body_html = body_html.to_s.nofollowify
   end
 
-  def akismet_options
-    {:user_ip => ip, :comment_type => 'comment', :comment_author => author, :comment_author_email => email,
-      :comment_author_url => url, :comment_content => body}
-  end
-
-  def spam_fields
-    [:body, :url, :ip]
+  def originator
+    author
   end
 end

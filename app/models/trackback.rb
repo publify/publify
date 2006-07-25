@@ -13,7 +13,6 @@ class Trackback < Feedback
     self.blog_name ||= ""
   end
 
-  protected
   before_create :process_trackback
 
   def make_nofollow
@@ -39,13 +38,16 @@ class Trackback < Feedback
     errors.add(:article, "Pings are disabled")
   end
 
-  def akismet_options
-    {:user_ip => ip, :comment_type => 'trackback', :comment_author => blog_name, :comment_author_email => nil,
-      :comment_author_url => url, :comment_content => excerpt}
+  def originator
+    blog_name
   end
 
-  def spam_fields
-    [:title, :excerpt, :ip, :url]
+  def body
+    excerpt
+  end
+
+  def body=(newval)
+    self.excerpt = newval
   end
 end
 

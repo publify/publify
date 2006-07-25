@@ -240,53 +240,6 @@ class Content < ActiveRecord::Base
   def send_notifications(controller = nil)
     state.send_notifications(self, controller || blog.controller)
   end
-
-  # is_spam? checks to see if this is spam.  This really belongs in a 'feedback' class
-  # that is the parent of Comment and Trackback, but we aren't going to build one right
-  # now.
-  #
-  # options are passed on to Akismet.  Recommended options (when available) are:
-  #
-  #  :permalink => the article's URL
-  #  :user_agent => the poster's UserAgent string
-  #  :referer => the poster's Referer string
-  #
-  def is_spam?(options={})
-    return false unless blog.sp_global
-
-    sp = SpamProtection.new(blog)
-    spam = false
-
-    # Check fields against the blacklist.
-    spam_fields.each do |field|
-      spam ||= sp.is_spam? self[field]
-    end
-
-    # Attempt to use Akismet.  Timeout after 5 seconds if we can't contact them.
-    unless blog.sp_akismet_key.blank?
-      Timeout.timeout(5) do
-        akismet = Akismet.new(blog.sp_akismet_key,blog.canonical_server_url)
-        spam ||= akismet.commentCheck(akismet_options.merge(options))
-      end
-    end
-
-    spam == true
-  end
-
-  def set_spam(is_spam, options ={})
-    unless blog.sp_akismet_key.blank?
-      Timeout.timeout(5) do
-        akismet = Akismet.new(blog.sp_akismet_key,blog.canonical_server_url)
-        if is_spam
-          STDERR.puts "** submitting spam for #{id}"
-          akismet.submitSpam(akismet_options.merge(options))
-        else
-          STDERR.puts "** submitting ham for #{id}"
-          akismet.submitHam(akismet_options.merge(options))
-        end
-      end
-    end
-  end
 end
 
 class Object; def to_text_filter; TextFilter.find_by_name(self.to_s); end; end
