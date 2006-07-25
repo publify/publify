@@ -63,7 +63,8 @@ module Sidebars
 
     class CheckBoxField < self
       def input_html(sidebar)
-        check_box_tag(input_name(sidebar), 1, !sidebar.config[key].blank?, options)
+        check_box_tag(input_name(sidebar), 1, sidebar.config[key]=="1", options)+
+        hidden_field_tag(input_name(sidebar),0)
       end
 
       def line_html(sidebar)
