@@ -28,14 +28,16 @@ class Trackback < Feedback
     end
   end
 
-  def article_denies_feedback?
-    return false if article.allow_pings?
+  def article_allows_feedback?
+    return true if article.allow_pings?
     errors.add(:article, 'Article is not pingable')
+    false
   end
 
-  def blog_is_closed_to_feedback?
-    return false unless blog.global_pings_disable
+  def blog_allows_feedback?
+    return true unless blog.global_pings_disable
     errors.add(:article, "Pings are disabled")
+    false
   end
 
   def originator

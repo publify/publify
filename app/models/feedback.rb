@@ -21,11 +21,11 @@ class Feedback < Content
   end
 
   def article_allows_this_feedback
-    return if !article || blog_is_closed_to_feedback? || article_denies_feedback?
+    article && blog_allows_feedback? && article_allows_feedback?
   end
 
-  def blog_is_closed_to_feedback?
-    false
+  def blog_allows_feedback?
+    true
   end
 
   def akismet_options

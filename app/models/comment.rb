@@ -31,9 +31,10 @@ class Comment < Feedback
 
   protected
 
-  def article_denies_feedback?
-    return false if article.allow_comments?
+  def article_allows_feedback?
+    return true if article.allow_comments?
     errors.add(:article, "Article is not open to comments")
+    false
   end
 
   def body_html_postprocess(value, controller)
