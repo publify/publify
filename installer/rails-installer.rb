@@ -319,7 +319,7 @@ class RailsInstaller
   # Create required directories, like tmp
   def create_directories
     mkdir_p(File.join(install_directory,'tmp','cache'))
-    chmod(755, File.join(install_directory,'tmp','cache'))
+    chmod(0755, File.join(install_directory,'tmp','cache'))
     mkdir_p(File.join(install_directory,'tmp','session'))
     mkdir_p(File.join(install_directory,'tmp','sockets'))
     mkdir_p(File.join(install_directory,'log'))
