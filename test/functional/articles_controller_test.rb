@@ -354,6 +354,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :read, :id => contents(:article1).id
     assert_response :success
     assert_template "read"
+    
+    assert_equal contents(:article1).comments.to_a.select{|c| c.published?}, contents(:article1).published_comments
 
     assert_tag :tag => "ol",
       :attributes => { :id => "commentList"},

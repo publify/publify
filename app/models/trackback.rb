@@ -1,7 +1,7 @@
 require_dependency 'spam_protection'
 
 class Trackback < Feedback
-  belongs_to :article, :counter_cache => true
+  belongs_to :article
 
   content_fields :excerpt
 

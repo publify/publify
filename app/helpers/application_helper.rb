@@ -40,12 +40,12 @@ module ApplicationHelper
   end
 
   def comments_link(article)
-    article_link(pluralize(article.comments.size, "comment"),
+    article_link(pluralize(article.published_comments.size, "comment"),
                  article, 'comments')
   end
 
   def trackbacks_link(article)
-    article_link(pluralize(article.trackbacks.size, "trackback"),
+    article_link(pluralize(article.published_trackbacks.size, "trackback"),
                  article, 'trackbacks')
   end
 

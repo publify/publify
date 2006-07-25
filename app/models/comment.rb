@@ -3,7 +3,7 @@ require 'sanitize'
 require 'timeout'
 
 class Comment < Feedback
-  belongs_to :article, :counter_cache => true
+  belongs_to :article
 
   content_fields :body
 

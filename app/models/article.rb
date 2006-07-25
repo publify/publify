@@ -157,6 +157,14 @@ class Article < Content
       return true
     end
   end
+  
+  def published_comments
+    comments.select {|c| c.published?}
+  end
+
+  def published_trackbacks
+    trackbacks.select {|c| c.published?}
+  end
 
   protected
 

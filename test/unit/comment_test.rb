@@ -117,4 +117,20 @@ class CommentTest < Test::Unit::TestCase
     assert c.reload
     assert ! c.published?
   end
+  
+  def test_published
+    a = Article.new(:title => 'foo', :blog_id => 1)
+    assert a.save
+    
+    assert_equal 0, a.published_comments.size
+    c = Comment.new(:body => 'foo', :author => 'bob', :article_id => a.id, :published => true, :published_at => Time.now)
+    assert c.save
+    assert c.published?
+    
+    assert_equal 1, a.published_comments.size
+    c.withdraw!
+
+    a = Article.new(:title => 'foo', :blog_id => 1)
+    assert_equal 0, a.published_comments.size
+  end
 end
