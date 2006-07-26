@@ -4,6 +4,7 @@ require 'rubygems'
 require 'yaml'
 require 'digest/sha1'
 
+require 'installer/rails-installer/databases'
 require 'installer/rails-installer/web-servers'
 require 'installer/rails-installer/commands'
 
@@ -37,7 +38,7 @@ class RailsInstaller
     if install_directory
       @install_directory = File.expand_path(install_directory)
     end
-    
+        
     @config = read_yml(config_file) rescue nil
     @config ||= Hash.new
   end
@@ -122,20 +123,10 @@ class RailsInstaller
   
 #  private
 
-  # The name of the sqlite database file
-  def db_file
-    File.join(install_directory,'db','database.sqlite')
-  end
-    
   # Backup the database
   def backup_database
-    return unless File.exists? db_file
-
-    return unless config['database'] == 'sqlite'
-    new_db_file = db_file+"-#{Time.now.strftime('%Y%m%d-%H%M')}.sql"
-    
-    message "Backing up existing SQLite database into #{new_db_file}"
-    system("sqlite3 #{db_file} .dump > #{new_db_file}")
+    db_class = RailsInstaller::Database.dbs[config['database']]
+    db_class.backup(self)
   end
 
   # Copy files from the source directory to the target directory.
@@ -296,15 +287,8 @@ class RailsInstaller
   
   # Create the default database.yml
   def create_default_database_yml
-    database_yml = File.join(install_directory,'config','database.yml')
-    
-    if File.exist?(database_yml)
-      message "Preserving database.yml"
-      return
-    end
-        
-    message "Creating default database configuration file"
-    cp("#{database_yml}.#{config['database']}",database_yml)
+    db_class = RailsInstaller::Database.dbs[config['database']]
+    db_class.database_yml(self)
   end
   
   def fix_permissions
@@ -330,12 +314,10 @@ class RailsInstaller
   
   # Create the initial SQLite database
   def create_initial_database
-    return if File.exists? db_file
-    return unless config['database'] == 'sqlite'
-    
-    message "Creating initial #{@@app_name.capitalize} SQLite database"
-    schema_file = File.join(install_directory,'db','schema.sqlite.sql')
-    system("sqlite3 #{db_file} < #{schema_file}")
+    db_class = RailsInstaller::Database.dbs[config['database']]
+    in_directory(install_directory) do
+      db_class.create(self)
+    end
   end
   
   # Get the current schema version
