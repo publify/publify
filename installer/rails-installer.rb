@@ -124,9 +124,7 @@ class RailsInstaller
   # Backup the database
   def backup_database
     db_class = RailsInstaller::Database.dbs[config['database']]
-    in_directory install_directory do
-      db_class.backup(self)
-    end
+    db_class.backup(self)
   end
   
   def restore_database(filename)

@@ -94,6 +94,8 @@ class RailsInstaller
 
       installer.message "Creating initial database"
       
+      create_database(installer)
+      
       schema_file = File.join(installer.install_directory,'db',"schema.#{installer.config['database']}.sql")
       schema = File.read(schema_file)
       
@@ -103,6 +105,10 @@ class RailsInstaller
       schema.split(/;\n/).each do |command|
         ActiveRecord::Base.connection.execute(command)
       end
+    end
+    
+    def self.create_database(installer)
+      # nothing
     end
 
     def self.inherited(sub)
@@ -140,7 +146,35 @@ class RailsInstaller
           <<: *login
         }        
       end
+    end
+    
+    class Postgresql < RailsInstaller::Database
+      def self.yml(installer)
+        %Q{
+        login: &login
+          adapter: postgresql
+          host: #{installer.config['db_host'] || 'localhost'}
+          username: #{installer.config['db_user'] || ENV['USER'] || 'typo' }
+          password: #{installer.config['db_password']}
+          database: #{installer.config['db_name'] || 'typo'}
+
+        development:
+          <<: *login
+
+        production:
+          <<: *login
+
+        test:
+          database: #{installer.config['db_name'] || 'typo'}-test
+          <<: *login
+        }        
+      end
       
+      def self.create_database(installer)
+        installer.message "Creating PostgreSQL database"
+        system("createdb -U #{installer.config['db_user'] || ENV['USER'] || 'typo'} #{installer.config['db_name'] || 'typo'}")
+        system("createdb -U #{installer.config['db_user'] || ENV['USER'] || 'typo'} #{installer.config['db_name'] || 'typo'}-test")
+      end
     end
   end
 end
