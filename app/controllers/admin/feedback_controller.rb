@@ -1,6 +1,6 @@
 class Admin::FeedbackController < Admin::BaseController
   def index
-    conditions = ['true', {}]
+    conditions = ['1=1', {}]
 
     if params[:search]
       conditions.first << ' and (url like :pattern or author like :pattern or title like :pattern or ip like :pattern or email like :pattern)'
