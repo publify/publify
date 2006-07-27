@@ -18,6 +18,6 @@ class Plugins::Sidebars::RecentCommentsController < Sidebars::ComponentPlugin
   # setting :flag,       true, :input_type => :checkbox
 
   def content
-    @comments = Comment.find(:all, :limit => count, :order => 'created_at DESC' )
+    @comments = Comment.find(:all, :limit => count, :conditions => ['published = ?', true], :order => 'created_at DESC')
   end
 end
