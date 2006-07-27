@@ -126,7 +126,8 @@ class CommentTest < Test::Unit::TestCase
     c = Comment.new(:body => 'foo', :author => 'bob', :article_id => a.id, :published => true, :published_at => Time.now)
     assert c.save
     assert c.published?
-    
+    a.reload
+
     assert_equal 1, a.published_comments.size
     c.withdraw!
 

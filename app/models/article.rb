@@ -172,11 +172,6 @@ class Article < Content
   before_save :set_published_at
   after_save :keywords_to_tags
 
-  def correct_counts
-    self.comments_count = self.comments_count
-    self.trackbacks_count = self.trackbacks_count
-  end
-
   def set_published_at
     if self.published and self[:published_at].nil?
       self[:published_at] = self.created_at || Time.now
@@ -187,7 +182,6 @@ class Article < Content
     if self.attributes.include?("permalink") and self.permalink.blank?
       self.permalink = self.stripped_title
     end
-    correct_counts
     if blog && self.allow_comments.nil?
       self.allow_comments = blog.default_allow_comments
     end
