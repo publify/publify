@@ -113,6 +113,23 @@ class RailsInstaller
         installer.stop
       end
     end
+    
+    class Backup < RailsInstaller::Command
+      help "Back up the database"
+      
+      def self.command(installer, *args)
+        installer.backup_database
+      end
+    end
+    
+    class Restore < RailsInstaller::Command
+      help "Restore a database backup"
+      flag_help 'BACKUP_FILENAME'
+      
+      def self.command(installer, *args)
+        installer.restore_database(args.first)
+      end
+    end
   end
 end
   

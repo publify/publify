@@ -121,12 +121,19 @@ class RailsInstaller
     server_class.stop(self)
   end
   
-#  private
-
   # Backup the database
   def backup_database
     db_class = RailsInstaller::Database.dbs[config['database']]
-    db_class.backup(self)
+    in_directory install_directory do
+      db_class.backup(self)
+    end
+  end
+  
+  def restore_database(filename)
+    db_class = RailsInstaller::Database.dbs[config['database']]
+    in_directory install_directory do
+      db_class.restore(self, filename)
+    end
   end
 
   # Copy files from the source directory to the target directory.
