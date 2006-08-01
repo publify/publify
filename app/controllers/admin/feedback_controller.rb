@@ -1,4 +1,8 @@
+
+
 class Admin::FeedbackController < Admin::BaseController
+  model :comment, :trackback
+
   def index
     conditions = ['1=1', {}]
 
@@ -44,22 +48,23 @@ class Admin::FeedbackController < Admin::BaseController
         count += Feedback.delete(id) ## XXX Should this be #destroy?
       end
       flash[:notice] = "Deleted #{count} item(s)"
-    when 'Publish Checked Items'
+    when 'Mark Checked Items as Ham'
       ids.each do |id|
         feedback = Feedback.find(id)
-        feedback.published = true
-        feedback.set_spam(false)
-        feedback.save
+        feedback.mark_as_ham!
       end
-      flash[:notice]= "Published #{ids.size} item(s)"
-    when 'Unpublish Checked Items'
+      flash[:notice]= "Marked #{ids.size} item(s) as Ham"
+    when 'Mark Checked Items as Spam'
       ids.each do |id|
         feedback = Feedback.find(id)
-        feedback.withdraw!
-        feedback.set_spam(true)
-        feedback.save
+        feedback.mark_as_spam!
       end
-      flash[:notice]= "Unpublished #{ids.size} item(s)"
+      flash[:notice]= "Marked #{ids.size} item(s) as Spam"
+    when 'Confirm Classification of Checked Items'
+      ids.each do |id|
+        Feedback.find(id).confirm_classification!
+      end
+      flash[:notice] = "Confirmed classification of #{ids.size} item(s)"
     else
       flash[:notice] = "Not implemented"
     end

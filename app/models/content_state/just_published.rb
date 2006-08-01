@@ -14,6 +14,10 @@ module ContentState
       true
     end
 
+    def published?(content)
+      true
+    end
+
     def enter_hook(content)
       super
       content[:published] = true
@@ -40,6 +44,11 @@ module ContentState
 
     def send_pings(content)
       content.really_send_pings
+    end
+
+    def withdraw(content)
+      content[:published_at] = nil
+      content.state = Factory.new(:draft)
     end
   end
 end

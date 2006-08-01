@@ -27,12 +27,12 @@ class ArticlesController < ContentController
     @articles = Article.find( :all,
       :offset => @pages.current.offset,
       :limit => @pages.items_per_page,
-      :order => "contents.published_at DESC", 
+      :order => "contents.published_at DESC",
       :include => [:categories, :tags, :user, :blog],
       :conditions =>
          ['published = ? AND contents.published_at < ? AND blog_id = ?',
           true, Time.now, this_blog.id]
-    )  
+    )
   end
 
   def search
@@ -94,23 +94,14 @@ class ArticlesController < ContentController
 
     if request.post?
       begin
-        params[:comment].merge!({:ip => request.remote_ip,
-                                :published => true })
         @article = this_blog.published_articles.find(params[:id])
-        @comment = @article.comments.build(params[:comment])
-        @comment.user = session[:user]
-        
-        spam_options = {
-          :user_agent => request.env['HTTP_USER_AGENT'], 
-          :referrer => request.env['HTTP_REFERER'], 
-          :permalink => this_blog.article_url(@article, false)}
-          
-        if @comment.is_spam? spam_options
-          STDERR.puts "Moderating comment as spam!"
-          @comment.withdraw
-        end
-        
-        @comment.save!
+        params[:comment].merge!({:ip => request.remote_ip,
+                                :published => true,
+                                :user => session[:user],
+                                :user_agent => request.env['HTTP_USER_AGENT'],
+                                :referrer => request.env['HTTP_REFERER'],
+                                :permalink => this_blog.article_url(@article, false)})
+        @comment = @article.comments.create!(params[:comment])
         add_to_cookies(:author, @comment.author)
         add_to_cookies(:url, @comment.url)
 
@@ -165,7 +156,7 @@ class ArticlesController < ContentController
       render :nothing => true, :status => 404
     end
   end
-  
+
   def markup_help
     render :text => TextFilter.find(params[:id]).commenthelp
   end

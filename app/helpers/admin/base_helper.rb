@@ -1,5 +1,9 @@
 module Admin::BaseHelper
 
+  def state_class(item)
+    item.state.memento.underscore.sub(/.*\//, '')
+  end
+
   def render_flash
     output = []
 
@@ -14,10 +18,10 @@ module Admin::BaseHelper
      output = []
 
       for key,value in @tasks
-   	  output << "<a href=\"#{value}\">#{key}</a>"
-   	end if @tasks
+      output << "<a href=\"#{value}\">#{key}</a>"
+    end if @tasks
 
-   	output.join("<br/>\n")
+    output.join("<br/>\n")
   end
 
   def current_user_notice

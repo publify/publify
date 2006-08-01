@@ -32,5 +32,10 @@ module ContentState
     def post_trigger(content)
       Trigger.post_action(content.published_at, content, 'publish!')
     end
+
+    def withdraw(content)
+      content[:published_at] = nil
+      content.state = Draft.instance
+    end
   end
 end

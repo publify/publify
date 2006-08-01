@@ -2,9 +2,9 @@
 # This isn't enabled yet, but it will be soon...
 class BlogRequest
   include Reloadable
-  
+
   attr_accessor :protocol, :host_with_port, :path, :symbolized_path_parameters, :relative_url_root
-  
+
   def initialize(root)
     @protocol = @host_with_port = @path = ''
     @symbolized_path_parameters = {}
@@ -86,13 +86,6 @@ class Blog < ActiveRecord::Base
     article_id = settings[:id]
     settings.delete(:id)
     trackback = published_articles.find(article_id).trackbacks.create!(settings)
-
-    if trackback.is_spam?
-      STDERR.puts "Moderating trackback as spam!"
-      trackback.withdraw!
-    end
-    
-    trackback
   end
 
 
@@ -161,7 +154,7 @@ class Blog < ActiveRecord::Base
   end
 
   def article_url(article, only_path = true, anchor = nil)
-		url_for(:year => article.published_at.year,
+    url_for(:year => article.published_at.year,
             :month => sprintf("%.2d", article.published_at.month),
             :day => sprintf("%.2d", article.published_at.day),
             :title => article.permalink, :anchor => anchor,

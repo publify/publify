@@ -27,49 +27,51 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_reject_spam_rbl
-    c = Comment.new
-    c.author = "Spammer"
-    c.body = %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}
-    c.url = "http://buy-computer.us"
-    c.ip = "212.42.230.206"
-
-    assert_equal true, c.is_spam?
+    cmt = Comment.new do |c|
+      c.author = "Spammer"
+      c.body = %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}
+      c.url = "http://buy-computer.us"
+      c.ip = "212.42.230.206"
+    end
+    assert cmt.spam?
   end
 
   def test_not_spam_but_rbl_lookup_succeeds
-    c        = Comment.new
-    c.author = "Not a Spammer"
-    c.body   = "Useful commentary!"
-    c.url    = "http://www.bofh.org.uk"
-    c.ip     = "10.10.10.10"
-
-    assert_equal false, c.is_spam?
+    cmt      = Comment.new do |c|
+      c.author = "Not a Spammer"
+      c.body   = "Useful commentary!"
+      c.url    = "http://www.bofh.org.uk"
+      c.ip     = "10.10.10.10"
+    end
+    assert !cmt.spam?
   end
 
   def test_reject_spam_pattern
-    c = Comment.new
-    c.author = "Another Spammer"
-    c.body = "Texas hold-em poker crap"
-    c.url = "http://texas.hold-em.us"
-
-    assert_equal true, c.is_spam?
+    cmt = Comment.new do |c|
+      c.author = "Another Spammer"
+      c.body = "Texas hold-em poker crap"
+      c.url = "http://texas.hold-em.us"
+    end
+    assert cmt.spam?
   end
 
   def test_reject_spam_uri_limit
-    c = Comment.new
-    c.author = "Yet Another Spammer"
-    c.body = %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }
-    c.url = "http://www.uri-limit.com"
-    c.ip = "123.123.123.123"
+    c = Comment.new do |c|
+      c.author = "Yet Another Spammer"
+      c.body = %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }
+      c.url = "http://www.uri-limit.com"
+      c.ip = "123.123.123.123"
+    end
 
-    assert_equal true, c.is_spam?
+    assert c.spam?
   end
 
   def test_reject_article_age
-    c = Comment.new
-    c.author = "Old Spammer"
-    c.body = "Old trackback body"
-    c.article = contents(:inactive_article)
+    c = Comment.new do |c|
+      c.author = "Old Spammer"
+      c.body = "Old trackback body"
+      c.article = contents(:inactive_article)
+    end
 
     assert ! c.save
     assert c.errors.invalid?('article_id')
@@ -93,10 +95,11 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_xss_rejection
-    c = Comment.new
-    c.body = "Test foo <script>do_evil();</script>"
-    c.author = 'Bob'
-    c.article_id = 1
+    c = Comment.new do |c|
+      c.body = "Test foo <script>do_evil();</script>"
+      c.author = 'Bob'
+      c.article_id = 1
+    end
 
     # Test each filter to make sure that we don't allow scripts through.
     # Yes, this is ugly.
@@ -114,16 +117,18 @@ class CommentTest < Test::Unit::TestCase
     c = Comment.find(contents(:comment2).id)
     assert c.withdraw!
     assert ! c.published?
-    assert c.reload
+    assert c.spam?
+    c.reload
     assert ! c.published?
+    assert c.spam?
   end
-  
+
   def test_published
     a = Article.new(:title => 'foo', :blog_id => 1)
     assert a.save
-    
+
     assert_equal 0, a.published_comments.size
-    c = Comment.new(:body => 'foo', :author => 'bob', :article_id => a.id, :published => true, :published_at => Time.now)
+    c = a.comments.build(:body => 'foo', :author => 'bob', :published => true, :published_at => Time.now)
     assert c.save
     assert c.published?
     a.reload

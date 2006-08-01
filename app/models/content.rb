@@ -18,15 +18,15 @@ class Content < ActiveRecord::Base
   has_many :triggers, :as => :pending_item, :dependent => :delete_all
 
   before_save :state_before_save
-  after_save :post_trigger
+  after_save :post_trigger, :state_after_save
 
   serialize :whiteboard
 
   @@content_fields = Hash.new
   @@html_map       = Hash.new
 
-  def initialize(*args)
-    super(*args)
+  def initialize(*args, &block)
+    super(*args, &block)
     set_default_blog
   end
 
@@ -112,7 +112,11 @@ class Content < ActiveRecord::Base
   end
 
   def state_before_save
-    self.state.before_save(self)
+    state.before_save(self)
+  end
+
+  def state_after_save
+    state.after_save(self)
   end
 
   def html_map(field=nil); self.class.html_map(field); end
@@ -182,6 +186,7 @@ class Content < ActiveRecord::Base
     @state = newstate
     self[:state] = newstate.memento
     newstate.enter_hook(self)
+    @state
   end
 
   def publish!
@@ -190,8 +195,7 @@ class Content < ActiveRecord::Base
   end
 
   def withdraw
-    self.published    = false
-    self.published_at = nil
+    state.withdraw(self)
   end
 
   def withdraw!
@@ -210,6 +214,10 @@ class Content < ActiveRecord::Base
 
   def published_at
     self[:published_at] || self[:created_at]
+  end
+
+  def published?
+    state.published?(self)
   end
 
   def just_published?

@@ -161,7 +161,7 @@ class Article < Content
       return true
     end
   end
-  
+
   def published_comments
     comments.select {|c| c.published?}
   end

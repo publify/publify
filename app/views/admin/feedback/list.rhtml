@@ -2,7 +2,7 @@
 
 <% content_for('tasks') do %>
   <%= task_showmod 'Show only unpublished feedback' %>
-<% end %> 
+<% end %>
 
 <div clas="search">
   <form>
@@ -10,24 +10,25 @@
   </form>
 </div>
 
-<div class="list">	
+<div class="list">
   <%= form_tag({:action => 'bulkops'}, :method => :post) %>
   <br/>
   <%= submit_tag "Delete Checked Items" %> &nbsp;
-  <%= submit_tag "Publish Checked Items" %>
-  <%= submit_tag "Unpublish Checked Items" %>
+  <%= submit_tag "Mark Checked Items as Ham" %>
+  <%= submit_tag "Mark Checked Items as Spam" %>
+  <%= submit_tag "Confirm Classification of Checked Items" %>
 
   <%= hidden_field_tag "search", params[:search]%>
   <%= hidden_field_tag "page", params[:page]%>
 
   <table>
   <tr>
-	<th><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-	<th>Pub</th>
-	<th>Type</th>
-	<th>Article</th>
+        <th><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+        <th>State</th>
+        <th>Type</th>
+        <th>Article</th>
     <th>Author</th>
-	<th>Body</th>
+        <th>Body</th>
     <th>IP</th>
     <th>Posted date</th>
     <th>Delete</th>

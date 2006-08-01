@@ -96,7 +96,7 @@ spam_comment:
   updated_at: 2005-01-01 02:00:00
   published_at: 2005-01-01 02:00:00
   guid: 12313123123123123
-  state: ContentState::Published
+  state: ContentState::Ham
 
 comment2:
   type: Comment
@@ -113,14 +113,14 @@ comment2:
   updated_at: 2005-01-01 02:00:01
   published_at: 2005-01-01 02:00:01
   guid: 453456456456456
-  state: ContentState::Published
+  state: ContentState::Ham
 
 comment3:
   type: Comment
   blog_id: 1
   id: 12
   published: false
-  state: ContentState::Draft
+  state: ContentState::PresumedSpam
   article_id: 1
   author: Foo Bar
   body: Zzzzzz
@@ -135,7 +135,7 @@ trackback1:
   id: 7
   article_id: 2
   published: false
-  state: ContentState::Draft
+  state: ContentState::PresumedSpam
   blog_name: Trackback Blog
   title: Trackback Entry
   url: http://www.example.com
@@ -150,7 +150,7 @@ trackback2:
   blog_id: 1
   id: 8
   article_id: 1
-  state: ContentState::Published
+  state: ContentState::PresumedHam
   published: true
   blog_name: Trackback Blog
   title: Trackback Entry
@@ -167,7 +167,7 @@ trackback3:
   id: 13
   article_id: 1
   published: true
-  state: ContentState::Published
+  state: ContentState::PresumedHam
   blog_name: Trackback Blog 2
   title: Trackback Entry 2
   url: http://www.example.com
@@ -255,7 +255,7 @@ old_comment:
   updated_at: 2004-05-02 20:00:02
   published_at: 2004-05-02 20:00:02
   published: true
-  state: ContentState::Published
+  state: ContentState::Ham
 
 second_blog_article:
   type: Article

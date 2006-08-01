@@ -11,6 +11,10 @@ class Comment < Feedback
 
   validates_presence_of :author, :body
 
+  attr_accessor :user_agent
+  attr_accessor :referrer
+  attr_accessor :permalink
+
   def notify_user_via_email(controller, user)
     if user.notify_via_email?
       EmailNotify.send_comment(controller, self, user)
@@ -52,5 +56,11 @@ class Comment < Feedback
 
   def originator
     author
+  end
+
+  def additional_akismet_options
+    { :user_agent => user_agent,
+      :referrer   => referrer,
+      :permalink  => permalink }
   end
 end

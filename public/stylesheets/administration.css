@@ -627,3 +627,24 @@ div.user {
 .feedbackbody td {
   border-bottom: 1px dotted #ccc;
 }
+
+.presumed_ham td {
+  border-bottom: 1px dotted #ccc;
+}
+
+.presumed_spam td {
+  border-bottom: 1px dotted #ccc;
+}
+
+.ham td {
+  border-bottom: 1px dotted #ccc;
+}
+
+.spam td {
+  border-bottom: 1px dotted #ccc;
+}
+
+.spam .state {
+    font-weight: bold
+}
+
