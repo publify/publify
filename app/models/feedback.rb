@@ -37,7 +37,7 @@ class Feedback < Content
     {:user_ip => ip,
       :comment_type => self.class.to_s.downcase,
       :comment_author => originator,
-      :comment_author_email => email_notifier.rb,
+      :comment_author_email => email,
       :comment_author_url => url,
       :comment_content => body}.merge(additional_akismet_options)
   end
