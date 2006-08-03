@@ -37,6 +37,7 @@ class Blog < ActiveRecord::Base
   # Description
   setting :blog_name,                  :string, 'My Shiny Weblog!'
   setting :blog_subtitle,              :string, ''
+  setting :title_prefix,               :boolean, false
   setting :geourl_location,            :string, ''
   setting :canonical_server_url,       :string, ''
 

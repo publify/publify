@@ -107,6 +107,19 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_rendered_file "archives"
   end
+  
+  def test_blog_title
+    blogs(:default).title_prefix = true
+    get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
+    assert_response :success
+    assert_tag :tag => 'title', :content => /^test blog : Article 3!$/
+    
+    blogs(:default).title_prefix = false
+    get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
+    assert_response :success
+    assert_tag :tag => 'title', :content => /^Article 3!$/
+
+  end
 
   # Permalinks
   def test_permalink
@@ -116,7 +129,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:article)
     assert_equal contents(:article3), assigns(:article)
   end
-
+  
   # Posts for given day
   def test_find_by_date
     get :find_by_date, :year => 2004, :month => 06, :day => 01
