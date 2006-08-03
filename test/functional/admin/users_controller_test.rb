@@ -42,6 +42,9 @@ class Admin::UsersControllerTest < Test::Unit::TestCase
     get :show, :id => 1
     assert_rendered_file 'show'
     assert_valid_record 'user'
+
+    assert_template_has 'user'
+    assert_template_has 'articles'
   end
 
   def test_edit

@@ -1,4 +1,4 @@
-  <% @page_heading = 'Users' %>
+  <% @page_heading = "User: #{@user.name}" %>
 
   <% content_for('tasks') do %>
     <%= task_new 'Create new user' %>
@@ -15,4 +15,10 @@
     <label>Notify on new articles:</label> <span class="static"><%= @user.notify_on_new_articles? ? "yes" : "no" %></span><br/>
     <label>Notify on new comments:</label> <span class="static"><%= @user.notify_on_comments? ? "yes" : "no" %></span><br/>
     
+  </div>
+
+
+  <div class="list">
+    <h2>User's articles</h2>
+    <%= render :partial => 'admin/content/articles', :collection => @user.articles %>
   </div>
