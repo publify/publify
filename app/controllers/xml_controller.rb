@@ -65,7 +65,7 @@ class XmlController < ContentController
 
   protected
 
-  def fetch_items(association, order='created_at DESC', limit=nil)
+  def fetch_items(association, order='published_at DESC', limit=nil)
     if association.instance_of?(Symbol)
       association = this_blog.send(association)
     end
@@ -89,7 +89,7 @@ class XmlController < ContentController
 
   def prep_article
     article = this_blog.articles.find(params[:id])
-    fetch_items(article.comments, 'created_at DESC', 25)
+    fetch_items(article.comments, 'published_at DESC', 25)
     @items.unshift(article)
     @feed_title << ": #{article.title}"
     @link = article_url(article, false)
