@@ -37,8 +37,6 @@ class Admin::FeedbackController < Admin::BaseController
   end
 
   def bulkops
-    STDERR.puts "Bulkops: #{params.inspect}"
-
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
 
     case params[:commit]
@@ -48,6 +46,10 @@ class Admin::FeedbackController < Admin::BaseController
         count += Feedback.delete(id) ## XXX Should this be #destroy?
       end
       flash[:notice] = "Deleted #{count} item(s)"
+
+      # Sweep cache
+      PageCache.sweep_all
+      expire_fragment(/.*/)
     when 'Mark Checked Items as Ham'
       ids.each do |id|
         feedback = Feedback.find(id)
