@@ -33,6 +33,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("mongrel", ">= 0.3.13.3")
   s.add_dependency("mongrel_cluster", ">= 0.2.0")
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
+  s.add_dependency("rails-app-installer", ">= 0.1.0")
 end
 
 Rake::GemPackageTask.new(spec) do |p|
@@ -40,7 +41,6 @@ Rake::GemPackageTask.new(spec) do |p|
   p.need_tar = true
   p.need_zip = true
 end
-
 
 desc "Publish the zip/tgz"
 task :leetsoft_upload => [:package] do

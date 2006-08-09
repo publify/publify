@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'installer/rails-installer'
+require 'rails-installer'
 
 class TypoInstaller < RailsInstaller
   application_name 'typo'
@@ -10,7 +10,7 @@ class TypoInstaller < RailsInstaller
   def install_post_hook
     sweep_cache
   end
-  
+
   # Sweep the cache
   def sweep_cache
     Dir.chdir(install_directory)
