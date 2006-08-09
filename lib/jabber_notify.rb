@@ -3,6 +3,10 @@ require 'jabber4r/jabber4r'
 class JabberNotify
   @@jabber = nil
 
+  def self.logger
+    @@logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDOUT)
+  end
+
   def self.send_message(user, subject, body, html)
     return if user.jabber.blank?
 
@@ -22,11 +26,11 @@ class JabberNotify
   def self.session
     return @@jabber if @@jabber
 
-    address = this_blog.jabber_address
+    address = Blog.default.jabber_address
     unless address =~ /\//
       address = address + '/typo'
     end
 
-    @@jabber ||= Jabber::Session.bind(address, this_blog.jabber_password)
+    @@jabber ||= Jabber::Session.bind(address, Blog.default.jabber_password)
   end
 end
