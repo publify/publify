@@ -60,8 +60,6 @@ CREATE TABLE contents (
   "ip" varchar(40),
   "blog_name" varchar(255),
   "name" varchar(255),
-  "comments_count" integer,
-  "trackbacks_count" integer,
   "published" boolean DEFAULT 'f',
   "allow_pings" boolean,
   "allow_comments" boolean,
@@ -216,4 +214,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (47);
+insert into schema_info (version) values (49);

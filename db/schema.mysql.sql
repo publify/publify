@@ -60,8 +60,6 @@ CREATE TABLE contents (
   `ip` varchar(40),
   `blog_name` varchar(255),
   `name` varchar(255),
-  `comments_count` int(11),
-  `trackbacks_count` int(11),
   `published` tinyint(1) DEFAULT 0,
   `allow_pings` tinyint(1),
   `allow_comments` tinyint(1),
@@ -216,4 +214,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (47);
+insert into schema_info (version) values (49);

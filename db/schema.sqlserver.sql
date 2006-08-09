@@ -64,8 +64,6 @@ CREATE TABLE contents (
   [ip] varchar(40),
   [blog_name] varchar(255),
   [name] varchar(255),
-  [comments_count] int,
-  [trackbacks_count] int,
   [published] bit DEFAULT 0,
   [allow_pings] bit,
   [allow_comments] bit,
@@ -230,4 +228,4 @@ CREATE TABLE schema_info (
   [version] int
 );
 
-insert into schema_info (version) values (47);
+insert into schema_info (version) values (49);
