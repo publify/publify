@@ -53,8 +53,19 @@ class Admin::SidebarController < Admin::BaseController
       params[:configure] ||= []
       Sidebar.update_all('active_position = null')
       flash[:sidebars].each do |id|
-        Sidebar.find(id).update_attributes(:config => params[:configure][id.to_s],
-                                           :active_position => position)
+        sidebar = Sidebar.find(id)
+
+        # If it's a checkbox and unchecked, convert the 0 to false
+        # This is ugly.  Anyone have an improvement?
+        params[:configure][id.to_s].each do |k,v|
+          field = sidebar.sidebar_controller.fields.detect { |f| f.key == k }
+          if v == "0" && field.is_a?(Sidebars::Field::CheckBoxField)
+            params[:configure][id.to_s][k] = false
+          end
+        end
+          
+        sidebar.update_attributes(:config => params[:configure][id.to_s],
+                                  :active_position => position)
         position += 1
       end
       Sidebar.delete_all('active_position is null')
