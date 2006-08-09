@@ -250,4 +250,8 @@ class Content < ActiveRecord::Base
   end
 end
 
-class Object; def to_text_filter; TextFilter.find_by_name(self.to_s); end; end
+class Object
+  def to_text_filter
+    TextFilter.find_by_name(self.to_s) || TextFilter.find_by_name('none')
+  end
+end
