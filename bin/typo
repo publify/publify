@@ -5,7 +5,7 @@ require 'rails-installer'
 class TypoInstaller < RailsInstaller
   application_name 'typo'
   support_location 'the Typo mailing list'
-  rails_version '1.1.5'
+  rails_version '1.1.6'
   
   def install_post_hook
     sweep_cache

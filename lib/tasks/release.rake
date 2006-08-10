@@ -1,7 +1,7 @@
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "4.0.1"
+PKG_VERSION = "4.0.2"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
@@ -30,11 +30,11 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY 
   s.executables = ['typo']
   
-  s.add_dependency("rails", "= 1.1.5")
+  s.add_dependency("rails", "= 1.1.6")
   s.add_dependency("mongrel", ">= 0.3.13.3")
   s.add_dependency("mongrel_cluster", ">= 0.2.0")
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
-  s.add_dependency("rails-app-installer", ">= 0.1.1")
+  s.add_dependency("rails-app-installer", ">= 0.1.2")
 end
 
 Rake::GemPackageTask.new(spec) do |p|
