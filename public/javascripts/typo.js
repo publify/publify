@@ -45,8 +45,8 @@ function commentAdded(request) {
   Element.cleanWhitespace('commentList');
   new Effect.BlindDown($('commentList').lastChild);
   if ($('dummy_comment')) { Element.remove('dummy_comment'); }
-  $('commentform').elements[3].value = '';
-  $('commentform').elements[3].focus();
+  $('commentform').elements["comment_body"].value = '';
+  $('commentform').elements["comment_body"].focus();
 }
 
 function failure(request) {
