@@ -16,7 +16,7 @@ spec = Gem::Specification.new do |s|
   
   s.files = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
      [ /\.$/, /config\/database.yml$/, /config\/database.yml-/, 
-     /db\/database\.sqlite/,
+     /database\.sqlite/,
      /\.log$/, /^pkg/, /\.svn/, /^vendor\/rails/, 
      /^public\/(files|xml|articles|pages|index.html)/, 
      /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/, 
