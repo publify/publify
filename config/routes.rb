@@ -6,9 +6,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # admin/comments controller needs parent article id
   map.connect 'admin/comments/article/:article_id/:action/:id',
-    :controller => 'admin/comments'
+    :controller => 'admin/comments', :action => nil, :id => nil
   map.connect 'admin/trackbacks/article/:article_id/:action/:id',
-    :controller => 'admin/trackbacks'
+    :controller => 'admin/trackbacks', :action => nil, :id => nil
   map.connect 'admin/content/:action/:id', :controller => 'admin/content'
 
   # make rss feed urls pretty and let them end in .xml
@@ -83,17 +83,18 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'plugins/filters/:filter/:public_action',
     :controller => 'textfilter', :action => 'public_action'
 
-  map.connect '*from', :controller => 'redirect', :action => 'redirect'
-
-
-
   # Work around the Bad URI bug
   %w{ accounts articles backend files live sidebar textfilter xml }.each do |i|
-    map.connect "#{i}/:action/:id", :controller => i
+    map.connect "#{i}", :controller => "#{i}", :action => 'index'
+    map.connect "#{i}/:action", :controller => "#{i}"
+    map.connect "#{i}/:action/:id", :controller => i, :id => nil
   end
 
   %w{blacklist cache categories comments content feedback general pages
      resources sidebar textfilters themes trackbacks users}.each do |i|
-    map.connect "admin/#{i}/:action/:id", :controller => "admin/#{i}"
+    map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
+    map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end
+
+  map.connect '*from', :controller => 'redirect', :action => 'redirect'
 end
