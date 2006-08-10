@@ -18,9 +18,9 @@ module XmlHelper
   def blog_title
     this_blog.blog_name || "Unnamed blog"
   end
-  
+
   def tag_link(tag)
-    url_for :controller => "articles", :action => 'tag', :id => tag.name, :only_path => false
+    url_for :controller => "/articles", :action => 'tag', :id => tag.name, :only_path => false
   end
 
   def collection_lastmod(collection)
@@ -39,6 +39,6 @@ module XmlHelper
   end
 
   def category_link(category)
-    url_for :controller => "articles", :action => 'category', :id => category.permalink, :only_path => false
+    url_for :controller => "/articles", :action => 'category', :id => category.permalink, :only_path => false
   end
 end

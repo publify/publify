@@ -159,12 +159,13 @@ class Blog < ActiveRecord::Base
             :month => sprintf("%.2d", article.published_at.month),
             :day => sprintf("%.2d", article.published_at.day),
             :title => article.permalink, :anchor => anchor,
-            :only_path => only_path)
+            :only_path => only_path,
+            :controller => '/articles')
   end
 
   def server_url
     if controller
-      controller.send :url_for, :only_path => false, :controller => "/"
+      controller.send :url_for, :only_path => false, :controller => "/articles"
     else
       settings[:canonical_server_url]
     end

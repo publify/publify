@@ -149,7 +149,7 @@ class MetaWeblogService < TypoWebService
     resource = Resource.create(:filename => data['name'], :mime => data['type'], :created_at => Time.now)
     resource.write_to_disk(data['bits'])
 
-    MetaWeblogStructs::Url.new("url" => controller.url_for(:controller => "/files/#{resource.filename}"))
+    MetaWeblogStructs::Url.new("url" => controller.url_for(:controller => "files", :action => "#{resource.filename}"))
   end
 
   def article_dto_from(article)
@@ -188,7 +188,7 @@ class MetaWeblogService < TypoWebService
   end
 
   def server_url
-    controller.url_for(:only_path => false, :controller => "/")
+    controller.url_for(:only_path => false, :controller => "articles")
   end
 
   def pub_date(time)

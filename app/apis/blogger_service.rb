@@ -55,13 +55,13 @@ class BloggerService < TypoWebService
       :lastname => "",
       :nickname => username,
       :email => "",
-      :url => controller.url_for(:controller => "/")
+      :url => controller.url_for(:controller => "articles")
     )
   end
 
   def getUsersBlogs(appkey, username, password)
     [BloggerStructs::Blog.new(
-      :url      => controller.url_for(:controller => "/"),
+      :url      => controller.url_for(:controller => "articles"),
       :blogid   => 1,
       :blogName => this_blog.blog_name
     )]

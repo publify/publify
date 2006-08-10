@@ -9,7 +9,8 @@ module ArticlesHelper
           :confirm => "Are you sure you want to delete this #{type}?"
         }, :class => "admintools") <<
       link_to('edit', {
-        :controller => "admin/#{type.pluralize}/article/#{model.article.id}",
+        :controller => "admin/#{type.pluralize}",
+        :article_id => model.article.id,
         :action => "edit", :id => model
         }, :class => "admintools"),
       :id => "admin_#{type}_#{model.id}", :style => "display: none")
@@ -79,14 +80,14 @@ module ArticlesHelper
 
   def category_links(article)
     "Posted in " + article.categories.collect { |c| link_to h(c.name),
-    { :controller => "articles", :action => "category", :id => c.permalink },
+    { :controller => "/articles", :action => "category", :id => c.permalink },
       :rel => "tag"
     }.join(", ")
   end
 
   def tag_links(article)
     "Tags " + article.tags.collect { |tag| link_to tag.display_name,
-      { :controller => "articles", :action => "tag", :id => tag.name },
+      { :controller => "/articles", :action => "tag", :id => tag.name },
       :rel => "tag"
     }.sort.join(", ")
   end
@@ -144,7 +145,7 @@ module ArticlesHelper
   end
 
   def urlspec_for_grouping(grouping)
-    { :controller => "articles", :action => grouping.class.to_prefix, :id => grouping.permalink }
+    { :controller => "/articles", :action => grouping.class.to_prefix, :id => grouping.permalink }
   end
 
   def title_for_grouping(grouping)

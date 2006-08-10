@@ -6,9 +6,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # admin/comments controller needs parent article id
   map.connect 'admin/comments/article/:article_id/:action/:id',
-    :controller => 'admin/comments', :action => nil, :id => nil
+    :controller => 'admin/comments'
   map.connect 'admin/trackbacks/article/:article_id/:action/:id',
-    :controller => 'admin/trackbacks', :action => nil, :id => nil
+    :controller => 'admin/trackbacks'
   map.connect 'admin/content/:action/:id', :controller => 'admin/content'
 
   # make rss feed urls pretty and let them end in .xml
@@ -24,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.xml 'xml/:format/:type/:id/feed.xml', :controller => 'xml', :action => 'feed'
   map.xml 'xml/rss', :controller => 'xml', :action => 'feed', :type => 'feed', :format => 'rss'
   map.xml 'sitemap.xml', :controller => 'xml', :action => 'feed', :format => 'googlesitemap', :type => 'sitemap'
- 
+
   # allow neat perma urls
   map.connect 'articles',
     :controller => 'articles', :action => 'index'
@@ -77,17 +77,23 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'images/theme/:filename',
     :controller => 'theme', :action => 'images'
 
+  # For the tests
+  map.connect 'theme/static_view_test', :controller => 'theme', :action => 'static_view_test'
+
   map.connect 'plugins/filters/:filter/:public_action',
     :controller => 'textfilter', :action => 'public_action'
 
-  # Kill attempts to connect directly to the theme controller.
-  # Ideally we'd disable these by removing the default route (below),
-  # but that breaks too many things for Typo 2.5.
-  map.connect 'theme/*stuff',
-    :controller => 'theme', :action => 'error'
-
-  # Allow legacy urls to still work
-  map.connect ':controller/:action/:id'
-
   map.connect '*from', :controller => 'redirect', :action => 'redirect'
+
+
+
+  # Work around the Bad URI bug
+  %w{ accounts articles backend files live sidebar textfilter xml }.each do |i|
+    map.connect "#{i}/:action/:id", :controller => i
+  end
+
+  %w{blacklist cache categories comments content feedback general pages
+     resources sidebar textfilters themes trackbacks users}.each do |i|
+    map.connect "admin/#{i}/:action/:id", :controller => "admin/#{i}"
+  end
 end

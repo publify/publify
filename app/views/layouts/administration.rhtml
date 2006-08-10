@@ -18,10 +18,10 @@
           <div id="info">
             <%= link_to "settings", :controller=>"/admin/general", :action => 'index' %> |
             <%= current_user_notice rescue nil %> |
-            <%= link_to 'your blog &raquo;', :controller => "/" %>
+            <%= link_to 'your blog &raquo;', :controller => "/articles" %>
 
           </div>
-            <h1><%= link_to "Typo admin - #{this_blog.blog_name rescue nil}", :controller => "/admin/" %></h1>
+            <h1><%= link_to "Typo admin - #{this_blog.blog_name rescue nil}", :controller => "/admin/general" %></h1>
           </div>
         <!-- /HEADER -->
 

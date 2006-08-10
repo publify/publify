@@ -107,7 +107,7 @@ class XmlController < ContentController
     tag = Tag.find_by_name(params[:id])
     fetch_items(tag.articles)
     @feed_title << ": Tag #{tag.display_name}"
-    @link = url_for({:controller => "articles_controller.rb", :action => 'tag', :tag => tag.name},
+    @link = url_for({:controller => "articles", :action => 'tag', :tag => tag.name},
                     {:only_path => false})
   end
 
