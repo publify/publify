@@ -6,6 +6,13 @@ module ApplicationHelper
     url_for options.update(:only_path => false)
   end
 
+  def url_for(options = { })
+    if options[:controller] && options[:controller] =~ /^\/?$/
+      options[:controller] = '/articles'
+    end
+    super(options)
+  end
+
   def config_value(name)
     this_blog[name]
   end

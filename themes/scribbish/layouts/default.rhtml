@@ -9,7 +9,7 @@
 <body>
 <div id="container">
   <div id="header">
-    <h1><span><%= link_to this_blog.blog_name, { :controller => '/articles' } %></span></h1>
+    <h1><span><%= link_to this_blog.blog_name, { :controller => '/' } %></span></h1>
     <h2><%= this_blog.blog_subtitle %></h2>
   </div>
 
@@ -31,7 +31,7 @@
 
   <div id="footer">
     <hr />
-    <p><%= link_to this_blog.blog_name, { :controller => '/articles' } %></p>
+    <p><%= link_to this_blog.blog_name, { :controller => '/' } %></p>
     <ul>
       <li>powered by <%= link_to 'typo', 'http://typosphere.org' %> /
           styled with <%= link_to 'scribbish', 'http://quotedprintable.com/pages/scribbish' %></li>
