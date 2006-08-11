@@ -4,10 +4,10 @@
   <%= task_showmod 'Show only unpublished feedback' %>
 <% end %>
 
-<div clas="search">
-  <form>
-    <label for="search">Feedback Search:</label><input type="text" id="search" name="search" value="<%=h params[:search] %>" size="15" />
-  </form>
+<div class="search">
+  <%= form_tag({:action => 'index'}, :method => :get) %>
+    <label for="search">Feedback Search:</label><input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="15" />
+  <%= end_form_tag %>
 </div>
 
 <div class="list">

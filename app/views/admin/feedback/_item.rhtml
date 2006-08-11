@@ -5,7 +5,9 @@
   <td class="field"><%= link_to_article_edit item.article %></td>
   <td class="field">
     <%=h (item.author || '(unknown)').slice(0,40) %><br/>
-        <a href=<%=h item.url%>><%=h truncate(item.url.to_s)%></a><br/>
+    <% if item.url -%>
+    <%= link_to h(truncate(item.url.to_s)), item.url %><br/>
+    <% end -%>
         <%=h item.email.to_s.slice(0,40) %>
   </td>
   <td class="field"><%=h truncate(item.body,80)%></td>
