@@ -87,6 +87,10 @@ module ContentState
       false
     end
 
+    def status_confirmed?(content)
+      false
+    end
+
     def logger
       @logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDERR)
     end

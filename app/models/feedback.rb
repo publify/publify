@@ -54,6 +54,10 @@ class Feedback < Content
     state.is_spam?(self)
   end
 
+  def status_confirmed?
+    state.status_confirmed?(self)
+  end
+
   # is_spam? checks to see if this is spam.
   #
   # options are passed on to Akismet.  Recommended options (when available) are:

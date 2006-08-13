@@ -1,7 +1,9 @@
 <% @page_heading = "Comments and Trackbacks for #{ this_blog.settings['blog_name'] }" %>
 
 <% content_for('tasks') do %>
-  <%= task_showmod 'Show only unpublished feedback' %>
+  <%= task_showmod 'Limit to spam' %>
+  <%= task_showmod 'Limit to unconfirmed' %>
+  <%= task_showmod 'Limit to unconfirmed spam' %>
 <% end %>
 
 <div class="search">

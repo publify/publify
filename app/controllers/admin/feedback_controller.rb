@@ -4,7 +4,7 @@ class Admin::FeedbackController < Admin::BaseController
   model :comment, :trackback
 
   def index
-    conditions = ['1=1', {}]
+    conditions = ['blog_id = :blog_id', {:blog_id => Blog.default.id}]
 
     if params[:search]
       conditions.first << ' and (url like :pattern or author like :pattern or title like :pattern or ip like :pattern or email like :pattern)'
@@ -14,6 +14,11 @@ class Admin::FeedbackController < Admin::BaseController
     if params[:published] == 'f'
       conditions.first << ' and (published = :published)'
       conditions.last.merge!(:published => false)
+    end
+
+    if params[:confirmed] == 'f'
+      conditions.first << ' AND (status_confirmed = :status_confirmed)'
+      conditions.last.merge!(:status_confirmed => false)
     end
 
     @pages, @feedback = paginate(:feedback,

@@ -6,9 +6,14 @@ module ContentState
     def enter_hook(content)
       super
       content[:published] = false
+      content[:status_confirmed] = true
     end
 
     def is_spam?(content)
+      true
+    end
+
+    def status_confirmed?(content)
       true
     end
 

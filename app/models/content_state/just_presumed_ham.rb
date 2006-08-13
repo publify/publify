@@ -10,6 +10,7 @@ module ContentState
     def enter_hook(content)
       logger.debug("#{content} entering state Content::JustPresumedHam")
       content[:published] = true
+      content[:status_confirmed] = false
     end
     
     def exit_hook(content, target_state)

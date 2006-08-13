@@ -137,7 +137,8 @@ class ArticleTest < Test::Unit::TestCase
   def test_find_published
     @articles = this_blog.articles.find_published
     assert_results_are(:search_target, :article1, :article2,
-                       :article3, :inactive_article,:xmltest)
+                       :article3, :inactive_article,:xmltest,
+                       :spammed_article)
 
     @articles = this_blog.articles.find_published(:all,
                                                   :conditions => "title = 'Article 1!'")

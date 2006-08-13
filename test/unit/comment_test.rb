@@ -34,6 +34,7 @@ class CommentTest < Test::Unit::TestCase
       c.ip = "212.42.230.206"
     end
     assert cmt.spam?
+    assert !cmt.status_confirmed?
   end
 
   def test_not_spam_but_rbl_lookup_succeeds
@@ -44,6 +45,7 @@ class CommentTest < Test::Unit::TestCase
       c.ip     = "10.10.10.10"
     end
     assert !cmt.spam?
+    assert !cmt.status_confirmed?
   end
 
   def test_reject_spam_pattern
@@ -53,6 +55,7 @@ class CommentTest < Test::Unit::TestCase
       c.url = "http://texas.hold-em.us"
     end
     assert cmt.spam?
+    assert !cmt.status_confirmed?
   end
 
   def test_reject_spam_uri_limit
@@ -64,6 +67,7 @@ class CommentTest < Test::Unit::TestCase
     end
 
     assert c.spam?
+    assert !c.status_confirmed?
   end
 
   def test_reject_article_age
@@ -118,9 +122,11 @@ class CommentTest < Test::Unit::TestCase
     assert c.withdraw!
     assert ! c.published?
     assert c.spam?
+    assert c.status_confirmed?
     c.reload
     assert ! c.published?
     assert c.spam?
+    assert c.status_confirmed?
   end
 
   def test_published
@@ -138,5 +144,20 @@ class CommentTest < Test::Unit::TestCase
 
     a = Article.new(:title => 'foo', :blog_id => 1)
     assert_equal 0, a.published_comments.size
+  end
+
+  def test_status_confirmed
+    a = contents(:spammed_article)
+    assert !a.comments[0].status_confirmed?
+    assert  a.comments[1].status_confirmed?
+
+    a.reload
+    assert_equal 1,
+      a.comments.find_all_by_status_confirmed(true).size
+    assert_equal 1,
+      a.comments.find_all_by_status_confirmed(true).size
+    a.comments[0].withdraw!
+    assert_equal 2,
+      a.comments.find_all_by_status_confirmed(true).size
   end
 end

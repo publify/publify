@@ -87,7 +87,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body, :todo
 
-    assert_rss20(6)
+    assert_rss20(7)
   end
 
   def test_feed_rss20_comments
@@ -145,7 +145,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(6)
+    assert_atom10(7)
   end
 
   def test_feed_atom10_comments
@@ -338,11 +338,11 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body, :todo
   end
-  
+
   # TODO(laird): make this more robust
   def test_sitemap
     get :feed, :format => 'googlesitemap', :type => 'sitemap'
-    
+
     assert_response :success
     assert_xml @response.body
   end

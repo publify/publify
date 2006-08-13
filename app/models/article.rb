@@ -60,7 +60,8 @@ class Article < Content
             ping.send_pingback_or_trackback(articleurl)
           end
         end
-      rescue
+      rescue Exception => e
+        logger.error(e)
         # in case the remote server doesn't respond or gives an error,
         # we should throw an xmlrpc error here.
       end

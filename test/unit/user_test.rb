@@ -10,9 +10,9 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_articles_link
-    assert_equal 7, User.find(1).articles.size
-    assert_equal 6, User.find(1).articles.find_published.size
-    assert_equal 6, User.find(1).articles.published.size
+    assert_equal 8, User.find(1).articles.size
+    assert_equal 7, User.find(1).articles.find_published.size
+    assert_equal 7, User.find(1).articles.published.size
 
     articles = User.find(1).articles.published
     assert_equal articles.sort_by { |a| a.created_at }.reverse, articles

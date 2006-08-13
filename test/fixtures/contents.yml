@@ -121,6 +121,7 @@ comment3:
   id: 12
   published: false
   state: ContentState::PresumedSpam
+  status_confirmed: false
   article_id: 1
   author: Foo Bar
   body: Zzzzzz
@@ -136,6 +137,7 @@ trackback1:
   article_id: 2
   published: false
   state: ContentState::PresumedSpam
+  status_confirmed: false
   blog_name: Trackback Blog
   title: Trackback Entry
   url: http://www.example.com
@@ -318,3 +320,54 @@ xmltest:
   guid: urn:uuid:0d676c66-4135-4a8b-9d65-b6a3248d3032
   published: true
   state: ContentState::Published
+
+spammed_article:
+  type: Article
+  blog_id: 1
+  id: 19
+  title: C'mon Spam Me!
+  body: A bunch of innocuous content
+  body_html: <p>A bunch of innocuous content</p>
+  allow_comments: true
+  allow_pings: true
+  permalink: cmon-spam-me
+  created_at: 2001-01-01
+  updated_at: 2001-01-01
+  published_at: 2001-01-01
+  user_id: 1
+  author: Tobi
+  guid: urn:uuid:0d676c66-4135-4a8b-9d65-b6a3248d3023
+  published: true
+  state: ContentState::Published
+
+probably_spam_comment:
+  type: Comment
+  blog_id: 1
+  id: 20
+  published: false
+  article_id: 19
+  author: Bob Foo
+  url: http://fakeurl.com
+  body: Test <a href="http://fakeurl.co.uk">body</a>
+  created_at: 2005-01-01 02:00:00
+  updated_at: 2005-01-01 02:00:00
+  published_at: 2005-01-01 02:00:00
+  guid: 12313123123123124
+  state: ContentState::PresumedSpam
+  status_confirmed: false
+
+definitely_spam_comment:
+  type: Comment
+  blog_id: 1
+  id: 21
+  published: false
+  article_id: 19
+  author: Bob Foo
+  url: http://fakeurl.com
+  body: Test <a href="http://fakeurl.co.uk">body</a>
+  created_at: 2005-01-01 02:00:01
+  updated_at: 2005-01-01 02:00:01
+  published_at: 2005-01-01 02:00:01
+  guid: 12313123123123125
+  state: ContentState::Spam
+  status_confirmed: true

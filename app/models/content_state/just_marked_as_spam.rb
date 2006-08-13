@@ -3,6 +3,7 @@ module ContentState
     def enter_hook(content)
       logger.debug("#{content} entering state Content::JustMarkedAsSpam")
       content[:published] = false
+      content[:status_confirmed] = true
     end
 
     def exit_hook(content, target_state)
