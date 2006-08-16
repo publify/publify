@@ -42,7 +42,7 @@ class Comment < Feedback
   end
 
   def body_html_postprocess(value, controller)
-    sanitize(controller.send(:auto_link, value),'a href, b, br, i, p, em, strong, pre, code, ol, ul, li')
+    sanitize(controller.send(:auto_link, value),'a href, b, br, i, p, em, strong, pre, code, ol, ul, li, blockquote')
   end
 
   def default_text_filter_config_key
