@@ -101,7 +101,9 @@ class ArticlesController < ContentController
                                 :user_agent => request.env['HTTP_USER_AGENT'],
                                 :referrer => request.env['HTTP_REFERER'],
                                 :permalink => this_blog.article_url(@article, false)})
-        @comment = @article.comments.create!(params[:comment])
+        @comment = @article.comments.build(params[:comment])
+        @comment.author ||= 'Anonymous'
+        @comment.save!
         add_to_cookies(:author, @comment.author)
         add_to_cookies(:url, @comment.url)
 
