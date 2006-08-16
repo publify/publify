@@ -7,9 +7,9 @@
 # Heavily modified for Typo by Scott Laird
 #
 class Akismet
-
   require 'net/http'
   require 'uri'
+  require 'timeout'
   
   STANDARD_HEADERS = {
     'User-Agent' => "Typo/#{TYPO_VERSION} | Akismet Ruby API/1.0",
@@ -97,24 +97,33 @@ class Akismet
   #options[:comment_content] = comment_content
   
   def callAkismet(akismet_function, options = {})
-    http = Net::HTTP.new("#{@apiKey}.rest.akismet.com", 80, @proxyHost, @proxyPort)
-    path = "/1.1/#{akismet_function}"
+    result = false
+    begin
+      Timeout.timeout(5) do
+        http = Net::HTTP.new("#{@apiKey}.rest.akismet.com", 80, @proxyHost, @proxyPort)
+        path = "/1.1/#{akismet_function}"
     
-    options[:blog] = @blog
-    params=[]
+        options[:blog] = @blog
+        params=[]
     
-    options.each_key do |key|
-      params.push "#{key}=#{CGI.escape(options[key].to_s)}"
-    end
+        options.each_key do |key|
+          params.push "#{key}=#{CGI.escape(options[key].to_s)}"
+        end
     
-    data = params.join('&')
-    resp, data = http.post(path, data, STANDARD_HEADERS)
+        data = params.join('&')
+        resp, data = http.post(path, data, STANDARD_HEADERS)
     
-    unless data == 'true' or data == 'false' or data == ''
-      STDERR.puts "AKISMET error: #{data}"
-    end
+        unless data == 'true' or data == 'false' or data == ''
+          STDERR.puts "AKISMET error: #{data}"
+        end
 
-    return (data == "true" or data == '')
+        result = (data == "true" or data == '')
+      end
+    rescue => err
+      STDERR.puts "AKISMET exception: #{err}"
+    end
+    
+    return result
   end
   
   protected :callAkismet
