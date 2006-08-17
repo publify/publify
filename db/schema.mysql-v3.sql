@@ -65,7 +65,8 @@ CREATE TABLE contents (
   `allow_comments` tinyint(1),
   `blog_id` int(11) NOT NULL,
   `published_at` datetime,
-  `state` text
+  `state` text,
+  `status_confirmed` tinyint(1)
 ) TYPE=MyISAM;
 
 CREATE TABLE notifications (
@@ -214,4 +215,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) TYPE=MyISAM;
 
-insert into schema_info (version) values (49);
+insert into schema_info (version) values (50);

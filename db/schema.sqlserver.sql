@@ -69,7 +69,8 @@ CREATE TABLE contents (
   [allow_comments] bit,
   [blog_id] int NOT NULL,
   [published_at] datetime,
-  [state] text
+  [state] text,
+  [status_confirmed] bit
 );
 
 CREATE TABLE notifications (
@@ -228,4 +229,4 @@ CREATE TABLE schema_info (
   [version] int
 );
 
-insert into schema_info (version) values (49);
+insert into schema_info (version) values (50);

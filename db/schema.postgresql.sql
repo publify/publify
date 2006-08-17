@@ -65,7 +65,8 @@ CREATE TABLE contents (
   "allow_comments" boolean,
   "blog_id" integer NOT NULL,
   "published_at" timestamp,
-  "state" text
+  "state" text,
+  "status_confirmed" boolean
 );
 
 CREATE TABLE notifications (
@@ -214,4 +215,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (49);
+insert into schema_info (version) values (50);
