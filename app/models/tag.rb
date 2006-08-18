@@ -67,7 +67,7 @@ class Tag < ActiveRecord::Base
     blog.url_for(
       :controller => '/articles',
       :action => 'tag',
-      :name => permalink
+      :id => permalink
     )
   end
   

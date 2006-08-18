@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TagTest < Test::Unit::TestCase
-  fixtures :tags, :contents, :articles_tags
+  fixtures :tags, :contents, :articles_tags, :blogs
 
   def setup
     @tag = Tag.find(1)
@@ -62,5 +62,10 @@ class TagTest < Test::Unit::TestCase
 
     assert_equal "bar", tags.last.name
     assert_equal 2, tags.first.article_counter
+  end
+  
+  def test_permalink
+    tag = Tag.get('foo')
+    assert_equal 'http://myblog.net/articles/tag/foo', tag.permalink_url
   end
 end
