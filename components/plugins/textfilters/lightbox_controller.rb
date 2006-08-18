@@ -113,10 +113,9 @@ Common attributes:
   end
 
   def self.set_whiteboard controller, content
-    base = content.blog.canonical_server_url.chomp('/')
     content.whiteboard['page_header_lightbox'] = <<-HTML
-<link href="#{base}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
-  <script src="#{base}/javascripts/lightbox.js" type="text/javascript"></script>
+<link href="#{controller.request.relative_url_root}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
+  <script src="#{controller.request.relative_url_root}/javascripts/lightbox.js" type="text/javascript"></script>
     HTML
   end
 
