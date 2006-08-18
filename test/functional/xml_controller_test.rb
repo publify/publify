@@ -105,7 +105,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_rss20(2)
+    assert_rss20(3)
   end
 
   def test_feed_rss20_article
@@ -171,7 +171,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(2)
+    assert_atom10(3)
 
     assert_xpath('//title[@type="html"]')
     assert_xpath('//summary', "Trackback entry has no summaries")

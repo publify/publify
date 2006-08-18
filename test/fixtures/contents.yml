@@ -172,6 +172,22 @@ trackback3:
   published_at: 2005-01-01 03:00:03
   guid: qweqweqddsfcs3
 
+trackback4:
+  type: Trackback
+  blog_id: 1
+  id: 23
+  article_id: 17
+  published: true
+  state: ContentState::PresumedHam
+  blog_name: Trackback Blog 2
+  title: Trackback Entry 2
+  url: http://www.example.com
+  excerpt: This is an excerpt
+  created_at: 2005-01-01 03:00:04
+  updated_at: 2005-01-01 03:00:04
+  published_at: 2005-01-01 03:00:04
+  guid: qweqweqddsfcs4
+
 first_page:
   type: Page
   blog_id: 1
