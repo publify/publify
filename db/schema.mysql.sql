@@ -26,7 +26,8 @@ CREATE TABLE blacklist_patterns (
 
 CREATE TABLE blogs (
   `id` int(11) DEFAULT NULL auto_increment PRIMARY KEY,
-  `settings` text
+  `settings` text,
+  `base_url` varchar(255)
 ) ENGINE=InnoDB;
 
 CREATE TABLE categories (
@@ -213,4 +214,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) ENGINE=InnoDB;
 
-insert into schema_info (version) values (52);
+insert into schema_info (version) values (53);

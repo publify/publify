@@ -28,7 +28,8 @@ CREATE TABLE blacklist_patterns (
 CREATE TABLE blogs (
   [id] int NOT NULL IDENTITY(1,
   1) PRIMARY KEY,
-  [settings] text
+  [settings] text,
+  [base_url] varchar(255)
 );
 
 CREATE TABLE categories (
@@ -227,4 +228,4 @@ CREATE TABLE schema_info (
   [version] int
 );
 
-insert into schema_info (version) values (52);
+insert into schema_info (version) values (53);

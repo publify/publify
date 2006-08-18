@@ -2,8 +2,6 @@
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
   include LoginSystem
-
-  before_filter :get_the_blog_object
   before_filter :fire_triggers
 
   protected
@@ -29,16 +27,21 @@ class ApplicationController < ActionController::Base
     $cache ||= SimpleCache.new 1.hour
   end
 
-  def get_the_blog_object
-    @blog ||= Blog.default || Blog.create!
-    true
-  end
-
+  # The Blog object for the blog that matches the current request.  This is looked 
+  # up using Blog.find_blog and cached for the lifetime of the controller instance; 
+  # generally one request.
   def this_blog
-    @blog || Blog.default || Blog.new
+    @blog ||= Blog.find_blog(blog_base_url)
   end
   helper_method :this_blog
-
+  
+  # The base URL for this request, calculated by looking up the URL for the main 
+  # blog index page.  This is matched with Blog#canonical_server_url to determine
+  # which Blog is supposed to handle this URL
+  def blog_base_url
+    url_for(:controller => '/articles').gsub(%r{/$},'')
+  end
+  
   def self.include_protected(*modules)
     modules.reverse.each do |mod|
       included_methods = mod.public_instance_methods.reject do |meth|

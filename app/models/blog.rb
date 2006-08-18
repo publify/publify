@@ -81,6 +81,13 @@ class Blog < ActiveRecord::Base
   def find_already_published(content_type)
     self.send(content_type).find_already_published
   end
+  
+  # Find the Blog that matches a specific base URL.  If no Blog object is found
+  # that matches, then grab the default blog.  If *that* fails, then create a new
+  # Blog.  The last case should only be used when Typo is first installed.
+  def self.find_blog(base_url)
+    Blog.find_by_base_url(base_url) || Blog.default || Blog.new
+  end
 
   def ping_article!(settings)
     settings[:blog_id] = self.id
@@ -89,18 +96,22 @@ class Blog < ActiveRecord::Base
     trackback = published_articles.find(article_id).trackbacks.create!(settings)
   end
 
+  # Check that all required blog settings have a value.
   def is_ok?
     settings.has_key?('blog_name')
   end
 
+  # Axe?
   def [](key)
     self.send(key)
   end
 
+  # Axe?
   def []=(key, value)
     self.send("#{key}=", value)
   end
 
+  # Axe?
   def has_key?(key)
     self.class.fields.has_key?(key.to_s)
   end
@@ -110,21 +121,17 @@ class Blog < ActiveRecord::Base
     self.settings ||= { }
   end
 
+  # The default Blog.  This is the lowest-numbered blog, almost always id=1.
   def self.default
     find(:first, :order => 'id')
   end
 
-  @@controller_stack = []
-  cattr_accessor :controller_stack
-
-  def controller
-    controller_stack.last
-  end
-
+  # The path to the currently-active theme.
   def current_theme_path
     Theme.themes_root + "/" + theme
   end
 
+  # Axe?
   def current_theme
     Theme.theme_from_path(current_theme_path)
   end
