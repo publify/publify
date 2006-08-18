@@ -42,13 +42,11 @@ CREATE TABLE contents (
   `title` varchar(255),
   `author` varchar(255),
   `body` text,
-  `body_html` text,
   `extended` text,
   `excerpt` text,
   `keywords` varchar(255),
   `created_at` datetime,
   `updated_at` datetime,
-  `extended_html` text,
   `user_id` int(11),
   `permalink` varchar(255),
   `guid` varchar(255),
@@ -215,4 +213,4 @@ CREATE TABLE schema_info (
   `version` int(11)
 ) TYPE=MyISAM;
 
-insert into schema_info (version) values (51);
+insert into schema_info (version) values (52);

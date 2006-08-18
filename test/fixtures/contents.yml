@@ -313,7 +313,6 @@ spammed_article:
   id: 19
   title: C'mon Spam Me!
   body: A bunch of innocuous content
-  body_html: <p>A bunch of innocuous content</p>
   allow_comments: true
   allow_pings: true
   permalink: cmon-spam-me

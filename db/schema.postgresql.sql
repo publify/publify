@@ -42,13 +42,11 @@ CREATE TABLE contents (
   "title" character varying(255),
   "author" character varying(255),
   "body" text,
-  "body_html" text,
   "extended" text,
   "excerpt" text,
   "keywords" character varying(255),
   "created_at" timestamp,
   "updated_at" timestamp,
-  "extended_html" text,
   "user_id" integer,
   "permalink" character varying(255),
   "guid" character varying(255),
@@ -215,4 +213,4 @@ CREATE TABLE schema_info (
   "version" integer
 );
 
-insert into schema_info (version) values (51);
+insert into schema_info (version) values (52);
