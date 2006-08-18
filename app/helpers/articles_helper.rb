@@ -56,7 +56,7 @@ module ArticlesHelper
     <<-HTML
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.empty? }
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ server_url_for :controller => 'xml', :action => 'rsd' }" />
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => 'xml', :action => 'rsd' }" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ @auto_discovery_url_atom }" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ @auto_discovery_url_rss }" />
   #{ javascript_include_tag "cookies" }
@@ -79,17 +79,11 @@ module ArticlesHelper
   end
 
   def category_links(article)
-    "Posted in " + article.categories.collect { |c| link_to h(c.name),
-    { :controller => "/articles", :action => "category", :id => c.permalink },
-      :rel => "tag"
-    }.join(", ")
+    "Posted in " + article.categories.map { |c| link_to h(c.name), c.permalink_url, :rel => 'tag'}.join(", ")
   end
 
   def tag_links(article)
-    "Tags " + article.tags.collect { |tag| link_to tag.display_name,
-      { :controller => "/articles", :action => "tag", :id => tag.name },
-      :rel => "tag"
-    }.sort.join(", ")
+    "Tags " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url, :rel => "tag"}.sort.join(", ")
   end
 
   def author_link(article)
@@ -104,12 +98,12 @@ module ArticlesHelper
 
   def next_link(article)
     n = article.next
-    return  n ? article_link("#{n.title} &raquo;", n) : ''
+    return  n ? n.link_to_permalink("#{n.title} &raquo;") : ''
   end
 
   def prev_link(article)
     p = article.previous
-    return p ? article_link("&laquo; #{p.title}", p) : ''
+    return p ? n.link_to_permalink("&laquo; #{p.title}") : ''
   end
 
   def render_sidebars

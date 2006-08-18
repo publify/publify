@@ -74,9 +74,6 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     post :edit, :id => contents(:markdown_page).id, :page => { :name => "markdown-page", :title => "Markdown Page",
         :body => "Adding a [link](http://www.typosphere.org/) here" }
 
-
-    assert_equal "", contents(:markdown_page).reload.body_html.to_s
-
     assert_redirected_to :action => "show", :id => contents(:markdown_page).id
 
     # XXX: The flash is currently being made available improperly to tests (scoop)

@@ -2,13 +2,13 @@
   
   <% content_for('tasks') do %>
     <%= task_edit 'Edit this page', @page.id %>
-    <li><%= link_to 'View page on your blog', page_url(@page) %></li>
+    <li><%= link_to 'View page on your blog', @page.permalink_url %></li>
   <% end %> 
 
   <h3><%=h @page.name %></h3>
 
   <div class="form">	
-    <div><%= @page.full_html %></div>
+    <div><%= @page.html %></div>
     <p class="meta">Posted: <%=h @page.created_at %> by <%=h @page.user.name %></p>
     <p>Lasted updated <%=h @page.updated_at %></p>    
   </div>

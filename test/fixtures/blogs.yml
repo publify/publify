@@ -35,7 +35,7 @@ default:
     itunes_summary: ""
     comment_text_filter: textile
     sp_allow_non_ajax_comments: true
-    canonical_server_url: http://myblog.net/
+    canonical_server_url: http://myblog.net
 
 second:
   id: 2

@@ -89,7 +89,6 @@ class Blog < ActiveRecord::Base
     trackback = published_articles.find(article_id).trackbacks.create!(settings)
   end
 
-
   def is_ok?
     settings.has_key?('blog_name')
   end
@@ -118,17 +117,6 @@ class Blog < ActiveRecord::Base
   @@controller_stack = []
   cattr_accessor :controller_stack
 
-  def self.before(controller)
-    controller_stack << controller
-  end
-
-  def self.after(controller)
-    unless controller_stack.last == controller
-      raise "Controller stack got out of kilter!"
-    end
-    controller_stack.pop
-  end
-
   def controller
     controller_stack.last
   end
@@ -141,41 +129,38 @@ class Blog < ActiveRecord::Base
     Theme.theme_from_path(current_theme_path)
   end
 
+  # Generate a URL based on the canonical_server_url.  This allows us to generate URLs
+  # without needing a controller handy, so we can produce URLs from within models
+  # where appropriate.
+  #
+  # It also uses our new RouteCache, so repeated URL generation requests should be
+  # fast, as they bypass all of Rails' route logic.
   def url_for(options = {}, *extra_params)
     case options
     when String then options
     when Hash
-      options.reverse_merge!(:only_path => true, :controller => '/articles',
-                             :action => 'permalink')
-      url = ActionController::UrlRewriter.new(request, {})
-      url.rewrite(options)
+      unless RouteCache[options]
+        options.reverse_merge!(:only_path => true, :controller => '/articles',
+                               :action => 'permalink')
+        @url ||= ActionController::UrlRewriter.new(BlogRequest.new(self.canonical_server_url), {})
+        RouteCache[options] = @url.rewrite(options)
+      end
+      
+      return RouteCache[options]
     else
-      options.location(*extra_params)
+      raise "Invalid URL in url_for: #{options.inspect}"
     end
   end
-
-  def article_url(article, only_path = true, anchor = nil)
-    url_for(:year => article.published_at.year,
-            :month => sprintf("%.2d", article.published_at.month),
-            :day => sprintf("%.2d", article.published_at.day),
-            :title => article.permalink, :anchor => anchor,
-            :only_path => only_path,
-            :controller => '/articles')
+  
+  # The URL for a static file.  This should probably be rewritten, as there
+  # is no 'files' controller.
+  def file_url(filename)
+    url_for(:controller => 'files', :action => filename)
   end
 
+  # The base server URL.
   def server_url
-    if controller
-      controller.send :url_for, :only_path => false, :controller => "/articles"
-    else
-      settings[:canonical_server_url]
-    end
-  end
-
-  private
-
-  def request
-    #BlogRequest.new(self.canonical_server_url)
-    controller.request rescue ActionController::TestRequest.new
+    settings[:canonical_server_url]
   end
 end
 

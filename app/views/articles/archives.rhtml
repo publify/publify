@@ -13,9 +13,9 @@
            <% end -%>
   <div class="archivepost">
   <%= article.published_at.mday %> -
-  <%= article_link h(article.title), article %>
+  <%= link_to_permalink(article,h(article.title)) %>
   <% if !article.categories.empty? %> posted in
-  <%= article.categories.collect {|c| link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name }.join(", ") -%>
+  <%= article.categories.collect {|c| link_to_permalink c,c.name }.join(", ") -%>
   <% end -%>
  </div>
 <% end

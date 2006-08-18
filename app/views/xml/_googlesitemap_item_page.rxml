@@ -1,4 +1,4 @@
 xm.item do
-  xm.link post_link(item)
+  xm.link item.permalink_url
   xm.lastmod item.updated_at.xmlschema
 end

@@ -1,9 +1,9 @@
 xm.item do
   xm.title post_title(item)
   if this_blog.show_extended_on_rss
-    content = item.full_html
+    content = item.html(:all)
   else
-    content = item.body_html
+    content = item.html(:body)
   end
   xm.description content
   xm.pubDate pub_date(item.published_at)
@@ -12,7 +12,7 @@ xm.item do
   email = item.user.email rescue nil
   author = "#{email} (#{author})" if this_blog.link_to_author unless email.blank?
   xm.author author
-  xm.link post_link(item)
+  xm.link item.permalink_url
   for category in item.categories
     xm.category category.name
   end
@@ -24,12 +24,11 @@ xm.item do
   if not item.resources.empty?
     resource = item.resources.first
     xm.enclosure(
-      :url => server_url_for(:controller => "files",
-      :action => resource.filename),
+      :url => item.blog.file_url(resource.filename),
       :length => resource.size,
       :type => resource.mime)
   end
   if item.allow_pings?
-    xm.trackback :ping, server_url_for(:controller => "articles", :action =>"trackback", :id => item.id)
+    xm.trackback :ping, item.trackback_url
   end
 end

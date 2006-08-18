@@ -5,9 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :get_the_blog_object
   before_filter :fire_triggers
-  after_filter :flush_the_blog_object
-
-  around_filter Blog
 
   protected
 
@@ -24,10 +21,6 @@ class ApplicationController < ActionController::Base
     end.call
   end
 
-  def article_url(article, only_path = true, anchor = nil)
-    article.location(anchor, only_path)
-  end
-
   def server_url
     this_blog.server_url
   end
@@ -37,12 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_the_blog_object
-    @blog = Blog.default || Blog.create!
-    true
-  end
-
-  def flush_the_blog_object
-    @blog = nil
+    @blog ||= Blog.default || Blog.create!
     true
   end
 

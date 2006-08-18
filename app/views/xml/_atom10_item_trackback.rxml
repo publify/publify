@@ -9,7 +9,7 @@ xm.entry do
   xm.updated item.updated_at.xmlschema
   xm.title "Trackback from #{item.blog_name}: #{item.title} on #{item.article.title}", "type"=>"html"
 
-  xm.link "rel" => "alternate", "type" => "text/html", "href" => comment_link(item)
+  xm.link "rel" => "alternate", "type" => "text/html", "href" => item.permalink_url
 
   content = item.excerpt
   xm.summary content, "type"=>"html"

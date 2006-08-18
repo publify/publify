@@ -48,6 +48,16 @@ class Category < ActiveRecord::Base
     name
   end
 
+  def permalink_url(anchor=nil, only_path=true)
+    blog = Blog.find(1) # remove me...
+
+    blog.url_for(
+      :controller => '/articles',
+      :action => 'category',
+      :name => permalink
+    )
+  end
+
   protected
 
   before_save :set_defaults

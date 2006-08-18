@@ -9,9 +9,9 @@
     <table cellspacing="1" cellpadding="0">
     <% for article in @category.articles -%>
     <tr  <%= alternate_class -%>>
-      <td><%= image_tag 'checked.gif' %> <%= link_to h(article.title), :controller => "content", :action => "show", :id => article.id %></td>
+      <td><%= image_tag 'checked.gif' %> <%= link_to h(article.title), :controller => "/admin/content", :action => "show", :id => article.id %></td>
       <td><%= distance_of_time_in_words_to_now article.published_at %> ago</td>
-      <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => 'comments', :article_id => article, :action => 'list' %></td>
+      <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => '/admin/comments', :article_id => article, :action => 'list' %></td>
     </tr>
     <% end -%>
     </table>

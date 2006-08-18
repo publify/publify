@@ -2,13 +2,13 @@
 
   <% content_for('tasks') do %>
     <%= task_edit 'Edit this article', @article.id %>
-    <li><%= link_to 'View article on your blog', article_url(@article) %></li>
+    <li><%= link_to 'View article on your blog', @article.permalink_url %></li>
   <% end %>
 
   <h3><%=h @article.title %></h3>
 
   <div class="form">
-    <div><%= @article.full_html %></div>
+    <div><%= @article.html %></div>
     <p class="meta"><label>Posted:</label> <%=h @article.published_at.to_formatted_s(:long_weekday) %> by <%=h @article.author %></p>
     <p class="meta"><label>Last updated:</label> <%=h @article.updated_at.to_formatted_s(:long_weekday) %></p>
     <p class="meta"><label>Published:</label> <%=h (@article.published? ? "Yes" : "No") %></p>

@@ -115,10 +115,11 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_tag :tag => 'title', :content => /^test blog : Article 3!$/
     
     blogs(:default).title_prefix = false
+    @controller = ArticlesController.new
+    assert_equal false, blogs(:default).title_prefix
     get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
     assert_response :success
     assert_tag :tag => 'title', :content => /^Article 3!$/
-
   end
 
   # Permalinks
@@ -155,8 +156,9 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     assert_not_nil cookies["author"]
 
-    assert_equal "<p>This is <strong>textile</strong></p>", comment.html(@controller).to_s
+    assert_equal "<p>This is <strong>textile</strong></p>", comment.html.to_s
 
+    assert_equal 2, emails.size
     assert_equal User.find(:all,
                            :conditions => ['(notify_via_email = ?) and (notify_on_comments = ?)', true, true],
                            :order => 'email').collect { |each| each.email },
@@ -181,7 +183,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     comment = Article.find(art_id).comments.last
     assert comment
 
-    assert_match expected_html, comment.html(@controller).to_s
+    assert_match expected_html, comment.html.to_s
     $do_breakpoints
   end
 
@@ -191,6 +193,21 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_comment_spam2
     comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com['"] rel=["']nofollow['"]>spammy goodness</a></p>}, 'Link to "spammy goodness":http://spammer.example.com'
+  end
+  
+  def test_comment_spam3
+    post :comment, :id => 1, :comment => {:body => '<a href="http://spam.org">spam</a>', :author => '<a href="spamme.com">spamme</a>', :email => '<a href="http://morespam.net">foo</a>'}
+
+    assert_response :success
+    comment = Article.find(1).comments.last
+    assert comment
+
+    get :read, :id => 1
+    assert_response 200
+    
+    assert ! (@response.body =~ %r{<a href="http://spamme.com">}), "Author leaks"
+    assert ! (@response.body =~ %r{<a href="http://spam.org">}), "Body leaks <a>"
+    assert ! (@response.body =~ %r{<a href="http://morespam.net">}), "Email leaks"
   end
 
   def test_comment_xss1
@@ -334,6 +351,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     # Switch gravatar integration to on
     this_blog.use_gravatar = true
+    @controller = ArticlesController.new
     assert this_blog.use_gravatar
     get :read, :id => 1
     assert_response :success

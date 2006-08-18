@@ -2,42 +2,21 @@
 require 'digest/sha1'
 
 module ApplicationHelper
-  def server_url_for(options = {})
-    url_for options.update(:only_path => false)
-  end
-
+  # Override the default ActionController#url_for.
   def url_for(options = { })
-    if options[:controller] && options[:controller] =~ /^\/?$/
-      options[:controller] = '/articles'
-    end
+    # this_blog.url_for doesn't do relative URLs.
+#    if options.kind_of? Hash
+#      unless options[:controller]
+#        options[:controller] = params[:controller]
+#      end
+#    end
+    
+#    this_blog.url_for(options)
     super(options)
   end
 
-  def config_value(name)
-    this_blog[name]
-  end
-
-  def config
-    this_blog
-  end
-
-  def item_link(title, item, anchor=nil)
-    link_to title, item.location(anchor)
-  end
-
-  alias_method :article_link,     :item_link
-  alias_method :page_link,        :item_link
-  alias_method :comment_url_link, :item_link
-
-  def url_of(item, only_path=true, anchor=nil)
-    item.location(anchor, only_path)
-  end
-
-  alias_method :trackback_url, :url_of
-  alias_method :comment_url,   :url_of
-  alias_method :article_url,   :url_of
-  alias_method :page_url,      :url_of
-
+  # Basic english pluralizer.
+  # Axe?
   def pluralize(size, word)
     case size
     when 0 then "no #{word}s"
@@ -45,15 +24,20 @@ module ApplicationHelper
     else        "#{size} #{word}s"
     end
   end
+  
+  # Produce a link to the permalink_url of 'item'.
+  def link_to_permalink(item, title, anchor=nil)
+    anchor = "##{anchor}" if anchor
+    "<a href=\"#{item.permalink_url}#{anchor}\">#{title}</a>"    
+  end
 
+  # The '5 comments' link from the bottom of articles
   def comments_link(article)
-    article_link(pluralize(article.published_comments.size, "comment"),
-                 article, 'comments')
+    link_to_permalink(article,pluralize(article.published_comments.size, 'comment'),'comments')
   end
 
   def trackbacks_link(article)
-    article_link(pluralize(article.published_trackbacks.size, "trackback"),
-                 article, 'trackbacks')
+    link_to_permalink(article,pluralize(article.published_trackbacks.size, 'trackback'),'trackbacks')
   end
 
   def check_cache(aggregator, *args)
@@ -83,27 +67,67 @@ module ApplicationHelper
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
 
-  def article_html(article, what = :all)
-    article.html(@controller, what)
-  end
-
-  def comment_html(comment)
-    comment.html(@controller, :body)
-  end
-
-  def page_html(page)
-    page.html(@controller,:body)
-  end
-
-  def strip_html(text)
-    text.strip_html
-  end
-
   def markup_help_popup(markup, text)
     if markup and markup.commenthelp.size > 1
       "<a href=\"#{url_for :controller => '/articles', :action => 'markup_help', :id => markup.id}\" onClick=\"return popup(this, 'Typo Markup Help')\">#{text}</a>"
     else
       ''
     end
+  end
+  
+  # Deprecated helpers
+  
+  def server_url_for(options={})
+    typo_deprecated "Use url_for instead"
+    url_for(options)
+  end
+  
+  def config_value(name)
+    typo_deprecated "Use this_blog.#{name} instead."
+    this_blog.send(name)
+  end
+  
+  def config
+    typo_deprecated "Use this_blog.configname instead of config[:configname]"
+    raise "Unimplemented"
+  end
+  
+  def item_link(title, item, anchor=nil)
+    typo_deprecated "Use link_to_permalink instead of item_link"
+    link_to_permalink(item, title, anchor)
+  end
+  
+  alias_method :article_link,     :item_link
+  alias_method :page_link,        :item_link
+  alias_method :comment_url_link, :item_link
+  
+  def url_of(item, only_path=true, anchor=nil)
+    typo_deprecated "Use item.permalink_url instead"
+    item.permalink_url
+  end
+  
+  alias_method :trackback_url, :url_of
+  alias_method :comment_url,   :url_of
+  alias_method :article_url,   :url_of
+  alias_method :page_url,      :url_of
+  
+  def article_html(article, what = :all)
+    typo_deprecated "use article.html(what)"
+    article.html(what)
+  end
+
+  def comment_html(comment)
+    typo_deprecated "use comment.html"
+    comment.html(:body)
+  end
+
+  def page_html(page)
+    typo_deprecated "use page.html"
+    page.html(:body)
+  end
+  
+  def strip_html(text)
+    typo_deprecated "use text.strip_html"
+    text.strip_html
   end
 end

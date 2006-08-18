@@ -75,7 +75,7 @@ module ContentState
       true
     end
 
-    def send_notifications(content, controller)
+    def send_notifications(controller)
       true
     end
 

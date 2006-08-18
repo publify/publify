@@ -8,7 +8,7 @@ class TextfilterController; def rescue_action(e) raise e end; end
 class ActionController::Base; def rescue_action(e) raise e end; end
 
 class TextfilterControllerTest < Test::Unit::TestCase
-  fixtures :text_filters
+  fixtures :text_filters, :blogs
 
   def setup
     @controller = TextfilterController.new
@@ -23,9 +23,13 @@ class TextfilterControllerTest < Test::Unit::TestCase
 
 #    @controller.initialize_current_url #rescue nil
   end
+  
+  def blog
+    blogs(:default)
+  end
 
-  def filter_text(text, filters, filterparams={}, filter_html=false)
-    TextFilter.filter_text(text, @controller, self, filters, filterparams, filter_html)
+  def filter_text(text, filters, filterparams={})
+    TextFilter.filter_text(blog, text, self, filters, filterparams)
   end
 
   def whiteboard
@@ -68,12 +72,6 @@ class TextfilterControllerTest < Test::Unit::TestCase
 
     assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
       filter_text('*"foo"*',[:doesntexist1,:markdown,"doesn't exist 2",:smartypants,:nopenotmeeither])
-
-    assert_equal '<p>foo</p>',
-      filter_text('<p>foo</p>',[],{},false)
-
-    assert_equal '&lt;p&gt;foo&lt;/p&gt;',
-      filter_text('<p>foo</p>',[],{},true)
   end
 
   def test_amazon
@@ -200,7 +198,7 @@ end
 
   def test_named_filter
     assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
-      TextFilter.filter_text_by_name('*"foo"*', @controller, 'markdown smartypants')
+      TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
   end
 
   def test_code_plus_markup_chain
@@ -244,8 +242,8 @@ EOF
 \t<p><em>footer text here</em></p>
 EOF
 
-    assert_equal expects_markdown.strip, TextFilter.filter_text_by_name(text, @controller, 'markdown')
-    assert_equal expects_textile.strip, TextFilter.filter_text_by_name(text, @controller, 'textile')
+    assert_equal expects_markdown.strip, TextFilter.filter_text_by_name(blog, text, 'markdown')
+    assert_equal expects_textile.strip, TextFilter.filter_text_by_name(blog, text, 'textile')
   end
 
   def test_lightbox

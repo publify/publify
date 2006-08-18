@@ -1,7 +1,7 @@
 xm.item do
   xm.title "\"#{item.article.title}\" by #{item.author}"
-  xm.description item.full_html
+  xm.description item.html
   xm.pubDate pub_date(item.created_at)
   xm.guid "urn:uuid:#{item.guid}", "isPermaLink" => "false"
-  xm.link comment_link(item)
+  xm.link item.permalink_url
 end

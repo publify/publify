@@ -3,16 +3,16 @@ xml.rsd "version"=>"1.0", "xmlns"=>"http://archipelago.phrasewise.com/rsd" do
   xml.service do
     xml.engineName "Typo"
     xml.engineLink "http://www.typosphere.org"
-    xml.homePageLink server_url_for(:controller => "articles")
+    xml.homePageLink url_for(:controller => "articles")
     xml.apis do
       xml.api "name" => "Movable Type", "preferred"=>"true",
-              "apiLink" => server_url_for(:controller => "backend", :action => "xmlrpc"),
+              "apiLink" => url_for(:controller => "backend", :action => "xmlrpc"),
               "blogID" => "1"
       xml.api "name" => "MetaWeblog", "preferred"=>"false",
-              "apiLink" => server_url_for(:controller => "backend", :action => "xmlrpc"),
+              "apiLink" => url_for(:controller => "backend", :action => "xmlrpc"),
               "blogID" => "1"
       xml.api "name" => "Blogger", "preferred"=>"false",
-              "apiLink" => server_url_for(:controller => "backend", :action => "xmlrpc"),
+              "apiLink" => url_for(:controller => "backend", :action => "xmlrpc"),
               "blogID" => "1"
     end
   end

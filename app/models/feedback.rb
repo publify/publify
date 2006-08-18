@@ -3,6 +3,9 @@ class Feedback < Content
   include TypoGuid
   validates_age_of :article_id
 
+  before_create :create_guid, :article_allows_this_feedback
+  before_save :correct_url
+
   def self.default_order
     'created_at ASC'
   end
@@ -12,12 +15,22 @@ class Feedback < Content
     self.state = ContentState::Unclassified.instance
   end
 
-  def location(anchor=:ignored, only_path=true)
-    blog.url_for(article, "#{self.class.to_s.downcase}-#{id}", only_path)
+  def permalink_url(anchor=:ignored, only_path=true)
+    article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
+  end
+  
+  def edit_url(anchor=:ignored, only_path=true)
+    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"edit", :id => id)
+  end
+  
+  def delete_url(anchor=:ignored, only_path=true)
+    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"destroy", :id => id)
   end
 
-  before_create :create_guid, :make_nofollow, :article_allows_this_feedback
-  before_save :correct_url
+  def html_postprocess(field, html)
+    helper = ContentTextHelpers.new
+    sanitize(helper.auto_link(html),'a href, b, br, i, p, em, strong, pre, code, ol, ul, li, blockquote').nofollowify
+  end
 
   def correct_url
     if !url.blank? && url !~ /^http:\/\//

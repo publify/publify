@@ -5,10 +5,10 @@
   xmlns:dc="http://purl.org/dc/elements/1.1/">
 <rdf:Description
   rdf:about=""
-  trackback:ping="<%= server_url_for :controller=>"/articles", :action=>"trackback", :id=>@article %>"
+  trackback:ping="<%= @article.trackback_url %>"
   dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
-  dc:identifier="<%= server_url_for :controller=>"/articles", :action=>"read", :id=>@article %>"
-  dc:description="<%=h strip_html(article_html(@article)[0..255]).gsub(/-+/, '-') %>"
+  dc:identifier="<%= @article.permalink_url %>"
+  dc:description="<%=h (@article.html.strip_html[0..255]).gsub(/-+/, '-') %>"
   dc:creator="<%= h @article.author %>"
   dc:date="<%= @article.updated_at.xmlschema %>" />
 </rdf:RDF>
@@ -20,7 +20,7 @@
   <h5><a name="trackbacks">Trackbacks</a></h5>
   <p>
     Use the following link to trackback from your own site:<br />
-    <%= server_url_for :controller => '/articles', :action => 'trackback', :id => @article %>
+    <%= article.trackback_url %>
   </p>
 
   <% unless @article.trackbacks.blank? -%>

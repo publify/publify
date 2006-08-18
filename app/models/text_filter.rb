@@ -1,55 +1,51 @@
 require 'net/http'
-require_dependency 'textfilter_controller'
 
 class TextFilter < ActiveRecord::Base
   serialize :filters
   serialize :params
 
   def self.available_filters
-    objects = []
-    ObjectSpace.each_object(Class) do |o|
-      if TextFilterPlugin > o and o.to_s =~ /Controller/
-        objects.push o
-      end
-    end
-
-    objects
+    TextFilterPlugin.filter_map.values
   end
+
+  TYPEMAP={TextFilterPlugin::Markup => "markup",
+           TextFilterPlugin::MacroPre => "macropre",
+           TextFilterPlugin::MacroPost => "macropost",
+           TextFilterPlugin::PostProcess => "postprocess",
+           TextFilterPlugin => "other"}
 
   def self.available_filter_types
     filters=available_filters
-    types={"macropre" => [],
-           "macropost" => [],
-           "markup" => [],
-           "postprocess" => [],
-           "other" => []}
+    @cached_filter_types ||= {}
 
-    typemap={TextFilterPlugin::Markup => "markup",
-             TextFilterPlugin::MacroPre => "macropre",
-             TextFilterPlugin::MacroPost => "macropost",
-             TextFilterPlugin::PostProcess => "postprocess",
-             TextFilterPlugin => "other"}
+    unless @cached_filter_types[filters]
+      types={"macropre" => [],
+             "macropost" => [],
+             "markup" => [],
+             "postprocess" => [],
+             "other" => []}
 
-    filters.each { |filter| types[typemap[filter.superclass]].push(filter) }
+      filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
 
-    types
+      @cached_filter_types[filters] = types
+    end
+    
+    @cached_filter_types[filters]
   end
 
   def self.filters_map
-    available_filters.inject({}) { |map,filter| map[filter.short_name] = filter; map }
+    TextFilterPlugin.filter_map
   end
 
-  def self.filter_text(text, controller, content, filters, filterparams={}, filter_html=false)
-
+  def self.filter_text(blog, text, content, filters, filterparams={})
     map=TextFilter.filters_map
-    filters = [:htmlfilter, filters].flatten if filter_html
 
     filters.each do |filter|
       next if filter == nil
       begin
-        filter_controller = map[filter.to_s]
-        next unless filter_controller
-        text = filter_controller.filtertext(controller, content, text, :filterparams => filterparams)
+        filter_class = map[filter.to_s]
+        next unless filter_class
+        text = filter_class.filtertext(blog, content, text, :filterparams => filterparams)
       rescue => err
         logger.error "Filter #{filter} failed: #{err}"
       end
@@ -58,20 +54,19 @@ class TextFilter < ActiveRecord::Base
     text
   end
 
-  def self.filter_text_by_name(text, controller, filtername, filter_html=false)
+  def self.filter_text_by_name(blog, text, filtername)
     f = TextFilter.find_by_name(filtername)
-    f.filter_text_for_controller text, controller, nil, filter_html
+    f.filter_text_for_controller blog, text, nil
   end
 
-  def filter_text_for_controller(text, controller, content, filter_html=false)
-    self.class.filter_text(
-      text, controller, content,
-      [:macropre, markup, :macropost, filters].flatten, params,
-      filter_html)
+  def filter_text_for_controller(blog, text, content)
+    self.class.filter_text(blog, text, content,
+      [:macropre, markup, :macropost, filters].flatten, params)
   end
 
-  def filter(text,filter_html=false)
-    self.class.filter(text,self.filters,self.params,filter_html)
+  def filter(text)
+    typo_deprecated "What does this do?"
+    self.class.filter(text,self.filters,self.params)
   end
 
   def help
@@ -93,7 +88,6 @@ class TextFilter < ActiveRecord::Base
 
   def commenthelp
     filter_map = TextFilter.filters_map
-    filter_types = TextFilter.available_filter_types
 
     help = [filter_map[markup]]
     filters.each { |f| help.push(filter_map[f.to_s]) }

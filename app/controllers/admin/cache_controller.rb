@@ -14,18 +14,14 @@ class Admin::CacheController < Admin::BaseController
     expire_fragment(/.*/)
 
     flash[:notice] = 'Cache was cleared'
-    redirect_to :controller => 'general'
+    redirect_to :controller => '/admin/general'
   end
 
   def sweep_html
-    Article.transaction do
-      Article.update_all 'body_html = null'
-      Comment.update_all 'body_html = null'
-      Page.update_all 'body_html = null'
-    end
+    expire_fragment(/^contents_html.*/)
 
     flash[:notice] = 'HTML was cleared'
-    redirect_to :controller => 'general'
+    redirect_to :controller => '/admin/general'
   end
 
 end

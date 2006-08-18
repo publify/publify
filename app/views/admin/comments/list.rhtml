@@ -1,7 +1,7 @@
-  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => 'content', :action => 'show', :id => @article }" %>
+  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
 
   <% content_for('tasks') do %>
-    <li><%= link_to 'Back to articles', :controller => 'content', :action => 'list' %></li>
+    <li><%= link_to 'Back to articles', :controller => '/admin/content', :action => 'list' %></li>
     <%= task_new('Create new comment') %>
   <% end %> 
 
@@ -20,7 +20,7 @@
     <tr>
       <td class="field"><%= image_tag 'checked.gif' %> <%=link_to_unless comment.url.blank?, h(comment.author), comment.url %></td>
       <td class="field"><%=h comment.email %></td>
-      <td class="field"><%=link_to truncate(strip_html(comment.body)), :action => 'show', :id => comment.id %> <%= comment_url_link image_tag('go'), comment %></td>
+      <td class="field"><%=link_to truncate((comment.body).strip_html), :action => 'show', :id => comment.id %> <%= link_to_permalink comment,image_tag('go') %></td>
       <td class="field"><%=h comment.ip %></td>
       <td class="field"><%=h distance_of_time_in_words_to_now(comment.created_at) %></td>
       <td class="operation"><%= link_to_edit comment %></td>

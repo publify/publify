@@ -259,6 +259,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_match /extended content/, @response.body
 
+    @controller = XmlController.new
     set_extended_on_rss false
     get :feed, :format => 'rss20', :type => 'feed'
     assert_response :success
@@ -279,6 +280,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_not_equal 0, get_xpath(%{//summary]}).size, "Extended feed has no summaries"
     assert_not_equal 0, get_xpath(%{//content]}).size, "Extended feed has no content"
 
+    @controller = XmlController.new
     set_extended_on_rss false
     get :feed, :format => 'atom10', :type => 'feed'
     assert_response :success

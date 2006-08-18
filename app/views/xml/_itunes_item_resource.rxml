@@ -1,13 +1,11 @@
 xm.item do
   xm.title(item.itunes_subtitle)
   xm.enclosure(
-    :url => server_url_for(:controller => "files", 
-    :action => item.filename),
+    :url => @blog.file_url(item.filename),
     :length => item.size,
     :type => item.mime)
   xm.pubDate pub_date(item.created_at)
-  xm.guid server_url_for(:controller => "files", 
-    :action => item.filename), "isPermaLink" => "false"
+  xm.guid this_blog.file_url(item.filename), "isPermaLink" => "false"
   xm.itunes :author,(item.itunes_author)
   xm.itunes :subtitle,(item.itunes_subtitle)
   xm.itunes :summary,(item.itunes_summary)

@@ -2,9 +2,7 @@ require_dependency 'spam_protection'
 
 class Trackback < Feedback
   belongs_to :article
-
   content_fields :excerpt
-
   validates_presence_of :title, :excerpt, :url
 
   def initialize(*args, &block)
@@ -16,9 +14,7 @@ class Trackback < Feedback
   before_create :process_trackback
 
   def make_nofollow
-    self.blog_name = blog_name.strip_html
-    self.title     = title.strip_html
-    self.excerpt   = excerpt.strip_html
+    typo_deprecated 'Do it via postprocessing.'
   end
 
   def process_trackback

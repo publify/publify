@@ -1,7 +1,7 @@
 <% for article in @articles -%>
  <div class="post">
   <%= render_partial "article", article %>
-  <%= article_link "Read more...", article if article.extended? %>
+  <%= link_to_permalink article,"Read more..." if article.extended? %>
   <p class="meta"><%= article_links article %></p>
   </div>
 <% end -%>

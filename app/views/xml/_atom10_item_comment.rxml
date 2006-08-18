@@ -6,8 +6,8 @@ xm.entry do
   xm.updated item.updated_at.xmlschema
   xm.title "Comment on #{item.article.title} by #{item.author}", "type"=>"html"
 
-  xm.link "rel" => "alternate", "type" => "text/html", "href" => comment_link(item)
+  xm.link "rel" => "alternate", "type" => "text/html", "href" => item.permalink_url
 
-  content = item.full_html
+  content = item.html
   xm.content content, "type"=>"html"
 end

@@ -36,9 +36,9 @@ module ContentState
       content.state = Published.instance
     end
 
-    def send_notifications(content, controller)
+    def send_notifications(content)
       content.interested_users.each do |user|
-        content.send_notification_to_user(controller, user)
+        content.send_notification_to_user(user)
       end
     end
 

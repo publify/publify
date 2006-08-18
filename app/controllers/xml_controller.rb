@@ -14,6 +14,7 @@ class XmlController < ContentController
   def feed
     @items = Array.new
     @format = params[:format]
+    @blog = this_blog
 
     if @format == 'atom03'
       @headers["Status"] = "301 Moved Permanently"
@@ -21,7 +22,7 @@ class XmlController < ContentController
     end
 
     @feed_title = this_blog.blog_name
-    @link = url_for({:controller => "articles"},{:only_path => false})
+    @link = this_blog.server_url
 
     @format = NORMALIZED_FORMAT_FOR[@format]
 
@@ -92,23 +93,21 @@ class XmlController < ContentController
     fetch_items(article.comments, 'published_at DESC', 25)
     @items.unshift(article)
     @feed_title << ": #{article.title}"
-    @link = article_url(article, false)
+    @link = article.permalink_url
   end
 
   def prep_category
     category = Category.find_by_permalink(params[:id])
     fetch_items(category.articles)
     @feed_title << ": Category #{category.name}"
-    @link = url_for({:controller => "articles", :action => "category", :id => category.permalink},
-                    {:only_path => false})
+    @link = category.permalink_url
   end
 
   def prep_tag
     tag = Tag.find_by_name(params[:id])
     fetch_items(tag.articles)
     @feed_title << ": Tag #{tag.display_name}"
-    @link = url_for({:controller => "articles", :action => 'tag', :tag => tag.name},
-                    {:only_path => false})
+    @link = tag.permalink_url
   end
 
   def prep_sitemap

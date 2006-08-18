@@ -7,20 +7,8 @@ module XmlHelper
     h(post.title)
   end
 
-  def item_link(item)
-    item.location(nil, false)
-  end
-
-  alias_method :post_link,      :item_link
-  alias_method :comment_link,   :item_link
-  alias_method :trackback_link, :item_link
-
   def blog_title
     this_blog.blog_name || "Unnamed blog"
-  end
-
-  def tag_link(tag)
-    url_for :controller => "/articles", :action => 'tag', :id => tag.name, :only_path => false
   end
 
   def collection_lastmod(collection)
@@ -36,9 +24,5 @@ module XmlHelper
     else
       times.max.xmlschema
     end
-  end
-
-  def category_link(category)
-    url_for :controller => "/articles", :action => 'category', :id => category.permalink, :only_path => false
   end
 end

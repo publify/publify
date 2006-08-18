@@ -1,6 +1,37 @@
 require 'observer'
 require 'set'
 
+# Used to get access to the Fragment Cache from inside of content models.
+class ContentCache
+  include ActionController::Caching::Fragments
+    
+  class << self
+    include ActionController::Benchmarking::ClassMethods
+    
+    def logger
+      RAILS_DEFAULT_LOGGER
+    end
+  end
+  
+  def perform_caching
+    ENV['RAILS_ENV'] == 'production'
+  end
+  
+  def [](key)
+    return unless key
+    read_fragment(key)
+  end
+  
+  def []=(key,value)
+    return unless key
+    if value
+      write_fragment(key,value)
+    else
+      expire_fragment(key)
+    end
+  end
+end
+
 class Content < ActiveRecord::Base
   include Observable
 
@@ -24,10 +55,19 @@ class Content < ActiveRecord::Base
 
   @@content_fields = Hash.new
   @@html_map       = Hash.new
+  @@cache = ContentCache.new
 
   def initialize(*args, &block)
     super(*args, &block)
     set_default_blog
+  end
+  
+  def cache_read(field)
+    @@cache[cache_key(:field)]
+  end
+
+  def cache_write(field,value)
+    @@cache[cache_key(:field)]=value
   end
 
   def set_default_blog
@@ -37,6 +77,7 @@ class Content < ActiveRecord::Base
   end
 
   class << self
+    # Quite a bit of this isn't needed anymore.
     def content_fields(*attribs)
       @@content_fields[self] = ((@@content_fields[self]||[]) + attribs).uniq
       @@html_map[self] = nil
@@ -46,7 +87,7 @@ class Content < ActiveRecord::Base
             changed
             self[field] = newval
             if html_map(field)
-              self[html_map(field)] = nil
+              cache_write(field,nil)
             end
             notify_observers(self, field.to_sym)
           end
@@ -54,11 +95,8 @@ class Content < ActiveRecord::Base
         end
         unless self.method_defined?("#{field}_html")
           define_method("#{field}_html") do
-            if blog.controller
-              html(blog.controller, field.to_sym)
-            else
-              self["#{field}_html"]
-            end
+            typo_deprecated "Use html(:#{field})"
+            html(field.to_sym)
           end
         end
       end
@@ -69,7 +107,7 @@ class Content < ActiveRecord::Base
         @@html_map[self] = Hash.new
         instance = self.new
         @@content_fields[self].each do |attrib|
-          @@html_map[self][attrib] = "#{attrib}_html"
+          @@html_map[self][attrib] = true
         end
       end
       if field
@@ -111,6 +149,10 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def content_fields
+    @@content_fields[self.class]
+  end
+
   def state_before_save
     state.before_save(self)
   end
@@ -119,60 +161,60 @@ class Content < ActiveRecord::Base
     state.after_save(self)
   end
 
-  def html_map(field=nil); self.class.html_map(field); end
-
-  def full_html
-    unless blog.controller
-      raise "full_html only works with an active controller"
-    end
-    html(blog.controller, :all)
+  def html_map(field=nil)
+    self.class.html_map(field)
   end
 
-  def populate_html_fields(controller)
-    html_map.each do |field, html_field|
-      if !self[field].blank? && self[html_field].blank?
-        html = text_filter.filter_text_for_controller( self[field].to_s, controller, self, false )
-        self[html_field] = self.send("#{html_field}_postprocess",
-                                     html, controller)
-      end
-    end
+  def cache_key(field)
+    id ? "contents_html/#{id}/#{field}" : nil
   end
 
-  def html(controller,what = :all)
-    populate_html_fields(controller)
-
-    if what == :all
-      self[:body_html].to_s + (self[:extended_html].to_s rescue '')
-    elsif self.class.html_map(what)
-      self[html_map(what)]
+  # Return HTML for some part of this object.  It will be fetched from the
+  # cache if possible, or regenerated if needed.
+  def html(field = :all)
+    if field == :all
+      content_fields.map{|f| html(f)}.join("\n")
+    elsif self.class.html_map(field)
+      generate_html(field)
     else
-      raise "Unknown 'what' in article.html"
+      raise "Unknown '#{field}' in article.html"
     end
   end
+  
+  # Generate HTML for a specific field using the text_filter in use for this
+  # object.  The HTML is cached in the fragment cache, using the +ContentCache+
+  # object in @@cache.
+  def generate_html(field)
+    html = cache_read(field)
+    return html if html
+    
+    html = text_filter.filter_text_for_controller(blog, self[field].to_s, self)
+    html ||= self[field].to_s # just in case the filter puked
+    html = html_postprocess(field,html).to_s
+        
+    cache_write(field,html)
 
-  def method_missing(method, *args, &block)
-    if method.to_s =~ /_postprocess$/
-      args[0]
-    else
-      super(method, *args, &block)
-    end
+    html
+  end
+
+  # Post-process the HTML.  This is a noop by default, but Comment overrides it
+  # to enforce HTML sanity.
+  def html_postprocess(field,html)
+    html
   end
 
   def whiteboard
     self[:whiteboard] ||= Hash.new
   end
 
-
   def text_filter
-    self[:text_filter] ||= if self[:text_filter_id]
-                             TextFilter.find(self[:text_filter_id])
-                           else
-                             blog[default_text_filter_config_key].to_text_filter
-                           end
+    self[:text_filter] ||= TextFilter.find(self[:text_filter_id]) rescue nil
+    self[:text_filter] ||= blog[default_text_filter_config_key].to_text_filter
   end
 
   def text_filter=(filter)
     self[:text_filter_id] = filter.to_text_filter.id
+    self[:text_filter] = filter.to_text_filter
   end
 
   def blog
@@ -240,14 +282,21 @@ class Content < ActiveRecord::Base
     state.after_save(self)
   end
 
-  def send_notification_to_user(controller, user)
-    notify_user_via_email(controller, user)
-    notify_user_via_jabber(controller, user)
+  def send_notification_to_user(user)
+    notify_user_via_email(user)
+    notify_user_via_jabber(user)
   end
 
-  def send_notifications(controller = nil)
-    state.send_notifications(self, controller || blog.controller)
+  def send_notifications()
+    state.send_notifications(self)
   end
+  
+  # deprecated
+  def full_html
+    typo_deprecated "use .html instead"
+    html
+  end
+  
 end
 
 class Object
@@ -255,3 +304,9 @@ class Object
     TextFilter.find_by_name(self.to_s) || TextFilter.find_by_name('none')
   end
 end
+
+class ContentTextHelpers
+  include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::TextHelper
+end
+

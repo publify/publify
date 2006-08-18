@@ -3,7 +3,7 @@
 <ul id="categories">
 <% for category in @categories -%>
   <% unless empty.blank? and category.article_counter == 0 %>
-  <li><%= link_to h(category.name), :controller => "articles", :action => "category", :id => category.permalink  %> <% unless count.blank? %><em>(<%= category.article_counter %>)</em><% end %></li>
+  <li><%= link_to h(category.name), category.permalink_url  %> <% unless count.blank? %><em>(<%= category.article_counter %>)</em><% end %></li>
   <% end %>
 <% end -%>
 </ul>

@@ -149,7 +149,7 @@ class MetaWeblogService < TypoWebService
     resource = Resource.create(:filename => data['name'], :mime => data['type'], :created_at => Time.now)
     resource.write_to_disk(data['bits'])
 
-    MetaWeblogStructs::Url.new("url" => controller.url_for(:controller => "files", :action => "#{resource.filename}"))
+    MetaWeblogStructs::Url.new("url" => this_blog.file_url(resource.filename))
   end
 
   def article_dto_from(article)
@@ -157,9 +157,9 @@ class MetaWeblogService < TypoWebService
       :description       => article.body,
       :title             => article.title,
       :postid            => article.id.to_s,
-      :url               => article_url(article).to_s,
-      :link              => article_url(article).to_s,
-      :permaLink         => article_url(article).to_s,
+      :url               => article.permalink,
+      :link              => article.permalink,
+      :permaLink         => article.permalink,
       :categories        => article.categories.collect { |c| c.name },
       :mt_text_more      => article.extended.to_s,
       :mt_excerpt        => article.excerpt.to_s,
@@ -173,23 +173,6 @@ class MetaWeblogService < TypoWebService
   end
 
   protected
-
-  def article_url(article)
-    begin
-      controller.url_for :controller=>"articles", :action =>"permalink",
-        :year => article.published_at.year, :month => sprintf("%.2d", article.published_at.month),
-        :day => sprintf("%.2d", article.published_at.day), :title => article.stripped_title
-    rescue
-      created = article.published_at
-      sprintf("/articles/%.4d/%.2d/%.2d/#{article.stripped_title}", created.year, created.month, created.day)
-      # FIXME: rescue is needed for functional tests as the test framework currently doesn't supply fully
-      # fledged controller instances (yet?)
-    end
-  end
-
-  def server_url
-    controller.url_for(:only_path => false, :controller => "articles")
-  end
 
   def pub_date(time)
     time.strftime "%a, %e %b %Y %H:%M:%S %Z"

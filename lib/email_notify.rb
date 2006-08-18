@@ -3,22 +3,22 @@ class EmailNotify
     @@logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDOUT)
   end
 
-  def self.send_comment(controller, comment, user)
+  def self.send_comment(comment, user)
     return if user.email.blank?
 
     begin
-      email = NotificationMailer.create_comment(controller, comment, user)
+      email = NotificationMailer.create_comment(comment, user)
       EmailNotify.send_message(user,email)
     rescue => err
       logger.error "Unable to send comment email: #{err.inspect}"
     end
   end
 
-  def self.send_article(controller, article, user)
+  def self.send_article(article, user)
     return if user.email.blank?
 
     begin
-      email = NotificationMailer.create_article(controller, article, user)
+      email = NotificationMailer.create_article(article, user)
       EmailNotify.send_message(user,email)
     rescue => err
       logger.error "Unable to send article email: #{err.inspect}"

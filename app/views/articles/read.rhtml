@@ -5,11 +5,11 @@
 <rdf:Description
     rdf:about=""
 <% if @article.allow_pings? -%>
-    trackback:ping="<%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article %>"
+    trackback:ping="<%= @article.trackback_url %>"
 <% end -%>
     dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
-    dc:identifier="<%= article_url(@article, false) %>"
-    dc:description="<%=h strip_html(@article.full_html[0..255]).gsub(/-+/, '-') %>"
+    dc:identifier="<%= @article.permalink_url %>"
+    dc:description="<%=h (@article.html.strip_html[0..255]).gsub(/-+/, '-') %>"
     dc:creator="<%= h @article.author %>"
     dc:date="<%= @article.updated_at.xmlschema %>" />
 </rdf:RDF>
@@ -21,7 +21,7 @@
   <h2><%=h @article.title %></h2>
   <p class="auth">Posted by <%= author_link(@article) %>
   <%= js_distance_of_time_in_words_to_now @article.published_at.utc %></p>
-  <%= @article.full_html %>
+  <%= @article.html %>
 </div>
 <p class="meta">
   <%= article_links @article %>
@@ -47,7 +47,7 @@
   <a name="trackbacks"></a><h4 class="blueblk">Trackbacks</h4>
   <p>
     Use the following link to trackback from your own site:<br/>
-    <span class="light-bg"><%= server_url_for :controller=>"articles", :action=>"trackback", :id=>@article.id %></span>
+    <span class="light-bg"><%= @article.trackback_url %></span>
     </p>
   <%= content_tag(:ol,
         render(:partial => "trackback", :collection => @article.published_trackbacks),
@@ -58,7 +58,7 @@
   <small>
   <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'rss20', :id => @article %>" title="RSS Feed">RSS feed for this post</a>
 <% if @article.allow_pings? -%>
-  <a href="<%= server_url_for :controller=>"articles", :action=>"trackback", :id => @article.id %>" >trackback uri</a>
+  <a href="<%= @article.trackback_url %>" >trackback uri</a>
 <% end -%>
   </small>
 </p>

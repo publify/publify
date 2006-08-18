@@ -33,12 +33,12 @@ class TextFilterTest < Test::Unit::TestCase
   def test_available
     filters = TextFilter.available_filters
 
-    assert filters.include?(Plugins::Textfilters::MarkdownController)
-    assert filters.include?(Plugins::Textfilters::SmartypantsController)
-    assert filters.include?(Plugins::Textfilters::HtmlfilterController)
-    assert filters.include?(Plugins::Textfilters::TextileController)
-    assert filters.include?(Plugins::Textfilters::AmazonController)
-    assert filters.include?(Plugins::Textfilters::FlickrController)
+    assert filters.include?(Typo::Textfilter::Markdown)
+    assert filters.include?(Typo::Textfilter::Smartypants)
+    assert filters.include?(Typo::Textfilter::Htmlfilter)
+    assert filters.include?(Typo::Textfilter::Textile)
+    assert filters.include?(Typo::Textfilter::Amazon)
+    assert filters.include?(Typo::Textfilter::Flickr)
 
     assert !filters.include?(TextFilterPlugin::Markup)
     assert !filters.include?(TextFilterPlugin::Macro)
@@ -65,19 +65,19 @@ class TextFilterTest < Test::Unit::TestCase
     assert types['postprocess']
     assert types['other']
 
-    assert types['markup'].include?(Plugins::Textfilters::MarkdownController)
-    assert types['markup'].include?(Plugins::Textfilters::TextileController)
+    assert types['markup'].include?(Typo::Textfilter::Markdown)
+    assert types['markup'].include?(Typo::Textfilter::Textile)
 
-    assert types['macropost'].include?(Plugins::Textfilters::FlickrController)
+    assert types['macropost'].include?(Typo::Textfilter::Flickr)
 
-    assert types['macropre'].include?(Plugins::Textfilters::CodeController)
+    assert types['macropre'].include?(Typo::Textfilter::Code)
 
-    assert types['postprocess'].include?(Plugins::Textfilters::SmartypantsController)
-    assert types['postprocess'].include?(Plugins::Textfilters::AmazonController)
+    assert types['postprocess'].include?(Typo::Textfilter::Smartypants)
+    assert types['postprocess'].include?(Typo::Textfilter::Amazon)
 
-    assert types['other'].include?(Plugins::Textfilters::HtmlfilterController)
-    assert types['other'].include?(Plugins::Textfilters::MacroPreController)
-    assert types['other'].include?(Plugins::Textfilters::MacroPostController)
+    assert types['other'].include?(Typo::Textfilter::Htmlfilter)
+    assert types['other'].include?(Typo::Textfilter::MacroPre)
+    assert types['other'].include?(Typo::Textfilter::MacroPost)
 
     # There shouldn't be any 'other' plugins coming from users; they
     # should all be part of the core
@@ -87,17 +87,17 @@ class TextFilterTest < Test::Unit::TestCase
   def test_map
     map = TextFilter.filters_map
 
-    assert_equal Plugins::Textfilters::MarkdownController,
+    assert_equal Typo::Textfilter::Markdown,
           map['markdown']
-    assert_equal Plugins::Textfilters::SmartypantsController,
+    assert_equal Typo::Textfilter::Smartypants,
           map['smartypants']
-    assert_equal Plugins::Textfilters::HtmlfilterController,
+    assert_equal Typo::Textfilter::Htmlfilter,
           map['htmlfilter']
-    assert_equal Plugins::Textfilters::TextileController,
+    assert_equal Typo::Textfilter::Textile,
           map['textile']
-    assert_equal Plugins::Textfilters::AmazonController,
+    assert_equal Typo::Textfilter::Amazon,
           map['amazon']
-    assert_equal Plugins::Textfilters::FlickrController,
+    assert_equal Typo::Textfilter::Flickr,
           map['flickr']
   end
 

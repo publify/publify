@@ -2,5 +2,5 @@
 
 <%= render :partial => './mail_header' %>
 <h2><%=h @article.title %></h2>
-<%= @article.body_html %>
+<%= @article.html(:body) %>
 <%= render :partial => './mail_footer' %>

@@ -17,6 +17,3 @@ class TextfilterController < ApplicationController
   end
 end
 
-Dir["#{RAILS_ROOT}/components/plugins/textfilters/[_a-z]*.rb"].each do |f|
-  require_dependency f
-end

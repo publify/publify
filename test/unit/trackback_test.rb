@@ -5,6 +5,21 @@ require 'dns_mock'
 class TrackbackTest < Test::Unit::TestCase
   fixtures :contents, :blacklist_patterns, :blogs
 
+  def test_permalink_url
+    t = contents(:trackback1)
+    assert_equal 'http://myblog.net/articles/2006/08/13/article-2#trackback-7', t.permalink_url
+  end
+  
+  def test_edit_url
+    t = contents(:trackback1)
+    assert_equal 'http://myblog.net/admin/trackbacks/edit/7', t.edit_url
+  end
+  
+  def test_delete_url
+    t = contents(:trackback1)
+    assert_equal 'http://myblog.net/admin/trackbacks/destroy/7', t.delete_url
+  end
+
   def test_incomplete
     tb = Trackback.new
     tb.blog_name = "Blog name"

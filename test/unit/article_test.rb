@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories, :articles_categories, :users, :notifications
+  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories, :articles_categories, :users, :notifications, :text_filters
 
   def setup
     @articles = []
@@ -15,7 +15,33 @@ class ArticleTest < Test::Unit::TestCase
       assert @articles.include?(i.is_a?(Symbol) ? contents(i) : i)
     end
   end
+  
+  def test_content_fields
+    a = Article.new
+    assert_equal [:body, :extended], a.content_fields
+  end
+  
+  def test_permalink_url
+    a = contents(:article3)
+    assert_equal 'http://myblog.net/articles/2004/06/01/article-3', a.permalink_url
+  end
+  
+  def test_edit_url
+    a = contents(:article3)
+    assert_equal 'http://myblog.net/admin/content/edit/3', a.edit_url
+  end
+  
+  def test_delete_url
+    a = contents(:article3)
+    assert_equal 'http://myblog.net/admin/content/destroy/3', a.delete_url
+  end
 
+  def test_feed_url
+    a = contents(:article3)
+    assert_equal 'http://myblog.net/xml/atom10/article/3/feed.xml', a.feed_url(:atom10)
+    assert_equal 'http://myblog.net/xml/rss20/article/3/feed.xml', a.feed_url(:rss20)
+  end
+  
   def test_blog
     a = Article.new
 

@@ -21,28 +21,51 @@ class Article < Content
   def stripped_title
     self.title.gsub(/<[^>]*>/,'').to_url
   end
-
-  def location(anchor=nil, only_path=true)
-    blog.article_url(self, only_path, anchor)
+  
+  def permalink_url(anchor=nil, only_path=true)
+    @cached_permalink_url ||= {}
+    @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(
+      :year => published_at.year,
+      :month => sprintf("%.2d", published_at.month),
+      :day => sprintf("%.2d", published_at.day),
+      :title => permalink, 
+      :anchor => anchor,
+      :only_path => only_path,
+      :controller => '/articles'
+    )
+  end
+  
+  def trackback_url
+    blog.url_for(:controller => "articles", :action =>"trackback", :id => id)
+  end
+  
+  def feed_url(format = :rss20)
+    blog.url_for(:controller => 'xml', :action => 'feed', :type => 'article', :format => format, :id => id)
+  end
+  
+  def edit_url
+    blog.url_for(:controller => "/admin/content", :action =>"edit", :id => id)
+  end
+  
+  def delete_url
+    blog.url_for(:controller => "/admin/content", :action =>"destroy", :id => id)
   end
 
   def html_urls
     urls = Array.new
-    (body_html.to_s + extended_html.to_s).gsub(/<a [^>]*>/) do |tag|
+    html.gsub(/<a [^>]*>/) do |tag|
       if(tag =~ /href="([^"]+)"/)
         urls.push($1)
       end
     end
 
-    urls
+    urls.uniq
   end
 
   def really_send_pings(serverurl = blog.server_url, articleurl = nil)
     return unless blog.send_outbound_pings
 
-    # Moved the default value for articleurl out of the method declaration to
-    # avoid unnecessary evaluations of the #location() method.
-    articleurl ||= location(nil, false)
+    articleurl ||= permalink_url(nil, false)
 
     weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
     pingback_or_trackback_urls = self.html_urls
@@ -137,17 +160,17 @@ class Article < Content
     User.find_boolean(:all, :notify_on_new_articles)
   end
 
-  def notify_user_via_email(controller, user)
+  def notify_user_via_email(user)
     if user.notify_via_email?
-      EmailNotify.send_article(controller, self, user)
+      EmailNotify.send_article(self, user)
     end
   end
 
-  def notify_user_via_jabber(controller, user)
+  def notify_user_via_jabber(user)
     if user.notify_via_jabber?
       JabberNotify.send_message(user, "New post",
                                 "A new message was posted to #{blog.blog_name}",
-                                body_html)
+                                html(:body))
     end
   end
 

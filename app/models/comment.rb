@@ -4,26 +4,23 @@ require 'timeout'
 
 class Comment < Feedback
   belongs_to :article
-
-  content_fields :body
-
   belongs_to :user
-
+  content_fields :body
   validates_presence_of :author, :body
 
   attr_accessor :user_agent
   attr_accessor :referrer
   attr_accessor :permalink
 
-  def notify_user_via_email(controller, user)
+  def notify_user_via_email(user)
     if user.notify_via_email?
-      EmailNotify.send_comment(controller, self, user)
+      EmailNotify.send_comment(self, user)
     end
   end
 
-  def notify_user_via_jabber(controller, user)
+  def notify_user_via_jabber(user)
     if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New comment", "A new comment was posted to '#{article.title}' on #{blog.blog_name} by #{author}: #{body}", self.body_html)
+      JabberNotify.send_message(user, "New comment", "A new comment was posted to '#{article.title}' on #{blog.blog_name} by #{author}: #{body}", html(:body))
     end
   end
 
@@ -47,11 +44,6 @@ class Comment < Feedback
 
   def default_text_filter_config_key
     'comment_text_filter'
-  end
-
-  def make_nofollow
-    self.author    = author.nofollowify
-    self.body_html = body_html.to_s.nofollowify
   end
 
   def originator

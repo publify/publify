@@ -99,6 +99,10 @@ require_dependency 'xmlrpc_fix'
 require_dependency 'transforms'
 require_dependency 'builder'
 
+require_dependency 'typo_deprecated'
+
+#MemoryProfiler.start(:delay => 10, :string_debug => false)
+
 unless Builder::XmlMarkup.methods.include? '_attr_value'
   # Builder 2.0 has many important fixes, but for now we will only backport
   # this one...

@@ -5,6 +5,21 @@ require 'dns_mock'
 class CommentTest < Test::Unit::TestCase
   fixtures :contents, :blacklist_patterns, :text_filters, :blogs
 
+  def test_permalink_url
+    c = contents(:old_comment)
+    assert_equal 'http://myblog.net/articles/2004/05/01/inactive-article#comment-15', c.permalink_url
+  end
+  
+  def test_edit_url
+    c = contents(:old_comment)
+    assert_equal 'http://myblog.net/admin/comments/edit/15', c.edit_url
+  end
+  
+  def test_delete_url
+    c = contents(:old_comment)
+    assert_equal 'http://myblog.net/admin/comments/destroy/15', c.delete_url
+  end
+
   def test_save_regular
     assert contents(:comment2).save
     assert_equal "http://www.google.com", contents(:comment2).url
@@ -113,7 +128,7 @@ class CommentTest < Test::Unit::TestCase
       assert c.save
       assert c.errors.empty?
 
-      assert c.body_html !~ /<script>/
+      assert c.html(:body) !~ /<script>/
     end
   end
 
