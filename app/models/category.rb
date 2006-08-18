@@ -54,7 +54,7 @@ class Category < ActiveRecord::Base
     blog.url_for(
       :controller => '/articles',
       :action => 'category',
-      :name => permalink
+      :id => permalink
     )
   end
 

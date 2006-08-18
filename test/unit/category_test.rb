@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CategoryTest < Test::Unit::TestCase
-  fixtures :contents, :categories, :articles_categories
+  fixtures :contents, :categories, :articles_categories, :blogs
 
   def setup
     @category = Category.find(1)
@@ -34,4 +34,9 @@ class CategoryTest < Test::Unit::TestCase
     Category.reorder_alpha
     assert_equal categories(:hardware), Category.find(:first, :order => :position)
   end
+  
+  def test_permalink
+    assert_equal 'http://myblog.net/articles/category/software', @category.permalink_url
+  end
+  
 end
