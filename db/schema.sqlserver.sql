@@ -229,4 +229,4 @@ CREATE TABLE schema_info (
   [version] int
 );
 
-insert into schema_info (version) values (50);
+insert into schema_info (version) values (51);
