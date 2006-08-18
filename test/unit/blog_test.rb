@@ -31,19 +31,8 @@ class BlogTest < Test::Unit::TestCase
     end
   end
 
-  def test_find_already_published
-    assert articles = @blog.find_already_published(:articles)
-    assert_kind_of Array, articles
-    assert articles.all? { |a| a.is_a?(Article) }
-    assert_equal 7, articles.size
-
-    assert comments = @blog.find_already_published(:comments)
-    assert_kind_of Array, comments
-    assert comments.all? { |c| c.is_a?(Comment) }
-  end
-
   def test_current_theme_path
-    assert_equal Theme.themes_root + "/azure", @blog.current_theme_path
+    assert_equal Theme.themes_root + "/azure", @blog.current_theme.path
   end
 
   def test_current_theme

@@ -22,7 +22,7 @@ class XmlController < ContentController
     end
 
     @feed_title = this_blog.blog_name
-    @link = this_blog.server_url
+    @link = this_blog.base_url
 
     @format = NORMALIZED_FORMAT_FOR[@format]
 

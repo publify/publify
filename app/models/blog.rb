@@ -1,5 +1,4 @@
 # BlogRequest is a fake Request object, created so blog.url_for will work.
-# This isn't enabled yet, but it will be soon...
 class BlogRequest
   include Reloadable
 
@@ -12,6 +11,11 @@ class BlogRequest
   end
 end
 
+# The Blog class represents one blog.  It stores most configuration settings
+# and is linked to most of the assorted content classes via has_many.
+#
+# Typo decides which Blog object to use by searching for a Blog base_url that
+# matches the base_url computed for each request.
 class Blog < ActiveRecord::Base
   include ConfigManager
 
@@ -39,7 +43,7 @@ class Blog < ActiveRecord::Base
   setting :blog_subtitle,              :string, ''
   setting :title_prefix,               :boolean, false
   setting :geourl_location,            :string, ''
-  setting :canonical_server_url,       :string, ''
+  setting :canonical_server_url,       :string, ''  # Deprecated
 
   # Spam
   setting :sp_global,                  :boolean, false
@@ -78,15 +82,21 @@ class Blog < ActiveRecord::Base
   setting :jabber_address,             :string, ''
   setting :jabber_password,            :string, ''
 
-  def find_already_published(content_type)
-    self.send(content_type).find_already_published
+  def initialize(*args)
+    super
+    self.settings ||= { }
   end
-  
+
   # Find the Blog that matches a specific base URL.  If no Blog object is found
   # that matches, then grab the default blog.  If *that* fails, then create a new
   # Blog.  The last case should only be used when Typo is first installed.
   def self.find_blog(base_url)
     Blog.find_by_base_url(base_url) || Blog.default || Blog.new
+  end
+
+  # The default Blog.  This is the lowest-numbered blog, almost always id==1.
+  def self.default
+    find(:first, :order => 'id')
   end
 
   def ping_article!(settings)
@@ -101,45 +111,12 @@ class Blog < ActiveRecord::Base
     settings.has_key?('blog_name')
   end
 
-  # Axe?
-  def [](key)
-    typo_deprecated "Why?"
-    self.send(key)
-  end
-
-  # Axe?
-  def []=(key, value)
-    typo_deprecated "Why?"
-    self.send("#{key}=", value)
-  end
-
-  # Axe?
-  def has_key?(key)
-    typo_deprecated "Why?"
-    self.class.fields.has_key?(key.to_s)
-  end
-
-  def initialize(*args)
-    super
-    self.settings ||= { }
-  end
-
-  # The default Blog.  This is the lowest-numbered blog, almost always id=1.
-  def self.default
-    find(:first, :order => 'id')
-  end
-
-  # The path to the currently-active theme.
-  def current_theme_path
-    Theme.themes_root + "/" + theme
-  end
-
-  # Axe?
+  # The +Theme+ object for the current theme.
   def current_theme
-    Theme.theme_from_path(current_theme_path)
+    @cached_theme ||= Theme.find(theme)
   end
 
-  # Generate a URL based on the canonical_server_url.  This allows us to generate URLs
+  # Generate a URL based on the +base_url+.  This allows us to generate URLs
   # without needing a controller handy, so we can produce URLs from within models
   # where appropriate.
   #
@@ -152,7 +129,7 @@ class Blog < ActiveRecord::Base
       unless RouteCache[options]
         options.reverse_merge!(:only_path => true, :controller => '/articles',
                                :action => 'permalink')
-        @url ||= ActionController::UrlRewriter.new(BlogRequest.new(self.canonical_server_url), {})
+        @url ||= ActionController::UrlRewriter.new(BlogRequest.new(self.base_url), {})
         RouteCache[options] = @url.rewrite(options)
       end
       
@@ -162,15 +139,45 @@ class Blog < ActiveRecord::Base
     end
   end
   
-  # The URL for a static file.  This should probably be rewritten, as there
-  # is no 'files' controller.
+  # The URL for a static file.
   def file_url(filename)
-    url_for(:controller => 'files', :action => filename)
+    "#{base_url}/files/#{filename}"
   end
   
   # The base server URL.
   def server_url
     base_url
+  end
+  
+  # Deprecated
+  def canonical_server_url
+    typo_deprecated "Use base_url instead"
+    base_url
+  end
+  
+  def [](key)  # :nodoc:
+    typo_deprecated "Use blog.#{key}"
+    self.send(key)
+  end
+
+  def []=(key, value)  # :nodoc:
+    typo_deprecated "Use blog.#{key}="
+    self.send("#{key}=", value)
+  end
+
+  def has_key?(key)  # :nodoc:
+    typo_deprecated "Why?"
+    self.class.fields.has_key?(key.to_s)
+  end
+  
+  def find_already_published(content_type)  # :nodoc:
+    typo_deprecated "Use #{content_type}.find_already_published"
+    self.send(content_type).find_already_published
+  end
+
+  def current_theme_path  # :nodoc:
+    typo_deprecated "use current_theme.path"
+    Theme.themes_root + "/" + theme
   end
 end
 

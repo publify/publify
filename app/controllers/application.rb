@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
     end.call
   end
 
+  # Axe?
   def server_url
-    this_blog.server_url
+    this_blog.base_url
   end
 
   def cache
@@ -36,8 +37,8 @@ class ApplicationController < ActionController::Base
   helper_method :this_blog
   
   # The base URL for this request, calculated by looking up the URL for the main 
-  # blog index page.  This is matched with Blog#canonical_server_url to determine
-  # which Blog is supposed to handle this URL
+  # blog index page.  This is matched with Blog#base_url to determine which Blog
+  # is supposed to handle this URL
   def blog_base_url
     url_for(:controller => '/articles').gsub(%r{/$},'')
   end

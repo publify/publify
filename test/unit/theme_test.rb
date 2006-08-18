@@ -25,7 +25,7 @@ class ThemeTest < Test::Unit::TestCase
   end
 
   def test_theme_from_path
-    assert_equal "azure", Theme.theme_from_path(this_blog.current_theme_path).name
+    assert_equal "azure", Theme.theme_from_path(this_blog.current_theme.path).name
   end
 
   def test_search_theme_directory

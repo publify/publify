@@ -105,7 +105,7 @@ class Feedback < Content
   end
 
   def akismet
-    Akismet.new(blog.sp_akismet_key, blog.canonical_server_url)
+    Akismet.new(blog.sp_akismet_key, blog.base_url)
   end
 
   def akismet_is_spam?(options={})

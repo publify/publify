@@ -4,10 +4,10 @@ creators, not end-users.
 URL Generation
 --------------
 
-URLs are now generated based on the blog canonical_server_url, not the current
+URLs are now generated based on the blog base_url, not the current
 controller's base URL. This has a number of impacts:
 
-  * If the canonical_server_url setting is wrong, most links will be broken.
+  * If the base_url setting is wrong, most links will be broken.
   * We can now generate permalink URLs directly from models without needing a
     controller object.
   * We can (and have) removed all of the controllers parameters passed around 

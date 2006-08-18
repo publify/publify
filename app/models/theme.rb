@@ -16,8 +16,17 @@ class Theme
     File.read("#{path}/about.markdown") rescue "### #{name}"
   end
 
+  # Find a theme, given the theme name
+  def self.find(name)
+    self.new(name,theme_path(name))
+  end
+
   def self.themes_root
     RAILS_ROOT + "/themes"
+  end
+  
+  def self.theme_path(name)
+    themes_root + "/" + name
   end
 
   def self.theme_from_path(path)

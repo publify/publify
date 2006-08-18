@@ -30,8 +30,8 @@
       <label for="blog_title_prefix">Prefix page title with blog name</label>
     </p>
     <p>
-      <label for="canonical_server_url">Canonical Server Url:</label>
-      <input name="setting[canonical_server_url]" id="canonical_server_url" type="text" value="<%= this_blog.canonical_server_url %>" />
+      <label for="base_url">Base Url:</label>
+      <input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" />
     </p>
     <p>
       <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />

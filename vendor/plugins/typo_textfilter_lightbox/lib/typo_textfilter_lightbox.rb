@@ -116,8 +116,8 @@ Common attributes:
 
       def self.set_whiteboard blog, content
         content.whiteboard['page_header_lightbox'] = <<-HTML
-    <link href="#{blog.server_url}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
-      <script src="#{blog.server_url}/javascripts/lightbox.js" type="text/javascript"></script>
+    <link href="#{blog.base_url}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
+      <script src="#{blog.base_url}/javascripts/lightbox.js" type="text/javascript"></script>
         HTML
       end
     end

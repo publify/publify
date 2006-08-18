@@ -1,6 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 default:
   id: 1
+  base_url: http://myblog.net
   settings:
     jabber_password: ""
     show_extended_on_rss: true
@@ -35,10 +36,10 @@ default:
     itunes_summary: ""
     comment_text_filter: markdown
     sp_allow_non_ajax_comments: true
-    canonical_server_url: http://myblog.net
 
 second:
   id: 2
+  base_url: http://otherblog.net
   settings:
     jabber_password: ""
     show_extended_on_rss: true

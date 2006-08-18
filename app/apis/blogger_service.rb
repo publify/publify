@@ -55,13 +55,13 @@ class BloggerService < TypoWebService
       :lastname => "",
       :nickname => username,
       :email => "",
-      :url => this_blog.server_url
+      :url => this_blog.base_url
     )
   end
 
   def getUsersBlogs(appkey, username, password)
     [BloggerStructs::Blog.new(
-      :url      => this_blog.server_url,
+      :url      => this_blog.base_url,
       :blogid   => this_blog.id,
       :blogName => this_blog.blog_name
     )]
