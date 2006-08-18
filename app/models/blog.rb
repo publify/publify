@@ -103,16 +103,19 @@ class Blog < ActiveRecord::Base
 
   # Axe?
   def [](key)
+    typo_deprecated "Why?"
     self.send(key)
   end
 
   # Axe?
   def []=(key, value)
+    typo_deprecated "Why?"
     self.send("#{key}=", value)
   end
 
   # Axe?
   def has_key?(key)
+    typo_deprecated "Why?"
     self.class.fields.has_key?(key.to_s)
   end
 
@@ -164,10 +167,10 @@ class Blog < ActiveRecord::Base
   def file_url(filename)
     url_for(:controller => 'files', :action => filename)
   end
-
+  
   # The base server URL.
   def server_url
-    settings[:canonical_server_url]
+    base_url
   end
 end
 

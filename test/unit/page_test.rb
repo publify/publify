@@ -37,4 +37,9 @@ class PageTest < Test::Unit::TestCase
 
     assert !b.save
   end
+  
+  def test_default_filter
+    a = Page.find(:first)
+    assert_equal 'textile', a.default_text_filter.name
+  end
 end

@@ -31,8 +31,4 @@ class Page < Content
   def delete_url
     blog.url_for(:controller => "/admin/pages", :action =>"destroy", :id => id)
   end
-
-  protected
-
-  def default_text_filter_config_key; 'text_filter'; end
 end

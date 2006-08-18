@@ -175,4 +175,9 @@ class CommentTest < Test::Unit::TestCase
     assert_equal 2,
       a.comments.find_all_by_status_confirmed(true).size
   end
+  
+  def test_default_filter
+    a = Comment.find(:first)
+    assert_equal 'markdown', a.default_text_filter.name
+  end
 end

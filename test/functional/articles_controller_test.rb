@@ -146,17 +146,17 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     Article.find(1).notify_users << users(:tobi)
 
-    post :comment, { :id => 1, :comment => {'body' => 'This is *textile*', 'author' => 'bob' }}
+    post :comment, { :id => 1, :comment => {'body' => 'This is *markdown*', 'author' => 'bob' }}
 
     assert_response :success
-    assert_tag :tag => 'strong', :content => 'textile'
+    assert_tag :tag => 'em', :content => 'markdown'
 
     comment = Article.find(1).comments.last
     assert comment
 
     assert_not_nil cookies["author"]
 
-    assert_equal "<p>This is <strong>textile</strong></p>", comment.html.to_s
+    assert_equal "<p>This is <em>markdown</em></p>", comment.html.to_s
 
     assert_equal 2, emails.size
     assert_equal User.find(:all,
@@ -192,7 +192,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_spam2
-    comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com['"] rel=["']nofollow['"]>spammy goodness</a></p>}, 'Link to "spammy goodness":http://spammer.example.com'
+    comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com['"] rel=["']nofollow['"]>spammy goodness</a></p>}, 'Link to [spammy goodness](http://spammer.example.com)'
   end
   
   def test_comment_spam3
@@ -222,7 +222,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_autolink
-    comment_template_test "<p>What&#8217;s up with <a href=\"http://slashdot.org\" rel=\"nofollow\">http://slashdot.org</a> these days?</p>", "What's up with http://slashdot.org these days?"
+    comment_template_test "<p>What's up with <a href=\"http://slashdot.org\" rel=\"nofollow\">http://slashdot.org</a> these days?</p>", "What's up with http://slashdot.org these days?"
   end #"
 
   ### TODO -- there's a bug in Rails with auto_links

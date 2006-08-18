@@ -30,16 +30,16 @@ class Comment < Feedback
     users
   end
 
+  def default_text_filter
+    blog.comment_text_filter.to_text_filter
+  end
+
   protected
 
   def article_allows_feedback?
     return true if article.allow_comments?
     errors.add(:article, "Article is not open to comments")
     false
-  end
-
-  def default_text_filter_config_key
-    'comment_text_filter'
   end
 
   def originator

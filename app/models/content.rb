@@ -207,16 +207,28 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= Hash.new
   end
 
-  def text_filter
-    self[:text_filter] ||= TextFilter.find(self[:text_filter_id]) rescue nil
-    self[:text_filter] ||= blog[default_text_filter_config_key].to_text_filter
+  # The default text filter.  Generally, this is the filter specified by blog.text_filter,
+  # but comments may use a different default.
+  def default_text_filter
+    blog.text_filter.to_text_filter
   end
 
+  # Grab the text filter for this object.  It's either the filter specified by
+  # self.text_filter_id, or the default specified in the blog object.
+  def text_filter
+    if self[:text_filter_id]
+      self[:text_filter] ||= TextFilter.find(self[:text_filter_id]) rescue nil
+    end
+    self[:text_filter] ||= default_text_filter
+  end
+
+  # Set the text filter for this object.
   def text_filter=(filter)
     self[:text_filter_id] = filter.to_text_filter.id
     self[:text_filter] = filter.to_text_filter
   end
 
+  # FIXME -- this feels wrong.
   def blog
     self[:blog] ||= blog_id.to_i.zero? ? Blog.default : Blog.find(blog_id)
   end

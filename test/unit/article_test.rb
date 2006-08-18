@@ -287,4 +287,9 @@ class ArticleTest < Test::Unit::TestCase
     assert ! art.published?
     assert   art.withdrawn?
   end
+  
+  def test_default_filter
+    a = Article.find(1)
+    assert_equal 'textile', a.default_text_filter.name
+  end
 end

@@ -232,10 +232,6 @@ class Article < Content
     self.notify_users.uniq!
   end
 
-  def default_text_filter_config_key
-    'text_filter'
-  end
-
   def self.time_delta(year, month = nil, day = nil)
     from = Time.mktime(year, month || 1, day || 1)
 
