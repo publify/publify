@@ -1,0 +1,1 @@
+require 'technorati_sidebar'

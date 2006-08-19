@@ -1,0 +1,1 @@
+require 'magnolia_sidebar'

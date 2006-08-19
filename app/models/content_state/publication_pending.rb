@@ -1,6 +1,5 @@
 module ContentState
   class PublicationPending < Base
-    include Reloadable
     include Singleton
 
     def enter_hook(content)

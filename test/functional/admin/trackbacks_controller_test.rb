@@ -40,12 +40,12 @@ class Admin::TrackbacksControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_trackbacks = Trackback.find_all.size
+    num_trackbacks = Trackback.count
 
     post :new, :trackback => { 'title' => 'title', 'excerpt' => 'excerpt', 'blog_name' => 'blog_name', 'url' => 'url' }, :article_id => 2
     assert_redirected_to :action => 'show'
 
-    assert_equal num_trackbacks + 1, Trackback.find_all.size
+    assert_equal num_trackbacks + 1, Trackback.count
   end
 
   def test_edit

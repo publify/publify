@@ -1,13 +1,20 @@
 class SidebarGenerator < Rails::Generator::NamedBase
+  attr_reader :plugin_path
+
+  def initialize(runtime_args, runtime_options = { })
+    super
+    @plugin_path = "vendor/plugins/#{file_name}"
+  end
+
   def manifest
     record do |m|
-      m.class_collisions class_name
+      m.directory "#{plugin_path}/lib"
+      m.directory "#{plugin_path}/test"
 
-      m.template "components/plugins/sidebars/controller_template.rb",
-                 "components/plugins/sidebars/#{file_name}_controller.rb"
-      m.directory File.join('components/plugins/sidebars', file_name)
-      m.template "components/plugins/sidebars/views/content_template.rhtml",
-                 "components/plugins/sidebars/#{file_name}/content.rhtml"
+      m.template 'init.rb',      "#{plugin_path}/init.rb"
+      m.template 'sidebar.rb',   "#{plugin_path}/lib/#{file_name}.rb"
+      m.template 'unit_test.rb', "#{plugin_path}/test/#{file_name}_test.rb"
+      m.template 'Rakefile',     "#{plugin_path}/Rakefile"
     end
   end
 end

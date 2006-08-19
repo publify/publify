@@ -1,0 +1,1 @@
+require 'tada_sidebar'

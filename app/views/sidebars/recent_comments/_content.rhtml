@@ -1,0 +1,12 @@
+<h3><%=h title %></h3>
+<div>
+    <ul>
+        <% for comment in sidebar.comments -%>
+            <li>
+                <% title = ''; title << 'by ' + comment.author if show_username -%>
+                <% title << ' on ' + comment.article.title if show_article -%>
+                <%= link_to_permalink comment,h(title) %>
+            </li>
+        <% end %>
+    </ul>
+</div>

@@ -1,0 +1,1 @@
+require 'flickr_sidebar'

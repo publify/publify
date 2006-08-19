@@ -37,12 +37,12 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_categories = Category.find_all.size
+    num_categories = Category.count
 
     post :new, 'category' => { :name => "test category" }
     assert_redirected_to :action => 'list'
 
-    assert_equal num_categories + 1, Category.find_all.size
+    assert_equal num_categories + 1, Category.count
   end
 
   def test_edit

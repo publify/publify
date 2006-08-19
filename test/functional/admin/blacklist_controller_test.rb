@@ -27,12 +27,12 @@ class Admin::BlacklistControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_blacklist_patterns = BlacklistPattern.find_all.size
+    num_blacklist_patterns = BlacklistPattern.count
 
     post :new, 'blacklist_pattern' => { }
     assert_redirected_to :action => 'list'
 
-    assert_equal num_blacklist_patterns + 1, BlacklistPattern.find_all.size
+    assert_equal num_blacklist_patterns + 1, BlacklistPattern.count
   end
 
   def test_edit

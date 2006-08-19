@@ -1,0 +1,8 @@
+<% if sidebar.fortythreeplaces -%>
+<h3><%= link_to "43 Places", sidebar.fortythreeplaces.link %></h3>
+<ul>
+<% for thing in sidebar.fortythreeplaces.things.to_a.slice(0,count.to_i) -%>
+  <li><a href="<%= thing.link %>" title="<%=h thing.title %>"><%=h thing.title %> </a></li>
+<% end -%>
+</ul>
+<% end -%>

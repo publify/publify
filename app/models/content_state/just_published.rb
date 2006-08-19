@@ -1,6 +1,5 @@
 module ContentState
   class JustPublished < Published
-    include Reloadable
     include Singleton
 
     # We need to save the state as 'Published', but we need after_save

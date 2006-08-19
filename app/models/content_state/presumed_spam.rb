@@ -1,6 +1,5 @@
 module ContentState
   class PresumedSpam < Base
-    include Reloadable
     include Singleton
 
     def enter_hook(content)

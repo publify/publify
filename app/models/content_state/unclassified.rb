@@ -1,6 +1,5 @@
 module ContentState
   class Unclassified < Base
-    include Reloadable
     include Singleton
 
     def published?(content)

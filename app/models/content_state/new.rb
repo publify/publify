@@ -1,6 +1,5 @@
 module ContentState
   class New < Base
-    include Reloadable
     include Singleton
 
     def enter_hook(content)

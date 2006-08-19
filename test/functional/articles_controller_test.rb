@@ -28,7 +28,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
                     :body => "The future is cool!",
                     :keywords => "future",
                     :created_at => Time.now + 12.minutes)
-
+    Sidebar.delete_all
   end
 
   # Category subpages
@@ -107,13 +107,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_rendered_file "archives"
   end
-  
+
   def test_blog_title
     blogs(:default).title_prefix = true
     get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
     assert_response :success
     assert_tag :tag => 'title', :content => /^test blog : Article 3!$/
-    
+
     blogs(:default).title_prefix = false
     @controller = ArticlesController.new
     assert_equal false, blogs(:default).title_prefix
@@ -130,7 +130,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:article)
     assert_equal contents(:article3), assigns(:article)
   end
-  
+
   # Posts for given day
   def test_find_by_date
     get :find_by_date, :year => 2004, :month => 06, :day => 01
@@ -194,7 +194,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def test_comment_spam2
     comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com['"] rel=["']nofollow['"]>spammy goodness</a></p>}, 'Link to [spammy goodness](http://spammer.example.com)'
   end
-  
+
   def test_comment_spam3
     post :comment, :id => 1, :comment => {:body => '<a href="http://spam.org">spam</a>', :author => '<a href="spamme.com">spamme</a>', :email => '<a href="http://morespam.net">foo</a>'}
 
@@ -204,7 +204,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     get :read, :id => 1
     assert_response 200
-    
+
     assert ! (@response.body =~ %r{<a href="http://spamme.com">}), "Author leaks"
     assert ! (@response.body =~ %r{<a href="http://spam.org">}), "Body leaks <a>"
     assert ! (@response.body =~ %r{<a href="http://morespam.net">}), "Email leaks"
@@ -385,7 +385,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :read, :id => contents(:article1).id
     assert_response :success
     assert_template "read"
-    
+
     assert_equal contents(:article1).comments.to_a.select{|c| c.published?}, contents(:article1).published_comments
 
     assert_tag :tag => "ol",

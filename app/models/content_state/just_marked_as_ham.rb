@@ -1,6 +1,5 @@
 module ContentState
   class JustMarkedAsHam < JustPresumedHam
-    include Reloadable
     include Singleton
 
     def enter_hook(content)

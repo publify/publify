@@ -4,24 +4,24 @@ require 'set'
 # Used to get access to the Fragment Cache from inside of content models.
 class ContentCache
   include ActionController::Caching::Fragments
-    
+
   class << self
     include ActionController::Benchmarking::ClassMethods
-    
+
     def logger
       RAILS_DEFAULT_LOGGER
     end
   end
-  
+
   def perform_caching
     ENV['RAILS_ENV'] == 'production'
   end
-  
+
   def [](key)
     return unless key
     read_fragment(key)
   end
-  
+
   def []=(key,value)
     return unless key
     if value
@@ -61,7 +61,7 @@ class Content < ActiveRecord::Base
     super(*args, &block)
     set_default_blog
   end
-  
+
   def cache_read(field)
     @@cache[cache_key(:field)]
   end
@@ -177,21 +177,21 @@ class Content < ActiveRecord::Base
     elsif self.class.html_map(field)
       generate_html(field)
     else
-      raise "Unknown '#{field}' in article.html"
+      raise "Unknown field: #{field.inspect} in article.html"
     end
   end
-  
+
   # Generate HTML for a specific field using the text_filter in use for this
   # object.  The HTML is cached in the fragment cache, using the +ContentCache+
   # object in @@cache.
   def generate_html(field)
     html = cache_read(field)
     return html if html
-    
+
     html = text_filter.filter_text_for_controller(blog, self[field].to_s, self)
     html ||= self[field].to_s # just in case the filter puked
     html = html_postprocess(field,html).to_s
-        
+
     cache_write(field,html)
 
     html
@@ -302,13 +302,13 @@ class Content < ActiveRecord::Base
   def send_notifications()
     state.send_notifications(self)
   end
-  
+
   # deprecated
   def full_html
     typo_deprecated "use .html instead"
     html
   end
-  
+
 end
 
 class Object

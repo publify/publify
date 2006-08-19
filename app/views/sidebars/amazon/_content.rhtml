@@ -1,0 +1,4 @@
+<% unless @sidebar.asins.empty? -%>
+<h3 class='sidebar-title'><%= h @sidebar.title %></h3>
+<div id="amazon_links"><% for asin in @sidebar.asins -%><iframe src="http://rcm.amazon.com/e/cm?t=<%= @sidebar.associate_id %>&o=1&p=8&l=as1&asins=<%= asin %>&fc1=000000&IS2=1&lt1=_blank&lc1=0000ff&bc1=000000&bg1=ffffff&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><% end -%></div>
+<% end -%>

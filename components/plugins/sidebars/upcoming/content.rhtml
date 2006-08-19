@@ -1,8 +1,0 @@
-<% if @upcoming -%>
-<h3>Upcoming Events</h3>
-<ul id="upcoming">
-<% for event in @upcoming.choose(@sb_config['count'].to_i) -%>
-  <li><%= link_to event.title, event.link, {:title => event.description } %> - <%= event.timespan %></li>
-  <% end -%>
-</ul>
-<% end -%>

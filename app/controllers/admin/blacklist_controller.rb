@@ -5,7 +5,7 @@ class Admin::BlacklistController < Admin::BaseController
   end
 
   def list
-    @blacklist_patterns = BlacklistPattern.find_all
+    @blacklist_patterns = BlacklistPattern.find :all
   end
 
   def show

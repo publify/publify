@@ -107,12 +107,17 @@ module ArticlesHelper
   end
 
   def render_sidebars
-    # ugly ugly hack to fix the extremely verbose sidebar logging
-    options = { :controller => SidebarController,
-                :action => 'display_plugins',
-                :params => {:contents => contents,
-                            :request_params => params} }
-    render_component(options)
+    Sidebar.find(:all, :order => 'active_position ASC').inject('') do |acc, sidebar|
+      @sidebar = sidebar
+      sidebar.parse_request(contents, params)
+      controller.response.lifetime = sidebar.lifetime if sidebar.lifetime
+      acc + render_to_string(:partial => sidebar.content_partial,
+                             :locals => sidebar.to_locals_hash)
+    end
+  end
+
+  def render_to_string(*args, &block)
+    controller.send(:render_to_string, *args, &block)
   end
 
   # Generate the image tag for a commenters gravatar based on their email address

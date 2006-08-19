@@ -1,10 +1,10 @@
 <div id="active_<%= active.html_id %>" class="dragitem">
-  <h4 class="handle"><%= active.sidebar_controller.display_name %></h4>
-  <p><%= active.sidebar_controller.description %></p>
+  <h4 class="handle"><%= active.display_name %></h4>
+  <p><%= active.description %></p>
   <div class="space">
-  <div><%= render_component :layout=>false,
-             :controller=>active.sidebar_controller,
-             :action=>'configure_wrapper', :params => {:sidebar => active } %></div>
+  <div><% active.class.fields.each do |row| -%>
+    <%= row.line_html(active) %>
+  <% end -%></div>
   <%= link_to_remote('remove',
         :url => {:action => 'remove', :id => active.id,
                  :element => "active_#{active.html_id}"},

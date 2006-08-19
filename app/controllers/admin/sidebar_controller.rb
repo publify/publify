@@ -1,35 +1,29 @@
 class Admin::SidebarController < Admin::BaseController
   def index
-    @sidebars = ::SidebarController.available_sidebars.inject({}) do |hash,sb|
-      hash.merge({ sb.short_name => sb })
-    end
+    @available = available
     # Reset the staged position based on the active position.
     Sidebar.delete_all('active_position is null')
-    @active = Sidebar.find(:all, :order => 'active_position').select do |sb|
-      @sidebars[sb.controller]
-    end
+    @active = Sidebar.find(:all, :order => 'active_position')
     flash[:sidebars] = @active.map {|sb| sb.id }
-    @available = @sidebars.values.sort { |a,b| a.name <=> b.name }
   end
 
   def set_active
     # Get all available plugins
 
-    defaults_for = available.inject({}) do |hash, item|
-      hash.merge({ item.short_name => item.default_config })
+    klass_for = available.inject({}) do |hash, klass|
+      hash.merge({ klass.short_name => klass })
     end
     # Get all already active plugins
     activemap = flash[:sidebars].inject({}) do |h, sb_id|
       sb = Sidebar.find(sb_id.to_i)
-      sb ? h.merge({ sb.html_id => sb_id }) : h
+      sb ? h.merge(sb.html_id => sb_id) : h
     end
 
     # Figure out which plugins are referenced by the params[:active] array and
     # lay them out in a easy accessible sequential array
     flash[:sidebars] = params[:active].inject([]) do |array, name|
-      if defaults_for.has_key?(name)
-        @new_item = Sidebar.create!(:controller => name,
-                                    :config => defaults_for[name])
+      if klass_for.has_key?(name)
+        @new_item = klass_for[name].create!
         @target = name
         array << @new_item.id
       elsif activemap.has_key?(name)
@@ -50,21 +44,18 @@ class Admin::SidebarController < Admin::BaseController
   def publish
     Sidebar.transaction do
       position = 0
-      params[:configure] ||= []
+      params[:configure] ||= { }
       Sidebar.update_all('active_position = null')
       flash[:sidebars].each do |id|
         sidebar = Sidebar.find(id)
-
+        sb_attribs = params[:configure][id.to_s] || {}
         # If it's a checkbox and unchecked, convert the 0 to false
         # This is ugly.  Anyone have an improvement?
-        params[:configure][id.to_s].each do |k,v|
-          field = sidebar.sidebar_controller.fields.detect { |f| f.key == k }
-          if v == "0" && field.is_a?(Sidebars::Field::CheckBoxField)
-            params[:configure][id.to_s][k] = false
-          end
+        sidebar.fields.each do |field|
+          sb_attribs[field.key] = field.canonicalize(sb_attribs[field.key])
         end
-          
-        sidebar.update_attributes(:config => params[:configure][id.to_s],
+
+        sidebar.update_attributes(:config => sb_attribs,
                                   :active_position => position)
         position += 1
       end
@@ -79,7 +70,7 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   def available
-    ::SidebarController.available_sidebars.sort { |a,b| a.name <=> b.name }
+    ::Sidebar.available_sidebars
   end
   helper_method :available
 end

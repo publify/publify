@@ -119,25 +119,20 @@ module Sidebars
       end
 
       def available_sidebars
-        @@available_sidebars ||= Sidebars::Plugin.subclasses.select do |sidebar|
-          sidebar.subclasses.empty?
+        Sidebars::Plugin.subclasses.select do |sidebar|
+          sidebar.concrete?
         end
       end
 
-      # The name that needs to be used when refering to the plugin's
-      # controller in render statements
-      def component_name
-        if (self.to_s=~/::([a-zA-Z]+)Controller/)
-          "plugins/sidebars/#{$1}".underscore
-        else
-          raise "I don't know who I am: #{self.to_s}"
-        end
+
+      def concrete?
+        self.to_s !~ /^Sidebars::(Co(mponent|nsolidated))?Plugin/
       end
 
       # The name that's stored in the DB.  This is the final chunk of the
       # controller name, like 'xml' or 'flickr'.
       def short_name
-        component_name.split(%r{/}).last
+        self.to_s.underscore.split(%r{/}).last
       end
 
       @@display_name_of = { }
@@ -193,7 +188,7 @@ module Sidebars
       def default_helper_module!
       end
     end
-    
+
     def index
       @sidebar=params['sidebar']
       set_config
@@ -224,7 +219,7 @@ module Sidebars
       @sidebar.config = self.class.default_config.dup.merge(@sidebar.config)
       @sidebar.config ||= (self.class.default_config)
     end
-    
+
     def sb_config(key)
       config = @sidebar.class.default_config
       config.merge!(@sidebar.config || {})

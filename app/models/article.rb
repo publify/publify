@@ -4,7 +4,7 @@ require 'net/http'
 class Article < Content
   include TypoGuid
 
-  content_fields :body, :extended
+#  content_fields :body, :extended
 
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
@@ -21,32 +21,32 @@ class Article < Content
   def stripped_title
     self.title.gsub(/<[^>]*>/,'').to_url
   end
-  
+
   def permalink_url(anchor=nil, only_path=true)
     @cached_permalink_url ||= {}
     @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(
       :year => published_at.year,
       :month => sprintf("%.2d", published_at.month),
       :day => sprintf("%.2d", published_at.day),
-      :title => permalink, 
+      :title => permalink,
       :anchor => anchor,
       :only_path => only_path,
       :controller => '/articles'
     )
   end
-  
+
   def trackback_url
     blog.url_for(:controller => "articles", :action =>"trackback", :id => id)
   end
-  
+
   def feed_url(format = :rss20)
     blog.url_for(:controller => 'xml', :action => 'feed', :type => 'article', :format => format, :id => id)
   end
-  
+
   def edit_url
     blog.url_for(:controller => "/admin/content", :action =>"edit", :id => id)
   end
-  
+
   def delete_url
     blog.url_for(:controller => "/admin/content", :action =>"destroy", :id => id)
   end
@@ -192,6 +192,50 @@ class Article < Content
 
   def published_trackbacks
     trackbacks.select {|c| c.published?}
+  end
+
+  # Bloody rails reloading. Nasty workaround.
+  def body=(newval)
+    if self[:body] != newval
+      changed
+      self[:body] = newval
+      cache_write(:body, nil)
+      notify_observers(self, :body)
+    end
+    self[:body]
+  end
+
+  def body_html
+    typo_deprecated "Use html(:body)"
+    html(:body)
+  end
+
+  def extended=(newval)
+    if self[:extended] != newval
+      changed
+      self[:extended] = newval
+      cache_write(:extended, nil)
+      notify_observers(self, :extended)
+    end
+    self[:extended]
+  end
+
+  def extended_html
+    typo_deprecated "Use html(:extended)"
+    html(:extended)
+  end
+
+  def self.html_map(field=nil)
+    html_map = { :body => true, :extended => true }
+    if field
+      html_map[field.to_sym]
+    else
+      html_map
+    end
+  end
+
+  def content_fields
+    [:body, :extended]
   end
 
   protected

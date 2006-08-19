@@ -1,0 +1,10 @@
+<% if sidebar.audioscrobbler -%>
+  <div id="audioscrobbler">
+    <h3><%= sidebar.audioscrobbler.title %></h3>
+    <ul>
+      <% for item in sidebar.audioscrobbler.items.to_a.slice(0,sidebar.count.to_i) -%>
+        <li><a href="<%= item.link %>" title="<%=h item.title %>"><%=h item.artist %> / <%=h item.title %> </a></li>
+      <% end -%>
+    </ul>
+  </div>
+<% end -%>

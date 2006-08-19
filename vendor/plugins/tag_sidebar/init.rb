@@ -1,0 +1,1 @@
+require 'tag_sidebar'

@@ -23,7 +23,7 @@ class ArticlesController < ContentController
     # This is a 100x speedup on my box.
     count = Article.count(:conditions => ['published = ? AND contents.published_at < ? AND blog_id = ?',
       true, Time.now, this_blog.id])
-    @pages = Paginator.new self, count, this_blog.limit_article_display, @params[:page]
+    @pages = Paginator.new self, count, this_blog.limit_article_display, params[:page]
     @articles = Article.find( :all,
       :offset => @pages.current.offset,
       :limit => @pages.items_per_page,
@@ -220,7 +220,7 @@ class ArticlesController < ContentController
   def render_paginated_index(on_empty = "No posts found...")
     return error(on_empty) if @articles.empty?
 
-    @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, @params[:page]
+    @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, params[:page]
     start = @pages.current.offset
     stop  = (@pages.current.next.offset - 1) rescue @articles.size
     # Why won't this work? @articles.slice!(start..stop)

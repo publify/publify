@@ -6,7 +6,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def list
-    @users = User.find_all
+    @users = User.find :all
   end
 
   def show

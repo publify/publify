@@ -1,6 +1,5 @@
 # BlogRequest is a fake Request object, created so blog.url_for will work.
 class BlogRequest
-  include Reloadable
 
   attr_accessor :protocol, :host_with_port, :path, :symbolized_path_parameters, :relative_url_root
 
@@ -91,7 +90,7 @@ class Blog < ActiveRecord::Base
   # that matches, then grab the default blog.  If *that* fails, then create a new
   # Blog.  The last case should only be used when Typo is first installed.
   def self.find_blog(base_url)
-    Blog.find_by_base_url(base_url) || Blog.default || Blog.new
+    (Blog.find_by_base_url(base_url) rescue nil)|| Blog.default || Blog.new
   end
 
   # The default Blog.  This is the lowest-numbered blog, almost always id==1.
@@ -132,29 +131,29 @@ class Blog < ActiveRecord::Base
         @url ||= ActionController::UrlRewriter.new(BlogRequest.new(self.base_url), {})
         RouteCache[options] = @url.rewrite(options)
       end
-      
+
       return RouteCache[options]
     else
       raise "Invalid URL in url_for: #{options.inspect}"
     end
   end
-  
+
   # The URL for a static file.
   def file_url(filename)
     "#{base_url}/files/#{filename}"
   end
-  
+
   # The base server URL.
   def server_url
     base_url
   end
-  
+
   # Deprecated
   def canonical_server_url
     typo_deprecated "Use base_url instead"
     base_url
   end
-  
+
   def [](key)  # :nodoc:
     typo_deprecated "Use blog.#{key}"
     self.send(key)
@@ -169,7 +168,7 @@ class Blog < ActiveRecord::Base
     typo_deprecated "Why?"
     self.class.fields.has_key?(key.to_s)
   end
-  
+
   def find_already_published(content_type)  # :nodoc:
     typo_deprecated "Use #{content_type}.find_already_published"
     self.send(content_type).find_already_published

@@ -24,7 +24,7 @@ class Theme
   def self.themes_root
     RAILS_ROOT + "/themes"
   end
-  
+
   def self.theme_path(name)
     themes_root + "/" + name
   end

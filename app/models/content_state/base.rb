@@ -6,8 +6,6 @@ module ContentState
   end
 
   class Base
-    include Reloadable
-
     class << self
       def instance
         nil

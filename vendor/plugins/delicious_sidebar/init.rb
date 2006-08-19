@@ -1,0 +1,1 @@
+require 'delicious_sidebar'

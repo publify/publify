@@ -41,13 +41,13 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_comments = Comment.find_all.size
+    num_comments = Comment.count
 
     post(:new, :comment => { 'author' => 'author', 'body' => 'body' },
                :article_id => 2)
     assert_redirected_to :action => 'show'
 
-    assert_equal num_comments + 1, Comment.find_all.size
+    assert_equal num_comments + 1, Comment.count
   end
 
   def test_edit

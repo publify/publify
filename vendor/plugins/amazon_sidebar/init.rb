@@ -1,0 +1,1 @@
+require 'amazon_sidebar'

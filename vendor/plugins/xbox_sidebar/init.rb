@@ -1,0 +1,1 @@
+require 'xbox_sidebar'

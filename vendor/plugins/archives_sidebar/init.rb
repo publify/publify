@@ -1,0 +1,1 @@
+require 'archives_sidebar'

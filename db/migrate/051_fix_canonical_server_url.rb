@@ -1,12 +1,12 @@
-class Bare51Blog < ActiveRecord::Base
-  include BareMigration
-end
-
 class FixCanonicalServerUrl < ActiveRecord::Migration
+  class Blog < ActiveRecord::Base
+    include BareMigration
+    serialize :settings, Hash
+  end
   def self.up
     unless $schema_generator
-      b = Bare51Blog.find(1)
-      b.settings[:canonical_server_url] = b.settings[:canonical_server_url].gsub(%r{/$},'')
+      b = Blog.find(1)
+      b.settings['canonical_server_url'] = b.settings['canonical_server_url'].gsub(%r{/$},'')
       b.save
     end
   end

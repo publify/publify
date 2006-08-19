@@ -3,12 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class SidebarTest < Test::Unit::TestCase
   fixtures :sidebars
 
-  def setup
-    @sidebar = Sidebar.find(1)
-  end
-
-  # Replace this with your real tests.
-  def test_truth
-    assert_kind_of Sidebar,  @sidebar
+  def test_available_sidebars
+    assert Sidebar.available_sidebars.size >= 19
   end
 end

@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class MagnoliaTest < Test::Unit::TestCase
 
   def setup
-    @mag = MagnoliaAggregation.new("",false)
+    @mag = ::MagnoliaAggregation.new("",false)
     @mag.send(:parse, fixture)
   end
 

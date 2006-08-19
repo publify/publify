@@ -1,0 +1,1 @@
+require 'category_sidebar'

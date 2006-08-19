@@ -96,5 +96,6 @@ ActionController::Routing::Routes.draw do |map|
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end
 
+  map.connect ':controller/:action/:id'
   map.connect '*from', :controller => 'redirect', :action => 'redirect'
 end

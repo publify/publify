@@ -1,8 +1,0 @@
-<% if @fortythree -%>
-<h3><%= link_to "43 Things", @fortythree.link %></h3>
-<ul>
-<% for thing in @fortythree.things.to_a.slice(0,@sb_config['count'].to_i) -%>
-  <li><a href="<%= thing.link %>" title="<%=h thing.title %>"><%=h thing.title %> </a></li>
-<% end -%>
-</ul>
-<% end -%>
