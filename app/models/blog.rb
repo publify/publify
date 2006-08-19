@@ -124,7 +124,7 @@ class Blog < ActiveRecord::Base
   # fast, as they bypass all of Rails' route logic.
   def url_for(options = {}, *extra_params)
     case options
-    when String then options
+    when String then options # They asked for 'url_for "/some/path"', so return it unedited.
     when Hash
       unless RouteCache[options]
         options.reverse_merge!(:only_path => true, :controller => '/articles',
