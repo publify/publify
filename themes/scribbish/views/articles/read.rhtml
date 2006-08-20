@@ -14,13 +14,13 @@
 </rdf:RDF>
 -->
 
-<%= render :partial => 'article' %>
+<%= render :partial => 'article', :object => @article %>
 
 <% if @article.allow_pings? -%>
   <h5><a name="trackbacks">Trackbacks</a></h5>
   <p>
     Use the following link to trackback from your own site:<br />
-    <%= article.trackback_url %>
+    <%= @article.trackback_url %>
   </p>
 
   <% unless @article.trackbacks.blank? -%>
