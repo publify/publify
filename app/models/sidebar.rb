@@ -1,6 +1,8 @@
 class Sidebar < ActiveRecord::Base
 #  acts_as_list
   serialize :config
+  belongs_to :blog
+  acts_as_list :scope => :blog, :column => :active_position
 
   class Field
     attr_accessor :key
@@ -120,6 +122,8 @@ class Sidebar < ActiveRecord::Base
   end
 
   class << self
+    attr_accessor :view_root
+
     def find_all_visible
       find :all, :conditions => 'active_position is not null', :order => 'active_position'
     end
@@ -251,6 +255,10 @@ class Sidebar < ActiveRecord::Base
 
   def lifetime
     self.class.lifetime
+  end
+
+  def view_root
+    self.class.view_root
   end
 end
 

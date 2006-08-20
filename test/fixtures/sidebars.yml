@@ -3,10 +3,10 @@ static_sidebar:
   id: 3
   active_position: 1
   staged_position: 1
+  blog_id: 1
   config: |+
     --- !map:HashWithIndifferentAccess
       title: Static Sidebar
       body: The body of a static sidebar
 
-  controller: static
   type: StaticSidebar

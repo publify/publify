@@ -1,4 +1,4 @@
-class XboxSidebars < Sidebar
+class XboxSidebar < Sidebar
   display_name "Xbox Gamer Card"
   description "Displays your Xbox Live Gamer Card"
 

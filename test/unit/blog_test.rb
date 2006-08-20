@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BlogTest < Test::Unit::TestCase
-  fixtures :blogs, :contents
+  fixtures :blogs, :contents, :sidebars
 
   def setup
     @blog = Blog.find(:first)
@@ -44,5 +44,9 @@ class BlogTest < Test::Unit::TestCase
                  @blog.url_for(:controller => 'articles',
                                :action     => 'read',
                                :id         => 1))
+  end
+
+  def test_blog_has_sidebars
+    assert_equal 1, @blog.sidebars.size
   end
 end

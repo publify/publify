@@ -1,8 +1,21 @@
 module SidebarHelper
-  def page_header
-    javascript_include_tag("cookies") +
-      javascript_include_tag("prototype") +
-      javascript_include_tag("effects") +
-      javascript_include_tag("type")
+  def render_sidebars
+    Sidebar.find(:all, :order => 'active_position ASC').inject('') do |acc, sb|
+      @sidebar = sb
+      sb.parse_request(contents, params)
+      controller.response.lifetime = sb.lifetime if sb.lifetime
+      acc + render_sidebar(sb)
+    end
   end
+
+  def render_sidebar(sidebar)
+    if sidebar.view_root
+      render_to_string(:file => "#{sidebar.view_root}/content.rhtml",
+                       :locals => sidebar.to_locals_hash)
+    else
+      render_to_string(:partial => sidebar.content_partial,
+                       :locals => sidebar.to_locals_hash)
+    end
+  end
+
 end

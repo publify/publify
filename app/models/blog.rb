@@ -34,6 +34,7 @@ class Blog < ActiveRecord::Base
 
   has_many :pages
   has_many :comments
+  has_many :sidebars
 
   serialize :settings, Hash
 
