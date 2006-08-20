@@ -63,11 +63,11 @@ class Content < ActiveRecord::Base
   end
 
   def cache_read(field)
-    @@cache[cache_key(:field)]
+    @@cache[cache_key(field)]
   end
 
   def cache_write(field,value)
-    @@cache[cache_key(:field)]=value
+    @@cache[cache_key(field)]=value
   end
 
   def set_default_blog
