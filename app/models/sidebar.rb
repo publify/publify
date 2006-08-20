@@ -1,8 +1,6 @@
 class Sidebar < ActiveRecord::Base
-#  acts_as_list
   serialize :config
   belongs_to :blog
-  acts_as_list :scope => :blog, :column => :active_position
 
   class Field
     attr_accessor :key

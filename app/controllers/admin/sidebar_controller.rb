@@ -2,8 +2,9 @@ class Admin::SidebarController < Admin::BaseController
   def index
     @available = available
     # Reset the staged position based on the active position.
-    Sidebar.delete_all('active_position is null')
-    @active = Sidebar.find(:all, :order => 'active_position')
+    Sidebar.delete_all(['blog_id = ? and active_position is null',
+                         this_blog.id])
+    @active = this_blog.sidebars
     flash[:sidebars] = @active.map {|sb| sb.id }
   end
 
@@ -23,7 +24,7 @@ class Admin::SidebarController < Admin::BaseController
     # lay them out in a easy accessible sequential array
     flash[:sidebars] = params[:active].inject([]) do |array, name|
       if klass_for.has_key?(name)
-        @new_item = klass_for[name].create!
+        @new_item = klass_for[name].create!(:blog => this_blog)
         @target = name
         array << @new_item.id
       elsif activemap.has_key?(name)
@@ -45,7 +46,7 @@ class Admin::SidebarController < Admin::BaseController
     Sidebar.transaction do
       position = 0
       params[:configure] ||= { }
-      Sidebar.update_all('active_position = null')
+      this_blog.sidebars.update_all('active_position = null')
       flash[:sidebars].each do |id|
         sidebar = Sidebar.find(id)
         sb_attribs = params[:configure][id.to_s] || {}
@@ -59,7 +60,8 @@ class Admin::SidebarController < Admin::BaseController
                                   :active_position => position)
         position += 1
       end
-      Sidebar.delete_all('active_position is null')
+      Sidebar.delete_all(['blog_id = ? and active_position is null',
+                          this_blog.id])
     end
     index
   end

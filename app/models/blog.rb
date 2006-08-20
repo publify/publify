@@ -34,7 +34,7 @@ class Blog < ActiveRecord::Base
 
   has_many :pages
   has_many :comments
-  has_many :sidebars
+  has_many :sidebars, :order => 'active_position ASC'
 
   serialize :settings, Hash
 

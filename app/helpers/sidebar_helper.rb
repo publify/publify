@@ -1,6 +1,6 @@
 module SidebarHelper
   def render_sidebars
-    Sidebar.find(:all, :order => 'active_position ASC').inject('') do |acc, sb|
+    @blog.sidebars.inject('') do |acc, sb|
       @sidebar = sb
       sb.parse_request(contents, params)
       controller.response.lifetime = sb.lifetime if sb.lifetime
