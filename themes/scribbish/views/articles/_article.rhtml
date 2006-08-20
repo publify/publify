@@ -1,7 +1,7 @@
 <div class="atomentry" id="article-<%= article.id %>">
   <h2 class="title">
-    <%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %> 
-    <%= content_tag(:span, article.comments.size, :class => 'comment_count') if article.comments.size > 0 %>
+    <%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %>
+    <%= content_tag(:span, article.published_comments.size, :class => 'comment_count') if article.published_comments.size > 0 %>
   </h2>
 
   <p class="author">
@@ -20,18 +20,18 @@
           <%= article.html(:extended) %>
         <% end -%>
       </div>
-    <% end -%>  
+    <% end -%>
   </div>
 
   <ul class="meta">
     <%= content_tag(:li, category_links(article), :class => 'categories') unless article.categories.empty? %>
     <%= content_tag(:li, tag_links(article), :class => 'tags') unless article.tags.empty? %>
-    <li>Meta 
+    <li>Meta
       <%= trackbacks_link(article) << ',' if article.allow_pings? %>
       <%= comments_link(article) << ',' if article.allow_comments? %>
       <a href="<%= article.permalink_url %>" rel="bookmark">permalink</a>,
-      <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'rss',  :id => article %>">rss</a>,    
-      <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'atom', :id => article %>">atom</a>   
+      <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'rss',  :id => article %>">rss</a>,
+      <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'atom', :id => article %>">atom</a>
     </li>
   </ul>
 </div>

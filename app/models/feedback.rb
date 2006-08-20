@@ -18,11 +18,11 @@ class Feedback < Content
   def permalink_url(anchor=:ignored, only_path=true)
     article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
   end
-  
+
   def edit_url(anchor=:ignored, only_path=true)
     blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"edit", :id => id)
   end
-  
+
   def delete_url(anchor=:ignored, only_path=true)
     blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"destroy", :id => id)
   end
@@ -99,9 +99,13 @@ class Feedback < Content
 
   def sp_is_spam?(options={})
     sp = SpamProtection.new(blog)
-    spam_fields.any? do |field|
-      sp.is_spam?(self.send(field))
+    Timeout.timeout(10) do
+      spam_fields.any? do |field|
+        sp.is_spam?(self.send(field))
+      end
     end
+  rescue Timeout::Error => e
+    nil
   end
 
   def akismet
@@ -111,7 +115,7 @@ class Feedback < Content
   def akismet_is_spam?(options={})
     return false if blog.sp_akismet_key.blank?
     begin
-      Timeout.timeout(5) do
+      Timeout.timeout(30) do
         akismet.commentCheck(akismet_options)
       end
     rescue Timeout::Error => e

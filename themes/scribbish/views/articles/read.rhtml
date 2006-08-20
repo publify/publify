@@ -23,14 +23,14 @@
     <%= @article.trackback_url %>
   </p>
 
-  <% unless @article.trackbacks.blank? -%>
+  <% unless @article.published_trackbacks.blank? -%>
   <ol id="trackbacks" class="trackbacks">
-    <%= render(:partial => "trackback", :collection => @article.trackbacks) %>
+    <%= render(:partial => "trackback", :collection => @article.published_trackbacks) %>
   </ol>
   <% end -%>
 <% end -%>
 
-<% if @article.allow_comments? or @article.comments.size > 0 -%>
+<% if @article.allow_comments? or @article.published_comments.size > 0 -%>
   <h5><a name="comments">Comments</a></h5>
   <p><a href="#commentform">Leave a response</a></p>
 
