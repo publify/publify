@@ -99,7 +99,7 @@ class Feedback < Content
 
   def sp_is_spam?(options={})
     sp = SpamProtection.new(blog)
-    Timeout.timeout(10) do
+    Timeout.timeout(defined?($TESTING) ? 10 : 3600) do
       spam_fields.any? do |field|
         sp.is_spam?(self.send(field))
       end
@@ -115,7 +115,7 @@ class Feedback < Content
   def akismet_is_spam?(options={})
     return false if blog.sp_akismet_key.blank?
     begin
-      Timeout.timeout(30) do
+      Timeout.timeout(defined?($TESTING) ? 30 : 3600) do
         akismet.commentCheck(akismet_options)
       end
     rescue Timeout::Error => e
@@ -143,17 +143,17 @@ class Feedback < Content
 
   def report_as_spam
     return if blog.sp_akismet_key.blank?
-    Timeout.timeout(5) { akismet.submitSpam(akismet_options) }
+    Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitSpam(akismet_options) }
   end
 
   def report_as_ham
     return if blog.sp_akismet_key.blank?
-    Timeout.timeout(5) { akismet.submitHam(akismet_options) }
+    Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitHam(akismet_options) }
   end
 
   def set_spam(is_spam, options ={})
     return if blog.sp_akismet_key.blank?
-    Timeout.timeout(5) { is_spam ? report_as_spam : report_as_ham }
+    Timeout.timeout(defined?($TESTING) ? 5 : 3600) { is_spam ? report_as_spam : report_as_ham }
   end
 
   def withdraw!

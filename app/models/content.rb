@@ -278,6 +278,10 @@ class Content < ActiveRecord::Base
     state.just_published?
   end
 
+  def just_changed_published_status?
+    state.just_changed_published_status?
+  end
+
   def withdrawn?
     state.withdrawn?
   end

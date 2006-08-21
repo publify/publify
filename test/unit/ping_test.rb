@@ -42,7 +42,7 @@ class PingTest < Test::Unit::TestCase
       :published => true
     assert art.save
     sent_ping = XMLRPC::Client.pings.last
-    assert !art.just_published?
+    assert art.just_published?
     art.reload
     assert !art.just_published?
   end

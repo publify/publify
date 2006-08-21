@@ -13,6 +13,10 @@ module ContentState
       true
     end
 
+    def just_changed_published_status?
+      true
+    end
+
     def published?(content)
       true
     end
@@ -29,10 +33,6 @@ module ContentState
       if content.published_at > Time.now
         content.state = PublicationPending.instance
       end
-    end
-
-    def after_save(content)
-      content.state = Published.instance
     end
 
     def send_notifications(content)

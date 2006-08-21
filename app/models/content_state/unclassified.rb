@@ -2,6 +2,12 @@ module ContentState
   class Unclassified < Base
     include Singleton
 
+    def enter_hook(content)
+      super
+      content[:published] = false
+      content[:status_confirmed] = false
+    end
+
     def published?(content)
       classify(content).published?(content)
     end
@@ -21,8 +27,9 @@ module ContentState
                       end
     end
 
-    def before_save(content)
-      classify(content).before_save(content)
+    def after_save(feedback)
+      classify(feedback)
+      feedback.save
     end
   end
 end

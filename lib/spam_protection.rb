@@ -26,7 +26,7 @@ class SpamProtection
     reason = catch(:hit) do
       case string
         when Format::IP_ADDRESS: self.scan_ip(string)
-        when Format::HTTP_URI: self.scan_uri(URI.parse(string).host) rescue URI::InvalidURIError
+        when Format::HTTP_URI: self.scan_uris(string) rescue URI::InvalidURIError
         else self.scan_text(string)
       end
     end
@@ -45,41 +45,50 @@ class SpamProtection
   end
 
   def scan_text(string)
-    # Scan contained URLs
     uri_list = string.scan(/(http:\/\/[^\s"]+)/m).flatten
 
-    # Check for URL count limit
-    if this_blog.sp_url_limit > 0
-      throw :hit, "Hard URL Limit hit: #{uri_list.size} > #{this_blog.sp_url_limit}" if uri_list.size > this_blog.sp_url_limit
-    end
-
-    uri_list.collect { |uri| URI.parse(uri).host rescue nil }.uniq.compact.each do |host|
-      scan_uri(host)
-    end
-
-    # Pattern scanning
-    BlacklistPattern.find(:all).each do |pattern|
-      logger.info("[SP] Scanning for #{pattern.class} #{pattern.pattern}")
-
-      throw :hit, "#{pattern} matched" if pattern.matches?(string)
-    end
+    check_uri_count(uri_list)
+    check_against_blacklist(string)
+    scan_uris(uri_list)
 
     return false
   end
 
-  def scan_uri(host)
-    return scan_ip(host) if host =~ Format::IP_ADDRESS
+  def check_against_blacklist(text)
+    # Pattern scanning
+    BlacklistPattern.find(:all).each do |pattern|
+      logger.info("[SP] Scanning for #{pattern.class} #{pattern.pattern}")
 
-    host_parts = host.split('.').reverse
-    domain = Array.new
-
-    # Check for two level TLD
-    (SECOND_LEVEL.include?(host_parts[1]) ? 3:2).times do
-      domain.unshift(host_parts.shift)
+      throw :hit, "#{pattern} matched" if pattern.matches?(text)
     end
+  end
 
-    logger.info("[SP] Scanning domain #{domain.join('.')}")
-    query_rbls(HOST_RBLS, host, domain.join('.'))
+  def check_uri_count(uris)
+    limit = this_blog.sp_url_limit
+    return if limit.to_i.zero?
+    if uris.size > limit
+      throw :hit, "Hard URL Limit hit: #{uris.size} > #{limit}"
+    end
+  end
+
+  def scan_uris(uris = [])
+    uris.each do |uri|
+      host = URI.parse(uri).host rescue next
+      return scan_ip(host) if host =~ Format::IP_ADDRESS
+
+      host_parts = host.split('.').reverse
+      domain = Array.new
+
+      # Check for two level TLD
+      (SECOND_LEVEL.include?(host_parts[1]) ? 3:2).times do
+        domain.unshift(host_parts.shift)
+      end
+
+      logger.info("[SP] Scanning domain #{domain.join('.')}")
+      query_rbls(HOST_RBLS, host, domain.join('.'))
+      logger.info("[SP] Finished domain scan #{domain.join('.')}")
+      return false
+    end
   end
 
   def query_rbls(rbls, *subdomains)
@@ -87,7 +96,10 @@ class SpamProtection
       subdomains.uniq.each do |d|
         begin
           response = IPSocket.getaddress([d, rbl].join('.'))
-          throw :hit, "#{rbl} positively resolved subdomain #{d} => #{response}" if response =~ /^127\.0\.0\./
+          if response =~ /^127\.0\.0\./
+            throw :hit,
+              "#{rbl} positively resolved subdomain #{d} => #{response}"
+          end
         rescue SocketError
           # NXDOMAIN response => negative:  d is not in RBL
         end

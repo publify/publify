@@ -1,5 +1,5 @@
 module ContentState
-  class JustPresumedHam < Base
+  class JustPresumedHam < PresumedHam
     include Singleton
 
     def memento
@@ -16,12 +16,12 @@ module ContentState
       logger.debug("#{content} leaving state Content::JustPresumedHam")
     end
 
-    def published?(content)
+    def just_published?
       true
     end
 
-    def after_save(content)
-      content.state = PresumedHam.instance
+    def just_changed_published_status?
+      true
     end
 
     def send_notifications(content)

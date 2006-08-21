@@ -16,6 +16,10 @@ module ContentState
       content.state = Factory.new(:just_marked_as_ham)
     end
 
+    def mark_as_spam(content)
+      content.state = Factory.new(:spam)
+    end
+
     def withdraw(content)
       content.mark_as_spam
     end

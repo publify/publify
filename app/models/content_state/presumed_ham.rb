@@ -22,6 +22,7 @@ module ContentState
 
     def mark_as_ham(content)
       content.state = Factory.new(:ham)
+      true
     end
 
     def to_s

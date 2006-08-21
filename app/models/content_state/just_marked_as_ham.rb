@@ -10,5 +10,9 @@ module ContentState
     def memento
       'ContentState::Ham'
     end
+
+    def just_changed_published_status?
+      true
+    end
   end
 end

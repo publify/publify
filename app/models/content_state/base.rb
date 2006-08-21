@@ -53,6 +53,10 @@ module ContentState
       false
     end
 
+    def just_changed_published_status?
+      false
+    end
+
     def draft?
       false
     end

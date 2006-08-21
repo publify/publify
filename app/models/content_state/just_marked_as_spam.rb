@@ -15,9 +15,12 @@ module ContentState
     end
 
     def after_save(content)
-      content.state = Spam.instance
       super
       content.report_as_spam
+      true
+    end
+
+    def just_changed_published_status?
       true
     end
   end

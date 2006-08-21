@@ -16,12 +16,12 @@ module ContentState
       content[:published] = boolean
       if ! content.published
         content[:published_at] = nil
-        content.state = Factory.new(:withdrawn)
+        content.state = Factory.new(:just_withdrawn)
       end
     end
 
     def withdraw(content)
-      content.state = Factory.new(:withdrawn)
+      content.state = Factory.new(:just_withdrawn)
     end
 
     def set_published_at(content, new_time)

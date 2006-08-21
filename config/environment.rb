@@ -46,7 +46,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
-  config.active_record.observers = :content_observer, :email_notifier, :web_notifier
+  config.active_record.observers = :email_notifier, :web_notifier
 
   config.active_record.allow_concurrency = true
 

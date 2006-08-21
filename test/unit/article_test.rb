@@ -15,22 +15,22 @@ class ArticleTest < Test::Unit::TestCase
       assert @articles.include?(i.is_a?(Symbol) ? contents(i) : i)
     end
   end
-  
+
   def test_content_fields
     a = Article.new
     assert_equal [:body, :extended], a.content_fields
   end
-  
+
   def test_permalink_url
     a = contents(:article3)
     assert_equal 'http://myblog.net/articles/2004/06/01/article-3', a.permalink_url
   end
-  
+
   def test_edit_url
     a = contents(:article3)
     assert_equal 'http://myblog.net/admin/content/edit/3', a.edit_url
   end
-  
+
   def test_delete_url
     a = contents(:article3)
     assert_equal 'http://myblog.net/admin/content/destroy/3', a.delete_url
@@ -41,7 +41,7 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal 'http://myblog.net/xml/atom10/article/3/feed.xml', a.feed_url(:atom10)
     assert_equal 'http://myblog.net/xml/rss20/article/3/feed.xml', a.feed_url(:rss20)
   end
-  
+
   def test_blog
     a = Article.new
 
@@ -177,6 +177,7 @@ class ArticleTest < Test::Unit::TestCase
                                    :published => true)
     assert art.just_published?
     assert art.save
+    art.reload
     assert !art.just_published?
 
     art = Article.create!(:title => 'title2',
@@ -287,7 +288,7 @@ class ArticleTest < Test::Unit::TestCase
     assert ! art.published?
     assert   art.withdrawn?
   end
-  
+
   def test_default_filter
     a = Article.find(1)
     assert_equal 'textile', a.default_text_filter.name
