@@ -76,5 +76,13 @@ class ContentState::FactoryTest < Test::Unit::TestCase
   class MockContent < Struct.new(:new_record, :published, :published_at)
     alias_method :new_record?, :new_record
     alias_method :published?, :published
+
+    def changed
+      @changed = true
+    end
+
+    def changed?
+      @changed
+    end
   end
 end

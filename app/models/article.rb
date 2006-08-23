@@ -200,7 +200,6 @@ class Article < Content
       changed
       self[:body] = newval
       cache_write(:body, nil)
-      notify_observers(self, :body)
     end
     self[:body]
   end
@@ -215,7 +214,6 @@ class Article < Content
       changed
       self[:extended] = newval
       cache_write(:extended, nil)
-      notify_observers(self, :extended)
     end
     self[:extended]
   end

@@ -13,21 +13,17 @@ class BlogSweeper < ActionController::Caching::Sweeper
   def expire_for(record, destroying = false)
     case record
     when Page
-      sweep_pages
+      sweep_pages(record)
     when Content
-      if content_is_sweepable?(record, destroying)
+      if record.invalidates_cache?(destroying)
         sweep_all
       end
     when Sidebar, Category
       sweep_articles
-      sweep_pages
+      sweep_pages(record)
     when Blog, User
       sweep_all
     end
-  end
-
-  def content_is_sweepable?(record, destroying)
-    destroying ? record.published? : record.just_changed_published_status?
   end
 
   def sweep_all
@@ -40,8 +36,8 @@ class BlogSweeper < ActionController::Caching::Sweeper
     expire_fragment(%r{.*/articles/.*})
   end
 
-  def sweep_pages
-      PageCache.sweep("/pages/#{record.name}.html")
+  def sweep_pages(record)
+      PageCache.sweep("/pages/#{record.name rescue ''}.html")
       expire_fragment(/.*\/pages\/.*/)
       expire_fragment(/.*\/view_page.*/)
   end

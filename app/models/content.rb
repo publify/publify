@@ -70,6 +70,14 @@ class Content < ActiveRecord::Base
     @@cache[cache_key(field)]=value
   end
 
+  def invalidates_cache?(on_destruction = false)
+    if on_destruction
+      just_changed_published_status? || published?
+    else
+      changed? && published? || just_changed_published_status?
+    end
+  end
+
   def set_default_blog
     if self.blog_id == nil or self.blog_id == 0
       self.blog = Blog.default
@@ -89,7 +97,6 @@ class Content < ActiveRecord::Base
             if html_map(field)
               cache_write(field,nil)
             end
-            notify_observers(self, field.to_sym)
           end
           self[field]
         end
@@ -226,6 +233,16 @@ class Content < ActiveRecord::Base
   def text_filter=(filter)
     self[:text_filter_id] = filter.to_text_filter.id
     self[:text_filter] = filter.to_text_filter
+  end
+
+  # Changing the title flags the object as changed
+  def title=(new_title)
+    if new_title == self[:title]
+      self[:title]
+    else
+      self.changed
+      self[:title] = new_title
+    end
   end
 
   # FIXME -- this feels wrong.
