@@ -4,6 +4,9 @@ class Ping < ActiveRecord::Base
   belongs_to :article
 
   class Pinger
+    attr_accessor :article
+    attr_accessor :blog
+
     def send_pingback_or_trackback
       begin
         @response = Net::HTTP.get_response(URI.parse(ping.url))
@@ -37,14 +40,6 @@ class Ping < ActiveRecord::Base
 
     def ping
       @ping
-    end
-
-    def article
-      ping.article
-    end
-
-    def config
-      ping.config
     end
 
     def send_xml_rpc(*args)
@@ -83,37 +78,38 @@ class Ping < ActiveRecord::Base
     def initialize(origin_url, ping)
       @origin_url = origin_url
       @ping       = ping
+      # Make sure these are fetched now for thread safety purposes.
+      self.article = ping.article
+      self.blog    = article.blog
     end
   end
 
   def send_pingback_or_trackback(origin_url)
-    t = Thread.start do
-      Pinger.new(origin_url, self).send_pingback_or_trackback
+    t = Thread.start(Pinger.new(origin_url, self)) do |pinger|
+      pinger.send_pingback_or_trackback
     end
     t.join if defined? $TESTING
   end
 
   def send_trackback(trackback_url, origin_url)
-    t = Thread.start do
-      trackback_uri = URI.parse(trackback_url)
+    trackback_uri = URI.parse(trackback_url)
 
-      post = "title=#{CGI.escape(article.title)}"
-      post << "&excerpt=#{CGI.escape(article.html(:body).strip_html[0..254])}"
-      post << "&url=#{origin_url}"
-      post << "&blog_name=#{CGI.escape(article.blog.blog_name)}"
+    post = "title=#{CGI.escape(article.title)}"
+    post << "&excerpt=#{CGI.escape(article.html(:body).strip_html[0..254])}"
+    post << "&url=#{origin_url}"
+    post << "&blog_name=#{CGI.escape(article.blog.blog_name)}"
 
-      Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
-        path = trackback_uri.path
-        path += "?#{trackback_uri.query}" if trackback_uri.query
-        http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
-      end
+    Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
+      path = trackback_uri.path
+      path += "?#{trackback_uri.query}" if trackback_uri.query
+      http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
     end
-    t.join if defined? $TESTING
   end
 
   def send_weblogupdatesping(server_url, origin_url)
-    t = Thread.start do
-      send_xml_rpc(self.url, "weblogUpdates.ping", article.blog.blog_name, server_url, origin_url)
+    t = Thread.start(article.blog.blog_name) do |blog_name|
+      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name,
+                   server_url, origin_url)
     end
     t.join if defined? $TESTING
   end
