@@ -1,6 +1,6 @@
 <tr class="<%= state_class(item) %>">
   <td class="field"><input class= "feedback_check" type="checkbox" name="feedback_check[<%= item.id %>]"/></td>
-  <td class="state"><%= item.state %></td>
+  <td class="state"><%=h item.state %></td>
   <td class="field"><%=h item.class %></td>
   <td class="field"><%= link_to_article_edit item.article %></td>
   <td class="field">
