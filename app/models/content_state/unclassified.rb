@@ -31,5 +31,9 @@ module ContentState
       classify(feedback)
       feedback.save
     end
+    
+    def to_s
+      "Unclassified"
+    end
   end
 end
