@@ -111,7 +111,7 @@ module ApplicationHelper
   alias_method :page_url,      :url_of
   
   def article_html(article, what = :all)
-    typo_deprecated "use article.html(what)"
+    typo_deprecated "use article.html(#{what.inspect})"
     article.html(what)
   end
 
