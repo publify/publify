@@ -80,7 +80,6 @@ require 'uuidtools'
 
 require_dependency 'spam_protection'
 require_dependency 'migrator'
-require_dependency 'rails_patch/components'
 require_dependency 'rails_patch/active_record'
 require_dependency 'login_system'
 require_dependency 'typo_version'
