@@ -29,7 +29,7 @@ class TextFilter < ActiveRecord::Base
 
       @cached_filter_types[filters] = types
     end
-    
+
     @cached_filter_types[filters]
   end
 
@@ -56,10 +56,10 @@ class TextFilter < ActiveRecord::Base
 
   def self.filter_text_by_name(blog, text, filtername)
     f = TextFilter.find_by_name(filtername)
-    f.filter_text_for_controller blog, text, nil
+    f.filter_text_for_content blog, text, nil
   end
 
-  def filter_text_for_controller(blog, text, content)
+  def filter_text_for_content(blog, text, content)
     self.class.filter_text(blog, text, content,
       [:macropre, markup, :macropost, filters].flatten, params)
   end

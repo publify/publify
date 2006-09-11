@@ -1,37 +1,6 @@
 require 'observer'
 require 'set'
 
-# Used to get access to the Fragment Cache from inside of content models.
-class ContentCache
-  include ActionController::Caching::Fragments
-
-  class << self
-    include ActionController::Benchmarking::ClassMethods
-
-    def logger
-      RAILS_DEFAULT_LOGGER
-    end
-  end
-
-  def perform_caching
-    ENV['RAILS_ENV'] == 'production'
-  end
-
-  def [](key)
-    return unless key
-    read_fragment(key)
-  end
-
-  def []=(key,value)
-    return unless key
-    if value
-      write_fragment(key,value)
-    else
-      expire_fragment(key)
-    end
-  end
-end
-
 class Content < ActiveRecord::Base
   include Observable
 
@@ -55,19 +24,10 @@ class Content < ActiveRecord::Base
 
   @@content_fields = Hash.new
   @@html_map       = Hash.new
-  @@cache = ContentCache.new
 
   def initialize(*args, &block)
     super(*args, &block)
     set_default_blog
-  end
-
-  def cache_read(field)
-    @@cache[cache_key(field)]
-  end
-
-  def cache_write(field,value)
-    @@cache[cache_key(field)]=value
   end
 
   def invalidates_cache?(on_destruction = false)
@@ -94,9 +54,6 @@ class Content < ActiveRecord::Base
           if self[field] != newval
             changed
             self[field] = newval
-            if html_map(field)
-              cache_write(field,nil)
-            end
           end
           self[field]
         end
@@ -192,16 +149,9 @@ class Content < ActiveRecord::Base
   # object.  The HTML is cached in the fragment cache, using the +ContentCache+
   # object in @@cache.
   def generate_html(field)
-    html = cache_read(field)
-    return html if html
-
-    html = text_filter.filter_text_for_controller(blog, self[field].to_s, self)
+    html = text_filter.filter_text_for_content(blog, self[field].to_s, self)
     html ||= self[field].to_s # just in case the filter puked
-    html = html_postprocess(field,html).to_s
-
-    cache_write(field,html)
-
-    html
+    html_postprocess(field,html).to_s
   end
 
   # Post-process the HTML.  This is a noop by default, but Comment overrides it

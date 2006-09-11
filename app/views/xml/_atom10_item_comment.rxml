@@ -8,6 +8,5 @@ xm.entry do
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => item.permalink_url
 
-  content = item.html
-  xm.content content, "type"=>"html"
+  xm.content html(item), "type"=>"html"
 end

@@ -4,7 +4,7 @@ require 'net/http'
 class Article < Content
   include TypoGuid
 
-#  content_fields :body, :extended
+  content_fields :body, :extended
 
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
@@ -199,7 +199,6 @@ class Article < Content
     if self[:body] != newval
       changed
       self[:body] = newval
-      cache_write(:body, nil)
     end
     self[:body]
   end
@@ -213,7 +212,6 @@ class Article < Content
     if self[:extended] != newval
       changed
       self[:extended] = newval
-      cache_write(:extended, nil)
     end
     self[:extended]
   end

@@ -41,4 +41,8 @@ class BlogSweeper < ActionController::Caching::Sweeper
       expire_fragment(/.*\/pages\/.*/)
       expire_fragment(/.*\/view_page.*/)
   end
+
+  def logger
+    @logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDERR)
+  end
 end

@@ -1,4 +1,4 @@
-                                 <!--
+<!--
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
        xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
        xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -9,7 +9,7 @@
 <% end -%>
     dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
     dc:identifier="<%= @article.permalink_url %>"
-    dc:description="<%=h (@article.html.strip_html[0..255]).gsub(/-+/, '-') %>"
+    dc:description="<%=h (html(@article).strip_html[0..255]).gsub(/-+/, '-') %>"
     dc:creator="<%= h @article.author %>"
     dc:date="<%= @article.updated_at.xmlschema %>" />
 </rdf:RDF>
@@ -21,7 +21,7 @@
   <h2><%=h @article.title %></h2>
   <p class="auth">Posted by <%= author_link(@article) %>
   <%= js_distance_of_time_in_words_to_now @article.published_at.utc %></p>
-  <%= @article.html %>
+  <%= html(@article) %>
 </div>
 <p class="meta">
   <%= article_links @article %>
