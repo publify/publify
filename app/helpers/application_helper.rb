@@ -110,7 +110,12 @@ module ApplicationHelper
   alias_method :article_url,   :url_of
   alias_method :page_url,      :url_of
 
-  def html(content, what = :all, :deprecated = false)
+  def html(content, what = :all, deprecated = false)
+    if deprecated
+      msg = "use html(#{content.class.to_s.underscore}" + ((what == :all) ? "" : ", #{what.inspect}") + ")"
+      typo_deprecated(msg)
+    end
+    
     return content.html(what) unless controller.perform_caching
 
     name = content.cache_key(what)
