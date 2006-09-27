@@ -136,7 +136,7 @@
 	background: transparent;
 }
 
-#content .atomentry .title .comment_count { display: none; }
+#content .atomentry .title .comment_count { color: #eee; }
 
 #content .atomentry .author {
 	color: #bbb;
@@ -333,23 +333,21 @@
 /* Flickr sidebar-node */
 #sidebar #flickr {
 	margin: 0 0 2em;
-	float: right;
-}
-
-#sidebar #flickr div {
-	margin: 0 0 5px;
-	border: 1px solid #ddd;
-	float: right;
 	clear: both;
 }
 
+#sidebar #flickr div {
+}
+
 #sidebar #flickr img { 
-	border: 4px solid #fff;
+	margin: 0 0 5px;
+	padding: 5px;
+	border: 1px solid #ddd;
 	display: block;
 }
         
 #sidebar #flickr img:hover {
-	border: 4px solid #ffc;
+	background: #ffc;
 }
         
 #sidebar #flickr a { 
