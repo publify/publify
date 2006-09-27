@@ -7,8 +7,12 @@ class PromoteCanonicalServerUrl < ActiveRecord::Migration
   def self.up
     add_column :blogs, :base_url, :string
     Blog.find(:all).each do |blog|
-      blog.base_url = blog.settings['canonical_server_url']
-      blog.save
+      begin
+        blog.base_url = blog.settings['canonical_server_url']
+        blog.save
+      rescue
+        # if base_url doesn't exist, then we don't really care.
+      end
     end
   end
 
