@@ -108,7 +108,7 @@ class MovableTypeService < TypoWebService
 
     for c in categories
       category = Category.find(c['categoryId'])
-      article.categories.push_with_attributes(category, :is_primary => c['isPrimary'])
+      article.categories.push_with_attributes(category, :is_primary => c['isPrimary'] || 0)
     end
     article.save
   end
