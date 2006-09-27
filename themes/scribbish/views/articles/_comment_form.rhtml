@@ -11,7 +11,7 @@
   <p>
     <label>Name:<br /> 
       <%= text_field "comment", "author" %>
-      <small>(<%= link_to_function("leave url/email &#187;", "new Effect.toggle('extra_fields', 'blind', {duration: .3})") %>)</small>
+      <small>(<%= link_to_function("leave url/email &#187;", "Effect.toggle('extra_fields', 'blind', {duration: .3})") %>)</small>
     </label>
   </p>
   
@@ -39,8 +39,11 @@
   </p>
   
   <p>
-    <input type="button" value="Preview" onclick="new Ajax.Updater('preview','<%= url_for :action => 'comment_preview' %>',{asynchronous:true,evalScripts:true,parameters:Form.serialize('commentform'),onComplete:function(request){Element.show('preview')}});return false;" />      
-    <%= submit_tag 'Submit' %>
+    <%= submit_to_remote('preview', 'Preview!',
+                         :update => 'preview',
+                         :complete => "Element.show('preview')",
+                         :url    => { :action => 'comment_preview' }) %>
+    <%= submit_tag 'Submit', :onclick => "this.disabled=true; Element.hide('preview');" %>
     <%= image_tag '/images/theme/spinner.gif', :id => 'spinner', :style => 'display:none' %>
   </p>
 </fieldset>
