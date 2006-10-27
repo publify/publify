@@ -1,0 +1,7 @@
+History.txt
+LICENSE.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/cached_model.rb
+test/test_cached_model.rb

@@ -13,6 +13,31 @@ class Test::Unit::TestCase
   # Instantiated fixtures are slow, but give you @david where you otherwise would need people(:david)
   self.use_instantiated_fixtures  = false
 
+  def run(result)
+    yield(STARTED, name)
+    @_result = result
+    begin
+      CachedModel.cache_reset
+      setup
+      __send__(@method_name)
+    rescue AssertionFailedError => e
+      add_failure(e.message, e.backtrace)
+    rescue StandardError, ScriptError
+      add_error($!)
+    ensure
+      begin
+        teardown
+      rescue AssertionFailedError => e
+        add_failure(e.message, e.backtrace)
+      rescue StandardError, ScriptError
+        add_error($!)
+      end
+    end
+    result.add_run
+    yield(FINISHED, name)
+  end
+
+
   # Add more helper methods to be used by all tests here...
   def assert_xml(xml)
     assert_nothing_raised do

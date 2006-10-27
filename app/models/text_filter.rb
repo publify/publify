@@ -1,6 +1,6 @@
 require 'net/http'
 
-class TextFilter < ActiveRecord::Base
+class TextFilter < CachedModel
   serialize :filters
   serialize :params
 

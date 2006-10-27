@@ -283,8 +283,6 @@ class Article < Content
   end
 
   def find_published(what = :all, options = {})
-    options[:include] ||= []
-    options[:include] += [:user]
     super(what, options)
   end
 

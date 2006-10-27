@@ -85,8 +85,6 @@ class Content < ActiveRecord::Base
       options.reverse_merge!(:order => default_order)
       options[:conditions] = merge_conditions(['published = ?', true],
                                               options[:conditions])
-      options[:include] ||= []
-      options[:include] += [:blog]
       find(what, options)
     end
 
@@ -173,16 +171,16 @@ class Content < ActiveRecord::Base
   # Grab the text filter for this object.  It's either the filter specified by
   # self.text_filter_id, or the default specified in the blog object.
   def text_filter
-    if self[:text_filter_id]
-      self[:text_filter] ||= TextFilter.find(self[:text_filter_id]) rescue nil
+    if self[:text_filter_id] && !self[:text_filter_id].zero?
+      TextFilter.find(self[:text_filter_id])
+    else
+      default_text_filter
     end
-    self[:text_filter] ||= default_text_filter
   end
 
   # Set the text filter for this object.
   def text_filter=(filter)
-    self[:text_filter_id] = filter.to_text_filter.id
-    self[:text_filter] = filter.to_text_filter
+    returning(filter.to_text_filter) { |tf| self.text_filter_id = tf.id }
   end
 
   # Changing the title flags the object as changed

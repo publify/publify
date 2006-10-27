@@ -5,16 +5,20 @@ require 'dns_mock'
 class CommentTest < Test::Unit::TestCase
   fixtures :contents, :blacklist_patterns, :text_filters, :blogs
 
+  def setup
+    CachedModel.cache_reset
+  end
+
   def test_permalink_url
     c = contents(:old_comment)
     assert_equal 'http://myblog.net/articles/2004/05/01/inactive-article#comment-15', c.permalink_url
   end
-  
+
   def test_edit_url
     c = contents(:old_comment)
     assert_equal 'http://myblog.net/admin/comments/edit/15', c.edit_url
   end
-  
+
   def test_delete_url
     c = contents(:old_comment)
     assert_equal 'http://myblog.net/admin/comments/destroy/15', c.delete_url
@@ -175,7 +179,7 @@ class CommentTest < Test::Unit::TestCase
     assert_equal 2,
       a.comments.find_all_by_status_confirmed(true).size
   end
-  
+
   def test_default_filter
     a = Comment.find(:first)
     assert_equal 'markdown', a.default_text_filter.name

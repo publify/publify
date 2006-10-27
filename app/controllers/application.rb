@@ -2,12 +2,17 @@
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
   include LoginSystem
-  before_filter :fire_triggers
+  before_filter :reset_local_cache, :fire_triggers
+  after_filter :reset_local_cache
 
   protected
 
   def fire_triggers
     Trigger.fire
+  end
+
+  def reset_local_cache
+    CachedModel.cache_reset
   end
 
   def with_blog_scoped_classes(klasses=[Content, Article, Comment, Page, Trackback], &block)
@@ -28,21 +33,21 @@ class ApplicationController < ActionController::Base
     $cache ||= SimpleCache.new 1.hour
   end
 
-  # The Blog object for the blog that matches the current request.  This is looked 
-  # up using Blog.find_blog and cached for the lifetime of the controller instance; 
+  # The Blog object for the blog that matches the current request.  This is looked
+  # up using Blog.find_blog and cached for the lifetime of the controller instance;
   # generally one request.
   def this_blog
     @blog ||= Blog.find_blog(blog_base_url)
   end
   helper_method :this_blog
-  
-  # The base URL for this request, calculated by looking up the URL for the main 
+
+  # The base URL for this request, calculated by looking up the URL for the main
   # blog index page.  This is matched with Blog#base_url to determine which Blog
   # is supposed to handle this URL
   def blog_base_url
     url_for(:controller => '/articles').gsub(%r{/$},'')
   end
-  
+
   def self.include_protected(*modules)
     modules.reverse.each do |mod|
       included_methods = mod.public_instance_methods.reject do |meth|

@@ -23,6 +23,9 @@ Rails::Initializer.run do |config|
     vendor/sparklines/lib
     vendor/uuidtools/lib
     vendor/jabber4r/lib
+    vendor/mocha/lib
+    vendor/memcache-client/lib
+    vendor/cached_model/lib
     vendor/rails/railties
     vendor/rails/railties/lib
     vendor/rails/actionpack/lib
@@ -141,3 +144,8 @@ if RAILS_ENV != 'test'
 end
 
 FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
+
+#require 'memcache_util'
+require 'cached_model'
+CachedModel.use_local_cache = true
+CachedModel.use_memcache = false
