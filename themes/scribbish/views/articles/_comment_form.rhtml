@@ -1,6 +1,6 @@
-<%= form_remote_tag :url      => {:action => 'comment', :id => @article}, 
+<%= form_remote_tag :url      => {:action => 'comment', :id => @article},
                     :update   => 'comments_div',
-                    :loading  => 'commentLoading()', 
+                    :loading  => 'commentLoading()',
                     :complete => 'commentComplete()',
                     :html     => {:id => 'commentform', :class => 'comments' } %>
 
@@ -9,25 +9,25 @@
 <fieldset>
   <legend>Comments</legend>
   <p>
-    <label>Name:<br /> 
+    <label>Name:<br />
       <%= text_field "comment", "author" %>
       <small>(<%= link_to_function("leave url/email &#187;", "Effect.toggle('extra_fields', 'blind', {duration: .3})") %>)</small>
     </label>
   </p>
-  
-  <div id="extra_fields" style="display:none;">  
-	  <p>
-	    <label>Email: <%= content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} enabled)") if this_blog.use_gravatar %><br />
-	      <%= text_field "comment", "email" %>
-	    </label>
-	  </p>
-	  <p>
-	    <label>Url:<br />
-	      <%= text_field "comment", "url" %>
-	    </label>
-	  </p>
+
+  <div id="extra_fields" style="display:none;">
+      <p>
+        <label>Email: <%= content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} enabled)") if this_blog.use_gravatar %><br />
+          <%= text_field "comment", "email" %>
+        </label>
+      </p>
+      <p>
+        <label>Url:<br />
+          <%= text_field "comment", "url" %>
+        </label>
+      </p>
   </div>
-    
+
   <p>
     <label>
       Comments:
@@ -37,13 +37,13 @@
       <%= text_area 'comment', 'body' %>
     </label>
   </p>
-  
+
   <p>
     <%= submit_to_remote('preview', 'Preview!',
                          :update => 'preview',
                          :complete => "Element.show('preview')",
                          :url    => { :action => 'comment_preview' }) %>
-    <%= submit_tag 'Submit', :onclick => "this.disabled=true; Element.hide('preview');" %>
+    <%= submit_tag 'Submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
     <%= image_tag '/images/theme/spinner.gif', :id => 'spinner', :style => 'display:none' %>
   </p>
 </fieldset>
