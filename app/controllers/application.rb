@@ -37,7 +37,11 @@ class ApplicationController < ActionController::Base
   # up using Blog.find_blog and cached for the lifetime of the controller instance;
   # generally one request.
   def this_blog
-    @blog ||= Blog.find_blog(blog_base_url)
+    @blog ||= if $blog_id_for[blog_base_url]
+                Blog.find($blog_id_for[blog_base_url])
+              else
+                returning(Blog.find_blog(blog_base_url)) { |blog| $blog_id_for[blog_base_url] = blog.id }
+              end
   end
   helper_method :this_blog
 
