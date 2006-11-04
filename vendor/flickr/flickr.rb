@@ -53,7 +53,7 @@ class Flickr
   attr_accessor :user
 
   # Replace this API key with your own (see http://www.flickr.com/services/api/misc.api_keys.html)
-  def initialize(api_key='86e18ef2a064ff2255845e029208d7f4', email=nil, password=nil)
+  def initialize(api_key=FLICKR_KEY, email=nil, password=nil)
     @api_key = api_key
     @host = 'http://flickr.com'
     @api = '/services/rest'
