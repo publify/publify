@@ -53,7 +53,15 @@ module ArticlesHelper
   end
 
   def page_header
-    page_header_includes = contents.collect { |c| c.whiteboard }.collect { |w| w.select {|k,v| k =~ /^page_header_/}.collect {|(k,v)| v.chomp} }.flatten.uniq
+    page_header_includes = contents.collect { |c| c.whiteboard }.collect do |w|
+      w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
+        v = v.chomp
+        # trim the same number of spaces from the beginning of each line
+        # this way plugins can indent nicely without making ugly source output
+        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+        v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
+      end
+    end.flatten.uniq
     (
     <<-HTML
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -65,7 +73,7 @@ module ArticlesHelper
   #{ javascript_include_tag "prototype" }
   #{ javascript_include_tag "effects" }
   #{ javascript_include_tag "typo" }
-  #{ page_header_includes.join("\n") }
+#{ page_header_includes.join("\n") }
   <script type="text/javascript">#{ @content_for_script }</script>
     HTML
     ).chomp
