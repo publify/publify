@@ -80,8 +80,8 @@ class TextFilterPlugin::Macro < TextFilterPlugin
 
   def self.filtertext(blog, content, text, params)
     filterparams = params[:filterparams]
-    regex1 = /<typo:#{short_name}[^>]*\/>/
-    regex2 = /<typo:#{short_name}([^>]*)>(.*?)<\/typo:#{short_name}>/m
+    regex1 = /<typo:#{short_name}(?:[ \t][^>]*)?\/>/
+    regex2 = /<typo:#{short_name}([ \t][^>]*)?>(.*?)<\/typo:#{short_name}>/m
 
     new_text = text.gsub(regex1) do |match|
       macrofilter(blog,content,attributes_parse(match),params)
