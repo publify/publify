@@ -41,7 +41,7 @@
 <% else -%>
   <td><select name="params[<%= key %>]">
 <% for opt in @filteroptions[key] -%>
-    <option value="<%= opt.downcase %>"<%= %{ selected="selected"} if opt.downcase == @filterparams[key] %>><%= opt %></option>
+    <option value="<%= opt.downcase.gsub(' ','_') %>"<%= %{ selected="selected"} if opt.downcase.gsub(' ','_') == @filterparams[key] %>><%= opt %></option>
 <% end -%>
   </select></td>
 <% end -%>
