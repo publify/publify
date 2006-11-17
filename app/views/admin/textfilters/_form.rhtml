@@ -36,7 +36,15 @@
 <% @filterparams.keys.sort.each do |key| -%>
 <tr>
   <td><label for="params[<%= key %>]"  title="<%=h @filterhelp[key] %>"><%= @filterdescriptions[key] %></label></td>
+<% if @filteroptions[key].nil? -%>
   <td><input name="params[<%= key %>]" value="<%=h @filterparams[key] %>"/></td>
+<% else -%>
+  <td><select name="params[<%= key %>]">
+<% for opt in @filteroptions[key] -%>
+    <option value="<%= opt.downcase %>"<%= %{ selected="selected"} if opt.downcase == @filterparams[key] %>><%= opt %></option>
+<% end -%>
+  </select></td>
+<% end -%>
 </tr>
 <% end -%>
 </table>

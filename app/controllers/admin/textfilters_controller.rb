@@ -90,12 +90,14 @@ class Admin::TextfiltersController < Admin::BaseController
     @filterparams = Hash.new
     @filterdescriptions = Hash.new
     @filterhelp = Hash.new
+    @filteroptions = Hash.new
 
     (types['macropre']+types['macropost']+types['postprocess']).each do |f|
       f.default_config.each do |key,value|
         @filterparams[key] = value[:default]
         @filterdescriptions[key] = value[:description]
         @filterhelp[key] = value[:help]
+        @filteroptions[key] = value[:options]
       end
     end
 
