@@ -1,0 +1,209 @@
+/* Stylesheet generated from TextMate theme
+ *
+ * Dawn
+ * 
+ *
+ */
+
+div.textmate-source.dawn pre.textmate-source {
+	color: #080808;
+	background-color: #F5F5F5;
+}
+
+div.textmate-source.dawn pre.textmate-source .linenum {
+	width: 75px;
+	padding: 0.1em 1em 0.2em 0;
+	color: #888;
+	background-color: #eee;
+}
+div.textmate-source.dawn pre.textmate-source span {
+   padding-top: 0.2em;
+   padding-bottom: 0.1em;
+}
+div.textmate-source.dawn pre.textmate-source ::selection {
+	background-color: rgba(116, 150, 207, 0.30);
+}
+/* Comment */
+div.textmate-source.dawn pre.textmate-source .comment {
+	color: #5A525F;
+	font-style: italic;
+}
+
+/* Constant */
+div.textmate-source.dawn pre.textmate-source .constant {
+	color: #811F24;
+	font-weight: bold;
+}
+
+/* Entity */
+div.textmate-source.dawn pre.textmate-source .entity {
+	color: #BF4F24;
+}
+
+/* Keyword */
+div.textmate-source.dawn pre.textmate-source .keyword {
+	color: #794938;
+}
+
+/* Storage */
+div.textmate-source.dawn pre.textmate-source .storage {
+	color: #A71D5D;
+	font-style: italic;
+}
+
+/* String */
+div.textmate-source.dawn pre.textmate-source .string .| .punctuation_definition_string {
+	color: #0B6125;
+}
+
+/* Support */
+div.textmate-source.dawn pre.textmate-source .support {
+	color: #691C97;
+}
+
+/* Variable */
+div.textmate-source.dawn pre.textmate-source .variable {
+	color: #234A97;
+}
+
+/* Punctuation */
+div.textmate-source.dawn pre.textmate-source .punctuation {
+	color: #080808;
+}
+
+/* Punctuation.separator */
+div.textmate-source.dawn pre.textmate-source .punctuation_separator {
+	color: #794938;
+}
+
+/* Invalid – Deprecated */
+div.textmate-source.dawn pre.textmate-source .invalid_deprecated {
+	color: #B52A1D;
+	font-style: italic;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+/* Invalid – Illegal */
+div.textmate-source.dawn pre.textmate-source .invalid_illegal {
+	color: #F8F8F8;
+	font-style: italic;
+	text-decoration: underline;
+	background-color: #B52A1D;
+}
+
+/* String embedded-source */
+div.textmate-source.dawn pre.textmate-source .string .source {
+	color: #080808;
+	background-color: rgba(111, 139, 186, 0.15);
+}
+
+/* String constant */
+div.textmate-source.dawn pre.textmate-source .string .constant {
+	color: #696969;
+	font-weight: bold;
+}
+
+/* String variable */
+div.textmate-source.dawn pre.textmate-source .string .variable {
+	color: #234A97;
+}
+
+/* String.regexp */
+div.textmate-source.dawn pre.textmate-source .string_regexp {
+	color: #CF5628;
+}
+
+/* String.regexp.«special» */
+div.textmate-source.dawn pre.textmate-source .string_regexp_character-class, div.textmate-source.dawn pre.textmate-source .string_regexp .constant_character_escaped, div.textmate-source.dawn pre.textmate-source .string_regexp .source_ruby_embedded, div.textmate-source.dawn pre.textmate-source .string_regexp .string_regexp_arbitrary-repitition {
+	color: #CF5628;
+	font-style: italic;
+	font-weight: bold;
+}
+
+/* String.regexp constant.character.escape */
+div.textmate-source.dawn pre.textmate-source .string_regexp .constant_character_escape {
+	color: #811F24;
+	font-weight: bold;
+}
+
+/* Embedded Source */
+div.textmate-source.dawn pre.textmate-source .text .source {
+	background-color: rgba(111, 139, 186, 0.15);
+}
+
+/* Support.function */
+div.textmate-source.dawn pre.textmate-source .support_function {
+	color: #693A17;
+}
+
+/* Support.constant */
+div.textmate-source.dawn pre.textmate-source .support_constant {
+	color: #B4371F;
+}
+
+/* Support.variable */
+div.textmate-source.dawn pre.textmate-source .support_variable {
+	color: #234A97;
+}
+
+/* Markup.list */
+div.textmate-source.dawn pre.textmate-source .markup_list {
+	color: #693A17;
+}
+
+/* Markup.heading */
+div.textmate-source.dawn pre.textmate-source .markup_heading .| .markup_heading .entity_name {
+	color: #19356D;
+	font-weight: bold;
+}
+
+/* Markup.quote */
+div.textmate-source.dawn pre.textmate-source .markup_quote {
+	color: #0B6125;
+	font-style: italic;
+	background-color: rgba(187, 187, 187, 0.19);
+}
+
+/* Markup.italic */
+div.textmate-source.dawn pre.textmate-source .markup_italic {
+	color: #080808;
+	font-style: italic;
+}
+
+/* Markup.bold */
+div.textmate-source.dawn pre.textmate-source .markup_bold {
+	color: #080808;
+	font-weight: bold;
+}
+
+/* Markup.underline */
+div.textmate-source.dawn pre.textmate-source .markup_underline {
+	color: #080808;
+	text-decoration: underline;
+}
+
+/* Markup.link */
+div.textmate-source.dawn pre.textmate-source .markup_link {
+	color: #234A97;
+	font-style: italic;
+	text-decoration: underline;
+}
+
+/* Markup.raw */
+div.textmate-source.dawn pre.textmate-source .markup_raw {
+	color: #234A97;
+	background-color: rgba(187, 187, 187, 0.19);
+}
+
+/* Markup.deleted */
+div.textmate-source.dawn pre.textmate-source .markup_deleted {
+	color: #B52A1D;
+}
+
+/* Meta.seperator */
+div.textmate-source.dawn pre.textmate-source .meta_separator {
+	color: #19356D;
+	font-weight: bold;
+	background-color: #DCDCDC;
+}
