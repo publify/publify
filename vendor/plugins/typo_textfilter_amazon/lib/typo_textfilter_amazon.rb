@@ -22,7 +22,7 @@ class Typo
                                    :help => "Your Amazon Associate's ID (see http://amazon.com/associates).  Typo's Amazon filter will automatically add this ID to all amazon:ASIN URLs that you create."},
           "amazon-domain-suffix" => {:default => "com",
                                    :description => "Amazon Domain Suffix",
-                                   :help => "Your Amazon Domain Suffix depends on the language or country you life in."}
+                                   :help => "Your Amazon Domain Suffix depends on the language or country you live in."}
                                    }
       end
 
