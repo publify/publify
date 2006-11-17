@@ -114,10 +114,10 @@ Common attributes:
         %{<div style="#{style}" class="lightboxplugin"><a href="#{displayurl}" rel="lightbox" title="#{title}"><img src="#{thumburl}" #{%{width="#{width}" } unless width.nil?}#{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}</div>}
       end
 
-      def self.set_whiteboard blog, content
+      def self.set_whiteboard(blog, content)
         content.whiteboard['page_header_lightbox'] = <<-HTML
-    <link href="#{blog.base_url}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
-      <script src="#{blog.base_url}/javascripts/lightbox.js" type="text/javascript"></script>
+          <link href="#{blog.base_url}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
+          <script src="#{blog.base_url}/javascripts/lightbox.js" type="text/javascript"></script>
         HTML
       end
     end
