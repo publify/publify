@@ -53,7 +53,7 @@ module ArticlesHelper
   end
 
   def page_header
-    page_header_includes = contents.collect { |c| c.whiteboard }.collect { |w| w.select {|k,v| k =~ /^page_header_/}.collect {|(k,v)| v} }.flatten.uniq
+    page_header_includes = contents.collect { |c| c.whiteboard }.collect { |w| w.select {|k,v| k =~ /^page_header_/}.collect {|(k,v)| v.chomp} }.flatten.uniq
     (
     <<-HTML
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
