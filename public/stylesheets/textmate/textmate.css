@@ -3,18 +3,20 @@
  */
 
 div.textmate-source {
-  margin: 0.8em 30px;
-  padding: 0;
-  border: 1px solid grey;
+    margin: 0.8em 30px;
+    padding: 0;
+    border: 1px solid grey;
+    text-align: left;
 }
 
+/* textmate-source-header is currently unused, but perhaps in the future... */
 div.textmate-source > div.textmate-source-header {
     background-color: #E6D6BA;
     padding: 2px 6px;
     margin: 0;
     font-size: 0.8em;
     border-bottom: 1px solid grey;
-  color: darkgreen;
+    color: darkgreen;
 }
 
 div.textmate-source > div.textmate-source-header a:link {
@@ -22,29 +24,25 @@ div.textmate-source > div.textmate-source-header a:link {
 }
 
 pre.textmate-source {
-    margin: 0.8em 80px;
-    border: 2px solid grey;
-	padding: 6px;
-	font-family: Monaco, monospace;
-	font-size: 0.8em;
-	line-height: 1.3em;
-	overflow: auto;
-	max-height: 300px;
-	word-wrap: break-word;
-	white-space: pre;
-	white-space: pre-wrap;
-	white-space: -moz-pre-wrap;
-	white-space: -o-pre-wrap;
-}
-
-div.textmate-source > pre.textmate-source {
-	margin: 0;
-	border: none;
+    padding: 6px;
+    margin: 0;
+    border: 0;
+    width: auto;
+    font-family: Monaco, monospace;
+    font-size: 0.8em;
+    line-height: 1.3em;
+    overflow: auto;
+    max-height: 300px;
+    word-wrap: break-word;
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
 }
 
 pre.textmate-source .linenum {
-	width: 75px;
-	padding: 0.1em 0.2em 0.2em 0;
-	color: #888;
-	background-color: #eee;
+    width: 75px;
+    padding: 0.1em 0.2em 0.2em 0;
+    color: #888;
+    background-color: #eee;
 }
