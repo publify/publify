@@ -8,7 +8,7 @@ class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
   fixtures :contents, :users, :categories, :resources, :text_filters,
-           :blogs, :articles_categories
+           :blogs, :categorizations
 
   def setup
     @controller = Admin::ContentController.new
@@ -19,20 +19,20 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_index
     get :index
-    assert_rendered_file 'list'
+    assert_template 'list'
   end
 
   def test_list
     get :list
-    assert_rendered_file 'list'
+    assert_template 'list'
     assert_template_has 'articles'
   end
 
   def test_show
     get :show, 'id' => 1
-    assert_rendered_file 'show'
+    assert_template 'show'
     assert_template_has 'article'
-    assert_valid_record 'article'
+    assert_valid assigns(:article)
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:categories)
     assert_not_nil assigns(:resources)
@@ -40,7 +40,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_new
     get :new
-    assert_rendered_file 'new'
+    assert_template 'new'
     assert_template_has 'article'
   end
 
@@ -70,7 +70,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     emails.clear
     tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
     post :new, 'article' => { :title => "posted via tests!", :body => "Foo", :keywords => "foo bar 'baz bliz' \"gorp gack gar\""}, 'categories' => [1]
-    assert_redirected_to :action => 'show'
+    assert_response :redirect, :action => 'show'
 
     assert_equal num_articles + 1, this_blog.published_articles.size
 
@@ -90,7 +90,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
          :article => { :title => "News from the future!",
                        :body => "The future's cool!",
                        :published_at => Time.now + 1.hour })
-    assert_redirected_to :action => 'show'
+    assert_response :redirect, :action => 'show'
     assert ! assigns(:article).published?
     assert_equal num_articles, this_blog.published_articles.size
     assert_equal 1, Trigger.count
@@ -111,7 +111,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     body = "body via *textile*"
     extended="*foo*"
     post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
-    assert_redirected_to :action => 'show'
+    assert_response :redirect, :action => 'show'
 
     new_article = Article.find(:first, :order => "created_at DESC")
     assert_equal body, new_article.body
@@ -124,9 +124,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_edit
     get :edit, 'id' => 1
     assert_equal assigns(:selected), Article.find(1).categories.collect {|c| c.id}
-    assert_rendered_file 'edit'
+    assert_template 'edit'
     assert_template_has 'article'
-    assert_valid_record 'article'
+    assert_valid assigns(:article)
   end
 
   def test_update
@@ -135,7 +135,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
     body = "another *textile* test"
     post :edit, 'id' => 1, 'article' => {:body => body, :text_filter => 'textile'}
-    assert_redirected_to :action => 'show', :id => 1
+    assert_response :redirect, :action => 'show', :id => 1
 
     article = Article.find(1)
     assert_equal "textile", article.text_filter.name
@@ -148,10 +148,10 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_not_nil Article.find(1)
 
     get :destroy, 'id' => 1
-    assert_success
+    assert_response :success
 
     post :destroy, 'id' => 1
-    assert_redirected_to :action => 'list'
+    assert_response :redirect, :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       article = Article.find(1)
@@ -161,9 +161,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_category_add
     get :category_add, :id => 1, :category_id => 1
 
-    assert_rendered_file '_show_categories'
-    assert_valid_record 'article'
-    assert_valid_record 'category'
+    assert_template '_show_categories'
+    assert_valid assigns(:article)
+    assert_valid assigns(:category)
     assert Article.find(1).categories.include?(Category.find(1))
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:category)
@@ -173,9 +173,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_category_remove
     get :category_remove, :id => 1, :category_id => 1
 
-    assert_rendered_file '_show_categories'
-    assert_valid_record 'article'
-    assert_valid_record 'category'
+    assert_template '_show_categories'
+    assert_valid assigns(:article)
+    assert_valid assigns(:category)
     assert !Article.find(1).categories.include?(Category.find(1))
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:category)
@@ -185,9 +185,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_resource_add
     get :resource_add, :id => 1, :resource_id => 1
 
-    assert_rendered_file '_show_resources'
-    assert_valid_record 'article'
-    assert_valid_record 'resource'
+    assert_template '_show_resources'
+    assert_valid assigns(:article)
+    assert_valid assigns(:resource)
     assert Article.find(1).resources.include?(Resource.find(1))
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:resource)
@@ -197,9 +197,9 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   def test_resource_remove
     get :resource_remove, :id => 1, :resource_id => 1
 
-    assert_rendered_file '_show_resources'
-    assert_valid_record 'article'
-    assert_valid_record 'resource'
+    assert_template '_show_resources'
+    assert_valid assigns(:article)
+    assert_valid assigns(:resource)
     assert !Article.find(1).resources.include?(Resource.find(1))
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:resource)
@@ -208,7 +208,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_attachment_box_add
     get :attachment_box_add, :id => 2
-    assert_rendered_file '_attachment'
+    assert_template '_attachment'
     #assert_tag :tag => 'script'
   end
 

@@ -87,7 +87,7 @@ class ArticlesController < ContentController
 
   # Receive comments to articles
   def comment
-    unless @request.xhr? || this_blog.sp_allow_non_ajax_comments
+    unless request.xhr? || this_blog.sp_allow_non_ajax_comments
       render_error("non-ajax commenting is disabled")
       return
     end
@@ -199,7 +199,7 @@ class ArticlesController < ContentController
   end
 
   def set_headers
-    @headers["Content-Type"] = "text/html; charset=utf-8"
+    headers["Content-Type"] = "text/html; charset=utf-8"
   end
 
   def list_groupings(klass)
@@ -211,7 +211,7 @@ class ArticlesController < ContentController
   def render_grouping(klass)
     return list_groupings(klass) unless params[:id]
 
-    @page_title = "#{this_blog.blog_name} - #{klass.to_s.underscore} #{params[:id]}"
+    @page_title = "#{klass.to_s.underscore} #{params[:id]}"
     @articles = klass.find_by_permalink(params[:id]).articles.find_already_published rescue []
     auto_discovery_feed :type => klass.to_s.underscore, :id => params[:id]
     render_paginated_index("Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'")

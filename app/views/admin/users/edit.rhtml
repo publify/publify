@@ -1,9 +1,9 @@
   <% @page_heading = 'Users' %>
 
-  <%= start_form_tag :action=>"edit", :id => @user.id %>
+  <% form_tag :action=>"edit", :id => @user.id do %>
 
   <h3>Editing user</h3>
-  <div class="form">	
+  <div class="form">
     <%= render_partial "form" %>
   </div>
 
@@ -11,4 +11,4 @@
     <%= save %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>

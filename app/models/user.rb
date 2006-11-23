@@ -2,9 +2,10 @@ require 'digest/sha1'
 
 # this model expects a certain database layout and its based on the name/login pattern.
 class User < CachedModel
-  has_and_belongs_to_many :notify_contents, :class_name => 'Content',
-    :join_table => 'notifications', :foreign_key => 'notify_user_id',
-    :association_foreign_key => 'notify_content_id', :uniq => true
+  has_many :notifications, :foreign_key => 'notify_user_id'
+  has_many :notify_contents, :through => :notifications,
+    :source => 'notify_content',
+    :uniq => true
 
   has_many :articles, :order => 'created_at DESC' do
     def published

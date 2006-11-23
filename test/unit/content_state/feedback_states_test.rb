@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../test_helper'
 
 class FeedbackStatesTest < Test::Unit::TestCase
   fixtures :blogs, :contents, :articles_tags, :tags, :resources,
-    :categories, :articles_categories, :users, :notifications, :text_filters
+    :categories, :categorizations, :users, :notifications, :text_filters
 
   def setup
     @comment = Article.find(:first).comments.build(:author => 'Piers',

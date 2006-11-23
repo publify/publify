@@ -8,7 +8,7 @@
 </tr>
 <% for page in @pages %>
 <tr <%= alternate_class %>>
-  <td><%= link_to page.name, {:action => "show", :id => page.id} %> <%= link_to_permalink(page,image_tag('go')) %></td>
+  <td><%= link_to page.name, {:action => "show", :id => page.id} %> <%= link_to_permalink(page,image_tag('go.png')) %></td>
   <td><%= page.title %></td>
   <td><%= distance_of_time_in_words_to_now page.created_at %> ago</td>
   <td class="operation"><%= link_to_edit page %></td>

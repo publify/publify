@@ -93,10 +93,10 @@ class MovableTypeService < TypoWebService
   end
 
   def getPostCategories(postid, username, password)
-    this_blog.articles.find(postid).categories.collect do |c|
+    this_blog.articles.find(postid).categorizations.collect do |c|
       MovableTypeStructs::CategoryPerPost.new(
-          :categoryName => c.name,
-          :categoryId   => c.id.to_i,
+          :categoryName => c.category.name,
+          :categoryId   => c.category_id.to_i,
           :isPrimary    => c.is_primary.to_i
         )
     end

@@ -20,14 +20,14 @@ class Test::Unit::TestCase
       CachedModel.cache_reset
       setup
       __send__(@method_name)
-    rescue AssertionFailedError => e
+    rescue Test::Unit::AssertionFailedError => e
       add_failure(e.message, e.backtrace)
     rescue StandardError, ScriptError
       add_error($!)
     ensure
       begin
         teardown
-      rescue AssertionFailedError => e
+      rescue Test::Unit::AssertionFailedError => e
         add_failure(e.message, e.backtrace)
       rescue StandardError, ScriptError
         add_error($!)
@@ -78,6 +78,58 @@ class Test::Unit::TestCase
   def this_blog
     Blog.default || Blog.create!
   end
+
+  def assert_template_has(key=nil, message=nil)
+    msg = build_message(message, "<?> is not a template object", key)
+    assert_block(msg) { @response.has_template_object?(key) }
+  end
+
+  def assert_template_has_no(key=nil, message=nil)
+    msg = build_message(message, "<?> is a template object <?>",
+                                  key,         @response.template_objects[key])
+    assert_block(msg) { !@response.has_template_object?(key) }
+  end
+
+  def assert_session_has(key=nil, message=nil)
+    msg = build_message(message, "<?> is not in the session <?>",
+                                  key,                @response.session)
+    assert_block(msg) { @response.has_session_object?(key) }
+  end
+
+  def assert_session_has_no(key=nil, message=nil)
+    msg = build_message(message, "<?> is in the session <?>",
+                                  key,         @response.session)
+    assert_block(msg) { !@response.has_session_object?(key) }
+  end
+
+  def assert_invalid_column_on_record(key = nil, columns = "", message = nil) #:nodoc:
+    record = find_record_in_template(key)
+    record.send(:validate)
+
+    cols = glue_columns(columns)
+    cols.delete_if { |col| record.errors.invalid?(col) }
+    msg = build_message(message, "Active Record has valid columns <?>)", cols.join(",") )
+    assert_block(msg) { cols.empty? }
+  end
+
+  def glue_columns(columns)
+    cols = []
+    cols << columns if columns.class == String
+    cols += columns if columns.class == Array
+    cols
+  end
+
+  def find_record_in_template(key = nil)
+    assert_not_nil assigns(key)
+    record = @response.template_objects[key]
+
+    assert_not_nil(record)
+    assert_kind_of ActiveRecord::Base, record
+
+    return record
+  end
+
+
 end
 
 # Extend HTML::Tag to understand URI matching
@@ -119,4 +171,6 @@ class HTML::Tag
     end
     create_query_hash(value) == create_query_hash(condition)
   end
+
+
 end

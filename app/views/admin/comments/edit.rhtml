@@ -2,17 +2,17 @@
 
   <% content_for('tasks') do %>
     <li><%= link_to_permalink @comment,'View comment on your blog' %></li>
-  <% end %> 
+  <% end %>
 
-  <%= start_form_tag :action=>"edit", :id => @comment.id %>
+  <% form_tag :action=>"edit", :id => @comment.id do %>
 
   <h3>Editing comment</h3>
-  <div class="form">	
+  <div class="form">
     <%= render_partial "form" %>
   </div>
 
   <div id="operations">
-    <%= save %> or <%= cancel %>  
+    <%= save %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>

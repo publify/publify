@@ -1,6 +1,6 @@
   <% @page_heading = 'Blog settings' %>
 
-  <%= start_form_tag :action => 'update'%>
+  <% form_tag :action => 'update' do %>
 
   <div class="tasks">
     <h3>Which settings group would you like to edit?</h3>
@@ -83,12 +83,12 @@
     <hr/>
 
     <p>This setting allows you to disable trackbacks for every article in
-	your blog.  It won't remove existing trackbacks, but it will prevent
-	any further attempt to add a trackback anywhere on your blog.  You can
-	enable or disable trackbacks per-article using the article's extended
-	settings.  See also the 
+    your blog.  It won't remove existing trackbacks, but it will prevent
+    any further attempt to add a trackback anywhere on your blog.  You can
+    enable or disable trackbacks per-article using the article's extended
+    settings.  See also the
       <a href="#gensettings" onclick="new Effect.ScrollTo('gensettings'); return false">"Enable Trackbacks by default" setting</a> above.
-	</p>
+    </p>
     <p>
       <input name="setting[global_pings_disable]" id="global_pings_disable" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.global_pings_disable%> />
          <input name="setting[global_pings_disable]" type="hidden" value="0"/>
@@ -161,16 +161,16 @@
           <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_global%> /><input name="setting[sp_global]" type="hidden" value="0"/>
           <label for="sp_global">Enable spam protection</label>
         </p>
-		<p>Typo can (optionally) use the <a href="http://akismet.com">Akismet</a> spam-filtering service.  You need to register with 
-		   Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here.
-		</p>
+        <p>Typo can (optionally) use the <a href="http://akismet.com">Akismet</a> spam-filtering service.  You need to register with
+           Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here.
+        </p>
         <p>
           <label for="sp_akismet_key">Akismet Key</label>
           <input name="setting[sp_akismet_key]" id="sp_akismet_key" type="text" value="<%=h this_blog.sp_akismet_key %>"/>
         </p>
-		<p>You can optionally disable non-Ajax comments.  Typo will always use Ajax for comment submission if Javascript is enabled,
-		   so non-Ajax comments are either from spammers or users without Javascript.
-		</p>
+        <p>You can optionally disable non-Ajax comments.  Typo will always use Ajax for comment submission if Javascript is enabled,
+           so non-Ajax comments are either from spammers or users without Javascript.
+        </p>
         <p>
           <input name="setting[sp_allow_non_ajax_comments]" id="sp_allow_non_ajax_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_allow_non_ajax_comments%> />
           <input name="setting[sp_allow_non_ajax_comments]" type="hidden" value="0" />
@@ -243,4 +243,4 @@
     <%= save("Save My Settings") %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>

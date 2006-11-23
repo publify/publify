@@ -5,35 +5,35 @@
  <div id="gensettings" class="set" style="margin-top:10px;">
    <h3>Information</h3>
    <p>
-     <label>Current database version:</label> 
+     <label>Current database version:</label>
      <span class="db_version"><%= @current_version %></span>
    </p>
    <p>
-     <label>New database version:</label> 
+     <label>New database version:</label>
      <span class="db_version"><%= @needed_version %></span>
    </p>
    <p>
-     <label>Your database supports migrations:</label> 
+     <label>Your database supports migrations:</label>
      <span class="db_version"><%= @support ? 'yes' : 'no' %></span>
    </p>
   </div>
-  
-    
+
+
   <% unless @needed_migrations.blank? %>
   <div id="gensettings" class="set" style="margin-top:10px;">
     <h3>Needed migrations</h3>
     <ul>
     <% for migration in @needed_migrations %>
     <li><%= migration.humanize %></li>
-    <% end %>  
+    <% end %>
     </ul>
   </div>
   <% end %>
-  
+
 </div>
 
 
-<%= start_form_tag :action => 'migrate' %>
+<% form_tag :action => 'migrate' do %>
  <div id="operations" class="tasks">
    <% if @current_version == @needed_version %>
      <strong>You are up to date!</strong>
@@ -41,4 +41,4 @@
      <%= save("Update database now") %>  <small>may take a moment</small>
    <% end %>
  </div>
-<%= end_form_tag %>
+<% end %>

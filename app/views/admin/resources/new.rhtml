@@ -7,6 +7,6 @@
 <label for="upload_filename">File:</label><br /><%= file_field 'upload', 'filename' -%><br />
 <%= submit_tag 'Upload' -%>
 <div id='status' style="display: none"><%= upload_status_tag %></div>
-<%= end_form_tag %>
+</form>
 
 <div id="message"><%= @message %></div>

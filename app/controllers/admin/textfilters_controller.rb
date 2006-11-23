@@ -72,7 +72,7 @@ class Admin::TextfiltersController < Admin::BaseController
   end
 
   def preview
-    @headers["Content-Type"] = "text/html; charset=utf-8"
+    headers["Content-Type"] = "text/html; charset=utf-8"
     @textfilter = params[:textfilter]
     render :layout => false
   end

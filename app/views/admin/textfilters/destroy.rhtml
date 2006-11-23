@@ -1,10 +1,10 @@
   <% @page_heading = 'Text Filters' %>
 
   <% content_for('tasks') do %>
-  <% end %> 
+  <% end %>
 
   <p>Are you sure you want to delete this filter '<%= @textfilter.name %>'?</p>
-  <%= start_form_tag :controller => '/admin/textfilters', :action => 'destroy' %>
+  <% form_tag :controller => '/admin/textfilters', :action => 'destroy' do %>
   <%= hidden_field "textfilter", "id" %>
   <%= confirm_delete("Delete this filter") %>
-  <%= end_form_tag %>
+  <% end %>

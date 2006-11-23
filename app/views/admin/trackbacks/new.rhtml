@@ -2,14 +2,14 @@
 
   <h3>Creating trackback</h3>
 
-  <%= start_form_tag :action=>"new" %>
+  <% form_tag :action=>"new" do %>
 
-  <div class="form">	
+  <div class="form">
     <%= render_partial "form" %>
   </div>
 
   <div id="operations">
-    <%= save %> or <%= cancel %>  
+    <%= save %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>

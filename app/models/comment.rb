@@ -51,4 +51,17 @@ class Comment < Feedback
       :referrer   => referrer,
       :permalink  => permalink }
   end
+
+  def self.html_map(field=nil)
+    html_map = { :body => true }
+    if field
+      html_map[field.to_sym]
+    else
+      html_map
+    end
+  end
+
+  def content_fields
+    [:body]
+  end
 end

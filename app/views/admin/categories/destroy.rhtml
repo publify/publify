@@ -2,9 +2,9 @@
 
   <% content_for('tasks') do %>
     <%= task_show 'Show this category', @category.id %>
-  <% end %> 
+  <% end %>
 
   <p>Are you sure you want to delete the category '<%= @category.name %>'?</p>
-  <%= start_form_tag :action => "destroy", :id => @category.id %>
+  <% form_tag :action => "destroy", :id => @category.id do %>
   <%= confirm_delete("Delete this category") %>
-  <%= end_form_tag %>
+  <% end %>

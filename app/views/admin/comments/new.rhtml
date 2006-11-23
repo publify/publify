@@ -1,15 +1,15 @@
   <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
 
   <h3>Creating comment</h3>
-  
-  <%= start_form_tag :action=>"new" %>
 
-  <div class="form">	
+  <% form_tag :action=>"new" do %>
+
+  <div class="form">
     <%= render_partial "form" %>
   </div>
 
   <div id="operations">
-    <%= save %> or <%= cancel %>  
+    <%= save %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>

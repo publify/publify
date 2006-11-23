@@ -1,4 +1,4 @@
-  <%= start_form_tag :action=>"new" %>
+  <% form_tag :action=>"new" do %>
 <p>
   <label for="articles_title">Title:</label><br />
   <%= text_field 'article', 'title'  %>
@@ -17,4 +17,4 @@
 <div id="operations">
   <%= save("Save Post") %> or <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" >Cancel</a>
 </div>
-<%= end_form_tag %>
+<% end %>

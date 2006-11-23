@@ -1,5 +1,5 @@
 <div class="notice"><%= @flash[:notice] %></div>
-<%= start_form_tag %>
+<% form_tag do %>
 
 <% for field in @fields -%>
 
@@ -9,4 +9,4 @@
 
   <%= submit_tag %>
 
-<%= end_form_tag %>
+<% end %>

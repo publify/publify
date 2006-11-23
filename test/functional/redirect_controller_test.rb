@@ -19,18 +19,18 @@ class RedirectControllerTest < Test::Unit::TestCase
   def test_redirect
     get :redirect, :from => "foo/bar"
     assert_response 301
-    assert_redirected_to "/someplace/else"
+    assert_response :redirect, "/someplace/else"
   end
 
   def test_url_root_redirect
     @request.relative_url_root = "/blog"
     get :redirect, :from => "foo/bar"
     assert_response 301
-    assert_redirected_to "/blog/someplace/else"
+    assert_response :redirect, "/blog/someplace/else"
     
     get :redirect, :from => "bar/foo"
     assert_response 301
-    assert_redirected_to "/blog/someplace/else"
+    assert_response :redirect, "/blog/someplace/else"
   end
 
   def test_no_redirect

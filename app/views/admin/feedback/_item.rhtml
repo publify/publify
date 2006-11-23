@@ -13,5 +13,5 @@
   <td class="field"><%=h truncate(item.body,80)%></td>
   <td class="field"><%=h item.ip %></td>
   <td class="field"><%=h distance_of_time_in_words_to_now(item.created_at) %> ago</td>
-  <td class="field"><%= link_to image_tag('delete'), {:action => 'delete', :id => item.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :post => true %></td>
+  <td class="field"><%= link_to image_tag('delete.png'), {:action => 'delete', :id => item.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
 </tr>

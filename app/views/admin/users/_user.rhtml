@@ -1,9 +1,9 @@
 <div class="user">
   <h4><%= link_to h(user.login), {:action => "show", :id => user.id} %></h4>
-	<p>Number of Articles: <%= Article.count "user_id = #{user.id}"  %></p>
-	<p>Number of Comments: <%= Comment.count "user_id = #{user.id}"  %></p>
-	<p>Notified<% if user.notify_via_email? %> via email<% end %>: 
-	  <%= "new articles" if user.notify_on_new_articles? %>
-	  <%= "comments" if user.notify_on_comments? %></p>
+        <p>Number of Articles: <%= Article.count :conditions => "user_id = #{user.id}"  %></p>
+        <p>Number of Comments: <%= Comment.count :conditions => "user_id = #{user.id}"  %></p>
+        <p>Notified<% if user.notify_via_email? %> via email<% end %>:
+          <%= "new articles" if user.notify_on_new_articles? %>
+          <%= "comments" if user.notify_on_comments? %></p>
   <p><%= link_to 'Edit', :action => 'edit', :id => user  %><strong> |</strong> <%= link_to 'Delete', :action => 'destroy', :id => user %></p>
 </div>

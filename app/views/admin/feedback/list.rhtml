@@ -7,13 +7,13 @@
 <% end %>
 
 <div class="search">
-  <%= form_tag({:action => 'index'}, :method => :get) %>
+  <% form_tag({:action => 'index'}, :method => :get) do %>
     <label for="search">Feedback Search:</label><input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="15" />
-  <%= end_form_tag %>
+  <% end %>
 </div>
 
 <div class="list">
-  <%= form_tag({:action => 'bulkops'}, :method => :post) %>
+  <% form_tag({:action => 'bulkops'}, :method => :post) do %>
   <br/>
   <%= submit_tag "Delete Checked Items" %> &nbsp;
   <%= submit_tag "Mark Checked Items as Ham" %>
@@ -41,7 +41,7 @@
   <%= submit_tag "Mark Checked Items as Ham" %>
   <%= submit_tag "Mark Checked Items as Spam" %>
   <%= submit_tag "Confirm Classification of Checked Items" %>
-  </form>
+  <% end %>
 </div>
 
 <%= link_to "Previous page", { :page => @pages.current.previous, :search => params[:search] } if @pages.current.previous %>

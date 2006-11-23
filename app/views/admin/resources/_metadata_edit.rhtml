@@ -1,4 +1,4 @@
-<%= start_form_tag({ :action => "update" }, :id => id, :enctype => "multipart/form-data") %>
+<% form_tag({ :action => "update" }, :id => id, :enctype => "multipart/form-data") do %>
 <div class="form">
   <b>Resource MetaData</b><br />
   <%= link_to "Remove iTunes Metadata", { :action => "remove_itunes_metadata", :id => resource.id}, :confirm => "Are you sure?"%><br />
@@ -16,7 +16,7 @@
     <input name="resource[itunes_keywords]" size="25" id="resource_itunes_keywords_<%= id %>" type="text" value="<%=h resource.itunes_keywords %>" /><small>(seperate with spaces)</small><br />
     <input name="resource[itunes_explicit]" type="checkbox"  value="1" <%= 'checked="checked"' if resource.itunes_explicit%>>Explicit</input><input name="resource[itunes_explicit]" type="hidden" value="0" />
   <br />
-  <input name="resource[id]" type="hidden" value="<%= id %>" /> 
+  <input name="resource[id]" type="hidden" value="<%= id %>" />
 <%= save("Save") %> or <a href="#" onclick="new Effect.BlindUp('edit-resource-metadata-<%= id %>', {duration: 0.4}); return false;" >Cancel</a>
 </div>
-<%= end_form_tag %>
+<% end %>

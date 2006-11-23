@@ -31,12 +31,20 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def category_add; do_add_or_remove_fu; end
-  alias_method :category_remove, :category_add
   alias_method :resource_add,    :category_add
   alias_method :resource_remove, :category_add
 
+  def category_remove
+    @article  = Article.find(params[:id])
+    @category = @article.categories.find(params['category_id'])
+    setup_categories
+    @article.categorizations.delete(@article.categorizations.find_by_category_id(params['category_id']))
+    @article.save
+    render :partial => 'show_categories'
+  end
+
   def preview
-    @headers["Content-Type"] = "text/html; charset=utf-8"
+    headers["Content-Type"] = "text/html; charset=utf-8"
     @article = Article.new(params[:article])
     render :layout => false
   end
@@ -119,8 +127,12 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def set_article_categories
-    @article.categories.clear
-    @article.categories = Category.find(params[:categories]) if params[:categories]
+    @article.categorizations.clear
+    if params[:categories]
+      Category.find(params[:categories]).each do |cat|
+        @article.categories << cat
+      end
+    end
     @selected = params[:categories] || []
   end
 

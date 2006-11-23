@@ -16,8 +16,8 @@ class Admin::ResourcesControllerTest < Test::Unit::TestCase
 
   def test_list
     get :list
-    assert_success
-    assert_rendered_file 'list'
+    assert_response :success
+    assert_template 'list'
     assert_template_has 'resources'
     assert_not_nil assigns(:resources)
     assert_not_nil assigns(:resources_pages)
@@ -27,20 +27,20 @@ class Admin::ResourcesControllerTest < Test::Unit::TestCase
     assert_not_nil Resource.find(1)
 
     get :destroy, :id => 1
-    assert_success
-    assert_rendered_file 'destroy'
+    assert_response :success
+    assert_template 'destroy'
     assert_not_nil assigns(:file)
 
     post :destroy, :id => 1
     assert_response 302
     follow_redirect
-    assert_rendered_file 'list'
+    assert_template 'list'
   end
 
   def test_new
     get :new
-    assert_success
-    assert_rendered_file 'new'
+    assert_response :success
+    assert_template 'new'
   end
 
   def test_upload

@@ -23,7 +23,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
   def test_only_title
     post :preview, 'article' => { :title => 'A title' }
     assert_response :success
-    assert_rendered_file 'preview'
+    assert_template 'preview'
     assert_tag :tag => 'h4', :content => 'A title'
     assert_no_tag :tag => 'p'
     assert_no_new_articles

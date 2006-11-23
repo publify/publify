@@ -113,7 +113,7 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_article_relation
-    assert_equal true, contents(:comment2).has_article?
+    assert contents(:comment2).article
     assert_equal 1, contents(:comment2).article.id
   end
 

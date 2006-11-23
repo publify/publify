@@ -57,7 +57,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
 
     assert_equal "new_page", new_page.name
 
-    assert_redirected_to :action => "show", :id => new_page.id
+    assert_response :redirect, :action => "show", :id => new_page.id
 
     # XXX: The flash is currently being made available improperly to tests (scoop)
     #assert_equal "Page was successfully created.", flash[:notice]
@@ -74,7 +74,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     post :edit, :id => contents(:markdown_page).id, :page => { :name => "markdown-page", :title => "Markdown Page",
         :body => "Adding a [link](http://www.typosphere.org/) here" }
 
-    assert_redirected_to :action => "show", :id => contents(:markdown_page).id
+    assert_response :redirect, :action => "show", :id => contents(:markdown_page).id
 
     # XXX: The flash is currently being made available improperly to tests (scoop)
     #assert_equal "Page was successfully updated.", flash[:notice]
@@ -82,7 +82,7 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
 
   def test_destroy
     post :destroy, :id => contents(:another_page).id
-    assert_redirected_to :action => "list"
+    assert_response :redirect, :action => "list"
     assert_raise(ActiveRecord::RecordNotFound) { Page.find(contents(:another_page).id) }
   end
 

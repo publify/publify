@@ -13,7 +13,7 @@ class ThemeControllerTest < Test::Unit::TestCase
   def test_stylesheets
     get :stylesheets, :filename => "azure.css"
     assert_response :success
-    assert_equal "text/css", @response.headers['Content-Type']
+    assert_equal "text/css; charset=utf-8", @response.headers['Content-Type']
     assert_equal "inline; filename=\"azure.css\"", @response.headers['Content-Disposition']
   end
 

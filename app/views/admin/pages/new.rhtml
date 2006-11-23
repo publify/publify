@@ -2,23 +2,23 @@
 
   <h3>Creating page</h3>
 
-  <%= start_form_tag({ :action => "new" }, :id => "page_form") %>
-  
-  <div class="form">	
-    <!-- LIVE PREVIEW --> 
+  <% form_tag({ :action => "new" }, :id => "page_form") do %>
+
+  <div class="form">
+    <!-- LIVE PREVIEW -->
     <div id="preview" class="post" style="display: none;"></div>
     <!-- /LIVE PREVIEW -->
     <%= render_partial "form" %>
   </div>
 
   <div id="operations">
-    <%= save %> or <%= cancel %>  
+    <%= save %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>
 
-  <%= observe_form "page_form", 
-        :frequency => 2, 
+  <%= observe_form "page_form",
+        :frequency => 2,
         :update => "preview",
         :complete => "Element.show('preview')",
-        :url => { :action => "preview" } %>      
+        :url => { :action => "preview" } %>

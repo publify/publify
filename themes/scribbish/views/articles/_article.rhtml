@@ -30,8 +30,8 @@
       <%= trackbacks_link(article) << ',' if article.allow_pings? %>
       <%= comments_link(article) << ',' if article.allow_comments? %>
       <a href="<%= article.permalink_url %>" rel="bookmark">permalink</a>,
-      <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'rss',  :id => article %>">rss</a>,
-      <a href="<%= xml_url :action=>'feed', :type=>'article', :format => 'atom', :id => article %>">atom</a>
+      <a href="<%= url_for :controller => 'xml', :action=>'feed', :type=>'article', :format => 'rss',  :id => article %>">rss</a>,
+      <a href="<%= url_for :controller => 'xml', :action=>'feed', :type=>'article', :format => 'atom', :id => article %>">atom</a>
     </li>
   </ul>
 </div>

@@ -24,8 +24,7 @@ class AccountsControllerTest < Test::Unit::TestCase
     assert_session_has :user
 
     assert_equal users(:bob), @response.session[:user]
-
-    assert_redirect_url "http://localhost/bogus/location"
+    assert @response.redirect_url_match?("http://localhost/bogus/location")
   end
 
   def test_signup
@@ -33,14 +32,12 @@ class AccountsControllerTest < Test::Unit::TestCase
     post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "newpassword" }
     assert_session_has :user
 
-    assert_redirect
-    assert_redirected_to :controller => "admin/general", :action => "index"
+    assert_response :redirect, :controller => "admin/general", :action => "index"
   end
 
   def test_disable_signup_after_user_exists
     get :signup
-    assert_redirect
-    assert_redirected_to :action => "login"
+    assert_response :redirect, :action => "login"
   end
 
   def test_bad_signup
@@ -50,15 +47,15 @@ class AccountsControllerTest < Test::Unit::TestCase
 
     post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "wrong" }
     assert_invalid_column_on_record "user", :password
-    assert_success
+    assert_response :success
 
     post :signup, :user => { :login => "yo", :password => "newpassword", :password_confirmation => "newpassword" }
     assert_invalid_column_on_record "user", :login
-    assert_success
+    assert_response :success
 
     post :signup, :user => { :login => "yo", :password => "newpassword", :password_confirmation => "wrong" }
     assert_invalid_column_on_record "user", [:login, :password]
-    assert_success
+    assert_response :success
   end
 
   def test_invalid_login
@@ -78,5 +75,4 @@ class AccountsControllerTest < Test::Unit::TestCase
     assert_session_has_no :user
 
   end
-
 end

@@ -1,7 +1,7 @@
-
+require 'comment'
+require 'trackback'
 
 class Admin::FeedbackController < Admin::BaseController
-  model :comment, :trackback
 
   def index
     conditions = ['blog_id = :blog_id', {:blog_id => Blog.default.id}]

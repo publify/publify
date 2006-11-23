@@ -11,9 +11,21 @@ class Content < ActiveRecord::Base
   composed_of :state, :class_name => 'ContentState::Factory',
     :mapping => %w{ state memento }
 
-  has_and_belongs_to_many :notify_users, :class_name => 'User',
-    :join_table => 'notifications', :foreign_key => 'notify_content_id',
-    :association_foreign_key => 'notify_user_id', :uniq => true
+  has_many :notifications, :foreign_key => 'content_id'
+  has_many :notify_users, :through => :notifications,
+    :source => 'notify_user',
+    :uniq => true
+
+  def notify_users=(collection)
+    return notify_users.clear if collection.empty?
+    self.class.transaction do
+      self.notifications.clear
+      collection.uniq.each do |u|
+        self.notifications.build(:notify_user => u)
+      end
+      notify_users.target = collection
+    end
+  end
 
   has_many :triggers, :as => :pending_item, :dependent => :delete_all
 

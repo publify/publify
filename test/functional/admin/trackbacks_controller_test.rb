@@ -17,25 +17,25 @@ class Admin::TrackbacksControllerTest < Test::Unit::TestCase
 
   def test_index
     get :index, :article_id => 2
-    assert_rendered_file 'list'
+    assert_template 'list'
   end
 
   def test_list
     get :list, :article_id => 2
-    assert_rendered_file 'list'
+    assert_template 'list'
     assert_template_has 'trackbacks'
   end
 
   def test_show
     get :show, :id => 7, :article_id => 2
-    assert_rendered_file 'show'
+    assert_template 'show'
     assert_template_has 'trackback'
-    assert_valid_record 'trackback'
+    assert_valid assigns(:trackback)
   end
 
   def test_new
     get :new, :article_id => 2
-    assert_rendered_file 'new'
+    assert_template 'new'
     assert_template_has 'trackback'
   end
 
@@ -43,31 +43,31 @@ class Admin::TrackbacksControllerTest < Test::Unit::TestCase
     num_trackbacks = Trackback.count
 
     post :new, :trackback => { 'title' => 'title', 'excerpt' => 'excerpt', 'blog_name' => 'blog_name', 'url' => 'url' }, :article_id => 2
-    assert_redirected_to :action => 'show'
+    assert_response :redirect, :action => 'show'
 
     assert_equal num_trackbacks + 1, Trackback.count
   end
 
   def test_edit
     get :edit, :id => 7, :article_id => 2
-    assert_rendered_file 'edit'
+    assert_template 'edit'
     assert_template_has 'trackback'
-    assert_valid_record 'trackback'
+    assert_valid assigns(:trackback)
   end
 
   def test_update
     post :edit, :id => 7, :article_id => 2
-    assert_redirected_to :action => 'show', :id => 7
+    assert_response :redirect, :action => 'show', :id => 7
   end
 
   def test_destroy
     assert_not_nil Trackback.find(7)
 
     get :destroy, :id => 7, :article_id => 2
-    assert_success
+    assert_response :success
 
     post :destroy, :id => 7, :article_id => 2
-    assert_redirected_to :action => 'list'
+    assert_response :redirect, :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       trackback = Trackback.find(7)

@@ -23,9 +23,14 @@ class ThemeController < ContentController
 
   private
 
-  def render_theme_item(type, file, mime = mime_for(file))
-    render :text => "Not Found", :status => 404 and return if file.split(%r{[\\/]}).include?("..")
-    send_file this_blog.current_theme.path + "/#{type}/#{file}", :type => mime, :disposition => 'inline', :stream => false
+  def render_theme_item(type, file, mime = nil)
+    mime ||= mime_for(file)
+    if file.split(%r{[\\/]}).include?("..")
+      render :text => "Not Found", :status => 404
+      return
+    end
+    send_file(this_blog.current_theme.path + "/#{type}/#{file}",
+              :type => mime, :disposition => 'inline', :stream => false)
   end
 
   def mime_for(filename)

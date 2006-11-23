@@ -2,14 +2,14 @@
 
   <h3>Creating text filter</h3>
 
-  <%= start_form_tag({ :action => "new" }, :id => "textfilter_form") %>
-  
-  <div class="form">	
+  <% form_tag({ :action => "new" }, :id => "textfilter_form") do %>
+
+  <div class="form">
     <%= render_partial "form" %>
   </div>
 
   <div id="operations">
-    <%= save %> or <%= cancel %>  
+    <%= save %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>

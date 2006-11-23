@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories, :articles_categories, :users, :notifications, :text_filters
+  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories, :categorizations, :users, :notifications, :text_filters
 
   def setup
     @articles = []

@@ -24,7 +24,7 @@ class Admin::ThemesControllerTest < Test::Unit::TestCase
 
   def test_switchto
     get :switchto, :theme => 'azure'
-    assert_redirected_to :action => 'index'
+    assert_response :redirect, :action => 'index'
   end
 
   def test_preview

@@ -2,26 +2,26 @@
 
   <h3>Creating article</h3>
 
-  <%= start_form_tag({ :action => "new" }, :id => "article_form", :enctype => "multipart/form-data") %>
-  
-  
-  <div class="form">	
-    <!-- LIVE PREVIEW --> 
+  <% form_tag({ :action => "new" }, :id => "article_form", :enctype => "multipart/form-data") do %>
+
+
+  <div class="form">
+    <!-- LIVE PREVIEW -->
     <div id="preview" class="post" style="display: none;"></div>
     <!-- /LIVE PREVIEW -->
     <%= render_partial "form" %>
   </div>
 
   <div id="operations">
-    <%= save("Save this article") %> or <%= cancel %>  
+    <%= save("Save this article") %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>
 
-  <%= observe_form "article_form", 
-        :frequency => 2, 
+  <%= observe_form "article_form",
+        :frequency => 2,
         :update => "preview",
         :complete => "Element.show('preview')",
-        :url => { :action => "preview" } %>      
+        :url => { :action => "preview" } %>
 
-      
+

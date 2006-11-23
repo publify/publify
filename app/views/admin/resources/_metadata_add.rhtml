@@ -1,4 +1,4 @@
-<%= start_form_tag({ :action => "update" }, :id => id, :enctype => "multipart/form-data") %>
+<% form_tag({ :action => "update" }, :id => id, :enctype => "multipart/form-data") do %>
 <div class="form">
   <b>Resource MetaData</b><br />
     <input type="checkbox" name="resource[itunes_metadata]" value="1">Set iTunes metadata for this enclosure</input><br />
@@ -19,4 +19,4 @@
   <input name="resource[id]" type="hidden" value="<%= id %>" />
 <%= save("Save") %> or <a href="#" onclick="new Effect.BlindUp('add-resource-metadata-<%= id %>', {duration: 0.4}); return false;" >Cancel</a>
 </div>
-<%= end_form_tag %>
+<% end %>
