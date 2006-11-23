@@ -6,8 +6,8 @@ class Article < Content
 
   content_fields :body, :extended
 
-  has_many :pings, :dependent => :destroy, :order => "created_at ASC"
-  has_many :comments, :dependent => :destroy, :order => "created_at ASC"
+  has_many :pings,      :dependent => :destroy, :order => "created_at ASC"
+  has_many :comments,   :dependent => :destroy, :order => "created_at ASC"
   has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
   has_many :resources, :order => "created_at DESC",
            :class_name => "Resource", :foreign_key => 'article_id'
@@ -101,13 +101,13 @@ class Article < Content
   end
 
   def next
-    Article.find(:first, :conditions => ['published_at > ?', published_at],
-                 :order => 'published_at asc')
+    blog.articles.find(:first, :conditions => ['published_at > ?', published_at],
+                       :order => 'published_at asc')
   end
 
   def previous
-    Article.find(:first, :conditions => ['published_at < ?', published_at],
-                 :order => 'published_at desc')
+    blog.articles.find(:first, :conditions => ['published_at < ?', published_at],
+                       :order => 'published_at desc')
   end
 
   # Count articles on a certain date

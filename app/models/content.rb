@@ -94,10 +94,9 @@ class Content < ActiveRecord::Base
     end
 
     def find_published(what = :all, options = {})
-      options.reverse_merge!(:order => default_order)
-      options[:conditions] = merge_conditions(['published = ?', true],
-                                              options[:conditions])
-      find(what, options)
+      with_scope(:find => {:order => default_order, :conditions => {:published => true}}) do
+        find what, options
+      end
     end
 
     def default_order
@@ -114,12 +113,6 @@ class Content < ActiveRecord::Base
       with_scope(:find => { :conditions => ['published_at < ?', at]}) do
         find_published(what, options)
       end
-    end
-
-    def merge_conditions(*conditions)
-      conditions.compact.collect do |cond|
-        '(' + sanitize_sql(cond) + ')'
-      end.join(' AND ')
     end
   end
 

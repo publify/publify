@@ -5,16 +5,17 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
-    @articles_pages, @articles = with_blog_scoped_classes do
-      paginate(:article, :per_page => 15, :order_by => "created_at DESC",
-               :parameter => 'id')
-    end
+    now = Time.now
+    count = this_blog.articles.count
+    @articles_pages = Paginator.new(self, count, 15, params[:page])
+    @articles = this_blog.articles.find(:all, :limit => 15,
+                                        :offset => @articles_pages.current.offset)
     setup_categories
     @article = this_blog.articles.build(params[:article])
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = this_blog.articles.find(params[:id])
     setup_categories
     @resources = Resource.find(:all, :order => 'created_at DESC')
   end
@@ -23,7 +24,7 @@ class Admin::ContentController < Admin::BaseController
   def edit; new_or_edit; end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = this_blog.articles.find(params[:id])
     if request.post?
       @article.destroy
       redirect_to :action => 'list'
@@ -35,7 +36,7 @@ class Admin::ContentController < Admin::BaseController
   alias_method :resource_remove, :category_add
 
   def category_remove
-    @article  = Article.find(params[:id])
+    @article  = this_blog.articles.find(params[:id])
     @category = @article.categories.find(params['category_id'])
     setup_categories
     @article.categorizations.delete(@article.categorizations.find_by_category_id(params['category_id']))
@@ -45,7 +46,7 @@ class Admin::ContentController < Admin::BaseController
 
   def preview
     headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = Article.new(params[:article])
+    @article = this_blog.articles.new(params[:article])
     render :layout => false
   end
 
@@ -73,7 +74,7 @@ class Admin::ContentController < Admin::BaseController
 
   def do_add_or_remove_fu
     attrib, action = params[:action].split('_')
-    @article = Article.find(params[:id])
+    @article = this_blog.articles.find(params[:id])
     self.send("#{attrib}=", self.class.const_get(attrib.classify).find(params["#{attrib}_id"]))
     send("setup_#{attrib.pluralize}")
     @article.send(attrib.pluralize).send(real_action_for(action), send(attrib))
@@ -139,11 +140,11 @@ class Admin::ContentController < Admin::BaseController
   def get_or_build_article
     @article = case params[:action]
                when 'new'
-                 art = this_blog.articles.build
-                 art.allow_comments = this_blog.default_allow_comments
-                 art.allow_pings    = this_blog.default_allow_pings
-                 art.published      = true
-                 art
+                 returning(this_blog.articles.build) do |art|
+                   art.allow_comments = this_blog.default_allow_comments
+                   art.allow_pings    = this_blog.default_allow_pings
+                   art.published      = true
+                 end
                when 'edit'
                  this_blog.articles.find(params[:id])
                else

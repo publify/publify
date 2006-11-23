@@ -190,12 +190,12 @@ class ArticleTest < Test::Unit::TestCase
   def test_future_publishing
     assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
                                         :published => true,
-                                        :published_at => Time.now + 2.seconds))
+                                        :published_at => Time.now + 4.seconds))
   end
 
   def test_future_publishing_without_published_flag
     assert_sets_trigger Article.create!(:title => 'title', :body => 'body',
-                                        :published_at => Time.now + 2.seconds)
+                                        :published_at => Time.now + 4.seconds)
   end
 
   def test_triggers_are_dependent
@@ -209,7 +209,7 @@ class ArticleTest < Test::Unit::TestCase
   def assert_sets_trigger(art)
     assert_equal 1, Trigger.count
     assert Trigger.find(:first, :conditions => ['pending_item_id = ?', art.id])
-    sleep 2
+    sleep 4
     Trigger.fire
     art.reload
     assert art.published

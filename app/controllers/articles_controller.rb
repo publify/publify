@@ -21,18 +21,14 @@ class ArticlesController < ContentController
     #
     # So, we're going to use the older Paginator class and manually provide a count.
     # This is a 100x speedup on my box.
-    count = Article.count(:conditions => ['published = ? AND contents.published_at < ? AND blog_id = ?',
-      true, Time.now, this_blog.id])
+    now = Time.now
+    count = this_blog.articles.count(:conditions => ['published = ? AND contents.published_at < ?',
+                                                     true, now])
     @pages = Paginator.new self, count, this_blog.limit_article_display, params[:page]
-    @articles = Article.find( :all,
-      :offset => @pages.current.offset,
-      :limit => @pages.items_per_page,
-      :order => "contents.published_at DESC",
-      :include => [:categories, :tags],
-      :conditions =>
-         ['published = ? AND contents.published_at < ? AND blog_id = ?',
-          true, Time.now, this_blog.id]
-    )
+    @articles = this_blog.published_articles.find( :all,
+                                                   :offset => @pages.current.offset,
+                                                   :limit => @pages.items_per_page,
+                                                   :conditions => ['contents.published_at < ?', now] )
   end
 
   def search
