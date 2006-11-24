@@ -17,7 +17,7 @@ class Content
 end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :contents, :categories, :blogs, :users, :categorizations, :text_filters, :articles_tags, :tags
+  fixtures :contents, :feedback, :categories, :blogs, :users, :categorizations, :text_filters, :articles_tags, :tags
   include ArticlesHelper
 
   def setup
@@ -231,13 +231,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_comment_nuking
     num_comments = Comment.count
-    post :nuke_comment, { :id => 5 }, {}
+    post :nuke_comment, { :id => feedback(:spam_comment).id }, {}
     assert_response 403
 
-    get :nuke_comment, { :id => 5 }, { :user => users(:bob)}
+    get :nuke_comment, { :id => feedback(:spam_comment).id }, { :user => users(:bob)}
     assert_response 403
 
-    post :nuke_comment, { :id => 5 }, { :user => users(:bob)}
+    post :nuke_comment, { :id => feedback(:spam_comment).id }, { :user => users(:bob)}
     assert_response :success
     assert_equal num_comments -1, Comment.count
   end

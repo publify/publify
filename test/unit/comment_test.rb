@@ -3,35 +3,35 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class CommentTest < Test::Unit::TestCase
-  fixtures :contents, :blacklist_patterns, :text_filters, :blogs
+  fixtures :contents, :feedback, :blacklist_patterns, :text_filters, :blogs
 
   def setup
     CachedModel.cache_reset
   end
 
   def test_permalink_url
-    c = contents(:old_comment)
-    assert_equal 'http://myblog.net/articles/2004/05/01/inactive-article#comment-15', c.permalink_url
+    c = feedback(:old_comment)
+    assert_equal "http://myblog.net/articles/2004/05/01/inactive-article#comment-#{c.id}", c.permalink_url
   end
 
   def test_edit_url
-    c = contents(:old_comment)
-    assert_equal 'http://myblog.net/admin/comments/edit/15', c.edit_url
+    c = feedback(:old_comment)
+    assert_equal "http://myblog.net/admin/comments/edit/#{c.id}", c.edit_url
   end
 
   def test_delete_url
-    c = contents(:old_comment)
-    assert_equal 'http://myblog.net/admin/comments/destroy/15', c.delete_url
+    c = feedback(:old_comment)
+    assert_equal "http://myblog.net/admin/comments/destroy/#{c.id}", c.delete_url
   end
 
   def test_save_regular
-    assert contents(:comment2).save
-    assert_equal "http://www.google.com", contents(:comment2).url
+    assert feedback(:comment2).save
+    assert_equal "http://www.google.com", feedback(:comment2).url
   end
 
   def test_save_spam
-    assert contents(:spam_comment).save
-    assert_equal "http://fakeurl.com", contents(:spam_comment).url
+    assert feedback(:spam_comment).save
+    assert_equal "http://fakeurl.com", feedback(:spam_comment).url
   end
 
   def test_create_comment
@@ -113,8 +113,8 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_article_relation
-    assert contents(:comment2).article
-    assert_equal 1, contents(:comment2).article.id
+    assert feedback(:comment2).article
+    assert_equal 1, feedback(:comment2).article.id
   end
 
   def test_xss_rejection
@@ -137,7 +137,7 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_withdraw
-    c = Comment.find(contents(:comment2).id)
+    c = Comment.find(feedback(:comment2).id)
     assert c.withdraw!
     assert ! c.published?
     assert c.spam?

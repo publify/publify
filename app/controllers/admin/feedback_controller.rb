@@ -22,7 +22,7 @@ class Admin::FeedbackController < Admin::BaseController
     end
 
     @pages, @feedback = paginate(:feedback,
-      :order => 'contents.created_at desc',
+      :order => 'feedback.created_at desc',
       :conditions => conditions,
       :per_page => 40)
 

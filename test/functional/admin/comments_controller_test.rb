@@ -6,7 +6,7 @@ require 'dns_mock'
 class Admin::CommentsController; def rescue_action(e) raise e end; end
 
 class Admin::CommentsControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :notifications
+  fixtures :contents, :feedback, :users, :notifications
 
   def setup
     @controller = Admin::CommentsController.new
@@ -28,7 +28,7 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => 5, :article_id => 2
+    get :show, :id => feedback(:spam_comment).id, :article_id => 2
     assert_template 'show'
     assert_template_has 'comment'
     assert_valid @response.template_objects['comment']
@@ -51,28 +51,28 @@ class Admin::CommentsControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => 5, :article_id => 2
+    get :edit, :id => feedback(:spam_comment).id, :article_id => 2
     assert_template 'edit'
     assert_template_has 'comment'
     assert_valid assigns(:comment)
   end
 
   def test_update
-    post :edit, :id => 5, :article_id => 2
-    assert_response :redirect, :action => 'show', :id => 5
+    post :edit, :id => feedback(:spam_comment).id, :article_id => 2
+    assert_response :redirect, :action => 'show', :id => feedback(:spam_comment).id
   end
 
   def test_destroy
-    assert_not_nil Comment.find(5)
+    assert_not_nil Comment.find(feedback(:spam_comment).id)
 
-    get :destroy, :id => 5, :article_id => 2
+    get :destroy, :id => feedback(:spam_comment).id, :article_id => 2
     assert_response :success
 
-    post :destroy, :id => 5, :article_id => 2
+    post :destroy, :id => feedback(:spam_comment).id, :article_id => 2
     assert_response :redirect, :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      comment = Comment.find(5)
+      comment = Comment.find(feedback(:spam_comment).id)
     }
   end
 end

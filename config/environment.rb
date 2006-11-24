@@ -72,6 +72,8 @@ end
 #   inflect.uncountable %w( fish sheep )
 # end
 
+Inflector.inflections {|i| i.uncountable %w(feedback)}
+
 # Include your application configuration below
 
 # Load included libraries.

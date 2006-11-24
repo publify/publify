@@ -8,7 +8,7 @@ class Admin::FeedbackController; def rescue_action(e) raise e end; end
 
 class Admin::FeedbackControllerTest < Test::Unit::TestCase
   fixtures :contents, :users, :resources, :text_filters,
-           :blogs, :categorizations
+           :blogs, :categorizations, :feedback
 
   def setup
     @controller = Admin::FeedbackController.new
