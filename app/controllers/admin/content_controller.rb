@@ -1,3 +1,5 @@
+require 'base64'
+
 class Admin::ContentController < Admin::BaseController
   def index
     list
@@ -47,7 +49,10 @@ class Admin::ContentController < Admin::BaseController
   def preview
     headers["Content-Type"] = "text/html; charset=utf-8"
     @article = this_blog.articles.new(params[:article])
-    render :layout => false
+    data = render_to_string(:layout => "minimal")
+    data = Base64.encode64(data).gsub("\n", '')
+    data = "data:text/html;charset=utf-8;base64,#{data}"
+    render :text => data
   end
 
   def attachment_box_add
