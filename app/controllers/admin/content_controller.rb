@@ -51,11 +51,13 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def attachment_box_add
-    render :partial => 'admin/content/attachment', :locals => { :attachment_num => params[:id] }
-  end
-
-  def attachment_box_remove
-    render :inline => "<%= javascript_tag 'document.getElementById(\"attachments\").removeChild(document.getElementById(\"attachment_#{params[:id]}\")); return false;' -%>"
+    render :update do |page|
+      page["attachment_add_#{params[:id]}"].remove
+      page.insert_html :bottom, 'attachments',
+          :partial => 'admin/content/attachment',
+          :locals => { :attachment_num => params[:id], :hidden => true }
+      page.visual_effect(:toggle_appear, "attachment_#{params[:id]}")
+    end
   end
 
   def attachment_save(attachment)

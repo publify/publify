@@ -45,7 +45,7 @@
 <p>
 <a href="#" onclick="Element.toggle('attachments'); return false;">Attachments (+/-)</a>
 <div id="attachments" style="display:none;">
-<%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1 } -%>
+  <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
 </div>
 </p>
 
