@@ -34,7 +34,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
 
     assert_tag :tag => 'p',
       :child => 'A body',
-      :after => { :tag => 'h4', :content => nil }
+      :after => { :tag => 'h4', :content => "" }
 
     assert_no_new_articles
   end
@@ -44,7 +44,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
 
     assert_tag :tag => 'p',
       :child => 'An extension',
-      :after => { :tag => 'h4', :content => nil }
+      :after => { :tag => 'h4', :content => "" }
 
     assert_no_new_articles
   end
@@ -58,7 +58,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
       :tag => 'p',
       :child => 'An extension',
       :after => {:tag => 'p', :child => 'A body',
-        :after => { :tag => 'h4', :content => nil }}
+        :after => { :tag => 'h4', :content => "A title" }}
 
     assert_no_new_articles
   end

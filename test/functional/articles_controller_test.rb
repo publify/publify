@@ -277,7 +277,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
     num_trackbacks = Article.find(2).trackbacks.count
     post :trackback, { :id => 2, :url => "http://www.google.com", :title => "My Trackback", :excerpt => "This is a test" }
     assert_response :success
-    assert_not_xpath(%{/response/error[text()="1"]}, "Error: " + get_xpath("/response/message/text()").first.to_s)
+    assert_no_tag :tag => "response",
+                  :child => {:tag => "error", :content => "1"}
 
     assert_equal num_trackbacks+1, Article.find(2).trackbacks.count
   end
