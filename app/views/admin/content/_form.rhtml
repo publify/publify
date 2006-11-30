@@ -3,7 +3,8 @@
 <p>
   <label for="article_title">Title:</label><br />
   <%= text_field 'article', 'title'  %>
-  (<%= link_to_function "&raquo; edit permalink", "Toggle.display('permalink')" %>)<br/>
+  (<%= link_to_function "&raquo; edit permalink",
+          update_page { |page| page.visual_effect(:toggle_blind, "permalink", :duration => 0.5) } %>)<br/>
 </p>
 <p id="permalink" style="display: none">
   <label for="article_permalink">Permalink:</label><br />
@@ -25,14 +26,16 @@
   <%= text_field 'article', 'keywords'  %>
 </p>
 <p>
-  <a href="#" onclick="Element.toggle('extended'); return false">Add Extended Content</a><br />
-  <div id="extended" style="display:none;">
+<%= link_to_function "Toggle Extended Content (+/-)",
+      update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.5) } %>
+  <div id="extended"<%- if @article.extended.blank? -%> style="display:none;"<%- end -%>>
   <label for="article_extended">Extended:</label><br />
   <%= text_area 'article', 'extended', :rows => 30, :style => 'width: 48%;'  %>
   </div>
 </p>
 
-<a href="#" onclick="Element.toggle('advanced'); return false;">Toggle Advanced Options (+/-)</a>
+<%= link_to_function "Toggle Advanced Options (+/-)",
+      update_page { |page| page.visual_effect(:toggle_blind, "advanced", :duration => 0.5) } %>
 <div id="advanced" style="display:none;">
 <label for="article_allow_comments">Allow comments: </label><%= check_box 'article', 'allow_comments'  %><br />
 <label for="article_allow_pings">Allow trackbacks: </label><%= check_box 'article', 'allow_pings'  %><br />
@@ -43,7 +46,7 @@
 <br clear="all"/>
 
 <p>
-<a href="#" onclick="Element.toggle('attachments'); return false;">Attachments (+/-)</a>
+<%= link_to_function "Attachments (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "attachments", :duration => 0.5) } %>
 <div id="attachments" style="display:none;">
   <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
 </div>
