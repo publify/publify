@@ -212,11 +212,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     #assert_tag :tag => 'script'
   end
 
-  def test_attachment_box_remove
-    get :attachment_box_remove, :id => 1
-    assert_tag :tag => 'script', :attributes => {:type => 'text/javascript'}
-  end
-
   def test_resource_container
     get :show, :id => contents(:article1).id # article without attachments
     Resource.find(:all).each do |resource|
