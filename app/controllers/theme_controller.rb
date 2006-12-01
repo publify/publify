@@ -3,11 +3,11 @@ class ThemeController < ContentController
   session :off
 
   def stylesheets
-    render_theme_item(:stylesheets, params[:filename], 'text/css')
+    render_theme_item(:stylesheets, params[:filename], 'text/css; charset=utf-8')
   end
 
   def javascript
-    render_theme_item(:javascript, params[:filename], 'text/javascript')
+    render_theme_item(:javascript, params[:filename], 'text/javascript; charset=utf-8')
   end
 
   def images
