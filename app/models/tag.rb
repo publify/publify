@@ -50,7 +50,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.to_prefix
-    'tags'
+    'tag'
   end
 
   def published_articles
