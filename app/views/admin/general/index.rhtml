@@ -26,9 +26,12 @@
       <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h this_blog.blog_subtitle %>" />
     </p>
     <p>
-      <input name="setting[title_prefix]" id="blog_title_prefix" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.title_prefix %> />
-      <input name="setting[title_prefix]" type="hidden" value="0" />
-      <label for="blog_title_prefix">Prefix page title with blog name</label>
+      <input type="radio" name="setting[title_prefix]" value="0" id="blog_title_prefix_0" <%= 'checked="checked"' if this_blog.title_prefix == 0 %>/>
+      <label for="blog_title_prefix_0">Don't show blog name in page title</label><br />
+      <input type="radio" name="setting[title_prefix]" value="1" id="blog_title_prefix_1" <%= 'checked="checked"' if this_blog.title_prefix == 1 %>/>
+      <label for="blog_title_prefix_1">Prefix page title with blog name</label><br />
+      <input type="radio" name="setting[title_prefix]" value="2" id="blog_title_prefix_2" <%= 'checked="checked"' if this_blog.title_prefix == 2 %>/>
+      <label for="blog_title_prefix_2">Postfix page title with blog name</label>
     </p>
     <p>
       <label for="base_url">Base Url:</label>

@@ -41,7 +41,7 @@ class Blog < CachedModel
   # Description
   setting :blog_name,                  :string, 'My Shiny Weblog!'
   setting :blog_subtitle,              :string, ''
-  setting :title_prefix,               :boolean, false
+  setting :title_prefix,               :integer, 0
   setting :geourl_location,            :string, ''
   setting :canonical_server_url,       :string, ''  # Deprecated
 

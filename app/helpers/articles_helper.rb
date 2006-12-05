@@ -44,11 +44,12 @@ module ArticlesHelper
   end
 
   def page_title
+    blog_name = this_blog.blog_name || "Typo"
     if @page_title
       # this is where the page title prefix (string) should go
-      (this_blog.title_prefix ? "#{this_blog.blog_name || "Typo"} : " : '') + @page_title
+      (this_blog.title_prefix == 1 ? blog_name + " : " : '') + @page_title + (this_blog.title_prefix == 2 ? " : " + blog_name : '')
     else
-      this_blog.blog_name || "Typo"
+      blog_name
     end
   end
 
