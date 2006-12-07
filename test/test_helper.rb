@@ -60,6 +60,21 @@ class Test::Unit::TestCase
     assert !tag, "expected no tag, but tag found matching #{opts.inspect} in:\n#{source.inspect}"
   end
 
+  def get_xpath(xpath)
+    rexml = REXML::Document.new(@response.body)
+    assert rexml
+
+    REXML::XPath.match(rexml, xpath)
+  end
+
+  def assert_xpath(xpath, msg=nil)
+    assert !(get_xpath(xpath).empty?), msg
+  end
+
+  def assert_not_xpath(xpath, msg=nil)
+    assert get_xpath(xpath).empty?, msg
+  end
+
   def this_blog
     Blog.default || Blog.create!
   end

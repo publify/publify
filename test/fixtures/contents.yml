@@ -63,7 +63,7 @@ article4:
   blog_id: 1
   id: 4
   title: Article 4!
-  body: I\'m not "public":http://www.example.com/public!
+  body: I'm not "public":http://www.example.com/public!
   published: false
   state: ContentState::Draft
   created_at: 2004-06-01 20:00:01
@@ -180,7 +180,7 @@ xmltest:
   type: Article
   blog_id: 1
   id: 18
-  title: Associations aren\'t :dependent => true anymore
+  title: Associations aren't :dependent => true anymore
   body: originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
   extended: extended content
   allow_comments: true
@@ -199,7 +199,7 @@ spammed_article:
   type: Article
   blog_id: 1
   id: 19
-  title: C\'mon Spam Me!
+  title: C'mon Spam Me!
   body: A bunch of innocuous content
   allow_comments: true
   allow_pings: true

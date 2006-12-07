@@ -30,7 +30,7 @@ end
 class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
-  fixtures :contents, :categories, :articles_categories, :tags,
+  fixtures :contents, :categories, :categorizations, :tags,
     :articles_tags, :users, :blogs, :resources
 
   def setup
@@ -241,8 +241,8 @@ class XmlControllerTest < Test::Unit::TestCase
   def test_pubdate_conformance
     get :feed, :format => 'rss20', :type => 'feed'
     assert_response :success
-    xml = REXML::Document.new(@response.body)
-    assert_equal contents(:article2).created_at.rfc822, REXML::XPath.match(xml, '/rss/channel/item[title="Article 2!"]/pubDate').first.text
+
+    assert_equal contents(:article2).created_at.rfc822, get_xpath('/rss/channel/item[title="Article 2!"]/pubDate').first.text
   end
 
   def test_rsd
