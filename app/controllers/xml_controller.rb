@@ -17,7 +17,7 @@ class XmlController < ContentController
     @blog = this_blog
 
     if @format == 'atom03'
-      @headers["Status"] = "301 Moved Permanently"
+      headers["Status"] = "301 Moved Permanently"
       return redirect_to(:format=>'atom')
     end
 
@@ -31,7 +31,7 @@ class XmlController < ContentController
       return
     end
 
-    @headers["Content-Type"] = "#{CONTENT_TYPE_FOR[@format]}; charset=utf-8"
+    headers["Content-Type"] = "#{CONTENT_TYPE_FOR[@format]}; charset=utf-8"
 
     if respond_to?("prep_#{params[:type]}")
       self.send("prep_#{params[:type]}")
