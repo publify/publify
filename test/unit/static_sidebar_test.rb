@@ -14,6 +14,6 @@ class StaticSidebarTest < Test::Unit::TestCase
   end
 
   def test_description
-    assert_equal "Static content, like links to other sites, advertisements, or blog meta-infomation", StaticSidebar.description
+    assert_equal "Static content, like links to other sites, advertisements, or blog meta-information", StaticSidebar.description
   end
 end

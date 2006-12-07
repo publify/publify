@@ -128,8 +128,6 @@ class Test::Unit::TestCase
 
     return record
   end
-
-
 end
 
 # Extend HTML::Tag to understand URI matching
@@ -171,6 +169,4 @@ class HTML::Tag
     end
     create_query_hash(value) == create_query_hash(condition)
   end
-
-
 end

@@ -17,6 +17,12 @@ class Category < ActiveRecord::Base
       }, true]).each {|item| item.article_counter = item.article_counter.to_i }
   end
 
+  def self.find(*args)
+    with_scope :find => {:order => 'position ASC'} do
+      super
+    end
+  end
+
   def self.find_by_permalink(*args)
     super || new
   end
@@ -32,7 +38,7 @@ class Category < ActiveRecord::Base
   def self.reorder(serialized_list)
     self.transaction do
       serialized_list.each_with_index do |cid,index|
-        find(cid).update_attribute "position", index rescue nil
+        find(cid).update_attribute "position", index
       end
     end
   end

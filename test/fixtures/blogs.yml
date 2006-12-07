@@ -7,7 +7,7 @@ default:
     show_extended_on_rss: true
     itunes_owner: ""
     blog_name: test blog
-    title_prefix: true
+    title_prefix: 1
     limit_article_display: 10
     sp_url_limit: 3
     use_gravatar: false
@@ -45,7 +45,7 @@ second:
     show_extended_on_rss: true
     itunes_owner: ""
     blog_name: second test blog
-    title_prefix: false
+    title_prefix: 0
     limit_article_display: 10
     sp_url_limit: 0
     use_gravatar: false

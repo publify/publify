@@ -108,14 +108,14 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_blog_title
-    blogs(:default).title_prefix = true
+    blogs(:default).title_prefix = 1
     get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
     assert_response :success
     assert_tag :tag => 'title', :content => /^test blog : Article 3!$/
 
-    blogs(:default).title_prefix = false
+    blogs(:default).title_prefix = 0
     @controller = ArticlesController.new
-    assert_equal false, blogs(:default).title_prefix
+    assert_equal 0, blogs(:default).title_prefix
     get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
     assert_response :success
     assert_tag :tag => 'title', :content => /^Article 3!$/

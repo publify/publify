@@ -116,5 +116,4 @@ class XmlController < ContentController
     @items += Category.find_all_with_article_counters(1000)
     @items += Tag.find_all_with_article_counters(1000)
   end
-
 end

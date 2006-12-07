@@ -13,7 +13,7 @@ class StaticSidebar < Sidebar
   <li><a href="http://typoforums.org" title="Typo Forums">Typo Forums</a></li>
 </ul>
 }
-  description "Static content, like links to other sites, advertisements, or blog meta-infomation"
+  description "Static content, like links to other sites, advertisements, or blog meta-information"
 
   setting :title, 'Links'
   setting :body,  DEFAULT_TEXT, :input_type => :text_area

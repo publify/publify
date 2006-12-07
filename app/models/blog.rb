@@ -84,7 +84,12 @@ class Blog < CachedModel
 
   def initialize(*args)
     super
-    self.settings ||= { }
+    # Yes, this is weird - PDC
+    begin
+      self.settings ||= {}
+    rescue Exception => e
+      self.settings = {}
+    end
   end
 
   # Find the Blog that matches a specific base URL.  If no Blog object is found
