@@ -19,7 +19,10 @@ class AccountsController < ApplicationController
   end
 
   def signup
-    redirect_to :action => "login" and return unless User.count.zero?
+    unless User.count.zero?
+      redirect_to :action => 'login'
+      return
+    end
 
     @user = User.new(params[:user])
 
@@ -38,9 +41,9 @@ class AccountsController < ApplicationController
 
   def welcome
   end
-  
+
   private
-  
+
   def verify_users
     if User.count == 0
       redirect_to :controller => "accounts", :action => "signup"

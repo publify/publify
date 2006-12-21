@@ -20,19 +20,19 @@ context 'With the various trackback filters loaded and DNS mocked out appropriat
   specify 'Trackbacks with a spammy link in the excerpt should be rejected' do
     IPSocket.should_receive(:getaddress).with('chinaaircatering.com.bsb.empty.us').at_least(:once).and_return('127.0.0.2')
 
-    tb = Trackback.new(ham_params.merge :excerpt => '<a href="http://chinaaircatering.com">spam</a>')
+    tb = Trackback.new(ham_params.merge(:excerpt => '<a href="http://chinaaircatering.com">spam</a>'))
     tb.should_be_spam
   end
 
   specify 'Trackbacks with a spammy source url should be rejected' do
     add_spam_domain
-    tb = Trackback.new(ham_params.merge :url => 'http://www.chinaircatering.com')
+    tb = Trackback.new(ham_params.merge(:url => 'http://www.chinaircatering.com'))
     tb.should_be_spam
   end
 
   specify 'Trackbacks from a spammy ip address should be rejected' do
     add_spam_ip('212.42.230.207')
-    tb = Trackback.new(ham_params.merge :ip => '212.42.230.207')
+    tb = Trackback.new(ham_params.merge(:ip => '212.42.230.207'))
     tb.should_be_spam
   end
 
@@ -40,8 +40,8 @@ context 'With the various trackback filters loaded and DNS mocked out appropriat
     BlacklistPattern.should_receive(:find).with(:all).at_least(:once)\
       .and_return([StringPattern.new(:pattern => 'poker'),
                    RegexPattern.new(:pattern => '^Texas')])
-    Trackback.new(ham_params.merge :excerpt => 'Mmm... come to my shiny poker site').should_be_spam
-    Trackback.new(ham_params.merge :excerpt => 'Texas hold-em rules!').should_be_spam
+    Trackback.new(ham_params.merge(:excerpt => 'Mmm... come to my shiny poker site')).should_be_spam
+    Trackback.new(ham_params.merge(:excerpt => 'Texas hold-em rules!')).should_be_spam
   end
 
   def add_spam_domain(domain = 'chinaircatering.com')

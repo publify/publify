@@ -62,14 +62,17 @@ class Admin::UsersControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    get :destroy, :id => 1
+    user_count = User.count
+    get :destroy, :id => users(:bob).id
     assert_template 'destroy'
     assert_valid assigns(:user)
 
-    post :destroy, :id => 1
+    assert_equal user_count, User.count
+    post :destroy, :id => users(:bob).id
     assert_response :redirect, :action => 'list'
     follow_redirect
     assert_template 'list'
+    assert_equal user_count - 1, User.count
   end
 
 end

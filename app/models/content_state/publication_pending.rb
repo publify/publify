@@ -7,9 +7,10 @@ module ContentState
       content[:published] = false if content.new_record?
     end
 
-    def change_published_state(content, boolean)
-      content[:published] = boolean
-      if content.published && content.published_at <= Time.now
+    def change_published_state(content, published)
+      content[:published] = published
+
+      if published && content.published_at <= Time.now
         content.state = JustPublished.instance
       end
     end

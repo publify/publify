@@ -156,6 +156,7 @@ class CommentTest < Test::Unit::TestCase
     c = a.comments.build(:body => 'foo', :author => 'bob', :published => true, :published_at => Time.now)
     assert c.save
     assert c.published?
+    c.reload
     a.reload
 
     assert_equal 1, a.published_comments.size

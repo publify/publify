@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   def reset_local_cache
     CachedModel.cache_reset
+    session[:user].reload if session[:user]
   end
 
   # Axe?
@@ -31,7 +32,9 @@ class ApplicationController < ActionController::Base
     @blog ||= if $blog_id_for[blog_base_url]
                 Blog.find($blog_id_for[blog_base_url])
               else
-                returning(Blog.find_blog(blog_base_url)) { |blog| $blog_id_for[blog_base_url] = blog.id }
+                returning(Blog.find_blog(blog_base_url)) do |blog|
+                  $blog_id_for[blog_base_url] = blog.id
+                end
               end
   end
   helper_method :this_blog

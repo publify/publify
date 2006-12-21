@@ -11,6 +11,10 @@ module ContentState
       'ContentState::Ham'
     end
 
+    def to_s
+      'Ham'
+    end
+
     def just_changed_published_status?
       true
     end

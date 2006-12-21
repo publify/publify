@@ -21,19 +21,13 @@ module ContentState
       true
     end
 
-    def enter_hook(content)
-      super
-      content[:published] = true
-      content[:published_at] ||= Time.now
-    end
+#    def enter_hook(content)
+#      super
+#    end
 
-    def set_published_at(content, new_time)
-      content[:published_at] = new_time
-      return if content[:published_at].nil?
-      if content.published_at > Time.now
-        content.state = PublicationPending.instance
-      end
-    end
+#    def set_published_at(content, new_time)
+#      super
+#    end
 
     def send_notifications(content)
       content.interested_users.each do |user|
