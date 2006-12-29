@@ -10,7 +10,7 @@ class Admin::ContentController < Admin::BaseController
     now = Time.now
     count = this_blog.articles.count
     @articles_pages = Paginator.new(self, count, 15, params[:id])
-    @articles = this_blog.articles.find(:all, :limit => 15,
+    @articles = this_blog.articles.find(:all, :limit => 15, :order => 'id DESC',
                                         :offset => @articles_pages.current.offset)
     setup_categories
     @article = this_blog.articles.build(params[:article])
