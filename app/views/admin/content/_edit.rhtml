@@ -1,0 +1,20 @@
+<% form_tag(form_action, :id => "article_form", :enctype => "multipart/form-data") do %>
+
+<div class="form">
+  <!-- LIVE PREVIEW -->
+  <iframe id="preview" class="post" style="display:none;"></iframe>
+  <!-- /LIVE PREVIEW -->
+  <%= render :partial => "form" %>
+</div>
+
+<div id="operations">
+  <%= save("Save this article") %> or <%= cancel %>
+</div>
+
+<% end %>
+
+<%= observe_form "article_form",
+      :frequency => 2,
+      :with => 'value',
+      :complete => "$('preview').src = request.responseText; Element.show('preview');",
+      :url => { :action => "preview" } %>

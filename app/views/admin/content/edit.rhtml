@@ -5,30 +5,6 @@
     <li><%= link_to 'View article on your blog', @article.permalink_url %></li>
   <% end %>
 
-  <% form_tag({ :action => "edit", :id => @article }, :id => "article_form", :enctype => "multipart/form-data") do %>
   <h3>Editing article</h3>
+  <%= render :partial => "edit", :locals => { :form_action => { :action => "edit", :id => @article } } %>
 
-  <div class="form">
-    <!-- LIVE PREVIEW -->
-    <iframe id="preview" class="post" style="display:none;"></iframe>
-    <!-- /LIVE PREVIEW -->
-    <%= render_partial "form" %>
-  </div>
-
-  <div id="operations">
-    <%= save %> or <%= cancel %>
-  </div>
-
-  <% end %>
-
-  <%= observe_form "article_form",
-        :frequency => 2,
-        :with => 'value',
-        :complete => "$('preview').src = request.responseText; Element.show('preview');",
-        :url => { :action => "preview" } %>
-
-  <!-- <%= observe_form "article_form",
-        :frequency => 2,
-        :function => "url = '#{url_for :action => "preview", :only_path => false}'; url += (url.indexOf('?') >= 0 ? '&' : '?') + value;\
-                      $('preview').src = url;
-                      Element.show('preview');" %> -->
