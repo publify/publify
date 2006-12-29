@@ -604,14 +604,13 @@ context 'With ContentState::Unclassified.instance and mock content' do
     @state.enter_hook(@content)
   end
 
-  specify '#after_save should force classification and resave the feedback' do
-    @content.should_receive(:save)
-    should_force_classification(:after_save)
+  specify '#before_save should force classification' do
+    should_force_classification(:before_save)
   end
 
-  specify '#before_save should not do anything' do
+  specify '#after_save should not do anything' do
     @content.should_not_receive(:anything)
-    @state.before_save(@content).should_be true
+    @state.after_save(@content).should_be true
   end
 
   specify '#send_notifications should not do anything' do

@@ -85,10 +85,7 @@ class Ping < ActiveRecord::Base
   end
 
   def send_pingback_or_trackback(origin_url)
-    t = Thread.start(Pinger.new(origin_url, self)) do |pinger|
-      pinger.send_pingback_or_trackback
-    end
-    t.join if defined? $TESTING
+    Pinger.new(origin_url, self).send_pingback_or_trackback
   end
 
   def send_trackback(trackback_url, origin_url)
@@ -107,29 +104,23 @@ class Ping < ActiveRecord::Base
   end
 
   def send_weblogupdatesping(server_url, origin_url)
-    t = Thread.start(article.blog.blog_name) do |blog_name|
-      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name,
-                   server_url, origin_url)
-    end
-    t.join if defined? $TESTING
+    send_xml_rpc(self.url, "weblogUpdates.ping", article.blog.blog_name,
+                 server_url, origin_url)
   end
 
   protected
 
   def send_xml_rpc(xml_rpc_url, name, *args)
-    t = Thread.start do
-      begin
-        server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
+    begin
+      server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
 
-        begin
-          result = server.call(name, *args)
-        rescue XMLRPC::FaultException => e
-          logger.error(e)
-        end
-      rescue Exception => e
+      begin
+        result = server.call(name, *args)
+      rescue XMLRPC::FaultException => e
         logger.error(e)
       end
+    rescue Exception => e
+      logger.error(e)
     end
-    t.join if defined? $TESTING
   end
 end

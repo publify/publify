@@ -27,11 +27,10 @@ module ContentState
                       end
     end
 
-    def after_save(feedback)
+    def before_save(feedback)
       classify(feedback)
-      feedback.save
     end
-    
+
     def to_s
       "Unclassified"
     end
