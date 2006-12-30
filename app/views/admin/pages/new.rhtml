@@ -1,4 +1,4 @@
   <% @page_heading = 'Pages' %>
 
   <h3>Creating page</h3>
-  <%= render :partial => "edit", :locals => { :form_action => { :action => "new" } } %>
+  <%= render :partial => "admin/shared/edit", :locals => { :form_type => "page", :form_action => { :action => "new" } } %>

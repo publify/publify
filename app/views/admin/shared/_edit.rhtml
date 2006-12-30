@@ -1,4 +1,4 @@
-<% form_tag(form_action, :id => "article_form", :enctype => "multipart/form-data") do %>
+<% form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data") do %>
 
 <div class="form">
   <!-- LIVE PREVIEW -->
@@ -8,12 +8,12 @@
 </div>
 
 <div id="operations">
-  <%= save("Save this article") %> or <%= cancel %>
+  <%= save("Save this #{form_type}") %> or <%= cancel %>
 </div>
 
 <% end %>
 
-<%= observe_form "article_form",
+<%= observe_form "#{form_type}_form",
       :frequency => 2,
       :with => 'value',
       :complete => "$('preview').src = request.responseText; Element.show('preview');",

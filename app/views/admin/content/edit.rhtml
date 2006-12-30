@@ -6,4 +6,4 @@
   <% end %>
 
   <h3>Editing article</h3>
-  <%= render :partial => "edit", :locals => { :form_action => { :action => "edit", :id => @article } } %>
+  <%= render :partial => "admin/shared/edit", :locals => { :form_type => "article", :form_action => { :action => "edit", :id => @article } } %>
