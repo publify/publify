@@ -10,7 +10,7 @@
 <% for article in @articles %>
 <tr <%= alternate_class %>>
   <td><%= (article.published?) ? image_tag('checked.gif') : image_tag('x-ed.gif') %> <%= link_to h(article.title), {:action => "show", :id => article.id} %> <%= link_to_permalink(article,image_tag('go.png')) %> </td>
-  <td><%= distance_of_time_in_words_to_now article.published_at %> ago</td>
+  <td><%= time_delta_from_now_in_words article.published_at %></td>
   <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => '/admin/comments', :article_id => article, :action => 'list' %></td>
   <td><%= link_to pluralize(article.trackbacks.size, 'trackback'), :controller => '/admin/trackbacks', :article_id => article, :action => 'list' %></td>
   <td class="operation"><%= link_to_edit article %></td>
