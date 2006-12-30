@@ -1,24 +1,4 @@
   <% @page_heading = 'Pages' %>
 
   <h3>Creating page</h3>
-
-  <% form_tag({ :action => "new" }, :id => "page_form") do %>
-
-  <div class="form">
-    <!-- LIVE PREVIEW -->
-    <div id="preview" class="post" style="display: none;"></div>
-    <!-- /LIVE PREVIEW -->
-    <%= render_partial "form" %>
-  </div>
-
-  <div id="operations">
-    <%= save %> or <%= cancel %>
-  </div>
-
-  <% end %>
-
-  <%= observe_form "page_form",
-        :frequency => 2,
-        :update => "preview",
-        :complete => "Element.show('preview')",
-        :url => { :action => "preview" } %>
+  <%= render :partial => "edit", :locals => { :form_action => { :action => "new" } } %>

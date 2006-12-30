@@ -1,0 +1,20 @@
+<% form_tag(form_action, :id => "page_form") do %>
+
+<div class="form">
+  <!-- LIVE PREVIEW -->
+  <iframe id="preview" class="post" style="display:none;"></iframe>
+  <!-- /LIVE PREVIEW -->
+  <%= render :partial => "form" %>
+</div>
+
+<div id="operations">
+  <%= save("Save this page") %> or <%= cancel %>
+</div>
+
+<% end %>
+
+<%= observe_form "page_form",
+      :frequency => 2,
+      :with => 'value',
+      :complete => "$('preview').src = request.responseText; Element.show('preview');",
+      :url => { :action => "preview" } %>
