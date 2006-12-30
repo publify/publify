@@ -85,16 +85,4 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     assert_response :redirect, :action => "list"
     assert_raise(ActiveRecord::RecordNotFound) { Page.find(contents(:another_page).id) }
   end
-
-  def test_preview
-    get :preview, :page => { :name => "preview-page", :title => "Preview Page",
-      :text_filter_id => text_filters(:markdown_filter).id,
-      :body => "testing the *preview*" }
-    assert_response :success
-    assert_not_nil assigns(:page)
-    assert_template "preview"
-
-    assert_dom_equal "<div><p>testing the <em>preview</em></p></div>\n",
-                     @response.body
-  end
 end
