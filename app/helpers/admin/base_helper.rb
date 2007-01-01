@@ -1,4 +1,5 @@
 module Admin::BaseHelper
+  include ActionView::Helpers::DateHelper
 
   def state_class(item)
     item.state.memento.underscore.sub(/.*\//, '')
@@ -124,5 +125,9 @@ module Admin::BaseHelper
 
   def task_edit_resource_mime(title,id)
     link_to_function(title, toggle_effect('edit-resource-mime-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+  end
+
+  def time_delta_from_now_in_words(timestamp)
+    distance_of_time_in_words_to_now(timestamp) + ((Time.now < timestamp) ? ' from now' : ' ago')
   end
 end
