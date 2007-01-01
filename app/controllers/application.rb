@@ -25,15 +25,17 @@ class ApplicationController < ActionController::Base
     $cache ||= SimpleCache.new 1.hour
   end
 
+  @@blog_id_for = Hash.new
+
   # The Blog object for the blog that matches the current request.  This is looked
   # up using Blog.find_blog and cached for the lifetime of the controller instance;
   # generally one request.
   def this_blog
-    @blog ||= if $blog_id_for[blog_base_url]
-                Blog.find($blog_id_for[blog_base_url])
+    @blog ||= if @@blog_id_for[blog_base_url]
+                Blog.find(@@blog_id_for[blog_base_url])
               else
                 returning(Blog.find_blog(blog_base_url)) do |blog|
-                  $blog_id_for[blog_base_url] = blog.id
+                  @@blog_id_for[blog_base_url] = blog.id
                 end
               end
   end
