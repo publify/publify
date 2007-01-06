@@ -115,12 +115,8 @@ module ApplicationHelper
       msg = "use html(#{content.class.to_s.underscore}" + ((what == :all) ? "" : ", #{what.inspect}") + ")"
       typo_deprecated(msg)
     end
-    
-    return content.html(what) unless controller.perform_caching
 
-    name = content.cache_key(what)
-    controller.read_fragment(name) ||
-      controller.write_fragment(name, content.html(what))
+    content.html(what)
   end
 
   def article_html(article, what = :all)

@@ -140,7 +140,7 @@ class Content < ActiveRecord::Base
   # cache if possible, or regenerated if needed.
   def html(field = :all)
     if field == :all
-      content_fields.map{|f| html(f)}.join("\n")
+      generate_html(:all, content_fields.map{|f| self[f].to_s}.join("\n\n"))
     elsif self.class.html_map(field)
       generate_html(field)
     else
@@ -151,9 +151,10 @@ class Content < ActiveRecord::Base
   # Generate HTML for a specific field using the text_filter in use for this
   # object.  The HTML is cached in the fragment cache, using the +ContentCache+
   # object in @@cache.
-  def generate_html(field)
-    html = text_filter.filter_text_for_content(blog, self[field].to_s, self)
-    html ||= self[field].to_s # just in case the filter puked
+  def generate_html(field, text = nil)
+    text ||= self[field].to_s
+    html = text_filter.filter_text_for_content(blog, text, self)
+    html ||= text # just in case the filter puked
     html_postprocess(field,html).to_s
   end
 
