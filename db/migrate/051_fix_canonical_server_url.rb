@@ -5,9 +5,10 @@ class FixCanonicalServerUrl < ActiveRecord::Migration
   end
   def self.up
     unless $schema_generator
-      b = Blog.find(1)
-      b.settings['canonical_server_url'] = b.settings['canonical_server_url'].gsub(%r{/$},'')
-      b.save
+      Blog.find(:all).each do |b|
+        b.settings['canonical_server_url'] = b.settings['canonical_server_url'].to_s.gsub(%r{/$},'')
+        b.save
+      end
     end
   end
 
