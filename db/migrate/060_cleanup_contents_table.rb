@@ -1,5 +1,7 @@
 class CleanupContentsTable < ActiveRecord::Migration
   def self.up
+    remove_index(:contents, :article_id) rescue nil
+
     remove_column :contents, :article_id
     remove_column :contents, :email
     remove_column :contents, :url
@@ -21,5 +23,7 @@ class CleanupContentsTable < ActiveRecord::Migration
     add_column :contents, :ip, :string, :limit => 40
     add_column :contents, :blog_name, :string
     add_column :contents, :status_confirmed, :boolean
+
+    add_index :contents, :article_id
   end
 end
