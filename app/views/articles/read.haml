@@ -1,18 +1,17 @@
 /
-  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
-         xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <rdf:Description
-      rdf:about=""
-  <% if @article.allow_pings? -%>
-      trackback:ping="<%= @article.trackback_url %>"
-  <% end -%>
-      dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
-      dc:identifier="<%= @article.permalink_url %>"
-      dc:description="<%=h (html(@article).strip_html[0..255]).gsub(/-+/, '-') %>"
-      dc:creator="<%= h @article.author %>"
-      dc:date="<%= @article.updated_at.xmlschema %>" />
-  </rdf:RDF>
+  %rdf:RDF{ |
+    :"xmlns:rdf"=>"http://www.w3.org/1999/02/22-rdf-syntax-ns#", |
+    :"xmlns:trackback"=>"http://madskills.com/public/xml/rss/module/trackback/", |
+    :"xmlns:dc"=>"http://purl.org/dc/elements/1.1/"} |
+    -
+    %rdf:Description{ |
+      :"rdf:about"=>"", |
+      :"trackback:ping"=>@article.trackback_url, |
+      :"dc:title"=>h(@article.title.gsub(/-+/, '-')), |
+      :"dc:identifier"=>@article.permalink_url, |
+      :"dc:description"=>h((@article.html.strip_html[0..255]).gsub(/-+/, '-')), |
+      :"dc:creator"=>h(@article.author), |
+      :"dc:date"=>@article.updated_at.xmlschema}/ |
 
 .post{:onmouseover => admin_tools_mouseover(:article), :onmouseout => admin_tools_mouseout(:article)}
   = link_to("edit", { :controller => "admin/content", :action => "edit", :id => @article }, |
