@@ -1,0 +1,14 @@
+%ol.comments#comments
+  - if @article.published_comments.any?
+    - for comment in @article.published_comments
+      %li[comment]
+        .author
+          = content_tag(:div, gravatar_tag(comment.email)) if this_blog.use_gravatar and comment.email
+          %cite= link_to_unless(comment.url.blank?, h(comment.author), comment.url)
+          %abbr{:title=>comment.created_at.xmlschema}
+            = succeed " later:" do
+              = distance_of_time_in_words comment.article.published_at, comment.created_at
+        .content
+          = html comment
+  - else
+    %li.dummy_comment{:style=>"display: none"} No comments

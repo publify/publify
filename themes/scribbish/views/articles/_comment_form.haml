@@ -1,0 +1,47 @@
+= form_remote_tag :url      => {:action => 'comment', :id => @article}, |
+                  :update   => 'comments_div', |
+                  :loading  => 'commentLoading()', |
+                  :complete => 'commentComplete()', |
+                  :html     => {:id => 'commentform', :class => 'comments' } |
+
+#preview{:style=>"display: none"}
+
+%fieldset
+  %legend Comments
+  %p
+    %label Name:
+      %br/
+      = text_field "comment", "author"
+      %small
+        = surround "(", ")" do
+          = link_to_function("leave url/email &#187;", "Effect.toggle('extra_fields', 'blind', {duration: .3})")
+
+  #extra_fields{:style=>"display: none"}
+    %p
+      %label
+        = precede "Email: " do
+          = content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} enabled)") if this_blog.use_gravatar
+        %br/
+        = text_field "comment", "email"
+    %p
+      %label Url:
+        %br/
+        = text_field "comment", "url"
+
+  %p
+    %label
+      Comments:
+      = content_tag('small', link_to("Textile enabled", "http://hobix.com/textile/")) if this_blog.comment_text_filter.include? 'textile'
+      = content_tag('small', link_to("Markdown enabled", "http://daringfireball.net/projects/markdown/")) if this_blog.comment_text_filter.include? 'markdown'
+      %br/
+      = text_area 'comment', 'body'
+
+  %p
+    = submit_to_remote('preview', 'Preview!', |
+                       :update => 'preview', |
+                       :complete => "Element.show('preview')", |
+                       :url => { :action => 'comment_preview' }) |
+    = submit_tag 'Submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;"
+    = image_tag '/images/theme/spinner.gif', :id => 'spinner', :style => 'display:none'
+
+= end_form_tag
