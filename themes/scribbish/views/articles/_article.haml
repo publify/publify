@@ -1,10 +1,10 @@
-%div[article].atomentry
+.atomentry[article]
   %h2.title
     = (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title)
     = content_tag(:span, article.published_comments.size, :class => 'comment_count') if article.published_comments.size > 0
 
   %p.author
-    = preceed "Posted by " do
+    = precede "Posted by " do
       %cite= author_link(article)
     %abbr.published{:title=>article.published_at.xmlschema}= js_distance_of_time_in_words_to_now article.published_at
 
