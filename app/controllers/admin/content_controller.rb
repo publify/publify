@@ -48,7 +48,9 @@ class Admin::ContentController < Admin::BaseController
 
   def preview
     headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = this_blog.articles.new(params[:article])
+    @article = this_blog.articles.build
+    @article.attributes = params[:article]
+    set_article_author
     data = render_to_string(:layout => "minimal")
     data = Base64.encode64(data).gsub("\n", '')
     data = "data:text/html;charset=utf-8;base64,#{data}"
@@ -95,7 +97,7 @@ class Admin::ContentController < Admin::BaseController
     get_or_build_article
     params[:article] ||= {}
 
-    @article.attributes = (params[:article])
+    @article.attributes = params[:article]
     setup_categories
     @selected = @article.categories.collect { |c| c.id }
     if request.post?

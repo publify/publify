@@ -15,6 +15,5 @@
 
 <%= observe_form "#{form_type}_form",
       :frequency => 2,
-      :with => 'value',
       :complete => "$('preview').src = request.responseText; Element.show('preview');",
       :url => { :action => "preview" } %>

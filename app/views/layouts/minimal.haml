@@ -1,0 +1,15 @@
+!!!
+%html{:xmlns=>"http://www.w3.org/1999/xhtml"}
+  %head
+    %base{:href=>this_blog.base_url}/
+    = page_header
+    = stylesheet_link_tag "/stylesheets/theme/azure", :media => 'all'
+    = stylesheet_link_tag "/stylesheets/minimal", :media => 'all'
+    = stylesheet_link_tag "/stylesheets/user-styles", :media => 'all'
+  %body
+    -# mimic the Azure DOM since we're grabbing the Azure stylesheet
+    #container
+      #content
+        #main
+          = @content_for_layout
+          = javascript_tag "show_dates_as_local_time()"

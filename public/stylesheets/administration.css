@@ -306,7 +306,7 @@ label {
 #preview, #preview_extended {
   background: #fff;
   border: 1px dashed #ccc;
-  padding: 0 0 0 5px;
+  padding: 0;
   z-index: 9999;
   width: 50%;
   height: 500px;
