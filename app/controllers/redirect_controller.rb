@@ -1,4 +1,6 @@
 class RedirectController < ContentController
+  session :off
+
   def redirect
     r = Redirect.find_by_from_path(params[:from])
 

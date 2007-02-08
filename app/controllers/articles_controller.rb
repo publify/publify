@@ -9,7 +9,7 @@ class ArticlesController < ContentController
   # If you're really memory-constrained, then consider replacing
   # caches_action_with_params with caches_page
   caches_action_with_params *cached_pages
-  session :off, :only => cached_pages
+  session :new_session => false
 
   verify(:only => [:nuke_comment, :nuke_trackback],
          :session => :user, :method => :post,
