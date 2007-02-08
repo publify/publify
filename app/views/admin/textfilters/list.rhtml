@@ -2,6 +2,8 @@
 
   <% content_for('tasks') do %>
     <%= task_new 'Create new text filter' %>
+	<%= tab "Choose a theme", :controller=>"themes", :action=>"index" %>
+	<%= tab "Customize Sidebar", :controller=>"sidebar", :action=>"index" %>
   <% end %> 
 
   <div class="list" id="textfilters">	

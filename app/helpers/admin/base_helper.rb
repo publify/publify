@@ -22,7 +22,7 @@ module Admin::BaseHelper
       output << "<a href=\"#{value}\">#{key}</a>"
     end if @tasks
 
-    output.join("<br/>\n")
+    output.join("<br />\n")
   end
 
   def current_user_notice
@@ -35,7 +35,7 @@ module Admin::BaseHelper
 
   def tab(label, options = {})
     if controller.controller_name =~ /#{options[:controller].split('/').last}/
-      content_tag :li, link_to(label, options, {"class"=> "active"}), {"class"=> "active"}
+      content_tag :li, link_to(label, options, {"class"=> ""}), {"class"=> ""}
     else
       content_tag :li, link_to(label, options)
     end

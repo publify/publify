@@ -1,8 +1,8 @@
   <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
 
   <% content_for('tasks') do %>
-    <li><%= link_to 'Back to articles', :controller => '/admin/content', :action => 'list' %></li>
-    <%= task_new('Create new comment') %>
+    <%= task_new('Write a comment') %>
+    <li><%= link_to 'Manage articles', :controller => '/admin/content', :action => 'list' %></li>
   <% end %> 
 
   <div class="list">	

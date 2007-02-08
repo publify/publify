@@ -1,5 +1,7 @@
   <% @page_heading = 'Text Filters' %>
-
+  <% content_for('tasks') do %>
+	<%= task_overview %>
+  <% end %>
   <h3>Creating text filter</h3>
 
   <% form_tag({ :action => "new" }, :id => "textfilter_form") do %>

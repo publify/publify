@@ -1,4 +1,8 @@
-  <% @page_heading = 'Users' %>
+  <% @page_heading = 'Edit User' %>
+  <% content_for('tasks') do %>
+  <%= tab "New User", :controller=>"users", :action=>"new"%>
+  <%= task_overview %>
+  <% end%>
 
   <% form_tag :action=>"edit", :id => @user.id do %>
 

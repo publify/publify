@@ -1,9 +1,9 @@
-  <% @page_heading = 'Articles' %>
+  <% @page_heading = 'Manage Articles' %>
 
   <% content_for('tasks') do %>
-    <%= task_quickpost('Quick Post') %>
-    <%= task_new 'Create new article' %>
-    <%= task_quicknav('Navigate') %>
+	<%= tab "Manage Pages", :controller=>"pages", :action=>"list" %>
+	<%= tab "Manage Categories", :controller=>"categories", :action=>"index"%>
+	<%= tab "Manage Resources", :controller=>"resources", :action=>"list" %>
   <% end %> 
   <div id="quick-navigate" style="display:none;position:absolute;">
     <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>

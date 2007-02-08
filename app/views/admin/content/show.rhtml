@@ -1,8 +1,9 @@
-  <% @page_heading = 'Articles' %>
+  <% @page_heading = 'Preview Article' %>
 
   <% content_for('tasks') do %>
     <%= task_edit 'Edit this article', @article.id %>
     <li><%= link_to 'View article on your blog', @article.permalink_url %></li>
+	<%= task_overview %>
   <% end %>
 
   <h3><%=h @article.title %></h3>

@@ -1,8 +1,9 @@
-  <% @page_heading = 'Pages' %>
+  <% @page_heading = 'Manage Pages' %>
 
   <% content_for('tasks') do %>
-    <%= task_quickpost('Quick Post') %>
-    <%= task_new 'Create new page' %>
+	<%= tab "Manage Articles", :controller=>"content", :action=>"list"%>
+	<%= tab "Manage Categories", :controller=>"categories", :action=>"index"%>
+	<%= tab "Manage Resources", :controller=>"resources", :action=>"list" %>
   <% end %> 
 
   <div id="quick-post" style="display:none;position:absolute;">

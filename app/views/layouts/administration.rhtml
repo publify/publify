@@ -16,7 +16,6 @@
           <div id="header">
 
           <div id="info">
-            <%= link_to "settings", :controller=>"/admin/general", :action => 'index' %> |
             <%= current_user_notice rescue nil %> |
             <%= link_to 'your blog &raquo;', :controller => "/articles" %>
 
@@ -28,16 +27,12 @@
 
         <div id="tabs-container">
           <ul id="tabs">
-            <%= tab "Articles", :controller=>"/admin/content", :action => 'index' %>
-            <%= tab "Pages", :controller=>"/admin/pages", :action => 'index' %>
-            <%= tab "Feedback", :controller=>"/admin/feedback", :action => 'index' %>
-            <%= tab "Categories", :controller=>"/admin/categories", :action => 'index' %>
-            <%= tab "Blacklist", :controller=>"/admin/blacklist", :action => 'index' %>
-            <%= tab "Sidebar", :controller=>"/admin/sidebar", :action => 'index' %>
-            <%= tab "Themes", :controller=>"/admin/themes", :action => 'index' %>
+            <%= tab "Publishs", :controller=>"/admin/content", :action => 'new' %>
+            <%= tab "Manage", :controller=>"/admin/content/list", :action => 'index' %>
+            <%= tab "Discuss", :controller=>"/admin/feedback", :action => 'index' %>
+            <%= tab "Design", :controller=>"/admin/themes", :action => 'index' %>
             <%= tab "Users", :controller=>"/admin/users", :action => 'index' %>
-            <%= tab "Resources", :controller=>"/admin/resources", :action => 'index' %>
-            <%= tab "Filters", :controller=>"/admin/textfilters", :action => 'index' %>
+            <%= tab "Settings", :controller=>"/admin/", :action => 'index' %>
           </ul>
         </div>
 
@@ -53,12 +48,11 @@
           <div id="main">
             <h2><%= @page_heading %></h2>
 
-            <% if not first_render =~ /general|login|signup|logout|sidebar|themes/ %>
+            <% if not first_render =~ /general|login|signup|logout/ %>
        <div class="tasks">
               <h3>Things you can do</h3>
               <ul>
                 <%= @content_for_tasks %>
-          <%= task_overview unless first_render =~ /\/list$/ %>
          </ul>
          <div style="clear:both;"></div>
             </div>
@@ -68,7 +62,7 @@
           </div>
         </div>
         <div id="footer">
-            Typo <%=h TYPO_VERSION %>
+            Typo <%=h TYPO_VERSION %> with <a href="http://famfamfam.com/">Famfamfam iconset</a>
         </div>
         </div>
         </body>
