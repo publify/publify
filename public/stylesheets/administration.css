@@ -228,6 +228,11 @@ h3 {
 
 /* @group Table Listings */
 
+.operation {
+  width: 25px;
+  text-align: center;
+}
+
 .list {
   clear: left;
 }

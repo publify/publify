@@ -1,16 +1,17 @@
 <table cellspacing="1" cellpadding="0">
 <tr>
-  <th>Name</th>
   <th>Title</th>
+  <th>Permalink</th>
   <th>Created</th>
-  <th>Edit</th>
-  <th>Delete</th>
+  <th colspan="3">Action</th>
+  <th></th>
 </tr>
 <% for page in @pages %>
 <tr <%= alternate_class %>>
-  <td><%= link_to page.name, {:action => "show", :id => page.id} %> <%= link_to_permalink(page,image_tag('go.png')) %></td>
-  <td><%= page.title %></td>
-  <td><%= distance_of_time_in_words_to_now page.created_at %> ago</td>
+  <td> <%= link_to_permalink(page,page.title) %></td>
+  <td>/pages/<%= page.name %></td>
+  <td><%= page.created_at.strftime("%d/%m/%Y at %H:%M") %></td>
+  <td class="operation"><%= link_to image_tag('show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => page.id} %></td>
   <td class="operation"><%= link_to_edit page %></td>
   <td class="operation"><%= link_to_destroy page %></td>    
 </tr>  
