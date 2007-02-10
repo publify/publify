@@ -312,16 +312,15 @@ label {
   background: #fff;
   border: 1px dashed #ccc;
   padding: 0;
-  z-index: 9999;
   width: 50%;
   height: 500px;
   float: right;
-  clear: right;
   margin-bottom: 10px;
   line-height: 1.5em;
   letter-spacing: 0.02em;
   word-spacing: 0.05em;
   font-size: 0.95em;
+  display: none;
 }
 
 /* @end */
@@ -339,32 +338,32 @@ label {
   /* Nothing here */
 }
 
-#settings legend {
+legend {
   font-size: 130%;
   text-transform: capitalize;
 }
 
-#settings ul {
+.admin ul {
   margin: 0;
   padding: 0;
 }
 
-#settings li {
+.admin li {
   list-style: none;
   padding: 5px;
   margin: 0;
   clear: both;
 }
 
-#settings li p {
+.admin li p {
   line-height: 1.6em;
 }
 
-#settings li.checkbox {
+.admin li.checkbox {
   line-height: 1.4em;
 }
 
-#settings label.float {
+.admin label.float {
   display: block;
   float: left;
   width: 190px;
@@ -374,11 +373,15 @@ label {
   text-align: right;
 }
 
-#settings input.float {
+.admin label.block {
+  display: block;
+}
+
+.admin input.float {
   width: auto;
 }
 
-#settings span.float {
+.admin span.float {
   margin-left: 202px;
   padding: 0;
   display: block;
