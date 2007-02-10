@@ -1,20 +1,36 @@
 <%= error_messages_for 'page' %>
 <!--[form:pages]-->
-<p>
-  <label for="page_name">Location:</label><br />
-  /pages/ <%= text_field 'page', 'name', :size => 16  %>
-</p>
-<p>
-  <label for="page_title">Title:</label><br />
-  <%= text_field 'page', 'title', :size => 20  %>
-</p>
-<p>
-  <label for="page_body">Content:</label><br />
-  <%= text_area 'page', 'body', :rows => 25, :style => 'width: 48%;'  %> 
-  <br/><%= markup_help_popup @page.text_filter, "Markup Help" %>
-</p>
+<fieldset class="set admin" style="display: block">
+  <legend>Page Body</legend>
+  <div style="width: 48%; float: left;">
+     <ul>
+       <li>
+          <label for="page_title" class="block">Title:</label>
+          <%= text_field 'page', 'title', :size => 20, :style => "width: 100%;"  %>
+       </li>
+       <li>
+          <label for="page_name" class="block">Location:</label>
+          /pages/ <%= text_field 'page', 'name', :size => 25  %>
+       </li>
+       <li>
+          <label for="page_body">Body:</label>
+          <%= markup_help_popup @page.text_filter, image_tag ('help.png', :alt => " markup help", :title => "Markup help") %>
+          <%= text_area 'page', 'body', :rows => 25, :style => 'width: 100%;'  %> 
+       </li>
+     </ul>
+     <p class="r"><%= save("Save") %> or <%= cancel %></p>
+  </div>
+  <br style="clear: both;" />
+</fieldset>
 
-<label for="page_text_filter">Textfilter: </label><%= select 'page', 'text_filter', text_filter_options %><br/>
-<br clear="all"/>
+<fieldset class="set admin">
+  <legend>Page Options</legend>
+  <ul>
+     <li>
+       <label for="page_text_filter" class="float">Textfilter: </label>
+       <%= select 'page', 'text_filter', text_filter_options %>
+     </li>
+  </ul>
+</fieldset>
 
 <!--[eoform:pages]-->
