@@ -69,6 +69,7 @@ class Blog < CachedModel
   setting :limit_rss_display,          :integer, 10
   setting :default_allow_pings,        :boolean, false
   setting :default_allow_comments,     :boolean, true
+  setting :default_moderate_comments,  :boolean, false
   setting :link_to_author,             :boolean, false
   setting :show_extended_on_rss,       :boolean, true
   setting :theme,                      :string, 'azure'

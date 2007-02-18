@@ -88,6 +88,7 @@ class Feedback < Content
   end
 
   def classify
+    return :spam if blog.default_moderate_comments
     return :ham unless blog.sp_global
     test_result = is_spam?
 

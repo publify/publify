@@ -32,7 +32,7 @@
 		    </li>
 			<li>
 				<label class="float" for="base_url">Blog URL:</label>
-				<input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" size="<%= this_blog.base_url.length %> "/>
+				<input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" size="<%= this_blog.base_url.length %> " />
 			</li>
 			<li>
 				<label class="float" for="geourl_location">Latitude, Longitude:</label>
@@ -73,7 +73,7 @@
 			<li class="checkbox">
 				<label class="float" for="show_extended_on_rss">Show full article on feed:</label>
 			    <input name="setting[show_extended_on_rss]" id="show_extended_on_rss" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.show_extended_on_rss%> />
-			    <input name="setting[show_extended_on_rss]" type="hidden" value="0"/>
+			    <input name="setting[show_extended_on_rss]" type="hidden" value="0" />
 			</li>
 		</ul>
 	  <p class="r"><%= save("Save Settings") %></p>
@@ -102,7 +102,7 @@
 			<li class="checkbox">
 	          <label class="float" for="send_outbound_pings">Send trackbacks:</label>
 		      <input name="setting[send_outbound_pings]" id="send_outbound_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.send_outbound_pings%> />
-	         <input name="setting[send_outbound_pings]" type="hidden" value="0"/>
+	         <input name="setting[send_outbound_pings]" type="hidden" value="0" />
 			</li>
 			<li>
 				<label class="float" for="ping_urls">URLs to ping automatically:</label>
@@ -121,27 +121,33 @@
 			<li class="checkbox">
 				<label class="float" for="global_pings_disable">Disable trackbacks site-wide:</label>
 				<input name="setting[global_pings_disable]" id="global_pings_disable" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.global_pings_disable%> />
-				<input name="setting[global_pings_disable]" type="hidden" value="0"/>
-			</li>
-			<li class="checkbox">
-	        	<label class="float" for="default_allow_comments">Enable comments by default:</label>
-				<input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />
-		      	<input name="setting[default_allow_comments]" type="hidden" value="0"/>
+				<input name="setting[global_pings_disable]" type="hidden" value="0" />
 			</li>
 			<li class="checkbox">
 		        <label class="float" for="default_allow_pings">Enable Trackbacks by default:</label>
 		      	<input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_pings%> />
-		      	<input name="setting[default_allow_pings]" type="hidden" value="0"/>
+		      	<input name="setting[default_allow_pings]" type="hidden" value="0" />
+			</li>
+			<li>You can enable site wide comment moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.</li>
+			<li class="checkbox">
+				<label class="float" for="default_moderate_comments">Enable comments moderation:</label>
+				<input name="setting[default_moderate_comments]" id="default_moderate_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_moderate_comments %> />
+				<input name="setting[default_moderate_comments]" type="hidden" value="0" />
+			</li>
+			<li class="checkbox">
+	        	<label class="float" for="default_allow_comments">Enable comments by default:</label>
+				<input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />
+		      	<input name="setting[default_allow_comments]" type="hidden" value="0" />
 			</li>
 			<li class="checkbox">
 				<label class="float" for="link_to_author">Show your email address:</label>
 				<input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.link_to_author%> />
-				<input name="setting[link_to_author]" type="hidden" value="0"/>
+				<input name="setting[link_to_author]" type="hidden" value="0" />
 			</li>
 			<li class="checkbox">
 		      <label class="float" for="use_gravatar">Enable <a href="http://www.gravatar.com/">gravatars</a>:</label>
 		      <input name="setting[use_gravatar]" id="use_gravatar" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.use_gravatar %> />
-		      <input name="setting[use_gravatar]" type="hidden" value="0"/>
+		      <input name="setting[use_gravatar]" type="hidden" value="0" />
 			</li>
 			<li>
 				You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.
@@ -196,13 +202,13 @@
 			<li>Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots.</li>
 			<li class="checkbox">
 				<label for="sp_global" class="float">Enable spam protection:</label>
-				<input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_global%> /><input name="setting[sp_global]" type="hidden" value="0"/>
+				<input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_global%> /><input name="setting[sp_global]" type="hidden" value="0" />
 			</li>
 			<li>Typo can (optionally) use the <a href="http://akismet.com">Akismet</a> spam-filtering service.  You need to register with
 	           Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here.</li>
 			<li>
 				<label class="float" for="sp_akismet_key">Akismet Key:</label>
-				<input name="setting[sp_akismet_key]" id="sp_akismet_key" type="text" value="<%=h this_blog.sp_akismet_key %>"/>
+				<input name="setting[sp_akismet_key]" id="sp_akismet_key" type="text" value="<%=h this_blog.sp_akismet_key %>" />
 			</li>
 		</ul>
         <p class="r"><%= save("Save Settings") %></p>

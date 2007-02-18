@@ -366,7 +366,7 @@ legend {
 .admin label.float {
   display: block;
   float: left;
-  width: 190px;
+  width: 200px;
   margin-left: 0;
   margin-right: 12px;
   padding: 0;
@@ -382,7 +382,7 @@ legend {
 }
 
 .admin span.float {
-  margin-left: 202px;
+  margin-left: 212px;
   padding: 0;
   display: block;
   clear: both;
