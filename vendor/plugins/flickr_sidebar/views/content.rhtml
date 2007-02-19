@@ -1,0 +1,15 @@
+<% if sidebar.flickr -%>
+<div id="flickr">
+<h3><%= sidebar.flickr.title  %> (<%= link_to "flickr", sidebar.flickr.link %>)</h3>
+<% for pic in sidebar.flickr.choose(count.to_i) -%>
+  <div class="flickr<%= format %>"><%= case format
+          when 'square':
+            link_to image_tag(pic.square, :alt => pic.title, :title => pic.title),pic.link
+          when 'rectangle':
+            link_to image_tag(pic.thumb, :alt => pic.title, :title => pic.title),pic.link
+          end
+ %>
+</div>
+  <% end -%>
+</div>
+<% end -%>

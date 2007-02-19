@@ -1,0 +1,20 @@
+<% if sidebar.delicious -%>
+  <div id="delicious">
+    <h3><a href="http://<%=h sidebar.delicious.title %>"><%=h sidebar.delicious.title %></a></h3>
+    <% (groupdate ? sidebar.delicious.days : [{ :container => sidebar.delicious.items }]).each do |group| -%>
+    <% if groupdate -%>
+    <span class="date"><%=h group[:date].to_s.to_date.strftime("%b %d") %></span>
+    <% end -%>
+    <ul>
+      <% for item in group[:container] %>
+      <li>
+        <a href="<%=h item.link %>" title="<%=h item.description%>"><%=h item.title %></a>
+        <% if item.description -%>
+          <br /><span class="desc"><%=h desclink ? item.description_link : item.description %></span>
+        <% end -%>
+      </li>
+      <% end -%>
+    </ul>
+    <% end -%>
+  </div>
+<% end -%>

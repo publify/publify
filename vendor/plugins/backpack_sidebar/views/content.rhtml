@@ -1,0 +1,12 @@
+<% if sidebar.backpack -%>
+<h3><%= sidebar.backpack.title %></h3>
+<ul>
+<% sidebar.items.each do |item| -%>
+  <% if item.completed -%>
+    <li><del><%= item.to_s %></del></li>
+  <% else -%>
+    <li><%= item.to_s %></li>
+  <% end -%>
+<% end -%>
+</ul>
+<% end -%>

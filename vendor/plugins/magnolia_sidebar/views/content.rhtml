@@ -1,0 +1,12 @@
+<% if sidebar.mag -%>
+<div id="magnolia-gallery">
+<h3><%= dtitle  %> (<%= link_to "magnolia", "http://ma.gnolia.com/people/#{feed.split('/').last}" %>)</h3>
+<% for pic in sidebar.mag.choose(count.to_i) -%>
+<div class="magnolia-pic">
+<%=
+  link_to "<img src=\"#{pic.image}\" alt=\"#{pic.title}\" title=\"#{pic.title}\"/", pic.link
+-%>
+</div>
+  <% end -%>
+</div>
+<% end -%>

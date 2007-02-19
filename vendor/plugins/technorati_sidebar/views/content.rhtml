@@ -1,0 +1,8 @@
+<% if sidebar.cosmos -%>
+<h3><%= name -%> @Technorati</h3>
+<ul id="technorati">
+<% for item in sidebar.cosmos.choose(count.to_i) -%>
+  <li><%= link_to item.title, item.link, {:title => item.title } %>
+<% end -%>
+</ul>
+<% end -%>
