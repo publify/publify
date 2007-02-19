@@ -1,9 +1,0 @@
-%li[trackback]{:onmouseover => admin_tools_mouseover(:trackback, trackback.id), |
-               :onmouseout => admin_tools_mouseout(:trackback, trackback.id)} |
-  = admin_tools_for trackback
-  %a{:name => "trackback_#{trackback.id}"}
-  = precede 'From ' do
-    %strong= trackback.blog_name
-  %br/
-  %a{:href => trackback.url, :rel => 'nofollow'}=h trackback.title
-  %br/

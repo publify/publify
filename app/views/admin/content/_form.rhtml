@@ -11,7 +11,7 @@
        </li>
        <li>
           <label for="article_body">Body:</label>
-          <%= markup_help_popup @article.text_filter, image_tag ('help.png', :alt => "markup help", :title => "Markup Help") %>
+          <%= markup_help_popup @article.text_filter, image_tag('help.png', :alt => "markup help", :title => "Markup Help") %>
           <%= text_area 'article', 'body', :rows => 25, :style => 'width: 100%;'  %>
        </li>
        <li id="extended"<%- if @article.extended.blank? -%> style="display:none;"<%- end -%>>

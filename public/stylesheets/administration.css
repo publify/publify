@@ -311,7 +311,7 @@ label {
 #preview, #preview_extended {
   background: #fff;
   border: 1px dashed #ccc;
-  padding: 0;
+  padding: 0 0 0 5px;
   width: 50%;
   height: 500px;
   float: right;

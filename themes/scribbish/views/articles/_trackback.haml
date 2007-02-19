@@ -1,8 +1,0 @@
-%li[trackback]
-  .author
-    %a{:href=>trackback.url, :rel=>"nofollow"}= trackback.title
-    %abbr
-      = precede "From " do
-        %cite= trackback.blog_name
-  .content
-    = trackback.excerpt

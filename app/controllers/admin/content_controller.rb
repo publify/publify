@@ -48,7 +48,7 @@ class Admin::ContentController < Admin::BaseController
 
   def preview
     headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = this_blog.articles.build
+    @article = this_blog.articles.build 
     @article.attributes = params[:article]
     set_article_author
     data = render_to_string(:layout => "minimal")

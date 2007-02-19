@@ -1,6 +1,0 @@
-= gravatar_tag(@comment.email) if this_blog.use_gravatar and @comment.email
-= succeed ' is about to say:' do
-  %cite
-    %strong=h @comment[:author]
-%br/
-= @comment.html

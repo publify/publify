@@ -1,8 +1,0 @@
-<% if sidebar.upcoming -%>
-<h3>Upcoming Events</h3>
-<ul id="upcoming">
-<% for event in sidebar.upcoming.choose(count.to_i) -%>
-  <li><%= link_to event.title, event.link, {:title => event.description } %> - <%= event.timespan %></li>
-  <% end -%>
-</ul>
-<% end -%>

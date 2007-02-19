@@ -1,7 +1,0 @@
-.comment.preview
-  .author
-    = content_tag(:div, gravatar_tag(@comment.email)) if this_blog.use_gravatar and @comment.email
-    %cite= link_to_unless(@comment.url.blank?, h(@comment.author), @comment.url)
-    %abbr is about to say
-  .content
-    = html @comment
