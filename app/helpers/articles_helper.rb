@@ -7,7 +7,7 @@ module ArticlesHelper
     tag << content_tag("div",
       link_to_remote('nuke', {
           :url => { :action => "nuke_#{type}", :id => model },
-          :complete => visual_effect(:puff, "#{type}-#{model.id}", :duration => 0.6),
+          :complete => visual_effect(:puff, "#{type}_#{model.id}", :duration => 0.6),
           :confirm => "Are you sure you want to delete this #{type}?"
         }, :class => "admintools") <<
       link_to('edit', {
@@ -19,11 +19,12 @@ module ArticlesHelper
     tag.join(" | ")
   end
 
-  def onhover_show_admin_tools(type, id = nil)
-    tag = []
-    tag << %{ onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_#{[type, id].compact.join('_')}'); }" }
-    tag << %{ onmouseout="Element.hide('admin_#{[type, id].compact.join('_')}');" }
-    tag
+  def admin_tools_mouseover(type, id = nil)
+    "if (getCookie('is_admin') == 'yes') { Element.show('admin_#{[type, id].compact.join('_')}'); }"
+  end
+  
+  def admin_tools_mouseout(type, id = nil)
+    "Element.hide('admin_#{[type, id].compact.join('_')}');" 
   end
 
   def render_errors(obj)
