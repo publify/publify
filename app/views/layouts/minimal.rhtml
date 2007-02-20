@@ -2,10 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <%= page_header %>
-  <%= stylesheet_link_tag "/stylesheets/theme/azure", :media => 'all' %>
+  <%= stylesheet_link_tag "/stylesheets/minimal", :media => 'all' %>
   <%= stylesheet_link_tag "/stylesheets/user-styles", :media => 'all' %>
 </head>
 <body>
-  <%= @content_for_layout %>
+	<div id="main">
+  		<%= @content_for_layout %>
+	</div>
 </body>
 </html>
