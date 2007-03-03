@@ -1,8 +1,8 @@
-  <% @page_heading = 'New User' %>
+  <% @page_heading = _('New User') %>
   <% content_for('tasks') do %>
   <%= task_overview %>
   <% end%>
-  <h3>Creating user</h3>
+  <h3><%= _("Creating user")%></h3>
 
   <% form_tag :action=>"new" do %>
 

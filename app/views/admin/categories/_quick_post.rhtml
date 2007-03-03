@@ -1,11 +1,11 @@
 <% form_tag :action=>"new" do %>
 
 <p>
-  <label for="category_name">Title:</label><br/>
+  <label for="category_name"><%= _("Title")%>:</label><br/>
   <%= text_field 'category', 'name'  %>
 </p>
 
 <div id="operations">
-  <%= save("Add category") %> or <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" >Cancel</a>
+  <%= save(_("Add category")) %> <%= _("or")%> <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" ><%= _("Cancel")%></a>
 </div>
 <% end %>

@@ -1,15 +1,15 @@
 <%= error_messages_for 'textfilter' %>
 <!--[form:textfilter]-->
 <p>
-  <label for="textfilter_name">Name:</label><br />
+  <label for="textfilter_name"><%= _("Name") %>:</label><br />
   <%= text_field 'textfilter', 'name', :size => 40  %>
 </p>
 <p>
-  <label for="textfilter_description">Description:</label><br />
+  <label for="textfilter_description"><%= _("Description") %>:</label><br />
   <%= text_field 'textfilter', 'description', :size => 40  %>
 </p>
 
-<label for="markup">Markup type:</label><br/>
+<label for="markup"><%= _("Markup type")%>:</label><br/>
 
 <select name="textfilter[markup]">
 <% @markup_options.each do |filter| -%>
@@ -19,7 +19,7 @@
 
 <br/>
 
-<h4>Post-processing filters</h4>
+<h4><%= _("Post-processing filters")%></h4>
 
 <table>
 <% @postprocess_options.sort_by {|f| f[1]}.each do |filter| %>
@@ -30,7 +30,7 @@
   </tr>
 <% end -%>
 </table>
-<h4>Parameters</h4>
+<h4><%= _("Parameters")%></h4>
 
 <table>
 <% @filterparams.keys.sort.each do |key| -%>

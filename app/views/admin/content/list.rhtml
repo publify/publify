@@ -1,9 +1,9 @@
-  <% @page_heading = 'Manage Articles' %>
+  <% @page_heading = _('Manage Articles') %>
 
   <% content_for('tasks') do %>
-	<%= tab "Manage Pages", :controller=>"pages", :action=>"list" %>
-	<%= tab "Manage Categories", :controller=>"categories", :action=>"index"%>
-	<%= tab "Manage Resources", :controller=>"resources", :action=>"list" %>
+	<%= tab _("Manage Pages"), :controller=>"pages", :action=>"list" %>
+	<%= tab _("Manage Categories"), :controller=>"categories", :action=>"index"%>
+	<%= tab _("Manage Resources"), :controller=>"resources", :action=>"list" %>
   <% end %> 
   <div id="quick-navigate" style="display:none;position:absolute;">
     <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>

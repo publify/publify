@@ -1,7 +1,7 @@
-  <% @page_heading = "Articles in #{h @category.name}" %>
+  <% @page_heading =  _("Articles in") + " #{h @category.name}" %>
 
   <% content_for('tasks') do %>
-    <%= task_edit 'Edit this category', @category.id %>
+    <%= task_edit _('Edit this category'), @category.id %>
   <% end %>
 
   <% form_tag :action=>"new" do %>

@@ -1,9 +1,9 @@
 <table cellspacing="1" cellpadding="0">
 <tr>
-  <th>Name</th>
-  <th>Description</th>
-  <th>Tag</th>
-  <th>Show Help</th>
+  <th><%= _("Name")%></th>
+  <th><%= _("Description")%></th>
+  <th><%= _("Tag")%></th>
+  <th><%= _("Show Help")%></th>
 </tr>
 <% for macro in @macros.sort_by { |f| f.short_name } %>
 <tr <%= alternate_class %>>

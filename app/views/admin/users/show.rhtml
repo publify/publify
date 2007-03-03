@@ -1,4 +1,4 @@
-  <% @page_heading = "User: #{@user.name}" %>
+  <% @page_heading = _("User") + ": #{@user.name}" %>
 
   <% content_for('tasks') do %>
     <%= task_new 'Create new user' %>
@@ -6,19 +6,19 @@
   <% end %> 
 
   <div class="form">	
-    <label>Name:</label> <span class="static"><%=h @user.name %></span><br/>
-    <label>Login:</label> <span class="static"><%=h @user.login %></span><br/>
-    <label>Email:</label> <span class="static"><%=h @user.email %></span><br/>
-    <label>Jabber:</label> <span class="static"><%=h @user.jabber %></span><br/>
-    <label>Notify via email:</label> <span class="static"><%= @user.notify_via_email? ? "yes" : "no" %></span><br/>
-    <label>Notify via jabber:</label> <span class="static"><%= @user.notify_via_jabber? ? "yes" : "no" %></span><br/>
-    <label>Notify on new articles:</label> <span class="static"><%= @user.notify_on_new_articles? ? "yes" : "no" %></span><br/>
-    <label>Notify on new comments:</label> <span class="static"><%= @user.notify_on_comments? ? "yes" : "no" %></span><br/>
+    <label><%= _("Name")%>:</label> <span class="static"><%=h @user.name %></span><br/>
+    <label><%= _("Login")%>:</label> <span class="static"><%=h @user.login %></span><br/>
+    <label><%= _("Email")%>:</label> <span class="static"><%=h @user.email %></span><br/>
+    <label><%= _("Jabber")%>:</label> <span class="static"><%=h @user.jabber %></span><br/>
+    <label><%= _("Notify via email")%>:</label> <span class="static"><%= @user.notify_via_email? ? _("yes") : _("no") %></span><br/>
+    <label><%= _("Notify via jabber")%>:</label> <span class="static"><%= @user.notify_via_jabber? ? _("yes") : _("no") %></span><br/>
+    <label><%= _("Notify on new articles")%>:</label> <span class="static"><%= @user.notify_on_new_articles? ? _("yes") : _("no") %></span><br/>
+    <label><%= _("Notify on new comments")%>:</label> <span class="static"><%= @user.notify_on_comments? ? _("yes") : _("no") %></span><br/>
     
   </div>
 
 
   <div class="list">
-    <h2>User's articles</h2>
+    <h2><%= _("User's articles")%></h2>
     <%= render :partial => 'admin/content/articles' %>
   </div>

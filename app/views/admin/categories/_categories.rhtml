@@ -1,8 +1,8 @@
 <table>
   <tr>
-    <th>Category title</th>
-    <th>Articles</th>
-    <th>Delete</th>
+    <th><%= _("Category title")%></th>
+    <th><%= _("Articles")%></th>
+    <th><%= _("Delete")%></th>
   </tr>
   <% for category in @categories -%>
   <tr <%= alternate_class -%> id="category_<%= category.id -%>">

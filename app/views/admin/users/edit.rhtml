@@ -1,12 +1,12 @@
-  <% @page_heading = 'Edit User' %>
+  <% @page_heading = _('Edit User') %>
   <% content_for('tasks') do %>
-  <%= tab "New User", :controller=>"users", :action=>"new"%>
+  <%= tab _("New User"), :controller=>"users", :action=>"new"%>
   <%= task_overview %>
   <% end%>
 
   <% form_tag :action=>"edit", :id => @user.id do %>
 
-  <h3>Editing user</h3>
+  <h3><%= _("Editing user")%></h3>
   <div class="form">
     <%= render_partial "form" %>
   </div>

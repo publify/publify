@@ -6,10 +6,10 @@
 	<%= task_overview %>
 <% end %> 
 
-<% @page_heading = 'Upload a File to your Site' %>
+<% @page_heading = _('Upload a File to your Site') %>
 <%= form_tag_with_upload_progress({:action => 'upload'}, { :begin => "new Effect.Appear('status')", :finish => "$('message').innertHTML = arguments[0]" }) %>
 <label for="upload_filename">File:</label><br /><%= file_field 'upload', 'filename' -%><br />
-<%= submit_tag 'Upload' -%>
+<%= submit_tag _('Upload') -%>
 <div id='status' style="display: none"><%= upload_status_tag %></div>
 </form>
 

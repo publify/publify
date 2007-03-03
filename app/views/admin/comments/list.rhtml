@@ -2,19 +2,19 @@
 
   <% content_for('tasks') do %>
     <%= task_new('Write a comment') %>
-    <li><%= link_to 'Manage articles', :controller => '/admin/content', :action => 'list' %></li>
+    <li><%= link_to _('Manage articles'), :controller => '/admin/content', :action => 'list' %></li>
   <% end %> 
 
   <div class="list">	
     <table>
     <tr>
-      <th>Author</th>
-      <th>Email</th>
-      <th>Body</th>
-      <th>IP</th>
-      <th>Posted date</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th><%= _("Author")%></th>
+      <th><%= _("Email")%></th>
+      <th><%= _("Body")%></th>
+      <th><%= _("IP")%></th>
+      <th><%= _("Posted date")%></th>
+      <th><%= _("Edit")%></th>
+      <th><%= _("Delete")%></th>
     </tr>
     <% for comment in @comments -%>
     <tr>

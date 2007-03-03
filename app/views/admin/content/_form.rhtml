@@ -1,7 +1,7 @@
 <%= error_messages_for 'article' %>
 <!--[form:articles]-->
 <fieldset class="set admin" style="display: block">
-  <legend>Article Body</legend>
+  <legend><%=_("Article Body")%></legend>
   <iframe id="preview" class="post" style="display: none;"></iframe>
   <div style="width: 48%; float: left;">
      <ul>
@@ -10,63 +10,63 @@
           <%= text_field 'article', 'title', :style => 'width: 100%;' %>
        </li>
        <li>
-          <label for="article_body">Body:</label>
+          <label for="article_body"><%= _("Article Content")%>:</label>
           <%= markup_help_popup @article.text_filter, image_tag('help.png', :alt => "markup help", :title => "Markup Help") %>
           <%= text_area 'article', 'body', :rows => 25, :style => 'width: 100%;'  %>
        </li>
        <li id="extended"<%- if @article.extended.blank? -%> style="display:none;"<%- end -%>>
-          <label for="article_extended">Extended:</label>
+          <label for="article_extended"><%= _("Extended Content")%>:</label>
           <%= text_area 'article', 'extended', :rows => 30, :style => 'width: 100%;'  %>
           <%= link_to_function "Toggle Extended Content (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.5) } %>
        </li>
        <li>
-          <label for="categories" class="block">Categories:</label>
+          <label for="categories" class="block"><%= _("Categories")%>:</label>
           <select id="categories" name="categories[]" multiple="multiple" size="10" style="width:250px;">
              <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
 		  </select>
        </li>
        <li>
-          <label for="article_keywords">Tags:</label>
+          <label for="article_keywords"><%= _("Tags")%>:</label>
           <%= text_field 'article', 'keywords', :style => 'width: 100%;' %>
        </li>
      </ul>
-     <p class="r"><%= save("Save") %> or <%= cancel %></p>
+     <p class="r"><%= save(_("Save")) %> or <%= cancel %></p>
   </div>
   <br style ="clear: both"/>
 </fieldset>
 
 <fieldset class="set admin">
-  <legend>Article Attachments</legend>
+  <legend><%= _("Article Attachments")%></legend>
   <div id="attachments">
     <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
   </div>
 </fieldset>
 
 <fieldset class="set admin">
-  <legend>Article Options</legend>
+  <legend><%= _("Article Options")%></legend>
   <ul>
      <li>
-       <label for="article_permalink" class="float">Permalink:</label>
+       <label for="article_permalink" class="float"><%= _("Permalink")%>:</label>
        <%= text_field 'article', 'permalink'  %>
      </li>
      <li class="checkbox">
-       <label for="article_allow_comments" class="float">Allow comments: </label>
+       <label for="article_allow_comments" class="float"><%= _("Allow comments") %>: </label>
        <%= check_box 'article', 'allow_comments'  %>
      </li>
      <li class="checkbox">
-        <label for="article_allow_pings" class="float">Allow trackbacks: </label>
+        <label for="article_allow_pings" class="float"><%= _("Allow trackbacks")%>: </label>
         <%= check_box 'article', 'allow_pings'  %>
      </li>
      <li>
-       <label for="article_published" class="float">Published:</label>
+       <label for="article_published" class="float"><%= _("Published")%>:</label>
        <%= check_box 'article', 'published'  %>
      </li>
      <li>
-        <label for="article_published_at" class="float">Publish at:</label>
+        <label for="article_published_at" class="float"><%= _("Publish at")%>:</label>
         <%= datetime_select 'article', 'published_at', :include_blank => true  %>
      </li>
      <li>
-        <label for="article_text_filter" class="float">Textfilter: </label>
+        <label for="article_text_filter" class="float"><%= _("Textfilter")%>: </label>
         <%= select 'article', 'text_filter', text_filter_options %>
      </li>
   </ul>

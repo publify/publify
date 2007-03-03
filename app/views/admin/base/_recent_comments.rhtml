@@ -1,4 +1,4 @@
-<h2>Recent comments</h2>
+<h2><%= _("Recent comments")%></h2>
 <ul class="recent">
 <% for comment in Comment.find(:all, :limit => 5, :order => 'id DESC' ) %>
   <li>

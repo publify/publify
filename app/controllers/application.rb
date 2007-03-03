@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :reset_local_cache, :fire_triggers
   after_filter :reset_local_cache
 
+
   protected
 
   def fire_triggers

@@ -1,6 +1,6 @@
-  <% @page_heading = "Trackbacks for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+  <% @page_heading = _("Trackbacks for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
 
-  <h3>Creating trackback</h3>
+  <h3><%= _("Creating trackback")%></h3>
 
   <% form_tag :action=>"new" do %>
 

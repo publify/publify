@@ -1,15 +1,15 @@
-<% @page_heading = "Comments and Trackbacks for #{ this_blog.settings['blog_name'] }" %>
+<% @page_heading = _("Comments and Trackbacks for") + " #{ this_blog.settings['blog_name'] }" %>
 
 <% content_for('tasks') do %>
-  <%= task_showmod 'Limit to spam' %>
-  <%= task_showmod 'Limit to unconfirmed' %>
-  <%= task_showmod 'Limit to unconfirmed spam' %>
-  <%= tab "Blacklist", :controller=>"blacklist", :action=>"index"%>
+  <%= task_showmod _('Limit to spam') %>
+  <%= task_showmod _("Limit to unconfirmed") %>
+  <%= task_showmod _('Limit to unconfirmed spam') %>
+  <%= tab _("Blacklist"), :controller=>"blacklist", :action=>"index"%>
 <% end %>
 
 <div class="search">
   <% form_tag({:action => 'index'}, :method => :get) do %>
-    <label for="search">Feedback Search:</label><input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="15" />
+    <label for="search"><%= _("Feedback Search")%>:</label><input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="15" />
   <% end %>
 </div>
 
@@ -26,15 +26,15 @@
 
   <table>
   <tr>
-        <th><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-        <th>State</th>
-        <th>Type</th>
-        <th>Article</th>
-    <th>Author</th>
-        <th>Body</th>
-    <th>IP</th>
-    <th>Posted date</th>
-    <th>Delete</th>
+  	<th><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+	<th><%= _("Status")%></th>
+	<th><%= _("Type")%></th>
+	<th><%= _("Article")%></th>
+    <th><%= _("Author")%></th>
+    <th><%= _("Body")%></th>
+    <th><%= _("IP")%></th>
+    <th><%= _("Posted date")%></th>
+    <th><%= _("Delete") %></th>
   </tr>
   <%= render :partial => 'item', :collection => @feedback %>
   </table>
@@ -45,7 +45,7 @@
   <% end %>
 </div>
 
-<%= link_to "Previous page", { :page => @pages.current.previous, :search => params[:search] } if @pages.current.previous %>
+<%= link_to _("Previous page"), { :page => @pages.current.previous, :search => params[:search] } if @pages.current.previous %>
 <%= pagination_links(@pages, :params => {:search => params[:search]}) %>
-<%= link_to "Next page", { :page => @pages.current.next, :search => params[:search] } if @pages.current.next %>
+<%= link_to _("Next page"), { :page => @pages.current.next, :search => params[:search] } if @pages.current.next %>
 

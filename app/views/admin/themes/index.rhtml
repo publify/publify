@@ -1,7 +1,7 @@
-<% @page_heading = 'Choose a theme' %>
+<% @page_heading = _('Choose a theme') %>
 <% content_for('tasks') do %>
-	<%= tab "Customize Sidebar", :controller=>"sidebar", :action=>"index" %>
-	<%= tab "Manage Text Filters", :controller=>"textfilters", :action=>"list" %>
+	<%= tab _("Customize Sidebar"), :controller=>"sidebar", :action=>"index" %>
+	<%= tab _("Manage Text Filters"), :controller=>"textfilters", :action=>"list" %>
 <% end %> 
 
 <% for theme in @themes %>
@@ -9,9 +9,9 @@
   <div class="preview"><img src="<%= url_for :action => 'preview', :theme => theme.name %>" alt="<%= theme.name %>" /></div>
   <%= theme.description_html %>
   <% if theme.path == @active.path -%>
-  <em>(Active theme)</em>
+  <em>(<%= _("Active theme")%>)</em>
   <% else -%>
-  <%= link_to "Activate", :action => 'switchto', :theme => theme.name %>
+  <%= link_to _("Activate"), :action => 'switchto', :theme => theme.name %>
   <% end -%>
   <br clear="all" />
 </div>

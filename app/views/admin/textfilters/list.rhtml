@@ -1,16 +1,16 @@
   <% @page_heading = 'Text Filters' %>
 
   <% content_for('tasks') do %>
-    <%= task_new 'Create new text filter' %>
-	<%= tab "Choose a theme", :controller=>"themes", :action=>"index" %>
-	<%= tab "Customize Sidebar", :controller=>"sidebar", :action=>"index" %>
+    <%= task_new _('Create new text filter') %>
+	<%= tab _("Choose a theme"), :controller=>"themes", :action=>"index" %>
+	<%= tab _("Customize Sidebar"), :controller=>"sidebar", :action=>"index" %>
   <% end %> 
 
   <div class="list" id="textfilters">	
     <%= render :partial => 'textfilters' %>
   </div>                      
 
-  <h2>Macros</h2>
+  <h2><%= _("Macros")%></h2>
   <div class="list" id="macros">
     <% reset_alternation -%>
     <%= render :partial => "macros" %>

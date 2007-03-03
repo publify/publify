@@ -1,14 +1,14 @@
-  <% @page_heading = 'Users' %>
+  <% @page_heading = _('Users') %>
 
   <% content_for('tasks') do %>
-    <%= task_show 'Show this user', @user.id %>
+    <%= task_show _('Show this user'), @user.id %>
   <% end %>
 
-  <h3>Really delete user "<%= @user.name || @user.login %>" ?</h3>
+  <h3><%= _("Really delete user")%> "<%= @user.name || @user.login %>" ?</h3>
   <br/>
 
 
   <% form_tag do %>
   <%= hidden_field "user", "id" %>
-  <%= confirm_delete("Yes...") %>
+  <%= confirm_delete(_("Yes") + "...") %>
   <% end %>

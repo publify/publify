@@ -7,7 +7,6 @@ class SeparateEntriesAndFeedback < ActiveRecord::Migration
 
   def self.up
     # Comment this out once you've made a backup
-    raise "This is a more or less untested migration that might lose data. \nBackup before commenting out line 10 of db/migrate/058_separate_entries_and_feedback.rb"
 
     create_table :feedback, :force => true do |t|
       t.column "type",             :string

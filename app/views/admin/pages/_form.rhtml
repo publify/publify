@@ -1,34 +1,34 @@
 <%= error_messages_for 'page' %>
 <!--[form:pages]-->
 <fieldset class="set admin" style="display: block">
-  <legend>Page Body</legend>
+  <legend><%= _("Page Body")%></legend>
   <iframe id="preview" class="post" style="display: none;"></iframe>
   <div style="width: 48%; float: left;">
      <ul>
        <li>
-          <label for="page_title" class="block">Title:</label>
+          <label for="page_title" class="block"><%= _("Title")%>:</label>
           <%= text_field 'page', 'title', :size => 20, :style => "width: 100%;"  %>
        </li>
        <li>
-          <label for="page_name" class="block">Location:</label>
+          <label for="page_name" class="block"><%= _("Location")%>:</label>
           /pages/ <%= text_field 'page', 'name', :size => 25  %>
        </li>
        <li>
-          <label for="page_body">Body:</label>
+          <label for="page_body"><%= _("Body")%>:</label>
           <%= markup_help_popup @page.text_filter, image_tag('help.png', :alt => " markup help", :title => "Markup help") %>
           <%= text_area 'page', 'body', :rows => 25, :style => 'width: 100%;'  %> 
        </li>
      </ul>
-     <p class="r"><%= save("Save") %> or <%= cancel %></p>
+     <p class="r"><%= save(_("Save")) %> or <%= cancel %></p>
   </div>
   <br style="clear: both;" />
 </fieldset>
 
 <fieldset class="set admin">
-  <legend>Page Options</legend>
+  <legend><%= _("Page Options")%></legend>
   <ul>
      <li>
-       <label for="page_text_filter" class="float">Textfilter: </label>
+       <label for="page_text_filter" class="float"><%= _("Textfilter")%>: </label>
        <%= select 'page', 'text_filter', text_filter_options %>
      </li>
   </ul>

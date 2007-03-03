@@ -1,11 +1,11 @@
 <table cellspacing="1" cellpadding="0">
 <tr>
-  <th>Filename <small>(right-click for link)</small></th>
-  <th>Content Type</th>
-  <th>MetaData</th>
-  <th>File Size</th>
-  <th>Uploaded</th>
-  <th>Delete</th>
+  <th><%= _("Filename")%> <small>(right-click for link)</small></th>
+  <th><%= _("Content Type")%></th>
+  <th><%= _("MetaData")%></th>
+  <th><%= _("File Size")%></th>
+  <th><%= _("Uploaded")%></th>
+  <th><%= _("Delete")%></th>
 </tr>
 <% blog_root = request.relative_url_root -%>
 <% for upload in resources -%>
@@ -19,14 +19,14 @@
   </td>
   <% if upload.itunes_metadata? %>
   <td>
-    <%= task_edit_resource_metadata('Edit MetaData (+/-)', upload.id) %>
+    <%= task_edit_resource_metadata(_("Edit MetaData") + ' (+/-)', upload.id) %>
     <div id="edit-resource-metadata-<%= upload.id%>" style="display:none;position:absolute;">
       <%= render :partial => "metadata_edit" , :locals => {:id => upload.id, :resource => upload}%>
     </div>
   </td>
   <% else -%>
   <td>
-    <%= task_add_resource_metadata('Add MetaData (+/-)', upload.id) %>
+    <%= task_add_resource_metadata(_("Add MetaData") + ' (+/-)', upload.id) %>
     <div id="add-resource-metadata-<%= upload.id%>" style="display:none;position:absolute;">
       <%= render :partial => "metadata_add", :locals => {:id => upload.id} %>
     </div>

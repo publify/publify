@@ -1,11 +1,11 @@
 <table cellspacing="1" cellpadding="0">
 <tr>
-  <th>Name</th>
-  <th>Description</th>
-  <th>Markup</th>
-  <th>Filters</th>
-  <th>Edit</th>
-  <th>Delete</th>
+  <th><%= _("Name")%></th>
+  <th><% =_("Description")%></th>
+  <th><%= _("Markup")%></th>
+  <th><%= _("Filters")%></th>
+  <th><%= _("Edit")%></th>
+  <th><%= _("Delete")%></th>
 </tr>
 <% for textfilter in @textfilters.sort_by { |f| f.name } %>
 <tr <%= alternate_class %>>

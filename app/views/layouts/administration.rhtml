@@ -17,22 +17,22 @@
 
           <div id="info">
             <%= current_user_notice rescue nil %> |
-            <%= link_to 'your blog &raquo;', :controller => "/articles" %>
+            <%= link_to _('your blog') + '&raquo;', :controller => "/articles" %>
 
           </div>
-            <h1><%= link_to "Typo admin - #{this_blog.blog_name rescue nil}", :controller => "/admin/general" %></h1>
+            <h1><%= link_to _("Typo admin") + " - #{this_blog.blog_name rescue nil}", :controller => "/admin/general" %></h1>
           </div>
         <!-- /HEADER -->
 
 
         <div id="tabs-container">
           <ul id="tabs">
-            <%= tab "Publish", :controller=>"/admin/content", :action => 'new' %>
-            <%= tab "Manage", :controller=>"/admin/content/list", :action => 'index' %>
-            <%= tab "Discuss", :controller=>"/admin/feedback", :action => 'index' %>
-            <%= tab "Design", :controller=>"/admin/themes", :action => 'index' %>
-            <%= tab "Users", :controller=>"/admin/users", :action => 'index' %>
-            <%= tab "Settings", :controller=>"/admin/", :action => 'index' %>
+            <%= tab _("Publish"), :controller=>"/admin/content", :action => 'new' %>
+            <%= tab _("Manage"), :controller=>"/admin/content/list", :action => 'index' %>
+            <%= tab _("Discuss"), :controller=>"/admin/feedback", :action => 'index' %>
+            <%= tab _("Design"), :controller=>"/admin/themes", :action => 'index' %>
+            <%= tab _("Users"), :controller=>"/admin/users", :action => 'index' %>
+            <%= tab _("Settings"), :controller=>"/admin/", :action => 'index' %>
           </ul>
         </div>
 
@@ -50,7 +50,7 @@
 
             <% if not first_render =~ /general|login|signup|logout/ %>
        <div class="tasks">
-              <h3>Things you can do</h3>
+              <h3><%= _("Things you can do") %></h3>
               <ul>
                 <%= @content_for_tasks %>
          </ul>

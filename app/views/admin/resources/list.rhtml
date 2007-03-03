@@ -1,11 +1,11 @@
-  <% @page_heading = 'Manage Resources' %>
-  <% @page_title = 'Upload a File' %>
+  <% @page_heading = _('Manage Resources') %>
+  <% @page_title = _('Upload a new File') %>
   <% content_for('tasks') do %>
-    <%= task_new 'Upload a new Resource' %>
-	<%= tab "Manage Articles", :controller=>"content", :action=>"list" %>
-	<%= tab "Manage Pages", :controller=>"pages", :action=>"list" %>
-	<%= tab "Manage Categories", :controller=>"categories", :action=>"list" %>
-	<%= tab "Manage Text Filters", :controller=>"textfilters", :action=>"list" %>
+    <%= task_new _('Upload a new Resource') %>
+	<%= tab -("Manage Articles"), :controller=>"content", :action=>"list" %>
+	<%= tab _("Manage Pages"), :controller=>"pages", :action=>"list" %>
+	<%= tab _("Manage Categories"), :controller=>"categories", :action=>"list" %>
+	<%= tab _("Manage Text Filters"), :controller=>"textfilters", :action=>"list" %>
   <% end %> 
 
   <div class="list" id="resources">	
