@@ -1,5 +1,5 @@
 class MagnoliaSidebar < Sidebar
-  description 'Pictures from <a href="http://ma.gnolia.com">ma.gnolia.com</a>'
+  description _('Pictures from') + ' <a href="http://ma.gnolia.com">ma.gnolia.com</a>'
 
   setting :dtitle, 'Ma.gnolia Links', :label => 'Display Title'
   setting :feed,   'http://ma.gnolia.com/rss/full/people/USERNAME/', :label => 'Feed URL'

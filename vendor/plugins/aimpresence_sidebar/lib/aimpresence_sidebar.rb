@@ -1,5 +1,5 @@
 class AimpresenceSidebar < Sidebar
-  display_name "AIM Presence"
+  display_name _("AIM Presence")
 
   description <<EOS
 Displays the Online presence of an AOL Instant Messenger screen name<br/>

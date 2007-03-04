@@ -8,6 +8,7 @@ Localization.define('fr_FR') do |l|
   l.store "Users", ["Utilisateur", "Utilisateurs"]
   l.store "Settings", "Configuration"
   l.store "Things you can do", "Vous pouvez"
+  l.store "with %s Famfamfam iconset %s", "avec %s les icônes Famfamfam %s"
   
   #admin/login.rhtml
   l.store "Username", "Identifiant"
@@ -197,6 +198,7 @@ Localization.define('fr_FR') do |l|
   #admin/general/index.rhtml
   l.store "Blog settings", "Configuration du blog"
   l.store "Which settings group would you like to edit", "Quel groupe d'options souhaitez-vous modifier "
+  l.store "General settings", "Options générales"
   l.store "General Settings", "Options générales"
   l.store "Read", "Lire"
   l.store "Write", "Écrire"
@@ -458,5 +460,6 @@ Localization.define('fr_FR') do |l|
   l.store "RSS feed for this post", "Flux RSS de ce billet"
   l.store "trackback uri", "URL de rétrolien"
   l.store "Comments are disabled", "Les commentaires sont désactivés"
-  
+ 
+  l.store "Pictures from", "Images de"
 end

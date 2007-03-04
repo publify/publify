@@ -13,6 +13,13 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/app/services )
+
+  # I need the localization plugin to load first
+  # Otherwise, I can't localize plugins <= localization
+  config.plugins = [ 'localization' ]
+  Dir.entries("#{RAILS_ROOT}/vendor/plugins/").each { |dir|  config.plugins.push("#{dir}") if File.directory?("#{RAILS_ROOT}/vendor/plugins/#{dir}/lib")  }
+  
+  
   config.load_paths += %W(
     vendor/rubypants
     vendor/akismet
@@ -152,4 +159,4 @@ CachedModel.use_local_cache = true
 CachedModel.use_memcache = false
 
 # Uncomment this to choose your blog's language
-# Localization.lang = 'fr_FR'
+#Localization.lang = 'fr_FR'
