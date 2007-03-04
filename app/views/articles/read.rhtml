@@ -19,7 +19,7 @@
   <%= link_to("edit", { :controller => "admin/content", :action => "edit", :id => @article },
         :class => "admintools", :style => "display: none", :id => "admin_article") %>
   <h2><%=h @article.title %></h2>
-  <p class="auth">Posted by <%= author_link(@article) %>
+  <p class="auth"><%= _("Posted by")%> <%= author_link(@article) %>
   <%= js_distance_of_time_in_words_to_now @article.published_at.utc %></p>
   <%= html(@article) %>
 </div>
@@ -31,7 +31,7 @@
   <a name="comments"></a><h4 class="blueblk">Comments</h4>
   <% unless @article.comments_closed? -%>
     <p class="postmetadata alt">
-      <small><a href="#respond">Leave a response</a></small>
+      <small><a href="#respond"><%= _("Leave a response")%></a></small>
     </p>
   <% end -%>
   <ol class="comment-list" id="commentList">
@@ -44,9 +44,9 @@
 <% end -%>
 
 <% if @article.allow_pings? -%>
-  <a name="trackbacks"></a><h4 class="blueblk">Trackbacks</h4>
+  <a name="trackbacks"></a><h4 class="blueblk"><%= _("Trackbacks")%></h4>
   <p>
-    Use the following link to trackback from your own site:<br/>
+    <%= _("Use the following link to trackback from your own site")%>:<br/>
     <span class="light-bg"><%= @article.trackback_url %></span>
     </p>
   <%= content_tag(:ol,
@@ -56,9 +56,9 @@
 
 <p class="postmetadata alt">
   <small>
-  <a href="<%= url_for :controller => 'xml', :action=>'feed', :type=>'article', :format => 'rss20', :id => @article %>" title="RSS Feed">RSS feed for this post</a>
+  <a href="<%= url_for :controller => 'xml', :action=>'feed', :type=>'article', :format => 'rss20', :id => @article %>" title="RSS Feed"><%= _("RSS feed for this post")%></a>
 <% if @article.allow_pings? -%>
-  <a href="<%= @article.trackback_url %>" >trackback uri</a>
+  <a href="<%= @article.trackback_url %>" ><%= _("trackback uri")%></a>
 <% end -%>
   </small>
 </p>
@@ -66,5 +66,5 @@
 <% unless @article.comments_closed? -%>
   <%= render :partial => 'comment_box' %>
 <% else -%>
-  <p>Comments are disabled</p>
+  <p><%= _("Comments are disabled")%></p>
 <% end -%>

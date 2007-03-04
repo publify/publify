@@ -9,6 +9,6 @@
 <% end -%>
 </ul>
 <% else -%>
-<p>There are <%= @grouping_class.to_s.underscore.pluralize %>.</p>
+<p><%= _("There are")%> <%= @grouping_class.to_s.underscore.pluralize %>.</p>
 <% end -%>
 </div>

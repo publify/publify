@@ -423,4 +423,40 @@ Localization.define('fr_FR') do |l|
   l.store "Notify via jabber", "Cet utilisateur reçoit des alertes par Jabber"
   l.store "Notify on new articles", "Cet utilisateur est alerté à la publication d'un nouveau billet"
   l.store "Notify on new comments", "Cet utilisateur est alerté à la publication d'un nouveau commentaire"
+  
+  #articles/_comment.rhtml
+  l.store "said", "a dit"
+  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ce commentaire a été envoyé à la modération. Il ne sera affiché qu'une fois approuvé par un modérateur"
+  
+  #articles/_comment_box.rhtml
+  l.store "Your name", "Votre nom "
+  l.store "Your blog", "Votre blog "
+  l.store "Your email", "Votre courriel"
+  l.store "Your message", "Votre commentaire"
+  l.store "Comment Markup Help", "Aide sur le balisage des commentaires"
+  l.store "Preview comment", "Prévisualiser le commentaire"
+  
+  #articles/_trackback.rhtml
+  l.store "From", "De"
+  
+  #articles/archives.rhtml
+  l.store "No articles found", "Aucun article ne correspond à la recherche"
+  
+  #articles/comment_preview.rhtml
+  l.store "is about to say", "va dire"
+  
+  #articles/groupings.rhtml
+  l.store "There are", "Il y a"
+  
+  #articles/index.rhtml
+  l.store "Read more", "Lire la suite"
+  l.store "Older posts", "Articles précédents"
+  
+  #articles/read.rhtml
+  l.store "Leave a response", "Commenter"
+  l.store "Use the following link to trackback from your own site", "Utilisez le lien suivant afin d'envoyer un rétrolien depuis votre site"
+  l.store "RSS feed for this post", "Flux RSS de ce billet"
+  l.store "trackback uri", "URL de rétrolien"
+  l.store "Comments are disabled", "Les commentaires sont désactivés"
+  
 end
