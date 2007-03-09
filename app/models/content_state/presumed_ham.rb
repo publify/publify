@@ -28,5 +28,11 @@ module ContentState
     def to_s
       'Ham?'
     end
+    
+    def send_notifications(content, controller) 
+      content.interested_users.each do |user| 
+        content.send_notification_to_user(controller, user) 
+      end
+    end   
   end
 end

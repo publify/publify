@@ -1,4 +1,4 @@
-require 'jabber4r/jabber4r'
+require 'xmpp4r/client'
 
 class JabberNotify
   @@jabber = nil
@@ -12,13 +12,11 @@ class JabberNotify
 
     begin
       STDERR.puts "** Sending #{body} to #{user.jabber} via jabber."
-      message = session.new_message(user.jabber)
+      message = Jabber::Message::new(user.jabber, body)
       message.subject = subject
-      message.body = body
-      message.xhtml = html
-      message.send
+      session.send(message)
     rescue => err
-      logger.error "Attempt to use jabber failed: #{err.inspect}" if logger
+      logger.error "Attempt to use jabber failed: #{err.inspect}" if defined? logger 
     end
   end
 
@@ -31,6 +29,9 @@ class JabberNotify
       address = address + '/typo'
     end
 
-    @@jabber ||= Jabber::Session.bind(address, Blog.default.jabber_password)
+    @@jabber = Jabber::Client.new(Jabber::JID.new(address), true) 
+    @@jabber.connect 
+    @@jabber.auth(Blog.default.jabber_password) 
+    return @@jabber    
   end
 end
