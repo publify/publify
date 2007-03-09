@@ -132,7 +132,8 @@ Localization.define('fr_FR') do |l|
   l.store "Status", "État"
   l.store "Offline", "Hors ligne"
   l.store "Online", "En ligne"
-  
+  l.store "no trackbacks", "aucun rétrolien"
+  l.store "no comments", "aucun commentaire"
   #admin/content/_attachment.rhtml
   l.store "Remove", "Supprimer"
   l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
@@ -246,6 +247,7 @@ Localization.define('fr_FR') do |l|
   l.store "Source Email", "Adresse courriel source"
   l.store "Email address used by Typo to send notifications", "Adresse courriel utilisée par Typo pour l'envoi d'alertes"
   l.store "Jabber account", "Compte Jabber"
+  l.store "Jabber account to use when sending Jabber notifications", "Compte jabber à utiliser pour l'envoi d'alertes"
   l.store "Jabber password", "Mot de passe Jabber"
   l.store "Spam protection", "Protection contre le spam"
   l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La protection contre le spam permettra à typo de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
@@ -263,6 +265,7 @@ Localization.define('fr_FR') do |l|
   l.store "Empty Fragment Cache", "Vider le cache"
   l.store "Rebuild cached HTML", "Reconstruire le HTML en cache"
   l.store "There are %d entries in the cache", ["Une seule page en cache", "%d pages sont actuellement stockées en cache"]
+  l.store "days", "jours"
   
   #admin/general/update_database
   l.store "Database migration", "Mise à jour de la base de données"
@@ -327,6 +330,7 @@ Localization.define('fr_FR') do |l|
   #admin/resources/new.rhtml
   l.store "Upload a File to your Site", "Envoyer un fichier sur votre site"
   l.store "Upload", "Envoyer"
+  l.store "Upload a new Resource", "Ajouter une pièce jointe"
   
   #admin/sidebar/_avaliables.rhtml
   l.store "You have no plugins installed", "Aucun greffon n'est disponible"

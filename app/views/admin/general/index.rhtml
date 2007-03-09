@@ -108,7 +108,7 @@
 		      	<textarea name="setting[ping_urls]" id="ping_urls" rows="5" cols="50"><%=h this_blog.ping_urls %></textarea>
 			</li>
 		</ul>
-		<p class="r"><%= save("Save Settings") %></p>
+		<p class="r"><%= save(_("Save Settings")) %></p>
 	</fieldset>
 
 	<fieldset id="discuss" class="set">
@@ -158,7 +158,7 @@
 			</li>
 			<li>
 				<label for="sp_article_auto_close" class="float"><%= _("Disable comments after")%></label>
-				<input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= this_blog.sp_article_auto_close %>" /> days
+				<input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= this_blog.sp_article_auto_close %>" /> <%= _("days") %>
 				<span class="float"><%= _("Set to 0 to never disable comments")%></span>
 			</li>
 			<li>
@@ -184,7 +184,7 @@
 			<li>
 				<label for="jabber_address" class="float"><%=_("Jabber account")%>:</label>
 				<input name="setting[jabber_address]" size="20" id="jabber_address" type="text" value="<%= this_blog.jabber_address %>" />
-				<span class="float">Jabber account to use when sending Jabber notifications.</span>
+				<span class="float"><%= _("Jabber account to use when sending Jabber notifications") %>.</span>
 			</li>
 			<li>
 				<label class="float" for="jabber_password"><%= _("Jabber password")%>:</label>
