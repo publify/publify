@@ -57,3 +57,27 @@ text_filter(extended). They've moved out of the database and into the fragment
 cache. As a practical measure users shouldn't see a difference, however the
 body_html and extended_html methods have been deprecated; use html(:body) or
 html(:extended).
+
+
+Admin revamping
+---------------
+
+The admin has been rebuilt to become more functionnal. The previous 
+organization was based on the MVC model, this one on ergonomics. 
+There is still a lot of work to be done, like having a lovely Aqua 2.0 like 
+CSS to look cleaner.
+
+
+Internationalization and localization
+-------------------------------------
+
+Typo now supports foreign languages. The Localization plugin has been used, 
+and the application now supports French.
+More translators are needed to support as much languages as possible.
+
+
+Comments auto moderation
+------------------------
+
+Comments and trackbacks can now be directly sent to moderation before being 
+published. An option is avaliable in the settings.
