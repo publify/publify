@@ -159,4 +159,4 @@ CachedModel.use_local_cache = true
 CachedModel.use_memcache = false
 
 # Uncomment this to choose your blog's language
-#Localization.lang = 'fr_FR'
+# Localization.lang = 'fr_FR'

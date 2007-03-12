@@ -2,9 +2,9 @@ Localization.define('fr_FR') do |l|
   l.store "your blog", "votre blog"
   l.store "Typo admin", "administration typo"
   l.store "Publish", "Écrire"
-  l.store "Manage", "Gérer le contenu"
+  l.store "Manage", "Gérer"
   l.store "Discuss", "Discussion"
-  l.store "Design", "Apparence"
+  l.store "Design", "Personnaliser"
   l.store "Users", ["Utilisateur", "Utilisateurs"]
   l.store "Settings", "Configuration"
   l.store "Things you can do", "Vous pouvez"
@@ -134,6 +134,7 @@ Localization.define('fr_FR') do |l|
   l.store "Online", "En ligne"
   l.store "no trackbacks", "aucun rétrolien"
   l.store "no comments", "aucun commentaire"
+  
   #admin/content/_attachment.rhtml
   l.store "Remove", "Supprimer"
   l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
@@ -153,6 +154,7 @@ Localization.define('fr_FR') do |l|
   l.store "Published", "Publié"
   l.store "Publish at", "Publié le"
   l.store "Textfilter", "Formatage du texte"
+  l.store "Toggle Extended Content", "Afficher le contenu étendu"
   
   #admin/content/_pages.rhtml
   l.store "Previous page", "Page précédente"
@@ -178,7 +180,7 @@ Localization.define('fr_FR') do |l|
   #admin/content/new.rhtml
   l.store "Write a Page", "Écrire une page statique"
   l.store "Write an Article", "Écrire un billet"
-  
+
   #admin/content/preview.rhtml
   l.store "Posted by", "Publié par"
   
@@ -466,4 +468,26 @@ Localization.define('fr_FR') do |l|
   l.store "Comments are disabled", "Les commentaires sont désactivés"
  
   l.store "Pictures from", "Images de"
+  
+  #vendor/plugins/aimpresence_sidebar/aimpresence_sidebar.rb
+  l.store "AIM Presence", "Statut AIM"
+
+  #vendor/plugins/aimpresence_sidebar/views/content.rb
+  l.store "AIM Status", "Statut AIM"
+  
+  #vendor/plugins/xml_sidebar/xml_sidebar.rb
+  l.store "XML Syndication", "Syndication XML"
+
+  #vendor/plugins/xml_sidebar/xml_sidebar.rb
+  l.store "Syndicate", "Suivre ce blog"
+  
+  #vendor/plugins/archives_sidebar/views/content.rb
+  l.store "Archives", "Archives"
+  
+  #vendor/plugins/tags_sidebar/views/content.rb
+  l.store "Tags", "Tags"
+  
+  #app/helpers/admin/base_helper.rb
+  l.store "Back to overview", "Revenir à la liste"
+  l.store "log out", "déconnexion"
 end

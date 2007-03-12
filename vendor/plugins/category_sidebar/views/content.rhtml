@@ -1,5 +1,5 @@
 <% unless sidebar.categories.blank? -%>
-<h3>Categories</h3>
+<h3><%= _("Categories")%></h3>
 <ul id="categories">
 <% for category in sidebar.categories -%>
   <% unless empty.blank? and category.article_counter == 0 %>

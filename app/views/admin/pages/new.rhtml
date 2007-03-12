@@ -1,5 +1,6 @@
 <% content_for('tasks') do %>
 	<%= tab _("Write an Article"), :controller=>"content", :action=>"new" %>
+	<li><%= task_overview %></li>
 <% end %> 
 
   <% @page_heading = _('Write a Page') %>

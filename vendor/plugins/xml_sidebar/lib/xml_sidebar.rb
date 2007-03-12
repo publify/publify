@@ -1,5 +1,5 @@
 class XmlSidebar < Sidebar
-  display_name "XML Syndication"
+  display_name _("XML Syndication")
   description "RSS and Atom feeds"
 
   setting :articles,   true,  :input_type => :checkbox

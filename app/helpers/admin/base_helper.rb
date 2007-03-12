@@ -29,7 +29,7 @@ module Admin::BaseHelper
     unless session[:user]
       link_to "log in", :controller => "/accounts", :action=>"login"
     else
-      link_to "log out", :controller => "/accounts", :action=>"logout"
+      link_to _("log out"), :controller => "/accounts", :action=>"logout"
     end
   end
 
@@ -42,7 +42,7 @@ module Admin::BaseHelper
   end
 
   def cancel(url = {:action => 'list'})
-    link_to "Cancel", url
+    link_to _("Cancel"), url
   end
 
   def save(val = "Store")
@@ -88,7 +88,7 @@ module Admin::BaseHelper
   end
 
   def task_overview
-    task('Back to overview', 'list')
+    task(_('Back to overview'), 'list')
   end
 
   def task_new(title)
