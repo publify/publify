@@ -115,7 +115,9 @@ class ArticlesController < ContentController
   # Receive trackbacks linked to articles
   def trackback
     @error_message = catch(:error) do
-      if params[:__mode] == "rss"
+      if blog.global_pings_disable
+        throw :error, "Trackback not saved"
+      elsif params[:__mode] == "rss"
         # Part of the trackback spec... will implement later
         # XXX. Should this throw an error?
       elsif !(params.has_key?(:url) && params.has_key?(:id))

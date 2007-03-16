@@ -109,7 +109,11 @@ class Blog < CachedModel
     settings[:blog_id] = self.id
     article_id = settings[:id]
     settings.delete(:id)
-    trackback = published_articles.find(article_id).trackbacks.create!(settings)
+    article = published_articles.find(article_id)
+    unless article.allow_pings?
+      throw :error, "Trackback not saved"
+    end
+    article.trackbacks.create!(settings)
   end
 
   # Check that all required blog settings have a value.
