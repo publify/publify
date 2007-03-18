@@ -89,33 +89,28 @@ class ArticlesController < ContentController
     end
 
     if request.post?
-      begin
-        @article = this_blog.published_articles.find(params[:id])
-        params[:comment].merge!({:ip => request.remote_ip,
-                                :published => true,
-                                :user => session[:user],
-                                :user_agent => request.env['HTTP_USER_AGENT'],
-                                :referrer => request.env['HTTP_REFERER'],
-                                :permalink => @article.permalink_url})
-        @comment = @article.comments.build(params[:comment])
-        @comment.author ||= 'Anonymous'
-        @comment.save!
-        add_to_cookies(:author, @comment.author)
-        add_to_cookies(:url, @comment.url)
+      @article = this_blog.published_articles.find(params[:id])
+      params[:comment].merge!({:ip => request.remote_ip,
+                               :published => true,
+                               :user => session[:user],
+                               :user_agent => request.env['HTTP_USER_AGENT'],
+                               :referrer => request.env['HTTP_REFERER'],
+                               :permalink => @article.permalink_url})
+      @comment = @article.comments.build(params[:comment])
+      @comment.author ||= 'Anonymous'
+      @comment.save
+      add_to_cookies(:author, @comment.author)
+      add_to_cookies(:url, @comment.url)
 
-        set_headers
-        render :partial => "comment", :object => @comment
-      rescue ActiveRecord::RecordInvalid
-        STDERR.puts @comment.errors.inspect
-        render_error(@comment)
-      end
+      set_headers
+      render :partial => "comment", :object => @comment
     end
   end
 
   # Receive trackbacks linked to articles
   def trackback
     @error_message = catch(:error) do
-      if blog.global_pings_disable
+      if this_blog.global_pings_disable
         throw :error, "Trackback not saved"
       elsif params[:__mode] == "rss"
         # Part of the trackback spec... will implement later

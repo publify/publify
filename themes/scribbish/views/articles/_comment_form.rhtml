@@ -1,7 +1,9 @@
 <%= form_remote_tag :url      => {:action => 'comment', :id => @article},
-                    :update   => 'comments_div',
-                    :loading  => 'commentLoading()',
-                    :complete => 'commentComplete()',
+                    :position => :bottom,
+                    :update   => {:success => 'commentList'},
+                    :loading  => "loading()",
+                    :complete => "complete(request)",
+                    :failure  => "failure(request)",
                     :html     => {:id => 'commentform', :class => 'comments' } %>
 
 <div id="preview" style="display:none"></div>
@@ -43,8 +45,8 @@
                          :update => 'preview',
                          :complete => "Element.show('preview')",
                          :url    => { :action => 'comment_preview' }) %>
-    <%= submit_tag 'Submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
-    <%= image_tag '/images/theme/spinner.gif', :id => 'spinner', :style => 'display:none' %>
+    <%= submit_tag 'Submit', :id => 'form-submit-button',  :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
+    <%= image_tag '/images/theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
   </p>
 </fieldset>
 <%= end_form_tag %>
