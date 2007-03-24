@@ -83,6 +83,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'plugins/filters/:filter/:public_action',
     :controller => 'textfilter', :action => 'public_action'
 
+  # Stats plugin
+  map.connect '/stats/:action', :controller => 'sitealizer'
+
   # Work around the Bad URI bug
   %w{ accounts articles backend files live sidebar textfilter xml }.each do |i|
     map.connect "#{i}", :controller => "#{i}", :action => 'index'

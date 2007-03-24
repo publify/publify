@@ -1,0 +1,20 @@
+<div style="margin-top:20px">
+<table width=300 align=center cellpadding=0  id='menu_border'>
+<tr align=center>
+<td>
+	<div id='sub_title' style="color:#004EC1">Sitealizer Login</div>
+	
+	<%="<p>#{flash[:notice]}</p>" if flash[:notice]%>
+	
+	<form action='/sitealizer/login' method='post'>
+		<p style="color:#004EC1; font-weight:bold">
+			Username: <%= text_field_tag :username%>
+		</p>
+		<p style="color:#004EC1; font-weight:bold">
+			Password: <%= password_field_tag :password%>
+		</p>
+		<%=submit_tag 'Login'%>
+	</form>
+</td>
+</tr>
+</table>

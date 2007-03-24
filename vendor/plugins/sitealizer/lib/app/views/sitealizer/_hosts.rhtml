@@ -1,0 +1,21 @@
+<% max_total = @hosts.inject(0) {|m,a| a['total'].to_i > m ? a['total'].to_i : m }%>
+<br><br>
+
+<table align=center width=90% border=1 cellpadding=3>
+<tr nowrap>
+<th width=1>#</th>	
+<th width=10>Hits</th>
+<th>Hostname</th>      
+<th width=10>Percentage</th>
+<th width=200></th>
+</tr>
+<% i=1; @hosts.each do |host|width=((host.total.to_f/max_total)*200).round; width = 1 if width < 1 %>
+<tr nowrap>
+<td><%= i %></td>
+<td align=center><%= host.total %></td>
+<td align=left><%= link_to host.ip, "http://cqcounter.com/whois/?query=#{host.ip}", :target=>'_blank' %></td>    
+<td align=center><%= sprintf("%000.2f",(host.total.to_f/@total_hits)*100) %>%</td>
+<td align=left><%=image_tag 'sitealizer/bar.gif', :width => width, :height => 3%></td>
+</tr>
+<% i+=1; end %>
+</table>

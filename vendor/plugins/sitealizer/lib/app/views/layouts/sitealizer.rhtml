@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="description" content="Sitealizer Web Stats">
+  <title>Sitealizer Web Stats for <%=request.host%></title>
+
+<style type="text/css">
+<!--
+  body {font: 12px helvetica, verdana, arial, sans-serif; background-color: #FFFFFF; margin-top: 0; margin-bottom: 0;}
+  #border{border: 2px #004EC1 solid; padding: 10px;}
+  #title{
+  	font-family: Georgia;
+  	font-size:150%; 
+  	font-weight: bold; 
+  	background-color: #e4effc; 
+  	padding:5px;
+  	color: #000;
+  	border:1px #004EC1 solid; 
+  }
+  #sub_title{
+  	font-family: Georgia;
+  	font-size:130%; 
+  	font-weight: bold; 
+  	padding:5px;
+  	color: #000;
+  	border-bottom:1px #000 solid; 
+  }
+  th { 
+  	border-color: #ECECEC; 
+  	border-left-width: 0px; 
+  	border-right-width: 1px; 
+  	border-top-width: 0px; 
+  	border-bottom-width: 1px; 
+  	padding: 3px; 
+  	font-family: Georgia;
+  	font-weight: bold;
+  	font-size:90%; 
+  	color: #000; 
+  	background-color:#ededdc;
+  }
+  td { 
+  	border-color: #ECECEC; 
+  	border-left-width: 0px; 
+  	border-right-width: 1px; 
+  	border-top-width: 0px; 
+  	border-bottom-width: 1px; 
+  	font: 11px verdana, arial, helvetica, sans-serif; 
+  	color: #000000; 
+  }
+  b { font-weight: bold; }
+  a { font: 11px verdana, arial, helvetica, sans-serif; }
+  a:link    { color: #0011BB; text-decoration: none; }
+  a:visited { color: #0011BB; text-decoration: none; }
+  a:hover   { color: #605040; text-decoration: underline; }
+  #menu { padding:5px; font-size:100%; display:block;	background-color:#ededdc;}
+  #menu_border{border: 1px #004EC1 solid; padding: 5px;}
+//-->
+</style>
+</head>
+  <%=yield%>
+  <p align=center style="color:#999; font-size:10px">
+	Created with <%=link_to 'Sitealizer', 'http://sitealizer.rubyforge.org', :target => '_blank'%>
+  </p>
+</html>

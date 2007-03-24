@@ -2,15 +2,15 @@
 <!--[form:comment]-->
 <p>
   <label for="comment_author"><%= _("Author")%>:</label><br/>
-  <%= text_field 'comment', 'author'  %>
+  <%= text_field 'comment', 'author', "value" => session[:user][:name]  %>
 </p>
 <p>
   <label for="comment_url"><%= _("Url") %>:</label><br/>
-  <%= text_field 'comment', 'url'  %>
+  <%= text_field 'comment', 'url', "value" => this_blog.base_url  %>
 </p>
 <p>
   <label for="comment_email"><%= _("Email")%>:</label><br/>
-  <%= text_field 'comment', 'email'  %>
+  <%= text_field 'comment', 'email', "value" => session[:user][:email] %>
 </p>
 <p>
   <label for="comment_body"><%= _("Body")%>:</label><br/>

@@ -1,0 +1,21 @@
+<% max_total = @languages.inject(0) {|m,a| a['total'].to_i > m ? a['total'].to_i : m }%>
+<br><br>
+
+<table align=center width=90% border=1 cellpadding=3>
+<tr nowrap>
+<th width=1>#</th>	
+<th width=10>Hits</th>
+<th>Language</th>      
+<th width=10>Percentage</th>
+<th width=200></th>
+</tr>
+<% i=1; @languages.each do |lang|width=((lang.total.to_f/max_total)*200).round; width = 1 if width < 1 %>
+<tr nowrap>
+<td align=center><%= i %></td>
+<td align=center><%= lang.total %></td>
+<td align=left><%= lang.language.nil? ? 'Unknown' : Sitealizer::Parser::Language.get_name(lang.language.downcase) %></td>    
+<td align=center><%= sprintf("%000.2f",(lang.total.to_f/@total_hits)*100) %>%</td>
+<td align=left><%=image_tag 'sitealizer/bar.gif', :width => width, :height => 3%></td>
+</tr>
+<% i+=1; end %>
+</table>

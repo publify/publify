@@ -228,9 +228,13 @@ h3 {
 
 /* @group Table Listings */
 
-.operation {
+td.operation {
   width: 25px;
   text-align: center;
+}
+
+th.operation {
+	text-align: center;
 }
 
 .list {

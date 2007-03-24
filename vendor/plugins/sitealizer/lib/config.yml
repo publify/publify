@@ -1,0 +1,18 @@
+# Sitealizer config
+#
+# This is the only configuration you need to change if you don't want to 
+# leave it with the default config values.
+# 
+# Access types:
+# - private: You have to enter the username and password below in order to view the stats
+# - public: Anyone can view your site's stats
+# 
+# Queue size:
+# - The number of visitors in the queue before saving the stats to the DB.
+#   Minimum size shouldn't be under 5
+# 
+sitealizer:
+  access_type: private
+  username: admin
+  password: admin
+  queue_size: 15

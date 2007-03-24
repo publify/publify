@@ -13,16 +13,18 @@
       <th><%= _("Body")%></th>
       <th><%= _("IP")%></th>
       <th><%= _("Posted date")%></th>
-      <th><%= _("Edit")%></th>
-      <th><%= _("Delete")%></th>
+	  <th><%= _("Status")%></th>
+	  <th colspan="3"><%= _("Action") %></th>
     </tr>
     <% for comment in @comments -%>
     <tr>
-      <td class="field"><%= image_tag 'checked.gif' %> <%=link_to_unless comment.url.blank?, h(comment.author), comment.url %></td>
+      <td class="field"> <%=link_to_unless comment.url.blank?, h(comment.author), comment.url %></td>
       <td class="field"><%=h comment.email %></td>
-      <td class="field"><%=link_to truncate((comment.body).strip_html), :action => 'show', :id => comment.id %> <%= link_to_permalink comment,image_tag('go.png') %></td>
+      <td class="field"><%= link_to_permalink comment, truncate((comment.body).strip_html) %></td>
       <td class="field"><%=h comment.ip %></td>
-      <td class="field"><%=h distance_of_time_in_words_to_now(comment.created_at) %></td>
+      <td class="field"><%=comment.created_at.strftime("%d/%m/%Y at %H:%M") %></td>
+	  <td class="operation"><%= image_tag 'checked.png' %></td>
+	  <td class="operation"><%= link_to_show comment %></td>
       <td class="operation"><%= link_to_edit comment %></td>
       <td class="operation"><%= link_to_destroy comment %></td>    
     </tr>  

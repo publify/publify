@@ -2,13 +2,18 @@
   <tr>
     <th><%= _("Category title")%></th>
     <th><%= _("Articles")%></th>
-    <th><%= _("Delete")%></th>
+	<th><%= _("Status")%></th>
+    <th colspan="3" class="operation"><%= _("Action")%></th>
   </tr>
   <% for category in @categories -%>
   <tr <%= alternate_class -%> id="category_<%= category.id -%>">
-    <td><%= image_tag 'checked.gif' %> <%= link_to category.name, :action => 'show', :id => category.id %></td>
-    <td><%= link_to pluralize(category.articles.size, 'article'), :action => 'show', :id => category.id %></td>
-    <td class="operation"><%= link_to_destroy category %></td>    
+    <td><%= category.name %></td>
+    <td><%= pluralize(category.articles.size, 'article') %></td>
+	<td class="operation"><%= image_tag 'checked.png' %></td>
+	<td class="operation"><%= link_to_show category %></td>
+    <td class="operation"><%= link_to_edit category %></td>
+	<td class="operation"><%= link_to_destroy category %></td>
+	</td>  
   </tr>  
   <% end -%>
 </table>

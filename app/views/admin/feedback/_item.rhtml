@@ -12,6 +12,8 @@
   </td>
   <td class="field"><%=h truncate(item.body,80)%></td>
   <td class="field"><%=h item.ip %></td>
-  <td class="field"><%=h distance_of_time_in_words_to_now(item.created_at) %> ago</td>
+  <td class="field"><%=item.created_at.strftime("%d/%m/%Y at %H:%M")%></td>
+  <td class="operation"><%= link_to image_tag('show.png', :alt => "show", :title => "Show content"), :controller => 'comments', :article_id => item.article_id, :action => 'show', :id => item.id %></td>
+  <td class="operation"><%= link_to image_tag('edit.png', :alt => "edit", :title => "Edit content"), :controller => 'comments', :article_id => item.article_id, :action => 'edit', :id => item.id %></td>
   <td class="operation"><%= link_to image_tag('delete.png'), {:action => 'delete', :id => item.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
 </tr>

@@ -1,0 +1,19 @@
+<% max_total = @robots.inject(0) {|m,a| a[:total].to_i > m ? a[:total].to_i : m }%>
+<br><br>
+
+<table align=center width=90% border=1 cellpadding=3>
+<tr nowrap>
+<th width=1>#</th>	
+<th width=10>Hits</th>      
+<th>Robot/Crawler</th>
+<th width=175></th>
+</tr>
+<% i=1; @robots.each do |robot| width=((robot[:total].to_f/max_total)*175).round; width = 1 if width < 1 %>
+<tr nowrap>
+<td><%= i %></td>
+<td align=center><%= robot[:total] %></td>    
+<td align=left><%= robot[:name] %></td>
+<td align=left><%=image_tag 'sitealizer/bar.gif', :width => width, :height => 3%></td>
+</tr>
+<% i+=1; end %>
+</table>

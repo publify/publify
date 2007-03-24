@@ -1,0 +1,74 @@
+<div style="margin-top:12px">
+<table width=95% align=center cellpadding=0  id='menu_border'>
+<tr valign=top height=50><td><div id='menu_border'>Statistics for:<br><b><%=request.host%></b></div></td></tr>
+<tr>
+<td>
+	<form action='/stats' target='_top'>
+	Period: <%=select_tag :month, @months%> <%=select_tag :year, @years%>
+	<%=submit_tag 'OK'%>
+	</form>
+</td>
+</tr>
+<tr>
+<td>
+<span id='menu'>
+<%if params[:year] && params[:month]%>
+	<%= link_to "[Summary]", 
+				"/stats/summary?month=#{params[:month]}&year=#{params[:year]}", 
+				:target => 'main'%>
+<%else%>
+	<%= link_to "[Summary]", "/stats/summary", :target => 'main'%>
+<%end%>
+</span><br>
+
+<span id='menu'>
+<%if params[:year] && params[:month]%>
+	<%= link_to "[Hourly Stats]", 
+				"/stats/hourly_stats?month=#{params[:month]}&year=#{params[:year]}", 
+				:target => 'main'%>
+<%else%>	
+	<%= link_to "[Hourly Stats]", "/stats/hourly_stats", :target => 'main'%>
+<%end%>
+</span><br>
+
+<span id='menu'>
+<%if params[:year] && params[:month]%>
+	<%= link_to "[Referrer Stats]", 
+				"/stats/referrer_stats?month=#{params[:month]}&year=#{params[:year]}", 
+				:target => 'main'%>
+<%else%>
+	<%= link_to "[Referrer Stats]", "/stats/referrer_stats", :target => 'main'%>
+<%end%>
+</span><br>
+
+<span id='menu'>
+<%if params[:year] && params[:month]%>
+	<%= link_to "[Search Stats]", 
+				"/stats/search_stats?month=#{params[:month]}&year=#{params[:year]}", 
+				:target => 'main'%>
+<%else%>
+	<%= link_to "[Search Stats]", "/stats/search_stats", :target => 'main'%>
+<%end%>
+</span><br>
+
+<span id='menu'>
+<%if params[:year] && params[:month]%>	
+	<%= link_to "[Visitor Info]", 
+				"/stats/visitor_info?month=#{params[:month]}&year=#{params[:year]}", 
+				:target => 'main'%>
+<%else%>
+	<%= link_to "[Visitor Info]", "/stats/visitor_info", :target => 'main'%>
+<%end%>
+</span>
+
+<%if @cookie%>
+<br>
+<span id='menu'>
+	<%= link_to "[Logout]", "/stats/logout", :target => '_top'%>
+</span>
+<%end%>
+
+</td>
+</tr>
+</table>
+</div>

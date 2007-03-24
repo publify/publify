@@ -1,0 +1,67 @@
+<br>
+<% 
+unique_max_total = @daily_hits.inject(0) {|m,a| a[1].to_i > m ? a[1].to_i : m }
+hits_max_total = @daily_hits.inject(0) {|m,a| a[2].to_i > m ? a[2].to_i : m }
+%>
+<table cellpadding=0 cellspacing=0 align=center width=98%>
+<tr valign=bottom>
+<td valign=top align=left width=60 nowrap>
+	<img align="bottom" src="/images/sitealizer/uv.png" height="10" width="4"/> Unique<br>
+	<img align="bottom" src="/images/sitealizer/vh.png" height="10" width="4"/> Hits
+</td>
+<% 
+@daily_hits.each do |daily_hits| 
+unique_height = 0
+hits_height   = 0
+if unique_max_total > 0
+	unique_height = ((daily_hits[1].to_f/unique_max_total)*100).round
+	unique_height = 1 if unique_height < 1	
+end	
+if hits_max_total > 0
+	hits_height   = ((daily_hits[2].to_f/hits_max_total)*100).round
+	hits_height   = 1 if hits_height < 1	
+end
+%>
+<td>
+	<table>
+	<tr valign=bottom nowrap>
+	<td nowrap>
+	<img align="bottom" src="/images/sitealizer/uv.png" height="<%=unique_height%>" width="4"/>
+	<img align="bottom" src="/images/sitealizer/vh.png" height="<%=hits_height%>" width="4"/>
+	</td>
+	</tr>
+	<tr valign=bottom nowrap>
+	<td>
+		<%=daily_hits[0]%>
+	</td>
+	</tr>
+	</table>
+</td>
+<%end%>
+</tr>
+</table>
+
+<br><br>
+
+<table align=center width=70% border=1 cellpadding=3>
+<tr align=center nowrap>
+<th align=center>Day</th>
+<th align=center>Hits</th>
+<th align=center>Percentage</th>
+<th align=center>Unique Visits</th>
+</tr>
+<%i=1; @daily_hits.each do |daily_hits| %>
+<tr nowrap>
+<td align=center><%= daily_hits[3] %></td>
+<td align=center><%= daily_hits[2] %></td>
+<td align=center><%= sprintf("%000.2f",(daily_hits[2].to_f/@total_hits)*100) %>%</td>
+<td align=center><%= daily_hits[1] %></td>
+</tr>
+<% i+=1; end %>
+<tr align=center nowrap bgcolor="#DDDDDD">
+<td align=left><b>Totals:</td>
+<td align=center><b><%=@total_hits%></b></td>
+<td></td>	
+<td align=center><b><%=@unique_hits%></b></td>
+</tr>
+</table>

@@ -1,0 +1,8 @@
+<frameset cols="250,*">
+<frame name="left" src="/stats/menu<%="?month=#{params[:month]}&year=#{params[:year]}" if params[:month] && params[:year]%>" noresize="noresize" frameborder="0" />
+<frame name="main" src="/stats/summary<%="?month=#{params[:month]}&year=#{params[:year]}" if params[:month] && params[:year]%>" noresize="noresize" scrolling="auto" frameborder="0" />
+<noframes>
+<body>Your browser does not support frames.<br><br>
+</body>
+</noframes>
+</frameset>

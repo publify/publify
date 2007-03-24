@@ -1,0 +1,84 @@
+<h1>Welcome</h1>
+<a href='/sitealizer/logout' target='_top'>logout</a>
+
+<br><br>
+
+<%
+uv_max_m = @monthly_history[:dataset].inject(0) {|m,a| a[1] > m ? a[1] : m }
+hi_max_m = @monthly_history[:dataset].inject(0) {|m,a| a[2] > m ? a[2] : m }
+%>
+<h3>Monthly History</h3>
+<table>
+<tr>
+<%@monthly_history[:dataset].each do |data| uv_height_m=((data[1].to_f/uv_max_m)*100).round; hi_height_m=((data[2].to_f/hi_max_m)*100).round%>
+<td>
+	<table>
+	<tr>
+	<td>
+	<img align="bottom" src="/images/sitealizer/uv.png" height="<%=uv_height_m%>" width="6"/>
+	<img align="bottom" src="/images/sitealizer/vh.png" height="<%=hi_height_m%>" width="6"/>
+	</td>
+	</tr>
+	<tr>
+	<td>
+		<%=data[0]%>
+	</td>
+	</tr>
+	</table>
+</td>
+<%end%>
+</tr>
+</table>
+<table width=500>
+<tr valign=middle height=25>
+	<td align=center><b>Month</b></td>
+	<td align=center><b>Unique Visitors</b></td>
+	<td align=center><b>Visits</b></td>
+	<td align=center><b>Pages</b></td>
+	<td align=center><b>Hits</b></td>
+</tr>
+<%=@monthly_history[:html]%>
+</table>
+
+
+<br><br>
+
+<%=uv_max_d = @daily_history[:dataset].inject(0) {|m,a| a[1] > m ? a[1] : m }%>
+<%=hi_max_d = @daily_history[:dataset].inject(0) {|m,a| a[2] > m ? a[2] : m }%>
+<h3>Daily History</h3>
+<table cellpadding=2 cellspacing=1>
+<tr valign=bottom>
+<%@daily_history[:dataset].each do |data|%>
+<%uv_height_d=((data[1].to_f/uv_max_d)*100).round%>
+<%hi_height_d=((data[2].to_f/hi_max_d)*100).round%>
+
+<td nowrap>
+	<table cellpadding=0 cellspacing=0 width=100%>
+	<tr valign=bottom>
+	<td nowrap>
+	<img align="bottom" src="/images/sitealizer/uv.png" height="<%=uv_height_d > 0 ? uv_height_d : 1%>" width="2"/>
+	<img align="bottom" src="/images/sitealizer/vh.png" height="<%=hi_height_d > 0 ? hi_height_d : 1%>" width="2"/>
+	</td>
+	</tr>
+	<tr valign=bottom>
+	<td>
+		<%=data[0]%>
+	</td>
+	</tr>
+	</table>
+</td>
+<%end%>
+</tr>
+</table>
+<table width=500>
+<tr valign=middle height=25>
+	<td align=center><b>Month</b></td>
+	<td align=center><b>Unique Visitors</b></td>
+	<td align=center><b>Visits</b></td>
+	<td align=center><b>Pages</b></td>
+	<td align=center><b>Hits</b></td>
+</tr>
+<%=@daily_history[:html]%>
+</table>
+
+<%=render :partial => 'test'%>

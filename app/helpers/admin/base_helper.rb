@@ -54,7 +54,7 @@ module Admin::BaseHelper
   end
 
   def link_to_show(record)
-    link_to image_tag('go.png'), :action => 'show', :id => record.id
+    link_to image_tag('show.png'), :action => 'show', :id => record.id
   end
 
   def link_to_edit(record)
