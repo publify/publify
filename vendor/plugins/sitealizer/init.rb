@@ -22,15 +22,3 @@
 # SOFTWARE.
 
 require 'sitealizer'
-
-unless SiteTracker.table_exists?
-  ActiveRecord::Schema.create_table(SiteTracker.table_name) do |t|
-    t.column :path,           :string
-    t.column :ip,             :string
-    t.column :referer,        :string
-    t.column :language,       :string
-    t.column :user_agent,     :string
-    t.column :created_at,     :datetime
-    t.column :created_on,     :date
-  end
-end
