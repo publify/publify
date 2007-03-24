@@ -34,8 +34,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'preview'
     extract_data_uri
-    assert_tag :tag => 'h4', :content => 'A title'
-    assert_no_tag :tag => 'p'
+    assert_tag :tag => 'h2', :content => 'A title'
     assert_no_new_articles
   end
 
@@ -46,7 +45,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
 
     assert_tag :tag => 'p',
       :child => 'A body',
-      :after => { :tag => 'h4', :content => "" }
+      :after => { :tag => 'h2', :content => "" }
 
     assert_no_new_articles
   end
@@ -58,7 +57,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
 
     assert_tag :tag => 'p',
       :child => 'An extension',
-      :after => { :tag => 'h4', :content => "" }
+      :after => { :tag => 'h2', :content => "" }
 
     assert_no_new_articles
   end
@@ -74,7 +73,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
       :tag => 'p',
       :child => 'An extension',
       :after => {:tag => 'p', :child => 'A body',
-        :after => { :tag => 'h4', :content => "A title" }}
+        :after => { :tag => 'h2', :content => "A title" }}
 
     assert_no_new_articles
   end
