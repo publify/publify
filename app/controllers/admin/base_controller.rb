@@ -1,7 +1,7 @@
 class Admin::BaseController < ApplicationController
   cattr_accessor :look_for_migrations
   @@look_for_migrations = true
-
+  uses_tiny_mce  (:only => [:new, :edit])
   layout 'administration'
   before_filter :login_required, :except => [ :login, :signup ]
   before_filter :look_for_needed_db_updates, :except => [:login, :signup, :update_database, :migrate]
