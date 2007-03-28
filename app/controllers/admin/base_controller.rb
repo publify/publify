@@ -1,7 +1,7 @@
 class Admin::BaseController < ApplicationController
   cattr_accessor :look_for_migrations
   @@look_for_migrations = true
-  uses_tiny_mce  (:only => [:new, :edit]) if Blog.default.editor == 2
+  uses_tiny_mce :only => [:new, :edit] if Blog.default.editor == 2
   
   layout 'administration'
   before_filter :login_required, :except => [ :login, :signup ]

@@ -1,9 +1,9 @@
 <% @page_heading = _("Comments and Trackbacks for") + " #{ this_blog.settings['blog_name'] }" %>
 
 <% content_for('tasks') do %>
-  <%= task_showmod (_('Limit to spam'), "Limit to spam") %>
-  <%= task_showmod (_("Limit to unconfirmed"), "Limit to unconfirmed") %>
-  <%= task_showmod (_("Limit to unconfirmed spam"), "Limit to unconfirmed spam") %>
+  <%= task_showmod(_('Limit to spam'), "Limit to spam") %>
+  <%= task_showmod(_("Limit to unconfirmed"), "Limit to unconfirmed") %>
+  <%= task_showmod(_("Limit to unconfirmed spam"), "Limit to unconfirmed spam") %>
   <%= tab _("Blacklist"), :controller=>"blacklist", :action=>"index"%>
 <% end %>
 
