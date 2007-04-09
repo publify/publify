@@ -3,7 +3,6 @@ class Category < ActiveRecord::Base
   has_many :categorizations
   has_many :articles, :through => :categorizations,
     :order => "published_at DESC, created_at DESC"
-  attr_accessor :article_counter
 
   def self.find_all_with_article_counters(maxcount=nil)
     self.find_by_sql([%{ 
