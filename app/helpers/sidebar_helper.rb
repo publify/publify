@@ -1,6 +1,6 @@
 module SidebarHelper
-  def render_sidebars
-    this_blog.sidebars.inject('') do |acc, sb|
+  def render_sidebars(*sidebars)
+    (sidebars.blank? ? this_blog.sidebars : sidebars).inject('') do |acc, sb|
       @sidebar = sb
       sb.parse_request(contents, params)
       controller.response.lifetime = sb.lifetime if sb.lifetime
