@@ -1,3 +1,5 @@
+require 'tempfile'
+
 class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
   after_destroy :delete_filename_on_disk
