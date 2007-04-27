@@ -36,7 +36,7 @@ unless defined?(Rails::Initializer)
         exit 1
       end
     else
-      require_gem "rails"
+      gem "rails"
       require 'initializer'
     end
   end
