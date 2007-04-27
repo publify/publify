@@ -1,0 +1,27 @@
+What is it?
+===========
+
+This is an audioscrobbler sidebar plugin for typo blogging engine.
+
+Requirements
+============
+
+Currently you need all of those things to get typo to run:
+
+ * Typo 1.4.1 or higer
+ * Rails 1.2.x
+
+Installation
+============
+
+When in Typo root directory, just run
+./script/plugin install http://svn.typosphere.org/typo/plugins/audioscrobbler_sidebar/
+
+Usage
+======
+
+Typo's administrative interface is available at http://your.domain.com/admin. 
+To activate the plugin, drag and drop it in the sidebar and fill the config.
+
+Enjoy,
+Your typo team
