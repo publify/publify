@@ -3,7 +3,7 @@ Localization.define('fr_FR') do |l|
   l.store "Typo admin", "administration typo"
   l.store "Publish", "Écrire"
   l.store "Manage", "Gérer"
-  l.store "Discuss", "Discussion"
+  l.store "Feedback", "Discussion"
   l.store "Design", "Personnaliser"
   l.store "Users", ["Utilisateur", "Utilisateurs"]
   l.store "Settings", "Configuration"
