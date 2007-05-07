@@ -16,11 +16,4 @@ config.action_controller.perform_caching             = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-# Overwrite the default settings for fixtures in tests. See Fixtures
-# for more details about these settings.
-
-#config.transactional_fixtures = true
-#config.instantiated_fixtures = false
-#onfig.pre_loaded_fixtures = false
-
 Migrator.offer_migration_when_available            = false

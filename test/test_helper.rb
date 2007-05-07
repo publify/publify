@@ -7,8 +7,7 @@ $TESTING = true
 User.salt = 'change-me'
 
 class Test::Unit::TestCase
-  # Turn off transactional fixtures if you're working with MyISAM tables in MySQL
-  self.use_transactional_fixtures = true
+  self.use_transactional_fixtures = false
 
   # Instantiated fixtures are slow, but give you @david where you otherwise would need people(:david)
   self.use_instantiated_fixtures  = false
@@ -58,21 +57,6 @@ class Test::Unit::TestCase
   def assert_no_tag_in(source, opts)
     tag = find_tag_in(source, opts)
     assert !tag, "expected no tag, but tag found matching #{opts.inspect} in:\n#{source.inspect}"
-  end
-
-  def get_xpath(xpath)
-    rexml = REXML::Document.new(@response.body)
-    assert rexml
-
-    REXML::XPath.match(rexml, xpath)
-  end
-
-  def assert_xpath(xpath, msg=nil)
-    assert !(get_xpath(xpath).empty?), msg
-  end
-
-  def assert_not_xpath(xpath, msg=nil)
-    assert get_xpath(xpath).empty?, msg
   end
 
   def this_blog

@@ -33,6 +33,11 @@ class XmlControllerTest < Test::Unit::TestCase
   fixtures :contents, :categories, :categorizations, :tags,
     :articles_tags, :users, :blogs, :resources
 
+  def assert_select(*args, &block)
+    @html_document ||= HTML::Document.new(@response.body, false, true)
+    super(*args,&block)
+  end
+
   def setup
     @controller = XmlController.new
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
@@ -87,7 +92,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body, :todo
 
-    assert_rss20(7)
+    assert_rss20
   end
 
   def test_feed_rss20_comments
@@ -96,7 +101,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body
 
-    assert_rss20(3)
+    assert_rss20
   end
 
   def test_feed_rss20_trackbacks
@@ -104,8 +109,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_xml @response.body
     assert_feedvalidator @response.body
-
-    assert_rss20(3)
+    assert_rss20
   end
 
   def test_feed_rss20_article
@@ -114,7 +118,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body, :todo
 
-    assert_rss20(2)
+    assert_rss20
   end
 
   def test_feed_rss20_category
@@ -123,7 +127,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body, :todo
 
-    assert_rss20(3)
+    assert_rss20
   end
 
   def test_feed_rss20_tag
@@ -132,7 +136,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
     assert_feedvalidator @response.body, :todo
 
-    assert_rss20(2)
+    assert_rss20
   end
 
   def test_feed_atom10_feed
@@ -145,7 +149,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(7)
+    assert_atom10
   end
 
   def test_feed_atom10_comments
@@ -157,9 +161,9 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(3)
+    assert_atom10
 
-    assert_xpath('//title[@type="html"]')
+    assert_select 'title[type=html]'
   end
 
   def test_feed_atom10_trackbacks
@@ -171,10 +175,10 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(3)
+    assert_atom10
 
-    assert_xpath('//title[@type="html"]')
-    assert_xpath('//summary', "Trackback entry has no summaries")
+    assert_select 'title[type=html]'
+    assert_select 'summary'
   end
 
   def test_feed_atom10_article
@@ -186,7 +190,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(2)
+    assert_atom10
   end
 
   def test_feed_atom10_category
@@ -198,7 +202,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(3)
+    assert_atom10
   end
 
   def test_feed_atom10_tag
@@ -210,7 +214,7 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                  assigns(:items))
 
-    assert_atom10(2)
+    assert_atom10
   end
 
   def test_articlerss
@@ -242,7 +246,10 @@ class XmlControllerTest < Test::Unit::TestCase
     get :feed, :format => 'rss20', :type => 'feed'
     assert_response :success
 
-    assert_equal contents(:article2).created_at.rfc822, get_xpath('/rss/channel/item[title="Article 2!"]/pubDate').first.text
+    assert_select 'rss:root > channel > item' do
+      assert_select '> title', :text => 'Article 2!'
+      assert_select '~pubDate', :text => contents(:article2).created_at.rfc822
+    end
   end
 
   def test_rsd
@@ -277,16 +284,17 @@ class XmlControllerTest < Test::Unit::TestCase
     get :feed, :format => 'atom10', :type => 'feed'
     assert_response :success
     assert_match /extended content/, @response.body
-    assert_not_equal 0, get_xpath(%{//summary]}).size, "Extended feed has no summaries"
-    assert_not_equal 0, get_xpath(%{//content]}).size, "Extended feed has no content"
+    assert_select 'summary'
+    assert_select 'content'
+  end
 
-    @controller = XmlController.new
+  def test_extended_atom10_with_extended_on_rss_set_to_false
     set_extended_on_rss false
     get :feed, :format => 'atom10', :type => 'feed'
     assert_response :success
     assert_no_match /extended content/, @response.body
-    assert_not_equal 0, get_xpath(%{//summary]}).size, "Non-Extended feed has no summaries"
-    assert_equal 0, get_xpath(%{//content]}).size, "Non-extended feed has content"
+    assert_select 'summary'
+    assert_select ':not(content)'
   end
 
   def test_xml_atom10
@@ -294,7 +302,10 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success
 
     # titles are escaped html
-    assert_xpath('//entry/title[text()="Associations aren\'t :dependent =&amp;gt; true anymore" and @type="html"]')
+    assert_select 'entry' do
+      assert_select '> title', :text => "Associations aren\'t :dependent =&amp;gt; true anymore"
+      assert_select '> title[type=html]'
+    end
 
     # categories are well formed
     assert_match /this &amp; that/, @response.body
@@ -305,33 +316,54 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :success
 
     # There's an enclosure in there somewhere
-    assert_xpath('/rss/channel/item/enclosure')
+    assert_select('rss:root > channel > item > enclosure')
 
     # There's an enclosure attached to the node with the title "Article 1!"
-    assert_xpath('/rss/channel/item[title="Article 1!"]/enclosure')
-    assert_xpath('/rss/channel/item[title="Article 2!"]/enclosure')
-
+    assert_select 'rss:root > channel > item' do
+      assert_select '>title', :text => 'Article 1!' do
+        assert_select '~enclosure', :count => 1
+      end
+    end
+    # And Article 2
+    assert_select 'rss:root > channel > item' do
+      assert_select '>title', :text => 'Article 2!' do
+        assert_select '~enclosure', :count => 1
+      end
+    end
     # Article 3 exists, but has no enclosure
-    assert_xpath('/rss/channel/item[title="Article 3!"]')
-    assert_not_xpath('/rss/channel/item[title="Article 3!"]/enclosure')
+    assert_select 'rss:root > channel > item' do
+      assert_select '>title', :text => 'Article 3!' do
+        assert_select '~enclosure', :count => 0
+      end
+    end
   end
 
   def test_enclosure_atom10
     get :feed, :format => 'atom10', :type => 'feed'
     assert_response :success
 
-    # There's an enclosure in there somewhere
-    assert_xpath('/feed/entry/link[@rel="enclosure"]')
-
     # There's an enclosure attached to "Article 1!" with a length
-    assert_xpath('/feed/entry[title="Article 1!"]/link[@rel="enclosure" and @length]')
+    assert_select 'feed > entry' do
+      assert_select '> title', :text => 'Article 1!' do
+        assert_select '~ link' do
+          assert_select '[rel=enclosure][length]'
+        end
+      end
+    end
 
     # There's an enclosure attached to "Article 2!" with no length
-    assert_xpath('/feed/entry[title="Article 2!"]/link[@rel="enclosure" and not(@length)]')
+    assert_select 'feed > entry' do
+      assert_select '> title', :text => "Article 2!" do
+        assert_select '~ link[rel=enclosure]:not([length])'
+      end
+    end
 
     # Article 3 exists, but has no enclosure
-    assert_xpath('/feed/entry[title="Article 3!"]')
-    assert_not_xpath('/feed/entry[title="Article 3!"]/link[@rel="enclosure"]')
+    assert_select 'feed > entry' do
+      assert_select '> title', :text => "Article 3!" do
+        assert_select '~ :not(link[rel=enclosure])'
+      end
+    end
   end
 
   def test_itunes
@@ -349,12 +381,12 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_xml @response.body
   end
 
-  def assert_rss20(items)
-    assert_equal 1, get_xpath(%{/rss[@version="2.0"]/channel[count(child::item)=#{items}]}).size, "RSS 2.0 feed has wrong number of channel/item nodes"
+  def assert_rss20
+    assert_select 'rss:root[version=2.0] > channel item', :count => assigns(:items).size
   end
 
-  def assert_atom10(entries)
-    assert_equal 1, get_xpath(%{/feed[@xmlns="http://www.w3.org/2005/Atom" and count(child::entry)=#{entries}]}).size, "Atom 1.0 feed has wrong number of feed/entry nodes"
+  def assert_atom10
+    assert_select 'feed:root[xmlns="http://www.w3.org/2005/Atom"] > entry', :count => assigns(:items).size
   end
 
   def set_extended_on_rss(value)

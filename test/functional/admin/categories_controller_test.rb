@@ -90,7 +90,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "_categories"
     assert_tag :tag => "table",
-      :children => { :count => Category.count + 1,
+      :children => { :count => Category.count,
         :only => { :tag => "tr",
           :children => { :count => 6,
             :only => { :tag => /t[dh]/ } } } }
