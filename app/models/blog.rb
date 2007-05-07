@@ -84,6 +84,9 @@ class Blog < CachedModel
   setting :jabber_address,             :string, ''
   setting :jabber_password,            :string, ''
 
+  #deprecation warning for plugins removal
+  setting :deprecation_warning,        :integer, 1
+
   def initialize(*args)
     super
     # Yes, this is weird - PDC
