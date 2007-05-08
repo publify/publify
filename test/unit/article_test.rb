@@ -3,7 +3,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories, :categorizations, :users, :notifications, :text_filters, :triggers
+  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories,
+    :categorizations, :users, :notifications, :text_filters, :triggers
 
   def setup
     @articles = []
@@ -175,16 +176,17 @@ class ArticleTest < Test::Unit::TestCase
     art = this_blog.articles.build(:title => 'title',
                                    :body => 'body',
                                    :published => true)
-    assert art.just_published?
+    assert art.just_changed_published_status?
     assert art.save
-    art.reload
-    assert !art.just_published?
+
+    art = Article.find(art.id)
+    assert !art.just_changed_published_status?
 
     art = Article.create!(:title => 'title2',
                           :body => 'body',
                           :published => false)
 
-    assert ! art.just_published?
+    assert ! art.just_changed_published_status?
   end
 
   def test_future_publishing
@@ -268,7 +270,7 @@ class ArticleTest < Test::Unit::TestCase
     mar2.created_at  = mar2.published_at = "2004-03-02"
 
     [feb28, mar1, mar2].each do |x|
-      x.state = ContentState::Published.instance
+      x.state = :published
       x.save
     end
 

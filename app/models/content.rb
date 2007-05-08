@@ -8,9 +8,6 @@ class Content < ActiveRecord::Base
   belongs_to :blog
   validates_presence_of :blog_id
 
-  composed_of :state, :class_name => 'ContentState::Factory',
-    :mapping => %w{ state memento }
-
   has_many :notifications, :foreign_key => 'content_id'
   has_many :notify_users, :through => :notifications,
     :source => 'notify_user',
@@ -29,10 +26,12 @@ class Content < ActiveRecord::Base
 
   has_many :triggers, :as => :pending_item, :dependent => :delete_all
 
-  before_save :state_before_save
-  after_save :post_trigger, :state_after_save
-
   serialize :whiteboard
+
+  attr_accessor :just_changed_published_status
+  alias_method :just_changed_published_status?, :just_changed_published_status
+
+  include Stateful
 
   @@content_fields = Hash.new
   @@html_map       = Hash.new
@@ -120,14 +119,6 @@ class Content < ActiveRecord::Base
     @@content_fields[self.class]
   end
 
-  def state_before_save
-    state.before_save(self)
-  end
-
-  def state_after_save
-    state.after_save(self)
-  end
-
   def html_map(field=nil)
     self.class.html_map(field)
   end
@@ -153,8 +144,7 @@ class Content < ActiveRecord::Base
   # object in @@cache.
   def generate_html(field, text = nil)
     text ||= self[field].to_s
-    html = text_filter.filter_text_for_content(blog, text, self)
-    html ||= text # just in case the filter puked
+    html = text_filter.filter_text_for_content(blog, text, self) || text
     html_postprocess(field,html).to_s
   end
 
@@ -204,23 +194,9 @@ class Content < ActiveRecord::Base
     self[:blog] ||= blog_id.to_i.zero? ? Blog.default : Blog.find(blog_id)
   end
 
-  def state=(newstate)
-    if state
-      state.exit_hook(self, newstate)
-    end
-    @state = newstate
-    self[:state] = newstate.memento
-    newstate.enter_hook(self)
-    @state
-  end
-
   def publish!
     self.published = true
     self.save!
-  end
-
-  def withdraw
-    state.withdraw(self)
   end
 
   def withdraw!
@@ -228,45 +204,8 @@ class Content < ActiveRecord::Base
     self.save!
   end
 
-  def published=(a_boolean)
-    self[:published] = a_boolean
-    state.change_published_state(self, a_boolean)
-  end
-
-  def published_at=(a_time)
-    state.set_published_at(self, (a_time.to_time rescue nil))
-  end
-
   def published_at
     self[:published_at] || self[:created_at]
-  end
-
-  def published?
-    state.published?(self)
-  end
-
-  def just_published?
-    state.just_published?
-  end
-
-  def just_changed_published_status?
-    state.just_changed_published_status?
-  end
-
-  def withdrawn?
-    state.withdrawn?
-  end
-
-  def publication_pending?
-    state.publication_pending?
-  end
-
-  def post_trigger
-    state.post_trigger(self)
-  end
-
-  def after_save
-    state.after_save(self)
   end
 
   def send_notification_to_user(user)
@@ -274,8 +213,12 @@ class Content < ActiveRecord::Base
     notify_user_via_jabber(user)
   end
 
-  def send_notifications()
-    state.send_notifications(self)
+  def really_send_notifications
+    returning true do
+      interested_users.each do |value|
+        send_notification_to_user(value)
+      end
+    end
   end
 
   # deprecated
@@ -283,7 +226,6 @@ class Content < ActiveRecord::Base
     typo_deprecated "use .html instead"
     html
   end
-
 end
 
 class Object

@@ -11,7 +11,7 @@ spam_comment:
   updated_at: 2005-01-01 02:00:00
   published_at: 2005-01-01 02:00:00
   guid: 12313123123123123
-  state: ContentState::Ham
+  state: ham
 
 comment2:
   type: Comment
@@ -28,14 +28,14 @@ comment2:
   updated_at: 2005-01-01 02:00:01
   published_at: 2005-01-01 02:00:01
   guid: 453456456456456
-  state: ContentState::Ham
+  state: ham
 
 comment3:
   type: Comment
   blog_id: 1
   id: 3
   published: false
-  state: ContentState::PresumedSpam
+  state: presumed_spam
   status_confirmed: false
   article_id: 1
   author: Foo Bar
@@ -51,7 +51,7 @@ trackback1:
   id: 4
   article_id: 2
   published: false
-  state: ContentState::PresumedSpam
+  state: presumed_spam
   status_confirmed: false
   blog_name: Trackback Blog
   title: Trackback Entry
@@ -67,7 +67,7 @@ trackback2:
   blog_id: 1
   id: 5
   article_id: 1
-  state: ContentState::PresumedHam
+  state: presumed_ham
   published: true
   blog_name: Trackback Blog
   title: Trackback Entry
@@ -84,7 +84,7 @@ trackback3:
   id: 6
   article_id: 1
   published: true
-  state: ContentState::PresumedHam
+  state: presumed_ham
   blog_name: Trackback Blog 2
   title: Trackback Entry 2
   url: http://www.example.com
@@ -100,7 +100,7 @@ trackback4:
   id: 7
   article_id: 17
   published: true
-  state: ContentState::PresumedHam
+  state: presumed_ham
   blog_name: Trackback Blog 2
   title: Trackback Entry 2
   url: http://www.example.com
@@ -124,7 +124,7 @@ old_comment:
   updated_at: 2004-05-02 20:00:02
   published_at: 2004-05-02 20:00:02
   published: true
-  state: ContentState::Ham
+  state: ham
 
 probably_spam_comment:
   type: Comment
@@ -139,7 +139,7 @@ probably_spam_comment:
   updated_at: 2005-01-01 02:00:00
   published_at: 2005-01-01 02:00:00
   guid: 12313123123123124
-  state: ContentState::PresumedSpam
+  state: presumed_spam
   status_confirmed: false
 
 definitely_spam_comment:
@@ -155,5 +155,5 @@ definitely_spam_comment:
   updated_at: 2005-01-01 02:00:01
   published_at: 2005-01-01 02:00:01
   guid: 12313123123123125
-  state: ContentState::Spam
+  state: spam
   status_confirmed: true

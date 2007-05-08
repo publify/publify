@@ -10,14 +10,14 @@ class FeedbackStatesTest < Test::Unit::TestCase
   end
 
   def test_ham_all_the_way
-    assert_state ContentState::Unclassified
+    assert @comment.unclassified?
     assert   @comment.published?
     assert   @comment.just_published?
     assert   @comment.just_changed_published_status?
     assert   @comment.save
     assert   @comment.just_changed_published_status?
     assert   @comment.just_published?
-    @comment.reload
+    @comment = Comment.find(@comment.id)
     assert ! @comment.just_changed_published_status?
     assert ! @comment.just_published?
     @comment.confirm_classification
@@ -32,7 +32,7 @@ class FeedbackStatesTest < Test::Unit::TestCase
         :spam
       end
     end
-    assert_state ContentState::Unclassified
+    assert @comment.unclassified?
     assert ! @comment.published?
     assert ! @comment.just_published?
     assert ! @comment.just_changed_published_status?
@@ -40,7 +40,7 @@ class FeedbackStatesTest < Test::Unit::TestCase
     assert ! @comment.published?
     assert ! @comment.just_published?
     assert ! @comment.just_changed_published_status?
-    @comment.reload
+    @comment = Comment.find(@comment.id)
     assert ! @comment.just_changed_published_status?
     assert ! @comment.just_published?
     @comment.confirm_classification
@@ -50,7 +50,7 @@ class FeedbackStatesTest < Test::Unit::TestCase
   end
 
   def test_presumed_spam_marked_as_ham
-    @comment.state = ContentState::PresumedSpam.instance
+    @comment[:state] = 'presumed_spam'
     @comment.mark_as_ham
     assert @comment.published?
     assert @comment.just_published?
@@ -58,14 +58,10 @@ class FeedbackStatesTest < Test::Unit::TestCase
   end
 
   def test_presumed_ham_marked_as_spam
-    @comment.state = ContentState::PresumedHam.instance
+    @comment[:state] = 'presumed_ham'
     @comment.mark_as_spam
     assert ! @comment.published?
     assert ! @comment.just_published?
     assert   @comment.just_changed_published_status?
-  end
-
-  def assert_state(state)
-    assert_instance_of state, @comment.state
   end
 end

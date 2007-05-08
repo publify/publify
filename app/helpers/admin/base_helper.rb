@@ -2,7 +2,7 @@ module Admin::BaseHelper
   include ActionView::Helpers::DateHelper
 
   def state_class(item)
-    item.state.memento.underscore.sub(/.*\//, '')
+    item.state.to_s
   end
 
   def render_flash

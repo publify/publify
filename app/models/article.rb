@@ -21,7 +21,21 @@ class Article < Content
   belongs_to :user
   has_many :triggers, :as => :pending_item
 
+  after_save :post_trigger
   after_destroy :fix_resources
+
+  has_state(:state,
+            :valid_states  => [:new, :draft,
+                               :publication_pending, :just_published, :published,
+                               :just_withdrawn, :withdrawn],
+            :initial_state =>  :new,
+            :handles       => [:withdraw,
+                               :post_trigger,
+                               :after_save, :send_pings, :send_notifications,
+                               :published_at=, :published=, :just_published?])
+
+
+  include States
 
   def stripped_title
     self.title.gsub(/<[^>]*>/,'').to_url
@@ -94,10 +108,6 @@ class Article < Content
         # we should throw an xmlrpc error here.
       end
     end
-  end
-
-  def send_pings
-    state.send_pings(self)
   end
 
   def next
@@ -180,15 +190,12 @@ class Article < Content
   end
 
   def comments_closed?
-    if self.allow_comments?
-      if !self.blog.sp_article_auto_close.zero? and self.created_at.to_i < self.blog.sp_article_auto_close.days.ago.to_i
-        return true
-      else
-        return false
-      end
-    else
-      return true
-    end
+    !(allow_comments? && in_feedback_window?)
+  end
+
+  def in_feedback_window?
+    self.blog.sp_article_auto_close.zero? ||
+      self.created_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
   end
 
   def published_comments
@@ -281,10 +288,6 @@ class Article < Content
     to = from + 1.day unless day.blank?
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return [from, to]
-  end
-
-  def find_published(what = :all, options = {})
-    super(what, options)
   end
 
   validates_uniqueness_of :guid
