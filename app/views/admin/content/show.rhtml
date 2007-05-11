@@ -6,13 +6,10 @@
 	<%= task_overview %>
   <% end %>
 
-  <h3><%=h @article.title %></h3>
+  <h3>Live Preview</h3>
 
-  <div class="form">
-    <div><%= @article.html %></div>
-    <p class="meta"><label><%= _("Posted date")%>:</label> <%=h @article.published_at.to_formatted_s(:long_weekday) %> by <%=h @article.author %></p>
-    <p class="meta"><label><%= _("Last updated")%>:</label> <%=h @article.updated_at.to_formatted_s(:long_weekday) %></p>
-    <p class="meta"><label><%= _("Online")%>:</label> <%=h (@article.published? ? "Yes" : "No") %></p>
+  <div class="form" style="text-align: center; margin: auto;">
+	<iframe src="<%=@article.permalink_url%>" width="95%" height="700px"></iframe>
   </div>
 
   <h3><%= _("Categories")%></h3>

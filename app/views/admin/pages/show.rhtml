@@ -5,10 +5,8 @@
     <li><%= link_to _('View page on your blog'), @page.permalink_url %></li>
   <% end %> 
 
-  <h3><%=h @page.name %></h3>
+  <h3>Live Preview</h3>
 
-  <div class="form">	
-    <div><%= @page.html %></div>
-    <p class="meta"><%= _("Posted at") %>: <%=h @page.created_at %> <%= _("by")%> <%=h @page.user.name %></p>
-    <p>Lasted updated <%=h @page.updated_at %></p>    
+  <div class="form" style="text-align: center; margin: auto;">
+	<iframe src="<%=@page.permalink_url%>" width="95%" height="700px"></iframe>
   </div>
