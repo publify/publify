@@ -1,55 +1,55 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-context 'Given a published article' do
+describe 'Given a published article' do
   fixtures :blogs, :contents, :feedback, :users, :text_filters
 
-  setup do
+  before(:each) do
     @article = contents(:article1)
   end
 
-  specify "An unchanged article does not invalidate the cache" do
-    @article.invalidates_cache?.should_be false
+  it "An unchanged article does not invalidate the cache" do
+    @article.should_not be_invalidates_cache
   end
 
-  specify 'changing the body smashes the cache' do
+  it 'changing the body smashes the cache' do
     @article.body = "New Body"
-    @article.invalidates_cache?.should_be true
+    @article.should be_invalidates_cache
   end
 
-  specify 'withdrawing it smashes the cache' do
+  it 'withdrawing it smashes the cache' do
     @article.withdraw!
-    @article.invalidates_cache?.should_be true
+    @article.should be_invalidates_cache
   end
 
-  specify 'destroying it smashes the cache' do
+  it 'destroying it smashes the cache' do
     @article.destroy
-    @article.invalidates_cache?(true).should_be true
+    @article.should be_invalidates_cache(true)
   end
 
-  specify 'withdrawing, then destroying it smashes the cache' do
+  it 'withdrawing, then destroying it smashes the cache' do
     @article.withdraw
     @article.destroy
-    @article.invalidates_cache?.should_be true
+    @article.should be_invalidates_cache
   end
 end
 
-context "Given an unpublished article" do
+describe "Given an unpublished article" do
   fixtures :blogs, :contents, :feedback, :users, :text_filters
 
-  setup { @article = contents(:article4) }
+  before(:each) { @article = contents(:article4) }
 
-  specify "publishing smashes the cache" do
+  it "publishing smashes the cache" do
     @article.publish!
-    @article.invalidates_cache?.should_be true
+    @article.should be_invalidates_cache
   end
 
-  specify "changing it keeps the cache" do
+  it "changing it keeps the cache" do
     @article.body = 'New body'
-    @article.invalidates_cache?.should_be false
+    @article.should_not be_invalidates_cache
   end
 
-  specify "destroying it keeps the cache" do
+  it "destroying it keeps the cache" do
     @article.destroy
-    @article.invalidates_cache?.should_be false
+    @article.should_not be_invalidates_cache
   end
 end

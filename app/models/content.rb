@@ -50,7 +50,7 @@ class Content < ActiveRecord::Base
   end
 
   def set_default_blog
-    if self.blog_id == nil or self.blog_id == 0
+    if self.blog_id.nil? || self.blog_id == 0
       self.blog = Blog.default
     end
   end

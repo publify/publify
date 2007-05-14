@@ -1,28 +1,28 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-context 'Given a parsed Delicious RDF fixture' do
-  setup do
+describe 'Given a parsed Delicious RDF fixture' do
+  before(:each) do
     @delicious = Delicious.new("", false)
     @delicious.send(:parse, fixture)
   end
 
-  specify 'there should be three items' do
-    @delicious.should_have(3).items
+  it 'there should be three items' do
+    @delicious.should have(3).items
   end
 
-  specify "title should be 'del.icio.us/shanev'" do
+  it "title should be 'del.icio.us/shanev'" do
     @delicious.title.should == 'del.icio.us/shanev'
   end
 
-  specify "link should be 'http://del.icio.us/shanev'" do
+  it "link should be 'http://del.icio.us/shanev'" do
     @delicious.link.should == 'http://del.icio.us/shanev'
   end
 
-  specify 'first item title should be "Guide to Using XMLHttpRequest (with Baby Steps)"' do
+  it 'first item title should be "Guide to Using XMLHttpRequest (with Baby Steps)"' do
     @delicious.items.first.title.should == "Guide to Using XMLHttpRequest (with Baby Steps)"
   end
 
-  specify 'first item link should be "http://www.webpasties.com/xmlHttpRequest/"' do
+  it 'first item link should be "http://www.webpasties.com/xmlHttpRequest/"' do
     @delicious.items.first.link.should == "http://www.webpasties.com/xmlHttpRequest/"
   end
 

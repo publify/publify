@@ -121,7 +121,7 @@ class Blog < CachedModel
   end
 
   # Check that all required blog settings have a value.
-  def is_ok?
+  def configured?
     settings.has_key?('blog_name')
   end
 

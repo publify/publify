@@ -14,10 +14,10 @@ class FragmentCacheTest
   end
 end
 
-context 'Just porting metafragment_test without necessarily understanding it' do
-  setup { @cache = FragmentCacheTest.new }
+describe 'Just porting metafragment_test without necessarily understanding it' do
+  before(:each) { @cache = FragmentCacheTest.new }
 
-  specify 'port of test_read_write' do
+  it 'port of test_read_write' do
     data = "BLAHBLAHBLAH"
     meta = {:foo => :bar}
 
@@ -27,16 +27,16 @@ context 'Just porting metafragment_test without necessarily understanding it' do
     newmeta.should == meta
   end
 
-  specify 'a port of test_expire_string' do
+  it 'a port of test_expire_string' do
     @cache.write_meta_fragment("TEST_EXPIRE", {:foo => :bar}, "foo")
     @cache.expire_meta_fragment("TEST_EXPIRE")
     meta, data = @cache.read_meta_fragment("TEST_EXPIRE")
 
-    data.should_be_nil
+    data.should be_nil
     meta.should == { }
   end
 
-  specify 'test_expire_regex' do
+  it 'test_expire_regex' do
     @cache.write_meta_fragment("TEST_EXPIRE_1", {:a => :b}, "foo")
     @cache.write_meta_fragment("TEST_EXPIRE_2", {:c => :d}, "bar")
     @cache.write_meta_fragment("TEST_3", {:e => :f}, "zzz")
@@ -48,7 +48,7 @@ context 'Just porting metafragment_test without necessarily understanding it' do
     @cache.read_meta_fragment('TEST_3').should == [{:e => :f}, 'zzz']
   end
 
-  specify 'test_read_expires' do
+  it 'test_read_expires' do
     key = "TEST_READ_EXPIRES"
     data = "blahblah"
     meta = {:foo => 'bar', :expires => Time.now + 120} # Expire in 2 minutes

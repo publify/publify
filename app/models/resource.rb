@@ -66,7 +66,7 @@ class Resource < ActiveRecord::Base
     raise if filename.empty?
     tmpfile = File.basename(filename.gsub(/\\/, '/')).gsub(/[^\w\.\-]/,'_')
     filename = tmpfile
-    while File.exists?(fullpath(tmpfile))
+    while File.exist?(fullpath(tmpfile))
       i += 1
       tmpfile = filename.sub(/^(.*?)(\.[^\.]+)?$/, '\1'+"#{i}"+'\2')
     end

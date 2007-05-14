@@ -14,8 +14,8 @@ class ConfigurationTest < Test::Unit::TestCase
     assert Fixnum    === this_blog.limit_rss_display
   end
 
-  def test_is_ok
-    assert this_blog.is_ok?
+  def test_configured
+    assert this_blog.configured?
   end
 
 end

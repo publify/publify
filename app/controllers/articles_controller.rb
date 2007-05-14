@@ -119,11 +119,7 @@ class ArticlesController < ContentController
         throw :error, "A URL is required"
       else
         begin
-          settings = { :id => params[:id],
-                       :url => params[:url],      :blog_name => params[:blog_name],
-                       :title => params[:title],  :excerpt => params[:excerpt],
-                       :ip  => request.remote_ip, :published => true }
-          this_blog.ping_article!(settings)
+          this_blog.ping_article!(params.merge(:ip => request.remote_ip, :published => true))
         rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
           throw :error, "Article id #{params[:id]} not found."
         rescue ActiveRecord::RecordInvalid
@@ -166,7 +162,7 @@ class ArticlesController < ContentController
   def verify_config
     if User.count == 0
       redirect_to :controller => "accounts", :action => "signup"
-    elsif ! this_blog.is_ok?
+    elsif ! this_blog.configured?
       redirect_to :controller => "admin/general", :action => "redirect"
     else
       return true

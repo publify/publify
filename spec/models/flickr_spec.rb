@@ -1,33 +1,33 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-context 'Given a parsed flickr fixture with six items' do
-  setup do
+describe 'Given a parsed flickr fixture with six items' do
+  before(:each) do
     @flickr = FlickrAggregation.new('', false)
     @flickr.send(:parse, fixture)
   end
 
-  specify 'there should be 6 pictures' do
-    @flickr.should_have(6).pics
+  it 'there should be 6 pictures' do
+    @flickr.should have(6).pics
   end
 
-  specify 'choose(4) should pick 4 pictures at random' do
-    @flickr.should_have(4).choose(4)
+  it 'choose(4) should pick 4 pictures at random' do
+    @flickr.should have(4).choose(4)
   end
 
-  specify 'port of test_fields' do
+  it 'port of test_fields' do
     @flickr.title.should == "xal's Photos"
     @flickr.link.should == "http://www.flickr.com/photos/40235412@N00/"
     @flickr.description.should == "A feed of xal's Photos"
   end
 
-  specify 'port of test_image' do
+  it 'port of test_image' do
     @flickr.pics[0].title.should == "p1010009"
     @flickr.pics[0].link.should == "http://www.flickr.com/photos/40235412@N00/4903142/"
-    @flickr.pics[0].description.should_not_be nil
+    @flickr.pics[0].description.should_not be_nil
     @flickr.pics[0].date.should == Time.parse("Wed, 16 Feb 2005 07:15:48 -0800")
   end
 
-  specify 'port of test_image_desc_parsers' do
+  it 'port of test_image_desc_parsers' do
     @flickr.pics[0].image.should == "http://photos3.flickr.com/4903142_ada4539ae8_m.jpg"
     @flickr.pics[0].thumb.should == "http://photos3.flickr.com/4903142_ada4539ae8_t.jpg"
   end

@@ -1,38 +1,38 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-context "With the list of available filters" do
-  setup { @filters = TextFilter.available_filters }
+describe "With the list of available filters" do
+  before(:each) { @filters = TextFilter.available_filters }
 
-  specify 'Markdown is an available filter' do
-    @filters.should_include Typo::Textfilter::Markdown
+  it 'Markdown is an available filter' do
+    @filters.should include(Typo::Textfilter::Markdown)
   end
 
-  specify 'Smartypants is available' do
-    @filters.should_include Typo::Textfilter::Smartypants
+  it 'Smartypants is available' do
+    @filters.should include(Typo::Textfilter::Smartypants)
   end
 
-  specify 'Htmlfilter is available' do
-    @filters.should_include Typo::Textfilter::Htmlfilter
+  it 'Htmlfilter is available' do
+    @filters.should include(Typo::Textfilter::Htmlfilter)
   end
 
-  specify 'Textile is available' do
-    @filters.should_include Typo::Textfilter::Textile
+  it 'Textile is available' do
+    @filters.should include(Typo::Textfilter::Textile)
   end
 
-  specify 'Amazon is available' do
-    @filters.should_include Typo::Textfilter::Amazon
+  it 'Amazon is available' do
+    @filters.should include(Typo::Textfilter::Amazon)
   end
 
-  specify 'Flickr is available' do
-    @filters.should_include Typo::Textfilter::Flickr
+  it 'Flickr is available' do
+    @filters.should include(Typo::Textfilter::Flickr)
   end
 
-  specify 'TextFilterPlugin::Markup should be unavailable' do
-    @filters.should_not_include TextFilterPlugin::Markup
+  it 'TextFilterPlugin::Markup should be unavailable' do
+    @filters.should_not include(TextFilterPlugin::Markup)
   end
 
-  specify 'TextFilterPlugin::Macro should be unavailable' do
-    @filters.should_not_include TextFilterPlugin::Macro
+  it 'TextFilterPlugin::Macro should be unavailable' do
+    @filters.should_not include(TextFilterPlugin::Macro)
   end
 
 end

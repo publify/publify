@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-context 'A successfully authenticated login' do
+describe 'A successfully authenticated login' do
   controller_name :accounts
 
-  setup do
+  before(:each) do
     @user = mock("user")
     @user.stub!(:new_record?).and_return(false)
     @user.stub!(:reload).and_return(@user)
@@ -11,80 +11,80 @@ context 'A successfully authenticated login' do
     post 'login', { :user_login => 'bob', :password => 'test' }
   end
 
-  specify 'session gets a user' do
+  it 'session gets a user' do
     request.session[:user].should == @user
   end
 
-  specify 'cookies[:is_admin] should == "yes"' do
+  it 'cookies[:is_admin] should == "yes"' do
     cookies['is_admin'].should == ['yes']
   end
 
-  specify 'redirects to /bogus/location' do
+  it 'redirects to /bogus/location' do
     request.session[:return_to] = '/bogus/location'
-    controller.should_redirect_to '/bogus/location'
     post 'login', { :user_login => 'bob', :password => 'test' }
+    response.should redirect_to('/bogus/location')
   end
 end
 
-context 'Login gets the wrong password' do
+describe 'Login gets the wrong password' do
   controller_name :accounts
 
-  setup do
+  before(:each) do
     User.stub!(:authenticate).and_return(nil)
     post 'login', {:user_login => 'bob', :password => 'test'}
   end
 
-  specify 'no user in goes in the session' do
-    response.session[:user].should_be nil
+  it 'no user in goes in the session' do
+    response.session[:user].should be_nil
   end
 
-  specify 'login should == "bob"' do
+  it 'login should == "bob"' do
     assigns[:login].should == 'bob'
   end
 
-  specify 'cookies[:is_admin] should be blank' do
-    response.cookies[:is_admin].should_be_blank
+  it 'cookies[:is_admin] should be blank' do
+    response.cookies[:is_admin].should be_blank
   end
 
-  specify 'should render login action' do
-    controller.should_render(:login)
+  it 'should render login action' do
     post 'login', {:user_login => 'bob', :password => 'test'}
+    response.should render_template(:login)
   end
 end
 
-context 'GET /login' do
+describe 'GET /login' do
   controller_name :accounts
 
-  specify 'should render action :login' do
-    controller.should_render(:login)
+  it 'should render action :login' do
     get 'login'
-    assigns[:login].should_be_nil
+    response.should render_template(:login)
+    assigns[:login].should be_nil
   end
 end
 
-context 'GET signup and >0 existing user' do
+describe 'GET signup and >0 existing user' do
   controller_name :accounts
 
-  setup do
+  before(:each) do
     User.stub!(:count).and_return(1)
   end
 
-  specify 'should redirect to login' do
-    controller.should_redirect_to :action => 'login'
+  it 'should redirect to login' do
     get 'signup'
+    response.should redirect_to(:action => 'login')
   end
 end
 
-context 'POST signup and >0 existing user' do
+describe 'POST signup and >0 existing user' do
   controller_name :accounts
 
-  setup do
+  before(:each) do
     User.stub!(:count).and_return(1)
   end
 
-  specify 'should redirect to login' do
-    controller.should_redirect_to :action => 'login'
+  it 'should redirect to login' do
     post 'signup', params
+    response.should redirect_to(:action => 'login')
   end
 
   def params
@@ -93,31 +93,31 @@ context 'POST signup and >0 existing user' do
   end
 end
 
-context 'GET signup with 0 existing users' do
+describe 'GET signup with 0 existing users' do
   controller_name :accounts
 
-  setup do
+  before(:each) do
     User.stub!(:count).and_return(0)
     @user = mock("user")
     @user.stub!(:reload).and_return(@user)
     User.stub!(:new).and_return(@user)
   end
 
-  specify 'sets @user' do
+  it 'sets @user' do
     get 'signup'
     assigns[:user].should == @user
   end
 
-  specify 'renders action signup' do
-    controller.should_render :signup
+  it 'renders action signup' do
     get 'signup'
+    response.should render_template(:signup)
   end
 end
 
-context 'POST signup with 0 existing users' do
+describe 'POST signup with 0 existing users' do
   controller_name :accounts
 
-  setup do
+  before(:each) do
     User.stub!(:count).and_return(0)
     @user = mock("user")
     @user.stub!(:reload).and_return(@user)
@@ -127,25 +127,25 @@ context 'POST signup with 0 existing users' do
     @user.stub!(:save).and_return(@user)
   end
 
-  specify 'creates and saves a user' do
+  it 'creates and saves a user' do
     User.should_receive(:new).and_return(@user)
     @user.should_receive(:save).and_return(@user)
     post 'signup', params
     assigns[:user].should == @user
   end
 
-  specify 'redirects to /admin/general' do
-    controller.should_redirect_to :controller => 'admin/general', :action => 'index'
+  it 'redirects to /admin/general' do
     post 'signup', params
+    response.should redirect_to(:controller => 'admin/general', :action => 'index')
   end
 
-  specify 'session gets a user' do
+  it 'session gets a user' do
     post 'signup', params
     flash[:notice].should == 'Signup successful'
     request.session[:user].should == @user
   end
 
-  specify 'Sets the flash notice to "Signup successful"' do
+  it 'Sets the flash notice to "Signup successful"' do
     post 'signup', params
     flash[:notice].should == 'Signup successful'
   end
@@ -156,10 +156,10 @@ context 'POST signup with 0 existing users' do
   end
 end
 
-context 'User is logged in' do
+describe 'User is logged in' do
   controller_name :accounts
 
-  setup do
+  before(:each) do
     @user = mock('user')
 
     session[:user] = @user
@@ -167,18 +167,18 @@ context 'User is logged in' do
     request.cookies[:is_admin] = 'yes'
   end
 
-  specify 'logging out deletes the session[:user]' do
+  it 'logging out deletes the session[:user]' do
     get 'logout'
     session[:user].should == nil
   end
 
-  specify 'renders the logout action' do
-    controller.should_render :logout
+  it 'renders the logout action' do
     get 'logout'
+    response.should render_template('logout')
   end
 
-  specify 'logging out deletes the "is_admin" cookie' do
+  it 'logging out deletes the "is_admin" cookie' do
     get 'logout'
-    response.cookies[:is_admin].should_be_blank
+    response.cookies[:is_admin].should be_blank
   end
 end

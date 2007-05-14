@@ -1,24 +1,24 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-context "Given a valid audioscrobbler RDF with 3 items in it" do
-  setup do
+describe "Given a valid audioscrobbler RDF with 3 items in it" do
+  before(:each) do
     @audioscrobbler = Audioscrobbler.new('', false)
     @audioscrobbler.send(:parse, fixture)
   end
 
-  specify "parser finds 3 items" do
-    @audioscrobbler.should_have(3).items
+  it "parser finds 3 items" do
+    @audioscrobbler.should have(3).items
   end
 
-  specify "title should be: Audioscrobbler Musical Profile: benjackson" do
+  it "title should be: Audioscrobbler Musical Profile: benjackson" do
     @audioscrobbler.title.should == 'Audioscrobbler Musical Profile: benjackson'
   end
 
-  specify "link should be: http://www.audioscrobbler.com/user/benjackson/" do
+  it "link should be: http://www.audioscrobbler.com/user/benjackson/" do
     @audioscrobbler.link.should == "http://www.audioscrobbler.com/user/benjackson/"
   end
 
-  specify "first item is parsed correctly" do
+  it "first item is parsed correctly" do
     item = @audioscrobbler.items.first
 
     item.artist.should == "Badly Drawn Boy"

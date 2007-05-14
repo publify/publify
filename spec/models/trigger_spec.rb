@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-context 'With the contents fixture' do
-  fixtures :contents
+describe 'With the contents fixture' do
+  fixtures :contents, :triggers
 
-  setup do
+  before(:each) do
     @page = mock('fake_page')
     @page.stub!(:id).and_return(1)
     @page.stub!(:type).and_return('Page')
@@ -18,13 +18,13 @@ context 'With the contents fixture' do
     @current_utime += time_delta
   end
 
-  specify '.post_action should not fire immediately for future triggers' do
+  it '.post_action should not fire immediately for future triggers' do
     lambda do
       Trigger.post_action(Time.now + 2, @page, 'tickle')
       Trigger.count.should == 1
       Trigger.fire
       Trigger.count.should == 1
-    end.should_not_raise
+    end.should_not raise_error
 
     @page.should_receive(:tickle)
     sleep 2
@@ -32,7 +32,7 @@ context 'With the contents fixture' do
     Trigger.count.should == 0
   end
 
-  specify '.post_action should fire immediately if the target time is <= now' do
+  it '.post_action should fire immediately if the target time is <= now' do
     @page.should_receive(:tickle)
     Trigger.post_action(Time.now, @page, 'tickle')
     Trigger.count.should == 0

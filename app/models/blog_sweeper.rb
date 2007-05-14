@@ -19,8 +19,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
         sweep_all
       end
     when Sidebar, Category
-      sweep_articles
-      sweep_pages(record)
+      sweep_all
     when Blog, User
       sweep_all
     end
@@ -37,9 +36,9 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def sweep_pages(record)
-      PageCache.sweep("/pages/#{record.name rescue ''}.html")
-      expire_fragment(/.*\/pages\/.*/)
-      expire_fragment(/.*\/view_page.*/)
+    PageCache.sweep("/pages/#{record.name rescue ''}.html")
+    expire_fragment(/.*\/pages\/.*/)
+    expire_fragment(/.*\/view_page.*/)
   end
 
   def logger
