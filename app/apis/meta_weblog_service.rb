@@ -98,18 +98,17 @@ class MetaWeblogService < TypoWebService
     article.keywords       = struct['mt_keywords'] || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
 
+    if !article.save
+      raise article.errors.full_messages * ", "
+    end
+
     if struct['categories']
-      article.categories.clear
       Category.find(:all).each do |c|
         article.categories << c if struct['categories'].include?(c.name)
       end
     end
 
-    if article.save
-      article.id.to_s
-    else
-      raise article.errors.full_messages * ", "
-    end
+    article.id.to_s
   end
 
   def deletePost(appkey, postid, username, password, publish)
@@ -135,7 +134,7 @@ class MetaWeblogService < TypoWebService
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
 
     if struct['categories']
-      article.categories.clear
+      article.categorizations.clear
       Category.find(:all).each do |c|
         article.categories << c if struct['categories'].include?(c.name)
       end
@@ -168,7 +167,7 @@ class MetaWeblogService < TypoWebService
       :mt_allow_pings    => article.allow_pings? ? 1 : 0,
       :mt_convert_breaks => (article.text_filter.name.to_s rescue ''),
       :mt_tb_ping_urls   => article.pings.collect { |p| p.url },
-      :dateCreated       => (article.published_at.to_formatted_s(:db) rescue "")
+      :dateCreated       => (article.published_at.getutc.to_formatted_s(:db) rescue "")
       )
   end
 
