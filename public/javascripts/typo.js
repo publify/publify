@@ -3,12 +3,9 @@ function register_onload(func) {
 }
 
 function show_dates_as_local_time() {
-  var spans = document.getElementsByTagName('span');
-  for (var i=0; i<spans.length; i++) {
-    if (spans[i].className.match(/\btypo_date\b/i)) {
-      spans[i].innerHTML = get_local_time_for_date(spans[i].title);
-    }
-  }
+    $$('span.typo_date').each(function(e){
+        e.update(get_local_time_for_date(e.title))
+    })
 }
 
 function get_local_time_for_date(time) {
@@ -17,17 +14,13 @@ function get_local_time_for_date(time) {
   delta_minutes = Math.floor((user_date - system_date) / (60 * 1000));
   if (Math.abs(delta_minutes) <= (8*7*24*60)) { // eight weeks... I'm lazy to count days for longer than that
     distance = distance_of_time_in_words(delta_minutes);
-    if (delta_minutes < 0) {
-      return distance + ' from now';
-    } else {
-      return distance + ' ago';
-    }
+    return distance + ((delta_minutes < 0) ? ' from now' : ' ago')
   } else {
     return 'on ' + system_date.toLocaleDateString();
   }
 }
 
-// a vague copy of rails' inbuilt function, 
+// a vague copy of rails' inbuilt function,
 // but a bit more friendly with the hours.
 function distance_of_time_in_words(minutes) {
   if (minutes.isNaN) return "";
@@ -63,9 +56,9 @@ function loading() {
 function complete(request) {
   Element.hide('comment_loading');
   Element.show('commentform');
-  $('form-submit-button').disabled = false;  
+  $('form-submit-button').disabled = false;
 
-  if (request.status == 200) { commentAdded() };  
+  if (request.status == 200) { commentAdded() };
 }
 
 function popup(mylink, windowname)
@@ -88,12 +81,12 @@ function check_all(checkbox) {
 
 register_onload(function() {
   if ($('commentform')) {
-	var _author = getCookie('author');
-	var _url = getCookie('url');
+    var _author = getCookie('author');
+    var _url = getCookie('url');
 
     if(_author != null) { $('commentform').elements['comment[author]'].value = _author }
     if(_url != null) { $('commentform').elements['comment[url]'].value = _url }
-    
+
     if ($('commentform').elements['comment[url]'].value != ''
         || $('commentform').elements['comment[email]'].value != '') {
       Element.show('guest_url'); Element.show('guest_email');
