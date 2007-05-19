@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.xml 'xml/articlerss/:id/feed.xml', :controller => 'xml', :action => 'articlerss'
   map.xml 'xml/commentrss/feed.xml', :controller => 'xml', :action => 'commentrss'
   map.xml 'xml/trackbackrss/feed.xml', :controller => 'xml', :action => 'trackbackrss'
-  
+
   map.xml 'xml/:format/feed.xml', :controller => 'xml', :action => 'feed', :type => 'feed'
   map.xml 'xml/:format/:type/feed.xml', :controller => 'xml', :action => 'feed'
   map.xml 'xml/:format/:type/:id/feed.xml', :controller => 'xml', :action => 'feed'
@@ -32,56 +32,43 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'articles', :action => 'index',
     :page => /\d+/
 
-  map.connect 'articles/:year/:month/:day',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/
-  map.connect 'articles/:year/:month',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :month => /\d{1,2}/
-  map.connect 'articles/:year',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/
+  map.with_options(:conditions => {:method => :get}) do |get|
+    get.with_options(:controller => 'articles',
+                   :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/) do |dated|
+      dated.with_options(:action => 'find_by_date') do |finder|
+        finder.connect 'articles/:year/:month/:day',
+          :defaults => {:year => nil, :month => nil, :day => nil}
+        finder.connect 'articles/:year/page/:page',
+          :month => nil, :day => nil, :page => /\d+/
+        finder.connect 'articles/:year/:month/page/:page',
+          :day => nil, :page => /\d+/
+        finder.connect 'articles/:year/:month/:day/page/:page', :page => /\d+/
+      end
+      dated.connect 'articles/:year/:month/:day/:title', :action => 'permalink'
+    end
 
-  map.connect 'articles/:year/:month/:day/page/:page',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/, :page => /\d+/
-  map.connect 'articles/:year/:month/page/:page',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :month => /\d{1,2}/, :page => /\d+/
-  map.connect 'articles/:year/page/:page',
-    :controller => 'articles', :action => 'find_by_date',
-    :year => /\d{4}/, :page => /\d+/
+    %w(category tag).each do |value|
+      get.with_options(:action => value, :controller => 'articles') do |m|
+        m.connect "articles/#{value}/:id"
+        m.connect "articles/#{value}/:id/page/:page", :page => /\d+/
+      end
+    end
 
-  map.connect 'articles/:year/:month/:day/:title',
-    :controller => 'articles', :action => 'permalink',
-    :year => /\d{4}/, :day => /\d{1,2}/, :month => /\d{1,2}/
+    get.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
 
-  map.connect 'articles/category/:id',
-    :controller => 'articles', :action => 'category'
-  map.connect 'articles/category/:id/page/:page',
-    :controller => 'articles', :action => 'category',
-    :page => /\d+/
+    get.with_options(:controller => 'theme', :filename => /.*/, :conditions => {:method => :get}) do |theme|
+      theme.connect 'stylesheets/theme/:filename', :action => 'stylesheets'
+      theme.connect 'javascripts/theme/:filename', :action => 'javascript'
+      theme.connect 'images/theme/:filename',      :action => 'images'
+    end
 
-  map.connect 'articles/tag/:id',
-    :controller => 'articles', :action => 'tag'
-  map.connect 'articles/tag/:id/page/:page',
-    :controller => 'articles', :action => 'tag',
-    :page => /\d+/
+    # For the tests
+    get.connect 'theme/static_view_test', :controller => 'theme', :action => 'static_view_test'
 
-  map.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
+    map.connect 'plugins/filters/:filter/:public_action',
+      :controller => 'textfilter', :action => 'public_action'
+  end
 
-  map.connect 'stylesheets/theme/:filename',
-    :controller => 'theme', :action => 'stylesheets', :filename => /.*/
-  map.connect 'javascripts/theme/:filename',
-    :controller => 'theme', :action => 'javascript', :filename => /.*/
-  map.connect 'images/theme/:filename',
-    :controller => 'theme', :action => 'images', :filename => /.*/
-
-  # For the tests
-  map.connect 'theme/static_view_test', :controller => 'theme', :action => 'static_view_test'
-
-  map.connect 'plugins/filters/:filter/:public_action',
-    :controller => 'textfilter', :action => 'public_action'
 
   # Stats plugin
   map.connect '/stats/:action', :controller => 'sitealizer'
@@ -99,6 +86,29 @@ ActionController::Routing::Routes.draw do |map|
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end
 
-  map.connect ':controller/:action/:id'
+  returning(map.connect(':controller/:action/:id')) do |default_route|
+    # Ick!
+    default_route.write_generation
+
+    class << default_route
+      def recognize_with_deprecation(path, environment = {})
+        RAILS_DEFAULT_LOGGER.info "#{path} hit the default_route buffer"
+#         if RAILS_ENV=='test'
+#           raise "Don't rely on default routes"
+#         end
+        recognize_without_deprecation(path, environment)
+      end
+      alias_method_chain :recognize, :deprecation
+
+      def generate_with_deprecation(options, hash, expire_on = {})
+        RAILS_DEFAULT_LOGGER.info "generate(#{options.inspect}, #{hash.inspect}, #{expire_on.inspect}) reached the default route"
+#         if RAILS_ENV == 'test'
+#           raise "Don't rely on default route generation"
+#         end
+        generate_without_deprecation(options, hash, expire_on)
+      end
+      alias_method_chain :generate, :deprecation
+    end
+  end
   map.connect '*from', :controller => 'redirect', :action => 'redirect'
 end

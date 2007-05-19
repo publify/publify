@@ -5,8 +5,8 @@
                 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
                 <title>Typo Administration:  <%= controller.controller_name %></title>
                 <meta http-equiv="imagetoolbar" content="no" />
-				<%= javascript_include_tiny_mce_if_used if this_blog.editor == 2 and (controller.action_name == 'new' or controller.action_name == 'edit') %>
-				<%= tiny_mce if this_blog.editor == 2 and (controller.action_name == 'new' or controller.action_name == 'edit') %>
+                <%= javascript_include_tiny_mce_if_used if this_blog.editor == 2 and (controller.action_name == 'new' or controller.action_name == 'edit') %>
+                <%= tiny_mce if this_blog.editor == 2 and (controller.action_name == 'new' or controller.action_name == 'edit') %>
                 <%= stylesheet_link_tag "administration.css" %>
                 <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo" %>
         </head>
@@ -29,13 +29,13 @@
 
         <div id="tabs-container">
           <ul id="tabs">
-            <%= tab _("Publish"), :controller=>"/admin/content", :action => 'new' %>
-            <%= tab _("Manage"), :controller=>"/admin/content/list", :action => 'index' %>
-            <%= tab _("Feedback"), :controller=>"/admin/feedback", :action => 'index' %>
-            <%= tab _("Design"), :controller=>"/admin/sidebar", :action => 'index' %>
-            <%= tab _("Users"), :controller=>"/admin/users", :action => 'index' %>
-            <%= tab _("Settings"), :controller=>"/admin/", :action => 'index' %>
-            <%= tab _("Statistics"), :controller=>"/stats", :action => 'index' %>
+            <%= tab _("Publish"), :controller=>"content", :action => 'new' %>
+            <%= tab _("Manage"), :controller=>"content", :action => 'index' %>
+            <%= tab _("Feedback"), :controller=>"feedback", :action => 'index' %>
+            <%= tab _("Design"), :controller=>"sidebar", :action => 'index' %>
+            <%= tab _("Users"), :controller=>"users", :action => 'index' %>
+            <%= tab _("Settings"), :controller=>"general", :action => 'index' %>
+            <%= tab _("Statistics"), :controller=>"/sitealizer", :action => 'index' %>
           </ul>
         </div>
 
