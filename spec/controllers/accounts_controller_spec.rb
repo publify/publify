@@ -4,9 +4,7 @@ describe 'A successfully authenticated login' do
   controller_name :accounts
 
   before(:each) do
-    @user = mock("user")
-    @user.stub!(:new_record?).and_return(false)
-    @user.stub!(:reload).and_return(@user)
+    @user = mock_model(User, :new_record? => false, :reload => @user)
     User.stub!(:authenticate).and_return(@user)
     post 'login', { :user_login => 'bob', :password => 'test' }
   end
