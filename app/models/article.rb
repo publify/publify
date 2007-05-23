@@ -54,6 +54,16 @@ class Article < Content
     )
   end
 
+  def param_array
+    @param_array ||=
+      [published_at.year, sprintf('%.2d', published_at.month),
+       sprintf('%.2d', published_at.day), permalink]
+  end
+
+  def to_param(want_array=false)
+    want_array ? param_array : id
+  end
+
   def trackback_url
     blog.url_for(:controller => "articles", :action =>"trackback", :id => id)
   end
@@ -147,6 +157,11 @@ class Article < Content
                    :conditions => ['permalink = ? AND ' +
                                    'published_at BETWEEN ? AND ?',
                                    title, from, to ])
+  end
+
+  def self.find_by_params_hash(params = {})
+    year, month, day, title = params[:year], params[:month], params[:day], params[:title]
+    find_by_permalink(year,month,day,title)
   end
 
   # Fulltext searches the body of published articles

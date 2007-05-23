@@ -1,9 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given the fixture :first_page' do
-  fixtures :contents, :blogs
+  fixtures :contents
 
-  before(:each) { @page = contents(:first_page) }
+  before(:each) do
+    @page = contents(:first_page)
+  end
 
   it '#permalink_url should be: http://myblog.net/pages/page_one' do
     @page.permalink_url.should == 'http://myblog.net/pages/page_one'
@@ -33,14 +35,14 @@ class Hash
   end
 end
 
-module ValidPageHelper
+describe "ValidPageHelper", :shared => true do
   def valid_attributes
     { :name => 'name', :title => 'title', :body => 'body'}
   end
 end
 
 describe 'Given no pages' do
-  include ValidPageHelper
+  it_should_behave_like "ValidPageHelper"
 
   before(:each) { @page = Page.new }
 
@@ -79,12 +81,16 @@ describe 'Given no pages' do
 end
 
 describe 'Given a valid page' do
-  include ValidPageHelper
-  before(:each) do
-    @page = Page.new(valid_attributes.merge(:blog => @blog))
-  end
+  it_should_behave_like "ValidPageHelper"
 
   it 'default filter should be fetched from the blog' do
-    @page.default_text_filter.name.should == 'textile'
+    blog = mock_model(Blog)
+    Blog.stub!(:find).and_return(blog)
+    textfilter = mock_model(TextFilter)
+    textfilter.stub!(:to_text_filter).and_return(textfilter)
+
+    blog.should_receive(:text_filter).and_return(textfilter)
+    @page = Page.new(valid_attributes.merge(:blog => blog))
+    @page.default_text_filter.should == textfilter
   end
 end

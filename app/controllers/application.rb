@@ -50,6 +50,11 @@ class ApplicationController < ActionController::Base
     url_for(:controller => '/articles').gsub(%r{/$},'')
   end
 
+  def add_to_cookies(name, value, path=nil, expires=nil)
+    cookies[name] = { :value => value, :path => path || "/#{controller_name}",
+                       :expires => 6.weeks.from_now }
+  end
+
   def self.include_protected(*modules)
     modules.reverse.each do |mod|
       included_methods = mod.public_instance_methods.reject do |meth|
