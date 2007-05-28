@@ -69,6 +69,16 @@
 				    <label for="blog_title_prefix_0"><%= _("Don't show blog name in page title")%></label>
 				</span>
 		  	</li>
+			<li>You can use either Typo traditional permalinks <em>/articles/yyyy/mm/dd/title</em> or search engine friendly permalinks <em>/title</em></li>
+			<li>
+				<label class="float"><%= _("Permalinks")%>:</label>
+				<input type="radio" name="setting[seopermalinks]" value="0" id="blog_seopermalinks_1" <%= 'checked="checked"' if this_blog.seopermalinks == 0 %>/>
+				<label for="blog_seopermalinks_1"><%= _("Use Typo traditional permalinks")%></label>
+				<span class="float">
+					<input type="radio" name="setting[seopermalinks]" value="1" id="blog_seopermalinks_2" <%= 'checked="checked"' if this_blog.seopermalinks == 1 %>/>
+					<label for="blog_seopermalinks_2"><%= _("Use search engine friendly permalinks")%></label>
+				</span>
+			</li>
 		</ul>
   	</fieldset>
 

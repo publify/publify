@@ -43,15 +43,24 @@ class Article < Content
 
   def permalink_url(anchor=nil, only_path=true)
     @cached_permalink_url ||= {}
-    @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(
-      :year => published_at.year,
-      :month => sprintf("%.2d", published_at.month),
-      :day => sprintf("%.2d", published_at.day),
-      :title => permalink,
-      :anchor => anchor,
-      :only_path => only_path,
-      :controller => '/articles'
-    )
+    if self.blog.seopermalinks == 0
+      @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(
+        :year => published_at.year,
+        :month => sprintf("%.2d", published_at.month),
+        :day => sprintf("%.2d", published_at.day),
+        :title => permalink,
+        :anchor => anchor,
+        :only_path => only_path,
+        :controller => '/articles'
+        )
+      else
+        @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(
+          :title => permalink,
+          :anchor => anchor,
+          :only_path => only_path,
+          :controller => '/articles'
+          )        
+      end
   end
 
   def param_array
@@ -159,6 +168,12 @@ class Article < Content
                                    title, from, to ])
   end
 
+  # The same with SEO permalinks activated
+  def self.find_by_seo_permalink(title)
+    find_published(:first,
+                   :conditions => ['permalink = ? ' , title])
+  end
+  
   def self.find_by_params_hash(params = {})
     year, month, day, title = params[:year], params[:month], params[:day], params[:title]
     find_by_permalink(year,month,day,title)

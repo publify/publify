@@ -56,7 +56,12 @@ class ArticlesController < ContentController
   end
 
   def permalink
-    display_article(this_blog.published_articles.find_by_permalink(*params.values_at(:year, :month, :day, :title)))
+    # this code aims at allowing SEO friendly permalinks aside the classical yyyy/mm/dd/title permalinks
+    if this_blog.seopermalinks == 0
+      display_article(this_blog.published_articles.find_by_permalink(*params.values_at(:year, :month, :day, :title)))
+    else
+      display_article(this_blog.published_articles.find_by_seo_permalink(*params.values_at(:title)))
+    end
   end
 
   def find_by_date
