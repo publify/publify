@@ -6,8 +6,8 @@ describe CommentsController, "routes" do
   end
 
   def basic_result(action, method = :get)
-    return { :controller => 'comments', :year => '2007', :month => '10', :day => '11',
-      :title => 'slug', :action => action}
+    return { :controller => 'comments', :article_year => '2007', :article_month => '10', :article_day => '11',
+      :article_id => 'slug', :action => action}
   end
 
   it "should recognize GET /articles/2007/10/11/slug/comments" do
@@ -18,7 +18,8 @@ end
 
 describe "All Requests", :shared => true do
   def do_request(method = :get, action = 'index', *args)
-    with_options(:year => '2007', :month => '10', :day => '11', :title => 'slug') do |requester|
+    with_options(:article_year => '2007', :article_month => '10',
+                 :article_day => '11', :article_id => 'slug') do |requester|
       requester.send(method, action, *args)
     end
   end
@@ -33,12 +34,14 @@ describe "All Requests", :shared => true do
 
     @blog.stub!(:sp_allow_non_ajax_comments).and_return(true)
     @blog.stub!(:published_articles).and_return(@articles)
+    @blog.stub!(:theme).and_return('azure')
     @articles.stub!(:find_by_params_hash).and_return(@article)
+    @article.stub!(:to_param).and_return(['2007', '10', '11', 'slug'])
     Article.stub!(:find).and_return(@article)
 
     Comment.stub!(:find).and_return(@comment)
     Blog.stub!(:find).and_return(@blog)
-    controller.stub!(:article_path).and_return('/articles/2007/10/11/slug')
+#    controller.stub!(:article_path).and_return('/articles/2007/10/11/slug')
   end
 end
 
@@ -96,7 +99,7 @@ describe "General Comment Creation", :shared => true do
     @blog.should_receive(:published_articles).and_return(@articles)
     @articles.should_receive(:find_by_params_hash).and_return(@article)
     @article.should_receive(:comments).and_return(@comments)
-    @article.should_receive(:to_param).with(true).at_least(1).times.and_return(['2007', '10', '11', 'slug'])
+    @article.should_receive(:to_param).at_least(:once).and_return(['2007', '10', '11', 'slug'])
     @comments.should_receive(:build).and_return(@comment)
 
     make_the_request

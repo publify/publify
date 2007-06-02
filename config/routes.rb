@@ -25,41 +25,48 @@ ActionController::Routing::Routes.draw do |map|
   map.xml 'xml/rss', :controller => 'xml', :action => 'feed', :type => 'feed', :format => 'rss'
   map.xml 'sitemap.xml', :controller => 'xml', :action => 'feed', :format => 'googlesitemap', :type => 'sitemap'
 
-  # allow SEO friendly permalinks
-  map.connect ':title',
-    :controller => 'articles', :action => 'permalink'
+  map.datestamped_resources(:articles,
+                            :collection => {
+                              :search => :get, :comment_preview => :any,
+                              :author => :get, :archives => :get
+                            },
+                            :member => {
+                              :comment => :post, :trackback => :post,
+                              :nuke_comment => :post, :nuke_trackback => :post,
+                              :markup_help => :get
+                            }) do |dated|
+    dated.resources :comments, :new => { :preview => :any }
+    dated.resources :trackbacks
+  end
 
   # allow neat perma urls
-  map.connect 'articles',
-    :controller => 'articles', :action => 'index'
   map.connect 'articles/page/:page',
     :controller => 'articles', :action => 'index',
     :page => /\d+/
 
   date_options = { :year => /\d{4}/, :month => /(?:0?[1-9]|1[12])/, :day => /(?:0[1-9]|[12]\d|3[01])/ }
 
-  map.with_options(date_options) do |dated|
-    dated.resources(:comments, :path_prefix => '/articles/:year/:month/:day/:title',
-                    :members => { :preview => :get })
-    dated.resources(:trackbacks, :path_prefix => '/articles/:year/:month/:day/:title')
-  end
+#   map.with_options(date_options) do |dated|
+#     dated.resources(:comments, :path_prefix => '/articles/:year/:month/:day/:title',
+#                     :members => { :preview => :get })
+#     dated.resources(:trackbacks, :path_prefix => '/articles/:year/:month/:day/:title')
+#   end
 
   map.with_options(:conditions => {:method => :get}) do |get|
     get.with_options(date_options.merge(:controller => 'articles')) do |dated|
-      dated.with_options(:action => 'find_by_date') do |finder|
-        finder.connect 'articles/:year/:month/:day',
-          :defaults => {:year => nil, :month => nil, :day => nil}
+      dated.with_options(:action => 'index') do |finder|
         finder.connect 'articles/:year/page/:page',
           :month => nil, :day => nil, :page => /\d+/
         finder.connect 'articles/:year/:month/page/:page',
           :day => nil, :page => /\d+/
         finder.connect 'articles/:year/:month/:day/page/:page', :page => /\d+/
       end
-      dated.article 'articles/:year/:month/:day/:title', :action => 'permalink'
     end
 
     %w(category tag).each do |value|
       get.with_options(:action => value, :controller => 'articles') do |m|
+        m.connect "articles/#{value}"
+        m.connect "articles/#{value}/page/:page", :page => /\d+/
         m.connect "articles/#{value}/:id"
         m.connect "articles/#{value}/:id/page/:page", :page => /\d+/
       end

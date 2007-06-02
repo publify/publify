@@ -6,20 +6,27 @@ describe 'A successfully authenticated login' do
   before(:each) do
     @user = mock_model(User, :new_record? => false, :reload => @user)
     User.stub!(:authenticate).and_return(@user)
+  end
+
+  def make_request
     post 'login', { :user_login => 'bob', :password => 'test' }
   end
 
   it 'session gets a user' do
+    User.should_receive(:authenticate).and_return(@user)
+    make_request
     request.session[:user].should == @user
   end
 
   it 'cookies[:is_admin] should == "yes"' do
+    make_request
     cookies['is_admin'].should == ['yes']
   end
 
   it 'redirects to /bogus/location' do
     request.session[:return_to] = '/bogus/location'
-    post 'login', { :user_login => 'bob', :password => 'test' }
+    make_request
+#    post 'login', { :user_login => 'bob', :password => 'test' }
     response.should redirect_to('/bogus/location')
   end
 end
@@ -29,23 +36,29 @@ describe 'Login gets the wrong password' do
 
   before(:each) do
     User.stub!(:authenticate).and_return(nil)
-    post 'login', {:user_login => 'bob', :password => 'test'}
+  end
+
+  def make_request
+   post 'login', {:user_login => 'bob', :password => 'test'}
   end
 
   it 'no user in goes in the session' do
+    make_request
     response.session[:user].should be_nil
   end
 
   it 'login should == "bob"' do
+    make_request
     assigns[:login].should == 'bob'
   end
 
   it 'cookies[:is_admin] should be blank' do
+    make_request
     response.cookies[:is_admin].should be_blank
   end
 
   it 'should render login action' do
-    post 'login', {:user_login => 'bob', :password => 'test'}
+    make_request
     response.should render_template(:login)
   end
 end

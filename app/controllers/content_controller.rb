@@ -50,7 +50,7 @@ class ContentController < ApplicationController
     @auto_discovery_url_rss =
       request.instance_variable_get(:@auto_discovery_url_rss)
     @auto_discovery_url_atom =
-         request.instance_variable_get(:@auto_discovery_url_atom)
+      request.instance_variable_get(:@auto_discovery_url_atom)
     unless @auto_discovery_url_rss && @auto_discovery_url_atom
       auto_discovery_feed(:type => 'feed')
       request.instance_variable_set(:@auto_discovery_url_rss,

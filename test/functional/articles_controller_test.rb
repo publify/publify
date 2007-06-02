@@ -31,6 +31,22 @@ class ArticlesControllerTest < Test::Unit::TestCase
     Sidebar.delete_all
   end
 
+  def show_article(article)
+    get :show, article_params(article)
+  end
+
+  def post_comment(article, comment_params = {})
+    with_options(article_params(article)) do |send|
+      send.post :comment, :comment => comment_params
+    end
+  end
+
+  def article_params(article)
+    [:year, :month, :day, :id].zip(article.param_array).inject({}) do |init, (k,v)|
+      init.merge!(k => v)
+    end
+  end
+
   # Category subpages
   def test_category
     get :category, :id => "software"
@@ -109,21 +125,21 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_blog_title
     blogs(:default).title_prefix = 1
-    get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
+    get :show, :year => 2004, :month => 06, :day => 01, :id => "article-3"
     assert_response :success
     assert_tag :tag => 'title', :content => /^test blog : Article 3!$/
 
     blogs(:default).title_prefix = 0
     @controller = ArticlesController.new
     assert_equal 0, blogs(:default).title_prefix
-    get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
+    get :show, :year => 2004, :month => 06, :day => 01, :id => "article-3"
     assert_response :success
     assert_tag :tag => 'title', :content => /^Article 3!$/
   end
 
   # Permalinks
-  def test_permalink
-    get :permalink, :year => 2004, :month => 06, :day => 01, :title => "article-3"
+  def test_show
+    get :show, :year => 2004, :month => 06, :day => 01, :id => "article-3"
     assert_response :success
     assert_template "read"
     assert_not_nil assigns(:article)
@@ -132,7 +148,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   # Posts for given day
   def test_find_by_date
-    get :find_by_date, :year => 2004, :month => 06, :day => 01
+    get :index, :year => 2004, :month => 06, :day => 01
     assert_response :success
     assert_template "index"
   end
@@ -145,7 +161,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     Article.find(1).notify_users << users(:tobi)
 
-    post :comment, { :id => 1, :comment => {'body' => 'This is *markdown*', 'author' => 'bob' }}
+    post_comment(Article.find(1), 'body' => 'This is *markdown*', 'author' => 'bob')
 
     assert_response :success
     assert_tag :tag => 'em', :content => 'markdown'
@@ -171,12 +187,12 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def comment_template_test(expected_html, source_text,
                             art_id=1, author='bob', email='foo', args={})
-    post :comment, {
-      :id => art_id,
-      :comment => {
-        'body' => source_text,
-        'author' => author,
-        'email' => email }.merge(args) }
+    with_options(args) do |merger|
+      merger.post_comment(Article.find(art_id),
+                          'body' => source_text,
+                          'author' => author,
+                          'email' => email )
+    end
 
     assert_response :success
     comment = Article.find(art_id).comments.last
@@ -195,13 +211,16 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_spam3
-    post :comment, :id => 1, :comment => {:body => '<a href="http://spam.org">spam</a>', :author => '<a href="spamme.com">spamme</a>', :email => '<a href="http://morespam.net">foo</a>'}
+    post_comment(Article.find(1),
+                 :body => '<a href="http://spam.org">spam</a>',
+                 :author => '<a href="spamme.com">spamme</a>',
+                 :email => '<a href="http://morespam.net">foo</a>')
 
     assert_response :success
     comment = Article.find(1).comments.last
     assert comment
 
-    get :read, :id => 1
+    show_article(Article.find(1))
     assert_response 200
 
     assert ! (@response.body =~ %r{<a href="http://spamme.com">}), "Author leaks"
@@ -243,7 +262,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_comment_user_blank
-    post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
+    post_comment Article.find(2), 'body' => 'foo', 'author' => 'bob'
     assert_response :success
 
     comment = Article.find(2).comments.last
@@ -251,7 +270,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert comment.published?
     assert_nil comment.user_id
 
-    get :read, {:id => 2}
+    show_article(Article.find(2))
     assert_response :success
     assert_no_tag :tag => "li",
        :attributes => { :class => "author_comment"}
@@ -260,14 +279,14 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_comment_user_set
     @request.session = { :user => users(:tobi) }
-    post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
+    post_comment Article.find(2), 'body' => 'foo', 'author' => 'bob'
     assert_response :success
 
     comment = Article.find(2).comments.last
     assert comment
     assert_equal users(:tobi), comment.user
 
-    get :read, {:id => 2}
+    show_article(Article.find(2))
     assert_response :success
     assert_tag :tag => "li",
        :attributes => { :class => "author_comment"}
@@ -326,8 +345,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response 404
   end
 
-  def test_read_non_published
-    get :read, :id => 4
+  def test_show_non_published
+    show_article(Article.find(4))
     assert_response :success
     assert_template "error"
   end
@@ -341,7 +360,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_gravatar
     assert ! this_blog.use_gravatar
-    get :read, :id => 1
+    show_article(Article.find(1))
     assert_response :success
     assert_template "read"
     assert_no_tag :tag => "img",
@@ -351,7 +370,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     this_blog.use_gravatar = true
     @controller = ArticlesController.new
     assert this_blog.use_gravatar
-    get :read, :id => 1
+    show_article(Article.find(1))
     assert_response :success
     assert_template "read"
     assert_tag :tag => "img",
@@ -380,28 +399,30 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_read_article_with_comments_and_trackbacks
-    get :read, :id => contents(:article1).id
+    show_article(contents(:article1))
     assert_response :success
     assert_template "read"
 
-    assert_equal contents(:article1).comments.to_a.select{|c| c.published?}, contents(:article1).published_comments
+    assert_equal(contents(:article1).comments.to_a.select{|c| c.published?},
+                 contents(:article1).published_comments)
 
-    assert_tag :tag => "ol",
-      :attributes => { :id => "commentList"},
-      :children => { :count => contents(:article1).comments.to_a.select{|c| c.published?}.size,
-        :only => { :tag => "li" } }
+    assert_select "ol#commentList" do
+      assert_select ">li", contents(:article1).published_comments.size
+    end
 
-    assert_tag :tag => "li",
-       :attributes => { :class => "author_comment"}
+    assert_select "li.author_comment"
 
-    assert_tag :tag => "ol",
-      :attributes => { :id => "trackbackList" },
-      :children => { :count => contents(:article1).trackbacks.size,
-        :only => { :tag => "li" } }
+    assert_select "ol#trackbackList > li", contents(:article1).trackbacks.size
+
+
+#     assert_tag :tag => "ol",
+#       :attributes => { :id => "trackbackList" },
+#       :children => { :count => contents(:article1).trackbacks.size,
+#         :only => { :tag => "li" } }
   end
 
-  def test_read_article_no_comments_no_trackbacks
-    get :read, :id => contents(:article3).id
+  def test_show_article_no_comments_no_trackbacks
+    show_article(contents(:article3))
     assert_response :success
     assert_template "read"
 
@@ -429,7 +450,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
 
   def test_autodiscovery_article
-    get :read, :id => 1
+    show_article(Article.find(1))
     assert_response :success
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
@@ -465,12 +486,12 @@ class ArticlesControllerTest < Test::Unit::TestCase
     this_blog.sp_allow_non_ajax_comments = false
     assert_equal false, this_blog.sp_allow_non_ajax_comments
 
-    post :comment, :id => 1, :comment => {'body' => 'This is posted without ajax', 'author' => 'bob' }
+    post_comment Article.find(1), 'body' => 'This is posted without ajax', 'author' => 'bob'
     assert_response 500
     assert_equal "non-ajax commenting is disabled", @response.body
 
     @request.env['HTTP_X_REQUESTED_WITH'] = "XMLHttpRequest"
-    post :comment, :id => 1, :comment => {'body' => 'This is posted *with* ajax', 'author' => 'bob' }
+    post_comment Article.find(1), 'body' => 'This is posted *with* ajax', 'author' => 'bob'
     assert_response :success
     ajax_comment = Article.find(1).comments.last
     assert_equal "This is posted *with* ajax", ajax_comment.body

@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  helper :theme
+
   session :off
 
   before_filter :get_article
@@ -22,7 +24,7 @@ class CommentsController < ApplicationController
                               :user => session[:user],
                               :user_agent => request.env['HTTP_USER_AGENT'],
                               :referrer => request.env['HTTP_REFERER'],
-                              :permalink => article_path(*(@article.to_param(true))))
+                              :permalink => article_path(@article))
     @comment.author ||= 'Anonymous'
     set_comment_cookies
 
@@ -30,9 +32,21 @@ class CommentsController < ApplicationController
       if request.xhr?
         render :partial => '/articles/comment', :object => @comment
       else
-        redirect_to article_path(*@article.to_param(true))
+        redirect_to article_path(@article)
       end
     end
+  end
+
+  def preview
+    if params[:comment].blank? or params[:comment][:body].blank?
+      render :nothing => true
+      return
+    end
+
+    set_headers
+    @comment = this_blog.comments.build(params[:comment])
+
+    render :template => 'articles/comment_preview'
   end
 
   protected

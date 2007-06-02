@@ -25,7 +25,8 @@ class Trigger < ActiveRecord::Base
   end
 
   def before_destroy
-    pending_item.send(trigger_method)
-    true
+    returning true do
+      pending_item.send(trigger_method) if pending_item
+    end
   end
 end

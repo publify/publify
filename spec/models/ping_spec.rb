@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given a post which references a pingback enabled article' do
-  fixtures :contents, :blogs
+  fixtures :contents, :blogs, :text_filters
 
   def pingback_target; 'http://anotherblog.org/xml-rpc'; end
   def referenced_url; 'http://anotherblog.org/a-post'; end

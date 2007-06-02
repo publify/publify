@@ -2,10 +2,12 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "CommentSanitization", :shared => true do
   before do
+    build_text_filters
     @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
     @blog = mock_model(Blog, :use_gravatar => false)
     @controller.template.stub!(:this_blog).and_return(@blog)
+    Blog.stub!(:find).and_return(@blog)
 
     prepare_comment
 
@@ -21,6 +23,18 @@ describe "CommentSanitization", :shared => true do
     end
   end
 
+  def build_text_filters
+    TextFilter.delete_all
+    TextFilter.with_options(:filters => [], :params => {}) do |tf|
+      tf.create(:name => 'markdown', :description => 'Markdown', :markup => 'markdown')
+      tf.create(:name => 'smartypants', :description => 'SmartyPants',
+                :markup => 'none', :filters => [:smartypants])
+      tf.create(:name => 'markdown smartypants', :description => 'Markdown SmartyPants',
+                :markup => 'markdown', :filters => [:smartypants])
+      tf.create(:name => 'textile', :description => 'Textile', :markup => 'textile')
+      tf.create(:name => 'none', :description => 'None', :markup => 'none')
+    end
+  end
 
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do

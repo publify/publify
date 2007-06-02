@@ -28,7 +28,13 @@ module ApplicationHelper
   # Produce a link to the permalink_url of 'item'.
   def link_to_permalink(item, title, anchor=nil)
     anchor = "##{anchor}" if anchor
-    "<a href=\"#{item.permalink_url}#{anchor}\">#{title}</a>"
+    case item
+    when Article
+      logger.info article_path(item)
+      "<a href=\"#{article_path(item)}#{anchor}\">#{title}</a>"
+    else
+      "<a href=\"#{item.permalink_url}#{anchor}\">#{title}</a>"
+    end
   end
 
   # The '5 comments' link from the bottom of articles
@@ -135,4 +141,40 @@ module ApplicationHelper
     typo_deprecated "use text.strip_html"
     text.strip_html
   end
+  def admin_tools_for(model)
+    type = model.class.to_s.downcase
+    tag = []
+    tag << content_tag("div",
+      link_to_remote('nuke', {
+          :url => { :action => "nuke_#{type}", :id => model },
+          :complete => visual_effect(:puff, "#{type}-I#{model.id}", :duration => 0.6),
+          :confirm => "Are you sure you want to delete this #{type}?"
+        }, :class => "admintools") <<
+      link_to('edit', {
+        :controller => "admin/#{type.pluralize}",
+        :article_id => model.article.id,
+        :action => "edit", :id => model
+        }, :class => "admintools"),
+      :id => "admin_#{type}_#{model.id}", :style => "display: none")
+    tag.join(" | ")
+  end
+
+  def onhover_show_admin_tools(type, id = nil)
+    tag = []
+    tag << %{ onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_#{[type, id].compact.join('_')}'); }" }
+    tag << %{ onmouseout="Element.hide('admin_#{[type, id].compact.join('_')}');" }
+    tag
+  end
+
+  # Generate the image tag for a commenters gravatar based on their email address
+  # Valid options are described at http://www.gravatar.com/implement.php
+  def gravatar_tag(email, options={})
+    options.update(:gravatar_id => Digest::MD5.hexdigest(email.strip))
+    options[:default] = CGI::escape(options[:default]) if options.include?(:default)
+    options[:size] ||= 60
+
+    image_tag("http://www.gravatar.com/avatar.php?" <<
+      options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")
+  end
+
 end

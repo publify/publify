@@ -48,29 +48,35 @@ class Article < Content
         :year => published_at.year,
         :month => sprintf("%.2d", published_at.month),
         :day => sprintf("%.2d", published_at.day),
-        :title => permalink,
+        :id => permalink,
         :anchor => anchor,
         :only_path => only_path,
-        :controller => '/articles'
+        :controller => '/articles',
+        :action => 'show'
         )
       else
         @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(
-          :title => permalink,
+          :id => permalink,
           :anchor => anchor,
           :only_path => only_path,
-          :controller => '/articles'
+          :controller => '/articles',
+          :action => 'show'
           )        
       end
   end
 
   def param_array
     @param_array ||=
-      [published_at.year, sprintf('%.2d', published_at.month),
-       sprintf('%.2d', published_at.day), permalink]
+      returning([published_at.year, sprintf('%.2d', published_at.month),
+                 sprintf('%.2d', published_at.day), permalink]) do |params|
+      this = self
+      k = class << params; self; end
+      k.send(:define_method, :to_s) { params[-1] }
+    end
   end
 
-  def to_param(want_array=false)
-    want_array ? param_array : id
+  def to_param
+    param_array
   end
 
   def trackback_url
@@ -141,16 +147,24 @@ class Article < Content
 
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)
-    from, to = self.time_delta(year, month, day)
-    Article.count(["published_at BETWEEN ? AND ? AND published = ?",
-                   from, to, true])
+    if !year.blank?
+      from, to = self.time_delta(year, month, day)
+      Article.count(["published_at BETWEEN ? AND ? AND published = ?",
+                     from, to, true])
+    else
+      Article.count(:conditions => { :published => true })
+    end
   end
 
   # Find all articles on a certain date
   def self.find_all_by_date(year, month = nil, day = nil)
-    from, to = self.time_delta(year, month, day)
-    Article.find_published(:all, :conditions => ["published_at BETWEEN ? AND ?",
-                                                 from, to])
+    if !year.blank?
+      from, to = self.time_delta(year, month, day)
+      Article.find_published(:all, :conditions => ["published_at BETWEEN ? AND ?",
+                                                   from, to])
+    else
+      Article.find_published(:all)
+    end
   end
 
   # Find one article on a certain date
@@ -160,7 +174,18 @@ class Article < Content
   end
 
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
-  def self.find_by_permalink(year, month, day, title)
+  def self.find_by_permalink(year, month=nil, day=nil, title=nil)
+    unless month
+      case year
+      when Hash
+        year, month, day, title =
+          year[:article_year] \
+          ? year.values_at(:article_year, :article_month, :article_day, :article_id) \
+          : year.values_at(:year, :month, :day, :id)
+      when Array
+        year, month, day, title = year
+      end
+    end
     from, to = self.time_delta(year, month, day)
     find_published(:first,
                    :conditions => ['permalink = ? AND ' +
@@ -175,8 +200,7 @@ class Article < Content
   end
   
   def self.find_by_params_hash(params = {})
-    year, month, day, title = params[:year], params[:month], params[:day], params[:title]
-    find_by_permalink(year,month,day,title)
+    find_by_permalink(params)
   end
 
   # Fulltext searches the body of published articles

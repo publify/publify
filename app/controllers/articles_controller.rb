@@ -5,7 +5,7 @@ class ArticlesController < ContentController
 
   cache_sweeper :blog_sweeper
 
-  cached_pages = [:index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag, :author]
+  cached_pages = [:index, :read, :show, :category, :archives, :view_page, :tag, :author]
   # If you're really memory-constrained, then consider replacing
   # caches_action_with_params with caches_page
   caches_action_with_params *cached_pages
@@ -16,19 +16,16 @@ class ArticlesController < ContentController
          :render => { :text => 'Forbidden', :status => 403 })
 
   def index
-    # On Postgresql, paginate's default count is *SLOW*, because it does a join against
-    # all of the eager-loaded tables.  I've seen it take up to 7 seconds on my test box.
-    #
-    # So, we're going to use the older Paginator class and manually provide a count.
-    # This is a 100x speedup on my box.
-    now = Time.now
-    count = this_blog.articles.count(:conditions => ['published = ? AND contents.published_at < ?',
-                                                     true, now])
-    @pages = Paginator.new self, count, this_blog.limit_article_display, params[:page]
-    @articles = this_blog.published_articles.find( :all,
-                                                   :offset => @pages.current.offset,
-                                                   :limit => @pages.items_per_page,
-                                                   :conditions => ['contents.published_at < ?', now] )
+    @articles = this_blog.published_articles.find_all_by_date(*params.values_at(:year, :month, :day))
+    render_paginated_index
+  end
+
+  def archives
+    @articles = this_blog.published_articles
+  end
+
+  def show
+    display_article(this_blog.published_articles.find_by_permalink(*params.values_at(:year, :month, :day, :id)))
   end
 
   def search
@@ -45,28 +42,6 @@ class ArticlesController < ContentController
     set_headers
     @comment = this_blog.comments.build(params[:comment])
     @controller = self
-  end
-
-  def archives
-    @articles = this_blog.published_articles
-  end
-
-  def read
-    display_article { this_blog.published_articles.find(params[:id]) }
-  end
-
-  def permalink
-    # this code aims at allowing SEO friendly permalinks aside the classical yyyy/mm/dd/title permalinks
-    if this_blog.seopermalinks == 0
-      display_article(this_blog.published_articles.find_by_permalink(*params.values_at(:year, :month, :day, :title)))
-    else
-      display_article(this_blog.published_articles.find_by_seo_permalink(*params.values_at(:title)))
-    end
-  end
-
-  def find_by_date
-    @articles = this_blog.published_articles.find_all_by_date(params[:year], params[:month], params[:day])
-    render_paginated_index
   end
 
   def error(message = "Record not found...")
@@ -93,23 +68,21 @@ class ArticlesController < ContentController
       return
     end
 
-    if request.post?
-      @article = this_blog.published_articles.find(params[:id])
-      params[:comment].merge!({:ip => request.remote_ip,
-                               :published => true,
-                               :user => session[:user],
-                               :user_agent => request.env['HTTP_USER_AGENT'],
-                               :referrer => request.env['HTTP_REFERER'],
-                               :permalink => @article.permalink_url})
-      @comment = @article.comments.build(params[:comment])
-      @comment.author ||= 'Anonymous'
-      @comment.save
-      add_to_cookies(:author, @comment.author)
-      add_to_cookies(:url, @comment.url)
+    @article = this_blog.published_articles.find_by_permalink(params)
+    params[:comment].merge!({:ip => request.remote_ip,
+                              :published => true,
+                              :user => session[:user],
+                              :user_agent => request.env['HTTP_USER_AGENT'],
+                              :referrer => request.env['HTTP_REFERER'],
+                              :permalink => @article.permalink_url})
+    @comment = @article.comments.build(params[:comment])
+    @comment.author ||= 'Anonymous'
+    @comment.save
+    add_to_cookies(:author, @comment.author)
+    add_to_cookies(:url, @comment.url)
 
-      set_headers
-      render :partial => "comment", :object => @comment
-    end
+    set_headers
+    render :partial => "comment", :object => @comment
   end
 
   # Receive trackbacks linked to articles
@@ -175,7 +148,14 @@ class ArticlesController < ContentController
       @comment      = Comment.new
       @page_title   = @article.title
       auto_discovery_feed :type => 'article', :id => @article.id
-      render :action => 'read'
+      respond_to do |format|
+        format.html { render :action => 'read' }
+        with_options(:controller => 'xml', :action => 'feed', :type => 'article', :id => article) do |feed|
+          format.xml  { feed.redirect_to :format => 'atom' }
+          format.atom { feed.redirect_to :format => 'atom' }
+          format.rss  { feed.redirect_to :format => 'rss' }
+        end
+      end
     rescue ActiveRecord::RecordNotFound, NoMethodError => e
       error("Post not found...")
     end
