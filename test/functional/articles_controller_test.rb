@@ -64,13 +64,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_empty_category
     get :category, :id => "life-on-mars"
-    assert_response :success
+    assert_response 200
     assert_template "error"
   end
 
   def test_nonexistent_category
     get :category, :id => 'nonexistent-category'
-    assert_response :success
+    assert_response 404
     assert_template "error"
   end
 
@@ -87,7 +87,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_nonexistent_tag
     get :tag, :id => "nonexistent"
-    assert_response :success
+    assert_response 200
     assert_template "error"
   end
 
@@ -347,7 +347,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_show_non_published
     show_article(Article.find(4))
-    assert_response :success
+    assert_response 404
     assert_template "error"
   end
 
@@ -440,46 +440,63 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
     get :index
     assert_response :success
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/feed.xml'}
+    assert_select 'link[title=RSS]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/rss+xml]'
+      assert_select '[href=http://test.host/articles.rss]'
+    end
+    assert_select 'link[title=Atom]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/atom+xml]'
+      assert_select '[href=http://test.host/articles.atom]'
+    end
   end
 
 
   def test_autodiscovery_article
     show_article(Article.find(1))
     assert_response :success
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/article/1/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/article/1/feed.xml'}
+
+    assert_select 'link[title=RSS]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/rss+xml]'
+      assert_select '[href=?]', formatted_article_url(Article.find(1), 'rss')
+    end
+    assert_select 'link[title=Atom]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/atom+xml]'
+      assert_select '[href=?]', formatted_article_url(Article.find(1), 'atom')
+    end
   end
 
   def test_autodiscovery_category
     get :category, :id => 'hardware'
     assert_response :success
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/category/hardware/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/category/hardware/feed.xml'}
+    assert_select 'link[title=RSS]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/rss+xml]'
+      assert_select '[href=http://test.host/articles/category/hardware.rss]'
+    end
+    assert_select 'link[title=Atom]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/atom+xml]'
+      assert_select '[href=http://test.host/articles/category/hardware.atom]'
+    end
   end
 
   def test_autodiscovery_tag
     get :tag, :id => 'hardware'
     assert_response :success
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/tag/hardware/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/tag/hardware/feed.xml'}
+    assert_select 'link[title=RSS]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/rss+xml]'
+      assert_select '[href=http://test.host/articles/tag/hardware.rss]'
+    end
+    assert_select 'link[title=Atom]' do
+      assert_select '[rel=alternate]'
+      assert_select '[type=application/atom+xml]'
+      assert_select '[href=http://test.host/articles/tag/hardware.atom]'
+    end
   end
 
   def test_disabled_ajax_comments
@@ -551,14 +568,17 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert assigns(:articles)
     assert_equal users(:tobi).articles.published, assigns(:articles)
     # This is until we write a proper author feed
-    assert_equal('http://test.host/xml/rss20/feed.xml',
+
+    assert_equal('http://test.host/articles/author/tobi.rss',
                  assigns(:auto_discovery_url_rss))
+    assert_equal('http://test.host/articles/author/tobi.atom',
+                 assigns(:auto_discovery_url_atom))
   end
 
   def test_nonexistent_author
     get :author, :id => 'nonexistent-chap'
 
-    assert_response :success
+    assert_response 404
     assert_template 'error'
     assert assigns(:message)
     assert_equal "Can't find posts with author 'nonexistent-chap'", assigns(:message)

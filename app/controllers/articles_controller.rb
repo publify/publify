@@ -1,5 +1,6 @@
 class ArticlesController < ContentController
   before_filter :verify_config
+  before_filter :auto_discovery_feed, :only => [:show, :index, :author, :category, :tag]
 
   layout :theme_layout, :except => [:comment_preview, :trackback]
 
@@ -17,7 +18,16 @@ class ArticlesController < ContentController
 
   def index
     @articles = this_blog.published_articles.find_all_by_date(*params.values_at(:year, :month, :day))
-    render_paginated_index
+    respond_to do |format|
+      format.html { render_paginated_index }
+      @feed_title = this_blog.blog_name
+      format.atom do
+        render :partial => 'atom_feed', :object => @articles
+      end
+      format.rss do
+        render :partial => 'rss20_feed', :object => @articles
+      end
+    end
   end
 
   def archives
@@ -25,7 +35,20 @@ class ArticlesController < ContentController
   end
 
   def show
-    display_article(this_blog.published_articles.find_by_permalink(*params.values_at(:year, :month, :day, :id)))
+    @article      = this_blog.published_articles.find_by_params_hash(params)
+    @comment      = Comment.new
+    @page_title   = @article.title
+    auto_discovery_feed
+    respond_to do |format|
+      format.html { render :action => 'read' }
+      @feed_title = "#{this_blog.blog_name} : #{@page_title}"
+      feedback = @article.feedback.find_all_by_published(true)
+      format.atom { render :partial => 'atom_feed', :object => feedback }
+      format.rss { render :partial => 'rss20_feed', :object => feedback }
+      format.xml { redirect_to :format => 'atom' }
+    end
+    rescue ActiveRecord::RecordNotFound
+      error("Post not found...")
   end
 
   def search
@@ -44,9 +67,9 @@ class ArticlesController < ContentController
     @controller = self
   end
 
-  def error(message = "Record not found...")
+  def error(message = "Record not found...", options = { })
     @message = message.to_s
-    render :action => 'error'
+    render :action => 'error', :status => options[:status] || 404
   end
 
   def author
@@ -68,7 +91,7 @@ class ArticlesController < ContentController
       return
     end
 
-    @article = this_blog.published_articles.find_by_permalink(params)
+    @article = this_blog.published_articles.find_by_params_hash(params)
     params[:comment].merge!({:ip => request.remote_ip,
                               :published => true,
                               :user => session[:user],
@@ -144,20 +167,6 @@ class ArticlesController < ContentController
 
   def display_article(article = nil)
     begin
-      @article      = block_given? ? yield : article
-      @comment      = Comment.new
-      @page_title   = @article.title
-      auto_discovery_feed :type => 'article', :id => @article.id
-      respond_to do |format|
-        format.html { render :action => 'read' }
-        with_options(:controller => 'xml', :action => 'feed', :type => 'article', :id => article) do |feed|
-          format.xml  { feed.redirect_to :format => 'atom' }
-          format.atom { feed.redirect_to :format => 'atom' }
-          format.rss  { feed.redirect_to :format => 'rss' }
-        end
-      end
-    rescue ActiveRecord::RecordNotFound, NoMethodError => e
-      error("Post not found...")
     end
   end
 
@@ -174,20 +183,33 @@ class ArticlesController < ContentController
   def list_groupings(klass)
     @grouping_class = klass
     @groupings = klass.find_all_with_article_counters(1000)
-    render :action => 'groupings'
+    respond_to do |format|
+      format.html { render :action => 'groupings' }
+    end
   end
 
   def render_grouping(klass)
     return list_groupings(klass) unless params[:id]
 
     @page_title = "#{klass.to_s.underscore} #{params[:id]}"
-    @articles = klass.find_by_permalink(params[:id]).articles.find_already_published rescue []
-    auto_discovery_feed :type => klass.to_s.underscore, :id => params[:id]
-    render_paginated_index("Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'")
+    @articles = klass.find_by_permalink(params[:id]).articles.find_already_published
+
+    respond_to do |format|
+      format.html do
+        auto_discovery_feed
+        render_paginated_index("Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'")
+      end
+      @feed_title = "#{this_blog.blog_name} : #{@page_title}"
+      items = @articles[0,this_blog.limit_rss_display]
+      format.atom { render :partial => 'atom_feed', :object => items }
+      format.rss { render :partial => 'rss20_feed', :object => items }
+    end
+  rescue ActiveRecord::RecordNotFound
+    error "Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'"
   end
 
   def render_paginated_index(on_empty = "No posts found...")
-    return error(on_empty) if @articles.empty?
+    return error(on_empty, :status => 200) if @articles.empty?
 
     @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, params[:page]
     start = @pages.current.offset

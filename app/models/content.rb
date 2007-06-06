@@ -221,6 +221,58 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def to_atom xml
+    xml.entry do
+      atom_author(xml)
+      xml.id "urn:uuid:#{guid}"
+      xml.published created_at.xmlschema
+      xml.updated updated_at.xmlschema
+      atom_title(xml)
+      xml.link :rel => 'alternate', :type => 'text/html', :href => permalink_url
+      atom_groupings(xml)
+      atom_enclosures(xml)
+      atom_content(xml)
+    end
+  end
+
+  def to_rss(xml)
+    xml.item do
+      rss_title(xml)
+      rss_description(xml)
+      xml.pubDate published_at.rfc822
+      xml.guid "urn:uuid:#{guid}", :isPermaLink => "false"
+      rss_author(xml)
+      rss_groupings(xml)
+      rss_enclosure(xml)
+      rss_trackback(xml)
+      xml.link permalink_url
+    end
+  end
+
+  def rss_description(xml)
+    xml.description(html(blog.show_extended_on_rss ? :all : :body))
+  end
+
+  def rss_groupings(xml)
+  end
+
+  def rss_enclosure(xml)
+  end
+
+  def rss_trackback(xml)
+  end
+
+  def atom_groupings(xml)
+  end
+
+  def atom_enclosures(xml)
+  end
+
+  def atom_content(xml)
+    xml.content html(:all), :type => 'html'
+  end
+
+
   # deprecated
   def full_html
     typo_deprecated "use .html instead"

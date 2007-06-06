@@ -5,15 +5,15 @@ class Category < ActiveRecord::Base
     :order => "published_at DESC, created_at DESC"
 
   def self.find_all_with_article_counters(maxcount=nil)
-    self.find_by_sql([%{ 
-      SELECT categories.id, categories.name, categories.permalink, categories.position, COUNT(articles.id) AS article_counter 
-      FROM #{Category.table_name} categories 
-        LEFT OUTER JOIN #{Category.table_name_prefix}categorizations#{Category.table_name_suffix} articles_categories 
-          ON articles_categories.category_id = categories.id 
-        LEFT OUTER JOIN #{Article.table_name} articles 
-          ON (articles_categories.article_id = articles.id AND articles.published = ?) 
-      GROUP BY categories.id, categories.name, categories.position, categories.permalink 
-      ORDER BY position 
+    self.find_by_sql([%{
+      SELECT categories.id, categories.name, categories.permalink, categories.position, COUNT(articles.id) AS article_counter
+      FROM #{Category.table_name} categories
+        LEFT OUTER JOIN #{Category.table_name_prefix}categorizations#{Category.table_name_suffix} articles_categories
+          ON articles_categories.category_id = categories.id
+        LEFT OUTER JOIN #{Article.table_name} articles
+          ON (articles_categories.article_id = articles.id AND articles.published = ?)
+      GROUP BY categories.id, categories.name, categories.position, categories.permalink
+      ORDER BY position
       }, true]).each {|item| item.article_counter = item.article_counter.to_i }
   end
 
@@ -24,7 +24,9 @@ class Category < ActiveRecord::Base
   end
 
   def self.find_by_permalink(*args)
-    super || new
+    returning(super) do |cat|
+      raise ActiveRecord::RecordNotFound unless cat
+    end
   end
 
   def self.to_prefix
@@ -63,6 +65,14 @@ class Category < ActiveRecord::Base
       :action => 'category',
       :id => permalink
     )
+  end
+
+  def to_atom(xml)
+    xml.category :term => permalink, :label => name, :scheme => permalink_url
+  end
+
+  def to_rss(xml)
+    xml.category name
   end
 
   protected

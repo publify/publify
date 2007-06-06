@@ -8,7 +8,13 @@ class Article < Content
 
   has_many :pings,      :dependent => :destroy, :order => "created_at ASC"
   has_many :comments,   :dependent => :destroy, :order => "created_at ASC"
+  with_options(:conditions => { :published => true }, :order => 'created_at DESC') do |this|
+    this.has_many :published_comments,   :class_name => "Comment"
+    this.has_many :published_trackbacks, :class_name => "Trackback"
+    this.has_many :published_feedback,   :class_name => "Feedback"
+  end
   has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
+  has_many :feedback,                           :order => "created_at DESC"
   has_many :resources, :order => "created_at DESC",
            :class_name => "Resource", :foreign_key => 'article_id'
   has_many :categorizations
@@ -162,28 +168,39 @@ class Article < Content
     find_all_by_date(year, month, day).first
   end
 
+  def self.date_from(params_hash)
+    params_hash[:article_year] \
+      ? params_hash.values_at(:article_year, :article_month, :article_day, :article_id) \
+      : params_hash.values_at(:year, :month, :day, :id)
+  end
+
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   def self.find_by_permalink(year, month=nil, day=nil, title=nil)
     unless month
       case year
       when Hash
-        year, month, day, title =
-          year[:article_year] \
-          ? year.values_at(:article_year, :article_month, :article_day, :article_id) \
-          : year.values_at(:year, :month, :day, :id)
+        year, month, day, title = date_from(year)
       when Array
         year, month, day, title = year
       end
     end
     from, to = self.time_delta(year, month, day)
-    find_published(:first,
-                   :conditions => ['permalink = ? AND ' +
-                                   'published_at BETWEEN ? AND ?',
-                                   title, from, to ])
+    returning(find_published(:first,
+                             :conditions => ['permalink = ? AND ' +
+                                             'published_at BETWEEN ? AND ?',
+                                             title, from, to ])) do |res|
+      if res.nil?
+        raise ActiveRecord::RecordNotFound
+      end
+    end
   end
 
   def self.find_by_params_hash(params = {})
-    find_by_permalink(params)
+    if params[:id]
+      find_by_permalink(params)
+    else
+      find_by_date(*date_from(params))
+    end
   end
 
   # Fulltext searches the body of published articles
@@ -235,14 +252,6 @@ class Article < Content
       self.created_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
   end
 
-  def published_comments
-    comments.select {|c| c.published?}
-  end
-
-  def published_trackbacks
-    trackbacks.select {|c| c.published?}
-  end
-
   # Bloody rails reloading. Nasty workaround.
   def body=(newval)
     if self[:body] != newval
@@ -281,6 +290,67 @@ class Article < Content
 
   def content_fields
     [:body, :extended]
+  end
+
+  def rss_trackback(xml)
+    return unless allow_pings?
+    xml.trackback :ping, trackback_url
+  end
+
+  def rss_enclosure(xml)
+    return if resources.empty?
+    res = resources.first
+    xml.enclosure(:url    => :blog.file_url(res.file_name),
+                  :length => res.size,
+                  :type   => res.mime)
+  end
+
+  def rss_groupings(xml)
+    categories.each { |v| v.to_rss(xml) }
+    tags.each       { |v| v.to_rss(xml) }
+  end
+
+  def rss_author(xml)
+    xml.author(link_to_author? ? "#{user.email} (#{user.name})" : user.name)
+  end
+
+  def link_to_author?
+    !user.email.blank? && blog.link_to_author
+  end
+
+  def rss_title(xml)
+    xml.title title
+  end
+
+  def atom_author(xml)
+    xml.author { xml.name user.name }
+  end
+
+  def atom_title(xml)
+    xml.title title, "type" => "html"
+  end
+
+  def atom_groupings(xml)
+    categories.each {|v| v.to_atom(xml) }
+    tags.each { |v| v.to_atom(xml) }
+  end
+
+  def atom_enclosures(xml)
+    resources.each do |value|
+      xml.with_options(resource.size > 0 ? { :length => resource.size } : { }) do |xm|
+        xm.link "rel" => "enclosure",
+        :type => value.mime,
+        :title => title,
+        :href => this_blog.file_url(value.filename)
+      end
+    end
+  end
+
+  def atom_content(xml)
+    xml.summary html(:body), "type" => "html"
+    if blog.show_extended_on_rss
+      xml.content html(:all), "type" => "html"
+    end
   end
 
   protected

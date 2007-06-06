@@ -2,45 +2,49 @@ class XmlController < ContentController
   caches_action_with_params :feed
   session :off
 
-  NORMALIZED_FORMAT_FOR = {'atom' => 'atom10', 'rss' => 'rss20',
-    'atom10' => 'atom10', 'rss20' => 'rss20',
+  NORMALIZED_FORMAT_FOR = {'atom' => 'atom', 'rss' => 'rss',
+    'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
     'googlesitemap' => 'googlesitemap' }
 
-  CONTENT_TYPE_FOR = { 'rss20' => 'application/xml',
-    'atom10' => 'application/atom+xml',
+  CONTENT_TYPE_FOR = { 'rss' => 'application/xml',
+    'atom' => 'application/atom+xml',
     'googlesitemap' => 'application/xml' }
 
 
   def feed
-    @items = Array.new
-    @format = params[:format]
-    @blog = this_blog
+    @format = NORMALIZED_FORMAT_FOR[params[:format]]
 
-    if @format == 'atom03'
-      headers["Status"] = "301 Moved Permanently"
-      return redirect_to(:format=>'atom')
+    unless @format
+      return render(:text => 'Unsupported format', :status => 404)
     end
 
-    @feed_title = this_blog.blog_name
-    @link = this_blog.base_url
-
-    @format = NORMALIZED_FORMAT_FOR[@format]
-
-    if not @format
-      render :text => 'Unsupported format', :status => 404
-      return
-    end
-
-    headers["Content-Type"] = "#{CONTENT_TYPE_FOR[@format]}; charset=utf-8"
-
-    if respond_to?("prep_#{params[:type]}")
-      self.send("prep_#{params[:type]}")
+    case params[:type]
+    when 'feed'
+      head :moved_permanently, :location => formatted_articles_url(@format)
+    when 'comments'
+      head :moved_permanently, :location => formatted_admin_comments_url(@format)
+    when 'article'
+      head :moved_permanently, :location => formatted_article_url(Article.find(params[:id]), @format)
+    when 'category', 'tag', 'author'
+      head :moved_permanently, \
+        :location => self.send("formatted_#{params[:type]}_url", params[:id], @format)
     else
-      render :text => 'Unsupported action', :status => 404
-      return
-    end
+      @items = Array.new
+      @blog = this_blog
+      @feed_title = this_blog.blog_name
+      @link = this_blog.base_url
 
-    render :action => "#{@format}_feed"
+      headers["Content-Type"] = "#{CONTENT_TYPE_FOR[@format]}; charset=utf-8"
+
+      if respond_to?("prep_#{params[:type]}")
+        self.send("prep_#{params[:type]}")
+      else
+        render :text => 'Unsupported action', :status => 404
+        return
+      end
+
+      render :action => "#{@format}_feed"
+    end
   end
 
   def itunes
@@ -51,14 +55,14 @@ class XmlController < ContentController
   end
 
   def articlerss
-    redirect_to :action => 'feed', :format => 'rss20', :type => 'article', :id => params[:id]
+    redirect_to :action => 'feed', :format => 'rss', :type => 'article', :id => params[:id]
   end
 
   def commentrss
-    redirect_to :action => 'feed', :format => 'rss20', :type => 'comments'
+    redirect_to :action => 'feed', :format => 'rss', :type => 'comments'
   end
   def trackbackrss
-    redirect_to :action => 'feed', :format => 'rss20', :type => 'trackbacks'
+    redirect_to :action => 'feed', :format => 'rss', :type => 'trackbacks'
   end
 
   def rsd

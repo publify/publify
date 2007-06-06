@@ -73,7 +73,9 @@ class ArticleTest < Test::Unit::TestCase
   def test_permalink_with_title
     assert_equal( contents(:article3),
                   this_blog.articles.find_by_permalink(2004, 06, 01, "article-3") )
-    assert_nil this_blog.articles.find_by_permalink(2005, 06, 01, "article-5")
+    assert_raises(ActiveRecord::RecordNotFound) do
+      this_blog.articles.find_by_permalink(2005, 06, 01, "article-5")
+    end
   end
 
   def test_strip_title
@@ -226,11 +228,14 @@ class ArticleTest < Test::Unit::TestCase
     @articles = Category.find_by_permalink('personal').published_articles
     assert_results_are :article1, :article2, :article3
 
-    @articles = Category.find_by_permalink('foobar').published_articles
-    assert @articles.empty?
-
     @articles = Category.find_by_permalink('software').published_articles
     assert_results_are :article1
+  end
+
+  def test_find_published_by_nonexistent_category_raises_exception
+    assert_raises ActiveRecord::RecordNotFound do
+      Category.find_by_permalink('does-not-exist').published_articles
+    end
   end
 
   def test_destroy_file_upload_associations

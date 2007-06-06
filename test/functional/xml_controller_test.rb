@@ -86,22 +86,20 @@ class XmlControllerTest < Test::Unit::TestCase
     end
   end
 
+  def assert_moved_permanently_to(location)
+    assert_response :moved_permanently
+    assert_equal location, @response.headers["Location"]
+  end
+
   def test_feed_rss20
     get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
-
-    assert_rss20
+    assert_moved_permanently_to formatted_articles_url(:rss)
   end
 
   def test_feed_rss20_comments
     get :feed, :format => 'rss20', :type => 'comments'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-
-    assert_rss20
+    assert_response :moved_permanently
+    assert_moved_permanently_to formatted_admin_comments_url(:rss)
   end
 
   def test_feed_rss20_trackbacks
@@ -114,56 +112,29 @@ class XmlControllerTest < Test::Unit::TestCase
 
   def test_feed_rss20_article
     get :feed, :format => 'rss20', :type => 'article', :id => 1
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
-
-    assert_rss20
+    assert_moved_permanently_to formatted_article_url(Article.find(1), :rss)
   end
 
   def test_feed_rss20_category
     get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
-
-    assert_rss20
+    assert_moved_permanently_to(formatted_category_url('personal', 'rss'))
   end
 
   def test_feed_rss20_tag
     get :feed, :format => 'rss20', :type => 'tag', :id => 'foo'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
-
-    assert_rss20
+    assert_moved_permanently_to(formatted_tag_url('foo', 'rss'))
   end
 
   def test_feed_atom10_feed
     get :feed, :format => 'atom10', :type => 'feed'
-
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-
-    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                 assigns(:items))
-
-    assert_atom10
+    assert_response :moved_permanently
+    assert_moved_permanently_to formatted_articles_url('atom')
   end
 
   def test_feed_atom10_comments
     get :feed, :format => 'atom10', :type => 'comments'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-
-    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                 assigns(:items))
-
-    assert_atom10
-
-    assert_select 'title[type=html]'
+    assert_response :moved_permanently
+    assert_moved_permanently_to formatted_admin_comments_url('atom')
   end
 
   def test_feed_atom10_trackbacks
@@ -183,38 +154,17 @@ class XmlControllerTest < Test::Unit::TestCase
 
   def test_feed_atom10_article
     get :feed, :format => 'atom10', :type => 'article', :id => 1
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-
-    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                 assigns(:items))
-
-    assert_atom10
+    assert_moved_permanently_to formatted_article_url(Article.find(1), 'atom')
   end
 
   def test_feed_atom10_category
     get :feed, :format => 'atom10', :type => 'category', :id => 'personal'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-
-    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                 assigns(:items))
-
-    assert_atom10
+    assert_moved_permanently_to(formatted_category_url('personal', 'atom'))
   end
 
   def test_feed_atom10_tag
     get :feed, :format => 'atom10', :type => 'tag', :id => 'foo'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-
-    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                 assigns(:items))
-
-    assert_atom10
+    assert_moved_permanently_to(formatted_tag_url('foo', 'atom'))
   end
 
   def test_articlerss
@@ -242,16 +192,6 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_response :missing
   end
 
-  def test_pubdate_conformance
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-
-    assert_select 'rss:root > channel > item' do
-      assert_select '> title', :text => 'Article 2!'
-      assert_select '~pubDate', :text => contents(:article2).created_at.rfc822
-    end
-  end
-
   def test_rsd
     get :rsd, :id => 1
     assert_response :success
@@ -260,110 +200,10 @@ class XmlControllerTest < Test::Unit::TestCase
     end
   end
 
-  def test_extended_rss20
-    set_extended_on_rss true
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-    assert_match /extended content/, @response.body
-
-    @controller = XmlController.new
-    set_extended_on_rss false
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-    assert_no_match /extended content/, @response.body
-  end
-
   def test_atom03
     get :feed, :format => 'atom03', :type => 'feed'
-    assert_response :redirect
-    assert_redirected_to :format => 'atom'
-  end
-
-  def test_extended_atom10
-    set_extended_on_rss true
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :success
-    assert_match /extended content/, @response.body
-    assert_select 'summary'
-    assert_select 'content'
-  end
-
-  def test_extended_atom10_with_extended_on_rss_set_to_false
-    set_extended_on_rss false
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :success
-    assert_no_match /extended content/, @response.body
-    assert_select 'summary'
-    assert_select ':not(content)'
-  end
-
-  def test_xml_atom10
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :success
-
-    # titles are escaped html
-    assert_select 'entry' do
-      assert_select '> title', :text => "Associations aren\'t :dependent =&amp;gt; true anymore"
-      assert_select '> title[type=html]'
-    end
-
-    # categories are well formed
-    assert_match /this &amp; that/, @response.body
-  end
-
-  def test_enclosure_rss20
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-
-    # There's an enclosure in there somewhere
-    assert_select('rss:root > channel > item > enclosure')
-
-    # There's an enclosure attached to the node with the title "Article 1!"
-    assert_select 'rss:root > channel > item' do
-      assert_select '>title', :text => 'Article 1!' do
-        assert_select '~enclosure', :count => 1
-      end
-    end
-    # And Article 2
-    assert_select 'rss:root > channel > item' do
-      assert_select '>title', :text => 'Article 2!' do
-        assert_select '~enclosure', :count => 1
-      end
-    end
-    # Article 3 exists, but has no enclosure
-    assert_select 'rss:root > channel > item' do
-      assert_select '>title', :text => 'Article 3!' do
-        assert_select '~enclosure', :count => 0
-      end
-    end
-  end
-
-  def test_enclosure_atom10
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :success
-
-    # There's an enclosure attached to "Article 1!" with a length
-    assert_select 'feed > entry' do
-      assert_select '> title', :text => 'Article 1!' do
-        assert_select '~ link' do
-          assert_select '[rel=enclosure][length]'
-        end
-      end
-    end
-
-    # There's an enclosure attached to "Article 2!" with no length
-    assert_select 'feed > entry' do
-      assert_select '> title', :text => "Article 2!" do
-        assert_select '~ link[rel=enclosure]:not([length])'
-      end
-    end
-
-    # Article 3 exists, but has no enclosure
-    assert_select 'feed > entry' do
-      assert_select '> title', :text => "Article 3!" do
-        assert_select '~ :not(link[rel=enclosure])'
-      end
-    end
+    assert_response :moved_permanently
+    assert_moved_permanently_to formatted_articles_url('atom')
   end
 
   def test_itunes

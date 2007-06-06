@@ -46,7 +46,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.find_by_permalink(*args)
-    self.find_by_name(*args)
+    self.find_by_name(*args) || new(:name => args.first)
   end
 
   def self.to_prefix
@@ -60,15 +60,22 @@ class Tag < ActiveRecord::Base
   def permalink
     self.name
   end
-  
+
   def permalink_url(anchor=nil, only_path=true)
     blog = Blog.find(1) # remove me...
-    
+
     blog.url_for(
       :controller => '/articles',
       :action => 'tag',
       :id => permalink
     )
   end
-  
+
+  def to_atom(xml)
+    xml.category :term => display_name, :scheme => permalink_url
+  end
+
+  def to_rss(xml)
+    xml.category display_name
+  end
 end

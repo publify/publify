@@ -36,7 +36,9 @@ class User < CachedModel
   end
 
   def self.find_by_permalink(permalink)
-    self.find_by_login(permalink)
+    returning(self.find_by_login(permalink)) do |user|
+      raise ActiveRecord::RecordNotFound unless user
+    end
   end
 
   # Let's be lazy, no need to fetch the counters, rails will handle it.

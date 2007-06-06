@@ -49,5 +49,20 @@ class Trackback < Feedback
   def body=(newval)
     self.excerpt = newval
   end
+
+  def atom_author(xml)
+    xml.author do
+      xml.name blog_name
+      xml.uri url
+    end
+  end
+
+  def atom_title(xml)
+    xml.title "Trackback from #{blog_name}: #{title} on #{article.title}", :type => 'text/html'
+  end
+
+  def rss_title(xml)
+    xml.title "Trackback from #{blog_name}: #{title} on #{article.title}"
+  end
 end
 

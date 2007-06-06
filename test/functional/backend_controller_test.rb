@@ -129,7 +129,7 @@ class BackendControllerTest < Test::Unit::TestCase
     article.title = "Modified!"
     article.body = "this is a *test*"
     article.text_filter = TextFilter.find_by_name("textile")
-    article.published_at = Time.now.midnight
+    article.published_at = Time.now.utc.midnight
 
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
@@ -141,7 +141,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal article.title, new_article.title
     assert_equal article.body, new_article.body
     assert_equal "<p>this is a <strong>test</strong></p>", new_article.html(:body)
-    assert_equal Time.now.midnight.to_s, new_article.published_at.to_s
+    assert_equal Time.now.midnight.utc, new_article.published_at.utc
     assert_equal this_blog.id, new_article.blog_id
   end
 
@@ -151,7 +151,7 @@ class BackendControllerTest < Test::Unit::TestCase
     article.body = "body"
     article.extended = "extend me"
     article.text_filter = TextFilter.find_by_name("textile")
-    article.published_at = Time.now.midnight
+    article.published_at = Time.now.utc.midnight
 
     args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
@@ -165,7 +165,7 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal "<p>body</p>", new_post.html(:body)
     assert_equal article.extended, new_post.extended
     assert_equal "<p>extend me</p>", new_post.html(:extended)
-    assert_equal Time.now.midnight.to_s, new_post.published_at.to_s
+    assert_equal Time.now.midnight.utc, new_post.published_at.utc
     assert_equal this_blog.id, new_post.blog_id
   end
 

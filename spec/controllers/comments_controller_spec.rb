@@ -26,15 +26,13 @@ describe "All Requests", :shared => true do
 
   before do
     @articles = mock('articles')
-    @article  = mock_model(Article)
     @comments = mock('comments')
+    @article  = mock_model(Article, :comments => @comments,
+                           :published_comments => @comments)
     @comment  = mock_model(Comment)
-    @blog     = mock_model(Blog)
-    @article.stub!(:comments).and_return(@comments)
+    @blog     = mock_model(Blog, :sp_allow_non_ajax_comments => true, :blog_name => "A Blog",
+                           :theme => 'azure', :articles => @articles, :published_articles => @articles)
 
-    @blog.stub!(:sp_allow_non_ajax_comments).and_return(true)
-    @blog.stub!(:published_articles).and_return(@articles)
-    @blog.stub!(:theme).and_return('azure')
     @articles.stub!(:find_by_params_hash).and_return(@article)
     @article.stub!(:to_param).and_return(['2007', '10', '11', 'slug'])
     Article.stub!(:find).and_return(@article)
@@ -145,21 +143,62 @@ describe CommentsController, 'AJAX creation' do
   end
 end
 
-describe CommentsController, 'index' do
+describe CommentsController, 'scoped index' do
   it_should_behave_like "All Requests"
 
-  it "should respond to index" do
-    comments = mock("comments")
-    @article.should_receive(:comments).and_return(comments)
+  it "GET /articles/2007/10/11/slug/comments should redirect to /articles/2007/10/11/slug#comments" do
     do_request :get, 'index'
+    response.should redirect_to("/articles/2007/10/11/slug#comments")
+  end
+
+  it "GET /articles/2007/10/11/slug/comments.atom should return an atom feed" do
+    do_request :get, 'index', :format => 'atom'
     response.should be_success
-    assigns[:article].should == @article
-    assigns[:comments].should == comments
+    response.should render_template("articles/_atom_feed")
   end
 
-  it "GET /articles/2007/10/11/slug/comments should render index.rhtml" do
-    do_request :get, 'index'
-
-    response.should render_template('index')
+  it "GET /articles/2007/10/11/slug/comments.rss should return an rss feed" do
+    do_request :get, 'index', :format => 'rss'
+    response.should be_success
+    response.should render_template("articles/_rss20_feed")
   end
+end
+
+describe CommentsController, 'GET /comments' do
+  before do
+    @the_mock = mock('blog', :null_object => true)
+    Blog.stub!(:find).and_return(@the_mock)
+  end
+
+  it "should be successful" do
+    get 'index'
+    response.should be_success
+  end
+
+  it "should assign @comments" do
+    @the_mock.should_receive(:comments).and_return(@the_mock)
+    @the_mock.should_receive(:find_all_by_published).with(true).and_return("Comments")
+    get 'index'
+    assigns[:comments].should == "Comments"
+  end
+end
+
+describe CommentsController, "GET /comments.:format" do
+  before do
+    @the_mock = mock('blog', :null_object => true)
+    Blog.stub!(:find).and_return(@the_mock)
+  end
+
+  it ":format => 'atom' should return an atom feed" do
+    get 'index', :format => 'atom'
+    response.should be_success
+    response.should render_template("articles/_atom_feed")
+  end
+
+  it ":format => 'rss' should return an rss feed" do
+    get 'index', :format => 'rss'
+    response.should be_success
+    response.should render_template("articles/_rss20_feed")
+  end
+
 end

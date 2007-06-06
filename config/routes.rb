@@ -25,10 +25,12 @@ ActionController::Routing::Routes.draw do |map|
   map.xml 'xml/rss', :controller => 'xml', :action => 'feed', :type => 'feed', :format => 'rss'
   map.xml 'sitemap.xml', :controller => 'xml', :action => 'feed', :format => 'googlesitemap', :type => 'sitemap'
 
+  map.resources :comments, :name_prefix => 'admin_'
+
   map.datestamped_resources(:articles,
                             :collection => {
                               :search => :get, :comment_preview => :any,
-                              :author => :get, :archives => :get
+                              :archives => :get
                             },
                             :member => {
                               :comment => :post, :trackback => :post,
@@ -63,11 +65,12 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
 
-    %w(category tag).each do |value|
+    %w(category tag author).each do |value|
       get.with_options(:action => value, :controller => 'articles') do |m|
-        m.connect "articles/#{value}"
+        m.named_route("#{value.pluralize}", "articles/#{value}")
         m.connect "articles/#{value}/page/:page", :page => /\d+/
-        m.connect "articles/#{value}/:id"
+        m.named_route("#{value}", "articles/#{value}/:id")
+        m.named_route("formatted_#{value}", "articles/#{value}/:id.:format")
         m.connect "articles/#{value}/:id/page/:page", :page => /\d+/
       end
     end
@@ -111,9 +114,6 @@ ActionController::Routing::Routes.draw do |map|
     class << default_route
       def recognize_with_deprecation(path, environment = {})
         RAILS_DEFAULT_LOGGER.info "#{path} hit the default_route buffer"
-#         if RAILS_ENV=='test'
-#           raise "Don't rely on default routes"
-#         end
         recognize_without_deprecation(path, environment)
       end
       alias_method_chain :recognize, :deprecation

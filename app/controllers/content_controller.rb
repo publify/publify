@@ -21,7 +21,7 @@ class ContentController < ApplicationController
   include LoginSystem
 #  model :user
   helper :theme
-  before_filter :auto_discovery_defaults
+#  before_filter :auto_discovery_defaults
 
   def self.caches_action_with_params(*actions)
     super
@@ -47,29 +47,14 @@ class ContentController < ApplicationController
   end
 
   def auto_discovery_defaults
-    @auto_discovery_url_rss =
-      request.instance_variable_get(:@auto_discovery_url_rss)
-    @auto_discovery_url_atom =
-      request.instance_variable_get(:@auto_discovery_url_atom)
-    unless @auto_discovery_url_rss && @auto_discovery_url_atom
-      auto_discovery_feed(:type => 'feed')
-      request.instance_variable_set(:@auto_discovery_url_rss,
-                                    @auto_discovery_url_rss)
-      request.instance_variable_set(:@auto_discovery_url_atom,
-                                    @auto_discovery_url_atom)
-    end
+    auto_discovery_feed
   end
 
-  def auto_discovery_feed(options)
-    options = {:only_path => false, :action => 'feed', :controller => 'xml'}.merge options
-    # Special cased ugliness. Get rid of it when there's a user feed.
-    if options[:type] == 'user'
-      options[:type] = 'feed'
-      options[:id] = nil
+  def auto_discovery_feed(options = { })
+    with_options(options.reverse_merge(:only_path => false)) do |opts|
+      @auto_discovery_url_rss = opts.url_for(:format => 'rss')
+      @auto_discovery_url_atom = opts.url_for(:format => 'atom')
     end
-
-    @auto_discovery_url_rss = url_for(({:format => 'rss20'}.merge options))
-    @auto_discovery_url_atom = url_for(({:format => 'atom'}.merge options))
   end
 
   def theme_layout

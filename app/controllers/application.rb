@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def authorized?
+    session[:user] && session[:user].reload && authorize?
+  end
+
   def fire_triggers
     Trigger.fire
   end
