@@ -11,8 +11,8 @@
 <tr <%= alternate_class %>>
   <td> <%= link_to_permalink article, h(article.title) %></td>
   <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
-  <td><%= link_to _(pluralize(article.comments.size, 'comment')), :controller => '/admin/comments', :article_id => article, :action => 'list' %></td>
-  <td><%= link_to _(pluralize(article.trackbacks.size, 'trackback')), :controller => '/admin/trackbacks', :article_id => article, :action => 'list' %></td>
+  <td><%= link_to _(pluralize(article.comments.size, 'comment')), :controller => '/admin/comments', :article_id => article.id, :action => 'list' %></td>
+  <td><%= link_to _(pluralize(article.trackbacks.size, 'trackback')), :controller => '/admin/trackbacks', :article_id => article.id, :action => 'list' %></td>
   <td class="operation"><%= (article.published?) ? image_tag('checked.png', :alt => "online", :title => _("Online")) : image_tag('cancel.png', :alt => "offline", :title => _("Offline")) %></td>
   <td class="operation"><%= link_to image_tag('show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => article.id} %></td>
   <td class="operation"><%= link_to_edit article %></td>
