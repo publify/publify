@@ -30,7 +30,6 @@ module ApplicationHelper
     anchor = "##{anchor}" if anchor
     case item
     when Article
-      logger.info article_path(item)
       "<a href=\"#{article_path(item)}#{anchor}\">#{title}</a>"
     else
       "<a href=\"#{item.permalink_url}#{anchor}\">#{title}</a>"
@@ -141,13 +140,14 @@ module ApplicationHelper
     typo_deprecated "use text.strip_html"
     text.strip_html
   end
+
   def admin_tools_for(model)
     type = model.class.to_s.downcase
     tag = []
     tag << content_tag("div",
       link_to_remote('nuke', {
-          :url => { :action => "nuke_#{type}", :id => model },
-          :complete => visual_effect(:puff, "#{type}-I#{model.id}", :duration => 0.6),
+          :url => nuke_feedback_article_path(model.article, :feedback_id => model.id),
+          :method => :delete,
           :confirm => "Are you sure you want to delete this #{type}?"
         }, :class => "admintools") <<
       link_to('edit', {

@@ -11,9 +11,9 @@ class ArticlesController < ContentController
   # caches_action_with_params with caches_page
   caches_action_with_params *cached_pages
 
-  session :only => %w(nuke_comment nuke_trackback)
-  verify(:only => [:nuke_comment, :nuke_trackback],
-         :session => :user, :method => :post,
+  session :only => %w(nuke_comment nuke_trackback nuke_feedback)
+  verify(:only => [:nuke_comment, :nuke_trackback, :nuke_feedback],
+         :session => :user, :method => :delete,
          :render => { :text => 'Forbidden', :status => 403 })
 
   def index
@@ -139,6 +139,13 @@ class ArticlesController < ContentController
   def nuke_trackback
     Trackback.find(params[:id]).destroy
     render :nothing => true
+  end
+
+  def nuke_feedback
+    fb = Feedback.find(params[:feedback_id]).destroy
+    render :update do |page|
+      page.visual_effect(:puff, "#{fb.class.to_s.underscore}-#{fb.id}")
+    end
   end
 
   def view_page

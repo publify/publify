@@ -196,6 +196,7 @@ class Article < Content
   end
 
   def self.find_by_params_hash(params = {})
+    params[:id] ||= params[:article_id]
     if params[:id]
       find_by_permalink(params)
     else

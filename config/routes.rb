@@ -34,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
                             },
                             :member => {
                               :comment => :post, :trackback => :post,
-                              :nuke_comment => :post, :nuke_trackback => :post,
+                              :nuke_feedback => :delete,
                               :markup_help => :get
                             }) do |dated|
     dated.resources :comments, :new => { :preview => :any }

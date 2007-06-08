@@ -184,12 +184,15 @@ class ActionController::Routing::RouteSet
             # instead of
             #
             #   foo_url(:bar => bar, :baz => baz, :bang => bang)
+            o = Hash === args.last ? args.pop : {}
             args.collect(&:to_param).flatten.zip(#{segment_keys.inspect}).inject({}) do |h, (v, k)|
-              h[k] = v
-              h
-            end
+              if Hash === v
+                h.merge!(v)
+              else
+                h.merge!(k => v)
+              end
+            end.merge!(o)
           end
-
           url_for(#{hash_access_method}(opts))
         end
       end_eval
