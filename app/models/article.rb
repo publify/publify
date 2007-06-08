@@ -338,7 +338,7 @@ class Article < Content
 
   def atom_enclosures(xml)
     resources.each do |value|
-      xml.with_options(resource.size > 0 ? { :length => resource.size } : { }) do |xm|
+      xml.with_options(value.size > 0 ? { :length => value.size } : { }) do |xm|
         xm.link "rel" => "enclosure",
         :type => value.mime,
         :title => title,
