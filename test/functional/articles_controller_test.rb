@@ -248,17 +248,18 @@ class ArticlesControllerTest < Test::Unit::TestCase
 #     comment_template_test "<p>My web page is <a href='http://somewhere.com/~me/index.html' rel=\"nofollow\">http://somewhere.com/~me/index.html</a></p>", "My web page is http://somewhere.com/~me/index.html"
 #   end
 
-  def test_comment_nuking
-    num_comments = Comment.count
-    post :nuke_comment, { :id => feedback(:spam_comment).id }, {}
+  def test_feedback_nuking
+    opts = { :article_year => '2007', :article_month => '9', :article_day => '2', :id => 'slug', :feedback_id => feedback(:spam_comment).id }
+    feedback_count = Feedback.count
+    delete :nuke_feedback, opts, {}
     assert_response 403
 
-    get :nuke_comment, { :id => feedback(:spam_comment).id }, { :user => users(:bob)}
+    get :nuke_feedback, opts, { :user => users(:bob)}
     assert_response 403
 
-    post :nuke_comment, { :id => feedback(:spam_comment).id }, { :user => users(:bob)}
+    delete :nuke_feedback, opts, { :user => users(:bob)}
     assert_response :success
-    assert_equal num_comments -1, Comment.count
+    assert_equal feedback_count -1, Feedback.count
   end
 
   def test_comment_user_blank
@@ -300,20 +301,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
                   :child => {:tag => "error", :content => "1"}
 
     assert_equal num_trackbacks+1, Article.find(2).trackbacks.count
-  end
-
-  def test_trackback_nuking
-    num_comments = Trackback.count
-
-    post :nuke_trackback, { :id => 7 }, {}
-    assert_response 403
-
-    get :nuke_trackback, { :id => 7 }, { :user => users(:bob)}
-    assert_response 403
-
-    post :nuke_trackback, { :id => 7 }, { :user => users(:bob)}
-    assert_response :success
-    assert_equal num_comments -1, Trackback.count
   end
 
   def test_no_settings

@@ -16,6 +16,7 @@ describe 'ArticlesController' do
     IPSocket.stub!(:getaddress).and_return do
       raise SocketError.new("getaddrinfo: Name or service not known")
     end
+    CachedModel.cache_reset
   end
 
   it 'can get a category when permalink == name' do
