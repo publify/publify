@@ -33,7 +33,6 @@ class Blog < CachedModel
   end
 
   has_many :pages
-  has_many :comments
   has_many :sidebars, :order => 'active_position ASC'
 
   serialize :settings, Hash

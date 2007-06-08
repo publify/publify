@@ -9,9 +9,9 @@ class Article < Content
   has_many :pings,      :dependent => :destroy, :order => "created_at ASC"
   has_many :comments,   :dependent => :destroy, :order => "created_at ASC"
   with_options(:conditions => { :published => true }, :order => 'created_at DESC') do |this|
-    this.has_many :published_comments,   :class_name => "Comment"
-    this.has_many :published_trackbacks, :class_name => "Trackback"
-    this.has_many :published_feedback,   :class_name => "Feedback"
+    this.has_many :published_comments,   :class_name => "Comment", :order => "created_at ASC"
+    this.has_many :published_trackbacks, :class_name => "Trackback", :order => "created_at ASC"
+    this.has_many :published_feedback,   :class_name => "Feedback", :order => "created_at ASC"
   end
   has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
   has_many :feedback,                           :order => "created_at DESC"
