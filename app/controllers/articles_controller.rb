@@ -22,10 +22,10 @@ class ArticlesController < ContentController
       format.html { render_paginated_index }
       @feed_title = this_blog.blog_name
       format.atom do
-        render :partial => 'atom_feed', :object => @articles
+        render :partial => 'atom_feed', :object => @articles[0,this_blog.limit_rss_display]
       end
       format.rss do
-        render :partial => 'rss20_feed', :object => @articles
+        render :partial => 'rss20_feed', :object => @articles[0,this_blog.limit_rss_display]
       end
     end
   end

@@ -342,7 +342,7 @@ class Article < Content
         xm.link "rel" => "enclosure",
         :type => value.mime,
         :title => title,
-        :href => this_blog.file_url(value.filename)
+        :href => blog.file_url(value.filename)
       end
     end
   end
