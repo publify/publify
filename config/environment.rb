@@ -17,18 +17,18 @@ Rails::Initializer.run do |config|
   # I need the localization plugin to load first
   # Otherwise, I can't localize plugins <= localization
   # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
-  config.plugins = [ 'localization', 
-    'typo_textfilter_flickr', 
-    'typo_textfilter_tmcode', 
-    'typo_textfilter_sparkline', 
+  config.plugins = [ 'localization',
+    'typo_textfilter_flickr',
+    'typo_textfilter_tmcode',
+    'typo_textfilter_sparkline',
     'typo_textfilter_lightbox',
     'typo_textfilter_amazon' ]
-    
-  Dir.entries("#{RAILS_ROOT}/vendor/plugins/").each { |dir|  
-    config.plugins.push("#{dir}") if (File.directory?("#{RAILS_ROOT}/vendor/plugins/#{dir}/lib")  or File.exist?("#{RAILS_ROOT}/vendor/plugins/#{dir}/init.rb"))  
+
+  Dir.entries("#{RAILS_ROOT}/vendor/plugins/").each { |dir|
+    config.plugins.push("#{dir}") if (File.directory?("#{RAILS_ROOT}/vendor/plugins/#{dir}/lib")  or File.exist?("#{RAILS_ROOT}/vendor/plugins/#{dir}/init.rb"))
   }
-  
-  
+
+
   config.load_paths += %W(
     vendor/rubypants
     vendor/akismet

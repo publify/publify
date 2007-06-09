@@ -10,7 +10,8 @@ end
 describe 'ArticlesController' do
   controller_name :articles
   fixtures(:contents, :feedback, :categories, :blogs, :users, :categorizations,
-           :text_filters, :articles_tags, :tags)
+           :text_filters, :articles_tags, :tags, :blacklist_patterns, :resources,
+           :sidebars)
 
   before(:each) do
     IPSocket.stub!(:getaddress).and_return do

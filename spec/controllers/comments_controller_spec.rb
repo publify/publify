@@ -175,11 +175,41 @@ describe CommentsController, 'GET /comments' do
     response.should be_success
   end
 
-  it "should assign @comments" do
-    @the_mock.should_receive(:comments).and_return(@the_mock)
-    @the_mock.should_receive(:find_all_by_published).with(true).and_return("Comments")
+  it "should limit the comments if !this_blog.limit_rss_display.to_i.zero? " do
+    mock_comments = mock('comments')
+    @the_mock.should_receive(:comments).and_return(mock_comments)
+    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return(20)
+    mock_comments.should_receive(:find_all_by_published).with(true, :limit => 20, :order => 'created_at DESC').and_return("Comments")
     get 'index'
-    assigns[:comments].should == "Comments"
+  end
+
+  it "should not limit the comments if this_blog.limit_rss_display is 0" do
+    mock_comments = mock('comments')
+    @the_mock.should_receive(:comments).and_return(mock_comments)
+    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return(0)
+    mock_comments.should_receive(:find_all_by_published).with(true, :order => 'created_at DESC').and_return("Comments")
+    get 'index'
+  end
+
+  it "should not limit the comments if this_blog.limit_rss_display is nil" do
+    mock_comments = mock('comments')
+    @the_mock.should_receive(:comments).and_return(mock_comments)
+    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return(nil)
+    mock_comments.should_receive(:find_all_by_published).with(true, :order => 'created_at DESC').and_return("Comments")
+    get 'index'
+  end
+
+  it "should not limit the comments if this_blog.limit_rss_display is ''" do
+    mock_comments = mock('comments')
+    @the_mock.should_receive(:comments).and_return(mock_comments)
+    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return('')
+    mock_comments.should_receive(:find_all_by_published).with(true, :order => 'created_at DESC').and_return("Comments")
+    get 'index'
+  end
+
+  it "should assign @comments" do
+    get 'index'
+    assigns[:comments].should_not be_nil
   end
 end
 

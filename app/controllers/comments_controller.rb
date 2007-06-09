@@ -11,7 +11,10 @@ class CommentsController < ApplicationController
       article = this_blog.articles.find_by_params_hash(params)
       @comments = article.published_comments
     else
-      @comments = this_blog.comments.find_all_by_published(true)
+      limits = this_blog.limit_rss_display.to_i.zero? \
+        ? { } \
+        : {:limit => this_blog.limit_rss_display }
+      @comments = this_blog.comments.find_all_by_published(true, limits.merge(:order => 'created_at DESC'))
     end
 
     respond_to do |format|
