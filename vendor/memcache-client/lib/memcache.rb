@@ -1,3 +1,4 @@
+# Thank you Mathijs van Zuijlen
 require 'socket'
 require 'thread'
 require 'timeout'
