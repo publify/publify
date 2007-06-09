@@ -1,5 +1,3 @@
-$TESTING = defined? $TESTING
-
 require 'socket'
 require 'thread'
 require 'timeout'
