@@ -75,6 +75,10 @@ class Category < ActiveRecord::Base
     xml.category name
   end
 
+  def to_param
+    permalink
+  end
+
   protected
 
   before_save :set_defaults

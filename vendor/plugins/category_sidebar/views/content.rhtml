@@ -3,7 +3,7 @@
 <ul id="categories">
 <% for category in sidebar.categories -%>
   <% unless empty.blank? and category.article_counter == 0 %>
-  <li><%= link_to h(category.name), category.permalink_url  %> <% unless count.blank? %><em>(<%= category.article_counter %>)</em><% end %></li>
+  <li><%= link_to h(category.name), category_url(category)  %> <% unless count.blank? %><em>(<%= category.article_counter %>)</em><% end %></li>
   <% end %>
 <% end -%>
 </ul>

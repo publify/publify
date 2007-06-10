@@ -75,6 +75,10 @@ class User < CachedModel
     login
   end
 
+  def to_param
+    permalink
+  end
+
   protected
 
   # Apply SHA1 encryption to the supplied password.
