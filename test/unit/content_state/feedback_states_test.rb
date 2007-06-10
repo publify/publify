@@ -5,7 +5,7 @@ class FeedbackStatesTest < Test::Unit::TestCase
     :categories, :categorizations, :users, :notifications, :text_filters
 
   def setup
-    @comment = Article.find(:first).comments.build(:author => 'Piers',
+    @comment = Article.find(1).comments.build(:author => 'Piers',
                                                    :body => 'Body')
   end
 
