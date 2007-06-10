@@ -135,16 +135,15 @@ module ActionController
 
       def action_options_for(action, method=nil)
         default_options = { :action => action.to_s }
-        require_id = { :requirements => { :id => Regexp.new("[^#{Routing::SEPARATORS.join}]+") } }
         case default_options[:action]
         when "index", "new"; default_options.merge(conditions_for(method || :get))
         when "create"      ; default_options.merge(conditions_for(method || :post))
         when "show", "edit"
-          default_options.merge(conditions_for(method || :get)).merge(require_id).merge(DATE_OPTIONS)
+          default_options.merge(conditions_for(method || :get)).merge(DATE_OPTIONS)
         when "update"
-          default_options.merge(conditions_for(method || :put)).merge(require_id).merge(DATE_OPTIONS)
+          default_options.merge(conditions_for(method || :put)).merge(DATE_OPTIONS)
         when "destroy"
-          default_options.merge(conditions_for(method || :delete)).merge(require_id).merge(DATE_OPTIONS)
+          default_options.merge(conditions_for(method || :delete)).merge(DATE_OPTIONS)
         else                 default_options.merge(conditions_for(method))
         end
       end
