@@ -7,12 +7,25 @@
   <% form_tag :action=>"new" do %>
   <div class="list">
     <table cellspacing="1" cellpadding="0">
+	  <tr>
+	    <th><%= _("Post title")%></th>
+	    <th><%= _("Posted at")%></th>
+	    <th><%= _("Comments")%></th>
+	    <th><%= _("Trackbacks")%></th>
+	    <th><%= _("Status")%></th>
+	    <th colspan="3" style="text-align: center;">Action</th>
+	  </tr>
     <% for article in @category.articles -%>
-    <tr  <%= alternate_class -%>>
-      <td><%= (article.published?) ? image_tag('checked.png', :alt => "online", :title => _("Online")) : image_tag('cancel.png', :alt => "offline", :title => _("Offline")) %> <%= link_to h(article.title), :controller => "/admin/content", :action => "show", :id => article.id %></td>
-      <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
-      <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => '/admin/comments', :article_id => article, :action => 'list' %></td>
-    </tr>
+      <tr  <%= alternate_class -%>>
+        <td><%= link_to h(article.title), :controller => "/admin/content", :action => "show", :id => article.id %></td>
+        <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
+        <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => '/admin/comments', :article_id => article, :action => 'list' %></td>
+	    <td><%= link_to _(pluralize(article.trackbacks.size, 'trackback')), :controller => '/admin/trackbacks', :article_id => article.id, :action => 'list' %></td>
+        <td class="operation"><%= (article.published?) ? image_tag('checked.png', :alt => "online", :title => _("Online")) : image_tag('cancel.png', :alt => "offline", :title => _("Offline")) %></td>
+	  <td class="operation"><%= link_to image_tag('show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => article.id} %></td>
+	  <td class="operation"><%= link_to_edit article %></td>
+	  <td class="operation"><%= link_to_destroy article %></td>
+      </tr>
     <% end -%>
     </table>
   </div>

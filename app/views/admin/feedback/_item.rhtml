@@ -1,6 +1,5 @@
-<tr class="<%= state_class(item) %>">
+<tr <%= alternate_class %>>
   <td class="field"><input class= "feedback_check" type="checkbox" name="feedback_check[<%= item.id %>]"/></td>
-  <td class="operation"><%=h item.state %></td>
   <td class="field"><%=h item.class %></td>
   <td class="field"><%= link_to_article_edit item.article %></td>
   <td class="field">
@@ -13,6 +12,7 @@
   <td class="field"><%=h truncate(item.body,80)%></td>
   <td class="field"><%=h item.ip %></td>
   <td class="field"><%=item.created_at.strftime("%d/%m/%Y at %H:%M")%></td>
+  <td class="operation"><%= image_tag((item.published) ? 'checked.png' : 'cancel.png', :alt => item.state, :title => item.state) %></td>
   <td class="operation"><%= link_to image_tag('show.png', :alt => "show", :title => "Show content"), :controller => 'comments', :article_id => item.article_id, :action => 'show', :id => item.id %></td>
   <td class="operation"><%= link_to image_tag('edit.png', :alt => "edit", :title => "Edit content"), :controller => 'comments', :article_id => item.article_id, :action => 'edit', :id => item.id %></td>
   <td class="operation"><%= link_to image_tag('delete.png'), {:action => 'delete', :id => item.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
