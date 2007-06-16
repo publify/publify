@@ -7,7 +7,7 @@
   </tr>
   <% for category in @categories -%>
   <tr <%= alternate_class -%> id="category_<%= category.id -%>">
-    <td><%= category.name %></td>
+    <td><%= link_to category.name, {:controller => 'articles', :action => 'category', :id => category.permalink} %></td>
     <td><%= pluralize(category.articles.size, 'article') %></td>
     <td class="operation"><%= image_tag 'checked.png' %></td>
     <td class="operation"><%= link_to_show category %></td>

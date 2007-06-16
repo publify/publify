@@ -31,6 +31,11 @@
        <label for="page_text_filter" class="float"><%= _("Textfilter")%>: </label>
        <%= select 'page', 'text_filter', text_filter_options %>
      </li>
+     <li>
+       <label for="page_published" class="float"><%= _("Published")%>:</label>
+       <%= check_box 'page', 'published'  %>
+     </li>
+
   </ul>
 </fieldset>
 
