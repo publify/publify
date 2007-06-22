@@ -27,8 +27,9 @@ class AddSidebars < ActiveRecord::Migration
       body: |+
         <ul>
           <li><a href="http://www.typosphere.org" title="Typo">Typo</a></li>
-          <li><a href="http://scottstuff.net" title="Scottstuff">scottstuff.net</a></li>
-          <li><a href="http://www.bofh.org.uk" title="Just a Summary">Just A Summary</a></li>
+          <li><a href="http://blog.typosphere.org" title="Typo official blog">Typo official blog</a></li>
+          <li><a href="http://scottstuff.net" title="Scottstuff">Scott Laird</a></li>
+          <li><a href="http://www.bofh.org.uk" title="Just a Summary">Piers Cawley</a></li>
           <li><a href="http://kevin.sb.org/">Kevin Ballard</a></li>
           <li><a href="http://fredericdevillamil.com">Frédéric de Villamil</a></li>
           <li><a href="http://typoforums.org" title="Typo Forums">Typo Forums</a></li>
