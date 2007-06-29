@@ -41,6 +41,9 @@ ActionController::Routing::Routes.draw do |map|
     dated.resources :trackbacks
   end
 
+    map.connect ':title', 
+    :controller => 'articles', :action => 'show'
+
   # allow neat perma urls
   map.connect 'articles/page/:page',
     :controller => 'articles', :action => 'index',

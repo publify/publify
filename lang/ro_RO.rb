@@ -231,9 +231,9 @@ Localization.define('ro_RO') do |l|
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Această opțiune va dezactiva trimiterea de retrolegături de acum înainte. Retrolegăturile existente vor rămîne în site-uri, dar alte retrolegături nu vor mai fi posibile nicăieri in blog."
   l.store "Disable trackbacks site-wide" ,"Dezactivează retrolegăturile în tot blogul"
   l.store "Enable Trackbacks by default", "Implicit retrolegăturile să fie active"
-  l.store "You can enable site wide comment moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", 
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", 
           "Poți activa, pentru tot blogul, moderarea comentariilor. Dacă alegi să faci asta, niciun comentariu sau retrolegătură nu va apărea pe blog înainte de a fi validat(ă)"
-  l.store "Enable comments moderation", "Activează moderarea comentariilor"
+  l.store "Enable feedback moderation", "Activează moderarea comentariilor"
   l.store "Enable comments by default", "Implicit comentariile să fie active"
   l.store "Show your email address", "Arată adresa ta de email"
   l.store "Enable gravatars", "Activează gravataruri"

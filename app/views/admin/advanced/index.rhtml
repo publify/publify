@@ -69,6 +69,16 @@
                     <label for="blog_title_prefix_0"><%= _("Don't show blog name in page title")%></label>
                 </span>
             </li>
+            <li>You can use either Typo traditional permalinks <em>/articles/yyyy/mm/dd/title</em> or search engine friendly permalinks <em>/title</em></li> 
+			<li> 
+		 	  <label class="float"><%= _("Permalinks")%>:</label> 
+			  <input type="radio" name="setting[seopermalinks]" value="0" id="blog_seopermalinks_1" <%= 'checked="checked"' if this_blog.seopermalinks == 0 %>/> 
+			  <label for="blog_seopermalinks_1"><%= _("Use Typo traditional permalinks")%></label> 
+			  <span class="float"> 
+			    <input type="radio" name="setting[seopermalinks]" value="1" id="blog_seopermalinks_2" <%= 'checked="checked"' if this_blog.seopermalinks == 1 %>/> 
+			    <label for="blog_seopermalinks_2"><%= _("Use search engine friendly permalinks")%></label> 
+		 	  </span> 
+		  </li>
         </ul>
     </fieldset>
 
@@ -83,9 +93,9 @@
                 <input name="setting[global_pings_disable]" id="global_pings_disable" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.global_pings_disable%> />
                 <input name="setting[global_pings_disable]" type="hidden" value="0" />
             </li>
-            <li><%= _("You can enable site wide comment moderation. If you do so, no comment or trackback will appear on your blog unless you validate it")%>.</li>
+            <li><%= _("You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it")%>.</li>
             <li class="checkbox">
-                <label class="float" for="default_moderate_comments"><%= _("Enable comments moderation")%>:</label>
+                <label class="float" for="default_moderate_comments"><%= _("Enable feedback moderation")%>:</label>
                 <input name="setting[default_moderate_comments]" id="default_moderate_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_moderate_comments %> />
                 <input name="setting[default_moderate_comments]" type="hidden" value="0" />
             </li>

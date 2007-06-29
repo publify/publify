@@ -76,9 +76,6 @@
 	<fieldset id="discuss" class="set">
 		<legend><%= _("Feedback")%></legend>
 		<ul>
-			<li>
-				<%= _("This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.")%>
-			</li>
 			<li class="checkbox">
 		        <label class="float" for="default_allow_pings"><%= _("Enable Trackbacks by default")%>:</label>
 		      	<input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_pings%> />
