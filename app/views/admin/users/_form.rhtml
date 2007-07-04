@@ -5,6 +5,10 @@
   <%= text_field 'user', 'login'  %>
 </p>
 <p>
+	<label for="user_profile"><%= _("Profile")%>:</label><br />
+	<%=  select("user", "profile_id", @profiles.collect {|p| [ p.nicename, p.id ] }, { :include_blank => true }) %>
+</p>
+<p>
   <label for="user_login"><%= _("Display Name")%>:</label><br/>
   <%= text_field 'user', 'name'  %>
 </p>

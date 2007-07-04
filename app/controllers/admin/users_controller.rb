@@ -16,6 +16,7 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new(params[:user])
+    setup_profiles
     if request.post? and @user.save
       flash[:notice] = 'User was successfully created.'
       redirect_to :action => 'list'
@@ -23,7 +24,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
+    setup_profiles
     @user.attributes = params[:user]
     if request.post? and @user.save
       flash[:notice] = 'User was successfully updated.'
@@ -37,6 +39,10 @@ class Admin::UsersController < Admin::BaseController
       @user.destroy if User.count > 1
       redirect_to :action => 'list'
     end
+  end
+
+  def setup_profiles
+    @profiles = Profile.find(:all, :order => 'id')
   end
 
 end
