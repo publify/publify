@@ -19,9 +19,8 @@ class AddUsersProfile < ActiveRecord::Migration
       admin = Profile.create(:label => 'admin', :nicename => 'Typo administrator')
       Profile.create(:label => 'publisher', :nicename => 'Blog publisher')
       Profile.create(:label => 'contributor', :nicename => 'Contributor')
+      add_column("users", "profile_id", :integer, :default => admin.id)
     end
-
-    add_column("users", "profile_id", :integer, :default => admin.id)
   end
 
   def self.down
