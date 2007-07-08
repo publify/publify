@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CacheSupportTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :users, :text_filters
+  fixtures :blogs, :contents, :users, :text_filters, :profiles
 
   def setup
     @article = Article.find(:first)

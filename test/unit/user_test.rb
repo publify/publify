@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < Test::Unit::TestCase
 
-  fixtures :users, :contents
+  fixtures :users, :contents, :profiles
 
   def test_auth
     assert_equal  users(:bob), User.authenticate("bob", "test")

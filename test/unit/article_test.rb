@@ -4,7 +4,7 @@ require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
   fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories,
-    :categorizations, :users, :notifications, :text_filters, :triggers
+    :categorizations, :users, :notifications, :text_filters, :triggers, :profiles
 
   def setup
     @articles = []
