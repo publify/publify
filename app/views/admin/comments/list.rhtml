@@ -5,29 +5,20 @@
     <li><%= link_to _('Manage articles'), :controller => '/admin/content', :action => 'list' %></li>
   <% end %> 
 
-  <div class="list">	
-    <table>
-    <tr>
-      <th><%= _("Author")%></th>
-      <th><%= _("Email")%></th>
-      <th><%= _("Body")%></th>
-      <th><%= _("IP")%></th>
-      <th><%= _("Posted date")%></th>
-	  <th><%= _("Status")%></th>
-	  <th colspan="3"><%= _("Action") %></th>
-    </tr>
-    <% for comment in @comments -%>
-    <tr>
-      <td class="field"> <%=link_to_unless comment.url.blank?, h(comment.author), comment.url %></td>
-      <td class="field"><%=h comment.email %></td>
-      <td class="field"><%= link_to_permalink comment, truncate((comment.body).strip_html) %></td>
-      <td class="field"><%=h comment.ip %></td>
-      <td class="field"><%=comment.created_at.strftime("%d/%m/%Y at %H:%M") %></td>
-	  <td class="operation"><%= image_tag 'checked.png' %></td>
-	  <td class="operation"><%= link_to_show comment %></td>
-      <td class="operation"><%= link_to_edit comment %></td>
-      <td class="operation"><%= link_to_destroy comment %></td>    
-    </tr>  
-    <% end -%>
-    </table>
+  <div class="list">
+	<ol>
+	<% for comment in @comments -%>
+	  <li>
+	    <p><strong><%= mail_to h(comment.email), h(comment.author) %></strong> |
+		<%= link_to_unless comment.url.blank?, h(comment.url), comment.url %> | 
+		IP: <%=h comment.ip %></p>
+		<%= comment.body %>
+		<p><%=comment.created_at.strftime("%d/%m/%Y at %H:%M") %> – [ 
+		   <%= link_to_edit comment %> | 
+		   <%= link_to_destroy comment %> | 
+		   <%= comment.state %> ]
+		</p>
+	  </li>
+	<% end -%>
+	</ol>
   </div>
