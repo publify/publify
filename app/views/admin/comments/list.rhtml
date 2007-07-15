@@ -8,7 +8,7 @@
   <div class="list">
 	<ol>
 	<% for comment in @comments -%>
-	  <li>
+	  <li <%= alternate_class %>>
 	    <p><strong><%= mail_to h(comment.email), h(comment.author) %></strong> |
 		<%= link_to_unless comment.url.blank?, h(comment.url), comment.url %> | 
 		IP: <%=h comment.ip %></p>

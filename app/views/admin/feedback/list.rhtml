@@ -9,7 +9,9 @@
 
 <div class="search">
   <% form_tag({:action => 'index'}, :method => :get) do %>
-    <label for="search"><%= _("Feedback Search")%>:</label><input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="15" />
+    <label for="search"><%= _("Search Comments and Trackbacks that contain")%>...:</label><br /> 
+	<input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="30" />
+	<%= submit_tag "Search" %>
   <% end %>
 </div>
 
@@ -27,13 +29,11 @@
   <table cellspacing="1" cellpadding="0">
   <tr>
   	<th><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-	<th><%= _("Type")%></th>
+	<th><%= _("Status")%></th>
 	<th><%= _("Article")%></th>
     <th><%= _("Author")%></th>
-    <th><%= _("Body")%></th>
+    <th><%= _("Comment Excertp")%></th>
     <th><%= _("IP")%></th>
-    <th><%= _("Posted date")%></th>
-	<th class="action"><%= _("Status")%></th>
     <th colspan="3"><%= _("Action") %></th>
   </tr>
   <%= render :partial => 'item', :collection => @feedback %>

@@ -96,6 +96,7 @@ class Admin::ContentController < Admin::BaseController
   def new_or_edit
     get_or_build_article
     params[:article] ||= {}
+    params[:bookmarklet_link] && post_from_bookmarklet
 
     @article.attributes = params[:article]
     setup_categories
@@ -109,6 +110,14 @@ class Admin::ContentController < Admin::BaseController
         redirect_to :action => 'show', :id => @article.id
       end
     end
+  end
+
+  def post_from_bookmarklet
+    params[:article][:title] = params[:bookmarklet_title]
+    params[:article][:body] = '<a href="' + params[:bookmarklet_link] + \
+      ' title="' + params[:bookmarklet_title] + '">' + \
+      params[:bookmarklet_title] + '</a>'
+    params[:article][:body] += ("\n\n" + params[:bookmarklet_text]) if params[:bookmarklet_text]
   end
 
   def set_the_flash
