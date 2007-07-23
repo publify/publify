@@ -141,10 +141,4 @@ class MovableTypeService < TypoWebService
     article.published = true
     article.save
   end
-
-  private
-
-  def pub_date(time)
-    time.strftime "%a, %e %b %Y %H:%M:%S %Z"
-  end
 end

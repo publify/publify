@@ -7,6 +7,9 @@
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+# need this early for plugins
+require 'typo_deprecated'
+
 Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use
   # config.frameworks -= [ :action_web_service, :action_mailer ]
@@ -111,7 +114,6 @@ require 'xmlrpc_fix'
 require 'transforms'
 require 'builder'
 
-require 'typo_deprecated'
 
 #MemoryProfiler.start(:delay => 10, :string_debug => false)
 

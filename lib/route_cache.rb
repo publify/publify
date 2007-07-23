@@ -2,7 +2,7 @@ class RouteCache
   @cache = {}
   
   def self.clear
-    @cacle = {}
+    @cache = {}
   end
   
   def self.[](key)

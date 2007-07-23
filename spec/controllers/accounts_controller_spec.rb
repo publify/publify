@@ -29,6 +29,12 @@ describe 'A successfully authenticated login' do
 #    post 'login', { :user_login => 'bob', :password => 'test' }
     response.should redirect_to('/bogus/location')
   end
+  
+  it "should redirect to signup if no users" do
+    User.stub!(:count).and_return(0)
+    make_request
+    response.should redirect_to('/accounts/signup')
+  end
 end
 
 describe 'Login gets the wrong password' do

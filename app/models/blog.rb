@@ -163,10 +163,7 @@ class Blog < CachedModel
   end
 
   # Deprecated
-  def canonical_server_url
-    typo_deprecated "Use base_url instead"
-    base_url
-  end
+  typo_deprecate :canonical_server_url => :base_url
 
   def [](key)  # :nodoc:
     typo_deprecated "Use blog.#{key}"

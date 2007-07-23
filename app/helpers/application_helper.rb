@@ -81,10 +81,7 @@ module ApplicationHelper
   end
 
   # Deprecated helpers
-  def server_url_for(options={})
-    typo_deprecated "Use url_for instead"
-    url_for(options)
-  end
+  typo_deprecate :server_url_for => :url_for
 
   def config_value(name)
     typo_deprecated "Use this_blog.#{name} instead."

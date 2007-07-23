@@ -20,13 +20,10 @@ class Ping < ActiveRecord::Base
     end
 
     def pingback_url
-      if @response["X-Pingback"]
-        @response["X-Pingback"]
-      elsif
-        response.body =~ /<link rel="pingback" href="([^"]+)" ?\/?>/
+      if response["X-Pingback"]
+        response["X-Pingback"]
+      elsif response.body =~ /<link rel="pingback" href="([^"]+)" ?\/?>/
         $1
-      else
-        nil
       end
     end
 

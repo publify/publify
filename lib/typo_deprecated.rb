@@ -17,3 +17,14 @@ def typo_deprecated(message=nil)
     raise TypoDeprecated, warning
   end
 end
+
+class Module 
+  def typo_deprecate(from_old_to_new)
+    from_old_to_new.each do |old_name, new_name|
+      define_method(old_name) do |*args|
+        typo_deprecated "Use #{new_name} instead of #{old_name}"
+        send(new_name, *args)
+      end
+    end
+  end
+end

@@ -9,10 +9,7 @@ class Page < Content
     'name ASC'
   end
 
-  def location(anchor=nil, only_path=true)
-    typo_deprecated "Use permalink_url"
-    permalink_url(anchor, only_path)
-  end
+  typo_deprecate :location => :permalink_url
   
   def permalink_url(anchor=nil, only_path=true)
     blog.url_for(

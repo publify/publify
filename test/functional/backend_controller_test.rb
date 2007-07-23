@@ -8,6 +8,7 @@ require 'base64'
 class BackendController; def rescue_action(e) raise e end; end
 
 class BackendControllerTest < Test::Unit::TestCase
+  include FlexMock::TestCase
   fixtures :contents, :categories, :blogs, :users, :categorizations, :text_filters
 
   def setup
@@ -145,6 +146,18 @@ class BackendControllerTest < Test::Unit::TestCase
     assert_equal this_blog.id, new_article.blog_id
   end
 
+  # TODO: reduce amount of mocking needed?
+  def test_meta_weblog_new_post_fails
+    stub_args = [:id_stub, :username_stub, :password_stub, {}, :publish_stub]
+    @controller = MetaWeblogService.new(:controller_stub)
+    @article = Article.new
+    flexmock(@article).should_receive(:save).returns(false).once
+    @this_blog = flexmock(:articles => flexmock(:build => @article))
+    @this_blog.should_ignore_missing
+    flexmock(@controller, :this_blog => @this_blog)
+    assert_raises(RuntimeError) { @controller.newPost(*stub_args) }
+  end
+  
   def test_meta_weblog_new_post
     article = Article.new
     article.title = "Posted via Test"
@@ -188,7 +201,7 @@ class BackendControllerTest < Test::Unit::TestCase
     # This will be a little more useful with the upstream changes in [1093]
     assert_raise(XMLRPC::FaultException) { invoke_layered :metaWeblog, :getRecentPosts, *args }
   end
-
+  
   # Movable Type Tests
 
   def test_mt_get_category_list

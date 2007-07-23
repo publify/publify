@@ -170,10 +170,4 @@ class MetaWeblogService < TypoWebService
       :dateCreated       => (article.published_at.getutc.to_formatted_s(:db) rescue "")
       )
   end
-
-  protected
-
-  def pub_date(time)
-    time.strftime "%a, %e %b %Y %H:%M:%S %Z"
-  end
 end
