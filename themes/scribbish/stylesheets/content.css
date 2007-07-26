@@ -3,7 +3,7 @@
  --------------------------------------------------------------*/
 
 #header { 
-	background: url(/images/theme/header_shadow.gif) repeat-x left bottom;
+	background: url(../../images/theme/header_shadow.gif) repeat-x left bottom;
 }
 
 #header a:link,
@@ -224,7 +224,7 @@
 #content .comment .author div {
 	margin: 0 0 0.5em 0.5em;
  	width: 60px; height: 60px;
-	background: url(/images/theme/gravatar.gif) no-repeat left top;
+	background: url(../../images/theme/gravatar.gif) no-repeat left top;
 	float: right; 
 }*/
 
@@ -296,7 +296,7 @@
 }
 
 #sidebar .search .loading {
-	background: url(/images/theme/spinner.gif) no-repeat left 50%;
+	background: url(../../images/theme/spinner.gif) no-repeat left 50%;
 	margin: 1em 0; padding: 0 0 0 20px;
 	height: 15px;
 }

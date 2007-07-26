@@ -16,5 +16,5 @@
         <p><%= _("Notified") %> <% if user.notify_via_email? %> <%= _("via email") %> <% end %>:
           <%= "new articles" if user.notify_on_new_articles? %>
           <%= "comments" if user.notify_on_comments? %></p>
-  <p><%= link_to _('Edit'), :action => 'edit', :id => user  %><strong> |</strong> <%= link_to _('Delete'), :action => 'destroy', :id => user %></p>
+  <p><%= link_to _('Edit'), :action => 'edit', :id => user.id  %><strong> |</strong> <%= link_to _('Delete'), :action => 'destroy', :id => user.id %></p>
 </div>

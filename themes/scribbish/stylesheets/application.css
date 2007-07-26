@@ -12,7 +12,7 @@
                #content form.comments { display:none; } }
 
 body {
-	background: url(/images/theme/background.gif) repeat-x left top;
+	background: url(../../images/theme/background.gif) repeat-x left top;
 	font: normal 12px "lucida grande", verdana, arial, helvetica, sans-serif;
 }
 
