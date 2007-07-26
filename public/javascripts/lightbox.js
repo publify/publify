@@ -33,7 +33,7 @@
 //
 
 // If you would like to use a loading image, point to it in the next line, otherwise leave as-is.
-var loadingImage = '/images/loading.gif';		
+var loadingImage = '../images/loading.gif';		
 
 
 

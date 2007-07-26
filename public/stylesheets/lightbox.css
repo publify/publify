@@ -11,12 +11,12 @@
 #lightbox img{ border: none; } 
 #overlay img{ border: none; }
 
-#overlay{ background-image: url(/images/overlay.png); }
+#overlay{ background-image: url(../images/overlay.png); }
 
 * html #overlay{
 	background-color: #333;
 	back\ground-color: transparent;
 	background-image: url(blank.gif);
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/overlay.png", sizingMethod="scale");
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="..//images/overlay.png", sizingMethod="scale");
 	}
 	
