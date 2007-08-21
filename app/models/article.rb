@@ -38,7 +38,7 @@ class Article < Content
             :handles       => [:withdraw,
                                :post_trigger,
                                :after_save, :send_pings, :send_notifications,
-                               :published_at=, :published=, :just_published?])
+                               :published_at=, :just_published?])
 
 
   include States
@@ -251,6 +251,11 @@ class Article < Content
   def in_feedback_window?
     self.blog.sp_article_auto_close.zero? ||
       self.created_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
+  end
+
+  # Cast the input value for published= before passing it to the state.
+  def published=(newval)
+    state.published = ActiveRecord::ConnectionAdapters::Column.value_to_boolean(newval)
   end
 
   # Bloody rails reloading. Nasty workaround.
