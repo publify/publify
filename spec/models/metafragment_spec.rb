@@ -3,7 +3,7 @@ require RAILS_ROOT + '/vendor/plugins/expiring_action_cache/lib/metafragment'
 
 class FragmentCacheTest
   include MetaFragmentCache
-  include ActionController::Caching
+  include ActionController::Caching::Fragments
 
   def self.benchmark(foo)
     yield

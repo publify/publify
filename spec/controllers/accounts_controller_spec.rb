@@ -6,6 +6,7 @@ describe 'A successfully authenticated login' do
   before(:each) do
     @user = mock_model(User, :new_record? => false, :reload => @user)
     User.stub!(:authenticate).and_return(@user)
+    User.stub!(:count).and_return(1)
   end
 
   def make_request
@@ -29,7 +30,7 @@ describe 'A successfully authenticated login' do
 #    post 'login', { :user_login => 'bob', :password => 'test' }
     response.should redirect_to('/bogus/location')
   end
-  
+
   it "should redirect to signup if no users" do
     User.stub!(:count).and_return(0)
     make_request
@@ -42,6 +43,7 @@ describe 'Login gets the wrong password' do
 
   before(:each) do
     User.stub!(:authenticate).and_return(nil)
+    User.stub!(:count).and_return(1)
   end
 
   def make_request
@@ -71,6 +73,10 @@ end
 
 describe 'GET /login' do
   controller_name :accounts
+
+  before(:each) do
+    User.stub!(:count).and_return(1)
+  end
 
   it 'should render action :login' do
     get 'login'
