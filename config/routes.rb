@@ -11,6 +11,9 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'admin/trackbacks', :action => nil, :id => nil
   map.connect 'admin/content/:action/:id', :controller => 'admin/content'
 
+  # Stats plugin
+  map.connect '/stats/:action', :controller => 'sitealizer'
+
   # make rss feed urls pretty and let them end in .xml
   # this improves caches_page because now apache and webrick will send out the
   # cached feeds with the correct xml mime type.
@@ -92,10 +95,6 @@ ActionController::Routing::Routes.draw do |map|
     map.connect 'plugins/filters/:filter/:public_action',
       :controller => 'textfilter', :action => 'public_action'
   end
-
-
-  # Stats plugin
-  map.connect '/stats/:action', :controller => 'sitealizer'
 
   # Work around the Bad URI bug
   %w{ accounts articles backend files live sidebar textfilter xml }.each do |i|

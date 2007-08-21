@@ -177,6 +177,10 @@ body {
   	min-height: 60px;
   	}
   	
+  .comment-list li { 
+	display: list-item;
+  }
+
   .gravatar {
   	float: right;
   	padding: 0 5px;
