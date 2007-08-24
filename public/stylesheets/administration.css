@@ -247,11 +247,12 @@ th.operation {
 .list table th {
   text-align: left;
   font-weight: bold;
+  padding: 2px 3px;
   border-bottom: 4px solid #ccc;
 }
 
 .list table tr td {
-  padding: 0 2px;
+  padding: 3px;
 }
 
 tr.shade {
@@ -259,7 +260,7 @@ tr.shade {
 }
 
 li.shade {
-  background: #E4E4D7;
+  background: #f7f7f7;
 }
 
 /* @end */
@@ -277,10 +278,11 @@ li.shade {
   padding: 5px;
 }
 
-.form input {
+ input {
   font-size: 1em;
   letter-spacing: 0.02em;
   border:1px solid #999;
+  color: #666;
 }
 
 .form textarea {
