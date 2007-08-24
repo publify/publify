@@ -16,18 +16,12 @@
 
         <!-- HEADER -->
           <div id="header">
-
-          <div id="info">
-            <%= current_user_notice rescue nil %> |
-            <%= link_to _('your blog') + '&raquo;', :controller => "/articles" %>
-
-          </div>
             <h1><%= link_to _("Typo admin") + " - #{this_blog.blog_name rescue nil}", :controller => "/admin/general" %></h1>
           </div>
         <!-- /HEADER -->
 
 
-        <div id="tabs-container">
+        <div id="topnav">
           <ul id="tabs">
             <%= tab _("Publish"), :controller=>"content", :action => 'new' %>
             <%= tab _("Manage"), :controller=>"content", :action => 'index' %>
@@ -36,8 +30,18 @@
             <%= tab _("Users"), :controller=>"users", :action => 'index' %>
             <%= tab _("Settings"), :controller=>"general", :action => 'index' %>
             <%= tab _("Statistics"), :controller=>"/sitealizer", :action => 'index' %>
+			<li><%= current_user_notice %></li>
+			<%= tab _('your blog'), :controller => "/articles" %>
           </ul>
         </div>
+       <% if not first_render =~ /login|signup|logout/ %>
+       <div class="tasks">
+           <ul>
+            <%= @content_for_tasks %>
+           </ul>
+           <div style="clear:both;"></div>
+         </div>
+       <% end %>
 
 
         <div id="overall">
@@ -47,21 +51,10 @@
         </div>
         <% end %>
 
-        <div id="content">
           <div id="main">
             <h2><%= @page_heading %></h2>
 
-            <% if not first_render =~ /general|login|signup|logout|advanced/ %>
-       <div class="tasks">
-              <h3><%= _("Things you can do") %></h3>
-              <ul>
-                <%= @content_for_tasks %>
-         </ul>
-         <div style="clear:both;"></div>
-            </div>
-       <% end %>
        <%= @content_for_layout %>
-          </div>
           </div>
         </div>
         <div id="footer">

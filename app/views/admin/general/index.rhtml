@@ -1,16 +1,12 @@
 	<% @page_heading = _('Basic settings') %>
 
-	<% form_tag :action => 'update' do %>
+  <% content_for('tasks') do -%>
+	<li><%= link_to _("Advanced settings"), {:controller => "advanced"} %></li>
+	<li><%= link_to _('Empty Fragment Cache'), :controller => '/admin/cache', :action => 'sweep' %></li>
+	<li><%= link_to _('Rebuild cached HTML'), :controller => '/admin/cache', :action => 'sweep_html' %></li>
+  <% end -%> 
 
-	<div class="tasks">
-		<h3><%= _("What you can do")%>?</h3>
-    	<ul>
-			<li><%= link_to _("Advanced settings"), {:controller => "advanced"} %></li>
-			<li><%= link_to _('Empty Fragment Cache'), :controller => '/admin/cache', :action => 'sweep' %></li>
-			<li><%= link_to _('Rebuild cached HTML'), :controller => '/admin/cache', :action => 'sweep_html' %></li>
-    	</ul>
-    <p style="clear:both;"></p>
-  </div>
+	<% form_tag :action => 'update' do %>
 
 <div class="admin">
 	<fieldset id="gensettings" class="set" style="margin-top:10px;">

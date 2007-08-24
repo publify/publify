@@ -1,33 +1,74 @@
 /* @group General/Master Containers */
 
+html, body {
+  height: 100%;
+}
+
 body {
+  margin:0;
+  padding:0;
+  font: 75% verdana, helvetica, arial, sans-serif;
+  line-height: 1.8em;
+  color: #999;
+  background: #fff;
+}
+
+/* Top Navbar */
+#topnav {
+  position: relative;
+  display: block;
+  height: 39px;
   margin: 0;
-  font: 1em/1.6em Verdana, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #000;
+  background: transparent url("/images/admin/bgoff.gif") repeat-x top left;
+  font: bold 1em Arial, Helvetica, sans-serif;
+}
+
+#topnav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: auto;
+}
+
+#topnav ul li {
+  display: block;
+  float: left;
+  margin: 0;
+}
+
+#topnav  ul li a {
+  letter-spacing: 2px;
+  display: block;
+  float: left;
+  padding: 11px 20px 0 20px;
+  height: 23px;
+  text-decoration: none;
+  color: #666;
+  text-transform: capitalize;
+  background: transparent url("/images/admin/bgdivider.gif") no-repeat top right;
+}
+
+#topnav  ul li a:hover,#topnav ul li a.current {
+  color: #993333;
+  background: #fff url("/images/bgon.gif") no-repeat top left;
 }
 
 #container {
   text-align: left;
-  font-size: 70%;
   margin: 0 auto;
 }
 
 #header {
-  height: 92px;
-  color: #fff;
+  background: url("/images/admin/top.gif") #213c51 repeat-x;
+  height: 155px;
+  width: 100%;
+  padding-top: 0;
 }
 
 #overall {
   background: #fff;
-  width: 85%;
+  width: 95%;
   margin: 0 auto;
-}
-
-#content {
-  background: #fff;
-  margin: 5px 0 0 0;
-  padding: 10px;
 }
 
 #main {
@@ -41,11 +82,22 @@ body {
   font-size: 80%;
 }
 
-#footer {
+/*#footer {
   margin-top: 7px;
   height: 35px;
   text-align: center;
 }
+*/
+#footer {
+float:left;
+width:100%;
+padding-top:10px;
+padding-bottom:0;
+text-align:center;
+background:#000 url(images/foot.jpg) repeat-x;
+color:#DCE4F6;
+}
+
 
 /* @end */
 
@@ -60,14 +112,15 @@ img {
   border: none;
 }
 
-a {
-  color: #8D805D;
-  text-decoration: none;
+a:link, a:visited {
+color:#993333;
+text-decoration:none;
+}
+a:hover {
+text-decoration: underline;
+color: #aaa;
 }
 
-a:hover {
-  color: #333;
-}
 
 hr {
   border: none;
@@ -78,64 +131,13 @@ hr {
 
 /* @group Primary Navigation */
 
-#tabs-container {
-  height: 20px;
-  width: auto;
-  padding: 14px 0 0 100px;
-  margin-top: -40px;
-  border-bottom: 1px solid #637987;
-  background: #F8F7EF;
-}
-
-#tabs {
-  padding: 0;
-  margin: 0 0 0 40px;
-  font: normal 100% Georgia, Garamond, Times;
-  line-height: normal;
-  text-transform: uppercase;
-}
-
-#tabs li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: inline;
-}
-
-#tabs li a {
-  padding: 3px 8px 3px 8px;
-  margin-left: 3px;
-  background: #F8F7EF;
-  text-decoration: none;
-  color: #003;
-  line-height: normal;
-}
-
-#tabs li a:hover {
-  color: #993300;
-  border-top: 12px solid #E8E4D3;
-}
-
-#tabs li a.active {
-  color: #993300;
-  border-top: 12px solid #E8E4D3;
-  background: #F8F7EF;
-}
-
-#tabs li a.active:hover {
-  color: #777;
-  background: #fff;
-  border-color: #637987;
-}
-
 /* @end */
 
 /* @group Tasks Links */
 
 .tasks {
-  background: #F8F7EF;
-  border-top: 1px dotted #C2C0BB;
-  border-bottom: 1px dotted #C2C0BB;
+  background: #fafafa;
+  border-bottom: #f7f7f7 1px solid;
   padding: 5px;
   margin-bottom: 15px;
 }
@@ -157,11 +159,11 @@ hr {
   padding: 2px 5px;
   margin-right: 5px;
   text-decoration: none;
+  color: #666;
 }
 
 .tasks li a:hover {
-  background: #637987;
-  color: #fff;
+  color: #993333;
 }
 
 /* @end */
@@ -169,9 +171,10 @@ hr {
 /* @group Headings */
 
 h2 {
-  font: normal 170% Georgia, Times, Helvetica;
-  color: #930;
-  padding: 5px 0 0 5px;
+	font: normal 1.7em georgia, arial, Helvetica, sans-serif;
+	letter-spacing: 3px;
+	color: #993333;
+	padding: 10px;
 }
 
 h3 {
@@ -181,25 +184,21 @@ h3 {
 }
 
 #header h1 {
-  background: #EDEBD5;
   margin: 0;
-  padding: 14px 0 12px 100px;
-  border-bottom: 1px dashed #A9A585;
-  border-top: 4px solid #4A4902;
-  font: normal 200% Georgia, Garamond, Times;
-  text-transform: uppercase;
+  padding: 70px 0 12px 100px;
+  font: normal 200%;
+  text-transform: capitalize;
   letter-spacing: 0.08em;
 }
 
 #header h1 a {
-  color: #000;
-  margin: 10px 0 10px 0;
+  color: #fff;
   text-decoration: none;
   border: none;
 }
 
 .form h3,  h3 {
-  background: #333;
+  background: #637987;
   color: #fff;
   font-weight: normal;
 }
@@ -256,7 +255,7 @@ th.operation {
 }
 
 tr.shade {
-  background: #E4E4D7;
+  background: #f7f7f7;
 }
 
 li.shade {
@@ -267,13 +266,9 @@ li.shade {
 
 /* @group Form Elements */
 
-label {
-  font-weight: bold;
-}
-
 .form {
-  border: 1px solid #C2C0BB;
-  background: #F8F7EF;
+  border: 1px solid #637987;
+  background: #fff;
   margin-bottom: 10px;
   padding: 0 0 0 10px;
 }
@@ -283,18 +278,18 @@ label {
 }
 
 .form input {
-  font-family: Georgia;
   font-size: 1em;
   letter-spacing: 0.02em;
+  border:1px solid #999;
 }
 
 .form textarea {
   width: 350px;
-  font-family: Georgia;
   line-height: 1.1em;
   font-size: 1em;
   letter-spacing: 0.02em;
   word-spacing: 0.05em;
+  border:1px solid #999;
 }
 
 #blog_name {
@@ -335,19 +330,15 @@ label {
 /* @group General Settings Screen */
 
 .set {
-  background: #F8F7EF;
   padding: 0 10px 5px 10px;
   margin-bottom: 10px;
   position: relative;
 }
 
-#gensettings {
-  /* Nothing here */
-}
-
 legend {
-  font-size: 130%;
+  font-size: 120%;
   text-transform: capitalize;
+  font-weight: bold;
 }
 
 .admin ul {
@@ -386,6 +377,7 @@ legend {
 
 .admin input.float {
   width: auto;
+  border:1px solid #999;
 }
 
 .admin span.float {
@@ -425,22 +417,21 @@ legend {
 
 #cnt-active {
   margin-left: 320px;
-  background: #F8F7EF;
+  border: #637987 1px solid;
 }
 
 #available {
-  background: #F8F7EF;
   padding-bottom: 10px;
+  border: #637987 1px solid;
 }
 
 #active {
-  background: #F8F7EF;
   padding-bottom: 10px;
 }
 
 #available h3, #active h3, #cnt-active h3 {
-  background: #E4E4D7;
-  color: #333;
+  background: #637987;
+  color: #fff;
   margin: 0 0 10px 0;
   padding: 2px 5px;
 }
@@ -613,9 +604,8 @@ div.user {
 }
 
 #quick-post input {
-  font-family: Georgia;
-  font-size: 13px;
   letter-spacing: 0.02em;
+  border:1px solid #999;
 }
 
 #quick-post textarea {
@@ -654,6 +644,7 @@ div.user {
 
 #loginform input {
   margin-bottom: 10px;
+  border:1px solid #999;
 }
 
 #loginform div.form {

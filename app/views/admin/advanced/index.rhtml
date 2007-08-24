@@ -1,14 +1,13 @@
     <% @page_heading = _('Blog advanced settings') %>
 
-    <% form_tag :action => 'update' do %>
+  <% content_for('tasks') do -%>
+    <li><%= link_to(_("Basic settings"), {:controller=>"general"}) %></li>
+	<li><%= link_to _('Empty Fragment Cache'), :controller => '/admin/cache', :action => 'sweep' %></li>
+	<li><%= link_to _('Rebuild cached HTML'), :controller => '/admin/cache', :action => 'sweep_html' %></li>
+  <% end -%> 
 
-    <div class="tasks">
-        <h3><%= _("Things you can do")%>?</h3>
-        <ul>
-            <li><%= link_to(_("Basic settings"), {:controller=>"general"}) %></li>
-        </ul>
-    <p style="clear:both;"></p>
-  </div>
+
+    <% form_tag :action => 'update' do %>
 
 <div class="admin">
     <fieldset id="write" class="set">
