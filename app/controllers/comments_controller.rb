@@ -71,6 +71,10 @@ class CommentsController < ApplicationController
 
   protected
 
+  def set_headers
+    headers["Content-Type"] = "text/html; charset=utf-8"
+  end
+
   def get_article
     @article = this_blog.published_articles.find_by_params_hash(params)
 
