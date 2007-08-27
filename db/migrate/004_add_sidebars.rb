@@ -19,10 +19,15 @@ class AddSidebars < ActiveRecord::Migration
         t.column :staged_config, :text
       end
 
-      Bare4Sidebar.create(:active_position=>0, :controller=>'category', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>0, :controller=>'page', :active_config=>'--- !map:HashWithIndifferentAccess 
+      maximum_pages: "10"')
+      Bare4Sidebar.create(:active_position=>1, :controller=>'category', :active_config=>'--- !map:HashWithIndifferentAccess 
       empty: false
       count: true')
-      Bare4Sidebar.create(:active_position=>1, :controller=>'static', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>2, :controller=>'archives', :active_config=>'--- !map:HashWithIndifferentAccess 
+      show_count: true
+      count: "10"')
+      Bare4Sidebar.create(:active_position=>3, :controller=>'static', :active_config=>'--- !map:HashWithIndifferentAccess 
       title: Links
       body: |+
         <ul>
@@ -34,7 +39,7 @@ class AddSidebars < ActiveRecord::Migration
           <li><a href="http://fredericdevillamil.com">Frédéric de Villamil</a></li>
           <li><a href="http://typoforums.org" title="Typo Forums">Typo Forums</a></li>
         </ul>')
-      Bare4Sidebar.create(:active_position=>2, :controller=>'xml', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>4, :controller=>'xml', :active_config=>'--- !map:HashWithIndifferentAccess 
       format: rss20
       trackbacks: true
       comments: true

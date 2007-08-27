@@ -7,9 +7,7 @@ class ArticlesController < ContentController
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :read, :show, :category, :archives, :view_page, :tag, :author]
-  # If you're really memory-constrained, then consider replacing
-  # caches_action_with_params with caches_page
-  caches_action_with_params *cached_pages
+  caches_page *cached_pages
 
   session :only => %w(nuke_comment nuke_trackback nuke_feedback)
   verify(:only => [:nuke_comment, :nuke_trackback, :nuke_feedback],
