@@ -50,6 +50,9 @@ class Trackback < Feedback
     self.excerpt = newval
   end
 
+  def rss_author(xml)
+  end
+
   def atom_author(xml)
     xml.author do
       xml.name blog_name

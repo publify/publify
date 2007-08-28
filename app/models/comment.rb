@@ -39,6 +39,9 @@ class Comment < Feedback
     xml.author { xml.name author }
   end
 
+  def rss_author(xml)
+  end
+
   def atom_title(xml)
     xml.title "Comment on #{article.title} by #{author}", :type => 'html'
   end

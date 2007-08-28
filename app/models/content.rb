@@ -242,11 +242,15 @@ class Content < ActiveRecord::Base
       xml.pubDate published_at.rfc822
       xml.guid "urn:uuid:#{guid}", :isPermaLink => "false"
       rss_author(xml)
+      rss_comments(xml)
       rss_groupings(xml)
       rss_enclosure(xml)
       rss_trackback(xml)
       xml.link permalink_url
     end
+  end
+
+  def rss_comments(xml)
   end
 
   def rss_description(xml)

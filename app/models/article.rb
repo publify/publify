@@ -317,7 +317,13 @@ class Article < Content
   end
 
   def rss_author(xml)
-    xml.author(link_to_author? ? "#{user.email} (#{user.name})" : user.name)
+    if link_to_author?
+      xml.author("#{user.email} (#{user.name})")
+    end
+  end
+
+  def rss_comments(xml)
+    xml.comments(permalink_url + "#comments")
   end
 
   def link_to_author?
