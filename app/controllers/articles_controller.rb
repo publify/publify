@@ -15,7 +15,7 @@ class ArticlesController < ContentController
          :render => { :text => 'Forbidden', :status => 403 })
 
   def index
-    @articles = this_blog.published_articles.find_all_by_date(*params.values_at(:year, :month, :day))
+    @articles = this_blog.requested_articles(params)
     respond_to do |format|
       format.html { render_paginated_index }
       @feed_title = this_blog.blog_name
@@ -33,14 +33,14 @@ class ArticlesController < ContentController
   end
 
   def show
-    @article      = this_blog.published_articles.find_by_params_hash(params)
+    @article      = this_blog.requested_article(params)
     @comment      = Comment.new
     @page_title   = @article.title
     auto_discovery_feed
     respond_to do |format|
       format.html { render :action => 'read' }
       @feed_title = "#{this_blog.blog_name} : #{@page_title}"
-      feedback = @article.feedback.find_all_by_published(true)
+      feedback = @article.published_feedback
       format.atom { render :partial => 'atom_feed', :object => feedback }
       format.rss { render :partial => 'rss20_feed', :object => feedback }
       format.xml { redirect_to :format => 'atom' }
@@ -89,7 +89,7 @@ class ArticlesController < ContentController
       return
     end
 
-    @article = this_blog.published_articles.find_by_params_hash(params)
+    @article = this_blog.requested_article(params)
     params[:comment].merge!({:ip => request.remote_ip,
                               :published => true,
                               :user => session[:user],

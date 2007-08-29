@@ -189,5 +189,13 @@ class Blog < CachedModel
     typo_deprecated "use current_theme.path"
     Theme.themes_root + "/" + theme
   end
+
+  def requested_article(params)
+    published_articles.find_by_params_hash(params)
+  end
+
+  def requested_articles(params)
+    published_articles.find_all_by_date(*params.values_at(:year, :month, :day))
+  end
 end
 

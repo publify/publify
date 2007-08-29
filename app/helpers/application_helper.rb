@@ -2,19 +2,6 @@
 require 'digest/sha1'
 
 module ApplicationHelper
-  # Override the default ActionController#url_for.
-  def url_for(options = { })
-    # this_blog.url_for doesn't do relative URLs.
-#    if options.kind_of? Hash
-#      unless options[:controller]
-#        options[:controller] = params[:controller]
-#      end
-#    end
-
-#    this_blog.url_for(options)
-    super(options)
-  end
-
   # Basic english pluralizer.
   # Axe?
   def pluralize(size, word)
