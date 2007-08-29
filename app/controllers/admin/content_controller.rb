@@ -8,7 +8,7 @@ class Admin::ContentController < Admin::BaseController
 
   def list
     now = Time.now
-    count = this_blog.articles.count
+    count = this_blog.articles.size
     @articles_pages = Paginator.new(self, count, 15, params[:id])
     @articles = this_blog.articles.find(:all, :limit => 15, :order => 'id DESC',
                                         :offset => @articles_pages.current.offset)
@@ -48,7 +48,7 @@ class Admin::ContentController < Admin::BaseController
 
   def preview
     headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = this_blog.articles.build 
+    @article = this_blog.articles.build
     @article.attributes = params[:article]
     set_article_author
     data = render_to_string(:layout => "minimal")

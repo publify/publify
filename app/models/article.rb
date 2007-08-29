@@ -365,6 +365,10 @@ class Article < Content
     end
   end
 
+  def add_comment(params)
+    comments.build(params)
+  end
+
   protected
 
   before_create :set_defaults, :create_guid

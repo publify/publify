@@ -22,6 +22,10 @@ class Blog < CachedModel
   has_many :trackbacks
   has_many :articles
   has_many :comments
+  has_many(:published_comments,
+           :class_name => 'Comment',
+           :conditions => {:published => true},
+           :order => 'contents.published_at DESC')
   has_many :pages, :order => "id DESC"
   has_many(:published_articles, :class_name => "Article",
            :conditions => {:published => true},
@@ -200,6 +204,13 @@ class Blog < CachedModel
 
   def articles_matching(query)
     published_articles.search(query)
+  end
+
+  def rss_limit_params
+    limit = limit_rss_display.to_i
+    return limit.zero? \
+      ? {} \
+      : {:limit => limit}
   end
 end
 

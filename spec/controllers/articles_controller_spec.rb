@@ -19,6 +19,7 @@ describe 'ArticlesController' do
       raise SocketError.new("getaddrinfo: Name or service not known")
     end
     CachedModel.cache_reset
+    controller.send(:reset_blog_ids)
   end
 
   it 'can get a category when permalink == name' do

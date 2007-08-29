@@ -47,6 +47,7 @@ describe "General Comment Creation", :shared => true do
 
   before do
     @article.stub!(:permalink_url).and_return('foo')
+    @article.stub!(:add_comment).and_return(@comment)
     @comments.stub!(:build).and_return(@comment)
     @comment.stub!(:save).and_return(true)
     @comment.stub!(:author).and_return('bob')
@@ -70,8 +71,11 @@ describe "General Comment Creation", :shared => true do
   end
 
   it "should set a default author" do
-    @comment.should_receive(:author).at_least(:once).and_return(nil)
-    @comment.should_receive(:author=).with('Anonymous')
+    @article.should_receive(:add_comment) do |opts|
+      opts[:author].should == 'Anonymous'
+      @comment
+    end
+
     make_the_request
   end
 
@@ -94,9 +98,8 @@ describe "General Comment Creation", :shared => true do
 
   it "should create a comment" do
     @blog.should_receive(:requested_article).and_return(@article)
-    @article.should_receive(:comments).and_return(@comments)
+    @article.should_receive(:add_comment).and_return(@comment)
     @article.should_receive(:to_param).at_least(:once).and_return(['2007', '10', '11', 'slug'])
-    @comments.should_receive(:build).and_return(@comment)
 
     make_the_request
   end
@@ -113,7 +116,7 @@ describe CommentsController, 'create' do
   it "should throw an error if sp_allow_non_ajax_comments is false and there are no xhr headers" do
     @blog.should_receive(:sp_allow_non_ajax_comments).and_return(false)
     make_the_request
-    response.response_code.should == 401
+    response.response_code.should == 400
   end
 
   it "should redirect to the article" do
@@ -175,33 +178,27 @@ describe CommentsController, 'GET /comments' do
 
   it "should limit the comments if !this_blog.limit_rss_display.to_i.zero? " do
     mock_comments = mock('comments')
-    @the_mock.should_receive(:comments).and_return(mock_comments)
-    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return(20)
-    mock_comments.should_receive(:find_all_by_published).with(true, :limit => 20, :order => 'created_at DESC').and_return("Comments")
+    @the_mock.should_receive(:published_comments)      \
+      .with(:limit => 20, :order => 'created_at DESC') \
+      .and_return(mock_comments)
+
+    @the_mock.should_receive(:rss_limit_params) \
+      .at_least(:once) \
+      .and_return(:limit => 20)
+
     get 'index'
   end
 
   it "should not limit the comments if this_blog.limit_rss_display is 0" do
     mock_comments = mock('comments')
-    @the_mock.should_receive(:comments).and_return(mock_comments)
-    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return(0)
-    mock_comments.should_receive(:find_all_by_published).with(true, :order => 'created_at DESC').and_return("Comments")
-    get 'index'
-  end
+    @the_mock.should_receive(:rss_limit_params) \
+      .at_least(:once) \
+      .and_return(Hash.new)
 
-  it "should not limit the comments if this_blog.limit_rss_display is nil" do
-    mock_comments = mock('comments')
-    @the_mock.should_receive(:comments).and_return(mock_comments)
-    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return(nil)
-    mock_comments.should_receive(:find_all_by_published).with(true, :order => 'created_at DESC').and_return("Comments")
-    get 'index'
-  end
+    @the_mock.should_receive(:published_comments) \
+      .with(:order => 'created_at DESC') \
+      .and_return(mock_comments)
 
-  it "should not limit the comments if this_blog.limit_rss_display is ''" do
-    mock_comments = mock('comments')
-    @the_mock.should_receive(:comments).and_return(mock_comments)
-    @the_mock.should_receive(:limit_rss_display).at_least(:once).and_return('')
-    mock_comments.should_receive(:find_all_by_published).with(true, :order => 'created_at DESC').and_return("Comments")
     get 'index'
   end
 
@@ -228,5 +225,4 @@ describe CommentsController, "GET /comments.:format" do
     response.should be_success
     response.should render_template("articles/_rss20_feed")
   end
-
 end
