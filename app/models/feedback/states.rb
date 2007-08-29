@@ -5,6 +5,7 @@ module Feedback::States
 
     def before_save;           true; end
     def after_save;            true; end
+    def after_initialize;      true; end
     def post_trigger;          true; end
     def send_notifications;    true; end
     def report_classification; true; end
@@ -22,6 +23,10 @@ module Feedback::States
   end
 
   class Unclassified < Base
+    def after_initialize
+      returning(true) { enter_hook }
+    end
+
     def enter_hook
       super
       content[:published] = false

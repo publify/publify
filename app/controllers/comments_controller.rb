@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   def index
     article = nil
     if params[:article_id]
-      article = this_blog.articles.find_by_params_hash(params)
+      article = this_blog.requested_article(params)
       @comments = article.published_comments
     else
       limits = this_blog.limit_rss_display.to_i.zero? \
@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
       @comments = this_blog.comments.find_all_by_published(true, limits.merge(:order => 'created_at DESC'))
     end
 
+    @page_title = "Comments"
     respond_to do |format|
       format.html do
         if article
@@ -25,7 +26,6 @@ class CommentsController < ApplicationController
           render :text => 'this space left blank'
         end
       end
-      @feed_title = "#{this_blog.blog_name} : Comments"
       format.atom { render :partial => 'articles/atom_feed', :object => @comments }
       format.rss { render :partial => 'articles/rss20_feed', :object => @comments }
     end
@@ -46,6 +46,7 @@ class CommentsController < ApplicationController
                                         :referrer => request.env['HTTP_REFERER'],
                                         :permalink => article_path(@article)))
     @comment.author ||= 'Anonymous'
+
     set_comment_cookies
 
     if @comment.save
@@ -76,12 +77,8 @@ class CommentsController < ApplicationController
   end
 
   def get_article
-    @article = this_blog.published_articles.find_by_params_hash(params)
-
-    if @article
-      return true
-    end
-
+    @article = this_blog.requested_article(params)
+  rescue ActiveRecord::RecordNotFound
     render :text => "No such article", :status => 404
     return false
   end

@@ -18,7 +18,6 @@ class ArticlesController < ContentController
     @articles = this_blog.requested_articles(params)
     respond_to do |format|
       format.html { render_paginated_index }
-      @feed_title = this_blog.blog_name
       format.atom do
         render :partial => 'atom_feed', :object => @articles[0,this_blog.limit_rss_display]
       end
@@ -39,7 +38,6 @@ class ArticlesController < ContentController
     auto_discovery_feed
     respond_to do |format|
       format.html { render :action => 'read' }
-      @feed_title = "#{this_blog.blog_name} : #{@page_title}"
       feedback = @article.published_feedback
       format.atom { render :partial => 'atom_feed', :object => feedback }
       format.rss { render :partial => 'rss20_feed', :object => feedback }
@@ -50,7 +48,7 @@ class ArticlesController < ContentController
   end
 
   def search
-    @articles = this_blog.published_articles.search(params[:q])
+    @articles = this_blog.articles_matching(params[:q])
     render_paginated_index("No articles found...")
   end
 
@@ -90,6 +88,7 @@ class ArticlesController < ContentController
     end
 
     @article = this_blog.requested_article(params)
+
     params[:comment].merge!({:ip => request.remote_ip,
                               :published => true,
                               :user => session[:user],
@@ -99,6 +98,7 @@ class ArticlesController < ContentController
     @comment = @article.comments.build(params[:comment])
     @comment.author ||= 'Anonymous'
     @comment.save
+
     add_to_cookies(:author, @comment.author)
     add_to_cookies(:url, @comment.url)
 
@@ -204,7 +204,6 @@ class ArticlesController < ContentController
         auto_discovery_feed
         render_paginated_index("Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'")
       end
-      @feed_title = "#{this_blog.blog_name} : #{@page_title}"
       items = @articles[0,this_blog.limit_rss_display]
       format.atom { render :partial => 'atom_feed', :object => items }
       format.rss { render :partial => 'rss20_feed', :object => items }

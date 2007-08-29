@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "a valid Article" do
   before(:each) do
-    @a = Article.new(:title => 'Test article', :body => 'body', :author => mock_model(User))
+    @a = Article.new(:title => 'Test article', :body => 'body',
+                     :author => mock_model(User), :blog => mock_model(Blog))
   end
 
   it "should be valid" do

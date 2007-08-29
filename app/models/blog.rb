@@ -197,5 +197,9 @@ class Blog < CachedModel
   def requested_articles(params)
     published_articles.find_all_by_date(*params.values_at(:year, :month, :day))
   end
+
+  def articles_matching(query)
+    published_articles.search(query)
+  end
 end
 

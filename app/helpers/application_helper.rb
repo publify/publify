@@ -161,4 +161,12 @@ module ApplicationHelper
       options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")
   end
 
+  def feed_title
+    return @feed_title if @feed_title
+    returning(this_blog.blog_name.dup) do |title|
+      if @page_title
+        title << " : #{@page_title}"
+      end
+    end
+  end
 end

@@ -31,9 +31,8 @@ describe "All Requests", :shared => true do
                            :published_comments => @comments)
     @comment  = mock_model(Comment)
     @blog     = mock_model(Blog, :sp_allow_non_ajax_comments => true, :blog_name => "A Blog",
-                           :theme => 'azure', :articles => @articles, :published_articles => @articles)
+                           :theme => 'azure', :articles => @articles, :requested_article => @article)
 
-    @articles.stub!(:find_by_params_hash).and_return(@article)
     @article.stub!(:to_param).and_return(['2007', '10', '11', 'slug'])
     Article.stub!(:find).and_return(@article)
 
@@ -94,8 +93,7 @@ describe "General Comment Creation", :shared => true do
   end
 
   it "should create a comment" do
-    @blog.should_receive(:published_articles).and_return(@articles)
-    @articles.should_receive(:find_by_params_hash).and_return(@article)
+    @blog.should_receive(:requested_article).and_return(@article)
     @article.should_receive(:comments).and_return(@comments)
     @article.should_receive(:to_param).at_least(:once).and_return(['2007', '10', '11', 'slug'])
     @comments.should_receive(:build).and_return(@comment)
