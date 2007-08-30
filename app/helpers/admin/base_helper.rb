@@ -130,4 +130,12 @@ module Admin::BaseHelper
   def time_delta_from_now_in_words(timestamp)
     distance_of_time_in_words_to_now(timestamp) + ((Time.now < timestamp) ? ' from now' : ' ago')
   end
+
+  def link_to_bookmarklet
+    "javascript:if(navigator.userAgent.indexOf('Safari') >= 0)" + \
+    "{Q=getSelection();}" + \
+    "else{Q=document.selection?document.selection.createRange().text:document.getSelection();}" + \
+    "location.href='#{this_blog.base_url}/admin/content/new?bookmarklet_text='+encodeURIComponent(Q)" + \
+    "+'&bookmarklet_link='+encodeURIComponent(location.href)+'&bookmarklet_title='+encodeURIComponent(document.title);"
+  end
 end

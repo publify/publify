@@ -169,4 +169,41 @@ module ApplicationHelper
       end
     end
   end
+
+  def author_link(article)
+    if this_blog.link_to_author and article.user and article.user.email.to_s.size>0
+      "<a href=\"mailto:#{h article.user.email}\">#{h article.user.name}</a>"
+    elsif article.user and article.user.name.to_s.size>0
+      h article.user.name
+    else
+      h article.author
+    end
+  end
+
+  def page_header
+    page_header_includes = contents.collect { |c| c.whiteboard }.collect do |w|
+      w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
+        v = v.chomp
+        # trim the same number of spaces from the beginning of each line
+        # this way plugins can indent nicely without making ugly source output
+        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+        v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
+      end
+    end.flatten.uniq
+    (
+    <<-HTML
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.empty? }
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ @auto_discovery_url_atom }" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ @auto_discovery_url_rss }" />
+  #{ javascript_include_tag "cookies" }
+  #{ javascript_include_tag "prototype" }
+  #{ javascript_include_tag "effects" }
+  #{ javascript_include_tag "typo" }
+#{ page_header_includes.join("\n") }
+  <script type="text/javascript">#{ @content_for_script }</script>
+    HTML
+    ).chomp
+  end
 end

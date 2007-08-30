@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def error(message = "Record not found...", options = { })
+    @message = message.to_s
+    render :template => 'articles/error', :status => options[:status] || 404
+  end
+
   def authorized?
     session[:user] && session[:user].reload && authorize?
   end

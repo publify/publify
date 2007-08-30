@@ -38,10 +38,9 @@ class ArticlesController < ContentController
     auto_discovery_feed
     respond_to do |format|
       format.html { render :action => 'read' }
-      feedback = @article.published_feedback
-      format.atom { render :partial => 'atom_feed', :object => feedback }
-      format.rss { render :partial => 'rss20_feed', :object => feedback }
-      format.xml { redirect_to :format => 'atom' }
+      format.atom { render :partial => 'atom_feed', :object => @article.published_feedback }
+      format.rss  { render :partial => 'rss20_feed', :object => @article.published_feedback }
+      format.xml  { redirect_to :format => 'atom' }
     end
     rescue ActiveRecord::RecordNotFound
       error("Post not found...")
@@ -53,7 +52,7 @@ class ArticlesController < ContentController
   end
 
   def comment_preview
-    if params[:comment].blank? or params[:comment][:body].blank?
+    if (params[:comment][:body].blank? rescue true)
       render :nothing => true
       return
     end
@@ -63,17 +62,13 @@ class ArticlesController < ContentController
     @controller = self
   end
 
-  def error(message = "Record not found...", options = { })
-    @message = message.to_s
-    render :action => 'error', :status => options[:status] || 404
-  end
-
   def author
     render_grouping(User)
   end
 
   def category
-    render_grouping(Category)
+    response.headers['Status'] = "301 Moved Permanently"
+    redirect_to categories_path
   end
 
   def tag

@@ -22,26 +22,10 @@ describe 'ArticlesController' do
     controller.send(:reset_blog_ids)
   end
 
-  it 'can get a category when permalink == name' do
-    get 'category', :id => 'software'
-
-    assigns[:page_title].should == 'category software'
-    response.should render_template('index')
+  it "should redirect category to /articles/categories" do
+    get 'category'
+    response.should redirect_to(categories_path)
   end
-
-  it 'can get a category index when permalink != name' do
-    get 'category', :id => 'weird-permalink'
-
-    assigns[:page_title].should == "category weird-permalink"
-    response.should render_template('index')
-  end
-
-  it 'can get an empty category' do
-    get 'category', :id => 'life-on-mars'
-    response.should render_template('error')
-    assigns[:message].should == "Can't find posts with category 'life-on-mars'"
-  end
-
 
   it 'index' do
     get 'index'
@@ -72,15 +56,6 @@ describe ArticlesController, "feeds" do
     response.should render_template("_rss20_feed")
   end
 
-  specify "articles/category/foo.atom => atom feed" do
-    get 'category', :id => 'foo', :format => 'atom'
-    response.should render_template("_atom_feed")
-  end
-
-  specify "articles/category/foo.rss => rss feed" do
-    get 'category', :id => 'foo', :format => 'rss'
-    response.should render_template("_rss20_feed")
-  end
 
   specify "articles/tag/foo.atom => atom feed" do
     get 'tag', :id => 'foo', :format => 'atom'

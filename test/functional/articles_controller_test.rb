@@ -49,29 +49,9 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   # Category subpages
   def test_category
-    get :category, :id => "software"
+    get :category
 
-    assert_response :success
-    assert_template "index"
-    assert_tag :tag => 'title', :content => 'test blog : category software'
-
-    # Check it works when permalink != name. Ticket #736
-    get :category, :id => "weird-permalink"
-
-    assert_response :success
-    assert_template "index"
-  end
-
-  def test_empty_category
-    get :category, :id => "life-on-mars"
-    assert_response 200
-    assert_template "error"
-  end
-
-  def test_nonexistent_category
-    get :category, :id => 'nonexistent-category'
-    assert_response 404
-    assert_template "error"
+    assert_response 301
   end
 
   def test_tag
@@ -439,7 +419,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     end
   end
 
-
   def test_autodiscovery_article
     show_article(Article.find(1))
     assert_response :success
@@ -453,21 +432,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
       assert_select '[rel=alternate]'
       assert_select '[type=application/atom+xml]'
       assert_select '[href=?]', formatted_article_url(Article.find(1), 'atom')
-    end
-  end
-
-  def test_autodiscovery_category
-    get :category, :id => 'hardware'
-    assert_response :success
-    assert_select 'link[title=RSS]' do
-      assert_select '[rel=alternate]'
-      assert_select '[type=application/rss+xml]'
-      assert_select '[href=http://test.host/articles/category/hardware.rss]'
-    end
-    assert_select 'link[title=Atom]' do
-      assert_select '[rel=alternate]'
-      assert_select '[type=application/atom+xml]'
-      assert_select '[href=http://test.host/articles/category/hardware.atom]'
     end
   end
 
@@ -510,24 +474,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     end
   end
 
-  def test_calc_distributed_class_basic
-    assert_equal "prefix5", calc_distributed_class(0, 0, "prefix", 5, 15)
-    (0..10).each do |article|
-      assert_equal "prefix#{article}", calc_distributed_class(article, 10, "prefix", 0, 10)
-    end
-    (0..20).each do |article|
-      assert_equal "prefix#{(article/2).to_i}", calc_distributed_class(article, 20, "prefix", 0, 10)
-    end
-    (0..5).each do |article|
-      assert_equal "prefix#{(article*2).to_i}", calc_distributed_class(article, 5, "prefix", 0, 10)
-    end
-  end
-
-  def test_calc_distributed_class_offset
-    (0..10).each do |article|
-      assert_equal "prefix#{article+6}", calc_distributed_class(article, 10, "prefix", 6, 16)
-    end
-  end
 
   def test_hide_future_article
     @article = Article.find_last_posted
