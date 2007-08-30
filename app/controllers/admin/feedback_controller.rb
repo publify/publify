@@ -44,7 +44,7 @@ class Admin::FeedbackController < Admin::BaseController
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
     items = Feedback.find(ids)
-    @expired = false
+    @unexpired = true
 
     case params[:commit]
     when 'Delete Checked Items'
@@ -80,13 +80,13 @@ class Admin::FeedbackController < Admin::BaseController
   def update_feedback(items, method)
     items.each do |value|
       value.send(method)
-      @expired && value.invalidates_cache? or next
+      @unexpired && value.invalidates_cache? or next
       flush_cache
     end
   end
 
   def flush_cache
-    @expired = true
+    @unexpired = false
     PageCache.sweep('/articles/%')
     PageCache.sweep('/pages/%')
     expire_fragment(/.*/)

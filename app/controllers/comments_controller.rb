@@ -34,7 +34,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    debugger
     @comment = @article.with_options(new_comment_defaults) do |art|
       art.add_comment(params[:comment].symbolize_keys)
     end
