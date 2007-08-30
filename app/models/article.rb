@@ -253,15 +253,36 @@ class Article < Content
       self.created_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
   end
 
+  def cast_to_boolean(value)
+    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value)
+  end
   # Cast the input value for published= before passing it to the state.
   def published=(newval)
-    state.published = ActiveRecord::ConnectionAdapters::Column.value_to_boolean(newval)
+    state.published = cast_to_boolean(newval)
   end
 
   # Bloody rails reloading. Nasty workaround.
+  def allow_comments=(newval)
+    returning(cast_to_boolean(newval)) do |val|
+      if self[:allow_comments] != val
+        changed if published?
+        self[:allow_comments] = val
+      end
+    end
+  end
+
+  def allow_pings=(newval)
+    returning(cast_to_boolean(newval)) do |val|
+      if self[:allow_pings] != val
+        changed if published?
+        self[:allow_pings] = val
+      end
+    end
+  end
+
   def body=(newval)
     if self[:body] != newval
-      changed
+      changed if published?
       self[:body] = newval
     end
     self[:body]
@@ -274,7 +295,7 @@ class Article < Content
 
   def extended=(newval)
     if self[:extended] != newval
-      changed
+      changed if published?
       self[:extended] = newval
     end
     self[:extended]

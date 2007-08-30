@@ -7,7 +7,7 @@ class ArticlesController < ContentController
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :read, :show, :category, :archives, :view_page, :tag, :author]
-  caches_page *cached_pages
+  caches_action_with_params *cached_pages
 
   session :only => %w(nuke_comment nuke_trackback nuke_feedback)
   verify(:only => [:nuke_comment, :nuke_trackback, :nuke_feedback],
@@ -113,7 +113,7 @@ class ArticlesController < ContentController
         throw :error, "A URL is required"
       else
         begin
-          this_blog.ping_article!(params.merge(:ip => request.remote_ip, :published => true))
+          @trackback = this_blog.ping_article!(params.merge(:ip => request.remote_ip, :published => true))
         rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
           throw :error, "Article id #{params[:id]} not found."
         rescue ActiveRecord::RecordInvalid
@@ -125,7 +125,7 @@ class ArticlesController < ContentController
   end
 
   def nuke_comment
-    Comment.find(params[:id]).destroy
+    @comment = Comment.find(params[:id]).destroy
     render :nothing => true
   end
 

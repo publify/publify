@@ -6,6 +6,8 @@ class CommentsController < ApplicationController
   before_filter :get_article, :only => [:create, :update]
   before_filter :check_request_type, :only => [:create]
 
+  cache_sweeper :blog_sweeper
+
   def index
     article = nil
     if params[:article_id]

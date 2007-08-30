@@ -6,7 +6,7 @@ class BlogRequest
   def initialize(root)
     @protocol = @host_with_port = @path = ''
     @symbolized_path_parameters = {}
-    @relative_url_root = root.gsub(%r{/^},'')
+    @relative_url_root = root.gsub(%r{/$},'')
   end
 end
 

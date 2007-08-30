@@ -74,33 +74,33 @@ module Feedback::States
       super
       content[:published] = true
       content[:status_confirmed] = false
+    end
 
-      def published?; true; end
+    def published?; true; end
 
-      def just_published?
-        content.just_changed_published_status?
-      end
+    def just_published?
+      content.just_changed_published_status?
+    end
 
-      def withdraw
-        mark_as_spam
-      end
+    def withdraw
+      mark_as_spam
+    end
 
-      def confirm_classification
-        mark_as_ham
-      end
+    def confirm_classification
+      mark_as_ham
+    end
 
-      def mark_as_ham
-        content.state = :ham
-      end
+    def mark_as_ham
+      content.state = :ham
+    end
 
-      def to_s
-        "Ham?"
-      end
+    def to_s
+      "Ham?"
+    end
 
-      def send_notifications
-        content.really_send_notifications if content.just_changed_published_status
-        return true
-      end
+    def send_notifications
+      content.really_send_notifications if content.just_changed_published_status
+      return true
     end
   end
 

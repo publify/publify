@@ -43,6 +43,8 @@ class Admin::FeedbackController < Admin::BaseController
 
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
+    items = Feedback.find(ids)
+    @expired = false
 
     case params[:commit]
     when 'Delete Checked Items'
@@ -52,30 +54,41 @@ class Admin::FeedbackController < Admin::BaseController
       end
       flash[:notice] = "Deleted #{count} item(s)"
 
-      # Sweep cache
-      PageCache.sweep_all
-      expire_fragment(/.*/)
-    when 'Mark Checked Items as Ham'
-      ids.each do |id|
-        feedback = Feedback.find(id)
-        feedback.mark_as_ham!
+      items.each do |i|
+        i.invalidates_cache? or next
+        flush_cache
+        return
       end
+    when 'Mark Checked Items as Ham'
+      update_feedback(items, :mark_as_ham!)
       flash[:notice]= "Marked #{ids.size} item(s) as Ham"
     when 'Mark Checked Items as Spam'
-      ids.each do |id|
-        feedback = Feedback.find(id)
-        feedback.mark_as_spam!
-      end
+      update_feedback(items, :mark_as_spam!)
       flash[:notice]= "Marked #{ids.size} item(s) as Spam"
     when 'Confirm Classification of Checked Items'
-      ids.each do |id|
-        Feedback.find(id).confirm_classification!
-      end
+      update_feedback(items, :confirm_classification!)
       flash[:notice] = "Confirmed classification of #{ids.size} item(s)"
     else
       flash[:notice] = "Not implemented"
     end
 
     redirect_to :action => 'index', :page => params[:page], :search => params[:search]
+  end
+
+  protected
+
+  def update_feedback(items, method)
+    items.each do |value|
+      value.send(method)
+      @expired && value.invalidates_cache? or next
+      flush_cache
+    end
+  end
+
+  def flush_cache
+    @expired = true
+    PageCache.sweep('/articles/%')
+    PageCache.sweep('/pages/%')
+    expire_fragment(/.*/)
   end
 end

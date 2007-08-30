@@ -176,7 +176,12 @@ class Content < ActiveRecord::Base
 
   # Set the text filter for this object.
   def text_filter=(filter)
-    returning(filter.to_text_filter) { |tf| self.text_filter_id = tf.id }
+    returning(filter.to_text_filter) do |tf|
+      if tf.id != text_filter_id
+        changed if !new_record? && published?
+      end
+      self.text_filter_id = tf.id
+    end
   end
 
   # Changing the title flags the object as changed
@@ -184,7 +189,7 @@ class Content < ActiveRecord::Base
     if new_title == self[:title]
       self[:title]
     else
-      self.changed
+      changed if !new_record? && published?
       self[:title] = new_title
     end
   end

@@ -79,8 +79,11 @@ class Feedback < Content
   end
 
   def classify
-    return :spam if blog.default_moderate_comments
-    return :ham unless blog.sp_global
+    begin
+      return :spam if blog.default_moderate_comments
+      return :ham unless blog.sp_global
+    rescue NoMethodError
+    end
 
     # Yeah, three state logic is evil...
     case sp_is_spam? || akismet_is_spam?

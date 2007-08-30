@@ -3,6 +3,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe 'With the various trackback filters loaded and DNS mocked out appropriately' do
   before(:each) do
     IPSocket.stub!(:getaddress).and_return { raise SocketError.new("getaddrinfo: Name or service not known") }
+    @blog = Blog.new
+    @blog.sp_global = true
+    @blog.default_moderate_comments = false
+    @blog.save!
   end
 
   it 'Incomplete trackbacks should not be accepted' do
@@ -55,6 +59,7 @@ describe 'With the various trackback filters loaded and DNS mocked out appropria
 
   def ham_params
     { :blog_name => 'Blog', :title => 'trackback', :excerpt => 'bland',
-      :url => 'http://notaspammer.com', :ip => '212.42.230.206' }
+      :url => 'http://notaspammer.com', :ip => '212.42.230.206',
+      :blog => @blog }
   end
 end
