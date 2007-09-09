@@ -18,7 +18,7 @@ class Admin::PagesController < Admin::BaseController
 
   def new
     @page = Page.new(params[:page])
-    @page.user_id = session[:user].id
+    @page.user_id = current_user.id
     @page.text_filter ||= this_blog.text_filter
     if request.post? and @page.save
       flash[:notice] = 'Page was successfully created.'

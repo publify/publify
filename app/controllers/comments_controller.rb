@@ -67,7 +67,7 @@ class CommentsController < ApplicationController
     return { :ip  => request.remote_ip,
       :author     => 'Anonymous',
       :published  => true,
-      :user       => session[:user],
+      :user       => current_user,
       :user_agent => request.env['HTTP_USER_AGENT'],
       :referrer   => request.env['HTTP_REFERER'],
       :permalink  => article_path(@article) }

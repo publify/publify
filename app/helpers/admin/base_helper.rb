@@ -26,7 +26,7 @@ module Admin::BaseHelper
   end
 
   def current_user_notice
-    unless session[:user]
+    unless current_user
       link_to "log in", :controller => "/accounts", :action=>"login"
     else
       link_to _("log out"), :controller => "/accounts", :action=>"logout"

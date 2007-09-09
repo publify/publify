@@ -2,7 +2,7 @@
 <!--[form:comment]-->
 <p>
   <label for="comment_author"><%= _("Author")%>:</label><br/>
-  <%= text_field 'comment', 'author', "value" => (session[:user][:name] if controller.action_name == "new") %>
+  <%= text_field 'comment', 'author', "value" => (current_user.name if controller.action_name == "new") %>
 </p>
 <p>
   <label for="comment_url"><%= _("Url") %>:</label><br/>
@@ -10,7 +10,7 @@
 </p>
 <p>
   <label for="comment_email"><%= _("Email")%>:</label><br/>
-  <%= text_field 'comment', 'email', "value" => (session[:user][:email] if controller.action_name == "new") %>
+  <%= text_field 'comment', 'email', "value" => (current_user.email if controller.action_name == "new") %>
 </p>
 <p>
   <label for="comment_body"><%= _("Body")%>:</label><br/>

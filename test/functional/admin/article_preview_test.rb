@@ -12,7 +12,7 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
     @controller = Admin::ContentController.new
     @request = ActionController::TestRequest.new
     @response = ActionController::TestResponse.new
-    @request.session = {:user => users(:tobi)}
+    @request.session = {:user_id => users(:tobi).id}
 
     @art_count = Article.find(:all).size
   end

@@ -21,16 +21,16 @@ class AccountsControllerTest < Test::Unit::TestCase
     @request.session[:return_to] = "/bogus/location"
 
     post :login, :user_login => "bob", :user_password => "test"
-    assert_session_has :user
+    assert_session_has :user_id
 
-    assert_equal users(:bob), @response.session[:user]
+    assert_equal users(:bob).id, @response.session[:user_id]
     assert @response.redirect_url_match?("http://localhost/bogus/location")
   end
 
   def test_signup
     User.destroy_all # Need to trick AccountController#signup into thinking this is a brand new blog
     post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "newpassword" }
-    assert_session_has :user
+    assert_session_has :user_id
 
     assert_response :redirect, :controller => "admin/general", :action => "index"
   end
@@ -61,7 +61,7 @@ class AccountsControllerTest < Test::Unit::TestCase
   def test_invalid_login
     post :login, :user_login => "bob", :user_password => "not_correct"
 
-    assert_session_has_no :user
+    assert_session_has_no :user_id
 
     assert_template_has "login"
   end
@@ -69,10 +69,10 @@ class AccountsControllerTest < Test::Unit::TestCase
   def test_login_logoff
 
     post :login, :user_login => "bob", :user_password => "test"
-    assert_session_has :user
+    assert_session_has :user_id
 
     get :logout
-    assert_session_has_no :user
+    assert_session_has_no :user_id
 
   end
 end

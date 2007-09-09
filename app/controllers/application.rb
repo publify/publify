@@ -13,9 +13,17 @@ class ApplicationController < ActionController::Base
     @message = message.to_s
     render :template => 'articles/error', :status => options[:status] || 404
   end
+  
+  def current_user
+    if @current_user.nil?
+      @current_user = session[:user_id] && User.find(session[:user_id])
+    end
+    @current_user
+  end
+  helper_method :current_user
 
   def authorized?
-    session[:user] && session[:user].reload && authorize?
+    current_user && authorize?(current_user)
   end
 
   def fire_triggers
@@ -24,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def reset_local_cache
     CachedModel.cache_reset
-    session[:user].reload if session[:user]
+    @current_user = nil
   end
 
   # Axe?

@@ -133,8 +133,8 @@ class Admin::ContentController < Admin::BaseController
 
   def set_article_author
     return if @article.author
-    @article.author = session[:user].login
-    @article.user   = session[:user]
+    @article.author = current_user.login
+    @article.user   = current_user
   end
 
   def save_attachments

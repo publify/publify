@@ -16,7 +16,7 @@ describe 'A successfully authenticated login' do
   it 'session gets a user' do
     User.should_receive(:authenticate).and_return(@user)
     make_request
-    request.session[:user].should == @user
+    request.session[:user_id].should == @user.id
   end
 
   it 'cookies[:is_admin] should == "yes"' do
@@ -52,7 +52,7 @@ describe 'Login gets the wrong password' do
 
   it 'no user in goes in the session' do
     make_request
-    response.session[:user].should be_nil
+    response.session[:user_id].should be_nil
   end
 
   it 'login should == "bob"' do
@@ -165,7 +165,7 @@ describe 'POST signup with 0 existing users' do
   it 'session gets a user' do
     post 'signup', params
     flash[:notice].should == 'Signup successful'
-    request.session[:user].should == @user
+    request.session[:user_id].should == @user.id
   end
 
   it 'Sets the flash notice to "Signup successful"' do
@@ -183,16 +183,19 @@ describe 'User is logged in' do
   controller_name :accounts
 
   before(:each) do
-    @user = mock('user')
+    @user = mock_model(User)
 
-    session[:user] = @user
-    @user.stub!(:reload).and_return(@user)
+    session[:user_id] = @user.id
+    User.should_recevie(:find) \
+      .with(@user.id) \
+      .and_return(@user)
+    
     request.cookies[:is_admin] = 'yes'
   end
 
-  it 'logging out deletes the session[:user]' do
+  it 'logging out deletes the session[:user_id]' do
     get 'logout'
-    session[:user].should == nil
+    session[:user_id].should == nil
   end
 
   it 'renders the logout action' do
