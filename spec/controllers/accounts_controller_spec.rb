@@ -142,8 +142,7 @@ describe 'POST signup with 0 existing users' do
 
   before(:each) do
     User.stub!(:count).and_return(0)
-    @user = mock("user")
-    @user.stub!(:reload).and_return(@user)
+    @user = mock_model(User)
     @user.stub!(:login).and_return('newbob')
     User.stub!(:new).and_return(@user)
     User.stub!(:authenticate).and_return(@user)
@@ -186,8 +185,9 @@ describe 'User is logged in' do
     @user = mock_model(User)
 
     session[:user_id] = @user.id
-    User.should_recevie(:find) \
+    User.should_receive(:find) \
       .with(@user.id) \
+      .any_number_of_times \
       .and_return(@user)
     
     request.cookies[:is_admin] = 'yes'

@@ -67,16 +67,6 @@ describe ArticlesController, "feeds" do
     response.should render_template("_rss20_feed")
   end
 
-  specify "articles/author/foo.atom => atom feed" do
-    get 'author', :id => 'foo', :format => 'atom'
-    response.should render_template("_atom_feed")
-  end
-
-  specify "articles/author/foo.rss => rss feed" do
-    get 'author', :id => 'foo', :format => 'rss'
-    response.should render_template("_rss20_feed")
-  end
-
   def scoped_getter
     with_options(:year => 2007, :month => 10, :day => 11, :id => 'slug') { |item| item }
   end

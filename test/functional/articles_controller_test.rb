@@ -22,6 +22,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def setup
     @controller = ArticlesController.new
+    
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
 
     Article.create!(:title => "News from the future!",
@@ -49,6 +50,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_tag
+    this_blog.limit_article_display = 10
     get :tag, :id => "foo"
 
     assert_response :success
@@ -333,42 +335,5 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def test_search
     get :search, :q => "search target"
     assert_equal 1, assigns(:articles).size
-  end
-
-  def test_author
-    get :author, :id => 'tobi'
-
-    assert_response :success
-    assert_template 'index'
-    assert assigns(:articles)
-    assert_equal users(:tobi).articles.published, assigns(:articles)
-    # This is until we write a proper author feed
-
-    assert_equal('http://test.host/articles/author/tobi.rss',
-                 assigns(:auto_discovery_url_rss))
-    assert_equal('http://test.host/articles/author/tobi.atom',
-                 assigns(:auto_discovery_url_atom))
-  end
-
-  def test_nonexistent_author
-    get :author, :id => 'nonexistent-chap'
-
-    assert_response 404
-    assert_template 'error'
-    assert assigns(:message)
-    assert_equal "Can't find posts with author 'nonexistent-chap'", assigns(:message)
-  end
-
-  def test_author_list
-    get :author
-
-    assert_response :success
-    assert_template 'groupings'
-
-    assert_tag(:tag => 'ul',
-               :descendant => {\
-                 :tag => 'a',
-                 :attributes => { :href => '/articles/author/tobi' },
-               })
   end
 end

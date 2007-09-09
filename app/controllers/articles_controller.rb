@@ -63,7 +63,8 @@ class ArticlesController < ContentController
   end
 
   def author
-    render_grouping(User)
+    response.headers['Status'] = "301 Moved Permanently"
+    redirect_to authors_path
   end
 
   def category

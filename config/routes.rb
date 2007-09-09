@@ -85,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.inflected_resource(:categories, :path_prefix => '/articles')
+  map.inflected_resource(:authors, :path_prefix => '/articles')
 
   # allow neat perma urls
   map.connect 'articles/page/:page',
@@ -110,7 +111,7 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
 
-    %w(tag author).each do |value|
+    %w(tag).each do |value|
       get.with_options(:action => value, :controller => 'articles') do |m|
         m.named_route("#{value.pluralize}", "articles/#{value}")
         m.connect "articles/#{value}/page/:page", :page => /\d+/
