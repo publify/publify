@@ -107,7 +107,7 @@ class BackendControllerTest < Test::Unit::TestCase
     args = [ 1, 'tobi', 'whatever' ]
 
     result = invoke_layered :metaWeblog, :getPost, *args
-    assert_equal result['title'], 'Article 1!'
+    assert_equal result['title'], Article.find(1).title
   end
 
   def test_meta_weblog_get_recent_posts
@@ -115,7 +115,7 @@ class BackendControllerTest < Test::Unit::TestCase
 
     result = invoke_layered :metaWeblog, :getRecentPosts, *args
     assert_equal result.size, 2
-    assert_equal result.last['title'], 'Article 1!'
+    assert_equal result.last['title'], Article.find(:first, :offset => 1, :order => 'created_at desc').title
   end
 
   def test_meta_weblog_delete_post
@@ -218,7 +218,7 @@ class BackendControllerTest < Test::Unit::TestCase
     args = [ 1, 'tobi', 'whatever' ]
 
     result = invoke_layered :mt, :getPostCategories, *args
-    assert_equal result.first['categoryName'], article.categories.first['name']
+    assert_equal Set.new(result.collect {|v| v['categoryName']}), Set.new(article.categories.collect(&:name))
   end
 
   def test_mt_get_recent_post_titles
