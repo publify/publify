@@ -70,9 +70,9 @@ describe "General Comment Creation", :shared => true do
     make_the_request
   end
 
-  it "should set a default author" do
+  it "should set the author" do
     @article.should_receive(:add_comment) do |opts|
-      opts[:author].should == 'Anonymous'
+      opts[:author].should == 'bob'
       @comment
     end
 

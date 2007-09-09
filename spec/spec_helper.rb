@@ -9,6 +9,10 @@ Spec::Runner.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures'
 
+  config.before(:each) do
+    CachedModel.cache_reset
+  end
+  
   # You can declare fixtures for each behaviour like this:
   #   describe "...." do
   #     fixtures :table_a, :table_b

@@ -76,12 +76,12 @@ ActionController::Routing::Routes.draw do |map|
                               :archives => :get
                             },
                             :member => {
-                              :comment => :post, :trackback => :post,
                               :nuke_feedback => :delete,
                               :markup_help => :get
                             }) do |dated|
     dated.resources :comments, :new => { :preview => :any }
     dated.resources :trackbacks
+    dated.connect 'trackback', :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
   end
 
   map.inflected_resource(:categories, :path_prefix => '/articles')

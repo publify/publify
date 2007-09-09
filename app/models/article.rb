@@ -17,12 +17,13 @@ class Article < Content
   has_many :feedback,                           :order => "created_at DESC"
   has_many :resources, :order => "created_at DESC",
            :class_name => "Resource", :foreign_key => 'article_id'
+  
   has_many :categorizations
-  has_many :categories, :through => :categorizations, :uniq => true do
-    def push_with_attributes(cat, join_attrs = { :is_primary => false })
-      Categorization.with_scope(:create => join_attrs) { self << cat }
-    end
-  end
+  has_many :categories, \
+    :through => :categorizations, \
+    :uniq => true, \
+    :order => 'categorizations.is_primary DESC, categories.position'
+  
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
   has_many :triggers, :as => :pending_item
@@ -46,18 +47,22 @@ class Article < Content
   def stripped_title
     self.title.gsub(/<[^>]*>/,'').to_url
   end
+  
+  def permalink_url_options(nesting = false)
+    {:year => published_at.year,
+     :month => sprintf("%.2d", published_at.month),
+     :day => sprintf("%.2d", published_at.day),
+     :controller => 'articles',
+     :action => 'show',
+     (nesting ? :article_id : :id) => permalink}
+  end
 
   def permalink_url(anchor=nil, only_path=true)
     @cached_permalink_url ||= {}
     @cached_permalink_url["#{anchor}#{only_path}"] ||= \
-      blog.url_for(:year => published_at.year,
-                   :month => sprintf("%.2d", published_at.month),
-                   :day => sprintf("%.2d", published_at.day),
-                   :id => permalink,
-                   :anchor => anchor,
-                   :only_path => only_path,
-                   :controller => '/articles',
-                   :action => 'show')
+      blog.with_options(permalink_url_options) do |b|
+        b.url_for(:anchor => anchor, :only_path => only_path)
+      end
   end
 
   def param_array
@@ -75,7 +80,7 @@ class Article < Content
   end
 
   def trackback_url
-    blog.url_for(:controller => "articles", :action =>"trackback", :id => id)
+    blog.url_for(permalink_url_options(true).merge(:controller => 'trackbacks', :action => 'index'))
   end
 
   def feed_url(format = :rss20)
@@ -319,6 +324,7 @@ class Article < Content
     [:body, :extended]
   end
 
+  ## Feed Stuff
   def rss_trackback(xml)
     return unless allow_pings?
     xml.trackback :ping, trackback_url
@@ -388,6 +394,10 @@ class Article < Content
 
   def add_comment(params)
     comments.build(params)
+  end
+  
+  def add_category(category, is_primary = false)
+    self.categorizations.build(:category => category, :is_primary => is_primary)
   end
 
   protected

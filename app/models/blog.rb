@@ -26,6 +26,10 @@ class Blog < CachedModel
            :class_name => 'Comment',
            :conditions => {:published => true},
            :order => 'contents.published_at DESC')
+  has_many(:published_comments,
+           :class_name => 'Trackback',
+           :conditions => {:published => true},
+           :order => 'contents.published_at DESC')
   has_many :pages, :order => "id DESC"
   has_many(:published_articles, :class_name => "Article",
            :conditions => {:published => true},
@@ -113,14 +117,20 @@ class Blog < CachedModel
   end
 
   def ping_article!(settings)
+    unless global_pings_enabled? && settings.has_key?(:url) && settings.has_key(:id)
+      raise ActiveRecord::RecordInvalid
+    end
     settings[:blog_id] = self.id
-    article_id = settings[:id]
-    settings.delete(:id)
+    article_id = settings.delete(:article_id)
     article = published_articles.find(article_id)
     unless article.allow_pings?
       throw :error, "Trackback not saved"
     end
     article.trackbacks.create!(settings)
+  end
+  
+  def global_pings_enabled?
+    ! global_pings_disable?
   end
 
   # Check that all required blog settings have a value.

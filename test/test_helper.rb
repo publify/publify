@@ -8,7 +8,7 @@ $TESTING = true
 User.salt = 'change-me'
 
 class Test::Unit::TestCase
-  self.use_transactional_fixtures = false
+  self.use_transactional_fixtures = true
 
   # Instantiated fixtures are slow, but give you @david where you otherwise would need people(:david)
   self.use_instantiated_fixtures  = false
@@ -22,7 +22,7 @@ class Test::Unit::TestCase
       __send__(@method_name)
     rescue Test::Unit::AssertionFailedError => e
       add_failure(e.message, e.backtrace)
-    rescue StandardError, ScriptError
+     rescue StandardError, ScriptError
       add_error($!)
     ensure
       begin

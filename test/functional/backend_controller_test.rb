@@ -9,7 +9,7 @@ class BackendController; def rescue_action(e) raise e end; end
 
 class BackendControllerTest < Test::Unit::TestCase
   include FlexMock::TestCase
-  fixtures :contents, :categories, :blogs, :users, :categorizations, :text_filters
+  fixtures :contents, :categories, :blogs, :users, :categorizations, :text_filters, :blacklist_patterns, :feedback, :tags, :articles_tags, :notifications, :resources, :triggers
 
   def setup
     @controller = BackendController.new

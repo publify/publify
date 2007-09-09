@@ -35,12 +35,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     get :show, article_params(article)
   end
 
-  def post_comment(article, comment_params = {})
-    with_options(article_params(article)) do |send|
-      send.post :comment, :comment => comment_params
-    end
-  end
-
   def article_params(article)
     [:year, :month, :day, :id].zip(article.param_array).inject({}) do |init, (k,v)|
       init.merge!(k => v)
@@ -133,96 +127,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_template "index"
   end
 
-  def test_comment_posting
-    emails = ActionMailer::Base.deliveries
-    emails.clear
-
-    assert_equal 0, emails.size
-
-    Article.find(1).notify_users << users(:tobi)
-
-    post_comment(Article.find(1), 'body' => 'This is *markdown*', 'author' => 'bob')
-
-    assert_response :success
-    assert_tag :tag => 'em', :content => 'markdown'
-
-    comment = Article.find(1).comments.last
-    assert comment
-
-    assert_not_nil cookies["author"]
-
-    assert_equal "<p>This is <em>markdown</em></p>", comment.html.to_s
-
-    assert_equal 2, emails.size
-    assert_equal User.find(:all,
-                           :conditions => ['(notify_via_email = ?) and (notify_on_comments = ?)', true, true],
-                           :order => 'email').collect { |each| each.email },
-                 emails.collect { |each| each.to[0] }.sort
-  end
-
-  def test_comment_spam_markdown_smarty
-    this_blog.comment_text_filter = "markdown smartypants"
-    test_comment_spam1
-  end
-
-  def comment_template_test(expected_html, source_text,
-                            art_id=1, author='bob', email='foo', args={})
-    with_options(args) do |merger|
-      merger.post_comment(Article.find(art_id),
-                          'body' => source_text,
-                          'author' => author,
-                          'email' => email )
-    end
-
-    assert_response :success
-    comment = Article.find(art_id).comments.last
-    assert comment
-
-    assert_match expected_html, comment.html.to_s
-    $do_breakpoints
-  end
-
-  def test_comment_spam1
-    comment_template_test "<p>Link to <a href=\"http://spammer.example.com\" rel=\"nofollow\">spammy goodness</a></p>", 'Link to <a href="http://spammer.example.com">spammy goodness</a>'
-  end
-
-  def test_comment_spam2
-    comment_template_test %r{<p>Link to <a href=["']http://spammer.example.com['"] rel=["']nofollow['"]>spammy goodness</a></p>}, 'Link to [spammy goodness](http://spammer.example.com)'
-  end
-
-  def test_comment_spam3
-    post_comment(Article.find(1),
-                 :body => '<a href="http://spam.org">spam</a>',
-                 :author => '<a href="spamme.com">spamme</a>',
-                 :email => '<a href="http://morespam.net">foo</a>')
-
-    assert_response :success
-    comment = Article.find(1).comments.last
-    assert comment
-
-    show_article(Article.find(1))
-    assert_response 200
-
-    assert ! (@response.body =~ %r{<a href="http://spamme.com">}), "Author leaks"
-    assert ! (@response.body =~ %r{<a href="http://spam.org">}), "Body leaks <a>"
-    assert ! (@response.body =~ %r{<a href="http://morespam.net">}), "Email leaks"
-  end
-
-  def test_comment_xss1
-    this_blog.comment_text_filter = "none"
-    comment_template_test %{Have you ever alert("foo"); been hacked?},
-    %{Have you ever <script lang="javascript">alert("foo");</script> been hacked?}
-  end
-
-  def test_comment_xss2
-    this_blog.comment_text_filter = "none"
-    comment_template_test "Have you ever <a href=\"#\" rel=\"nofollow\">been hacked?</a>", 'Have you ever <a href="#" onclick="javascript">been hacked?</a>'
-  end
-
-  def test_comment_autolink
-    comment_template_test "<p>What's up with <a href=\"http://slashdot.org\" rel=\"nofollow\">http://slashdot.org</a> these days?</p>", "What's up with http://slashdot.org these days\?"
-  end
-
   ### TODO -- there's a bug in Rails with auto_links
 #   def test_comment_autolink2
 #     comment_template_test "<p>My web page is <a href='http://somewhere.com/~me/index.html' rel=\"nofollow\">http://somewhere.com/~me/index.html</a></p>", "My web page is http://somewhere.com/~me/index.html"
@@ -240,47 +144,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     delete :nuke_feedback, opts, { :user => users(:bob)}
     assert_response :success
     assert_equal feedback_count -1, Feedback.count
-  end
-
-  def test_comment_user_blank
-    post_comment Article.find(2), 'body' => 'foo', 'author' => 'bob'
-    assert_response :success
-
-    comment = Article.find(2).comments.last
-    assert comment
-    assert comment.published?
-    assert_nil comment.user_id
-
-    show_article(Article.find(2))
-    assert_response :success
-    assert_no_tag :tag => "li",
-       :attributes => { :class => "author_comment"}
-
-  end
-
-  def test_comment_user_set
-    @request.session = { :user => users(:tobi) }
-    post_comment Article.find(2), 'body' => 'foo', 'author' => 'bob'
-    assert_response :success
-
-    comment = Article.find(2).comments.last
-    assert comment
-    assert_equal users(:tobi), comment.user
-
-    show_article(Article.find(2))
-    assert_response :success
-    assert_tag :tag => "li",
-       :attributes => { :class => "author_comment"}
-  end
-
-  def test_trackback
-    num_trackbacks = Article.find(2).trackbacks.count
-    post :trackback, { :id => 2, :url => "http://www.google.com", :title => "My Trackback", :excerpt => "This is a test" }
-    assert_response :success
-    assert_no_tag :tag => "response",
-                  :child => {:tag => "error", :content => "1"}
-
-    assert_equal num_trackbacks+1, Article.find(2).trackbacks.count
   end
 
   def test_no_settings
@@ -380,12 +243,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_select "li.author_comment"
 
     assert_select "ol#trackbackList > li", contents(:article1).trackbacks.size
-
-
-#     assert_tag :tag => "ol",
-#       :attributes => { :id => "trackbackList" },
-#       :children => { :count => contents(:article1).trackbacks.size,
-#         :only => { :tag => "li" } }
   end
 
   def test_show_article_no_comments_no_trackbacks
@@ -448,21 +305,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
       assert_select '[type=application/atom+xml]'
       assert_select '[href=http://test.host/articles/tag/hardware.atom]'
     end
-  end
-
-  def test_disabled_ajax_comments
-    this_blog.sp_allow_non_ajax_comments = false
-    assert_equal false, this_blog.sp_allow_non_ajax_comments
-
-    post_comment Article.find(1), 'body' => 'This is posted without ajax', 'author' => 'bob'
-    assert_response 500
-    assert_equal "non-ajax commenting is disabled", @response.body
-
-    @request.env['HTTP_X_REQUESTED_WITH'] = "XMLHttpRequest"
-    post_comment Article.find(1), 'body' => 'This is posted *with* ajax', 'author' => 'bob'
-    assert_response :success
-    ajax_comment = Article.find(1).comments.last
-    assert_equal "This is posted *with* ajax", ajax_comment.body
   end
 
   def test_tag_max_article_count_is_first

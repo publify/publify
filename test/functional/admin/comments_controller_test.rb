@@ -6,7 +6,7 @@ require 'dns_mock'
 class Admin::CommentsController; def rescue_action(e) raise e end; end
 
 class Admin::CommentsControllerTest < Test::Unit::TestCase
-  fixtures :contents, :feedback, :users, :notifications
+  fixtures :contents, :feedback, :users, :notifications, :blogs, :blacklist_patterns
 
   def setup
     @controller = Admin::CommentsController.new

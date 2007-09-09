@@ -75,55 +75,6 @@ class ArticlesController < ContentController
     render_grouping(Tag)
   end
 
-  # Receive comments to articles
-  def comment
-    unless request.xhr? || this_blog.sp_allow_non_ajax_comments
-      render_error("non-ajax commenting is disabled")
-      return
-    end
-
-    @article = this_blog.requested_article(params)
-
-    params[:comment].merge!({:ip => request.remote_ip,
-                              :published => true,
-                              :user => session[:user],
-                              :user_agent => request.env['HTTP_USER_AGENT'],
-                              :referrer => request.env['HTTP_REFERER'],
-                              :permalink => @article.permalink_url})
-    @comment = @article.comments.build(params[:comment])
-    @comment.author ||= 'Anonymous'
-    @comment.save
-
-    add_to_cookies(:author, @comment.author)
-    add_to_cookies(:url, @comment.url)
-
-    set_headers
-    render :partial => "comment", :object => @comment
-  end
-
-  # Receive trackbacks linked to articles
-  def trackback
-    @error_message = catch(:error) do
-      if this_blog.global_pings_disable
-        throw :error, "Trackback not saved"
-      elsif params[:__mode] == "rss"
-        # Part of the trackback spec... will implement later
-        # XXX. Should this throw an error?
-      elsif !(params.has_key?(:url) && params.has_key?(:id))
-        throw :error, "A URL is required"
-      else
-        begin
-          @trackback = this_blog.ping_article!(params.merge(:ip => request.remote_ip, :published => true))
-        rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
-          throw :error, "Article id #{params[:id]} not found."
-        rescue ActiveRecord::RecordInvalid
-          throw :error, "Trackback not saved"
-        end
-      end
-      nil
-    end
-  end
-
   def nuke_comment
     @comment = Comment.find(params[:id]).destroy
     render :nothing => true
