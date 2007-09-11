@@ -25,11 +25,11 @@ class Blog < CachedModel
   has_many(:published_comments,
            :class_name => 'Comment',
            :conditions => {:published => true},
-           :order => 'contents.published_at DESC')
-  has_many(:published_comments,
+           :order => 'feedback.published_at DESC')
+  has_many(:published_trackbacks,
            :class_name => 'Trackback',
            :conditions => {:published => true},
-           :order => 'contents.published_at DESC')
+           :order => 'feedback.published_at DESC')
   has_many :pages, :order => "id DESC"
   has_many(:published_articles, :class_name => "Article",
            :conditions => {:published => true},
@@ -128,7 +128,7 @@ class Blog < CachedModel
     end
     article.trackbacks.create!(settings)
   end
-  
+
   def global_pings_enabled?
     ! global_pings_disable?
   end
