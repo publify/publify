@@ -1,37 +1,5 @@
-class CommentsController < ApplicationController
-  helper :theme
-
-  session :new_session => false
-
-  before_filter :get_article, :only => [:create, :update]
+class CommentsController < FeedbackController
   before_filter :check_request_type, :only => [:create]
-
-  cache_sweeper :blog_sweeper
-
-  def index
-    article = nil
-    if params[:article_id]
-      article = this_blog.requested_article(params)
-      @comments = article.published_comments
-    else
-      this_blog.with_options(this_blog.rss_limit_params) do |b|
-        @comments = b.published_comments(:order => 'created_at DESC')
-      end
-    end
-
-    @page_title = "Comments"
-    respond_to do |format|
-      format.html do
-        if article
-          redirect_to "#{article_path(article)}\#comments"
-        else
-          render :text => 'this space left blank'
-        end
-      end
-      format.atom { render :partial => 'articles/atom_feed', :object => @comments }
-      format.rss { render :partial => 'articles/rss20_feed', :object => @comments }
-    end
-  end
 
   def create
     @comment = @article.with_options(new_comment_defaults) do |art|
@@ -63,6 +31,17 @@ class CommentsController < ApplicationController
 
   protected
 
+  def get_feedback
+    @comments = \
+      if params[:article_id]
+        this_blog.requested_article(params).published_comments
+      else
+        this_blog.with_options(this_blog.rss_limit_params) do |b|
+          b.published_comments(:order => 'created_at DESC')
+        end
+      end
+  end
+
   def new_comment_defaults
     return { :ip  => request.remote_ip,
       :author     => 'Anonymous',
@@ -75,13 +54,6 @@ class CommentsController < ApplicationController
 
   def set_headers
     headers["Content-Type"] = "text/html; charset=utf-8"
-  end
-
-  def get_article
-    @article = this_blog.requested_article(params)
-  rescue ActiveRecord::RecordNotFound
-    render :text => "No such article", :status => 404
-    return false
   end
 
   def check_request_type

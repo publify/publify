@@ -176,35 +176,12 @@ describe CommentsController, 'GET /comments' do
     response.should be_success
   end
 
-  it "should limit the comments if !this_blog.limit_rss_display.to_i.zero? " do
+  it "should not bother fetching any comments " do
     mock_comments = mock('comments')
-    @the_mock.should_receive(:published_comments)      \
-      .with(:limit => 20, :order => 'created_at DESC') \
-      .and_return(mock_comments)
-
-    @the_mock.should_receive(:rss_limit_params) \
-      .at_least(:once) \
-      .and_return(:limit => 20)
+    @the_mock.should_not_receive(:published_comments)
+    @the_mock.should_not_receive(:rss_limit_params)
 
     get 'index'
-  end
-
-  it "should not limit the comments if this_blog.limit_rss_display is 0" do
-    mock_comments = mock('comments')
-    @the_mock.should_receive(:rss_limit_params) \
-      .at_least(:once) \
-      .and_return(Hash.new)
-
-    @the_mock.should_receive(:published_comments) \
-      .with(:order => 'created_at DESC') \
-      .and_return(mock_comments)
-
-    get 'index'
-  end
-
-  it "should assign @comments" do
-    get 'index'
-    assigns[:comments].should_not be_nil
   end
 end
 
