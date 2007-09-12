@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe CategoriesController, "/index" do
+describe TagsController, "/index" do
   before(:each) do
-    Category.stub!(:find_all_with_article_counters) \
-      .and_return(mock('categories', :null_object => true))
+    Tag.stub!(:find_all_with_article_counters) \
+      .and_return(mock('tags', :null_object => true))
 
     controller.stub!(:template_exists?) \
       .and_return(true)
@@ -36,14 +36,14 @@ describe CategoriesController, "/index" do
   end
 end
 
-describe CategoriesController, '/articles/category/foo' do
+describe TagsController, '/articles/tag/foo' do
   before(:each) do
-    @category = mock('category', :null_object => true)
-    @category.stub!(:empty?) \
+    @tag = mock('tag', :null_object => true)
+    @tag.stub!(:empty?) \
       .and_return(false)
 
-    Category.stub!(:find_by_permalink) \
-      .and_return(@category)
+    Tag.stub!(:find_by_permalink) \
+      .and_return(@tag)
 
     ActionController::Pagination::Paginator.stub!(:new) \
       .and_return(mock('pages', :null_object => true))
@@ -64,10 +64,10 @@ describe CategoriesController, '/articles/category/foo' do
     response.should be_success
   end
 
-  it 'should call Category.find_by_permalink' do
-    Category.should_receive(:find_by_permalink) \
+  it 'should call Tag.find_by_permalink' do
+    Tag.should_receive(:find_by_permalink) \
       .with('foo') \
-      .and_return(mock('category', :null_object => true))
+      .and_return(mock('tag', :null_object => true))
     do_get
   end
 
@@ -84,13 +84,13 @@ describe CategoriesController, '/articles/category/foo' do
     response.should render_template('articles/index')
   end
 
-  it 'should set the page title to "Category foo"' do
+  it 'should set the page title to "Tag foo"' do
     do_get
-    assigns[:page_title].should == 'Category foo'
+    assigns[:page_title].should == 'Tag foo'
   end
 
-  it 'should render an error when the category is empty' do
-    @category.should_receive(:published_articles) \
+  it 'should render an error when the tag is empty' do
+    @tag.should_receive(:published_articles) \
       .and_return([])
 
     do_get
@@ -99,12 +99,12 @@ describe CategoriesController, '/articles/category/foo' do
     assigns[:message].should == "Can't find any articles for 'foo'"
   end
 
-  it 'should render the atom feed for /articles/category/foo.atom' do
+  it 'should render the atom feed for /articles/tag/foo.atom' do
     get 'show', :id => 'foo', :format => 'atom'
     response.should render_template('articles/_atom_feed')
   end
 
-  it 'should render the rss feed for /articles/category/foo.rss' do
+  it 'should render the rss feed for /articles/tag/foo.rss' do
     get 'show', :id => 'foo', :format => 'rss'
     response.should render_template('articles/_rss20_feed')
   end
@@ -112,17 +112,17 @@ end
 
 ## Old tests that still need conversion
 
-#   def test_autodiscovery_category
-#     get :category, :id => 'hardware'
+#   def test_autodiscovery_tag
+#     get :tag, :id => 'hardware'
 #     assert_response :success
 #     assert_select 'link[title=RSS]' do
 #       assert_select '[rel=alternate]'
 #       assert_select '[type=application/rss+xml]'
-#       assert_select '[href=http://test.host/articles/category/hardware.rss]'
+#       assert_select '[href=http://test.host/articles/tag/hardware.rss]'
 #     end
 #     assert_select 'link[title=Atom]' do
 #       assert_select '[rel=alternate]'
 #       assert_select '[type=application/atom+xml]'
-#       assert_select '[href=http://test.host/articles/category/hardware.atom]'
+#       assert_select '[href=http://test.host/articles/tag/hardware.atom]'
 #     end
 #   end

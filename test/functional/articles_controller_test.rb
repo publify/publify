@@ -49,42 +49,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response 301
   end
 
-  def test_tag
-    this_blog.limit_article_display = 10
-    get :tag, :id => "foo"
-
-    assert_response :success
-    assert_template "index"
-
-    assert_tag :tag => 'title', :content => 'test blog : tag foo'
-    assert_tag :tag => 'h2', :content => 'Article 2!'
-    assert_tag :tag => 'h2', :content => 'Article 1!'
-  end
-
-  def test_nonexistent_tag
-    get :tag, :id => "nonexistent"
-    assert_response 200
-    assert_template "error"
-  end
-
-  def test_tag_routes
-    opts = {:controller => "articles", :action => "tag", :id => "foo", :page => "2"}
-    assert_routing("articles/tag/foo/page/2", opts)
-  end
-
-  def test_simple_tag_pagination
-    this_blog.limit_article_display = 1
-    get :tag, :id => "foo"
-    assert_equal 1, assigns(:articles).size
-    assert_tag(:tag => 'p',
-               :attributes =>{ :id => 'pagination' },
-               :content => %r{Older posts: 1},
-               :descendant => {:tag => 'a',
-                               :attributes =>{
-                                  :href => "/articles/tag/foo/page/2"},
-                               :content => "2"})
-  end
-
   # Main index
   def test_index
     get :index
@@ -167,13 +131,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     show_article(Article.find(4))
     assert_response 404
     assert_template "error"
-  end
-
-  def test_tags_non_published
-    get :tag, :id => 'bar'
-    assert_response :success
-    assert_equal 1, assigns(:articles).size
-    assert ! assigns(:articles).include?(@article4), "Unpublished article displayed"
   end
 
   def test_gravatar
@@ -277,21 +234,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
       assert_select '[rel=alternate]'
       assert_select '[type=application/atom+xml]'
       assert_select '[href=?]', formatted_article_url(Article.find(1), 'atom')
-    end
-  end
-
-  def test_autodiscovery_tag
-    get :tag, :id => 'hardware'
-    assert_response :success
-    assert_select 'link[title=RSS]' do
-      assert_select '[rel=alternate]'
-      assert_select '[type=application/rss+xml]'
-      assert_select '[href=http://test.host/articles/tag/hardware.rss]'
-    end
-    assert_select 'link[title=Atom]' do
-      assert_select '[rel=alternate]'
-      assert_select '[type=application/atom+xml]'
-      assert_select '[href=http://test.host/articles/tag/hardware.atom]'
     end
   end
 

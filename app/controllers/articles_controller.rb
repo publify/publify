@@ -1,6 +1,6 @@
 class ArticlesController < ContentController
   before_filter :verify_config
-  before_filter :auto_discovery_feed, :only => [:show, :index, :author, :category, :tag]
+  before_filter :auto_discovery_feed, :only => [:show, :index]
 
   layout :theme_layout, :except => [:comment_preview, :trackback]
 
@@ -24,10 +24,6 @@ class ArticlesController < ContentController
     end
   end
 
-  def archives
-    @articles = this_blog.published_articles
-  end
-
   def show
     @article      = this_blog.requested_article(params)
     @comment      = Comment.new
@@ -46,6 +42,12 @@ class ArticlesController < ContentController
   def search
     @articles = this_blog.articles_matching(params[:q])
     render_paginated_index("No articles found...")
+  end
+
+  ### Deprecated Actions ###
+
+  def archives
+    @articles = this_blog.published_articles
   end
 
   def comment_preview
@@ -70,7 +72,8 @@ class ArticlesController < ContentController
   end
 
   def tag
-    render_grouping(Tag)
+    response.headers['Status'] = "301 Moved Permanently"
+    redirect_to tags_path
   end
 
   def view_page
@@ -110,33 +113,6 @@ class ArticlesController < ContentController
 
   def set_headers
     headers["Content-Type"] = "text/html; charset=utf-8"
-  end
-
-  def list_groupings(klass)
-    @grouping_class = klass
-    @groupings = klass.find_all_with_article_counters(1000)
-    respond_to do |format|
-      format.html { render :action => 'groupings' }
-    end
-  end
-
-  def render_grouping(klass)
-    return list_groupings(klass) unless params[:id]
-
-    @page_title = "#{klass.to_s.underscore} #{params[:id]}"
-    @articles = klass.find_by_permalink(params[:id]).articles.find_already_published
-
-    respond_to do |format|
-      format.html do
-        auto_discovery_feed
-        render_paginated_index("Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'")
-      end
-      items = @articles[0,this_blog.limit_rss_display]
-      format.atom { render :partial => 'atom_feed', :object => items }
-      format.rss { render :partial => 'rss20_feed', :object => items }
-    end
-  rescue ActiveRecord::RecordNotFound
-    error "Can't find posts with #{klass.to_prefix} '#{h(params[:id])}'"
   end
 
   def render_paginated_index(on_empty = "No posts found...")

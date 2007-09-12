@@ -85,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.inflected_resource(:categories, :path_prefix => '/articles')
   map.inflected_resource(:authors, :path_prefix => '/articles')
+  map.inflected_resource(:tags, :path_prefix => '/articles')
   map.resources(:feedback)
 
   # allow neat perma urls
@@ -108,16 +109,6 @@ ActionController::Routing::Routes.draw do |map|
         finder.connect 'articles/:year/:month/page/:page',
           :day => nil, :page => /\d+/
         finder.connect 'articles/:year/:month/:day/page/:page', :page => /\d+/
-      end
-    end
-
-    %w(tag).each do |value|
-      get.with_options(:action => value, :controller => 'articles') do |m|
-        m.named_route("#{value.pluralize}", "articles/#{value}")
-        m.connect "articles/#{value}/page/:page", :page => /\d+/
-        m.named_route("#{value}", "articles/#{value}/:id")
-        m.named_route("formatted_#{value}", "articles/#{value}/:id.:format")
-        m.connect "articles/#{value}/:id/page/:page", :page => /\d+/
       end
     end
 

@@ -27,6 +27,11 @@ describe 'ArticlesController' do
     response.should redirect_to(categories_path)
   end
 
+  it "should redirect tag to /articles/tags" do
+    get 'tag'
+    response.should redirect_to(tags_path)
+  end
+
   it 'index' do
     get 'index'
     response.should render_template(:index)
@@ -53,17 +58,6 @@ describe ArticlesController, "feeds" do
   specify "/articles.rss => an RSS 2.0 feed" do
     get 'index', :format => 'rss'
     response.should be_success
-    response.should render_template("_rss20_feed")
-  end
-
-
-  specify "articles/tag/foo.atom => atom feed" do
-    get 'tag', :id => 'foo', :format => 'atom'
-    response.should render_template("_atom_feed")
-  end
-
-  specify "articles/tag/foo.rss => rss feed" do
-    get 'tag', :id => 'foo', :format => 'rss'
     response.should render_template("_rss20_feed")
   end
 

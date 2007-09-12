@@ -7,7 +7,7 @@ describe AuthorsController, "/index" do
 
     controller.stub!(:template_exists?) \
       .and_return(true)
-      
+
     this_blog = Blog.new
     controller.stub!(:this_blog) \
       .and_return(this_blog)
@@ -84,9 +84,9 @@ describe AuthorsController, '/articles/category/foo' do
     response.should render_template('articles/index')
   end
 
-  it 'should set the page title to "user foo"' do
+  it 'should set the page title to "Author foo"' do
     do_get
-    assigns[:page_title].should == 'user foo'
+    assigns[:page_title].should == 'Author foo'
   end
 
   it 'should render an error when the author has no articles' do
