@@ -13,6 +13,10 @@ class User < CachedModel
       find_published(:all, :order => 'created_at DESC')
     end
   end
+  has_many :published_articles,
+    :class_name => 'Article',
+    :conditions => { :published => true },
+    :order      => "published_at DESC"
 
   # echo "typo" | sha1sum -
   @@salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
