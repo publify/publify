@@ -22,7 +22,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def setup
     @controller = ArticlesController.new
-    
+
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
 
     Article.create!(:title => "News from the future!",
@@ -133,20 +133,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
 #   def test_comment_autolink2
 #     comment_template_test "<p>My web page is <a href='http://somewhere.com/~me/index.html' rel=\"nofollow\">http://somewhere.com/~me/index.html</a></p>", "My web page is http://somewhere.com/~me/index.html"
 #   end
-
-  def test_feedback_nuking
-    opts = { :article_year => '2007', :article_month => '9', :article_day => '2', :id => 'slug', :feedback_id => feedback(:spam_comment).id }
-    feedback_count = Feedback.count
-    delete :nuke_feedback, opts, {}
-    assert_response 403
-
-    get :nuke_feedback, opts, { :user => users(:bob)}
-    assert_response 403
-
-    delete :nuke_feedback, opts, { :user => users(:bob)}
-    assert_response :success
-    assert_equal feedback_count -1, Feedback.count
-  end
 
   def test_no_settings
     this_blog.update_attribute(:settings, { })

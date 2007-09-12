@@ -9,10 +9,7 @@ class ArticlesController < ContentController
   cached_pages = [:index, :read, :show, :category, :archives, :view_page, :tag, :author]
   caches_action_with_params *cached_pages
 
-  session :only => %w(nuke_comment nuke_trackback nuke_feedback)
-  verify(:only => [:nuke_comment, :nuke_trackback, :nuke_feedback],
-         :session => :user, :method => :delete,
-         :render => { :text => 'Forbidden', :status => 403 })
+  session :new_session => false
 
   def index
     @articles = this_blog.requested_articles(params)
@@ -74,23 +71,6 @@ class ArticlesController < ContentController
 
   def tag
     render_grouping(Tag)
-  end
-
-  def nuke_comment
-    @comment = Comment.find(params[:id]).destroy
-    render :nothing => true
-  end
-
-  def nuke_trackback
-    Trackback.find(params[:id]).destroy
-    render :nothing => true
-  end
-
-  def nuke_feedback
-    fb = Feedback.find(params[:feedback_id]).destroy
-    render :update do |page|
-      page.visual_effect(:puff, "#{fb.class.to_s.underscore}-#{fb.id}")
-    end
   end
 
   def view_page

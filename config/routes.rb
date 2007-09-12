@@ -76,7 +76,6 @@ ActionController::Routing::Routes.draw do |map|
                               :archives => :get
                             },
                             :member => {
-                              :nuke_feedback => :delete,
                               :markup_help => :get
                             }) do |dated|
     dated.resources :comments, :new => { :preview => :any }
@@ -86,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.inflected_resource(:categories, :path_prefix => '/articles')
   map.inflected_resource(:authors, :path_prefix => '/articles')
+  map.resources(:feedback)
 
   # allow neat perma urls
   map.connect 'articles/page/:page',

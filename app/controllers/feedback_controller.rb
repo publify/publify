@@ -32,8 +32,7 @@ class FeedbackController < ApplicationController
   end
 
   def destroy
-    article = this_blog.requested_article(params)
-    fb = article.feedback.find(params[:id]).destroy
+    fb = Feedback.find(params[:id]).destroy
 
     respond_to do |format|
       format.html { redirect_to article_path(article) }
