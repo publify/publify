@@ -73,9 +73,4 @@ class ContentController < ApplicationController
       []
     end
   end
-
-  protected
-
-  include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
-
 end

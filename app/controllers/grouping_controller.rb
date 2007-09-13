@@ -2,7 +2,8 @@ class GroupingController < ContentController
   before_filter :auto_discovery_feed, :only => [:show, :index]
   layout :theme_layout
   cache_sweeper :blog_sweeper
-  cached_pages = [:index, :show]
+
+  caches_action_with_params :index, :show
 
   class << self
     def grouping_class(klass = nil)
@@ -21,7 +22,7 @@ class GroupingController < ContentController
   end
 
   def index
-    groupings = instance_variable_set(ivar_name, grouping_class.find_all_with_article_counters(1000))
+    self.groupings = grouping_class.find_all_with_article_counters(1000)
     render_index(groupings)
   end
 
@@ -37,8 +38,12 @@ class GroupingController < ContentController
     self.class.grouping_class
   end
 
-  def ivar_name
-    self.class.ivar_name
+  def groupings=(groupings)
+    instance_variable_set(self.class.ivar_name, groupings)
+  end
+
+  def groupings
+    instance_variable_get(self.class.ivar_name)
   end
 
   def render_index(groupings)

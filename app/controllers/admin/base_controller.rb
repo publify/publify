@@ -33,7 +33,4 @@ class Admin::BaseController < ApplicationController
       redirect_to :controller => '/admin/general', :action => 'update_database' if Migrator.current_schema_version != Migrator.max_schema_version
     end
   end
-
-  include_protected ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
-
 end

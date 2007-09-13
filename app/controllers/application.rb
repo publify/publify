@@ -6,14 +6,13 @@ class ApplicationController < ActionController::Base
   before_filter :use_sitealizer, :reset_local_cache, :fire_triggers
   after_filter :reset_local_cache
 
-
   protected
 
   def error(message = "Record not found...", options = { })
     @message = message.to_s
     render :template => 'articles/error', :status => options[:status] || 404
   end
-  
+
   def current_user
     if @current_user.nil?
       @current_user = session[:user_id] && User.find(session[:user_id])
@@ -74,18 +73,6 @@ class ApplicationController < ActionController::Base
   def add_to_cookies(name, value, path=nil, expires=nil)
     cookies[name] = { :value => value, :path => path || "/#{controller_name}",
                        :expires => 6.weeks.from_now }
-  end
-
-  def self.include_protected(*modules)
-    modules.reverse.each do |mod|
-      included_methods = mod.public_instance_methods.reject do |meth|
-        self.method_defined?(meth)
-      end
-      self.send(:include, mod)
-      included_methods.each do |meth|
-        protected meth
-      end
-    end
   end
 end
 

@@ -6,10 +6,12 @@ class ArticlesController < ContentController
 
   cache_sweeper :blog_sweeper
 
-  cached_pages = [:index, :read, :show, :category, :archives, :view_page, :tag, :author]
+  cached_pages = [:index, :read, :show, :archives, :view_page]
   caches_action_with_params *cached_pages
 
   session :new_session => false
+
+  helper :'admin/base'
 
   def index
     @articles = this_blog.requested_articles(params)
