@@ -74,8 +74,8 @@ class Category < ActiveRecord::Base
     blog = Blog.find(1) # remove me...
 
     blog.url_for(
-      :controller => '/articles',
-      :action => 'category',
+      :controller => '/categories',
+      :action => 'show',
       :id => permalink
     )
   end
