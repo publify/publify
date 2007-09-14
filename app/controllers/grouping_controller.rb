@@ -75,11 +75,7 @@ class GroupingController < ContentController
   end
 
   def render_feed(template, collection)
-    if collection.respond_to?(:find)
-      articles = collection.find(:all, :limit => this_blog.limit_rss_display)
-    else
-      articles = collection[0,this_blog.limit_rss_display]
-    end
+    articles = collection[0,this_blog.limit_rss_display]
     render :partial => template.sub(%r{^(?:articles/)?}, 'articles/'), :object => articles
   end
 end
