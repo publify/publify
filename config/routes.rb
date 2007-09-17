@@ -49,7 +49,6 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'admin/comments', :action => nil, :id => nil
   map.connect 'admin/trackbacks/article/:article_id/:action/:id',
     :controller => 'admin/trackbacks', :action => nil, :id => nil
-  map.admin_content 'admin/content', :controller => 'admin/content', :action => 'index'
   map.connect 'admin/content/:action/:id', :controller => 'admin/content'
 
   # Stats plugin
@@ -76,23 +75,13 @@ ActionController::Routing::Routes.draw do |map|
                               :search => :get, :comment_preview => :any,
                               :archives => :get
                             },
-                            :new => { :preview => :post },
                             :member => {
                               :markup_help => :get
                             }) do |dated|
     dated.resources :comments, :new => { :preview => :any }
     dated.resources :trackbacks
-    dated.connect 'trackback',
-      :controller => 'trackbacks',
-      :action     => 'create',
-      :conditions => {:method => :post}
+    dated.connect 'trackback', :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
   end
-
-  map.list_articles '/articles/list',
-    :controller => 'articles',
-    :action     => 'list',
-    :conditions => { :method => :get }
-
 
   map.inflected_resource(:categories, :path_prefix => '/articles')
   map.inflected_resource(:authors, :path_prefix => '/articles')
@@ -111,13 +100,6 @@ ActionController::Routing::Routes.draw do |map|
 #                     :members => { :preview => :get })
 #     dated.resources(:trackbacks, :path_prefix => '/articles/:year/:month/:day/:title')
 #   end
-
-  map.with_options(date_options.merge(:controller => 'articles')) do |m|
-    m.article_resource 'articles/:year/:month/:day/:id/resource/:resource_id',
-      :conditions => { :method => :post}, :action => 'add_resource'
-    m.connect 'articles/:year/:month/:day/:id/resource/:resource_id',
-      :conditions => { :method => :delete}, :action => 'remove_resource'
-  end
 
   map.with_options(:conditions => {:method => :get}) do |get|
     get.with_options(date_options.merge(:controller => 'articles')) do |dated|

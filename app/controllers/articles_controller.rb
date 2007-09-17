@@ -11,9 +11,6 @@ class ArticlesController < ContentController
 
   session :new_session => false
 
-  before_filter :login_required, :only => [:new, :preview, :create, :list, :edit, :update, :add_resource,
-                                           :remove_resource]
-
   helper :'admin/base'
 
   def index
@@ -30,9 +27,6 @@ class ArticlesController < ContentController
   end
 
   def show
-    if params[:format] == 'admin'
-      return admin_view
-    end
     @article      = this_blog.requested_article(params)
     @comment      = Comment.new
     @page_title   = @article.title
@@ -50,124 +44,6 @@ class ArticlesController < ContentController
   def search
     @articles = this_blog.articles_matching(params[:q])
     render_paginated_index("No articles found...")
-  end
-
-  def admin_view
-    login_required
-    @article = this_blog.articles.find_by_params_hash(params)
-    render :action => 'admin/show', :layout => 'administration'
-  end
-
-  def list
-    @pages = Paginator.new(self, this_blog.articles.size, 15, params[:id])
-    @articles = this_blog.articles.find :all,
-      :limit  => 15,
-      :order  => 'created_at DESC',
-      :offset => @pages.current.offset
-
-    respond_to do |format|
-      format.html { render :layout => 'administration' }
-      format.atom do
-        render :partial => 'atom_feed', :object => @articles[0,this_blog.limit_rss_display]
-      end
-    end
-  end
-
-  def edit
-    @article = this_blog.articles.find_by_params_hash(params)
-    render :layout => 'administration'
-  end
-
-  def update
-    @article = this_blog.articles.find_by_params_hash(params)
-    @article.attributes = (params[:article] || {})
-    @article.categorize(params[:categories])
-    @article.attach(params[:attachments])
-
-    respond_to do |format|
-      if @article.save
-        format.html do
-          flash[:notice] = "Article was successfully updated"
-          redirect_to formatted_article_path(@articl, :format => 'admin')
-        end
-        format.xml { render :nothing => true }
-      else
-        format.html { render :action => 'edit', :layout => 'administration' }
-        format.xml { render :text => @article.errors.to_xml, :status => 403 }
-      end
-    end
-  end
-
-  def add_resource
-    @article = this_blog.articles.find_by_params_hash(params)
-    @article.resources << Resource.find(params[:resource_id])
-    @article.save
-    render :partial => 'show_resources'
-  end
-
-  def new
-    @article = this_blog.articles.build
-    @article.allow_comments = this_blog.default_allow_comments
-    @article.allow_pings    = this_blog.default_allow_pings
-    @article.published      = true
-
-    if params[:bookmarklet_link]
-      @article.title = params[:bookmarklet_title]
-      @article.body =
-        %{<a href='#{params[:bookmarklet_link]}' title='#{@article.title}'>#{@article.title}</a>}
-      @article.body << "\n\n" << params[:bookmarklet_text] if params[:bookmarklet_text]
-    end
-    @categories = Category.find(:all)
-    render :layout => 'administration'
-  end
-
-  def create
-    @article = this_blog.articles.build(params[:article])
-    @article.categorize(params[:categories])
-    @article.attach(params[:attachments])
-
-    if @article.save
-      flash[:notice] = "Article was successfully created."
-      respond_to do |format|
-        format.html do
-          redirect_to formatted_article_path(@articl, :format => 'admin')
-        end
-        format.js { render :partial => 'article', :object => @article }
-      end
-    end
-  end
-
-  def preview
-    headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = this_blog.articles.build
-    @article.attributes = params[:article]
-    unless @article.author
-      @article.author = current_user.login
-      @article.user   = current_user
-    end
-    data = render_to_string(:layout => "minimal")
-    data = Base64.encode64(data).gsub("\n", '')
-    data = "data:text/html;charset=utf-8;base64,#{data}"
-    render :text => data
-  end
-
-  def destroy
-    article = this_blog.articles.find_by_params_hash(params)
-    respond_to do |format|
-      if article.destroy
-        format.html do
-          flash[:notice] = 'Article was successfully destroyed'
-          redirect_to :action => 'list'
-        end
-        format.xml { render :nothing => true }
-      else
-        format.html do
-          flash[:error] = "Could not destroy article '#{@article.title}'"
-          redirect_to :action => 'list'
-        end
-        format.xml { render :text => @article.errors.to_xml, :status => 403 }
-      end
-    end
   end
 
   ### Deprecated Actions ###

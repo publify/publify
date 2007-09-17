@@ -42,9 +42,9 @@ module ActionController
                 newmap.named_route("#{name_prefix}new_#{singular}", new_path)
                 newmap.named_route("formatted_#{name_prefix}new_#{singular}", new_path + ".:format")
               else
-                newmap.named_route("#{name_prefix}#{action}_new_#{singular}", "#{new_path}/#{action}")
-                newmap.named_route("formatted_#{name_prefix}#{action}_new_#{singular}",
-                                   "#{new_path}/#{action}.:format")
+                map.named_route("#{name_prefix}#{action}_new_#{singular}", "#{new_path}/#{action}")
+                map.named_route("formatted_#{name_prefix}#{action}_new_#{singular}",
+                                "#{new_path}/#{action}.:format")
               end
             end
           end

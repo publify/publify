@@ -23,15 +23,15 @@
 
         <div id="topnav">
           <ul id="tabs">
-            <%= tab _("Publish"), new_article_path %>
-            <%= tab _("Manage"), list_articles_path %>
-            <%= tab _("Feedback"), :controller=>"/admin/feedback", :action => 'index' %>
-            <%= tab _("Design"), :controller=>"/admin/sidebar", :action => 'index' %>
-            <%= tab _("Users"), :controller=>"/admin/users", :action => 'index' %>
-            <%= tab _("Settings"), :controller=>"/admin/general", :action => 'index' %>
+            <%= tab _("Publish"), :controller=>"content", :action => 'new' %>
+            <%= tab _("Manage"), :controller=>"content", :action => 'index' %>
+            <%= tab _("Feedback"), :controller=>"feedback", :action => 'index' %>
+            <%= tab _("Design"), :controller=>"sidebar", :action => 'index' %>
+            <%= tab _("Users"), :controller=>"users", :action => 'index' %>
+            <%= tab _("Settings"), :controller=>"general", :action => 'index' %>
             <%= tab _("Statistics"), :controller=>"/sitealizer", :action => 'index' %>
-            <li><%= current_user_notice %></li>
-            <%= tab _('your blog'), :controller => "/articles" %>
+			<li><%= current_user_notice %></li>
+			<%= tab _('your blog'), :controller => "/articles" %>
           </ul>
         </div>
        <% if not first_render =~ /login|signup|logout/ %>
