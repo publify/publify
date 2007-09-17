@@ -1,0 +1,31 @@
+  <% @page_heading = _('Edit Article') %>
+
+  <% content_for('tasks') do %>
+    <%= task_overview %>
+
+    <li><%= link_to _('View article on your blog'), @article.permalink_url %></li>
+  <% end %>
+
+  <h3><%= _("Edit Article")%></h3>
+
+<% form_tag(article_path(@article),
+            :method => :put,
+            :id => "article_form",
+            :enctype => "multipart/form-data") \
+   do %>
+
+  <!-- LIVE PREVIEW -->
+
+  <!-- /LIVE PREVIEW -->
+  <%= render :partial => "form" %>
+
+  <div id="operations" class="tasks">
+    <p class="r"><%= save(_("Save")) %> <%= _("or") %> <%= cancel %></p>
+  </div>
+
+  <% end %>
+
+  <%= observe_form "article_form",
+      :frequency => 2,
+      :complete => "$('preview').src = request.responseText; Element.show('preview');",
+      :url => preview_new_article_path if this_blog.editor == 1  %>

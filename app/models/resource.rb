@@ -6,6 +6,16 @@ class Resource < ActiveRecord::Base
   before_validation_on_create :uniq_filename_on_disk
   belongs_to :article
 
+  class << self
+    def create_and_save(opts)
+      returning(create(:filename => opts.original_filename,
+                       :mime => opts.content_type.chomp)) \
+      do |res|
+        res.write_to_disk(opts)
+      end
+    end
+  end
+
   #Reads YAML file from config dir (iTunes.yml) for easy updating
   def get_itunes_categories
       itunes_categories_raw = YAML::load( File.open( "#{RAILS_ROOT}/config/iTunes.yml" ) )

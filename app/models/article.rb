@@ -17,13 +17,13 @@ class Article < Content
   has_many :feedback,                           :order => "created_at DESC"
   has_many :resources, :order => "created_at DESC",
            :class_name => "Resource", :foreign_key => 'article_id'
-  
+
   has_many :categorizations
   has_many :categories, \
     :through => :categorizations, \
     :uniq => true, \
     :order => 'categorizations.is_primary DESC, categories.position'
-  
+
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
   has_many :triggers, :as => :pending_item
@@ -47,7 +47,7 @@ class Article < Content
   def stripped_title
     self.title.gsub(/<[^>]*>/,'').to_url
   end
-  
+
   def permalink_url_options(nesting = false)
     {:year => published_at.year,
      :month => sprintf("%.2d", published_at.month),
@@ -395,9 +395,27 @@ class Article < Content
   def add_comment(params)
     comments.build(params)
   end
-  
+
   def add_category(category, is_primary = false)
     self.categorizations.build(:category => category, :is_primary => is_primary)
+  end
+
+  def categorize(category_ids)
+    return if category_ids.blank?
+    self.categorizations =
+      category_ids.collect {|v| Categorization.new(:category_id => v)}
+  end
+
+  def attach(attachments)
+    return if attachments.blank?
+    attachments.each_value do |value|
+      next if value.blank?
+      begin
+        resources.create_and_save(value)
+      rescue SystemCallError => e
+        logger.info(e.message)
+      end
+    end
   end
 
   protected

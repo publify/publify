@@ -34,11 +34,7 @@ module Admin::BaseHelper
   end
 
   def tab(label, options = {})
-    if controller.controller_name =~ /#{options[:controller].split('/').last}/
-      content_tag :li, link_to(label, options, {"class"=> ""}), {"class"=> ""}
-    else
-      content_tag :li, link_to(label, options)
-    end
+    content_tag :li, link_to(label, options)
   end
 
   def cancel(url = {:action => 'list'})
@@ -137,5 +133,25 @@ module Admin::BaseHelper
     "else{Q=document.selection?document.selection.createRange().text:document.getSelection();}" + \
     "location.href='#{this_blog.base_url}/admin/content/new?bookmarklet_text='+encodeURIComponent(Q)" + \
     "+'&bookmarklet_link='+encodeURIComponent(location.href)+'&bookmarklet_title='+encodeURIComponent(document.title);"
+  end
+
+  def category_selector
+    returning('') do |str|
+      str << content_tag(:label, "#{_ 'Categories'}:<br/>", :for => 'categories[]')
+      str << content_tag(:select,
+                         category_options,
+                         :name     => 'categories[]',
+                         :multiple => "multiple",
+                         :size     => 3,
+                         :style    => "width:250px;")
+    end
+  end
+
+  def category_options
+    options_from_collection_for_select \
+      Category.find(:all, :order => 'position'),
+      "id",
+      "name",
+      (@article.categorizations.collect(&:category_id) || [])
   end
 end

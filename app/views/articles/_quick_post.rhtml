@@ -1,0 +1,17 @@
+  <% form_tag :action=>"new" do %>
+<p>
+  <label for="articles_title"><%= _("Title")%>:</label><br />
+  <%= text_field_tag 'article[title]'  %>
+</p>
+<p>
+<p>
+  <%= category_selector %>
+</p>
+<p>
+  <label for="articles_body"><%= _("Article")%>:<br /></label>
+  <%= text_area_tag 'article[body]', :rows => 10  %>
+</p>
+<div id="operations">
+  <%= save(_("Save Post")) %> or <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" >Cancel</a>
+</div>
+<% end %>

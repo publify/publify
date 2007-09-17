@@ -1,0 +1,13 @@
+  <% @page_heading = _('Manage Articles') %>
+
+  <% content_for('tasks') do %>
+    <%= tab _("Manage Pages"),      :controller=>"admin/pages",      :action=>"list" %>
+    <%= tab _("Manage Categories"), :controller=>"admin/categories", :action=>"index"%>
+    <%= tab _("Manage Resources"),  :controller=>"admin/resources",  :action=>"list" %>
+  <% end %>
+  <div class="list" id="articles">
+    <%= render :partial => 'articles' %>
+  </div>
+  <div class="tasks">
+    <%= render :partial => 'pages', :object => @pages -%>
+  </div>
