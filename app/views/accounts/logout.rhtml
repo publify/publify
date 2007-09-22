@@ -1,12 +1,13 @@
-<h3><%= _("Logoff")%></h3>
-<div class="memo">
+<div title="Account login" id="loginform">
+    <h3>Typo</h3>
 
-    <p>
-      <%= _("You are now logged out of the system") %>.
-      <%= link_to _("Do you want to go to your blog?"), :controller => "articles" %>
-    </p>
+    <div class="form admin">
+      <% if flash[:notice] %>
+        <h4><%= flash[:notice] %></h4>
+      <% end %>
 
-    <%= link_to "&#171; " + _('Login'), :action => "login" %><br />
+	  <h4><%= _("Successfully logged out") %>.</h4>
 
+      <%= render :partial => "shared/loginform" %>
+    </div>
 </div>
-
