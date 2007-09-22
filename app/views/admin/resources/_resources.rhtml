@@ -4,13 +4,13 @@
   <th><%= _("Content Type")%></th>
   <th><%= _("MetaData")%></th>
   <th><%= _("File Size")%></th>
-  <th><%= _("Uploaded")%></th>
+  <th><%= _("Date")%></th>
   <th><%= _("Delete")%></th>
 </tr>
 <% blog_root = request.relative_url_root -%>
 <% for upload in resources -%>
 <tr <%= alternate_class -%>>
-  <td><%= link_to "#{blog_root}/files/#{upload.filename}", "#{blog_root}/files/#{upload.filename}" -%></td>
+  <td><%= link_to "#{upload.filename}", "#{blog_root}/files/#{upload.filename}" -%></td>
   <td>
     <%= task_edit_resource_mime(upload.mime, upload.id) %>
     <div id="edit-resource-mime-<%= upload.id %>" style="display:none;position:absolute;">

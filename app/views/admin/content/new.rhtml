@@ -1,8 +1,6 @@
 <% content_for('tasks') do %>
-	<%= tab _("Write a Page"), :controller=>"pages", :action=>"new" %>
-	<li><%= task_overview %></li>
+    <%= subtab _("Write Post"), "current", {:controller=>"content", :action=>"new"} %>
+	<%= subtab _("Write Page"), "", {:controller=>"pages", :action=>"new"} %>
 <% end %> 
 
-  <% @page_heading = _('Write an Article') %>
-
-  <%= render :partial => "admin/shared/edit", :locals => { :form_type => "article", :form_action => { :action => "new" } } %>
+<%= render :partial => "admin/shared/edit", :locals => { :form_type => "article", :form_action => { :action => "new" } } %>

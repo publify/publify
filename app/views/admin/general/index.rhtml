@@ -1,9 +1,10 @@
 	<% @page_heading = _('Basic settings') %>
 
   <% content_for('tasks') do -%>
-	<li><%= link_to _("Advanced settings"), {:controller => "advanced"} %></li>
-	<li><%= link_to _('Empty Fragment Cache'), :controller => '/admin/cache', :action => 'sweep' %></li>
-	<li><%= link_to _('Rebuild cached HTML'), :controller => '/admin/cache', :action => 'sweep_html' %></li>
+	<%= subtab _("Basic settings"), "current", {:controller => "general"} %>
+	<%= subtab _("Advanced settings"), "", {:controller => "advanced"} %>
+	<%= subtab _("Empty Fragment Cache"), "", {:controller => '/admin/cache', :action => 'sweep'} %>
+	<%= subtab _("Rebuild cached HTML"), "", {:controller => '/admin/cache', :action => 'sweep_html'} %>
   <% end -%> 
 
 	<% form_tag :action => 'update' do %>

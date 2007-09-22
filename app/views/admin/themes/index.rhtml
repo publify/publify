@@ -1,7 +1,8 @@
 <% @page_heading = _('Choose a theme') %>
 <% content_for('tasks') do %>
-	<%= tab _("Customize Sidebar"), :controller=>"sidebar", :action=>"index" %>
-	<%= tab _("Manage Text Filters"), :controller=>"textfilters", :action=>"list" %>
+	<%= subtab _("Sidebar"), "", {:controller=>"sidebar", :action=>"index"} %>
+	<%= subtab _("Themes"), "current", {:controller=>"themes", :action=>"index"} %>
+	<%= subtab _("Text Filters"), "", {:controller=>"textfilters", :action=>"list"} %>
 <% end %> 
 
 <% for theme in @themes %>

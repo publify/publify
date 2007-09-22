@@ -82,15 +82,10 @@ body {
   font-size: 80%;
 }
 
-/*#footer {
-  margin-top: 7px;
-  height: 35px;
-  text-align: center;
-}
-*/
 #footer {
 float:left;
 width:100%;
+margin-top: 30px;
 padding-top:10px;
 padding-bottom:0;
 text-align:center;
@@ -166,6 +161,13 @@ hr {
   color: #993333;
 }
 
+.tasks li a.current {
+  color: #993333;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+
 /* @end */
 
 /* @group Headings */
@@ -175,6 +177,15 @@ h2 {
 	letter-spacing: 3px;
 	color: #993333;
 	padding: 10px;
+}
+
+h2 a:visited {
+	color: #666;
+}
+
+h2 a:hover {
+	text-decoration: none;
+	color: #993333;
 }
 
 h3 {

@@ -1,12 +1,12 @@
-  <% @page_heading = _('Manage Categories') %>
+  <% @page_heading = _('Categories') + '(' + task_quickpost(_('add new')) + ')' %>
 
   <% content_for('tasks') do -%>
-    <%= task_quickpost(_('Create new category')) -%>
-    <li><%= link_to_remote(_('Reorder'), :update => 'category_container', :url => { :action => 'reorder' }) %></li>
-    <li><%= link_to_remote(_('Sort alphabetically'), :update => 'category_container', :url => { :action => 'asort' }) -%></li>
-    <%= tab _("Manage Articles"), :controller=>"content", :action=>"list"%>
-	<%= tab _("Manage Pages"), :controller=>"pages", :action=>"list" %>
-	<%= tab _("Manage Resources"), :controller=>"resources", :action=>"list" %>
+	<%= subtab _("Posts"), "", {:controller=>"content", :action=>"list"} %>
+	<%= subtab _("Pages"), "", {:controller=>"pages", :action=>"list"} %>
+	<%= subtab _("Categories"), "current", {:controller=>"categories", :action=>"index"} %>
+	<%= subtab _("Uploads"), "", {:controller=>"resources", :action=>"list"} %>
+	<%= content_tag :li, link_to_remote(_('Reorder'), :update => 'category_container', :url => { :action => 'reorder' }) %>
+	<%= content_tag :li, link_to_remote(_('Sort alphabetically'), :update => 'category_container', :url => { :action => 'asort' }) %>
   <% end -%> 
 
   <div id="quick-post" style="display:none;position:absolute;">

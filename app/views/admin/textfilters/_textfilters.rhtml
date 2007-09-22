@@ -4,8 +4,7 @@
   <th><% _("Description")%></th>
   <th><%= _("Markup")%></th>
   <th><%= _("Filters")%></th>
-  <th><%= _("Edit")%></th>
-  <th><%= _("Delete")%></th>
+  <th colspan="2"><%= _("Actions")%></th>
 </tr>
 <% for textfilter in @textfilters.sort_by { |f| f.name } %>
 <tr <%= alternate_class %>>

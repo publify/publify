@@ -40,6 +40,10 @@ module Admin::BaseHelper
       content_tag :li, link_to(label, options)
     end
   end
+  
+  def subtab(label, style, options = {})
+    content_tag :li, link_to(label, options, {"class"=> style})
+  end
 
   def cancel(url = {:action => 'list'})
     link_to _("Cancel"), url
@@ -80,7 +84,7 @@ module Admin::BaseHelper
   end
 
   def task_quickpost(title)
-    content_tag :li, link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+    link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
 
   def task_quicknav(title)
@@ -138,4 +142,5 @@ module Admin::BaseHelper
     "location.href='#{this_blog.base_url}/admin/content/new?bookmarklet_text='+encodeURIComponent(Q)" + \
     "+'&bookmarklet_link='+encodeURIComponent(location.href)+'&bookmarklet_title='+encodeURIComponent(document.title);"
   end
+    
 end

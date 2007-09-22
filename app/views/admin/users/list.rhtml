@@ -1,14 +1,14 @@
-  <% @page_heading = _('Manage Users') %>
+  <% @page_heading = _('Users') + '('+ link_to('add new', :action=>'new') +')'%>
 
   <% content_for('tasks') do %>
-    <%= task_new _('Add new user') %>
+    <%= subtab _("Users"), "current", {:controller=>"users", :action=>"index"} %>
   <% end %> 
 
 <div class="list">
   <table>
     <tr>
 	  <th><%= _("Name")%></th>
-      <th><%= _("Login")%></th>
+      <th><%= _("Username")%></th>
       <th><%= _("Profile")%></th>
       <th><%= _("Articles")%></th>
       <th><%= _("Comments")%></th>
