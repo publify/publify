@@ -669,6 +669,10 @@ div.user {
   border: 1px solid red;
 }
 
+#loginform h3 {
+	text-align: center;
+}
+
 #flash span {
   padding: 5px;
   margin-top: 10px;
