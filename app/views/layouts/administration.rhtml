@@ -13,22 +13,18 @@
 
         <body>
         <div id="container">
-
-        <!-- HEADER -->
           <div id="header">
             <h1><%= link_to _("Typo admin") + " - #{this_blog.blog_name rescue nil}", :controller => "/admin/general" %></h1>
           </div>
-        <!-- /HEADER -->
-
 
         <div id="topnav">
           <ul id="tabs">
-            <%= tab _("Write"), :controller=>"content", :action => 'new' %>
-            <%= tab _("Manage"), :controller=>"content", :action => 'index' %>
-            <%= tab _("Feedback"), :controller=>"feedback", :action => 'index' %>
-            <%= tab _("Presentation"), :controller=>"sidebar", :action => 'index' %>
-            <%= tab _("Users"), :controller=>"users", :action => 'index' %>
-            <%= tab _("Settings"), :controller=>"general", :action => 'index' %>
+            <%= content_tag :li, (link_to _("Write"), {:controller=>"content", :action => 'new'}, :class=>class_write) %>
+            <%= content_tag :li, (link_to _("Manage"), {:controller=>"content", :action => 'index'}, :class=>class_manage) %>
+            <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index'}, :class=>class_feedback) %>
+            <%= content_tag :li, (link_to _("Presentation"), {:controller=>"sidebar", :action => 'index'}, :class=>class_presentation) %>
+            <%= content_tag :li, (link_to _("Users"), {:controller=>"users", :action => 'index'}, :class=>class_users) %>
+            <%= content_tag :li, (link_to _("Settings"), {:controller=>"general", :action => 'index'}, :class=>class_admin) %>
             <%= tab _("Statistics"), :controller=>"/sitealizer", :action => 'index' %>
 			<li><%= current_user_notice %></li>
 			<%= tab _('your blog'), :controller => "/articles" %>

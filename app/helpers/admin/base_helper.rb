@@ -143,4 +143,44 @@ module Admin::BaseHelper
     "+'&bookmarklet_link='+encodeURIComponent(location.href)+'&bookmarklet_title='+encodeURIComponent(document.title);"
   end
     
+  def class_write
+    if controller.controller_name == "content" or controller.controller_name == "pages"
+      if controller.action_name == "new"
+        "current"
+      end
+    end
+  end
+  
+  def class_manage
+    if controller.controller_name  =~ /content|pages|categories|resources/
+      if controller.action_name =~ /list|index/
+        "current"
+      end
+    end
+  end
+
+  def class_feedback
+    if controller.controller_name  =~ /feedback/
+    "current"
+    end
+  end
+
+  def class_presentation
+    if controller.controller_name  =~ /sidebar|themes|textfilters/
+    "current"
+    end
+  end
+
+  def class_users
+    if controller.controller_name  =~ /users/
+    "current"
+    end
+  end
+
+  def class_admin
+    if controller.controller_name  =~ /general|advanced/
+    "current"
+    end
+  end
+  
 end
