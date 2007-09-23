@@ -65,7 +65,7 @@ class Tag < ActiveRecord::Base
     blog = Blog.find(1) # remove me...
 
     blog.url_for(
-      :controller => 'categories',
+      :controller => 'tags',
       :action => 'show',
       :id => permalink
     )
