@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
 
         flash[:notice]  = "Login successful"
         cookies[:is_admin] = "yes"
-        redirect_back_or_default :controller => "admin/content", :action => "list"
+        redirect_back_or_default :controller => "admin/dashboard", :action => "index"
       else
         flash.now[:notice]  = "Login unsuccessful"
 
