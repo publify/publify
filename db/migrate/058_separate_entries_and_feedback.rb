@@ -38,11 +38,24 @@ class SeparateEntriesAndFeedback < ActiveRecord::Migration
       t.column "status_confirmed", :boolean
     end
 
+    # Forgot to fixup the state field earlier. Thanks to Ryan Kinderman for the spot.
+    Content.transaction do
+      Content.update_all("state = 'spam'", :state => 'ContentState::Spam')
+      Content.update_all("state = 'ham'", :state => 'ContentState::Ham')
+      Content.update_all("state = 'presumed_spam'", :state => 'ContentState::PresumedSpam')
+      Content.update_all("state = 'presumed_ham'", :state => 'ContentState::PresumedHam')
+      Content.update_all("state = 'published'", :state => 'ContentState::Published')
+      Content.update_all("state = 'publication_pending'", :state => 'ContentState::PublicationPending')
+      Content.update_all("state = 'draft", :state => 'ContentState::Draft')
+      Content.update_all("state = 'withdrawn'", :state => 'ContentState::Withdrawn')
+    end
+
     Content.transaction do
       Feedback.transaction do
         Content.find(:all, :conditions => {:type => %w{ Comment Trackback }}).each do |content|
           Feedback.new(content.attributes) do |fb|
             fb[:type] = content[:type]
+            fb.published = (fb.state == 'ham' || fb.state == 'presumed_ham')
             fb.save!
           end
         end
