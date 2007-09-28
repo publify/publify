@@ -15,8 +15,8 @@
   <td><%= article.categories.map { |c| link_to h(c.name), category_url(c), :rel => 'tag'}.join(", ") %></td>
   <td><%= author_link(article)%></td>
   <td><%= link_to _(pluralize(article.comments.size, 'comment')), :controller => '/admin/comments', :article_id => article.id, :action => 'list' %></td>
-  <td class="operation"><%= (article.published?) ? image_tag('checked.png', :alt => "online", :title => _("Online")) : image_tag('cancel.png', :alt => "offline", :title => _("Offline")) %></td>
-  <td class="operation"><%= link_to image_tag('show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => article.id} %></td>
+  <td class="operation"><%= (article.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
+  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => article.id} %></td>
   <td class="operation"><%= link_to_edit article %></td>
   <td class="operation"><%= link_to_destroy article %></td>
 </tr>
