@@ -2,8 +2,7 @@
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
   include LoginSystem
-  include Sitealizer
-  before_filter :use_sitealizer, :reset_local_cache, :fire_triggers
+  before_filter :reset_local_cache, :fire_triggers
   after_filter :reset_local_cache
 
   protected
