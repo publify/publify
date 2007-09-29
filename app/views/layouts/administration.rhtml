@@ -19,6 +19,7 @@
 
         <div id="topnav">
           <ul id="tabs">
+            <%= content_tag :li, (link_to _("Home"), {:controller=>"dashboard", :action => 'index'}, :class=>class_dhasboard) %>
             <%= content_tag :li, (link_to _("Write"), {:controller=>"content", :action => 'new'}, :class=>class_write) %>
             <%= content_tag :li, (link_to _("Manage"), {:controller=>"content", :action => 'index'}, :class=>class_manage) %>
             <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index'}, :class=>class_feedback) %>

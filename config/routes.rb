@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # default
   map.index '', :controller  => 'articles', :action => 'index'
-  map.admin 'admin', :controller  => 'admin/general', :action => 'index'
+  map.admin 'admin', :controller  => 'admin/dashboard', :action => 'index'
 
   # admin/comments controller needs parent article id
   map.connect 'admin/comments/article/:article_id/:action/:id',
