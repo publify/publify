@@ -46,7 +46,7 @@ class SeparateEntriesAndFeedback < ActiveRecord::Migration
       Content.update_all("state = 'presumed_ham'", :state => 'ContentState::PresumedHam')
       Content.update_all("state = 'published'", :state => 'ContentState::Published')
       Content.update_all("state = 'publication_pending'", :state => 'ContentState::PublicationPending')
-      Content.update_all("state = 'draft", :state => 'ContentState::Draft')
+      Content.update_all("state = 'draft'", :state => 'ContentState::Draft')
       Content.update_all("state = 'withdrawn'", :state => 'ContentState::Withdrawn')
     end
 
