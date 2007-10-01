@@ -177,7 +177,7 @@ module Admin::BaseHelper
     end
   end
 
-  def class_dhasboard
+  def class_dashboard
     if controller.controller_name  =~ /dashboard/
     "current"
     end
