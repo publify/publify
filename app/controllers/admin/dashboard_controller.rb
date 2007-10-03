@@ -1,9 +1,11 @@
 class Admin::DashboardController < Admin::BaseController
   def index
-    self.comments
-    self.lastposts
-    self.popular
+    comments
+    lastposts
+    popular
   end
+  
+  private
   
   def comments
     @comments ||=
@@ -15,16 +17,17 @@ class Admin::DashboardController < Admin::BaseController
   
   def lastposts
     @recent_posts = Article.find(:all, 
-                                 :conditions => "published = 1", 
+                                 :conditions => ["published = ?", true], 
                                  :order => 'published_at DESC', 
                                  :limit => 10)
   end
   
   def popular
-    @bestof = Article.find_by_sql([%{SELECT a.*, count( b.id ) AS comments 
-      FROM contents a, feedback b 
-      WHERE b.article_id = a.id 
-      GROUP BY a.id 
-      ORDER BY comments DESC LIMIT 9}, true])
+    @bestof = Article.find(:all,
+                           :select => 'contents.*, comment_counts.count AS comment_count',
+                           :from => "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
+                           :conditions => ['comment_counts.article_id = contents.id AND published = ?', true],
+                           :order => 'comment_counts.count DESC',
+                           :limit => 9) 
   end
 end

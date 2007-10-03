@@ -49,7 +49,7 @@
       <li>Nothing to show yet !</li>
     <% else %>
       <% for article in @bestof -%>
-        <li><%= link_to h(article.title), article.permalink_url  %> (<%= article.comments.count %>)</li>
+        <li><%= link_to_permalink article, article.title  %> (<%= link_to_permalink article, article.comment_count %>)</li>
       <% end %>
     <% end -%>
   </ul>

@@ -45,7 +45,24 @@ class Article < Content
   include States
 
   def stripped_title
-    self.title.gsub(/<[^>]*>/,'').to_url
+    str = String.new(self.title)
+    
+    accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
+      ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
+      ['í','ì','î','ï','I','Î','Ì'] => 'i',
+      ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò'] => 'o',
+      ['œ'] => 'oe',
+      ['ß'] => 'ss',
+      ['ú','ù','û','ü','U','Û','Ù'] => 'u',
+      ['ç','Ç'] => 'c'
+      }
+    accents.each do |ac,rep|
+      ac.each do |s|
+        str.gsub!(s, rep)
+      end
+    end
+    
+    str.gsub(/<[^>]*>/,'').to_url
   end
   
   def permalink_url_options(nesting = false)
