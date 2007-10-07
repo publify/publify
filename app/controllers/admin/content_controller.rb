@@ -7,10 +7,20 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
+    if params[:order] and params[:order] =~ /title|created_at|author|state/
+      if params[:sense] and params[:sense] == 'desc'
+        order = params[:order] + " asc"
+      else
+        order = params[:order] + " desc"        
+      end
+    else
+      order = 'id DESC'
+    end
+
     now = Time.now
     count = this_blog.articles.size
     @articles_pages = Paginator.new(self, count, 15, params[:id])
-    @articles = this_blog.articles.find(:all, :limit => 15, :order => 'id DESC',
+    @articles = this_blog.articles.find(:all, :limit => 15, :order => order,
                                         :offset => @articles_pages.current.offset)
     setup_categories
     @article = this_blog.articles.build(params[:article])

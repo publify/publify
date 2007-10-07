@@ -7,7 +7,17 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def list
-    @pages = Page.find(:all, :order => "id DESC")
+    if params[:order] and params[:order] =~ /title|created_at|state/
+      if params[:sense] and params[:sense] == 'desc'
+        order = params[:order] + " asc"
+      else
+        order = params[:order] + " desc"        
+      end
+    else
+      order = 'title ASC'
+    end
+
+    @pages = Page.find(:all, :order => order)
     @page = Page.new(params[:page])
     @page.text_filter ||= this_blog.text_filter
   end

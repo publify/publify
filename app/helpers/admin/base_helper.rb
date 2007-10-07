@@ -153,7 +153,7 @@ module Admin::BaseHelper
   
   def class_manage
     if controller.controller_name  =~ /content|pages|categories|resources/
-      if controller.action_name =~ /list|index/
+      if controller.action_name =~ /list|index|show/
         "current"
       end
     end
@@ -189,4 +189,7 @@ module Admin::BaseHelper
     end
   end
   
+  def order_link(title, controller, action, order)
+    link_to _(title), :controller => controller, :action => action, :order => order, :sense => (params[:sense] and params[:sense] == 'asc') ?  'desc' : 'asc'
+  end
 end

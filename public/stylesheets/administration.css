@@ -93,6 +93,9 @@ background:#000 url("/images/admin/foot.jpg") repeat-x;
 color:#DCE4F6;
 }
 
+td.paginate {
+	text-align: center;
+}
 
 /* @end */
 
