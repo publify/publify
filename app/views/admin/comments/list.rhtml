@@ -1,7 +1,6 @@
-  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article } (#{ link_to 'add a comment', '#comment' })" %>
 
   <% content_for('tasks') do %>
-    <%= task_new('Write a comment') %>
     <li><%= link_to _('Manage articles'), :controller => '/admin/content', :action => 'list' %></li>
   <% end %> 
 
@@ -22,3 +21,17 @@
 	<% end -%>
 	</ol>
   </div>
+  
+  <h3 id="comment"><%= _("Creating comment")%></h3>
+  <% form_tag :action=>"new" do %>
+
+  <div class="form">
+    <%= render_partial "form" %>
+
+    <div id="operations">
+      <%= save %> or <%= cancel %>
+    </div>
+
+  </div>
+  <% end %>
+  

@@ -22,7 +22,7 @@ class Admin::CommentsController < Admin::BaseController
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham!
       flash[:notice] = 'Comment was successfully created.'
-      redirect_to :action => 'show', :id => @comment.id
+      redirect_to :controller => '/admin/comments', :article_id => @article.id, :action => 'list'
     end
   end
 
