@@ -1,10 +1,11 @@
-<%= form_remote_tag :url      => comments_path(@article),
+<% form_remote_tag :url      => comments_path(@article),
                     :position => :bottom,
                     :update   => {:success => 'commentList'},
                     :loading  => "loading()",
                     :complete => "complete(request)",
                     :failure  => "failure(request)",
-                    :html     => {:id => 'commentform', :class => 'comments' } %>
+                    :html     => {:id => 'commentform', :class => 'comments' } \
+    do %>
 
 <div id="preview" style="display:none"></div>
 
@@ -49,4 +50,4 @@
     <%= image_tag '/images/theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
   </p>
 </fieldset>
-<%= end_form_tag %>
+<% end %>

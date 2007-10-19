@@ -1,6 +1,6 @@
   <% @page_heading = _('Text Filters') %>
-  
-  <%= start_form_tag({ :action => "edit", :id => @textfilter }, :id => "textfilter_form") %>
+
+  <% form_tag({ :action => "edit", :id => @textfilter }, :id => "textfilter_form") do %>
   <h3><%= _("Editing textfilter")%></h3>
 
   <div class="form">
@@ -8,7 +8,7 @@
   </div>
 
   <div id="operations">
-    <%= save %> or <%= cancel %>  
+    <%= save %> or <%= cancel %>
   </div>
 
-  <%= end_form_tag %>
+  <% end %>

@@ -1,10 +1,11 @@
-<%= form_remote_tag :url => comments_path(@article),
+<% form_remote_tag :url => comments_path(@article),
                     :position=> :bottom,
                     :update => {:success => 'commentList'},
                     :loading => "loading()",
                     :complete => "complete(request)",
                     :failure => "failure(request)",
-                    :html => {:id=>"commentform",:class=>"commentform"} %>
+                    :html => {:id=>"commentform",:class=>"commentform"} \
+   do %>
 
 
 <div class="comment-box">
@@ -41,4 +42,4 @@
     </tr>
   </table>
 </div>
-<%= end_form_tag %>
+<% end %>
