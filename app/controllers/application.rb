@@ -5,7 +5,21 @@ class ApplicationController < ActionController::Base
   before_filter :reset_local_cache, :fire_triggers
   after_filter :reset_local_cache
 
+  class << self
+    unless self.respond_to? :template_root
+      def template_root
+        view_paths.first
+      end
+    end
+  end
+
   protected
+
+  def setup_themer
+    @@view_paths[self.class.name] =
+      ["#{RAILS_ROOT}/themes/#{this_blog.theme}/views",
+       "#{RAILS_ROOT}/app/views"]
+  end
 
   def error(message = "Record not found...", options = { })
     @message = message.to_s

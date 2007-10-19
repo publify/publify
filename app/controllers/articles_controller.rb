@@ -33,7 +33,7 @@ class ArticlesController < ContentController
     auto_discovery_feed
     respond_to do |format|
       format.html { render :action => 'read' }
-      format.atom { render :partial => 'atom_feed', :object => @article.published_feedback }
+      format.atom {  render :partial => 'atom_feed', :object => @article.published_feedback }
       format.rss  { render :partial => 'rss20_feed', :object => @article.published_feedback }
       format.xml  { redirect_to :format => 'atom' }
     end
@@ -99,11 +99,6 @@ class ArticlesController < ContentController
       redirect_to :controller => "admin/general", :action => "redirect"
     else
       return true
-    end
-  end
-
-  def display_article(article = nil)
-    begin
     end
   end
 

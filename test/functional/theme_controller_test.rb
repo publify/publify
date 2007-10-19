@@ -13,14 +13,14 @@ class ThemeControllerTest < Test::Unit::TestCase
   def test_stylesheets
     get :stylesheets, :filename => "azure.css"
     assert_response :success
-    assert_equal "text/css; charset=utf-8", @response.headers['Content-Type']
+    assert_equal "text/css; charset=utf-8", @response.headers['type']
     assert_equal "inline; filename=\"azure.css\"", @response.headers['Content-Disposition']
   end
 
   def test_images
     get :images, :filename => "bg-tile.gif"
     assert_response :success
-    assert_equal "image/gif", @response.headers['Content-Type']
+    assert_equal "image/gif", @response.headers['type']
     assert_equal "inline; filename=\"bg-tile.gif\"", @response.headers['Content-Disposition']
   end
 
@@ -39,7 +39,7 @@ class ThemeControllerTest < Test::Unit::TestCase
   def disabled_test_javascript
     get :stylesheets, :filename => "typo.js"
     assert_response :success
-    assert_equal "text/javascript", @response.headers['Content-Type']
+    assert_equal "text/javascript", @response.headers['type']
     assert_equal "inline; filename=\"typo.js\"", @response.headers['Content-Disposition']
   end
 end

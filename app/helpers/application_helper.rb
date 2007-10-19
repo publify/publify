@@ -4,6 +4,7 @@ require 'digest/sha1'
 module ApplicationHelper
   # Basic english pluralizer.
   # Axe?
+
   def pluralize(size, word)
     case size
     when 0 then "no #{word.pluralize}"

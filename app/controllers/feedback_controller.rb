@@ -49,4 +49,13 @@ class FeedbackController < ApplicationController
   def get_article
     @article = this_blog.requested_article(params)
   end
+
+  def get_feedback
+    if params[:article_id]
+      this_blog.requested_article(params).published_feedback
+    else
+      debugger
+      this_blog.published_feedback.find(:all, this_blog.rss_limit_params.merge(:order => 'created_at DESC'))
+    end
+  end
 end

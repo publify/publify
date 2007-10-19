@@ -25,16 +25,22 @@ class Blog < CachedModel
   has_many(:published_comments,
            :class_name => 'Comment',
            :conditions => {:published => true},
-           :order => 'feedback.published_at DESC')
+           :order      => 'feedback.published_at DESC')
   has_many(:published_trackbacks,
            :class_name => 'Trackback',
            :conditions => {:published => true},
-           :order => 'feedback.published_at DESC')
-  has_many :pages, :order => "id DESC"
-  has_many(:published_articles, :class_name => "Article",
+           :order      => 'feedback.published_at DESC')
+  has_many(:published_feedback,
+           :class_name => 'Feedback',
            :conditions => {:published => true},
-           :include => [:categories, :tags],
-           :order => "contents.published_at DESC") do
+           :order      => 'feedback.published_at DESC')
+  has_many(:pages,
+           :order      => "id DESC")
+  has_many(:published_articles,
+           :class_name => "Article",
+           :conditions => {:published => true},
+           :include    => [:categories, :tags],
+           :order      => "contents.published_at DESC") do
     def before(date = Time.now)
       find(:all, :conditions => ["contents.created_at < ?", date])
     end

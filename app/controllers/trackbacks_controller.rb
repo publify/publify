@@ -25,8 +25,8 @@ class TrackbacksController < FeedbackController
       if params[:article_id]
         this_blog.requested_article(params).published_trackbacks
       else
-        this_blog.with_options(this_blog.rss_limit_params) do |b|
-          @comments = b.published_trackbacks(:order => 'created_at DESC')
+        this_blog.published_trackbacks.with_options(this_blog.rss_limit_params) do |t|
+          t.find(:all, :order => 'created_at DESC')
         end
       end
   end

@@ -20,8 +20,12 @@ class ContentController < ApplicationController
 
   include LoginSystem
 #  model :user
+  before_filter :setup_themer
   helper :theme
 #  before_filter :auto_discovery_defaults
+
+
+
 
   def self.caches_action_with_params(*actions)
     super
@@ -45,6 +49,8 @@ class ContentController < ApplicationController
       cache.destroy
     end
   end
+
+  protected
 
   def auto_discovery_defaults
     auto_discovery_feed

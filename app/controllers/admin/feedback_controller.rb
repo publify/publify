@@ -26,7 +26,7 @@ class Admin::FeedbackController < Admin::BaseController
       :conditions => conditions,
       :per_page => 40)
 
-    render_action 'list'
+    render :action => 'list'
   end
 
   def delete

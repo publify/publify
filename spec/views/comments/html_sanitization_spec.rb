@@ -41,21 +41,20 @@ describe "CommentSanitization", :shared => true do
       @blog.stub!(:comment_text_filter).and_return(value)
 
       render 'comments/show'
-      response.should have_tag('.content') do
-        # No scripts
-        without_tag "script"
-        # No links that don't have rel='nofollow'
-        without_tag "a:not([rel=nofollow])"
-        # No links with javascript
-        without_tag "a:[onclick]"
-        without_tag "a:[href^=javascript:]"
-      end
-      response.should have_tag('.author') do
-        without_tag "script"
-        without_tag "a:not([rel=nofollow]"
-        without_tag "a:[onclick]"
-        without_tag "a:[href^=javascript:]"
-      end
+      response.should have_tag('.content')
+      response.should have_tag('.author')
+
+      response.should_not have_tag('.content script')
+      response.should_not have_tag(".content a:not([rel=nofollow])")
+      # No links with javascript
+      response.should_not have_tag(".content a[onclick]")
+      response.should_not have_tag(".content a[href^=javascript:]")
+
+      response.should_not have_tag('.author script')
+      response.should_not have_tag(".author a:not([rel=nofollow])")
+      # No links with javascript
+      response.should_not have_tag(".author a[onclick]")
+      response.should_not have_tag(".author a[href^=javascript:]")
     end
   end
 end
@@ -104,7 +103,6 @@ end
 
 describe "XSS2" do
   it_should_behave_like "CommentSanitization"
-
   def comment_options
     { :body => %{<a href="#" onclick="javascript">bad link</a>}}
   end

@@ -5,6 +5,12 @@ require 'rubygems'
 require 'drb/drb'
 require 'rbconfig'
 require 'spec'
+require 'optparse'
+specmate = ENV['HOME'] + "/Library/Application\ Support/TextMate/Bundles/RSpec.tmbundle/Support/lib"
+if File.directory?(specmate)
+  $LOAD_PATH.unshift(specmate)
+  require 'text_mate_formatter'
+end
 
 # This is based on Florian Weber's TDDMate
 
@@ -39,7 +45,41 @@ def restart_test_server
   exec(command_line)
 end  
 
-trap("USR2") { restart_test_server } if Signal.list.has_key?("USR2")
+def daemonize(pid_file = nil)
+  return yield if $DEBUG
+  pid = Process.fork{
+    Process.setsid
+    Dir.chdir(RAILS_ROOT)
+    trap("SIGINT"){ exit! 0 }
+    trap("SIGTERM"){ exit! 0 }
+    trap("SIGHUP"){ restart_test_server }
+    File.open("/dev/null"){|f|
+      STDERR.reopen f
+      STDIN.reopen  f
+      STDOUT.reopen f
+    }
+    yield
+  }
+  puts "spec_server launched. (PID: %d)" % pid
+  File.open(pid_file,"w"){|f| f.puts pid } if pid_file
+  exit! 0
+end
+
+options = Hash.new
+opts = OptionParser.new
+opts.on("-d", "--daemon"){|v| options[:daemon] = true }
+opts.on("-p", "--pid PIDFILE"){|v| options[:pid] = v }
+opts.parse!(ARGV)
+
 puts "Ready"
-DRb.start_service("druby://localhost:8989", Spec::Runner::RailsSpecServer.new)
-DRb.thread.join
+exec_server = lambda {
+  trap("USR2") { restart_test_server } if Signal.list.has_key?("USR2")
+  DRb.start_service("druby://localhost:8989", Spec::Runner::RailsSpecServer.new)
+  DRb.thread.join
+}
+
+if options[:daemon]
+  daemonize(options[:pid], &exec_server)
+else
+  exec_server.call
+end

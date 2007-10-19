@@ -30,7 +30,7 @@ class ThemeController < ContentController
       return
     end
     send_file(this_blog.current_theme.path + "/#{type}/#{file}",
-              :type => mime, :disposition => 'inline', :stream => false)
+              :type => mime, :disposition => 'inline', :stream => true)
   end
 
   def mime_for(filename)

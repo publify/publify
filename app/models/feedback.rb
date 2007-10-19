@@ -40,8 +40,7 @@ class Feedback < Content
 
   def html_postprocess(field, html)
     helper = ContentTextHelpers.new
-    sanitize(helper.auto_link(html),
-             'a href, b, br, i, p, em, strong, pre, code, ol, ul, li, blockquote').nofollowify
+    helper.sanitize(helper.auto_link(html)).nofollowify
   end
 
   def correct_url
