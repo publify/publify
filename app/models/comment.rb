@@ -1,5 +1,4 @@
 require_dependency 'spam_protection'
-require 'sanitize'
 require 'timeout'
 
 class Comment < Feedback
