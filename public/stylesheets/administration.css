@@ -7,20 +7,18 @@ html, body {
 body {
   margin:0;
   padding:0;
-  font: 75% verdana, helvetica, arial, sans-serif;
+  font: 12px Tahoma, Helvetica, sans-serif;
   line-height: 1.8em;
-  color: #999;
+  color: #898989;
   background: #fff;
 }
 
 /* Top Navbar */
 #topnav {
-  position: relative;
-  display: block;
-  height: 39px;
+  height: 36px;
   margin: 0;
-  background: transparent url("/images/admin/bgoff.gif") repeat-x top left;
-  font: bold 1em Arial, Helvetica, sans-serif;
+  background: transparent url("/images/admin/bgoff.png") repeat-x top left;
+  font: 12px Tahoma, Helvetica, sans-serif;
 }
 
 #topnav ul {
@@ -37,42 +35,36 @@ body {
 }
 
 #topnav  ul li a {
-  letter-spacing: 2px;
   display: block;
   float: left;
   padding: 11px 20px 0 20px;
-  height: 23px;
+  height: 25px;
   text-decoration: none;
-  color: #666;
+  color: #333;
   text-transform: capitalize;
-  background: transparent url("/images/admin/bgdivider.gif") no-repeat top right;
+  background: transparent url("/images/admin/bgdivider.png") no-repeat top right;
 }
 
-#topnav  ul li a:hover,#topnav ul li a.current {
-  color: #993333;
-  background: #fff url("/images/bgon.gif") no-repeat top left;
+#topnav  ul li a:hover {
+  color: #fff;
+  background: #fff url("/images/admin/bgover.png") repeat-x top left;
 }
+
+#topnav ul li a.current {
+  color: #fff;
+  background: #fff url("/images/admin/bgselected.png") repeat-x top left;
+}
+
+
 
 #container {
   text-align: left;
   margin: 0 auto;
 }
 
-#header {
-  background: url("/images/admin/top.gif") #213c51 repeat-x;
-  height: 155px;
-  width: 100%;
-  padding-top: 0;
-}
-
 #overall {
   background: #fff;
-  width: 95%;
-  margin: 0 auto;
-}
-
-#main {
-  padding-left: 10px;
+  margin: 0 20px;
 }
 
 #info {
@@ -111,7 +103,7 @@ img {
 }
 
 a:link, a:visited {
-color:#993333;
+color:#224272;
 text-decoration:none;
 }
 a:hover {
@@ -134,9 +126,9 @@ hr {
 /* @group Tasks Links */
 
 .tasks {
-  background: #fafafa;
-  border-bottom: #f7f7f7 1px solid;
-  padding: 5px;
+  background: #525251;
+  border-bottom: #000 1px solid;
+  padding: 5px 20px;
   margin-bottom: 15px;
 }
 
@@ -147,25 +139,23 @@ hr {
 }
 
 .tasks ul li {
-  display: inline;
-  line-height: normal;
+	float: left;
+	padding: 2px 20px 2px 0;
+  	line-height: normal;
 }
 
 .tasks li a {
-  display: block;
-  float: left;
-  padding: 2px 5px;
-  margin-right: 5px;
   text-decoration: none;
-  color: #666;
+  color: #fff;
 }
 
 .tasks li a:hover {
-  color: #993333;
+  color: #fff;
+  text-decoration: underline;
 }
 
 .tasks li a.current {
-  color: #993333;
+  color: #fff;
   text-decoration: underline;
   font-weight: bold;
 }
@@ -176,10 +166,11 @@ hr {
 /* @group Headings */
 
 h2 {
-	font: normal 1.7em georgia, arial, Helvetica, sans-serif;
+	font: normal 1.7em Tahoma, Helvetica, sans-serif;
 	letter-spacing: 3px;
-	color: #993333;
-	padding: 10px;
+	color: #224272;
+	margin: 20px 0;
+	margin-left: 3px;
 }
 
 h2 a:visited {
@@ -195,20 +186,6 @@ h3 {
   font-size: 130%;
   padding: 5px;
   margin-bottom: 0;
-}
-
-#header h1 {
-  margin: 0;
-  padding: 70px 0 12px 100px;
-  font: normal 200%;
-  text-transform: capitalize;
-  letter-spacing: 0.08em;
-}
-
-#header h1 a {
-  color: #fff;
-  text-decoration: none;
-  border: none;
 }
 
 .form h3,  h3 {
@@ -255,18 +232,47 @@ th.operation {
 }
 
 .list table {
-  width: 98%;
+  width: 100%;
+	border-spacing: 0;
+	border-bottom: #ddd 1px solid;
 }
 
 .list table th {
+	background: url("/images/admin/table-header.png") #324e79 repeat-x;
   text-align: left;
   font-weight: bold;
-  padding: 2px 3px;
-  border-bottom: 4px solid #ccc;
+  padding: 2px 5px;
+/*  border-bottom: 4px solid #ccc; */
+  color: #fff;
+	height: 24px;
+}
+
+.list table th.first {
+	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
+}
+
+.list table th.last {
+	background: url("/images/admin/table-header-last.png") #324e79 top right no-repeat;
+}
+.list table th a {
+	color: #fff;
+	text-decoration: underline;
 }
 
 .list table tr td {
   padding: 3px;
+}
+
+.list table tr td.first {
+  border-left: #ddd 1px solid;
+}
+
+.list table tr td.last {
+  border-right: #ddd 1px solid;
+}
+
+.list table tr td a {
+	color: #224272;
 }
 
 tr.shade {
@@ -276,6 +282,17 @@ tr.shade {
 li.shade {
   background: #f7f7f7;
 }
+
+.paginate {
+  background: url("/images/admin/bc-bg.gif") repeat-x top left;
+  padding: 5px 20px;
+  margin-bottom: 15px;
+	border-left: #ddd 1px solid;
+	border-right: #ddd 1px solid;
+	border-right: #ddd 1px solid;
+	text-align: center;
+}
+
 
 /* @end */
 
@@ -738,10 +755,33 @@ div.user {
   font-weight: bold
 }
 
+/* Dashboard */
+
 .dashboard {
-	width: 49%;
+	width: 48%;
 	margin-right: 1%;
 	float: left;
+	margin-bottom: 10px;
 }
 
+.dashboard h3 {
+	padding: 0;
+	margin: 0;
+	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.dashboard h3 span {
+	background: url("/images/admin/table-header-last.png") top right no-repeat;
+	display: block;
+	padding: 0 3px;
+}
+
+.dashboard ul {
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: #ddd 1px solid;
+}
 /* @end */

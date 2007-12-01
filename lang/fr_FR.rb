@@ -1,9 +1,10 @@
 Localization.define('fr_FR') do |l|
+  # General
   l.store "your blog", "votre blog"
   l.store "Typo admin", "administration typo"
   l.store "Publish", "Écrire"
   l.store "Manage", "Gérer"
-  l.store "Feedback", "Discussion"
+  l.store "Feedback", "Commentaires"
   l.store "Design", "Personnaliser"
   l.store "Users", ["Utilisateur", "Utilisateurs"]
   l.store "Settings", "Configuration"
@@ -28,6 +29,18 @@ Localization.define('fr_FR') do |l|
   l.store "Email", "Courriel"
   l.store "Choose password", "Mot de passe"
   l.store "Confirm password", "Confirmez le mot de passe"
+  
+  # admin/dashboard/index.rhtml
+  l.store "What can you do ?", "Vous pouvez"
+  l.store "Write a post", "Écrire un billet"
+  l.store "Update your profile or change your password", "Mettre votre profil à jour ou changer votre mot de passe"
+  l.store "Change you blog presentation", "Changer l'apparence de votre blog"
+  l.store "Enable plugins", "Ajouter des greffons"
+  l.store "Last Comments", "Derniers commentaires"
+  l.store "Last posts", "Derniers billets"
+  l.store "Most popular", "Billets les plus populaires"
+  l.store "Typo documentation", "Documentation officielle de Typo"
+  l.store "No comments yet", "Aucun commentaire"
   
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "Derniers commentaires"

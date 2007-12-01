@@ -1,19 +1,23 @@
 <div class="dashboard">
-  <h3>What can you do ?</h3>
+	<% content_for('tasks') do %>
+	<%= subtab _("Typo documentation"), "http://typosphere.org/main_page" %>
+  <% end %> 
+  
+  <h3><span><%= _("What can you do ?") %></span></h3>
   <ul>
-    <%= content_tag :li, link_to('Write a post', :controller => 'content', :action => 'new') -%>
-    <%= content_tag :li, link_to('Update your profile or change your password', 
+    <%= content_tag :li, link_to(_('Write a post'), :controller => 'content', :action => 'new') -%>
+    <%= content_tag :li, link_to(_("Update your profile or change your password"), 
       :controller => 'users', :action => 'edit', :id => session[:user_id]) -%>
-    <%= content_tag :li, link_to('Change you blog presentation', :controller => 'themes') -%>
-    <%= content_tag :li, link_to('Enable plugins', :controller => 'sidebar') -%>
+    <%= content_tag :li, link_to(_("Change you blog presentation"), :controller => 'themes') -%>
+    <%= content_tag :li, link_to(_("Enable plugins"), :controller => 'sidebar') -%>
   </ul>
 </div>
 
 <div class="dashboard">
-  <h3>Last Comments</h3>
+  <h3><span><%= _("Last Comments") %></span></h3>
   <ul>
     <% if @comments.size == 0 %>
-      <li>No comments yet</li>
+      <li><%= _("No comments yet") %></li>
     <% else %>
       <% for comment in @comments -%>
         <li>
@@ -27,7 +31,7 @@
 </div>
 
 <div class="dashboard">
-  <h3>Last posts</h3>
+  <h3><span><%= _("Last posts") %></span></h3>
   <ul>
 	<% if @recent_posts.size == 0 %>
       <li>No posts yet, why don't you start and <%= link_to "write one", :controller => 'content', :action => 'new' %> ?</li>
@@ -35,7 +39,6 @@
       <% for post in @recent_posts -%>
         <li>
           <%= link_to_permalink post, post.title %> (<%= link_to_permalink(post, post.published_comments.size) %>)
-          <p><%= post.body.gsub(/<\/?[^>]*>/, "").slice(0..120) %>...</p>
         </li>
       <% end %> 
     <% end %>
@@ -43,7 +46,7 @@
 </div>
 
 <div class="dashboard">
-  <h3>Most popular</h3>
+  <h3><span><%= _("Most popular") %></span></h3>
   <ul>
     <% if @bestof.size == 0 %>
       <li>Nothing to show yet !</li>
