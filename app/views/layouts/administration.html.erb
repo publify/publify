@@ -15,7 +15,7 @@
         <div id="container">
        		<div id="topnav">
           <ul id="tabs">
-            <%= content_tag :li, (link_to _("Typo admin"), {:controller=>"dashboard", :action => 'index'}, :class=>class_dashboard) %>
+            <%= content_tag :li, (link_to image_tag("../images/admin/typologo.png", :alt => "Typo") + _("Typo"), {:controller=>"dashboard", :action => 'index'}, :class=>class_dashboard) %>
             <%= content_tag :li, (link_to _("Write"), {:controller=>"content", :action => 'new'}, :class=>class_write) %>
             <%= content_tag :li, (link_to _("Manage"), {:controller=>"content", :action => 'index'}, :class=>class_manage) %>
             <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index'}, :class=>class_feedback) %>
@@ -48,9 +48,9 @@
 
        <%= @content_for_layout %>
           </div>
-        </div>
-        <div id="footer">
-            Typo <%=h TYPO_VERSION %> <%= _("with %s AER OS XK iconset %s", '<a href="http://gnome-look.org/content/show.php/AER-OS-XK?content=49990">', '</a>') %>
+	        <div id="footer">
+	            Typo <%=h TYPO_VERSION %> <%= _("with %s AER OS XK iconset %s", '<a href="http://gnome-look.org/content/show.php/AER-OS-XK?content=49990">', '</a>') %>
+	        </div>
         </div>
         </div>
         </body>
