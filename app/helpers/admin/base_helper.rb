@@ -50,7 +50,7 @@ module Admin::BaseHelper
   end
 
   def save(val = "Store")
-    '<input type="submit" value="' + val + '" class="primary" />'
+    '<input type="submit" value="' + val + '" class="submit" />'
   end
 
   def confirm_delete(val = "Delete")

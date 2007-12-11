@@ -128,7 +128,7 @@ color: #aaa;
 /* @group Tasks Links */
 
 .tasks {
-  background: url() #b5b5b5;
+  background: #525251;
   border-bottom: #000 1px solid;
   padding: 5px 20px;
   margin-bottom: 15px;
@@ -321,6 +321,7 @@ td.paginate {
   color: #666;
 }
 
+/*
 .form textarea {
   width: 350px;
   line-height: 1.1em;
@@ -329,6 +330,7 @@ td.paginate {
   word-spacing: 0.05em;
   border:1px solid #999;
 }
+*/
 
 #blog_name {
   font-size: 130%;
@@ -347,20 +349,57 @@ td.paginate {
 
 /* @end */
 
-/* @group Live Preview */
+/* Article forms */
 
-#preview, #preview_extended {
+/* OK */
+#article_form input,
+#article_form textarea,
+#article_form select,
+#page_form input,
+#page_form textarea,
+#page_form select {
+	font: 12px "Trebuchet MS", Helvetica, sans-serif;
+	border: 1px solid #224272;
+	color: #000;
+	padding: 3px;	
+}
+
+#article_form input.large,
+#article_form textarea.large ,
+#article_form select.large,
+#page_form input.large,
+#page_form textarea.large ,
+#page_form select.large {
+	width: 100%;
+}
+
+#article_form input#article_title,
+#page_form input#article_title {
+	font: 14px "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#article_form label,
+#page_form label {
+	color: #224272;
+}
+
+#article_form select.large option {
+	padding: 3px;
+}
+
+/* OK */
+#preview {
   background: #fff;
-  border: 1px dashed #ccc;
+  border-left: 1px dashed #ccc;
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
   padding: 0 0 0 5px;
   width: 50%;
-  height: 500px;
+  height: 430px;
   float: right;
+	margin-top: 10px;
   margin-bottom: 10px;
-  line-height: 1.5em;
-  letter-spacing: 0.02em;
-  word-spacing: 0.05em;
-  font-size: 0.95em;
 }
 
 /* @end */
@@ -374,9 +413,8 @@ td.paginate {
 }
 
 legend {
-  font-size: 120%;
-  text-transform: capitalize;
-  font-weight: bold;
+	font: 16px "Trebuchet MS", Helvetica, sans-serif;
+	color: #224272;
 }
 
 .admin ul {
@@ -434,8 +472,7 @@ legend {
 /* @group Sidebar */
 
 #sidebar-config {
-  /* Safari Fix */
-  border-top: 5px solid #fff;
+
 }
 
 #sidebar-config p {
@@ -445,16 +482,16 @@ legend {
 
 #available {
   float: left;
-  width: 300px;
+  width: 325px;
 }
 
 #active, #cnt-active {
-  width: 300px;
+  width: 340px;
   min-height: 200px;
 }
 
 #cnt-active {
-  margin-left: 320px;
+  margin-left: 360px;
   border: #637987 1px solid;
 }
 
@@ -475,14 +512,15 @@ legend {
 }
 
 .dropbox {
-  width: 270px;
+  width: 300px;
 }
 
 .handle {
+	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
+	color: #fff;
   cursor: move;
-  font-size: 130%;
+  font-size: 13px;
   font-weight: normal;
-  padding-left: 5px;
   margin: 0;
 }
 
@@ -491,15 +529,8 @@ legend {
 }
 
 .dragitem {
-  border: 1px solid #9cabba;
-  border-top: 1px solid #bacddf;
-  border-left: 1px solid #bacddf;
-  background: #fff;
-  width: 270px;
-}
-
-.handle {
-  background: #f7f7f7;
+	background: url("/images/admin/loginformbg.png") #fff bottom left no-repeat;
+  width: 300px;
 }
 
 .target {
@@ -633,36 +664,16 @@ div.user {
 
 /* @end */
 
-/* @group Misc Containers */
-
-#quick-post {
-  background: #EDEBD5;
-  padding: 10px;
-  border: 1px solid #9cabba;
-  margin-left: 10px;
-  border-top: none;
-}
-
-#quick-post input {
-  letter-spacing: 0.02em;
-  border:1px solid #999;
-}
-
-#quick-post textarea {
-  width: 350px;
-  font-family: Georgia;
-  line-height: 14px;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  word-spacing: 0.05em;
-}
-
 #quick-navigate {
   background: #F8F7EF;
   padding: 2px 5px 0px 5px;
   border: 1px dotted #9cabba;
   margin-left: 10px;
   border-top: none;
+}
+
+#quick-post {
+	background: #f00;
 }
 
 #advanced {
@@ -705,7 +716,9 @@ div.user {
 }
 
 /* OK */
-#loginform input#submit {
+#loginform input#submit,
+#article_form input.submit,
+#page_form input.submit {
 	margin-right: 3px;
 	border-color: #ccc rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
 	border-style: double;
@@ -726,7 +739,7 @@ div.user {
 /* OK */
 #loginform h3 {
 	text-align: left;
-	background: transparent url("/images/admin/bgoff.png") repeat-x top left;
+	background: url("/images/admin/bgoff.png") #f00 repeat-x top left;
 }
 
 /* OK */
