@@ -82,9 +82,9 @@ module ActionController
             controller.response.headers['Content-Type'] = meta[:content_type]
                         
             if request_time and cached_time <= (request_time + 1)
-              controller.render(:text => "", :status => 304)
+              controller.send(:render, :text => "", :status => 304)
             else
-              controller.render(:text => cache)
+              controller.send(:render, :text => cache)
             end
             
             controller.rendered_action_cache = true
