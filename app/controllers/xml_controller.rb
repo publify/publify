@@ -1,5 +1,5 @@
 class XmlController < ApplicationController
-  caches_action_with_params :feed
+  caches_page :feed
   session :off
 
   NORMALIZED_FORMAT_FOR = {'atom' => 'atom', 'rss' => 'rss',

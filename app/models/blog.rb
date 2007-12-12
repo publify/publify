@@ -57,6 +57,7 @@ class Blog < CachedModel
   setting :title_prefix,               :integer, 0
   setting :geourl_location,            :string, ''
   setting :canonical_server_url,       :string, ''  # Deprecated
+  setting :lang,                       :string, 'en_US'
 
   # Spam
   setting :sp_global,                  :boolean, false

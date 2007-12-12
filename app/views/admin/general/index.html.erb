@@ -26,6 +26,12 @@
 				<label class="float" for="base_url"><%= _("Blog URL")%>:</label>
 				<input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" size="<%= this_blog.base_url.length %> " />
 			</li>
+			<li>
+				<label class="float" for="lang"><%= _("Language")%>:</label>
+				<select name="setting[lang]">
+					<%= fetch_langs %>
+				</select>
+			</li>
 		</ul>
   	</fieldset>
 

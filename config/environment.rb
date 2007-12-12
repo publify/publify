@@ -161,6 +161,3 @@ FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
 require 'cached_model'
 CachedModel.use_local_cache = true
 CachedModel.use_memcache = false
-
-# Uncomment this to choose your blog's language
-# Localization.lang = 'fr_FR'

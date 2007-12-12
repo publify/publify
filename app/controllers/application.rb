@@ -2,17 +2,17 @@
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
   include LoginSystem
-  before_filter :reset_local_cache, :fire_triggers
+  before_filter :reset_local_cache, :fire_triggers, :load_lang
   after_filter :reset_local_cache
 
   class << self
     unless self.respond_to? :template_root
-      def template_root
+      def template_root        
         view_paths.first
       end
     end
   end
-
+  
   protected
 
   def setup_themer
@@ -42,6 +42,10 @@ class ApplicationController < ActionController::Base
     Trigger.fire
   end
 
+  def load_lang
+    Localization.lang = this_blog.lang if this_blog.lang != 'en_US'      
+  end
+  
   def reset_local_cache
     CachedModel.cache_reset
     @current_user = nil
@@ -70,7 +74,9 @@ class ApplicationController < ActionController::Base
                 end
               end
   end
+
   helper_method :this_blog
+
 
   def reset_blog_ids
     @@blog_id_for = {}

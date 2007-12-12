@@ -1,7 +1,7 @@
 class Admin::GeneralController < Admin::BaseController
   # Deprecation warning for plugins removal
   before_filter :deprecation_warning
-  
+    
   def index
     if this_blog.base_url.blank?
       this_blog.base_url = blog_base_url
