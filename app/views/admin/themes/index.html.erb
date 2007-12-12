@@ -2,7 +2,7 @@
 <% content_for('tasks') do %>
 	<%= subtab _("Sidebar"), "", {:controller=>"sidebar", :action=>"index"} %>
 	<%= subtab _("Themes"), "current", {:controller=>"themes", :action=>"index"} %>
-	<%= subtab _("Text Filters"), "", {:controller=>"textfilters", :action=>"list"} %>
+	<%= subtab _("Text Filters"), "", {:controller=>"textfilters", :action=>"list"} if (this_blog.display_advanced == 1) %>
 <% end %> 
 
 <% for theme in @themes %>

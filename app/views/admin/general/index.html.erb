@@ -2,9 +2,9 @@
 
   <% content_for('tasks') do -%>
 	<%= subtab _("Basic settings"), "current", {:controller => "general"} %>
-	<%= subtab _("Advanced settings"), "", {:controller => "advanced"} %>
-	<%= subtab _("Empty Fragment Cache"), "", {:controller => '/admin/cache', :action => 'sweep'} %>
-	<%= subtab _("Rebuild cached HTML"), "", {:controller => '/admin/cache', :action => 'sweep_html'} %>
+	<%= subtab _("Advanced settings"), "", {:controller => "advanced"} if (this_blog.display_advanced == 1)  %>
+	<%= subtab _("Empty Fragment Cache"), "", {:controller => '/admin/cache', :action => 'sweep'} if (this_blog.display_advanced == 1) %>
+	<%= subtab _("Rebuild cached HTML"), "", {:controller => '/admin/cache', :action => 'sweep_html'} if (this_blog.display_advanced == 1) %>
   <% end -%> 
 
 	<% form_tag :action => 'update' do %>
