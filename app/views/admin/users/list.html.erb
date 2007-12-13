@@ -7,23 +7,25 @@
 <div class="list">
   <table>
     <tr>
-	  <th><%= _("Name")%></th>
+	  	<th class="first"><%= _("Name")%></th>
       <th><%= _("Username")%></th>
       <th><%= _("Profile")%></th>
       <th><%= _("Articles")%></th>
       <th><%= _("Comments")%></th>
-	  <th colspan="3"><%= _("Action") %></th>
+	  	<th><%= _("View") %></th>
+			<th><%= _("Edit") %></th>
+			<th class="last"><%= _("Delete") %></th>
     </tr>
     <% for user in @users -%>
-    <tr>
-      <td class="field"> <%= user.name %></td>
+    <tr <%= alternate_class %>>
+      <td class="field first"> <%= user.name %></td>
       <td class="field"><%= mail_to user.email, user.login%></td>
       <td class="field"><%= user.profile.nicename %></td>
       <td class="field"><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
       <td class="field"><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
 	  <td class="operation"><%= link_to_show user %></td>
       <td class="operation"><%= link_to_edit user %></td>
-      <td class="operation"><%= link_to_destroy user %></td>    
+      <td class="operation last"><%= link_to_destroy user %></td>    
     </tr>  
     <% end -%>
   </table>

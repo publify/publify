@@ -32,8 +32,10 @@
      </ul>
      <p class="r"><%= save(_("Save" + " &raquo;")) %></p>
   </div>
+	<% if this_blog.editor == 1 %>
 	<iframe id="preview" class="post" style="display: block;"></iframe>
   <br style ="clear: both"/>
+	<% end %>
 </fieldset>
 
 <% if this_blog.display_advanced == 1 %>

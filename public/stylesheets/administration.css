@@ -312,13 +312,14 @@ td.paginate {
   padding: 5px;
 }
 
+/*
  input {
   font-size: 1em;
   letter-spacing: 0.02em;
   border:1px solid #999;
   color: #666;
 }
-
+*/
 /*
 .form textarea {
   width: 350px;
@@ -355,7 +356,10 @@ td.paginate {
 #article_form select,
 #page_form input,
 #page_form textarea,
-#page_form select {
+#page_form select,
+.admin input,
+.admin select,
+.admin textarea {
 	font: 12px "Trebuchet MS", Helvetica, sans-serif;
 	border: 1px solid #224272;
 	color: #000;
@@ -469,50 +473,47 @@ legend {
 
 /* @group Sidebar */
 
-#sidebar-config {
-
-}
-
+/* OK */
 #sidebar-config p {
   margin: 0;
   padding-left: 5px;
 }
 
+/* OK */
+#active, #cnt-active {
+  width: 325px;
+  min-height: 200px;
+  padding-bottom: 10px;
+}
+
+/* OK */
+#cnt-active {
+  margin-left: 360px;
+  border: #ccc 1px solid;
+}
+
+/* OK */
 #available {
+  padding-bottom: 10px;
+  border: #ccc 1px solid;
   float: left;
   width: 325px;
 }
 
-#active, #cnt-active {
-  width: 340px;
-  min-height: 200px;
-}
-
-#cnt-active {
-  margin-left: 360px;
-  border: #637987 1px solid;
-}
-
-#available {
-  padding-bottom: 10px;
-  border: #637987 1px solid;
-}
-
-#active {
-  padding-bottom: 10px;
-}
-
+/* OK */
 #available h3, #active h3, #cnt-active h3 {
-  background: #637987;
-  color: #fff;
+  background: url("/images/admin/bc-bg.gif") #b5b5b5 top left repeat-x;
+  color: #000;
   margin: 0 0 10px 0;
   padding: 2px 5px;
 }
 
+/* OK */
 .dropbox {
   width: 300px;
 }
 
+/* OK */
 .handle {
 	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
 	color: #fff;
@@ -522,24 +523,24 @@ legend {
   margin: 0;
 }
 
+/* OK */
 .dragitem, .dropitem {
   margin: 0 0 5px 12px;
 }
 
+/* OK */
 .dragitem {
 	background: url("/images/admin/loginformbg.png") #fff bottom left no-repeat;
   width: 300px;
 }
 
+/* OK */
 .target {
   background: #F8F7EF;
   margin: 5px;
   padding: 5px;
 }
-
-/*
-
-@end */
+/* @end */
 
 /* @group Miscellaneous */
 
@@ -594,8 +595,6 @@ legend {
   border: 1px solid #FF8080;
   margin: 0 30px 10px 30px;
 }
-
-
 
 .errorExplanation h2 {
   padding: 2px 5px;
@@ -678,7 +677,12 @@ div.user {
 }
 
 #quick-post {
-	background: #f00;
+	background: #ffffff;
+	border-top: #333 1px solid;
+	border-left: #333 1px solid;
+	border-right: #333 3px solid;
+	border-bottom: #333 3px solid;
+	padding: 5px;
 }
 
 #advanced {
@@ -727,7 +731,7 @@ div.user {
 #loginform input#submit,
 #article_form input.submit,
 #page_form input.submit,
-.submit {
+input.submit {
 	margin-right: 3px;
 	border-color: #ccc rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
 	border-style: double;
