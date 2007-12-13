@@ -8,8 +8,8 @@
 
   <%= form_remote_tag(:url=>{:action=>'publish'},
                       :loading => "new Element.show('update_spinner')")  %>
-  <div class="tasks">
-    <input value="<%= _('Publish changes')%>" class="space" type="submit"/>
+  <div class="paginate l">
+    <input value="<%= _('Publish changes')%>" class="submit" type="submit"/>
   </div>
   <div id="messages">&nbsp;</div>
 
@@ -33,6 +33,8 @@
     </div>
     <br clear="all" />
 
-    <input value="<%= _('Publish changes')%>" class="space" type="submit"/>
+	  <div class="paginate l">
+	    <input value="<%= _('Publish changes')%>" class="submit" type="submit"/>
+	  </div>
 
   </div>

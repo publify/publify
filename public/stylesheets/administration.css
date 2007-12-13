@@ -118,15 +118,10 @@ a:hover {
 text-decoration: underline;
 color: #aaa;
 }
-
-/* @end */
-
-/* @group Primary Navigation */
-
 /* @end */
 
 /* @group Tasks Links */
-
+/* OK */
 .tasks {
   background: #525251;
   border-bottom: #000 1px solid;
@@ -134,35 +129,38 @@ color: #aaa;
   margin-bottom: 15px;
 }
 
+/* OK */
 .tasks ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/* OK */
 .tasks ul li {
 	float: left;
 	padding: 2px 20px 2px 0;
   	line-height: normal;
 }
 
+/* OK */
 .tasks li a {
   text-decoration: none;
   color: #fff;
 }
 
+/* OK */
 .tasks li a:hover {
   color: #fff;
   text-decoration: underline;
 }
 
+/* OK */
 .tasks li a.current {
   color: #fff;
   text-decoration: underline;
   font-weight: bold;
 }
-
-
 /* @end */
 
 /* @group Headings */
@@ -571,10 +569,17 @@ legend {
   font-size: 90%;
 }
 
+/* OK */
+.l {
+	text-align: left;
+}
+
+/* OK */
 .r {
   text-align: right;
 }
 
+/* OK */
 .c {
   text-align: center;
 }
@@ -709,7 +714,10 @@ div.user {
 }
 
 /* OK */
-#loginform input {
+#loginform input,
+#article_form input.submit,
+#page_form input.submit,
+.submit {
 	width: 260px;
 	background: url("/images/admin/bc-bg.gif") #b5b5b5 top left repeat-x;
 	font: 14px "Trebuchet MS", Helvetica, sans-serif;
@@ -718,7 +726,8 @@ div.user {
 /* OK */
 #loginform input#submit,
 #article_form input.submit,
-#page_form input.submit {
+#page_form input.submit,
+.submit {
 	margin-right: 3px;
 	border-color: #ccc rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204);
 	border-style: double;
