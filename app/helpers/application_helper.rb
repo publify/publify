@@ -14,13 +14,13 @@ module ApplicationHelper
   end
 
   # Produce a link to the permalink_url of 'item'.
-  def link_to_permalink(item, title, anchor=nil)
+  def link_to_permalink(item, title, anchor=nil, style=nil)
     anchor = "##{anchor}" if anchor
     case item
     when Article
-      "<a href=\"#{article_path(item)}#{anchor}\">#{title}</a>"
+      "<a href=\"#{article_path(item)}#{anchor}\" class=\"#{style}\">#{title}</a>"
     else
-      "<a href=\"#{item.permalink_url}#{anchor}\">#{title}</a>"
+      "<a href=\"#{item.permalink_url}#{anchor}\" class=\"#{style}\">#{title}</a>"
     end
   end
 
