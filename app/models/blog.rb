@@ -87,7 +87,7 @@ class Blog < CachedModel
   setting :default_moderate_comments,  :boolean, false
   setting :link_to_author,             :boolean, false
   setting :show_extended_on_rss,       :boolean, true
-  setting :theme,                      :string, 'azure'
+  setting :theme,                      :string, 'standard_issue'
   setting :use_gravatar,               :boolean, false
   setting :global_pings_disable,       :boolean, false
   setting :ping_urls,                  :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
