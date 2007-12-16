@@ -18,7 +18,7 @@ class Admin::ThemesController < Admin::BaseController
     redirect_to :action => 'index'
   end
   
-  def edit
+  def editor
     case params[:type].to_s
     when "stylesheet"
       path = this_blog.current_theme.path + "/stylesheets/"

@@ -1,4 +1,5 @@
 module Admin::ThemesHelper
+  require('find')
   def fetch_stylesheets
     list = '<ul>'
     Find.find(this_blog.current_theme.path + "/stylesheets") do |path|
