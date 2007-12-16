@@ -15,7 +15,7 @@ class ThemeTest < Test::Unit::TestCase
 
   def test_description
     # Filtering now occurs in the controller, not the model
-    assert_equal "### Azure\n\nTypo's default theme by [Justin Palmer][1]\n\n[1]: http://www.encytemedia.com/ \"Encyte Media\"\n",
+    assert_equal "### Standard Issue by [NodeThirtyThree][1]\n\nStandard issue is the new default Typo theme starting Typo 5.0\n\n[1]: http://www.nodethirtythree.com/\n",
       this_blog.current_theme.description
   end
 
@@ -25,11 +25,11 @@ class ThemeTest < Test::Unit::TestCase
   end
 
   def test_theme_from_path
-    assert_equal "azure", Theme.theme_from_path(this_blog.current_theme.path).name
+    assert_equal "standard_issue", Theme.theme_from_path(this_blog.current_theme.path).name
   end
 
   def test_search_theme_directory
-    assert_equal %w{ 123-numbers-in-path CamelCaseDirectory azure i-have-special-chars },
+    assert_equal %w{ 123-numbers-in-path CamelCaseDirectory i-have-special-chars standard_issue },
       Theme.search_theme_directory.collect { |t| File.basename(t) }.sort
   end
 

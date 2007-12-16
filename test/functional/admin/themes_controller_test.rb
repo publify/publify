@@ -23,12 +23,12 @@ class Admin::ThemesControllerTest < Test::Unit::TestCase
   end
 
   def test_switchto
-    get :switchto, :theme => 'azure'
+    get :switchto, :theme => 'standard_issue'
     assert_response :redirect, :action => 'index'
   end
 
   def test_preview
-    get :preview, :theme => 'azure'
+    get :preview, :theme => 'standard_issue'
     assert_response :success
   end
 end

@@ -32,11 +32,11 @@ class BlogTest < Test::Unit::TestCase
   end
 
   def test_current_theme_path
-    assert_equal Theme.themes_root + "/azure", @blog.current_theme.path
+    assert_equal Theme.themes_root + "/standard_issue", @blog.current_theme.path
   end
 
   def test_current_theme
-    assert_equal "azure", @blog.current_theme.name
+    assert_equal "standard_issue", @blog.current_theme.name
   end
 
   def test_url_for

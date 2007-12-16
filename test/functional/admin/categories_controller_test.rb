@@ -92,7 +92,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_tag :tag => "table",
       :children => { :count => Category.count,
         :only => { :tag => "tr",
-          :children => { :count => 6,
+          :children => { :count => 7,
             :only => { :tag => /t[dh]/ } } } }
   end
 
