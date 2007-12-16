@@ -177,6 +177,7 @@ end
 describe CommentsController, 'GET /comments' do
   before do
     @the_mock = mock('blog', :null_object => true)
+    @the_mock.stub!(:lang).and_return('en_US')
     Blog.stub!(:find).and_return(@the_mock)
   end
 
@@ -197,6 +198,7 @@ end
 describe CommentsController, "GET /comments.:format" do
   before do
     @the_mock = mock('blog', :null_object => true)
+    @the_mock.stub!(:lang).and_return('en_US')
     Blog.stub!(:find).and_return(@the_mock)
   end
 
