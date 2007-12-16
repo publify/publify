@@ -1,12 +1,3 @@
-/*  
-Theme Name: StandardIssue
-Theme URI: http://www.freewpthemes.net/
-Description: A two-column, fixed with theme ideal for 1024x768 resolutions. Widget-ready for WP2.2+
-Version: 2.0
-Author: NodeThirtyThree + Free WordPress Themes
-Author URI: http://www.nodethirtythree.com + http://www.freewpthemes.net/
-*/
-
 body {
 	margin: 100px 0 0 0;
 	padding: 0;
@@ -346,6 +337,68 @@ h2.title {
 .box2 h2 {
 	margin-bottom: 15px;
 	background: url(../../images/theme/img10.gif) repeat-x left bottom;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+.box2 ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.box2 a:link, .box2 a:hover, .box2 a:active, .box2 a:visited  {
+	color: #EDEDED;
+}
+
+/* Footer */
+
+#footer {
+	height: 150px;
+	min-height: 150px;
+	padding: 100px 0 0 0;
+	background: #003448 url(../../images/theme/img09.gif) repeat-x;
+}
+
+html>body #footer {
+	height: auto;
+}
+
+#footer .wrap {
+	width: 850px;
+	margin: 0 auto;
+}
+
+#legal {
+	clear: both;
+	padding-top: 20px;
+	text-align: center;
+	color: #375C69;
+}
+
+#legal a {
+	color: #476B77;
+}
+
+#fbox1, #fbox2, #fbox3 {
+	float: left;
+}
+
+#fbox1 {
+	width: 310px;
+}
+
+#fbox2 {
+	width: 200px;
+	padding-left: 70px;
+}
+
+#fbox3 {
+	width: 200px;
+	padding-left: 70px;
+}
+
+ bottom;
 	font-size: 16px;
 	color: #FFFFFF;
 }
