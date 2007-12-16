@@ -36,6 +36,7 @@ describe "All Requests", :shared => true do
                   :add_comment                => @comment)
     @blog     = mock_model(Blog,
                   :sp_allow_non_ajax_comments => true,
+                  :lang                       => 'en_US',
                   :blog_name                  => "A Blog",
                   :theme                      => 'azure',
                   :articles                   => @articles,

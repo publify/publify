@@ -69,8 +69,8 @@ describe 'Given a new blog' do
     @blog.should be_show_extended_on_rss
   end
 
-  it '#theme should be "azure"' do
-    @blog.theme.should == 'azure'
+  it '#theme should be "standard_issue"' do
+    @blog.theme.should == 'standard_issue'
   end
 
   it 'should not use gravatar' do

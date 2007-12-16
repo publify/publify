@@ -43,13 +43,6 @@ class InitialSchema < ActiveRecord::Migration
         t.column :position, :integer
       end
 
-      create_table :articles_categories, :id => false do |t|
-        t.column :article_id, :integer
-        t.column :category_id, :integer
-        t.column :is_primary, :integer
-      end
-
-      category = Bare1Category.create(:name=>'default', :position=>'1')
       article = Bare1Article.create(:title=>'Hello World!',
         :author=>'Mr Typo',
         :body=>'Welcome to Typo. This is your first article. Edit or delete it, then start blogging!',
@@ -58,8 +51,7 @@ class InitialSchema < ActiveRecord::Migration
         :published => 1,
         :permalink => 'hello-world'
       )
-      Bare1ArticlesCategory.create(:article_id=>article.id, :category_id=>category.id, :is_primary=>1)
-      
+
       create_table :blacklist_patterns do |t|
         t.column :type, :string
         t.column :pattern, :string

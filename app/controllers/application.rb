@@ -1,7 +1,7 @@
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
-  include LoginSystem
+  include ::LoginSystem
   before_filter :reset_local_cache, :fire_triggers, :load_lang
   after_filter :reset_local_cache
 
