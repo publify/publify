@@ -7,16 +7,17 @@ class ApplicationController < ActionController::Base
 
   class << self
     unless self.respond_to? :template_root
-      def template_root        
+      def template_root
         view_paths.first
       end
     end
   end
-  
+
   protected
 
   def setup_themer
-    @@view_paths[self.class.name] =
+    # Ick!
+    response.template.view_paths = @@view_paths[self.class.name] =
       ["#{RAILS_ROOT}/themes/#{this_blog.theme}/views",
        "#{RAILS_ROOT}/app/views"]
   end
@@ -43,9 +44,9 @@ class ApplicationController < ActionController::Base
   end
 
   def load_lang
-    Localization.lang = this_blog.lang if this_blog.lang != 'en_US'      
+    Localization.lang = this_blog.lang if this_blog.lang != 'en_US'
   end
-  
+
   def reset_local_cache
     CachedModel.cache_reset
     @current_user = nil
