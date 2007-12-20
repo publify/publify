@@ -350,7 +350,7 @@ class Article < Content
   def rss_enclosure(xml)
     return if resources.empty?
     res = resources.first
-    xml.enclosure(:url    => blog.file_url(res.file_name),
+    xml.enclosure(:url    => blog.file_url(res.filename),
                   :length => res.size,
                   :type   => res.mime)
   end
