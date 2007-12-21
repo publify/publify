@@ -3,7 +3,6 @@ class Admin::AdvancedController < Admin::BaseController
     if this_blog.base_url.blank?
       this_blog.base_url = blog_base_url
     end
-    @page_cache_size = PageCache.count
   end
 
   def update

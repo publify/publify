@@ -87,8 +87,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def flush_cache
     @unexpired = false
-    PageCache.sweep('/articles/%')
-    PageCache.sweep('/pages/%')
+    PageCache.sweep_all
     expire_fragment(/.*/)
   end
 end

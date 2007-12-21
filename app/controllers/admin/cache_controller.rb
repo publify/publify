@@ -6,7 +6,7 @@ class Admin::CacheController < Admin::BaseController
   end
 
   def list
-    @page_cache_size = PageCache.count
+    @page_cache_size = -1
   end
 
   def sweep
@@ -18,6 +18,7 @@ class Admin::CacheController < Admin::BaseController
   end
 
   def sweep_html
+    PageCache.sweep_all
     expire_fragment(/^contents_html.*/)
 
     flash[:notice] = 'HTML was cleared'

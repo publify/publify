@@ -2,28 +2,17 @@ class PageCache < ActiveRecord::Base
   cattr_accessor :public_path
   @@public_path = ActionController::Base.page_cache_directory
 
-  def self.sweep(pattern)
-    destroy_all("name like '#{pattern}'")
-  end
-
   def self.sweep_all
-    destroy_all
+    self.zap_pages('index.*', 'articles', 'pages')
   end
 
-  private
-
-  after_destroy :expire_cache
-
-  def expire_cache
-    # It'd be better to call expire_page here, except it's a
-    # controller method and we can't get to it.
-    path = PageCache.public_path + "/#{self.name}"
-
-    logger.info "Sweeping #{self.name}"
-    delete_file(path)
-  end
-
-  def delete_file(path)
-    File.delete(path) if File.file?(path)
+  def self.zap_pages(*paths)
+    trash = Dir::tmpdir
+    FileUtils.makedirs(trash)
+    srcs = paths.collect { |v|
+      Dir.glob(public_path + "/#{v}")
+    }
+    FileUtils.mv(srcs.flatten, trash, :force => true)
+    FileUtils.rm_rf(trash)
   end
 end
