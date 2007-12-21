@@ -7,7 +7,8 @@ class ArticlesController < ContentController
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :read, :show, :archives, :view_page]
-  caches_page *cached_pages
+  #caches_page *cached_pages
+  caches_action_with_params *cached_page
 
   session :new_session => false
 
@@ -79,6 +80,7 @@ class ArticlesController < ContentController
   end
 
   def view_page
+    debugger
     if(@page = Page.find_by_name(params[:name].to_a.join('/')))
       @page_title = @page.title
     else
