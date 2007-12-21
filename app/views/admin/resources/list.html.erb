@@ -9,3 +9,9 @@
   <div class="list" id="resources">	
     <%= render :partial => 'resources' -%>
   </div>
+	<div class="paginate">
+		<%= link_to _("Previous page"), { :page => @resources_pages.current.previous } if @resources_pages.current.previous %>
+		<%= pagination_links(@resources_pages) %>
+		<%= link_to _("Next page"), { :page => @resources_pages.current.next } if @resources_pages.current.next %>
+	</div>
+	
