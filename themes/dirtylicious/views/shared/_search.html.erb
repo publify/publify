@@ -12,5 +12,5 @@
                     :loading    => "Element.show('loading')",
                     :complete   => "Element.hide('loading')",
                     :update     => 'results',
-                    :with       => "'q=' + escape($F('q'))" %>
+                    :with       => "'q=' + encodeURIComponent($F('q'))" %>
 
