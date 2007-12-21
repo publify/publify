@@ -17,12 +17,12 @@ class Admin::ThemesController < Admin::BaseController
     this_blog.save
     redirect_to :action => 'index'
   end
-  
+
   def editor
     case params[:type].to_s
     when "stylesheet"
       path = this_blog.current_theme.path + "/stylesheets/"
-      if params[:file] =~ /css$/ 
+      if params[:file] =~ /css$/
         filename = params[:file]
       else
         flash[:error] = "You are not authorized to open this file"
@@ -30,7 +30,7 @@ class Admin::ThemesController < Admin::BaseController
       end
     when "layout"
       path = this_blog.current_theme.path + "/layouts/"
-      if params[:file] =~ /rhtml$|erb$/ 
+      if params[:file] =~ /rhtml$|erb$/
         filename = params[:file]
       else
         flash[:error] = "You are not authorized to open this file"
@@ -39,7 +39,7 @@ class Admin::ThemesController < Admin::BaseController
     end
 
     if path and filename
-      if File.exists? path + filename 
+      if File.exists? path + filename
         if File.writable? path + filename
           case request.method
           when :post
@@ -47,6 +47,7 @@ class Admin::ThemesController < Admin::BaseController
             theme.write(params[:theme_body])
             theme.close
             flash[:notice] = "File saved successfully"
+            zap_theme_caches
           end
         else
           flash[:notice] = "Unable to write file"
@@ -58,5 +59,11 @@ class Admin::ThemesController < Admin::BaseController
         end
       end
     end
+  end
+
+  protected
+
+  def zap_theme_caches
+    FileUtils.rm_rf(%w{stylesheets javascript images}.collect{|v| page_cache_directory + "/#{v}/theme"})
   end
 end
