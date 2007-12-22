@@ -8,7 +8,7 @@ class ArticlesController < ContentController
 
   cached_pages = [:index, :read, :show, :archives, :view_page]
   #caches_page *cached_pages
-  caches_action_with_params *cached_page
+  caches_action_with_params *cached_pages
 
   session :new_session => false
 
