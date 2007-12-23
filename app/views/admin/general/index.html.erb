@@ -32,7 +32,7 @@
 					<%= fetch_langs %>
 				</select>
 			</li>
-			<li>This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!</li>
+            <li><%= _("This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!") %></li>
 			<li>
 				<label class="float" for="display_advanced">Choose interface:</label>
 				<input type="radio" name="setting[display_advanced]" value="0" id="display_advanced_0" <%= 'checked="checked"' if this_blog.display_advanced == 0 %>/>

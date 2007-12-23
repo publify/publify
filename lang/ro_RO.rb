@@ -210,6 +210,8 @@ Localization.define('ro_RO') do |l|
   l.store "Cache", "Cache"
   l.store "Blog name", "Numele blogului"
   l.store "Blog subtitle", "Subtitlul blogului"
+  l.store "Language", "Language" #Need translate
+  l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!","This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!" #Need translate
   l.store "Blog URL", "Adresa blogului"
   l.store "Latitude, Longitude", "Latitudine, longitudine"
   l.store "Display", "Afișează"

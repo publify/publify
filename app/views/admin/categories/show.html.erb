@@ -25,7 +25,7 @@
         <td class="first"><%= link_to_permalink article, h(article.title) %></td>
         <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => '/admin/comments', :article_id => article, :action => 'list' %></td>
         <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
-        <td><%= author_link(article)%></td>
+        <td><%= author_link(article) %></td>
         <td class="operation"><%= (article.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
 	  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => article.id} %></td>
 	  <td class="operation"><%= link_to_edit article %></td>

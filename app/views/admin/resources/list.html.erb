@@ -1,4 +1,4 @@
-  <% @page_heading = _('Uploads') + '(' + link_to("add new", :action => 'new') + ')' %>
+  <% @page_heading = _('Uploads') + '(' + link_to(_("add new"), :action => 'new') + ')' %>
   <% content_for('tasks') do %>
 	<%= subtab _("Posts"), "", {:controller=>"content", :action=>"list"} %>
 	<%= subtab _("Pages"), "", {:controller=>"pages", :action=>"list"} %>

@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def pluralize(size, word)
     case size
-    when 0 then "no #{word.pluralize}"
+    when 0 then _("no ") +  word.pluralize
     when 1 then "1 #{word}"
     else        "#{size} #{word.pluralize}"
     end

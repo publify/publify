@@ -72,7 +72,7 @@ class Admin::FeedbackController < Admin::BaseController
       flash[:notice] = "Not implemented"
     end
 
-    redirect_to :action => 'index', :page => params[:page], :search => params[:search]
+    redirect_to :action => 'index', :page => params[:page], :search => params[:search], :confirmed => params[:confirmed], :published => params[:published]
   end
 
   protected
