@@ -86,7 +86,7 @@ describe AuthorsController, '/articles/category/foo' do
 
   it 'should set the page title to "Author foo"' do
     do_get
-    assigns[:page_title].should == 'Author foo'
+    assigns[:page_title].should == 'Author foo, everything about foo'
   end
 
   it 'should render an error when the author has no articles' do
