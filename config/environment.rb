@@ -143,6 +143,16 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
 
 ActionMailer::Base.default_charset = 'utf-8'
 
+# I wanted to put this as a "setup" page, but it seems I can't catch the 
+# exception fast enough and get a 500 error
+if RAILS_ENV != 'test'
+  begin
+    ActiveRecord::Base.connection.select_all("select * from sessions")
+  rescue
+    Migrator.migrate
+  end
+end
+
 if RAILS_ENV != 'test'
   begin
     mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
