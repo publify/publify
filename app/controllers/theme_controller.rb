@@ -26,11 +26,11 @@ class ThemeController < ContentController
   def render_theme_item(type, file, mime = nil)
     mime ||= mime_for(file)
     if file.split(%r{[\\/]}).include?("..")
-      return render :text => "Not Found", :status => 404
+      return (render :text => "Not Found", :status => 404)
     end
 
     src = this_blog.current_theme.path + "/#{type}/#{file}"
-    return render :text => "Not Found", :status => 404 unless File.exists? src
+    return (render :text => "Not Found", :status => 404) unless File.exists? src
 
     if perform_caching
       dst = "/#{page_cache_directory}/#{type}/theme/#{file}"

@@ -16,6 +16,24 @@ class ArticlesController < ContentController
 
   def index
     @articles = this_blog.requested_articles(params)
+
+    # Build page title, should probably be moved elsewhere
+    if params[:year]
+      date = Time.mktime(params[:year], params[:month], params[:day])
+      if params[:month]
+        if params[:day]
+          @page_title = "Archives for " + date.strftime("%A %d %B %Y")
+        else
+          @page_title = "Archives for " + date.strftime("%B %Y")
+        end
+      else
+        @page_title = "Archives for " + date.strftime("%Y")
+      end
+    end
+    if params[:page]
+      @page_title << " page " << params[:page]
+    end
+    
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
@@ -51,6 +69,7 @@ class ArticlesController < ContentController
 
   def archives
     @articles = this_blog.published_articles
+    @page_title = "Archives"
   end
 
   def comment_preview
@@ -80,7 +99,6 @@ class ArticlesController < ContentController
   end
 
   def view_page
-    debugger
     if(@page = Page.find_by_name(params[:name].to_a.join('/')))
       @page_title = @page.title
     else
