@@ -12,7 +12,6 @@
 <div class="admin">
 	<fieldset id="gensettings" class="set" style="margin-top:10px;">
 		<legend><%= _("General settings")%></legend>
-
 		<ul>
 			<li>
 				<label for="blog_name" class="float"><%= _("Blog name")%>:</label>
@@ -41,7 +40,16 @@
 					<input type="radio" name="setting[display_advanced]" value="1" id="display_advanced_1" <%= 'checked="checked"' if this_blog.display_advanced == 1 %>/>
 					<label for="editor_1"><%= _("Use complete admin")%></label>
 				</span>
-				
+			</li>
+			<li><%= _("By default, Typo generates static HTML pages for your posts. However, if you plan to publish posts in the futur, you may want to use semi dynamic caching") %>.</li>
+			<li>
+				<label class="float" for="caches_page">Choose caching methode:</label>
+				<input type="radio" name="setting[cache_option]" value="caches_page" id="cache_option_0" <%= 'checked="checked"' if this_blog.cache_option == 'caches_page' %>/>
+				<label for="cache_option_0"><%= _("Use static HTML page caching (default)")%></label>
+				<span class="float">
+					<input type="radio" name="setting[cache_option]" value="caches_action_with_params" id="cache_option_1" <%= 'checked="checked"' if this_blog.cache_option == 'caches_action_with_params' %>/>
+					<label for="cache_option_1"><%= _("Use semi static caching")%></label>
+				</span>
 			</li>
 		</ul>
   	</fieldset>

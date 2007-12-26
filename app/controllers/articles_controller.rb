@@ -7,8 +7,12 @@ class ArticlesController < ContentController
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :read, :show, :archives, :view_page]
-  #caches_page *cached_pages
-  caches_action_with_params *cached_pages
+
+  if Blog.default && Blog.default.cache_option == "caches_action_with_params"
+    caches_action_with_params *cached_pages
+  else
+    caches_page *cached_pages
+  end
 
   session :new_session => false
 

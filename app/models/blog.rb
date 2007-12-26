@@ -94,6 +94,7 @@ class Blog < CachedModel
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'typo@example.com'
   setting :editor,                     :integer, 1
+  setting :cache_option,               :string, 'caches_page'
 
   # Jabber config
   setting :jabber_address,             :string, ''
