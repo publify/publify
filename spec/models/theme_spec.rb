@@ -15,16 +15,17 @@ describe 'Given a the default theme' do
     @theme = Blog.new.current_theme
   end
 
-  it 'theme should be azure' do
-    @theme.name.should == 'azure'
+  it 'theme should be standard_issue' do
+    @theme.name.should == 'standard_issue'
   end
 
   it 'theme description should be correct' do
     @theme.description.should ==
-      File.open(RAILS_ROOT + '/themes/azure/about.markdown') {|f| f.read}
+      File.open(RAILS_ROOT + '/themes/standard_issue/about.markdown') {|f| f.read}
   end
 
   it 'theme_from_path should find the correct theme' do
+    Theme.theme_from_path(RAILS_ROOT + 'themes/standard_issue').name.should == 'standard_issue'
     Theme.theme_from_path(RAILS_ROOT + 'themes/azure').name.should == 'azure'
     Theme.theme_from_path(RAILS_ROOT + 'themes/scribbish').name.should == 'scribbish'
   end
@@ -32,7 +33,7 @@ describe 'Given a the default theme' do
   it '#search_theme_path finds the right things' do
     Theme.should_receive(:themes_root).and_return(RAILS_ROOT + '/test/mocks/themes')
     Theme.search_theme_directory.collect{|t| File.basename(t)}.sort.should ==
-      %w{ 123-numbers-in-path CamelCaseDirectory azure i-have-special-chars }
+      %w{ 123-numbers-in-path CamelCaseDirectory i-have-special-chars standard_issue }
   end
 
   it 'find_all finds all the installed themes' do

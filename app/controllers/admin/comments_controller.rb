@@ -4,7 +4,7 @@ class Admin::CommentsController < Admin::BaseController
 
   def index
     list
-    render_action 'list'
+    render :action => 'list'
   end
 
   def list

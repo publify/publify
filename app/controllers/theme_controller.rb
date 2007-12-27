@@ -1,5 +1,5 @@
 class ThemeController < ContentController
-  caches_page :stylesheets, :javascript, :images
+#  caches_page :stylesheets, :javascript, :images
   session :off
 
   def stylesheets
@@ -26,11 +26,21 @@ class ThemeController < ContentController
   def render_theme_item(type, file, mime = nil)
     mime ||= mime_for(file)
     if file.split(%r{[\\/]}).include?("..")
-      render :text => "Not Found", :status => 404
-      return
+      return (render :text => "Not Found", :status => 404)
     end
-    send_file(this_blog.current_theme.path + "/#{type}/#{file}",
-              :type => mime, :disposition => 'inline', :stream => false)
+
+    src = this_blog.current_theme.path + "/#{type}/#{file}"
+    return (render :text => "Not Found", :status => 404) unless File.exists? src
+
+    if perform_caching
+      dst = "/#{page_cache_directory}/#{type}/theme/#{file}"
+      FileUtils.makedirs(File.dirname(dst))
+      FileUtils.cp(src, "#{dst}.#{$$}")
+      FileUtils.ln("#{dst}.#{$$}", dst) rescue nil
+      FileUtils.rm("#{dst}.#{$$}", :force => true)
+    end
+
+    send_file(src, :type => mime, :disposition => 'inline', :stream => true)
   end
 
   def mime_for(filename)

@@ -1,0 +1,55 @@
+<%= error_messages_for 'user' %>
+<!--[form:user]-->
+<fieldset>
+<ul>
+<li>
+  <label class="float" for="user_login"><%= _("Login")%>:</label>
+  <%= text_field 'user', 'login'  %>
+</li>
+<li>
+	<label class="float" for="user_profile"><%= _("Profile")%>:</label>
+	<%=  select("user", "profile_id", @profiles.collect {|p| [ p.nicename, p.id ] }, { :include_blank => true }) %>
+</li>
+<li>
+  <label class="float" for="user_login"><%= _("Display Name")%>:</label>
+  <%= text_field 'user', 'name'  %>
+</li>
+<li>
+<label class="float" for="user_email"><%= _("Email")%>:</label> 
+<%= text_field 'user', 'email'  %> <small>(this will be shown publically if supplied)</small>
+</li>
+<li>
+<label class="float" for="user_jabber"><%= _("Jabber")%>:</label> 
+<%= text_field 'user', 'jabber'  %> <small>(this can be blank)</small>
+</li>
+<li>
+  <label class="float" for="user_password"><%= _("Password")%>:</label>
+  <%= password_field_tag 'user[password]', '', :id => 'user_password', :size => 30 %>
+</li>
+<li>
+  <label class="float" for="user_password"><%= _("Password confirmation")%>:</label>
+  <%= password_field 'user', 'password_confirmation'  %>
+</li>
+
+<li>
+  <label class="float" for="user_notify_via_email"><%= _("Send notification messages via email")%>?</label>
+  <%= check_box 'user', 'notify_via_email'  %> 
+</li>
+
+<li>
+  <label class="float" for="user_notify_via_jabber"><%= _("Send notification messages via jabber")%>?</label>
+  <%= check_box 'user', 'notify_via_jabber'  %>
+</li>
+
+<li>
+  <label class="float" for="user_notify_on_new_articles"><%= _("Send notification messages when new articles are posted")%>?</label>
+  <%= check_box 'user', 'notify_on_new_articles'  %>
+</li>
+
+<li>
+  <label class="float" for="user_notify_on_comments"><%= _("Send notification messages when comments are posted")%>?</label>
+  <%= check_box 'user', 'notify_on_comments'  %>
+</li>
+</ul>
+</fieldset>
+<!--[eoform:user]-->

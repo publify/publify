@@ -50,19 +50,19 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def sweep_all
-    PageCache.sweep_all
     expire_fragment(/.*/)
+    PageCache.sweep_all
   end
 
   def sweep_articles
-    PageCache.sweep('/articles/%')
     expire_fragment(%r{.*/articles/.*})
+    PageCache.zap_pages('index.*', 'articles')
   end
 
   def sweep_pages(record = nil)
-    PageCache.sweep("/pages/#{record.name rescue ''}.html")
     expire_fragment(/.*\/pages\/.*/)
     expire_fragment(/.*\/view_page.*/)
+    PageCache.zap_pages('pages')
   end
 
   def logger

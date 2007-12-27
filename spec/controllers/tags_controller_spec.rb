@@ -86,7 +86,7 @@ describe TagsController, '/articles/tag/foo' do
 
   it 'should set the page title to "Tag foo"' do
     do_get
-    assigns[:page_title].should == 'Tag foo'
+    assigns[:page_title].should == 'Tag foo, everything about foo'
   end
 
   it 'should render an error when the tag is empty' do

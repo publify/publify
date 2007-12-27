@@ -1,6 +1,8 @@
 class TextFilterPlugin
   class << self
     include TypoPlugins
+    include ActionView::Helpers::TextHelper
+    include ActionView::Helpers::TagHelper
   end
   
   @@filter_map = {}

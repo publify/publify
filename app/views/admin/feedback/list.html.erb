@@ -1,0 +1,48 @@
+<% @page_heading = _("Comments and Trackbacks for") + " #{ this_blog.settings['blog_name'] }" %>
+
+<% content_for('tasks') do %>
+  <li><%= link_to _("all feedback"), {:controller => 'feedback'}, :class => all_feedback %></li>
+  <%= task_showmod(count_spam , "Limit to spam", limit_to_spam) %>
+  <%= task_showmod(count_unconfirmed, "Limit to unconfirmed", limit_to_unconfirmed) %>
+  <%= task_showmod(count_unconfirmed_spam, "Limit to unconfirmed spam", limit_to_unconfirmed_spam) %>
+  <%= tab _("Blacklist"), :controller=>"blacklist", :action=>"index" if (this_blog.display_advanced == 1) %>
+<% end %>
+
+<div class="search">
+  <% form_tag({:action => 'index'}, :method => :get) do %>
+    <label for="search"><%= _("Search Comments and Trackbacks that contain")%>...:</label><br /> 
+	<input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="30" />
+	<%= submit_tag "Search" %>
+  <% end %>
+</div>
+
+<div class="list">
+  <% form_tag({:action => 'bulkops'}, :method => :post) do %>
+    <%= render :partial => 'button' %>
+	
+  <%= hidden_field_tag "search", params[:search]%>
+  <%= hidden_field_tag "page", params[:page]%>
+  <table>
+  <tr>
+ 	<th class="first"><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+	<th><%= _("Status")%></th>
+	<th><%= _("Article")%></th>
+    <th><%= _("Author")%></th>
+    <th><%= _("Comment Excertp")%></th>
+    <th><%= _("IP")%></th>
+		<th><%= _("View")%></th>
+		<th><%= _("Edit")%></th>
+    <th class="last"><%= _("Delete") %></th>
+  </tr>
+  <%= render :partial => 'item', :collection => @feedback %>
+  </table>
+	<div class="paginate">
+		<%= link_to _("Previous page"), { :page => @pages.current.previous, :search => params[:search] } if @pages.current.previous %>
+		<%= pagination_links(@pages, :params => {:search => params[:search]}) %>
+		<%= link_to _("Next page"), { :page => @pages.current.next, :search => params[:search] } if @pages.current.next %>
+	</div>
+    <%= render :partial => 'button' %>
+  <% end %>
+</div>
+
+

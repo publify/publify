@@ -239,11 +239,12 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_destroy_file_upload_associations
-    assert_equal 2, contents(:article1).resources.size
-    contents(:article1).resources << resources(:resource1) << resources(:resource2)
-    assert_equal 4, contents(:article1).resources.size
-    contents(:article1).destroy
-    assert_equal 0, Resource.find(:all, :conditions => "article_id = #{contents(:article1).id}").size
+    a = contents(:article1)
+    assert_equal 2, a.resources.size
+    a.resources << resources(:resource3)
+    assert_equal 3, a.resources.size
+    a.destroy
+    assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
   end
 
   def test_notifications

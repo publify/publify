@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th class="first"><%= _("Title") %></th>
+    <th><%= _("Posts") %></th>
+    <th><%= _("Published") %></th>
+    <th><%= _("View") %></th>
+    <th><%= _("Edit") %></th>
+    <th class="last"><%= _("Delete") %></th>
+  </tr>
+  <% for category in @categories -%>
+  <tr <%= alternate_class -%> id="category_<%= category.id -%>">
+    <td class="first"><%= link_to category.name, {:controller => 'articles', :action => 'category', :id => category.permalink} %></td>
+    <td><%= pluralize(category.articles.size, 'article') %></td>
+    <td class="operation"><%= image_tag 'admin/checked.png' %></td>
+    <td class="operation"><%= link_to_show category %></td>
+    <td class="operation"><%= link_to_edit category %></td>
+    <td class="operation last"><%= link_to_destroy category %></td>
+  </tr>  
+  <% end -%>
+</table>

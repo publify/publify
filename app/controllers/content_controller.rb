@@ -20,8 +20,12 @@ class ContentController < ApplicationController
 
   include LoginSystem
 #  model :user
+  before_filter :setup_themer
   helper :theme
 #  before_filter :auto_discovery_defaults
+
+
+
 
   def self.caches_action_with_params(*actions)
     super
@@ -33,7 +37,6 @@ class ContentController < ApplicationController
       # Don't cache the page if there are any questionmark characters in the url
       unless path =~ /\?\w+/ or path =~ /page\d+$/
         super(content,path)
-        PageCache.create(:name => page_cache_file(path))
       end
     rescue # if there's a caching error, then just return the content.
       content
@@ -41,10 +44,10 @@ class ContentController < ApplicationController
   end
 
   def self.expire_page(path)
-    if cache = PageCache.find(:first, :conditions => ['name = ?', path])
-      cache.destroy
-    end
+    PageCache.zap_pages(path)
   end
+
+  protected
 
   def auto_discovery_defaults
     auto_discovery_feed

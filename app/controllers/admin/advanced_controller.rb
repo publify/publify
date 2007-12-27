@@ -3,7 +3,6 @@ class Admin::AdvancedController < Admin::BaseController
     if this_blog.base_url.blank?
       this_blog.base_url = blog_base_url
     end
-    @page_cache_size = PageCache.count
   end
 
   def update
@@ -11,7 +10,7 @@ class Admin::AdvancedController < Admin::BaseController
       Blog.transaction do
         params[:setting].each { |k,v| this_blog.send("#{k.to_s}=", v) }
         this_blog.save
-        flash[:notice] = 'config updated.'
+        flash[:notice] = _('config updated.')
       end
       redirect_to :action => 'index'
     end

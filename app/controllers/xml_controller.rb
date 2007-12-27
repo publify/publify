@@ -1,18 +1,19 @@
-class XmlController < ContentController
-  caches_action_with_params :feed
+class XmlController < ApplicationController
+  caches_page :feed
   session :off
 
   NORMALIZED_FORMAT_FOR = {'atom' => 'atom', 'rss' => 'rss',
     'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
-    'googlesitemap' => 'googlesitemap' }
+    'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }
 
   CONTENT_TYPE_FOR = { 'rss' => 'application/xml',
     'atom' => 'application/atom+xml',
     'googlesitemap' => 'application/xml' }
 
+  before_filter :adjust_format
 
   def feed
-    @format = NORMALIZED_FORMAT_FOR[params[:format]]
+    @format = params[:format]
 
     unless @format
       return render(:text => 'Unsupported format', :status => 404)
@@ -34,16 +35,17 @@ class XmlController < ContentController
       @feed_title = this_blog.blog_name
       @link = this_blog.base_url
 
-      headers["Content-Type"] = "#{CONTENT_TYPE_FOR[@format]}; charset=utf-8"
-
       if respond_to?("prep_#{params[:type]}")
         self.send("prep_#{params[:type]}")
       else
         render :text => 'Unsupported action', :status => 404
         return
       end
-
-      render :action => "#{@format}_feed"
+      respond_to do |format|
+        format.googlesitemap
+        format.atom
+        format.rss
+      end
     end
   end
 
@@ -51,7 +53,9 @@ class XmlController < ContentController
     @feed_title = "#{this_blog.blog_name} Podcast"
     @items = Resource.find(:all, :order => 'created_at DESC',
       :conditions => ['itunes_metadata = ?', true], :limit => this_blog.limit_rss_display)
-    render :action => "itunes_feed"
+    respond_to do |format|
+      format.rss { render :action => "itunes_feed" }
+    end
   end
 
   def articlerss
@@ -66,9 +70,19 @@ class XmlController < ContentController
   end
 
   def rsd
+
   end
 
   protected
+
+  def adjust_format
+    if params[:format]
+      params[:format] = NORMALIZED_FORMAT_FOR[params[:format]]
+    else
+      params[:foramt] = 'rss'
+    end
+    return true
+  end
 
   def fetch_items(association, order='published_at DESC', limit=nil)
     if association.instance_of?(Symbol)

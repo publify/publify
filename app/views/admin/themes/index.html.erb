@@ -1,0 +1,30 @@
+<% @page_heading = _('Choose a theme') %>
+<% content_for('tasks') do %>
+	<%= subtab _("Sidebar"), "", {:controller=>"sidebar", :action=>"index"} %>
+	<%= subtab _("Choose theme"), "current", {:controller=>"themes", :action=>"index"} %>
+	<%= subtab _("Theme editor"), "", {:controller=>"themes", :action=>"editor"} %>
+	<%= subtab _("Text Filters"), "", {:controller=>"textfilters", :action=>"list"} if (this_blog.display_advanced == 1) %>
+<% end %> 
+
+<p class="paginate l">
+	You can download third party themes from officially supported <a href="http://www.dev411.com/typo/themes/">dev 411 Typo themes viewer</a>.
+</p>
+
+<% for theme in @themes %>
+<div class="set theme" style="margin-top:10px;">
+  <div class="preview">
+	<% if theme.path == @active.path -%>
+	  <%= image_tag(url_for :action => 'preview', :theme => theme.name) %>
+	<% else %>	
+	  <%= link_to image_tag(url_for :action => 'preview', :theme => theme.name), :action => 'switchto', :theme => theme.name %>
+	<% end %>
+	</div>
+  <%= theme.description_html %>
+  <% if theme.path == @active.path -%>
+  <em>(<%= _("Active theme")%>)</em>
+  <% else -%>
+  <%= link_to _("Activate"), :action => 'switchto', :theme => theme.name %>
+  <% end -%>
+  <br clear="all" />
+</div>
+<% end %>

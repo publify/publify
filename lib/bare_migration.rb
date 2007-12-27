@@ -63,6 +63,9 @@ module BareMigration
     # Set the table name by eradicating "Bare" from the calculated table name.
     # You can still use set_table_name if this is wrong.
     base.set_table_name(base.table_name.sub(/.*?bare\d*_?/, ''))
+
+    # Default to ignoring the inheritance column
+    base.inheritance_column = :ignore_inheritance_column
   end
 
   module ClassMethods

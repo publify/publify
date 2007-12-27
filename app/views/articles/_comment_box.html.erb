@@ -1,0 +1,45 @@
+<% form_remote_tag :url => comments_path(@article),
+                    :position=> :bottom,
+                    :update => {:success => 'commentList'},
+                    :loading => "loading()",
+                    :complete => "complete(request)",
+                    :failure => "failure(request)",
+                    :html => {:id=>"commentform",:class=>"commentform"} \
+   do %>
+
+
+<div class="comment-box">
+  <div id="errors"></div>
+  <div id="preview" style="display: none"></div>
+
+  <a name="respond"></a>
+  <table cellpadding="4" cellspacing="0" class="frm-tbl">
+    <tr>
+      <td><p><label for="comment_author"><%= _("Your name")%></label></p></td>
+      <td> <%= text_field "comment", "author", :size => 20 %> <small><%= link_to_function("(leave url/email &#187;)", "Element.toggle('guest_url'); Element.toggle('guest_email')") %></small></td>
+    </tr>
+    <tr id="guest_url" style="display:none;">
+      <td><p><label for="comment_url"><%= _("Your blog")%></label></p></td>
+      <td> <%= text_field "comment", "url" %></td>
+    </tr>
+    <tr id="guest_email" style="display:none;">
+      <td><p><label for="comment_email"><%= _("Your email")%></label></p></td>
+      <td> <%= text_field "comment", "email" %></td>
+    </tr>
+    <tr>
+      <td><p><label for="comment_body"><%= _("Your message")%></label></p></td>
+      <td valign="top" colspan="2">
+        <%= text_area "comment", "body" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" id="frm-btns">
+      <span id="comment_loading" style="display:none;"><%= image_tag "spinner.gif" %></span>&nbsp;&nbsp;
+      <%= markup_help_popup TextFilter.find_by_name(this_blog.comment_text_filter), _("Comment Markup Help") %>
+      <a href="#" onclick="new Ajax.Updater('preview', '<%= preview_new_comment_path(@article) %>',  {asynchronous:true, evalScripts:true, parameters:Form.serialize('commentform'), onComplete:function(request){Element.show('preview')}}); return false;"><%= _("Preview comment")%></a>
+      <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
+      </td>
+    </tr>
+  </table>
+</div>
+<% end %>

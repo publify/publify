@@ -17,3 +17,4 @@ config.action_controller.perform_caching             = false
 config.action_mailer.delivery_method = :test
 
 Migrator.offer_migration_when_available            = false
+require 'ruby-debug'

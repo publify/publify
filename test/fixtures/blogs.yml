@@ -29,7 +29,7 @@ default:
     default_allow_comments: true
     itunes_subtitle: ""
     email_from: scott@sigkill.org
-    theme: azure
+    theme: standard_issue
     text_filter: textile
     sp_article_auto_close: 300
     link_to_author: false
@@ -68,7 +68,7 @@ second:
     default_allow_comments: true
     itunes_subtitle: ""
     email_from: scott@sigkill.org
-    theme: azure
+    theme: standard_issue
     text_filter: ""
     sp_article_auto_close: 0
     link_to_author: false

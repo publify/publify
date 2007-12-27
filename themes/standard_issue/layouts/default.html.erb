@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%=h page_title %></title>
+  <%= page_header %>
+  <%= stylesheet_link_tag '/stylesheets/theme/application.css', :media => 'all' %>
+</head>
+
+<body>
+    <!-- start header -->
+    <div id="header">
+        <div id="logo">
+            <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
+            <h2><%= this_blog.blog_subtitle %></h2>
+        </div>
+        <div id="menu">
+            <ul>
+                <li class="page_item <%= 'current_page_item' if (controller.controller_name == "articles" and controller.action_name == "index") %>">
+                    <%= link_to "Home", this_blog.base_url %>
+                </li>
+                <li class="page_item <%= 'current_page_item' if (controller.action_name != 'index' and controller.action_name != 'view_page') %>">
+                    <%= link_to "Articles", {:controller => "articles", :action => "archives"} if (controller.controller_name != "index" )%>
+                </li>
+                <li class="page_item <%= 'current_page_item' if (controller.controller_name == "articles" and controller.action_name == "view_page" and params[:name].to_s == 'about') %>">
+                    <%= link_to "About", this_blog.base_url + "/pages/about" %>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- end header -->
+
+  <div id="page">
+    <div id="content">
+      <%= @content_for_layout %>
+      <%= javascript_tag 'show_dates_as_local_time()' %>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <%= render :partial => 'shared/search' %>
+
+      <!-- sidebar components -->
+      <%= render_sidebars %>
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+        <div class="wrap">
+        <p id="legal">
+                Designed by <%= link_to 'NodeThirtyThree', 'http://www.nodethirtythree.com/' %> ported to Typo by
+                <%= link_to "Frédéric de Villamil", 'http://fredericdevillamil.com' %><br />
+                Powered by <%= link_to 'typo', 'http://typosphere.org' %>
+            </p>
+        </div>
+  </div>
+</body>
+</html>
+

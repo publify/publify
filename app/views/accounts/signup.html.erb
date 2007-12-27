@@ -1,0 +1,36 @@
+<% form_tag :action=> "signup" do %>
+
+<div title="Account signup" id="loginform">
+  <%= content_tag :h3, link_to(image_tag("/images/admin/typologo.png", :alt=>"Typo website", :style => "height: 24px"), "http://typosphere.org") + _(" Signup") %>
+  <div  class="form admin">
+	<%= error_messages_for 'user' %>
+	<ul>
+		<li>
+			<label for="user_login"><%= _("Desired login") %>:</label>
+			<%= text_field "user", "login" %>
+		</li>
+		<li>
+		  <label for="user_login"><%= _("Display name")%>:</label>
+		  <%= text_field "user", "name", :size => 30 %>			
+		</li>
+		<li>
+			<label for="user_login"><%= _("Email")%>:</label>
+  		<%= text_field "user", "email", :size => 30 %>
+		</li>
+		<li>
+			<label for="user_password"><%= _("Choose password")%>:</label>
+		  <%= password_field "user", "password", :size => 30 %>
+		</li>
+		<li>
+			<label for="user_password_confirmation"><%= _("Confirm password")%>:</label>
+		  <%= password_field "user", "password_confirmation", :size => 30 %>
+		</li>
+		<li class="r">
+	  	<input type="submit" id="submit" value="<%= _('Signup') + " &raquo;" %>" />
+		</li>
+	</ul>
+  </div>
+</div>
+
+<% end %>
+

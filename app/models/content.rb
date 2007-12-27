@@ -227,16 +227,12 @@ class Content < ActiveRecord::Base
   end
 
   def to_atom xml
-    xml.entry do
-      atom_author(xml)
-      xml.id "urn:uuid:#{guid}"
-      xml.published created_at.xmlschema
-      xml.updated updated_at.xmlschema
-      atom_title(xml)
-      xml.link :rel => 'alternate', :type => 'text/html', :href => permalink_url
-      atom_groupings(xml)
-      atom_enclosures(xml)
-      atom_content(xml)
+    xml.entry self, :url => permalink_url do |entry|
+      atom_author(entry)
+      atom_title(entry)
+      atom_groupings(entry)
+      atom_enclosures(entry)
+      atom_content(entry)
     end
   end
 

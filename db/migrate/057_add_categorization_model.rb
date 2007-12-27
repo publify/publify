@@ -19,10 +19,10 @@ class AddCategorizationModel < ActiveRecord::Migration
         Categorization.create!(:article_id => ac.article_id,
                                :category_id => ac.category_id,
                                :is_primary => (ac.is_primary == 1))
-      end
+      end rescue nil
     end
 
-    drop_table :articles_categories
+    drop_table :articles_categories rescue nil
   end
 
   def self.down

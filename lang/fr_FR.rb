@@ -1,9 +1,10 @@
 Localization.define('fr_FR') do |l|
+  # General
   l.store "your blog", "votre blog"
   l.store "Typo admin", "administration typo"
   l.store "Publish", "Écrire"
   l.store "Manage", "Gérer"
-  l.store "Feedback", "Discussion"
+  l.store "Feedback", "Commentaires"
   l.store "Design", "Personnaliser"
   l.store "Users", ["Utilisateur", "Utilisateurs"]
   l.store "Settings", "Configuration"
@@ -28,6 +29,19 @@ Localization.define('fr_FR') do |l|
   l.store "Email", "Courriel"
   l.store "Choose password", "Mot de passe"
   l.store "Confirm password", "Confirmez le mot de passe"
+  
+  # admin/dashboard/index.rhtml
+  l.store "What can you do ?", "Vous pouvez"
+  l.store "Write Post", "Écrire Billet"
+  l.store "Write Page", "Écrire Page"
+  l.store "Update your profile or change your password", "Mettre votre profil à jour ou changer votre mot de passe"
+  l.store "Change you blog presentation", "Changer l'apparence de votre blog"
+  l.store "Enable plugins", "Ajouter des greffons"
+  l.store "Last Comments", "Derniers commentaires"
+  l.store "Last posts", "Derniers billets"
+  l.store "Most popular", "Billets les plus populaires"
+  l.store "Typo documentation", "Documentation officielle de Typo"
+  l.store "No comments yet", "Aucun commentaire"
   
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "Derniers commentaires"
@@ -81,6 +95,9 @@ Localization.define('fr_FR') do |l|
   l.store "Show this category", "Voir cette catégorie"
   l.store "Delete this category", "Supprimer cette catégorie"
   l.store "Are you sure you want to delete the category ", "Êtes vous certain de vouloir supprimer la catégorie "
+
+  #admin/category/list.html.erb
+  l.store "add new", "ajouter nouveau"
   
   #admin/category/edit.rhtml
   l.store "Editing category", "Modifier une catégorie" 
@@ -125,10 +142,13 @@ Localization.define('fr_FR') do |l|
   l.store "Creating comment", "Ajouter un commentaire"
   
   #admin/content/_articles.rhtml
+  l.store "Posts", "Billets"
+  l.store "Uploads", "Fichier uploadé"
   l.store "Post title", "Titre du billet"
   l.store "Posted at", "Date de publication"
   l.store "Comments", ["Commentaire", "Commentaires"]
   l.store "Trackbacks", ["Rétrolien", "Rétroliens"]
+  l.store "View", "Voir"
   l.store "Status", "État"
   l.store "Offline", "Hors ligne"
   l.store "Online", "En ligne"
@@ -142,6 +162,9 @@ Localization.define('fr_FR') do |l|
   
   #admin/content/_form.rhtml
   l.store "Article Body", "Corps du billet"
+  l.store "Post", "Contenu"
+  l.store "Optional extended content", "Contenu étendu optionnel"
+  l.store "Optional Extended Content", "Contenu Étendu Optionnel"
   l.store "Article Content", "Contenu du billet"
   l.store "Extended Content", "Contenu étendu"
   l.store "Tags", ["Mot clé", "Mots clé"]
@@ -197,6 +220,11 @@ Localization.define('fr_FR') do |l|
   l.store "Blacklist", "Liste noire"
   l.store "Feedback Search", "Rechercher dans les discussions"
   l.store "Comments and Trackbacks for", "Commentaires et rétroliens pour"
+ 
+  #admin/general/task
+  l.store "Basic settings", "Configuration de base"
+  l.store "Advanced settings", "Configuration avancée"
+  l.store "Blog advanced settings", "Configuration avancée du blog"
   
   #admin/general/index.rhtml
   l.store "Blog settings", "Configuration du blog"
@@ -212,11 +240,14 @@ Localization.define('fr_FR') do |l|
   l.store "Cache", "Cache"
   l.store "Blog name", "Titre du blog"
   l.store "Blog subtitle", "Sous-titre du blog"
+  l.store "Language", "Langue"
+  l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!", "Cette option permet de choisir entre l'interface d'administration simple ou la complète qui affiche beaucoup plus d'options et qui est donc plus compliqué à utiliser. Uniquement pour les utilisateurs avancés!"
   l.store "Blog URL", "Adresse du blog"
   l.store "Latitude, Longitude", "Latitude, Longitude"
   l.store "Display", "Afficher"
   l.store "your lattitude and longitude", "votre lattitude et votre longitude"
   l.store "exemple", "par exemple"
+  l.store "Search Engine Optimisation", "Optimisation pour les moteurs de recherche"
   l.store "Show blog name", "Afficher le titre du blog"
   l.store "At the beginning of page title", "Au début du titre de la page"
   l.store "At the end of page title", "À la fin du titre de la page"
@@ -233,7 +264,7 @@ Localization.define('fr_FR') do |l|
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Cette option vous permet de désactiver totalement les rétroliens sur votre blog. Ceci ne supprimera pas les rétroliens existants, mais empêchera tout nouveau rétrolien d'être créé"
   l.store "Disable trackbacks site-wide" ,"Désactiver globalement les rétroliens"
   l.store "Enable Trackbacks by default", "Activer les rétroliens par défaut"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part"
+  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part"
   l.store "Enable feedback moderation", "Activer la modération des commentaires"
   l.store "Enable comments by default", "Activer les commentaires par défaut"
   l.store "Show your email address", "Afficher votre adresse courriel"
@@ -281,9 +312,11 @@ Localization.define('fr_FR') do |l|
   l.store "You are up to date!", "Vous êtes à jour !"
   l.store "Update database now", "Mettez votre base à jour"
   l.store "may take a moment", "cela peut prendre un moment"
+  l.store "config updated.", "Configuration mis à jour."
   
   #admin/pages/_form.rhtml
   l.store "Page Body", "Contenu de la page"
+  l.store "Page Content", "Contenu de la page"
   l.store "Location", "Lien permanent"
   l.store "Page Options", "Options de la page"
   
@@ -310,6 +343,7 @@ Localization.define('fr_FR') do |l|
   l.store "Duration", "Durée"
   l.store "Key Words", "Mots clé"
   l.store "seperate with spaces", "séparez-les par des espaces"
+  l.store "Category", "Catégorie"
   
   #admin/resources/_metadata_edit.rhtml
   l.store "Remove iTunes Metadata", "Supprimer les méta données iTunes"
@@ -317,6 +351,7 @@ Localization.define('fr_FR') do |l|
   
   #admin/resources/_resources.rhtml
   l.store "Filename", "Fichier"
+  l.store "right-click for link", "clic droit pour le lien"
   l.store "MetaData", "Méta données"
   l.store "File Size", "Taille du fichier"
   l.store "Uploaded", "Ajouté le"
@@ -333,6 +368,7 @@ Localization.define('fr_FR') do |l|
   l.store "Upload a File to your Site", "Envoyer un fichier sur votre site"
   l.store "Upload", "Envoyer"
   l.store "Upload a new Resource", "Ajouter une pièce jointe"
+  l.store "File", "Fichier"
   
   #admin/sidebar/_avaliables.rhtml
   l.store "You have no plugins installed", "Aucun greffon n'est disponible"
@@ -490,4 +526,30 @@ Localization.define('fr_FR') do |l|
   #app/helpers/admin/base_helper.rb
   l.store "Back to overview", "Revenir à la liste"
   l.store "log out", "déconnexion"
+
+  #app/controller/admin/cache_controller.rb
+  l.store "Cache was cleared", "Le cache est vidé"
+  l.store "HTML was cleared", "l'HTML est vidé"
+
+  #app/controller/admin/categories_controller.rb
+  l.store "Category was successfully created.", "Catégorie ajoutée avec succès"
+  l.store "Category could not be created.", "La catégorie n'a pu être créée"
+  l.store "Category was successfully updated.", "Catégorie mis à jour avec succès"
+
+  #app/models/article.rb
+  l.store "New post", "Nouveau billet"
+  l.store "A new message was posted to ", "Une nouveau message a été posté sur "
+
+  #app/helper/application_helper.rb
+  l.store "no ", "aucun "
+
+  #app/controller/admin/resource_controller.rb
+  l.store "File uploaded: ", "Fichier uploader: "
+  l.store "Unable to upload", "impossible d'uploader"
+  l.store "Metadata was successfully removed.", "Les Metadata ont été supprimé avec succès."
+  l.store "Metadata was successfully updated.", "Les Metadata ont été mis à jour avec succès."
+  l.store "Not all metadata was defined correctly.", "Aucun metada n'a été défini correctement."
+  l.store "Content Type was successfully updated.", "Le type du contenu a été mis à jour avec succès."
+  l.store "Error occurred while updating Content Type.", "Une erreur est survenue lors de la mise à jour du type du contenu."
+  l.store "complete", "complet"
 end

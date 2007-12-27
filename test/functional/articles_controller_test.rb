@@ -164,13 +164,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "comment_preview"
 
-    assert_tag :tag => "cite",
-      :children => { :count => 1,
-        :only => { :tag => "strong",
-          :content => "bob" } }
-
-    assert_tag :tag => "p",
-      :content => "comment preview"
+    assert_select 'cite', 'bob'
+    assert_select 'p', 'comment preview'
   end
 
   def test_read_article_with_comments_and_trackbacks
@@ -185,9 +180,9 @@ class ArticlesControllerTest < Test::Unit::TestCase
       assert_select ">li", contents(:article1).published_comments.size
     end
 
-    assert_select "li.author_comment"
+    assert_select "div.author"
 
-    assert_select "ol#trackbackList > li", contents(:article1).trackbacks.size
+    assert_select "ol#trackbacks.trackbacks > li", contents(:article1).trackbacks.size
   end
 
   def test_show_article_no_comments_no_trackbacks
@@ -195,14 +190,8 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "read"
 
-    assert_tag :tag => "ol",
-      :attributes => { :id => "commentList"},
-      :children => { :count => 1,
-        :only => { :tag => "li",
-          :attributes => { :id => "dummy_comment", :style => "display: none" } } }
-
-    assert_no_tag :tag => "ol",
-      :attributes => { :id => "trackbackList" }
+    assert_select 'ol#commentList > li.dummy_comment'
+    assert_select 'ol#trackbackList', false
   end
 
   def test_autodiscovery_default

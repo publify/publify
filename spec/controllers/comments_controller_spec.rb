@@ -25,13 +25,22 @@ describe "All Requests", :shared => true do
   end
 
   before do
-    @articles = mock('articles')
-    @comments = mock('comments')
-    @article  = mock_model(Article, :comments => @comments,
-                           :published_comments => @comments)
-    @comment  = mock_model(Comment)
-    @blog     = mock_model(Blog, :sp_allow_non_ajax_comments => true, :blog_name => "A Blog",
-                           :theme => 'azure', :articles => @articles, :requested_article => @article)
+    @comment  = mock_model(Comment,
+                  :save                       => true,
+                  :author                     => 'bob',
+                  :email                      => 'bob@home',
+                  :url                        => 'http://bobs.home/')
+    @article  = mock_model(Article,
+                  :comments                   => @comments,
+                  :published_comments         => @comments,
+                  :add_comment                => @comment)
+    @blog     = mock_model(Blog,
+                  :sp_allow_non_ajax_comments => true,
+                  :lang                       => 'en_US',
+                  :blog_name                  => "A Blog",
+                  :theme                      => 'azure',
+                  :articles                   => @articles,
+                  :requested_article          => @article)
 
     @article.stub!(:to_param).and_return(['2007', '10', '11', 'slug'])
     Article.stub!(:find).and_return(@article)
@@ -168,6 +177,7 @@ end
 describe CommentsController, 'GET /comments' do
   before do
     @the_mock = mock('blog', :null_object => true)
+    @the_mock.stub!(:lang).and_return('en_US')
     Blog.stub!(:find).and_return(@the_mock)
   end
 
@@ -188,6 +198,7 @@ end
 describe CommentsController, "GET /comments.:format" do
   before do
     @the_mock = mock('blog', :null_object => true)
+    @the_mock.stub!(:lang).and_return('en_US')
     Blog.stub!(:find).and_return(@the_mock)
   end
 

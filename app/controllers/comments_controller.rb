@@ -36,8 +36,8 @@ class CommentsController < FeedbackController
       if params[:article_id]
         this_blog.requested_article(params).published_comments
       else
-        this_blog.with_options(this_blog.rss_limit_params) do |b|
-          b.published_comments(:order => 'created_at DESC')
+        this_blog.published_comments.with_options(this_blog.rss_limit_params) do |c|
+          c.find(:all, :order => 'created_at DESC')
         end
       end
   end

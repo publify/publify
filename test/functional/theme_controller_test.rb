@@ -11,17 +11,17 @@ class ThemeControllerTest < Test::Unit::TestCase
   end
 
   def test_stylesheets
-    get :stylesheets, :filename => "azure.css"
+    get :stylesheets, :filename => "application.css"
     assert_response :success
-    assert_equal "text/css; charset=utf-8", @response.headers['Content-Type']
-    assert_equal "inline; filename=\"azure.css\"", @response.headers['Content-Disposition']
+    assert_equal "text/css; charset=utf-8", @response.headers['type']
+    assert_equal "inline; filename=\"application.css\"", @response.headers['Content-Disposition']
   end
 
   def test_images
-    get :images, :filename => "bg-tile.gif"
+    get :images, :filename => "spacer.gif"
     assert_response :success
-    assert_equal "image/gif", @response.headers['Content-Type']
-    assert_equal "inline; filename=\"bg-tile.gif\"", @response.headers['Content-Disposition']
+    assert_equal "image/gif", @response.headers['type']
+    assert_equal "inline; filename=\"spacer.gif\"", @response.headers['Content-Disposition']
   end
 
   def test_malicious_path
@@ -33,13 +33,13 @@ class ThemeControllerTest < Test::Unit::TestCase
     get :static_view_test
     assert_response :success
 
-    assert @response.body =~ /Static View Test from azure/
+    assert @response.body =~ /Static View Test from standard issue/
   end
 
   def disabled_test_javascript
     get :stylesheets, :filename => "typo.js"
     assert_response :success
-    assert_equal "text/javascript", @response.headers['Content-Type']
+    assert_equal "text/javascript", @response.headers['type']
     assert_equal "inline; filename=\"typo.js\"", @response.headers['Content-Disposition']
   end
 end

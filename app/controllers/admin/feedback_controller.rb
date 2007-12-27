@@ -26,7 +26,7 @@ class Admin::FeedbackController < Admin::BaseController
       :conditions => conditions,
       :per_page => 40)
 
-    render_action 'list'
+    render :action => 'list'
   end
 
   def delete
@@ -72,7 +72,7 @@ class Admin::FeedbackController < Admin::BaseController
       flash[:notice] = "Not implemented"
     end
 
-    redirect_to :action => 'index', :page => params[:page], :search => params[:search]
+    redirect_to :action => 'index', :page => params[:page], :search => params[:search], :confirmed => params[:confirmed], :published => params[:published]
   end
 
   protected
@@ -87,8 +87,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def flush_cache
     @unexpired = false
-    PageCache.sweep('/articles/%')
-    PageCache.sweep('/pages/%')
+    PageCache.sweep_all
     expire_fragment(/.*/)
   end
 end

@@ -4,6 +4,12 @@ class TextFilter < CachedModel
   serialize :filters
   serialize :params
 
+  @text_helper = ContentTextHelpers.new
+
+  def sanitize(*args,&blk)
+    self.class.sanitize(*args,&blk)
+  end
+
   def self.available_filters
     TextFilterPlugin.filter_map.values
   end

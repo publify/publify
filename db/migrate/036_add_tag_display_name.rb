@@ -44,9 +44,7 @@ class AddTagDisplayName < ActiveRecord::Migration
   def self.down
     STDERR.puts 'Removing display name from tags'
     unless $schema_generator
-      Tag.find_and_update(:all) do |tag|
-        tag.name = tag.display_name
-      end
+      Tag.update_all('name = display_name')
     end
     remove_column :tags, :display_name
   end

@@ -123,6 +123,5 @@ class User < CachedModel
 
   validates_confirmation_of :password, :if=> Proc.new { |u| u.password.size > 0}
   validates_length_of :login, :within => 3..40
-  validates_numericality_of :profile_id, :on => :save
   belongs_to :profile
 end

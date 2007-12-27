@@ -12,7 +12,7 @@ require 'typo_deprecated'
 
 Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use
-  # config.frameworks -= [ :action_web_service, :action_mailer ]
+  config.frameworks -= [ :active_resource ]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/app/services )
@@ -20,17 +20,7 @@ Rails::Initializer.run do |config|
   # I need the localization plugin to load first
   # Otherwise, I can't localize plugins <= localization
   # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
-  config.plugins = [ 'localization',
-    'typo_textfilter_flickr',
-    'typo_textfilter_tmcode',
-    'typo_textfilter_sparkline',
-    'typo_textfilter_lightbox',
-    'typo_textfilter_amazon' ]
-
-  Dir.entries("#{RAILS_ROOT}/vendor/plugins/").each { |dir|
-    config.plugins.push("#{dir}") if (File.directory?("#{RAILS_ROOT}/vendor/plugins/#{dir}/lib")  or File.exist?("#{RAILS_ROOT}/vendor/plugins/#{dir}/init.rb"))
-  }
-
+  config.plugins = [ 'localization', :all ]
 
   config.load_paths += %W(
     vendor/rubypants
@@ -52,6 +42,7 @@ Rails::Initializer.run do |config|
     vendor/rails/activerecord/lib
     vendor/rails/actionmailer/lib
     vendor/rails/actionwebservice/lib
+    app/apis
   ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
 
   # Force all environments to use the same logger level
@@ -96,6 +87,8 @@ Inflector.inflections {|i| i.uncountable %w(feedback)}
 # Include your application configuration below
 
 # Load included libraries.
+require 'actionwebservice'
+
 require 'redcloth'
 require 'bluecloth'
 require 'rubypants'
@@ -150,6 +143,16 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
 
 ActionMailer::Base.default_charset = 'utf-8'
 
+# I wanted to put this as a "setup" page, but it seems I can't catch the 
+# exception fast enough and get a 500 error
+if RAILS_ENV != 'test'
+  begin
+    ActiveRecord::Base.connection.select_all("select * from sessions")
+  rescue
+    Migrator.migrate
+  end
+end
+
 if RAILS_ENV != 'test'
   begin
     mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
@@ -168,6 +171,3 @@ FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
 require 'cached_model'
 CachedModel.use_local_cache = true
 CachedModel.use_memcache = false
-
-# Uncomment this to choose your blog's language
-# Localization.lang = 'fr_FR'

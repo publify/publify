@@ -1,0 +1,8 @@
+<p>
+  <%= hidden_field_tag "confirmed", params[:confirmed] %>
+  <%= hidden_field_tag "published", params[:published] %>
+  <%= submit_tag "Delete Checked Items", {:class => 'submit'} %> &nbsp;
+  <%= submit_tag "Mark Checked Items as Ham", {:class => 'submit'} %>
+  <%= submit_tag "Mark Checked Items as Spam", {:class => 'submit'} %>
+  <%= submit_tag "Confirm Classification of Checked Items", {:class => 'submit'} %>
+</p>

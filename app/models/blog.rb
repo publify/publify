@@ -25,16 +25,22 @@ class Blog < CachedModel
   has_many(:published_comments,
            :class_name => 'Comment',
            :conditions => {:published => true},
-           :order => 'feedback.published_at DESC')
+           :order      => 'feedback.published_at DESC')
   has_many(:published_trackbacks,
            :class_name => 'Trackback',
            :conditions => {:published => true},
-           :order => 'feedback.published_at DESC')
-  has_many :pages, :order => "id DESC"
-  has_many(:published_articles, :class_name => "Article",
+           :order      => 'feedback.published_at DESC')
+  has_many(:published_feedback,
+           :class_name => 'Feedback',
            :conditions => {:published => true},
-           :include => [:categories, :tags],
-           :order => "contents.published_at DESC") do
+           :order      => 'feedback.published_at DESC')
+  has_many(:pages,
+           :order      => "id DESC")
+  has_many(:published_articles,
+           :class_name => "Article",
+           :conditions => {:published => true},
+           :include    => [:categories, :tags],
+           :order      => "contents.published_at DESC") do
     def before(date = Time.now)
       find(:all, :conditions => ["contents.created_at < ?", date])
     end
@@ -51,6 +57,8 @@ class Blog < CachedModel
   setting :title_prefix,               :integer, 0
   setting :geourl_location,            :string, ''
   setting :canonical_server_url,       :string, ''  # Deprecated
+  setting :lang,                       :string, 'en_US'
+  setting :display_advanced,           :integer, 0
 
   # Spam
   setting :sp_global,                  :boolean, false
@@ -79,13 +87,14 @@ class Blog < CachedModel
   setting :default_moderate_comments,  :boolean, false
   setting :link_to_author,             :boolean, false
   setting :show_extended_on_rss,       :boolean, true
-  setting :theme,                      :string, 'azure'
+  setting :theme,                      :string, 'standard_issue'
   setting :use_gravatar,               :boolean, false
   setting :global_pings_disable,       :boolean, false
   setting :ping_urls,                  :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'typo@example.com'
   setting :editor,                     :integer, 1
+  setting :cache_option,               :string, 'caches_action_with_params'
 
   # Jabber config
   setting :jabber_address,             :string, ''

@@ -10,11 +10,11 @@ class Admin::ResourcesController < Admin::BaseController
 
           @up.write_to_disk(file)
 
-          @message = 'File uploaded: '+file.size.to_s
+          @message = _('File uploaded: ')+ file.size.to_s
           finish_upload_status "'#{@message}'"
       end
     rescue
-      @message = "'Unable to upload #{file.original_filename}'"
+      @message = "'" + _('Unable to upload') + " #{file.original_filename}'"
       @up.destroy unless @up.nil?
       raise
     end
@@ -24,7 +24,7 @@ class Admin::ResourcesController < Admin::BaseController
     @resource = Resource.find(params[:id])
     @resource.itunes_metadata = false
     @resource.save(false)
-    flash[:notice] = 'Metadata was successfully removed.'
+    flash[:notice] = _('Metadata was successfully removed.')
     redirect_to :action => 'list'
   end
 
@@ -43,9 +43,9 @@ class Admin::ResourcesController < Admin::BaseController
       @resource.itunes_category = itunes_category_pre
     end
     if request.post? and @resource.save
-      flash[:notice] = 'Metadata was successfully updated.'
+      flash[:notice] = _('Metadata was successfully updated.')
     else
-      flash[:error] = 'Not all metadata was defined correctly.'
+      flash[:error] = _('Not all metadata was defined correctly.')
       @resource.errors.each do |meta_key,val|
         flash[:error] << "<br />" + val
       end
@@ -57,22 +57,22 @@ class Admin::ResourcesController < Admin::BaseController
     @resource = Resource.find(params[:resource][:id])
     @resource.mime = params[:resource][:mime] unless params[:resource][:mime].empty?
     if request.post? and @resource.save
-      flash[:notice] = 'Content Type was successfully updated.'
+      flash[:notice] = _('Content Type was successfully updated.')
     else
-      flash[:error] = "Error occurred while updating Content Type."
+      flash[:error] = _("Error occurred while updating Content Type.")
     end
     redirect_to :action => "list"
   end
 
 
   def upload_status
-    render :inline => "<%= upload_progress.completed_percent rescue 0 %> % complete", :layout => false
+    render :inline => "<%= upload_progress.completed_percent rescue 0 %> % " + _("complete"), :layout => false
   end
 
   def list
     @r = Resource.new
     @itunes_category_list = @r.get_itunes_categories
-    @resources_pages, @resources = paginate :resource, :per_page => 15, :order_by => "created_at DESC", :parameter => 'id'
+    @resources_pages, @resources = paginate :resource, :per_page => 15, :order_by => "created_at DESC", :parameter => 'page'
   end
 
   def index

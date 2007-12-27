@@ -86,7 +86,7 @@ describe CategoriesController, '/articles/category/foo' do
 
   it 'should set the page title to "Category foo"' do
     do_get
-    assigns[:page_title].should == 'Category foo'
+    assigns[:page_title].should == 'Category foo, everything about foo'
   end
 
   it 'should render an error when the category is empty' do

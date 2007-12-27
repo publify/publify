@@ -90,7 +90,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "_categories"
     assert_tag :tag => "table",
-      :children => { :count => Category.count,
+      :children => { :count => Category.count + 1,
         :only => { :tag => "tr",
           :children => { :count => 6,
             :only => { :tag => /t[dh]/ } } } }
@@ -100,13 +100,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
     get :reorder
     assert_response :success
     assert_template "reorder"
-    assert_tag :tag => "ul",
-      :attributes => { :id => "category_list" },
-      :children => { :count => Category.count,
-        :only => { :tag => "li",
-          :attributes => { :id => /category_\d+/ } } }
-
-    assert_tag :tag => "a",
-      :content => "(Done)"
+    assert_select 'ul#category_list > li', Category.count
+    assert_select 'a', '(Done)'
   end
 end

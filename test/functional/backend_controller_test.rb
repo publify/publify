@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'action_web_service/test_invoke'
 require 'backend_controller'
 require 'blogger_service'
 require 'digest/sha1'

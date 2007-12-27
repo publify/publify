@@ -1,0 +1,24 @@
+<table cellspacing="1" cellpadding="0">
+<tr>
+  <th class="first"><%= order_link "Title", 'admin/pages', 'list', 'title'%></th>
+  <th><%= _("Permalink")%></th>
+  <th><%= order_link "Date", 'admin/pages', 'list', 'created_at' %></th>
+  <th><%= _("Author")%></th>
+  <th><%= order_link "Published", 'admin/pages', 'list', 'state' %></th>
+  <th><%= _("View")%></th>
+  <th><%= _("Edit")%></th>
+  <th class="last"><%= _("Delete")%></th>
+</tr>
+<% for page in @pages %>
+<tr <%= alternate_class %>>
+  <td class="first"> <%= link_to_permalink(page,page.title) %></td>
+  <td>/pages/<%= page.name %></td>
+  <td><%= page.created_at.strftime("%d/%m/%Y at %H:%M") %></td>
+  <td><%= author_link(page)  %></td>
+  <td class="operation"><%= (page.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
+  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View page", :title => "Preview page"), {:action => "show", :id => page.id} %></td>
+  <td class="operation"><%= link_to_edit page %></td>
+  <td class="operation last"><%= link_to_destroy page %></td>    
+</tr>  
+<% end %>
+</table>

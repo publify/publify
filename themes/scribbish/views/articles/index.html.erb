@@ -1,0 +1,5 @@
+<%= render :partial => 'articles/article', :collection => @articles %>
+
+<% unless @pages.item_count <= this_blog.limit_article_display -%>
+<p class="pagination">Older posts: <%= pagination_links @pages, :params => { :action => @controller.action_name } %></p>
+<% end -%>

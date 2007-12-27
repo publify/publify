@@ -1,0 +1,16 @@
+  <% @page_heading = _('Create Text Filter') %>
+  <% content_for('tasks') do %>
+	<%= task_overview %>
+  <% end %>
+
+  <% form_tag({ :action => "new" }, :id => "textfilter_form") do %>
+
+  <div class="admin">
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations" class="paginate r">
+    <%= save %> or <%= cancel %>
+  </div>
+
+  <% end %>

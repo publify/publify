@@ -260,8 +260,8 @@ class Article < Content
 
   def notify_user_via_jabber(user)
     if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New post",
-                                "A new message was posted to #{blog.blog_name}",
+      JabberNotify.send_message(user, _("New post"),
+                                _("A new message was posted to ") +  blog.blog_name,
                                 html(:body))
     end
   end
@@ -350,7 +350,7 @@ class Article < Content
   def rss_enclosure(xml)
     return if resources.empty?
     res = resources.first
-    xml.enclosure(:url    => blog.file_url(res.file_name),
+    xml.enclosure(:url    => blog.file_url(res.filename),
                   :length => res.size,
                   :type   => res.mime)
   end

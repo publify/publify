@@ -2,25 +2,26 @@ class Admin::CacheController < Admin::BaseController
 
   def index
     list
-    render_action 'list'
+    render :action => 'list'
   end
 
   def list
-    @page_cache_size = PageCache.count
+    @page_cache_size = -1
   end
 
   def sweep
     PageCache.sweep_all
     expire_fragment(/.*/)
 
-    flash[:notice] = 'Cache was cleared'
+    flash[:notice] = _('Cache was cleared')
     redirect_to :controller => '/admin/general'
   end
 
   def sweep_html
+    PageCache.sweep_all
     expire_fragment(/^contents_html.*/)
 
-    flash[:notice] = 'HTML was cleared'
+    flash[:notice] = _('HTML was cleared')
     redirect_to :controller => '/admin/general'
   end
 

@@ -1,0 +1,21 @@
+  <% @page_heading = _('Posts') %>
+
+  <% content_for('tasks') do %>
+	<%= subtab _("Posts"), "current", {:controller=>"content", :action=>"list"} %>
+	<%= subtab _("Pages"), "", {:controller=>"pages", :action=>"list"} %>
+	<%= subtab _("Categories"), "", {:controller=>"categories", :action=>"index"} %>
+	<%= subtab _("Uploads"), "", {:controller=>"resources", :action=>"list"} %>
+  <% end %> 
+  <div id="quick-navigate" style="display:none;position:absolute;">
+    <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>
+  </div>
+
+  <div id="quick-post" style="display:none;position:absolute;">
+    <%= render :partial => "quick_post" %>
+  </div>
+  <div class="list" id="articles">	
+    <%= render :partial => 'articles' %>
+  </div>                      
+  <div class="paginate">
+    <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>
+  </div>

@@ -7,7 +7,12 @@ class ArticlesController < ContentController
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :read, :show, :archives, :view_page]
-  caches_action_with_params *cached_pages
+
+  if Blog.default && Blog.default.cache_option == "caches_action_with_params"
+    caches_action_with_params *cached_pages
+  else
+    caches_page *cached_pages
+  end
 
   session :new_session => false
 
@@ -15,6 +20,24 @@ class ArticlesController < ContentController
 
   def index
     @articles = this_blog.requested_articles(params)
+
+    # Build page title, should probably be moved elsewhere
+    if params[:year]
+      date = Time.mktime(params[:year], params[:month], params[:day])
+      if params[:month]
+        if params[:day]
+          @page_title = "Archives for " + date.strftime("%A %d %B %Y")
+        else
+          @page_title = "Archives for " + date.strftime("%B %Y")
+        end
+      else
+        @page_title = "Archives for " + date.strftime("%Y")
+      end
+    end
+    if params[:page]
+      @page_title << " page " << params[:page]
+    end
+    
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
@@ -33,7 +56,7 @@ class ArticlesController < ContentController
     auto_discovery_feed
     respond_to do |format|
       format.html { render :action => 'read' }
-      format.atom { render :partial => 'atom_feed', :object => @article.published_feedback }
+      format.atom {  render :partial => 'atom_feed', :object => @article.published_feedback }
       format.rss  { render :partial => 'rss20_feed', :object => @article.published_feedback }
       format.xml  { redirect_to :format => 'atom' }
     end
@@ -50,6 +73,7 @@ class ArticlesController < ContentController
 
   def archives
     @articles = this_blog.published_articles
+    @page_title = "Archives"
   end
 
   def comment_preview
@@ -99,11 +123,6 @@ class ArticlesController < ContentController
       redirect_to :controller => "admin/general", :action => "redirect"
     else
       return true
-    end
-  end
-
-  def display_article(article = nil)
-    begin
     end
   end
 
