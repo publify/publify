@@ -1,7 +1,7 @@
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "4.99"
+PKG_VERSION = "5.0"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
@@ -36,6 +36,8 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
   s.add_dependency("xmpp4r", ">= 0.3.1")
+  s.add_dependency("rcov", ">= 0.8.1")
+  s.add_dependency("flexmock", ">= 0.8.0")  
 end
 
 Rake::GemPackageTask.new(spec) do |p|

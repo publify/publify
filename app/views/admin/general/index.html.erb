@@ -35,10 +35,10 @@
 			<li>
 				<label class="float" for="display_advanced">Choose interface:</label>
 				<input type="radio" name="setting[display_advanced]" value="0" id="display_advanced_0" <%= 'checked="checked"' if this_blog.display_advanced == 0 %>/>
-				<label for="editor_2"><%= _("Use simple interface (default)")%></label>
+				<label for="display_advanced_0"><%= _("Use simple interface (default)")%></label>
 				<span class="float">
 					<input type="radio" name="setting[display_advanced]" value="1" id="display_advanced_1" <%= 'checked="checked"' if this_blog.display_advanced == 1 %>/>
-					<label for="editor_1"><%= _("Use complete admin")%></label>
+					<label for="display_advanced_1"><%= _("Use complete admin")%></label>
 				</span>
 			</li>
 			<li><%= _("By default, Typo generates static HTML pages for your posts. However, if you plan to publish posts in the futur, you may want to use semi dynamic caching") %>.</li>
