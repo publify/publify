@@ -7,6 +7,36 @@ class TypoInstaller < RailsInstaller
   application_name 'typo'
   support_location 'the Typo mailing list'
   
+  def pre_migrate_database
+    old_schema_version = get_schema_version
+    new_schema_version = File.read(File.join(source_directory,'db','schema_version')).to_i
+    
+    return unless old_schema_version > 0
+     
+    # Are we downgrading?
+    if old_schema_version > new_schema_version
+      message "Downgrading schema from #{old_schema_version} to #{new_schema_version}"
+      
+      in_directory install_directory do
+        unless system("rake -s db:migrate VERSION=#{new_schema_version}")
+          raise InstallFailed, "Downgrade migrating from #{old_schema_version} to #{new_schema_version} failed."
+        end
+      end
+    end
+  end
+  
+  # Migrate the database
+  def migrate
+    message "Migrating #{@@app_name.capitalize}'s database to newest release"
+    
+    in_directory install_directory do
+      unless system("rake -s db:migrate")
+        raise InstallFailed, "Migration failed"
+      end
+    end
+  end
+  
+  
   def install_post_hook
     sweep_cache
   end

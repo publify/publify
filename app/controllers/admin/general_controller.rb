@@ -1,6 +1,4 @@
 class Admin::GeneralController < Admin::BaseController
-  # Deprecation warning for plugins removal
-  before_filter :deprecation_warning
 
   def index
     if this_blog.base_url.blank?
@@ -37,17 +35,6 @@ class Admin::GeneralController < Admin::BaseController
         flash[:notice] = _('config updated.')
       end
       redirect_to :action => 'index'
-    end
-  end
-
-  # Deprecation warning for plugins removal
-  def deprecation_warning
-    if this_blog.deprecation_warning == 1
-      Blog.transaction do
-        this_blog.deprecation_warning = 0
-        this_blog.save
-      end
-      flash[:notice] = "Deprecation warning: please, notice that most plugins are going to be removed from the main engine in the next version. <a href='http://blog.typosphere.org/articles/2007/04/15/the-futur-of-typo-sidebar-plugins'>Read more on the official Typo blog</a>"
     end
   end
 

@@ -38,6 +38,8 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("xmpp4r", ">= 0.3.1")
   s.add_dependency("rcov", ">= 0.8.1")
   s.add_dependency("flexmock", ">= 0.8.0")  
+  s.add_dependency("rspec", ">= 1.1.1")
+  s.add_dependency("actionwebservice", ">= 1.2.6")
 end
 
 Rake::GemPackageTask.new(spec) do |p|
