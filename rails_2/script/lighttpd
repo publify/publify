@@ -1,2 +1,0 @@
-#!/bin/sh
-lighttpd -D -f config/lighttpd.conf

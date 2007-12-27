@@ -1,8 +1,0 @@
-  <% @page_heading = _('Cache') %>
-
-  <% content_for('tasks') do %>
-    <%= task_sweep 'Empty Page Cache' %>
-  <% end %> 
-  <div id="users">	
-    <p> <%= _("There are %d entries in the page cache", @page_cache_size) %></p>
-  </div>
