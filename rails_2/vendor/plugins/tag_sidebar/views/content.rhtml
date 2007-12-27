@@ -1,0 +1,8 @@
+<% unless sidebar.tags.blank? -%>
+<h3><%= _("Tags")%></h3>
+<p style="overflow:hidden">
+<% sidebar.tags.each do |tag| -%>
+<span style="font-size:<%= sidebar.sizes[tag] %>%"><%= link_to tag.display_name, tag_url(tag) %></span>
+<% end -%>
+</p>
+<% end %>

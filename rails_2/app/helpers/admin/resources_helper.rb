@@ -1,0 +1,2 @@
+module Admin::ResourcesHelper
+end

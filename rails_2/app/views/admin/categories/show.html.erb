@@ -1,0 +1,37 @@
+  <% @page_heading =  _("Posts in") + " #{h @category.name}" %>
+
+  <% content_for('tasks') do %>
+	<%= subtab _("Posts"), "current", {:controller=>"content", :action=>"list"} %>
+	<%= subtab _("Pages"), "", {:controller=>"pages", :action=>"list"} %>
+	<%= subtab _("Categories"), "", {:controller=>"categories", :action=>"index"} %>
+	<%= subtab _("Uploads"), "", {:controller=>"resources", :action=>"list"} %>
+  <% end %>
+
+  <% form_tag :action=>"new" do %>
+  <div class="list">
+    <table>
+	  <tr>
+	    <th class="first"><%= _("Title")%></th>
+      <th><%= _("Comments")%></th>
+	    <th><%= _("Date")%></th>
+	    <th><%= _("Author")%></th>
+	    <th><%= _("Published")%></th>
+	    <th><%= _("View") %></th>
+      <th><%= _("Edit") %></th>
+	    <th class="last"><%= _("Delete") %></th>
+	  </tr>
+    <% for article in @category.articles -%>
+      <tr  <%= alternate_class -%>>
+        <td class="first"><%= link_to_permalink article, h(article.title) %></td>
+        <td><%= link_to pluralize(article.comments.size, 'comment'), :controller => '/admin/comments', :article_id => article, :action => 'list' %></td>
+        <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
+        <td><%= author_link(article) %></td>
+        <td class="operation"><%= (article.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
+	  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => article.id} %></td>
+	  <td class="operation"><%= link_to_edit article %></td>
+	  <td class="operation last"><%= link_to_destroy article %></td>
+      </tr>
+    <% end -%>
+    </table>
+  </div>
+  <% end %>

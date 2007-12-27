@@ -1,0 +1,19 @@
+<%= error_messages_for 'comment' %>
+<!--[form:comment]-->
+<p>
+  <label for="comment_author"><%= _("Author")%>:</label><br/>
+  <%= text_field 'comment', 'author', "value" => (current_user.name if controller.action_name == "list") %>
+</p>
+<p>
+  <label for="comment_url"><%= _("Url") %>:</label><br/>
+  <%= text_field 'comment', 'url', "value" => (this_blog.base_url if controller.action_name == "list")  %>
+</p>
+<p>
+  <label for="comment_email"><%= _("Email")%>:</label><br/>
+  <%= text_field 'comment', 'email', "value" => (current_user.email if controller.action_name == "list") %>
+</p>
+<p>
+  <label for="comment_body"><%= _("Body")%>:</label><br/>
+  <%= text_area 'comment', 'body'  %>
+</p>
+<!--[eoform:comment]-->

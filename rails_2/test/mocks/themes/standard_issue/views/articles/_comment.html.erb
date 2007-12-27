@@ -1,0 +1,12 @@
+<li class="comment" id="comment-<%= comment.id %>">
+  <div class="author">
+    <%= content_tag(:div, gravatar_tag(comment.email)) if this_blog.use_gravatar and comment.email %>
+    <cite><%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url) %></cite>
+    <abbr title="<%= comment.created_at.xmlschema %>"><%= distance_of_time_in_words comment.article.published_at, comment.created_at %> later:</abbr>
+  </div>
+    <%= comment.html %>
+  <% unless comment.published -%>
+  <div class="spamwarning"><%= _("This comment has been flagged for moderator approval.") %></div>
+  <% end -%>
+</li>
+

@@ -1,0 +1,15 @@
+<div id="attachment_<%= attachment_num -%>"<% if hidden %> style="display: none;"<% end %>>
+  <%= file_field 'attachments', "filename_#{attachment_num}" -%>
+  <%= link_to_function(_("Remove"),
+      update_page do |page|
+        page << "if (confirm(_(Really delete attachment) +' #{attachment_num}?')){"
+        page.visual_effect(:toggle_appear, "attachment_#{attachment_num}", :afterFinish => "function(obj){Element.remove(obj.element);}")
+        page << "}"
+      end) -%>
+  <br />
+</div>
+<div id="attachment_add_<%= attachment_num.succ %>">
+  <%= link_to_remote _('Add Another Attachment'),
+    :url => { :action => "attachment_box_add", :id => attachment_num.succ },
+    :asynchronus => false -%>
+</div>

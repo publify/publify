@@ -1,0 +1,9 @@
+  <h4><%= _("Currently this article is listed in following categories")%>:</h4>
+  <% for category in @article.categories %>
+    <%= link_to_remote "- #{category.name}", :url => { :action => "category_remove", :id => @article.id, :category_id => category.id }, :update => 'categories' %><br/>
+  <% end %>
+
+  <h4><%= _("You can add it to the following categories")%>:</h4>
+  <% for category in @categories - @article.categories %>
+    <%= link_to_remote "+ #{category.name}", :url => { :action => "category_add", :id => @article.id, :category_id => category.id }, :update => 'categories' %><br/>
+  <% end %>

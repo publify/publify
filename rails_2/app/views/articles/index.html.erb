@@ -1,0 +1,11 @@
+<% for article in @articles -%>
+ <div class="post">
+  <%= render :partial => "articles/article", :object => article %>
+  <%= link_to_permalink article, _("Read more") + "..." if article.extended? %>
+  <p class="meta"><%= article_links article %></p>
+  </div>
+<% end -%>
+
+<% unless @pages.item_count <= this_blog.limit_article_display %>
+  <p id="pagination"><%= _("Older posts")%>: <%= pagination_links @pages, :params => { :action => @controller.action_name } %></p>
+<% end -%>

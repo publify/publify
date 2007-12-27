@@ -1,0 +1,10 @@
+<div class="comment preview">
+  <div class="author">
+    <%= content_tag(:div, gravatar_tag(@comment.email)) if this_blog.use_gravatar and @comment.email %>
+    <cite><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></cite>
+    <abbr>is about to say</abbr>
+  </div>
+  <div class="content">
+    <%= @comment.html %>
+  </div>
+</div>

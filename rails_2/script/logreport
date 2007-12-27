@@ -1,0 +1,79 @@
+#!/usr/bin/ruby
+
+latest=[]
+
+class CallNode
+  attr_accessor :name, :time, :children, :queries, :query_time
+  
+  def initialize(name)
+    @name = name
+    @children = Array.new
+    @queries = 0
+    @query_time = 0
+    @time = 0
+  end
+  
+  def to_s
+    name
+  end
+  
+  def print_tree(depth)
+    child_time=children.inject(0) {|total,c| c.time.to_f + total} || 0
+    printf "%s %-40s    %f  q=%-3d (%f) o=%f\n",
+      " "*depth,
+      name,
+      time,
+      queries,
+      query_time,
+      time-child_time-query_time
+    
+    #" " "*depth+"** #{name}              #{time}   #{time-child_time}  #{queries} queries (#{query_time})"
+    children.each do |child|
+      child.print_tree(depth+1)
+    end
+  end
+  
+  def averages(average_hash = Hash.new)
+    average_hash[name] ||= Array.new
+    average_hash[name].push time
+    children.each { |child| child.averages(average_hash) }
+    average_hash
+  end
+end
+
+def putsi(depth,string)
+  puts " "*depth + string
+end
+
+root=CallNode.new('ROOT')
+latest=[root]
+
+ARGF.each_line do |line|
+  case line
+  when /^Processing ([a-zA-Z0-9_]+#[a-z_]+)/
+#    putsi latest.size, "Starting #{$1}"
+    node = CallNode.new($1)
+    latest.last.children << node
+    latest.push node
+  when /^End of component rendering/
+    nil
+  when /\(([0-9.]+)\).*SELECT/
+    latest.last.queries += 1
+    latest.last.query_time += $1.to_f
+  when /^Completed in ([0-9.]+)/
+    latest.last.time=$1.to_f
+    latest.pop
+  when /^BENCHMARK: (.*) \((.*)\)/
+    node = CallNode.new($1)
+    node.time = $2.to_f
+    latest.last.children << node
+  end
+end
+
+root.print_tree(0)
+puts "\nAverages:"
+averages = root.averages
+
+averages.keys.sort.each do |name|
+  printf " %-40s  %8f\n",name,(averages[name].inject(0) {|sum,time| sum+time})/averages[name].size
+end

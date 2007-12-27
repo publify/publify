@@ -1,0 +1,22 @@
+<% form_tag({ :action => "update" }, :id => id, :enctype => "multipart/form-data") do %>
+<div class="form">
+  <b><%= _("Resource MetaData")%></b><br />
+  <%= link_to _("Remove iTunes Metadata"), { :action => "remove_itunes_metadata", :id => resource.id}, :confirm => "Are you sure?"%><br />
+    <label for="resource_itunes_author_<%= id %>"><%= _("Author")%>:</label><br />
+    <input name="resource[itunes_author]" size="25" id="resource_itunes_author_<%= id %>" type="text" value="<%=h resource.itunes_author %>" /><br />
+    <label for="resource_itunes_subtitle_<%= id %>"><%= _("Subtitle")%>:</label><br />
+    <input name="resource[itunes_subtitle]" size="25" id="resource_itunes_subtitle_<%= id %>" type="text" value="<%=h resource.itunes_subtitle %>" /><br />
+    <label for="resource_itunes_duration_<%= id %>"><%= _("Duration")%>:</label><br />
+    <input name="resource[itunes_duration]" size="8" id="resource_itunes_duration_<%= id %>" type="text" value="<%=h resource.itunes_duration %>" /><small>(HH:MM:SS)</small><br />
+    <label for="resource_itunes_summary_<%= id %>"><%= _("Summary")%>:</label><br />
+    <textarea name="resource[itunes_summary]" id="resource_itunes_summary_<%= id %>" rows="5" cols="35"><%=h resource.itunes_summary %></textarea><br />
+    <label for="resource_itunes_category_<%= id %>"><%= _("Category")%>:</label><br />
+    <%= render :partial => "itunes_category_edit", :locals => { :categories => resource.itunes_category, :id => id } %><br />
+    <label for="resource_itunes_keywords_<%= id %>"><%= _("Key Words")%>:</label><br />
+    <input name="resource[itunes_keywords]" size="25" id="resource_itunes_keywords_<%= id %>" type="text" value="<%=h resource.itunes_keywords %>" /><small>(<%= _("seperate with spaces")%>)</small><br />
+    <input name="resource[itunes_explicit]" type="checkbox"  value="1" <%= 'checked="checked"' if resource.itunes_explicit%>><%= _("Explicit")%></input><input name="resource[itunes_explicit]" type="hidden" value="0" />
+  <br />
+  <input name="resource[id]" type="hidden" value="<%= id %>" />
+<%= save(<%=_("Save")) %> <%= _("or")> <a href="#" onclick="new Effect.BlindUp('edit-resource-metadata-<%= id %>', {duration: 0.4}); return false;" ><%= _("Cancel") %></a>
+</div>
+<% end %>

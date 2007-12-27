@@ -1,0 +1,11 @@
+  <% @page_heading = _("Comments for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+
+  <% content_for('tasks') do %>
+    <%= task_show _('Show this comment'), @comment.id %>
+  <% end %>
+
+  <p><%= _("Are you sure you want to delete this item?")%></p>
+  <% form_tag do %>
+  <%= hidden_field "comment", "id" %>
+  <%= confirm_delete %>
+  <% end %>

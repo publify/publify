@@ -1,0 +1,5 @@
+<% if availables.blank? %>
+  <p>  <%= _("You have no plugins installed")%>...  </p>
+<% else %>
+  <%= render :partial => 'available', :collection => availables %>
+<% end %>

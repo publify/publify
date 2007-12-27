@@ -1,0 +1,37 @@
+<% form_remote_tag :url      => comments_path(@article),
+                    :position => :bottom,
+                    :update   => {:success => 'commentList'},
+                    :loading  => "loading()",
+                    :complete => "complete(request)",
+                    :failure  => "failure(request)",
+                    :html     => {:id => 'commentform', :class => 'comments' } \
+    do %>
+
+<div id="preview" style="display:none"></div>
+
+  <h2 id="respond">Leave a comment</h2>
+  <p>
+	 <%= text_field "comment", "author", :class => 'styled', :size => 22 %>
+    <label>Name</label>
+  </p>
+	<p>
+		<%= text_field "comment", "email", :class => 'styled', :size => 22 %>
+		<label>Email <%= content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} enabled)") if this_blog.use_gravatar %></label>
+	</p>
+	<p>
+		<%= text_field "comment", "url", :class => 'styled', :size => 22 %>
+		<label>Url</label>
+	</p>
+  <p>
+      <%= text_area 'comment', 'body', :class => 'styled', :rows => 10, :cols => 100 %>
+  </p>
+
+  <p>
+    <%= submit_to_remote('preview', 'Preview!',
+                         :update => 'preview',
+                         :complete => "Element.show('preview')",
+                         :url    => preview_new_comment_path(@article)) %>
+    <%= submit_tag 'Submit', :id => 'form-submit-button',  :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
+    <%= image_tag '/images/theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
+  </p>
+<% end %>

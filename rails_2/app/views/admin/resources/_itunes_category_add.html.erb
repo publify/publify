@@ -1,0 +1,11 @@
+<select name="itunes_category[]" id="resource_itunes_category_<%= id %>" size="3" multiple="multiple">
+  <% @itunes_category_list.each do |pcat| -%>
+    <% pcat.each_pair do |cat,subcats| -%>
+    <% #not a great way of handling this but it looks better -%>
+        <option value="<%=h cat %>"><%=h cat %></option>
+      <% subcats.each do |subcat|  -%>
+        <option value="<%=h cat %>-<%=h subcat %>">&nbsp;-<%=h subcat %></option>
+      <% end unless subcats.nil?  -%>
+    <% end -%>
+  <% end -%>
+</select>

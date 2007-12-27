@@ -1,0 +1,14 @@
+<div id="active_<%= active.html_id %>" class="dragitem">
+  <h4 class="handle"><%= active.display_name %></h4>
+  <p><%= active.description %></p>
+  <div class="space">
+  <div><% active.class.fields.each do |row| -%>
+    <%= row.line_html(active) %>
+  <% end -%></div>
+  <%= link_to_remote('remove',
+        :url => {:action => 'remove', :id => active.id,
+                 :element => "active_#{active.html_id}"},
+        :before => "new Effect.Fade('active_#{active.html_id}')",
+        :loading => "new Element.show('update_spinner')") %>
+  </div>
+</div>

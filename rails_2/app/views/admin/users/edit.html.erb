@@ -1,0 +1,17 @@
+  <% @page_heading = _('Edit User') %>
+  <% content_for('tasks') do %>
+  <%= tab _("New User"), :controller=>"users", :action=>"new"%>
+  <%= task_overview %>
+  <% end%>
+
+  <% form_tag :action=>"edit", :id => @user.id do %>
+
+  <div class="admin">
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations" class="paginate r">
+    <%= save %> or <%= cancel %>
+  </div>
+
+  <% end %>

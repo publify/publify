@@ -1,0 +1,4 @@
+<% for comment in @comments %>
+by <strong><%= comment.author %></strong> <%= _("on")%> <%= comment.created_at %>  <%= link_to '[x]', :action => 'comment_destroy', :id => comment.id %> <br />
+<%= comment.body %><br /><br />
+<% end %>

@@ -1,0 +1,15 @@
+  <% @page_heading = _("Trackbacks for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+
+  <h3><%= _("Creating trackback")%></h3>
+
+  <% form_tag :action=>"new" do %>
+
+  <div class="form">
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations">
+    <%= save %> or <%= cancel %>
+  </div>
+
+  <% end %>

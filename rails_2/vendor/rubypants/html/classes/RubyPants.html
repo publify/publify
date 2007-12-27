@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Class: RubyPants</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+	<script type="text/javascript">
+	// <![CDATA[
+
+	function popupCode( url ) {
+		window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+	}
+
+	function toggleCode( id ) {
+		if ( document.getElementById )
+			elem = document.getElementById( id );
+		else if ( document.all )
+			elem = eval( "document.all." + id );
+		else
+			return false;
+
+		elemStyle = elem.style;
+		
+		if ( elemStyle.display != "block" ) {
+			elemStyle.display = "block"
+		} else {
+			elemStyle.display = "none"
+		}
+
+		return true;
+	}
+	
+	// Make codeblocks hidden by default
+	document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+	
+	// ]]>
+	</script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <h1>RubyPants <sup class="type-note">(Class)</sup></h1>
+        <table class="header-table">
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/rubypants_rb.html">
+                rubypants.rb
+                </a>
+				<br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                String
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+	<div id="bodyContent">
+
+
+	<div id="contextContent">
+
+		<div id="description">
+			<h1><a href="RubyPants.html">RubyPants</a> &#8212; SmartyPants ported to Ruby</h1>
+<h2>Synopsis</h2>
+<p>
+<a href="RubyPants.html">RubyPants</a> is a Ruby port of the smart-quotes
+library SmartyPants.
+</p>
+<p>
+The original &quot;SmartyPants&quot; is a free web publishing plug-in for
+Movable Type, Blosxom, and BBEdit that easily translates plain ASCII
+punctuation characters into &quot;smart&quot; typographic punctuation HTML
+entities.
+</p>
+<h2>Description</h2>
+<p>
+<a href="RubyPants.html">RubyPants</a> can perform the following
+transformations:
+</p>
+<ul>
+<li>Straight quotes (<tt>&quot;</tt> and <tt>&#8216;</tt>) into
+&quot;curly&quot; quote HTML entities
+
+</li>
+<li>Backticks-style quotes (<tt>``like this&#8217;&#8216;</tt>) into
+&quot;curly&quot; quote HTML entities
+
+</li>
+<li>Dashes (<tt>&#8212;</tt> and <tt>&#8212;</tt>) into en- and em-dash
+entities
+
+</li>
+<li>Three consecutive dots (<tt>&#8230;</tt> or <tt>. . .</tt>) into an
+ellipsis entity
+
+</li>
+</ul>
+<p>
+This means you can write, edit, and save your posts using plain old ASCII
+straight quotes, plain dashes, and plain dots, but your published posts
+(and final HTML output) will appear with smart quotes, em-dashes, and
+proper ellipses.
+</p>
+<p>
+<a href="RubyPants.html">RubyPants</a> does not modify characters within
+<tt>&lt;pre&gt;</tt>, <tt>&lt;code&gt;</tt>, <tt>&lt;kbd&gt;</tt>,
+<tt>&lt;math&gt;</tt> or <tt>&lt;script&gt;</tt> tag blocks. Typically,
+these tags are used to display text where smart quotes and other
+&quot;smart punctuation&quot; would not be appropriate, such as source code
+or example markup.
+</p>
+<h2>Backslash Escapes</h2>
+<p>
+If you need to use literal straight quotes (or plain hyphens and periods),
+<a href="RubyPants.html">RubyPants</a> accepts the following backslash
+escape sequences to force non-smart punctuation. It does so by transforming
+the escape sequence into a decimal-encoded HTML entity:
+</p>
+<pre>
+  \\    \&quot;    \'    \.    \-    \`
+</pre>
+<p>
+This is useful, for example, when you want to use straight quotes as foot
+and inch marks: 6&#8217;2&quot; tall; a 17&quot; iMac. (Use
+<tt>6\&#8217;2\&quot;</tt> resp. <tt>17\&quot;</tt>.)
+</p>
+<h2>Algorithmic Shortcomings</h2>
+<p>
+One situation in which quotes will get curled the wrong way is when
+apostrophes are used at the start of leading contractions. For example:
+</p>
+<pre>
+  'Twas the night before Christmas.
+</pre>
+<p>
+In the case above, <a href="RubyPants.html">RubyPants</a> will turn the
+apostrophe into an opening single-quote, when in fact it should be a
+closing one. I don&#8217;t think this problem can be solved in the general
+case&#8212;every word processor I&#8217;ve tried gets this wrong as well.
+In such cases, it&#8217;s best to use the proper HTML entity for closing
+single-quotes (&quot;<tt>&amp;8217;</tt>&quot;) by hand.
+</p>
+<h2>Bugs</h2>
+<p>
+To file bug reports or feature requests (except see above) please send
+email to: <a
+href="mailto:chneukirchen@gmail.com">chneukirchen@gmail.com</a>
+</p>
+<p>
+If the bug involves quotes being curled the wrong way, please send example
+text to illustrate.
+</p>
+<h2>Authors</h2>
+<p>
+John Gruber did all of the hard work of writing this software in Perl for
+Movable Type and almost all of this useful documentation. Chad Miller
+ported it to Python to use with Pyblosxom.
+</p>
+<p>
+Christian Neukirchen provided the Ruby port, as a general-purpose library
+that follows the *Cloth API.
+</p>
+<h2>Copyright and License</h2>
+<h3>SmartyPants license:</h3>
+<p>
+Copyright &#169; 2003 John Gruber (<a
+href="http://daringfireball.net">daringfireball.net</a>) All rights
+reserved.
+</p>
+<p>
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+</p>
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+</li>
+<li>Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+</li>
+<li>Neither the name &quot;SmartyPants&quot; nor the names of its contributors
+may be used to endorse or promote products derived from this software
+without specific prior written permission.
+
+</li>
+</ul>
+<p>
+This software is provided by the copyright holders and contributors
+&quot;as is&quot; and any express or implied warranties, including, but not
+limited to, the implied warranties of merchantability and fitness for a
+particular purpose are disclaimed. In no event shall the copyright owner or
+contributors be liable for any direct, indirect, incidental, special,
+exemplary, or consequential damages (including, but not limited to,
+procurement of substitute goods or services; loss of use, data, or profits;
+or business interruption) however caused and on any theory of liability,
+whether in contract, strict liability, or tort (including negligence or
+otherwise) arising in any way out of the use of this software, even if
+advised of the possibility of such damage.
+</p>
+<h3><a href="RubyPants.html">RubyPants</a> license</h3>
+<p>
+<a href="RubyPants.html">RubyPants</a> is a derivative work of SmartyPants
+and smartypants.py.
+</p>
+<p>
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+</p>
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+</li>
+<li>Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+</li>
+</ul>
+<p>
+This software is provided by the copyright holders and contributors
+&quot;as is&quot; and any express or implied warranties, including, but not
+limited to, the implied warranties of merchantability and fitness for a
+particular purpose are disclaimed. In no event shall the copyright owner or
+contributors be liable for any direct, indirect, incidental, special,
+exemplary, or consequential damages (including, but not limited to,
+procurement of substitute goods or services; loss of use, data, or profits;
+or business interruption) however caused and on any theory of liability,
+whether in contract, strict liability, or tort (including negligence or
+otherwise) arising in any way out of the use of this software, even if
+advised of the possibility of such damage.
+</p>
+<h2>Links</h2>
+<table>
+<tr><td valign="top">John Gruber:</td><td><a href="http://daringfireball.net">daringfireball.net</a>
+
+</td></tr>
+<tr><td valign="top">SmartyPants:</td><td><a
+href="http://daringfireball.net/projects/smartypants">daringfireball.net/projects/smartypants</a>
+
+</td></tr>
+<tr><td valign="top">Chad Miller:</td><td><a href="http://web.chad.org">web.chad.org</a>
+
+</td></tr>
+<tr><td valign="top">Christian Neukirchen:</td><td><a href="http://kronavita.de/chris">kronavita.de/chris</a>
+
+</td></tr>
+</table>
+
+		</div>
+
+
+		<div id="method-list">
+			<h2 class="section-bar">Methods</h2>
+
+			<div class="name-list">
+			<a href="#M000008">educate_backticks</a>&nbsp;&nbsp;
+			<a href="#M000004">educate_dashes</a>&nbsp;&nbsp;
+			<a href="#M000006">educate_dashes_inverted</a>&nbsp;&nbsp;
+			<a href="#M000005">educate_dashes_oldschool</a>&nbsp;&nbsp;
+			<a href="#M000007">educate_ellipses</a>&nbsp;&nbsp;
+			<a href="#M000010">educate_quotes</a>&nbsp;&nbsp;
+			<a href="#M000009">educate_single_backticks</a>&nbsp;&nbsp;
+			<a href="#M000001">new</a>&nbsp;&nbsp;
+			<a href="#M000003">process_escapes</a>&nbsp;&nbsp;
+			<a href="#M000011">stupefy_entities</a>&nbsp;&nbsp;
+			<a href="#M000002">to_html</a>&nbsp;&nbsp;
+			<a href="#M000012">tokenize</a>&nbsp;&nbsp;
+			</div>
+		</div>
+
+		<div id="constants-list">
+			<h2 class="section-bar">Constants</h2>
+
+			<div class="name-list">
+				<table summary="Constants">
+				<tr class="top-aligned-row context-row">
+					<td class="context-item-name">VERSION</td>
+					<td>=</td>
+					<td class="context-item-value">"0.2"</td>
+				</tr>
+				</table>
+			</div>
+		</div>
+
+
+
+			
+
+	</div>
+
+
+
+		<!-- if includes -->
+
+
+		<!-- if method_list -->
+		<div id="methods">
+			<h2 class="section-bar">Public Class methods</h2>
+
+			<div id="method-M000001" class="method-detail">
+				<a name="M000001"></a>
+
+				<div class="method-heading">
+					<a href="#M000001" class="method-signature">
+					<span class="method-name">new</span><span class="method-args">(string, options=[2])</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Create a new <a href="RubyPants.html">RubyPants</a> instance with the text
+in <tt>string</tt>.
+</p>
+<p>
+Allowed elements in the options array:
+</p>
+<table>
+<tr><td valign="top">0  :</td><td>do nothing
+
+</td></tr>
+<tr><td valign="top">1  :</td><td>enable all, using only em-dash shortcuts
+
+</td></tr>
+<tr><td valign="top">2  :</td><td>enable all, using old school en- and em-dash shortcuts (<b>default</b>)
+
+</td></tr>
+<tr><td valign="top">3  :</td><td>enable all, using inverted old school en and em-dash shortcuts
+
+</td></tr>
+<tr><td valign="top">-1 :</td><td>stupefy (translate HTML entities to their ASCII-counterparts)
+
+</td></tr>
+</table>
+<p>
+If you don&#8217;t like any of these defaults, you can pass symbols to
+change <a href="RubyPants.html">RubyPants</a>&#8217; behavior:
+</p>
+<table>
+<tr><td valign="top"><tt>:quotes</tt>        :</td><td>quotes
+
+</td></tr>
+<tr><td valign="top"><tt>:backticks</tt>     :</td><td>backtick quotes (``double&#8217;&#8217; only)
+
+</td></tr>
+<tr><td valign="top"><tt>:allbackticks</tt>  :</td><td>backtick quotes (``double&#8217;&#8217; and `single&#8217;)
+
+</td></tr>
+<tr><td valign="top"><tt>:dashes</tt>        :</td><td>dashes
+
+</td></tr>
+<tr><td valign="top"><tt>:oldschool</tt>     :</td><td>old school dashes
+
+</td></tr>
+<tr><td valign="top"><tt>:inverted</tt>      :</td><td>inverted old school dashes
+
+</td></tr>
+<tr><td valign="top"><tt>:ellipses</tt>      :</td><td>ellipses
+
+</td></tr>
+<tr><td valign="top"><tt>:convertquotes</tt> :</td><td>convert <tt>&amp;quot;</tt> entities to <tt>&quot;</tt> for Dreamweaver
+users
+
+</td></tr>
+<tr><td valign="top"><tt>:stupefy</tt>       :</td><td>translate <a href="RubyPants.html">RubyPants</a> HTML entities to their
+ASCII counterparts.
+
+</td></tr>
+</table>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000001-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 207</span>
+207:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">options</span>=[<span class="ruby-value">2</span>])
+208:     <span class="ruby-keyword kw">super</span> <span class="ruby-identifier">string</span>
+209:     <span class="ruby-ivar">@options</span> = [<span class="ruby-operator">*</span><span class="ruby-identifier">options</span>]
+210:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<h2 class="section-bar">Public Instance methods</h2>
+
+			<div id="method-M000002" class="method-detail">
+				<a name="M000002"></a>
+
+				<div class="method-heading">
+					<a href="#M000002" class="method-signature">
+					<span class="method-name">to_html</span><span class="method-args">()</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Apply SmartyPants transformations.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000002-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 213</span>
+213:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_html</span>
+214:     <span class="ruby-identifier">do_quotes</span> = <span class="ruby-identifier">do_backticks</span> = <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">do_ellipses</span> = <span class="ruby-identifier">do_stupify</span> = <span class="ruby-keyword kw">nil</span>
+215:     <span class="ruby-identifier">convert_quotes</span> = <span class="ruby-keyword kw">false</span>
+216: 
+217:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">0</span>
+218:       <span class="ruby-comment cmt"># Do nothing.</span>
+219:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+220:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">1</span>
+221:       <span class="ruby-comment cmt"># Do everything, turn all options on.</span>
+222:       <span class="ruby-identifier">do_quotes</span> = <span class="ruby-identifier">do_backticks</span> = <span class="ruby-identifier">do_ellipses</span> = <span class="ruby-keyword kw">true</span>
+223:       <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">:normal</span>
+224:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">2</span>
+225:       <span class="ruby-comment cmt"># Do everything, turn all options on, use old school dash shorthand.</span>
+226:       <span class="ruby-identifier">do_quotes</span> = <span class="ruby-identifier">do_backticks</span> = <span class="ruby-identifier">do_ellipses</span> = <span class="ruby-keyword kw">true</span>
+227:       <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">:oldschool</span>
+228:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">3</span>
+229:       <span class="ruby-comment cmt"># Do everything, turn all options on, use inverted old school</span>
+230:       <span class="ruby-comment cmt"># dash shorthand.</span>
+231:       <span class="ruby-identifier">do_quotes</span> = <span class="ruby-identifier">do_backticks</span> = <span class="ruby-identifier">do_ellipses</span> = <span class="ruby-keyword kw">true</span>
+232:       <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">:inverted</span>
+233:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">-1</span>)
+234:       <span class="ruby-identifier">do_stupefy</span> = <span class="ruby-keyword kw">true</span>
+235:     <span class="ruby-keyword kw">else</span>
+236:       <span class="ruby-identifier">do_quotes</span> =                <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:quotes</span>
+237:       <span class="ruby-identifier">do_backticks</span> =             <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:backticks</span>
+238:       <span class="ruby-identifier">do_backticks</span> = <span class="ruby-identifier">:both</span>    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:allbackticks</span>
+239:       <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">:normal</span>     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:dashes</span>
+240:       <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">:oldschool</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:oldschool</span>
+241:       <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">:inverted</span>   <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:inverted</span>
+242:       <span class="ruby-identifier">do_ellipses</span> =              <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:ellipses</span>
+243:       <span class="ruby-identifier">convert_quotes</span> =           <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:convertquotes</span>
+244:       <span class="ruby-identifier">do_stupefy</span> =               <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:stupefy</span>
+245:     <span class="ruby-keyword kw">end</span>
+246: 
+247:     <span class="ruby-comment cmt"># Parse the HTML</span>
+248:     <span class="ruby-identifier">tokens</span> = <span class="ruby-identifier">tokenize</span>
+249:     
+250:     <span class="ruby-comment cmt"># Keep track of when we're inside &lt;pre&gt; or &lt;code&gt; tags.</span>
+251:     <span class="ruby-identifier">in_pre</span> = <span class="ruby-keyword kw">false</span>
+252: 
+253:     <span class="ruby-comment cmt"># Here is the result stored in.</span>
+254:     <span class="ruby-identifier">result</span> = <span class="ruby-value str">&quot;&quot;</span>
+255: 
+256:     <span class="ruby-comment cmt"># This is a cheat, used to get some context for one-character</span>
+257:     <span class="ruby-comment cmt"># tokens that consist of just a quote char. What we do is remember</span>
+258:     <span class="ruby-comment cmt"># the last character of the previous text token, to use as context</span>
+259:     <span class="ruby-comment cmt"># to curl single- character quote tokens correctly.</span>
+260:     <span class="ruby-identifier">prev_token_last_char</span> = <span class="ruby-keyword kw">nil</span>
+261: 
+262:     <span class="ruby-identifier">tokens</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">token</span><span class="ruby-operator">|</span>
+263:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:tag</span>
+264:         <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">token</span>[<span class="ruby-value">1</span>]
+265:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">token</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">%!&lt;(/?)(?:pre|code|kbd|script|math)[\s&gt;]!</span>
+266:           <span class="ruby-identifier">in_pre</span> = (<span class="ruby-identifier">$1</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;/&quot;</span>)  <span class="ruby-comment cmt"># Opening or closing tag?</span>
+267:         <span class="ruby-keyword kw">end</span>
+268:       <span class="ruby-keyword kw">else</span>
+269:         <span class="ruby-identifier">t</span> = <span class="ruby-identifier">token</span>[<span class="ruby-value">1</span>]
+270: 
+271:         <span class="ruby-comment cmt"># Remember last char of this token before processing.</span>
+272:         <span class="ruby-identifier">last_char</span> = <span class="ruby-identifier">t</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">chr</span>
+273: 
+274:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">in_pre</span>
+275:           <span class="ruby-identifier">t</span> = <span class="ruby-identifier">process_escapes</span> <span class="ruby-identifier">t</span>
+276:           
+277:           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;quot;/</span>, <span class="ruby-value str">'&quot;'</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">convert_quotes</span>
+278: 
+279:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span>
+280:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_dashes</span> <span class="ruby-identifier">t</span>            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:normal</span>
+281:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_dashes_oldschool</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:oldschool</span>
+282:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_dashes_inverted</span> <span class="ruby-identifier">t</span>   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:inverted</span>
+283:           <span class="ruby-keyword kw">end</span>
+284: 
+285:           <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_ellipses</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_ellipses</span>
+286: 
+287:           <span class="ruby-comment cmt"># Note: backticks need to be processed before quotes.</span>
+288:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_backticks</span>
+289:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_backticks</span> <span class="ruby-identifier">t</span>
+290:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_single_backticks</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_backticks</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:both</span>
+291:           <span class="ruby-keyword kw">end</span>
+292: 
+293:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_quotes</span>
+294:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">t</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;'&quot;</span>
+295:               <span class="ruby-comment cmt"># Special case: single-character ' token</span>
+296:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prev_token_last_char</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\S/</span>
+297:                 <span class="ruby-identifier">t</span> = <span class="ruby-value str">&quot;&amp;#8217;&quot;</span>
+298:               <span class="ruby-keyword kw">else</span>
+299:                 <span class="ruby-identifier">t</span> = <span class="ruby-value str">&quot;&amp;#8216;&quot;</span>
+300:               <span class="ruby-keyword kw">end</span>
+301:             <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">t</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'&quot;'</span>
+302:               <span class="ruby-comment cmt"># Special case: single-character &quot; token</span>
+303:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prev_token_last_char</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\S/</span>
+304:                 <span class="ruby-identifier">t</span> = <span class="ruby-value str">&quot;&amp;#8221;&quot;</span>
+305:               <span class="ruby-keyword kw">else</span>
+306:                 <span class="ruby-identifier">t</span> = <span class="ruby-value str">&quot;&amp;#8220;&quot;</span>
+307:               <span class="ruby-keyword kw">end</span>
+308:             <span class="ruby-keyword kw">else</span>
+309:               <span class="ruby-comment cmt"># Normal case:                  </span>
+310:               <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_quotes</span> <span class="ruby-identifier">t</span>
+311:             <span class="ruby-keyword kw">end</span>
+312:           <span class="ruby-keyword kw">end</span>
+313: 
+314:           <span class="ruby-identifier">t</span> = <span class="ruby-identifier">stupefy_entities</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_stupefy</span>
+315:         <span class="ruby-keyword kw">end</span>
+316: 
+317:         <span class="ruby-identifier">prev_token_last_char</span> = <span class="ruby-identifier">last_char</span>
+318:         <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>
+319:       <span class="ruby-keyword kw">end</span>
+320:     }
+321: 
+322:     <span class="ruby-comment cmt"># Done</span>
+323:     <span class="ruby-identifier">result</span>
+324:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<h2 class="section-bar">Protected Instance methods</h2>
+
+			<div id="method-M000008" class="method-detail">
+				<a name="M000008"></a>
+
+				<div class="method-heading">
+					<a href="#M000008" class="method-signature">
+					<span class="method-name">educate_backticks</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return the string, with
+&quot;<tt>``backticks&#8217;&#8216;</tt>&quot;-style single quotes
+translated into HTML curly quote entities.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000008-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 384</span>
+384:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_backticks</span>(<span class="ruby-identifier">str</span>)
+385:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;``&quot;</span>, <span class="ruby-value str">'&amp;#8220;'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;''&quot;</span>, <span class="ruby-value str">'&amp;#8221;'</span>)
+386:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000004" class="method-detail">
+				<a name="M000004"></a>
+
+				<div class="method-heading">
+					<a href="#M000004" class="method-signature">
+					<span class="method-name">educate_dashes</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+The string, with each instance of &quot;<tt>&#8212;</tt>&quot; translated
+to an em-dash HTML entity.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000004-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 347</span>
+347:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_dashes</span>(<span class="ruby-identifier">str</span>)
+348:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/--/</span>, <span class="ruby-value str">'&amp;#8212;'</span>)
+349:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000006" class="method-detail">
+				<a name="M000006"></a>
+
+				<div class="method-heading">
+					<a href="#M000006" class="method-signature">
+					<span class="method-name">educate_dashes_inverted</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return the string, with each instance of &quot;<tt>&#8212;</tt>&quot;
+translated to an em-dash HTML entity, and each &quot;<tt>&#8212;</tt>&quot;
+translated to an en-dash HTML entity. Two reasons why: First, unlike the
+en- and em-dash syntax supported by <tt><a
+href="RubyPants.html#M000005">educate_dashes_oldschool</a></tt>, it&#8217;s
+compatible with existing entries written before SmartyPants 1.1, back when
+&quot;<tt>&#8212;</tt>&quot; was only used for em-dashes. Second, em-dashes
+are more common than en-dashes, and so it sort of makes sense that the
+shortcut should be shorter to type. (Thanks to Aaron Swartz for the idea.)
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000006-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 369</span>
+369:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_dashes_inverted</span>(<span class="ruby-identifier">str</span>)
+370:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/---/</span>, <span class="ruby-value str">'&amp;#8211;'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/--/</span>, <span class="ruby-value str">'&amp;#8212;'</span>)
+371:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000005" class="method-detail">
+				<a name="M000005"></a>
+
+				<div class="method-heading">
+					<a href="#M000005" class="method-signature">
+					<span class="method-name">educate_dashes_oldschool</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+The string, with each instance of &quot;<tt>&#8212;</tt>&quot; translated
+to an en-dash HTML entity, and each &quot;<tt>&#8212;</tt>&quot; translated
+to an em-dash HTML entity.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000005-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 355</span>
+355:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_dashes_oldschool</span>(<span class="ruby-identifier">str</span>)
+356:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/---/</span>, <span class="ruby-value str">'&amp;#8212;'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/--/</span>, <span class="ruby-value str">'&amp;#8211;'</span>)
+357:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000007" class="method-detail">
+				<a name="M000007"></a>
+
+				<div class="method-heading">
+					<a href="#M000007" class="method-signature">
+					<span class="method-name">educate_ellipses</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return the string, with each instance of &quot;<tt>&#8230;</tt>&quot;
+translated to an ellipsis HTML entity. Also converts the case where there
+are spaces between the dots.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000007-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 377</span>
+377:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_ellipses</span>(<span class="ruby-identifier">str</span>)
+378:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'...'</span>, <span class="ruby-value str">'&amp;#8230;'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'. . .'</span>, <span class="ruby-value str">'&amp;#8230;'</span>)
+379:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000010" class="method-detail">
+				<a name="M000010"></a>
+
+				<div class="method-heading">
+					<a href="#M000010" class="method-signature">
+					<span class="method-name">educate_quotes</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return the string, with &quot;educated&quot; curly quote HTML entities.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000010-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 397</span>
+397:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_quotes</span>(<span class="ruby-identifier">str</span>)
+398:     <span class="ruby-identifier">punct_class</span> = <span class="ruby-value str">'[!&quot;#\$\%\'()*+,\-.\/:;&lt;=&gt;?\@\[\\\\\]\^^_`{|}~]'</span>
+399: 
+400:     <span class="ruby-identifier">str</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">dup</span>
+401:       
+402:     <span class="ruby-comment cmt"># Special case if the very first character is a quote followed by</span>
+403:     <span class="ruby-comment cmt"># punctuation at a non-word-break. Close the quotes by brute</span>
+404:     <span class="ruby-comment cmt"># force:</span>
+405:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/^'(?=#{punct_class}\B)/</span>, <span class="ruby-value str">'&amp;#8217;'</span>)
+406:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/^&quot;(?=#{punct_class}\B)/</span>, <span class="ruby-value str">'&amp;#8221;'</span>)
+407: 
+408:     <span class="ruby-comment cmt"># Special case for double sets of quotes, e.g.:</span>
+409:     <span class="ruby-comment cmt">#   &lt;p&gt;He said, &quot;'Quoted' words in a larger quote.&quot;&lt;/p&gt;</span>
+410:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&quot;'(?=\w)/</span>, <span class="ruby-value str">'&amp;#8220;&amp;#8216;'</span>)
+411:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'&quot;(?=\w)/</span>, <span class="ruby-value str">'&amp;#8216;&amp;#8220;'</span>)
+412: 
+413:     <span class="ruby-comment cmt"># Special case for decade abbreviations (the '80s):</span>
+414:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'(?=\d\ds)/</span>, <span class="ruby-value str">'&amp;#8217;'</span>)
+415: 
+416:     <span class="ruby-identifier">close_class</span> = <span class="ruby-value str">%![^\ \t\r\n\\[\{\(\-]!</span>
+417:     <span class="ruby-identifier">dec_dashes</span> = <span class="ruby-value str">'&amp;#8211;|&amp;#8212;'</span>
+418:     
+419:     <span class="ruby-comment cmt"># Get most opening single quotes:</span>
+420:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/(\s|&amp;nbsp;|--|&amp;[mn]dash;|#{dec_dashes}|&amp;#x201[34];)'(?=\w)/</span>,
+421:              <span class="ruby-value str">'\1&amp;#8216;'</span>)
+422:     <span class="ruby-comment cmt"># Single closing quotes:</span>
+423:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/(#{close_class})'/</span>, <span class="ruby-value str">'\1&amp;#8217;'</span>)
+424:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'(\s|s\b|$)/</span>, <span class="ruby-value str">'&amp;#8217;\1'</span>)
+425:     <span class="ruby-comment cmt"># Any remaining single quotes should be opening ones:</span>
+426:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'/</span>, <span class="ruby-value str">'&amp;#8216;'</span>)
+427: 
+428:     <span class="ruby-comment cmt"># Get most opening double quotes:</span>
+429:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/(\s|&amp;nbsp;|--|&amp;[mn]dash;|#{dec_dashes}|&amp;#x201[34];)&quot;(?=\w)/</span>,
+430:              <span class="ruby-value str">'\1&amp;#8220;'</span>)
+431:     <span class="ruby-comment cmt"># Double closing quotes:</span>
+432:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/(#{close_class})&quot;/</span>, <span class="ruby-value str">'\1&amp;#8221;'</span>)
+433:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&quot;(\s|s\b|$)/</span>, <span class="ruby-value str">'&amp;#8221;\1'</span>)
+434:     <span class="ruby-comment cmt"># Any remaining quotes should be opening ones:</span>
+435:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&quot;/</span>, <span class="ruby-value str">'&amp;#8220;'</span>)
+436: 
+437:     <span class="ruby-identifier">str</span>
+438:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000009" class="method-detail">
+				<a name="M000009"></a>
+
+				<div class="method-heading">
+					<a href="#M000009" class="method-signature">
+					<span class="method-name">educate_single_backticks</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return the string, with &quot;<tt>`backticks&#8217;</tt>&quot;-style single
+quotes translated into HTML curly quote entities.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000009-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 391</span>
+391:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_single_backticks</span>(<span class="ruby-identifier">str</span>)
+392:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;`&quot;</span>, <span class="ruby-value str">'&amp;#8216;'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;'&quot;</span>, <span class="ruby-value str">'&amp;#8217;'</span>)
+393:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000003" class="method-detail">
+				<a name="M000003"></a>
+
+				<div class="method-heading">
+					<a href="#M000003" class="method-signature">
+					<span class="method-name">process_escapes</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return the string, with after processing the following backslash escape
+sequences. This is useful if you want to force a &quot;dumb&quot; quote or
+other character to appear.
+</p>
+<p>
+Escaped are:
+</p>
+<pre>
+     \\    \&quot;    \'    \.    \-    \`
+</pre>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000003-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 335</span>
+335:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process_escapes</span>(<span class="ruby-identifier">str</span>)
+336:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'\\\\'</span>, <span class="ruby-value str">'&amp;#92;'</span>).
+337:       <span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'\&quot;'</span>, <span class="ruby-value str">'&amp;#34;'</span>).
+338:       <span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;\\\'&quot;</span>, <span class="ruby-value str">'&amp;#39;'</span>).
+339:       <span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'\.'</span>, <span class="ruby-value str">'&amp;#46;'</span>).
+340:       <span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'\-'</span>, <span class="ruby-value str">'&amp;#45;'</span>).
+341:       <span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'\`'</span>, <span class="ruby-value str">'&amp;#96;'</span>)
+342:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000011" class="method-detail">
+				<a name="M000011"></a>
+
+				<div class="method-heading">
+					<a href="#M000011" class="method-signature">
+					<span class="method-name">stupefy_entities</span><span class="method-args">(str)</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return the string, with each <a href="RubyPants.html">RubyPants</a> HTML
+entity translated to its ASCII counterpart.
+</p>
+<p>
+Note: This is not reversible (but exactly the same as in SmartyPants)
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000011-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 445</span>
+445:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stupefy_entities</span>(<span class="ruby-identifier">str</span>)
+446:     <span class="ruby-identifier">str</span>.
+447:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8211;/</span>, <span class="ruby-value str">'-'</span>).      <span class="ruby-comment cmt"># en-dash</span>
+448:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8212;/</span>, <span class="ruby-value str">'--'</span>).     <span class="ruby-comment cmt"># em-dash</span>
+449:       
+450:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8216;/</span>, <span class="ruby-value str">&quot;'&quot;</span>).      <span class="ruby-comment cmt"># open single quote</span>
+451:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8217;/</span>, <span class="ruby-value str">&quot;'&quot;</span>).      <span class="ruby-comment cmt"># close single quote</span>
+452:       
+453:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8220;/</span>, <span class="ruby-value str">'&quot;'</span>).      <span class="ruby-comment cmt"># open double quote</span>
+454:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8221;/</span>, <span class="ruby-value str">'&quot;'</span>).      <span class="ruby-comment cmt"># close double quote</span>
+455:       
+456:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8230;/</span>, <span class="ruby-value str">'...'</span>)     <span class="ruby-comment cmt"># ellipsis</span>
+457:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+			<div id="method-M000012" class="method-detail">
+				<a name="M000012"></a>
+
+				<div class="method-heading">
+					<a href="#M000012" class="method-signature">
+					<span class="method-name">tokenize</span><span class="method-args">()</span>
+					</a>
+				</div>
+			
+				<div class="method-description">
+					<p>
+Return an array of the tokens comprising the string. Each token is either a
+tag (possibly with nested, tags contained therein, such as <tt>&lt;a
+href=&quot;&lt;MTFoo&gt;&quot;&gt;</tt>, or a run of text between tags.
+Each element of the array is a two-element array; the first is either :tag
+or :text; the second is the actual value.
+</p>
+<p>
+Based on the <tt>_tokenize()</tt> subroutine from Brad Choate&#8217;s
+MTRegex plugin. &lt;<a
+href="http://www.bradchoate.com/past/mtregex.php">www.bradchoate.com/past/mtregex.php</a>&gt;
+</p>
+<p>
+This is actually the easier variant using tag_soup, as used by Chad Miller
+in the Python port of SmartyPants.
+</p>
+					<p><a class="source-toggle" href="#"
+					  onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+					<div class="method-source-code" id="M000012-source">
+<pre>
+     <span class="ruby-comment cmt"># File rubypants.rb, line 471</span>
+471:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tokenize</span>
+472:     <span class="ruby-identifier">tag_soup</span> = <span class="ruby-regexp re">/([^&lt;]*)(&lt;[^&gt;]*&gt;)/</span>
+473: 
+474:     <span class="ruby-identifier">tokens</span> = []
+475: 
+476:     <span class="ruby-identifier">prev_end</span> = <span class="ruby-value">0</span>
+477:     <span class="ruby-identifier">scan</span>(<span class="ruby-identifier">tag_soup</span>) {
+478:       <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">:text</span>, <span class="ruby-identifier">$1</span>]  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$1</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;&quot;</span>
+479:       <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">:tag</span>, <span class="ruby-identifier">$2</span>]
+480:       
+481:       <span class="ruby-identifier">prev_end</span> = <span class="ruby-identifier">$~</span>.<span class="ruby-identifier">end</span>(<span class="ruby-value">0</span>)
+482:     }
+483: 
+484:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prev_end</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">size</span>
+485:       <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">:text</span>, <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">prev_end</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]]
+486:     <span class="ruby-keyword kw">end</span>
+487: 
+488:     <span class="ruby-identifier">tokens</span>
+489:   <span class="ruby-keyword kw">end</span>
+</pre>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

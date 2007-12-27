@@ -1,0 +1,143 @@
+/* Stuff cherry-picked from azure.css */
+
+body {
+  font: 1em/1.2em Arial, Verdana, Helvetica, sans-serif;
+	background: #f00;
+}
+
+#main {
+  margin: 0;
+  padding: 0;
+  font-size: 80%;
+  background: #fff;
+}
+
+/*+-------------------------------------------+
+|             LINKS                         |
++-------------------------------------------+*/
+a {
+  color: #5189b5;
+  text-decoration: none;
+  border-bottom: 1px dotted #5189b5;
+}
+
+a:hover { color: #85ab02; border-bottom-color: #85ab02; }
+/*+-------------------------------------------+
+|             UTILITY                       |
++-------------------------------------------+*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+form, div { padding: 0; margin: 0; }
+p { margin: 0 0 1em 0; padding: 0; }
+img { border: 0; }
+
+/*+-------------------------------------------+
+|             POST                                          |
++-------------------------------------------+*/
+
+.post h2 {
+  font: normal 140%/1.3em Arial, Verdana, Helvetica, sans-serif;
+}
+
+.post h2 a {
+  color: #5189b5;
+  text-decoration: none;
+  border: none;
+}
+
+.post h2 a:hover {
+  color: #85ab02;
+}
+
+p.meta {
+  font-size: 75%;
+  text-align: right;
+  margin-right: 5px;
+}
+
+p.auth {
+  padding: 0 0 0 12px;
+  font-size: 85%;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #9a9a9b;
+  background: url(../../images/bracket.gif) no-repeat;
+}
+
+/*+-------------------------------------------+
+|                    MISC                                 |
++-------------------------------------------+*/
+
+a[name] { border: none; }
+
+/* Syntax highlighting */
+.typocode_ruby .normal {}
+.typocode_ruby .comment { color: #005; font-style: italic; }
+.typocode_ruby .keyword { color: #A00; font-weight: bold; }
+.typocode_ruby .method { color: #077; }
+.typocode_ruby .class { color: #074; }
+.typocode_ruby .module { color: #050; }
+.typocode_ruby .punct { color: #447; font-weight: bold; }
+.typocode_ruby .symbol { color: #099; }
+.typocode_ruby .string { color: #944; background: #FFE; }
+.typocode_ruby .char { color: #F07; }
+.typocode_ruby .ident { color: #004; }
+.typocode_ruby .constant { color: #07F; }
+.typocode_ruby .regex { color: #B66; background: #FEF; }
+.typocode_ruby .number { color: #F99; }
+.typocode_ruby .attribute { color: #7BB; }
+.typocode_ruby .global { color: #7FB; }
+.typocode_ruby .expr { color: #227; }
+.typocode_ruby .escape { color: #277; }
+.typocode_xml .normal {}
+.typocode_xml .namespace { color: #B66; font-weight: bold; }
+.typocode_xml .tag { color: #F88; }
+.typocode_xml .comment { color: #005; font-style: italic; }
+.typocode_xml .punct { color: #447; font-weight: bold; }
+.typocode_xml .string { color: #944; }
+.typocode_xml .number { color: #F99; }
+.typocode_xml .attribute { color: #BB7; }
+.typocode_yaml .normal {}
+.typocode_yaml .document { font-weight: bold; color: #07F; }
+.typocode_yaml .type { font-weight: bold; color: #05C; }
+.typocode_yaml .key { color: #F88; }
+.typocode_yaml .comment { color: #005; font-style: italic; }
+.typocode_yaml .punct { color: #447; font-weight: bold; }
+.typocode_yaml .string { color: #944; }
+.typocode_yaml .number { color: #F99; }
+.typocode_yaml .time { color: #F99; }
+.typocode_yaml .date { color: #F99; }
+.typocode_yaml .ref { color: #944; }
+.typocode_yaml .anchor { color: #944; }
+
+.typocode {
+  background-color:#eee;
+  padding:2px;
+  margin:5px;
+  margin-left:1em;
+  margin-bottom:1em;
+}
+
+.typocode pre {
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+  font-family: monospace;
+  overflow:auto;
+}
+
+
+.typocode .lineno {
+  text-align: right;
+  /*  color: #B00;*/
+  font-family: monospace;
+  padding-right: 1em;
+}
+
+code {
+  font-size:120%;
+}

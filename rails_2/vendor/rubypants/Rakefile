@@ -1,0 +1,55 @@
+# Rakefile for rubypants  -*-ruby-*-
+require 'rake/rdoctask'
+
+
+desc "Run all the tests"
+task :default => [:test]
+
+desc "Do predistribution stuff"
+task :predist => [:doc]
+
+
+desc "Run all the tests"
+task :test do
+  ruby 'test_rubypants.rb'
+end
+
+desc "Make an archive as .tar.gz"
+task :dist => :test do
+  system "darcs dist -d rubypants#{get_darcs_tree_version}"
+end
+
+
+desc "Generate RDoc documentation"
+Rake::RDocTask.new(:doc) do |rdoc|
+  rdoc.options << '--line-numbers --inline-source --all'
+  rdoc.rdoc_files.include 'README'
+  rdoc.rdoc_files.include 'rubypants.rb'
+end
+
+
+# Helper to retrieve the "revision number" of the darcs tree.
+def get_darcs_tree_version
+  return ""  unless File.directory? "_darcs"
+
+  changes = `darcs changes`
+  count = 0
+  tag = "0.0"
+  
+  changes.each("\n\n") { |change|
+    head, title, desc = change.split("\n", 3)
+    
+    if title =~ /^  \*/
+      # Normal change.
+      count += 1
+    elsif title =~ /tagged (.*)/
+      # Tag.  We look for these.
+      tag = $1
+      break
+    else
+      warn "Unparsable change: #{change}"
+    end
+  }
+
+  "-" + tag + "." + count.to_s
+end

@@ -1,0 +1,15 @@
+  <% @page_heading = _('Add User') %>
+  <% content_for('tasks') do %>
+    <%= subtab _("Users"), "", {:controller=>"users", :action=>"index"} %>
+  <% end%>
+  <% form_tag :action=>"new" do %>
+
+  <div class="admin">
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations" class="paginate r">
+    <%= save %> or <%= cancel %>
+  </div>
+
+  <% end %>

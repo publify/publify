@@ -1,0 +1,21 @@
+Once you've written your new syntax module, you need to register it with the Syntax library so that it can be found and used by the framework. To do this, just add it to the @Syntax::SYNTAX@ hash:
+
+{{{lang=ruby,number=true,caption=Registering a new syntax
+require 'syntax'
+
+class SimpleTokenizer < Syntax::Tokenizer
+  ...
+end
+
+Syntax::SYNTAX['simple'] = SimpleTokenizer
+}}}
+
+That's it! Once you've done that, you can now use your syntax just by requiring the file that defines it, and then using the standard Syntax framework methods:
+
+{{{lang=ruby,number=true,caption=Using your new syntax
+require 'simple-tokenizer'
+require 'syntax/convertor/html'
+
+convertor = Syntax::Convertors::HTML.for_syntax "simple"
+puts convertor.convert( "hello 15 worlds!" )
+}}}

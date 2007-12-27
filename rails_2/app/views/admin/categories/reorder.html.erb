@@ -1,0 +1,9 @@
+<ul id="category_list">
+  <% for category in @categories -%>
+  <li id="category_<%= category.id -%>"><%= category.name -%></li>
+  <% end -%>
+</ul>
+
+<%= link_to_remote _("(Done)"), :update => "category_container", :url => { :action => "category_container" } %>
+
+<%= sortable_element "category_list", :url => { :action => "order" }, :complete => visual_effect(:highlight, "category_list") %>

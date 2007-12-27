@@ -1,0 +1,16 @@
+Because Syntax was written primarily to support syntax highlighting, that is going to be the task most clients of the library will use it for. So, to get you up and running quickly, converting, for example, Ruby code to HTML, consider the following:
+
+{{{lang=ruby,number=true,caption=Convert a Ruby script to HTML
+require 'syntax/convertors/html'
+
+convertor = Syntax::Convertors::HTML.for_syntax "ruby"
+html = convertor.convert( File.read( "program.rb" ) )
+
+puts html
+}}}
+
+The above script will convert a Ruby file called @program.rb@ to HTML, writing the HTML to stdout. HTML @span@ tags will be used in conjunction with "class" attributes to describe the various tokens--this allows you to use CSS to colorize the result.
+
+Incidentally, this entire document uses the Syntax library to colorize the Ruby code snippets!
+
+_Note: currently, only HTML conversion is supported, but it should be possible to create a convertor that takes the tokenized output and emits other formats, like LaTeX, PDF, or Rich Text._

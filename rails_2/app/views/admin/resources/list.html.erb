@@ -1,0 +1,17 @@
+  <% @page_heading = _('Uploads') + '(' + link_to(_("add new"), :action => 'new') + ')' %>
+  <% content_for('tasks') do %>
+	<%= subtab _("Posts"), "", {:controller=>"content", :action=>"list"} %>
+	<%= subtab _("Pages"), "", {:controller=>"pages", :action=>"list"} %>
+	<%= subtab _("Categories"), "", {:controller=>"categories", :action=>"index"} %>
+	<%= subtab _("Uploads"), "current", {:controller=>"resources", :action=>"list"} %>
+  <% end %> 
+
+  <div class="list" id="resources">	
+    <%= render :partial => 'resources' -%>
+  </div>
+	<div class="paginate">
+		<%= link_to _("Previous page"), { :page => @resources_pages.current.previous } if @resources_pages.current.previous %>
+		<%= pagination_links(@resources_pages) %>
+		<%= link_to _("Next page"), { :page => @resources_pages.current.next } if @resources_pages.current.next %>
+	</div>
+	

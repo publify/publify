@@ -1,0 +1,37 @@
+  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article } (#{ link_to 'add a comment', '#comment' })" %>
+
+  <% content_for('tasks') do %>
+    <li><%= link_to _('Manage articles'), :controller => '/admin/content', :action => 'list' %></li>
+  <% end %> 
+
+  <div class="list">
+	<ol>
+	<% for comment in @comments -%>
+	  <li <%= alternate_class %>>
+	    <p><strong><%= mail_to h(comment.email), h(comment.author) %></strong> |
+		<%= link_to_unless comment.url.blank?, h(comment.url), comment.url %> | 
+		IP: <%=h comment.ip %></p>
+		<%= comment.body %>
+		<p><%=comment.created_at.strftime("%d/%m/%Y at %H:%M") %> – [ 
+		   <%= link_to_edit comment %> | 
+		   <%= link_to_destroy comment %> | 
+		   <%= comment.state %> ]
+		</p>
+	  </li>
+	<% end -%>
+	</ol>
+  </div>
+  
+  <h3 id="comment"><%= _("Creating comment")%></h3>
+  <% form_tag :action=>"new" do %>
+
+  <div class="form">
+    <%= render_partial "form" %>
+
+    <div id="operations">
+      <%= save %> or <%= cancel %>
+    </div>
+
+  </div>
+  <% end %>
+  

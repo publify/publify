@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+def filelint(filename, fix = false)
+  newfile = ''
+  File.open(filename) do |file|
+    file.readlines.each_with_index do |line, lineno|
+      # do some checking so we can print warnings
+      if line =~ /[ \t]$/
+        puts "#{filename}:#{lineno+1} Trailing whitespace"
+      end
+      if line =~ /\r\n?$/
+        puts "#{filename}:#{lineno+1} Incorrect line ending"
+      elsif line[-1] != ?\n
+        puts "#{filename}:#{lineno+1} No trailing newline"
+      end
+      # now just rstrip the line and shove it in the array
+      # this will strip trailing whitespace and normalize line endings for us
+      # the above stuff is simply so you know when you screwed up
+      newfile << line.rstrip << "\n"
+    end
+  end
+
+  if fix && File.read(filename) != newfile
+    newname = ".#{filename}.new"
+    File::unlink("#{filename}~") rescue nil
+    File.open(newname,'w') { |f| f.write(newfile) }
+    stat = File.stat(filename)
+    File.chmod(stat.mode, newname)
+    FileUtils.ln filename, "#{filename}~"
+    FileUtils.ln newname, filename, :force => true
+    File::unlink(newname)
+  end
+
+end
+
+ARGV.each do |f|
+  filelint(f,true)
+end

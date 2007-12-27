@@ -1,0 +1,29 @@
+Within a tokenizer, you have access to a rich set of methods for scanning the text. These methods correspond to the methods of the StringScanner class (i.e., @scan@, @scan_until@, @bol?@, etc.).
+
+Additionally, subgroups of recent regexps (used in @scan@, etc.) can be obtained via @subgroup@, which takes as a parameter the group you want to query.
+
+Tokenizing proceeds as follows:
+
+# Identify a token (using @#peek@, @#scan@, etc.).
+# Start a new token group (using @#start_group@, passing the symbol for the group and optionally any text you want to seed the group with).
+# Append text to the current group either with additional calls to @#start_group@ using the same group, or with @#append@ (which just takes the text to append to the current group)
+
+Instead of @#start_group@, you can also use @#start_region@, which begins a new region for the given group, and @#end_region@, which closes the region.
+
+Here is an example of a very, very simple tokenizer, that simple extracts words and numbers from the text:
+
+{{{lang=ruby,number=true,caption=Simple tokenizer
+require 'syntax'
+
+class SimpleTokenizer < Syntax::Tokenizer
+  def step
+    if digits = scan(/\d+/)
+      start_group :digits, digits
+    elsif words = scan(/\w+/)
+      start_group :words, words
+    else
+      start_group :normal, scan(/./)
+    end
+  end
+end
+}}}

@@ -1,0 +1,45 @@
+This documents aims at describing what I plan for Typo to go multiusers
+
+A profile :
+	has many right
+	
+A user :
+	has one profile
+	has many rights
+
+When a user is created, he's given a profile. His profile is marked as "clean"
+The administrator can assign specific rights to that user. His profile is marked as "tainted"
+When a profile is modified, changes are made on users who have a "clean" profile.
+
+Here are the profiles and rights :
+
+Administrator
+	- admin the blog
+	- create, edit, delete users
+	- create, edit, delete roles
+	- write, edit, publish, unpublish, delete drafts
+	- write, edit, publish, unpublish, delete posts
+	- write comments
+	- edit / delete his own comments
+	- edit / delete other people's comments
+	- moderate comments marked as spam
+	
+Publisher
+	- write, edit, publish, unpublish, delete drafts
+	- write, edit, publish, unpublish, delete posts
+	- write comments
+	- edit / delete his own comments
+	- moderate comments marked as spam
+
+Writer
+	- write, edit, publish, unpublish, delete drafts
+	- write comments
+
+Moderator
+	- write comments
+	- edit / delete his own comments
+	- edit / delete other people's comments
+	- moderate comments marked as spam
+
+Subscriber
+	- write comments

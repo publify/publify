@@ -1,0 +1,160 @@
+How to use the Typo Rails installer
+===================================
+
+Typo 4.0 includes an installer that makes it easy to install Typo.
+
+Quick Start
+-----------
+
+Here's the short version:
+
+  $ gem install typo
+  $ typo install /var/www/my_typo_site
+
+
+Prerequisites
+-------------
+
+You'll need the following software installed on your system:
+
+1.  Ruby 1.8.4
+2.  RubyGems (http://www.rubygems.org)
+3.  SWIG (http://www.swig.org)
+4.  SQLite 3
+
+Most modern Unix systems should have all four of these easily available in
+pre-built form.
+
+
+Installing Typo
+---------------
+
+1. Install the Typo GEM.
+
+   Run 'gem install typo'.  This will install the current version of Typo
+   along with all dependencies.
+
+2. Create a working Typo installation in a directory somewhere.
+
+   Run 'typo install DIRECTORY'.  Replace DIRECTORY with the name of the
+   directory that you want Typo to live in.  This will copy all of Typo's
+   files into DIRECTORY, create a new database for Typo to use, and start
+   Typo running on a random port number.
+
+3. Verify that Typo works for you.  The installer will print a URL at the end
+   of the installation process; load it in a browser to test out Typo.
+
+4. Once you're happy with Typo's configuration, follow the directions in
+   installer/apache.conf.example to run your Typo installation under Apache.
+
+
+Upgrading Typo
+--------------
+
+The Typo installer can upgrade an existing installer-created Typo install by 
+simple running 'typo install DIRECTORY'.  The installer will automatically
+detect that it's upgrading an existing install and will attempt to preserve
+the existing configuration as much as possible.
+
+
+Starting and Stopping Typo
+--------------------------
+
+To stop Typo from running, run `typo stop /path/to/typo`. To restart it, run
+`typo start /path/to/typo`. Since this Typo install uses Mongrel, not FastCGI,
+you can't depend on your web server restarting it automatically on reboot.
+You'll need to either create an init script or cron reboot entry to restart
+it, depending on your host and/or privilege level.
+
+Ask your hosting provider or the Typo mailing list (typo-list@rubyforge.org)
+if you need help with this.
+
+
+Configuration Variables
+-----------------------
+
+Each Typo installation maintains a list of configuration variables.  To see
+the list for an existing install, run 'typo config DIRECTORY'.  You can change
+them via 'typo config DIRECTORY name1=value1 name2=value2...'  For example:
+
+  typo config /var/www/typo web-server=mongrel_cluster
+
+Here's a list of available configuration variables in Typo 4.0.0:
+
+### bind-address
+
+The `bind-address` controls which IP address(es) Mongrel uses. By default,
+Mongrel listens for connections on all IP addresses that are in use on the
+server. You can restrict this by setting `bind-address`. The most useful
+setting is probably `bind-address=127.0.0.1`, which will tell Mongrel to only
+listen to connections from the local server.
+
+### database
+
+The `database` variable controls which Database driver Typo uses. By default,
+this is `sqlite`. Setting it to any other value will supress SQLite-specific
+upgrade and maintenance commands.
+
+### port-number
+
+The `port-number` variable controls which TCP port Mongrel uses. By default,
+it's a random number between 4000 and 5000.
+
+### rails-environment
+
+This controls which Rails environment Typo uses. This defaults to
+`production`; the other usable value is `development`.
+
+### threads
+
+The `threads` variable controls how many copies of Mongrel are used when using
+the `mongrel_cluster` web server. Each thread listens on its own port number,
+so setting `threads=2` while `port-number` is 4000 will make mongrel-cluster
+run two copies of Mongrel, one listening on port 4000 and one on 4001.
+
+### url-prefix
+
+The `url-prefix` variable is used to tell Typo to run in a subdirectory
+instead of the root of a specific URL hostname. For example, if you want Typo
+to live at http://blog.example.com/blog instead of http://blog.example.com/,
+then you'd need to set `url-prefix=/blog`.
+
+### web-server
+
+The `web-server` variable controls which server Typo uses. By default,
+`web-server` is `mongrel`, but you can change it to `mongrel-cluster` or
+`external`. If you use `external`, then 'typo PATH start` won't start a web
+server of its own, and you'll have to provide your own web server. This is the
+easiest way to use Typo with FastCGI--just set `web-server=external` and then
+tweak `.htaccess`.
+
+
+Troubleshooting
+---------------
+
+### Tests fail with ID=0
+
+You didn't install Swig before installing `sqlite3-ruby`. Uninstall the SQLite
+driver, install Swig, and then re-install `sqlite3-ruby`.
+
+### SQLite dies with "unsupported file format"
+
+You have multiple versions of SQLite3 installed, and you're using the command-line tool from one with the library from the other.  Most likely this is on OS X with Darwinports.  Make sure that `/opt/local/bin` is ahead of `/usr/bin` in your path.
+
+### MySQL fails with timeout errors
+
+Install the MySQL GEM. It's faster then Rails' default MySQL driver, and it
+works substantially better.
+
+### Typo crashes randomly
+
+First, try running Typo under Webrick in the foreground to see if you can
+reproduce the problem. Run `RAILS_ENV=production ./script/server webrick` from
+your Typo directory and then see if you can get it to crash. If it dies, then
+open a Trac ticket (http://typosphere.org/trac) describing the problem and
+include the crash message along with any relevant information from the logs.
+Also include which version of Ruby (ruby -v), Rails, and Typo, and which OS
+you're using.
+
+Generally, if Typo suddenly exiting, it's probably caused by a bad Ruby
+interpreter on your system.

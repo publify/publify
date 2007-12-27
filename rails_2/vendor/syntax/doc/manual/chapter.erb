@@ -1,0 +1,38 @@
+ <div class="top"><div class="prevnext">
+  <% if previous_chapter %>
+    <a href="chapter-<%= previous_chapter.index %>.html">Previous (<%= previous_chapter.index %>. <%= previous_chapter.title %>)</a> |
+  <% end %>
+  <a href="index.html">Up</a>
+  <% if next_chapter %>
+    | <a href="chapter-<%= next_chapter.index %>.html">Next (<%= next_chapter.index %>. <%= next_chapter.title %>)</a>
+  <% end %>
+</div></div>
+
+<h1><%= object.index %>. <%= object.title %></h1>
+
+<% object.sections.each do |section|
+
+   if section.title %>
+
+     <h2>
+       <a name="s<%= section.index %>"></a>
+       <%= object.index %>.<%= section.index %>. <%= section.title %>
+     </h2>
+
+   <% end %>
+
+   <div class="section">
+     <%= section.content.to_html %>
+   </div>
+
+<% end %>
+
+<div class="bottom"><div class="prevnext">
+  <% if previous_chapter %>
+    <a href="chapter-<%= previous_chapter.index %>.html">Previous (<%= previous_chapter.index %>. <%= previous_chapter.title %>)</a> |
+  <% end %>
+  <a href="index.html">Up</a>
+  <% if next_chapter %>
+    | <a href="chapter-<%= next_chapter.index %>.html">Next (<%= next_chapter.index %>. <%= next_chapter.title %>)</a>
+  <% end %>
+</div></div>

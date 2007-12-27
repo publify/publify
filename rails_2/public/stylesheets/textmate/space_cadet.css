@@ -1,0 +1,99 @@
+/* Stylesheet generated from TextMate theme
+ *
+ * SpaceCadet
+ * Created by Alex Ross
+ *
+ */
+
+div.textmate-source.space_cadet pre.textmate-source {
+	color: #DDE6CF;
+	background-color: #0D0D0D;
+}
+
+pre.textmate-source .linenum {
+	width: 75px;
+	padding: 0.1em 1em 0.2em 0;
+	color: #888;
+	background-color: #eee;
+}
+div.textmate-source.space_cadet pre.textmate-source span {
+   padding-top: 0.2em;
+   padding-bottom: 0.1em;
+}
+div.textmate-source.space_cadet pre.textmate-source ::selection {
+	background-color: #40002F;
+}
+/* Comment */
+div.textmate-source.space_cadet pre.textmate-source .comment {
+	color: #473C45;
+}
+
+/* String */
+div.textmate-source.space_cadet pre.textmate-source .string {
+	color: #805978;
+}
+
+/* Constant */
+div.textmate-source.space_cadet pre.textmate-source .constant {
+	color: #BF9960;
+}
+
+/* Variable */
+div.textmate-source.space_cadet pre.textmate-source .variable_parameter, div.textmate-source.space_cadet pre.textmate-source .variable_other {
+	color: #596380;
+}
+
+/* Keyword */
+div.textmate-source.space_cadet pre.textmate-source .keyword .- .keyword_operator, div.textmate-source.space_cadet pre.textmate-source .keyword_operator_logical {
+	color: #728059;
+}
+
+/* Storage */
+div.textmate-source.space_cadet pre.textmate-source .storage {
+	color: #9EBF60;
+}
+
+/* Entity */
+div.textmate-source.space_cadet pre.textmate-source .entity {
+	color: #6078BF;
+}
+
+/* Inherited class */
+div.textmate-source.space_cadet pre.textmate-source .entity_other_inherited-class {
+	font-style: italic;
+}
+
+/* Support */
+div.textmate-source.space_cadet pre.textmate-source .support {
+	color: #8A4B66;
+}
+
+/* Exception */
+div.textmate-source.space_cadet pre.textmate-source .support_type_exception {
+	color: #893062;
+}
+
+/* Tag name */
+div.textmate-source.space_cadet pre.textmate-source .entity_name_tag {
+}
+
+/* Tag attribute */
+div.textmate-source.space_cadet pre.textmate-source .entity_other_attribute-name {
+}
+
+/* Library constant */
+div.textmate-source.space_cadet pre.textmate-source .support_constant {
+}
+
+/* Library class/type */
+div.textmate-source.space_cadet pre.textmate-source .support_type, div.textmate-source.space_cadet pre.textmate-source .support_class {
+}
+
+/* Library variable */
+div.textmate-source.space_cadet pre.textmate-source .support_other_variable {
+}
+
+/* Invalid */
+div.textmate-source.space_cadet pre.textmate-source .invalid {
+	background-color: #5F0047;
+}

@@ -1,0 +1,16 @@
+<table>
+<tr>
+  <th class="first"><%= _("Name")%></th>
+  <th><%= _("Description")%></th>
+  <th><%= _("Tag")%></th>
+  <th class="last"><%= _("Help")%></th>
+</tr>
+<% for macro in @macros.sort_by { |f| f.short_name } %>
+<tr <%= alternate_class %>>
+  <td class="first"><%=h macro.display_name %> </td>
+  <td><%=h macro.description %></td>
+  <td><code>&lt;typo:<%=h macro.short_name %>&gt;</code></td>
+  <td class="operation last"><%= link_to image_tag('admin/show.png'), :action => 'macro_help', :id => macro.short_name %></td>    
+</tr>  
+<% end %>
+</table>

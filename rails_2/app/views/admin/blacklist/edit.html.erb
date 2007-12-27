@@ -1,0 +1,14 @@
+  <% @page_heading = _('Blacklist Patterns') %>
+
+  <% form_tag :action=>"edit", :id => @blacklist_pattern.id do %>
+
+  <h3><%= _("Editing pattern")%></h3>
+  <div class="form">
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations">
+    <%= save %> or <%= cancel %>
+  </div>
+
+  <% end %>

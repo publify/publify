@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%=h page_title %></title>
+  <%= page_header %>
+  <%= stylesheet_link_tag '/stylesheets/theme/application.css', :media => 'all' %>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><%= link_to this_blog.blog_name, this_blog.base_url %></span></h1>
+    <h2><%= this_blog.blog_subtitle %></h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <%= @content_for_layout %>
+      <%= javascript_tag 'show_dates_as_local_time()' %>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <%= render :partial => 'shared/search' %>
+
+      <!-- sidebar components -->
+      <%= render_sidebars %>
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><%= link_to this_blog.blog_name, this_blog.base_url %></p>
+    <ul>
+      <li>powered by <%= link_to 'typo', 'http://typosphere.org' %> /
+          styled with <%= link_to 'scribbish', 'http://quotedprintable.com/pages/scribbish' %></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

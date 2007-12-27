@@ -1,0 +1,112 @@
+require 'rubygems'
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'rake/packagetask'
+require 'rake/gempackagetask'
+require 'rake/contrib/rubyforgepublisher'
+
+PKG_NAME      = 'uuidtools'
+PKG_VERSION   = '0.1.1'
+PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
+
+RELEASE_NAME  = "REL #{PKG_VERSION}"
+
+RUBY_FORGE_PROJECT = "uuidtools"
+RUBY_FORGE_USER    = "vacindak"
+
+PKG_FILES = FileList[
+    "lib/**/*", "test/**/*", "examples/**/*", "doc/**/*", "[A-Z]*", "install.rb", "rakefile"
+].exclude(/\bCVS\b|~$/).exclude(/database\.yml/)
+
+desc "Default Task"
+task :default => [ :test_all ]
+
+# Run the unit tests
+
+Rake::TestTask.new("test_all") { |t|
+  t.libs << "test"
+  t.pattern = 'test/*_test.rb'
+  t.verbose = true
+}
+
+# Generate the RDoc documentation
+
+Rake::RDocTask.new { |rdoc|
+  rdoc.rdoc_dir = 'doc'
+  rdoc.title    = "UUID Tools -- universally unique id generation tools"
+  rdoc.options << '--line-numbers --inline-source --accessor cattr_accessor=object'
+  rdoc.template = "#{ENV['template']}.rb" if ENV['template']
+  rdoc.rdoc_files.include('README', 'CHANGELOG')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+}
+
+# Create compressed packages
+
+dist_dirs = [ "lib", "test" ]
+
+spec = Gem::Specification.new do |s|
+  s.name = PKG_NAME
+  s.version = PKG_VERSION
+  s.summary = "Generation of UUIDs."
+  s.description = "Implements a simple system for generating UUIDs."
+
+  s.files = [ "rakefile", "install.rb", "README", "CHANGELOG" ]
+  dist_dirs.each do |dir|
+    s.files = s.files + Dir.glob( "#{dir}/**/*" ).delete_if do |item|
+      item.include?( "\.svn" ) || item.include?( "database\.yml" )
+    end
+  end
+  
+  s.require_path = 'lib'
+  s.autorequire = 'uuidtools'
+
+  s.has_rdoc = true
+  s.extra_rdoc_files = %w( README )
+  s.rdoc_options.concat ['--main',  'README']
+  
+  s.author = "Bob Aman"
+  s.email = "bob@sporkmonger.com"
+  s.homepage = "http://sporkmonger.com/projects/uuidtools"
+  s.rubyforge_project = "uuidtools"
+end
+  
+Rake::GemPackageTask.new(spec) do |p|
+  p.gem_spec = spec
+  p.need_tar = true
+  p.need_zip = true
+end
+
+task :lines do
+  lines, codelines, total_lines, total_codelines = 0, 0, 0, 0
+
+  for file_name in FileList["lib/**/*.rb"]
+    f = File.open(file_name)
+
+    while line = f.gets
+      lines += 1
+      next if line =~ /^\s*$/
+      next if line =~ /^\s*#/
+      codelines += 1
+    end
+    puts "L: #{sprintf("%4d", lines)}, LOC #{sprintf("%4d", codelines)} | #{file_name}"
+    
+    total_lines     += lines
+    total_codelines += codelines
+    
+    lines, codelines = 0, 0
+  end
+
+  puts "Total: Lines #{total_lines}, LOC #{total_codelines}"
+end
+
+
+# Publishing ------------------------------------------------------
+
+desc "Publish the API documentation"
+task :pdoc => [:rdoc] do 
+  Rake::SshDirPublisher.new(
+    "vacindak@sporkmonger.com",
+    "public_html/projects/uuidtools/api",
+    "doc").upload
+end

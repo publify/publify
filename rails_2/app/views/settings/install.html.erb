@@ -1,0 +1,12 @@
+<div class="notice"><%= flash[:notice] %></div>
+<% form_tag do %>
+
+<% for field in @fields -%>
+
+  <%= field.desc %><br/>
+  <%= settings_field field %><br/>
+  <% end %>
+
+  <%= submit_tag %>
+
+<% end %>

@@ -1,0 +1,89 @@
+<%= error_messages_for 'article' %>
+<!--[form:articles]-->
+<fieldset class="set admin" style="display: block">
+  <div <%='style="width: 48%; float: left;"' if this_blog.editor == 1 %>>
+     <ul>
+       <li>
+          <label for="article_title" class="block"><%= _("Title")%>:</label>
+          <%= text_field 'article', 'title', :class => 'large' %>
+       </li>
+       <li>
+          <label for="article_body"><%= _("Post")%>:</label>
+          <%= markup_help_popup @article.text_filter, image_tag('admin/help.png', :alt => "markup help", :title => "Markup Help") %>
+          <%= text_area 'article', 'body', :rows => 25, :style => 'width: 100%;'  %>
+       </li>
+       <li>
+          <%= link_to_function _("Optional extended content") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.5) } %>
+       </li>
+       <li id="extended"<%- if @article.extended.blank? -%> style="display:none;"<%- end -%>>
+          <label for="article_extended"><%= _("Optional Extended Content")%>:</label>
+          <%= text_area 'article', 'extended', :rows => 30, :style => 'width: 100%;'  %>
+       </li>
+       <li>
+          <label for="categories" class="block"><%= _("Categories")%>:</label>
+          <select id="categories" class="large" name="categories[]" multiple="multiple" size="10">
+             <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
+		  </select>
+       </li>
+       <li>
+          <label for="article_keywords"><%= _("Tags")%>:</label>
+          <%= text_field 'article', 'keywords', :style => 'width: 100%;' %>
+       </li>
+     </ul>
+     <p class="r"><%= save(_("Save") + " &raquo;") %></p>
+  </div>
+	<% if this_blog.editor == 1 %>
+	<iframe id="preview" class="post" style="display: block;"></iframe>
+  <br style ="clear: both"/>
+	<% end %>
+</fieldset>
+
+<% if this_blog.display_advanced == 1 %>
+<fieldset class="set admin">
+  <legend><%= _("Upload")%></legend>
+  <div id="attachments">
+    <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
+  </div>
+</fieldset>
+<% end %>
+
+<fieldset class="set admin">
+  <legend><%= _("Options")%></legend>
+  <ul>
+	<% if this_blog.display_advanced == 1 %>
+     <li>
+       <label for="article_permalink" class="float"><%= _("Permalink")%>:</label>
+       <%= text_field 'article', 'permalink'  %>
+     </li>
+     <li class="checkbox">
+       <label for="article_allow_comments" class="float"><%= _("Allow comments") %>: </label>
+       <%= check_box 'article', 'allow_comments'  %>
+     </li>
+     <li class="checkbox">
+        <label for="article_allow_pings" class="float"><%= _("Allow trackbacks")%>: </label>
+        <%= check_box 'article', 'allow_pings'  %>
+     </li>
+	<% else %>
+		<%= hidden_field_tag 'article_allow_comments', 1 %>
+		<%= hidden_field_tag 'article_allow_pings', 1 %>
+	<% end %>
+     <li>
+       <label for="article_published" class="float"><%= _("Published")%>:</label>
+       <%= check_box 'article', 'published'  %>
+     </li>
+     <li>
+        <label for="article_published_at" class="float"><%= _("Publish at")%>:</label>
+        <%= datetime_select 'article', 'published_at', :include_blank => true  %>
+     </li>
+	<% if this_blog.display_advanced == 1 %>
+     <li>
+        <label for="article_text_filter" class="float"><%= _("Textfilter")%>: </label>
+        <%= select 'article', 'text_filter', text_filter_options %>
+     </li>
+	<% else %>
+		<%= hidden_field_tag 'article_text_filter', this_blog.text_filter%>
+	<% end %>
+  </ul>
+</fieldset>
+
+<!--[eoform:articles]-->

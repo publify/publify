@@ -1,0 +1,105 @@
+---
+in: 'This is an empty dictionary: @{}@'
+out: '<p>This is an empty dictionary: <code>{}</code></p>'
+---
+in: |-
+  Testing nested pre tags...
+
+  <pre>
+  <code>
+    Good code here.
+
+    <pre>
+      a = 1
+    </pre>
+
+    Bad code here.
+
+    <script language="JavaScript">
+      window.open( "about:blank" );
+    </script>
+  </code>
+  </pre>
+
+out: |-
+  <p>Testing nested pre tags&#8230;</p>
+  
+
+  <pre>
+  <code>
+    Good code here.
+  
+    &lt;pre&gt;
+      a = 1
+    &lt;/pre&gt;
+  
+    Bad code here.
+  
+    &lt;script language="JavaScript"&gt;
+      window.open( "about:blank" );
+    &lt;/script&gt;
+  </code>
+  </pre>
+---
+in: |-
+  <pre>
+  *** test
+  </pre>
+out: |-
+  <pre>
+  *** test
+  </pre>
+---
+in: |-
+  <notextile>
+  *** test
+  </notextile>
+out: |-
+  *** test
+---
+in: '*this <span></span> is strong*'
+out: '<p><strong>this <span></span> is strong</strong></p>'
+---
+in: '*this <span>test</span> is strong*'
+out: '<p><strong>this <span>test</span> is strong</strong></p>'
+---
+in: <pre class="code"> __inline__</pre>
+out: <pre class="code"> __inline__</pre>
+---
+in: |-
+  * @foo@
+  * @bar@
+  * and @x@ is also.
+out: "<ul>\n\t<li><code>foo</code></li>\n\t\t<li><code>bar</code></li>\n\t\t<li>and <code>x</code> is also.</li>\n\t</ul>"
+---
+in: |-
+  <pre class="code"> <hello> </pre>
+  <pre class="code"> <hello> </pre>
+out: |-
+  <pre class="code"> &lt;hello&gt; </pre>
+  <pre class="code"> &lt;hello&gt; </pre>
+---
+in: |
+  Test of Markdown-style indented code.
+
+    a = [1, 2, 3]
+    a.each do |x|
+      puts "test number", x,
+        "and more!"
+    end
+
+  Paragraph 2.
+
+  Paragraph 3.
+out: |-
+  <p>Test of Markdown-style indented code.</p>
+  
+  	<pre><code>a = [1, 2, 3]
+  a.each do |x|
+    puts "test number", x,
+      "and more!" 
+  end</code></pre>
+  
+  	<p>Paragraph 2.</p>
+  
+  	<p>Paragraph 3.</p>

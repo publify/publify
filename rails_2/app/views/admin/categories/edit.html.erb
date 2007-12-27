@@ -1,0 +1,15 @@
+  <% @page_heading = _('Categories') %>
+  <% content_for('tasks') do %>
+    <%= task_overview %>
+  <% end %>
+  <% form_tag :action=>"edit", :id => @category.id do %>
+  <h3><% _("Editing category")%></h3>
+  <div class="form">
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations">
+    <%= save %> or <%= cancel %>
+  </div>
+
+  <% end %>

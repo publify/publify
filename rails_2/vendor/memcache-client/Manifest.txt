@@ -1,0 +1,8 @@
+History.txt
+LICENSE.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/memcache.rb
+lib/memcache_util.rb
+test/test_mem_cache.rb

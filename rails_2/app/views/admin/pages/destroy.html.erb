@@ -1,0 +1,11 @@
+  <% @page_heading = _("Pages") %>
+
+  <% content_for('tasks') do %>
+    <%= task_show _("Show this page"), @page.id %>
+  <% end %>
+
+  <p><%= _("Are you sure you want to delete the page")%> '<%= @page[:name] %>'?</p>
+  <% form_tag :controller => '/admin/pages', :action => 'destroy' do %>
+  <%= hidden_field "page", "id" %>
+  <%= confirm_delete(_("Delete this page")) %>
+  <% end %>

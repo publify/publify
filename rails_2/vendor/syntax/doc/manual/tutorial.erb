@@ -1,0 +1,30 @@
+<h1>Tutorial #<%= object.index %>. <%= object.title %></h1>
+
+<p>The sources for this tutorial may be found in the <tt>tutorial/<%= "%02d" % object.index %></tt>
+directory of the Copland distribution.</p>
+
+<% if object.intro %>
+
+  <h2>Introduction</h2>
+
+  <%= object.intro.to_html %>
+
+<% end %>
+
+<h2>Steps</h2>
+
+<ol>
+<% object.steps.each do |step| %>
+
+<li><%= step.to_html %></li>
+
+<% end %>
+</ol>
+
+<% if object.summary %>
+
+  <h2>Summary</h2>
+
+  <%= object.summary.to_html %>
+
+<% end %>

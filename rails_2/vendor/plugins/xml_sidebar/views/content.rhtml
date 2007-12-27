@@ -1,0 +1,12 @@
+<h3><%= _("Syndicate")%></h3>
+<ul>
+  <% if articles -%>
+  <li><a href="<%= url_for :controller=>'xml', :action=>'feed', :format => format, :type => 'feed' %>" title="Articles feed"><%= _("Articles")%></a></li>
+  <% end %>
+  <% if comments -%>
+  <li><a href="<%= url_for :controller=>'xml', :action=>'feed', :format => format, :type => 'comments' %>" title="Comments feed"><%= _("Comments")%></a></li>
+  <% end %>
+  <% if trackbacks -%>
+  <li><a href="<%= url_for :controller=>'xml', :action=>'feed', :format => format, :type => 'trackbacks' %>" title="Trackbacks feed"><%= _("Trackbacks")%></a></li>
+  <% end %>
+</ul>

@@ -1,0 +1,39 @@
+***THIS DOCUMENT IS OUT OF DATE***
+==================================
+
+How to add a new sidebar plugin
+===============================
+
+1.  Decide on a name.  I'll refer to it as <name> below.
+
+2.  Next, create the plugin's controller in
+    components/plugins/sidebars/<name>_controller.rb.  Look at
+    flickr_controller.rb for an example.  At a minimum, you need to
+    define two methods: 
+
+    * self.display_name.  This is the short name that shows up in
+      title blocks in the sidebar admin UI.
+
+    * self.description.  This is the description that shows up in the
+      UI.
+
+    If your plugin needs to save configuration options, then you'll
+    need to add a 'configure' method as well, and possible a
+    self.default_config method.  Follow the examples.
+
+3.  Next, create the configuration page.  If your sidebar plugin
+    doesn't need any configuration data, then you can skip this step.
+    Otherwise create a file called 
+    components/plugins/sidebars/<name>/configure.rhtml and
+    put the form for configuring your plugin into the file.  See the
+    existing examples for inspiration.  You'll need to include
+    observe_form to get rails to save your data for you.
+
+4.  Finally, create the plugin's content.  This is what is displayed
+    when the sidebar is displayed in the blog.  Create a file called
+    components/plugins/sidebars/<name>/content.rhtml and fill it up.
+    Don't forget to include a <h3> header block.  Configuration data
+    (if any) is available in @sb_config[<config name>]
+
+That's it.  New components should be picked up automatically.  To
+enable them, you'll need to use the sidebar tool in the admin page.

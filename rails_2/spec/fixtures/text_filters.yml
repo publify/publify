@@ -1,0 +1,42 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+markdown_filter:
+  id: 1
+  name: "markdown"
+  description: "Markdown"
+  markup: markdown
+  filters: --- []
+  params: --- {}
+
+smartypants_filter:
+  id: 2
+  name: "smartypants"
+  description: "SmartyPants"
+  markup: none
+  filters:
+    - :smartypants
+  params: --- {}
+
+markdownsmartypants_filter:
+  id: 3
+  name: "markdown smartypants"
+  description: "Markdown with SmartyPants"
+  markup: markdown
+  filters:
+    - :smartypants
+  params: --- {}
+
+textile_filter:
+  id: 4
+  name: "textile"
+  description: "Textile"
+  markup: textile
+  filters: --- []
+  params: --- {}
+
+none_filter:
+   id: 5
+   name: "none"
+   description: "None"
+   markup: none
+   filters: --- []
+   params: --- {}

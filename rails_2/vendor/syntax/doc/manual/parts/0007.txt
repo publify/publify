@@ -1,0 +1,3 @@
+Because of Syntax's modular design, it is pretty straightforward to create your own syntax modules. The hardest part is doing the actual tokenizing of your chosen syntax.
+
+You can use the existing syntax modules to guide your own implementation if you wish, but note that each module will have to solve unique problems, because of the uniqueness of each different syntax.

@@ -1,0 +1,31 @@
+  <% @page_heading = _("Trackbacks for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+
+  <% content_for('tasks') do %>
+    <%= task_new 'Create new trackback' %>
+    <li><%= link_to 'Manage Articles', :controller => '/admin/content', :action => 'list' %></li>
+  <% end %> 
+
+  <div class="list">	
+    <table>
+    <tr>
+      <th><%= _("Blog Name")%></th>
+      <th><%= _("Title")%></th>
+      <th><%= _("Body")%></th>
+      <th><%= _("IP")%></th>
+      <th><%= _("Created at")%></th>
+      <th><%= _("Edit")%></th>
+      <th><%= _("Delete")%></th>
+    </tr>
+    <% for trackback in @trackbacks -%>
+    <tr>
+      <td class="field"><%= image_tag 'checked.gif' %> <%= link_to trackback.blog_name, trackback.url %></td>
+      <td class="field"><%= link_to truncate(trackback.title), :action => "show", :id => trackback.id %> <%= link_to_permalink trackback.article,image_tag('go.png') %></td>
+      <td class="field"><%=h truncate(trackback.excerpt) %></td>
+      <td class="field"><%=h trackback.ip %></td>
+      <td class="field"><%=h trackback.created_at %></td>
+      <td class="operation"><%= link_to_edit trackback %></td>
+      <td class="operation"><%= link_to_destroy trackback %></td>    
+    </tr>  
+    <% end -%>
+    </table>
+  </div>

@@ -1,0 +1,198 @@
+<html>
+  <head>
+    <title>Syntax Manual :: Chapter 1: Introduction</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/manual.css" />
+  </head>
+  
+  <body>
+    <div id="banner">
+      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+        <tr><td valign='top' align='left'>
+          <div class="title">
+            <span class="product">Syntax&mdash;</span><br />
+            <span class="tagline">Lexical Analysis for Syntax Highlighting</span>
+          </div>
+        </td><td valign='middle' align='right'>
+          <div class="info">
+            Syntax Version: <strong>1.0.0</strong><br />
+            Manual Last Updated: <strong>2005-06-18 20:25 UTC</strong>
+          </div>
+        </td></tr>
+      </table>
+    </div>
+
+    <table border='0' width='100%' cellpadding='0' cellspacing='0'>
+      <tr><td valign='top'>
+
+        <div id="navigation">
+          <h1>Syntax Manual</h1>
+
+          <h2>Chapters</h2>
+          <ol type="I">
+          
+            <li><strong>
+                <a href="chapter-1.html">
+                Introduction
+                </a>
+                </strong> <big>&larr;</big>
+              <ol type="1">
+                
+                  <li><a href="chapter-1.html#s1">What is Syntax?</a></li>
+                
+                  <li><a href="chapter-1.html#s2">Quick Start</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-2.html">
+                Lexical Analysis
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-2.html#s1">Groups</a></li>
+                
+                  <li><a href="chapter-2.html#s2">Instructions</a></li>
+                
+                  <li><a href="chapter-2.html#s3">Analyzing</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-3.html">
+                Syntax Highlighting
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-3.html#s1">Converting Text</a></li>
+                
+                  <li><a href="chapter-3.html#s2">Custom Highlighters</a></li>
+                
+              </ol>
+            </li>
+          
+            <li>
+                <a href="chapter-4.html">
+                Extending Syntax
+                </a>
+                
+              <ol type="1">
+                
+                  <li><a href="chapter-4.html#s1">Introduction</a></li>
+                
+                  <li><a href="chapter-4.html#s2">Interface</a></li>
+                
+                  <li><a href="chapter-4.html#s3">Scanning <span class="caps">API</span></a></li>
+                
+                  <li><a href="chapter-4.html#s4">Registering Your New Syntax</a></li>
+                
+              </ol>
+            </li>
+          
+          </ol>
+
+          <h2>Other Documentation</h2>
+
+          <ul>
+            <li><a href="http://net-ssh.rubyforge.org/api/index.html">Net::SSH API</a></li>
+            <li><a href="http://rubyforge.org/tracker/?atid=1842&group_id=274&func=browse">Net::SSH FAQ</a></li>
+          </ul>
+
+          <h2>Tutorials</h2>
+          <ol>
+          
+          </ol>
+
+          <p align="center"><strong>More To Come...</strong></p>
+
+          <div class="license">
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />
+            This manual is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.
+          </div>
+        </div>
+
+      </td><td valign='top' width="100%">
+
+        <div id="content">
+
+           <div class="top"><div class="prevnext">
+  
+  <a href="index.html">Up</a>
+  
+    | <a href="chapter-2.html">Next (2. Lexical Analysis)</a>
+  
+</div></div>
+
+<h1>1. Introduction</h1>
+
+
+
+     <h2>
+       <a name="s1"></a>
+       1.1. What is Syntax?
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Syntax is, first and foremost, a lexical analysis framework. It supports pluggable syntax modules, and comes with modules for Ruby, <span class="caps">XML</span>, and <span class="caps">YAML</span>.</p>
+
+
+	<p>What does it mean, a &#8220;lexical analysis framework&#8221;? It means you can use Syntax to take a body of text representing instructions in some syntax (like Ruby), and break that text into <em>tokens</em>.</p>
+
+
+	<p>What is that good for? Well, a few things. You could concievably use it to count the number of classes in a system, or the number of lines of code per method. But Syntax was written specifically with <em>syntax highlighting</em> in mind.</p>
+   </div>
+
+
+
+     <h2>
+       <a name="s2"></a>
+       1.2. Quick Start
+     </h2>
+
+   
+
+   <div class="section">
+     <p>Because Syntax was written primarily to support syntax highlighting, that is going to be the task most clients of the library will use it for. So, to get you up and running quickly, converting, for example, Ruby code to <span class="caps">HTML</span>, consider the following:</p>
+
+
+	<div class='figure'>
+<span class='caption'>Convert a Ruby script to HTML [ruby]</span>
+<div class='body'><table border='0' cellpadding='0' cellspacing='0'><tr><td class='lineno'>1<br />2<br />3<br />4<br />5<br />6<br /></td><td width='100%'><link rel='stylesheet' type='text/css' href='stylesheets/ruby.css' /><div class='ruby'><pre><span class="ident">require</span> <span class="punct">'</span><span class="string">syntax/convertors/html</span><span class="punct">'</span>
+
+<span class="ident">convertor</span> <span class="punct">=</span> <span class="constant">Syntax</span><span class="punct">::</span><span class="constant">Convertors</span><span class="punct">::</span><span class="constant">HTML</span><span class="punct">.</span><span class="ident">for_syntax</span> <span class="punct">&quot;</span><span class="string">ruby</span><span class="punct">&quot;</span>
+<span class="ident">html</span> <span class="punct">=</span> <span class="ident">convertor</span><span class="punct">.</span><span class="ident">convert</span><span class="punct">(</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">read</span><span class="punct">(</span> <span class="punct">&quot;</span><span class="string">program.rb</span><span class="punct">&quot;</span> <span class="punct">)</span> <span class="punct">)</span>
+
+<span class="ident">puts</span> <span class="ident">html</span></pre></div></td></tr></table></div></div>
+
+
+	<p>The above script will convert a Ruby file called <code>program.rb</code> to <span class="caps">HTML</span>, writing the <span class="caps">HTML</span> to stdout. <span class="caps">HTML </span><code>span</code> tags will be used in conjunction with &#8220;class&#8221; attributes to describe the various tokens&#8212;this allows you to use <span class="caps">CSS</span> to colorize the result.</p>
+
+
+	<p>Incidentally, this entire document uses the Syntax library to colorize the Ruby code snippets!</p>
+
+
+	<p><em>Note: currently, only <span class="caps">HTML</span> conversion is supported, but it should be possible to create a convertor that takes the tokenized output and emits other formats, like LaTeX, <span class="caps">PDF</span>, or Rich Text.</em></p>
+   </div>
+
+
+
+<div class="bottom"><div class="prevnext">
+  
+  <a href="index.html">Up</a>
+  
+    | <a href="chapter-2.html">Next (2. Lexical Analysis)</a>
+  
+</div></div>
+
+
+        </div>
+
+      </td></tr>
+    </table>
+  </body>
+</html>

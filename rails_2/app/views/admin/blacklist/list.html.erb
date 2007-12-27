@@ -1,0 +1,13 @@
+  <% @page_heading = _('Blacklist Patterns') %>
+
+  <% content_for('tasks') do %>
+    <%= task_quickpost(_('Create new Blacklist')) %>
+  <% end %>
+
+  <div id="quick-post" style="display:none;position:absolute;">
+    <%= render :partial => "quick_post" %>
+  </div>
+
+  <div class="list">	
+    <%= render_partial 'blacklist_patterns' %>  
+  </div>                      

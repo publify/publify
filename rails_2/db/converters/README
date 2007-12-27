@@ -1,0 +1,14 @@
+These are converters for migrating from other blog systems to Typo. In
+general, you're best off using the converter that best-matches your blog
+system, and then falling back to the RSS or Feed converter if the others fail.
+These converters aren't always well tested, so please back up your data before
+converting, and please file bugs at http://www.typosphere.org/trac.
+
+Available converters:
+
+* mt3.rb: Converts from Movable Type 3.x
+* wordpress.rb: Converts from Wordpress
+* s9y.rb: Converts from Serendipity (aka s9y)
+* textpattern.rb: Converts from TextPattern
+* feed.rb: Converts from any RSS or Atom feed.  Requires the 'feed_tools' gem.
+* rss.rb: Converts from RSS feeds.

@@ -1,0 +1,23 @@
+  <% @page_heading = _('Preview Article') %>
+
+  <% content_for('tasks') do %>
+    <%= task_edit _('Edit this article'), @article.id %>
+    <li><%= link_to _('View article on your blog'), @article.permalink_url %></li>
+	<%= task_overview %>
+  <% end %>
+
+  <h3>Live Preview</h3>
+
+  <div class="form" style="text-align: center; margin: auto;">
+	<iframe src="<%=@article.permalink_url%>" width="95%" height="700px"></iframe>
+  </div>
+
+  <h3><%= _("Categories")%></h3>
+  <div id="categories" class="form">
+    <%= render :partial => 'show_categories' -%>
+  </div>
+
+  <h3><%= _("Attachments")%></h3>
+  <div id="resources" class="form">
+    <%= render :partial => 'show_resources' -%>
+  </div>

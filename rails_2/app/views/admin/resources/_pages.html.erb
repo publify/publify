@@ -1,0 +1,3 @@
+    <%= link_to <%= _("Previous page"), { :id => pages.current.previous } if pages.current.previous -%>
+    <%= pagination_links pages, :name => 'id' -%>
+    <%= link_to _("Next page"), { :id => pages.current.next } if pages.current.next -%>

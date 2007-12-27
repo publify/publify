@@ -1,0 +1,23 @@
+  <% @page_heading = _("User") + ": #{@user.name}" %>
+
+  <% content_for('tasks') do %>
+    <%= task_new 'Create new user' %>
+    <%= task_edit 'Edit this user', @user.id %>
+  <% end %> 
+
+  <div class="form">	
+    <label><%= _("Name")%>:</label> <span class="static"><%=h @user.name %></span><br/>
+    <label><%= _("Login")%>:</label> <span class="static"><%=h @user.login %></span><br/>
+    <label><%= _("Profile")%>:</label> <span class="static"><%=h @user.profile.nicename %></span><br/>
+    <label><%= _("Email")%>:</label> <span class="static"><%=h @user.email %></span><br/>
+    <label><%= _("Jabber")%>:</label> <span class="static"><%=h @user.jabber %></span><br/>
+    <label><%= _("Notify via email")%>:</label> <span class="static"><%= @user.notify_via_email? ? _("yes") : _("no") %></span><br/>
+    <label><%= _("Notify via jabber")%>:</label> <span class="static"><%= @user.notify_via_jabber? ? _("yes") : _("no") %></span><br/>
+    <label><%= _("Notify on new articles")%>:</label> <span class="static"><%= @user.notify_on_new_articles? ? _("yes") : _("no") %></span><br/>
+    <label><%= _("Notify on new comments")%>:</label> <span class="static"><%= @user.notify_on_comments? ? _("yes") : _("no") %></span><br/>
+  </div>
+
+  <div class="list">
+    <h2><%= _("User's articles")%></h2>
+    <%= render :partial => 'admin/content/articles' %>
+  </div>

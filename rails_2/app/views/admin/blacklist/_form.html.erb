@@ -1,0 +1,15 @@
+<%= error_messages_for 'blacklist_pattern' %>
+<!--[form:blacklist_pattern]-->
+<p>
+  <label for="blacklist_pattern_pattern"><%= _("Pattern")%>:</label> 
+  <%= text_field 'blacklist_pattern', 'pattern'  %>
+</p>
+<p>
+  <% if @controller.action_name == "new" %>
+  <label for="blacklist_pattern_type"><%= _("Type")%>:</label> 
+  <select name="blacklist_pattern[type]">
+  <%= options_for_select [ [_('String'), 'StringPattern'], [_('Regex'), 'RegexPattern' ] ]  %>
+</select>
+<% end %>
+</p>
+<!--[eoform:blacklist_pattern]-->

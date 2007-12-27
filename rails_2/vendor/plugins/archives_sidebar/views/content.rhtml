@@ -1,0 +1,11 @@
+<% unless sidebar.archives.blank? %>
+<h3><%= _("Archives")%></h3>
+<ul id="archives">
+  <% sidebar.archives.each do |month| %>
+    <li>
+      <%= link_to month[:name], articles_by_month_path(month[:year], "%02i" % month[:month]) %>
+      <%= "<em>(#{month[:article_count]})</em>" if show_count %>
+    </li>
+  <% end %>
+</ul>
+<% end %>

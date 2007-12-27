@@ -1,0 +1,13 @@
+<% form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data") do %>
+  <%= render :partial => "form" %>
+
+  <div id="operations" class="paginate">
+    <p class="r"><%= save(_("Save") + " &raquo;") %></p>
+  </div>
+
+<% end %>
+
+<%= observe_form "#{form_type}_form",
+      :frequency => 2,
+      :complete => "$('preview').src = request.responseText; Element.show('preview');",
+      :url => { :action => "preview" } if this_blog.editor == 1  %>

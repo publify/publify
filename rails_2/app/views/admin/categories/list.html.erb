@@ -1,0 +1,18 @@
+  <% @page_heading = _('Categories') + '(' + task_quickpost(_('add new')) + ')' %>
+
+  <% content_for('tasks') do -%>
+	<%= subtab _("Posts"), "", {:controller=>"content", :action=>"list"} %>
+	<%= subtab _("Pages"), "", {:controller=>"pages", :action=>"list"} %>
+	<%= subtab _("Categories"), "current", {:controller=>"categories", :action=>"index"} %>
+	<%= subtab _("Uploads"), "", {:controller=>"resources", :action=>"list"} %>
+	<%= content_tag :li, link_to_remote(_('Reorder'), :update => 'category_container', :url => { :action => 'reorder' }) %>
+	<%= content_tag :li, link_to_remote(_('Sort alphabetically'), :update => 'category_container', :url => { :action => 'asort' }) %>
+  <% end -%> 
+
+  <div id="quick-post" style="display:none;position:absolute;">
+    <%= render :partial => "quick_post" %>
+  </div>
+  
+  <div id="category_container" class="list">	
+    <%= render :partial => 'categories' %>  
+  </div>                      

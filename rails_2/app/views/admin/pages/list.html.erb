@@ -1,0 +1,12 @@
+  <% @page_heading = _('Pages') %>
+
+  <% content_for('tasks') do %>
+	<%= subtab _("Posts"), "", {:controller=>"content", :action=>"list"} %>
+	<%= subtab _("Pages"), "current", {:controller=>"pages", :action=>"list"} %>
+	<%= subtab _("Categories"), "", {:controller=>"categories", :action=>"index"} %>
+	<%= subtab _("Uploads"), "", {:controller=>"resources", :action=>"list"} %>
+  <% end %> 
+
+  <div class="list" id="pages">	
+    <%= render :partial => 'pages' %>
+  </div>                      

@@ -1,0 +1,32 @@
+<%
+#Since the data is in yaml coming out of the DB it is converted here from
+#comparision. This is  a hack to get things working.
+unless categories.nil?
+  selected = YAML::load(categories)
+else
+  selected = Hash.new
+end
+-%>
+<select name="itunes_category[]" id="resource_itunes_category_<%= id %>" size="3" multiple="multiple">
+  <% @itunes_category_list.each do |h|
+    h.each_pair do |cat,subcats| -%>
+    <% # not a great way of handling this but it looks better -%>
+      <% if selected.key?(cat)  -%>
+        <option value="<%=h cat %>" selected="selected"><%=h cat %></option>
+      <% else -%>
+        <option value="<%=h cat %>"><%=h cat %></option>
+      <% end -%>
+      <% subcats.each do |subcat| -%>
+        <% unless selected[cat].nil? -%>
+          <% if selected[cat].include?(subcat) -%>
+            <option value="<%=h cat %>-<%=h subcat %>" selected="selected">&nbsp;-<%=h subcat %></option>
+          <% else -%>
+            <option value="<%=h cat %>-<%=h subcat %>">&nbsp;-<%=h subcat %></option>
+          <% end -%>
+        <% else -%>
+          <option value="<%=h cat %>-<%=h subcat %>">&nbsp;-<%=h subcat %></option>
+        <% end -%>
+      <% end unless subcats.nil?  %>
+    <% end -%>
+  <% end -%>
+</select>

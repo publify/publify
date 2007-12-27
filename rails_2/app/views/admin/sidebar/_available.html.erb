@@ -1,0 +1,5 @@
+<div id="available_<%= available.short_name %>" class="dragitem">
+  <h4 class="handle"><%= available.display_name %></h4>
+  <p><%= available.description %></p>
+</div>
+<%= draggable_element "available_#{available.short_name}" %>

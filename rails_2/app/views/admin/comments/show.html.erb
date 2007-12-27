@@ -1,0 +1,12 @@
+  <% @page_heading = _("Comments for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+  <% content_for('tasks') do %>
+	<%= task_overview %>
+  <% end %>
+  <div class="form">	
+    <label><%= _("Author")%>:</label> <span class="static"><%=h @comment.author %></span><br/>
+    <label><%= _("URL")%>:</label> <span class="static"><%=h @comment.url %></span><br/>
+    <label><%= _("Email")%>:</label> <span class="static"><%=h @comment.email %></span><br/>
+    <label><%= _("Body")%>:</label> <span class="static"><%=h @comment.body %></span><br/>
+    <label><%= _("IP")%>:</label> <span class="static"><%=h @comment.ip %></span><br/>
+    <label><%= _("Posted date")%>:</label> <span class="static"><%=h @comment.created_at %></span><br/>
+  </div>

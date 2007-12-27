@@ -1,0 +1,32 @@
+<div class="atomentry" id="article-<%= article.id %>">
+  <h2 class="title"><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h2>
+  <div class="content">
+    <%= article.html(:body) %>
+
+    <% if article.extended? -%>
+      <div class="extended">
+        <% if controller.action_name == 'index' -%>
+          <p><%= link_to_permalink article,"Continue reading..." %></p>
+        <% else -%>
+          <%= article.html(:extended) %>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+	<div class="meta">
+		<% if controller.controller_name == "articles" and controller.action_name == 'show' %>
+		<p><small>This entry was posted on <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr> <%= content_tag(:span, "and " + category_links(@article), :class => 'categories') unless @article.categories.empty? %>. You can follow any any response to this entry through the <a href="<%= url_for :controller => 'xml', :action=>'feed', :type=>'article', :format => 'atom', :id => @article %>">Atom feed</a>. <%= "You can leave a " + link_to_permalink(article, 'comments', 'comments') << ',' if article.allow_comments? %> <%= "Or a " + link_to_permalink(article, 'trackback', 'trackbacks')  << ' from your own site' if article.allow_pings? %>.</small><br />
+			<small><%= tag_links(@article) unless @article.tags.empty? %></small></p>
+		<% else %>
+  	<p class="author">
+    	Posted by <cite><%= author_link(article) %></cite>
+    	<abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
+  	</p>
+		<p class="links">
+			<%= link_to_permalink(article, _("Read full article"), nil, 'more') if controller.action_name != 'permalink' %>
+			<%= link_to_permalink(article,pluralize(article.published_comments.size, 'comment'),'comments', 'comments') %>
+		</p>
+		<% end %>
+		<br style="clear:both;" />
+	</div>
+</div>

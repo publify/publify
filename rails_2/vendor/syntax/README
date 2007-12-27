@@ -1,0 +1,38 @@
+= Syntax
+
+A syntax highlighting a library for Ruby.
+
+== About
+
+This is a simple syntax highlighting library for Ruby. It is a naive syntax analysis tool, meaning that it does not "understand" the syntaxes of the languages it processes, but merely does some semi-intelligent pattern matching.
+
+== Usage
+
+There are primarily two uses for the Syntax library:
+
+# Convert text from a supported syntax to a supported highlight format (like HTML).
+# Tokenize text in a supported syntax and process the tokens directly.
+
+=== Highlighting a supported syntax
+
+  require 'syntax/convertors/html'
+
+  convertor = Syntax::Convertors::HTML.for_syntax "ruby"
+  puts convertor.convert( File.read( "file.rb" ) )
+
+The above snippet will emit HTML, using spans and CSS to indicate the different highlight "groups". (Sample CSS files are included in the "data" directory.)
+
+=== Tokenize text
+
+  require 'syntax'
+
+  tokenizer = Syntax.load "ruby"
+  tokenizer.tokenize( File.read( "file.rb" ) ) do |token|
+    puts "group(#{token.group}, #{token.instruction}) lexeme(#{token})"
+  end
+
+Tokenizing is straightforward process. Each time a new token is discovered by the tokenizer, it is yielded to the given block.
+
+* <tt>token.group</tt> is the lexical group to which the token belongs. Each supported syntax may have it's own set of lexical groups.
+* <tt>token.instruction</tt> is an instruction used to determine how this token should be treated. It will be <tt>:none</tt> for normal tokens, <tt>:region_open</tt> if the token starts a nested region, and <tt>:region_close</tt> if it closes the last opened region.
+* <tt>token</tt> is itself a subclass of String, so you can use it just as you would a string. It represents the lexeme that was actually parsed.

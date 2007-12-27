@@ -1,0 +1,11 @@
+<div title="Account login" id="loginform">
+	<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.png", :alt=>"Typo website", :style => "height: 24px"), "http://typosphere.org") + _(" Administration") %>
+
+    <div class="form admin">
+      <% if flash[:notice] %>
+        <h4><%= flash[:notice] %></h4>
+      <% end %>
+
+      <%= render :partial => "shared/loginform" %>
+    </div>
+</div>

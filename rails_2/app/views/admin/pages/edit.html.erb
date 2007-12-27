@@ -1,0 +1,9 @@
+  <% @page_heading = _('Pages') %>
+
+  <% content_for('tasks') do %>
+    <%= task_new _('Create new page') %>
+    <li><%= link_to _('View page on your blog'), @page.permalink_url %></li>
+  <% end %>
+
+  <h3><%= _("Editing page")%></h3>
+  <%= render :partial => "admin/shared/edit", :locals => { :form_type => "page", :form_action => { :action => "edit", :id => @page } } %>

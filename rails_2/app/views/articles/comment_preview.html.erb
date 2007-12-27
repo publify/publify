@@ -1,0 +1,3 @@
+<%= gravatar_tag(@comment.email) if this_blog.use_gravatar and @comment.email %>
+<cite><strong><%=h @comment[:author] %></strong></cite>  <%= _("is about to say")%>:<br />
+<%= @comment.html %>

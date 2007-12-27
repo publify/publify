@@ -1,0 +1,5 @@
+Your new syntax implementation should extend @Syntax::Tokenizer@--this sets up a rich domain-specific language for scanning and tokenizing.
+
+Then, all you need to implement is the @#step@ method, which should take no parameters. Each invocation of @#step@ should extract at least one token, but may extract as many as you need it to. (Fewer is generally better, though.)
+
+Additionally, you may also implement @#setup@, to perform any initialization that should occur when tokenizing begins. Similarly, @#teardown@ may be implemented to do any cleanup that is needed.

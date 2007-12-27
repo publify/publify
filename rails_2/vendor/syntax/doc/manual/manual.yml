@@ -1,0 +1,43 @@
+--- !jamisbuck.org,2004/^manual
+
+# This content is made available under the Attribution-ShareAlike 2.0
+# license from the Create Commons:
+#
+#   http://creativecommons.org/licenses/by-sa/2.0/
+
+meta: !^meta
+  copyright: 2005
+  author: Jamis Buck
+  email: jamis@jamisbuck.org
+
+product: !^product
+  name: Syntax
+  tagline: Lexical Analysis for Syntax Highlighting
+  version: !!eval require "../../lib/syntax/version"; Syntax::Version::STRING
+  urls:
+    - Project Page: http://rubyforge.org/projects/syntax
+    - User Manual: http://syntax.rubyforge.org
+    - API Documentation: http://syntax.rubyforge.org/api
+
+recent_updates:
+
+chapters:
+
+- "Introduction":
+  - "What is Syntax?": !!file parts/0000.txt
+  - "Quick Start": !!file parts/0001.txt
+
+- "Lexical Analysis":
+  - "Groups": !!file parts/0002.txt
+  - "Instructions": !!file parts/0003.txt
+  - "Analyzing": !!file parts/0004.txt
+
+- "Syntax Highlighting":
+  - "Converting Text": !!file parts/0005.txt
+  - "Custom Highlighters": !!file parts/0006.txt
+
+- "Extending Syntax":
+  - "Introduction": !!file parts/0007.txt
+  - "Interface": !!file parts/0008.txt
+  - "Scanning API": !!file parts/0009.txt
+  - "Registering Your New Syntax": !!file parts/0010.txt

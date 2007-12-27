@@ -1,0 +1,14 @@
+  <% @page_heading = _("Trackbacks for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+
+  <% content_for('tasks') do %>
+    <%= task_edit _('Edit this trackback'), @trackback.id %>
+  <% end %>
+
+  <div class="form">
+    <label><%= _("Blog name")%>:</label> <span class="static"><%=h @trackback.blog_name %></span><br/>
+    <label><%= _("Title")%>:</label> <span class="static"><%=h @trackback.title %></span><br/>
+    <label><%= _("Url")%>:</label> <span class="static"><%=h @trackback.url %></span><br/>
+    <label><%= _("IP")%>:</label> <span class="static"><%=h @trackback.ip %></span><br/>
+    <label><%= _("Created at")%>:</label> <span class="static"><%=h @trackback.created_at %></span><br/>
+    <label><%= _("Body")%>:</label> <span class="static"><%=h @trackback.excerpt %></span><br/>
+  </div>

@@ -1,0 +1,19 @@
+<%= error_messages_for 'trackback' %>
+<!--[form:trackback]-->
+<p>
+  <label for="trackback_blog_name"><%=_("Blog name")%>:</label><br />
+  <%= text_field 'trackback', 'blog_name'  %>
+</p>
+<p>
+  <label for="trackback_title"><%= _("Title")%>:</label><br />
+  <%= text_field 'trackback', 'title'  %>
+</p>
+<p>
+  <label for="trackback_url"><%= _("Url")%>:</label><br />
+  <%= text_field 'trackback', 'url'  %>
+</p>
+<p>
+  <label for="trackback_excerpt"><%= _("Body")%>:</label><br />
+  <%= text_area 'trackback', 'excerpt'  %>
+</p>
+<!--[eoform:trackback]-->

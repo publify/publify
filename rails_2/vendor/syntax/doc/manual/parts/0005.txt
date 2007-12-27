@@ -1,0 +1,18 @@
+Colorizing code has already been touched on briefly in the Introduction chapter (under "Quick Start"). To review, the process is a mere three steps:
+
+# Require the class for the type of the output you want (currently, only HTML is supported).
+# Obtain an instance of the convertor, for the syntax you wish to convert.
+# Call @#convert@ on that convertor, passing in the text you want to convert. The return value is the HTML representation of the colorized text.
+
+For example:
+
+{{{lang=ruby,number=true,caption=Colorizing a Ruby script
+# Step 1: require the HTML convertor
+require 'syntax/convertor/html'
+
+# Step 2: get an instance of the HTML convertor for the Ruby syntax
+convertor = Syntax::Convertor::HTML.for_syntax "ruby"
+
+# Step 3: convert the text to HTML
+puts convertor.convert( File.read( "program.rb" ) )
+}}}

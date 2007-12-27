@@ -1,0 +1,14 @@
+<div class="entry">
+<% unless @groupings.empty? -%>
+<% max_counter = @groupings[0].article_counter -%>
+<%= ul_tag_for @grouping_class %>
+<% for grp in @groupings.sort_by{|grp|grp.display_name} -%>
+  <li class="<%= calc_distributed_class(grp.article_counter, max_counter, @grouping_class, 0, 10) %>">
+    <%= link_to_grouping(grp) %>
+  </li>
+<% end -%>
+</ul>
+<% else -%>
+<p><%= _("There are")%> <%= @grouping_class.to_s.underscore.pluralize %>.</p>
+<% end -%>
+</div>

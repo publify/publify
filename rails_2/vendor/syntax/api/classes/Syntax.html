@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Module: Syntax</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Module</span><br />Syntax</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/syntax_rb.html">lib/syntax.rb</a>
+<a href="../files/lib/syntax/common_rb.html">lib/syntax/common.rb</a>
+<a href="../files/lib/syntax/version_rb.html">lib/syntax/version.rb</a>
+<a href="../files/lib/syntax/convertors/abstract_rb.html">lib/syntax/convertors/abstract.rb</a>
+<a href="../files/lib/syntax/convertors/html_rb.html">lib/syntax/convertors/html.rb</a>
+<a href="../files/lib/syntax/lang/ruby_rb.html">lib/syntax/lang/ruby.rb</a>
+<a href="../files/lib/syntax/lang/xml_rb.html">lib/syntax/lang/xml.rb</a>
+<a href="../files/lib/syntax/lang/yaml_rb.html">lib/syntax/lang/yaml.rb</a>
+        </td>
+      </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000002">all</a></li>
+  <li><a href="#M000001">load</a></li>
+  </ul>
+
+
+
+  <div class="sectiontitle">Classes and Modules</div>
+  Module <a href="Syntax/Convertors.html" class="link">Syntax::Convertors</a><br />
+Module <a href="Syntax/Version.html" class="link">Syntax::Version</a><br />
+Class <a href="Syntax/Default.html" class="link">Syntax::Default</a><br />
+Class <a href="Syntax/Ruby.html" class="link">Syntax::Ruby</a><br />
+Class <a href="Syntax/Token.html" class="link">Syntax::Token</a><br />
+Class <a href="Syntax/Tokenizer.html" class="link">Syntax::Tokenizer</a><br />
+Class <a href="Syntax/XML.html" class="link">Syntax::XML</a><br />
+Class <a href="Syntax/YAML.html" class="link">Syntax::YAML</a><br />
+
+
+  <div class="sectiontitle">Constants</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class="attr-name">SYNTAX</td>
+    <td>=</td>
+    <td class="attr-value">Hash.new( Default )</td>
+  </tr>
+  <tr valign='top'>
+    <td>&nbsp;</td>
+    <td colspan="2" class="attr-desc">
+A hash for registering syntax implementations.
+
+</td>
+  </tr>
+  </table>
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000002"></a><b>all</b>()
+  </div>
+  <div class="description">
+  <p>
+Return an array of the names of supported syntaxes.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show source</a> ]</p>
+  <div id="M000002_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax.rb, line 32</span>
+32:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all</span>
+33:     <span class="ruby-identifier">lang_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword kw">__FILE__</span>), <span class="ruby-value str">&quot;syntax&quot;</span>, <span class="ruby-value str">&quot;lang&quot;</span>)
+34:     <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{lang_dir}/*.rb&quot;</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value str">&quot;.rb&quot;</span>) }
+35:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000001"></a><b>load</b>( syntax )
+  </div>
+  <div class="description">
+  <p>
+Load the implementation of the requested syntax. If the syntax cannot be
+found, or if it cannot be loaded for whatever reason, the <a
+href="Syntax/Default.html">Default</a> syntax handler will be returned.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show source</a> ]</p>
+  <div id="M000001_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax.rb, line 22</span>
+22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load</span>( <span class="ruby-identifier">syntax</span> )
+23:     <span class="ruby-keyword kw">begin</span>
+24:       <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;syntax/lang/#{syntax}&quot;</span>
+25:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+26:     <span class="ruby-keyword kw">end</span>
+27:     <span class="ruby-constant">SYNTAX</span>[ <span class="ruby-identifier">syntax</span> ].<span class="ruby-identifier">new</span>
+28:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

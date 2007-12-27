@@ -1,0 +1,18 @@
+  <% @page_heading = _("Comments for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
+
+  <% content_for('tasks') do %>
+    <li><%= link_to_permalink @comment, _('View comment on your blog') %></li>
+  <% end %>
+
+  <% form_tag :action=>"edit", :id => @comment.id do %>
+
+  <h3><%= _("Editing comment")%></h3>
+  <div class="form">
+    <%= render_partial "form" %>
+  </div>
+
+  <div id="operations">
+    <%= save %> or <%= cancel %>
+  </div>
+
+  <% end %>

@@ -1,0 +1,6 @@
+  <% @page_heading = _('Trackbacks') %>
+
+  <p><%= _("Are you sure you want to delete this item?")%></p>
+  <% form_tag :action => "destroy", :id => @trackback.id do %>
+  <%= confirm_delete %>
+  <% end %>

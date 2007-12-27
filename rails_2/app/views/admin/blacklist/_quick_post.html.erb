@@ -1,0 +1,17 @@
+<% form_tag :action=>"new" do %>
+
+<p>
+  <label for="blacklist_pattern_pattern"><%= _("Pattern")%>:</label>
+  <%= text_field 'blacklist_pattern', 'pattern'  %>
+</p>
+<p>
+  <label for="blacklist_pattern_type"><%= _("Type")%>:</label>
+  <select name="blacklist_pattern[type]">
+  <%= options_for_select [ [_('String'), 'StringPattern'], [_('Regex'), 'RegexPattern' ] ]  %>
+</select>
+
+<div id="operations">
+  <%= save(_("Add pattern")) %> <%= _("or")%> <a href="#" onclick="new Effect.BlindUp('quick-post', {duration: 0.4}); return false;" ><%= _("Cancel")%></a>
+</div>
+</p>
+<% end %>

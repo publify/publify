@@ -1,0 +1,20 @@
+<table>
+<tr>
+  <th class="first"><%= _("Name")%></th>
+  <th><% _("Description")%></th>
+  <th><%= _("Markup")%></th>
+  <th><%= _("Filters")%></th>
+  <th><%= _("Edit")%></th>
+	<th class="last"><%= _("Delete") %></th>
+</tr>
+<% for textfilter in @textfilters.sort_by { |f| f.name } %>
+<tr <%= alternate_class %>>
+  <td class="first"><%= link_to textfilter.name, {:action => "show", :id => textfilter.id} %> </td>
+  <td><%=h textfilter.description %></td>
+  <td><%=h @textfilter_map[textfilter.markup].display_name %></td>
+  <td><%= textfilter.filters.collect { |f| h(@textfilter_map[f.to_s].display_name) }.join(" &#8594; ") %></td>
+  <td class="operation"><%= link_to_edit textfilter %></td>
+  <td class="operation last"><%= link_to_destroy textfilter %></td>    
+</tr>  
+<% end %>
+</table>

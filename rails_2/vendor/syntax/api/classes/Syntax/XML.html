@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Syntax::XML</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Syntax::XML</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../../files/lib/syntax/lang/xml_rb.html">lib/syntax/lang/xml.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="Tokenizer.html">
+Tokenizer
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><p>
+A simple implementation of an <a href="XML.html">XML</a> lexer. It handles
+most cases. It is not a validating lexer, meaning it will happily process
+invalid <a href="XML.html">XML</a> without complaining.
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000006">setup</a></li>
+  <li><a href="#M000007">step</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000006"></a><b>setup</b>()
+  </div>
+  <div class="description">
+  <p>
+Initialize the lexer.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show source</a> ]</p>
+  <div id="M000006_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/lang/xml.rb, line 11</span>
+11:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+12:       <span class="ruby-ivar">@in_tag</span> = <span class="ruby-keyword kw">false</span>
+13:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000007"></a><b>step</b>()
+  </div>
+  <div class="description">
+  <p>
+Step through a single iteration of the tokenization process. This will
+yield (potentially) many tokens, and possibly zero tokens.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show source</a> ]</p>
+  <div id="M000007_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/syntax/lang/xml.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">step</span>
+18:       <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:normal</span>, <span class="ruby-identifier">matched</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/\s+/</span> )
+19:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@in_tag</span>
+20:         <span class="ruby-keyword kw">case</span>
+21:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/([-\w]+):([-\w]+)/</span> )
+22:             <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:namespace</span>, <span class="ruby-identifier">subgroup</span>(<span class="ruby-value">1</span>)
+23:             <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:punct</span>, <span class="ruby-value str">&quot;:&quot;</span>
+24:             <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:attribute</span>, <span class="ruby-identifier">subgroup</span>(<span class="ruby-value">2</span>)
+25:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/\d+/</span> )
+26:             <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:number</span>, <span class="ruby-identifier">matched</span>
+27:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/[-\w]+/</span> )
+28:             <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:attribute</span>, <span class="ruby-identifier">matched</span>
+29:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">%r{[/?]?&gt;}</span> )
+30:             <span class="ruby-ivar">@in_tag</span> = <span class="ruby-keyword kw">false</span>
+31:             <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:punct</span>, <span class="ruby-identifier">matched</span>
+32:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/=/</span> )
+33:             <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:punct</span>, <span class="ruby-identifier">matched</span>
+34:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/[&quot;']/</span> )
+35:             <span class="ruby-identifier">scan_string</span> <span class="ruby-identifier">matched</span>
+36:           <span class="ruby-keyword kw">else</span>
+37:             <span class="ruby-identifier">append</span> <span class="ruby-identifier">getch</span>
+38:         <span class="ruby-keyword kw">end</span>
+39:       <span class="ruby-keyword kw">elsif</span> ( <span class="ruby-identifier">text</span> = <span class="ruby-identifier">scan_until</span>( <span class="ruby-regexp re">/(?=[&lt;&amp;])/</span> ) )
+40:         <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:normal</span>, <span class="ruby-identifier">text</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">empty?</span>
+41:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/&lt;!--.*?(--&gt;|\Z)/</span><span class="ruby-identifier">m</span>)
+42:           <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:comment</span>, <span class="ruby-identifier">matched</span>
+43:         <span class="ruby-keyword kw">else</span>
+44:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">peek</span>(<span class="ruby-value">1</span>)
+45:             <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;&lt;&quot;</span>
+46:               <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:punct</span>, <span class="ruby-identifier">getch</span>
+47:               <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">peek</span>(<span class="ruby-value">1</span>)
+48:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;?&quot;</span>
+49:                   <span class="ruby-identifier">append</span> <span class="ruby-identifier">getch</span>
+50:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;/&quot;</span>
+51:                   <span class="ruby-identifier">append</span> <span class="ruby-identifier">getch</span>
+52:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;!&quot;</span>
+53:                   <span class="ruby-identifier">append</span> <span class="ruby-identifier">getch</span>
+54:               <span class="ruby-keyword kw">end</span>
+55:               <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:normal</span>, <span class="ruby-identifier">matched</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/\s+/</span> )
+56:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/([-\w]+):([-\w]+)/</span> )
+57:                 <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:namespace</span>, <span class="ruby-identifier">subgroup</span>(<span class="ruby-value">1</span>)
+58:                 <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:punct</span>, <span class="ruby-value str">&quot;:&quot;</span>
+59:                 <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:tag</span>, <span class="ruby-identifier">subgroup</span>(<span class="ruby-value">2</span>)
+60:               <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/[-\w]+/</span> )
+61:                 <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:tag</span>, <span class="ruby-identifier">matched</span>
+62:               <span class="ruby-keyword kw">end</span>
+63:               <span class="ruby-ivar">@in_tag</span> = <span class="ruby-keyword kw">true</span>
+64:             <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;&amp;&quot;</span>
+65:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/&amp;\S{1,10};/</span> )
+66:                 <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:entity</span>, <span class="ruby-identifier">matched</span>
+67:               <span class="ruby-keyword kw">else</span>
+68:                 <span class="ruby-identifier">start_group</span> <span class="ruby-identifier">:normal</span>, <span class="ruby-identifier">scan</span>( <span class="ruby-regexp re">/&amp;/</span> )
+69:               <span class="ruby-keyword kw">end</span>
+70:           <span class="ruby-keyword kw">end</span>
+71:         <span class="ruby-keyword kw">end</span>
+72:       <span class="ruby-keyword kw">else</span>
+73:         <span class="ruby-identifier">append</span> <span class="ruby-identifier">scan_until</span>( <span class="ruby-regexp re">/\Z/</span> )
+74:       <span class="ruby-keyword kw">end</span>
+75:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

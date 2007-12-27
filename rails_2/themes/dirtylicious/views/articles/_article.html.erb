@@ -1,0 +1,33 @@
+<div class="atomentry" id="article-<%= article.id %>">
+  <h2 class="title">
+    <%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %>
+  </h2>
+
+  <div class="author">
+    Posted by <cite><%= author_link(article) %></cite>
+    <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
+  </div>
+
+  <div class="content">
+    <%= article.html(:body) %>
+
+    <% if article.extended? -%>
+      <div class="extended">
+        <% if controller.action_name == 'index' -%>
+          <p><%= link_to_permalink article,"Continue reading..." %></p>
+        <% else -%>
+          <%= article.html(:extended) %>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+
+	<p class="info">
+		<%= content_tag(:span, category_links(article) << ' | ', :class => 'categories') unless article.categories.empty? %>  
+		<%= comments_link(article) << ' | ' if article.allow_comments? %>
+		<% if controller.controller_name == 'articles' and controller.action_name == 'show' %>
+			<%= content_tag(:span, tag_links(article) << ' | ', :class => 'tags') unless article.tags.empty? %>
+			<a href="<%= url_for :controller => 'xml', :action=>'feed', :type=>'article', :format => 'atom', :id => article %>">atom</a>
+		<% end %>
+	</p>
+</div>

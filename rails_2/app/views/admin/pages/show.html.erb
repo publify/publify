@@ -1,0 +1,12 @@
+  <% @page_heading = _('Pages') %>
+  
+  <% content_for('tasks') do %>
+    <%= task_edit _('Edit this page'), @page.id %>
+    <li><%= link_to _('View page on your blog'), @page.permalink_url %></li>
+  <% end %> 
+
+  <h3>Live Preview</h3>
+
+  <div class="form" style="text-align: center; margin: auto;">
+	<iframe src="<%=@page.permalink_url%>" width="95%" height="700px"></iframe>
+  </div>

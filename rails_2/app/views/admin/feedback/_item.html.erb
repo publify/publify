@@ -1,0 +1,14 @@
+<tr <%= alternate_class %>>
+  <td class="field first"><input class= "feedback_check" type="checkbox" name="feedback_check[<%= item.id %>]"/></td>
+  <td class="field"><%= item.state %></td>
+  <td class="field"><%= link_to_article_edit item.article %></td>
+  <td class="field">
+    <%= link_to_unless item.url.blank?, ((item.author || '(unknown)').slice(0,40)), item.url %><br />
+    <%=h item.email.to_s.slice(0,40) %>
+  </td>
+  <td class="field"><%=h truncate(item.body,100)%></td>
+  <td class="field"><%=h item.ip %></td>
+  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), :controller => (item.class.to_s == 'Comment') ? 'comments' : 'trackbacks', :article_id => item.article_id, :action => 'show', :id => item.id %></td>
+  <td class="operation"><%= link_to image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"), :controller => 'comments', :article_id => item.article_id, :action => 'edit', :id => item.id %></td>
+  <td class="operation last"><%= link_to image_tag('admin/delete.png'), {:action => 'delete', :id => item.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
+</tr>

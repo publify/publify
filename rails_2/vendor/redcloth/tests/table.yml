@@ -1,0 +1,198 @@
+in: |
+  {background:#ddd}. |S|Target|Complete|App|Milestone|
+  |!/i/g.gif!|11/18/04|11/18/04|070|XML spec complete|
+  |!/i/g.gif!|11/29/04|11/29/04|011|XML spec complete (KH is on schedule)|
+  |!/i/g.gif!|11/29/04|11/29/04|051|XML spec complete (KH is on schedule)|
+  |!/i/g.gif!|11/29/04|11/29/04|081|XML spec complete (KH is on schedule)|
+  |!/i/g.gif!|11/19/04|11/22/04|070|Preprocessor complete|
+  |!/i/g.gif!|11/22/04|11/22/04|070|Dialog pass 1 builds an index file|
+  |!/i/g.gif!|11/24/04|11/24/04|070|Dialog pass 2 98% complete|
+  |!/i/g.gif!|11/30/04|11/30/04|070|Feature complete. Passes end-to-end smoke test.|
+  |!/i/g.gif!|11/30/04|11/30/04|011|Preprocessor updates complete|
+  |!/i/g.gif!|11/30/04|11/30/04|051|Preprocessor updates complete|
+  |!/i/g.gif!|11/30/04|11/29/04|081|Preprocessor updates complete|
+  |!/i/w.gif!|12/02/04|.|011|Dialog pass 1 and 2 complete (98+%)|
+  |!/i/w.gif!|12/02/04|.|051|Dialog pass 1 and 2 complete (98+%)|
+  |!/i/w.gif!|12/02/04|.|081|Dialog pass 1 and 2 complete (98+%)|
+  |!/i/w.gif!|12/03/04|.|011|Feature complete|
+  |!/i/w.gif!|12/03/04|.|051|Feature complete|
+  |!/i/w.gif!|12/03/04|.|081|Feature complete|
+  |!/i/w.gif!|12/10/04|.|011|Deployed to Napa test workstation. Passes smoke test.|
+  |!/i/w.gif!|12/10/04|.|051|Deployed to Napa test workstation. Passes smoke test.|
+  |!/i/w.gif!|12/10/04|.|081|Deployed to Napa test workstation. Passes smoke test.|
+  |!/i/w.gif!|12/10/04|.|070|Deployed to Napa test workstation. Passes smoke test.|
+  |!/i/w.gif!|12/17/04|.|011|System testing complete. Begin testing with live customer data.|
+  |!/i/w.gif!|12/17/04|.|051|System testing complete. Begin testing with live customer data.|
+  |!/i/w.gif!|12/17/04|.|081|System testing complete. Begin testing with live customer data.|
+  |!/i/w.gif!|12/17/04|.|070|System testing complete. Begin testing with live customer data.|
+out: |-
+  <table>
+  		<tr style="background:#ddd;">
+  			<td>S</td>
+  			<td>Target</td>
+  			<td>Complete</td>
+  			<td>App</td>
+  			<td>Milestone</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/18/04</td>
+  			<td>11/18/04</td>
+  			<td>070</td>
+  			<td><span class="caps">XML</span> spec complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/29/04</td>
+  			<td>11/29/04</td>
+  			<td>011</td>
+  			<td><span class="caps">XML</span> spec complete (KH is on schedule)</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/29/04</td>
+  			<td>11/29/04</td>
+  			<td>051</td>
+  			<td><span class="caps">XML</span> spec complete (KH is on schedule)</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/29/04</td>
+  			<td>11/29/04</td>
+  			<td>081</td>
+  			<td><span class="caps">XML</span> spec complete (KH is on schedule)</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/19/04</td>
+  			<td>11/22/04</td>
+  			<td>070</td>
+  			<td>Preprocessor complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/22/04</td>
+  			<td>11/22/04</td>
+  			<td>070</td>
+  			<td>Dialog pass 1 builds an index file</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/24/04</td>
+  			<td>11/24/04</td>
+  			<td>070</td>
+  			<td>Dialog pass 2 98% complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/30/04</td>
+  			<td>11/30/04</td>
+  			<td>070</td>
+  			<td>Feature complete. Passes end-to-end smoke test.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/30/04</td>
+  			<td>11/30/04</td>
+  			<td>011</td>
+  			<td>Preprocessor updates complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/30/04</td>
+  			<td>11/30/04</td>
+  			<td>051</td>
+  			<td>Preprocessor updates complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/g.gif" alt="" /></td>
+  			<td>11/30/04</td>
+  			<td>11/29/04</td>
+  			<td>081</td>
+  			<td>Preprocessor updates complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/02/04</td>
+  			<td>011</td>
+  			<td>Dialog pass 1 and 2 complete (98+%)</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/02/04</td>
+  			<td>051</td>
+  			<td>Dialog pass 1 and 2 complete (98+%)</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/02/04</td>
+  			<td>081</td>
+  			<td>Dialog pass 1 and 2 complete (98+%)</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/03/04</td>
+  			<td>011</td>
+  			<td>Feature complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/03/04</td>
+  			<td>051</td>
+  			<td>Feature complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/03/04</td>
+  			<td>081</td>
+  			<td>Feature complete</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/10/04</td>
+  			<td>011</td>
+  			<td>Deployed to Napa test workstation. Passes smoke test.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/10/04</td>
+  			<td>051</td>
+  			<td>Deployed to Napa test workstation. Passes smoke test.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/10/04</td>
+  			<td>081</td>
+  			<td>Deployed to Napa test workstation. Passes smoke test.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/10/04</td>
+  			<td>070</td>
+  			<td>Deployed to Napa test workstation. Passes smoke test.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/17/04</td>
+  			<td>011</td>
+  			<td>System testing complete. Begin testing with live customer data.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/17/04</td>
+  			<td>051</td>
+  			<td>System testing complete. Begin testing with live customer data.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/17/04</td>
+  			<td>081</td>
+  			<td>System testing complete. Begin testing with live customer data.</td>
+  		</tr>
+  		<tr>
+  			<td><img src="/i/w.gif" alt="" /></td>
+  			<td>12/17/04</td>
+  			<td>070</td>
+  			<td>System testing complete. Begin testing with live customer data.</td>
+  		</tr>
+  	</table>

@@ -1,0 +1,12 @@
+<% unless sidebar.pages.blank? -%>
+<h3><%= _("Pages")%></h3>
+<div>
+    <ul>
+        <% for page in sidebar.pages -%>
+            <li>
+				<%= link_to page.title, page.permalink_url %>
+            </li>
+        <% end %>
+    </ul>
+</div>
+<% end %>

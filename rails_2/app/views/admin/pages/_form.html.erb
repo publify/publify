@@ -1,0 +1,41 @@
+<%= error_messages_for 'page' %>
+<!--[form:pages]-->
+<fieldset class="set admin" style="display: block">
+  <iframe id="preview" class="post" style="display: none;"></iframe>
+  <div <%='style="width: 48%; float: left;"' if this_blog.editor == 1 %>>
+     <ul>
+       <li>
+          <label for="page_title" class="block"><%= _("Title")%>:</label>
+          <%= text_field 'page', 'title', :size => 20, :style => "width: 100%;"  %>
+       </li>
+       <li>
+          <label for="page_name" class="block"><%= _("Permalink")%>:</label>
+          <%= this_blog.base_url %>pages/ <%= text_field 'page', 'name', :size => 25  %>
+       </li>
+       <li>
+          <label for="page_body"><%= _("Page Content")%>:</label>
+          <%= markup_help_popup @page.text_filter, image_tag('admin/help.png', :alt => " markup help", :title => "Markup help") %>
+          <%= text_area 'page', 'body', :rows => 25, :style => 'width: 100%;'  %> 
+       </li>
+     </ul>
+     <p class="r"><%= save(_("Save") + " &raquo;") %></p>
+  </div>
+  <br style="clear: both;" />
+</fieldset>
+
+<fieldset class="set admin">
+  <legend><%= _("Options")%></legend>
+  <ul>
+     <li>
+       <label for="page_text_filter" class="float"><%= _("Textfilter")%>: </label>
+       <%= select 'page', 'text_filter', text_filter_options %>
+     </li>
+     <li>
+       <label for="page_published" class="float"><%= _("Published")%>:</label>
+       <%= check_box 'page', 'published'  %>
+     </li>
+
+  </ul>
+</fieldset>
+
+<!--[eoform:pages]-->

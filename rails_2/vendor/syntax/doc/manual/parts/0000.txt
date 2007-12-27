@@ -1,0 +1,5 @@
+Syntax is, first and foremost, a lexical analysis framework. It supports pluggable syntax modules, and comes with modules for Ruby, XML, and YAML.
+
+What does it mean, a "lexical analysis framework"? It means you can use Syntax to take a body of text representing instructions in some syntax (like Ruby), and break that text into _tokens_.
+
+What is that good for? Well, a few things. You could concievably use it to count the number of classes in a system, or the number of lines of code per method. But Syntax was written specifically with _syntax highlighting_ in mind.

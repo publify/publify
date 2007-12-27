@@ -1,0 +1,23 @@
+# vim: syntax=Ruby
+
+require 'hoe'
+
+DEV_DOC_PATH = "Libraries/memcache-client"
+
+hoe = Hoe.new 'memcache-client', '1.2.0' do |p|
+  p.summary = 'A Ruby memcached client'
+  p.description = 'memcache-client is a pure-ruby client to Danga\'s memcached.'
+  p.author = ['Eric Hodel', 'Robert Cottrell']
+  p.email = 'eric@robotcoop.com'
+  p.url = "http://dev.robotcoop.com/#{DEV_DOC_PATH}"
+
+  p.rubyforge_name = 'rctools'
+end
+
+SPEC = hoe.spec
+
+begin
+  require '../tasks'
+rescue LoadError
+end
+

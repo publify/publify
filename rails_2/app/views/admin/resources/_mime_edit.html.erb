@@ -1,0 +1,8 @@
+<% form_tag({ :action => "set_mime" }, :id => id, :enctype => "multipart/form-data") do %>
+<div class="form">
+  <label for="resource_mime_<%= id %>"><%=_("Content Type")%>:</label><br/>
+  <input name="resource[mime]" size="22" id="resource_mime_<%= id %>" type="text" value="<%=h mime %>" /><br />
+  <input name="resource[id]" type="hidden" value="<%= id %>" />
+<%= save(_("Save")) %> <%= _("or") %> <a href="#" onclick="new Effect.BlindUp('edit-resource-mime-<%= id %>', {duration: 0.4}); return false;" ><%= _("Cancel")%></a>
+</div>
+<% end %>
