@@ -66,6 +66,7 @@ ActionController::Routing::Routes.draw do |map|
   map.xml 'sitemap.xml', :controller => 'xml', :action => 'feed', :format => 'googlesitemap', :type => 'sitemap'
 
   map.resources :comments, :name_prefix => 'admin_'
+  map.resources :trackbacks
 
   map.datestamped_resources(:articles,
                             :collection => {

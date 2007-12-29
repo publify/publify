@@ -17,10 +17,18 @@ spec = Gem::Specification.new do |s|
   s.files = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
      [ /\.$/, /config\/database.yml$/, /config\/database.yml-/, 
      /database\.sqlite/,
-     /\.log$/, /^pkg/, /\.svn/, /^vendor\/rails/, 
+     /\.log$/, /^pkg/, /\.svn/, 
      /^public\/(files|xml|articles|pages|index.html)/, 
      /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/, 
      /\/\._/, /\/#/ ].any? {|regex| f =~ regex }
+
+#     [ /\.$/, /config\/database.yml$/, /config\/database.yml-/, 
+#     /database\.sqlite/,
+#     /\.log$/, /^pkg/, /\.svn/, /^vendor\/rails\/(?!actionwebservice)/, 
+#     /^public\/(files|xml|articles|pages|index.html)/, 
+#     /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/, 
+#     /\/\._/, /\/#/ ].any? {|regex| f =~ regex }
+
   end
   s.require_path = '.'
   s.author = "Frédéric de Villamil"
@@ -30,7 +38,7 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY 
   s.executables = ['typo']
   
-  s.add_dependency("rails", ">= 2.0.1")
+#  s.add_dependency("rails", ">= 2.0.1")
   s.add_dependency("mongrel", ">= 1.1.1")
   s.add_dependency("mongrel_cluster", ">= 0.2.0")
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
@@ -39,7 +47,6 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("rcov", ">= 0.8.1")
   s.add_dependency("flexmock", ">= 0.8.0")  
   s.add_dependency("rspec", ">= 1.1.1")
-  s.add_dependency("actionwebservice", ">= 1.2.6")
 end
 
 Rake::GemPackageTask.new(spec) do |p|

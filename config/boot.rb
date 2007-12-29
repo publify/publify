@@ -12,7 +12,7 @@ unless defined?(RAILS_ROOT)
 end
 
 unless defined?(Rails::Initializer)
-  if File.directory?("#{RAILS_ROOT}/vendor/rails")
+  if File.directory?("#{RAILS_ROOT}/vendor/rails/railties")
     require "#{RAILS_ROOT}/vendor/rails/railties/lib/initializer"
   else
     require 'rubygems'

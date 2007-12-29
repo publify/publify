@@ -126,12 +126,11 @@ class Blog < CachedModel
   end
 
   def ping_article!(settings)
-    unless global_pings_enabled? && settings.has_key?(:url) && settings.has_key(:id)
-      raise ActiveRecord::RecordInvalid
+    unless global_pings_enabled? && settings.has_key?(:url) && settings.has_key?(:article_id)
+      throw :error, "Invalid trackback or trackbacks not enabled"
     end
     settings[:blog_id] = self.id
-    article_id = settings.delete(:article_id)
-    article = published_articles.find(article_id)
+    article = requested_article(settings)
     unless article.allow_pings?
       throw :error, "Trackback not saved"
     end

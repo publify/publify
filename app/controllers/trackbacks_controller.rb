@@ -6,16 +6,22 @@ class TrackbacksController < FeedbackController
       elsif params[:__mode] == 'rss'
         # Part of the trackback spec... not sure what we should be doing here though.
       else
-          @trackback = \
-            this_blog.ping_article! \
-              params.merge(:ip => request.remote_ip,
-                           :published => true)
+          begin  
+              @trackback =  this_blog.ping_article!(
+                params.merge(:ip => request.remote_ip, :published => true))
+              ""    
+          rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
+            throw :error, "Article id #{params[:id]} not found."
+          rescue ActiveRecord::RecordInvalid
+            throw :error, "Trackback not saved"
+          end
       end
     end
-  rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
-    @error_message = "Article id #{params[:id]} not found."
-  rescue ActiveRecord::RecordInvalid
-    @error_message = "Trackback not saved"
+
+    respond_to do |format|
+        format.xml { render :action => 'trackback.xml.builder' }
+        format.html { render :nothing => true }
+    end
   end
 
   protected
