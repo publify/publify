@@ -293,6 +293,7 @@ end
 
 class ContentTextHelpers
   include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
 end
 

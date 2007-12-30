@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   class << self
     unless self.respond_to? :template_root
       def template_root
-        view_paths.first
+        ActionController::Base.view_paths.last
       end
     end
   end
@@ -17,9 +17,8 @@ class ApplicationController < ActionController::Base
 
   def setup_themer
     # Ick!
-    response.template.view_paths = @@view_paths[self.class.name] =
-      ["#{RAILS_ROOT}/themes/#{this_blog.theme}/views",
-       "#{RAILS_ROOT}/app/views"]
+    self.view_paths =
+      ::ActionController::Base.view_paths.dup.unshift("#{RAILS_ROOT}/themes/#{this_blog.theme}/views")
   end
 
   def error(message = "Record not found...", options = { })

@@ -37,7 +37,7 @@ class ArticlesController < ContentController
     if params[:page]
       @page_title << " page " << params[:page]
     end
-    
+
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
@@ -88,18 +88,15 @@ class ArticlesController < ContentController
   end
 
   def author
-    response.headers['Status'] = "301 Moved Permanently"
-    redirect_to authors_path
+    redirect_to authors_path, :status => 301
   end
 
   def category
-    response.headers['Status'] = "301 Moved Permanently"
-    redirect_to categories_path
+    redirect_to categories_path, :status => 301
   end
 
   def tag
-    response.headers['Status'] = "301 Moved Permanently"
-    redirect_to tags_path
+    redirect_to tags_path, :status => 301
   end
 
   def view_page

@@ -65,9 +65,10 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   end
 
   def test_create
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.deliveries = []
     num_articles = this_blog.published_articles.size
     emails = ActionMailer::Base.deliveries
-    emails.clear
     tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
     post :new, 'article' => { :title => "posted via tests!", :body => "Foo", :keywords => "foo bar 'baz bliz' \"gorp gack gar\""}, 'categories' => [1]
     assert_response :redirect, :action => 'show'
@@ -82,6 +83,8 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
     assert_equal(1, emails.size)
     assert_equal('randomuser@example.com', emails.first.to[0])
+  ensure
+    ActionMailer::Base.perform_deliveries = false
   end
 
   def test_create_future_article
@@ -130,6 +133,7 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
   end
 
   def test_update
+    ActionMailer::Base.perform_deliveries = true
     emails = ActionMailer::Base.deliveries
     emails.clear
 
@@ -142,6 +146,8 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_equal body, article.body
 
     assert_equal 0, emails.size
+  ensure
+    ActionMailer::Base.perform_deliveries = false
   end
 
   def test_destroy

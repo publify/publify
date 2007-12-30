@@ -41,7 +41,7 @@ Rails::Initializer.run do |config|
     vendor/rails/activesupport/lib
     vendor/rails/activerecord/lib
     vendor/rails/actionmailer/lib
-    vendor/rails/actionwebservice/lib
+    vendor/actionwebservice/lib
     app/apis
   ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
 
