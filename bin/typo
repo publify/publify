@@ -49,30 +49,7 @@ class TypoInstaller < RailsInstaller
       end
     end
   end
-  
-  def install_sequence
-    stop
-    
-    backup_database
-    install_pre_hook
-    pre_migrate_database
-    copy_files
-    create_default_config_files
-    fix_permissions
-    create_directories
-    create_initial_database
-    set_initial_port_number
-    expand_template_files
-    
-    migrate
-    install_post_hook
-    save
-    
-    run_rails_tests
-    
-    start
-  end
-  
+
   # Migrate the database
   def migrate
     message "Migrating #{@@app_name.capitalize}'s database to newest release"
