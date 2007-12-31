@@ -1,0 +1,51 @@
+	<% @page_heading = _('Spam') %>
+
+  <% content_for('tasks') do -%>
+	<%= subtab _("General settings"), "", {:controller => "settings"} %>
+	<%= subtab _("Read"), "", { :controller => 'settings', :action => 'read' } %>
+	<%= subtab _("Write"), "", { :controller => 'settings', :action => 'write' } %>
+	<%= subtab _("Feedback"), "", { :controller => 'settings', :action => 'feedback' } %>			
+	<%= subtab _("Spam"), "current", { :controller => 'settings', :action => 'spam' } %>
+	<%= subtab _("Podcasts"), "", { :controller => 'settings', :action => 'podcast' } %>
+  <% end -%> 
+
+	<% form_tag :action => 'spam' do %>
+
+<div class="admin">
+	<fieldset id="spam" class="set">
+		<ul>
+			<li><%= _("Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</li>
+			<li class="checkbox">
+				<label for="sp_global" class="float"><%= _("Enable spam protection")%>:</label>
+				<input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_global%> /><input name="setting[sp_global]" type="hidden" value="0" />
+			</li>
+			<li><%= _("Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%> .
+			</li>
+			<li>
+				<label class="float" for="sp_akismet_key"><%= _("Akismet Key")%>:</label>
+				<input name="setting[sp_akismet_key]" id="sp_akismet_key" type="text" value="<%=h this_blog.sp_akismet_key %>" />
+			</li>
+      <li>
+          <%= _("You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.")%>
+      </li>
+      <li class="checkbox">
+          <label for="sp_allow_non_ajax_comments" class="float"><%= _("Allow non-ajax comments") %>:</label>
+          <input name="setting[sp_allow_non_ajax_comments]" id="sp_allow_non_ajax_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_allow_non_ajax_comments%> />
+          <input name="setting[sp_allow_non_ajax_comments]" type="hidden" value="0" />
+      </li>
+      <li>
+          <label for="sp_article_auto_close" class="float"><%= _("Disable comments after")%></label>
+          <input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= this_blog.sp_article_auto_close %>" /> <%= _("days") %>
+          <span class="float"><%= _("Set to 0 to never disable comments")%></span>
+      </li>
+      <li>
+          <p><%= _("Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.</p>
+          <label class="float" for="sp_url_limit"><%= _("Max Links")%>:</label>
+          <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= this_blog.sp_url_limit %>" />
+          <span class="float"><%= _("Set to 0 to never reject comments")%></span>
+      </li>
+		</ul>
+	</fieldset>
+<%= render :partial => 'submit' %>
+</div>
+  <% end %>

@@ -30,7 +30,7 @@ class AccountsController < ApplicationController
     if request.post? and @user.save
       session[:user_id] = @user.id
       flash[:notice]  = "Signup successful"
-      redirect_to :controller => "admin/general", :action => "index"
+      redirect_to :controller => "admin/settings", :action => "index"
       return
     end
   end

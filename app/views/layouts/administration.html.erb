@@ -21,7 +21,7 @@
             <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index'}, :class=>class_feedback) %>
             <%= content_tag :li, (link_to _("Presentation"), {:controller=>"sidebar", :action => 'index'}, :class=>class_presentation) %>
             <%= content_tag :li, (link_to _("Users"), {:controller=>"users", :action => 'index'}, :class=>class_users) %>
-            <%= content_tag :li, (link_to _("Settings"), {:controller=>"general", :action => 'index'}, :class=>class_admin) %>
+            <%= content_tag :li, (link_to _("Settings"), {:controller=>"settings", :action => 'index'}, :class=>class_admin) %>
 			<li><%= current_user_notice %></li>
 			<%= tab _('your blog'), :controller => "/articles" %>
           </ul>

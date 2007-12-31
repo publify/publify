@@ -1,14 +1,14 @@
 require File.dirname(__FILE__) + '/../../test_helper'
-require 'admin/general_controller'
+require 'admin/settings_controller'
 
 # Re-raise errors caught by the controller.
-class Admin::GeneralController; def rescue_action(e) raise e end; end
+class Admin::SettingsController; def rescue_action(e) raise e end; end
 
-class Admin::GeneralControllerTest < Test::Unit::TestCase
+class Admin::SettingsControllerTest < Test::Unit::TestCase
   fixtures :users
 
   def setup
-    @controller = Admin::GeneralController.new
+    @controller = Admin::SettingsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     @request.session = { :user_id => users(:tobi).id }
@@ -21,6 +21,6 @@ class Admin::GeneralControllerTest < Test::Unit::TestCase
 
   def test_redirect
     get :redirect
-    assert_response :redirect, :controller => 'admin/general', :action => 'index'
+    assert_response :redirect, :controller => 'admin/settings', :action => 'index'
   end
 end

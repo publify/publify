@@ -34,7 +34,7 @@
 
 
 <% form_tag :action => 'migrate' do %>
- <div id="operations" class="tasks">
+ <div id="operations" class="paginate l">
    <% if @current_version == @needed_version %>
      <strong><%= _("You are up to date!")%></strong>
    <% else %>

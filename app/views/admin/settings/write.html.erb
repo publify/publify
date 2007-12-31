@@ -1,0 +1,71 @@
+	<% @page_heading = _('Write') %>
+
+  <% content_for('tasks') do -%>
+	  <%= subtab _("General settings"), "", {:controller => "general"} %>
+	  <%= subtab _("Read"), "current", { :controller => 'settings', :action => 'read' } %>
+	  <%= subtab _("Write"), "", { :controller => 'settings', :action => 'write' } %>
+	  <%= subtab _("Feedback"), "", { :controller => 'settings', :action => 'feedback' } %>
+	  <%= subtab _("Spam"), "", { :controller => 'settings', :action => 'spam' } %>
+	  <%= subtab _("Podcasts"), "", { :controller => 'settings', :action => 'podcast' } %>
+  <% end -%> 
+
+	<% form_tag :action => 'write' do %>
+
+<div class="admin">
+	<fieldset id="write" class="set">
+		<legend><%= _("Write")%></legend>
+		<ul>
+			<li>
+				<label class="float"><%= _("Editor")%>:</label>
+				<input type="radio" name="setting[editor]" value="2" id="editor_2" <%= 'checked="checked"' if this_blog.editor == 2 %>/>
+				<label for="editor_2"><%= _("Use visual rich editor")%></label>
+				<span class="float">
+					<input type="radio" name="setting[editor]" value="1" id="editor_1" <%= 'checked="checked"' if this_blog.editor == 1 %>/>
+					<label for="editor_1"><%= _("Use simple editor with live preview (default)")%></label>
+				</span>
+				<span class="float">
+					<input type="radio" name="setting[editor]" value="0" id="editor_0" <%= 'checked="checked"' if this_blog.editor == 0 %>/>
+				    <label for="editor_0"><%= _("Use simple editor without live preview")%></label>
+				</span>
+		  	</li>
+		    <li>
+            <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
+            <select name="setting[text_filter]" id="text_filter">
+              <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.text_filter) %>
+            </select>
+        </li>
+        <li>
+            <label for="comment_text_filter" class="float"><%= _("Comments filter")%>:</label>
+            <select name="setting[comment_text_filter]" id="comment_text_filter">
+            <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
+            </select>
+        </li>
+		</ul>
+	</fieldset>
+	
+	<fieldset id="publish" class="set">
+      <legend><%= _("Publish")%></legend>
+      <ul>
+          <li>
+              <%= _("When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%>
+          </li>
+          <li class="checkbox">
+            <label class="float" for="send_outbound_pings"><%= _("Send trackbacks")%>:</label>
+            <input name="setting[send_outbound_pings]" id="send_outbound_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.send_outbound_pings%> />
+           <input name="setting[send_outbound_pings]" type="hidden" value="0" />
+          </li>
+          <li>
+              <label class="float" for="ping_urls"><%= _("URLs to ping automatically")%>:</label>
+              <textarea name="setting[ping_urls]" id="ping_urls" rows="5" cols="50"><%=h this_blog.ping_urls %></textarea>
+          </li>
+          <li>
+              <label class="float" for="geourl_location"><%= _("Latitude, Longitude")%>:</label>
+              <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= this_blog.geourl_location %>" />
+              <span class="float"><%= _("Display")%> <a href="http://geourl.org"><%= _("your lattitude and longitude")%></a> (<%= _("exemple")%> <tt>47.774,-122.201</tt>)</span>
+          </li>
+
+      </ul>
+  </fieldset>
+<%= render :partial => 'submit' %>
+</div>
+  <% end %>

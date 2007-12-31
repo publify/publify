@@ -14,7 +14,7 @@ class Admin::CacheController < Admin::BaseController
     expire_fragment(/.*/)
 
     flash[:notice] = _('Cache was cleared')
-    redirect_to :controller => '/admin/general'
+    redirect_to :controller => '/admin/settings'
   end
 
   def sweep_html
@@ -22,7 +22,7 @@ class Admin::CacheController < Admin::BaseController
     expire_fragment(/^contents_html.*/)
 
     flash[:notice] = _('HTML was cleared')
-    redirect_to :controller => '/admin/general'
+    redirect_to :controller => '/admin/settings'
   end
 
 end

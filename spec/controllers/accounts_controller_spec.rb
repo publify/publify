@@ -156,9 +156,9 @@ describe 'POST signup with 0 existing users' do
     assigns[:user].should == @user
   end
 
-  it 'redirects to /admin/general' do
+  it 'redirects to /admin/settings' do
     post 'signup', params
-    response.should redirect_to(:controller => 'admin/general', :action => 'index')
+    response.should redirect_to(:controller => 'admin/settings', :action => 'index')
   end
 
   it 'session gets a user' do

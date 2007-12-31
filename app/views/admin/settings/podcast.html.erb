@@ -1,0 +1,53 @@
+<% @page_heading = _('Podcast') %>
+
+<% content_for('tasks') do -%>
+  <%= subtab _("General settings"), "", {:controller => "settings"} %>
+  <%= subtab _("Read"), "", { :controller => 'settings', :action => 'read' } %>
+	<%= subtab _("Write"), "", { :controller => 'settings', :action => 'write' } %>
+	<%= subtab _("Feedback"), "", { :controller => 'settings', :action => 'feedback' } %>			
+	<%= subtab _("Spam"), "", { :controller => 'settings', :action => 'spam' } %>
+	<%= subtab _("Podcasts"), "current", { :controller => 'settings', :action => 'podcast' } %>
+<% end -%> 
+
+<% form_tag :action => 'podcast' do %>
+
+<div class="admin">
+  <fieldset id="resources" class="set">
+    <ul>
+      <li><%= _("The below settings act as defaults when you choose to publish an enclosure with iTunes metadata")%>.</li>
+      <li>
+        <label for="itunes_author" class="float"><%= _("Author")%>:</label>
+        <input name="setting[itunes_author]" size="25" id="itunes_author" type="text" value="<%= this_blog.itunes_author %>" />
+      </li>
+      <li>
+        <label for="itunes_subtitle" class="float"><%= _("Subtitle")%>: <span class="mandatory">*</span></label>
+        <input name="setting[itunes_subtitle]" size="25" id="itunes_subtitle" type="text" value="<%= this_blog.itunes_subtitle %>" />
+      </li>
+      <li>
+        <label class="float" for="itunes_summary"><%= _("Summary")%>: <span class="mandatory">*</span></label>
+        <textarea name="setting[itunes_summary]" cols="40" rows="3"><%=h this_blog.itunes_summary %></textarea>
+        <span class="float mandatory">* <%= _("Setting for channel")%></span>
+      </li>
+      <li>
+        <label class="float" for="itunes_email"><%= _("Email")%>: <span class="mandatory">**</span></label>
+        <input name="setting[itunes_email]" size="25" id="itunes_email" type="text" value="<%= this_blog.itunes_email %>" />
+      </li>
+      <li>
+        <label class="float" for="itunes_name"><%= _("Optional Name")%>: <span class="mandatory">**</span></label>
+        <input name="setting[itunes_name]" size="25" id="itunes_name" type="text" value="<%= this_blog.itunes_name %>" />
+        <span class="float mandatory">** <%= _("Not published by Apple")%></span>
+      </li>
+      <li>
+        <label class="float" for="itunes_copyright"><%= _("Copyright Information")%>:</label>
+        <input name="setting[itunes_copyright]" size="25" id="itunes_copyright" type="text" value="<%= this_blog.itunes_copyright %>" />
+      </li>
+      <li class="checkbox">
+        <label class="float" for="itunes_explicit"><%= _("Explicit")%>:</label>
+        <input name="setting[itunes_explicit]" id="itunes_explicit" type="checkbox"  value="1" <%= 'checked="checked"' if this_blog.itunes_explicit%> />
+        <input name="setting[itunes_explicit]" type="hidden" value="0" />
+      </li>
+    </ul>
+  </fieldset>
+<%= render :partial => 'submit' %>
+</div>
+  <% end %>

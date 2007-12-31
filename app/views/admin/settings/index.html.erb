@@ -1,0 +1,81 @@
+	<% @page_heading = _('General settings') %>
+
+  <% content_for('tasks') do -%>
+	<%= subtab _("General settings"), "current", {:controller => "settings"} %>
+	<%= subtab _("Read"), "", { :controller => 'settings', :action => 'read' } %>
+	<%= subtab _("Write"), "", { :controller => 'settings', :action => 'write' } %>
+	<%= subtab _("Feedback"), "", { :controller => 'settings', :action => 'feedback' } %>			
+	<%= subtab _("Spam"), "", { :controller => 'settings', :action => 'spam' } %>
+	<%= subtab _("Podcasts"), "", { :controller => 'settings', :action => 'podcast' } %>
+	<%= subtab _("Empty Fragment Cache"), "", {:controller => '/admin/cache', :action => 'sweep'} if this_blog.cache_option == 'caches_action_with_params'  %>
+	<%= subtab _("Rebuild cached HTML"), "", {:controller => '/admin/cache', :action => 'sweep_html'} if this_blog.cache_option == 'caches_page' %>
+  <% end -%> 
+
+	<% form_tag :action => 'index' do %>
+
+<div class="admin">
+  <fieldset id="gensettings" class="set" style="margin-top:10px;">
+		<legend><%= _("General options")%></legend>
+    <ul>
+			<li>
+				<label for="blog_name" class="float"><%= _("Blog name")%>:</label>
+				<input name="setting[blog_name]" id="blog_name" type="text" value="<%=h this_blog.blog_name %>" size="<%= this_blog.blog_name.length %>" />
+			</li>
+			<li>
+				<label class="float" for="blog_subtitle"><%= _("Blog subtitle")%>:</label>
+				<input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h this_blog.blog_subtitle %>" size="<%= this_blog.blog_subtitle.length%>" />
+		    </li>
+			<li>
+				<label class="float" for="base_url"><%= _("Blog URL")%>:</label>
+				<input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" size="<%= this_blog.base_url.length %> " />
+			</li>
+			<li>
+				<label class="float" for="lang"><%= _("Language")%>:</label>
+				<select name="setting[lang]">
+					<%= fetch_langs %>
+				</select>
+			</li>
+      <li><%= _("This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!") %></li>
+			<li>
+				<label class="float" for="display_advanced">Choose interface:</label>
+				<input type="radio" name="setting[display_advanced]" value="0" id="display_advanced_0" <%= 'checked="checked"' if this_blog.display_advanced == 0 %>/>
+				<label for="display_advanced_0"><%= _("Use simple interface (default)")%></label>
+				<span class="float">
+					<input type="radio" name="setting[display_advanced]" value="1" id="display_advanced_1" <%= 'checked="checked"' if this_blog.display_advanced == 1 %>/>
+					<label for="display_advanced_1"><%= _("Use complete admin")%></label>
+				</span>
+			</li>
+			<li><%= _("By default, Typo generates static HTML pages for your posts. However, if you plan to publish posts in the futur, you may want to use semi dynamic caching") %>.</li>
+			<li>
+				<label class="float" for="caches_page">Choose caching methode:</label>
+				<input type="radio" name="setting[cache_option]" value="caches_page" id="cache_option_0" <%= 'checked="checked"' if this_blog.cache_option == 'caches_page' %>/>
+				<label for="cache_option_0"><%= _("Use static HTML page caching ")%></label>
+				<span class="float">
+					<input type="radio" name="setting[cache_option]" value="caches_action_with_params" id="cache_option_1" <%= 'checked="checked"' if this_blog.cache_option == 'caches_action_with_params' %>/>
+					<label for="cache_option_1"><%= _("Use semi static caching (default)")%></label>
+				</span>
+			</li>
+		</ul>
+  </fieldset>
+
+  <fieldset id="seo" class="set" style="margin-top:10px;">
+    <legend><%= _("Search Engine Optimisation")%></legend>
+    <ul>
+      <li>
+        <label class="float"><%= _("Show blog name")%>:</label>
+        <input type="radio" name="setting[title_prefix]" value="1" id="blog_title_prefix_1" <%= 'checked="checked"' if this_blog.title_prefix == 1 %>/>
+        <label for="blog_title_prefix_1"><%= _("At the beginning of page title")%></label>
+        <span class="float">
+          <input type="radio" name="setting[title_prefix]" value="2" id="blog_title_prefix_2" <%= 'checked="checked"' if this_blog.title_prefix == 2 %>/>
+          <label for="blog_title_prefix_2"><%= _("At the end of page title")%></label>
+        </span>
+        <span class="float">
+          <input type="radio" name="setting[title_prefix]" value="0" id="blog_title_prefix_0" <%= 'checked="checked"' if this_blog.title_prefix == 0 %>/>
+          <label for="blog_title_prefix_0"><%= _("Don't show blog name in page title")%></label>
+        </span>
+      </li>
+    </ul>
+  </fieldset>
+<%= render :partial => 'submit' %>
+</div>
+  <% end %>

@@ -1,0 +1,77 @@
+	<% @page_heading = _('Feedback') %>
+
+  <% content_for('tasks') do -%>
+	<%= subtab _("General settings"), "", {:controller => "settings"} %>
+	<%= subtab _("Read"), "", { :controller => 'settings', :action => 'read' } %>
+	<%= subtab _("Write"), "", { :controller => 'settings', :action => 'write' } %>
+	<%= subtab _("Feedback"), "current", { :controller => 'settings', :action => 'feedback' } %>
+	<%= subtab _("Spam"), "", { :controller => 'settings', :action => 'spam' } %>
+	<%= subtab _("Podcasts"), "", { :controller => 'settings', :action => 'podcast' } %>
+  <% end -%> 
+
+	<% form_tag :action => 'feedback' do %>
+
+<div class="admin">
+	<fieldset id="discuss" class="set">
+		<legend><%= _("Feedback")%></legend>
+		<ul>
+			<li class="checkbox">
+		        <label class="float" for="default_allow_pings"><%= _("Enable Trackbacks by default")%>:</label>
+		      	<input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_pings%> />
+		      	<input name="setting[default_allow_pings]" type="hidden" value="0" />
+			</li>
+			<li class="checkbox">
+	        	<label class="float" for="default_allow_comments"><%= _("Enable comments by default")%>:</label>
+				<input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />
+		      	<input name="setting[default_allow_comments]" type="hidden" value="0" />
+			</li>
+			<li class="checkbox">
+		      <label class="float" for="use_gravatar"><%= _("Enable gravatars")%>:</label>
+		      <input name="setting[use_gravatar]" id="use_gravatar" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.use_gravatar %> />
+		      <input name="setting[use_gravatar]" type="hidden" value="0" />
+			</li>
+      <li>
+          <%= _("This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.")%>
+      </li>
+      <li class="checkbox">
+          <label class="float" for="global_pings_disable"><%= _("Disable trackbacks site-wide")%>:</label>
+          <input name="setting[global_pings_disable]" id="global_pings_disable" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.global_pings_disable%> />
+          <input name="setting[global_pings_disable]" type="hidden" value="0" />
+      </li>
+      <li><%= _("You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it")%>.</li>
+      <li class="checkbox">
+          <label class="float" for="default_moderate_comments"><%= _("Enable feedback moderation")%>:</label>
+          <input name="setting[default_moderate_comments]" id="default_moderate_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_moderate_comments %> />
+          <input name="setting[default_moderate_comments]" type="hidden" value="0" />
+      </li>
+      <li class="checkbox">
+          <label class="float" for="link_to_author"><%= _("Show your email address") %>:</label>
+          <input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.link_to_author%> />
+          <input name="setting[link_to_author]" type="hidden" value="0" />
+      </li>
+		</ul>
+	</fieldset>
+	
+	<fieldset id="notification" class="set">
+      <legend><%= _("Notification")%></legend>
+      <ul>
+          <li><%= _("Typo can notify you when new articles or comments are posted")%></li>
+          <li>
+              <label class="float" for="email_from"><%= _("Source Email")%>:</label>
+              <input name="setting[email_from]" size="25" id="email_from" type="text" value="<%= this_blog.email_from %>" />
+              <span class="float"><%= _("Email address used by Typo to send notifications")%>.</span>
+          </li>
+          <li>
+              <label for="jabber_address" class="float"><%=_("Jabber account")%>:</label>
+              <input name="setting[jabber_address]" size="20" id="jabber_address" type="text" value="<%= this_blog.jabber_address %>" />
+              <span class="float"><%= _("Jabber account to use when sending Jabber notifications") %>.</span>
+          </li>
+          <li>
+              <label class="float" for="jabber_password"><%= _("Jabber password")%>:</label>
+              <input name="setting[jabber_password]" size="20" id="jabber_password" type="password" value="<%= this_blog.jabber_password %>" />
+          </li>
+      </ul>
+  </fieldset>
+<%= render :partial => 'submit' %>
+</div>
+  <% end %>

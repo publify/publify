@@ -1,7 +1,7 @@
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "5.0"
+PKG_VERSION = "5.0.1"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
@@ -15,13 +15,6 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = false
   
   s.files = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
-#     [ /\.$/, /config\/database.yml$/, /config\/database.yml-/, 
-#     /database\.sqlite/,
-#     /\.log$/, /^pkg/, /\.svn/, 
-#     /^public\/(files|xml|articles|pages|index.html)/, 
-#     /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/, 
-#     /\/\._/, /\/#/ ].any? {|regex| f =~ regex }
-
      [ /\.$/, /config\/database.yml$/, /config\/database.yml-/, 
      /database\.sqlite/,
      /\.log$/, /^pkg/, /\.svn/, /^vendor\/rails\/(?!actionwebservice)/, 
