@@ -46,12 +46,17 @@ class BlogSweeper < ActionController::Caching::Sweeper
       sweep_pages
     when Blog, User
       sweep_all
+      sweep_theme
     end
   end
 
   def sweep_all
     expire_fragment(/.*/)
     PageCache.sweep_all
+  end
+
+  def sweep_theme
+    PageCache.sweep_theme_cache
   end
 
   def sweep_articles
