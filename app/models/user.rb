@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 # this model expects a certain database layout and its based on the name/login pattern.
 class User < CachedModel
-  has_one :profile
+  belongs_to :profile
   has_many :notifications, :foreign_key => 'notify_user_id'
   has_many :notify_contents, :through => :notifications,
     :source => 'notify_content',
@@ -117,11 +117,16 @@ class User < CachedModel
     end
   end
 
+  before_validation :set_default_profile
+
+  def set_default_profile
+    self.profile ||= Profile.find_by_label('admin')
+  end
+
   validates_uniqueness_of :login, :on => :create
   validates_length_of :password, :within => 5..40, :on => :create
   validates_presence_of :login
 
   validates_confirmation_of :password, :if=> Proc.new { |u| u.password.size > 0}
   validates_length_of :login, :within => 3..40
-  belongs_to :profile
 end

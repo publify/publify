@@ -10,8 +10,8 @@ tobi:
   notify_via_jabber: false
   notify_on_new_articles: false
   notify_on_comments: true
-  profile_id: 1
-  
+  profile: admin
+
 bob:
   id: 2
   login: bob
@@ -22,8 +22,8 @@ bob:
   notify_via_jabber: false
   notify_on_new_articles: true
   notify_on_comments: false
-  profile_id: 1
-  
+  profile: admin
+
 existingbob:
   id: 3
   login: existingbob
@@ -34,7 +34,7 @@ existingbob:
   notify_via_jabber: false
   notify_on_new_articles: false
   notify_on_comments: false
-  profile_id: 1
+  profile: admin
 
 longbob:
   id: 4
@@ -46,8 +46,8 @@ longbob:
   notify_via_jabber: false
   notify_on_new_articles: false
   notify_on_comments: false
-  profile_id: 1
-  
+  profile: admin
+
 randomuser:
   id: 5
   login: randomuser
@@ -58,4 +58,4 @@ randomuser:
   notify_via_jabber: false
   notify_on_new_articles: true
   notify_on_comments: true
-  profile_id: 1
+  profile: admin

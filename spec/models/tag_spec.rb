@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given loaded fixtures' do
-  fixtures :tags, :contents, :articles_tags, :blogs
+  fixtures :tags, :contents, :blogs
 
   it 'we can Tag.get by name' do
     Tag.get('foo').should == tags(:foo_tag)

@@ -41,10 +41,10 @@ class ArticlesController < ContentController
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
-        render :partial => 'atom_feed', :object => @articles[0,this_blog.limit_rss_display]
+        render :partial => 'articles/atom_feed', :object => @articles[0,this_blog.limit_rss_display]
       end
       format.rss do
-        render :partial => 'rss20_feed', :object => @articles[0,this_blog.limit_rss_display]
+        render :partial => 'articles/rss20_feed', :object => @articles[0,this_blog.limit_rss_display]
       end
     end
   end
@@ -56,8 +56,8 @@ class ArticlesController < ContentController
     auto_discovery_feed
     respond_to do |format|
       format.html { render :action => 'read' }
-      format.atom {  render :partial => 'atom_feed', :object => @article.published_feedback }
-      format.rss  { render :partial => 'rss20_feed', :object => @article.published_feedback }
+      format.atom {  render :partial => 'articles/atom_feed', :object => @article.published_feedback }
+      format.rss  { render :partial => 'articles/rss20_feed', :object => @article.published_feedback }
       format.xml  { redirect_to :format => 'atom' }
     end
     rescue ActiveRecord::RecordNotFound

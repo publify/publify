@@ -11,7 +11,7 @@ describe 'ArticlesController' do
   controller_name :articles
   Article.delete_all
   fixtures(:contents, :feedback, :categories, :blogs, :users, :categorizations,
-           :text_filters, :articles_tags, :tags, :blacklist_patterns, :resources,
+           :text_filters, :tags, :blacklist_patterns, :resources,
            :sidebars)
 
   before(:each) do

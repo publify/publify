@@ -11,12 +11,12 @@ describe 'Given the fixture :first_page' do
     @page.permalink_url.should == 'http://myblog.net/pages/page_one'
   end
 
-  it '#edit_url should be: http://myblog.net/admin/pages/edit/9' do
-    @page.edit_url.should == 'http://myblog.net/admin/pages/edit/9'
+  it '#edit_url should be: http://myblog.net/admin/pages/edit/<page_id>' do
+    @page.edit_url.should == "http://myblog.net/admin/pages/edit/#{@page.id}"
   end
 
   it '#delete_url should work too' do
-    @page.delete_url.should == 'http://myblog.net/admin/pages/destroy/9'
+    @page.delete_url.should == "http://myblog.net/admin/pages/destroy/#{@page.id}"
   end
 
   it 'Pages cannot have the same name' do
@@ -44,7 +44,10 @@ end
 describe 'Given no pages' do
   it_should_behave_like "ValidPageHelper"
 
-  before(:each) { @page = Page.new }
+  before(:each) do
+    Page.delete_all
+    @page = Page.new
+  end
 
   it 'An empty page is invalid' do
     @page.should_not be_valid
