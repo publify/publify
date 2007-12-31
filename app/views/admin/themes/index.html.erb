@@ -3,7 +3,7 @@
     <%= subtab _("Sidebar"), "", {:controller=>"sidebar", :action=>"index"} %>
     <%= subtab _("Choose theme"), "current", {:controller=>"themes", :action=>"index"} %>
     <%= subtab _("Theme editor"), "", {:controller=>"themes", :action=>"editor"} %>
-    <%= subtab _("Text Filters"), "", {:controller=>"textfilters", :action=>"list"} if (this_blog.display_advanced == 1) %>
+    <%= subtab(_("Text Filters"), "", {:controller=>"textfilters", :action=>"list"}) if (this_blog.display_advanced == 1) %>
 <% end %>
 
 <p class="paginate l">

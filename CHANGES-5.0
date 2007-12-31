@@ -1,0 +1,82 @@
+Typo 5.0 "Eugène Atget" finally finished after about 7 month of slacking making. This in an important release, stuffed with great new features, loads of fixes and an incredible amount of polish. This may sound like DHH introduction to Rails 2.0, and it does, because Typo 5.0 now runs with Ruby on Rails 2.0 and won't run with anything else. That's the reason of the major version change.
+
+Before jumping into the breakdown of features, I’d just like to extend my deep gratitude towards everyone who helped make this release possible. From Piers who made this possible to the (hundreds of) contributors who got a patch applied to everyone on #typo who kept the spirit alive. You can all be mighty proud of the role you played. Cheers!
+
+** Why Eugène Atget ? ** 
+
+I've wanted to give our releases a name for a while now, but we needed to find a path we should follow from along the versions. Piers and I are both photographers, and most of the visible work on Typo has been done in Paris, which is a town Atget spent his life to picture. That's the reason why his name came first when we had to choose one.
+
+** Sidebars removal ** 
+
+As we announced earlier, we've decided to move most of the sidebars plugins out of the trunk. There are many reasons why we think that, out of some basic functionnalities, sidebars should be third party softwares apart performances issues. We'll continue to maintain these plugins anyway.
+
+If you're using one of the following plugins, be sure to install it, or your blog may explode with lots of nasty error messages. 
+
+
+– AIM presence
+– Audioscrobbler
+– Backpack
+– Delicious
+– Flickr
+– 43 things
+– 43 places
+– Magnolia
+– Recent comments
+– Tada
+– Upcoming
+– Xbox
+
+
+Plugins are now in our plugins repository, and installs like any rails plugin. Expect basic archives soon. 
+
+/path/to/typo$ ./script/plugins install http://svn.typosphere.org/typo/plugins/some-plugin
+
+** Code refactoring ** 
+
+The immerged part of the iceberg, but not the least one, most of the existing code has been rewriten. Typo was started when Rails was young, very young, and lots of things were added to the framework after we had to write them. 
+
+The result is impressive in terms of performances, and bug fixing as well. 
+
+** Admin refactoring ** 
+
+Admin has been entirely revamped, twice, between 4.1 and 5.0, and we're quite proud of how it works now. 
+
+The existing admin was the result of a scaffold during Typo early days, and even though some improvements has been done, many things were not as user friendly as they should have been. New admin now aims at giving a clear view on the information, and eased access to the most daily used functionnalities in your blogging life.
+
+* Simple and avanced admin *
+
+We now deliver the admin in 2 flavors, simple and advanced, because everybody doesn't have the same need when it goes to blogging. We have also splitted the settings in 2 places, to separate basic and advanced settings.
+
+* More localisation *
+
+4.1 introduced Typo internationalization, but no one noticed it as it was hidden in the deep of environment.rb. You can now choose your prefered language from the settings. We hope the community to support the translation effort.
+
+* Comments moderation *
+
+Another hidden feature of 4.1 I think it's important to mention here is default comment moderation. This is a stone in the build of a better discussion management.
+
+* Theme editor *
+
+A theme editor was a missing piece in Typo admin, and it's now filled with a basic, but usable editor. For now it allows you to edit your layout and stylesheet. Views editing will come later.
+
+* Dashboard *
+
+We've also added a dashboard we plan to improve with time. It aims at giving you a view on the latests activity on your Typo blog.
+
+** Solving SEO issues ** 
+
+For long time now, Typo has been a pain to search engine optimisation, mostly because most pages, out of single posts, had the same meta title and description. That thing we never noticed before had nasty effects when melted with Google duplicate content algorythm, which even led some blogs to be banned from index. Expect some more improvement in a near future. 
+
+** New themes ** 
+
+Azure which has been Typo default theme for a while now has been removed from the core and won't be supported anymore. Standard issue is now our new default theme, and we have introduced Dirtylicious as well. Scribbish has been kept for backward compatibility as many blogs are using it, starting Piers.
+
+Both themes were built above Scribbish markup and are thus hatom compliant.
+
+** Typo themes garden ** 
+
+I know this should be a community matter, and it may not have its place on a release note, however I think it's important enough to mention it. Every theme listed on <a href="http://www.dev411.com/typo/themes/">dev 411 Typo theme viewer</a> has been updated to support Typo 5.0, and updated themes are already avaliable.
+
+We do think having a usable themes and plugins park is important, and too many themes were only Typo 2.6.0 compatible. That's the reason why we did the themes migration while finishing Typo 5.0, and we plan to port even more non Typo themes in a near futur.
+
+We hope you'll enjoy this release as much as we enjoyed making it.

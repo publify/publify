@@ -3,7 +3,7 @@
     <%= subtab _("Sidebar"), "current", {:controller=>"sidebar", :action=>"index"} %>
     <%= subtab _("Choose theme"), "", {:controller=>"themes", :action=>"index"} %>	
 		<%= subtab _("Theme editor"), "", {:controller=>"themes", :action=>"editor"} %>
-    <%= subtab (_("Text Filters"), "", {:controller=>"textfilters", :action=>"list"}) if this_blog.display_advanced == 1 %>
+    <%= subtab(_("Text Filters"), "", {:controller=>"textfilters", :action=>"list"}) if this_blog.display_advanced == 1 %>
 <% end %>
   <p class="paginate l">You can download and install sidebar plugins from our official <a href="http://svn.typosphere.org/typo/plugins/">plugin repository</a> running script/plugins install http://svn.typosphere.org/typo/plugins/myplugin, or upload them in the vendors/plugin directory.</p>
 

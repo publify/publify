@@ -27,9 +27,9 @@
         <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
         <td><%= author_link(article) %></td>
         <td class="operation"><%= (article.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
-	  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View article", :title => "Preview article"), {:action => "show", :id => article.id} %></td>
-	  <td class="operation"><%= link_to_edit article %></td>
-	  <td class="operation last"><%= link_to_destroy article %></td>
+	  <td class="operation"><%= link_to_show article, 'content' %></td>
+	  <td class="operation"><%= link_to_edit article, 'content' %></td>
+	  <td class="operation last"><%= link_to_destroy article, 'content' %></td>
       </tr>
     <% end -%>
     </table>

@@ -57,16 +57,19 @@ module Admin::BaseHelper
    '<input type="submit" value="' + val + '" />'
   end
 
-  def link_to_show(record)
-    link_to image_tag('admin/show.png'), :action => 'show', :id => record.id
+  def link_to_show(record, controller = @controller.controller_name)
+    link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), 
+      :controller => controller, :action => 'show', :id => record.id
   end
 
-  def link_to_edit(record)
-    link_to image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"), :action => 'edit', :id => record.id
+  def link_to_edit(record, controller = @controller.controller_name)
+    link_to image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"),
+      :controller => controller, :action => 'edit', :id => record.id
   end
 
-  def link_to_destroy(record)
-    link_to image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"), :action => 'destroy', :id => record.id
+  def link_to_destroy(record, controller = @controller.controller_name)
+    link_to image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"),
+      :controller => controller, :action => 'destroy', :id => record.id
   end
 
   def text_filter_options
