@@ -61,13 +61,17 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def sweep_articles
     expire_fragment(%r{.*/articles/.*})
-    PageCache.zap_pages('index.*', 'articles')
+    unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
+      PageCache.zap_pages('index.*', 'articles')
+    end
   end
 
   def sweep_pages(record = nil)
     expire_fragment(/.*\/pages\/.*/)
     expire_fragment(/.*\/view_page.*/)
-    PageCache.zap_pages('pages')
+    unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
+      PageCache.zap_pages('pages')
+    end
   end
 
   def logger

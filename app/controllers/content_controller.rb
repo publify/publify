@@ -43,10 +43,6 @@ class ContentController < ApplicationController
     end
   end
 
-  def self.expire_page(path)
-    PageCache.zap_pages(path)
-  end
-
   protected
 
   def auto_discovery_defaults
