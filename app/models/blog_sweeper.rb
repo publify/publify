@@ -2,6 +2,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   observe Category, Blog, Sidebar, User, Article, Page, Categorization
 
   def after_comments_create
+    logger.debug 'BlogSweeper#after_comments_create'
     expire_for(controller.send(:instance_variable_get, :@comment))
   end
 
@@ -9,16 +10,19 @@ class BlogSweeper < ActionController::Caching::Sweeper
   alias_method :after_articles_comment, :after_comments_create
 
   def after_comments_destroy
+    logger.debug 'BlogSweeper#after_comments_destroy'
     expire_for(controller.send(:instance_variable_get, :@comment), true)
   end
 
   alias_method :after_articles_nuke_comment, :after_comments_destroy
 
   def after_articles_trackback
+    logger.debug 'BlogSweeper#after_articles_trackback'
     expire_for(controller.send(:instance_variable_get, :@trackback))
   end
 
   def after_articles_nuke_trackback
+    logger.debug 'BlogSweeper#after_articles_nuke_trackback'
     expire_for(controller.send(:instance_variable_get, :@trackback), true)
   end
 
