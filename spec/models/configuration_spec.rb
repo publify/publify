@@ -43,9 +43,9 @@ describe 'Given a new blog' do
     end
   end
 
-  it '#text_filter and #comment_text_filter should be blank' do
-    @blog.text_filter.should == ''
-    @blog.comment_text_filter.should == ''
+  it '#text_filter and #comment_text_filter should be markdown smartypants' do
+    @blog.text_filter.should == 'markdown smartypants'
+    @blog.comment_text_filter.should == 'markdown smartypants'
   end
 
   it '#limit_article_display and #limit_rss_display should be 10' do

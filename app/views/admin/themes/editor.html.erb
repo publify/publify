@@ -1,9 +1,7 @@
 <% @page_heading = _('Theme editor') %>
 <% content_for('tasks') do %>
-	<%= subtab _("Sidebar"), "", {:controller=>"sidebar", :action=>"index"} %>
 	<%= subtab _("Choose themes"), "", {:controller=>"themes", :action=>"index"} %>
 	<%= subtab _("Theme editor"), "current", {:controller=>"themes", :action=>"editor"} %>
-	<%= subtab _("Text Filters"), "", {:controller=>"textfilters", :action=>"list"} if (this_blog.display_advanced == 1) %>
 <% end %> 
 
 <div id="theme_list">	

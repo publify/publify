@@ -56,6 +56,13 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_template "index"
   end
 
+  # index with page
+  def test_index_with_page
+    get :index, :page => 2
+    assert_response :success
+    assert_template "index"
+  end
+
   # Archives page
   def test_archives
     get :archives

@@ -168,12 +168,18 @@ module Admin::BaseHelper
     end
   end
 
-  def class_presentation
-    if controller.controller_name  =~ /sidebar|themes|textfilters/
+  def class_themes
+    if controller.controller_name  =~ /themes/
     "current"
     end
   end
 
+  def class_plugins
+    if controller.controller_name  =~ /sidebar|textfilter/
+    "current"
+    end
+  end
+  
   def class_users
     if controller.controller_name  =~ /users/
     "current"
@@ -187,7 +193,7 @@ module Admin::BaseHelper
   end    
 
   def class_admin
-    if controller.controller_name  =~ /general|advanced/
+    if controller.controller_name  =~ /settings/
     "current"
     end
   end

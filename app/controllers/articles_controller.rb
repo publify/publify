@@ -35,6 +35,7 @@ class ArticlesController < ContentController
       end
     end
     if params[:page]
+      @page_title = 'Older posts,' if @page_title.blank?
       @page_title << " page " << params[:page]
     end
 

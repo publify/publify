@@ -8,7 +8,7 @@ default:
     itunes_owner: ""
     blog_name: test blog
     title_prefix: 1
-    limit_article_display: 10
+    limit_article_display: 2
     sp_url_limit: 3
     use_gravatar: false
     itunes_email: ""

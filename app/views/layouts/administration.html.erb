@@ -19,7 +19,8 @@
             <%= content_tag :li, (link_to _("Write"), {:controller=>"content", :action => 'new'}, :class=>class_write) %>
             <%= content_tag :li, (link_to _("Manage"), {:controller=>"content", :action => 'index'}, :class=>class_manage) %>
             <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index'}, :class=>class_feedback) %>
-            <%= content_tag :li, (link_to _("Presentation"), {:controller=>"sidebar", :action => 'index'}, :class=>class_presentation) %>
+            <%= content_tag :li, (link_to _("Themes"), {:controller=>"themes", :action => 'index'}, :class=>class_themes) %>
+            <%= content_tag :li, (link_to _("Plugins"), {:controller=>"sidebar", :action => 'index'}, :class=>class_plugins) %>
             <%= content_tag :li, (link_to _("Users"), {:controller=>"users", :action => 'index'}, :class=>class_users) %>
             <%= content_tag :li, (link_to _("Settings"), {:controller=>"settings", :action => 'index'}, :class=>class_admin) %>
 			<li><%= current_user_notice %></li>

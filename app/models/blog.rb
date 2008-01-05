@@ -78,8 +78,8 @@ class Blog < CachedModel
   setting :itunes_copyright,           :string, ''
 
   # Mostly Behaviour
-  setting :text_filter,                :string, ''
-  setting :comment_text_filter,        :string, ''
+  setting :text_filter,                :string, 'markdown smartypants'
+  setting :comment_text_filter,        :string, 'markdown smartypants'
   setting :limit_article_display,      :integer, 10
   setting :limit_rss_display,          :integer, 10
   setting :default_allow_pings,        :boolean, false

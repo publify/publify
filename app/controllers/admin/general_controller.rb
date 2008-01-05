@@ -1,4 +1,8 @@
 class Admin::GeneralController < Admin::BaseController
+  def index
+    redirect_to :controller => 'settings'
+  end
+  
   def update_database
     @current_version = Migrator.current_schema_version
     @needed_version = Migrator.max_schema_version
