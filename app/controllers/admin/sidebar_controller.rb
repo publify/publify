@@ -46,7 +46,9 @@ class Admin::SidebarController < Admin::BaseController
     Sidebar.transaction do
       position = 0
       params[:configure] ||= { }
-      this_blog.sidebars.update_all('active_position = null')
+      # Crappy workaround to rails update_all bug with PgSQL / SQLite
+#      this_blog.sidebars.update_all('active_position = null')
+      ActiveRecord::Base.connection.execute("update sidebars set active_position=null where blog_id = #{this_blog.id}")
       flash[:sidebars].each do |id|
         sidebar = Sidebar.find(id)
         sb_attribs = params[:configure][id.to_s] || {}
