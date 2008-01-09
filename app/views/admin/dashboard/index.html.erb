@@ -8,7 +8,7 @@
     <%= content_tag :li, link_to(_('Write a post'), :controller => 'content', :action => 'new') -%>
     <%= content_tag :li, link_to(_("Update your profile or change your password"), 
       :controller => 'users', :action => 'edit', :id => session[:user_id]) -%>
-    <%= content_tag :li, link_to(_("Change you blog presentation"), :controller => 'themes') -%>
+    <%= content_tag :li, link_to(_("Change your blog presentation"), :controller => 'themes') -%>
     <%= content_tag :li, link_to(_("Enable plugins"), :controller => 'sidebar') -%>
   </ul>
 </div>
