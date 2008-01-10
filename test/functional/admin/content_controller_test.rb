@@ -192,12 +192,12 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_resource_add
     art_id = contents(:article1).id
-    get :resource_add, :id => art_id, :resource_id => 1
+    get :resource_add, :id => art_id, :resource_id => resources(:resource1).id
 
     assert_template '_show_resources'
     assert_valid assigns(:article)
     assert_valid assigns(:resource)
-    assert Article.find(art_id).resources.include?(Resource.find(1))
+    assert Article.find(art_id).resources.include?(resources(:resource1))
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:resource)
     assert_not_nil assigns(:resources)
@@ -205,12 +205,12 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_resource_remove
     art_id = contents(:article1).id
-    get :resource_remove, :id => art_id, :resource_id => 1
+    get :resource_remove, :id => art_id, :resource_id => resources(:resource1).id
 
     assert_template '_show_resources'
     assert_valid assigns(:article)
     assert_valid assigns(:resource)
-    assert !Article.find(art_id).resources.include?(Resource.find(1))
+    assert !Article.find(art_id).resources.include?(resources(:resource1))
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:resource)
     assert_not_nil assigns(:resources)

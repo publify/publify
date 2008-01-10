@@ -28,7 +28,8 @@ class Admin::FeedbackControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_equal(Feedback.count(:conditions => ['blog_id = 1 AND status_confirmed = ?', false]),
+    assert_equal(Feedback.count(:conditions => ['blog_id = ? AND status_confirmed = ?',
+                                                blogs(:default).id,               false]),
                  assigns(:feedback).size)
 
   end
@@ -39,7 +40,8 @@ class Admin::FeedbackControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_equal(Feedback.count(:conditions => ['blog_id = 1 AND published = ?', false]),
+    assert_equal(Feedback.count(:conditions => ['blog_id = ? AND published = ?',
+                                                blogs(:default).id,        false]),
                  assigns(:feedback).size)
   end
 
@@ -49,7 +51,8 @@ class Admin::FeedbackControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_equal(Feedback.count(:conditions => ['blog_id = 1 AND published = ? AND status_confirmed = ?', false, false]),
+    assert_equal(Feedback.count(:conditions => ['blog_id = ? AND published = ? AND status_confirmed = ?',
+                                                blogs(:default).id,        false,                   false]),
                  assigns(:feedback).size)
   end
 

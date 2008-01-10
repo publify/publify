@@ -1,6 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 default:
-  id: 1
   base_url: http://myblog.net
   settings:
     jabber_password: ""
@@ -35,43 +34,4 @@ default:
     link_to_author: false
     itunes_summary: ""
     comment_text_filter: markdown
-    sp_allow_non_ajax_comments: true
-
-second:
-  id: 2
-  base_url: http://otherblog.net
-  settings:
-    jabber_password: ""
-    show_extended_on_rss: true
-    itunes_owner: ""
-    blog_name: second test blog
-    title_prefix: 0
-    limit_article_display: 10
-    sp_url_limit: 0
-    use_gravatar: false
-    itunes_email: ""
-    blog_subtitle: ""
-    limit_rss_display: 10
-    itunes_explicit: false
-    ping_urls: |-
-      http://rpc.technorati.com/rpc/ping
-      http://ping.blo.gs/
-      http://rpc.weblogs.com/RPC2
-    itunes_name: ""
-    geourl_location: ""
-    default_allow_pings: false
-    itunes_author: ""
-    send_outbound_pings: true
-    itunes_copyright: ""
-    sp_global: true
-    jabber_address: ""
-    default_allow_comments: true
-    itunes_subtitle: ""
-    email_from: scott@sigkill.org
-    theme: standard_issue
-    text_filter: ""
-    sp_article_auto_close: 0
-    link_to_author: false
-    itunes_summary: ""
-    comment_text_filter: ""
     sp_allow_non_ajax_comments: true

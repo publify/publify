@@ -44,7 +44,7 @@ class ArticleTest < Test::Unit::TestCase
   def test_blog
     a = Article.new
 
-    assert_equal(1, a.blog_id)
+    assert_equal(blogs(:default).id, a.blog_id)
     assert_kind_of(Blog, a.blog)
   end
 

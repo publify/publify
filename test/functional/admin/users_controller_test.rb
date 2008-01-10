@@ -37,7 +37,7 @@ class Admin::UsersControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => 1
+    get :show, :id => users(:tobi).id
     assert_template 'show'
     assert_valid assigns(:user)
 
@@ -46,11 +46,12 @@ class Admin::UsersControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => 1
+    user_id = users(:tobi).id
+    get :edit, :id => user_id
     assert_template 'edit'
     assert_valid assigns(:user)
 
-    post :edit, :id => 1, :user => { :login => 'errand',
+    post :edit, :id => user_id, :user => { :login => 'errand',
       :email => 'corey@test.com', :password => 'testpass',
       :password_confirmation => 'testpass' }
     assert_response :redirect, :action => 'show'
@@ -72,5 +73,4 @@ class Admin::UsersControllerTest < Test::Unit::TestCase
     assert_template 'list'
     assert_equal user_count - 1, User.count
   end
-
 end

@@ -20,7 +20,7 @@ class Admin::TextfiltersControllerTest < Test::Unit::TestCase
   end
 
   def test_edit_without_filters
-    post :edit, :id => 1, :textfilter => { :name => 'filterx',
+    post :edit, :id => text_filters(:markdown_filter).id, :textfilter => { :name => 'filterx',
       :description => 'Filter X', :markup => 'markdown' }
     assert_response :redirect, :action => 'show'
   end

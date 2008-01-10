@@ -1,6 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 resource1:
-  id: 1
   article: article1
   filename: me.jpg
   mime: 'image/jpeg'
@@ -8,7 +7,6 @@ resource1:
   size: 100
 
 resource2:
-  id: 2
   article: article1
   filename: moi
   mime: 'image/jpeg'
@@ -16,7 +14,6 @@ resource2:
   size: 110
 
 resource3:
-  id: 3
   article: article2
   filename: my_latest_typo_patch.diff
   mime: 'text/plain'

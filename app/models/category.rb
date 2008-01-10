@@ -71,7 +71,7 @@ class Category < ActiveRecord::Base
   end
 
   def permalink_url(anchor=nil, only_path=true)
-    blog = Blog.find(1) # remove me...
+    blog = Blog.default # remove me...
 
     blog.url_for(
       :controller => '/categories',

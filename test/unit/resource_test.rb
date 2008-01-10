@@ -55,7 +55,7 @@ class ResourceTest < Test::Unit::TestCase
     resources(:resource1).filename = f.filename
     assert !resources(:resource1).save
 
-    resources(:resource1).filename = Resource.find(1).filename
+    resources(:resource1).filename = Resource.find(resources(:resource1).id).filename
     assert resources(:resource1).save
   end
 

@@ -147,7 +147,7 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_published
-    a = Article.new(:title => 'foo', :blog_id => 1)
+    a = Article.new(:title => 'foo', :blog_id => blogs(:default).id)
     assert a.save
 
     assert_equal 0, a.published_comments.size

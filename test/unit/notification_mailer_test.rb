@@ -14,7 +14,7 @@ class NotificationMailerTest < Test::Unit::TestCase
 
     @controller = nil
     @article = Article.find(contents(:article1).id)
-    @user = User.find(1)
+    @user = users(:tobi)
 
     @expected = TMail::Mail.new
     @expected.set_content_type "text", "plain", { "charset" => CHARSET }

@@ -22,14 +22,15 @@ class Admin::ResourcesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Resource.find(1)
+    res_id = resources(:resource1).id
+    assert_not_nil Resource.find(res_id)
 
-    get :destroy, :id => 1
+    get :destroy, :id => res_id
     assert_response :success
     assert_template 'destroy'
     assert_not_nil assigns(:file)
 
-    post :destroy, :id => 1
+    post :destroy, :id => res_id
     assert_response 302
     follow_redirect
     assert_template 'list'

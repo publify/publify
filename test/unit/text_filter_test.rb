@@ -4,7 +4,7 @@ require 'flickr_mock'
 
 class TextFilterTest < Test::Unit::TestCase
   def setup
-    @text_filter = TextFilter.find(1)
+    @text_filter = text_filters(:markdown_filter)
   end
 
   # Replace this with your real tests.
