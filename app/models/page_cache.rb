@@ -6,7 +6,11 @@ class PageCache < ActiveRecord::Base
   def self.sweep_all
     logger.debug "PageCache - sweep_all called"
     unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
-      self.zap_pages('index.*', 'articles', 'pages')
+      self.zap_pages('index.*', 'articles.*', 'articles', 'pages',
+                     'pages.*', 'feedback', 'feedback.*',
+                     'comments', 'comments.*',
+                     'categories', 'categories.*',
+                     'tags', 'tags.*')
     end
   end
 
