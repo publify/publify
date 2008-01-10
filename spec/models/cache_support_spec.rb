@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given a published article' do
-  fixtures :blogs, :contents, :feedback, :users, :text_filters
-
   before(:each) do
     @article = contents(:article1)
   end
@@ -34,8 +32,6 @@ describe 'Given a published article' do
 end
 
 describe "Given an unpublished article" do
-  fixtures :blogs, :contents, :feedback, :users, :text_filters
-
   before(:each) { @article = contents(:article4) }
 
   it "publishing smashes the cache" do

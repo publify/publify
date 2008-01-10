@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Given the first Blog fixture" do
-  fixtures :blogs, :contents, :sidebars
-
   before(:each) { @blog = blogs(:default) }
 
   it ":blog_name == 'test blog'" do

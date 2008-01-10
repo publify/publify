@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given the results of Category.find_all_with_article_counters' do
-  fixtures :contents, :categories, :categorizations, :blogs
-
   before(:each) { @cats = Category.find_all_with_article_counters }
 
   it "Categories should be sorted by category.position" do
@@ -17,8 +15,6 @@ describe 'Given the results of Category.find_all_with_article_counters' do
 end
 
 describe 'Given the fixtures' do
-  fixtures :contents, :categories, :categorizations, :blogs
-
   it 'find gets the order right' do
     cats = Category.find(:all)
     cats.should == cats.sort_by { |c| c.position }

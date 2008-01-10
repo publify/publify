@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given a post which references a pingback enabled article' do
-  fixtures :contents, :blogs, :text_filters
-
   def pingback_target; 'http://anotherblog.org/xml-rpc'; end
   def referenced_url; 'http://anotherblog.org/a-post'; end
   def referrer_url; 'http://myblog.net/referring-post'; end
@@ -75,9 +73,6 @@ describe 'Given a post which references a pingback enabled article' do
 end
 
 describe "An article links to another article, which contains a trackback URL" do
-  fixtures :contents, :blogs
-
-
   def referenced_url;  'http://anotherblog.org/a-post'; end
   def trackback_url;  "http://anotherblog.org/a-post/trackback"; end
   def referrer_url;  'http://myblog.net/referring-post'; end
@@ -121,8 +116,6 @@ describe "An article links to another article, which contains a trackback URL" d
 end
 
 describe 'Given a remote site to notify, eg technorati' do
-  fixtures :contents, :blogs
-
   it 'we can ping them correctly' do
     mock = mock('response')
     XMLRPC::Client.should_receive(:new2).with('http://rpc.technorati.com/rpc/ping').and_return(mock)

@@ -1,7 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given a new blog' do
-  before(:each) { @blog = Blog.new }
+  before(:each) do
+    Blog.delete_all
+    @blog = Blog.new
+  end
 
   # Must find a better name for this key!
   it 'Global spam protection is not enabled' do

@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Resource, ' with its fixtures loaded' do
-  fixtures(:resources)
-
   before(:each) do
     File.stub!(:exist?).and_return(true)
   end

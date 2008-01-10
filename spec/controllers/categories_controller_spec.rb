@@ -8,7 +8,7 @@ describe CategoriesController, "/index" do
     controller.stub!(:template_exists?) \
       .and_return(true)
 
-    this_blog = Blog.new
+    this_blog = Blog.default
     controller.stub!(:this_blog) \
       .and_return(this_blog)
   end
@@ -50,7 +50,7 @@ describe CategoriesController, '/articles/category/foo' do
 
     controller.stub!(:template_exists?) \
       .and_return(true)
-    this_blog = Blog.new
+    this_blog = Blog.default
     controller.stub!(:this_blog) \
       .and_return(this_blog)
   end

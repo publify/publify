@@ -199,7 +199,7 @@ describe CommentsController, "GET /comments.:format" do
   before do
     @the_mock = mock('blog', :null_object => true)
     @the_mock.stub!(:lang).and_return('en_US')
-    Blog.stub!(:find).and_return(@the_mock)
+    controller.stub!(:this_blog).and_return(@the_mock)
   end
 
   it ":format => 'atom' should return an atom feed" do

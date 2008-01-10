@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'With the contents fixture' do
-  fixtures :contents, :triggers
-
   before(:each) do
     @page = mock('fake_page')
     @page.stub!(:id).and_return(1)

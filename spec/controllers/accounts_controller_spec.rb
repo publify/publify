@@ -7,6 +7,7 @@ describe 'A successfully authenticated login' do
     @user = mock_model(User, :new_record? => false, :reload => @user)
     User.stub!(:authenticate).and_return(@user)
     User.stub!(:count).and_return(1)
+    controller.stub!(:this_blot).and_return(Blog.default)
   end
 
   def make_request
@@ -189,7 +190,7 @@ describe 'User is logged in' do
       .with(@user.id) \
       .any_number_of_times \
       .and_return(@user)
-    
+
     request.cookies[:is_admin] = 'yes'
   end
 

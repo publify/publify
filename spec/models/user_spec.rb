@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'With the contents and users fixtures loaded' do
-  fixtures :users, :contents, :blogs
-
   before(:each) do
     User.stub!(:salt).and_return('change-me')
   end
@@ -20,9 +18,9 @@ describe 'With the contents and users fixtures loaded' do
   end
 
   it 'The various article finders work appropriately' do
-    User.find(1).articles.size.should == 8
+    users(:tobi).articles.size.should == 7
 #    User.find(1).articles.find_published.size.should == Article.find(:all, :conditions => {:published => true}).size
-    User.find(1).articles.published.size == 7
+    users(:tobi).articles.published.size.should == 6
   end
 
   it 'authenticate? works as expected' do

@@ -1,10 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given loaded fixtures' do
-  fixtures :tags, :contents, :blogs
-
   it 'we can Tag.get by name' do
-    Tag.get('foo').should == tags(:foo_tag)
+    Tag.get('foo').should == tags(:foo)
   end
 
   it 'tags are unique' do
@@ -29,12 +27,12 @@ describe 'Given loaded fixtures' do
 
   it 'articles can be tagged' do
     a = Article.create(:title => 'an article')
-    a.tags << tags(:foo_tag)
-    a.tags << tags(:bar_tag)
+    a.tags << tags(:foo)
+    a.tags << tags(:bar)
 
     a.reload
     a.tags.size.should == 2
-    a.tags.sort_by(&:id).should == [tags(:foo_tag), tags(:bar_tag)].sort_by(&:id)
+    a.tags.sort_by(&:id).should == [tags(:foo), tags(:bar)].sort_by(&:id)
   end
 
   it 'find_all_with_article_counters finds 2 tags' do

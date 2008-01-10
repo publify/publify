@@ -7,8 +7,11 @@ require 'spec/rails'
 Spec::Runner.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
-  config.fixture_path = RAILS_ROOT + '/spec/fixtures'
-  config.global_fixtures = [:contents, :tags, :blogs, :profiles]
+  config.fixture_path = RAILS_ROOT + '/test/fixtures'
+  config.global_fixtures =
+    %w{ blacklist_patterns blogs categories categorizations contents
+        feedback notifications page_caches profiles redirects resources sidebars
+        tags text_filters triggers users }
 
   config.before(:each) do
     CachedModel.cache_reset

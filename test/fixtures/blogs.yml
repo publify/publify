@@ -21,7 +21,7 @@ default:
     geourl_location: ""
     default_allow_pings: false
     itunes_author: ""
-    send_outbound_pings: true
+    send_outbound_pings: false
     itunes_copyright: ""
     sp_global: true
     jabber_address: ""

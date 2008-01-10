@@ -12,7 +12,7 @@ end
 
 describe 'Given a the default theme' do
   before(:each) do
-    @theme = Blog.new.current_theme
+    @theme = Blog.default.current_theme
   end
 
   it 'theme should be standard_issue' do

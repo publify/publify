@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe 'Given the fixture :first_page' do
-  fixtures :contents, :blogs
-
   before(:each) do
     @page = contents(:first_page)
   end
