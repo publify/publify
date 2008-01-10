@@ -5,8 +5,6 @@ require 'admin/pages_controller'
 class Admin::PagesController; def rescue_action(e) raise e end; end
 
 class Admin::PagesControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :text_filters, :blogs
-
   def setup
     @controller = Admin::PagesController.new
     @request    = ActionController::TestRequest.new

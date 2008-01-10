@@ -13,7 +13,7 @@ class NotificationMailerTest < Test::Unit::TestCase
     ActionMailer::Base.deliveries = []
 
     @controller = nil
-    @article = Article.find(1)
+    @article = Article.find(contents(:article1).id)
     @user = User.find(1)
 
     @expected = TMail::Mail.new

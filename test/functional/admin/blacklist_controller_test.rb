@@ -5,8 +5,6 @@ require 'admin/blacklist_controller'
 class Admin::BlacklistController; def rescue_action(e) raise e end; end
 
 class Admin::BlacklistControllerTest < Test::Unit::TestCase
-  fixtures :blacklist_patterns, :users
-
   def setup
     @controller = Admin::BlacklistController.new
     @request    = ActionController::TestRequest.new
@@ -36,28 +34,29 @@ class Admin::BlacklistControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, 'id' => 1
+    get :edit, 'id' => blacklist_patterns(:first_blacklist_pattern).id
     assert_template 'edit'
     assert_template_has('blacklist_pattern')
     assert_valid assigns(:blacklist_pattern)
   end
 
   def test_update
-    post :edit, 'id' => 1
+    post :edit, 'id' => blacklist_patterns(:first_blacklist_pattern).id
     assert_response :redirect, :action => 'list'
   end
 
   def test_destroy
-    assert_not_nil BlacklistPattern.find(1)
+    pattern_id = blacklist_patterns(:first_blacklist_pattern).id
+    assert_not_nil BlacklistPattern.find(pattern_id)
 
-    get :destroy, 'id' => 1
+    get :destroy, 'id' => pattern_id
     assert_response :success
 
-    post :destroy, 'id' => 1
+    post :destroy, 'id' => pattern_id
     assert_response :redirect, :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      blacklist_pattern = BlacklistPattern.find(1)
+      blacklist_pattern = BlacklistPattern.find(pattern_id)
     }
   end
 end

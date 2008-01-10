@@ -2,7 +2,6 @@
 
 article1:
   blog_id: 1
-  id: 1
   title: Article 1!
   body: body
   extended: extended content
@@ -18,11 +17,11 @@ article1:
   type: Article
   published: true
   state: published
+  tags: foo, bar
 
 article2:
   type: Article
   blog_id: 1
-  id: 2
   title: Article 2!
   body: body
   extended: extended content
@@ -37,12 +36,12 @@ article2:
   guid: bbbbb
   published: true
   state: published
+  tags: foo
 
 
 article3:
   type: Article
   blog_id: 1
-  id: 3
   title: Article 3!
   body: body
   extended: extended content
@@ -61,7 +60,6 @@ article3:
 article4:
   type: Article
   blog_id: 1
-  id: 4
   title: Article 4!
   body: I'm not "public":http://www.example.com/public!
   published: false
@@ -75,11 +73,11 @@ article4:
   user_id: 1
   author: Tobi
   guid: ddddd
+  tags: bar, bazz
 
 first_page:
   type: Page
   blog_id: 1
-  id: 9
   name: page_one
   title: Page One Title
   body: ho ho ho
@@ -93,7 +91,6 @@ first_page:
 another_page:
   type: Page
   blog_id: 1
-  id: 10
   name: page/two
   title: Another Page Title
   body: another body for yet another page
@@ -107,7 +104,6 @@ another_page:
 markdown_page:
   type: Page
   blog_id: 1
-  id: 11
   name: markdown-page
   title: Markdown Page
   text_filter_id: 1
@@ -122,7 +118,6 @@ markdown_page:
 inactive_article:
   type: Article
   blog_id: 1
-  id: 14
   title: Inactive Article
   body: body
   extended: extended content
@@ -141,7 +136,6 @@ inactive_article:
 second_blog_article:
   type: Article
   blog_id: 2
-  id: 16
   title: Second Blog Article
   body: body
   extended: extended content
@@ -160,7 +154,6 @@ second_blog_article:
 search_target:
   type: Article
   blog_id: 1
-  id: 17
   title: Find me!
   body: search target
   extended: extended content
@@ -179,7 +172,6 @@ search_target:
 xmltest:
   type: Article
   blog_id: 1
-  id: 18
   title: Associations aren't :dependent => true anymore
   body: originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
   extended: extended content
@@ -198,7 +190,6 @@ xmltest:
 spammed_article:
   type: Article
   blog_id: 1
-  id: 19
   title: C'mon Spam Me!
   body: A bunch of innocuous content
   allow_comments: true

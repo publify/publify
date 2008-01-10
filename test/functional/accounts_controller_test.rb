@@ -9,8 +9,6 @@ class AccountsController; def rescue_action(e) raise e end; end
 
 class AccountsControllerTest < Test::Unit::TestCase
 
-  fixtures :users, :blogs
-
   def setup
     @controller = AccountsController.new
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new

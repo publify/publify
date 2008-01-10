@@ -3,8 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class CommentTest < Test::Unit::TestCase
-  fixtures :contents, :feedback, :blacklist_patterns, :text_filters, :blogs
-
   def setup
     CachedModel.cache_reset
   end
@@ -37,7 +35,7 @@ class CommentTest < Test::Unit::TestCase
   def test_create_comment
     c = Comment.new
     c.author = 'Bob'
-    c.article_id = 1
+    c.article_id = contents(:article1).id
     c.body = 'nice post'
     c.ip = '1.2.3.4'
 
@@ -114,14 +112,14 @@ class CommentTest < Test::Unit::TestCase
 
   def test_article_relation
     assert feedback(:comment2).article
-    assert_equal 1, feedback(:comment2).article.id
+    assert_equal contents(:article1), feedback(:comment2).article
   end
 
   def test_xss_rejection
     c = Comment.new do |c|
       c.body = "Test foo <script>do_evil();</script>"
       c.author = 'Bob'
-      c.article_id = 1
+      c.article_id = contents(:article1).id
     end
 
     # Test each filter to make sure that we don't allow scripts through.

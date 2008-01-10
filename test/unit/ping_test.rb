@@ -4,8 +4,6 @@ require 'http_mock'
 require 'xmlrpc_mock'
 
 class PingTest < Test::Unit::TestCase
-  fixtures :contents, :blogs
-
   def setup
     @pingback_header = nil
     @body = ''

@@ -5,8 +5,6 @@ require 'admin/settings_controller'
 class Admin::SettingsController; def rescue_action(e) raise e end; end
 
 class Admin::SettingsControllerTest < Test::Unit::TestCase
-  fixtures :users
-
   def setup
     @controller = Admin::SettingsController.new
     @request    = ActionController::TestRequest.new

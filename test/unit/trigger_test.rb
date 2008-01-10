@@ -8,8 +8,6 @@ class Page
 end
 
 class TriggerTest < Test::Unit::TestCase
-  fixtures :contents, :triggers
-
   def test_post_action
     assert Trigger.post_action(Time.now + 2.seconds,
                                contents(:first_page),

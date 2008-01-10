@@ -30,8 +30,6 @@ end
 class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
-  fixtures :contents, :categories, :categorizations, :tags,
-    :articles_tags, :users, :blogs, :resources
 
   def assert_select(*args, &block)
     @html_document ||= HTML::Document.new(@response.body, false, true)
@@ -111,8 +109,8 @@ class XmlControllerTest < Test::Unit::TestCase
   end
 
   def test_feed_rss20_article
-    get :feed, :format => 'rss20', :type => 'article', :id => 1
-    assert_moved_permanently_to formatted_article_url(Article.find(1), :rss)
+    get :feed, :format => 'rss20', :type => 'article', :id => contents(:article1).id
+    assert_moved_permanently_to formatted_article_url(contents(:article1), :rss)
   end
 
   def test_feed_rss20_category
@@ -153,8 +151,8 @@ class XmlControllerTest < Test::Unit::TestCase
   end
 
   def test_feed_atom10_article
-    get :feed, :format => 'atom10', :type => 'article', :id => 1
-    assert_moved_permanently_to formatted_article_url(Article.find(1), 'atom')
+    get :feed, :format => 'atom10', :type => 'article', :id => contents(:article1).id
+    assert_moved_permanently_to formatted_article_url(contents(:article1), 'atom')
   end
 
   def test_feed_atom10_category
@@ -168,7 +166,7 @@ class XmlControllerTest < Test::Unit::TestCase
   end
 
   def test_articlerss
-    get :articlerss, :id => 1
+    get :articlerss, :id => contents(:article1).id
     assert_response :redirect
   end
 

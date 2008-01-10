@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AmazonSidebarTest < Test::Unit::TestCase
-  fixtures :sidebars
-
   def test_creation
     assert_kind_of Sidebar, AmazonSidebar.new
   end

@@ -10,7 +10,6 @@ class BackendController; def rescue_action(e) raise e end; end
 
 class BackendControllerTest < Test::Unit::TestCase
   include FlexMock::TestCase
-  fixtures :contents, :categories, :blogs, :users, :categorizations, :text_filters, :blacklist_patterns, :feedback, :tags, :articles_tags, :notifications, :resources, :triggers
 
   def setup
     @controller = BackendController.new
@@ -20,10 +19,10 @@ class BackendControllerTest < Test::Unit::TestCase
 
   # BloggerApi Tests
   def test_blogger_delete_post
-    args = [ 'foo', 3, 'tobi', 'whatever', 1 ]
+    args = [ 'foo', contents(:article3).id, 'tobi', 'whatever', 1 ]
 
     result = invoke_layered :blogger, :deletePost, *args
-    assert_raise(ActiveRecord::RecordNotFound) { Article.find(3) }
+    assert_raise(ActiveRecord::RecordNotFound) { Article.find(contents(:article3).id) }
   end
 
   def test_blogger_get_users_blogs
@@ -105,10 +104,10 @@ class BackendControllerTest < Test::Unit::TestCase
   end
 
   def test_meta_weblog_get_post
-    args = [ 1, 'tobi', 'whatever' ]
+    args = [ contents(:article1).id, 'tobi', 'whatever' ]
 
     result = invoke_layered :metaWeblog, :getPost, *args
-    assert_equal result['title'], Article.find(1).title
+    assert_equal result['title'], contents(:article1).title
   end
 
   def test_meta_weblog_get_recent_posts
@@ -120,25 +119,27 @@ class BackendControllerTest < Test::Unit::TestCase
   end
 
   def test_meta_weblog_delete_post
-    args = [ 1, 2, 'tobi', 'whatever', 1 ]
+    art_id = contents(:article2).id
+    args = [ 1, art_id, 'tobi', 'whatever', 1 ]
 
     result = invoke_layered :metaWeblog, :deletePost, *args
-    assert_raise(ActiveRecord::RecordNotFound) { Article.find(2) }
+    assert_raise(ActiveRecord::RecordNotFound) { Article.find(art_id) }
   end
 
   def test_meta_weblog_edit_post
-    article = Article.find(1)
+    art_id = contents(:article1).id
+    article = Article.find(art_id)
     article.title = "Modified!"
     article.body = "this is a *test*"
     article.text_filter = TextFilter.find_by_name("textile")
     article.published_at = Time.now.utc.midnight
 
-    args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
+    args = [ art_id, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
     result = invoke_layered :metaWeblog, :editPost, *args
     assert result
 
-    new_article = Article.find(1)
+    new_article = Article.find(art_id)
 
     assert_equal article.title, new_article.title
     assert_equal article.body, new_article.body
@@ -158,7 +159,7 @@ class BackendControllerTest < Test::Unit::TestCase
     flexmock(@controller, :this_blog => @this_blog)
     assert_raises(RuntimeError) { @controller.newPost(*stub_args) }
   end
-  
+
   def test_meta_weblog_new_post
     article = Article.new
     article.title = "Posted via Test"
@@ -202,7 +203,7 @@ class BackendControllerTest < Test::Unit::TestCase
     # This will be a little more useful with the upstream changes in [1093]
     assert_raise(XMLRPC::FaultException) { invoke_layered :metaWeblog, :getRecentPosts, *args }
   end
-  
+
   # Movable Type Tests
 
   def test_mt_get_category_list
@@ -213,10 +214,11 @@ class BackendControllerTest < Test::Unit::TestCase
   end
 
   def test_mt_get_post_categories
-    article = Article.find(1)
+    art_id = contents(:article1).id
+    article = Article.find(art_id)
     article.categories << categories(:software)
 
-    args = [ 1, 'tobi', 'whatever' ]
+    args = [ art_id, 'tobi', 'whatever' ]
 
     result = invoke_layered :mt, :getPostCategories, *args
     assert_equal Set.new(result.collect {|v| v['categoryName']}), Set.new(article.categories.collect(&:name))
@@ -226,23 +228,24 @@ class BackendControllerTest < Test::Unit::TestCase
     args = [ 1, 'tobi', 'whatever', 2 ]
 
     result = invoke_layered :mt, :getRecentPostTitles, *args
-    assert_equal result.first['title'], Article.find(2).title
+    assert_equal result.first['title'], contents(:article2).title
   end
 
   def test_mt_set_post_categories
-    args = [ 2, 'tobi', 'whatever',
-      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => 3, 'isPrimary' => 1)] ]
+    art_id = contents(:article2).id
+    args = [ art_id, 'tobi', 'whatever',
+      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => categories(:personal).id, 'isPrimary' => 1)] ]
 
     result = invoke_layered :mt, :setPostCategories, *args
-    assert_equal [categories(:personal)], Article.find(2).categories
+    assert_equal [categories(:personal)], contents(:article2).categories
 
-    args = [ 2, 'tobi', 'whatever',
-      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software', 'categoryId' => 1, 'isPrimary' => 1),
-       MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware', 'categoryId' => 2, 'isPrimary' => 0) ]]
+    args = [ art_id, 'tobi', 'whatever',
+      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software', 'categoryId' => categories(:software).id, 'isPrimary' => 1),
+       MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware', 'categoryId' => categories(:hardware).id, 'isPrimary' => 0) ]]
 
      result = invoke_layered :mt, :setPostCategories, *args
 
-     assert Article.find(2).categories.include?(categories(:hardware))
+     assert contents(:article2).reload.categories.include?(categories(:hardware))
 
   end
 
@@ -259,7 +262,7 @@ class BackendControllerTest < Test::Unit::TestCase
   end
 
   def test_mt_get_trackback_pings
-    args = [ 1 ]
+    args = [ contents(:article1).id ]
 
     result = invoke_layered :mt, :getTrackbackPings, *args
 
@@ -267,15 +270,16 @@ class BackendControllerTest < Test::Unit::TestCase
   end
 
   def test_mt_publish_post
-    args = [ 4, 'tobi', 'whatever' ]
+    art_id = contents(:article4).id
+    args = [ art_id, 'tobi', 'whatever' ]
 
-    assert (not Article.find(4).published?)
+    assert (not Article.find(art_id).published?)
 
     result = invoke_layered :mt, :publishPost, *args
 
     assert result
-    assert Article.find(4).published?
-    assert Article.find(4)[:published_at]
+    assert Article.find(art_id).published?
+    assert Article.find(art_id)[:published_at]
   end
 
   def test_mt_fail_authentication

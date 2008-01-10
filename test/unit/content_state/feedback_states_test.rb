@@ -1,12 +1,9 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
 class FeedbackStatesTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :articles_tags, :tags, :resources,
-    :categories, :categorizations, :users, :notifications, :text_filters
-
   def setup
-    @comment = Article.find(1).comments.build(:author => 'Piers',
-                                                   :body => 'Body')
+    @comment = contents(:article1).comments.build(:author => 'Piers',
+                                                  :body => 'Body')
   end
 
   def test_ham_all_the_way

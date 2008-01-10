@@ -5,8 +5,6 @@ require 'admin/categories_controller'
 class Admin::CategoriesController; def rescue_action(e) raise e end; end
 
 class Admin::CategoriesControllerTest < Test::Unit::TestCase
-  fixtures :categories, :users
-
   def setup
     @controller = Admin::CategoriesController.new
     @request    = ActionController::TestRequest.new
@@ -30,7 +28,7 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, 'id' => 1
+    get :show, 'id' => categories(:software).id
     assert_template 'show'
     assert_template_has 'category'
     assert_valid assigns(:category)
@@ -46,28 +44,29 @@ class Admin::CategoriesControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => 1
+    get :edit, :id => categories(:software).id
     assert_template 'edit'
     assert_template_has 'category'
     assert_valid assigns(:category)
   end
 
   def test_update
-    post :edit, :id => 1
+    post :edit, :id => categories(:software).id
     assert_response :redirect, :action => 'list'
   end
 
   def test_destroy
-    assert_not_nil Category.find(1)
+    test_id = categories(:software).id
+    assert_not_nil Category.find(test_id)
 
-    get :destroy, :id => 1
+    get :destroy, :id => test_id
     assert_response :success
     assert_template 'destroy'
 
-    post :destroy, :id => 1
+    post :destroy, :id => test_id
     assert_response :redirect, :action => 'list'
 
-    assert_raise(ActiveRecord::RecordNotFound) { Category.find(1) }
+    assert_raise(ActiveRecord::RecordNotFound) { Category.find(test_id) }
   end
 
   def test_order

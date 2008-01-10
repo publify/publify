@@ -1,13 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-foo_tag:
-  id: 1
+foo:
   name: foo
   display_name: foo
-bar_tag:
-  id: 2
+bar:
   name: bar
   display_name: bar
-bazz_tag:
-  id: 3
+bazz:
   name: bazz
   display_name: bazz

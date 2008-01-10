@@ -3,8 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories,
-    :categorizations, :users, :notifications, :text_filters, :triggers, :profiles
 
   def setup
     @articles = []
@@ -29,18 +27,18 @@ class ArticleTest < Test::Unit::TestCase
 
   def test_edit_url
     a = contents(:article3)
-    assert_equal 'http://myblog.net/admin/content/edit/3', a.edit_url
+    assert_equal "http://myblog.net/admin/content/edit/#{a.id}", a.edit_url
   end
 
   def test_delete_url
     a = contents(:article3)
-    assert_equal 'http://myblog.net/admin/content/destroy/3', a.delete_url
+    assert_equal "http://myblog.net/admin/content/destroy/#{a.id}", a.delete_url
   end
 
   def test_feed_url
     a = contents(:article3)
-    assert_equal 'http://myblog.net/xml/atom10/article/3/feed.xml', a.feed_url(:atom10)
-    assert_equal 'http://myblog.net/xml/rss20/article/3/feed.xml', a.feed_url(:rss20)
+    assert_equal "http://myblog.net/xml/atom10/article/#{a.id}/feed.xml", a.feed_url(:atom10)
+    assert_equal "http://myblog.net/xml/rss20/article/#{a.id}/feed.xml", a.feed_url(:rss20)
   end
 
   def test_blog
@@ -57,7 +55,7 @@ class ArticleTest < Test::Unit::TestCase
     a.title = "Zzz"
     assert a.save
 
-    a.categories << Category.find(1)
+    a.categories << Category.find(categories(:software).id)
     assert_equal 1, a.categories.size
 
     b = Article.find(a.id)
@@ -157,7 +155,7 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_find_published_by_tag_name
-    @articles = Tag.find_by_name(tags(:foo_tag).name).published_articles
+    @articles = Tag.find_by_name(tags(:foo).name).published_articles
 
     assert_results_are(:article1, :article2)
   end
@@ -298,7 +296,7 @@ class ArticleTest < Test::Unit::TestCase
   end
 
   def test_default_filter
-    a = Article.find(1)
+    a = Article.find(contents(:article1).id)
     assert_equal 'textile', a.default_text_filter.name
   end
 end

@@ -14,6 +14,10 @@ class Test::Unit::TestCase
   # Instantiated fixtures are slow, but give you @david where you otherwise would need people(:david)
   self.use_instantiated_fixtures  = false
 
+  fixtures %w{ blacklist_patterns blogs categories categorizations contents
+               feedback notifications page_caches profiles redirects resources sidebars
+               tags text_filters triggers users }
+
   def run(result)
     yield(STARTED, name)
     @_result = result

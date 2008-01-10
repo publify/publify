@@ -1,10 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BlacklistPatternTest < Test::Unit::TestCase
-  fixtures :blacklist_patterns
-
   def setup
-    @blacklist_pattern = BlacklistPattern.find(1)
+    @blacklist_pattern = BlacklistPattern.find(:first)
   end
 
   # Replace this with your real tests.

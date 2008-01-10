@@ -5,8 +5,6 @@ require 'admin/textfilters_controller'
 class Admin::TextfiltersController; def rescue_action(e) raise e end; end
 
 class Admin::TextfiltersControllerTest < Test::Unit::TestCase
-  fixtures :text_filters, :users
-
   def setup
     @controller = Admin::TextfiltersController.new
     @request    = ActionController::TestRequest.new

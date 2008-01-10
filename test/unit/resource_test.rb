@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ResourceTest < Test::Unit::TestCase
-  fixtures :resources
-
   def setup
     # put the files on disk as if it were uploaded
     FileUtils.mkpath("#{RAILS_ROOT}/public/files")

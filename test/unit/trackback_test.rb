@@ -3,8 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class TrackbackTest < Test::Unit::TestCase
-  fixtures :contents, :feedback, :blacklist_patterns, :blogs
-
   def test_permalink_url
     t = feedback(:trackback4)
     assert_equal "http://myblog.net/articles/2004/04/01/second-blog-article#trackback-#{t.id}", t.permalink_url

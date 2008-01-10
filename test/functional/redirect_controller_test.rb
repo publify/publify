@@ -5,8 +5,6 @@ require 'redirect_controller'
 class RedirectController; def rescue_action(e) raise e end; end
 
 class RedirectControllerTest < Test::Unit::TestCase
-  fixtures :redirects
-
   def setup
     @controller = RedirectController.new
     @request    = ActionController::TestRequest.new

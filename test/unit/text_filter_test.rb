@@ -3,8 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'flickr_mock'
 
 class TextFilterTest < Test::Unit::TestCase
-  fixtures :text_filters
-
   def setup
     @text_filter = TextFilter.find(1)
   end

@@ -8,8 +8,6 @@ class TextfilterController; def rescue_action(e) raise e end; end
 class ActionController::Base; def rescue_action(e) raise e end; end
 
 class TextfilterControllerTest < Test::Unit::TestCase
-  fixtures :text_filters, :blogs
-
   def setup
     @controller = TextfilterController.new
     @request    = ActionController::TestRequest.new

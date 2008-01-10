@@ -1,9 +1,8 @@
 spam_comment:
   type: Comment
   blog_id: 1
-  id: 1
   published: true
-  article_id: 2
+  article: article2
   author: Bob Foo
   url: http://fakeurl.com
   body: Test <a href="http://fakeurl.co.uk">body</a>
@@ -16,9 +15,8 @@ spam_comment:
 comment2:
   type: Comment
   blog_id: 1
-  id: 2
   published: true
-  article_id: 1
+  article: article1
   author: John Bar
   user_id: 2
   url: www.google.com
@@ -33,11 +31,10 @@ comment2:
 comment3:
   type: Comment
   blog_id: 1
-  id: 3
   published: false
   state: presumed_spam
   status_confirmed: false
-  article_id: 1
+  article: article1
   author: Foo Bar
   body: Zzzzzz
   created_at: 2005-01-01 02:00:07
@@ -48,8 +45,7 @@ comment3:
 trackback1:
   type: Trackback
   blog_id: 1
-  id: 4
-  article_id: 2
+  article: article2
   published: false
   state: presumed_spam
   status_confirmed: false
@@ -65,8 +61,7 @@ trackback1:
 trackback2:
   type: Trackback
   blog_id: 1
-  id: 5
-  article_id: 1
+  article: article1
   state: presumed_ham
   published: true
   blog_name: Trackback Blog
@@ -81,8 +76,7 @@ trackback2:
 trackback3:
   type: Trackback
   blog_id: 1
-  id: 6
-  article_id: 1
+  article: article1
   published: true
   state: presumed_ham
   blog_name: Trackback Blog 2
@@ -97,8 +91,7 @@ trackback3:
 trackback4:
   type: Trackback
   blog_id: 1
-  id: 7
-  article_id: 17
+  article: search_target
   published: true
   state: presumed_ham
   blog_name: Trackback Blog 2
@@ -113,8 +106,7 @@ trackback4:
 old_comment:
   type: Comment
   blog_id: 1
-  id: 8
-  article_id: 14
+  article: inactive_article
   author: John Bar
   guid: b1i2n3g4o5t6i7v
   url: www.google.com
@@ -129,9 +121,8 @@ old_comment:
 probably_spam_comment:
   type: Comment
   blog_id: 1
-  id: 9
   published: false
-  article_id: 19
+  article: spammed_article
   author: Bob Foo
   url: http://fakeurl.com
   body: Test <a href="http://fakeurl.co.uk">body</a>
@@ -145,9 +136,8 @@ probably_spam_comment:
 definitely_spam_comment:
   type: Comment
   blog_id: 1
-  id: 10
   published: false
-  article_id: 19
+  article: spammed_article
   author: Bob Foo
   url: http://fakeurl.com
   body: Test <a href="http://fakeurl.co.uk">body</a>

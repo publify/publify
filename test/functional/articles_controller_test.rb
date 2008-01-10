@@ -17,7 +17,6 @@ class Content
 end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :contents, :feedback, :categories, :blogs, :users, :categorizations, :text_filters, :articles_tags, :tags
   include ArticlesHelper
 
   def setup
@@ -135,14 +134,14 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_show_non_published
-    show_article(Article.find(4))
+    show_article(contents(:article4))
     assert_response 404
     assert_template "error"
   end
 
   def test_gravatar
     assert ! this_blog.use_gravatar
-    show_article(Article.find(1))
+    show_article(contents(:article1))
     assert_response :success
     assert_template "read"
     assert_no_tag :tag => "img",
@@ -152,7 +151,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     this_blog.use_gravatar = true
     @controller = ArticlesController.new
     assert this_blog.use_gravatar
-    show_article(Article.find(1))
+    show_article(contents(:article1))
     assert_response :success
     assert_template "read"
     assert_tag :tag => "img",
@@ -218,18 +217,18 @@ class ArticlesControllerTest < Test::Unit::TestCase
   end
 
   def test_autodiscovery_article
-    show_article(Article.find(1))
+    show_article(contents(:article1))
     assert_response :success
 
     assert_select 'link[title=RSS]' do
       assert_select '[rel=alternate]'
       assert_select '[type=application/rss+xml]'
-      assert_select '[href=?]', formatted_article_url(Article.find(1), 'rss')
+      assert_select '[href=?]', formatted_article_url(contents(:article1), 'rss')
     end
     assert_select 'link[title=Atom]' do
       assert_select '[rel=alternate]'
       assert_select '[type=application/atom+xml]'
-      assert_select '[href=?]', formatted_article_url(Article.find(1), 'atom')
+      assert_select '[href=?]', formatted_article_url(contents(:article1), 'atom')
     end
   end
 

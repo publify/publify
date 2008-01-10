@@ -1,10 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TagTest < Test::Unit::TestCase
-  fixtures :tags, :contents, :articles_tags, :blogs
-
   def setup
-    @tag = Tag.find(1)
+    @tag = Tag.find(tags(:foo).id)
   end
 
   # Replace this with your real tests.
@@ -14,11 +12,10 @@ class TagTest < Test::Unit::TestCase
 
   def test_get
     tag=Tag.get('foo')
-    assert_equal tags(:foo_tag), tag
+    assert_equal tags(:foo), tag
 
     tag2=Tag.get('zzz')
     assert_kind_of Tag, tag2
-    #assert_equal 3, tag2.id # this conflicts with MySQL's auto_increment
     assert_equal 'zzz', tag2.name
   end
 
@@ -45,11 +42,11 @@ class TagTest < Test::Unit::TestCase
   def test_article
     a1=Article.create(:title => 'Article 1')
     assert_kind_of Article, a1
-    a1.tags << tags(:foo_tag)
-    a1.tags << tags(:bar_tag)
+    a1.tags << tags(:foo)
+    a1.tags << tags(:bar)
 
     assert_equal 2, a1.tags.size
-    assert_equal [tags(:foo_tag),tags(:bar_tag)].sort_by {|i| i.id}, a1.tags.sort_by {|i| i.id}
+    assert_equal [tags(:foo),tags(:bar)].sort_by {|i| i.id}, a1.tags.sort_by {|i| i.id}
   end
 
   def test_find_all_with_article_counters
@@ -63,7 +60,7 @@ class TagTest < Test::Unit::TestCase
     assert_equal "bar", tags.last.name
     assert_equal 2, tags.first.article_counter
   end
-  
+
   def test_permalink
     tag = Tag.get('foo')
     assert_equal 'http://myblog.net/articles/tag/foo', tag.permalink_url

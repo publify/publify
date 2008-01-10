@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class CommentClosingTest < Test::Unit::TestCase
-  fixtures :blogs
-
   def an_article(options = {})
     @blog.articles.create(options.reverse_merge(:user_id => 1, :body => 'Foo', :title => 'Bar'))
   end

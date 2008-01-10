@@ -1,35 +1,29 @@
 software:
-  id: 1
   name: Software
   permalink: software
   position: 1
 
 hardware:
-  id: 2
   name: Hardware
   permalink: hardware
   position: 2
 
 personal:
-  id: 3
   name: Personal
   permalink: personal
   position: 3
 
 lifeonmars:
-  id: 4
   name: Life On Mars
   permalink: life-on-mars
   position: 4
 
 strangelynamed:
-  id: 5
   name: "The Permalink doesn't match"
   permalink: weird-permalink
   position: 5
 
 xmltest:
-  id: 6
   name: "this & that"
   permalink: this-and-that
   position: 6

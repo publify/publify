@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BlogTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :sidebars
-
   def setup
     @blog = Blog.find(:first)
   end

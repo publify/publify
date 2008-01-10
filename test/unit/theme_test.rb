@@ -3,8 +3,6 @@ require 'theme'
 require 'theme_mock'
 
 class ThemeTest < Test::Unit::TestCase
-  fixtures :blogs
-
   def setup
     @theme = Theme.new("test", "test")
   end
