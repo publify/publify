@@ -33,7 +33,7 @@ class ThemeController < ContentController
     return (render :text => "Not Found", :status => 404) unless File.exists? src
 
     if perform_caching
-      dst = "/#{page_cache_directory}/#{type}/theme/#{file}"
+      dst = "#{page_cache_directory}/#{type}/theme/#{file}"
       FileUtils.makedirs(File.dirname(dst))
       FileUtils.cp(src, "#{dst}.#{$$}")
       FileUtils.ln("#{dst}.#{$$}", dst) rescue nil
