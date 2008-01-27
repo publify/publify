@@ -12,9 +12,9 @@
 <div class="set theme" style="margin-top:10px;">
   <div class="preview">
     <% if theme.path == @active.path -%>
-      <%= image_tag(url_for(:action => 'preview', :theme => theme.name)) %>
+      <%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>
     <% else %>
-      <%= link_to(image_tag(url_for(:action => 'preview', :theme => theme.name)), :action => 'switchto', :theme => theme.name) %>
+      <%= link_to(image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)), :action => 'switchto', :theme => theme.name) %>
     <% end %>
     </div>
   <%= theme.description_html %>

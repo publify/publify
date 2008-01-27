@@ -20,7 +20,7 @@ body {
 #topnav {
   height: 36px;
   margin: 0;
-  background: transparent url("/images/admin/bgoff.png") repeat-x top left;
+  background: transparent url("../images/admin/bgoff.png") repeat-x top left;
   font: 12px Tahoma, Helvetica, sans-serif;
 }
 
@@ -48,19 +48,19 @@ body {
   text-decoration: none;
   color: #333;
   text-transform: capitalize;
-  background: transparent url("/images/admin/bgdivider.png") no-repeat top right;
+  background: transparent url("../images/admin/bgdivider.png") no-repeat top right;
 }
 
 /* OK */
 #topnav  ul li a:hover {
   color: #fff;
-  background: #fff url("/images/admin/bgover.png") repeat-x top left;
+  background: #fff url("../images/admin/bgover.png") repeat-x top left;
 }
 
 /* OK */
 #topnav ul li a.current {
   color: #fff;
-  background: #fff url("/images/admin/bgselected.png") repeat-x top left;
+  background: #fff url("../images/admin/bgselected.png") repeat-x top left;
 }
 
 /* OK */
@@ -238,7 +238,7 @@ th.operation {
 }
 
 .list table th {
-	background: url("/images/admin/table-header.png") #324e79 repeat-x;
+	background: url("../images/admin/table-header.png") #324e79 repeat-x;
   text-align: left;
   font-weight: bold;
   padding: 2px 5px;
@@ -248,11 +248,11 @@ th.operation {
 }
 
 .list table th.first {
-	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
+	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
 }
 
 .list table th.last {
-	background: url("/images/admin/table-header-last.png") #324e79 top right no-repeat;
+	background: url("../images/admin/table-header-last.png") #324e79 top right no-repeat;
 }
 .list table th a {
 	color: #fff;
@@ -284,7 +284,7 @@ li.shade {
 }
 
 .paginate {
-  background: url("/images/admin/bc-bg.gif") repeat-x top left;
+  background: url("../images/admin/bc-bg.gif") repeat-x top left;
   padding: 5px 20px;
   margin-bottom: 15px;
 	border-left: #ddd 1px solid;
@@ -503,7 +503,7 @@ legend {
 
 /* OK */
 #available h3, #active h3, #cnt-active h3 {
-  background: url("/images/admin/bc-bg.gif") #b5b5b5 top left repeat-x;
+  background: url("../images/admin/bc-bg.gif") #b5b5b5 top left repeat-x;
   color: #000;
   margin: 0 0 10px 0;
   padding: 2px 5px;
@@ -516,7 +516,7 @@ legend {
 
 /* OK */
 .handle {
-	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
+	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
 	color: #fff;
   cursor: move;
   font-size: 13px;
@@ -531,7 +531,7 @@ legend {
 
 /* OK */
 .dragitem {
-	background: url("/images/admin/loginformbg.png") #fff bottom left no-repeat;
+	background: url("../images/admin/loginformbg.png") #fff bottom left no-repeat;
   width: 300px;
 }
 
@@ -724,7 +724,7 @@ div.user {
 #page_form input.submit,
 .submit {
 	width: 260px;
-	background: url("/images/admin/bc-bg.gif") #b5b5b5 top left repeat-x;
+	background: url("../images/admin/bc-bg.gif") #b5b5b5 top left repeat-x;
 	font: 14px "Trebuchet MS", Helvetica, sans-serif;
 }
 
@@ -745,7 +745,7 @@ input.submit {
 /* OK */
 #loginform div.form {
   border: none;
-  background: url("/images/admin/loginformbg.png") #fff bottom left no-repeat;
+  background: url("../images/admin/loginformbg.png") #fff bottom left no-repeat;
   margin-bottom: 10px;
   padding: 30px 10px 10px;
 }
@@ -753,7 +753,7 @@ input.submit {
 /* OK */
 #loginform h3 {
 	text-align: left;
-	background: url("/images/admin/bgoff.png") #f00 repeat-x top left;
+	background: url("../images/admin/bgoff.png") #f00 repeat-x top left;
 }
 
 /* OK */
@@ -812,7 +812,7 @@ input.submit {
 }
 
 #flash .notice {
-  background: url("/images/admin/bc-bg.gif") #ccc repeat-x;
+  background: url("../images/admin/bc-bg.gif") #ccc repeat-x;
   border: 1px solid #336699;
 }
 
@@ -877,14 +877,14 @@ input.submit {
 .dashboard h3 {
 	padding: 0;
 	margin: 0;
-	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
+	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
 	font-size: 14px;
 	font-weight: normal;
 }
 
 /* OK */
 .dashboard h3 span {
-	background: url("/images/admin/table-header-last.png") top right no-repeat;
+	background: url("../images/admin/table-header-last.png") top right no-repeat;
 	display: block;
 	padding: 0 3px;
 }
@@ -916,7 +916,7 @@ input.submit {
 
 .theme-filer {
 	width: 300px;
-	background: url('/images/admin/loginformbg.png') no-repeat scroll left bottom;
+	background: url('../images/admin/loginformbg.png') no-repeat scroll left bottom;
 	padding: 5px 0;
 	margin-bottom: 15px;
 }
@@ -932,7 +932,7 @@ input.submit {
 }
 
 #theme_list h3 {
-	background: url("/images/admin/table-header-first.png") #324e79 top left no-repeat;
+	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
 	color: #fff;
   cursor: move;
   font-size: 13px;
