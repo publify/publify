@@ -26,7 +26,7 @@ class PageCache < ActiveRecord::Base
     }
     return true if srcs.empty?
     logger.debug "PageCache - About to delete: #{srcs.inspect}"
-    trash = Dir::tmpdir + "/typodel.#{UUID.random_create}"
+    trash = RAILS_ROOT + "/tmp/typodel.#{UUID.random_create}"
     FileUtils.makedirs(trash)
     FileUtils.mv(srcs, trash, :force => true)
     FileUtils.rm_rf(trash)
