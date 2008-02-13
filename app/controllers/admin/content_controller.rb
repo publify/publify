@@ -7,11 +7,11 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
-    if params[:order] and params[:order] =~ /title|created_at|author|state/
+    if params[:order] and params[:order] =~ /\A(?:title|created_at|author|state)\Z/
       if params[:sense] and params[:sense] == 'desc'
         order = params[:order] + " asc"
       else
-        order = params[:order] + " desc"        
+        order = params[:order] + " desc"
       end
     else
       order = 'id DESC'
