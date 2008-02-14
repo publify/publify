@@ -7,7 +7,7 @@ describe 'A successfully authenticated login' do
     @user = mock_model(User, :new_record? => false, :reload => @user)
     User.stub!(:authenticate).and_return(@user)
     User.stub!(:count).and_return(1)
-    controller.stub!(:this_blot).and_return(Blog.default)
+    controller.stub!(:this_blog).and_return(Blog.default)
   end
 
   def make_request
