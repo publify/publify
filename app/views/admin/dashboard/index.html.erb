@@ -6,6 +6,7 @@
   <h3><span><%= _("What can you do ?") %></span></h3>
   <ul>
     <%= content_tag :li, link_to(_('Write a post'), :controller => 'content', :action => 'new') -%>
+    <%= content_tag :li, link_to(_('Write a page'), :controller => 'page', :action => 'new') -%>
     <%= content_tag :li, link_to(_("Update your profile or change your password"), 
       :controller => 'users', :action => 'edit', :id => session[:user_id]) -%>
     <%= content_tag :li, link_to(_("Change your blog presentation"), :controller => 'themes') -%>
@@ -34,7 +35,7 @@
   <h3><span><%= _("Last posts") %></span></h3>
   <ul>
 	<% if @recent_posts.size == 0 %>
-      <li>No posts yet, why don't you start and <%= link_to "write one", :controller => 'content', :action => 'new' %> ?</li>
+      <li> <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
     <% else %>
       <% for post in @recent_posts -%>
         <li>
@@ -49,7 +50,7 @@
   <h3><span><%= _("Most popular") %></span></h3>
   <ul>
     <% if @bestof.size == 0 %>
-      <li>Nothing to show yet !</li>
+      <li><%= _("Nothing to show yet") %> !</li>
     <% else %>
       <% for article in @bestof -%>
         <li><%= link_to_permalink article, article.title  %> (<%= link_to_permalink article, article.comment_count %>)</li>

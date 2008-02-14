@@ -5,22 +5,24 @@ Localization.define('fr_FR') do |l|
   l.store "Publish", "Écrire"
   l.store "Manage", "Gérer"
   l.store "Feedback", "Commentaires"
-  l.store "Design", "Personnaliser"
+  l.store "Themes", "Thèmes"
+  l.store "Plugins", "Greffons"
   l.store "Users", ["Utilisateur", "Utilisateurs"]
   l.store "Settings", "Configuration"
   l.store "Things you can do", "Vous pouvez"
-  l.store "with %s Famfamfam iconset %s", "avec %s les icônes Famfamfam %s"
+  l.store "with %s AER OS XK iconset iconset %s", "avec %s les icônes AER OS XK iconset %s"
   
-  #admin/login.rhtml
+  #accounts/login.rhtml
+  l.store "Administration", "Administration"
   l.store "Username", "Identifiant"
   l.store "Password", "Mot de passe"
   l.store "Login", "Connexion"
-  l.store "Back to the blog", "Retour à votre blog"
+  l.store "Back to ", "Revenir à "
+  l.store "Login unsuccessful", "Échec de la connexion"
+  l.store "Login successful", "Connexion réussie"
 
   # admin/logout.rhtml
-  l.store "You are now logged out of the system", "Vous êtes maintenant déconnecté"
-  l.store "Do you want to go to your blog?", "Souhaitez-vous retourner sur votre blog ?"
-  l.store "Logoff", "Déconnexion"
+  l.store "Successfully logged out", "Vous êtes maintenant déconnecté"
   
   # admin/signup.rhtml
   l.store "Signup", "S'inscrire"
@@ -29,19 +31,22 @@ Localization.define('fr_FR') do |l|
   l.store "Email", "Courriel"
   l.store "Choose password", "Mot de passe"
   l.store "Confirm password", "Confirmez le mot de passe"
+  l.store "Signup successful", "Inscription réussie"
   
   # admin/dashboard/index.rhtml
   l.store "What can you do ?", "Vous pouvez"
-  l.store "Write Post", "Écrire Billet"
-  l.store "Write Page", "Écrire Page"
+  l.store "Write a post", "Écrire un billet"
+  l.store "Write a page", "Écrire une page"
   l.store "Update your profile or change your password", "Mettre votre profil à jour ou changer votre mot de passe"
-  l.store "Change you blog presentation", "Changer l'apparence de votre blog"
+  l.store "Change your blog presentation", "Changer l'apparence de votre blog"
   l.store "Enable plugins", "Ajouter des greffons"
   l.store "Last Comments", "Derniers commentaires"
   l.store "Last posts", "Derniers billets"
   l.store "Most popular", "Billets les plus populaires"
-  l.store "Typo documentation", "Documentation officielle de Typo"
+  l.store "Typo documentation", "Accéder à la documentation officielle de Typo"
   l.store "No comments yet", "Aucun commentaire"
+  l.store "Nothing to show yet", "Rien à déclarer"
+  l.store "No posts yet, why don't you start and write one", "Vous n'avez encore écrit aucun billet, pourquoi ne pas commencer par là"
   
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "Derniers commentaires"
@@ -108,7 +113,7 @@ Localization.define('fr_FR') do |l|
   l.store "Reorder", "Trier"
   l.store "Sort alphabetically", "Trier par ordre alphabétique"
   l.store "Manage Articles", "Gérer les billets"
-  l.store "Manage Pages", "Gérer les pages statiques"
+  l.store "Manage Pages", "Gérer les pages"
   l.store "Manage Resources", "Gérer les ressources"
   
   #admin/category/reorder.rhtml
@@ -141,9 +146,11 @@ Localization.define('fr_FR') do |l|
   #admin/comments/new.rhtml
   l.store "Creating comment", "Ajouter un commentaire"
   
-  #admin/content/_articles.rhtml
-  l.store "Posts", "Billets"
-  l.store "Uploads", "Fichier uploadé"
+  #admin/content/list.rhtml
+  l.store "Manage posts", "Administrer les billets"
+  l.store "Manage uploads", "Administrer les pièces jointes"
+  l.store "Manage categories", "Administrer les catégories"
+  l.store "Manage pages", "Administrer les pages"
   l.store "Post title", "Titre du billet"
   l.store "Posted at", "Date de publication"
   l.store "Comments", ["Commentaire", "Commentaires"]
@@ -154,7 +161,7 @@ Localization.define('fr_FR') do |l|
   l.store "Online", "En ligne"
   l.store "no trackbacks", "aucun rétrolien"
   l.store "no comments", "aucun commentaire"
-  
+  l.store "Posts", "Billets"
   #admin/content/_attachment.rhtml
   l.store "Remove", "Supprimer"
   l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
@@ -163,18 +170,17 @@ Localization.define('fr_FR') do |l|
   #admin/content/_form.rhtml
   l.store "Article Body", "Corps du billet"
   l.store "Post", "Contenu"
-  l.store "Optional extended content", "Contenu étendu optionnel"
-  l.store "Optional Extended Content", "Contenu Étendu Optionnel"
+  l.store "Optional extended content", "Contenu étendu (optionnel)"
   l.store "Article Content", "Contenu du billet"
   l.store "Extended Content", "Contenu étendu"
   l.store "Tags", ["Mot clé", "Mots clé"]
-  l.store "Save", "Enregistrer"
+  l.store "Save", "Sauver"
   l.store "Article Attachments", "Pièces Jointes"
   l.store "Article Options", "Options du billet"
   l.store "Permalink", "Lien permanent"
   l.store "Allow comments", "Autoriser les commentaires"
   l.store "Allow trackbacks", "Autoriser les rétroliens"
-  l.store "Published", "Publié"
+  l.store "Online", "En ligne"
   l.store "Publish at", "Publié le"
   l.store "Textfilter", "Formatage du texte"
   l.store "Toggle Extended Content", "Afficher le contenu étendu"
@@ -199,10 +205,6 @@ Localization.define('fr_FR') do |l|
   #admin/content/edit.rhtml
   l.store "Edit Article", "Éditer un billet"
   l.store "View article on your blog", "Voir ce billet sur votre blog"
-
-  #admin/content/new.rhtml
-  l.store "Write a Page", "Écrire une page statique"
-  l.store "Write an Article", "Écrire un billet"
 
   #admin/content/preview.rhtml
   l.store "Posted by", "Publié par"
@@ -322,7 +324,7 @@ Localization.define('fr_FR') do |l|
   
   #admin/pages/_pages.rhtml
   l.store "Action", "Actions"
-  l.store "Pages","Pages statiques"
+  l.store "Pages","Gérer les pages"
   l.store "Show this page", "Afficher cette page"
   l.store "Are you sure you want to delete the page", "Voulez-vous vraiment effacer cette page"
   l.store "Delete this page", "Supprimer cette page"
@@ -519,10 +521,7 @@ Localization.define('fr_FR') do |l|
   
   #vendor/plugins/archives_sidebar/views/content.rb
   l.store "Archives", "Archives"
-  
-  #vendor/plugins/tags_sidebar/views/content.rb
-  l.store "Tags", "Tags"
-  
+    
   #app/helpers/admin/base_helper.rb
   l.store "Back to overview", "Revenir à la liste"
   l.store "log out", "déconnexion"

@@ -8,11 +8,11 @@ class AccountsController < ApplicationController
       if user = User.authenticate(params[:user_login], params[:user_password])
         session[:user_id] = user.id
 
-        flash[:notice]  = "Login successful"
+        flash[:notice]  = _("Login successful")
         cookies[:is_admin] = "yes"
         redirect_back_or_default :controller => "admin/dashboard", :action => "index"
       else
-        flash.now[:notice]  = "Login unsuccessful"
+        flash.now[:notice]  = _("Login unsuccessful")
 
         @login = params[:user_login]
       end
@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
 
     if request.post? and @user.save
       session[:user_id] = @user.id
-      flash[:notice]  = "Signup successful"
+      flash[:notice]  = _("Signup successful")
       redirect_to :controller => "admin/settings", :action => "index"
       return
     end
