@@ -10,14 +10,14 @@
        <li>
           <label for="article_body"><%= _("Post")%>:</label>
           <%= markup_help_popup @article.text_filter, image_tag('admin/help.png', :alt => "markup help", :title => "Markup Help") %>
-          <%= text_area 'article', 'body', :rows => 25, :style => 'width: 100%;'  %>
+          <%= t_textarea 'article', 'body', {:height => '300', :style => 'width : 100%'} %>
        </li>
        <li>
           <%= link_to_function _("Optional extended content") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.5) } %>
        </li>
        <li id="extended"<%- if @article.extended.blank? -%> style="display:none;"<%- end -%>>
           <label for="article_extended"><%= _("Optional Extended Content")%>:</label>
-          <%= text_area 'article', 'extended', :rows => 30, :style => 'width: 100%;'  %>
+          <%= t_textarea 'article', 'extended', {:height => '450', :style => 'width: 100%;'}  %>
        </li>
        <li>
           <label for="categories" class="block"><%= _("Categories")%>:</label>

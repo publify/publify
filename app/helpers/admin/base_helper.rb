@@ -201,4 +201,12 @@ module Admin::BaseHelper
   def order_link(title, controller, action, order)
     link_to _(title), :controller => controller, :action => action, :order => order, :sense => (params[:sense] and params[:sense] == 'asc') ?  'desc' : 'asc'
   end
+  
+  def t_textarea(object_name, method, options)
+    if this_blog.editor == 2
+      fckeditor_textarea(object_name, method, options)
+    else
+      text_area(object_name, method, options)
+    end
+  end
 end

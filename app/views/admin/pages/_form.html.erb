@@ -15,7 +15,7 @@
        <li>
           <label for="page_body"><%= _("Page Content")%>:</label>
           <%= markup_help_popup @page.text_filter, image_tag('admin/help.png', :alt => " markup help", :title => "Markup help") %>
-          <%= text_area 'page', 'body', :rows => 25, :style => 'width: 100%;'  %> 
+          <%= t_textarea 'page', 'body', {:height => '300', :style => 'width: 100%;'} %> 
        </li>
      </ul>
      <p class="r"><%= save(_("Save") + " &raquo;") %></p>

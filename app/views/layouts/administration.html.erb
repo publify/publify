@@ -5,8 +5,7 @@
                 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
                 <title>Typo Administration:  <%= controller.controller_name %></title>
                 <meta http-equiv="imagetoolbar" content="no" />
-                <%= javascript_include_tiny_mce_if_used if this_blog.editor == 2 and (controller.action_name == 'new' or controller.action_name == 'edit') %>
-                <%= tiny_mce if this_blog.editor == 2 and (controller.action_name == 'new' or controller.action_name == 'edit') %>
+                <%= javascript_include_tag :fckeditor %>
                 <%= stylesheet_link_tag "administration.css" %>
                 <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo" %>
         </head>
