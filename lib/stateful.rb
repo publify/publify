@@ -17,11 +17,15 @@ module Stateful
     end
 
 
-    def method_missing(predicate, *args, &block)
+    def method_missing(predicate, *args)
       if predicate.to_s.last == '?'
         self.class.to_s.demodulize.underscore == predicate.to_s.chop
       else
-        super(predicate, *args, &block)
+        if block_given?
+          super(predicate, *args) { |*block_args| yield(*block_args) }
+        else
+          super(predicate, *args)
+        end
       end
     end
 

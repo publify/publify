@@ -36,8 +36,12 @@ class Content < ActiveRecord::Base
   @@content_fields = Hash.new
   @@html_map       = Hash.new
 
-  def initialize(*args, &block)
-    super(*args, &block)
+  def initialize(*args)
+    if block_given?
+      super(*args) { |instance| yield(instance) }
+    else
+      super(*args)
+    end
     set_default_blog
   end
 

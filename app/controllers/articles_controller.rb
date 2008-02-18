@@ -21,23 +21,7 @@ class ArticlesController < ContentController
   def index
     @articles = this_blog.requested_articles(params)
 
-    # Build page title, should probably be moved elsewhere
-    if params[:year]
-      date = Time.mktime(params[:year], params[:month], params[:day])
-      if params[:month]
-        if params[:day]
-          @page_title = "Archives for " + date.strftime("%A %d %B %Y")
-        else
-          @page_title = "Archives for " + date.strftime("%B %Y")
-        end
-      else
-        @page_title = "Archives for " + date.strftime("%Y")
-      end
-    end
-    if params[:page]
-      @page_title = 'Older posts,' if @page_title.blank?
-      @page_title << " page " << params[:page]
-    end
+    @page_title = index_title
 
     respond_to do |format|
       format.html { render_paginated_index }
@@ -143,5 +127,26 @@ class ArticlesController < ContentController
     # Why won't this work? @articles.slice!(start..stop)
     @articles = @articles.slice(start..stop)
     render :action => 'index'
+  end
+
+  def index_title
+    returning('') do |page_title|
+      page_title << formatted_date_selector('Archives for ')
+
+      if params[:page]
+        page_title << 'Older posts' if page_title.blank?
+        page_title << ", page " << params[:page]
+      end
+    end
+  end
+
+  def formatted_date_selector(prefix = '')
+    return '' unless params[:year]
+    format = prefix
+    format << '%A %d ' if params[:day]
+    format << '%B ' if params[:month]
+    format << '%Y' if params[:year]
+
+    return(Time.mktime(*params.values_at(:year, :month, :day)).strftime(format))
   end
 end

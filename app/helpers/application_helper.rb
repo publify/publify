@@ -164,11 +164,9 @@ module ApplicationHelper
 
   def feed_title
     return @feed_title if @feed_title
-    returning(this_blog.blog_name.dup) do |title|
-      if @page_title
-        title << " : #{@page_title}"
-      end
-    end
+    return @page_title \
+      ? "#{this_blog.blog_name} : #{@page_title}" \
+      : this_blog.blog_name
   end
 
   def author_link(article)

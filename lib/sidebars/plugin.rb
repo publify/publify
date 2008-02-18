@@ -216,8 +216,7 @@ module Sidebars
     private
     def set_config
       @sidebar.config ||= {}
-      @sidebar.config = self.class.default_config.dup.merge(@sidebar.config)
-      @sidebar.config ||= (self.class.default_config)
+      @sidebar.config.reverse_merge!(self.class.default_config)
     end
 
     def sb_config(key)
@@ -234,6 +233,5 @@ module Sidebars
     def log_processing
       logger.info "\n\nProcessing #{controller_class_name}\##{action_name} (for #{request_origin})"
     end
-
   end
 end

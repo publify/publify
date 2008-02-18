@@ -188,8 +188,12 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
-  def initialize(*args, &block)
-    super(*args, &block)
+  def initialize(*args)
+    if block_given?
+      super(*args) { |instance| yield instance }
+    else
+      super(*args)
+    end
     self.class.fields.each do |field|
       unless config.has_key?(field.key)
         config[field.key] = field.default
