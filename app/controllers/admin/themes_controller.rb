@@ -16,6 +16,7 @@ class Admin::ThemesController < Admin::BaseController
     this_blog.theme = params[:theme]
     this_blog.save
     redirect_to :action => 'index'
+    zap_theme_caches
   end
 
   def editor
