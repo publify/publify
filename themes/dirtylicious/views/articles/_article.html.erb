@@ -27,7 +27,7 @@
 		<%= comments_link(article) << ' | ' if article.allow_comments? %>
 		<% if controller.controller_name == 'articles' and controller.action_name == 'show' %>
 			<%= content_tag(:span, tag_links(article) << ' | ', :class => 'tags') unless article.tags.empty? %>
-			<a href="<%= url_for :controller => 'xml', :action=>'feed', :type=>'article', :format => 'atom', :id => article %>">atom</a>
+			<a href="<%= @auto_discovery_url_atom %>">atom</a>
 		<% end %>
 	</p>
 </div>
