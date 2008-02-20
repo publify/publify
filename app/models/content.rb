@@ -278,7 +278,9 @@ class Content < ActiveRecord::Base
   end
 
   def atom_content(xml)
-    xml.content html(:all), :type => 'html'
+    xml.content(:type => 'xhtml') do
+      xml.div(:xmlns => 'http://www.w3.org/1999/xhtml') { xml << html(:all) }
+    end
   end
 
 

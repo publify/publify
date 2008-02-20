@@ -17,13 +17,13 @@ class Article < Content
   has_many :feedback,                           :order => "created_at DESC"
   has_many :resources, :order => "created_at DESC",
            :class_name => "Resource", :foreign_key => 'article_id'
-  
+
   has_many :categorizations
   has_many :categories, \
     :through => :categorizations, \
     :uniq => true, \
     :order => 'categorizations.is_primary DESC, categories.position'
-  
+
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
   has_many :triggers, :as => :pending_item
@@ -46,7 +46,7 @@ class Article < Content
 
   def stripped_title
     str = String.new(self.title)
-    
+
     accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
       ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
       ['í','ì','î','ï','I','Î','Ì'] => 'i',
@@ -61,10 +61,10 @@ class Article < Content
         str.gsub!(s, rep)
       end
     end
-    
+
     str.gsub(/<[^>]*>/,'').to_url
   end
-  
+
   def permalink_url_options(nesting = false)
     {:year => published_at.year,
      :month => sprintf("%.2d", published_at.month),
@@ -403,16 +403,20 @@ class Article < Content
   end
 
   def atom_content(xml)
-    xml.summary html(:body), "type" => "html"
+    xml.summary "type" => "xhtml" do
+      xml.div(:xmlns => "http://www.w3.org/1999/xhtml") {xml << html(:body) }
+    end
     if blog.show_extended_on_rss
-      xml.content html(:all), "type" => "html"
+      xml.content(:type => "xhtml") do
+        xml.div(:xmlns => 'http://www.w3.org/1999/xhtml') { xml << html(:all) }
+      end
     end
   end
 
   def add_comment(params)
     comments.build(params)
   end
-  
+
   def add_category(category, is_primary = false)
     self.categorizations.build(:category => category, :is_primary => is_primary)
   end

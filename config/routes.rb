@@ -93,12 +93,6 @@ ActionController::Routing::Routes.draw do |map|
 
   date_options = { :year => /\d{4}/, :month => /(?:0?[1-9]|1[12])/, :day => /(?:0[1-9]|[12]\d|3[01])/ }
 
-#   map.with_options(date_options) do |dated|
-#     dated.resources(:comments, :path_prefix => '/articles/:year/:month/:day/:title',
-#                     :members => { :preview => :get })
-#     dated.resources(:trackbacks, :path_prefix => '/articles/:year/:month/:day/:title')
-#   end
-
   map.with_options(:conditions => {:method => :get}) do |get|
     get.with_options(date_options.merge(:controller => 'articles')) do |dated|
       dated.with_options(:action => 'index') do |finder|
