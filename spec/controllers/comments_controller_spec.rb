@@ -42,12 +42,12 @@ describe "All Requests", :shared => true do
                   :articles                   => @articles,
                   :requested_article          => @article)
 
+
     @article.stub!(:to_param).and_return(['2007', '10', '11', 'slug'])
     Article.stub!(:find).and_return(@article)
 
     Comment.stub!(:find).and_return(@comment)
     Blog.stub!(:find).and_return(@blog)
-#    controller.stub!(:article_path).and_return('/articles/2007/10/11/slug')
   end
 end
 
@@ -175,12 +175,6 @@ describe CommentsController, 'scoped index' do
 end
 
 describe CommentsController, 'GET /comments' do
-  before do
-    @the_mock = mock('blog', :null_object => true)
-    @the_mock.stub!(:lang).and_return('en_US')
-    Blog.stub!(:find).and_return(@the_mock)
-  end
-
   it "should be successful" do
     get 'index'
     response.should be_success
@@ -196,12 +190,6 @@ describe CommentsController, 'GET /comments' do
 end
 
 describe CommentsController, "GET /comments.:format" do
-  before do
-    @the_mock = mock('blog', :null_object => true)
-    @the_mock.stub!(:lang).and_return('en_US')
-    controller.stub!(:this_blog).and_return(@the_mock)
-  end
-
   it ":format => 'atom' should return an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
