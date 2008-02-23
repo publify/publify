@@ -1,4 +1,12 @@
-class PageCache < ActiveRecord::Base
+class PageCache
+  def self.logger
+    RAILS_DEFAULT_LOGGER
+  end
+
+  def logger
+    RAILS_DEFAULT_LOGGER
+  end
+
   def self.public_path
     ActionController::Base.page_cache_directory
   end
