@@ -70,11 +70,11 @@ module ContentHelper
   end
 
   def category_links(article)
-    "Posted in " + article.categories.map { |c| link_to h(c.name), category_url(c), :rel => 'tag'}.join(", ")
+    _("Posted in") + " " + article.categories.map { |c| link_to h(c.name), category_url(c), :rel => 'tag'}.join(", ")
   end
 
   def tag_links(article)
-    "Tags " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url, :rel => "tag"}.sort.join(", ")
+    _("Tags") + " " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url, :rel => "tag"}.sort.join(", ")
   end
 
   def next_link(article)

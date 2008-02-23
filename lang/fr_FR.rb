@@ -11,7 +11,7 @@ Localization.define('fr_FR') do |l|
   l.store "Settings", "Configuration"
   l.store "Things you can do", "Vous pouvez"
   l.store "with %s AER OS XK iconset iconset %s", "avec %s les icônes AER OS XK iconset %s"
-  
+    
   #accounts/login.rhtml
   l.store "Administration", "Administration"
   l.store "Username", "Identifiant"
@@ -161,6 +161,9 @@ Localization.define('fr_FR') do |l|
   l.store "no trackbacks", "aucun rétrolien"
   l.store "no comments", "aucun commentaire"
   l.store "Posts", "Billets"
+  l.store "Comments", "Commentaires"
+  l.store "Categories", "Catégories"
+  
   #admin/content/_attachment.rhtml
   l.store "Remove", "Supprimer"
   l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
@@ -344,7 +347,7 @@ Localization.define('fr_FR') do |l|
   l.store "Key Words", "Mots clé"
   l.store "seperate with spaces", "séparez-les par des espaces"
   l.store "Category", "Catégorie"
-  
+
   #admin/resources/_metadata_edit.rhtml
   l.store "Remove iTunes Metadata", "Supprimer les méta données iTunes"
   l.store "Content Type", "Type de contenu"
@@ -366,7 +369,7 @@ Localization.define('fr_FR') do |l|
 
   #admin/resources/new.rhtml
   l.store "Upload a File to your Site", "Envoyer un fichier sur votre site"
-  l.store "Upload", "Envoyer"
+  l.store "Upload", "Ajouter un fichier joint"
   l.store "Upload a new Resource", "Ajouter une pièce jointe"
   l.store "File", "Fichier"
   
@@ -549,4 +552,37 @@ Localization.define('fr_FR') do |l|
   l.store "Content Type was successfully updated.", "Le type du contenu a été mis à jour avec succès."
   l.store "Error occurred while updating Content Type.", "Une erreur est survenue lors de la mise à jour du type du contenu."
   l.store "complete", "complet"
+  
+  # Themes
+  l.store "Home", "Accueil"
+  l.store "About", "À propos"
+  l.store "Designed by %s ported to typo by %s ", "Design par %s porté sous Typo par %s"
+  l.store "Powered by %s", "Propulsé par %s"
+  l.store "Read full article", "Lien permanent"
+  l.store "Search", "Chercher"
+  l.store "Continue reading...", "Lire la suite..."
+  l.store "Posted by", "Publié par"
+  l.store "January", "Janvier"
+  l.store "February", "Février"
+  l.store "March", "Mars"
+  l.store "April", "Avril"
+  l.store "May", "Mai"
+  l.store "June", "Juin"
+  l.store "July", "Juillet"
+  l.store "August", "Août"
+  l.store "Septembre", "Septembre"
+  l.store "October", "Octobre"
+  l.store "November", "Novembre"
+  l.store "December", "Décembre"
+  l.store "This entry was posted on %s", "Ce billet a été posté le %s"
+  l.store "Posted in", "Publié sous"
+  l.store "and %s", "et %s"
+  l.store "Atom feed", "flux Atom"
+  l.store "You can follow any any response to this entry through the %s", "Vous pouvez suivre la discussion autour de cet article via le %s"
+  l.store "You can leave a %s", "Vous pouvez déposer un %s"
+  l.store "or a %s from your own site", "ou un %s depuis votre site"
+  l.store "later", "plus tard"
+  l.store "Leave a comment", "déposer un commentaire"
+  l.store "Name %s", "Votre nom %s"
+  l.store "required", "obligatoire"
 end

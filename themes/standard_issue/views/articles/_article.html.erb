@@ -6,7 +6,7 @@
     <% if article.extended? -%>
       <div class="extended">
         <% if controller.action_name == 'index' -%>
-          <p><%= link_to_permalink article,"Continue reading..." %></p>
+          <p><%= link_to_permalink article,_("Continue reading...") %></p>
         <% else -%>
           <%= article.html(:extended) %>
         <% end -%>
@@ -15,11 +15,16 @@
   </div>
 	<div class="meta">
 		<% if controller.controller_name == "articles" and controller.action_name == 'show' %>
-		<p><small>This entry was posted on <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr> <%= content_tag(:span, "and " + category_links(@article), :class => 'categories') unless @article.categories.empty? %>. You can follow any any response to this entry through the <a href="<%= @auto_discovery_url_atom %>">Atom feed</a>. <%= "You can leave a " + link_to_permalink(article, 'comments', 'comments') << ',' if article.allow_comments? %> <%= "Or a " + link_to_permalink(article, 'trackback', 'trackbacks')  << ' from your own site' if article.allow_pings? %>.</small><br />
+		<p><small>
+		  <%= _("This entry was posted on %s", content_tag(:abbr, js_distance_of_time_in_words_to_now (article.published_at), {:class => 'published', :title => article.published_at.xmlschema})) %>
+		    <%= _("and %s", category_links(@article)) unless @article.categories.empty? %>. 
+		    <%= _("You can follow any any response to this entry through the %s", link_to(_("Atom feed"), @auto_discovery_url_atom)) %>. 
+		    <%= _("You can leave a %s", link_to_permalink(article, _('comment'), 'comments')) if article.allow_comments? %> 
+		    <%= _("or a %s from your own site", link_to_permalink(article, _('trackback'), 'trackbacks')) if article.allow_pings? %>.</small><br />
 			<small><%= tag_links(@article) unless @article.tags.empty? %></small></p>
 		<% else %>
   	<p class="author">
-    	Posted by <cite><%= author_link(article) %></cite>
+    	<%= _("Posted by") %> <cite><%= author_link(article) %></cite>
     	<abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
   	</p>
 		<p class="links">

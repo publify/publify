@@ -30,7 +30,7 @@ class ArchivesSidebar < Sidebar
 
     @archives = article_counts.map do |entry|
       {
-        :name => "#{Date::MONTHNAMES[entry.month.to_i]} #{entry.year}",
+        :name => _(Date::MONTHNAMES[entry.month.to_i]) + " #{entry.year}",
         :month => entry.month.to_i,
         :year => entry.year.to_i,
         :article_count => entry.count

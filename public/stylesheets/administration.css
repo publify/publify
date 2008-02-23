@@ -284,13 +284,14 @@ li.shade {
 }
 
 .paginate {
-  background: url("../images/admin/bc-bg.gif") repeat-x top left;
+  background: url("../images/admin/bc-bg.gif") #e7e7e7 repeat-x top left;
   padding: 5px 20px;
   margin-bottom: 15px;
 	border-left: #ddd 1px solid;
 	border-right: #ddd 1px solid;
 	border-right: #ddd 1px solid;
 	text-align: center;
+
 }
 
 td.paginate {
@@ -941,3 +942,9 @@ input.submit {
 	padding-top: 2px;
 	padding-bottom: 0;
 }
+
+li.paginate {
+		margin-bottom: 15px;
+		border-left: #ddd 5px solid;
+}
+
