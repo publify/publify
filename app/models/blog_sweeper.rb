@@ -1,6 +1,17 @@
 class BlogSweeper < ActionController::Caching::Sweeper
   observe Category, Blog, Sidebar, User, Article, Page, Categorization
 
+  def pending_sweeps
+    @pending_sweeps ||= Set.new
+  end
+
+  def run_pending_page_sweeps
+    logger.debug "Running pending page_sweeps: #{pending_sweeps.to_a.inspect}"
+    pending_sweeps.each do |each|
+      self.send(each)
+    end
+  end
+
   def after_comments_create
     logger.debug 'BlogSweeper#after_comments_create'
     expire_for(controller.send(:instance_variable_get, :@comment))
@@ -39,24 +50,24 @@ class BlogSweeper < ActionController::Caching::Sweeper
   def expire_for(record, destroying = false)
     case record
     when Page
-      sweep_pages(record)
+      pending_sweeps << :sweep_pages
     when Content
       if record.invalidates_cache?(destroying)
-        sweep_articles
-        sweep_pages
+        pending_sweeps << :sweep_articles << :sweep_pages
       end
     when Sidebar, Category, Categorization
-      sweep_articles
-      sweep_pages
+      pending_sweeps << :sweep_articles << :sweep_pages
     when Blog, User
-      sweep_all
-      sweep_theme
+      pending_sweeps << :sweep_all << :sweep_theme
+    end
+    unless controller
+      run_pending_page_sweeps
     end
   end
 
   def sweep_all
-    expire_fragment(/.*/)
     PageCache.sweep_all
+    expire_fragment(/.*/)
   end
 
   def sweep_theme
@@ -71,7 +82,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     end
   end
 
-  def sweep_pages(record = nil)
+  def sweep_pages
     expire_fragment(/.*\/pages\/.*/)
     expire_fragment(/.*\/view_page.*/)
     unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
@@ -81,5 +92,13 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def logger
     @logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDERR)
+  end
+
+  private
+  def callback(timing)
+    super
+    if timing == :after
+      run_pending_page_sweeps
+    end
   end
 end
