@@ -14,7 +14,7 @@
 <tr <%= alternate_class %>>
   <td class="first"> <%= link_to_permalink article, h(article.title) %></td>
   <td><%= article.categories.map { |c| link_to h(c.name), {:controller => 'admin/categories', :action => 'show', :id => c.id}}.join(", ") %></td>
-  <td><%= link_to _(pluralize(article.comments.size, 'comment')), :controller => '/admin/comments', :article_id => article.id, :action => 'list' %></td>
+  <td><%= link_to _(pluralize(article.comments.size, 'comments')), :controller => '/admin/comments', :article_id => article.id, :action => 'list' %></td>
   <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
   <td><%= author_link(article)%></td>
   <td class="operation"><%= (article.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>

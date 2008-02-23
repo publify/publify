@@ -5,7 +5,7 @@ Localization.define('de_DE') do |l|
   l.store "Manage", "Verwalten"
   l.store "Feedback", "Diskussion"
   l.store "Design", "Design"
-  l.store "Users", ["Benutzer", "Benutzer"]
+  l.store "%d Users", ["Benutzer", "%d Benutzer"]
   l.store "Settings", "Einstellungen"
   l.store "Things you can do", "Folgendes können Sie tun ..."
   l.store "with %s Famfamfam iconset %s", "mit %s Famfamfam Icons %s"
@@ -63,11 +63,10 @@ Localization.define('de_DE') do |l|
   
   #admin/cache/list.rhtml
   l.store "Cache", "Cache"
-  l.store "There are %d entries in the page cache", ["Eine Seite im Cache", "%d Seiten sind aktuell im Cache"]
   
   #admin/categories/_categories.rhtml
   l.store "Category title", "Name der Kategorie"
-  l.store "Articles", ["Artikel", "Artikel"]
+  l.store "%d Articles", ["Artikel", "%d Artikel"]
   
   #admin/categories/_form.rhtml
   l.store "Name", "Name"
@@ -77,7 +76,7 @@ Localization.define('de_DE') do |l|
   l.store "Add category", "Kategorie hinzufügen"
   
   #admin/categorie/destroy.rhtml
-  l.store "Categories", ["Kategorie", "Kategorien"]
+  l.store "%d Categories", ["Kategorie", "%d Kategorien"]
   l.store "Show this category", "Kategorie anzeigen"
   l.store "Delete this category", "Kategorie löschen"
   l.store "Are you sure you want to delete the category ", "Sind Sie sicher, die Kategorie zu löschen: "
@@ -127,8 +126,8 @@ Localization.define('de_DE') do |l|
   #admin/content/_articles.rhtml
   l.store "Post title", "Titel des Artikels"
   l.store "Posted at", "Veröffentlicht am"
-  l.store "Comments", ["Kommentar", "Kommentare"]
-  l.store "Trackbacks", ["Trackback", "Trackbacks"]
+  l.store "%d Comments", ["Kommentar", "%d Kommentare"]
+  l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Status", "Status"
   l.store "Offline", "Offline"
   l.store "Online", "Online"
@@ -144,7 +143,7 @@ Localization.define('de_DE') do |l|
   l.store "Article Body", "Artikel"
   l.store "Article Content", "Artikel Inhalt"
   l.store "Extended Content", "Erweiterter Inhalt"
-  l.store "Tags", ["Tag", "Tags"]
+  l.store "%d Tags", ["Tag", "%d Tags"]
   l.store "Save", "Speichern"
   l.store "Article Attachments", "Artikel Anhänge"
   l.store "Article Options", "Artikel Optionen"

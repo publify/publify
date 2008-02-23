@@ -58,7 +58,6 @@ class Blog < CachedModel
   setting :geourl_location,            :string, ''
   setting :canonical_server_url,       :string, ''  # Deprecated
   setting :lang,                       :string, 'en_US'
-  setting :display_advanced,           :integer, 0
 
   # Spam
   setting :sp_global,                  :boolean, false
@@ -93,7 +92,7 @@ class Blog < CachedModel
   setting :ping_urls,                  :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'typo@example.com'
-  setting :editor,                     :integer, 1
+  setting :editor,                     :integer, 2
   setting :cache_option,               :string, 'caches_action_with_params'
 
   # Jabber config

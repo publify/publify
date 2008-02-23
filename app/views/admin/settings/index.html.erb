@@ -26,7 +26,7 @@
 				<input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h this_blog.blog_subtitle %>" size="<%= this_blog.blog_subtitle.length%>" />
 		    </li>
 			<li>
-				<label class="float" for="base_url"><%= _("Blog URL")%>:</label>
+				<label class="float" for="base_wurl"><%= _("Blog URL")%>:</label>
 				<input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" size="<%= this_blog.base_url.length %> " />
 			</li>
 			<li>
@@ -34,16 +34,6 @@
 				<select name="setting[lang]">
 					<%= fetch_langs %>
 				</select>
-			</li>
-      <li><%= _("This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!") %></li>
-			<li>
-				<label class="float" for="display_advanced">Choose interface:</label>
-				<input type="radio" name="setting[display_advanced]" value="0" id="display_advanced_0" <%= 'checked="checked"' if this_blog.display_advanced == 0 %>/>
-				<label for="display_advanced_0"><%= _("Use simple interface (default)")%></label>
-				<span class="float">
-					<input type="radio" name="setting[display_advanced]" value="1" id="display_advanced_1" <%= 'checked="checked"' if this_blog.display_advanced == 1 %>/>
-					<label for="display_advanced_1"><%= _("Use complete admin")%></label>
-				</span>
 			</li>
 			<li><%= _("By default, Typo generates static HTML pages for your posts. However, if you plan to publish posts in the futur, you may want to use semi dynamic caching") %>.</li>
 			<li>

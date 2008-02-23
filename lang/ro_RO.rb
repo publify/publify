@@ -5,7 +5,7 @@ Localization.define('ro_RO') do |l|
   l.store "Manage", "Articole"
   l.store "Discuss", "Discuții"
   l.store "Design", "Design"
-  l.store "Users", ["Utilizator", "Utilizatori"]
+  l.store "%d Users", ["Utilizator", "%d Utilizatori"]
   l.store "Settings", "Configurare"
   l.store "Things you can do", "Acțiuni"
   l.store "with %s Famfamfam iconset %s", "cu %s pictograme Famfamfam %s"
@@ -63,11 +63,10 @@ Localization.define('ro_RO') do |l|
   
   #admin/cache/list.rhtml
   l.store "Cache", "Cache"
-  l.store "There are %d entries in the page cache", ["În cache se află o singură pagină", "În cache se păstrează %d pagini"]
   
   #admin/categories/_categories.rhtml
   l.store "Category title", "Numele categoriei"
-  l.store "Articles", ["Articol", "Articole"]
+  l.store "%d Articles", ["Articol", "%d Articole"]
   
   #admin/categories/_form.rhtml
   l.store "Name", "Nume"
@@ -77,7 +76,7 @@ Localization.define('ro_RO') do |l|
   l.store "Add category", "Adaugă o categorie"
   
   #admin/categorie/destroy.rhtml
-  l.store "Categories", ["Categorie", "Categorii"]
+  l.store "%d Categories", ["Categorie", "%d Categorii"]
   l.store "Show this category", "Afișează această categorie"
   l.store "Delete this category", "Șterge această categorie"
   l.store "Are you sure you want to delete the category ", "Ești sigur că dorești să ștergi această categorie"
@@ -127,8 +126,8 @@ Localization.define('ro_RO') do |l|
   #admin/content/_articles.rhtml
   l.store "Post title", "Titlul articolului"
   l.store "Posted at", "Data publicării"
-  l.store "Comments", ["Comentariu", "Comentarii"]
-  l.store "Trackbacks", ["Retrolegătură", "Retrolegături"]
+  l.store "%d Comments", ["Comentariu", "%d Comentarii"]
+  l.store "%d Trackbacks", ["Retrolegătură", "%d Retrolegături"]
   l.store "Status", "Status"
   l.store "Offline", "Offline"
   l.store "Online", "Online"
@@ -143,7 +142,7 @@ Localization.define('ro_RO') do |l|
   l.store "Article Body", "Corpul articolului"
   l.store "Article Content", "Conținutul articolului"
   l.store "Extended Content", "Conținutul extins"
-  l.store "Tags", ["Cuvînt cheie", "Cuvinte cheie"]
+  l.store "%d Tags", ["Cuvînt cheie", "%d Cuvinte cheie"]
   l.store "Save", "Salvează"
   l.store "Article Attachments", "Atașamentele articolului"
   l.store "Article Options", "Opțiunile articolului"
@@ -267,7 +266,6 @@ Localization.define('ro_RO') do |l|
   l.store "Explicit", "Conținut explicit"
   l.store "Empty Fragment Cache", "Golește cache"
   l.store "Rebuild cached HTML", "Reconstruiește paginile din cache"
-  l.store "There are %d entries in the cache", ["O singură pagină se află în cache", "În cache se păstrează %d pagini"]
   l.store "days", "zile"
   
   #admin/general/update_database

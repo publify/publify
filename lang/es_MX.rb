@@ -7,7 +7,7 @@ Localization.define('es_MX') do |l|
   l.store "Manage", "Administrar"
   l.store "Discuss", "Discusi&oacute;n"
   l.store "Design", "Dise&ntilde;o"
-  l.store "Users", ["Usuario", "Usuarios"]
+  l.store "%d Users", ["Usuario", "%d Usuarios"]
   l.store "Settings", "Configuraci&oacute;n"
   l.store "Things you can do", "Cosas que puedes hacer"
   l.store "with %s Famfamfam iconset %s", "con el iconset %s de Famfamfam %s"
@@ -65,11 +65,10 @@ Localization.define('es_MX') do |l|
   
   #admin/cache/list.rhtml
   l.store "Cache", "Cach&eacute;"
-  l.store "There are %d entries in the page cache", ["Hay %d p&aacute;gina en el cach&eacute;","Hay %d p&aacute;ginas en el cach&eacute; de p&aacute;ginas"]
   
   #admin/categories/_categories.rhtml
   l.store "Category title", "T&iacute;tulo de la categor&iacute;a"
-  l.store "Articles", ["Art&iacute;culo", "Art&iacute;culos"]
+  l.store "%d Articles", ["Art&iacute;culo", "%d Art&iacute;culos"]
   
   #admin/categories/_form.rhtml
   l.store "Name", "Nombre"
@@ -79,7 +78,7 @@ Localization.define('es_MX') do |l|
   l.store "Add category", "Agregar categor&iacute;a"
   
   #admin/categorie/destroy.rhtml
-  l.store "Categories", ["Categor&iacute;", "Categor&iacute;as"]
+  l.store "%d Categories", ["Categor&iacute;", "%d Categor&iacute;as"]
   l.store "Show this category", "Mostrar esta categor&iacute;a"
   l.store "Delete this category", "Eliminar esta categor&iacute;a"
   l.store "Are you sure you want to delete the category ", "&iquest;Est&aacute;s seguro que quieres eliminar esta categor&iacute;a?"
@@ -129,8 +128,8 @@ Localization.define('es_MX') do |l|
   #admin/content/_articles.rhtml
   l.store "Post title", "T&iacute;tulo del art&iacute;culo"
   l.store "Posted at", "Publicado el"
-  l.store "Comments", ["Comentario", "Comentarios"]
-  l.store "Trackbacks", ["Trackback", "Trackbacks"]
+  l.store "%d Comments", ["Comentario", "%d Comentarios"]
+  l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Status", "Estado"
   l.store "Offline", "Offline"
   l.store "Online", "Online"
@@ -145,7 +144,7 @@ Localization.define('es_MX') do |l|
   l.store "Article Body", "Cuerpo del Art&iacute;culo"
   l.store "Article Content", "Contenido del Art&iacute;culo"
   l.store "Extended Content", "Contenido Extendido"
-  l.store "Tags", ["Tag", "Tags"]
+  l.store "Tags", "Tags"
   l.store "Save", "Guardar"
   l.store "Article Attachments", "Archivos adjuntos"
   l.store "Article Options", "Opciones del Art&iacute;culo"
@@ -269,7 +268,6 @@ Localization.define('es_MX') do |l|
   l.store "Explicit", "Expl&iacute;cito"
   l.store "Empty Fragment Cache", "Limpiar el cach&eacute; por fragmentos"
   l.store "Rebuild cached HTML", "Reconstruir HTML cacheado"
-  l.store "There are %d entries in the cache", ["Hay %d p&aacute;gina en el cach&eacute;", "Hay %d p&aacute;ginas en el cach&eacute;"]
   l.store "days", "d&iacute;as"
   
   #admin/general/update_database

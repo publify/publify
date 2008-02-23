@@ -5,7 +5,7 @@
   <%= task_showmod(count_spam , "Limit to spam", limit_to_spam) %>
   <%= task_showmod(count_unconfirmed, "Limit to unconfirmed", limit_to_unconfirmed) %>
   <%= task_showmod(count_unconfirmed_spam, "Limit to unconfirmed spam", limit_to_unconfirmed_spam) %>
-  <%= tab _("Blacklist"), :controller=>"blacklist", :action=>"index" if (this_blog.display_advanced == 1) %>
+  <%= tab _("Blacklist"), :controller=>"blacklist", :action=>"index" %>
 <% end %>
 
 <div class="search">

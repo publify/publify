@@ -6,7 +6,7 @@ Localization.define('it_IT') do |l|
   l.store "Manage", "Gestisci"
   l.store "Feedback", "Commenti"
   l.store "Design", "Temi"
-  l.store "Users", ["Utente", "Utenti"]
+  l.store "%d Users", ["Utente", "%d Utenti"]
   l.store "Settings", "Configurazione"
   l.store "Things you can do", "Cose che puoi fare"
   l.store "with %s Famfamfam iconset %s", "con %s le icone Famfamfam %s"
@@ -79,11 +79,10 @@ Localization.define('it_IT') do |l|
   
   #admin/cache/list.rhtml
   l.store "Cache", "Cache"
-  l.store "There are %d entries in the page cache", ["Una sola pagina nella cache", "Ci sono %d pagine nella cache"]
   
   #admin/categories/_categories.rhtml
   l.store "Category title", "Nome della categoria"
-  l.store "Articles", ["Categoria", "Categorie"]
+  l.store "%d Articles", ["Categoria", "%d Categorie"]
   
   #admin/categories/_form.rhtml
   l.store "Name", "Nome"
@@ -93,7 +92,7 @@ Localization.define('it_IT') do |l|
   l.store "Add category", "Aggiungi categoria"
   
   #admin/categorie/destroy.rhtml
-  l.store "Categories", ["Categoria", "Categorie"]
+  l.store "%d Categories", ["Categoria", "%d Categorie"]
   l.store "Show this category", "Mostra questa categoria"
   l.store "Delete this category", "Elimina questa categoria"
   l.store "Are you sure you want to delete the category ", "Sei sicuro di voler eliminare questa categoria "
@@ -149,8 +148,8 @@ Localization.define('it_IT') do |l|
   l.store "Uploads", "Uploads"
   l.store "Post title", "Titolo articolo"
   l.store "Posted at", "Data pubblicazione"
-  l.store "Comments", ["Commento", "Commenti"]
-  l.store "Trackbacks", ["Trackback", "Trackbacks"]
+  l.store "%d Comments", ["Commento", "%d Commenti"]
+  l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "View", "Vedi"
   l.store "Status", "Stato"
   l.store "Offline", "Offline"
@@ -171,7 +170,7 @@ Localization.define('it_IT') do |l|
   l.store "Optional Extended Content", "Contenuto Esteso Opzionale"
   l.store "Article Content", "Contenuto Articolo"
   l.store "Extended Content", "Contenuto esteso"
-  l.store "Tags", ["Tag", "Tags"]
+  l.store "%d Tags", ["Tag", "%d Tags"]
   l.store "Save", "Salva"
   l.store "Article Attachments", "Allegati articolo"
   l.store "Article Options", "Opzioni articolo"
@@ -311,7 +310,6 @@ Localization.define('it_IT') do |l|
   l.store "Explicit", "Contenuto esplicito"
   l.store "Empty Fragment Cache", "Svuota la cache"
   l.store "Rebuild cached HTML", "Ricostruisci l'html in cache"
-  l.store "There are %d entries in the cache", ["Una sola pagina nella cache", "%d pagine sono attualmente nella cache"]
   l.store "days", "giorni"
   
   #admin/general/update_database

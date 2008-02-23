@@ -7,7 +7,7 @@ Localization.define('fr_FR') do |l|
   l.store "Feedback", "Commentaires"
   l.store "Themes", "Thèmes"
   l.store "Plugins", "Greffons"
-  l.store "Users", ["Utilisateur", "Utilisateurs"]
+  l.store "Users", "Utilisateurs"
   l.store "Settings", "Configuration"
   l.store "Things you can do", "Vous pouvez"
   l.store "with %s AER OS XK iconset iconset %s", "avec %s les icônes AER OS XK iconset %s"
@@ -82,11 +82,10 @@ Localization.define('fr_FR') do |l|
   
   #admin/cache/list.rhtml
   l.store "Cache", "Cache"
-  l.store "There are %d entries in the page cache", ["Une seule page en cache", "%d pages sont actuellement stockées en cache"]
   
   #admin/categories/_categories.rhtml
   l.store "Category title", "Nom de la catégorie"
-  l.store "Articles", ["Billet", "Billets"]
+  l.store "%d Articles", ["Un Billet", "%d Billets"]
   
   #admin/categories/_form.rhtml
   l.store "Name", "Titre"
@@ -96,7 +95,7 @@ Localization.define('fr_FR') do |l|
   l.store "Add category", "Ajouter la catégorie"
   
   #admin/categorie/destroy.rhtml
-  l.store "Categories", ["Catégorie", "Catégories"]
+  l.store "%d categories",  ["Une catégorie", "%d Catégories"]
   l.store "Show this category", "Voir cette catégorie"
   l.store "Delete this category", "Supprimer cette catégorie"
   l.store "Are you sure you want to delete the category ", "Êtes vous certain de vouloir supprimer la catégorie "
@@ -153,8 +152,8 @@ Localization.define('fr_FR') do |l|
   l.store "Manage pages", "Administrer les pages"
   l.store "Post title", "Titre du billet"
   l.store "Posted at", "Date de publication"
-  l.store "Comments", ["Commentaire", "Commentaires"]
-  l.store "Trackbacks", ["Rétrolien", "Rétroliens"]
+  l.store "%d Comments", ["Un commentaire", "%d Commentaires"]
+  l.store "%d Trackbacks", ["Un rétrolien", "%d Rétroliens"]
   l.store "View", "Voir"
   l.store "Status", "État"
   l.store "Offline", "Hors ligne"
@@ -173,7 +172,7 @@ Localization.define('fr_FR') do |l|
   l.store "Optional extended content", "Contenu étendu (optionnel)"
   l.store "Article Content", "Contenu du billet"
   l.store "Extended Content", "Contenu étendu"
-  l.store "Tags", ["Mot clé", "Mots clé"]
+  l.store "Tags", "Mots clés"
   l.store "Save", "Sauver"
   l.store "Article Attachments", "Pièces Jointes"
   l.store "Article Options", "Options du billet"
@@ -299,7 +298,6 @@ Localization.define('fr_FR') do |l|
   l.store "Explicit", "Contenu explicite"
   l.store "Empty Fragment Cache", "Vider le cache"
   l.store "Rebuild cached HTML", "Reconstruire le HTML en cache"
-  l.store "There are %d entries in the cache", ["Une seule page en cache", "%d pages sont actuellement stockées en cache"]
   l.store "days", "jours"
   
   #admin/general/update_database

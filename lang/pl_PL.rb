@@ -8,7 +8,7 @@ Localization.define('pl_PL') do |l|
   l.store "Manage", "Zarządzaj"
   l.store "Feedback", "Komentarze"
   l.store "Design", "Wygląd"
-  l.store "Users", ["Użytkownik", "Użytkownicy"]
+  l.store "%d Users", ["Użytkownik", "%d Użytkownicy"]
   l.store "Settings", "Ustawienia"
   l.store "Things you can do", "Dostępne działania"
   l.store "with %s Famfamfam iconset %s", "z %s ze zbioru ikon Famfamfam %s"
@@ -79,11 +79,10 @@ Localization.define('pl_PL') do |l|
   
   #admin/cache/list.rhtml
   l.store "Cache", "Bufor"
-  l.store "There are %d entries in the page cache", ["Bufor jest pusty", "Bufor zawiera %d pozycje", "Bufor zawiera %d pozycji"]
   
   #admin/categories/_categories.rhtml
   l.store "Category title", "Tytuł kategorii"
-  l.store "Articles", ["Artykuł", "Artykuły"]
+  l.store "%d Articles", ["Artykuł", "%d Artykuły"]
   
   #admin/categories/_form.rhtml
   l.store "Name", "Nazwa"
@@ -93,7 +92,7 @@ Localization.define('pl_PL') do |l|
   l.store "Add category", "Dodaj kategorię"
   
   #admin/categorie/destroy.rhtml
-  l.store "Categories", ["Kategoria", "Kategorie"]
+  l.store "%d Categories", ["Kategoria", "%d Kategorie"]
   l.store "Show this category", "Pokaż tą kategorię"
   l.store "Delete this category", "Usuń tą kategorię"
   l.store "Are you sure you want to delete the category ", "Czy na pewno chcesz skasować kategorię "
@@ -148,8 +147,8 @@ Localization.define('pl_PL') do |l|
   l.store "Uploads", "Załadowane zasoby"
   l.store "Post title", "Tytuł wpisu"
   l.store "Posted at", "Data publikacji"
-  l.store "Comments", ["Komentarz", "Komentarze"]
-  l.store "Trackbacks", ["Trackback", "Trackbacki"]
+  l.store "%d Comments", ["Komentarz", "%d Komentarze"]
+  l.store "%d Trackbacks", ["Trackback", "%d Trackbacki"]
   l.store "View", "Obejrzyj"
   l.store "Status", "Stan"
   l.store "Offline", "Offline"
@@ -169,7 +168,7 @@ Localization.define('pl_PL') do |l|
   l.store "Optional Extended Content", "Opcjonalna treść rozszerzona"
   l.store "Article Content", "Treść artykułu"
   l.store "Extended Content", "Treść rozszerzona"
-  l.store "Tags", ["Tag", "Tagi"]
+  l.store "%d Tags", ["Tag", "%d Tagi"]
   l.store "Save", "Zapisz"
   l.store "Article Attachments", "Załączniki artykułu"
   l.store "Article Options", "Opcje artykułu"
@@ -299,7 +298,6 @@ Localization.define('pl_PL') do |l|
   l.store "Explicit", "Tylko dla dorosłych"
   l.store "Empty Fragment Cache", "Usuń bufor fragmentów"
   l.store "Rebuild cached HTML", "Przebuduj bufor HTML"
-  l.store "There are %d entries in the cache", ["Brak pozycji w buforze", "Bufor zawiera %d pozycje", "Bufor zawiera %d pozycji"]
   l.store "days", "dni"
   
   #admin/general/update_database
