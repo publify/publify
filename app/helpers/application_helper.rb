@@ -26,7 +26,7 @@ module ApplicationHelper
 
   # The '5 comments' link from the bottom of articles
   def comments_link(article)
-    link_to_permalink(article,pluralize(article.published_comments.size, 'comment'),'comments')
+    link_to_permalink(article,pluralize(article.published_comments.size, _('comment')),'comments')
   end
 
   def trackbacks_link(article)
