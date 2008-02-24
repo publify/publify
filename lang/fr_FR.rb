@@ -611,4 +611,8 @@ Localization.define('fr_FR') do |l|
   l.store "leave url/email", "laissez votre url/courriel"
   l.store "No comments", "Pas de commentaires"
   l.store "From", "De"
+  l.store "Meta", "Méta"
+  l.store "comment", "commentaire"
+  l.store "comments", "commentaires"
+  l.store "posted in", "publié dans"
 end
