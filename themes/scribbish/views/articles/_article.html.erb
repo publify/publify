@@ -5,7 +5,7 @@
   </h2>
 
   <p class="author">
-    Posted by <cite><%= author_link(article) %></cite>
+    <%= _("Posted by")%> <cite><%= author_link(article) %></cite>
     <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
   </p>
 
@@ -15,7 +15,7 @@
     <% if article.extended? -%>
       <div class="extended">
         <% if controller.action_name == 'index' -%>
-          <p><%= link_to_permalink article,"Continue reading..." %></p>
+          <p><%= link_to_permalink article, _("Continue reading...") %></p>
         <% else -%>
           <%= article.html(:extended) %>
         <% end -%>
@@ -29,7 +29,7 @@
     <li>Meta
       <%= trackbacks_link(article) << ',' if article.allow_pings? %>
       <%= comments_link(article) << ',' if article.allow_comments? %>
-      <a href="<%= article.permalink_url %>" rel="bookmark">permalink</a>,
+      <a href="<%= article.permalink_url %>" rel="bookmark"><%=_("permalink")%></a>,
       <a href="<%= @auto_discovery_url_rss %>">rss</a>,
       <a href="<%= @auto_discovery_url_atom %>">atom</a>
     </li>

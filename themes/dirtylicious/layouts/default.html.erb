@@ -18,13 +18,13 @@
     <div class="path">
         <ul>
             <li class="page_item <%= 'current_page_item' if (controller.controller_name == "articles" and controller.action_name == "index") %>">
-                <%= link_to "Home", this_blog.base_url %>
+                <%= link_to _("Home"), this_blog.base_url %>
             </li>
             <li class="page_item <%= 'current_page_item' if (controller.action_name != 'index' and controller.action_name != 'view_page') %>">
-                <%= link_to "Articles", {:controller => "articles", :action => "archives"} if (controller.controller_name != "index" )%>
+                <%= link_to _("Articles"), {:controller => "articles", :action => "archives"} if (controller.controller_name != "index" )%>
             </li>
             <li class="page_item <%= 'current_page_item' if (controller.controller_name == "articles" and controller.action_name == "view_page" and params[:name].to_s == 'about') %>">
-                <%= link_to "About", this_blog.base_url + "/pages/about" %>
+                <%= link_to _("About"), this_blog.base_url + "/pages/about" %>
             </li>
         </ul>
     </div>
@@ -48,8 +48,9 @@
   	<div id="footer">
     	<div class="left"><%= link_to this_blog.blog_name, this_blog.base_url %></div>
 			<div class="right">
-				powered by <%= link_to 'typo', 'http://typosphere.org' %> /
-          styled with <%= link_to 'Dirtylicious', ' http://templates.arcsin.se/' %>
+        <%= _("Designed by %s ported to typo by %s ", link_to ('Dirtylicious', ' http://templates.arcsin.se/'), 
+        link_to ("Frédéric de Villamil", 'http://fredericdevillamil.com')) %> <br />
+        <%= _("Powered by %s", link_to ('typo', 'http://typosphere.org')) %>
 			</div>
 			<div class="clearer"></div>
   	</div>

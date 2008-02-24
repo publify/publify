@@ -4,7 +4,7 @@
       <li><input type="text" id="q" name="q" value="" /></li>
     <% end -%>
 </ul>
-    <div id="loading" class="loading" style="display:none;">Searching...</div>
+    <div id="loading" class="loading" style="display:none;"><%=_("Searching")%>...</div>
     <div id="results" class="results"></div>
   <%= observe_field 'q',
                     :url        => { :controller => 'live', :action => 'search' },

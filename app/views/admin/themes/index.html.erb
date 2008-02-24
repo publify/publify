@@ -5,7 +5,7 @@
 <% end %>
 
 <p class="paginate l">
-    You can download third party themes from officially supported <a href="http://www.dev411.com/typo/themes/">dev 411 Typo themes viewer</a>.
+    <%= _("You can download third party themes from officially supported %s ", link_to(_("dev 411 Typo themes viewer"), 'http://www.dev411.com/typo/themes/'))%>.
 </p>
 
 <% for theme in @themes %>

@@ -33,8 +33,10 @@
     <hr />
     <p><%= link_to this_blog.blog_name, this_blog.base_url %></p>
     <ul>
-      <li>powered by <%= link_to 'typo', 'http://typosphere.org' %> /
-          styled with <%= link_to 'scribbish', 'http://quotedprintable.com/pages/scribbish' %></li>
+      <li>
+        <%= _("Powered by %s", link_to ('typo', 'http://typosphere.org')) %> /
+        <%= _("styled with %s", link_to ('scribbish', 'http://quotedprintable.com/pages/scribbish'))%>
+      </li>
     </ul>
   </div>
 </div>

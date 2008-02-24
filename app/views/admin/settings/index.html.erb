@@ -37,7 +37,7 @@
 			</li>
 			<li><%= _("By default, Typo generates static HTML pages for your posts. However, if you plan to publish posts in the futur, you may want to use semi dynamic caching") %>.</li>
 			<li>
-				<label class="float" for="caches_page">Choose caching methode:</label>
+				<label class="float" for="caches_page"><%= _("Choose caching methode")%>:</label>
 				<input type="radio" name="setting[cache_option]" value="caches_page" id="cache_option_0" <%= 'checked="checked"' if this_blog.cache_option == 'caches_page' %>/>
 				<label for="cache_option_0"><%= _("Use static HTML page caching ")%></label>
 				<span class="float">

@@ -17,9 +17,9 @@
 <%= render :partial => 'article', :object => @article %>
 
 <% if @article.allow_pings? -%>
-  <h5><a name="trackbacks">Trackbacks</a></h5>
+  <h5><a name="trackbacks"><%= _("Trackbacks") %></a></h5>
   <p>
-    Use the following link to trackback from your own site:<br />
+    <%= _("Use the following link to trackback from your own site") %>:<br />
     <%= @article.trackback_url %>
   </p>
 
@@ -31,8 +31,8 @@
 <% end -%>
 
 <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
-  <h5><a name="comments">Comments</a></h5>
-  <p><a href="#commentform">Leave a response</a></p>
+  <h5><a name="comments"><%= _("Comments") %></a></h5>
+  <p><a href="#commentform"><%= _("Leave a comment") %></a></p>
 
   <div id="comments_div">
     <%= render :partial => "comment_list" %>
