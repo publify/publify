@@ -39,7 +39,7 @@ spec = Gem::Specification.new do |s|
 end
 
 Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
+#  p.gem_spec = spec
   p.need_tar = true
   p.need_zip = true
 end
