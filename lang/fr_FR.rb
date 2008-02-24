@@ -615,4 +615,51 @@ Localization.define('fr_FR') do |l|
   l.store "comment", "commentaire"
   l.store "comments", "commentaires"
   l.store "posted in", "publié dans"
+  
+  # Dates 
+  l.store "Mon", "Lun"
+  l.store "Tue", "Mar"
+  l.store "Wed", "Mer"
+  l.store "Thu", "Jeu"  
+  l.store "Fri", "Ven"  
+  l.store "Sat", "Sam"  
+  l.store "Sun", "Dim"
+  l.store "Monday", "Lundi"
+  l.store "Tuesday", "Mardi"
+  l.store "Wednesday", "Mercredi"
+  l.store "Thursday", "Jeudi"  
+  l.store "Friday", "Vendredi"  
+  l.store "Saturday", "Samedi"  
+  l.store "Sunday", "Dimanche"
+  l.store "Jan", "Jan"    
+  l.store "Feb", "Fév"
+  l.store "Mar", "Mars"
+  l.store "Apr", "Avr"
+  l.store "May", "Mai"
+  l.store "Jun", "Juin"
+  l.store "Jul", "Juil"
+  l.store "Aug", "Août"
+  l.store "Sep", "Sept"
+  l.store "Oct", "Oct"
+  l.store "Nov", "Nov"
+  l.store "Dec", "Déc"
+  l.store "January", "Janvier"    
+  l.store "February", "Février"
+  l.store "March", "Mars"
+  l.store "April", "Avril"
+  l.store "May", "Mai"
+  l.store "June", "Juin"
+  l.store "July", "Juillet"
+  l.store "August", "Août"
+  l.store "September", "September"
+  l.store "October", "Octorbre"
+  l.store "November", "Novembre"
+  l.store "December", "Décembre"
+  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new {|date|
+     sprintf( date.strftime("%%s %d %%s %Y %H:%M:%S GMT"), _(date.strftime("%a")), _(date.strftime("%b")).downcase )
+  }
+  l.store "%%d. %%b", Proc.new {|date|
+     sprintf( date.strftime("%d. %%s"), _(date.strftime("%b")).downcase )
+  }
+
 end

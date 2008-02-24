@@ -39,8 +39,9 @@ module ApplicationHelper
   end
 
   def js_distance_of_time_in_words_to_now(date)
-    time = date.utc.strftime("%a, %d %b %Y %H:%M:%S GMT")
-    "<span class=\"typo_date\" title=\"#{time}\">#{time}</span>"
+    time = _(date.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M:%%S GMT", date.utc)))
+    timestamp = date.utc.to_i ;
+    "<span class=\"typo_date date gmttimestamp-#{timestamp}\" title=\"#{time}\" >#{time}</span>"
   end
 
   def meta_tag(name, value)
@@ -48,7 +49,7 @@ module ApplicationHelper
   end
 
   def date(date)
-    "<span class=\"typo_date\">#{date.utc.strftime("%d. %b")}</span>"
+    "<span class=\"typo_date\">" + date.utc.strftime(_("%%d. %%b", date.utc)) + "</span>"
   end
 
   def render_theme(options)
@@ -196,6 +197,7 @@ module ApplicationHelper
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ @auto_discovery_url_atom }" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ @auto_discovery_url_rss }" />
+  #{ javascript_include_tag "lang/" + Localization.lang }
   #{ javascript_include_tag "cookies" }
   #{ javascript_include_tag "prototype" }
   #{ javascript_include_tag "effects" }
