@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 require 'dns_mock'
 
-class CommentTest < Test::Unit::TestCase
-  def setup
+describe Comment do
+  before(:each) do
     CachedModel.cache_reset
   end
 
@@ -125,7 +125,7 @@ class CommentTest < Test::Unit::TestCase
     # Test each filter to make sure that we don't allow scripts through.
     # Yes, this is ugly.
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
-      this_blog.comment_text_filter = filter
+      Blog.default.comment_text_filter = filter
 
       assert c.save
       assert c.errors.empty?
