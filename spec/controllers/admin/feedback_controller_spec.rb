@@ -22,10 +22,7 @@ describe Admin::FeedbackController do
     assert_response :success
     assert_template 'list'
 
-    assert_equal(Feedback.count(:conditions => ['blog_id = ? AND status_confirmed = ?',
-                                                blogs(:default).id,               false]),
-                 assigns(:feedback).size)
-
+    Feedback.count(:conditions => { :status_confirmed => false }).should == assigns(:feedback).size
   end
 
   def test_list_spam
@@ -34,9 +31,7 @@ describe Admin::FeedbackController do
     assert_response :success
     assert_template 'list'
 
-    assert_equal(Feedback.count(:conditions => ['blog_id = ? AND published = ?',
-                                                blogs(:default).id,        false]),
-                 assigns(:feedback).size)
+    Feedback.count(:conditions => { :published => false }).should == assigns(:feedback).size
   end
 
   def test_list_unconfirmed_spam
@@ -45,9 +40,6 @@ describe Admin::FeedbackController do
     assert_response :success
     assert_template 'list'
 
-    assert_equal(Feedback.count(:conditions => ['blog_id = ? AND published = ? AND status_confirmed = ?',
-                                                blogs(:default).id,        false,                   false]),
-                 assigns(:feedback).size)
+    Feedback.count(:conditions => { :published => false, :status_confirmed => false }).should == assigns(:feedback).size
   end
-
 end

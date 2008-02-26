@@ -20,7 +20,15 @@ describe "Given the first Blog fixture" do
     @blog.url_for(:controller => 'articles', :action => 'read', :id => 1).should == 'http://myblog.net/articles/read/1'
   end
 
-  it "blog has one sidebar" do
-    @blog.should have(1).sidebars
+  it "should be the only blog allowed" do
+    Blog.new.should_not be_valid
+  end
+end
+
+describe "Given no blogs" do
+  before(:each)  { Blog.destroy_all }
+
+  it "should allow the creation of a valid default blog" do
+    Blog.new.should be_valid
   end
 end

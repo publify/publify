@@ -5,6 +5,9 @@ require 'admin/content_controller'
 require 'http_mock'
 
 # Re-raise errors caught by the controller.
+module Admin
+end
+
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 describe Admin::ContentController do
@@ -64,13 +67,13 @@ describe Admin::ContentController do
   def test_create
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    num_articles = this_blog.published_articles.size
+    num_articles = Article.count_published_articles
     emails = ActionMailer::Base.deliveries
     tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
     post :new, 'article' => { :title => "posted via tests!", :body => "Foo", :keywords => "foo bar 'baz bliz' \"gorp gack gar\""}, 'categories' => [categories(:software).id]
     assert_response :redirect, :action => 'show'
 
-    assert_equal num_articles + 1, this_blog.published_articles.size
+    assert_equal num_articles + 1, Article.count_published_articles
 
     new_article = Article.find(:first, :order => "id DESC")
     assert_equal users(:tobi), new_article.user
@@ -85,22 +88,22 @@ describe Admin::ContentController do
   end
 
   def test_create_future_article
-    num_articles = this_blog.published_articles.size
+    num_articles = Article.count_published_articles
     post(:new,
          :article => { :title => "News from the future!",
                        :body => "The future's cool!",
                        :published_at => Time.now + 1.hour })
     assert_response :redirect, :action => 'show'
     assert ! assigns(:article).published?
-    assert_equal num_articles, this_blog.published_articles.size
+    assert_equal num_articles, Article.count_published_articles
     assert_equal 1, Trigger.count
   end
 
   def test_request_fires_triggers
-    art = this_blog.articles.create!(:title => 'future article',
-                                     :body => 'content',
-                                     :published_at => Time.now + 2.seconds,
-                                     :published => true)
+    art = Article.create!(:title => 'future article',
+                          :body => 'content',
+                          :published_at => Time.now + 2.seconds,
+                          :published => true)
     assert !art.published?
     sleep 3
     get(:show, :id => art.id)

@@ -5,8 +5,6 @@ class Content < ActiveRecord::Base
   include Observable
 
   belongs_to :text_filter
-  belongs_to :blog
-  validates_presence_of :blog_id
 
   has_many :notifications, :foreign_key => 'content_id'
   has_many :notify_users, :through => :notifications,
@@ -36,26 +34,11 @@ class Content < ActiveRecord::Base
   @@content_fields = Hash.new
   @@html_map       = Hash.new
 
-  def initialize(*args)
-    if block_given?
-      super(*args) { |instance| yield(instance) }
-    else
-      super(*args)
-    end
-    set_default_blog
-  end
-
   def invalidates_cache?(on_destruction = false)
     if on_destruction
       just_changed_published_status? || published?
     else
       changed? && published? || just_changed_published_status?
-    end
-  end
-
-  def set_default_blog
-    if self.blog_id.nil? || self.blog_id == 0
-      self.blog = Blog.default
     end
   end
 
@@ -169,7 +152,7 @@ class Content < ActiveRecord::Base
   end
 
   # Grab the text filter for this object.  It's either the filter specified by
-  # self.text_filter_id, or the default specified in the blog object.
+  # self.text_filter_id, or the default specified in the default blog object.
   def text_filter
     if self[:text_filter_id] && !self[:text_filter_id].zero?
       TextFilter.find(self[:text_filter_id])
@@ -198,9 +181,8 @@ class Content < ActiveRecord::Base
     end
   end
 
-  # FIXME -- this feels wrong.
   def blog
-    self[:blog] ||= blog_id.to_i.zero? ? Blog.default : Blog.find(blog_id)
+    Blog.default
   end
 
   def publish!

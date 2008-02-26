@@ -19,7 +19,7 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
-    @articles = this_blog.requested_articles(params)
+    @articles = Article.find_all_by_date(*params.values_at(:year, :month, :day))
 
     @page_title = index_title
 
@@ -57,7 +57,7 @@ class ArticlesController < ContentController
   ### Deprecated Actions ###
 
   def archives
-    @articles = this_blog.published_articles
+    @articles = Article.find_published(:order => 'published_at DESC')
     @page_title = "Archives"
   end
 

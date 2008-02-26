@@ -37,7 +37,7 @@ describe 'Given a post which references a pingback enabled article' do
     blog.should be_send_outbound_pings
 
 
-    a = blog.articles.build \
+    a = Article.new \
       :body => '<a href="http://anotherblog.org/a-post">',
       :title => 'Test the pinging',
       :published => true

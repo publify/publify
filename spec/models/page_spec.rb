@@ -85,13 +85,7 @@ describe 'Given a valid page' do
   it_should_behave_like "ValidPageHelper"
 
   it 'default filter should be fetched from the blog' do
-    blog = mock_model(Blog)
-    Blog.stub!(:find).and_return(blog)
-    textfilter = mock_model(TextFilter)
-    textfilter.stub!(:to_text_filter).and_return(textfilter)
-
-    blog.should_receive(:text_filter).and_return(textfilter)
-    @page = Page.new(valid_attributes.merge(:blog => blog))
-    @page.default_text_filter.should == textfilter
+    @page = Page.new()
+    @page.default_text_filter.name.should == Blog.default.text_filter
   end
 end

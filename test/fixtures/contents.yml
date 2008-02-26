@@ -1,7 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 article1:
-  blog: default
   title: Article 1!
   body: body
   extended: extended content
@@ -21,7 +20,6 @@ article1:
 
 article2:
   type: Article
-  blog: default
   title: Article 2!
   body: body
   extended: extended content
@@ -41,7 +39,6 @@ article2:
 
 article3:
   type: Article
-  blog: default
   title: Article 3!
   body: body
   extended: extended content
@@ -59,7 +56,6 @@ article3:
 
 article4:
   type: Article
-  blog: default
   title: Article 4!
   body: I'm not "public":http://www.example.com/public!
   published: false
@@ -77,7 +73,6 @@ article4:
 
 first_page:
   type: Page
-  blog: default
   name: page_one
   title: Page One Title
   body: ho ho ho
@@ -90,7 +85,6 @@ first_page:
 
 another_page:
   type: Page
-  blog: default
   name: page/two
   title: Another Page Title
   body: another body for yet another page
@@ -103,7 +97,6 @@ another_page:
 
 markdown_page:
   type: Page
-  blog: default
   name: markdown-page
   title: Markdown Page
   text_filter: markdown_filter
@@ -117,7 +110,6 @@ markdown_page:
 
 inactive_article:
   type: Article
-  blog: default
   title: Inactive Article
   body: body
   extended: extended content
@@ -135,7 +127,6 @@ inactive_article:
 
 search_target:
   type: Article
-  blog: default
   title: Find me!
   body: search target
   extended: extended content
@@ -153,7 +144,6 @@ search_target:
 
 xmltest:
   type: Article
-  blog: default
   title: Associations aren't :dependent => true anymore
   body: originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
   extended: extended content
@@ -171,7 +161,6 @@ xmltest:
 
 spammed_article:
   type: Article
-  blog: default
   title: C'mon Spam Me!
   body: A bunch of innocuous content
   allow_comments: true

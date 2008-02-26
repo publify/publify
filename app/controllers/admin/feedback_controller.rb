@@ -4,7 +4,7 @@ require 'trackback'
 class Admin::FeedbackController < Admin::BaseController
 
   def index
-    conditions = ['blog_id = :blog_id', {:blog_id => Blog.default.id}]
+    conditions = ['1 = 1', {}]
 
     if params[:search]
       conditions.first << ' and (url like :pattern or author like :pattern or title like :pattern or ip like :pattern or email like :pattern)'

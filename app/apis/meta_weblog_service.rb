@@ -72,17 +72,17 @@ class MetaWeblogService < TypoWebService
   end
 
   def getPost(postid, username, password)
-    article = this_blog.articles.find(postid)
+    article = Article.find(postid)
 
     article_dto_from(article)
   end
 
   def getRecentPosts(blogid, username, password, numberOfPosts)
-    this_blog.articles.find(:all, :order => "created_at DESC", :limit => numberOfPosts).collect{ |c| article_dto_from(c) }
+    Article.find(:all, :order => "created_at DESC", :limit => numberOfPosts).collect{ |c| article_dto_from(c) }
   end
 
   def newPost(blogid, username, password, struct, publish)
-    article = this_blog.articles.build
+    article = Article.new
     article.body        = struct['description'] || ''
     article.title       = struct['title'] || ''
     article.published   = publish
@@ -112,13 +112,12 @@ class MetaWeblogService < TypoWebService
   end
 
   def deletePost(appkey, postid, username, password, publish)
-    article = this_blog.articles.find(postid)
-    article.destroy
+    Article.destroy(postid)
     true
   end
 
   def editPost(postid, username, password, struct, publish)
-    article = this_blog.articles.find(postid)
+    article = Article.find(postid)
     article.body        = struct['description'] || ''
     article.title       = struct['title'] || ''
     article.published   = publish

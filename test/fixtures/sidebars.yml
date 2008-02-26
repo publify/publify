@@ -2,7 +2,6 @@
 static_sidebar:
   active_position: 1
   staged_position: 1
-  blog: default
   config: |+
     --- !map:HashWithIndifferentAccess
       title: Static Sidebar

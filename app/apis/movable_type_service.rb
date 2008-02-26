@@ -73,7 +73,7 @@ class MovableTypeService < TypoWebService
   before_invocation :authenticate, :except => [:getTrackbackPings, :supportedMethods, :supportedTextFilters]
 
   def getRecentPostTitles(blogid, username, password, numberOfPosts)
-    this_blog.articles.find(:all,:order => "created_at DESC", :limit => numberOfPosts).collect do |article|
+    Article.find(:all,:order => "created_at DESC", :limit => numberOfPosts).collect do |article|
       MovableTypeStructs::ArticleTitle.new(
             :dateCreated => article.created_at,
             :userid      => blogid.to_s,
@@ -93,7 +93,7 @@ class MovableTypeService < TypoWebService
   end
 
   def getPostCategories(postid, username, password)
-    this_blog.articles.find(postid).categorizations.collect do |c|
+    Article.find(postid).categorizations.collect do |c|
       MovableTypeStructs::CategoryPerPost.new(
           :categoryName => c.category.name,
           :categoryId   => c.category_id.to_i,
@@ -103,7 +103,7 @@ class MovableTypeService < TypoWebService
   end
 
   def setPostCategories(postid, username, password, categories)
-    article = this_blog.articles.find(postid)
+    article = Article.find(postid)
     article.categories.clear if categories != nil
 
     for c in categories
@@ -126,7 +126,7 @@ class MovableTypeService < TypoWebService
   end
 
   def getTrackbackPings(postid)
-    article = this_blog.articles.find(postid)
+    article = Article.find(postid)
     article.trackbacks.collect do |t|
       MovableTypeStructs::TrackBack.new(
           :pingTitle  => t.title.to_s,
@@ -137,7 +137,7 @@ class MovableTypeService < TypoWebService
   end
 
   def publishPost(postid, username, password)
-    article = this_blog.articles.find(postid)
+    article = Article.find(postid)
     article.published = true
     article.save
   end

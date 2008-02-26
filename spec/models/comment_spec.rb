@@ -147,7 +147,7 @@ describe Comment do
   end
 
   def test_published
-    a = Article.new(:title => 'foo', :blog_id => blogs(:default).id)
+    a = Article.new(:title => 'foo')
     assert a.save
 
     assert_equal 0, a.published_comments.size
@@ -160,7 +160,7 @@ describe Comment do
     assert_equal 1, a.published_comments.size
     c.withdraw!
 
-    a = Article.new(:title => 'foo', :blog_id => 1)
+    a = Article.new(:title => 'foo')
     assert_equal 0, a.published_comments.size
   end
 

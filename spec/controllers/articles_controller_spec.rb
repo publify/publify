@@ -40,7 +40,6 @@ end
 describe ArticlesController, "feeds" do
   before do
     @mock = mock('everything', :null_object => true)
-    Blog.stub!(:find).and_return(@mock)
     Category.stub!(:find_by_permalink).and_return(@mock)
     Tag.stub!(:find_by_permalink).and_return(@mock)
     User.stub!(:find_by_permalink).and_return(@mock)

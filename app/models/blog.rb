@@ -18,36 +18,11 @@ end
 class Blog < CachedModel
   include ConfigManager
 
-  has_many :contents
-  has_many :trackbacks
-  has_many :articles
-  has_many :comments
-  has_many(:published_comments,
-           :class_name => 'Comment',
-           :conditions => {:published => true},
-           :order      => 'feedback.published_at DESC')
-  has_many(:published_trackbacks,
-           :class_name => 'Trackback',
-           :conditions => {:published => true},
-           :order      => 'feedback.published_at DESC')
-  has_many(:published_feedback,
-           :class_name => 'Feedback',
-           :conditions => {:published => true},
-           :order      => 'feedback.published_at DESC')
-  has_many(:pages,
-           :order      => "id DESC")
-  has_many(:published_articles,
-           :class_name => "Article",
-           :conditions => {:published => true},
-           :include    => [:categories, :tags],
-           :order      => "contents.published_at DESC") do
-    def before(date = Time.now)
-      find(:all, :conditions => ["contents.created_at < ?", date])
+  validate_on_create { |blog|
+    unless Blog.count.zero?
+      blog.errors.add_to_base("There can only be one...")
     end
-  end
-
-  has_many :pages
-  has_many :sidebars, :order => 'active_position ASC'
+  }
 
   serialize :settings, Hash
 
@@ -116,7 +91,7 @@ class Blog < CachedModel
   # that matches, then grab the default blog.  If *that* fails, then create a new
   # Blog.  The last case should only be used when Typo is first installed.
   def self.find_blog(base_url)
-    (Blog.find_by_base_url(base_url) rescue nil)|| Blog.default || Blog.new
+    Blog.default || Blog.create
   end
 
   # The default Blog.  This is the lowest-numbered blog, almost always id==1.

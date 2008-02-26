@@ -1,5 +1,5 @@
 require 'base64'
-
+module Admin; end
 class Admin::ContentController < Admin::BaseController
   def index
     list
@@ -18,16 +18,16 @@ class Admin::ContentController < Admin::BaseController
     end
 
     now = Time.now
-    count = this_blog.articles.size
+    count = Article.count
     @articles_pages = Paginator.new(self, count, 15, params[:id])
-    @articles = this_blog.articles.find(:all, :limit => 15, :order => order,
-                                        :offset => @articles_pages.current.offset)
+    @articles = Article.find(:all, :limit => 15, :order => order,
+                             :offset => @articles_pages.current.offset)
     setup_categories
-    @article = this_blog.articles.build(params[:article])
+    @article = Article.new(params[:article])
   end
 
   def show
-    @article = this_blog.articles.find(params[:id])
+    @article = Article.find(params[:id])
     setup_categories
     @resources = Resource.find(:all, :order => 'created_at DESC')
   end
@@ -36,7 +36,7 @@ class Admin::ContentController < Admin::BaseController
   def edit; new_or_edit; end
 
   def destroy
-    @article = this_blog.articles.find(params[:id])
+    @article = Article.find(params[:id])
     if request.post?
       @article.destroy
       redirect_to :action => 'list'
@@ -48,7 +48,7 @@ class Admin::ContentController < Admin::BaseController
   alias_method :resource_remove, :category_add
 
   def category_remove
-    @article  = this_blog.articles.find(params[:id])
+    @article  = Article.find(params[:id])
     @category = @article.categories.find(params['category_id'])
     setup_categories
     @article.categorizations.delete(@article.categorizations.find_by_category_id(params['category_id']))
@@ -58,7 +58,7 @@ class Admin::ContentController < Admin::BaseController
 
   def preview
     headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = this_blog.articles.build
+    @article = Article.new
     @article.attributes = params[:article]
     set_article_author
     data = render_to_string(:layout => "minimal")
@@ -93,7 +93,7 @@ class Admin::ContentController < Admin::BaseController
 
   def do_add_or_remove_fu
     attrib, action = params[:action].split('_')
-    @article = this_blog.articles.find(params[:id])
+    @article = Article.find(params[:id])
     self.send("#{attrib}=", self.class.const_get(attrib.classify).find(params["#{attrib}_id"]))
     send("setup_#{attrib.pluralize}")
     @article.send(attrib.pluralize).send(real_action_for(action), send(attrib))
@@ -168,13 +168,13 @@ class Admin::ContentController < Admin::BaseController
   def get_or_build_article
     @article = case params[:action]
                when 'new'
-                 returning(this_blog.articles.build) do |art|
+                 returning(Article.new) do |art|
                    art.allow_comments = this_blog.default_allow_comments
                    art.allow_pings    = this_blog.default_allow_pings
                    art.published      = true
                  end
                when 'edit'
-                 this_blog.articles.find(params[:id])
+                 Article.find(params[:id])
                else
                  raise "Don't know how to get article for action: #{params[:action]}"
                end

@@ -44,6 +44,16 @@ class Article < Content
 
   include States
 
+  class << self
+    def published_articles
+      find(:conditions => { :published => true }, :order => 'published_at DESC')
+    end
+
+    def count_published_articles
+      count(:conditions => { :published => true })
+    end
+  end
+
   def stripped_title
     str = String.new(self.title)
 
