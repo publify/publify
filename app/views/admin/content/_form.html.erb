@@ -18,7 +18,7 @@
           <%= link_to_function _("Optional Extended Content") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.2) } %>
           </label>
           <p id="extended" <%= "style='display: none;'" if @article.extended.blank? %>>
-            <%= t_textarea 'article', 'extended', :height => '450', :style => 'display: none;' %>
+            <%= t_textarea 'article', 'extended', :height => '450', :style => 'width : 90%' %>
           </p>
        </li>
        <li class="paginate l">
@@ -27,7 +27,7 @@
           </label>
           <select id="categories" class="large" name="categories[]" multiple="multiple" size="10" <%= "style='display:none;'" if @article.categories.blank? %>>
              <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
-		  </select>
+          </select>
        </li>
        <li class="paginate l" id="tags">
           <label class="block" for="article_keywords">
@@ -53,10 +53,10 @@
      </ul>
      <p class="r"><%= save(_("Save") + " &raquo;") %></p>
   </div>
-	<% if this_blog.editor == 1 %>
-	<iframe id="preview" class="post" style="display: block;"></iframe>
+    <% if this_blog.editor == 1 %>
+    <iframe id="preview" class="post" style="display: block;"></iframe>
   <br style ="clear: both"/>
-	<% end %>
+    <% end %>
 </fieldset>
 
 <fieldset class="set admin">
