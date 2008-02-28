@@ -23,6 +23,16 @@ class FeedbackController < ApplicationController
     end
   end
 
+  def show
+    @feedback = @article.feedback.find_by_guid(params[:id])
+
+    respond_to do |format|
+      format.html do
+        redirect_to article_path(@article) + "\##{dom_id(@feedback)}"
+      end
+    end
+  end
+
   def create
     raise "Subclass responsibility"
   end

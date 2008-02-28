@@ -56,13 +56,13 @@ class UrlPolicy
     end
   end
 
-  def comment_params(comment)
-    returning(:controller => 'comments', :action => 'show') do |params|
-      article_params(comment.article).each do |k,v|
+  def feedback_params(feedback)
+    returning(:controller => feedback.class.name.pluralize.underscore, :action => 'show') do |params|
+      article_params(feedback.article).each do |k,v|
         next if k == :controller || k == :action
         params["article_#{k}".to_sym] = v
       end
-      params[:id] = comment.to_param
+      params[:id] = feedback.to_param
     end
   end
 end

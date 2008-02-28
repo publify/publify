@@ -25,6 +25,14 @@ class Feedback < Content
     'created_at ASC'
   end
 
+  def to_params(builder)
+    builder.feedback_params(self)
+  end
+
+  def to_param
+    guid
+  end
+
   def permalink_url(anchor=:ignored, only_path=true)
     article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
   end

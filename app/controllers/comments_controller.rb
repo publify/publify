@@ -17,16 +17,6 @@ class CommentsController < FeedbackController
     end
   end
 
-  def show
-    @comment = @article.comments.find_by_guid(params[:id])
-
-    respond_to do |format|
-      format.html do
-        redirect_to article_path(@article) + "\##{dom_id(@comment)}"
-      end
-    end
-  end
-
   def preview
     if (params[:comment][:body].blank? rescue true)
       render :nothing => true

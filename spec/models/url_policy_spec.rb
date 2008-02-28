@@ -13,11 +13,19 @@ describe UrlPolicy do
     UrlPolicy.instance.url_for(contents(:article3)).should == '/articles/2004/06/01/article-3'
   end
 
-  it "#url_for(<comment on article 3>).should == /2004/06/01/article-3/comments/#\{comment.guid}" do
+  it "#url_for(<comment on article 3>).should == /articles/2004/06/01/article-3/comments/#\{comment.guid}" do
     article = contents(:article3)
     comment = article.comments.build(:author => 'Piers Cawley', :body => "body")
     comment.save(false)
     UrlPolicy.instance.url_for(comment).should == "/articles/2004/06/01/article-3/comments/#{comment.guid}"
+  end
+
+  it "#url_for(<trackback on article 3>).should == /articles/2004/06/01/article-3/comments/#\{trackback.guid}" do
+    article = contents(:article3)
+    trackback = article.trackbacks.build(:title => 'Foo', :excerpt => 'bar', :url => 'http://empty.cabi.net/')
+    trackback.save(false)
+    UrlPolicy.instance.url_for(trackback).should ==
+      "/articles/2004/06/01/article-3/trackbacks/#{trackback.guid}"
   end
 
   it "#url_for(Article.new) should == '/articles/new'" do
