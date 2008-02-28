@@ -29,7 +29,7 @@ class TrackbacksController < FeedbackController
   def get_feedback
     @trackbacks =
       if params[:article_id]
-        this_blog.requested_article(params).published_trackbacks
+        Article.find_by_params_hash(params).published_trackbacks
       else
         this_blog.published_trackbacks.find(:all, this_blog.rss_limit_params(:order => 'created_at DESC'))
       end

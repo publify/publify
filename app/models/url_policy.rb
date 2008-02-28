@@ -17,6 +17,8 @@ class UrlPolicy
   def url_for_with_policy(*args)
     with_options(:only_path => true) do |o|
       case args.first
+      when nil
+        raise ArgumentError, "Argument cannot be nil"
       when ActiveRecord::Base
         o.url_for_object(*args)
       else
@@ -54,4 +56,13 @@ class UrlPolicy
     end
   end
 
+  def comment_params(comment)
+    returning(:controller => 'comments', :action => 'show') do |params|
+      article_params(comment.article).each do |k,v|
+        next if k == :controller || k == :action
+        params["article_#{k}".to_sym] = v
+      end
+      params[:id] = comment.to_param
+    end
+  end
 end

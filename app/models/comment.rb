@@ -49,6 +49,14 @@ class Comment < Feedback
     xml.title "Comment on #{article.title} by #{author}"
   end
 
+  def to_params(builder)
+    builder.comment_params(self)
+  end
+
+  def to_param
+    guid
+  end
+
   protected
 
   def article_allows_feedback?

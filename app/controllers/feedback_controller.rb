@@ -3,7 +3,7 @@ class FeedbackController < ApplicationController
 
   session :new_session => false
   before_filter :login_required, :only => [:update, :destroy]
-  before_filter :get_article, :only => [:create, :update]
+  before_filter :get_article, :only => [:create, :update, :show]
 
   cache_sweeper :blog_sweeper
 
@@ -12,7 +12,7 @@ class FeedbackController < ApplicationController
     respond_to do |format|
       format.html do
         if params[:article_id]
-          article = this_blog.requested_article(params)
+          article = Article.find_by_params_hash(params)
           redirect_to "#{article_path(article)}\##{@page_title.underscore}"
         else
           render :text => 'this space left blank'
