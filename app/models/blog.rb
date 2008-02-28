@@ -178,7 +178,7 @@ class Blog < CachedModel
 
   def find_already_published(content_type)  # :nodoc:
     typo_deprecated "Use #{content_type}.find_already_published"
-    self.send(content_type).find_already_published
+    content_type.to_s.camelize.constantize.find_already_published
   end
 
   def current_theme_path  # :nodoc:
@@ -187,15 +187,15 @@ class Blog < CachedModel
   end
 
   def requested_article(params)
-    published_articles.find_by_params_hash(params)
+    Article.find_by_params_hash(params)
   end
 
   def requested_articles(params)
-    published_articles.find_all_by_date(*params.values_at(:year, :month, :day))
+    Article.find_all_by_date(*params.values_at(:year, :month, :day))
   end
 
   def articles_matching(query)
-    published_articles.search(query)
+    Article.search(query)
   end
 
   def rss_limit_params
