@@ -106,6 +106,10 @@ class Article < Content
     param_array
   end
 
+  def to_params(builder = :no_argument)
+    (builder == :no_argument ? builder : UrlPolicy.instance).article_params(self)
+  end
+
   def trackback_url
     blog.url_for(permalink_url_options(true).merge(:controller => 'trackbacks', :action => 'index'))
   end
