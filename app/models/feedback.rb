@@ -25,12 +25,12 @@ class Feedback < Content
     'created_at ASC'
   end
 
-  def to_params(builder)
-    builder.feedback_params(self)
-  end
-
   def to_param
     guid
+  end
+
+  def parent
+    article
   end
 
   def permalink_url(anchor=:ignored, only_path=true)

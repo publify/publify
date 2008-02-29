@@ -20,12 +20,18 @@ describe UrlPolicy do
     UrlPolicy.instance.url_for(comment).should == "/articles/2004/06/01/article-3/comments/#{comment.guid}"
   end
 
-  it "#url_for(<trackback on article 3>).should == /articles/2004/06/01/article-3/comments/#\{trackback.guid}" do
-    article = contents(:article3)
-    trackback = article.trackbacks.build(:title => 'Foo', :excerpt => 'bar', :url => 'http://empty.cabi.net/')
-    trackback.save(false)
-    UrlPolicy.instance.url_for(trackback).should ==
-      "/articles/2004/06/01/article-3/trackbacks/#{trackback.guid}"
+  describe "(for a trackback)" do
+    before(:each) do
+      @article = contents(:article3)
+      @trackback = @article.trackbacks.build(:title => 'Foo', :excerpt => 'bar',
+                                             :url => 'http://empty.cabi.net/')
+    end
+
+    it "#url_for(<trackback on article 3>).should == /articles/2004/06/01/article-3/comments/#\{trackback.guid}" do
+      @trackback.save(false)
+      UrlPolicy.instance.url_for(@trackback).should ==
+        "/articles/2004/06/01/article-3/trackbacks/#{@trackback.guid}"
+    end
   end
 
   it "#url_for(Article.new) should == '/articles/new'" do
