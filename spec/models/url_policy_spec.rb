@@ -20,6 +20,23 @@ describe UrlPolicy do
     UrlPolicy.instance.url_for(comment).should == "/articles/2004/06/01/article-3/comments/#{comment.guid}"
   end
 
+  it "#url_for(article3.comments).should == /articles/2004/06/01/article-3/comments" do
+    article = contents(:article3)
+    comment = article.comments.build(:author => 'Piers Cawley', :body => "body")
+    comment.save(false)
+    UrlPolicy.instance.url_for(article.comments).should ==
+      "/articles/2004/06/01/article-3/comments"
+  end
+
+  it "#url_for(article3, Comment) should be /articles/2004/06/01/article-3/comments" do
+    UrlPolicy.instance.url_for(contents(:article3), Comment).should ==
+      "/articles/2004/06/01/article-3/comments"
+  end
+
+  it "#url_for Article should be /" do
+    UrlPolicy.instance.url_for(Article).should == '/'
+  end
+
   describe "(for a trackback)" do
     before(:each) do
       @article = contents(:article3)

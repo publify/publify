@@ -28,6 +28,21 @@ class Hash
 end
 
 class UrlPolicy
+  class CollectionProxy
+    attr_reader :parent
+    def initialize(parent)
+      @parent = parent
+    end
+
+    def new_record?
+      false
+    end
+
+    def characteristic_hash
+      {}
+    end
+  end
+
   include ::Singleton
   include ::ActionController::UrlWriter
 
@@ -43,24 +58,60 @@ class UrlPolicy
   end
 
   def url_for_with_policy(*args)
-    with_options(:only_path => true) do |o|
-      case args.first
-      when nil
-        raise ArgumentError, "Argument cannot be nil"
-      when ActiveRecord::Base
-        o.url_for_object(*args)
+    options = (Hash === args.last) ? args.pop.symbolize_keys : {}
+    with_options(options.reverse_merge(:only_path => true)) do |o|
+      case args.size
+        when 0
+        o.url_for_without_policy()
+      when 2
+        o.url_for_chain(*args)
       else
-        o.url_for_without_policy(*args)
+        if  association_collection? args.first
+          return o.url_for_collection(*args)
+        end
+
+        case args.first
+        when Class
+          return o.url_for_class(*args)
+        when ActiveRecord::Base, CollectionProxy
+          return o.url_for_object(*args)
+        else
+          return o.url_for_without_policy(*args)
+        end
       end
     end
   end
 
   alias_method_chain :url_for, :policy
 
+
+  def url_for_class(klass, opts = {})
+    url_for opts.reverse_merge(:controller => klass.name.pluralize.underscore)
+  end
+
   def url_for_object(object, opts = {})
-    with_options(opts) { |o|
-      o.url_for(params_for(object));
-    }
+    suggested_params = params_for(object)
+    if opts.has_key? :controller
+      suggested_params.delete(:action)
+    end
+
+    url_for(suggested_params.merge(opts))
+  end
+
+  def association_collection?(object)
+    object.respond_to?(:proxy_reflection) && object.respond_to?(:count)
+  end
+
+  def url_for_collection(collection, opts = {})
+    owner = collection.proxy_owner;
+    controller = collection.proxy_reflection.klass.name.pluralize.underscore
+    url_for(CollectionProxy.new(owner),
+            opts.merge(:controller => controller))
+  end
+
+  def url_for_chain(parent, klass, opts = { })
+    url_for(CollectionProxy.new(parent),
+            opts.merge(:controller => klass.name.pluralize.underscore))
   end
 
   def params_for(object)
@@ -84,6 +135,10 @@ class UrlPolicy
 
   def characteristic_hash(resource)
     raise ArgumentErrror, "#{resource}.new_record? must not be true" if resource.new_record?
+
+    if resource.respond_to? :characteristic_hash
+      return resource.characteristic_hash
+    end
 
     class_specific_method_name = "characteristic_#{resource.class.name.underscore}_hash"
     if self.respond_to?(class_specific_method_name)
