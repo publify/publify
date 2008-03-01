@@ -232,7 +232,7 @@ Localization.define('it_IT') do |l|
   l.store "Not implemented", "Non implementato"
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Search", "Cerca"
-  l.store "Comment Excertp", "Contenuto commento"
+  l.store "Comment Excerpt", "Contenuto commento"
  
   #admin/general/task
   l.store "Basic settings", "Configurazione base"

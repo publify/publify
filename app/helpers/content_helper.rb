@@ -33,7 +33,7 @@ module ContentHelper
 
   def page_title
     blog_name = this_blog.blog_name || "Typo"
-    if @page_title
+    if @page_title.blank?
       # this is where the page title prefix (string) should go
       (this_blog.title_prefix == 1 ? blog_name + " : " : '') + @page_title + (this_blog.title_prefix == 2 ? " : " + blog_name : '')
     else
