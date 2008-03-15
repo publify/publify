@@ -7,16 +7,21 @@ class Article < Content
   content_fields :body, :extended
 
   has_many :pings,      :dependent => :destroy, :order => "created_at ASC"
+
   has_many :comments,   :dependent => :destroy, :order => "created_at ASC"
   with_options(:conditions => { :published => true }, :order => 'created_at DESC') do |this|
     this.has_many :published_comments,   :class_name => "Comment", :order => "created_at ASC"
     this.has_many :published_trackbacks, :class_name => "Trackback", :order => "created_at ASC"
     this.has_many :published_feedback,   :class_name => "Feedback", :order => "created_at ASC"
   end
+
   has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
+
   has_many :feedback,                           :order => "created_at DESC"
+
   has_many :resources, :order => "created_at DESC",
            :class_name => "Resource", :foreign_key => 'article_id'
+  after_destroy :fix_resources
 
   has_many :categorizations
   has_many :categories, \
@@ -25,11 +30,11 @@ class Article < Content
     :order => 'categorizations.is_primary DESC, categories.position'
 
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
-  belongs_to :user
-  has_many :triggers, :as => :pending_item
 
+  belongs_to :user
+
+  has_many :triggers, :as => :pending_item
   after_save :post_trigger
-  after_destroy :fix_resources
 
   has_state(:state,
             :valid_states  => [:new, :draft,
@@ -42,7 +47,7 @@ class Article < Content
                                :published_at=, :just_published?])
 
 
-  include States
+  include Article::States
 
   class << self
     def published_articles
@@ -54,38 +59,38 @@ class Article < Content
     end
   end
 
+  accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
+    ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
+    ['í','ì','î','ï','I','Î','Ì'] => 'i',
+    ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò'] => 'o',
+    ['œ'] => 'oe',
+    ['ß'] => 'ss',
+    ['ú','ù','û','ü','U','Û','Ù'] => 'u',
+    ['ç','Ç'] => 'c'
+  }
+
+  FROM, TO = accents.inject(['','']) { |o,(k,v)|
+    o[0] << k * '';
+    o[1] << v * k.size
+    o
+  }
+
   def stripped_title
-    str = String.new(self.title)
-
-    accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
-      ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
-      ['í','ì','î','ï','I','Î','Ì'] => 'i',
-      ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò'] => 'o',
-      ['œ'] => 'oe',
-      ['ß'] => 'ss',
-      ['ú','ù','û','ü','U','Û','Ù'] => 'u',
-      ['ç','Ç'] => 'c'
-      }
-    accents.each do |ac,rep|
-      ac.each do |s|
-        str.gsub!(s, rep)
-      end
-    end
-
-    str.gsub(/<[^>]*>/,'').to_url
+    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
   end
 
   def permalink_url_options(nesting = false)
-    {:year => published_at.year,
-     :month => sprintf("%.2d", published_at.month),
-     :day => sprintf("%.2d", published_at.day),
-     :controller => 'articles',
-     :action => 'show',
+    {:year                         => published_at.year,
+     :month                        => sprintf("%.2d", published_at.month),
+     :day                          => sprintf("%.2d", published_at.day),
+     :controller                   => 'articles',
+     :action                       => 'show',
      (nesting ? :article_id : :id) => permalink}
   end
 
   def permalink_url(anchor=nil, only_path=true)
     @cached_permalink_url ||= {}
+
     @cached_permalink_url["#{anchor}#{only_path}"] ||= \
       blog.with_options(permalink_url_options) do |b|
         b.url_for(:anchor => anchor, :only_path => only_path)
@@ -94,12 +99,15 @@ class Article < Content
 
   def param_array
     @param_array ||=
-      returning([published_at.year, sprintf('%.2d', published_at.month),
-                 sprintf('%.2d', published_at.day), permalink]) do |params|
-      this = self
-      k = class << params; self; end
-      k.send(:define_method, :to_s) { params[-1] }
-    end
+      returning([published_at.year,
+                 sprintf('%.2d', published_at.month),
+                 sprintf('%.2d', published_at.day),
+                 permalink]) \
+      do |params|
+        this = self
+        k = class << params; self; end
+        k.send(:define_method, :to_s) { params[-1] }
+      end
   end
 
   def to_param
@@ -163,34 +171,33 @@ class Article < Content
   end
 
   def next
-    blog.articles.find(:first, :conditions => ['published_at > ?', published_at],
-                       :order => 'published_at asc')
+    self.class.find(:first, :conditions => ['published_at > ?', published_at],
+                    :order => 'published_at asc')
   end
 
   def previous
-    blog.articles.find(:first, :conditions => ['published_at < ?', published_at],
-                       :order => 'published_at desc')
+    self.class.find(:first, :conditions => ['published_at < ?', published_at],
+                    :order => 'published_at desc')
   end
 
   # Count articles on a certain date
   def self.count_by_date(year, month = nil, day = nil, limit = nil)
     if !year.blank?
-      from, to = self.time_delta(year, month, day)
-      Article.count(["published_at BETWEEN ? AND ? AND published = ?",
-                     from, to, true])
+      count(:conditions => { :published_at => time_delta(year, month, day),
+              :published => true })
     else
-      Article.count(:conditions => { :published => true })
+      count(:conditions => { :published => true })
     end
   end
 
   # Find all articles on a certain date
   def self.find_all_by_date(year, month = nil, day = nil)
     if !year.blank?
-      from, to = self.time_delta(year, month, day)
-      Article.find_published(:all, :conditions => ["published_at BETWEEN ? AND ?",
-                                                   from, to])
+      find_published(:all,
+                     :conditions => { :published_at =>
+                       time_delta(year,month,day) })
     else
-      Article.find_published(:all)
+      find_published(:all)
     end
   end
 
@@ -216,15 +223,11 @@ class Article < Content
         year, month, day, title = year
       end
     end
-    from, to = self.time_delta(year, month, day)
-    returning(find_published(:first,
-                             :conditions => ['permalink = ? AND ' +
-                                             'published_at BETWEEN ? AND ?',
-                                             title, from, to ])) do |res|
-      if res.nil?
-        raise ActiveRecord::RecordNotFound
-      end
-    end
+    date_range = self.time_delta(year, month, day)
+    find_published(:first,
+                   :conditions => { :permalink => title,
+                                    :published_at => date_range }) \
+      or raise ActiveRecord::RecordNotFound
   end
 
   def self.find_by_params_hash(params = {})
@@ -472,7 +475,7 @@ class Article < Content
     to = from.next_month unless month.blank?
     to = from + 1.day unless day.blank?
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
-    return [from, to]
+    return from..to
   end
 
   validates_uniqueness_of :guid

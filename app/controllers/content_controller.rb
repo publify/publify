@@ -24,9 +24,6 @@ class ContentController < ApplicationController
   helper :theme
 #  before_filter :auto_discovery_defaults
 
-
-
-
   def self.caches_action_with_params(*actions)
     super
     around_filter ExpiryFilter.new, :only => actions
