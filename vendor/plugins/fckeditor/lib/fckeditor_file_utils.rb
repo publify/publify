@@ -45,7 +45,7 @@ module FckeditorFileUtils
   end
   
   def FckeditorFileUtils.create_uploads_directory
-    uploads = File.join(RAILS_ROOT, '/public/uploads')
+    uploads = File.join(RAILS_ROOT, '/public/files')
     FileUtils.mkdir(uploads) unless File.exist?(uploads)    
   end
   

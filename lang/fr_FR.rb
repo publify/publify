@@ -186,6 +186,7 @@ Localization.define('fr_FR') do |l|
   l.store "Publish at", "Publié le"
   l.store "Textfilter", "Formatage du texte"
   l.store "Toggle Extended Content", "Afficher le contenu étendu"
+  l.store "These are advanced options. Only experimented users should use them", "Options avancées. À ne modifier que par des utilisateurs expérimentés"
   
   #admin/content/_pages.rhtml
   l.store "Previous page", "Page précédente"

@@ -25,6 +25,7 @@ class Tag < ActiveRecord::Base
     if self.display_name.blank?
       self.display_name = self.name
     end
+    self.name = self.name.tr('.', '-')
     self.name = self.name.tr(' ', '').downcase
   end
 
