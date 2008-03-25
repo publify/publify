@@ -1,6 +1,12 @@
 require 'base64'
 module Admin; end
 class Admin::ContentController < Admin::BaseController
+  
+  def auto_complete_for_article_keywords
+    @items = Tag.find_with_char params[:article][:keywords].strip
+    render :inline => "<%= auto_complete_result @items, 'name' %>"
+  end
+  
   def index
     list
     render :action => 'list'

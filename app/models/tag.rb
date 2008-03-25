@@ -53,7 +53,13 @@ class Tag < ActiveRecord::Base
   def self.to_prefix
     'tag'
   end
-
+   
+  # Return all tags with the char or string 
+  # send by parameter
+  def self.find_with_char(char)
+    find :all, :conditions => ['name LIKE ? ', "%#{char}%"], :order => 'name ASC'
+  end
+  
   def published_articles
     articles.find_already_published
   end
@@ -83,4 +89,5 @@ class Tag < ActiveRecord::Base
   def to_param
     permalink
   end
+  
 end

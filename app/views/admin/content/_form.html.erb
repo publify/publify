@@ -1,5 +1,6 @@
 <%= error_messages_for 'article' %>
 <!--[form:articles]-->
+<div id="article_keywords_auto_complete" class="auto_complete"></div>
 <fieldset class="set admin" style="display: block">
   <legend><%= _("Write post") %></legend>
   <div <%='style="width: 48%; float: left;"' if this_blog.editor == 1 %>>
@@ -31,10 +32,11 @@
        </li>
        <li class="paginate l">
           <label class="block" for="article_keywords">
-          <%= link_to_function _("Tags") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "tags", :duration => 0.2) } %>
+           <%= link_to_function _("Tags") + " (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "tags", :duration => 0.2); page.toggle(:tags) } %>
           </label>
           <p id="tags" <%= "style='display: none;'" if @article.keywords.blank? %>>
-            <%= text_field 'article', 'keywords', :style => 'width: 90%;' %>
+            <%= text_field 'article', 'keywords', {:autocomplete => 'off', :style => 'width: 90%;'} %>
+            <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
           </p>
       </li>
       <li class="paginate l">
@@ -90,5 +92,6 @@
         <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
   </ul>
 </fieldset>
+
 
 <!--[eoform:articles]-->

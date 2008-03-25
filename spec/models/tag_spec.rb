@@ -49,4 +49,17 @@ describe 'Given loaded fixtures' do
   it 'permalink_url should be of form /articles/tag/<name>' do
     Tag.get('foo').permalink_url.should == 'http://myblog.net/articles/tag/foo'
   end
+  
+  it "find_with_char('f') should be return foo" do
+    Tag.find_with_char('f').should == [tags(:foo)]
+  end
+  
+  it "find_with_char('v') should return empty data" do
+    Tag.find_with_char('v').should == []
+  end
+  
+  it "find_with_char('ba') should return tag bar and bazz" do
+    Tag.find_with_char('ba').sort_by(&:id).should == [tags(:bar), tags(:bazz)].sort_by(&:id)
+  end
+  
 end

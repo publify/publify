@@ -73,7 +73,7 @@ describe BackendController do
     new_post = Article.find(result)
     assert_equal "new post title", new_post.title
     assert_equal "new post body", new_post.body
-    assert_equal [categories(:software), categories(:hardware)], new_post.categories.sort_by { |c| c.id }
+    assert_equal [categories(:software), categories(:hardware)].sort_by(&:id), new_post.categories.sort_by { |c| c.id }
     assert new_post.published?
   end
 

@@ -236,4 +236,23 @@ describe Admin::ContentController do
                   :content => /[-+] #{resource.filename}/)
     end
   end
+
+  it 'should return foo for keywords fo' do
+    get :auto_complete_for_article_keywords, :article => {:keywords => 'fo'}
+    response.should be_success
+    response.body.should == '<ul><li>foo</li></ul>'
+  end
+
+  it 'should return nothing for hello' do
+    get :auto_complete_for_article_keywords, :article => {:keywords => 'hello'}
+    response.should be_success
+    response.body.should == '<ul></ul>'
+  end
+
+  it 'should return bar and baz for ba keyword' do
+    get :auto_complete_for_article_keywords, :article => {:keywords => 'ba'}
+    response.should be_success
+    response.body.should == '<ul><li>bar</li><li>bazz</li></ul>'
+  end
+
 end

@@ -113,7 +113,7 @@ class FckeditorController < ActionController::Base
     self.upload_file
   end
   
-  include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::SanitizeHelper
   def check_spelling
     require 'cgi'
     require 'fckeditor_spell_check'
