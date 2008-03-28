@@ -4,6 +4,7 @@ require 'spec'
 require 'action_web_service/test_invoke'
 require 'backend_controller'
 require 'blogger_service'
+require 'meta_weblog_service'
 require 'digest/sha1'
 require 'base64'
 
@@ -181,6 +182,36 @@ describe BackendController do
     assert_equal Time.now.midnight.utc, new_post.published_at.utc
   end
 
+  def test_meta_weblog_new_unpublished_post_with_blank_creation_date
+    dto = MetaWeblogStructs::Article.new(
+      :description       => "Some text",
+      :title             => "A Title"
+    )
+
+    args = [ 1, 'tobi', 'whatever', dto, 0 ]
+
+    result = invoke_layered :metaWeblog, :newPost, *args
+    assert result
+    new_post = Article.find(result)
+    assert !new_post.published?
+  end
+  
+  def test_meta_weblog_edit_unpublished_post_with_old_creation_date
+    article = Article.new
+    article.title = "Posted via Test"
+    article.body = "body"
+    article.extended = "extend me"
+    article.text_filter = TextFilter.find_by_name("textile")
+    article.published_at = Time.now - 1.days
+
+    args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 0 ]
+
+    result = invoke_layered :metaWeblog, :newPost, *args
+    assert result
+    new_post = Article.find(result)
+    assert !new_post.published?
+  end
+  
   def test_meta_weblog_new_media_object
     media_object = MetaWeblogStructs::MediaObject.new(
       "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".jpg",

@@ -85,9 +85,9 @@ class MetaWeblogService < TypoWebService
     article = Article.new
     article.body        = struct['description'] || ''
     article.title       = struct['title'] || ''
-    article.published   = publish
     article.author      = username
     article.published_at = struct['dateCreated'].to_time.getlocal rescue Time.now
+    article.published   = publish
     article.user        = @user
 
     # Movable Type API support
