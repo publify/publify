@@ -44,5 +44,4 @@ class Admin::UsersController < Admin::BaseController
   def setup_profiles
     @profiles = Profile.find(:all, :order => 'id')
   end
-
 end
