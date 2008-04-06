@@ -1,10 +1,11 @@
   <% @page_heading = _('Categories') + '(' + task_quickpost(_('add new')) + ')' %>
 
   <% content_for('tasks') do -%>
-	<%= subtab _("Manage posts"), "", {:controller=>"content", :action=>"list"} %>
-	<%= subtab _("Manage pages"), "", {:controller=>"pages", :action=>"list"} %>
-	<%= subtab _("Manage categories"), "current", {:controller=>"categories", :action=>"index"} %>
-	<%= subtab _("Manage uploads"), "", {:controller=>"resources", :action=>"list"} %>
+	  <%= subtab _("Manage posts"), "", {:controller=>"content", :action=>"list"} %>
+	  <%= subtab _("Manage pages"), "", {:controller=>"pages", :action=>"list"} %>
+	  <%= subtab _("Manage categories"), "current", {:controller=>"categories", :action=>"index"} %>
+	  <%= subtab _("Manage uploads"), "", {:controller=>"resources", :action=>"list"} %>
+	  <%= subtab _("Manage tags"), "", {:controller=>"tags", :action=>"list"} %>
   <% end -%> 
 
   <div id="quick-post" style="display:none;position:absolute;">

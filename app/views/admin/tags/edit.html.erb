@@ -1,0 +1,16 @@
+<% @page_heading =  _("Editing ") + " #{h @tag.display_name}" %>
+
+<% content_for('tasks') do %>
+  <%= subtab _("Back to tags list") + " &raquo;", "", {:controller=>"tags", :action=>"list"} %>
+<% end %>
+
+<% form_tag :action=>"edit", :id => @tag.id do %>
+  <%= render_partial "form" %>
+
+<div id="operations">
+  <%= save %> or <%= cancel %>
+</div>
+
+<% end %>
+
+  

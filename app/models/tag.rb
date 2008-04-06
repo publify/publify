@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :articles, :order => 'created_at DESC'
   validates_uniqueness_of :name
-
+ 
   def self.get(name)
     tagname = name.tr(' ', '').downcase
     tag = find_by_name_or_display_name(tagname, name)
@@ -22,7 +22,7 @@ class Tag < ActiveRecord::Base
   end
 
   def ensure_naming_conventions
-    if self.display_name.blank?
+    if self.display_name.blank? or self.display_name != self.name
       self.display_name = self.name
     end
     self.name = self.name.tr('.', '-')
@@ -31,7 +31,7 @@ class Tag < ActiveRecord::Base
 
   before_save :ensure_naming_conventions
 
-  def self.find_all_with_article_counters(limit = 20)
+  def self.find_all_with_article_counters(limit = 20, orderby='article_counter DESC')
     # Only count published articles
     self.find_by_sql([%{
       SELECT tags.id, tags.name, tags.display_name, COUNT(articles_tags.article_id) AS article_counter
@@ -41,7 +41,7 @@ class Tag < ActiveRecord::Base
         ON articles_tags.article_id = articles.id
       WHERE articles.published = ?
       GROUP BY tags.id, tags.name, tags.display_name
-      ORDER BY article_counter DESC
+      ORDER BY #{orderby} 
       LIMIT ?
       },true, limit]).each{|item| item.article_counter = item.article_counter.to_i }
   end
