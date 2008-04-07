@@ -9,9 +9,10 @@ html, body {
 body {
   margin:0;
   padding:0;
-  font: 12px Tahoma, Helvetica, sans-serif;
+/*  font: 12px Tahoma, Helvetica, sans-serif; */
+	font: 0.75em "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.8em;
-  color: #585858;
+  color: #000;
   background: #fff;
 }
 
@@ -866,37 +867,62 @@ input.submit {
 
 /* Dashboard */
 
-/* OK */
-.dashboard {
-	width: 48%;
-	margin-right: 1%;
+.dashboard-small {
+	width: 23%;
 	float: left;
+	margin-bottom: 10px;
+	margin-left: 2%;
+}
+
+.dashboard {
+	width: 71%;
+	margin-left: 28%;
 	margin-bottom: 10px;
 }
 
 /* OK */
-.dashboard h3 {
-	padding: 0;
+.dashboard h3, 
+.dashboard-small h3 {
+	padding: 0 0 5px 0;
 	margin: 0;
-	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
-	font-size: 14px;
+/*	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat; */
+	background: none;
+	color: #324e79;
+	font-size: 16px;
 	font-weight: normal;
+	border-bottom: #324e79 1px solid;
 }
 
 /* OK */
-.dashboard h3 span {
-	background: url("../images/admin/table-header-last.png") top right no-repeat;
-	display: block;
-	padding: 0 3px;
-}
-
-/* OK */
-.dashboard ul {
+.dashboard ul,
+.dashboard-small ul {
 	margin: 0;
+	padding: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	border: #ddd 1px solid;
 }
+
+.dashboard ul li,
+.dashboard-small ul li {
+	margin-left: 0;
+	padding: 4px 10px 4px 2px;
+	list-style: none;
+}
+
+.dashboard ul li.shade,
+.dashboard-small ul li.shade {
+	background : #d0d0d0;
+}
+
+hr {
+	clear: both;
+	border: medium none;
+	color: #ccc;
+	background: #ccc;
+	height: 1px;
+	margin-bottom: 1.4em;
+}
+
 /* @end */
 
 /* Theme editor */

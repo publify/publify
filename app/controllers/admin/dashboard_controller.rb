@@ -3,9 +3,17 @@ class Admin::DashboardController < Admin::BaseController
     comments
     lastposts
     popular
+    statistics
   end
   
   private
+  
+  def statistics
+    @statposts = Article.count_published_articles
+    @statuserposts = current_user.articles.size
+    @statcomments = Comment.count(:all, :conditions => "state != 'spam'")
+    @statspam = Comment.count(:all, :conditions => { :state => 'spam' })
+  end
   
   def comments
     @comments ||=

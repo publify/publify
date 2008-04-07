@@ -1,0 +1,14 @@
+<div class="dashboard">
+  <h3><%= _("Last posts") %></h3>
+  <ul>
+	<% if @recent_posts.size == 0 %>
+      <li <%= alternate_class %>> <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
+    <% else %>
+      <% for post in @recent_posts -%>
+        <li <%= alternate_class %>>
+          <%= link_to_permalink post, post.title %> (<%= link_to_permalink(post, post.published_comments.size) %>)
+        </li>
+      <% end %> 
+    <% end %>
+  </ul>
+</div>

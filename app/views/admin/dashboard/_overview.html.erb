@@ -1,0 +1,4 @@
+<div class="dashboard">
+  <p>This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to <%= link_to(_('write a post'), :controller => 'content', :action => 'new') %>, <%= link_to(_('write a page'), :controller => 'page', :action => 'new') %>, or <%= link_to(_("Update your profile or change your password"), :controller => 'users', :action => 'edit', :id => session[:user_id]) -%>.</p>
+  <p>You can also do a bit of design and <%= link_to(_("Change your blog presentation"), :controller => 'themes') -%> or <%= link_to(_("enable plugins"), :controller => 'sidebar') -%>.</p>
+</div>
