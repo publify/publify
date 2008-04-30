@@ -32,10 +32,6 @@ class Admin::TagsController < Admin::BaseController
     end
   end
     
-  def show
-    @tag = Tag.find(params[:id])
-  end
-    
   def destroy
     @tag = Tag.find(params[:id])
     if request.post?

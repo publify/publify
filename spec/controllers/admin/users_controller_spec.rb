@@ -35,15 +35,6 @@ describe Admin::UsersController, "rough port of the old functional test" do
     assert_template 'list'
   end
 
-  def test_show
-    get :show, :id => users(:tobi).id
-    assert_template 'show'
-    assert_valid assigns(:user)
-
-    assert_template_has 'user'
-    assert_template_has 'articles'
-  end
-
   def test_edit
     user_id = users(:tobi).id
     get :edit, :id => user_id
@@ -53,9 +44,9 @@ describe Admin::UsersController, "rough port of the old functional test" do
     post :edit, :id => user_id, :user => { :login => 'errand',
       :email => 'corey@test.com', :password => 'testpass',
       :password_confirmation => 'testpass' }
-    assert_response :redirect, :action => 'show'
+    assert_response :redirect, :action => 'list'
     follow_redirect
-    assert_template 'show'
+    assert_template 'list'
     assert_valid assigns(:user)
   end
 

@@ -25,8 +25,9 @@
     </td>
     <td colspan="3"><input type="submit" value="Filter" />
   </tr>
+  <%= render_void_table(@pages.size, 8)  %>
+
   <% for page in @pages %>
-  
   <tr <%= alternate_class %>>
     <td><%= link_to_permalink(page, page.title) %></td>
     <td><%= page.name%></td>
@@ -39,7 +40,7 @@
     <%= image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline"))  %>
     <% end %>
     </td>
-    <td class='operation'><%= link_to image_tag('admin/show.png', :alt => 'View page', :title => 'Preview page'), {:action => 'show', :id => page.id} %></td>
+    <td class='operation'><%= link_to_show page  %></td>
     <td class='operation'><%= link_to_edit page %></td>
     <td class='operation'><%= link_to_destroy page %></td>
   </tr>

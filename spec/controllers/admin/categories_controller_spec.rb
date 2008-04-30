@@ -83,7 +83,7 @@ describe Admin::CategoriesController do
     assert_tag :tag => "table",
       :children => { :count => Category.count + 1,
         :only => { :tag => "tr",
-          :children => { :count => 4,
+          :children => { :count => 5,
             :only => { :tag => /t[dh]/ } } } }
   end
 

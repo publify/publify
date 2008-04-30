@@ -29,6 +29,7 @@
   </td>
   <td colspan="3"><input type="submit" value="Filter" />
 </tr>
+  <%= render_void_table(@articles.size, 9)  %>
 <% for article in @articles %>
 <tr <%= alternate_class %>>
   <td> <%= link_to_permalink article, h(article.title) %></td>

@@ -14,9 +14,9 @@
     :asynchronus => false -%>
 </div>
 
-<% if @article.id %>
-<h4><%= _("You can associate the following resources")%></h4>
-<% for resource in @resources - @article.resources %>
-  <%= link_to_remote "+ #{resource.filename}", :url => { :action => "resource_add", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br/>
-<% end %>
+<% if @article.id and @resources %>
+  <h4><%= _("You can associate the following resources")%></h4>
+  <% for resource in @resources - @article.resources %>
+    <%= link_to_remote "+ #{resource.filename}", :url => { :action => "resource_add", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br />
+    <% end %>
 <% end %>

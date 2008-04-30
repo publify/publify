@@ -1,7 +1,6 @@
 require 'base64'
 module Admin; end
 class Admin::ContentController < Admin::BaseController
-#  layout "minimal", :only => 'show'
   layout "administration", :except => 'show'
 
   def auto_complete_for_article_keywords
@@ -129,7 +128,7 @@ class Admin::ContentController < Admin::BaseController
       if @article.save
         set_article_categories
         set_the_flash
-        redirect_to :action => 'show', :id => @article.id
+        redirect_to :action => 'list'
       end
     end
   end

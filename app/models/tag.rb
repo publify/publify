@@ -46,6 +46,10 @@ class Tag < ActiveRecord::Base
       },true, start, limit]).each{|item| item.article_counter = item.article_counter.to_i }
   end
 
+  def self.merge(from, to)
+    self.update_by_sql([%{UPDATE article_tags SET tag_id = #{to} WHERE tag_id = #{from} }])
+  end
+
   def self.find_by_permalink(*args)
     self.find_by_name(*args) || new(:name => args.first)
   end

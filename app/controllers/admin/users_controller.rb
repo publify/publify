@@ -9,11 +9,6 @@ class Admin::UsersController < Admin::BaseController
     @users = User.find :all
   end
 
-  def show
-    @user = User.find(params[:id], :include => [ :articles ])
-    @articles = @user.articles
-  end
-
   def new
     @user = User.new(params[:user])
     setup_profiles
@@ -29,7 +24,7 @@ class Admin::UsersController < Admin::BaseController
     @user.attributes = params[:user]
     if request.post? and @user.save
       flash[:notice] = 'User was successfully updated.'
-      redirect_to :action => 'show', :id => @user.id
+      redirect_to :action => 'list'
     end
   end
 

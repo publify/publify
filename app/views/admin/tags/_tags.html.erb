@@ -3,16 +3,15 @@
   <th><%= _("Display Name") %></th>
   <th><%= _("Name") %></th>
   <th><%= _("Articles") %></th>
-  <th><%= _("View")%></th>
   <th><%= _("Edit")%></th>
   <th><%= _("Delete")%></th>
 </tr>
+<%= render_void_table(@tags.size, 5)  %>
 <% for tag in @tags %>
 <tr <%= alternate_class %>>
-  <td> <%= tag.display_name %></td>
+  <td> <%= link_to tag.display_name, tag %></td>
   <td><%= tag.name %></td>
   <td><%= tag.article_counter %></td>
-  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View tags", :title => "Preview tags"), {:action => "show", :id => tag.id} %></td>
   <td class="operation"><%= link_to_edit tag %></td>
   <td class="operation"><%= link_to_destroy tag %></td>    
 </tr>  

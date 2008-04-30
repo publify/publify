@@ -1,6 +1,7 @@
 require 'base64'
 
 class Admin::PagesController < Admin::BaseController
+  layout "administration", :except => 'show'
   def index
     list
     render :action => 'list'
@@ -64,7 +65,7 @@ class Admin::PagesController < Admin::BaseController
       @page.published_at = Time.now
       if @page.save
         flash[:notice] = 'Page was successfully created.'
-        redirect_to :action => 'show', :id => @page.id
+        redirect_to :action => 'list'
       end
     end
   end

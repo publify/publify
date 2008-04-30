@@ -224,4 +224,9 @@ module Admin::BaseHelper
     return result
   end
 
+  def render_void_table(size, cols)
+    if size == 0
+      "<tr>\n<td colspan=#{cols}>There is no #{controller.controller_name} yet. Why don't you start and create one?</td>\n</tr>\n"
+    end
+  end
 end

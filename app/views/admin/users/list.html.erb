@@ -6,7 +6,7 @@
 
 <div class="list">
   <table>
-    <tr>
+    <tr class="first">
 	  	<th class="first"><%= _("Name")%></th>
       <th><%= _("Username")%></th>
       <th><%= _("Profile")%></th>
@@ -23,7 +23,7 @@
       <td class="field"><%= user.profile.nicename %></td>
       <td class="field"><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
       <td class="field"><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
-	  <td class="operation"><%= link_to_show user %></td>
+	  <td class="operation"><%= link_to image_tag('admin/show.png'), {:controller => 'content', :action => 'list', "search[user_id]" => user.id} %></td>
       <td class="operation"><%= link_to_edit user %></td>
       <td class="operation last"><%= link_to_destroy user %></td>    
     </tr>  

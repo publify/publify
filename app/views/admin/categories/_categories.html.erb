@@ -2,13 +2,17 @@
   <tr class="first">
     <th><%= _("Title") %></th>
     <th><%= _("Posts") %></th>
+    <th><%= _("View") %></th>
     <th><%= _("Edit") %></th>
     <th><%= _("Delete") %></th>
   </tr>
+  <%= render_void_table(@categories.size, 5)  %>
+  
   <% for category in @categories -%>
   <tr <%= alternate_class -%> id="category_<%= category.id -%>">
     <td><%= link_to_permalink category, category.name %></td>
-    <td><%= link_to pluralize(category.articles.size, 'article'), {:controller => 'content', :action => 'list', "search[category]" => category.id} %></td>
+    <td><%= pluralize(category.articles.size, 'article') %></td>
+    <td class="operation"><%= link_to image_tag('admin/show.png'), {:controller => 'content', :action => 'list', "search[category]" => category.id} %></td>
     <td class="operation"><%= link_to_edit category %></td>
     <td class="operation"><%= link_to_destroy category %></td>
   </tr>  
