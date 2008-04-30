@@ -1,10 +1,8 @@
 <% @page_heading = _("Comments and Trackbacks for") + " #{ this_blog.settings['blog_name'] }" %>
 
 <% content_for('tasks') do %>
-  <li><%= link_to _("all feedback"), {:controller => 'feedback'}, :class => all_feedback %></li>
+  <%= task_showmod(count_unconfirmed, "Unapproved comments", limit_to_unconfirmed) %>
   <%= task_showmod(count_spam , "Limit to spam", limit_to_spam) %>
-  <%= task_showmod(count_unconfirmed, "Limit to unconfirmed", limit_to_unconfirmed) %>
-  <%= task_showmod(count_unconfirmed_spam, "Limit to unconfirmed spam", limit_to_unconfirmed_spam) %>
   <%= tab _("Blacklist"), :controller=>"blacklist", :action=>"index" %>
 <% end %>
 

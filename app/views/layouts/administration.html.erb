@@ -7,7 +7,8 @@
                 <meta http-equiv="imagetoolbar" content="no" />
                 <%= javascript_include_tag :fckeditor %>
                 <%= stylesheet_link_tag "administration.css" %>
-                <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo" %>
+                <%= stylesheet_link_tag "lightbox.css" %>
+                <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox" %>
         </head>
 
         <body>
@@ -17,7 +18,7 @@
             <%= content_tag :li, (link_to image_tag("../images/admin/typologo.png", :alt => "Typo") + _("Typo"), {:controller=>"dashboard", :action => 'index'}, :class=>class_dashboard) %>
             <%= content_tag :li, (link_to _("Write"), {:controller=>"content", :action => 'new'}, :class=>class_write) %>
             <%= content_tag :li, (link_to _("Manage"), {:controller=>"content", :action => 'index'}, :class=>class_manage) %>
-            <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index'}, :class=>class_feedback) %>
+            <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index', :confirmed => 'f', :published => ''}, :class=>class_feedback) %>
             <%= content_tag :li, (link_to _("Themes"), {:controller=>"themes", :action => 'index'}, :class=>class_themes) %>
             <%= content_tag :li, (link_to _("Plugins"), {:controller=>"sidebar", :action => 'index'}, :class=>class_plugins) %>
             <%= content_tag :li, (link_to _("Users"), {:controller=>"users", :action => 'index'}, :class=>class_users) %>

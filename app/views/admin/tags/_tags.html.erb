@@ -1,20 +1,20 @@
 <table cellspacing="1" cellpadding="0">
-<tr>
-  <th class="first"><%= order_link "Display Name", 'admin/tags', 'list', 'display_name'%></th>
-  <th><%= order_link "Name", 'admin/tags', 'list', 'name' %></th>
-  <th><%= order_link _("Articles"), 'admin/tags', 'list', 'article_counter' %></th>
+<tr class="first">
+  <th><%= _("Display Name") %></th>
+  <th><%= _("Name") %></th>
+  <th><%= _("Articles") %></th>
   <th><%= _("View")%></th>
   <th><%= _("Edit")%></th>
-  <th class="last"><%= _("Delete")%></th>
+  <th><%= _("Delete")%></th>
 </tr>
 <% for tag in @tags %>
 <tr <%= alternate_class %>>
-  <td class="first"> <%= tag.display_name %></td>
+  <td> <%= tag.display_name %></td>
   <td><%= tag.name %></td>
   <td><%= tag.article_counter %></td>
   <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View tags", :title => "Preview tags"), {:action => "show", :id => tag.id} %></td>
   <td class="operation"><%= link_to_edit tag %></td>
-  <td class="operation last"><%= link_to_destroy tag %></td>    
+  <td class="operation"><%= link_to_destroy tag %></td>    
 </tr>  
 <% end %>
 </table>

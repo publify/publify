@@ -1,24 +1,48 @@
+<% form_tag({:action => 'index'}, :method => :get, :name => 'search') do %>
 <table cellspacing="1" cellpadding="0">
-<tr>
-  <th class="first"><%= order_link "Title", 'admin/pages', 'list', 'title'%></th>
-  <th><%= _("Permalink")%></th>
-  <th><%= order_link "Date", 'admin/pages', 'list', 'created_at' %></th>
-  <th><%= _("Author")%></th>
-  <th><%= order_link _("Status"), 'admin/pages', 'list', 'state' %></th>
-  <th><%= _("View")%></th>
-  <th><%= _("Edit")%></th>
-  <th class="last"><%= _("Delete")%></th>
-</tr>
-<% for page in @pages %>
-<tr <%= alternate_class %>>
-  <td class="first"> <%= link_to_permalink(page,page.title) %></td>
-  <td>/pages/<%= page.name %></td>
-  <td><%= page.created_at.strftime("%d/%m/%Y at %H:%M") %></td>
-  <td><%= author_link(page)  %></td>
-  <td class="operation"><%= (page.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
-  <td class="operation"><%= link_to image_tag('admin/show.png', :alt => "View page", :title => "Preview page"), {:action => "show", :id => page.id} %></td>
-  <td class="operation"><%= link_to_edit page %></td>
-  <td class="operation last"><%= link_to_destroy page %></td>    
-</tr>  
+  <tr class="first">
+    <th><%= _("Title") %></th>
+    <th><%= _("Permalink")%></th>
+    <th><%= _("Date") %></th>
+    <th><%= _("Author")%></th>
+    <th><%= _("Status") %></th>
+    <th><%= _("Preview")%></th>
+    <th><%= _("Edit")%></th>
+    <th><%= _("Delete")%></th>
+  </tr>
+  <tr class="menubar">
+    <td colspan=2>&nbsp;</td>
+    <td>
+    <%= collection_select_with_current(:search, :published_at, Page.find_by_published_at, "publication", "publication", @search[:published_at].to_s, true) %>      
+    </td>
+    <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
+    <td>
+      <select name="search[published]">
+        <option value="">Please select</option>
+        <option value="0">Unpublished</option>
+        <option value="1">Published</option>
+      </select>
+    </td>
+    <td colspan="3"><input type="submit" value="Filter" />
+  </tr>
+  <% for page in @pages %>
+  
+  <tr <%= alternate_class %>>
+    <td><%= link_to_permalink(page, page.title) %></td>
+    <td><%= page.name%></td>
+    <td><%= page.created_at.strftime('%d/%m/%Y at %H:%M') %></td>
+    <td><%= author_link(page) %></td>
+    <td class="operation">
+    <% if page.published? %>
+    <%= image_tag('admin/checked.png', :alt => "online", :title => _("Online")) %>
+    <% else %>
+    <%= image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline"))  %>
+    <% end %>
+    </td>
+    <td class='operation'><%= link_to image_tag('admin/show.png', :alt => 'View page', :title => 'Preview page'), {:action => 'show', :id => page.id} %></td>
+    <td class='operation'><%= link_to_edit page %></td>
+    <td class='operation'><%= link_to_destroy page %></td>
+  </tr>
+  <% end %>
+  </table>
 <% end %>
-</table>

@@ -26,13 +26,6 @@ describe Admin::CategoriesController do
       :attributes => { :id => "category_container" }
   end
 
-  def test_show
-    get :show, 'id' => categories(:software).id
-    assert_template 'show'
-    assert_template_has 'category'
-    assert_valid assigns(:category)
-  end
-
   def test_create
     num_categories = Category.count
 
@@ -90,7 +83,7 @@ describe Admin::CategoriesController do
     assert_tag :tag => "table",
       :children => { :count => Category.count + 1,
         :only => { :tag => "tr",
-          :children => { :count => 6,
+          :children => { :count => 4,
             :only => { :tag => /t[dh]/ } } } }
   end
 

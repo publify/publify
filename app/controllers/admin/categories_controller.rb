@@ -9,10 +9,6 @@ class Admin::CategoriesController < Admin::BaseController
     @categories = Category.find(:all, :order => :position)
   end
 
-  def show
-    @category = Category.find(params[:id])
-  end
-
   def new
     @category = Category.new(params[:category])
 

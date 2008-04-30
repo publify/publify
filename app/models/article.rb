@@ -207,6 +207,10 @@ class Article < Content
     find_all_by_date(year, month, day).first
   end
 
+  def self.find_by_published_at
+    find_by_sql("SELECT date_format(published_at, '%Y-%m') AS publication FROM contents WHERE published_at > 0 GROUP BY publication")
+  end
+
   def self.date_from(params_hash)
     params_hash[:article_year] \
       ? params_hash.values_at(:article_year, :article_month, :article_day, :article_id) \

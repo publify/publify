@@ -72,7 +72,7 @@ class Admin::ResourcesController < Admin::BaseController
   def list
     @r = Resource.new
     @itunes_category_list = @r.get_itunes_categories
-    @resources_pages, @resources = paginate :resource, :per_page => 15, :order_by => "created_at DESC", :parameter => 'page'
+    @resources_pages, @resources = paginate :resource, :per_page => 20, :order_by => "created_at DESC", :parameter => 'page'
   end
 
   def index

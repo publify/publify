@@ -21,6 +21,11 @@ class Page < Content
     )
   end
 
+  def self.find_by_published_at
+    find_by_sql("SELECT date_format(created_at, '%Y-%m') AS publication FROM contents WHERE type = 'Page' GROUP BY publication")
+  end
+
+
   def edit_url
     blog.url_for(:controller => "/admin/pages", :action =>"edit", :id => id)
   end

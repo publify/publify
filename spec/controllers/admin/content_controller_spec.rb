@@ -34,8 +34,6 @@ describe Admin::ContentController do
     assert_template_has 'article'
     assert_valid assigns(:article)
     assert_not_nil assigns(:article)
-    assert_not_nil assigns(:categories)
-    assert_not_nil assigns(:resources)
   end
 
   def test_new
@@ -167,32 +165,6 @@ describe Admin::ContentController do
     }
   end
 
-  def test_category_add
-    art_id = contents(:article1).id
-    get :category_add, :id => art_id, :category_id => categories(:software).id
-
-    assert_template '_show_categories'
-    assert_valid assigns(:article)
-    assert_valid assigns(:category)
-    assert Article.find(art_id).categories.include?(categories(:software))
-    assert_not_nil assigns(:article)
-    assert_not_nil assigns(:category)
-    assert_not_nil assigns(:categories)
-  end
-
-  def test_category_remove
-    art_id = contents(:article1).id
-    get :category_remove, :id => art_id, :category_id => categories(:software).id
-
-    assert_template '_show_categories'
-    assert_valid assigns(:article)
-    assert_valid assigns(:category)
-    assert !Article.find(art_id).categories.include?(categories(:software))
-    assert_not_nil assigns(:article)
-    assert_not_nil assigns(:category)
-    assert_not_nil assigns(:categories)
-  end
-
   def test_resource_add
     art_id = contents(:article1).id
     get :resource_add, :id => art_id, :resource_id => resources(:resource1).id
@@ -217,24 +189,6 @@ describe Admin::ContentController do
     assert_not_nil assigns(:article)
     assert_not_nil assigns(:resource)
     assert_not_nil assigns(:resources)
-  end
-
-  def test_attachment_box_add
-    get :attachment_box_add, :id => 2
-    assert_template '_attachment'
-    #assert_tag :tag => 'script'
-  end
-
-  def test_resource_container
-    get :show, :id => contents(:article1).id # article without attachments
-    Resource.find(:all).each do |resource|
-      assert_tag( :tag => 'a',
-                  :attributes =>{
-                    :onclick =>
-                      /^new Ajax.Updater\('resources/
-                  },
-                  :content => /[-+] #{resource.filename}/)
-    end
   end
 
   it 'should return foo for keywords fo' do

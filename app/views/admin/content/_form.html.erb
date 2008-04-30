@@ -1,97 +1,79 @@
 <%= error_messages_for 'article' %>
 <!--[form:articles]-->
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
-<fieldset class="set admin" style="display: block">
-  <legend><%= _("Write post") %></legend>
-  <div <%='style="width: 48%; float: left;"' if this_blog.editor == 1 %>>
-     <ul>
-       <li>
-          <label for="article_title" class="block"><%= _("Title")%>:</label>
-          <%= text_field 'article', 'title', :class => 'large' %>
-       </li>
-       <li>
-          <label for="article_body"><%= _("Post")%>:</label>
-          <%= markup_help_popup @article.text_filter, image_tag('admin/help.png', :alt => "markup help", :title => "Markup Help") %>
-          <%= t_textarea 'article', 'body', {:height => '300', :style => 'width : 100%'} %>
-       </li>
-       <li class="paginate l">
-          <label for="article_extended">
-          <%= link_to_function _("Optional Extended Content") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.2) } %>
-          </label>
-          <p id="extended" <%= "style='display: none;'" if @article.extended.blank? %>>
-            <%= t_textarea 'article', 'extended', :height => '450', :style => 'width : 90%' %>
-          </p>
-       </li>
-       <li class="paginate l">
-          <label for="categories" class="block">
-            <%= link_to_function _("Categories") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "categories", :duration => 0.2) } %>
-          </label>
-          <select id="categories" class="large" name="categories[]" multiple="multiple" size="10" <%= "style='display:none;'" if @article.categories.blank? %>>
-             <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
-          </select>
-       </li>
-       <li class="paginate l">
-          <label class="block" for="article_keywords">
-           <%= link_to_function _("Tags") + " (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "tags", :duration => 0.2); page.toggle(:tags) } %>
-          </label>
-          <p id="tags" <%= "style='display: none;'" if @article.keywords.blank? %>>
-            <%= text_field 'article', 'keywords', {:autocomplete => 'off', :style => 'width: 90%;'} %>
-            <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
-          </p>
+<ul class="set admin">
+  <li>
+    <label for="article_title" class="block title"><%= _("Title")%></label>
+    <%= text_field 'article', 'title', :class => 'large' %>
+  </li>
+  <li>
+    <label for="article_body" class="block content"><%= _("Content")%></label>
+    <%= t_textarea 'article', 'body', {:height => '300', :class => 'large'} %>
+  </li>
+  <li>
+    <label class="block r" for="article_extended">
+      <%= link_to_function _("Add Extended Content") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.2) } %>
+    </label>
+    <ul>
+      <li id="extended" <%= "style='display: none;'" if @article.extended.blank? %>>
+        <%= t_textarea 'article', 'extended', :height => '450', :class => 'large' %>
       </li>
-      <li class="paginate l">
-        <label class="block">
-          <%= link_to_function _("Publishing options") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
-        </label>
-        <div id="publishing_options" <%= "style='display: none;'" unless @article.published.blank? %> >
-          <p>
-           <label for="article_published_at" class="float"><%= _("Publish at")%>:</label>
-           <%= datetime_select 'article', 'published_at', :include_blank => true  %>
-         </p>
-         <p>
-          <label for="article_published" class="float"><%= _("Online")%>:</label>
-          <%= check_box 'article', 'published'  %>
-        </p>
-        </div>
+    </ul>
+  </li>
+  <li style="margin-bottom: 20px;">
+    <label class="block tags" for="article_keywords"><%= _("Tags") %></label>
+        <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large'} %>
+        <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
+  </li>
+  <li class="paginate l">
+    <label for="categories" class="block">
+      <%= link_to_function _("Categories") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "categories", :duration => 0.2) } %>
+    </label>
+    <select id="categories" class="large" name="categories[]" multiple="multiple" size="10" <%= "style='display:none;'" if @article.categories.blank? %>>
+      <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
+    </select>
+  </li>
+  <li class="paginate l">
+    <label class="block">
+      <%= link_to_function _("Uploads") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "uploads", :duration => 0.2) } %>
+    </label>
+    <ul>
+      <li id="uploads" <%= 'style="display: none"' unless @article.resources.count > 0 %>>
+        <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
       </li>
-     </ul>
-     <p class="r"><%= save(_("Save") + " &raquo;") %></p>
-  </div>
-    <% if this_blog.editor == 1 %>
-    <iframe id="preview" class="post" style="display: block;"></iframe>
-  <br style ="clear: both"/>
-    <% end %>
-</fieldset>
-
-<fieldset class="set admin">
-  <legend><%= _("Upload")%></legend>
-  <div id="attachments">
-    <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
-  </div>
-</fieldset>
-
-<fieldset class="set admin">
-  <legend><%= _("Options")%></legend>
-  <ul>
-    <li><%= _("These are advanced options. Only experimented users should use them")%>.</li>
-    <li class="paginate l">
-      <label for="article_permalink" class="block">
-        <%= link_to_function _("Permalink") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "article_permalink", :duration => 0.2) } %>
-      </label>
-      <%= text_field 'article', 'permalink', :style => 'width: 90%;' + "display:none;" if @article.keywords.blank?  %>
-    </li>     
-     
-     <li class="checkbox">
-       <label for="article_allow_comments" class="float"><%= _("Allow comments") %>: </label>
-       <%= check_box 'article', 'allow_comments'  %>
-     </li>
-     <li class="checkbox">
-        <label for="article_allow_pings" class="float"><%= _("Allow trackbacks")%>: </label>
-        <%= check_box 'article', 'allow_pings'  %>
-     </li>
+    </ul>
+  </li>
+  <li class="paginate l">
+    <label class="block">
+      <%= link_to_function _("Post settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
+    </label>
+    <ul>
+      <li id="publishing_options" <%= "style='display: none;'" unless @article.published.blank? %> >
+        <ul>
+          <li>
+            <label for="article_published_at" class="float"><%= _("Publish at")%>:</label>
+            <%= datetime_select 'article', 'published_at', :include_blank => true  %>            
+          </li>
+          <li>
+            <label for="article_published" class="float"><%= _("Online")%>:</label>
+            <%= check_box 'article', 'published'  %>
+          </li>
+          <li>
+            <label for="article_permalink" class="float"><%= _("Permalink") %></label>
+            <%= text_field 'article', 'permalink' %>
+          </li>     
+          <li class="checkbox">
+            <label for="article_allow_comments" class="float"><%= _("Allow comments") %>: </label>
+            <%= check_box 'article', 'allow_comments'  %>
+          </li>
+          <li class="checkbox">
+            <label for="article_allow_pings" class="float"><%= _("Allow trackbacks")%>: </label>
+            <%= check_box 'article', 'allow_pings'  %>
+          </li>
+        </ul>
         <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
-  </ul>
-</fieldset>
-
-
+      </li>
+    </ul>
+  </li>
+</ul>
 <!--[eoform:articles]-->

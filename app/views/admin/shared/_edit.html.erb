@@ -1,9 +1,7 @@
 <% form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data") do %>
   <%= render :partial => "form" %>
 
-  <div id="operations" class="paginate">
-    <p class="r"><%= save(_("Save") + " &raquo;") %></p>
-  </div>
+  <p class="r paginate"><%= cancel %> <%= _("or") %> <%= save(_("Save") + " &raquo;") %></p>  
 
 <% end %>
 

@@ -16,7 +16,10 @@ class Admin::TagsController < Admin::BaseController
       order = 'display_name ASC'
     end
     
-    @tags = Tag.find_all_with_article_counters(10000, order)
+    count = Tag.count
+    @tags_pages = Paginator.new(self, count, 20, params[:id])
+    @tags = Tag.find_all_with_article_counters(20 , order, @tags_pages.current.offset)
+
   end
   
   def edit

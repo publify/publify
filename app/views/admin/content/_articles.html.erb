@@ -1,18 +1,37 @@
+<% form_tag({:action => 'index'}, :method => :get, :name => 'article') do %>
 <table>
-<tr>
-  <th class="first"><%= order_link "Title", 'admin/content', 'list', 'title' %></th>
+<tr class="first">
+  <th><%= _("Title") %></th>
   <th><%= _("Categories") %></th>
-  <th><%= _("Comments")%></th>
-  <th><%= order_link "Date", 'admin/content', 'list', 'created_at' %></th>
+  <th><%= _("Feedback")%></th>
+  <th><%= _("Date") %></th>
   <th><%= _("Author")%></th>
-  <th><%= order_link _("Status"), 'admin/content', 'list', 'state' %></th>
-  <th><%= _("View")%></th>
+  <th><%= _("Status") %></th>
+  <th><%= _("Preview")%></th>
   <th><%= _("Edit")%></th>
-  <th class="last"><%= _("Delete")%></th>
+  <th><%= _("Delete")%></th>
+</tr>
+<tr class="menubar">
+  <td>&nbsp;</td>
+   <td><%= collection_select_with_current('search', 'category', @categories, "id", "name", @search[:category].to_i, true)
+  %></td>
+  <td></td>
+  <td>
+    <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
+  </td>
+  <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
+  <td>
+    <select name="search[published]">
+      <option value="">Please select</option>
+      <option value="0">Unpublished</option>
+      <option value="1">Published</option>
+    </select>
+  </td>
+  <td colspan="3"><input type="submit" value="Filter" />
 </tr>
 <% for article in @articles %>
 <tr <%= alternate_class %>>
-  <td class="first"> <%= link_to_permalink article, h(article.title) %></td>
+  <td> <%= link_to_permalink article, h(article.title) %></td>
   <td><%= article.categories.map { |c| link_to h(c.name), {:controller => 'admin/categories', :action => 'show', :id => c.id}}.join(", ") %></td>
   <td><%= link_to _(pluralize(article.comments.size, 'comments')), :controller => '/admin/comments', :article_id => article.id, :action => 'list' %></td>
   <td><%= article.published_at.strftime("%d/%m/%Y at %H:%M") %></td>
@@ -20,7 +39,8 @@
   <td class="operation"><%= (article.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
   <td class="operation"><%= link_to_show article %></td>
   <td class="operation"><%= link_to_edit article %></td>
-  <td class="operation last"><%= link_to_destroy article %></td>
+  <td class="operation"><%= link_to_destroy article %></td>
 </tr>
 <% end %>
 </table>
+<%end%>

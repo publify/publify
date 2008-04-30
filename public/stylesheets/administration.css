@@ -10,7 +10,7 @@ body {
   margin:0;
   padding:0;
 /*  font: 12px Tahoma, Helvetica, sans-serif; */
-	font: 0.75em "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 0.75em "HelveticaNeue", Helvetica, Arial, sans-serif;
   line-height: 1.8em;
   color: #000;
   background: #fff;
@@ -236,27 +236,23 @@ th.operation {
   width: 100%;
 	border-spacing: 0;
 	border-bottom: #ddd 1px solid;
+	border-collapse: collapse
+}
+
+.list table tr.first {
+	border-bottom: #324e79 1px solid;
+	padding-bottom: 5px;
 }
 
 .list table th {
-	background: url("../images/admin/table-header.png") #324e79 repeat-x;
   text-align: left;
-  font-weight: bold;
   padding: 2px 5px;
-/*  border-bottom: 4px solid #ccc; */
-  color: #fff;
-	height: 24px;
+  color: #324e79;
+	font-size: 12px;
 }
 
-.list table th.first {
-	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
-}
-
-.list table th.last {
-	background: url("../images/admin/table-header-last.png") #324e79 top right no-repeat;
-}
 .list table th a {
-	color: #fff;
+	color: #324e79;
 	text-decoration: underline;
 }
 
@@ -264,20 +260,12 @@ th.operation {
   padding: 3px;
 }
 
-.list table tr td.first {
-  border-left: #ddd 1px solid;
-}
-
-.list table tr td.last {
-  border-right: #ddd 1px solid;
-}
-
 .list table tr td a {
 	color: #224272;
 }
 
 tr.shade {
-  background: #f7f7f7;
+  background: #f0f0f0;
 }
 
 li.shade {
@@ -314,25 +302,6 @@ td.paginate {
   padding: 5px;
 }
 
-/*
- input {
-  font-size: 1em;
-  letter-spacing: 0.02em;
-  border:1px solid #999;
-  color: #666;
-}
-*/
-/*
-.form textarea {
-  width: 350px;
-  line-height: 1.1em;
-  font-size: 1em;
-  letter-spacing: 0.02em;
-  word-spacing: 0.05em;
-  border:1px solid #999;
-}
-*/
-
 #blog_name {
   font-size: 130%;
 }
@@ -362,8 +331,8 @@ td.paginate {
 .admin input,
 .admin select,
 .admin textarea {
-	font: 12px "Trebuchet MS", Helvetica, sans-serif;
-	border: 1px solid #224272;
+	font: 12px Helvetica, sans-serif;
+	border: 1px solid #b0b0b0;
 	color: #000;
 	padding: 3px;	
 }
@@ -374,12 +343,12 @@ td.paginate {
 #page_form input.large,
 #page_form textarea.large ,
 #page_form select.large {
-	width: 100%;
+	width: 99%;
 }
 
 #article_form input#article_title,
-#page_form input#article_title {
-	font: 14px "Trebuchet MS", Helvetica, sans-serif;
+#page_form input#page_title {
+	font-size: 1.7em;
 }
 
 #article_form label,
@@ -389,6 +358,11 @@ td.paginate {
 
 #article_form select.large option {
 	padding: 3px;
+}
+
+legend {
+        font-size: 16px;
+        color: #224272;
 }
 
 /* OK */
@@ -414,11 +388,6 @@ td.paginate {
   padding: 0 10px 5px 10px;
   margin-bottom: 10px;
   position: relative;
-}
-
-legend {
-	font: 16px "Trebuchet MS", Helvetica, sans-serif;
-	color: #224272;
 }
 
 .admin ul {
@@ -454,6 +423,20 @@ legend {
 
 .admin label.block {
   display: block;
+}
+
+.admin label.title {
+	font-size: 1.7em;
+}
+
+.admin label.content {
+	font-size: 1.4em;
+	margin-top: 0.5em;
+}
+
+.admin label.tags {
+	font-size: 1.4em;
+	margin-top: 0;
 }
 
 .admin input.float {
@@ -865,7 +848,7 @@ input.submit {
   font-weight: bold
 }
 
-/* Dashboard */
+/* oard */
 
 .dashboard-small {
 	width: 23%;
@@ -959,7 +942,7 @@ hr {
 }
 
 #theme_list h3 {
-	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
+	background: url("../images/admin/table-header-first.png") #324e79 top left  no-repeat;
 	color: #fff;
   cursor: move;
   font-size: 13px;
@@ -971,13 +954,15 @@ hr {
 
 li.paginate {
   margin-bottom: 15px;
-  border-left: #ddd 5px solid;
+  border-left: #b0b0b0 5px solid;
 }
+
 div.auto_complete {
   width: 350px;
   background: #fff;
   z-index: 20;
 }
+
 div.auto_complete ul {
   border:1px solid #888;
   margin:0;
@@ -985,15 +970,32 @@ div.auto_complete ul {
   width:100%;
   list-style-type:none;
 }
+
 div.auto_complete ul li {
   margin:0;
   padding:3px;
 }
+
 div.auto_complete ul li.selected {
   background-color: #ffb;
 }
+
 div.auto_complete ul strong.highlight {
   color: #800; 
   margin:0;
   padding:0;
 }
+
+.hidden {
+	display: none;
+}
+
+tr.menubar {
+	background : #bbb;
+}
+
+
+/* Menu déroulant */
+
+
+

@@ -31,7 +31,7 @@ class Tag < ActiveRecord::Base
 
   before_save :ensure_naming_conventions
 
-  def self.find_all_with_article_counters(limit = 20, orderby='article_counter DESC')
+  def self.find_all_with_article_counters(limit=20, orderby='article_counter DESC', start=0)
     # Only count published articles
     self.find_by_sql([%{
       SELECT tags.id, tags.name, tags.display_name, COUNT(articles_tags.article_id) AS article_counter
@@ -42,8 +42,8 @@ class Tag < ActiveRecord::Base
       WHERE articles.published = ?
       GROUP BY tags.id, tags.name, tags.display_name
       ORDER BY #{orderby} 
-      LIMIT ?
-      },true, limit]).each{|item| item.article_counter = item.article_counter.to_i }
+      LIMIT ?, ? 
+      },true, start, limit]).each{|item| item.article_counter = item.article_counter.to_i }
   end
 
   def self.find_by_permalink(*args)

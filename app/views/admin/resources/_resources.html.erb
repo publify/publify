@@ -1,6 +1,6 @@
-<table cellspacing="1" cellpadding="0">
-<tr>
-  <th class="first"><%= _("Filename")%> <small>(<%= _('right-click for link')%>)</small></th>
+<table>
+<tr class="first">
+  <th><%= _("Filename")%> <small>(<%= _('right-click for link')%>)</small></th>
   <th><%= _("Content Type")%></th>
   <th><%= _("MetaData")%></th>
   <th><%= _("File Size")%></th>
@@ -10,7 +10,7 @@
 <% blog_root = request.relative_url_root -%>
 <% for upload in resources -%>
 <tr <%= alternate_class -%>>
-  <td class="first"><%= link_to "#{upload.filename}", "#{blog_root}/files/#{upload.filename}" -%></td>
+  <td><%= link_to "#{upload.filename}", "#{blog_root}/files/#{upload.filename}" -%></td>
   <td>
     <%= task_edit_resource_mime(upload.mime, upload.id) %>
     <div id="edit-resource-mime-<%= upload.id %>" style="display:none;position:absolute;">
@@ -34,7 +34,7 @@
   <% end -%>
   <td><%=h upload.size rescue 0 -%> bytes</td>
   <td><%=h upload.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
-  <td class="operation last"><%= link_to_destroy upload -%></td>    
+  <td class="operation"><%= link_to_destroy upload -%></td>    
 </tr>  
 <% end -%>
 </table>

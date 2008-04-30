@@ -59,7 +59,8 @@ module Admin::BaseHelper
 
   def link_to_show(record, controller = @controller.controller_name)
     link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), 
-      :controller => controller, :action => 'show', :id => record.id
+      {:controller => controller, :action => 'show', :id => record.id}, 
+      {:class => "lbOn"}
   end
 
   def link_to_edit(record, controller = @controller.controller_name)
@@ -197,11 +198,7 @@ module Admin::BaseHelper
     "current"
     end
   end
-  
-  def order_link(title, controller, action, order)
-    link_to _(title), :controller => controller, :action => action, :order => order, :sense => (params[:sense] and params[:sense] == 'asc') ?  'desc' : 'asc'
-  end
-  
+
   def t_textarea(object_name, method, options)
     if this_blog.editor == 2
       fckeditor_textarea(object_name, method, options)
@@ -209,4 +206,22 @@ module Admin::BaseHelper
       text_area(object_name, method, options)
     end
   end
+  
+  def collection_select_with_current(object, method, collection, value_method, text_method, current_value, prompt=false)
+    result = "<select name='#{object}[#{method}]'>\n" 
+      
+    if prompt == true
+      result << "<option value=''>Please select</option>"
+    end
+    for element in collection
+      if current_value and current_value == element.send(value_method)
+        result << "<option value='#{element.send(value_method)}' selected='selected'>#{element.send(text_method)}</option>\n" 
+      else
+        result << "<option value='#{element.send(value_method)}'>#{element.send(text_method)}</option>\n" 
+      end
+    end
+    result << "</select>\n" 
+    return result
+  end
+
 end
