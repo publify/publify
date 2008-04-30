@@ -7,7 +7,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def list
-    conditions = "parent_id = 0"
+    conditions = "id > 0"
 
     if params[:search]
       @search = params[:search]
@@ -57,7 +57,6 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
     @page.text_filter ||= this_blog.text_filter
-    @page.parent_id ||= 0
     if request.post? 
       if @page.name.blank?
         @page.name = @page.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url 

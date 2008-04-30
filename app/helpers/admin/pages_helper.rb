@@ -7,11 +7,7 @@ module Admin::PagesHelper
   
   def display_page_row(page)
     result = "<tr alternate_class>\n"
-    if page.parent_id == 0
-      result << "<td>#{link_to_permalink(page,page.title)}</td>\n"
-    else
-      result << "<td>–––– #{link_to_permalink(page,page.title)}</td>\n"
-    end
+    result << "<td>#{link_to_permalink(page,page.title)}</td>\n"
     result << "<td>/pages/#{page.name}</td>\n"
     result << "<td>#{page.created_at.strftime('%d/%m/%Y at %H:%M')}</td>\n"
     result << "<td>#{author_link(page)}</td>\n"
