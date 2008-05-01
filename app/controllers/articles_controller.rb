@@ -57,7 +57,7 @@ class ArticlesController < ContentController
   ### Deprecated Actions ###
 
   def archives
-    @articles = Article.find_published(:order => 'published_at DESC')
+    @articles = Article.find_published
     @page_title = "Archives"
   end
 
