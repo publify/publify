@@ -27,7 +27,7 @@ class PageCache
     self.zap_pages('images/theme', 'stylesheets/theme', 'javascripts/theme')
   end
 
-  def self.zap_pages(*paths)
+  def self.zap_pages(paths)
     logger.debug "PageCache - About to zap: #{paths.inspect}"
     srcs = paths.inject([]) { |o,v|
       o + Dir.glob(public_path + "/#{v}")
