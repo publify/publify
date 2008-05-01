@@ -42,8 +42,8 @@ class Tag < ActiveRecord::Base
       WHERE articles.published = ?
       GROUP BY tags.id, tags.name, tags.display_name
       ORDER BY #{orderby} 
-      LIMIT ?, ? 
-      },true, start, limit]).each{|item| item.article_counter = item.article_counter.to_i }
+      LIMIT ? OFFSET ? 
+      },true, limit, start]).each{|item| item.article_counter = item.article_counter.to_i }
   end
 
   def self.merge(from, to)
