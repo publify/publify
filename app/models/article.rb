@@ -208,7 +208,7 @@ class Article < Content
   end
 
   def self.find_by_published_at
-    find_by_sql("SELECT date_format(published_at, '%Y-%m') AS publication FROM contents WHERE published_at > 0 GROUP BY publication")
+    super(:published_at)
   end
 
   def self.date_from(params_hash)

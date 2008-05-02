@@ -68,7 +68,7 @@ class ArticlesController < ContentController
     end
 
     set_headers
-    @comment = this_blog.comments.build(params[:comment])
+    @comment = Comment.new(params[:comment])
     @controller = self
   end
 
@@ -85,7 +85,7 @@ class ArticlesController < ContentController
   end
 
   def view_page
-    if(@page = Page.find_by_name(params[:name].to_a.join('/'), :conditions => "published = 1"))
+    if(@page = Page.find_by_name(params[:name])) && @page.published?
       @page_title = @page.title
     else
       render :nothing => true, :status => 404

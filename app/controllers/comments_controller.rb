@@ -24,7 +24,7 @@ class CommentsController < FeedbackController
     end
 
     set_headers
-    @comment = this_blog.comments.build(params[:comment])
+    @comment = Comment.new(params[:comment])
 
     render :template => 'articles/comment_preview'
   end

@@ -89,7 +89,7 @@ class Admin::PagesController < Admin::BaseController
 
   def preview
     headers["Content-Type"] = "text/html; charset=utf-8"
-    @page = this_blog.pages.build(params[:page])
+    @page = Page.new(params[:page])
     data = render_to_string(:layout => "minimal")
     data = Base64.encode64(data).gsub("\n", '')
     data = "data:text/html;charset=utf-8;base64,#{data}"

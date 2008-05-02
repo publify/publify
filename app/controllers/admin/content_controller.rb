@@ -15,7 +15,7 @@ class Admin::ContentController < Admin::BaseController
 
   def list
     # Filtering articles
-    conditions = "`contents`.id > 0"
+    conditions = "contents.id > 0"
     if params[:search]
       @search = params[:search]
 

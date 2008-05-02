@@ -22,7 +22,7 @@ class Page < Content
   end
 
   def self.find_by_published_at
-    find_by_sql("SELECT date_format(created_at, '%Y-%m') AS publication FROM contents WHERE type = 'Page' GROUP BY publication")
+    super(:created_at)
   end
 
 
