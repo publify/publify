@@ -47,7 +47,7 @@ class ContentController < ApplicationController
   end
 
   def auto_discovery_feed(options = { })
-    with_options(options.reverse_merge(:only_path => false)) do |opts|
+    with_options(options.reverse_merge(:only_path => true)) do |opts|
       @auto_discovery_url_rss = opts.url_for(:format => 'rss')
       @auto_discovery_url_atom = opts.url_for(:format => 'atom')
     end
