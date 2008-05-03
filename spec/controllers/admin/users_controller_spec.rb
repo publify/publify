@@ -47,7 +47,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
     assert_response :redirect, :action => 'list'
     follow_redirect
     assert_template 'list'
-    assert_valid assigns(:user)
+#    assert_valid assigns(:user)
   end
 
   def test_destroy
