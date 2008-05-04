@@ -37,7 +37,7 @@ describe 'Given the fixtures' do
 
   it 'A category knows its url' do
     categories(:software).permalink_url.should ==
-      'http://myblog.net/articles/category/software'
+      'http://myblog.net/category/software'
   end
 end
 

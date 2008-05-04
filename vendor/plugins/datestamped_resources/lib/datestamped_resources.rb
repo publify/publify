@@ -3,7 +3,8 @@ module ActionController
   module Resources
     class DatestampedResource < ::ActionController::Resources::Resource
       def path
-        @path ||= "#{path_prefix}/#{plural}"
+        # @path ||= "#{path_prefix}/#{plural}" replacing to get rid of articles
+        @path ||= "#{path_prefix}"
       end
 
       def member_path

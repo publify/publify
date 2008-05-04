@@ -19,12 +19,12 @@ describe 'ArticlesController' do
     controller.send(:reset_blog_ids)
   end
 
-  it "should redirect category to /articles/categories" do
+  it "should redirect category to /categories" do
     get 'category'
     response.should redirect_to(categories_path)
   end
 
-  it "should redirect tag to /articles/tags" do
+  it "should redirect tag to /tags" do
     get 'tag'
     response.should redirect_to(tags_path)
   end
@@ -61,12 +61,12 @@ describe ArticlesController, "feeds" do
     with_options(:year => 2007, :month => 10, :day => 11, :id => 'slug') { |item| item }
   end
 
-  specify "/articles/yyyy/mm/dd/slug.atom should be an atom feed" do
+  specify "/yyyy/mm/dd/slug.atom should be an atom feed" do
     scoped_getter.get 'index', :format => 'atom'
     response.should render_template("_atom_feed")
   end
 
-  specify "/articles/yyyy/mm/dd/slug.rss should be an rss20 feed" do
+  specify "/yyyy/mm/dd/slug.rss should be an rss20 feed" do
     scoped_getter.get 'index', :format => 'rss'
     response.should render_template("_rss20_feed")
   end

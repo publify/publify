@@ -136,7 +136,7 @@ class Blog < CachedModel
     when String then options # They asked for 'url_for "/some/path"', so return it unedited.
     when Hash
       unless RouteCache[options]
-        options.reverse_merge!(:only_path => true, :controller => '/articles',
+        options.reverse_merge!(:only_path => true, :controller => '',
                                :action => 'permalink')
         @url ||= ActionController::UrlRewriter.new(BlogRequest.new(self.base_url), {})
         RouteCache[options] = @url.rewrite(options)

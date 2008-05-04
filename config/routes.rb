@@ -81,13 +81,13 @@ ActionController::Routing::Routes.draw do |map|
     dated.connect 'trackback', :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
   end
 
-  map.inflected_resource(:categories, :path_prefix => '/articles')
-  map.inflected_resource(:authors, :path_prefix => '/articles')
-  map.inflected_resource(:tags, :path_prefix => '/articles')
+  map.inflected_resource(:categories, :path_prefix => '')
+  map.inflected_resource(:authors, :path_prefix => '')
+  map.inflected_resource(:tags, :path_prefix => '')
   map.resources(:feedback)
 
   # allow neat perma urls
-  map.connect 'articles/page/:page',
+  map.connect 'page/:page',
     :controller => 'articles', :action => 'index',
     :page => /\d+/
 
@@ -96,11 +96,16 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:conditions => {:method => :get}) do |get|
     get.with_options(date_options.merge(:controller => 'articles')) do |dated|
       dated.with_options(:action => 'index') do |finder|
-        finder.connect 'articles/:year/page/:page',
+        finder.connect ':year/page/:page',
           :month => nil, :day => nil, :page => /\d+/
-        finder.connect 'articles/:year/:month/page/:page',
+        finder.connect ':year/:month/page/:page',
           :day => nil, :page => /\d+/
-        finder.connect 'articles/:year/:month/:day/page/:page', :page => /\d+/
+        finder.connect ':year/:month/:day/page/:page', :page => /\d+/
+        finder.connect ':year',
+          :month => nil, :day => nil
+          finder.connect ':year/:month',
+            :day => nil
+          finder.connect ':year/:month/:day', :page => nil
       end
     end
 

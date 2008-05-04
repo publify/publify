@@ -46,8 +46,8 @@ describe 'Given loaded fixtures' do
     tags.last.article_counter.should == 1
   end
 
-  it 'permalink_url should be of form /articles/tag/<name>' do
-    Tag.get('foo').permalink_url.should == 'http://myblog.net/articles/tag/foo'
+  it 'permalink_url should be of form /tag/<name>' do
+    Tag.get('foo').permalink_url.should == 'http://myblog.net/tag/foo'
   end
   
   it "find_with_char('f') should be return foo" do

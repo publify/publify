@@ -96,6 +96,12 @@ class ArticlesController < ContentController
     render :text => TextFilter.find(params[:id]).commenthelp
   end
 
+  def strip_article
+    if request.request_uri =~ /articles\//
+      redirect_to request.request_uri.gsub('articles/', '')
+    end
+  end
+
   private
 
   def verify_config
@@ -107,7 +113,7 @@ class ArticlesController < ContentController
       return true
     end
   end
-
+  
   alias_method :rescue_action_in_public, :error
 
   def render_error(object = '', status = 500)
@@ -139,7 +145,7 @@ class ArticlesController < ContentController
       end
     end
   end
-
+  
   def formatted_date_selector(prefix = '')
     return '' unless params[:year]
     format = prefix

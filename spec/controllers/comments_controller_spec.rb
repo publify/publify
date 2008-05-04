@@ -10,8 +10,8 @@ describe CommentsController, "routes" do
       :article_id => 'slug', :action => action}
   end
 
-  it "should recognize GET /articles/2007/10/11/slug/comments" do
-    routes.recognize_path('/articles/2007/10/11/slug/comments', :method => :get).should ==
+  it "should recognize GET /2007/10/11/slug/comments" do
+    routes.recognize_path('/2007/10/11/slug/comments', :method => :get).should ==
       basic_result('index')
   end
 end
@@ -130,7 +130,7 @@ describe CommentsController, 'create' do
 
   it "should redirect to the article" do
     make_the_request
-    response.should redirect_to('/articles/2007/10/11/slug')
+    response.should redirect_to('/2007/10/11/slug')
   end
 end
 
@@ -156,18 +156,18 @@ end
 describe CommentsController, 'scoped index' do
   it_should_behave_like "All Requests"
 
-  it "GET /articles/2007/10/11/slug/comments should redirect to /articles/2007/10/11/slug#comments" do
+  it "GET 2007/10/11/slug/comments should redirect to /2007/10/11/slug#comments" do
     do_request :get, 'index'
-    response.should redirect_to("/articles/2007/10/11/slug#comments")
+    response.should redirect_to("/2007/10/11/slug#comments")
   end
 
-  it "GET /articles/2007/10/11/slug/comments.atom should return an atom feed" do
+  it "GET /2007/10/11/slug/comments.atom should return an atom feed" do
     do_request :get, 'index', :format => 'atom'
     response.should be_success
     response.should render_template("articles/_atom_feed")
   end
 
-  it "GET /articles/2007/10/11/slug/comments.rss should return an rss feed" do
+  it "GET /2007/10/11/slug/comments.rss should return an rss feed" do
     do_request :get, 'index', :format => 'rss'
     response.should be_success
     response.should render_template("articles/_rss20_feed")

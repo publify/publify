@@ -9,7 +9,7 @@ describe Comment do
 
   def test_permalink_url
     c = feedback(:old_comment)
-    assert_equal "http://myblog.net/articles/2004/05/01/inactive-article#comment-#{c.id}", c.permalink_url
+    assert_equal "http://myblog.net/2004/05/01/inactive-article#comment-#{c.id}", c.permalink_url
   end
 
   def test_edit_url

@@ -19,7 +19,7 @@ describe Article do
 
   def test_permalink_url
     a = contents(:article3)
-    assert_equal 'http://myblog.net/articles/2004/06/01/article-3', a.permalink_url
+    assert_equal 'http://myblog.net/2004/06/01/article-3', a.permalink_url
   end
 
   def test_edit_url

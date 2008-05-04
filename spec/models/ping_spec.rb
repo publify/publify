@@ -48,7 +48,7 @@ describe 'Given a post which references a pingback enabled article' do
     @mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(pingback_target)
     @mock_xmlrpc_response.should_receive(:call)\
       .with('pingback.ping',
-            %r{http://myblog.net/articles/\d{4}/\d{2}/\d{2}/test-the-pinging},
+            %r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging},
             referenced_url)
 
 
