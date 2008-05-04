@@ -83,7 +83,7 @@ class Article < Content
     {:year                         => published_at.year,
      :month                        => sprintf("%.2d", published_at.month),
      :day                          => sprintf("%.2d", published_at.day),
-     :controller                   => 'article',
+     :controller                   => 'articles',
      :action                       => 'show',
      (nesting ? :article_id : :id) => permalink}
   end
