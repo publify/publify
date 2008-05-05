@@ -79,12 +79,12 @@ module ContentHelper
 
   def next_link(article)
     n = article.next
-    return  n ? n.link_to_permalink("#{n.title} &raquo;") : ''
+    return  n ? link_to_permalink(n, "#{n.title} &raquo;") : ''
   end
 
   def prev_link(article)
     p = article.previous
-    return p ? n.link_to_permalink("&laquo; #{p.title}") : ''
+    return p ? link_to_permalink(p, "&laquo; #{p.title}") : ''
   end
 
   def render_to_string(*args, &block)
