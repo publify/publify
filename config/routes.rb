@@ -54,6 +54,11 @@ ActionController::Routing::Routes.draw do |map|
   # make rss feed urls pretty and let them end in .xml
   # this improves caches_page because now apache and webrick will send out the
   # cached feeds with the correct xml mime type.
+
+  map.xml 'articles.rss', 
+  :controller => 'articles', :action => 'index', :format => 'rss'
+  map.xml 'articles.atom', 
+  :controller => 'articles', :action => 'index', :format => 'atom'
   map.xml 'xml/itunes/feed.xml', :controller => 'xml', :action => 'itunes'
   map.xml 'xml/articlerss/:id/feed.xml', :controller => 'xml', :action => 'articlerss'
   map.xml 'xml/commentrss/feed.xml', :controller => 'xml', :action => 'commentrss'
@@ -96,6 +101,23 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:conditions => {:method => :get}) do |get|
     get.with_options(date_options.merge(:controller => 'articles')) do |dated|
       dated.with_options(:action => 'index') do |finder|
+        # old URL
+        finder.connect 'articles/:year/page/:page',
+          :controller => 'articles', :action => 'strip_article'
+        finder.connect 'articles/:year/:month/page/:page',
+          :controller => 'articles', :action => 'strip_article'
+        finder.connect 'articles/:year/:month/:day/page/:page', 
+          :controller => 'articles', :action => 'strip_article'
+        finder.connect 'articles/:year',
+          :controller => 'articles', :action => 'strip_article'
+        finder.connect 'articles/:year/:month',
+          :controller => 'articles', :action => 'strip_article'
+        finder.connect 'articles/:year/:month/:day',
+          :controller => 'articles', :action => 'strip_article'
+        finder.connect 'articles/:year/:month/:day/:id',
+          :controller => 'articles', :action => 'strip_article'
+
+        # new URL
         finder.connect ':year/page/:page',
           :month => nil, :day => nil, :page => /\d+/
         finder.connect ':year/:month/page/:page',

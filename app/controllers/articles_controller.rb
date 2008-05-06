@@ -97,9 +97,7 @@ class ArticlesController < ContentController
   end
 
   def strip_article
-    if request.request_uri =~ /articles\//
-      redirect_to request.request_uri.gsub('articles/', '')
-    end
+      redirect_to request.request_uri.gsub('articles/', ''), :status => 301
   end
 
   private
