@@ -96,10 +96,6 @@ class ArticlesController < ContentController
     render :text => TextFilter.find(params[:id]).commenthelp
   end
 
-  def strip_article
-      redirect_to request.request_uri.gsub('articles/', ''), :status => 301
-  end
-
   private
 
   def verify_config

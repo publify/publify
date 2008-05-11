@@ -7,15 +7,6 @@ module ContentHelper
          (min_class + ((max_class-min_class) * articles.to_f / max_articles).to_i).to_s)
   end
 
-  def link_to_grouping(grp)
-    link_to( grp.display_name, urlspec_for_grouping(grp),
-             :rel => "tag", :title => title_for_grouping(grp) )
-  end
-
-  def urlspec_for_grouping(grouping)
-    { :controller => "/articles", :action => grouping.class.to_prefix, :id => grouping.permalink }
-  end
-
   def title_for_grouping(grouping)
     "#{pluralize(grouping.article_counter, 'post')} with #{grouping.class.to_s.underscore} '#{grouping.display_name}'"
   end

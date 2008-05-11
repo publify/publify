@@ -86,6 +86,12 @@ ActionController::Routing::Routes.draw do |map|
     dated.connect 'trackback', :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
   end
 
+  # Redirects from old permalinks
+  map.connect "articles/:controler/:name",
+    :controller => 'redirect', :action => 'redirect'
+    map.connect "articles/:controler",
+      :controller => 'redirect', :action => 'redirect'
+
   map.inflected_resource(:categories, :path_prefix => '')
   map.inflected_resource(:authors, :path_prefix => '')
   map.inflected_resource(:tags, :path_prefix => '')
@@ -101,22 +107,6 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:conditions => {:method => :get}) do |get|
     get.with_options(date_options.merge(:controller => 'articles')) do |dated|
       dated.with_options(:action => 'index') do |finder|
-        # old URL
-        finder.connect 'articles/:year/page/:page',
-          :controller => 'articles', :action => 'strip_article'
-        finder.connect 'articles/:year/:month/page/:page',
-          :controller => 'articles', :action => 'strip_article'
-        finder.connect 'articles/:year/:month/:day/page/:page', 
-          :controller => 'articles', :action => 'strip_article'
-        finder.connect 'articles/:year',
-          :controller => 'articles', :action => 'strip_article'
-        finder.connect 'articles/:year/:month',
-          :controller => 'articles', :action => 'strip_article'
-        finder.connect 'articles/:year/:month/:day',
-          :controller => 'articles', :action => 'strip_article'
-        finder.connect 'articles/:year/:month/:day/:id',
-          :controller => 'articles', :action => 'strip_article'
-
         # new URL
         finder.connect ':year/page/:page',
           :month => nil, :day => nil, :page => /\d+/
