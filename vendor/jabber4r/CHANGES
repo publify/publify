@@ -1,8 +1,0 @@
-= Jabber4r Changelog
-
-== Version 0.8.0
-
-* Moved to Rakefile based on submitted patch by Aslak Hellesoy
-* Removed install.rb...gem only distribution from this point on
-* Added check for older version of REXML
-* Fixed unit tests with rakefile
