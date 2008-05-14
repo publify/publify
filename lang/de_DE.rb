@@ -403,7 +403,6 @@ Localization.define('de_DE') do |l|
   l.store "Jabber", "Jabber"
   l.store "Password Confirmation", "Passwort bestätigen"
   l.store "Send notification messages via email", "Benachrichtigung via Email schicken"
-  l.store "Send notification messages via jabber", "Benachrichtigung via Jabber schicken"
   l.store "Send notification messages when new articles are posted", "Benachrichtigung schicken, wenn neue Artikel veröffentlicht werden"
   l.store "Send notification messages when comments are posted", "Benachrichtigung schicken, wenn neue Kommentare eintreffen"
   
@@ -429,7 +428,6 @@ Localization.define('de_DE') do |l|
   #admin/user/show.rhtml
   l.store "User's articles", "Artikel des Benutzers"
   l.store "Notify via email", "Benachrichtigung via Email"
-  l.store "Notify via jabber", "Benachrichtigung via Jabber"
   l.store "Notify on new articles", "Benachrichtigung bei neuen Artikeln"
   l.store "Notify on new comments", "Benachrichtigung bei neuen Kommentaren"
   

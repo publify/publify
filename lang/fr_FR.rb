@@ -284,8 +284,6 @@ Localization.define('fr_FR') do |l|
   l.store "Source Email", "Adresse courriel source"
   l.store "Email address used by Typo to send notifications", "Adresse courriel utilisée par Typo pour l'envoi d'alertes"
   l.store "Jabber account", "Compte Jabber"
-  l.store "Jabber account to use when sending Jabber notifications", "Compte jabber à utiliser pour l'envoi d'alertes"
-  l.store "Jabber password", "Mot de passe Jabber"
   l.store "Spam protection", "Protection contre le spam"
   l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La protection contre le spam permettra à typo de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
   l.store "Enable spam protection", "Activer la protection contre le spam"
@@ -449,7 +447,6 @@ Localization.define('fr_FR') do |l|
   l.store "Jabber", "Jabber"
   l.store "Password Confirmation", "Confirmer le mot de passe"
   l.store "Send notification messages via email", "Envoyer des alertes par courriel"
-  l.store "Send notification messages via jabber", "Envoyer des alertes par Jabber"
   l.store "Send notification messages when new articles are posted", "Envoyer des alertes à la publication de nouveaux billets"
   l.store "Send notification messages when comments are posted", "Envoyer des alertes à la publication de nouveaux commentaires"
   
@@ -475,7 +472,6 @@ Localization.define('fr_FR') do |l|
   #admin/user/show.rhtml
   l.store "User's articles", "Articles publiés par cet utilisateur"
   l.store "Notify via email", "Cet utilisateur reçoit des alertes par courriel"
-  l.store "Notify via jabber", "Cet utilisateur reçoit des alertes par Jabber"
   l.store "Notify on new articles", "Cet utilisateur est alerté à la publication d'un nouveau billet"
   l.store "Notify on new comments", "Cet utilisateur est alerté à la publication d'un nouveau commentaire"
   

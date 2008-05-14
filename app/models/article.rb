@@ -275,14 +275,6 @@ class Article < Content
     end
   end
 
-  def notify_user_via_jabber(user)
-    if user.notify_via_jabber?
-      JabberNotify.send_message(user, _("New post"),
-                                _("A new message was posted to ") +  blog.blog_name,
-                                html(:body))
-    end
-  end
-
   def comments_closed?
     !(allow_comments? && in_feedback_window?)
   end

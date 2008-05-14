@@ -35,7 +35,6 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("mongrel_cluster", ">= 0.2.0")
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
-  s.add_dependency("xmpp4r", ">= 0.3.1")
 end
 
 Rake::GemPackageTask.new(spec) do |p|

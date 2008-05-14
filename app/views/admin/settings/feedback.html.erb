@@ -61,15 +61,6 @@
               <input name="setting[email_from]" size="25" id="email_from" type="text" value="<%= this_blog.email_from %>" />
               <span class="float"><%= _("Email address used by Typo to send notifications")%>.</span>
           </li>
-          <li>
-              <label for="jabber_address" class="float"><%=_("Jabber account")%>:</label>
-              <input name="setting[jabber_address]" size="20" id="jabber_address" type="text" value="<%= this_blog.jabber_address %>" />
-              <span class="float"><%= _("Jabber account to use when sending Jabber notifications") %>.</span>
-          </li>
-          <li>
-              <label class="float" for="jabber_password"><%= _("Jabber password")%>:</label>
-              <input name="setting[jabber_password]" size="20" id="jabber_password" type="password" value="<%= this_blog.jabber_password %>" />
-          </li>
       </ul>
   </fieldset>
 <%= render :partial => 'submit' %>

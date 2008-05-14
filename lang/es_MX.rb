@@ -406,7 +406,6 @@ Localization.define('es_MX') do |l|
   l.store "Password Confirmation", "Confirmar Contrase&ntilde;a"
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
   l.store "Send notification messages via email", "Enviar notificaciones por email"
-  l.store "Send notification messages via jabber", "Enviar notificaciones por Jabber"
   l.store "Send notification messages when new articles are posted", "Enviar notificaciones cuando un nuevo art&iacute;culo sea publicado"
   l.store "Send notification messages when comments are posted", "Enviar notificaciones cuando un nuevo comentario sea publicado"
   l.store 'this will be shown publicly if supplied', 'ser&aacute; mostrado p&uacute;blicamente si se introduce'
@@ -435,7 +434,6 @@ Localization.define('es_MX') do |l|
   #admin/user/show.rhtml
   l.store "User's articles", "Art&iacute;culos del usuario"
   l.store "Notify via email", "Notificar por email"
-  l.store "Notify via jabber", "Notificar por Jabber"
   l.store "Notify on new articles", "Notificar para nuevos art&iacute;culos"
   l.store "Notify on new comments", "Notificar para nuevos comentarios"
   

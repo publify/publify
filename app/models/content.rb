@@ -236,7 +236,6 @@ class Content < ActiveRecord::Base
 
   def send_notification_to_user(user)
     notify_user_via_email(user)
-    notify_user_via_jabber(user)
   end
 
   def really_send_notifications

@@ -98,11 +98,6 @@ describe 'Given a new blog' do
     @blog.email_from.should == 'typo@example.com'
   end
 
-  it 'Jabber address and password should be blank' do
-    @blog.jabber_address.should be_blank
-    @blog.jabber_password.should be_blank
-  end
-
   it '#is_okay should be false until #blog_name is explicitly set' do
     @blog.should_not be_configured
     @blog.blog_name = 'Specific blog name'

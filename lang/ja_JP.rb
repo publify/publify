@@ -438,7 +438,6 @@ Localization.define('ja_JP') do |l|
   l.store "Jabber", "Jabber"
   l.store "Password Confirmation", "パスワード確認"
   l.store "Send notification messages via email", "email経由で通知を送信"
-  l.store "Send notification messages via jabber", "jabber経由で通知を送信"
   l.store "Send notification messages when new articles are posted", "新しい記事が投稿された際に通知メッセージを送る"
   l.store "Send notification messages when comments are posted", "コメントが投稿された際に通知メッセージを送る"
 
@@ -464,7 +463,6 @@ Localization.define('ja_JP') do |l|
   #admin/user/show.rhtml
   l.store "User's articles", "ユーザーの記事"
   l.store "Notify via email", "email経由で通知"
-  l.store "Notify via jabber", "jabber経由で通知"
   l.store "Notify on new articles", "新しい記事を通知"
   l.store "Notify on new comments", "新しいコメントを通知"
 

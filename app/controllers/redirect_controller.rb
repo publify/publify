@@ -2,14 +2,8 @@ class RedirectController < ContentController
   session :off
 
   def redirect
-    
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    
     # Ugly way to manage redirects, anything better ?
     if (request.request_uri =~ /^\/articles/)
-      
-      puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-      
       redirect_to request.request_uri.gsub('/articles', ''), :status => 301
       return
     end

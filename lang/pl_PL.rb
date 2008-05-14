@@ -438,7 +438,6 @@ Localization.define('pl_PL') do |l|
   l.store "Jabber", "Jabber"
   l.store "Password Confirmation", "Potwierdzenie hasła"
   l.store "Send notification messages via email", "Wysyłaj powiadomienia emailem"
-  l.store "Send notification messages via jabber", "Wysyłaj powiadomienia Jabberem"
   l.store "Send notification messages when new articles are posted", "Wysyłaj powiadomienia o nowych artykułach"
   l.store "Send notification messages when comments are posted", "Wysyłaj powiadomienia o nowych komentarzach"
   
@@ -464,7 +463,6 @@ Localization.define('pl_PL') do |l|
   #admin/user/show.rhtml
   l.store "User's articles", "Artykuły użytkownika"
   l.store "Notify via email", "Powiadamiaj emailem"
-  l.store "Notify via jabber", "Powiadamiaj Jabberem"
   l.store "Notify on new articles", "Powiadamiaj o nowych artykułach"
   l.store "Notify on new comments", "Powiadamiaj o nowych komentarzach"
   

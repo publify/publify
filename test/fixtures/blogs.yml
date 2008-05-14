@@ -2,7 +2,6 @@
 default:
   base_url: http://myblog.net
   settings:
-    jabber_password: ""
     show_extended_on_rss: true
     itunes_owner: ""
     blog_name: test blog
@@ -24,7 +23,6 @@ default:
     send_outbound_pings: false
     itunes_copyright: ""
     sp_global: true
-    jabber_address: ""
     default_allow_comments: true
     itunes_subtitle: ""
     email_from: scott@sigkill.org

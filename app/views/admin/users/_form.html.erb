@@ -19,10 +19,6 @@
 <%= text_field 'user', 'email'  %> <small>(this will be shown publically if supplied)</small>
 </li>
 <li>
-<label class="float" for="user_jabber"><%= _("Jabber")%>:</label> 
-<%= text_field 'user', 'jabber'  %> <small>(this can be blank)</small>
-</li>
-<li>
   <label class="float" for="user_password"><%= _("Password")%>:</label>
   <%= password_field_tag 'user[password]', '', :id => 'user_password', :size => 30 %>
 </li>
@@ -35,12 +31,6 @@
   <label class="float" for="user_notify_via_email"><%= _("Send notification messages via email")%>?</label>
   <%= check_box 'user', 'notify_via_email'  %> 
 </li>
-
-<li>
-  <label class="float" for="user_notify_via_jabber"><%= _("Send notification messages via jabber")%>?</label>
-  <%= check_box 'user', 'notify_via_jabber'  %>
-</li>
-
 <li>
   <label class="float" for="user_notify_on_new_articles"><%= _("Send notification messages when new articles are posted")%>?</label>
   <%= check_box 'user', 'notify_on_new_articles'  %>

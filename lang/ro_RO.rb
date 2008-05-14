@@ -403,7 +403,6 @@ Localization.define('ro_RO') do |l|
   l.store "Password Confirmation", "Confirmă parola"
   l.store "Password confirmation", "Confirmă parola"
   l.store "Send notification messages via email", "Alerte prin email"
-  l.store "Send notification messages via jabber", "Alerte prin Jabber"
   l.store "Send notification messages when new articles are posted", "Alerte la publicarea de articole noi"
   l.store "Send notification messages when comments are posted", "Alerte la publicarea de comentarii noi"
   l.store 'this will be shown publicly if supplied', 'va fi vizibilă public'
@@ -432,7 +431,6 @@ Localization.define('ro_RO') do |l|
   #admin/user/show.rhtml
   l.store "User's articles", "Articole publicate de acest utilizator"
   l.store "Notify via email", "Primește alerte prin email"
-  l.store "Notify via jabber", "Primește alerte prin Jabber"
   l.store "Notify on new articles", "Primește alerte la publicarea de articole noi"
   l.store "Notify on new comments", "Primește alerte la publicarea de comentarii noi"
   

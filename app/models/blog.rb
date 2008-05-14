@@ -70,10 +70,6 @@ class Blog < CachedModel
   setting :editor,                     :integer, 2
   setting :cache_option,               :string, 'caches_page'
 
-  # Jabber config
-  setting :jabber_address,             :string, ''
-  setting :jabber_password,            :string, ''
-
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
 

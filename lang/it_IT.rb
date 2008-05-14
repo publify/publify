@@ -293,8 +293,6 @@ Localization.define('it_IT') do |l|
   l.store "Source Email", "Indirizzo mittente mail"
   l.store "Email address used by Typo to send notifications", "Indirizzo email usato dal blog per inviare le notifiche"
   l.store "Jabber account", "Account Jabber"
-  l.store "Jabber account to use when sending Jabber notifications", "Jabber account da usare per inviare le notifiche"
-  l.store "Jabber password", "Password di jabber"
   l.store "Spam protection", "Protezione contro lo spam"
   l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Abilitando la protezione contro lo spam fa si che il blog compari gli IP di chi invia i commenti e anche il loro contenuto con una blacklist remota. E' una buona difesa contro gli spam robot"
   l.store "Enable spam protection", "Abilita la protezione spam"
@@ -452,7 +450,6 @@ Localization.define('it_IT') do |l|
   l.store "Jabber", "Jabber"
   l.store "Password Confirmation", "Conferma password"
   l.store "Send notification messages via email", "Invia notifiche via mail"
-  l.store "Send notification messages via jabber", "Invia notifiche via jabber"
   l.store "Send notification messages when new articles are posted", "Invia notifiche quando viene pubblicato un nuovo articolo"
   l.store "Send notification messages when comments are posted", "Invia notifiche quando viene inserito un nuovo commento"
   
@@ -478,7 +475,6 @@ Localization.define('it_IT') do |l|
   #admin/user/show.rhtml
   l.store "User's articles", "Articoli dell'utente"
   l.store "Notify via email", "Notifiche via mail"
-  l.store "Notify via jabber", "Notifiche via Jabber"
   l.store "Notify on new articles", "Notifiche di nuovi articoli"
   l.store "Notify on new comments", "Notifiche di nuovi commenti"
   

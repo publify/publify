@@ -31,7 +31,6 @@ Rails::Initializer.run do |config|
     vendor/syntax/lib
     vendor/sparklines/lib
     vendor/uuidtools/lib
-    vendor/jabber4r/lib
     vendor/mocha/lib
     vendor/memcache-client/lib
     vendor/cached_model/lib
