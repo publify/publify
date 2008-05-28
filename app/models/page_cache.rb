@@ -14,11 +14,14 @@ class PageCache
   def self.sweep_all
     logger.debug "PageCache - sweep_all called by #{caller[1].inspect}"
     unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
-      self.zap_pages(%w{index.* articles.* articles pages
+      self.zap_pages(%w{index.* articles.* pages
                      pages.* feedback feedback.*
                      comments comments.*
                      categories categories.*
-                     tags, tags.*})
+                     tags, tags.* category archive.*})
+
+      self.zap_pages((1990..2020))
+      self.zap_pages([*1990..2020].collect { |y| "#{y}.*" })
     end
   end
 
