@@ -17,8 +17,9 @@ class PageCache
       self.zap_pages(%w{index.* articles.* pages page
                      pages.* feedback feedback.*
                      comments comments.*
-                     categories categories.*
-                     tags, tags.* category archive.*})
+                     categories categories.* xml
+                     tag tags.* category archive.*
+                     images/theme stylesheets/theme javascripts/theme})
 
       self.zap_pages((1990..2020))
       self.zap_pages([*1990..2020].collect { |y| "#{y}.*" })
