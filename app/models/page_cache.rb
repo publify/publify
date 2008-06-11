@@ -17,7 +17,7 @@ class PageCache
       self.zap_pages(%w{index.* articles.* pages page
                      pages.* feedback feedback.*
                      comments comments.*
-                     categories categories.* xml
+                     category categories.* xml
                      tag tags.* category archive.*
                      images/theme stylesheets/theme javascripts/theme})
 
