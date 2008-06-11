@@ -20,6 +20,7 @@ FCKConfig.ToolbarSets["Default"] = [
   ['FontFormat','Bold', 'Italic', 'StrikeThrough'],
   ['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],	
 	['OrderedList','UnorderedList','-','Outdent','Indent','Blockquote'],
+	['Source', 'RemoveFormat'],
 	['Link','Unlink'],
 	['Image','Flash', 'Smiley'],
 	['FitWindow','SpellCheck']
