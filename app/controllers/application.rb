@@ -26,18 +26,6 @@ class ApplicationController < ActionController::Base
     render :template => 'articles/error', :status => options[:status] || 404
   end
 
-  def current_user
-    if @current_user.nil?
-      @current_user = session[:user_id] && User.find(session[:user_id])
-    end
-    @current_user
-  end
-  helper_method :current_user
-
-  def authorized?
-    current_user && authorize?(current_user)
-  end
-
   def fire_triggers
     Trigger.fire
   end

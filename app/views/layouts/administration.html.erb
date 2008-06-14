@@ -1,59 +1,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-                <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-                <title>Typo Administration:  <%= controller.controller_name %></title>
-                <meta http-equiv="imagetoolbar" content="no" />
-                <%= javascript_include_tag :fckeditor %>
-                <%= stylesheet_link_tag "administration.css" %>
-                <%= stylesheet_link_tag "lightbox.css" %>
-                <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox" %>
-        </head>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Typo Administration:  <%= controller.controller_name %></title>
+	<meta http-equiv="imagetoolbar" content="no" />
+	<%= javascript_include_tag :fckeditor %>
+	<%= stylesheet_link_tag "administration", "lightbox" %>
+	<%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox" %>
+</head>
 
-        <body>
-        <div id="container">
-       		<div id="topnav">
-          <ul id="tabs">
-            <%= content_tag :li, (link_to image_tag("../images/admin/typologo.png", :alt => "Typo") + _("Typo"), {:controller=>"dashboard", :action => 'index'}, :class=>class_dashboard) %>
-            <%= content_tag :li, (link_to _("Write"), {:controller=>"content", :action => 'new'}, :class=>class_write) %>
-            <%= content_tag :li, (link_to _("Manage"), {:controller=>"content", :action => 'index'}, :class=>class_manage) %>
-            <%= content_tag :li, (link_to _("Feedback"), {:controller=>"feedback", :action => 'index', :confirmed => 'f', :published => ''}, :class=>class_feedback) %>
-            <%= content_tag :li, (link_to _("Themes"), {:controller=>"themes", :action => 'index'}, :class=>class_themes) %>
-            <%= content_tag :li, (link_to _("Plugins"), {:controller=>"sidebar", :action => 'index'}, :class=>class_plugins) %>
-            <%= content_tag :li, (link_to _("Users"), {:controller=>"users", :action => 'index'}, :class=>class_users) %>
-            <%= content_tag :li, (link_to _("Settings"), {:controller=>"settings", :action => 'index'}, :class=>class_admin) %>
-			<li><%= current_user_notice %></li>
-			<%= tab _('your blog'), :controller => "/articles" %>
-          </ul>
-        </div>
-       <% if not first_render =~ /login|signup|logout/ %>
-       <div class="tasks">
-           <ul>
-            <%= @content_for_tasks %>
-           </ul>
-           <div style="clear:both;"></div>
-         </div>
-       <% end %>
+<body>
+	<div id="container">
+		<div id="topnav">
+			<ul id="tabs">
+				<% for pm in current_user.project_modules %>
+					<%= content_tag :li, (link_to _(pm.human_name), pm.menus.first.url, :class => send("class_#{pm.name}")) %>
+				<% end %>
+				<li><%= current_user_notice %></li>
+				<%= tab _('your blog'), :controller => "/articles" %>
+			</ul>
+		</div>
+		<% if not first_render =~ /login|signup|logout/ %>
+		<div class="tasks">
+			<ul>
+				<%= @content_for_tasks %>
+			</ul>
+			<div style="clear:both;"></div>
+		</div>
+		<% end %>
 
 
-        <div id="overall">
-          <% if flash[:notice] or flash[:error] %>
-        <div id="flash">
-          <%= render_flash rescue nil %>
-        </div>
-        <% end %>
+		<div id="overall">
+			<% if flash[:notice] or flash[:error] %>
+			<div id="flash">
+				<%= render_flash rescue nil %>
+			</div>
+			<% end %>
 
-          <div id="main">
-            <h2><%= @page_heading %></h2>
+			<div id="main">
+				<h2><%= @page_heading %></h2>
 
-       <%= @content_for_layout %>
-          </div>
-	        <div id="footer">
-	            Typo <%=h TYPO_VERSION %> <%= _("with %s AER OS XK iconset %s", '<a href="http://gnome-look.org/content/show.php/AER-OS-XK?content=49990">', '</a>') %>
-	        </div>
-        </div>
-        </div>
-        </body>
+				<%= @content_for_layout %>
+			</div>
+			<div id="footer">
+				Typo <%=h TYPO_VERSION %> <%= _("with %s AER OS XK iconset %s", '<a href="http://gnome-look.org/content/show.php/AER-OS-XK?content=49990">', '</a>') %>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
-

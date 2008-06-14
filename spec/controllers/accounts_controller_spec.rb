@@ -20,15 +20,9 @@ describe 'A successfully authenticated login' do
     request.session[:user_id].should == @user.id
   end
 
-  it 'cookies[:is_admin] should == "yes"' do
-    make_request
-    cookies['is_admin'].should == ['yes']
-  end
-
   it 'redirects to /bogus/location' do
     request.session[:return_to] = '/bogus/location'
     make_request
-#    post 'login', { :user_login => 'bob', :password => 'test' }
     response.should redirect_to('/bogus/location')
   end
 

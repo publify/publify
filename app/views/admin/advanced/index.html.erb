@@ -1,20 +1,16 @@
-    <% @page_heading = _("Advanced settings") %>
+  <% @page_heading = _("Advanced settings") %>
 
   <% content_for('tasks') do -%>
-	<%= subtab _("Basic settings"), "current", {:controller => "general"} %>
-	<%= subtab _("Advanced settings"), "", {:controller => "advanced"} %>
-	<%= subtab _("Empty Fragment Cache"), "", {:controller => '/admin/cache', :action => 'sweep'} %>
-	<%= subtab _("Rebuild cached HTML"), "", {:controller => '/admin/cache', :action => 'sweep_html'} %>
+	  <%= subtab _("Basic settings"), "current", {:controller => "general"} %>
+	  <%= subtab _("Advanced settings"), "", {:controller => "advanced"} %>
+	  <%= subtab _("Empty Fragment Cache"), "", {:controller => '/admin/cache', :action => 'sweep'} %>
+	  <%= subtab _("Rebuild cached HTML"), "", {:controller => '/admin/cache', :action => 'sweep_html'} %>
   <% end -%> 
 
-
-    <% form_tag :action => 'update' do %>
-
-<div class="admin">
-
-
-    <div id="operations" class="paginate r">
-    <%= save(_("Save Settings")) %>
-  </div>
-</div>
+  <% form_tag :action => 'update' do %>
+    <div class="admin">
+      <div id="operations" class="paginate r">
+        <%= save(_("Save Settings")) %>
+      </div>
+    </div>
   <% end %>

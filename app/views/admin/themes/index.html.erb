@@ -1,8 +1,5 @@
 <% @page_heading = _('Choose a theme') %>
-<% content_for('tasks') do %>
-    <%= subtab _("Choose theme"), "current", {:controller=>"themes", :action=>"index"} %>
-    <%= subtab _("Theme editor"), "", {:controller=>"themes", :action=>"editor"} %>
-<% end %>
+<% subtabs_for(:themes) %>
 
 <p class="paginate l">
     <%= _("You can download third party themes from officially supported %s ", link_to(_("dev 411 Typo themes viewer"), 'http://www.dev411.com/typo/themes/'))%>.

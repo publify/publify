@@ -46,6 +46,19 @@ class User < CachedModel
     end
   end
 
+  # The current project_modules
+  def project_modules
+    profile.modules.collect { |m| AccessControl.project_module(profile.label, m) }.uniq.compact rescue []
+  end
+  
+  # Generate Methods takes from AccessControl rules
+  # Example:
+  #
+  #   def publisher?
+  #     profile.label == :publisher
+  #   end
+  AccessControl.roles.each { |r| define_method("#{r.to_s.downcase.to_sym}?") { profile.label.to_s.downcase.to_sym == r.to_s.downcase.to_sym } }
+
   # Let's be lazy, no need to fetch the counters, rails will handle it.
   def self.find_all_with_article_counters(ignored_arg)
     find(:all)

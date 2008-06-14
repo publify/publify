@@ -1,5 +1,6 @@
   <% @page_heading = _('Blacklist Patterns') + " (" + task_quickpost(_('add new') + ")")  %>
-
+  <% subtabs_for(:feedback) %>
+  
   <div id="quick-post" style="display:none;position:absolute;">
     <%= render :partial => "quick_post" %>
   </div>

@@ -1,13 +1,6 @@
   <% @page_heading = _('Manage pages') %>
-
-  <% content_for('tasks') do %>
-	  <%= subtab _("Manage posts"), "", {:controller=>"content", :action=>"list"} %>
-	  <%= subtab _("Manage pages"), "current", {:controller=>"pages", :action=>"list"} %>
-	  <%= subtab _("Manage categories"), "", {:controller=>"categories", :action=>"index"} %>
-	  <%= subtab _("Manage uploads"), "", {:controller=>"resources", :action=>"list"} %>
-	  <%= subtab _("Manage tags"), "", {:controller=>"tags", :action=>"list"} %>
-  <% end %> 
-
+  <% subtabs_for(:content) %>
+  
   <div class="list" id="pages">	
     <%= render :partial => 'pages' %>
   </div>                      

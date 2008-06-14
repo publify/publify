@@ -1,10 +1,5 @@
 <% @page_heading = _("Comments and Trackbacks for") + " #{ this_blog.settings['blog_name'] }" %>
-
-<% content_for('tasks') do %>
-  <%= task_showmod(count_unconfirmed, "Unapproved comments", limit_to_unconfirmed) %>
-  <%= task_showmod(count_spam , "Limit to spam", limit_to_spam) %>
-  <%= tab _("Blacklist"), :controller=>"blacklist", :action=>"index" %>
-<% end %>
+<% subtabs_for(:feedback) %>
 
 <div class="search">
   <% form_tag({:action => 'index'}, :method => :get) do %>

@@ -11,7 +11,6 @@ describe 'Admin::ArticlePreviewTest ported from Test::Unit style' do
 
   before do
     @request.session = {:user_id => users(:tobi).id}
-
     @art_count = Article.find(:all).size
   end
 

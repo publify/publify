@@ -1,11 +1,5 @@
   <% @page_heading = _('Uploads') + '(' + link_to(_("add new"), :action => 'new') + ')' %>
-  <% content_for('tasks') do %>
-	  <%= subtab _("Manage posts"), "", {:controller=>"content", :action=>"list"} %>
-	  <%= subtab _("Manage pages"), "", {:controller=>"pages", :action=>"list"} %>
-	  <%= subtab _("Manage categories"), "", {:controller=>"categories", :action=>"index"} %>
-	  <%= subtab _("Manage uploads"), "current", {:controller=>"resources", :action=>"list"} %>
-	  <%= subtab _("Manage tags"), "", {:controller=>"tags", :action=>"list"} %>
-  <% end %> 
+  <% subtabs_for(:content) %>
 
   <div class="list" id="resources">	
     <%= render :partial => 'resources' -%>

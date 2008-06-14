@@ -1,16 +1,6 @@
 	<% @page_heading = _('General settings') %>
-
-  <% content_for('tasks') do -%>
-	<%= subtab _("General settings"), "current", {:controller => "settings"} %>
-	<%= subtab _("Read"), "", { :controller => 'settings', :action => 'read' } %>
-	<%= subtab _("Write"), "", { :controller => 'settings', :action => 'write' } %>
-	<%= subtab _("Feedback"), "", { :controller => 'settings', :action => 'feedback' } %>			
-	<%= subtab _("Spam"), "", { :controller => 'settings', :action => 'spam' } %>
-	<%= subtab _("Podcasts"), "", { :controller => 'settings', :action => 'podcast' } %>
-	<%= subtab _("Empty Fragment Cache"), "", {:controller => '/admin/cache', :action => 'sweep'} if this_blog.cache_option == 'caches_action_with_params'  %>
-	<%= subtab _("Rebuild cached HTML"), "", {:controller => '/admin/cache', :action => 'sweep_html'} if this_blog.cache_option == 'caches_page' %>
-  <% end -%> 
-
+  <% subtabs_for(:settings) %>
+  
 	<% form_tag :action => 'index' do %>
 
 <div class="admin">

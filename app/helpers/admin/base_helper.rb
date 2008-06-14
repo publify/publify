@@ -1,6 +1,15 @@
 module Admin::BaseHelper
   include ActionView::Helpers::DateHelper
 
+  def subtabs_for(current_module)
+    output = []
+    AccessControl.project_module(current_user.profile.label, current_module).submenus.each_with_index do |m,i| 
+      current = (m.url[:controller] == params[:controller] && m.url[:action] == params[:action]) ? "current" : ""
+      output << subtab(m.name, current, m.url)
+    end     
+    content_for(:tasks) { output.join("\n") }
+  end
+
   def state_class(item)
     item.state.to_s
   end
@@ -27,7 +36,7 @@ module Admin::BaseHelper
 
   def current_user_notice
     unless current_user
-      link_to "log in", :controller => "/accounts", :action=>"login"
+      link_to _("log in"), :controller => "/accounts", :action=>"login"
     else
       link_to _("log out"), :controller => "/accounts", :action=>"logout"
     end
@@ -42,7 +51,7 @@ module Admin::BaseHelper
   end
   
   def subtab(label, style, options = {})
-    content_tag :li, link_to(label, options, {"class"=> style})
+    content_tag :li, link_to(label, options, { "class"=> style })
   end
 
   def cancel(url = {:action => 'list'})
@@ -155,7 +164,7 @@ module Admin::BaseHelper
     end
   end
   
-  def class_manage
+  def class_content
     if controller.controller_name  =~ /content|pages|categories|resources/
       if controller.action_name =~ /list|index|show/
         "current"
@@ -175,7 +184,7 @@ module Admin::BaseHelper
     end
   end
 
-  def class_plugins
+  def class_sidebar
     if controller.controller_name  =~ /sidebar|textfilter/
     "current"
     end
@@ -193,7 +202,7 @@ module Admin::BaseHelper
     end
   end    
 
-  def class_admin
+  def class_settings
     if controller.controller_name  =~ /settings/
     "current"
     end

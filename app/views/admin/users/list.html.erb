@@ -1,8 +1,5 @@
   <% @page_heading = _('Users') + '('+ link_to('add new', :action=>'new') +')'%>
-
-  <% content_for('tasks') do %>
-    <%= subtab _("Users"), "current", {:controller=>"users", :action=>"index"} %>
-  <% end %> 
+  <% subtabs_for(:users) %>
 
 <div class="list">
   <table>
