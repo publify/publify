@@ -8,8 +8,8 @@ class Admin::UsersController; def rescue_action(e) raise e end; end
 describe Admin::UsersController, "rough port of the old functional test" do
   integrate_views
 
-  before do
-    request.session = { :user_id => users(:tobi).id }
+  before(:each) do
+    request.session = { :user => users(:tobi).id }
   end
 
   def test_index
@@ -29,7 +29,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
     assert_template 'new'
 
     post :new, :user => { :login => 'errand', :email => 'corey@test.com',
-      :password => 'testpass', :password_confirmation => 'testpass', :profile => 1 }
+      :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1 }
     assert_response :redirect, :action => 'list'
     follow_redirect
     assert_template 'list'

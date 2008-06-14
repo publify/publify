@@ -14,7 +14,7 @@ describe Admin::ContentController do
   integrate_views
 
   before do
-    request.session = { :user_id => users(:tobi).id }
+    request.session = { :user => users(:tobi).id }
   end
 
   def test_index
