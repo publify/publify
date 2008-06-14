@@ -8,7 +8,7 @@ class Admin::CommentsController; def rescue_action(e) raise e end; end
 
 describe Admin::CommentsController do
   before do
-    request.session = { :user_id => users(:tobi).id }
+    request.session = { :user => users(:tobi).id }
     @art_id = contents(:article2).id
   end
 

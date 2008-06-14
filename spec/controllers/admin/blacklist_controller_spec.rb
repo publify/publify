@@ -7,7 +7,7 @@ class Admin::BlacklistController; def rescue_action(e) raise e end; end
 
 describe Admin::BlacklistController do
   before do
-    request.session = { :user_id => users(:tobi).id }
+    request.session = { :user => users(:tobi).id }
   end
 
   def test_index

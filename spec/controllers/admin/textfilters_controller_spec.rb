@@ -7,7 +7,7 @@ class Admin::TextfiltersController; def rescue_action(e) raise e end; end
 
 describe Admin::TextfiltersController do
   before do
-    request.session = { :user_id => users(:tobi).id }
+    request.session = { :user => users(:tobi).id }
   end
 
   def test_new_without_filters

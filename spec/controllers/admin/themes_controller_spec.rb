@@ -8,7 +8,7 @@ describe Admin::ThemesController, 'ported from the tests' do
   integrate_views
 
   before do
-    request.session = { :user_id => users(:tobi).id }
+    request.session = { :user => users(:tobi).id }
   end
 
   # Replace this with your real tests.

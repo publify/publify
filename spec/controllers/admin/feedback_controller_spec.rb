@@ -5,7 +5,7 @@ require 'trackback'
 
 describe Admin::FeedbackController do
   before do
-    request.session = { :user_id => users(:tobi).id }
+    request.session = { :user => users(:tobi).id }
   end
 
   def test_index

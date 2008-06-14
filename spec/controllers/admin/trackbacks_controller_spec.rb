@@ -6,8 +6,8 @@ require 'admin/trackbacks_controller'
 class Admin::TrackbacksController; def rescue_action(e) raise e end; end
 
 describe Admin::TrackbacksController do
-  before do
-    request.session = { :user_id => users(:tobi).id }
+  before(:each) do
+    request.session = { :user => users(:tobi).id }
     @art_id = contents(:article2).id
   end
 
@@ -36,12 +36,10 @@ describe Admin::TrackbacksController do
   end
 
   def test_create
-    num_trackbacks = Trackback.count
-
-    post :new, :trackback => { 'title' => 'title', 'excerpt' => 'excerpt', 'blog_name' => 'blog_name', 'url' => 'url' }, :article_id => @art_id
-    assert_response :redirect, :action => 'show'
-
-    assert_equal num_trackbacks + 1, Trackback.count
+    assert_difference 'Trackback.count' do
+      post :new, :trackback => { 'title' => 'title', 'excerpt' => 'excerpt', 'blog_name' => 'blog_name', 'url' => 'url' }, :article_id => @art_id
+      assert_response :redirect, :action => 'show'
+    end
   end
 
   def test_edit
