@@ -64,12 +64,20 @@ AccessControl.map :require => [ :admin, :publisher ]  do |map|
 	  project.submenu _("Manage tags"),           { :controller => "admin/tags",       :action => "list" }
   end
 
-
-  map.project_module :feedback, "admin/feedback" do |project|
-    project.menu    _("Feedback"),              { :action     => "index" }
-    project.submenu _("Unapproved comments"),   { :action     => "index" }    
-    project.submenu _("Limit to spam"),         { :published  => "f" }
+  map.project_module :feedback, nil do |project|
+    project.menu    _("Feedback"),              { :controller => "admin/feedback",  :action     => "index" }
+    project.submenu _("Unapproved comments"),   { :controller => "admin/feedback",  :action     => "index" }    
+    project.submenu _("Limit to spam"),         { :controller => "admin/feedback",  :published  => "f" }
     project.submenu _("Blacklist"),             { :controller => "admin/blacklist", :action => "index" }
+    project.submenu _(""),                      { :controller => "admin/comments", :action => "show" }
+    project.submenu _(""),                      { :controller => "admin/comments", :action => "new" }
+    project.submenu _(""),                      { :controller => "admin/comments", :action => "edit" }
+    project.submenu _(""),                      { :controller => "admin/comments", :action => "destroy" }
+    project.submenu _(""),             { :controller => "admin/trackbacks", :action => "show" }
+    project.submenu _(""),             { :controller => "admin/trackbacks", :action => "new" }
+    project.submenu _(""),             { :controller => "admin/trackbacks", :action => "edit" }
+    project.submenu _(""),             { :controller => "admin/trackbacks", :action => "destroy" }
+
   end
 
   map.project_module :themes, "admin/themes" do |project|
