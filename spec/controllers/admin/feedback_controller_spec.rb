@@ -12,7 +12,7 @@ describe Admin::FeedbackController do
     get :index
 
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
     assert_equal Feedback.count, assigns(:feedback).size
   end
 
@@ -20,7 +20,7 @@ describe Admin::FeedbackController do
     get :index, :confirmed => 'f'
 
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
 
     Feedback.count(:conditions => { :status_confirmed => false }).should == assigns(:feedback).size
   end
@@ -29,7 +29,7 @@ describe Admin::FeedbackController do
     get :index, :published => 'f'
 
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
 
     Feedback.count(:conditions => { :published => false }).should == assigns(:feedback).size
   end
@@ -38,7 +38,7 @@ describe Admin::FeedbackController do
     get :index, :published => 'f', :confirmed => 'f'
 
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
 
     Feedback.count(:conditions => { :published => false, :status_confirmed => false }).should == assigns(:feedback).size
   end

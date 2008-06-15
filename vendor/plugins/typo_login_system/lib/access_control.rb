@@ -91,11 +91,10 @@ module AccessControl
       @controllers = []
     end
     
-    def project_module(name, controller)
+    def project_module(name, controller = nil)
       project_module = ProjectModule.new(name, controller)
       yield project_module
       @project_modules << project_module
-      #@controllers << controller
     end
     
     def permission(controller)

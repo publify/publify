@@ -352,7 +352,8 @@ td.paginate {
 }
 
 #article_form label,
-#page_form label {
+#page_form label,
+.admin label {
 	color: #224272;
 }
 

@@ -2,12 +2,12 @@ require 'base64'
 
 class Admin::PagesController < Admin::BaseController
   layout "administration", :except => 'show'
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
-  def list
+  def index
     conditions = "id > 0"
 
     if params[:search]

@@ -13,13 +13,13 @@ describe Admin::PagesController do
   def test_index
     get :index
     assert_response :success
-    assert_template "list"
+    assert_template "index"
   end
 
   def test_list
     get :list
     assert_response :success
-    assert_template "list"
+    assert_template "index"
 
     assert_not_nil assigns(:pages)
     #assert_equal Page.count, assigns(:pages).size

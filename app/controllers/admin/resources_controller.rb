@@ -69,15 +69,15 @@ class Admin::ResourcesController < Admin::BaseController
     render :inline => "<%= upload_progress.completed_percent rescue 0 %> % " + _("complete"), :layout => false
   end
 
-  def list
+  def index
     @r = Resource.new
     @itunes_category_list = @r.get_itunes_categories
     @resources_pages, @resources = paginate :resource, :per_page => 20, :order_by => "created_at DESC", :parameter => 'page'
   end
 
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
   def destroy

@@ -8,12 +8,12 @@ class Admin::ContentController < Admin::BaseController
     render :inline => "<%= auto_complete_result @items, 'name' %>"
   end
   
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
-  def list
+  def index
     # Filtering articles
     conditions = "contents.id > 0"
     if params[:search]

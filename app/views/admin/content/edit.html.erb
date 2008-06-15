@@ -1,10 +1,3 @@
-  <% @page_heading = _('Edit Article') %>
+<% subtabs_for(:write) %>
 
-  <% content_for('tasks') do %>
-    <%= task_overview %>
-
-    <li><%= link_to _('View article on your blog'), @article.permalink_url %></li>
-  <% end %>
-
-  <h3><%= _("Edit Article")%></h3>
-  <%= render :partial => "admin/shared/edit", :locals => { :form_type => "article", :form_action => { :action => "edit", :id => @article.id } } %>
+<%= render :partial => "admin/shared/edit", :locals => { :form_type => "article", :form_action => { :action => "edit", :id => @article.id } } %>

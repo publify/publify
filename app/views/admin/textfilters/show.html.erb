@@ -1,10 +1,5 @@
   <% @page_heading = _("Text Filter Details") + ": #{@textfilter.description}" %>
-  
-  <% content_for('tasks') do %>
-    <%= task_edit _('Edit this filter'), @textfilter.id %>
-    <%= task_help 'See help text for this filter', @textfilter.id %>
-  <% end %> 
-
+  <% subtabs_for(:sidebar) %>
   <h3><%=h @textfilter.description %></h3>
 
   <div class="form">	

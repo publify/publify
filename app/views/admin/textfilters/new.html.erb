@@ -1,8 +1,5 @@
   <% @page_heading = _('Create Text Filter') %>
-  <% content_for('tasks') do %>
-	<%= task_overview %>
-  <% end %>
-
+  <% subtabs_for(:sidebar) %>
   <% form_tag({ :action => "new" }, :id => "textfilter_form") do %>
 
   <div class="admin">

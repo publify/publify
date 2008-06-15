@@ -14,13 +14,13 @@ describe Admin::CategoriesController do
 
   def test_index
     get :index
-    assert_template 'list'
+    assert_template 'index'
     assert_template_has 'categories'
   end
 
   def test_list
     get :list
-    assert_template 'list'
+    assert_template 'index'
     assert_template_has 'categories'
     assert_tag :tag => "div",
       :attributes => { :id => "category_container" }
@@ -44,7 +44,7 @@ describe Admin::CategoriesController do
 
   def test_update
     post :edit, :id => categories(:software).id
-    assert_response :redirect, :action => 'list'
+    assert_response :redirect, :action => 'index'
   end
 
   def test_destroy

@@ -50,9 +50,9 @@ AccessControl.map :require => [ :admin, :publisher ]  do |map|
   end
   
   map.project_module :write, nil do |project|
-    project.menu    _("Write"),                { :controller => "admin/content",    :action => "new" }
-    project.submenu _("Write a posts"),          { :controller => "admin/content",    :action => "new" }
-	  project.submenu _("Write a pages"),          { :controller => "admin/pages",       :action => "new" }
+    project.menu    _("Write"),                 { :controller => "admin/content",    :action => "new" }
+    project.submenu _("Write a posts"),         { :controller => "admin/content",    :action => "new" }
+	  project.submenu _("Write a page"),         { :controller => "admin/pages",       :action => "new" }
   end
 
   map.project_module :content, nil do |project|

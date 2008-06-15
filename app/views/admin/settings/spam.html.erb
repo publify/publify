@@ -1,14 +1,5 @@
 	<% @page_heading = _('Spam') %>
-
-  <% content_for('tasks') do -%>
-	<%= subtab _("General settings"), "", {:controller => "settings"} %>
-	<%= subtab _("Read"), "", { :controller => 'settings', :action => 'read' } %>
-	<%= subtab _("Write"), "", { :controller => 'settings', :action => 'write' } %>
-	<%= subtab _("Feedback"), "", { :controller => 'settings', :action => 'feedback' } %>			
-	<%= subtab _("Spam"), "current", { :controller => 'settings', :action => 'spam' } %>
-	<%= subtab _("Podcasts"), "", { :controller => 'settings', :action => 'podcast' } %>
-  <% end -%> 
-
+  <% subtabs_for(:settings) %>
 	<% form_tag :action => 'spam' do %>
 
 <div class="admin">

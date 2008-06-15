@@ -12,12 +12,12 @@ describe Admin::BlacklistController do
 
   def test_index
     get :index
-    assert_template 'list'
+    assert_template 'index'
   end
 
   def test_list
     get :list
-    assert_template 'list'
+    assert_template 'index'
     assert_template_has 'blacklist_patterns'
   end
 

@@ -1,11 +1,11 @@
 class Admin::UsersController < Admin::BaseController
 
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
-  def list
+  def index
     @users = User.find :all
   end
 

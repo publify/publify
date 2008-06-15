@@ -1,10 +1,10 @@
 class Admin::BlacklistController < Admin::BaseController
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
-  def list
+  def index
     @blacklist_patterns = BlacklistPattern.find :all
   end
 

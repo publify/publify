@@ -1,8 +1,4 @@
   <% @page_heading = _("Text Filter Help") + ": #{@textfilter.description}" %>
+  <% subtabs_for(:sidebar) %>
   
-  <% content_for('tasks') do %>
-    <%= task_edit _('Edit this text filter'), @textfilter.id %>
-    <%= task_show _('Show this filter'), @textfilter.id %>
-  <% end %> 
-
   <%= @help_text %>

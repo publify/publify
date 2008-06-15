@@ -1,7 +1,12 @@
 <%= error_messages_for 'category' %>
-<!--[form:category]-->
+<ul>
+  <li>
+    <label for="category_name" class="content block"><%= _("Name")%></label> 
+    <%= text_field 'category', 'name', :class => 'large'  %>
+  </li>
+</ul>
 <p>
-  <label for="category_name"><%= _("Name")%>:</label> 
-  <%= text_field 'category', 'name'  %>
+  
+  
 </p>
 <!--[eoform:cateogry]-->

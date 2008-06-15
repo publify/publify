@@ -1,5 +1,5 @@
   <% @page_heading = _("Advanced settings") %>
-
+  <% subtabs_for(:settings) %>
   <% content_for('tasks') do -%>
 	  <%= subtab _("Basic settings"), "current", {:controller => "general"} %>
 	  <%= subtab _("Advanced settings"), "", {:controller => "advanced"} %>
