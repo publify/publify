@@ -1,19 +1,19 @@
 <%= error_messages_for 'comment' %>
-<!--[form:comment]-->
-<p>
-  <label for="comment_author"><%= _("Author")%>:</label><br/>
-  <%= text_field 'comment', 'author', "value" => (current_user.name if controller.action_name == "list") %>
-</p>
-<p>
-  <label for="comment_url"><%= _("Url") %>:</label><br/>
-  <%= text_field 'comment', 'url', "value" => (this_blog.base_url if controller.action_name == "list")  %>
-</p>
-<p>
-  <label for="comment_email"><%= _("Email")%>:</label><br/>
-  <%= text_field 'comment', 'email', "value" => (current_user.email if controller.action_name == "list") %>
-</p>
-<p>
-  <label for="comment_body"><%= _("Body")%>:</label><br/>
-  <%= t_textarea 'comment', 'body', { :height => '300', :width => '780' , :cols => '78', :rows => '20'} %>
-</p>
-<!--[eoform:comment]-->
+<ul class="set admin" id="comment">
+  <li>
+    <label for="comment_author" class="block content"><%= _("Author")%></label>
+    <%= text_field 'comment', 'author', "value" => (current_user.name if controller.action_name == "list") %>
+  </li>
+  <li>
+    <label for="comment_url" class="block content"><%= _("Url") %></label>
+    <%= text_field 'comment', 'url', "value" => (this_blog.base_url if controller.action_name == "list")  %>
+  </li>
+  <li>
+    <label for="comment_email" class="block content"><%= _("Email")%></label>
+    <%= text_field 'comment', 'email', "value" => (current_user.email if controller.action_name == "list") %>
+  </li>
+  <li>
+    <label for="comment_body" class="block content"><%= _("Content")%></label>
+    <%= text_area 'comment', 'body', { :height => '300', :cols => '100'} %>
+  </li>
+</ul>

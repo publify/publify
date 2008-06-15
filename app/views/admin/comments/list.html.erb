@@ -22,16 +22,10 @@
 	</ol>
   </div>
   
-  <h3 id="comment"><%= _("Creating comment")%></h3>
   <% form_tag :action=>"new" do %>
-
-  <div class="form">
     <%= render_partial "form" %>
 
-    <div id="operations">
-      <%= save %> or <%= cancel %>
-    </div>
+    <p class="r paginate"><%= cancel %> <%= _("or") %> <%= save(_("Save") + " &raquo;") %></p>  
 
-  </div>
   <% end %>
   
