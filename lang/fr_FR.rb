@@ -449,6 +449,19 @@ Localization.define('fr_FR') do |l|
   l.store "Send notification messages via email", "Envoyer des alertes par courriel"
   l.store "Send notification messages when new articles are posted", "Envoyer des alertes à la publication de nouveaux billets"
   l.store "Send notification messages when comments are posted", "Envoyer des alertes à la publication de nouveaux commentaires"
+  l.store "Login", "Login"
+  l.store "Profile", "Profil"
+  l.store "Display Name", "Nom affiché"
+  l.store "Email", "Email"
+  l.store "Password", "Mot de passe"
+  l.store "Password confirmation", "Confirmation du mot de passe"
+  l.store "Send notification messages via email", "Envoi de notification des messages par email"
+  l.store "Send notification messages when new articles are posted", "Envoi de notification de messages quand de nouveaux articles sont postés" 
+  l.store "Send notification messages when comments are posted", "Envoi de notification de messages quand des commentaires sont postés"
+
+  #admin/user/new.html.erb
+  l.store "Add User", "Ajout d'utilisateur"
+  l.store "Users", "Utilisateurs"
   
   #admin/user/_user.rhtml
   l.store "Number of Articles", "Nombre de billets"
@@ -556,6 +569,12 @@ Localization.define('fr_FR') do |l|
   l.store "Content Type was successfully updated.", "Le type du contenu a été mis à jour avec succès."
   l.store "Error occurred while updating Content Type.", "Une erreur est survenue lors de la mise à jour du type du contenu."
   l.store "complete", "complet"
+
+  #app/controller/admin/user_controller.rb
+  l.store "User was successfully updated.", "L'utilisateur a été mis à jour avec succès."
+  l.store "User was successfully created.", "L'utilisateur a été créé avec succès."
+
+
   
   # Themes
   l.store "Home", "Accueil"

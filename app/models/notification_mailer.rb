@@ -21,6 +21,14 @@ class NotificationMailer < ActionMailer::Base
     @body[:trackback] = trackback
   end
 
+  def notif_user(user)
+    @body[:user] = user
+    @body[:blog] = Blog.default
+    @recipients  = user.email
+    @from        = Blog.default.email_from
+    @headers     = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
+  end
+
   private
   def setup(user, content)
     @body[:user] = user
@@ -28,7 +36,6 @@ class NotificationMailer < ActionMailer::Base
     @recipients  = user.email
     @from        = content.blog.email_from
     @headers     = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
-    @blog_name   = content.blog.blog_name
   end
 
 end

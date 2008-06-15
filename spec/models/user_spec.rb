@@ -32,6 +32,7 @@ end
 describe 'With a new user' do
   before(:each) do
     @user = User.new :login => 'not_bob'
+    @user.email = 'typo@typo.com'
     set_password 'a secure password'
   end
 
@@ -81,6 +82,11 @@ describe 'With a new user' do
     @user.should be_valid
   end
 
+  it 'email cannot be blank' do
+    @user.email = ''
+    @user.should_not be_valid
+  end
+
   def set_password(newpass)
     @user.password = @user.password_confirmation = newpass
   end
@@ -91,6 +97,7 @@ describe 'With a user, "bob" in the database' do
     User.delete_all
     u = User.new(:login => 'bob')
     u.password = u.password_confirmation = 'secure password'
+    u.email = 'typo@typo.com' #Email needed
     u.save!
   end
 

@@ -1,5 +1,5 @@
 <p>A new comment has been posted on
-    <a href="<%= @blog.base_url%>"><%= @blog_name %></a>, responding to
+    <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>, responding to
     <a href="<%= @comment.article.permalink_url %>"><%=h(@comment.article.title) %></a>.</p>
 
 <%= render :partial => 'mail_header' %>
