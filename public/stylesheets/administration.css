@@ -609,14 +609,6 @@ legend {
   float: right;
 }
 
-.theme h3 {
-  margin: 0;
-}
-
-/* @end */
-
-/* @group Users */
-
 div#users {
   background: #F8F7EF;
   margin-top: 10px;
@@ -995,6 +987,20 @@ tr.menubar {
 	background : #bbb;
 }
 
+.theme {
+	width: 260px;
+	float: left;
+	margin-right: 20px;
+	overflow: hidden;
+}
+
+.theme img {
+	width: 240px;
+}
+
+.theme hr {
+	clear: both;
+}
 
 /* Menu déroulant */
 
