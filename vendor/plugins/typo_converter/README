@@ -1,0 +1,71 @@
+TypoConverters
+==================
+
+This Plugins is a new system for converting the database of another blog in Typo
+blog database.
+
+This system is base on Mephisto converter. It's a plugin and he
+use completly ActiveRecord. For retrieve the information on other blog and
+post in typo.
+
+In this converter, there an interface is write and
+you can use it with anything Blog engine to create another adapter.
+
+Now you can migrate from :
+ * Wordpress 2.5
+ * Dotclear 1.2.x
+ * Dotclear 2.0.x (RC)
+
+Migration for a Dotclear 1.2.x database
+=======================================
+
+To start the migration with dotclear 1, you need complete the
+config/database.yml with a configuration with 'dc' key and all information on
+where find the database with SQLDump of your blog engine. After this
+configuration you can start the migration with the follow command line :
+
+./script/runner 'TypoPlugins.convert_from :dotclear'
+
+By default all articles migrated, but you can migrate only articles with
+specifiques categories.
+
+./script/runner "TypoPlugins.convert_from :dotclear, :categories => ['ruby', 'rails', 'dev']"
+
+Migration for a WordPress 2.5.x database
+=======================================
+
+To start the migration with WordPress 2.5.x, you need complete the
+config/database.yml with a configuration 'wp25' key and all informartion on
+where find the database with SQLDump of your blog enfine. After this
+configuration you can start the migration with the follow command line :
+
+./script/runner 'TypoPlugins.convert_from :wp25'
+
+By default the prefix's name is 'wp' but you can change it with option :prefix
+like :
+
+./script/runner "TypoPlugins.convert_from :wp25, :prefix => 'sunny'"
+
+Migration for a Dotclear 2.0.x database
+=======================================
+
+To start the migration with dotclear 2, you need complete the
+config/database.yml with a configuration with 'dc2' key and all information on
+where find the database with SQLDump of your blog engine. After this
+configuration you can start the migration with the follow command line :
+
+./script/runner 'TypoPlugins.convert_from :dotclear_2'
+
+By default all articles migrated, but you can migrate only articles with
+specifiques categories.
+
+./script/runner "TypoPlugins.convert_from :dotclear_2, :categories => ['ruby', 'rails', 'dev']"
+
+By default the prefix's name is 'dc' but you can change it with option :prefix
+like :
+
+./script/runner "TypoPlugins.convert_from :dotclear_2, :prefix => 'sunny'"
+
+This 2 options are too in same action :
+
+./script/runner "TypoPlugins.convert_from :dotclear_2, :prefix => 'sunny', :categories => ['ruby', 'rails', 'dev']"

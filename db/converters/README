@@ -7,8 +7,8 @@ converting, and please file bugs at http://www.typosphere.org/trac.
 Available converters:
 
 * mt3.rb: Converts from Movable Type 3.x
-* wordpress.rb: Converts from Wordpress
 * s9y.rb: Converts from Serendipity (aka s9y)
 * textpattern.rb: Converts from TextPattern
 * feed.rb: Converts from any RSS or Atom feed.  Requires the 'feed_tools' gem.
-* rss.rb: Converts from RSS feeds.
+
+For Wordpress and Dotclear 1.2 and Dotclear 2 conversion, please use the converters in vendors/plugins
