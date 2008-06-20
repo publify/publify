@@ -2,12 +2,12 @@ class Admin::CommentsController < Admin::BaseController
 
   before_filter :get_article
 
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
-  def list
+  def index
     @comments = @article.comments.find(:all, :order => "id ASC")
   end
 
