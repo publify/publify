@@ -66,17 +66,6 @@ class Admin::ContentController < Admin::BaseController
   alias_method :resource_add,    :category_add
   alias_method :resource_remove, :category_add
 
-  def preview
-    headers["Content-Type"] = "text/html; charset=utf-8"
-    @article = Article.new
-    @article.attributes = params[:article]
-    set_article_author
-    data = render_to_string(:layout => "minimal")
-    data = Base64.encode64(data).gsub("\n", '')
-    data = "data:text/html;charset=utf-8;base64,#{data}"
-    render :text => data
-  end
-
   def attachment_box_add
     render :update do |page|
       page["attachment_add_#{params[:id]}"].remove
