@@ -97,7 +97,7 @@ class MovableTypeService < TypoWebService
       MovableTypeStructs::CategoryPerPost.new(
           :categoryName => c.category.name,
           :categoryId   => c.category_id.to_i,
-          :isPrimary    => c.is_primary.to_i
+          :isPrimary    => c.is_primary
         )
     end
   end
@@ -108,6 +108,7 @@ class MovableTypeService < TypoWebService
 
     for c in categories
       category = Category.find(c['categoryId'])
+      puts "HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + c['categoryId']
       article.add_category(category, c['isPrimary'])
     end
     article.save
