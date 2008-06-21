@@ -13,12 +13,12 @@ describe Admin::TrackbacksController do
 
   def test_index
     get :index, :article_id => @art_id
-    assert_template 'list'
+    assert_template 'index'
   end
 
   def test_list
     get :list, :article_id => @art_id
-    assert_template 'list'
+    assert_template 'index'
     assert_template_has 'trackbacks'
   end
 
@@ -27,19 +27,6 @@ describe Admin::TrackbacksController do
     assert_template 'show'
     assert_template_has 'trackback'
     assert_valid assigns(:trackback)
-  end
-
-  def test_new
-    get :new, :article_id => @art_id
-    assert_template 'new'
-    assert_template_has 'trackback'
-  end
-
-  def test_create
-    assert_difference 'Trackback.count' do
-      post :new, :trackback => { 'title' => 'title', 'excerpt' => 'excerpt', 'blog_name' => 'blog_name', 'url' => 'url' }, :article_id => @art_id
-      assert_response :redirect, :action => 'show'
-    end
   end
 
   def test_edit

@@ -214,9 +214,9 @@ describe BackendController do
   
   def test_meta_weblog_new_media_object
     media_object = MetaWeblogStructs::MediaObject.new(
-      "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".jpg",
-      "type" => "image/jpeg",
-      "bits" => Base64.encode64(File.open(File.expand_path(RAILS_ROOT) + "/public/images/header.jpg", "rb") { |f| f.read })
+      "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".gif",
+      "type" => "image/gif",
+      "bits" => Base64.encode64(File.open(File.expand_path(RAILS_ROOT) + "/public/images/powered.gif", "rb") { |f| f.read })
     )
 
     args = [ 1, 'tobi', 'whatever', media_object ]

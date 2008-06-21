@@ -2,11 +2,27 @@
   <% content_for('tasks') do %>
 	<%= task_overview %>
   <% end %>
-  <div class="form">	
-    <label><%= _("Author")%>:</label> <span class="static"><%=h @comment.author %></span><br/>
-    <label><%= _("URL")%>:</label> <span class="static"><%=h @comment.url %></span><br/>
-    <label><%= _("Email")%>:</label> <span class="static"><%=h @comment.email %></span><br/>
-    <label><%= _("Body")%>:</label> <span class="static"><%=h @comment.body %></span><br/>
-    <label><%= _("IP")%>:</label> <span class="static"><%=h @comment.ip %></span><br/>
-    <label><%= _("Posted date")%>:</label> <span class="static"><%=h @comment.created_at %></span><br/>
-  </div>
+  <ul class="admin set">	
+    <li>
+      <label class="content">
+        <%= _("By") %> <%=h @comment.author %> 
+        <%= _("on") %> <%= @comment.created_at.strftime("%m/%d/%Y at %H:%M") %>
+      </label>
+    </li>
+    <li>
+      <label><%= _("URL")%>:</label> 
+      <%=h @comment.url %>
+    </li>
+    <li>
+      <label><%= _("Email")%>:</label> 
+      <%=h @comment.email %>
+    </li>
+    <li>
+      <label><%= _("IP")%>:</label> 
+      <%=h @comment.ip %></span>
+    </li>
+    <li>
+      <label class="block"><%= _("Body")%></label>
+      <%=h @comment.body %>  
+    </li>
+  </ul>

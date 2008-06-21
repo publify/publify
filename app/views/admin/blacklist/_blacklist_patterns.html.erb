@@ -10,7 +10,7 @@
   <td class="field"><%= link_to h(blacklist_pattern.pattern), :action => "edit", :id => blacklist_pattern.id %></td>
   <td class="field"><%= blacklist_pattern.class %></td>
   <td class="operation"><%= link_to_edit blacklist_pattern %></td>
-  <td class="operation"><%= link_to_destroy blacklist_pattern %></td>    
+  <td class="operation"><%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => blacklist_pattern.id, :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
 </tr>  
 <% end -%>
 </table>

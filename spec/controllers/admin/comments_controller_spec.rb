@@ -14,12 +14,12 @@ describe Admin::CommentsController do
 
   def test_index
     get :index, :article_id => @art_id
-    assert_template 'list'
+    assert_template 'index'
   end
 
   def test_list
     get :list, :article_id => @art_id
-    assert_template 'list'
+    assert_template 'index'
     assert_template_has 'comments'
   end
 

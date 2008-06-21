@@ -1,8 +1,7 @@
 <% form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data") do %>
   <%= render :partial => "form" %>
 
-  <p class="r paginate"><%= cancel %> <%= _("or") %> <%= save(_("Save") + " &raquo;") %></p>  
-
+  <%= cancel_or_save %>
 <% end %>
 
 <%= observe_form "#{form_type}_form",

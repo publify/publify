@@ -1,14 +1,5 @@
 class Admin::CacheController < Admin::BaseController
 
-  def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @page_cache_size = -1
-  end
-
   def sweep
     PageCache.sweep_all
     expire_fragment(/.*/)

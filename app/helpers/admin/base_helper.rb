@@ -105,7 +105,7 @@ module Admin::BaseHelper
   end
 
   def task_overview
-    task(_('Back to overview'), 'list')
+    task(_('Back to overview'), 'index')
   end
 
   def task_new(title)
@@ -238,4 +238,16 @@ module Admin::BaseHelper
       "<tr>\n<td colspan=#{cols}>There is no #{controller.controller_name} yet. Why don't you start and create one?</td>\n</tr>\n"
     end
   end
+  
+  def cancel_or_save
+    result = '<p class="paginate r">'
+    result << cancel 
+    result << " "
+    result << _("or") 
+    result << " "
+    result << save("Save" + " &raquo")
+    result << '</p>'
+    return result
+  end
+  
 end

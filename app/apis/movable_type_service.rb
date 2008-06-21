@@ -108,7 +108,6 @@ class MovableTypeService < TypoWebService
 
     for c in categories
       category = Category.find(c['categoryId'])
-      puts "HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + c['categoryId']
       article.add_category(category, c['isPrimary'])
     end
     article.save

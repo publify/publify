@@ -2,26 +2,17 @@ class Admin::TrackbacksController < Admin::BaseController
 
   before_filter :get_article
 
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
-  def list
+  def index
     @trackbacks = @article.trackbacks.find(:all, :order => "id DESC")
   end
 
   def show
     @trackback = @article.trackbacks.find(params[:id])
-  end
-
-  def new
-    @trackback = @article.trackbacks.build(params[:trackback])
-
-    if request.post? and @trackback.save
-      flash[:notice] = 'Trackback was successfully created.'
-      redirect_to :action => 'show', :id => @trackback.id
-    end
   end
 
   def edit

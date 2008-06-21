@@ -83,8 +83,11 @@ ActionController::Routing::Routes.draw do |map|
                             }) do |dated|
     dated.resources :comments, :new => { :preview => :any }
     dated.resources :trackbacks
-    dated.connect 'trackback', :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
+    dated.connect 'trackbacks', :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
   end
+  
+  map.connect "trackbacks/:id/:day/:month/:year",
+    :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
 
   # Redirects from old permalinks
   map.connect "articles/:controler/:name",
