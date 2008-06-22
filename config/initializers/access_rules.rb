@@ -57,11 +57,11 @@ AccessControl.map :require => [ :admin, :publisher ]  do |map|
 
   map.project_module :content, nil do |project|
     project.menu    _("Manage"),                { :controller => "admin/content",    :action => "index" }
-    project.submenu _("Manage posts"),          { :controller => "admin/content",    :action => "list" }
-	  project.submenu _("Manage pages"),          { :controller => "admin/pages",       :action => "list" }
+    project.submenu _("Manage posts"),          { :controller => "admin/content",    :action => "index" }
+	  project.submenu _("Manage pages"),          { :controller => "admin/pages",       :action => "index" }
 	  project.submenu _("Manage categories"),     { :controller => "admin/categories", :action => "index" }
-	  project.submenu _("Manage uploads"),        { :controller => "admin/resources",  :action => "list" }
-	  project.submenu _("Manage tags"),           { :controller => "admin/tags",       :action => "list" }
+	  project.submenu _("Manage uploads"),        { :controller => "admin/resources",  :action => "index" }
+	  project.submenu _("Manage tags"),           { :controller => "admin/tags",       :action => "index" }
   end
 
   map.project_module :feedback, nil do |project|
@@ -88,7 +88,7 @@ AccessControl.map :require => [ :admin, :publisher ]  do |map|
   
   map.project_module :sidebar, "admin/sidebar" do |project|
     project.menu    _("Sidebar"),               { :action     => "index" }
-    project.submenu _("Text Filters"),          { :controller => "textfilters", :action => "list" }
+    project.submenu _("Text Filters"),          { :controller => "textfilters", :action => "index" }
   end  
   
   map.project_module :users, "admin/users" do |project|
