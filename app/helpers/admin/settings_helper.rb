@@ -2,7 +2,7 @@ module Admin::SettingsHelper
   require 'find'
   
   def fetch_langs
-    options = content_tag(:option, "en_US", :value => 'en_US')
+    options = content_tag(:option, "Select lang", :value => 'en_US')
 	Find.find(RAILS_ROOT + "/lang") do |lang|
 	  if lang =~ /\.rb$/
         lang_pattern = File.basename(lang).gsub(".rb", '')

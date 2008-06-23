@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_lang
-    Localization.lang = this_blog.lang if this_blog.lang != 'en_US'
+    Localization.lang = this_blog.lang
   end
 
   def reset_local_cache

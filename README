@@ -13,13 +13,14 @@ Requirements
 Currently you need all of those things to get typo to run:
 
  * Ruby 1.8.6 or higher
- * Rails 2.0.2 or higher
+ * Rails 2.0.2. Typo DOES NOT support Rails 2.1 yet.
  * A database.  Typo supports MySQL, PostgreSQL, and SQLite.
  * Ruby drivers for your database.
  * For best performance, you should have a web server running either
-   Apache or Lighttpd along with FastCGI, although these aren't
-   strictly required--you can use Ruby's built-in web server for
-   low-volume testing.
+   Apache, Lighttpd or Nginx, along with FastCGI, mongrel or thin. You can use 
+   Ruby's built-in web server for low-volume testing.
+   We recommend the use of Apache + mod_rails (aka Passenger) for fast and 
+   easy deployment along with speed.
  * rspec, rcov and ruby-debug are necessary to run the test suit.
 
 Installation

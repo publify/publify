@@ -35,10 +35,10 @@
   </li>
   <li class="paginate l">
     <label class="block">
-      <%= link_to_function _("Uploads") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "uploads", :duration => 0.2) } %>
+      <%= link_to_function _("Uploads") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "attachments", :duration => 0.2) } %>
     </label>
     <ul>
-      <li id="uploads" <%= 'style="display: none"' unless @article.resources.count > 0 %>>
+      <li id="attachments" <%= 'style="display: none"' unless @article.resources.count > 0 %>>
         <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
       </li>
     </ul>
