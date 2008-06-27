@@ -1,8 +1,9 @@
 class RemoveBlogIds < ActiveRecord::Migration
   def self.up
-    drop_column :contents, :blog_id rescue nil
-    drop_column :sidebars, :blog_id rescue nil
-    drop_column :feedback, :blog_id rescue nil
+    remove_index :contents, :blog_id rescue nil
+    remove_column :contents, :blog_id 
+    remove_column :sidebars, :blog_id 
+    remove_column :feedback, :blog_id 
   end
 
   def self.down
