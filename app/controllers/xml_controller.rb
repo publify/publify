@@ -21,7 +21,7 @@ class XmlController < ApplicationController
 
     case params[:type]
     when 'feed'
-      head :moved_permanently, :location => formatted_articles_url(@format)
+      redirect_to :controller => 'articles', :action => 'index', :format => @format, :status => 301
     when 'comments'
       head :moved_permanently, :location => formatted_admin_comments_url(@format)
     when 'article'

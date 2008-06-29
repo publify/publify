@@ -90,7 +90,7 @@ describe XmlController do
 
   def test_feed_rss20
     get :feed, :format => 'rss20', :type => 'feed'
-    assert_moved_permanently_to formatted_articles_url(:rss)
+    assert_moved_permanently_to 'http://test.host/articles.rss'
   end
 
   def test_feed_rss20_comments
@@ -125,7 +125,7 @@ describe XmlController do
   def test_feed_atom10_feed
     get :feed, :format => 'atom10', :type => 'feed'
     assert_response :moved_permanently
-    assert_moved_permanently_to formatted_articles_url('atom')
+    assert_moved_permanently_to "http://test.host/articles.atom"
   end
 
   def test_feed_atom10_comments
@@ -200,7 +200,7 @@ describe XmlController do
   def test_atom03
     get :feed, :format => 'atom03', :type => 'feed'
     assert_response :moved_permanently
-    assert_moved_permanently_to formatted_articles_url('atom')
+    assert_moved_permanently_to 'http://test.host/articles.atom'
   end
 
   def test_itunes
