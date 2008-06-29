@@ -1,0 +1,51 @@
+/*------------------------------------------------------------------
+# [Color codes]
+
+# Dark grey (h1,h3): #3d3d3d
+# Mid grey (header des): #787878
+# Mid grey (h2, links:hover, h2 a, form#commentform) : #5d5d5d
+# Black (text) : #000
+# Blue (links) #288aaa
+# Light grey (meta, footer) : #8b8b8b
+# Dark orange (border .title) : #e8d1b6
+# Orange (border images, input, textarea) : #f4c997
+# Light orange (body background) : #ffebd6
+# Light brown (footer border) : #e1d8ce
+# */
+
+body {
+	color : #000;
+	background-color: #ffebd6;
+}
+
+h1, h3, h1 a {
+	color: #3d3d3d
+}
+
+#header p.desc  {
+	color :#787878;
+}
+
+h2, a:hover, h2 a, #commentform label, #commentform input {
+	color: #5d5d5d
+}
+
+a {
+	color: #288aaa
+}
+
+div.meta, #footer {
+	color: #8b8b8b
+}
+
+div.atomentry div.title {
+	border-color: #e8d1b6
+}
+
+div.atomentry div.content img, input, textarea {
+	border-color: #f4c997
+}
+
+#footer {
+	border-color: #e1d8ce
+}

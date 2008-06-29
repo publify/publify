@@ -682,6 +682,10 @@ div.user {
   width: 15em;
 }
 
+.clear {
+	clear: both;
+}
+
 /* Login */
 #loginform {
   width: 300px;
