@@ -19,12 +19,12 @@ describe Admin::ThemesController, 'ported from the tests' do
   end
 
   def test_switchto
-    get :switchto, :theme => 'standard_issue'
+    get :switchto, :theme => 'typographic'
     assert_response :redirect, :action => 'index'
   end
 
   def test_preview
-    get :preview, :theme => 'standard_issue'
+    get :preview, :theme => 'typographic'
     assert_response :success
   end
 end

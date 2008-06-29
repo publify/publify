@@ -26,7 +26,7 @@ default:
     default_allow_comments: true
     itunes_subtitle: ""
     email_from: scott@sigkill.org
-    theme: standard_issue
+    theme: typographic
     text_filter: textile
     sp_article_auto_close: 300
     link_to_author: false

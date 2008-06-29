@@ -72,8 +72,8 @@ describe 'Given a new blog' do
     @blog.should be_show_extended_on_rss
   end
 
-  it '#theme should be "standard_issue"' do
-    @blog.theme.should == 'standard_issue'
+  it '#theme should be "typographic"' do
+    @blog.theme.should == 'typographic'
   end
 
   it 'should not use gravatar' do

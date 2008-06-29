@@ -9,17 +9,17 @@ describe ThemeController do
   integrate_views
 
   def test_stylesheets
-    get :stylesheets, :filename => "application.css"
+    get :stylesheets, :filename => "style.css"
     assert_response :success
     assert_equal "text/css; charset=utf-8", @response.headers['type']
-    assert_equal "inline; filename=\"application.css\"", @response.headers['Content-Disposition']
+    assert_equal "inline; filename=\"style.css\"", @response.headers['Content-Disposition']
   end
 
   def test_images
-    get :images, :filename => "spacer.gif"
+    get :images, :filename => "bg_white.png"
     assert_response :success
-    assert_equal "image/gif", @response.headers['type']
-    assert_equal "inline; filename=\"spacer.gif\"", @response.headers['Content-Disposition']
+    assert_equal "image/png", @response.headers['type']
+    assert_equal "inline; filename=\"bg_white.png\"", @response.headers['Content-Disposition']
   end
 
   def test_malicious_path
@@ -31,7 +31,7 @@ describe ThemeController do
     get :static_view_test
     assert_response :success
 
-    assert @response.body =~ /Static View Test from standard issue/
+    assert @response.body =~ /Static View Test from typographic/
   end
 
   def disabled_test_javascript
