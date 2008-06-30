@@ -309,7 +309,7 @@ h3 {
 }
 
 
-div.static-body, ul, #sform p {
+div.static-body, #sidebar ul, #sform p {
 	background:url(../../images/theme/bg_white.png);
 	padding:14px
 }
@@ -319,11 +319,18 @@ div.static-body ul {
 	padding:0;
 }
 
-ul li {
+#sidebar ul li {
 	list-style-type:none;
 	background:url(../../images/theme/bullet_right.png) 98% 70% no-repeat;
 	padding-right: 17px;
 }
+
+ul li {
+	list-style-type:none;
+	background:url(../../images/theme/bullet_right.png) 0% 70% no-repeat;
+	padding-left: 17px;
+}
+
 
 #sform input {
 	width:180px;

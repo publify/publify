@@ -1,8 +1,8 @@
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
-  protect_from_forgery :secret => '1c8b953667056f1a3c324d6b369f6158'
   include ::LoginSystem
+  protect_from_forgery :secret => '1c8b953667056f1a3c324d6b369f6158', :except => [:search, :preview]
   before_filter :reset_local_cache, :fire_triggers, :load_lang
   after_filter :reset_local_cache
 
@@ -18,8 +18,7 @@ class ApplicationController < ActionController::Base
 
   def setup_themer
     # Ick!
-    self.view_paths =
-      ::ActionController::Base.view_paths.dup.unshift("#{RAILS_ROOT}/themes/#{this_blog.theme}/views")
+    self.view_paths = ::ActionController::Base.view_paths.dup.unshift("#{RAILS_ROOT}/themes/#{this_blog.theme}/views")
   end
 
   def error(message = "Record not found...", options = { })
