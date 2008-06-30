@@ -30,11 +30,13 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY 
   s.executables = ['typo']
   
-  s.add_dependency("rails", "= 2.0.2")
+  s.add_dependency("rails", "== 2.0.2")
   s.add_dependency("mongrel", ">= 1.1.3")
   s.add_dependency("mongrel_cluster", ">= 0.2.0")
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
+  s.add_dependency("ruby-debug", ">= 0.10.1")
+
 end
 
 Rake::GemPackageTask.new(spec) do |p|
