@@ -1,6 +1,7 @@
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
+  protect_from_forgery :secret => '1c8b953667056f1a3c324d6b369f6158'
   include ::LoginSystem
   before_filter :reset_local_cache, :fire_triggers, :load_lang
   after_filter :reset_local_cache

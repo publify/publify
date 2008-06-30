@@ -1,4 +1,5 @@
 class LiveController < ContentController
+  skip_before_filter :verify_authenticity_token
   session :off
 
   def search

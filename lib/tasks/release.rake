@@ -36,7 +36,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("sqlite3-ruby", ">= 1.1.0")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
   s.add_dependency("ruby-debug", ">= 0.10.1")
-
+  s.add_dependency("flexmock", ">= 0.8.2")
 end
 
 Rake::GemPackageTask.new(spec) do |p|
