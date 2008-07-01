@@ -18,6 +18,7 @@ class PageCache
                      pages.* feedback feedback.*
                      comments comments.*
                      category categories.* xml
+                     *.rss *.atom
                      tag tags.* category archive.*})
 
       self.zap_pages((1990..2020))

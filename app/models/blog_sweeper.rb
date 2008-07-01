@@ -6,14 +6,12 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def run_pending_page_sweeps
-    logger.debug "Running pending page_sweeps: #{pending_sweeps.to_a.inspect}"
     pending_sweeps.each do |each|
       self.send(each)
     end
   end
 
   def after_comments_create
-    logger.debug 'BlogSweeper#after_comments_create'
     expire_for(controller.send(:instance_variable_get, :@comment))
   end
 
@@ -21,29 +19,24 @@ class BlogSweeper < ActionController::Caching::Sweeper
   alias_method :after_articles_comment, :after_comments_create
 
   def after_comments_destroy
-    logger.debug 'BlogSweeper#after_comments_destroy'
     expire_for(controller.send(:instance_variable_get, :@comment), true)
   end
 
   alias_method :after_articles_nuke_comment, :after_comments_destroy
 
   def after_articles_trackback
-    logger.debug 'BlogSweeper#after_articles_trackback'
     expire_for(controller.send(:instance_variable_get, :@trackback))
   end
 
   def after_articles_nuke_trackback
-    logger.debug 'BlogSweeper#after_articles_nuke_trackback'
     expire_for(controller.send(:instance_variable_get, :@trackback), true)
   end
 
   def after_save(record)
-    logger.info "Expiring #{record}, with controller: #{controller}"
     expire_for(record)
   end
 
   def after_destroy(record)
-    logger.info "Caught #{record.title rescue record.inspect}, with controller: #{controller}"
     expire_for(record, true)
   end
 
@@ -77,8 +70,14 @@ class BlogSweeper < ActionController::Caching::Sweeper
   def sweep_articles
     expire_fragment(%r{.*/articles/.*})
     unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
-      PageCache.zap_pages %w{index.* articles.* articles feedback
-                             comments comments.* categories categories.* tags tags.* }
+      PageCache.zap_pages(%w{index.* articles.* page
+                     pages.* feedback feedback.*
+                     comments comments.*
+                     category categories.* xml
+                     tag tags.* category archive.* *.rss *.atom  })
+
+      PageCache.zap_pages((1990..2020))
+      PageCache.zap_pages([*1990..2020].collect { |y| "#{y}.*" })
     end
   end
 

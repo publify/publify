@@ -14,6 +14,12 @@ class CommentsController < FeedbackController
       else
         redirect_to article_path(@article)
       end
+    else
+      if request.xhr?
+        render :partial => '/articles/comment_failed', :object => @comment
+      else
+        redirect_to article_path(@article)
+      end      
     end
   end
 
