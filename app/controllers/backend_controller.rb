@@ -1,4 +1,6 @@
 class BackendController < ContentController
+  skip_before_filter :verify_authenticity_token
+  
   cache_sweeper :blog_sweeper
   session :off
 
