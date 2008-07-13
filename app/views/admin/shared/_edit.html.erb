@@ -3,8 +3,3 @@
 
   <%= cancel_or_save %>
 <% end %>
-
-<%= observe_form "#{form_type}_form",
-      :frequency => 2,
-      :complete => "$('preview').src = request.responseText; Element.show('preview');",
-      :url => { :action => "preview" } if this_blog.editor == 1  %>
