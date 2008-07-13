@@ -25,8 +25,8 @@ class Tag < ActiveRecord::Base
     if self.display_name.blank? or self.display_name != self.name
       self.display_name = self.name
     end
-    self.name = self.name.tr('.', '-')
-    self.name = self.name.tr(' ', '').downcase
+    self.name = self.name.gsub('.', '-')
+    self.name = self.name.gsub(' ', '').downcase
   end
 
   before_save :ensure_naming_conventions
