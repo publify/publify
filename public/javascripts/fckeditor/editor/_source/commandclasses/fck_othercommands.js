@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -23,13 +23,14 @@
  */
 
 // ### General Dialog Box Commands.
-var FCKDialogCommand = function( name, title, url, width, height, getStateFunction, getStateParam )
+var FCKDialogCommand = function( name, title, url, width, height, getStateFunction, getStateParam, customValue )
 {
 	this.Name	= name ;
 	this.Title	= title ;
 	this.Url	= url ;
 	this.Width	= width ;
 	this.Height	= height ;
+	this.CustomValue = customValue ;
 
 	this.GetStateFunction	= getStateFunction ;
 	this.GetStateParam		= getStateParam ;
@@ -39,7 +40,7 @@ var FCKDialogCommand = function( name, title, url, width, height, getStateFuncti
 
 FCKDialogCommand.prototype.Execute = function()
 {
-	FCKDialog.OpenDialog( 'FCKDialog_' + this.Name , this.Title, this.Url, this.Width, this.Height, null, null, this.Resizable ) ;
+	FCKDialog.OpenDialog( 'FCKDialog_' + this.Name , this.Title, this.Url, this.Width, this.Height, this.CustomValue, null, this.Resizable ) ;
 }
 
 FCKDialogCommand.prototype.GetState = function()
@@ -47,7 +48,7 @@ FCKDialogCommand.prototype.GetState = function()
 	if ( this.GetStateFunction )
 		return this.GetStateFunction( this.GetStateParam ) ;
 	else
-		return FCK_TRISTATE_OFF ;
+		return FCK.EditMode == FCK_EDITMODE_WYSIWYG ? FCK_TRISTATE_OFF : FCK_TRISTATE_DISABLED ;
 }
 
 // Generic Undefined command (usually used when a command is under development).
@@ -71,12 +72,12 @@ FCKUndefinedCommand.prototype.GetState = function()
 var FCKFormatBlockCommand = function()
 {}
 
-FCKFormatBlockCommand.prototype = 
+FCKFormatBlockCommand.prototype =
 {
 	Name : 'FormatBlock',
-	
+
 	Execute : FCKStyleCommand.prototype.Execute,
-	
+
 	GetState : function()
 	{
 		return FCK.EditorDocument ? FCK_TRISTATE_OFF : FCK_TRISTATE_DISABLED ;
@@ -88,7 +89,7 @@ FCKFormatBlockCommand.prototype =
 var FCKFontNameCommand = function()
 {}
 
-FCKFontNameCommand.prototype = 
+FCKFontNameCommand.prototype =
 {
 	Name		: 'FontName',
 	Execute		: FCKStyleCommand.prototype.Execute,
@@ -99,7 +100,7 @@ FCKFontNameCommand.prototype =
 var FCKFontSizeCommand = function()
 {}
 
-FCKFontSizeCommand.prototype = 
+FCKFontSizeCommand.prototype =
 {
 	Name		: 'FontSize',
 	Execute		: FCKStyleCommand.prototype.Execute,
@@ -209,6 +210,8 @@ FCKUndoCommand.prototype.Execute = function()
 
 FCKUndoCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	return ( FCKUndo.CheckUndoState() ? FCK_TRISTATE_OFF : FCK_TRISTATE_DISABLED ) ;
 }
 
@@ -225,6 +228,8 @@ FCKRedoCommand.prototype.Execute = function()
 
 FCKRedoCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	return ( FCKUndo.CheckRedoState() ? FCK_TRISTATE_OFF : FCK_TRISTATE_DISABLED ) ;
 }
 
@@ -249,11 +254,18 @@ FCKPageBreakCommand.prototype.Execute = function()
 	e.innerHTML = '<span style="DISPLAY:none">&nbsp;</span>' ;
 
 	var oFakeImage = FCKDocumentProcessor_CreateFakeImage( 'FCK__PageBreak', e ) ;
-	FCK.InsertElement( oFakeImage ) ;
+	var oRange = new FCKDomRange( FCK.EditorWindow ) ;
+	oRange.MoveToSelection() ;
+	var oSplitInfo = oRange.SplitBlock() ;
+	oRange.InsertNode( oFakeImage ) ;
+
+	FCK.Events.FireEvent( 'OnSelectionChange' ) ;
 }
 
 FCKPageBreakCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	return 0 ; // FCK_TRISTATE_OFF
 }
 
@@ -277,12 +289,14 @@ FCKUnlinkCommand.prototype.Execute = function()
 
 		return ;
 	}
-	
+
 	FCK.ExecuteNamedCommand( this.Name ) ;
 }
 
 FCKUnlinkCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	var state = FCK.GetNamedCommandState( this.Name ) ;
 
 	// Check that it isn't an anchor
@@ -328,6 +342,8 @@ FCKSelectAllCommand.prototype.Execute = function()
 
 FCKSelectAllCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	return FCK_TRISTATE_OFF ;
 }
 
@@ -349,6 +365,8 @@ FCKPasteCommand.prototype =
 
 	GetState : function()
 	{
+		if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+			return FCK_TRISTATE_DISABLED ;
 		return FCK.GetNamedCommandState( 'Paste' ) ;
 	}
 } ;
@@ -369,27 +387,63 @@ FCKRuleCommand.prototype =
 
 	GetState : function()
 	{
+		if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+			return FCK_TRISTATE_DISABLED ;
 		return FCK.GetNamedCommandState( 'InsertHorizontalRule' ) ;
 	}
 } ;
 
-// FCKCopyCommand
-var FCKCopyCommand = function()
+// FCKCutCopyCommand
+var FCKCutCopyCommand = function( isCut )
 {
-	this.Name = 'Copy' ;
+	this.Name = isCut ? 'Cut' : 'Copy' ;
 }
 
-FCKCopyCommand.prototype = 
+FCKCutCopyCommand.prototype =
 {
 	Execute : function()
 	{
-		FCK.ExecuteNamedCommand( this.Name ) ;
+		var enabled = false ;
+
+		if ( FCKBrowserInfo.IsIE )
+		{
+			// The following seems to be the only reliable way to detect that
+			// cut/copy is enabled in IE. It will fire the oncut/oncopy event
+			// only if the security settings enabled the command to execute.
+
+			var onEvent = function()
+			{
+				enabled = true ;
+			} ;
+
+			var eventName = 'on' + this.Name.toLowerCase() ;
+
+			FCK.EditorDocument.body.attachEvent( eventName, onEvent ) ;
+			FCK.ExecuteNamedCommand( this.Name ) ;
+			FCK.EditorDocument.body.detachEvent( eventName, onEvent ) ;
+		}
+		else
+		{
+			try
+			{
+				// Other browsers throw an error if the command is disabled.
+				FCK.ExecuteNamedCommand( this.Name ) ;
+				enabled = true ;
+			}
+			catch(e){}
+		}
+
+		if ( !enabled )
+			alert( FCKLang[ 'PasteError' + this.Name ] ) ;
 	},
 
 	GetState : function()
 	{
-		// Strangely, the cut command happens to have the correct states for both Copy and Cut in all browsers.
-		return FCK.GetNamedCommandState( 'Cut' ) ;
+		// Strangely, the Cut command happens to have the correct states for
+		// both Copy and Cut in all browsers.
+		return FCK.EditMode != FCK_EDITMODE_WYSIWYG ?
+				FCK_TRISTATE_DISABLED :
+				FCK.GetNamedCommandState( 'Cut' ) ;
 	}
 };
 
@@ -398,7 +452,7 @@ var FCKAnchorDeleteCommand = function()
 	this.Name = 'AnchorDelete' ;
 }
 
-FCKAnchorDeleteCommand.prototype = 
+FCKAnchorDeleteCommand.prototype =
 {
 	Execute : function()
 	{
@@ -457,6 +511,8 @@ FCKAnchorDeleteCommand.prototype =
 
 	GetState : function()
 	{
+		if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+			return FCK_TRISTATE_DISABLED ;
 		return FCK.GetNamedCommandState( 'Unlink') ;
 	}
 };

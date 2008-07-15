@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -66,15 +66,15 @@ FCKDomRange.prototype.MoveToSelection = function()
 	}
 }
 
-FCKDomRange.prototype.Select = function()
+FCKDomRange.prototype.Select = function( forceExpand )
 {
 	if ( this._Range )
-		this.SelectBookmark( this.CreateBookmark( true ) ) ;
+		this.SelectBookmark( this.CreateBookmark( true ), forceExpand ) ;
 }
 
 // Not compatible with bookmark created with CreateBookmark2.
 // The bookmark nodes will be deleted from the document.
-FCKDomRange.prototype.SelectBookmark = function( bookmark )
+FCKDomRange.prototype.SelectBookmark = function( bookmark, forceExpand )
 {
 	var bIsCollapsed = this.CheckIsCollapsed() ;
 	var bIsStartMakerAlone ;
@@ -82,7 +82,7 @@ FCKDomRange.prototype.SelectBookmark = function( bookmark )
 
 	// Create marker tags for the start and end boundaries.
 	var eStartMarker = this.GetBookmarkNode( bookmark, true ) ;
-	
+
 	if ( !eStartMarker )
 		return ;
 
@@ -111,26 +111,27 @@ FCKDomRange.prototype.SelectBookmark = function( bookmark )
 	}
 	else
 	{
-		bIsStartMakerAlone = ( !eStartMarker.previousSibling || eStartMarker.previousSibling.nodeName.toLowerCase() == 'br' ) && !eStartMarker.nextSibing ;
-		
-		// Append a temporary <span>&nbsp;</span> before the selection.
+		bIsStartMakerAlone = ( forceExpand || !eStartMarker.previousSibling || eStartMarker.previousSibling.nodeName.toLowerCase() == 'br' ) && !eStartMarker.nextSibing ;
+
+		// Append a temporary <span>&#65279;</span> before the selection.
 		// This is needed to avoid IE destroying selections inside empty
 		// inline elements, like <b></b> (#253).
 		// It is also needed when placing the selection right after an inline
 		// element to avoid the selection moving inside of it.
 		dummySpan = this.Window.document.createElement( 'span' ) ;
-		dummySpan.innerHTML = '&nbsp;' ;
+		dummySpan.innerHTML = '&#65279;' ;	// Zero Width No-Break Space (U+FEFF). See #1359.
 		eStartMarker.parentNode.insertBefore( dummySpan, eStartMarker ) ;
-		
+
 		if ( bIsStartMakerAlone )
 		{
 			// To expand empty blocks or line spaces after <br>, we need
-			// instead to have a &nbsp;, which will be later deleted using the
+			// instead to have any char, which will be later deleted using the
 			// selection.
-			eStartMarker.parentNode.insertBefore( this.Window.document.createTextNode( '\u00a0' ), eStartMarker ) ;
+			// \ufeff = Zero Width No-Break Space (U+FEFF). See #1359.
+			eStartMarker.parentNode.insertBefore( this.Window.document.createTextNode( '\ufeff' ), eStartMarker ) ;
 		}
 	}
-	
+
 	if ( !this._Range )
 		this._Range = this.CreateRange() ;
 
@@ -142,9 +143,9 @@ FCKDomRange.prototype.SelectBookmark = function( bookmark )
 	{
 		if ( bIsStartMakerAlone )
 		{
-			// Move the selection start to include the temporary &nbsp;.
+			// Move the selection start to include the temporary &#65279;.
 			oIERange.moveStart( 'character', -1 ) ;
-			
+
 			oIERange.select() ;
 
 			// Remove our temporary stuff.

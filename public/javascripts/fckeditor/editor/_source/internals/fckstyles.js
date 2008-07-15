@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -37,7 +37,7 @@ var FCKStyles = FCK.Styles =
 				style.ApplyToObject( FCKSelection.GetSelectedElement() ) ;
 			else
 				style.ApplyToSelection( FCK.EditorWindow ) ;
-	
+
 			FCK.Events.FireEvent( 'OnSelectionChange' ) ;
 		}
 	},
@@ -88,7 +88,7 @@ var FCKStyles = FCK.Styles =
 				var style = styles[ styleName ] ;
 				var state = style.CheckActive( path ) ;
 
-				if ( style._LastState != state )
+				if ( state != ( style._LastState || null ) )
 				{
 					style._LastState = state ;
 
@@ -210,6 +210,8 @@ var FCKStyles = FCK.Styles =
 			// Remove elements nodes that match with this style rules.
 			if ( tagsRegex.test( currentNode.nodeName ) )
 				FCKDomTools.RemoveNode( currentNode, true ) ;
+			else
+				FCKDomTools.RemoveAttributes( currentNode, FCKConfig.RemoveAttributesArray );
 
 			currentNode = nextNode ;
 		}
@@ -218,7 +220,7 @@ var FCKStyles = FCK.Styles =
 
 		FCK.Events.FireEvent( 'OnSelectionChange' ) ;
 	},
-	
+
 	GetStyle : function( styleName )
 	{
 		return this.GetStyles()[ styleName ] ;
@@ -229,14 +231,14 @@ var FCKStyles = FCK.Styles =
 		var styles = this._GetStyles ;
 		if ( !styles )
 		{
-			styles = this._GetStyles = FCKTools.Merge( 
+			styles = this._GetStyles = FCKTools.Merge(
 				this._LoadStylesCore(),
 				this._LoadStylesCustom(),
 				this._LoadStylesXml() ) ;
 		}
 		return styles ;
 	},
-	
+
 	CheckHasObjectStyle : function( elementName )
 	{
 		return !!this._ObjectStyles[ elementName ] ;
@@ -264,7 +266,10 @@ var FCKStyles = FCK.Styles =
 		if ( styleDefs )
 		{
 			for ( var styleName in styleDefs )
-				styles[ styleName ] = new FCKStyle( styleDefs[ styleName ] ) ;
+			{
+				var style = styles[ styleName ] = new FCKStyle( styleDefs[ styleName ] ) ;
+				style.Name = styleName ;
+			}
 		}
 
 		return styles ;
@@ -282,11 +287,15 @@ var FCKStyles = FCK.Styles =
 		// Load the XML file into a FCKXml object.
 		var xml = new FCKXml() ;
 		xml.LoadUrl( stylesXmlPath ) ;
-		
+
 		var stylesXmlObj = FCKXml.TransformToObject( xml.SelectSingleNode( 'Styles' ) ) ;
 
 		// Get the "Style" nodes defined in the XML file.
 		var styleNodes = stylesXmlObj.$Style ;
+
+		// Check that it did contain some valid nodes
+		if ( !styleNodes )
+			return styles ;
 
 		// Add each style to our "Styles" collection.
 		for ( var i = 0 ; i < styleNodes.length ; i++ )
@@ -325,16 +334,16 @@ var FCKStyles = FCK.Styles =
 
 			// Load override definitions.
 			var cssStyleOverrideNodes = styleNode.$Override ;
-			if ( cssStyleOverrideNodes ) 
+			if ( cssStyleOverrideNodes )
 			{
 				for ( j = 0 ; j < cssStyleOverrideNodes.length ; j++ )
 				{
 					var overrideNode = cssStyleOverrideNodes[j] ;
-					var overrideDef = 
+					var overrideDef =
 					{
 						Element : overrideNode.element
 					} ;
-					
+
 					var overrideAttNode = overrideNode.$Attribute ;
 					if ( overrideAttNode )
 					{
@@ -352,14 +361,14 @@ var FCKStyles = FCK.Styles =
 							overrideDef.Attributes[ overrideAttNode[k].name ] = overrideAttValue ;
 						}
 					}
-					
+
 					styleDef.Overrides.push( overrideDef ) ;
 				}
 			}
 
 			var style = new FCKStyle( styleDef ) ;
 			style.Name = styleNode.name || element ;
-			
+
 			if ( style.GetType() == FCK_STYLE_OBJECT )
 				this._ObjectStyles[ element ] = true ;
 

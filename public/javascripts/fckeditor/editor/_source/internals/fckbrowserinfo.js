@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -26,10 +26,12 @@ var s = navigator.userAgent.toLowerCase() ;
 var FCKBrowserInfo =
 {
 	IsIE		: /*@cc_on!@*/false,
-	IsIE7		: /*@cc_on!@*/false && s.Contains('msie 7'),
+	IsIE7		: /*@cc_on!@*/false && ( parseInt( s.match( /msie (\d+)/ )[1], 10 ) >= 7 ),
+	IsIE6		: /*@cc_on!@*/false && ( parseInt( s.match( /msie (\d+)/ )[1], 10 ) >= 6 ),
 	IsGecko		: s.Contains('gecko/'),
 	IsSafari	: s.Contains(' applewebkit/'),		// Read "IsWebKit"
 	IsOpera		: !!window.opera,
+	IsAIR		: s.Contains(' adobeair/'),
 	IsMac		: s.Contains('macintosh')
 } ;
 

@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -35,5 +35,7 @@ FCKSpellCheckCommand.prototype.Execute = function()
 
 FCKSpellCheckCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	return this.IsEnabled ? FCK_TRISTATE_OFF : FCK_TRISTATE_DISABLED ;
 }

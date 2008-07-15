@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -125,6 +125,10 @@ FCKToolbarButtonUI.prototype.ChangeState = function( newState, force )
 		return ;
 
 	var e = this.MainElement ;
+
+	// In IE it can happen when the page is reloaded that MainElement is null, so exit here
+	if ( !e )
+		return ;
 
 	switch ( parseInt( newState, 10 ) )
 	{

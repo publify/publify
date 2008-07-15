@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -37,7 +37,7 @@ var FCKSpecialCombo = function( caption, fieldWidth, panelWidth, panelMaxHeight,
 	this.Items = new Object() ;
 
 	this._Panel = new FCKPanel( parentWindow || window ) ;
-	this._Panel.AppendStyleSheet( FCKConfig.SkinPath + 'fck_editor.css' ) ;
+	this._Panel.AppendStyleSheet( FCKConfig.SkinEditorCSS ) ;
 	this._PanelBox = this._Panel.MainNode.appendChild( this._Panel.Document.createElement( 'DIV' ) ) ;
 	this._PanelBox.className = 'SC_Panel' ;
 	this._PanelBox.style.width = this.PanelWidth + 'px' ;
@@ -81,11 +81,8 @@ function FCKSpecialCombo_ItemOnClick( ev, specialCombo, itemId )
 FCKSpecialCombo.prototype.ClearItems = function ()
 {
 	if ( this.Items )
-	{
-		for ( var key in this.Items )
-			this.Items[key] = null ;
-	}
-	
+		this.Items = {} ;
+
 	var itemsholder = this._ItemsHolderEl ;
 	while ( itemsholder.firstChild )
 		itemsholder.removeChild( itemsholder.firstChild ) ;
@@ -192,7 +189,9 @@ FCKSpecialCombo.prototype.SetEnabled = function( isEnabled )
 {
 	this.Enabled = isEnabled ;
 
-	this._OuterTable.className = isEnabled ? '' : 'SC_FieldDisabled' ;
+	// In IE it can happen when the page is reloaded that _OuterTable is null, so check its existence
+	if ( this._OuterTable )
+		this._OuterTable.className = isEnabled ? '' : 'SC_FieldDisabled' ;
 }
 
 FCKSpecialCombo.prototype.Create = function( targetElement )

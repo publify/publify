@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -155,7 +155,7 @@ FCKFitWindow.prototype.Execute = function()
 	//lost, so we must reset it. Also, the cursor position and selection are
 	//also lost, even if you comment the following line (MakeEditable).
 	// if ( FCKBrowserInfo.IsGecko10 )	// Initially I thought it was a FF 1.0 only problem.
-	if ( FCK.EditMode == FCK_EDITMODE_WYSIWYG ) 
+	if ( FCK.EditMode == FCK_EDITMODE_WYSIWYG )
 		FCK.EditingArea.MakeEditable() ;
 
 	FCK.Focus() ;

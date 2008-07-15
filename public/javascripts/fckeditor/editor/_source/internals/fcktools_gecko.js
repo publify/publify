@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -30,9 +30,11 @@ FCKTools.CancelEvent = function( e )
 FCKTools.DisableSelection = function( element )
 {
 	if ( FCKBrowserInfo.IsGecko )
-		element.style.MozUserSelect	= 'none' ;	// Gecko only.
+		element.style.MozUserSelect		= 'none' ;	// Gecko only.
+	else if ( FCKBrowserInfo.IsSafari )
+		element.style.KhtmlUserSelect	= 'none' ;	// WebKit only.
 	else
-		element.style.userSelect	= 'none' ;	// CSS3 (not supported yet).
+		element.style.userSelect		= 'none' ;	// CSS3 (not supported yet).
 }
 
 // Appends a CSS file to a document.
@@ -47,8 +49,11 @@ FCKTools._AppendStyleSheet = function( documentElement, cssFileUrl )
 }
 
 // Appends a CSS style string to a document.
-FCKTools._AppendStyleString = function( documentElement, cssStyles )
+FCKTools.AppendStyleString = function( documentElement, cssStyles )
 {
+	if ( !cssStyles )
+		return null ;
+
 	var e = documentElement.createElement( "STYLE" ) ;
 	e.appendChild( documentElement.createTextNode( cssStyles ) ) ;
 	documentElement.getElementsByTagName( "HEAD" )[0].appendChild( e ) ;
@@ -111,8 +116,15 @@ FCKTools.CreateXmlObject = function( object )
 	{
 		case 'XmlHttp' :
 			return new XMLHttpRequest() ;
+
 		case 'DOMDocument' :
-			return document.implementation.createDocument( '', '', null ) ;
+			// Originaly, we were had the following here:
+			// return document.implementation.createDocument( '', '', null ) ;
+			// But that doesn't work if we're running under domain relaxation mode, so we need a workaround.
+			// See http://ajaxian.com/archives/xml-messages-with-cross-domain-json about the trick we're using.
+			var doc = ( new DOMParser() ).parseFromString( '<tmp></tmp>', 'text/xml' ) ;
+			FCKDomTools.RemoveNode( doc.firstChild ) ;
+			return doc ;
 	}
 	return null ;
 }
@@ -191,7 +203,7 @@ FCKTools.RegisterDollarFunction = function( targetWindow )
 {
 	targetWindow.$ = function( id )
 	{
-		return this.document.getElementById( id ) ;
+		return targetWindow.document.getElementById( id ) ;
 	} ;
 }
 
@@ -224,7 +236,7 @@ FCKTools.GetElementPosition = function( el, relativeWindow )
 			break ;
 
 		/*
-		FCKDebug.Output( el.tagName + ":" + "offset=" + el.offsetLeft + "," + el.offsetTop + "  " 
+		FCKDebug.Output( el.tagName + ":" + "offset=" + el.offsetLeft + "," + el.offsetTop + "  "
 				+ "scroll=" + el.scrollLeft + "," + el.scrollTop ) ;
 		*/
 

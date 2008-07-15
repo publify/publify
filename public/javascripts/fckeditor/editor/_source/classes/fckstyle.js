@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -94,7 +94,7 @@ FCKStyle.prototype =
 	/**
 	 * Apply the style to a FCKDomRange.
 	 */
-	ApplyToRange : function( range, selectIt )
+	ApplyToRange : function( range, selectIt, updateRange )
 	{
 		// ApplyToRange is not valid for FCK_STYLE_OBJECT types.
 		// Use ApplyToObject instead.
@@ -111,7 +111,7 @@ FCKStyle.prototype =
 				return ;
 		}
 
-		this.ApplyToRange( range, selectIt ) ;
+		this.ApplyToRange( range, selectIt, updateRange ) ;
 	},
 
 	/**
@@ -141,7 +141,7 @@ FCKStyle.prototype =
 	 * Remove the style from a FCKDomRange. Block type styles will have no
 	 * effect.
 	 */
-	RemoveFromRange : function( range, selectIt )
+	RemoveFromRange : function( range, selectIt, updateRange )
 	{
 		var bookmark ;
 
@@ -231,8 +231,9 @@ FCKStyle.prototype =
 						// Remove overrides defined to the same element name.
 						this._RemoveOverrides( pathElement, styleOverrides[ pathElementName ] ) ;
 
-						// Remove the element if no more attributes are available.
-						this._RemoveNoAttribElement( pathElement ) ;
+						// Remove the element if no more attributes are available and it's an inline style element
+						if ( this.GetType() == FCK_STYLE_INLINE)
+							this._RemoveNoAttribElement( pathElement ) ;
 					}
 				}
 				else if ( isBoundary )
@@ -275,6 +276,9 @@ FCKStyle.prototype =
 			if ( selectIt )
 				range.SelectBookmark( bookmark ) ;
 
+			if ( updateRange )
+				range.MoveToBookmark( bookmark ) ;
+
 			return ;
 		}
 
@@ -282,7 +286,7 @@ FCKStyle.prototype =
 		range.Expand( 'inline_elements' ) ;
 
 		// Bookmark the range so we can re-select it after processing.
-		var bookmark = range.CreateBookmark( true ) ;
+		bookmark = range.CreateBookmark( true ) ;
 
 		// The style will be applied within the bookmark boundaries.
 		var startNode	= range.GetBookmarkNode( bookmark, true ) ;
@@ -400,6 +404,9 @@ FCKStyle.prototype =
 		// Re-select the original range.
 		if ( selectIt )
 			range.SelectBookmark( bookmark ) ;
+
+		if ( updateRange )
+			range.MoveToBookmark( bookmark ) ;
 	},
 
 	/**
@@ -486,7 +493,7 @@ FCKStyle.prototype =
 		switch ( this.GetType() )
 		{
 			case FCK_STYLE_BLOCK :
-				return this.CheckElementRemovable( elementPath.Block || elementPath.BlockLimit ) ;
+				return this.CheckElementRemovable( elementPath.Block || elementPath.BlockLimit, true ) ;
 
 			case FCK_STYLE_INLINE :
 
@@ -688,7 +695,8 @@ FCKStyle.prototype =
 			valueB = valueB.replace( /;$/, '' ).toLowerCase() ;
 		}
 
-		return ( valueA == valueB )
+		// Return true if they match or if valueA is null and valueB is an empty string
+		return ( valueA == valueB || ( ( valueA === null || valueA === '' ) && ( valueB === null || valueB === '' ) ) )
 	},
 
 	GetFinalAttributeValue : function( attName )
@@ -741,39 +749,191 @@ FCKStyle.prototype =
 	},
 
 	/**
+	 * Converting from a PRE block to a non-PRE block in formatting operations.
+	 */
+	_FromPre : function( doc, block, newBlock )
+	{
+		var innerHTML = block.innerHTML ;
+
+		// Trim the first and last linebreaks immediately after and before <pre>, </pre>,
+		// if they exist.
+		// This is done because the linebreaks are not rendered.
+		innerHTML = innerHTML.replace( /(\r\n|\r)/g, '\n' ) ;
+		innerHTML = innerHTML.replace( /^[ \t]*\n/, '' ) ;
+		innerHTML = innerHTML.replace( /\n$/, '' ) ;
+
+		// 1. Convert spaces or tabs at the beginning or at the end to &nbsp;
+		innerHTML = innerHTML.replace( /^[ \t]+|[ \t]+$/g, function( match, offset, s )
+				{
+					if ( match.length == 1 )	// one space, preserve it
+						return '&nbsp;' ;
+					else if ( offset == 0 )		// beginning of block
+						return new Array( match.length ).join( '&nbsp;' ) + ' ' ;
+					else				// end of block
+						return ' ' + new Array( match.length ).join( '&nbsp;' ) ;
+				} ) ;
+
+		// 2. Convert \n to <BR>.
+		// 3. Convert contiguous (i.e. non-singular) spaces or tabs to &nbsp;
+		var htmlIterator = new FCKHtmlIterator( innerHTML ) ;
+		var results = [] ;
+		htmlIterator.Each( function( isTag, value )
+			{
+				if ( !isTag )
+				{
+					value = value.replace( /\n/g, '<BR>' ) ;
+					value = value.replace( /[ \t]{2,}/g,
+							function ( match )
+							{
+								return new Array( match.length ).join( '&nbsp;' ) + ' ' ;
+							} ) ;
+				}
+				results.push( value ) ;
+			} ) ;
+		newBlock.innerHTML = results.join( '' ) ;
+		return newBlock ;
+	},
+
+	/**
+	 * Converting from a non-PRE block to a PRE block in formatting operations.
+	 */
+	_ToPre : function( doc, block, newBlock )
+	{
+		// Handle converting from a regular block to a <pre> block.
+		var innerHTML = block.innerHTML.Trim() ;
+
+		// 1. Delete ANSI whitespaces immediately before and after <BR> because they are not visible.
+		// 2. Mark down any <BR /> nodes here so they can be turned into \n in the next step and avoid being compressed.
+		innerHTML = innerHTML.replace( /[ \t\r\n]*(<br[^>]*>)[ \t\r\n]*/gi, '<BR />' ) ;
+
+		// 3. Compress other ANSI whitespaces since they're only visible as one single space previously.
+		// 4. Convert &nbsp; to spaces since &nbsp; is no longer needed in <PRE>.
+		// 5. Convert any <BR /> to \n. This must not be done earlier because the \n would then get compressed.
+		var htmlIterator = new FCKHtmlIterator( innerHTML ) ;
+		var results = [] ;
+		htmlIterator.Each( function( isTag, value )
+			{
+				if ( !isTag )
+					value = value.replace( /([ \t\n\r]+|&nbsp;)/g, ' ' ) ;
+				else if ( isTag && value == '<BR />' )
+					value = '\n' ;
+				results.push( value ) ;
+			} ) ;
+
+		// Assigning innerHTML to <PRE> in IE causes all linebreaks to be reduced to spaces.
+		// Assigning outerHTML to <PRE> in IE doesn't work if the <PRE> isn't contained in another node
+		// since the node reference is changed after outerHTML assignment.
+		// So, we need some hacks to workaround IE bugs here.
+		if ( FCKBrowserInfo.IsIE )
+		{
+			var temp = doc.createElement( 'div' ) ;
+			temp.appendChild( newBlock ) ;
+			newBlock.outerHTML = '<PRE>\n' + results.join( '' ) + '</PRE>' ;
+			newBlock = temp.removeChild( temp.firstChild ) ;
+		}
+		else
+			newBlock.innerHTML = results.join( '' ) ;
+		return newBlock ;
+	},
+
+	/**
 	 * Apply an inline style to a FCKDomRange.
 	 *
 	 * TODO
 	 *	- Implement the "#" style handling.
 	 *	- Properly handle block containers like <div> and <blockquote>.
 	 */
-	_ApplyBlockStyle : function( range, selectIt )
+	_ApplyBlockStyle : function( range, selectIt, updateRange )
 	{
 		// Bookmark the range so we can re-select it after processing.
 		var bookmark ;
 
 		if ( selectIt )
-			bookmark = range.CreateBookmark( true ) ;
+			bookmark = range.CreateBookmark() ;
 
 		var iterator = new FCKDomRangeIterator( range ) ;
 		iterator.EnforceRealBlocks = true ;
 
 		var block ;
+		var doc = range.Window.document ;
+
+		var preBlocks = [] ;
+		var convertedPreBlocks = [] ;
+
 		while( ( block = iterator.GetNextParagraph() ) )		// Only one =
 		{
 			// Create the new node right before the current one.
-			var newBlock = block.parentNode.insertBefore( this.BuildElement( range.Window.document ), block ) ;
+			var newBlock = this.BuildElement( doc ) ;
 
 			// Move everything from the current node to the new one.
-			FCKDomTools.MoveChildren( block, newBlock ) ;
+			var newBlockIsPre = newBlock.nodeName.IEquals( 'pre' ) ;
+			var blockIsPre = block.nodeName.IEquals( 'pre' ) ;
+			if ( newBlockIsPre && !blockIsPre )
+			{
+				newBlock = this._ToPre( doc, block, newBlock ) ;
+				preBlocks.push( newBlock ) ;
+			}
+			else if ( !newBlockIsPre && blockIsPre )
+			{
+				newBlock = this._FromPre( doc, block, newBlock ) ;
+				convertedPreBlocks.push( newBlock ) ;
+			}
+			else	// Convering from a regular block to another regular block.
+				FCKDomTools.MoveChildren( block, newBlock ) ;
 
-			// Delete the current node.
+			// Replace the current block.
+			block.parentNode.insertBefore( newBlock, block ) ;
 			FCKDomTools.RemoveNode( block ) ;
+		}
+
+		// Merge adjacent <PRE> blocks for #1229.
+		for ( var i = 0 ; i < preBlocks.length - 1 ; i++ )
+		{
+			// Check if the next block in HTML equals the next <PRE> block generated.
+			if ( FCKDomTools.GetNextSourceElement( preBlocks[i], true, [], [], true ) != preBlocks[i+1] )
+				continue ;
+
+			// Merge the upper <PRE> block's content into the lower <PRE> block.
+			// Remove the upper <PRE> block.
+			preBlocks[i+1].innerHTML = preBlocks[i].innerHTML + '\n\n' + preBlocks[i+1].innerHTML ;
+			FCKDomTools.RemoveNode( preBlocks[i] ) ;
+		}
+
+		// Split converted <PRE> blocks for #1229.
+		for ( var i = 0 ; i < convertedPreBlocks.length ; i++ )
+		{
+			var currentBlock = convertedPreBlocks[i] ;
+			var lastNewBlock = null ;
+			for ( var j = 0 ; j < currentBlock.childNodes.length ; j++ )
+			{
+				var cursor = currentBlock.childNodes[j] ;
+
+				// If we have two <BR>s, and they're not at the beginning or the end,
+				// then we'll split up the contents following them into another block.
+				if ( cursor.nodeName.IEquals( 'br' ) && j != 0 && j != currentBlock.childNodes.length - 2
+						&& cursor.nextSibling && cursor.nextSibling.nodeName.IEquals( 'br' ) )
+				{
+					FCKDomTools.RemoveNode( cursor.nextSibling ) ;
+					FCKDomTools.RemoveNode( cursor ) ;
+					j-- ;	// restart at current index at next iteration
+					lastNewBlock = FCKDomTools.InsertAfterNode( lastNewBlock || currentBlock, doc.createElement( currentBlock.nodeName ) ) ;
+					continue ;
+				}
+
+				if ( lastNewBlock )
+				{
+					FCKDomTools.MoveNode( cursor, lastNewBlock ) ;
+					j-- ;	// restart at current index at next iteration
+				}
+			}
 		}
 
 		// Re-select the original range.
 		if ( selectIt )
 			range.SelectBookmark( bookmark ) ;
+
+		if ( updateRange )
+			range.MoveToBookmark( bookmark ) ;
 	},
 
 	/**
@@ -786,7 +946,7 @@ FCKStyle.prototype =
 	 *    instead of:
 	 *        <span style="color: #ff0000;"><span style="background-color: #ffffff">XYZ</span></span>
 	 */
-	_ApplyInlineStyle : function( range, selectIt )
+	_ApplyInlineStyle : function( range, selectIt, updateRange )
 	{
 		var doc = range.Window.document ;
 
@@ -864,8 +1024,8 @@ FCKStyle.prototype =
 			if ( !nodeName || elementDTD[ nodeName ] )
 			{
 				// Check if the style element can be a child of the current
-				// node parent.
-				if ( ( FCK.DTD[ currentNode.parentNode.nodeName.toLowerCase() ] || FCK.DTD.span )[ elementName ] )
+				// node parent or if the element is not defined in the DTD.
+				if ( ( FCK.DTD[ currentNode.parentNode.nodeName.toLowerCase() ] || FCK.DTD.span )[ elementName ] || !FCK.DTD[ elementName ] )
 				{
 					// This node will be part of our range, so if it has not
 					// been started, place its start right before the node.
@@ -967,6 +1127,9 @@ FCKStyle.prototype =
 		// Re-select the original range.
 		if ( selectIt )
 			range.SelectBookmark( bookmark ) ;
+
+		if ( updateRange )
+			range.MoveToBookmark( bookmark ) ;
 	},
 
 	_FixBookmarkStart : function( startNode )

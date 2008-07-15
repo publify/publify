@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -39,9 +39,10 @@ var FCKTextColorCommand = function( type )
 		oWindow = window.parent ;
 
 	this._Panel = new FCKPanel( oWindow ) ;
-	this._Panel.AppendStyleSheet( FCKConfig.SkinPath + 'fck_editor.css' ) ;
+	this._Panel.AppendStyleSheet( FCKConfig.SkinEditorCSS ) ;
 	this._Panel.MainNode.className = 'FCK_Panel' ;
 	this._CreatePanelBody( this._Panel.Document, this._Panel.MainNode ) ;
+	FCK.ToolbarSet.ToolbarItems.GetItem( this.Name ).RegisterPanel( this._Panel ) ;
 
 	FCKTools.DisableSelection( this._Panel.Document.body ) ;
 }
@@ -54,6 +55,8 @@ FCKTextColorCommand.prototype.Execute = function( panelX, panelY, relElement )
 
 FCKTextColorCommand.prototype.SetColor = function( color )
 {
+	FCKUndo.SaveUndoStep() ;
+
 	var style = FCKStyles.GetStyle( '_FCK_' +
 		( this.Type == 'ForeColor' ? 'Color' : 'BackColor' ) ) ;
 
@@ -65,12 +68,16 @@ FCKTextColorCommand.prototype.SetColor = function( color )
 		FCKStyles.ApplyStyle( style ) ;
 	}
 
+	FCKUndo.SaveUndoStep() ;
+
 	FCK.Focus() ;
 	FCK.Events.FireEvent( 'OnSelectionChange' ) ;
 }
 
 FCKTextColorCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	return FCK_TRISTATE_OFF ;
 }
 
@@ -102,7 +109,8 @@ function FCKTextColorCommand_MoreOnClick( ev, command )
 {
 	this.className = 'ColorDeselected' ;
 	command._Panel.Hide() ;
-	FCKDialog.OpenDialog( 'FCKDialog_Color', FCKLang.DlgColorTitle, 'dialog/fck_colorselector.html', 400, 330, FCKTools.Hitch(command, 'SetColor') ) ;
+	FCKDialog.OpenDialog( 'FCKDialog_Color', FCKLang.DlgColorTitle, 'dialog/fck_colorselector.html', 410, 320,
+			FCKTools.Bind( command, command.SetColor ) ) ;
 }
 
 FCKTextColorCommand.prototype._CreatePanelBody = function( targetDocument, targetDiv )
@@ -141,7 +149,8 @@ FCKTextColorCommand.prototype._CreatePanelBody = function( targetDocument, targe
 
 	FCKTools.AddEventListenerEx( oDiv, 'click', FCKTextColorCommand_AutoOnClick, this ) ;
 
-	if ( FCKBrowserInfo.IsSafari )
+	// Dirty hack for Opera, Safari and Firefox 3.
+	if ( !FCKBrowserInfo.IsIE )
 		oDiv.style.width = '96%' ;
 
 	// Create an array of colors based on the configuration file.
@@ -153,16 +162,24 @@ FCKTextColorCommand.prototype._CreatePanelBody = function( targetDocument, targe
 	{
 		var oRow = oTable.insertRow(-1) ;
 
-		for ( var i = 0 ; i < 8 && iCounter < aColors.length ; i++, iCounter++ )
+		for ( var i = 0 ; i < 8 ; i++, iCounter++ )
 		{
-			var colorParts = aColors[iCounter].split('/') ;
-			var colorValue = '#' + colorParts[0] ;
-			var colorName = colorParts[1] || colorValue ;
+			// The div will be created even if no more colors are available.
+			// Extra divs will be hidden later in the code. (#1597)
+			if ( iCounter < aColors.length )
+			{
+				var colorParts = aColors[iCounter].split('/') ;
+				var colorValue = '#' + colorParts[0] ;
+				var colorName = colorParts[1] || colorValue ;
+			}
 
 			oDiv = oRow.insertCell(-1).appendChild( CreateSelectionDiv() ) ;
 			oDiv.innerHTML = '<div class="ColorBoxBorder"><div class="ColorBox" style="background-color: ' + colorValue + '"></div></div>' ;
 
-			FCKTools.AddEventListenerEx( oDiv, 'click', FCKTextColorCommand_OnClick, [ this, colorName ] ) ;
+			if ( iCounter >= aColors.length )
+				oDiv.style.visibility = 'hidden' ;
+			else
+				FCKTools.AddEventListenerEx( oDiv, 'click', FCKTextColorCommand_OnClick, [ this, colorName ] ) ;
 		}
 	}
 
@@ -178,6 +195,7 @@ FCKTextColorCommand.prototype._CreatePanelBody = function( targetDocument, targe
 		FCKTools.AddEventListenerEx( oDiv, 'click', FCKTextColorCommand_MoreOnClick, this ) ;
 	}
 
-	if ( FCKBrowserInfo.IsSafari )
+	// Dirty hack for Opera, Safari and Firefox 3.
+	if ( !FCKBrowserInfo.IsIE )
 		oDiv.style.width = '96%' ;
 }

@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -56,9 +56,9 @@ FCKKeystrokeHandler.prototype.SetKeystrokes = function()
 
 		// If the configuration for the keystrokes is missing some element or has any extra comma
 		// this item won't be valid, so skip it and keep on processing.
-		if ( !keyDef ) 
+		if ( !keyDef )
 			continue ;
-		
+
 		if ( typeof( keyDef[0] ) == 'object' )		// It is an array with arrays defining the keystrokes.
 			this.SetKeystrokes.apply( this, keyDef ) ;
 		else

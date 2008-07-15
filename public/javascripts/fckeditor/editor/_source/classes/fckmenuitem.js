@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -21,7 +21,7 @@
  * Defines and renders a menu items in a menu block.
  */
 
-var FCKMenuItem = function( parentMenuBlock, name, label, iconPathOrStripInfoArray, isDisabled )
+var FCKMenuItem = function( parentMenuBlock, name, label, iconPathOrStripInfoArray, isDisabled, customData )
 {
 	this.Name		= name ;
 	this.Label		= label || name ;
@@ -32,16 +32,17 @@ var FCKMenuItem = function( parentMenuBlock, name, label, iconPathOrStripInfoArr
 	this.SubMenu			= new FCKMenuBlockPanel() ;
 	this.SubMenu.Parent		= parentMenuBlock ;
 	this.SubMenu.OnClick	= FCKTools.CreateEventListener( FCKMenuItem_SubMenu_OnClick, this ) ;
+	this.CustomData = customData ;
 
 	if ( FCK.IECleanup )
 		FCK.IECleanup.AddItem( this, FCKMenuItem_Cleanup ) ;
 }
 
 
-FCKMenuItem.prototype.AddItem = function( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled )
+FCKMenuItem.prototype.AddItem = function( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled, customData )
 {
 	this.HasSubMenu = true ;
-	return this.SubMenu.AddItem( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled ) ;
+	return this.SubMenu.AddItem( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled, customData ) ;
 }
 
 FCKMenuItem.prototype.AddSeparator = function()

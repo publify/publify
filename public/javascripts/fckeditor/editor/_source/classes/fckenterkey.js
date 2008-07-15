@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -110,7 +110,7 @@ FCKEnterKey.prototype.DoEnter = function( mode, hasShift )
 	var parentElement = FCKSelection.GetParentElement() ;
 	var parentPath = new FCKElementPath( parentElement ) ;
 	var sMode = mode || this.EnterMode ;
-	
+
 	if ( sMode == 'br' || parentPath.Block && parentPath.Block.tagName.toLowerCase() == 'pre' )
 		return this._ExecuteEnterBr() ;
 	else
@@ -286,7 +286,7 @@ FCKEnterKey.prototype._ExecuteBackspace = function( range, previous, currentBloc
 			// Set the range to the end of the previous element and bookmark it.
 			range.SetStart( previous, 2, true ) ;
 			range.Collapse( true ) ;
-			var oBookmark = range.CreateBookmark() ;
+			var oBookmark = range.CreateBookmark( true ) ;
 
 			// Move the contents of the block to the previous element and delete it.
 			// But for some block types (e.g. table), moving the children to the previous block makes no sense.
@@ -295,8 +295,7 @@ FCKEnterKey.prototype._ExecuteBackspace = function( range, previous, currentBloc
 				FCKDomTools.MoveChildren( currentBlock, previous ) ;
 
 			// Place the selection at the bookmark.
-			range.MoveToBookmark( oBookmark ) ;
-			range.Select() ;
+			range.SelectBookmark( oBookmark ) ;
 
 			bCustom = true ;
 		}
@@ -336,8 +335,8 @@ FCKEnterKey.prototype.DoDelete = function()
 		var oCurrentBlock = oRange.StartBlock ;
 		var eCurrentCell = FCKTools.GetElementAscensor( oCurrentBlock, 'td' );
 
-		var eNext = FCKDomTools.GetNextSourceElement( oCurrentBlock, true, [ oRange.StartBlockLimit.nodeName ], 
-				['UL','OL','TR'] ) ;
+		var eNext = FCKDomTools.GetNextSourceElement( oCurrentBlock, true, [ oRange.StartBlockLimit.nodeName ],
+				['UL','OL','TR'], true ) ;
 
 		// Bug #1323 : if we're in a table cell, and the next node belongs to a different cell, then don't
 		// delete anything.
@@ -394,8 +393,8 @@ FCKEnterKey.prototype._ExecuteEnterBlock = function( blockTag, range )
 	// Get the current selection.
 	var oRange = range || new FCKDomRange( this.Window ) ;
 
-	var oSplitInfo = oRange.SplitBlock() ;
-	
+	var oSplitInfo = oRange.SplitBlock( blockTag ) ;
+
 	if ( oSplitInfo )
 	{
 		// Get the current blocks.
@@ -405,11 +404,32 @@ FCKEnterKey.prototype._ExecuteEnterBlock = function( blockTag, range )
 		var bIsStartOfBlock	= oSplitInfo.WasStartOfBlock ;
 		var bIsEndOfBlock	= oSplitInfo.WasEndOfBlock ;
 
+		// If there is one block under a list item, modify the split so that the list item gets split as well. (Bug #1647)
+		if ( eNextBlock )
+		{
+			if ( eNextBlock.parentNode.nodeName.IEquals( 'li' ) )
+			{
+				FCKDomTools.BreakParent( eNextBlock, eNextBlock.parentNode ) ;
+				FCKDomTools.MoveNode( eNextBlock, eNextBlock.nextSibling, true ) ;
+			}
+		}
+		else if ( ePreviousBlock && ePreviousBlock.parentNode.nodeName.IEquals( 'li' ) )
+		{
+			FCKDomTools.BreakParent( ePreviousBlock, ePreviousBlock.parentNode ) ;
+			oRange.MoveToElementEditStart( ePreviousBlock.nextSibling );
+			FCKDomTools.MoveNode( ePreviousBlock, ePreviousBlock.previousSibling ) ;
+		}
+
 		// If we have both the previous and next blocks, it means that the
 		// boundaries were on separated blocks, or none of them where on the
 		// block limits (start/end).
-		if ( !oSplitInfo.WasStartOfBlock && !oSplitInfo.WasEndOfBlock )
+		if ( !bIsStartOfBlock && !bIsEndOfBlock )
 		{
+			// If the next block is an <li> with another list tree as the first child
+			// We'll need to append a placeholder or the list item wouldn't be editable. (Bug #1420)
+			if ( eNextBlock.nodeName.IEquals( 'li' ) && eNextBlock.firstChild
+					&& eNextBlock.firstChild.nodeName.IEquals( ['ul', 'ol'] ) )
+				eNextBlock.insertBefore( FCKTools.GetElementDocument( eNextBlock ).createTextNode( '\xa0' ), eNextBlock.firstChild ) ;
 			// Move the selection to the end block.
 			if ( eNextBlock )
 				oRange.MoveToElementEditStart( eNextBlock ) ;
@@ -431,23 +451,40 @@ FCKEnterKey.prototype._ExecuteEnterBlock = function( blockTag, range )
 				var sPreviousBlockTag = ePreviousBlock.tagName.toUpperCase() ;
 
 				// If is a header tag, or we are in a Shift+Enter (#77),
-				// create a new block element.
-				if ( this._HasShift || (/^H[1-6]$/).test( sPreviousBlockTag ) )
-					eNewBlock = this.Window.document.createElement( blockTag ) ;
-				else
+				// create a new block element (later in the code).
+				if ( !this._HasShift && !(/^H[1-6]$/).test( sPreviousBlockTag ) )
 				{
 					// Otherwise, duplicate the previous block.
 					eNewBlock = FCKDomTools.CloneElement( ePreviousBlock ) ;
-
-					this._RecreateEndingTree( ePreviousBlock, eNewBlock ) ;
 				}
 			}
 			else if ( eNextBlock )
-			{
 				eNewBlock = FCKDomTools.CloneElement( eNextBlock ) ;
-			}
-			else
+
+			if ( !eNewBlock )
 				eNewBlock = this.Window.document.createElement( blockTag ) ;
+
+			// Recreate the inline elements tree, which was available
+			// before the hitting enter, so the same styles will be
+			// available in the new block.
+			var elementPath = oSplitInfo.ElementPath ;
+			if ( elementPath )
+			{
+				for ( var i = 0, len = elementPath.Elements.length ; i < len ; i++ )
+				{
+					var element = elementPath.Elements[i] ;
+
+					if ( element == elementPath.Block || element == elementPath.BlockLimit )
+						break ;
+
+					if ( FCKListsLib.InlineChildReqElements[ element.nodeName.toLowerCase() ] )
+					{
+						element = FCKDomTools.CloneElement( element ) ;
+						FCKDomTools.MoveChildren( eNewBlock, element ) ;
+						eNewBlock.appendChild( element ) ;
+					}
+				}
+			}
 
 			if ( FCKBrowserInfo.IsGeckoLike )
 				FCKTools.AppendBogusBr( eNewBlock ) ;
@@ -459,15 +496,18 @@ FCKEnterKey.prototype._ExecuteEnterBlock = function( blockTag, range )
 			if ( FCKBrowserInfo.IsIE )
 			{
 				// Move the selection to the new block.
-				oRange.MoveToNodeContents( eNewBlock ) ;
+				oRange.MoveToElementEditStart( eNewBlock ) ;
 				oRange.Select() ;
 			}
 
+			// Move the selection to the new block.
 			oRange.MoveToElementEditStart( bIsStartOfBlock && !bIsEndOfBlock ? eNextBlock : eNewBlock ) ;
-
-			if ( FCKBrowserInfo.IsGeckoLike )
-				eNewBlock.scrollIntoView( false ) ;
 		}
+
+		if ( FCKBrowserInfo.IsSafari )
+			FCKDomTools.ScrollIntoView( eNextBlock || eNewBlock, false ) ;
+		else if ( FCKBrowserInfo.IsGeckoLike )
+			( eNextBlock || eNewBlock ).scrollIntoView( false ) ;
 
 		oRange.Select() ;
 	}
@@ -498,6 +538,7 @@ FCKEnterKey.prototype._ExecuteEnterBr = function( blockTag )
 		var sStartBlockTag = oRange.StartBlock ? oRange.StartBlock.tagName.toUpperCase() : '' ;
 
 		var bHasShift = this._HasShift ;
+		var bIsPre = false ;
 
 		if ( !bHasShift && sStartBlockTag == 'LI' )
 			return this._ExecuteEnterBlock( null, oRange ) ;
@@ -517,8 +558,9 @@ FCKEnterKey.prototype._ExecuteEnterBr = function( blockTag )
 		}
 		else
 		{
-			var eLineBreak = null ;
-			if ( sStartBlockTag.IEquals( 'pre' ) )
+			var eLineBreak ;
+			bIsPre = sStartBlockTag.IEquals( 'pre' ) ;
+			if ( bIsPre )
 				eLineBreak = this.Window.document.createTextNode( FCKBrowserInfo.IsIE ? '\r' : '\n' ) ;
 			else
 				eLineBreak = this.Window.document.createElement( 'br' ) ;
@@ -545,8 +587,14 @@ FCKEnterKey.prototype._ExecuteEnterBr = function( blockTag )
 					dummy = this.Window.document.createElement( 'span' ) ;
 				else
 					dummy = this.Window.document.createElement( 'br' ) ;
+
 				eLineBreak.parentNode.insertBefore( dummy, eLineBreak.nextSibling ) ;
-				dummy.scrollIntoView( false ) ;
+
+				if ( FCKBrowserInfo.IsSafari )
+					FCKDomTools.ScrollIntoView( dummy, false ) ;
+				else
+					dummy.scrollIntoView( false ) ;
+
 				dummy.parentNode.removeChild( dummy ) ;
 			}
 		}
@@ -554,23 +602,13 @@ FCKEnterKey.prototype._ExecuteEnterBr = function( blockTag )
 		// This collapse guarantees the cursor will be blinking.
 		oRange.Collapse( true ) ;
 
-		oRange.Select() ;
+		oRange.Select( bIsPre ) ;
 	}
 
 	// Release the resources used by the range.
 	oRange.Release() ;
 
 	return true ;
-}
-
-// Recreate the elements tree at the end of the source block, at the beginning
-// of the target block. Eg.:
-//	If source = <p><u>Some</u> sample <b><i>text</i></b></p> then target = <p><b><i></i></b></p>
-//	If source = <p><u>Some</u> sample text</p> then target = <p></p>
-FCKEnterKey.prototype._RecreateEndingTree = function( source, target )
-{
-	while ( ( source = source.lastChild ) && source.nodeType == 1 && FCKListsLib.InlineChildReqElements[ source.nodeName.toLowerCase() ] != null )
-		target = target.insertBefore( FCKDomTools.CloneElement( source ), target.firstChild ) ;
 }
 
 // Outdents a LI, maintaining the selection defined on a range.
@@ -589,7 +627,7 @@ FCKEnterKey.prototype._CheckIsAllContentsIncluded = function( range, node )
 {
 	var startOk = false ;
 	var endOk = false ;
-	
+
 	/*
 	FCKDebug.Output( 'sc='+range.StartContainer.nodeName+
 			',so='+range._Range.startOffset+

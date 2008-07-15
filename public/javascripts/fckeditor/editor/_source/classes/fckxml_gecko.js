@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -26,28 +26,43 @@ FCKXml.prototype =
 	LoadUrl : function( urlToCall )
 	{
 		this.Error = false ;
-		var oFCKXml = this ;
 
+		var oXml ;
 		var oXmlHttp = FCKTools.CreateXmlObject( 'XmlHttp' ) ;
-		oXmlHttp.open( "GET", urlToCall, false ) ;
+		oXmlHttp.open( 'GET', urlToCall, false ) ;
 		oXmlHttp.send( null ) ;
 
 		if ( oXmlHttp.status == 200 || oXmlHttp.status == 304 )
-			this.DOMDocument = oXmlHttp.responseXML ;
+			oXml = oXmlHttp.responseXML ;
 		else if ( oXmlHttp.status == 0 && oXmlHttp.readyState == 4 )
-			this.DOMDocument = oXmlHttp.responseXML ;
+			oXml = oXmlHttp.responseXML ;
 		else
-			this.DOMDocument = null ;
+			oXml = null ;
 
-		if ( this.DOMDocument == null || this.DOMDocument.firstChild == null )
+		if ( oXml )
+		{
+			// Try to access something on it.
+			try
+			{
+				var test = oXml.firstChild ;
+			}
+			catch (e)
+			{
+				// If document.domain has been changed (#123), we'll have a security
+				// error at this point. The workaround here is parsing the responseText:
+				// http://alexander.kirk.at/2006/07/27/firefox-15-xmlhttprequest-reqresponsexml-and-documentdomain/
+				oXml = (new DOMParser()).parseFromString( oXmlHttp.responseText, 'text/xml' ) ;
+			}
+		}
+
+		if ( !oXml || !oXml.firstChild )
 		{
 			this.Error = true ;
-			if (window.confirm( 'Error loading "' + urlToCall + '"\r\nDo you want to see more info?' ) )
-				alert( 'URL requested: "' + urlToCall + '"\r\n' +
-							'Server response:\r\nStatus: ' + oXmlHttp.status + '\r\n' +
-							'Response text:\r\n' + oXmlHttp.responseText ) ;
-
+			if ( window.confirm( 'Error loading "' + urlToCall + '" (HTTP Status: ' + oXmlHttp.status + ').\r\nDo you want to see the server response dump?' ) )
+				alert( oXmlHttp.responseText ) ;
 		}
+
+		this.DOMDocument = oXml ;
 	},
 
 	SelectNodes : function( xpath, contextNode )

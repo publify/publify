@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -48,13 +48,21 @@ FCKToolbarPanelButton.prototype.Create = function( parentElement )
 	this._UIButton.Create( parentElement ) ;
 
 	var oPanel = FCK.ToolbarSet.CurrentInstance.Commands.GetCommand( this.CommandName )._Panel ;
+	this.RegisterPanel( oPanel ) ;
+}
+
+FCKToolbarPanelButton.prototype.RegisterPanel = function( oPanel )
+{
+	if ( oPanel._FCKToolbarPanelButton )
+		return ;
+
 	oPanel._FCKToolbarPanelButton = this ;
 
 	var eLineDiv = oPanel.Document.body.appendChild( oPanel.Document.createElement( 'div' ) ) ;
 	eLineDiv.style.position = 'absolute' ;
 	eLineDiv.style.top = '0px' ;
 
-	var eLine = this.LineImg = eLineDiv.appendChild( oPanel.Document.createElement( 'IMG' ) ) ;
+	var eLine = oPanel._FCKToolbarPanelButtonLineDiv = eLineDiv.appendChild( oPanel.Document.createElement( 'IMG' ) ) ;
 	eLine.className = 'TB_ConnectionLine' ;
 	eLine.style.position = 'absolute' ;
 //	eLine.style.backgroundColor = 'Red' ;
@@ -74,9 +82,12 @@ function FCKToolbarPanelButton_OnButtonClick( toolbarButton )
 
 	oButton._UIButton.ChangeState( FCK_TRISTATE_ON ) ;
 
-	oButton.LineImg.style.width = ( e.offsetWidth - 2 ) + 'px' ;
+	// oButton.LineImg.style.width = ( e.offsetWidth - 2 ) + 'px' ;
 
-	FCK.ToolbarSet.CurrentInstance.Commands.GetCommand( oButton.CommandName ).Execute( 0, e.offsetHeight - 1, e ) ; // -1 to be over the border
+	var oCommand = FCK.ToolbarSet.CurrentInstance.Commands.GetCommand( oButton.CommandName ) ;
+	var oPanel = oCommand._Panel ;
+	oPanel._FCKToolbarPanelButtonLineDiv.style.width = ( e.offsetWidth - 2 ) + 'px' ;
+	oCommand.Execute( 0, e.offsetHeight - 1, e ) ; // -1 to be over the border
 }
 
 function FCKToolbarPanelButton_OnPanelHide()

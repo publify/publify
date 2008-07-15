@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -35,7 +35,7 @@ FCKMenuBlockPanel.prototype = new FCKMenuBlock() ;
 FCKMenuBlockPanel.prototype.Create = function()
 {
 	var oPanel = this.Panel = ( this.Parent && this.Parent.Panel ? this.Parent.Panel.CreateChildPanel() : new FCKPanel() ) ;
-	oPanel.AppendStyleSheet( FCKConfig.SkinPath + 'fck_editor.css' ) ;
+	oPanel.AppendStyleSheet( FCKConfig.SkinEditorCSS ) ;
 
 	// Call the "base" implementation.
 	FCKMenuBlock.prototype.Create.call( this, oPanel.MainNode ) ;

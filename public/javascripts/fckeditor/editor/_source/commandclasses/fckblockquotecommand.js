@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -25,16 +25,59 @@ var FCKBlockQuoteCommand = function()
 {
 }
 
-FCKBlockQuoteCommand.prototype = 
+FCKBlockQuoteCommand.prototype =
 {
 	Execute : function()
 	{
 		FCKUndo.SaveUndoStep() ;
 
 		var state = this.GetState() ;
+
 		var range = new FCKDomRange( FCK.EditorWindow ) ;
 		range.MoveToSelection() ;
+
 		var bookmark = range.CreateBookmark() ;
+
+		// Kludge for #1592: if the bookmark nodes are in the beginning of
+		// blockquote, then move them to the nearest block element in the
+		// blockquote.
+		if ( FCKBrowserInfo.IsIE )
+		{
+			var bStart	= range.GetBookmarkNode( bookmark, true ) ;
+			var bEnd	= range.GetBookmarkNode( bookmark, false ) ;
+
+			var cursor ;
+
+			if ( bStart
+					&& bStart.parentNode.nodeName.IEquals( 'blockquote' )
+					&& !bStart.previousSibling )
+			{
+				cursor = bStart ;
+				while ( ( cursor = cursor.nextSibling ) )
+				{
+					if ( FCKListsLib.BlockElements[ cursor.nodeName.toLowerCase() ] )
+						FCKDomTools.MoveNode( bStart, cursor, true ) ;
+				}
+			}
+
+			if ( bEnd
+					&& bEnd.parentNode.nodeName.IEquals( 'blockquote' )
+					&& !bEnd.previousSibling )
+			{
+				cursor = bEnd ;
+				while ( ( cursor = cursor.nextSibling ) )
+				{
+					if ( FCKListsLib.BlockElements[ cursor.nodeName.toLowerCase() ] )
+					{
+						if ( cursor.firstChild == bStart )
+							FCKDomTools.InsertAfterNode( bStart, bEnd ) ;
+						else
+							FCKDomTools.MoveNode( bEnd, cursor, true ) ;
+					}
+				}
+			}
+		}
+
 		var iterator = new FCKDomRangeIterator( range ) ;
 		var block ;
 
@@ -44,6 +87,19 @@ FCKBlockQuoteCommand.prototype =
 			var paragraphs = [] ;
 			while ( ( block = iterator.GetNextParagraph() ) )
 				paragraphs.push( block ) ;
+
+			// If no paragraphs, create one from the current selection position.
+			if ( paragraphs.length < 1 )
+			{
+				para = range.Window.document.createElement( FCKConfig.EnterMode.IEquals( 'p' ) ? 'p' : 'div' ) ;
+				range.InsertNode( para ) ;
+				para.appendChild( range.Window.document.createTextNode( '\ufeff' ) ) ;
+				range.MoveToBookmark( bookmark ) ;
+				range.MoveToNodeContents( para ) ;
+				range.Collapse( true ) ;
+				bookmark = range.CreateBookmark() ;
+				paragraphs.push( para ) ;
+			}
 
 			// Make sure all paragraphs have the same parent.
 			var commonParent = paragraphs[0].parentNode ;
@@ -70,7 +126,7 @@ FCKBlockQuoteCommand.prototype =
 				block = tmp.shift() ;
 				if ( block.nodeName.IEquals( 'blockquote' ) )
 				{
-					var docFrag = block.ownerDocument.createDocumentFragment() ;
+					var docFrag = FCKTools.GetElementDocument( block ).createDocumentFragment() ;
 					while ( block.firstChild )
 					{
 						docFrag.appendChild( block.removeChild( block.firstChild ) ) ;
@@ -147,17 +203,17 @@ FCKBlockQuoteCommand.prototype =
 					var firstTime = true ;
 					if ( node.nodeName.IEquals( 'div' ) )
 					{
-						var docFrag = node.ownerDocument.createDocumentFragment() ;
-						var needBeginBr = firstTime && node.previousSibling && 
+						var docFrag = FCKTools.GetElementDocument( node ).createDocumentFragment() ;
+						var needBeginBr = firstTime && node.previousSibling &&
 							!FCKListsLib.BlockBoundaries[node.previousSibling.nodeName.toLowerCase()] ;
 						if ( firstTime && needBeginBr )
-							docFrag.appendChild( node.ownerDocument.createElement( 'br' ) ) ;
-						var needEndBr = node.nextSibling && 
+							docFrag.appendChild( FCKTools.GetElementDocument( node ).createElement( 'br' ) ) ;
+						var needEndBr = node.nextSibling &&
 							!FCKListsLib.BlockBoundaries[node.nextSibling.nodeName.toLowerCase()] ;
 						while ( node.firstChild )
 							docFrag.appendChild( node.removeChild( node.firstChild ) ) ;
 						if ( needEndBr )
-							docFrag.appendChild( node.ownerDocument.createElement( 'br' ) ) ;
+							docFrag.appendChild( FCKTools.GetElementDocument( node ).createElement( 'br' ) ) ;
 						node.parentNode.replaceChild( docFrag, node ) ;
 						firstTime = false ;
 					}

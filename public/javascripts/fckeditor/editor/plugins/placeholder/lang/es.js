@@ -1,7 +1,6 @@
-<cfsetting enablecfoutputonly="Yes">
-<!---
+﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -19,13 +18,10 @@
  *
  * == END LICENSE ==
  *
- * File Browser connector for ColdFusion (all versions).
- *
---->
-
-<cfset REQUEST.CFVersion = Left( SERVER.COLDFUSION.PRODUCTVERSION, Find( ",", SERVER.COLDFUSION.PRODUCTVERSION ) - 1 )>
-<cfif REQUEST.CFVersion lte 5>
-	<cfinclude template="cf5_connector.cfm">
-<cfelse>
-	<cfinclude template="cf_connector.cfm">
-</cfif>
+ * Placholder Spanish language file.
+ */
+FCKLang.PlaceholderBtn			= 'Insertar/Editar contenedor' ;
+FCKLang.PlaceholderDlgTitle		= 'Propiedades del contenedor ' ;
+FCKLang.PlaceholderDlgName		= 'Nombre de contenedor' ;
+FCKLang.PlaceholderErrNoName	= 'Por favor escriba el nombre de contenedor' ;
+FCKLang.PlaceholderErrNameInUse	= 'El nombre especificado ya esta en uso' ;

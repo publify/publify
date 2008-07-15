@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -24,11 +24,7 @@
 
 FCKXHtml._GetMainXmlString = function()
 {
-	// Create the XMLSerializer.
-	var oSerializer = new XMLSerializer() ;
-
-	// Return the serialized XML as a string.
-	return oSerializer.serializeToString( this.MainNode ) ;
+	return ( new XMLSerializer() ).serializeToString( this.MainNode ) ;
 }
 
 FCKXHtml._AppendAttributes = function( xmlNode, htmlNode, node )
@@ -72,13 +68,13 @@ FCKXHtml._AppendAttributes = function( xmlNode, htmlNode, node )
 if ( FCKBrowserInfo.IsOpera )
 {
 	// Opera moves the <FCK:meta> element outside head (#1166).
-	
+
 	// Save a reference to the XML <head> node, so we can use it for
 	// orphan <meta>s.
 	FCKXHtml.TagProcessors['head'] = function( node, htmlNode )
 	{
 		FCKXHtml.XML._HeadElement = node ;
-		
+
 		node = FCKXHtml._AppendChildNodes( node, htmlNode, true ) ;
 
 		return node ;
@@ -91,7 +87,7 @@ if ( FCKBrowserInfo.IsOpera )
 		if ( htmlNode.parentNode.nodeName.toLowerCase() != 'head' )
 		{
 			var headElement = FCKXHtml.XML._HeadElement ;
-			
+
 			if ( headElement && xmlNode != headElement )
 			{
 				delete htmlNode._fckxhtmljob ;

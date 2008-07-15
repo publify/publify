@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -145,7 +145,7 @@ FCKListCommand.prototype =
 				if ( rangeQueue == null )
 				{
 					rangeQueue = [] ;
-					var selectionObject = FCK.EditorWindow.getSelection() ;
+					var selectionObject = FCKSelection.GetSelection() ;
 					if ( selectionObject && listGroups.length == 0 )
 						rangeQueue.push( selectionObject.getRangeAt( 0 ) ) ;
 					for ( var i = 1 ; selectionObject && i < selectionObject.rangeCount ; i++ )
@@ -252,7 +252,7 @@ FCKListCommand.prototype =
 			selectedListItems.push( itemNode ) ;
 			FCKDomTools.SetElementMarker( markerObj, itemNode, '_FCK_ListItem_Processed', true ) ;
 		}
-		var fakeParent = groupObj.root.ownerDocument.createElement( this.TagName ) ;
+		var fakeParent = FCKTools.GetElementDocument( groupObj.root ).createElement( this.TagName ) ;
 		for ( var i = 0 ; i < selectedListItems.length ; i++ )
 		{
 			var listIndex = selectedListItems[i]._FCK_ListArray_Index ;
@@ -270,7 +270,7 @@ FCKListCommand.prototype =
 	_CreateList : function( groupObj, listsCreated )
 	{
 		var contents = groupObj.contents ;
-		var doc = groupObj.root.ownerDocument ;
+		var doc = FCKTools.GetElementDocument( groupObj.root ) ;
 		var listContents = [] ;
 
 		// It is possible to have the contents returned by DomRangeIterator to be the same as the root.

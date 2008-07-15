@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -28,8 +28,8 @@ FCK.Description = "FCKeditor for Gecko Browsers" ;
 FCK.InitializeBehaviors = function()
 {
 	// When calling "SetData", the editing area IFRAME gets a fixed height. So we must recalculate it.
-	if ( FCKBrowserInfo.IsGecko )		// Not for Safari/Opera.
-		Window_OnResize() ;
+	if ( window.onresize )		// Not for Safari/Opera.
+		window.onresize() ;
 
 	FCKFocusManager.AddWindow( this.EditorWindow ) ;
 
@@ -45,6 +45,7 @@ FCK.InitializeBehaviors = function()
 			FCK.MouseDownFlag = false ;
 			return ;
 		}
+
 		if ( FCKConfig.ForcePasteAsPlainText )
 		{
 			if ( evt.dataTransfer )
@@ -56,11 +57,10 @@ FCK.InitializeBehaviors = function()
 			}
 			else if ( FCKConfig.ShowDropDialog )
 				FCK.PasteAsPlainText() ;
+
+			evt.preventDefault() ;
+			evt.stopPropagation() ;
 		}
-		else if ( FCKConfig.ShowDropDialog )
-			FCKDialog.OpenDialog( 'FCKDialog_Paste', FCKLang.Paste, 'dialog/fck_paste.html', 400, 330, 'Security' ) ;
-		evt.preventDefault() ;
-		evt.stopPropagation() ;
 	}
 
 	this._ExecCheckCaret = function( evt )
@@ -88,7 +88,7 @@ FCK.InitializeBehaviors = function()
 
 		var moveCursor = function()
 		{
-			var selection = FCK.EditorWindow.getSelection() ;
+			var selection = FCKSelection.GetSelection() ;
 			var range = selection.getRangeAt(0) ;
 			if ( ! range || ! range.collapsed )
 				return ;
@@ -104,7 +104,7 @@ FCK.InitializeBehaviors = function()
 
 			// only perform the patched behavior if we're in an <a> tag, or the End key is pressed.
 			var parentTag = node.parentNode.tagName.toLowerCase() ;
-			if ( ! (  parentTag == 'a' ||
+			if ( ! (  parentTag == 'a' || String(node.parentNode.contentEditable) == 'false' ||
 					( ! ( FCKListsLib.BlockElements[parentTag] || FCKListsLib.NonEmptyBlockElements[parentTag] )
 					  && keyCode == 35 ) ) )
 				return ;
@@ -142,7 +142,8 @@ FCK.InitializeBehaviors = function()
 					&& node.parentNode != FCK.EditorDocument.body
 					&& node.parentNode != FCK.EditorDocument.documentElement
 					&& node == node.parentNode.lastChild
-					&& ( ! FCKListsLib.BlockElements[node.parentNode.tagName.toLowerCase()] ) )
+					&& ( ! FCKListsLib.BlockElements[node.parentNode.tagName.toLowerCase()]
+					  && ! FCKListsLib.NonEmptyBlockElements[node.parentNode.tagName.toLowerCase()] ) )
 					node = node.parentNode ;
 
 
@@ -171,7 +172,8 @@ FCK.InitializeBehaviors = function()
 						}
 
 						var stopTag = stopNode.tagName.toLowerCase() ;
-						if ( FCKListsLib.BlockElements[stopTag] || FCKListsLib.EmptyElements[stopTag] )
+						if ( FCKListsLib.BlockElements[stopTag] || FCKListsLib.EmptyElements[stopTag]
+							|| FCKListsLib.NonEmptyBlockElements[stopTag] )
 							break ;
 						stopNode = stopNode.nextSibling ;
 					}
@@ -194,28 +196,6 @@ FCK.InitializeBehaviors = function()
 		}
 
 		setTimeout( moveCursor, 1 ) ;
-	}
-
-	this._FillEmptyBlock = function( emptyBlockNode )
-	{
-		if ( ! emptyBlockNode || emptyBlockNode.nodeType != 1 )
-			return ;
-		var nodeTag = emptyBlockNode.tagName.toLowerCase() ;
-		if ( nodeTag != 'p' && nodeTag != 'div' )
-			return ;
-		if ( emptyBlockNode.firstChild )
-			return ;
-		FCKTools.AppendBogusBr( emptyBlockNode ) ;
-	}
-
-	this._ExecCheckEmptyBlock = function()
-	{
-		FCK._FillEmptyBlock( FCK.EditorDocument.body.firstChild ) ;
-		var sel = FCK.EditorWindow.getSelection() ;
-		if ( !sel || sel.rangeCount < 1 )
-			return ;
-		var range = sel.getRangeAt( 0 );
-		FCK._FillEmptyBlock( range.startContainer ) ;
 	}
 
 	this.ExecOnSelectionChangeTimer = function()
@@ -285,8 +265,6 @@ FCK.InitializeBehaviors = function()
 		this.EditorDocument.addEventListener( 'keypress', this._ExecCheckCaret, false ) ;
 		this.EditorDocument.addEventListener( 'click', this._ExecCheckCaret, false ) ;
 	}
-	if ( FCKBrowserInfo.IsGecko )
-		this.AttachToOnSelectionChange( this._ExecCheckEmptyBlock ) ;
 
 	// Reset the context menu.
 	FCK.ContextMenu._InnerContextMenu.SetMouseClickWindow( FCK.EditorWindow ) ;
@@ -323,10 +301,7 @@ FCK.GetNamedCommandState = function( commandName )
 FCK.RedirectNamedCommands =
 {
 	Print	: true,
-	Paste	: true,
-
-	Cut	: true,
-	Copy	: true
+	Paste	: true
 } ;
 
 // ExecuteNamedCommand overload for Gecko.
@@ -348,14 +323,6 @@ FCK.ExecuteRedirectedNamedCommand = function( commandName, commandParameter )
 					FCK.ExecuteNamedCommand( 'Paste', null, true ) ;
 			}
 			catch (e)	{ FCKDialog.OpenDialog( 'FCKDialog_Paste', FCKLang.Paste, 'dialog/fck_paste.html', 400, 330, 'Security' ) ; }
-			break ;
-		case 'Cut' :
-			try			{ FCK.ExecuteNamedCommand( 'Cut', null, true ) ; }
-			catch (e)	{ alert(FCKLang.PasteErrorCut) ; }
-			break ;
-		case 'Copy' :
-			try			{ FCK.ExecuteNamedCommand( 'Copy', null, true ) ; }
-			catch (e)	{ alert(FCKLang.PasteErrorCopy) ; }
 			break ;
 		default :
 			FCK.ExecuteNamedCommand( commandName, commandParameter ) ;
@@ -393,6 +360,8 @@ FCK.InsertHtml = function( html )
 	// Insert the HTML code.
 	this.EditorDocument.execCommand( 'inserthtml', false, html ) ;
 	this.Focus() ;
+
+	FCKDocumentProcessor.Process( FCK.EditorDocument ) ;
 
 	// For some strange reason the SaveUndoStep() call doesn't activate the undo button at the first InsertHtml() call.
 	this.Events.FireEvent( "OnSelectionChange" ) ;
@@ -450,9 +419,38 @@ FCK.CreateLink = function( url, noUndo )
 		{
 			var oLink = oLinksInteractor.snapshotItem( i ) ;
 			oLink.href = url ;
+
+			// It may happen that the browser (aka Safari) decides to use the
+			// URL as the link content to not leave it empty. In this case,
+			// let's reset it.
+			if ( sTempUrl == oLink.innerHTML )
+				oLink.innerHTML = '' ;
+
 			aCreatedLinks.push( oLink ) ;
 		}
 	}
 
 	return aCreatedLinks ;
+}
+
+FCK._FillEmptyBlock = function( emptyBlockNode )
+{
+	if ( ! emptyBlockNode || emptyBlockNode.nodeType != 1 )
+		return ;
+	var nodeTag = emptyBlockNode.tagName.toLowerCase() ;
+	if ( nodeTag != 'p' && nodeTag != 'div' )
+		return ;
+	if ( emptyBlockNode.firstChild )
+		return ;
+	FCKTools.AppendBogusBr( emptyBlockNode ) ;
+}
+
+FCK._ExecCheckEmptyBlock = function()
+{
+	FCK._FillEmptyBlock( FCK.EditorDocument.body.firstChild ) ;
+	var sel = FCKSelection.GetSelection() ;
+	if ( !sel || sel.rangeCount < 1 )
+		return ;
+	var range = sel.getRangeAt( 0 );
+	FCK._FillEmptyBlock( range.startContainer ) ;
 }

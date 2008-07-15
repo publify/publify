@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -33,7 +33,7 @@ FCKPasteWordCommand.prototype.Execute = function()
 
 FCKPasteWordCommand.prototype.GetState = function()
 {
-	if ( FCKConfig.ForcePasteAsPlainText )
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG || FCKConfig.ForcePasteAsPlainText )
 		return FCK_TRISTATE_DISABLED ;
 	else
 		return FCK.GetNamedCommandState( 'Paste' ) ;

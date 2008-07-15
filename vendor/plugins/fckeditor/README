@@ -115,11 +115,4 @@ If you install elsewhere then you will need to update spell_check.rb in the plug
 
 FCKConfig.SpellChecker = 'SpellerPages';
 
-Issues / TODO's
-------
-
-1) There are no progress indicators for the AJAX requests from the resource manager
-2) Occasional issues with Flash upload
-3) Won't install properly with frozen edge Rails
-
 

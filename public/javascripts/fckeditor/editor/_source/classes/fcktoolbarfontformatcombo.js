@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -34,7 +34,7 @@ var FCKToolbarFontFormatCombo = function( tooltip, style )
 	this.NormalLabel = 'Normal' ;
 
 	this.PanelWidth = 190 ;
-	
+
 	this.DefaultLabel = FCKConfig.DefaultFontFormatLabel || '' ;
 }
 
@@ -64,7 +64,7 @@ FCKToolbarFontFormatCombo.prototype.GetStyles = function()
 		h6		: aNames[8],
 		div		: aNames[9] || ( aNames[0] + ' (DIV)')
 	} ;
-	
+
 	// Get the available formats from the configuration file.
 	var elements = FCKConfig.FontFormats.split(';') ;
 

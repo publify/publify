@@ -44,7 +44,7 @@ namespace :fckeditor do
 
     setup
     version = ENV['VERSION'] || "Nightly"
-    installed_version = "2.4.2"
+    installed_version = "2.6"
 
     puts "** Current FCKEditor version: #{installed_version}..."   
     puts "** Downloading #{version} (1.2mb - please be patient)..."

@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -32,6 +32,9 @@ var FCKToolbarSpecialCombo = function()
 {
 	this.SourceView			= false ;
 	this.ContextSensitive	= true ;
+	this.FieldWidth			= null ;
+	this.PanelWidth			= null ;
+	this.PanelMaxHeight		= null ;
 	//this._LastValue			= null ;
 }
 
@@ -98,7 +101,7 @@ FCKToolbarSpecialCombo.prototype.RefreshState = function()
 				if ( this._LastValue !== sValue)
 				{
 					this._LastValue = sValue ;
-					
+
 					if ( !sValue || sValue.length == 0 )
 					{
 						this._Combo.DeselectAll() ;

@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -39,13 +39,13 @@ var FCKJustifyCommand = function( alignValue )
 			switch ( alignValue )
 			{
 				case 'left' :
-					return classes[0] ;
+					return classes[0] || null ;
 				case 'center' :
-					return classes[1] ;
+					return classes[1] || null ;
 				case 'right' :
-					return classes[2] ;
+					return classes[2] || null ;
 				case 'justify' :
-					return classes[3] ;
+					return classes[3] || null ;
 			}
 		}
 		return null ;
@@ -99,7 +99,7 @@ FCKJustifyCommand.prototype =
 		// Store a bookmark of the selection since the paragraph iterator might
 		// change the DOM tree and break selections.
 		var bookmark = range.CreateBookmark() ;
-		
+
 		var cssClassName = this._CssClassName ;
 
 		// Apply alignment setting for each paragraph.

@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -27,9 +27,12 @@ FCKUndo.TypesCount = 0 ;
 FCKUndo.Changed = false ;	// Is the document changed in respect to its initial image?
 FCKUndo.MaxTypes = 25 ;
 FCKUndo.Typing = false ;
+FCKUndo.SaveLocked = false ;
 
 FCKUndo._GetBookmark = function()
 {
+	FCKSelection.Restore() ;
+
 	var range = new FCKDomRange( FCK.EditorWindow ) ;
 	try
 	{
@@ -107,14 +110,14 @@ FCKUndo._CheckIsBookmarksEqual = function( bookmark1, bookmark2 )
 	}
 	else
 	{
-		return this._CompareCursors( bookmark1.Start, bookmark2.Start ) == 0 
+		return this._CompareCursors( bookmark1.Start, bookmark2.Start ) == 0
 			&& this._CompareCursors( bookmark1.End, bookmark2.End ) == 0 ;
 	}
 }
 
 FCKUndo.SaveUndoStep = function()
 {
-	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG || this.SaveLocked )
 		return ;
 
 	// Assume the editor content is changed when SaveUndoStep() is called after the first time.
@@ -130,8 +133,8 @@ FCKUndo.SaveUndoStep = function()
 	this.SavedData = this.SavedData.slice( 0, this.CurrentIndex + 1 ) ;
 
 	// Cancel operation if the new step is identical to the previous one.
-	if ( this.CurrentIndex > 0 
-			&& sHtml == this.SavedData[ this.CurrentIndex ][0] 
+	if ( this.CurrentIndex > 0
+			&& sHtml == this.SavedData[ this.CurrentIndex ][0]
 			&& this._CheckIsBookmarksEqual( bookmark, this.SavedData[ this.CurrentIndex ][1] ) )
 		return ;
 	// Save the selection and caret position in the first undo level for the first change.

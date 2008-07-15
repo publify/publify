@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -261,19 +261,23 @@ FCKW3CRange.prototype =
 		{
 			// If the start container has children and the offset is pointing
 			// to a child, then we should start from its previous sibling.
-			if ( startNode.childNodes.length > 0 &&  startOffset <= startNode.childNodes.length - 1 )
+
+			// If the offset points to the first node, we don't have a
+			// sibling, so let's use the first one, but mark it for removal.
+			if ( startOffset == 0 )
 			{
-				// If the offset points to the first node, we don't have a
-				// sibling, so let's use the first one, but mark it for removal.
-				if ( startOffset == 0 )
-				{
-					// Let's create a temporary node and mark it for removal.
-					startNode = startNode.insertBefore( this._Document.createTextNode(''), startNode.firstChild ) ;
-					removeStartNode = true ;
-				}
-				else
-					startNode = startNode.childNodes[ startOffset ].previousSibling ;
+				// Let's create a temporary node and mark it for removal.
+				startNode = startNode.insertBefore( this._Document.createTextNode(''), startNode.firstChild ) ;
+				removeStartNode = true ;
 			}
+			else if ( startOffset > startNode.childNodes.length - 1 )
+			{
+				// Let's create a temporary node and mark it for removal.
+				startNode = startNode.appendChild( this._Document.createTextNode('') ) ;
+				removeStartNode = true ;
+			}
+			else
+				startNode = startNode.childNodes[ startOffset ].previousSibling ;
 		}
 
 		// Get the parent nodes tree for the start and end boundaries.
@@ -419,7 +423,7 @@ FCKW3CRange.prototype =
 			if ( topStart && topEnd && ( startNode.parentNode != topStart.parentNode || endNode.parentNode != topEnd.parentNode ) )
 			{
 				var endIndex = FCKDomTools.GetIndexOf( topEnd ) ;
-				
+
 				// If the start node is to be removed, we must correct the
 				// index to reflect the removal.
 				if ( removeStartNode && topEnd.parentNode == startNode.parentNode )

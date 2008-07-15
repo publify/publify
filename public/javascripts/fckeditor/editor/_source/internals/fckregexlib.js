@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -74,6 +74,7 @@ GeckoEntitiesMarker : /#\?-\:/g ,
 // like "thumbnail.php?src=someimage.jpg" (SF-BUG 1554141).
 ProtectUrlsImg	: /<img(?=\s).*?\ssrc=((?:(?:\s*)("|').*?\2)|(?:[^"'][^ >]+))/gi ,
 ProtectUrlsA	: /<a(?=\s).*?\shref=((?:(?:\s*)("|').*?\2)|(?:[^"'][^ >]+))/gi ,
+ProtectUrlsArea	: /<area(?=\s).*?\shref=((?:(?:\s*)("|').*?\2)|(?:[^"'][^ >]+))/gi ,
 
 Html4DocType	: /HTML 4\.0 Transitional/i ,
 DocTypeTag		: /<!DOCTYPE[^>]*>/i ,
@@ -92,5 +93,7 @@ InvalidSelfCloseTags : /(<(?!base|meta|link|hr|br|param|img|area|input)([a-zA-Z0
 // name is returned with $2.
 StyleVariableAttName : /#\(\s*("|')(.+?)\1[^\)]*\s*\)/g,
 
-RegExp : /^\/(.*)\/([gim]*)$/
+RegExp : /^\/(.*)\/([gim]*)$/,
+
+HtmlTag : /<[^\s<>](?:"[^"]*"|'[^']*'|[^<])*>/
 } ;

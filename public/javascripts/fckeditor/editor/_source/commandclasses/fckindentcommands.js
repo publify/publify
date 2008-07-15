@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -57,8 +57,8 @@ FCKIndentCommand.prototype =
 		// Two cases to handle here: either we're in a list, or not.
 		// If we're in a list, then the indent/outdent operations would be done on the list nodes.
 		// Otherwise, apply the operation on the nearest block nodes.
-		var nearestListBlock = FCKDomTools.GetCommonParentNode( range.StartNode || range.StartContainer , 
-				range.EndNode || range.EndContainer, 
+		var nearestListBlock = FCKDomTools.GetCommonParentNode( range.StartNode || range.StartContainer ,
+				range.EndNode || range.EndContainer,
 				['ul', 'ol'] ) ;
 		if ( nearestListBlock )
 			this._IndentList( range, nearestListBlock ) ;
@@ -133,6 +133,8 @@ FCKIndentCommand.prototype =
 	_IndentBlock : function( range )
 	{
 		var iterator = new FCKDomRangeIterator( range ) ;
+		iterator.EnforceRealBlocks = true ;
+
 		range.Expand( 'block_contents' ) ;
 		var commonParents = FCKDomTools.GetCommonParents( range.StartContainer, range.EndContainer ) ;
 		var nearestParent = commonParents[commonParents.length - 1] ;

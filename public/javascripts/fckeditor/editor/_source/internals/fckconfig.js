@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -131,17 +131,19 @@ function FCKConfig_PreProcess()
 	if ( !oConfig.PluginsPath.EndsWith('/') )
 		oConfig.PluginsPath += '/' ;
 
-	// EditorAreaCSS accepts a single path string, a list of paths separated by
-	// a comma or and array of paths.
-	// In the string cases, transform it in an array.
-	if ( typeof( oConfig.EditorAreaCSS ) == 'string' )
-		oConfig.EditorAreaCSS = oConfig.EditorAreaCSS.split(',') ;
-
+	// If no ToolbarComboPreviewCSS, point it to EditorAreaCSS.
 	var sComboPreviewCSS = oConfig.ToolbarComboPreviewCSS ;
 	if ( !sComboPreviewCSS || sComboPreviewCSS.length == 0 )
 		oConfig.ToolbarComboPreviewCSS = oConfig.EditorAreaCSS ;
-	else if ( typeof( sComboPreviewCSS ) == 'string' )
-		oConfig.ToolbarComboPreviewCSS = [ sComboPreviewCSS ] ;
+
+	// Turn the attributes that will be removed in the RemoveFormat from a string to an array
+	oConfig.RemoveAttributesArray = (oConfig.RemoveAttributes || '').split( ',' );
+
+	if ( !FCKConfig.SkinEditorCSS || FCKConfig.SkinEditorCSS.length == 0 )
+		FCKConfig.SkinEditorCSS = FCKConfig.SkinPath + 'fck_editor.css' ;
+
+	if ( !FCKConfig.SkinDialogCSS || FCKConfig.SkinDialogCSS.length == 0 )
+		FCKConfig.SkinDialogCSS = FCKConfig.SkinPath + 'fck_dialog.css' ;
 }
 
 // Define toolbar sets collection.
@@ -174,10 +176,7 @@ FCKConfig.ProtectedSource.RegexEntries = [
 	/<script[\s\S]*?<\/script>/gi,
 
 	// <noscript> tags (get lost in IE and messed up in FF).
-	/<noscript[\s\S]*?<\/noscript>/gi,
-
-	// Protect <object> tags. See #359.
-	/<object[\s\S]+?<\/object>/gi
+	/<noscript[\s\S]*?<\/noscript>/gi
 ] ;
 
 FCKConfig.ProtectedSource.Add = function( regexPattern )

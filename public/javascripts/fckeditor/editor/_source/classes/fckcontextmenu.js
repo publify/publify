@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -26,7 +26,7 @@ var FCKContextMenu = function( parentWindow, langDir )
 	this.CtrlDisable = false ;
 
 	var oPanel = this._Panel = new FCKPanel( parentWindow ) ;
-	oPanel.AppendStyleSheet( FCKConfig.SkinPath + 'fck_editor.css' ) ;
+	oPanel.AppendStyleSheet( FCKConfig.SkinEditorCSS ) ;
 	oPanel.IsContextMenu = true ;
 
 	// The FCKTools.DisableSelection doesn't seems to work to avoid dragging of the icons in Mozilla
@@ -56,9 +56,13 @@ FCKContextMenu.prototype.SetMouseClickWindow = function( mouseClickWindow )
 	}
 }
 
-FCKContextMenu.prototype.AddItem = function( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled )
+/**
+ The customData parameter is just a value that will be send to the command that is executed,
+ so it's possible to reuse the same command for several items just by assigning different data for each one.
+*/
+FCKContextMenu.prototype.AddItem = function( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled, customData )
 {
-	var oItem = this._MenuBlock.AddItem( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled) ;
+	var oItem = this._MenuBlock.AddItem( name, label, iconPathOrStripInfoArrayOrIndex, isDisabled, customData ) ;
 	this._Redraw = true ;
 	return oItem ;
 }
@@ -122,7 +126,7 @@ function FCKContextMenu_Document_OnMouseDown( e )
 			var overrideButton = FCKContextMenu_OverrideButton ;
 			if( !overrideButton )
 			{
-				var doc = e.target.ownerDocument ;
+				var doc = FCKTools.GetElementDocument( e.target ) ;
 				overrideButton = FCKContextMenu_OverrideButton = doc.createElement('input') ;
 				overrideButton.type = 'button' ;
 				var buttonHolder = doc.createElement('p') ;
@@ -130,8 +134,8 @@ function FCKContextMenu_Document_OnMouseDown( e )
 				buttonHolder.appendChild( overrideButton ) ;
 			}
 
-			overrideButton.style.cssText = 'position:absolute;top:' + ( e.clientY - 2 ) + 
-				'px;left:' + ( e.clientX - 2 ) + 
+			overrideButton.style.cssText = 'position:absolute;top:' + ( e.clientY - 2 ) +
+				'px;left:' + ( e.clientX - 2 ) +
 				'px;width:5px;height:5px;opacity:0.01' ;
 		}
 		el = el.parentNode ;
@@ -155,6 +159,7 @@ function FCKContextMenu_Document_OnMouseUp( e )
 			return false ;
 		}
 	}
+	return true ;
 }
 
 function FCKContextMenu_AttachedElement_OnContextMenu( ev, fckContextMenu, el )
@@ -175,7 +180,7 @@ function FCKContextMenu_AttachedElement_OnContextMenu( ev, fckContextMenu, el )
 		fckContextMenu._MenuBlock.Create( fckContextMenu._Panel.MainNode ) ;
 		fckContextMenu._Redraw = false ;
 	}
-	
+
 	// This will avoid that the content of the context menu can be dragged in IE
 	// as the content of the panel is recreated we need to do it every time
 	FCKTools.DisableSelection( fckContextMenu._Panel.Document.body ) ;

@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -50,7 +50,10 @@ function FCKToolbarSet_Create( overhideLocation )
 			var oOutMatch = sLocation.match( /^Out:(.+)\((\w+)\)$/ ) ;
 			if ( oOutMatch )
 			{
-				eToolbarTarget = eval( 'parent.' + oOutMatch[1] ).document.getElementById( oOutMatch[2] ) ;
+				if ( FCKBrowserInfo.IsAIR )
+					FCKAdobeAIR.ToolbarSet_GetOutElement( window, oOutMatch ) ;
+				else
+					eToolbarTarget = eval( 'parent.' + oOutMatch[1] ).document.getElementById( oOutMatch[2] ) ;
 			}
 			else
 			{
@@ -90,23 +93,46 @@ function FCKToolbarSet_Create( overhideLocation )
 
 			// Initialize the IFRAME document body.
 			eTargetDocument.open() ;
-			eTargetDocument.write( '<html><head>' + sBase + '<script type="text/javascript"> var adjust = function() { window.frameElement.height = document.body.scrollHeight ; }; window.onresize = adjust; window.onload = function () {adjust(); window.setTimeout( adjust, 1000 ); }</script></head><body style="overflow: hidden">' + document.getElementById( 'xToolbarSpace' ).innerHTML + '</body></html>' ) ;
+			eTargetDocument.write( '<html><head>' + sBase + '<script type="text/javascript"> var adjust = function() { window.frameElement.height = document.body.scrollHeight ; }; '
+					+ 'window.onresize = window.onload = '
+					+ 'function(){'		// poll scrollHeight until it no longer changes for 1 sec.
+					+ 'var timer = null;'
+					+ 'var lastHeight = -1;'
+					+ 'var lastChange = 0;'
+					+ 'var poller = function(){'
+					+ 'var currentHeight = document.body.scrollHeight || 0;'
+					+ 'var currentTime = (new Date()).getTime();'
+					+ 'if (currentHeight != lastHeight){'
+					+ 'lastChange = currentTime;'
+					+ 'adjust();'
+					+ 'lastHeight = document.body.scrollHeight;'
+					+ '}'
+					+ 'if (lastChange < currentTime - 1000) clearInterval(timer);'
+					+ '};'
+					+ 'timer = setInterval(poller, 100);'
+					+ '}'
+					+ '</script></head><body style="overflow: hidden">' + document.getElementById( 'xToolbarSpace' ).innerHTML + '</body></html>' ) ;
 			eTargetDocument.close() ;
+
+			if( FCKBrowserInfo.IsAIR )
+				FCKAdobeAIR.ToolbarSet_InitOutFrame( eTargetDocument ) ;
 
 			FCKTools.AddEventListener( eTargetDocument, 'contextmenu', FCKTools.CancelEvent ) ;
 
 			// Load external resources (must be done here, otherwise Firefox will not
 			// have the document DOM ready to be used right away.
-			FCKTools.AppendStyleSheet( eTargetDocument, FCKConfig.SkinPath + 'fck_editor.css' ) ;
+			FCKTools.AppendStyleSheet( eTargetDocument, FCKConfig.SkinEditorCSS ) ;
 
 			oToolbarSet = eToolbarTarget.__FCKToolbarSet = new FCKToolbarSet( eTargetDocument ) ;
 			oToolbarSet._IFrame = eToolbarIFrame ;
-			
+
 			if ( FCK.IECleanup )
 				FCK.IECleanup.AddItem( eToolbarTarget, FCKToolbarSet_Target_Cleanup ) ;
 	}
 
 	oToolbarSet.CurrentInstance = FCK ;
+	if ( !oToolbarSet.ToolbarItems )
+		oToolbarSet.ToolbarItems = FCKToolbarItems ;
 
 	FCK.AttachToOnSelectionChange( oToolbarSet.RefreshItemsState ) ;
 
@@ -252,7 +278,7 @@ FCKToolbarSet.prototype.Load = function( toolbarSetName )
 
 		// If the configuration for the toolbar is missing some element or has any extra comma
 		// this item won't be valid, so skip it and keep on processing.
-		if ( !oToolbarItems ) 
+		if ( !oToolbarItems )
 			continue ;
 
 		var oToolbar ;

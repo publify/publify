@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -33,5 +33,7 @@ FCKNamedCommand.prototype.Execute = function()
 
 FCKNamedCommand.prototype.GetState = function()
 {
+	if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG )
+		return FCK_TRISTATE_DISABLED ;
 	return FCK.GetNamedCommandState( this.Name ) ;
 }

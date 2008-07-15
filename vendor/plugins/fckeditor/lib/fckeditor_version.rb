@@ -1,7 +1,7 @@
 module FckeditorVersion
   MAJOR = 0
-  MINOR = 4
-  RELEASE = 3
+  MINOR = 5
+  RELEASE = 0
   
   def self.current
   	"#{MAJOR}.#{MINOR}.#{RELEASE}"

@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -76,10 +76,10 @@ FCKToolbarStyleCombo.prototype.CreateItems = function( targetSpecialCombo )
 		var style = styles[ styleName ] ;
 
 		// Object type styles have no preview.
-		var caption = style.GetType() == FCK_STYLE_OBJECT ? 
-			styleName : 
+		var caption = style.GetType() == FCK_STYLE_OBJECT ?
+			styleName :
 			FCKToolbarStyleCombo_BuildPreview( style, style.Label || styleName ) ;
-	
+
 		var item = targetSpecialCombo.AddItem( styleName, caption ) ;
 
 		item.Style = style ;
@@ -123,16 +123,16 @@ FCKToolbarStyleCombo.prototype.StyleCombo_OnBeforeClick = function( targetSpecia
 	//	- In a control selection, get the element name, so we'll display styles
 	//	  for that element only.
 	//	- Select the styles that are active for the current selection.
-	
+
 	// Clear the current selection.
 	targetSpecialCombo.DeselectAll() ;
 
 	var startElement ;
 	var path ;
 	var tagName ;
-	
+
 	var selection = FCK.ToolbarSet.CurrentInstance.Selection ;
-	
+
 	if ( selection.GetType() == 'Control' )
 	{
 		startElement = selection.GetSelectedElement() ;
@@ -148,7 +148,7 @@ FCKToolbarStyleCombo.prototype.StyleCombo_OnBeforeClick = function( targetSpecia
 	{
 		var item = targetSpecialCombo.Items[i] ;
 		var style = item.Style ;
-		
+
 		if ( ( tagName && style.Element == tagName ) || ( !tagName && style.GetType() != FCK_STYLE_OBJECT ) )
 		{
 			item.style.display = '' ;
@@ -161,16 +161,16 @@ FCKToolbarStyleCombo.prototype.StyleCombo_OnBeforeClick = function( targetSpecia
 	}
 }
 
-function FCKToolbarStyleCombo_BuildPreview( style, caption ) 
+function FCKToolbarStyleCombo_BuildPreview( style, caption )
 {
 	var styleType = style.GetType() ;
 	var html = [] ;
-	
+
 	if ( styleType == FCK_STYLE_BLOCK )
 		html.push( '<div class="BaseFont">' ) ;
-	
+
 	var elementName = style.Element ;
-	
+
 	// Avoid <bdo> in the preview.
 	if ( elementName == 'bdo' )
 		elementName = 'span' ;

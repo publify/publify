@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -27,7 +27,7 @@ var FCKStyleCommand = function()
 FCKStyleCommand.prototype =
 {
 	Name : 'Style',
-	
+
 	Execute : function( styleName, styleComboItem )
 	{
 		FCKUndo.SaveUndoStep() ;
@@ -45,7 +45,7 @@ FCKStyleCommand.prototype =
 
 	GetState : function()
 	{
-		if ( !FCK.EditorDocument )
+		if ( FCK.EditMode != FCK_EDITMODE_WYSIWYG || !FCK.EditorDocument )
 			return FCK_TRISTATE_DISABLED ;
 
 		if ( FCKSelection.GetType() == 'Control' )

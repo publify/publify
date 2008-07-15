@@ -1,6 +1,6 @@
 ﻿/*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2008 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -35,7 +35,7 @@ FCKTableCommand.prototype.Execute = function()
 	{
 		switch ( this.Name )
 		{
-			case 'TableMergeRight' : 
+			case 'TableMergeRight' :
 				return FCKTableHandler.MergeRight() ;
 			case 'TableMergeDown' :
 				return FCKTableHandler.MergeDown() ;
@@ -88,7 +88,7 @@ FCKTableCommand.prototype.GetState = function()
 				else
 					return FCK_TRISTATE_DISABLED ;
 			case 'TableMergeCells' :
-				if ( FCKTableHandler.CheckIsSelectionRectangular() 
+				if ( FCKTableHandler.CheckIsSelectionRectangular()
 						&& FCKTableHandler.GetSelectedCells().length > 1 )
 					return FCK_TRISTATE_OFF ;
 				else
@@ -102,5 +102,5 @@ FCKTableCommand.prototype.GetState = function()
 		}
 	}
 	else
-		return FCK_TRISTATE_DISABLED; 
+		return FCK_TRISTATE_DISABLED;
 }
