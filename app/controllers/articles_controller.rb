@@ -85,7 +85,7 @@ class ArticlesController < ContentController
   end
 
   def view_page
-    if(@page = Page.find_by_name(params[:name])) && @page.published?
+    if(@page = Page.find_by_name(params[:name].map { |c| c }.join("/"))) && @page.published?
       @page_title = @page.title
     else
       render :nothing => true, :status => 404

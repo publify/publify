@@ -75,7 +75,7 @@ class Admin::PagesController < Admin::BaseController
     @page.attributes = params[:page]
     if request.post? and @page.save
       flash[:notice] = 'Page was successfully updated.'
-      redirect_to :action => 'show', :id => @page.id
+      redirect_to :action => 'index'
     end
   end
 
