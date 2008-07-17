@@ -91,11 +91,12 @@ class MetaWeblogService < TypoWebService
     article.user        = @user
 
     # Movable Type API support
-    article.allow_comments = struct['mt_allow_comments'] || this_blog.default_allow_comments
-    article.allow_pings    = struct['mt_allow_pings'] || this_blog.default_allow_pings
-    article.extended       = struct['mt_text_more'] || ''
-    article.excerpt        = struct['mt_excerpt'] || ''
+    article.allow_comments = struct['mt_allow_comments']  || this_blog.default_allow_comments
+    article.allow_pings    = struct['mt_allow_pings']     || this_blog.default_allow_pings
+    article.extended       = struct['mt_text_more']       || ''
+    article.excerpt        = struct['mt_excerpt']         || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
+    article.keywords       = struct['mt_keywords']        || ''
 
     if !article.save
       raise article.errors.full_messages * ", "
@@ -104,12 +105,6 @@ class MetaWeblogService < TypoWebService
     if struct['categories']
       Category.find(:all).each do |c|
         article.categories << c if struct['categories'].include?(c.name)
-      end
-    end
-
-    if struct['mt_keywords']
-      Tag.find(:all).each do |c|
-        article.tags << c if struct['mt_keywords'].include?(c.name)
       end
     end
 
@@ -134,18 +129,13 @@ class MetaWeblogService < TypoWebService
     article.allow_pings    = struct['mt_allow_pings']    || this_blog.default_allow_pings
     article.extended       = struct['mt_text_more']      || ''
     article.excerpt        = struct['mt_excerpt']        || ''
+    article.keywords       = struct['mt_keywords']       || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
 
     if struct['categories']
       article.categorizations.clear
       Category.find(:all).each do |c|
         article.categories << c if struct['categories'].include?(c.name)
-      end
-    end
-
-    if struct['mt_keywords']
-      Tag.find(:all).each do |c|
-        article.tags << c if struct['mt_keywords'].include?(c.name)
       end
     end
     
@@ -172,7 +162,7 @@ class MetaWeblogService < TypoWebService
       :categories        => article.categories.collect { |c| c.name },
       :mt_text_more      => article.extended.to_s,
       :mt_excerpt        => article.excerpt.to_s,
-      :mt_keywords       => article.tags.collect { |p| p.name }.join(' ,'),
+      :mt_keywords       => article.tags.collect { |p| p.name }.join(', '),
       :mt_allow_comments => article.allow_comments? ? 1 : 0,
       :mt_allow_pings    => article.allow_pings? ? 1 : 0,
       :mt_convert_breaks => (article.text_filter.name.to_s rescue ''),
