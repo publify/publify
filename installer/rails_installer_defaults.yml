@@ -1,5 +1,5 @@
 --- 
 rails-environment: production
-database: sqlite
+database: mysql
 web-server: mongrel
 threads: 2

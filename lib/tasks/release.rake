@@ -33,14 +33,14 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("rails", "= 2.0.2")
   s.add_dependency("mongrel", ">= 1.1.3")
   s.add_dependency("mongrel_cluster", ">= 0.2.0")
-  s.add_dependency("sqlite3-ruby", ">= 1.1.0")
+  s.add_dependency("mysql", ">= 2.7")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
   s.add_dependency("ruby-debug", ">= 0.10.1")
   s.add_dependency("flexmock", ">= 0.8.2")
 end
 
 Rake::GemPackageTask.new(spec) do |p|
-#  p.gem_spec = spec
+  p.gem_spec = spec
   p.need_tar = true
   p.need_zip = true
 end
