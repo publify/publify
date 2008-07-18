@@ -52,10 +52,23 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def new; new_or_edit; end
-  def edit; new_or_edit; end
+  def edit
+    article = Article.find(params[:id])
+    if current_user.profile.label != 'admin' and article.user_id != current_user.id 
+      redirect_to :action => 'list'
+      flash[:error] = _("Error, you are not allowed to perform this action")
+    end
+    new_or_edit 
+  end
 
   def destroy
     @article = Article.find(params[:id])
+    
+    if current_user.profile.label != 'admin' and @article.user_id != current_user.id 
+      redirect_to :action => 'list'
+      flash[:error] = _("Error, you are not allowed to perform this action")
+    end
+    
     if request.post?
       @article.destroy
       redirect_to :action => 'list'

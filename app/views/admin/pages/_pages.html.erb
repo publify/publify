@@ -41,8 +41,8 @@
     <% end %>
     </td>
     <td class='operation'><%= link_to_show page if page.published?  %></td>
-    <td class='operation'><%= link_to_edit page %></td>
-    <td class="operation"><%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => page.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
+    <td class='operation'><%= link_to_edit_with_profiles page %></td>
+    <td class="operation"><%= link_to_destroy_with_profiles page %></td>
   </tr>
   <% end %>
   </table>

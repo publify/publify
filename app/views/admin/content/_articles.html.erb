@@ -39,8 +39,8 @@
   <td><%= author_link(article)%></td>
   <td class="operation"><%= (article.published?) ? image_tag('admin/checked.png', :alt => "online", :title => _("Online")) : image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline")) %></td>
   <td class="operation"><%= link_to_show article if article.published? %></td>
-  <td class="operation"><%= link_to_edit article %></td>
-  <td class="operation"><%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => article.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
+  <td class="operation"><%= link_to_edit_with_profiles article %></td>
+  <td class="operation"><%= link_to_destroy_with_profiles article %></td>
 </tr>
 <% end %>
 </table>

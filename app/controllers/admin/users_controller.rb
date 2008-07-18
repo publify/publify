@@ -6,7 +6,11 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def index
-    @users = User.find :all
+    if current_user.profile.label == 'admin'
+      @users = User.find :all
+    else
+      redirect_to :action => 'edit'
+    end
   end
 
   def new
@@ -19,7 +23,15 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
-    @user = User.find_by_id(params[:id])
+    if current_user.profile.label == 'admin'
+      @user = User.find_by_id(params[:id])
+    else
+      if params[:id] and params[:id] != current_user[:id]
+        flash[:error] = _("Error, you are not allowed to perform this action")
+        redirect_to :action => 'index'
+      end
+      @user = User.find_by_id(current_user.id)
+    end
     setup_profiles
     @user.attributes = params[:user]
     if request.post? and @user.save

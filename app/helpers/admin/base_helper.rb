@@ -76,10 +76,32 @@ module Admin::BaseHelper
     link_to image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"),
       :controller => controller, :action => 'edit', :id => record.id
   end
+  
+  def link_to_edit_with_profiles(record, controller = @controller.controller_name)
+    if current_user.profile.label == 'admin'
+    link_to image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"),
+      :controller => controller, :action => 'edit', :id => record.id
+    else
+      link_to(image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"),
+        :controller => controller, :action => 'edit', :id => record.id) if current_user.id == record.user_id
+    end
+  end
 
   def link_to_destroy(record, controller = @controller.controller_name)
     link_to image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"),
       :controller => controller, :action => 'destroy', :id => record.id
+  end
+
+  def link_to_destroy_with_profiles(record, controller = @controller.controller_name)
+    if current_user.profile.label == 'admin'
+      link_to(image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"), 
+      { :controller => controller, :action => 'destroy', :id => record.id, :search => params[:search], 
+        :page => params[:page] },  :confirm => "Are you sure?", :method => :post)
+    else
+      link_to(image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"), 
+      { :controller => controller, :action => 'destroy', :id => record.id, :search => params[:search], 
+        :page => params[:page] },  :confirm => "Are you sure?", :method => :post) if current_user.id == record.user_id
+    end
   end
 
   def text_filter_options

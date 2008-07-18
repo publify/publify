@@ -1,9 +1,5 @@
   <% @page_heading = _('Edit User') %>
-  <% content_for('tasks') do %>
-    <%= task_overview %>
-    <%= tab _("New User"), :controller=>"users", :action=>"new"%>
-  <% end%>
-
+  <% subtabs_for(:users) %>
   <% form_tag :action=>"edit", :id => @user.id do %>
 
   <div class="admin">
