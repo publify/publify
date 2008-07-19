@@ -1,7 +1,7 @@
   <% @page_heading = _("Trackbacks for") + " #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }" %>
 
   <% content_for('tasks') do %>
-    <%= task_edit _('Edit this trackback'), @trackback.id %>
+    <%= task_overview %>
   <% end %>
 
   <div class="form">

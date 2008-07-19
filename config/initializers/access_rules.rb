@@ -65,9 +65,9 @@ AccessControl.map :require => [ :admin, :publisher ]  do |map|
   end
 
   map.project_module :feedback, nil do |project|
-    project.menu    _("Feedback"),              { :controller => "admin/feedback",  :confirmed => "f" }
-    project.submenu _("Unapproved comments"),   { :controller => "admin/feedback",  :confirmed     => "f" }    
-    project.submenu _("Limit to spam"),         { :controller => "admin/feedback",  :published  => "f" }
+    project.menu    _("Feedback") + " (" + Feedback.count(:all, :conditions => "state in ('presumed_ham', 'presumed_spam')").to_s + ")",              { :controller => "admin/feedback",  :confirmed => "f" }
+    project.submenu _("Unapproved comments") + " (" + Feedback.count(:all, :conditions => "state in ('presumed_ham', 'presumed_spam')").to_s + ")",   { :controller => "admin/feedback",  :confirmed     => "f" }    
+    project.submenu _("Limit to spam") + " (" + Feedback.count(:all, :conditions => "state in ('spam', 'presumed_spam')").to_s + ")",         { :controller => "admin/feedback",  :published  => "f" }
     project.submenu _("Blacklist"),             { :controller => "admin/blacklist", :action => "index" }
     project.submenu _(""),                      { :controller => "admin/comments", :action => "show" }
     project.submenu _(""),                      { :controller => "admin/comments", :action => "new" }

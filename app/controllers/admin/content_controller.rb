@@ -15,6 +15,7 @@ class Admin::ContentController < Admin::BaseController
 
   def index
     # Filtering articles
+    @drafts = Article.find(:all, :conditions => "state='draft'")
     conditions = "state in('published', 'withdrawn')"
     if params[:search]
       @search = params[:search]

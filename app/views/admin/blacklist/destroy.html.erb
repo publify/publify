@@ -1,7 +1,7 @@
   <% @page_heading = _('Blacklist Patterns') %>
 
   <% content_for('tasks') do %>
-    <%= task_show _('Show this pattern'), @blacklist_pattern.id %>
+    <%= task_overview %>
   <% end %>
 
   <p><%= _("Are you sure you want to delete this item?")%></p>

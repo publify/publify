@@ -122,32 +122,8 @@ module Admin::BaseHelper
     link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
 
-  def task_quicknav(title)
-    content_tag :li, link_to_function(title, toggle_effect('quick-navigate', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
-  end
-
   def task_overview
     task(_('Back to overview'), 'index')
-  end
-
-  def task_new(title)
-    task(title, 'new')
-  end
-
-  def task_destroy(title, id)
-    task(title, 'destroy', id)
-  end
-
-  def task_edit(title, id)
-    task(title, 'edit', id)
-  end
-
-  def task_show(title, id)
-    task(title, 'show', id)
-  end
-
-  def task_help(title, id)
-    task(title, 'show_help', id)
   end
 
   def task(title, action, id = nil)
