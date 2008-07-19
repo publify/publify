@@ -1,13 +1,8 @@
   <% @page_heading = _('Manage posts') %>
   <% subtabs_for(:content) %>
 
-  <div id="quick-navigate" style="display:none;position:absolute;">
-    <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>
-  </div>
+  <%= render :partial => "drafts" %>
 
-  <div id="quick-post" style="display:none;position:absolute;">
-    <%= render :partial => "quick_post" %>
-  </div>
   <div class="list" id="articles">	
     <%= render :partial => 'articles' %>
   </div>                      

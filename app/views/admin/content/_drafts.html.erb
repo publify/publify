@@ -1,0 +1,6 @@
+<div class="paginate l">
+  Drafts: 
+  <% for draft in @drafts %>
+    <%= link_to(draft.title, :action => 'edit', :id => draft.id) %>
+  <% end %>
+</div>
