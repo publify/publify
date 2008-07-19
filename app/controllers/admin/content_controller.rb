@@ -15,7 +15,7 @@ class Admin::ContentController < Admin::BaseController
 
   def index
     # Filtering articles
-    conditions = "contents.id > 0"
+    conditions = "state in('published', 'withdrawn')"
     if params[:search]
       @search = params[:search]
 
@@ -53,6 +53,7 @@ class Admin::ContentController < Admin::BaseController
 
   def new; new_or_edit; end
   def edit
+    @drafts = Article.find(:all, :conditions => "state='draft'")
     article = Article.find(params[:id])
     if current_user.profile.label != 'admin' and article.user_id != current_user.id 
       redirect_to :action => 'list'
@@ -116,17 +117,20 @@ class Admin::ContentController < Admin::BaseController
   def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
+    @drafts = Article.find(:all, :conditions => "state='draft'")
     get_or_build_article
     params[:article] ||= {}
     params[:bookmarklet_link] && post_from_bookmarklet
 
     @resources = Resource.find(:all, :order => 'created_at DESC')
     @article.attributes = params[:article]
+
     setup_categories
     @selected = @article.categories.collect { |c| c.id }
     if request.post?
       set_article_author
       save_attachments
+      @article.state = "draft" if @article.draft
       if @article.save
         set_article_categories
         set_the_flash
