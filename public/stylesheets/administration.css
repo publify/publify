@@ -860,6 +860,7 @@ input.submit {
 	float: left;
 	margin-bottom: 10px;
 	margin-left: 2%;
+	display: inline;
 }
 
 .dashboard {
@@ -902,7 +903,6 @@ input.submit {
 }
 
 hr {
-	clear: both;
 	border: medium none;
 	color: #ccc;
 	background: #ccc;

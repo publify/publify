@@ -1,10 +1,10 @@
 class Admin::TextfiltersController < Admin::BaseController
-  def index
-    list
-    render :action => 'list'
+  def list
+    index
+    render :action => 'index'
   end
 
-  def list
+  def index
     @textfilters = TextFilter.find(:all, :order => "id DESC")
     @textfilter_map = TextFilter.filters_map
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }

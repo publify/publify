@@ -183,7 +183,7 @@ module Admin::BaseHelper
   end
 
   def class_sidebar
-    if controller.controller_name  =~ /sidebar|textfilter/
+    if controller.controller_name  =~ /sidebar/
     "current"
     end
   end
@@ -201,7 +201,7 @@ module Admin::BaseHelper
   end    
 
   def class_settings
-    if controller.controller_name  =~ /settings/
+    if controller.controller_name  =~ /settings|textfilter/
     "current"
     end
   end

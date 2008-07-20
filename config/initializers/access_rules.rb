@@ -88,7 +88,6 @@ AccessControl.map :require => [ :admin, :publisher ]  do |map|
   
   map.project_module :sidebar, "admin/sidebar" do |project|
     project.menu    _("Sidebar"),               { :action     => "index" }
-    project.submenu _("Text Filters"),          { :controller => "textfilters", :action => "index" }
   end  
   
   map.project_module :users, "admin/users" do |project|
@@ -104,6 +103,7 @@ AccessControl.map :require => [ :admin, :publisher ]  do |map|
     project.submenu _("Feedback"),              { :controller => "admin/settings", :action => "feedback" }			
     project.submenu _("Spam"),                  { :controller => "admin/settings", :action => "spam" }
     project.submenu _("Podcasts"),              { :controller => "admin/settings", :action => "podcast" }
+    project.submenu _("Text Filters"),          { :controller => "admin/textfilters", :action => "index" }
     project.submenu _("Empty Fragment Cache"),  { :controller => "admin/cache",    :action => "sweep" }
     project.submenu _("Rebuild cached HTML"),   { :controller => "admin/cache",    :action => "sweep_html" }
   end  

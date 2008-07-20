@@ -1,5 +1,5 @@
   <% @page_heading = _('Text Filters') + ' <span> &raquo; '+ link_to(_('add new'), :action=>'new') +'</span>' %>
-  <% subtabs_for(:sidebar) %>
+  <% subtabs_for(:settings) %>
 
   <div class="list" id="textfilters">	
     <%= render :partial => 'textfilters' %>
