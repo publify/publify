@@ -14,8 +14,6 @@ class ArticlesController < ContentController
     caches_page *cached_pages
   end
 
-  session :new_session => true
-
   helper :'admin/base'
 
   def index
