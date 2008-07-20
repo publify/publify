@@ -153,7 +153,7 @@ module ActionController
     def datestamped_resources(*entities, &block)
       options = entities.last.is_a?(Hash) ? entities.pop : { }
       entities.each do |entity|
-        resource = DatestampedResource.new(entities, options.dup)
+        resource = DatestampedResource.new(entity, options.dup)
         resource.install_in(self, &block)
       end
     end
