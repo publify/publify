@@ -1,0 +1,327 @@
+/* standard elements */
+html {min-height: 100%;}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {color: #048;}
+a:hover {color: #06C;}
+a img {border: none;}
+
+body {
+    background: #E7E7E2 url('../../images/theme/body.jpg') no-repeat center top;
+    color: #444;
+    font: normal 62.5% Tahoma,sans-serif;
+    padding-top: 64px;
+}
+
+p,code,ul {padding-bottom: 1.2em;}
+
+li {list-style: none;}
+
+h1 {font: normal 1.8em Tahoma,sans-serif;}
+h2 {font: normal 1.6em sans-serif;}
+h3 {font: bold 1em Tahoma,sans-serif;}
+
+h1,h2,h3 {padding-top: 6px; color: #553; margin-bottom: 4px;}
+
+code {
+    background: #FFF;
+    border: 1px solid #EEE;
+    border-left: 6px solid #CCC;
+    color: #666;
+    display: block;
+    font: normal 1em Tahoma,sans-serif;
+    line-height: 1.6em;
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    white-space: pre;
+}
+
+blockquote {
+    background: url('../../images/theme/quote.gif') no-repeat;
+    display: block;
+    font-weight: bold;
+    padding-left: 28px;
+}
+
+/* misc */
+.clearer {clear: both; font-size: 0;}
+.left {float: left;}
+.right {float: right;}
+
+/* structure */
+.inner-container {
+    border: 2px solid #D7D7D2;
+    background: #FFF;
+    font-size: 1.2em;
+    margin: 0 auto;
+    padding: 10px;
+    width: 780px;
+}
+
+.outer-container {
+    background: url('../../images/theme/container.jpg') no-repeat center bottom;
+    padding-bottom: 64px;
+}
+
+/* headere & title */
+.header {
+    background: #222 url('../../images/theme/header.jpg') no-repeat;
+    height: 160px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.header .title {
+    color: #FFF;
+    padding-top: 50px;
+}
+
+h1 {
+    font: normal 3em sans-serif;
+}
+
+.header .title h1.sitename a {
+    border-bottom: 1px dashed #657382;
+    color: #FFF;
+    padding-bottom: 2px;
+    text-decoration: none;
+}
+.header .title a:hover {border-color: #F60;}
+.header .title .slogan {
+    font: normal 1.1em Verdana,sans-serif;
+    padding-top: 6px;
+}
+
+/* path */
+.path {
+    background: #949490;
+    color: #FFF;
+    font: normal 1.1em Verdana,sans-serif;
+    padding: 8px 12px;
+}
+.path li,.path ul {display: inline;}
+.path a {
+    color: #FAFAFA;
+    text-decoration: none;
+    margin-right: 16px;
+}
+.path a:hover {
+    color: #FFE;
+    text-decoration: underline;
+}
+
+/* main */
+.main {
+    background: url('../../images/theme/main.gif') repeat-y;
+    border-top: 4px solid #FFF;
+    padding: 8px 12px 0 0;
+}
+
+/* content */
+#content {
+    float: right;
+    width: 538px;
+}
+#content .author {
+    color: #664;
+    font-size: 0.9em;
+    margin-bottom: 6px;
+}
+#content li {
+    line-height: 1.4em;
+    list-style: url('../../images/theme/li.gif');
+    margin-left: 18px;
+}
+#content p {font-family: "Lucida Sans Unicode",sans-serif;}
+
+/* navigation */
+#sidebar {
+    float: left;
+    width: 210px;
+}
+#sidebar h3 {
+    color: #5A5A43;
+    font: bold 1.1em Tahoma,sans-serif;
+    line-height: 30px;
+    margin: 0;
+    padding-left: 12px;
+}
+#sidebar ul {
+    padding: 0;
+    border-top: 1px solid #EAEADA;
+}
+#sidebar li {border-bottom: 1px solid #EAEADA;}
+#sidebar li a {
+    font-size: 1.1em;
+    color: #554;
+    display: block;
+    padding: 8px 0 8px 5%;
+    text-decoration: none;
+    width: 95%;
+}
+#sidebar li a:hover {
+    background: #F0F0EB;
+    color: #654;
+}
+
+/* footer */
+#footer {
+    background: #949490;
+    color: #F7F7F2;
+    font: bold 1em sans-serif;
+    margin-top: 5px;
+    padding: 10px 12px;
+}
+#footer a {
+    color: #F7F7F2;
+    text-decoration: none;
+}
+#footer a:hover {color: #FFC;}
+
+/* posts */
+h2.title a {
+    border-bottom: 1px dashed #AAA;
+    color: #664;
+    text-decoration: none;
+}
+.atomentry h1 a:hover {
+    border-color: #F60;
+    color: #553;
+}
+
+.atomentry {margin: 6px 0 2px;}
+.atomentry .info{
+    background: #F5F5F5;
+    border: 1px solid #E3E4E4;
+    color: #666;
+    margin: 2px 0 4px;
+    padding: 5px 10px;
+}
+.atomentry img {
+    border: 4px solid #DDD;
+    margin: 4px 0;
+}
+.atomentry a img {border: 4px solid #DDD;}
+.atomentry a:hover img {border-color: #CCC;}
+
+.info a {text-decoration: none;}
+.info a:hover {text-decoration: underline;}
+
+/* comments */
+#content ol li {
+    background: none;
+}
+
+#commentList {margin: 0; padding: 0;}
+#commentList li {
+    margin-bottom: 1.2em;
+    list-style: decimal;
+}
+#commentform {
+    margin: 1em 0;
+    background: #FAFAFA;
+    width: 360px;
+}
+.commentmetadata {padding: 2px 0 4px;}
+.commentmetadata a {
+    color: #444;
+    text-decoration: none;
+}
+.commentmetadata a:hover {text-decoration: underline;}
+
+textarea.styled {width: 280px;}
+
+.styled {
+    font-size: 1.1em;
+    background: #F8F7F6;
+    border: 1px solid #D6D3D3;
+}
+.styled:hover {
+    background: #FFF;
+    border: 1px solid #D6D3D3;
+}
+.styled:focus {
+    background: #FFF;
+    border: 1px solid #939793;
+}
+#commentform input {margin-bottom: 3px;}
+
+/* calendar */
+#wp-calendar {color:#A0A0A0;}
+
+#sidebar table caption {border-bottom-color:#000;}
+
+#sidebar table thead tr {
+  border-bottom-color:#000;
+  color:#A53512;
+}
+
+#sidebar table th {border-bottom-color:#000;}
+
+#sidebar table td#today {
+  border-color:#000;
+  color:#A53512;
+}
+
+#sidebar table td a {
+  border-bottom-color:#000;
+  background-color:#EDF3DE;
+}
+
+#sidebar table tfoot {border-top-color:#000;}
+
+#sidebar table tfoot a {background:none;}
+
+/* calendar
+--------------------------------------------------*/
+#wp-calendar {
+  display:inline-table;
+  border-collapse:collapse;
+  width:185px;
+  margin:0px 10px 0 10px;
+  text-align:center;
+}
+
+#sidebar table caption {
+  margin: -5px 10px 0 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid;
+  letter-spacing: 0.1em;
+}
+
+#sidebar table thead tr {border-bottom:1px solid;}
+
+#sidebar table th {border-bottom:1px solid;}
+
+#sidebar table td {
+  width: 225px; /* maximaize width; honestly, I don't know much about tables... */
+  padding: 1px;
+  font-size: 0.9em;
+}
+
+#sidebar table td#today {
+  padding: 0;
+  border: 1px solid;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+#sidebar table td a {
+  display: block;
+  border-bottom: 1px solid;
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+#sidebar table tfoot {border-top:1px solid;}
+#sidebar table tfoot a {
+  border: none;
+  font-weight: bold;
+}
+#sidebar table tfoot #prev a {text-align:left;}
+#sidebar table tfoot #next a {text-align:center;}
+
+#searchform {padding: 10px;}

@@ -1,0 +1,461 @@
+body {
+	margin: 100px 0 0 0;
+	padding: 0;
+	background: #FFFFFF url(../../images/theme/img01.gif) repeat-x;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #333333;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	text-transform: lowercase;
+	font-weight: normal;
+	color: #3E3E3E;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+h2 {
+	font-size: 23px;
+}
+
+p, ul, ol {
+	margin: 0 0 2em 0;
+	text-align: justify;
+	line-height: 26px;
+	font-size: 11px;
+}
+
+a:link {
+	color: #7BAA0F;
+}
+
+a:hover, a:active {
+	text-decoration: none;
+	color: #003448;
+}
+
+a:visited {
+	color: #333333;
+}
+
+img {
+	border: none;
+}
+
+img.left {
+	float: left;
+	margin-right: 15px;
+}
+
+img.right {
+	float: right;
+	margin-left: 15px;
+}
+
+/* Form */
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+legend {
+	display: none;
+}
+
+input, textarea, select {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #333333;
+}
+
+/* Header */
+
+#header {
+	width: 850px;
+	height: 82px;
+	margin: 0 auto 40px auto;
+	background: url(../../images/theme/img03.gif) repeat-x left bottom;
+}
+
+#logo {
+	float: left;
+}
+
+#logo h1 {
+	font-size: 38px;
+	color: #494949;
+}
+
+#logo h1 sup {
+	vertical-align: text-top;
+	font-size: 24px;
+}
+
+#logo h1 a {
+	color: #494949;
+}
+
+#logo h2 {
+	margin-top: -10px;
+	font-size: 12px;
+	color: #A0A0A0;
+}
+
+#logo a {
+	text-decoration: none;
+}
+
+/* Menu */
+
+#menu {
+	float: right;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 15px 0 0 0;
+	list-style: none;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	margin-left: 30px;
+	padding: 7px;
+	text-decoration: none;
+	font-size: 13px;
+	color: #000000;
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+#menu .current_page_item a {
+	background: url(../../images/theme/img02.gif) repeat-x left bottom;
+}
+
+/* Page */
+
+#page {
+	width: 850px;
+	margin: 0 auto;
+}
+
+/* Content */
+
+#content {
+	float: left;
+	width: 575px;
+}
+
+.navigation {
+}
+
+.alignleft {
+	float: left;
+}
+
+.alignright {
+	float: right;
+}
+
+/* Post */
+
+.atomentry {
+}
+
+.atomentry .title,
+h2.title {
+	margin-bottom: 20px;
+	padding-bottom: 5px;
+	background: url(../../images/theme/img03.gif) repeat-x left bottom;
+}
+
+.atomentry .title a:link, .atomentry .title a:active, .atomentry .title a:visited {
+	text-decoration: none;
+	color: #333333;
+}
+
+.atomentry .title a:hover {
+	text-decoration: underline;
+}
+
+.atomentry .entry {
+}
+
+.atomentry .meta {
+	padding: 15px 0 60px 0;
+	background: url(../../images/theme/img03.gif) repeat-x;
+}
+
+.atomentry .meta p {
+	margin: 0;
+	line-height: normal;
+	color: #999999;
+}
+
+.atomentry .meta .author {
+	float: left;
+}
+
+.atomentry .meta .links {
+	float: right;
+}
+
+.atomentry .meta .more {
+	padding: 0 20px 0 18px;
+	background: url(../../images/theme/img06.gif) no-repeat left center;
+}
+
+.atomentry .meta .comments {
+	padding-left: 22px;
+	background: url(../../images/theme/img07.gif) no-repeat left center;
+}
+
+.atomentry .meta b {
+	display: none;
+}
+
+/* Comments */
+
+#comments {
+}
+
+#comments p, #comments ol, #comments ul {
+	line-height: normal;
+}
+
+#comments input {
+	padding: 3px;
+	background: #ECECEC url(../../images/theme/img08.gif) repeat-x left bottom;
+	border: none;
+	text-transform: lowercase;
+	font-size: 11px;
+	color: #4F4F4F;
+}
+
+#comments #submit {
+	background: #FFFFFF url(../../images/theme/spacer.gif);
+	border: 1px solid #F0F0F0;
+}
+
+#comment_body {
+	width: 500px;
+}
+
+/* Respond */
+
+#respond {
+}
+
+#respond p {
+	margin-bottom: 5px;
+	line-height: normal;
+}
+
+/* Sidebar */
+
+#sidebar {
+	float: right;
+	width: 195px;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-bottom: 40px;
+}
+
+#sidebar li li {
+	margin: 0;
+}
+
+#sidebar h3 {
+	margin-bottom: 10px;
+	background: url(../../images/theme/img03.gif) repeat-x left bottom;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/* Search */
+
+#search {
+}
+
+#search br {
+	display: none;
+}
+
+#search h2 {
+	margin-bottom: 20px;
+}
+
+#search input {
+	padding: 3px;
+	background: #ECECEC url(../../images/theme/img08.gif) repeat-x left bottom;
+	border: none;
+	text-transform: lowercase;
+	font-size: 11px;
+	color: #4F4F4F;
+}
+
+#search #q {
+	width: 120px;
+	margin-right: 5px;
+	background: #FFFFFF url(../../images/theme/spacer.gif);
+	border: 1px solid #F0F0F0;
+}
+
+/* Boxes */
+
+.box1 {
+	padding: 20px;
+	background: url(../../images/theme/img05.gif) no-repeat;
+}
+
+.box2 {
+	color: #BABABA;
+}
+
+.box2 h2 {
+	margin-bottom: 15px;
+	background: url(../../images/theme/img10.gif) repeat-x left bottom;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+.box2 ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.box2 a:link, .box2 a:hover, .box2 a:active, .box2 a:visited  {
+	color: #EDEDED;
+}
+
+/* Footer */
+
+#footer {
+	height: 150px;
+	min-height: 150px;
+	padding: 100px 0 0 0;
+	background: #003448 url(../../images/theme/img09.gif) repeat-x;
+}
+
+html>body #footer {
+	height: auto;
+}
+
+#footer .wrap {
+	width: 850px;
+	margin: 0 auto;
+}
+
+#legal {
+	clear: both;
+	padding-top: 20px;
+	text-align: center;
+	color: #375C69;
+}
+
+#legal a {
+	color: #476B77;
+}
+
+#fbox1, #fbox2, #fbox3 {
+	float: left;
+}
+
+#fbox1 {
+	width: 310px;
+}
+
+#fbox2 {
+	width: 200px;
+	padding-left: 70px;
+}
+
+#fbox3 {
+	width: 200px;
+	padding-left: 70px;
+}
+
+ bottom;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+.box2 ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.box2 a:link, .box2 a:hover, .box2 a:active, .box2 a:visited  {
+	color: #EDEDED;
+}
+
+/* Footer */
+
+#footer {
+	height: 150px;
+	min-height: 150px;
+	padding: 100px 0 0 0;
+	background: #003448 url(../../images/theme/img09.gif) repeat-x;
+}
+
+html>body #footer {
+	height: auto;
+}
+
+#footer .wrap {
+	width: 850px;
+	margin: 0 auto;
+}
+
+#legal {
+	clear: both;
+	padding-top: 20px;
+	text-align: center;
+	color: #375C69;
+}
+
+#legal a {
+	color: #476B77;
+}
+
+#fbox1, #fbox2, #fbox3 {
+	float: left;
+}
+
+#fbox1 {
+	width: 310px;
+}
+
+#fbox2 {
+	width: 200px;
+	padding-left: 70px;
+}
+
+#fbox3 {
+	width: 200px;
+	padding-left: 70px;
+}

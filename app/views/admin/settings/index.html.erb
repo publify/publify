@@ -35,6 +35,16 @@
 					<label for="cache_option_1"><%= _("Use semi static caching (default)")%></label>
 				</span>
 			</li>
+			<li><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</li>
+			<li>
+				<label class="float" for="allow_signup"><%= _("Allow users to register")%>:</label>
+				<input type="radio" name="setting[allow_signup]" value="0" id="allow_signup_0" <%= 'checked="checked"' if this_blog.allow_signup == 0 %>/>
+				<label for="allow_signup_0"><%= _("No")%></label>
+				<span class="float">
+					<input type="radio" name="setting[allow_signup]" value="1" id="allow_signup_1" <%= 'checked="checked"' if this_blog.allow_signup == 1 %>/>
+					<label for="allow_signup_1"><%= _("Yes")%></label>
+				</span>
+			</li>
 		</ul>
   </fieldset>
 

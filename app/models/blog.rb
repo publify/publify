@@ -69,6 +69,7 @@ class Blog < CachedModel
   setting :email_from,                 :string, 'typo@example.com'
   setting :editor,                     :integer, 2
   setting :cache_option,               :string, 'caches_page'
+  setting :allow_signup,               :integer, 0
 
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1

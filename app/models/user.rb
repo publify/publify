@@ -136,7 +136,11 @@ class User < CachedModel
   before_validation :set_default_profile
 
   def set_default_profile
-    self.profile ||= Profile.find_by_label('admin')
+    if User.count.zero?
+      self.profile ||= Profile.find_by_label('admin')
+    else
+      self.profile ||= Profile.find_by_label('contributor')
+    end
   end
 
   validates_uniqueness_of :login, :on => :create
