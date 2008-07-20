@@ -166,7 +166,7 @@ FCKConfig.ImageDlgHideAdvanced	= false ;
 
 FCKConfig.FlashDlgHideAdvanced	= false ;
 
-FCKConfig.ProtectedTags = '' ;
+FCKConfig.ProtectedTags = 'typo' ;
 
 // This will be applied to the body element of the editor
 FCKConfig.BodyId = '' ;
