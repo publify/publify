@@ -1,7 +1,7 @@
 require 'base64'
 module Admin; end
 class Admin::ContentController < Admin::BaseController
-  layout "administration", :except => 'show'
+  layout "administration", :except => [:show, :autosave]
 
   def auto_complete_for_article_keywords
     @items = Tag.find_with_char params[:article][:keywords].strip
@@ -101,6 +101,30 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
+  def autosave
+    if params[:id]
+      @article = Article.find(params[:id])
+    else
+      @article = Article.new
+    end
+
+    unless @article.published
+      params[:article] ||= {}
+      @article.attributes = params[:article]
+
+      setup_categories
+      @selected = @article.categories.collect { |c| c.id }
+      set_article_author
+      save_attachments
+      @article.state = "draft" unless @article.state == "withdrawn"
+      if @article.save
+        set_article_categories
+        render :text => _("Article was successfully saved at ") + Time.now.to_s
+        return true
+      end
+    end
+    render :text => nil
+  end
   protected
 
   attr_accessor :resources, :categories, :resource, :category

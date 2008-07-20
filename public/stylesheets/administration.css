@@ -1013,6 +1013,10 @@ tr.menubar {
 	clear: both;
 }
 
+#autosave {
+	color: green;
+}
+
 /* Menu déroulant */
 
 

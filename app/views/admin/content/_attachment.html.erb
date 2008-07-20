@@ -1,4 +1,4 @@
-<div id="attachment_<%= attachment_num -%>"<% if hidden %> style="display: none;"<% end %>>
+<li id="attachment_<%= attachment_num -%>"<% if hidden %> style="display: none;"<% end %>>
   <%= file_field 'attachments', "filename_#{attachment_num}" -%>
   <%= link_to_function(_("Remove"),
       update_page do |page|
@@ -6,16 +6,15 @@
         page.visual_effect(:toggle_appear, "attachment_#{attachment_num}", :afterFinish => "function(obj){Element.remove(obj.element);}")
         page << "}"
       end) -%>
-  <br />
-</div>
-<div id="attachment_add_<%= attachment_num.succ %>">
+</li>
+<li id="attachment_add_<%= attachment_num.succ %>">
   <%= link_to_remote _('Add Another Attachment'),
     :url => { :action => "attachment_box_add", :id => attachment_num.succ },
     :asynchronus => false -%>
-</div>
+</li>
 
 <% if @article and @article.id %>
-<div id="resources">
+<li id="resources">
   <% if  @article.resources.count > 0 %>
     <h3><%= _("Currently this article has the following resources")%></h3>
     <% for resource in @article.resources %>
@@ -27,5 +26,5 @@
   <% for resource in @resources - @article.resources %>
     <%= link_to_remote "+ #{resource.filename}", :url => { :action => "resource_add", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br />
   <% end %>
-</div>
+</li>
 <% end %>
