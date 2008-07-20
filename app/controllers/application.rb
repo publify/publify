@@ -35,6 +35,9 @@ class ApplicationController < ActionController::Base
   end
 
   def reset_local_cache
+    if !session
+      session :session => new
+    end
     CachedModel.cache_reset
     @current_user = nil
   end

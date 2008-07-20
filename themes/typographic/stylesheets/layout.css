@@ -310,6 +310,7 @@ h3 {
 
 
 div.static-body, #sidebar ul, #sform p {
+	behavior: url(/csshover.htc);
 	background:url(../../images/theme/bg_white.png);
 	padding:14px
 }
