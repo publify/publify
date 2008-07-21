@@ -29,7 +29,7 @@
 </ul>
 
 <ul class="admin set">
-  <li class="paginate l">
+  <li class="paginate l " style="width: 100%">
     <label for="categories" class="block">
       <%= link_to_function _("Categories") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "categories", :duration => 0.2) } %>
     </label>
@@ -37,7 +37,7 @@
       <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
     </select>
   </li>
-  <li class="paginate l">
+  <li class="paginate l"  style="float: left; width: 100%">
     <label class="block">
       <%= link_to_function _("Uploads") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "attachments", :duration => 0.2) } %>
     </label>
@@ -45,7 +45,8 @@
       <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
     </ul>
   </li>
-  <li class="paginate l">
+  
+  <li class="paginate l" style="float: left; width: 100%;">
     <label class="block">
       <%= link_to_function _("Post settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
     </label>
@@ -74,6 +75,9 @@
     </ul>
   </li>
 </ul>
+
+<br />
+
 <p class="paginate r">
   <input type="submit" name="article[draft]" class="submit" value="<%= _('Save as draft')%> &raquo;" />
   <%= save("Publish" + " &raquo;") %>
