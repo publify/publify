@@ -119,7 +119,7 @@ class Admin::ContentController < Admin::BaseController
       @article.state = "draft" unless @article.state == "withdrawn"
       if @article.save
         set_article_categories
-        render :text => _("Article was successfully saved at ") + Time.now.to_s
+        render :text => _("Article was successfully saved at ") + Time.now.to_s + "<input type='hidden' name='id' value='#{@article.id}' />"
         return true
       end
     end
