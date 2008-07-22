@@ -41,7 +41,7 @@
 # 
 # For example, whe can decide that an Account with role :customers can see only, the module project :store.
 
-AccessControl.map :require => [ :admin, :publisher ]  do |map|
+AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/base"
 
   map.project_module :dashboard, "admin/dashboard" do |project|

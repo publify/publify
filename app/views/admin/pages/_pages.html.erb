@@ -40,7 +40,7 @@
     <%= image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline"))  %>
     <% end %>
     </td>
-    <td class='operation'><%= link_to_show page if page.published?  %></td>
+    <td class='operation'><%= link_to_show page %></td>
     <td class='operation'><%= link_to_edit_with_profiles page %></td>
     <td class="operation"><%= link_to_destroy_with_profiles page %></td>
   </tr>

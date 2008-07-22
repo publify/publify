@@ -24,6 +24,10 @@ class CommentsController < FeedbackController
   end
 
   def preview
+    if !session
+      session :session => new
+    end
+    
     if (params[:comment][:body].blank? rescue true)
       render :nothing => true
       return

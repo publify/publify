@@ -79,6 +79,7 @@
 <br />
 
 <p class="paginate r">
+  <%= link_to_destroy_draft @article %>
   <input type="submit" name="article[draft]" class="submit" value="<%= _('Save as draft')%> &raquo;" />
   <%= save("Publish" + " &raquo;") %>
 </p>
@@ -86,7 +87,7 @@
 <% if this_blog.editor == 0 %>
   <%= hidden_field_tag 'id', @article.id unless @article.id.nil? %>
   <%= observe_form "article_form",
-      :frequency => 5,
+      :frequency => 30,
       :update => 'autosave',
       :url => { :action => "autosave" }  %>
 <% end %>

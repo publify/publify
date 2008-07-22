@@ -142,7 +142,6 @@ class Admin::ContentController < Admin::BaseController
   def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
-    @drafts = Article.find(:all, :conditions => "state='draft'")
     get_or_build_article
     params[:article] ||= {}
     params[:bookmarklet_link] && post_from_bookmarklet
@@ -152,6 +151,7 @@ class Admin::ContentController < Admin::BaseController
 
     setup_categories
     @selected = @article.categories.collect { |c| c.id }
+    @drafts = Article.find(:all, :conditions => "state='draft'")
     if request.post?
       set_article_author
       save_attachments
@@ -208,18 +208,16 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def get_or_build_article
-    @article = case params[:action]
-               when 'new'
-                 returning(Article.new) do |art|
-                   art.allow_comments = this_blog.default_allow_comments
-                   art.allow_pings    = this_blog.default_allow_pings
-                   art.published      = true
-                 end
-               when 'edit'
-                 Article.find(params[:id])
-               else
-                 raise "Don't know how to get article for action: #{params[:action]}"
+    @article = case params[:id]
+             when nil
+               returning(Article.new) do |art|
+                 art.allow_comments = this_blog.default_allow_comments
+                 art.allow_pings    = this_blog.default_allow_pings
+                 art.published      = true
                end
+            else
+              Article.find(params[:id])
+            end
   end
 
   def setup_categories

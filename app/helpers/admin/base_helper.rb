@@ -67,9 +67,11 @@ module Admin::BaseHelper
   end
 
   def link_to_show(record, controller = @controller.controller_name)
-    link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), 
-      {:controller => controller, :action => 'show', :id => record.id}, 
-      {:class => "lbOn"}
+    if record.published?
+      link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), 
+        {:controller => controller, :action => 'show', :id => record.id}, 
+        {:class => "lbOn"}
+      end
   end
 
   def link_to_edit(record, controller = @controller.controller_name)
