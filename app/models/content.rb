@@ -102,7 +102,7 @@ class Content < ActiveRecord::Base
     end
     
     def find_by_published_at(column_name = :published_at)
-      from_where = "FROM #{self.table_name} WHERE #{column_name} > 0 AND type='#{self.name}'"
+      from_where = "FROM #{self.table_name} WHERE #{column_name} is not NULL AND type='#{self.name}'"
 
       # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
       
