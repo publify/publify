@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::BaseController
 
   def list
     index
-    render :action => 'index'
+    render :action => 'index' if current_user.profile.label == 'admin'
   end
 
   def index

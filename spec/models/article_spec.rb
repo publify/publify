@@ -235,7 +235,7 @@ describe Article do
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
   end
 
-  def test_notifications
+  it 'should notify' do
     a = Article.new(:title => 'New Article', :body => 'Foo', :author => 'Tobi', :user => users(:tobi))
     assert a.save
 
