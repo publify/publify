@@ -22,7 +22,7 @@ class Tag < ActiveRecord::Base
   end
 
   def ensure_naming_conventions
-    if self.display_name.blank? or self.display_name != self.name
+    if self.display_name.blank?
       self.display_name = self.name
     end
     self.name = self.name.gsub('.', '-')
