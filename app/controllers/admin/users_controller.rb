@@ -26,9 +26,8 @@ class Admin::UsersController < Admin::BaseController
     if current_user.profile.label == 'admin'
       @user = User.find_by_id(params[:id])
     else
-      if params[:id] and params[:id] != current_user[:id]
+      if params[:id] and params[:id].to_i != current_user[:id]
         flash[:error] = _("Error, you are not allowed to perform this action")
-        redirect_to :action => 'index'
       end
       @user = User.find_by_id(current_user.id)
     end

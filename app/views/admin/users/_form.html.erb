@@ -6,10 +6,12 @@
   <label class="float" for="user_login"><%= _("Login")%>:</label>
   <%= text_field 'user', 'login'  %>
 </li>
+<% if current_user.profile.label == 'admin' %>
 <li>
 	<label class="float" for="user_profile"><%= _("Profile")%>:</label>
 	<%=  select("user", "profile_id", @profiles.collect {|p| [ p.nicename, p.id ] }, { :include_blank => true }) %>
 </li>
+<% end %>
 <li>
   <label class="float" for="user_login"><%= _("Display Name")%>:</label>
   <%= text_field 'user', 'name'  %>

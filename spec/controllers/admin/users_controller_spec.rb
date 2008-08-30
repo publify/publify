@@ -76,5 +76,17 @@ describe Admin::UsersController, "rough port of the old functional test" do
       get :list
       response.should redirect_to(:action => 'edit')
     end
+
+    it 'become a Typo admin' do
+      post :edit, :id => users(:user_publisher).id, :profile_id => profiles(:admin).id
+      response.should redirect_to(:action => 'list')
+    end
+    
+    it 'try update another user' do
+      post :edit, :id => users(:tobi).id, :profile_id => profiles(:contributor).id
+      response.should redirect_to(:action => 'list')
+      u = users(:tobi).reload
+      u.profile_id.should == profiles(:admin).id
+    end
   end
 end
