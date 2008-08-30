@@ -154,10 +154,12 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   %w{advanced blacklist cache categories comments content feedback general pages
-     resources sidebar textfilters themes trackbacks users}.each do |i|
+     resources sidebar textfilters themes trackbacks users settings }.each do |i|
     map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end
+
+  map.connect '*from', :controller => 'redirect', :action => 'redirect'
 
   returning(map.connect(':controller/:action/:id')) do |default_route|
     # Ick!
@@ -180,5 +182,4 @@ ActionController::Routing::Routes.draw do |map|
       alias_method_chain :generate, :deprecation
     end
   end
-  map.connect '*from', :controller => 'redirect', :action => 'redirect'
 end
