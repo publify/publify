@@ -65,33 +65,6 @@ describe TextfilterController do
       filter_text('*"foo"*',[:doesntexist1,:markdown,"doesn't exist 2",:smartypants,:nopenotmeeither])
   end
 
-  def test_amazon
-    text = filter_text('<a href="amazon:097669400X" title="Rails">Rails book</a>',
-      [:amazon],
-      'amazon-associate-id' => 'scottstuff-20')
-    assert_equal "<a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\" title=\"Rails\">Rails book</a>",
-      text
-    assert_equal %w{097669400X}, whiteboard[:asins]
-    reset_whiteboard
-
-    text = filter_text('[Rails book](amazon:097669400X)',
-      [:markdown,:amazon],
-      'amazon-associate-id' => 'scottstuff-20')
-    assert_equal "<p><a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\">Rails book</a></p>",
-      text
-    assert_equal %w{097669400X}, whiteboard[:asins]
-    reset_whiteboard
-
-
-    text = filter_text("Foo\n\n[Rails book](amazon:097669400X)",
-      [:markdown,:amazon],
-      'amazon-associate-id' => 'scottstuff-20')
-    assert_equal "<p>Foo</p>\n\n<p><a href=\"http://www.amazon.com/exec/obidos/ASIN/097669400X/scottstuff-20\">Rails book</a></p>",
-          text
-    assert_equal %w{097669400X}, whiteboard[:asins]
-    reset_whiteboard
-  end
-
   def test_flickr
     assert_equal "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
       filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',

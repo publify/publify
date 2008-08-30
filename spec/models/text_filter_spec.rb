@@ -19,10 +19,6 @@ describe "With the list of available filters" do
     @filters.should include(Typo::Textfilter::Textile)
   end
 
-  it 'Amazon is available' do
-    @filters.should include(Typo::Textfilter::Amazon)
-  end
-
   it 'Flickr is available' do
     @filters.should include(Typo::Textfilter::Flickr)
   end
