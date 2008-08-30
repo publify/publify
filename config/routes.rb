@@ -159,6 +159,8 @@ ActionController::Routing::Routes.draw do |map|
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end
 
+  map.connect '*from', :controller => 'redirect', :action => 'redirect'
+
   returning(map.connect(':controller/:action/:id')) do |default_route|
     # Ick!
     default_route.write_generation
@@ -180,5 +182,4 @@ ActionController::Routing::Routes.draw do |map|
       alias_method_chain :generate, :deprecation
     end
   end
-  map.connect '*from', :controller => 'redirect', :action => 'redirect'
 end

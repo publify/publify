@@ -2,13 +2,15 @@ class RedirectController < ContentController
   session :off
 
   def redirect
-    # Ugly way to manage redirects, anything better ?
-    if (request.request_uri =~ /^\/articles/)
-      redirect_to request.request_uri.gsub('/articles', ''), :status => 301
+    if (params[:from].first == 'articles')
+      path = request.path.sub('/articles', '')
+      url_root = request.relative_url_root
+      path = url_root + path unless url_root.nil?
+      redirect_to path, :status => 301
       return
     end
 
-    r = Redirect.find_by_from_path(params[:from])
+    r = Redirect.find_by_from_path(params[:from].join("/"))
 
     if(r)
       path = r.to_path
