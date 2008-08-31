@@ -17,3 +17,5 @@ Rev #1789: Fixes a stupid bug that allows a non administrative user to change hi
 Rev #1792: Removing tmcode textfilter. It now has its own life at http://svn.typosphere.org/plugins/typo_textfilter_tmcode/. Removing amazon textfilter. It now has its own life at http://svn.typosphere.org/plugins/typo_textfilter_amazon/. Removing sparkline textfilter. It now has its own life at http://svn.typosphere.org/plugins/typo_textfilter_sparkline/
 Rev #1795: Fixes 2 nasty bugs with autosave. The first one broke autosave when no title was set. We now set a default title. The second one was overriding permalink with a void string when post was autosaved because the permalink field was empty after autosave. For autosave: If no title is given, Typo gives it a title like "Article Draft + post_id". When publishing, every article-draft-something permalink is just replaced with the article title crafted permalink.
 Rev #1796: Enables in admin database migration back, gets rid of the old pre 4.1 general controller, sets the CHANGELOG for 5.1.3.
+
+Many thanks to Cyril Mougel, Matijs van Zuijlen and Frédéric Logier for submitting patches.
