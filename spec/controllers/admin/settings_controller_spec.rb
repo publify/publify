@@ -14,6 +14,31 @@ describe Admin::SettingsController do
     get :index
     assert_template 'index'
   end
+  
+  def test_read
+    get :read
+    assert_template 'read'
+  end
+  
+  def test_write
+    get :write
+    assert_template 'write'
+  end
+  
+  def test_feedback
+    get :feedback
+    assert_template 'feedback'
+  end
+  
+  def test_spam
+    get :spam
+    assert_template 'spam'
+  end
+  
+  def test_podcasts
+    get :podcast
+    assert_template 'podcast'
+  end
 
   def test_redirect
     get :redirect
