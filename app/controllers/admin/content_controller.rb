@@ -118,7 +118,7 @@ class Admin::ContentController < Admin::BaseController
       if @article.save
         render(:update) do |page|
           page.replace_html('autosave', _("Article was successfully saved at ") + Time.now.to_s + "<input type='hidden' name='id' value='#{@article.id}' />")
-          page.replace_html('permalink', text_field ('article', 'permalink'))
+          page.replace_html('permalink', text_field('article', 'permalink'))
         end
 
         return true

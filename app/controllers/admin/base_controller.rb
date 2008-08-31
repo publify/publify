@@ -11,7 +11,7 @@ class Admin::BaseController < ApplicationController
   private
   def look_for_needed_db_updates
     if Migrator.offer_migration_when_available
-      redirect_to :controller => '/admin/general', :action => 'update_database' if Migrator.current_schema_version != Migrator.max_schema_version
+      redirect_to :controller => '/admin/settings', :action => 'update_database' if Migrator.current_schema_version != Migrator.max_schema_version
     end
   end
 end
