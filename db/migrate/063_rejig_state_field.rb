@@ -9,6 +9,7 @@ class RejigStateField < ActiveRecord::Migration
   end
   
   def self.up
+    ActiveRecord::Base.record_timestamps = false
     BareContent.transaction do
       BareFeedback.transaction do
         [BareContent, BareFeedback].each do |klass|
@@ -21,6 +22,7 @@ class RejigStateField < ActiveRecord::Migration
     end    
     change_column :contents, :state, :string
     change_column :feedback, :state, :string
+    ActiveRecord::Base.record_timestamps = true
   end
 
   def self.down
