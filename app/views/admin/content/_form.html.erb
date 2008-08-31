@@ -61,7 +61,7 @@
       </li>
       <li>
         <label for="article_permalink" class="float"><%= _("Permalink") %></label>
-        <%= text_field 'article', 'permalink' %>
+        <span id="permalink"><%= text_field 'article', 'permalink' %></span>
       </li>     
       <li class="checkbox">
         <label for="article_allow_comments" class="float"><%= _("Allow comments") %>: </label>
@@ -86,8 +86,8 @@
 
 <% if this_blog.editor == 0 %>
   <%= hidden_field_tag 'id', @article.id unless @article.id.nil? %>
+<%   #      :update => 'autosave', %>
   <%= observe_form "article_form",
-      :frequency => 30,
-      :update => 'autosave',
+      :frequency => 60,
       :url => { :action => "autosave" }  %>
 <% end %>

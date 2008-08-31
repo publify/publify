@@ -102,24 +102,25 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
-    if params[:id]
-      @article = Article.find(params[:id])
-    else
-      @article = Article.new
-    end
-
+    get_or_build_article
     unless @article.published
       params[:article] ||= {}
       @article.attributes = params[:article]
-
+      @article.published = false
       setup_categories
       @selected = @article.categories.collect { |c| c.id }
       set_article_author
       save_attachments
+
+      set_article_title_for_autosave
+
       @article.state = "draft" unless @article.state == "withdrawn"
       if @article.save
-        set_article_categories
-        render :text => _("Article was successfully saved at ") + Time.now.to_s + "<input type='hidden' name='id' value='#{@article.id}' />"
+        render(:update) do |page|
+          page.replace_html('autosave', _("Article was successfully saved at ") + Time.now.to_s + "<input type='hidden' name='id' value='#{@article.id}' />")
+          page.replace_html('permalink', text_field ('article', 'permalink'))
+        end
+
         return true
       end
     end
@@ -143,12 +144,14 @@ class Admin::ContentController < Admin::BaseController
 
   def new_or_edit
     get_or_build_article
+    @article.published = true
+    
     params[:article] ||= {}
     params[:bookmarklet_link] && post_from_bookmarklet
 
     @resources = Resource.find(:all, :order => 'created_at DESC')
     @article.attributes = params[:article]
-
+    
     setup_categories
     @selected = @article.categories.collect { |c| c.id }
     @drafts = Article.find(:all, :conditions => "state='draft'")
@@ -189,6 +192,11 @@ class Admin::ContentController < Admin::BaseController
     @article.user   = current_user
   end
 
+  def set_article_title_for_autosave
+    lastid = Article.find(:first, :order => 'id DESC').id
+    @article.title = @article.title.blank? ? "Draft article " + lastid.to_s : @article.permalink = @article.stripped_title
+  end
+  
   def save_attachments
     return if params[:attachments].nil?
     params[:attachments].each do |k,v|
@@ -213,7 +221,6 @@ class Admin::ContentController < Admin::BaseController
                returning(Article.new) do |art|
                  art.allow_comments = this_blog.default_allow_comments
                  art.allow_pings    = this_blog.default_allow_pings
-                 art.published      = true
                end
             else
               Article.find(params[:id])

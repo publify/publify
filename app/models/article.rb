@@ -446,7 +446,11 @@ class Article < Content
   end
 
   def set_defaults
-    if self.attributes.include?("permalink") and self.permalink.blank?
+    if self.attributes.include?("permalink") and 
+          (self.permalink.blank? or 
+          self.permalink.to_s =~ /article-draft/ or 
+          self.state == "draft"
+    )
       self.permalink = self.stripped_title
     end
     if blog && self.allow_comments.nil?
