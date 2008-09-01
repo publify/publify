@@ -13,37 +13,45 @@ class Admin::ContentController < Admin::BaseController
     render :action => 'index'
   end
 
-  def index
-    # Filtering articles
-    @drafts = Article.find(:all, :conditions => "state='draft'")
-    conditions = "state in('published', 'withdrawn')"
+  def article_list
+    @conditions = "state in('published', 'withdrawn')"
     if params[:search]
       @search = params[:search]
 
       if @search[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ @search[:published_at]
-        conditions += " AND published_at LIKE '%#{@search[:published_at]}%'"
+        @conditions += " AND published_at LIKE '%#{@search[:published_at]}%'"
       end
 
       if @search[:user_id] and @search[:user_id].to_i > 0
-        conditions += " AND user_id = #{@search[:user_id].to_i}"
+        @conditions += " AND user_id = #{@search[:user_id].to_i}"
       end
       
       if @search[:published] and @search[:published].to_s =~ /0|1/
-        conditions += " AND published = #{@search[:published].to_i}"
+        @conditions += " AND published = #{@search[:published].to_i}"
       end
       
       if @search[:category] and @search[:category].to_i > 0
-        conditions += " AND categorizations.category_id = #{@search[:category].to_i}"
+        @conditions += " AND categorizations.category_id = #{@search[:category].to_i}"
       end
-      
+  
     else
       @search = { :category => nil, :user_id => nil, :published_at => nil, :published => nil }
     end
+    
+    count = Article.count(:all, :include => :categorizations, :conditions => @conditions)
+    @articles_pages = Paginator.new('index', count, 20, params[:id])
+    @articles = Article.find(:all, :limit => 20, :order => "contents.id DESC", :include => :categorizations, :conditions => @conditions, :offset => @articles_pages.current.offset)
+    
+    if request.xhr?
+      render :partial => 'article_list', :object => @articles
+    end
+    
+  end
 
+  def index
+    @drafts = Article.find(:all, :conditions => "state='draft'")
     now = Time.now
-    count = Article.count(:all, :include => :categorizations, :conditions => conditions)
-    @articles_pages = Paginator.new(self, count, 20, params[:id])
-    @articles = Article.find(:all, :limit => 20, :order => "contents.id DESC", :include => :categorizations, :conditions => conditions, :offset => @articles_pages.current.offset)
+    article_list
     setup_categories
     @article = Article.new(params[:article])
   end

@@ -4,9 +4,45 @@
   <%= render :partial => "drafts" %>
 
   <div class="list" id="articles">	
-    <%= render :partial => 'articles' %>
+    <% form_remote_tag  :url      => {:action => 'article_list'},
+                        :method   => :get,
+                        :name     => 'article',
+                        :update   => {:success => 'articleList'},
+                        :loading  => "loading()" \
+    do %>
+
+    <table>
+    <tr class="first">
+      <th><%= _("Title") %></th>
+      <th><%= _("Categories") %></th>
+      <th><%= _("Feedback")%></th>
+      <th><%= _("Date") %></th>
+      <th><%= _("Author")%></th>
+      <th><%= _("Status") %></th>
+      <th><%= _("Preview")%></th>
+      <th><%= _("Edit")%></th>
+      <th><%= _("Delete")%></th>
+    </tr>
+    <tr class="menubar">
+      <td>&nbsp;</td>
+       <td><%= collection_select_with_current('search', 'category', @categories, "id", "name", @search[:category].to_i, true)
+      %></td>
+      <td></td>
+      <td>
+        <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
+      </td>
+      <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
+      <td>
+        <select name="search[published]">
+          <option value="">Please select</option>
+          <option value="0">Unpublished</option>
+          <option value="1">Published</option>
+        </select>
+      </td>
+      <td colspan="3"><input type="submit" value="Filter" />
+    </tr>
+    <tbody id="articleList">
+      <%= render :partial => 'article_list', :object => @articles -%>
+    <%end%>
   </div>                      
-  <div class="paginate">
-    <%= render :partial => 'admin/content/pages', :object => @articles_pages -%>
-  </div>
   
