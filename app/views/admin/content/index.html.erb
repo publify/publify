@@ -4,7 +4,7 @@
   <%= render :partial => "drafts" %>
 
   <div class="list" id="articles">	
-    <% form_remote_tag  :url      => {:action => 'article_list'},
+    <% form_remote_tag  :url      => {:action => 'index'},
                         :method   => :get,
                         :name     => 'article',
                         :update   => {:success => 'articleList'},

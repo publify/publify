@@ -13,7 +13,7 @@ class Admin::ContentController < Admin::BaseController
     render :action => 'index'
   end
 
-  def article_list
+  def build_filter_params
     @conditions = "state in('published', 'withdrawn')"
     if params[:search]
       @search = params[:search]
@@ -36,23 +36,24 @@ class Admin::ContentController < Admin::BaseController
   
     else
       @search = { :category => nil, :user_id => nil, :published_at => nil, :published => nil }
-    end
-    
+    end    
+  end
+
+  def index
+    @drafts = Article.find(:all, :conditions => "state='draft'")
+    now = Time.now
+    build_filter_params
+    setup_categories
     count = Article.count(:all, :include => :categorizations, :conditions => @conditions)
     @articles_pages = Paginator.new('index', count, 20, params[:id])
     @articles = Article.find(:all, :limit => 20, :order => "contents.id DESC", :include => :categorizations, :conditions => @conditions, :offset => @articles_pages.current.offset)
     
     if request.xhr?
       render :partial => 'article_list', :object => @articles
+      return
     end
     
-  end
-
-  def index
-    @drafts = Article.find(:all, :conditions => "state='draft'")
-    now = Time.now
-    article_list
-    setup_categories
+    
     @article = Article.new(params[:article])
   end
 
