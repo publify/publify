@@ -72,6 +72,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :comments, :name_prefix => 'admin_'
   map.resources :trackbacks
+  map.resources :users
 
   map.datestamped_resources(:articles,
                             :collection => {

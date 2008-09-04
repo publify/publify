@@ -32,6 +32,16 @@ class User < CachedModel
          :conditions => ["login = ? AND password = ?", login, sha1(pass)])
   end
 
+  def permalink_url(anchor=nil, only_path=true)
+    blog = Blog.default # remove me...
+
+    blog.url_for(
+      :controller => 'users',
+      :action => 'show',
+      :id => permalink
+    )
+  end
+  
   def self.authenticate?(login, pass)
     user = self.authenticate(login, pass)
     return false if user.nil?
