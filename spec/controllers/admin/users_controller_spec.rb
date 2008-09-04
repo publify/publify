@@ -51,6 +51,19 @@ describe Admin::UsersController, "rough port of the old functional test" do
       assert_template 'index'
     end
 
+    it 'should edit himself if no params[:id]' do
+      get :edit
+      assert_template 'edit'
+      assert_valid assigns(:user)
+
+      post :edit, :user => { :login => 'errand',
+        :email => 'corey@test.com', :password => 'testpass',
+        :password_confirmation => 'testpass' }
+      assert_response :redirect, :action => 'index'
+      follow_redirect
+      assert_template 'index'
+    end
+
     def test_destroy
       user_count = User.count
       get :destroy, :id => users(:bob).id

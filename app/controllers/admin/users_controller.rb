@@ -29,11 +29,16 @@ class Admin::UsersController < Admin::BaseController
       if params[:id] and params[:id].to_i != current_user[:id]
         flash[:error] = _("Error, you are not allowed to perform this action")
       end
-      @user = User.find_by_id(current_user.id)
+    end
+    if @user.nil?
+      @user = current_user
     end
     setup_profiles
     @user.attributes = params[:user]
     if request.post? and @user.save
+      if @user.id = current_user.id
+        current_user = @user
+      end
       flash[:notice] = _('User was successfully updated.')
       redirect_to :action => 'list'
     end
