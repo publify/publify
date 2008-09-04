@@ -14,24 +14,28 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def build_filter_params
-    @conditions = "state in('published', 'withdrawn')"
+    @conditions = ["state in('published', 'withdrawn')"]
     if params[:search]
       @search = params[:search]
 
       if @search[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ @search[:published_at]
-        @conditions += " AND published_at LIKE '%#{@search[:published_at]}%'"
+        @conditions[0] += " AND published_at LIKE ? "
+        @conditions << "%#{@search[:published_at]}%"
       end
 
       if @search[:user_id] and @search[:user_id].to_i > 0
-        @conditions += " AND user_id = #{@search[:user_id].to_i}"
+        @conditions[0] += " AND user_id = ? "
+        @conditions << @search[:user_id]
       end
       
       if @search[:published] and @search[:published].to_s =~ /0|1/
-        @conditions += " AND published = #{@search[:published].to_i}"
+        @conditions[0] += " AND published = ? "
+        @conditions << @search[:published]
       end
       
       if @search[:category] and @search[:category].to_i > 0
-        @conditions += " AND categorizations.category_id = #{@search[:category].to_i}"
+        @conditions[0] += " AND categorizations.category_id = ? "
+        @conditions << @search[:category]
       end
   
     else

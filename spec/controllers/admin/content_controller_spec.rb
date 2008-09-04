@@ -22,6 +22,12 @@ describe Admin::ContentController do
     assert_template 'index'
   end
 
+  it 'should see all published in index' do
+    get :index, :search => {:published => '0', :published_at => '2008-08', :user_id => '2'}
+    assert_template 'index'
+    response.should be_success
+  end
+
   def test_list
     get :list
     assert_template 'index'
