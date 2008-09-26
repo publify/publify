@@ -38,6 +38,9 @@ describe 'ArticlesController' do
 end
 
 describe ArticlesController, "feeds" do
+  
+  integrate_views
+
   before do
     @mock = mock('everything', :null_object => true)
     Category.stub!(:find_by_permalink).and_return(@mock)
@@ -55,6 +58,7 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("_rss20_feed")
+    response.should have_tag('link', 'http://test.host/articles.rss')
   end
 
   def scoped_getter

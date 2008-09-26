@@ -27,6 +27,7 @@ class ArticlesController < ContentController
         render :partial => 'articles/atom_feed', :object => @articles[0,this_blog.limit_rss_display]
       end
       format.rss do
+        auto_discovery_feed(:only_path => false)
         render :partial => 'articles/rss20_feed', :object => @articles[0,this_blog.limit_rss_display]
       end
     end
