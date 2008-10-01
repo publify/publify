@@ -152,6 +152,7 @@ Localization.define('fr_FR') do |l|
   l.store "Manage pages", "Administrer les pages"
   l.store "Post title", "Titre du billet"
   l.store "Posted at", "Date de publication"
+  l.store "Posted on", "Publié le"
   l.store "%d Comments", ["Un commentaire", "%d Commentaires"]
   l.store "%d Trackbacks", ["Un rétrolien", "%d Rétroliens"]
   l.store "View", "Voir"
@@ -593,7 +594,7 @@ Localization.define('fr_FR') do |l|
   l.store "June", "Juin"
   l.store "July", "Juillet"
   l.store "August", "Août"
-  l.store "Septembre", "Septembre"
+  l.store "September", "Septembre"
   l.store "October", "Octobre"
   l.store "November", "Novembre"
   l.store "December", "Décembre"
@@ -667,8 +668,8 @@ Localization.define('fr_FR') do |l|
   l.store "June", "Juin"
   l.store "July", "Juillet"
   l.store "August", "Août"
-  l.store "September", "September"
-  l.store "October", "Octorbre"
+  l.store "September", "Septembre"
+  l.store "October", "Octobre"
   l.store "November", "Novembre"
   l.store "December", "Décembre"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new {|date|
