@@ -6,9 +6,7 @@
     <% else %>
       <% for comment in @comments -%>
         <li <%= alternate_class %>>
-          <% title = ''; title << 'by ' + comment.author -%>
-          <% title << ' on ' + comment.article.title -%>
-          <%= link_to_permalink comment,h(title) %>
+          <%= link_to_permalink comment,h( _("by %s on %s", comment.author , comment.article.title) ) %>
         </li>
       <% end %>
     <% end %>

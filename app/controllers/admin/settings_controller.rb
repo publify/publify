@@ -47,7 +47,7 @@ class Admin::SettingsController < Admin::BaseController
   end
   
   def redirect
-    flash[:notice] = "Please review and save the settings before continuing"
+    flash[:notice] = _("Please review and save the settings before continuing")
     redirect_to :action => "index"
   end
 

@@ -32,9 +32,9 @@ class Admin::FeedbackController < Admin::BaseController
     if request.post?
       begin
         Feedback.destroy(params[:id])
-        flash[:notice] = "Deleted"
+        flash[:notice] = _("Deleted")
       rescue ActiveRecord::RecordNotFound
-        flash[:notice] = "Not found"
+        flash[:notice] = _("Not found")
       end
     end
     redirect_to :action => 'index', :page => params[:page], :search => params[:search]
@@ -45,13 +45,13 @@ class Admin::FeedbackController < Admin::BaseController
     items = Feedback.find(ids)
     @unexpired = true
 
-    case params[:commit]
+    case params[:bulkop]
     when 'Delete Checked Items'
       count = 0
       ids.each do |id|
         count += Feedback.delete(id) ## XXX Should this be #destroy?
       end
-      flash[:notice] = "Deleted #{count} item(s)"
+      flash[:notice] = _("Deleted %d item(s)",count)
 
       items.each do |i|
         i.invalidates_cache? or next
@@ -60,15 +60,15 @@ class Admin::FeedbackController < Admin::BaseController
       end
     when 'Mark Checked Items as Ham'
       update_feedback(items, :mark_as_ham!)
-      flash[:notice]= "Marked #{ids.size} item(s) as Ham"
+      flash[:notice]= _("Marked %d item(s) as Ham",ids.size)
     when 'Mark Checked Items as Spam'
       update_feedback(items, :mark_as_spam!)
-      flash[:notice]= "Marked #{ids.size} item(s) as Spam"
+      flash[:notice]= _("Marked %d item(s) as Spam",ids.size)
     when 'Confirm Classification of Checked Items'
       update_feedback(items, :confirm_classification!)
-      flash[:notice] = "Confirmed classification of #{ids.size} item(s)"
+      flash[:notice] = _("Confirmed classification of %s item(s)",ids.size)
     else
-      flash[:notice] = "Not implemented"
+      flash[:notice] = _("Not implemented")
     end
 
     redirect_to :action => 'index', :page => params[:page], :search => params[:search], :confirmed => params[:confirmed], :published => params[:published]

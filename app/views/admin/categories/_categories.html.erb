@@ -11,10 +11,10 @@
   <% for category in @categories -%>
   <tr <%= alternate_class -%> id="category_<%= category.id -%>">
     <td><%= link_to_permalink category, category.name %></td>
-    <td><%= pluralize(category.articles.size, 'article') %></td>
+    <td><%= pluralize(category.articles.size, _('no articles') , _('1 article'), __('%d articles')) %></td>
     <td class="operation"><%= link_to image_tag('admin/show.png'), {:controller => 'content', :action => 'list', "search[category]" => category.id} %></td>
     <td class="operation"><%= link_to_edit category %></td>
-    <td class="operation"><%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => category.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %></td>
+    <td class="operation"><%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => category.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td>
   </tr>  
   <% end -%>
 </table>

@@ -5,7 +5,7 @@
   <% form_tag({:action => 'index'}, :method => :get) do %>
     <label for="search"><%= _("Search Comments and Trackbacks that contain")%>...:</label><br /> 
 	<input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" size="30" />
-	<%= submit_tag "Search" %>
+	<%= submit_tag _("Search") %>
   <% end %>
 </div>
 

@@ -1,4 +1,4 @@
-  <% @page_heading = "Comments for #{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article } (#{ link_to 'add a comment', '#comment' })" %>
+  <% @page_heading = _("Comments for %s (%s)","#{ link_to h(@article.title), :controller => '/admin/content', :action => 'show', :id => @article }","#{ link_to _('add a comment'), '#comment' }") %>
 
   <% content_for('tasks') do %>
     <li><%= link_to _('Manage articles'), :controller => '/admin/content', :action => 'list' %></li>
@@ -12,9 +12,9 @@
 		<%= link_to_unless comment.url.blank?, h(comment.url), comment.url %> | 
 		IP: <%=h comment.ip %></p>
 		<%= comment.body %>
-		<p><%=comment.created_at.strftime("%m/%d/%Y at %H:%M") %> – [ 
+		<p><%=comment.created_at.strftime("%m/%d/%Y %H:%M") %> – [ 
 		   <%= link_to_edit comment %> | 
-		   <%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %> |
+		   <%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
 		   <%= comment.state %> ]
 		</p>
 	  </li>

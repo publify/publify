@@ -1,7 +1,7 @@
 <% form_tag({ :action => "update" }, :id => id, :enctype => "multipart/form-data") do %>
 <div class="form">
   <b><%= _("Resource MetaData")%></b><br />
-  <%= link_to _("Remove iTunes Metadata"), { :action => "remove_itunes_metadata", :id => resource.id}, :confirm => "Are you sure?"%><br />
+  <%= link_to _("Remove iTunes Metadata"), { :action => "remove_itunes_metadata", :id => resource.id}, :confirm => _("Are you sure?")%><br />
     <label for="resource_itunes_author_<%= id %>"><%= _("Author")%>:</label><br />
     <input name="resource[itunes_author]" size="25" id="resource_itunes_author_<%= id %>" type="text" value="<%=h resource.itunes_author %>" /><br />
     <label for="resource_itunes_subtitle_<%= id %>"><%= _("Subtitle")%>:</label><br />

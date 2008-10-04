@@ -21,7 +21,7 @@ class Admin::CommentsController < Admin::BaseController
     if request.post? and @comment.save
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham!
-      flash[:notice] = 'Comment was successfully created.'
+      flash[:notice] = _('Comment was successfully created.')
       redirect_to :controller => '/admin/comments', :article_id => @article.id, :action => 'list'
     end
   end
@@ -31,7 +31,7 @@ class Admin::CommentsController < Admin::BaseController
     @comment.attributes = params[:comment]
 
     if request.post? and @comment.save
-      flash[:notice] = 'Comment was successfully updated.'
+      flash[:notice] = _('Comment was successfully updated.')
       redirect_to :action => 'show', :id => @comment.id
     end
   end

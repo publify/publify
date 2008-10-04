@@ -13,7 +13,7 @@
   		<%= trackback.body %>
   		<p><%=trackback.created_at.strftime("%m/%d/%Y at %H:%M") %> – [ 
   		   <%= link_to_edit trackback %> | 
-  		   <%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => trackback.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :method => :post %> |
+  		   <%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => trackback.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
   		   <%= trackback.state %> ]
   		</p>
   	  </li>

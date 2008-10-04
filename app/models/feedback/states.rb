@@ -59,6 +59,10 @@ module Feedback::States
     def before_save
       classify_content
     end
+    
+    def to_s
+      _("Unclassified")
+    end
   end
 
   class JustPresumedHam < Base
@@ -67,6 +71,9 @@ module Feedback::States
       content.just_changed_published_status = true
       content.state = :presumed_ham
     end
+    def to_s
+      _("Just Presumed Ham")
+    end    
   end
 
   class PresumedHam < Base
@@ -95,7 +102,7 @@ module Feedback::States
     end
 
     def to_s
-      "Ham?"
+      _("Ham?")
     end
 
     def send_notifications
@@ -110,6 +117,9 @@ module Feedback::States
       content.just_changed_published_status = true
       content.state = :ham
     end
+    def to_s
+      _("Just Marked As Ham")
+    end    
   end
 
   class Ham < Base
@@ -141,6 +151,9 @@ module Feedback::States
       content.really_send_notifications if content.just_changed_published_status?
       true
     end
+    def to_s
+      _("Ham")
+    end   
   end
 
   class PresumedSpam < Base
@@ -169,7 +182,7 @@ module Feedback::States
     end
 
     def to_s
-      "Spam?"
+      _("Spam?")
     end
   end
 
@@ -179,6 +192,9 @@ module Feedback::States
       content.just_changed_published_status = true
       content.state = :spam
     end
+    def to_s
+      _("Just Marked As Spam")
+    end    
   end
 
   class Spam < Base
@@ -197,5 +213,8 @@ module Feedback::States
       content.report_as_spam if content.just_changed_published_status?
       true
     end
+    def to_s
+      _("Spam")
+    end     
   end
 end

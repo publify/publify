@@ -27,7 +27,7 @@ class Admin::TagsController < Admin::BaseController
     @tag.attributes = params[:tag]
 
     if request.post? and @tag.save
-      flash[:notice] = 'Tag was successfully updated.'
+      flash[:notice] = _('Tag was successfully updated.')
       redirect_to :action => 'list'
     end
   end

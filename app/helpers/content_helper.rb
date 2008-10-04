@@ -8,7 +8,7 @@ module ContentHelper
   end
 
   def title_for_grouping(grouping)
-    "#{pluralize(grouping.article_counter, 'post')} with #{grouping.class.to_s.underscore} '#{grouping.display_name}'"
+    "#{pluralize(grouping.article_counter, _('no posts') , _('1 post'), __('%d posts'))} with #{grouping.class.to_s.underscore} '#{grouping.display_name}'"
   end
 
   def ul_tag_for(grouping_class)

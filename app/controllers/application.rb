@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
 
   def load_lang
     Localization.lang = this_blog.lang
+    # _("Localization.rtl") 
   end
 
   def reset_local_cache

@@ -191,9 +191,9 @@ class Admin::ContentController < Admin::BaseController
   def set_the_flash
     case params[:action]
     when 'new'
-      flash[:notice] = 'Article was successfully created'
+      flash[:notice] = _('Article was successfully created')
     when 'edit'
-      flash[:notice] = 'Article was successfully updated.'
+      flash[:notice] = _('Article was successfully updated.')
     else
       raise "I don't know how to tidy up action: #{params[:action]}"
     end

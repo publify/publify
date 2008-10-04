@@ -5,11 +5,11 @@ module ApplicationHelper
   # Basic english pluralizer.
   # Axe?
 
-  def pluralize(size, word)
+  def pluralize(size, zero, one , many )
     case size
-    when 0 then _("no ") +  word.pluralize
-    when 1 then "1 #{word}"
-    else        "#{size} #{word.pluralize}"
+    when 0 then zero
+    when 1 then one
+    else        sprintf(many, size)
     end
   end
 
@@ -26,11 +26,11 @@ module ApplicationHelper
 
   # The '5 comments' link from the bottom of articles
   def comments_link(article)
-    link_to_permalink(article,pluralize(article.published_comments.size, _('comment')),'comments')
+    link_to_permalink(article,pluralize(article.published_comments.size, _('no comments') , _('1 comment'), __('%d comments')),'comments')
   end
 
   def trackbacks_link(article)
-    link_to_permalink(article,pluralize(article.published_trackbacks.size, 'trackback'),'trackbacks')
+    link_to_permalink(article,pluralize(article.published_trackbacks.size, _('no trackbacks') , _('1 trackback'), __('%d trackbacks')),'trackbacks')
   end
 
   def check_cache(aggregator, *args)
@@ -134,7 +134,7 @@ module ApplicationHelper
       link_to_remote('nuke', {
           :url => feedback_path(model.id),
           :method => :delete,
-          :confirm => "Are you sure you want to delete this #{type}?"
+          :confirm => _("Are you sure you want to delete this %s?", "#{type}" )
         }, :class => "admintools") <<
       link_to('edit', {
         :controller => "admin/#{type.pluralize}",

@@ -26,7 +26,7 @@ class Admin::ThemesController < Admin::BaseController
       if params[:file] =~ /css$/
         filename = params[:file]
       else
-        flash[:error] = "You are not authorized to open this file"
+        flash[:error] = _("You are not authorized to open this file")
         return
       end
     when "layout"
@@ -34,7 +34,7 @@ class Admin::ThemesController < Admin::BaseController
       if params[:file] =~ /rhtml$|erb$/
         filename = params[:file]
       else
-        flash[:error] = "You are not authorized to open this file"
+        flash[:error] = _("You are not authorized to open this file")
         return
       end
     end
@@ -47,11 +47,11 @@ class Admin::ThemesController < Admin::BaseController
             theme = File.new(path + filename, "r+")
             theme.write(params[:theme_body])
             theme.close
-            flash[:notice] = "File saved successfully"
+            flash[:notice] = _("File saved successfully")
             zap_theme_caches
           end
         else
-          flash[:notice] = "Unable to write file"
+          flash[:notice] = _("Unable to write file")
         end
         @file = ""
         file = File.readlines(path + filename, "r")

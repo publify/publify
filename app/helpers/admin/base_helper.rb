@@ -68,41 +68,41 @@ module Admin::BaseHelper
 
   def link_to_show(record, controller = @controller.controller_name)
     if record.published?
-      link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), 
+      link_to image_tag('admin/show.png', :alt => _("show"), :title => _("Show content")), 
         {:controller => controller, :action => 'show', :id => record.id}, 
         {:class => "lbOn"}
       end
   end
 
   def link_to_edit(record, controller = @controller.controller_name)
-    link_to image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"),
+    link_to image_tag('admin/edit.png', :alt => _("edit"), :title => _("Edit content")),
       :controller => controller, :action => 'edit', :id => record.id
   end
   
   def link_to_edit_with_profiles(record, controller = @controller.controller_name)
     if current_user.profile.label == 'admin'
-    link_to image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"),
+    link_to image_tag('admin/edit.png', :alt => _("edit"), :title => _("Edit content")),
       :controller => controller, :action => 'edit', :id => record.id
     else
-      link_to(image_tag('admin/edit.png', :alt => "edit", :title => "Edit content"),
+      link_to(image_tag('admin/edit.png', :alt => _("edit"), :title => _("Edit content")),
         :controller => controller, :action => 'edit', :id => record.id) if current_user.id == record.user_id
     end
   end
 
   def link_to_destroy(record, controller = @controller.controller_name)
-    link_to image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"),
+    link_to image_tag('admin/delete.png', :alt => _("delete"), :title => _("Delete content")),
       :controller => controller, :action => 'destroy', :id => record.id
   end
 
   def link_to_destroy_with_profiles(record, controller = @controller.controller_name)
     if current_user.profile.label == 'admin'
-      link_to(image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"), 
+      link_to(image_tag('admin/delete.png', :alt => _("delete"), :title => _("Delete content")), 
       { :controller => controller, :action => 'destroy', :id => record.id, :search => params[:search], 
-        :page => params[:page] },  :confirm => "Are you sure?", :method => :post)
+        :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post)
     else
-      link_to(image_tag('admin/delete.png', :alt => "delete", :title => "Delete content"), 
+      link_to(image_tag('admin/delete.png', :alt => _("delete"), :title => _("Delete content")), 
       { :controller => controller, :action => 'destroy', :id => record.id, :search => params[:search], 
-        :page => params[:page] },  :confirm => "Are you sure?", :method => :post) if current_user.id == record.user_id
+        :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post) if current_user.id == record.user_id
     end
   end
 
@@ -220,7 +220,7 @@ module Admin::BaseHelper
     result = "<select name='#{object}[#{method}]'>\n" 
       
     if prompt == true
-      result << "<option value=''>Please select</option>"
+      result << "<option value=''>" << _("Please select") << "</option>"
     end
     for element in collection
       if current_value and current_value == element.send(value_method)
@@ -235,7 +235,7 @@ module Admin::BaseHelper
 
   def render_void_table(size, cols)
     if size == 0
-      "<tr>\n<td colspan=#{cols}>There is no #{controller.controller_name} yet. Why don't you start and create one?</td>\n</tr>\n"
+      "<tr>\n<td colspan=#{cols}>" + _("There is no %s yet. Why don't you start and create one?", _(controller.controller_name)) + "</td>\n</tr>\n"
     end
   end
   
@@ -245,7 +245,7 @@ module Admin::BaseHelper
     result << " "
     result << _("or") 
     result << " "
-    result << save("Save" + " &raquo")
+    result << save( _("Save") + " &raquo")
     result << '</p>'
     return result
   end

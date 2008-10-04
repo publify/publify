@@ -12,7 +12,7 @@ class Admin::ProfilesController < Admin::BaseController
   def new
     @profile = Profile.new(params[:profile])
     if request.post? and @profile.save
-      flash[:notice] = 'Profile was successfully created.'
+      flash[:notice] = _('Profile was successfully created.')
       redirect_to :action => 'list'
     end
   end
@@ -21,7 +21,7 @@ class Admin::ProfilesController < Admin::BaseController
     @profile = Profile.find(params[:id])
     @profile.attributes = params[:profile]
     if request.post? and @profile.save
-      flash[:notice] = 'Profile was successfully updated.'
+      flash[:notice] = _('Profile was successfully updated.')
       redirect_to :action => 'list'
     end
   end

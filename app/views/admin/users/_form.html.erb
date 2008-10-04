@@ -8,8 +8,10 @@
 </li>
 <% if current_user.profile.label == 'admin' %>
 <li>
+  
 	<label class="float" for="user_profile"><%= _("Profile")%>:</label>
-	<%=  select("user", "profile_id", @profiles.collect {|p| [ p.nicename, p.id ] }, { :include_blank => true }) %>
+	<%=  select("user", "profile_id", @profiles.collect {|p| [ _(p.nicename), p.id ] }, { :include_blank => true }) %>
+  <% # _("Blog publisher"), _("Contributor") , _("Typo administrator") %>
 </li>
 <% end %>
 <li>
@@ -18,7 +20,7 @@
 </li>
 <li>
 <label class="float" for="user_email"><%= _("Email")%>:</label> 
-<%= text_field 'user', 'email'  %> <small>(this will be shown publically if supplied)</small>
+<%= text_field 'user', 'email'  %> <small><%=_("(this will be shown publically if supplied)") %></small>
 </li>
 <li>
   <label class="float" for="user_password"><%= _("Password")%>:</label>

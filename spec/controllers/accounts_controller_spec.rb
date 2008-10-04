@@ -158,13 +158,13 @@ describe 'POST signup with 0 existing users' do
 
   it 'session gets a user' do
     post 'signup', params
-    flash[:notice].should == 'Signup successful'
+    flash[:notice].should == _('Signup successful')
     request.session[:user_id].should == @user.id
   end
 
   it 'Sets the flash notice to "Signup successful"' do
     post 'signup', params
-    flash[:notice].should == 'Signup successful'
+    flash[:notice].should == _('Signup successful')
   end
 
   def params

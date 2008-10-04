@@ -16,7 +16,7 @@ module Admin::ContentHelper
     if record.state.to_s == "Draft"
       link_to(_("Destroy this draft"), 
         { :controller => controller, :action => 'destroy', :id => record.id },
-          :confirm => "Are you sure?", :method => :post )
+          :confirm => _("Are you sure?"), :method => :post )
     end
   end
 

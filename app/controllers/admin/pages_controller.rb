@@ -64,7 +64,7 @@ class Admin::PagesController < Admin::BaseController
       end
       @page.published_at = Time.now
       if @page.save
-        flash[:notice] = 'Page was successfully created.'
+        flash[:notice] = _('Page was successfully created.')
         redirect_to :action => 'list'
       end
     end
@@ -74,7 +74,7 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.find(params[:id])
     @page.attributes = params[:page]
     if request.post? and @page.save
-      flash[:notice] = 'Page was successfully updated.'
+      flash[:notice] = _('Page was successfully updated.')
       redirect_to :action => 'index'
     end
   end

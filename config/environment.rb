@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   # Otherwise, I can't localize plugins <= localization
   # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
   config.plugins = [ 'localization', :all ]
-
+  
   config.load_paths += %W(
     vendor/rubypants
     vendor/akismet

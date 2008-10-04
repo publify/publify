@@ -19,7 +19,7 @@ class Admin::TrackbacksController < Admin::BaseController
     @trackback = @article.trackbacks.find(params[:id])
     @trackback.attributes = params[:trackback]
     if request.post? and @trackback.save
-      flash[:notice] = 'Trackback was successfully updated.'
+      flash[:notice] = _('Trackback was successfully updated.')
       redirect_to :action => 'show', :id => @trackback.id
     end
   end

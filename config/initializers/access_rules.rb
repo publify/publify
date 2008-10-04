@@ -1,3 +1,4 @@
+# Localization.lang = ''
 # LisiaSoft::AccessControl, permit to manage, backend, and frontend access.
 # Based on the LoginSystem of Lipisadmin
 # You can define on the fly, roles access, for example:
@@ -45,7 +46,7 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/base"
 
   map.project_module :dashboard, "admin/dashboard" do |project|
-    project.menu    _("Typo"),               { :action => :index }
+    project.menu    _("Dashboard"),               { :action => :index }
     project.submenu _("Typo documentation"), "http://typosphere.org/main_page"
   end
   
@@ -77,7 +78,6 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu _(""),             { :controller => "admin/trackbacks", :action => "new" }
     project.submenu _(""),             { :controller => "admin/trackbacks", :action => "edit" }
     project.submenu _(""),             { :controller => "admin/trackbacks", :action => "destroy" }
-
   end
 
   map.project_module :themes, "admin/themes" do |project|

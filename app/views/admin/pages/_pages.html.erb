@@ -18,12 +18,12 @@
     <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
     <td>
       <select name="search[published]">
-        <option value="">Please select</option>
-        <option value="0">Unpublished</option>
-        <option value="1">Published</option>
+        <option value=""><%= _("Please select") %></option>
+        <option value="0"><%= _("Unpublished") %></option>
+        <option value="1"><%= _("Published") %></option>
       </select>
     </td>
-    <td colspan="3"><input type="submit" value="Filter" />
+    <td colspan="3"><input type="submit" value="<%= _("Filter") %>" />
   </tr>
   <%= render_void_table(@pages.size, 8)  %>
 
@@ -31,7 +31,7 @@
   <tr <%= alternate_class %>>
     <td><%= link_to_permalink(page, page.title) %></td>
     <td><%= page.name%></td>
-    <td><%= page.created_at.strftime('%d/%m/%Y at %H:%M') %></td>
+    <td><%= page.created_at.strftime('%d/%m/%Y %H:%M') %></td>
     <td><%= author_link(page) %></td>
     <td class="operation">
     <% if page.published? %>
