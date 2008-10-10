@@ -611,7 +611,7 @@ Localization.define('fr_FR') do |l|
   l.store "required", "obligatoire"
   l.store "Preview", "Prévisualiser "
   l.store "enabled", "activés"
-  l.store "never displayed", "jamais affichés"
+  l.store "never displayed", "jamais affiché"
   l.store "Comments", "Commentaires"
   l.store "Website", "Votre site"
   l.store "Textile enabled", "Textile activé"
