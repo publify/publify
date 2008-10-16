@@ -17,11 +17,11 @@ FCKConfig.SpellChecker = 'SpellerPages';
 FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/silver/';
 
 FCKConfig.ToolbarSets["Default"] = [
-  ['FontFormat','Bold', 'Italic', 'StrikeThrough'],
-  ['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],	
-	['OrderedList','UnorderedList','-','Outdent','Indent','Blockquote'],
-	['Source', 'RemoveFormat'],
-	['Link','Unlink'],
-	['Image','Flash', 'Smiley'],
-	['FitWindow','SpellCheck']
-] ;
+	['FontFormat', '-', 'Bold', 'Italic'], 
+	['OrderedList', 'UnorderedList'], 
+	['Outdent', 'Indent'], 
+	['Image', 'Flash', '-', 'Link'], 
+	['FitWindow'], 
+	['Table'],
+	['Source']
+];
