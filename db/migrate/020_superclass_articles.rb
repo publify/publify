@@ -3,7 +3,7 @@ class Bare20Article < ActiveRecord::Base
 
   # need to point the primary key somewhere else so we can manually
   # set this field for each article.
-  set_primary_key :boguskey
+  #set_primary_key :boguskey
 end
 
 class Bare20Content < ActiveRecord::Base
@@ -14,7 +14,7 @@ class Bare20Content < ActiveRecord::Base
 # script wants to set 'id' and 'type', we need to fool activerecord by
 # setting them to bogus values.
   set_inheritance_column :bogustype
-  set_primary_key :boguskey
+  #set_primary_key :boguskey
 end
 
 class SuperclassArticles < ActiveRecord::Migration
@@ -26,7 +26,8 @@ class SuperclassArticles < ActiveRecord::Migration
     STDERR.puts "Merging Articles into Contents table"
 
     # Make sure our index is in a known state
-    add_index :articles, :permalink rescue nil
+    # Comment because in migration 001, there are already a creation of this index
+    #add_index :articles, :permalink rescue nil
 
     Bare20Article.transaction do
       create_table :contents do |t|

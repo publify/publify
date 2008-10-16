@@ -129,7 +129,6 @@ class InitialSchema < ActiveRecord::Migration
       drop_table :users
       drop_table :articles
       drop_table :categories
-      drop_table :articles_categories
       drop_table :blacklist_patterns
       drop_table :comments
       drop_table :pings

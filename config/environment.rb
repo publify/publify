@@ -54,13 +54,11 @@ Rails::Initializer.run do |config|
 
   # Enable page/fragment caching by setting a file-based store
   # (remember to create the caching directory and make it readable to the application)
-  config.action_controller.fragment_cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"
+  config.action_controller.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
   config.active_record.observers = :email_notifier, :web_notifier
-
-  config.active_record.allow_concurrency = false
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
@@ -81,7 +79,6 @@ end
 #   inflect.uncountable %w( fish sheep )
 # end
 
-Inflector.inflections {|i| i.uncountable %w(feedback)}
 
 # Include your application configuration below
 
@@ -148,7 +145,13 @@ if RAILS_ENV != 'test'
   begin
     ActiveRecord::Base.connection.select_all("select * from sessions")
   rescue
-    Migrator.migrate
+    begin
+      ActiveRecord::Base.connection.current_database
+      Migrator.migrate
+    rescue
+      # if there are no database, migrator doesn't no start
+      # use case : rake db:create in rails tasks
+    end
   end
 end
 

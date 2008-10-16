@@ -17,6 +17,7 @@ describe Resource, ' with its fixtures loaded' do
   it 'resources created with the same name as an existing resource don\'t overwrite the old resource' do
     File.should_receive(:exist?).with(%r{public/files/me\.jpg$}).and_return(true)
     File.should_receive(:exist?).with(%r{public/files/me1\.jpg$}).at_least(:once).and_return(false)
+    File.should_receive(:unlink).with(%r{public/files/me1\.jpg$}).and_return(true)
 
     f1 = Resource.create(:filename => resources(:resource1).filename,
                          :mime => resources(:resource1).mime)

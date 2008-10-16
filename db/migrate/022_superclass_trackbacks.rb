@@ -12,7 +12,8 @@ class SuperclassTrackbacks < ActiveRecord::Migration
     STDERR.puts "Merging Trackbacks into Content table"
     # Ensure that the index we're going to remove in the transaction
     # is actually there (otherwise Postgres breaks)
-    add_index(:trackbacks, :article_id) rescue nil
+    # Comment because already in migration 001
+    #add_index(:trackbacks, :article_id) rescue nil
     modify_tables_and_update([:add_column,   BareContent,   :blog_name, :string],
                              [:remove_index, BareTrackback, :article_id        ]) do
       BareContent.transaction do

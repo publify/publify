@@ -5,6 +5,13 @@ class FragmentCacheTest
   include MetaFragmentCache
   include ActionController::Caching::Fragments
 
+  @@cache_store = nil
+  cattr_reader :cache_store
+  
+  def initialize()
+    @@cache_store = ActiveSupport::Cache.lookup_store(:memory_store)
+  end
+
   def self.benchmark(foo)
     yield
   end
@@ -12,6 +19,11 @@ class FragmentCacheTest
   def perform_caching
     true
   end
+
+  def cache_configured?
+    true
+  end
+    
 end
 
 describe 'Just porting metafragment_test without necessarily understanding it' do

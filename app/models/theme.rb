@@ -9,7 +9,7 @@ class Theme
   end
 
   def layout
-    "../../themes/#{name}/layouts/default"
+    "../../themes/#{name}/layouts/default.html.erb"
   end
 
   def description

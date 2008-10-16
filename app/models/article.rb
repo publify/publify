@@ -26,8 +26,9 @@ class Article < Content
   has_many :categorizations
   has_many :categories, \
     :through => :categorizations, \
+    :include => :categorizations, \
     :uniq => true, \
-    :order => 'categorizations.is_primary DESC, categories.position'
+    :order => 'categorizations.is_primary DESC, categories.position '
 
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
 

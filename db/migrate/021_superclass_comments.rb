@@ -12,8 +12,8 @@ class SuperclassComments < ActiveRecord::Migration
     STDERR.puts "Merging Comments into Contents table"
     # Get our indices into a known good state.
     # Mutter dark imprecations at having to do this.
-    add_index(:comments, :article_id) rescue nil
-    remove_index(:contents, :article_id) rescue nil
+    #add_index(:comments, :article_id) rescue nil
+    #remove_index(:contents, :article_id) rescue nil
     modify_tables_and_update([:add_column, BareContent, :article_id, :integer],
                              [:add_column, BareContent, :email,      :string ],
                              [:add_column, BareContent, :url,        :string ],

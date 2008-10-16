@@ -29,9 +29,7 @@ describe Admin::ResourcesController do
     assert_not_nil assigns(:file)
 
     post :destroy, :id => res_id
-    assert_response 302
-    follow_redirect
-    assert_template 'index'
+    response.should redirect_to(:action => 'list')
   end
 
   def test_new

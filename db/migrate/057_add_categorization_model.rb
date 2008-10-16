@@ -15,14 +15,20 @@ class AddCategorizationModel < ActiveRecord::Migration
     end
 
     unless $schema_generator
-      ArticlesCategory.find(:all).each do |ac|
-        Categorization.create!(:article_id => ac.article_id,
-                               :category_id => ac.category_id,
-                               :is_primary => (ac.is_primary == 1))
-      end rescue nil
+      # You need test if ArticlesCategory object exist because if
+      # exception raise even rescue in migration and migration failed and stop
+      # :(
+      if Object.constants.include? 'ArticlesCategory'
+        ArticlesCategory.find(:all).each do |ac|
+          Categorization.create!(:article_id => ac.article_id,
+                                 :category_id => ac.category_id,
+                                 :is_primary => (ac.is_primary == 1))
+        end
+      end
     end
 
-    drop_table :articles_categories rescue nil
+    # The ArticleCategories table is doesn't create
+    #drop_table :articles_categories rescue nil
   end
 
   def self.down

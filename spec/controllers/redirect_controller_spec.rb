@@ -7,7 +7,7 @@ class RedirectController; def rescue_action(e) raise e end; end
 
 describe RedirectController do
   before do
-    request.relative_url_root = nil # avoid failures if environment.rb defines a relative URL root
+    ActionController::Base.relative_url_root = nil # avoid failures if environment.rb defines a relative URL root
   end
 
   def test_routing_splits_path
@@ -23,7 +23,7 @@ describe RedirectController do
   end
 
   def test_url_root_redirect
-    @request.relative_url_root = "/blog"
+    ActionController::Base.relative_url_root = "/blog"
     get :redirect, :from => ["foo", "bar"]
     assert_response 301
     assert_redirected_to "http://test.host/blog/someplace/else"
@@ -51,21 +51,21 @@ describe RedirectController do
   end
 
   def test_url_root_redirect_articles
-    @request.relative_url_root = "/blog"
+    ActionController::Base.relative_url_root = "/blog"
     get :redirect, :from => ["articles", "foo", "bar", "baz"]
     assert_response 301
     assert_redirected_to "http://test.host/blog/foo/bar/baz"
   end
 
   def test_url_root_redirect_articles_when_url_root_is_articles
-    @request.relative_url_root = "/articles"
+    ActionController::Base.relative_url_root = "/articles"
     get :redirect, :from => ["articles", "foo", "bar", "baz"]
     assert_response 301
     assert_redirected_to "http://test.host/articles/foo/bar/baz"
   end
 
   def test_url_root_redirect_articles_with_articles_in_url_root
-    @request.relative_url_root = "/aaa/articles/bbb"
+    ActionController::Base.relative_url_root = "/aaa/articles/bbb"
     get :redirect, :from => ["articles", "foo", "bar", "baz"]
     assert_response 301
     assert_redirected_to "http://test.host/aaa/articles/bbb/foo/bar/baz"

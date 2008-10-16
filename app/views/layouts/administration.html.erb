@@ -22,7 +22,7 @@
 				<%= tab _('your blog'), :controller => "/articles" %>
 			</ul>
 		</div>
-		<% if not first_render =~ /login|signup|logout/ %>
+		<% if not _first_render =~ /login|signup|logout/ %>
 		<div class="tasks">
 			<ul>
 				<%= @content_for_tasks %>

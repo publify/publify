@@ -32,9 +32,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
       post :new, :user => { :login => 'errand', :email => 'corey@test.com',
         :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1 }
-      assert_response :redirect, :action => 'index'
-      follow_redirect
-      assert_template 'index'
+      response.should redirect_to(:action => 'list')
     end
 
     def test_edit
@@ -46,9 +44,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       post :edit, :id => user_id, :user => { :login => 'errand',
         :email => 'corey@test.com', :password => 'testpass',
         :password_confirmation => 'testpass' }
-      assert_response :redirect, :action => 'index'
-      follow_redirect
-      assert_template 'index'
+      response.should redirect_to(:action => 'list')
     end
 
     it 'should edit himself if no params[:id]' do
@@ -59,9 +55,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       post :edit, :user => { :login => 'errand',
         :email => 'corey@test.com', :password => 'testpass',
         :password_confirmation => 'testpass' }
-      assert_response :redirect, :action => 'index'
-      follow_redirect
-      assert_template 'index'
+      response.should redirect_to(:action => 'list')
     end
 
     def test_destroy
@@ -72,9 +66,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
       assert_equal user_count, User.count
       post :destroy, :id => users(:bob).id
-      assert_response :redirect, :action => 'list'
-      follow_redirect
-      assert_template 'index'
+      response.should redirect_to(:action => 'list')
       assert_equal user_count - 1, User.count
     end
   end

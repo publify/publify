@@ -135,8 +135,18 @@ class Blog < CachedModel
       unless RouteCache[options]
         options.reverse_merge!(:only_path => true, :controller => '',
                                :action => 'permalink')
+        # In Rails > 2.2 the rewrite method use
+        # ActionController::Base.relative_url_root instead of
+        # @request.relative_url_root
+        if ActionController::Base.relative_url_root.nil?
+          old_relative_url = nil
+        else
+          old_relative_url = ActionController::Base.relative_url_root.dup
+        end
+        ActionController::Base.relative_url_root = self.base_url
         @url ||= ActionController::UrlRewriter.new(BlogRequest.new(self.base_url), {})
         RouteCache[options] = @url.rewrite(options)
+        ActionController::Base.relative_url_root = old_relative_url
       end
 
       return RouteCache[options]

@@ -28,7 +28,7 @@ module MetaFragmentCache
   
   def expire_meta_fragment(name, options = nil)
     if(name.kind_of? Regexp)
-      metakey, contentkey = meta_fragment_key('.*'+name.source).collect {|key| Regexp.new("^#{key}")}
+      metakey, contentkey = meta_fragment_key('.*'+name.source).collect {|key| Regexp.new("^views/#{key}")}
     elsif(name.kind_of? String)
       metakey, contentkey = meta_fragment_key(name)
     else

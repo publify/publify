@@ -1,9 +1,6 @@
-require 'observer'
 require 'set'
 
 class Content < ActiveRecord::Base
-  include Observable
-
   belongs_to :text_filter
 
   has_many :notifications, :foreign_key => 'content_id'
@@ -317,5 +314,6 @@ class ContentTextHelpers
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
+  extend ActionView::Helpers::SanitizeHelper::ClassMethods
 end
 

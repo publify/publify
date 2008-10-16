@@ -1,8 +1,10 @@
+require_dependency 'spam_protection'
 class Feedback < Content
   # Empty, for now, ready to hoist up methods from Comment & Trackback
   set_table_name "feedback"
 
   include TypoGuid
+
   validates_age_of :article_id
 
   before_create :create_guid, :article_allows_this_feedback

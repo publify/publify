@@ -2,7 +2,11 @@ class RenameRedirectTo < ActiveRecord::Migration
   def self.up
     # The original version of the redirects table used 'to' as a column name
     # Postgres is okay with that, but not mysql.
-    rename_column :redirects, :to, :to_path rescue nil
+    # You need test if rename needed, because with migration transaction, all
+    # failed if rename failed
+    if Redirect.columns_hash.has_key? 'to'
+      rename_column :redirects, :to, :to_path
+    end
   end
 
   def self.down

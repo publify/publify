@@ -162,10 +162,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect '*from', :controller => 'redirect', :action => 'redirect'
 
-  returning(map.connect(':controller/:action/:id')) do |default_route|
-    # Ick!
-    default_route.write_generation
-
+  map.connect(':controller/:action/:id') do |default_route|
     class << default_route
       def recognize_with_deprecation(path, environment = {})
         RAILS_DEFAULT_LOGGER.info "#{path} hit the default_route buffer"
@@ -175,9 +172,9 @@ ActionController::Routing::Routes.draw do |map|
 
       def generate_with_deprecation(options, hash, expire_on = {})
         RAILS_DEFAULT_LOGGER.info "generate(#{options.inspect}, #{hash.inspect}, #{expire_on.inspect}) reached the default route"
-#         if RAILS_ENV == 'test'
-#           raise "Don't rely on default route generation"
-#         end
+        #         if RAILS_ENV == 'test'
+        #           raise "Don't rely on default route generation"
+        #         end
         generate_without_deprecation(options, hash, expire_on)
       end
       alias_method_chain :generate, :deprecation
