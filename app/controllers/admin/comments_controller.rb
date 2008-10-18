@@ -14,7 +14,6 @@ class Admin::CommentsController < Admin::BaseController
     @comment = @article.comments.build(params[:comment])
 
     if request.post? and @comment.save
-      # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham!
       flash[:notice] = _('Comment was successfully created.')
       redirect_to :controller => '/admin/comments', :article_id => @article.id, :action => 'index'

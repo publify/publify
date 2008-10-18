@@ -105,14 +105,6 @@ module Admin::BaseHelper
     link_to_function(title, toggle_effect('edit-resource-mime-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
 
-  def link_to_bookmarklet
-    "javascript:if(navigator.userAgent.indexOf('Safari') >= 0)" + \
-    "{Q=getSelection();}" + \
-    "else{Q=document.selection?document.selection.createRange().text:document.getSelection();}" + \
-    "location.href='#{this_blog.base_url}/admin/content/new?bookmarklet_text='+encodeURIComponent(Q)" + \
-    "+'&bookmarklet_link='+encodeURIComponent(location.href)+'&bookmarklet_title='+encodeURIComponent(document.title);"
-  end
-    
   def class_write
     if controller.controller_name == "content" or controller.controller_name == "pages"
       "current" if controller.action_name == "new"

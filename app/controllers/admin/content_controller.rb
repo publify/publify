@@ -171,7 +171,6 @@ class Admin::ContentController < Admin::BaseController
     @article.published = true
     
     params[:article] ||= {}
-    params[:bookmarklet_link] && post_from_bookmarklet
 
     @resources = Resource.find(:all, :order => 'created_at DESC')
     @article.attributes = params[:article]
@@ -193,14 +192,6 @@ class Admin::ContentController < Admin::BaseController
       get_extended
     end
     render :action => 'new'
-  end
-
-  def post_from_bookmarklet
-    params[:article][:title] = params[:bookmarklet_title]
-    params[:article][:body] = '<a href="' + params[:bookmarklet_link] + \
-      ' title="' + params[:bookmarklet_title] + '">' + \
-      params[:bookmarklet_title] + '</a>'
-    params[:article][:body] += ("\n\n" + params[:bookmarklet_text]) if params[:bookmarklet_text]
   end
 
   def set_the_flash

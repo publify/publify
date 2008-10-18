@@ -41,17 +41,11 @@ class AccountsController < ApplicationController
     session[:user_id] = nil
   end
 
-  def welcome
-  end
-
   private
 
   def verify_users
-    if User.count == 0
-      redirect_to :controller => "accounts", :action => "signup"
-    else
-      true
-    end
+    redirect_to(:controller => "accounts", :action => "signup") if User.count == 0
+    true
   end
 
 end
