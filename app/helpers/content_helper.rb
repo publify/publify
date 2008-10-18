@@ -34,23 +34,6 @@ module ContentHelper
 
   include SidebarHelper
 
-  def render_errors(obj)
-    return "" unless obj
-    tag = String.new
-
-    unless obj.errors.empty?
-      tag << %{<ul class="objerrors">}
-
-      obj.errors.each_full do |message|
-        tag << "<li>#{message}</li>"
-      end
-
-      tag << "</ul>"
-    end
-
-    tag
-  end
-
   def article_links(article)
     returning code = [] do
       code << category_links(article)   unless article.categories.empty?

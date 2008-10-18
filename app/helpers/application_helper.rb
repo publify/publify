@@ -110,18 +110,6 @@ module ApplicationHelper
     content.html(what)
   end
 
-  def article_html(article, what = :all)
-    html(article, what, true)
-  end
-
-  def comment_html(comment)
-    html(comment, :body, true)
-  end
-
-  def page_html(page)
-    html(page, :body, true)
-  end
-
   def strip_html(text)
     typo_deprecated "use text.strip_html"
     text.strip_html

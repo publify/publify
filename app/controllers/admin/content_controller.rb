@@ -192,6 +192,7 @@ class Admin::ContentController < Admin::BaseController
     else
       get_extended
     end
+    render :action => 'new'
   end
 
   def post_from_bookmarklet

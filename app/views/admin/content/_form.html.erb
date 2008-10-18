@@ -9,20 +9,21 @@
   <li>
     <div style="float: right; width: 230px;">
       <label class="block content"><%= _("Categories") %></label>
-      <p style="height: 230px; overflow-y: scroll; border: #ddd 1px solid">
+      <div id="categories">
         <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
-      </p>
+      </div>
       <p class="paginate r paginate_1">
         <%= link_to_destroy_draft @article %>
-        <input type="submit" name="article[draft]" class="submit" value="<%= _('Save as draft')%> &raquo;" />
         <%= save( _("Publish") + " &raquo;") %>
         <%= link_to_destroy_with_profiles @article%>
       </p>
     </div>
-    <label for="article_body" class="block content"><%= _("Content")%></label>
-    <%= t_textarea 'article', 'body', {:height => '300', :class => 'medium'} %>
+    <div id="editor">
+      <label for="article_body"class="block content"><%= _("Content")%></label>
+      <%= t_textarea 'article', 'body', {:height => '300', :class => 'medium'} %>
+    </div>
   </li>
-  <li style="margin-bottom: 20px;">
+  <li>
     <label class="block tags" for="article_keywords"><%= _("Tags") %></label>
     <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large'} %>
     <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>

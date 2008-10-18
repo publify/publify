@@ -439,6 +439,7 @@ legend {
 
 .admin label.block {
   display: block;
+	margin-bottom: 10px;
 }
 
 .admin label.title {
@@ -1024,7 +1025,12 @@ tr.menubar {
 	color: green;
 }
 
-/* Menu déroulant */
+#categories {
+	height: 220px; 
+	overflow-y: scroll; 
+	border: #ddd 1px solid;
+}
 
-
-
+#editor {
+	width: 700px;
+}

@@ -10,10 +10,6 @@ module Admin::BaseHelper
     content_for(:tasks) { output.join("\n") }
   end
 
-  def state_class(item)
-    item.state.to_s
-  end
-
   def render_flash
     output = []
 
@@ -22,32 +18,6 @@ module Admin::BaseHelper
     end if flash
 
     output.join("<br/>\n")
-  end
-
-  def render_tasks
-     output = []
-
-      for key,value in @tasks
-      output << "<a href=\"#{value}\">#{key}</a>"
-    end if @tasks
-
-    output.join("<br />\n")
-  end
-
-  def current_user_notice
-    unless current_user
-      link_to _("log in"), :controller => "/accounts", :action=>"login"
-    else
-      link_to _("log out"), :controller => "/accounts", :action=>"logout"
-    end
-  end
-
-  def tab(label, options = {})
-    if controller.controller_name =~ /#{options[:controller].split('/').last}/
-      content_tag :li, link_to(label, options, {"class"=> ""}), {"class"=> ""}
-    else
-      content_tag :li, link_to(label, options)
-    end
   end
   
   def subtab(label, style, options = {})
@@ -120,11 +90,7 @@ module Admin::BaseHelper
   end
 
   def task_overview
-    task(_('Back to overview'), 'index')
-  end
-
-  def task(title, action, id = nil)
-    content_tag :li, link_to(title, :action => action, :id => id)
+    content_tag :li, link_to(_('Back to overview'), :action => 'index')
   end
 
   def task_add_resource_metadata(title,id)
@@ -139,10 +105,6 @@ module Admin::BaseHelper
     link_to_function(title, toggle_effect('edit-resource-mime-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
 
-  def time_delta_from_now_in_words(timestamp)
-    distance_of_time_in_words_to_now(timestamp) + ((Time.now < timestamp) ? ' from now' : ' ago')
-  end
-
   def link_to_bookmarklet
     "javascript:if(navigator.userAgent.indexOf('Safari') >= 0)" + \
     "{Q=getSelection();}" + \
@@ -153,17 +115,13 @@ module Admin::BaseHelper
     
   def class_write
     if controller.controller_name == "content" or controller.controller_name == "pages"
-      if controller.action_name == "new"
-        "current"
-      end
+      "current" if controller.action_name == "new"
     end
   end
   
   def class_content
     if controller.controller_name  =~ /content|pages|categories|resources/
-      if controller.action_name =~ /list|index|show/
-        "current"
-      end
+      "current" if controller.action_name =~ /list|index|show/
     end
   end
 
