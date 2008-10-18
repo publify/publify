@@ -8,11 +8,6 @@ class Admin::ContentController < Admin::BaseController
     render :inline => "<%= auto_complete_result @items, 'name' %>"
   end
   
-  def list
-    index
-    render :action => 'index'
-  end
-
   def build_filter_params
     @conditions = ["state in('published', 'withdrawn')"]
     if params[:search]
@@ -48,15 +43,12 @@ class Admin::ContentController < Admin::BaseController
     now = Time.now
     build_filter_params
     setup_categories
-    count = Article.count(:all, :include => :categorizations, :conditions => @conditions)
-    @articles_pages = Paginator.new('index', count, 20, params[:id])
-    @articles = Article.find(:all, :limit => 20, :order => "contents.id DESC", :include => :categorizations, :conditions => @conditions, :offset => @articles_pages.current.offset)
+    @articles = Article.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 10
     
     if request.xhr?
       render :partial => 'article_list', :object => @articles
       return
     end
-    
     
     @article = Article.new(params[:article])
   end
@@ -65,12 +57,16 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find(params[:id])
   end
 
-  def new; new_or_edit; end
+  def new 
+    new_or_edit
+  end
+  
   def edit
     @drafts = Article.find(:all, :conditions => "state='draft'")
     article = Article.find(params[:id])
+    
     if current_user.profile.label != 'admin' and article.user_id != current_user.id 
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
     end
     new_or_edit 
@@ -80,13 +76,13 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find(params[:id])
     
     if current_user.profile.label != 'admin' and @article.user_id != current_user.id 
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
     end
     
     if request.post?
       @article.destroy
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 
@@ -112,6 +108,21 @@ class Admin::ContentController < Admin::BaseController
       logger.info(e.message)
       nil
     end
+  end
+
+  def build_extended
+    if @article.body =~ /<!--more-->/
+      body = @article.body.split('<!--more-->')
+      @article.body = body[0]
+      @article.extended = body[1]
+    end
+    
+  end
+  
+  def get_extended
+    unless @article.extended.blank?
+      @article.body = @article.body + "\n<!--more-->\n" + @article.extended
+    end    
   end
 
   def autosave
@@ -169,14 +180,17 @@ class Admin::ContentController < Admin::BaseController
     @selected = @article.categories.collect { |c| c.id }
     @drafts = Article.find(:all, :conditions => "state='draft'")
     if request.post?
+      build_extended
       set_article_author
       save_attachments
       @article.state = "draft" if @article.draft
       if @article.save
         set_article_categories
         set_the_flash
-        redirect_to :action => 'list'
+        redirect_to :action => 'index'
       end
+    else
+      get_extended
     end
   end
 
@@ -226,6 +240,15 @@ class Admin::ContentController < Admin::BaseController
       end
     end
     @selected = params[:categories] || []
+  end
+
+  def def_build_body
+    if @article.body =~ /<!--more-->/
+      body = @article.body.split('<!--more-->')
+      @article.body = body[0]
+      @article.extended = body[1]
+    end
+    
   end
 
   def get_or_build_article

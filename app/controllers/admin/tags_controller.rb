@@ -1,10 +1,5 @@
 class Admin::TagsController < Admin::BaseController
   
-  def list
-    index
-    render :action => 'index'
-  end
-  
   def index
     if params[:order] and params[:order] =~ /\A(?:name|display_name|article_counter)\Z/
       if params[:sense] and params[:sense] == 'desc'
@@ -19,7 +14,6 @@ class Admin::TagsController < Admin::BaseController
     count = Tag.count
     @tags_pages = Paginator.new(self, count, 20, params[:id])
     @tags = Tag.find_all_with_article_counters(20 , order, @tags_pages.current.offset)
-
   end
   
   def edit
@@ -28,7 +22,7 @@ class Admin::TagsController < Admin::BaseController
 
     if request.post? and @tag.save
       flash[:notice] = _('Tag was successfully updated.')
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
     
@@ -36,7 +30,7 @@ class Admin::TagsController < Admin::BaseController
     @tag = Tag.find(params[:id])
     if request.post?
       @tag.destroy
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
   

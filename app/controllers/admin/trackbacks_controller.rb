@@ -2,11 +2,6 @@ class Admin::TrackbacksController < Admin::BaseController
 
   before_filter :get_article
 
-  def list
-    index
-    render :action => 'index'
-  end
-
   def index
     @trackbacks = @article.trackbacks.find(:all, :order => "id DESC")
   end
@@ -28,7 +23,7 @@ class Admin::TrackbacksController < Admin::BaseController
     @trackback = @article.trackbacks.find(params[:id])
     if request.post?
       @trackback.destroy
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 

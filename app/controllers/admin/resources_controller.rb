@@ -25,7 +25,7 @@ class Admin::ResourcesController < Admin::BaseController
     @resource.itunes_metadata = false
     @resource.save(false)
     flash[:notice] = _('Metadata was successfully removed.')
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   def update
@@ -50,7 +50,7 @@ class Admin::ResourcesController < Admin::BaseController
         flash[:error] << "<br />" + val
       end
     end
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   def set_mime
@@ -61,7 +61,7 @@ class Admin::ResourcesController < Admin::BaseController
     else
       flash[:error] = _("Error occurred while updating Content Type.")
     end
-    redirect_to :action => "list"
+    redirect_to :action => "index"
   end
 
 
@@ -75,18 +75,13 @@ class Admin::ResourcesController < Admin::BaseController
     @resources_pages, @resources = paginate :resource, :per_page => 20, :order_by => "created_at DESC", :parameter => 'page'
   end
 
-  def list
-    index
-    render :action => 'index'
-  end
-
   def destroy
     begin
       @file = Resource.find(params[:id])
       case request.method
         when :post
           @file.destroy
-          redirect_to :action => 'list'
+          redirect_to :action => 'index'
       end
     rescue
       raise

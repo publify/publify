@@ -1,19 +1,14 @@
 class Admin::ProfilesController < Admin::BaseController
 
   def index
-    list
-    render :action => 'list'
-  end
 
-  def list
-    @profiles = Profile.find :all
   end
 
   def new
     @profile = Profile.new(params[:profile])
     if request.post? and @profile.save
       flash[:notice] = _('Profile was successfully created.')
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 
@@ -22,7 +17,7 @@ class Admin::ProfilesController < Admin::BaseController
     @profile.attributes = params[:profile]
     if request.post? and @profile.save
       flash[:notice] = _('Profile was successfully updated.')
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 
@@ -30,7 +25,7 @@ class Admin::ProfilesController < Admin::BaseController
     @profile = Profile.find(params[:id])
     if request.post?
       @profile.destroy if Profile.count > 1
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 end

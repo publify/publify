@@ -30,7 +30,7 @@ describe Admin::CategoriesController do
     num_categories = Category.count
 
     post :new, 'category' => { :name => "test category" }
-    assert_response :redirect, :action => 'list'
+    assert_response :redirect, :action => 'index'
 
     assert_equal num_categories + 1, Category.count
   end
@@ -56,7 +56,7 @@ describe Admin::CategoriesController do
     assert_template 'destroy'
 
     post :destroy, :id => test_id
-    assert_response :redirect, :action => 'list'
+    assert_response :redirect, :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) { Category.find(test_id) }
   end

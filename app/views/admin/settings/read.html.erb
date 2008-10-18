@@ -1,6 +1,6 @@
 	<% @page_heading = _('Read') %>
   <% subtabs_for(:settings) %>
-	<% form_tag :action => 'read' do %>
+	<% form_tag :action => 'update' do %>
 
 <div class="admin">
 	<fieldset id="read" class="set">
@@ -22,6 +22,7 @@
 			</li>
 		</ul>
 	</fieldset>
+  <%= hidden_field_tag 'from', 'read' %>
 
 	<%= render :partial => 'submit' %>
 

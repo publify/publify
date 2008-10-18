@@ -1,5 +1,4 @@
 <%= error_messages_for 'article' %>
-<!--[form:articles]-->
 <div id="autosave"></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 <ul class="set admin">
@@ -8,18 +7,20 @@
     <%= text_field 'article', 'title', :class => 'large' %>
   </li>
   <li>
+    <div style="float: right; width: 230px;">
+      <label class="block content"><%= _("Categories") %></label>
+      <p style="height: 230px; overflow-y: scroll; border: #ddd 1px solid">
+        <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
+      </p>
+      <p class="paginate r paginate_1">
+        <%= link_to_destroy_draft @article %>
+        <input type="submit" name="article[draft]" class="submit" value="<%= _('Save as draft')%> &raquo;" />
+        <%= save( _("Publish") + " &raquo;") %>
+        <%= link_to_destroy_with_profiles @article%>
+      </p>
+    </div>
     <label for="article_body" class="block content"><%= _("Content")%></label>
-    <%= t_textarea 'article', 'body', {:height => '300', :class => 'large'} %>
-  </li>
-  <li>
-    <label class="block l" for="article_extended">
-      <%= link_to_function _("Add Extended Content") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "extended", :duration => 0.2) } %>
-    </label>
-    <ul>
-      <li id="extended" <%= "style='display: none;'" if @article.extended.blank? %>>
-        <%= t_textarea 'article', 'extended', :height => '450', :class => 'large' %>
-      </li>
-    </ul>
+    <%= t_textarea 'article', 'body', {:height => '300', :class => 'medium'} %>
   </li>
   <li style="margin-bottom: 20px;">
     <label class="block tags" for="article_keywords"><%= _("Tags") %></label>
@@ -29,14 +30,6 @@
 </ul>
 
 <ul class="admin set">
-  <li class="paginate l paginate_1" >
-    <label for="categories" class="block">
-      <%= link_to_function _("Categories") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "categories", :duration => 0.2) } %>
-    </label>
-    <select id="categories" class="large" name="categories[]" multiple="multiple" size="10" <%= "style='display:none;'" if @article.categories.blank? %>>
-      <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
-    </select>
-  </li>
   <li class="paginate l paginate_1">
     <label class="block">
       <%= link_to_function _("Uploads") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "attachments", :duration => 0.2) } %>
@@ -45,7 +38,7 @@
       <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
     </ul>
   </li>
-  
+
   <li class="paginate l paginate_1">
     <label class="block">
       <%= link_to_function _("Post settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
@@ -75,16 +68,11 @@
     </ul>
   </li>
 </ul>
-<p class="paginate r paginate_1">
-  <%= link_to_destroy_draft @article %>
-  <input type="submit" name="article[draft]" class="submit" value="<%= _('Save as draft')%> &raquo;" />
-  <%= save( _("Publish") + " &raquo;") %>
-</p>
 
 <% if this_blog.editor == 0 %>
-  <%= hidden_field_tag 'id', @article.id unless @article.id.nil? %>
+<%= hidden_field_tag 'id', @article.id unless @article.id.nil? %>
 <%   #      :update => 'autosave', %>
-  <%= observe_form "article_form",
-      :frequency => 60,
-      :url => { :action => "autosave" }  %>
+<%= observe_form "article_form",
+:frequency => 60,
+:url => { :action => "autosave" }  %>
 <% end %>

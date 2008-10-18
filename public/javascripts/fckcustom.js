@@ -23,5 +23,6 @@ FCKConfig.ToolbarSets["Default"] = [
 	['Image', 'Flash', '-', 'Link'], 
 	['FitWindow'], 
 	['Table'],
+	['PageBreak'],
 	['Source']
 ];

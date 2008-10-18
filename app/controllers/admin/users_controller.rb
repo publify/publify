@@ -1,13 +1,8 @@
 class Admin::UsersController < Admin::BaseController
 
-  def list
-    index
-    render :action => 'index' if current_user.profile.label == 'admin'
-  end
-
   def index
     if current_user.profile.label == 'admin'
-      @users = User.find :all
+      @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => 10
     else
       redirect_to :action => 'edit'
     end
@@ -18,7 +13,7 @@ class Admin::UsersController < Admin::BaseController
     setup_profiles
     if request.post? and @user.save
       flash[:notice] = _('User was successfully created.')
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 
@@ -40,7 +35,7 @@ class Admin::UsersController < Admin::BaseController
         current_user = @user
       end
       flash[:notice] = _('User was successfully updated.')
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 
@@ -48,7 +43,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     if request.post?
       @user.destroy if User.count > 1
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 

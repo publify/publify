@@ -32,7 +32,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
       post :new, :user => { :login => 'errand', :email => 'corey@test.com',
         :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1 }
-      response.should redirect_to(:action => 'list')
+      response.should redirect_to(:action => 'index')
     end
 
     def test_edit
@@ -44,7 +44,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       post :edit, :id => user_id, :user => { :login => 'errand',
         :email => 'corey@test.com', :password => 'testpass',
         :password_confirmation => 'testpass' }
-      response.should redirect_to(:action => 'list')
+      response.should redirect_to(:action => 'index')
     end
 
     it 'should edit himself if no params[:id]' do
@@ -55,7 +55,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       post :edit, :user => { :login => 'errand',
         :email => 'corey@test.com', :password => 'testpass',
         :password_confirmation => 'testpass' }
-      response.should redirect_to(:action => 'list')
+      response.should redirect_to(:action => 'index')
     end
 
     def test_destroy
@@ -66,7 +66,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
       assert_equal user_count, User.count
       post :destroy, :id => users(:bob).id
-      response.should redirect_to(:action => 'list')
+      response.should redirect_to(:action => 'index')
       assert_equal user_count - 1, User.count
     end
   end
@@ -78,18 +78,18 @@ describe Admin::UsersController, "rough port of the old functional test" do
     end
 
     it "don't see the list of user" do
-      get :list
+      get :index
       response.should redirect_to(:action => 'edit')
     end
 
     it 'become a Typo admin' do
       post :edit, :id => users(:user_publisher).id, :profile_id => profiles(:admin).id
-      response.should redirect_to(:action => 'list')
+      response.should redirect_to(:action => 'index')
     end
     
     it 'try update another user' do
       post :edit, :id => users(:tobi).id, :profile_id => profiles(:contributor).id
-      response.should redirect_to(:action => 'list')
+      response.should redirect_to(:action => 'index')
       u = users(:tobi).reload
       u.profile_id.should == profiles(:admin).id
     end

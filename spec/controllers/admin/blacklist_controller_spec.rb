@@ -16,7 +16,7 @@ describe Admin::BlacklistController do
   end
 
   def test_list
-    get :list
+    get :index
     assert_template 'index'
     assert_template_has 'blacklist_patterns'
   end
@@ -25,7 +25,7 @@ describe Admin::BlacklistController do
     num_blacklist_patterns = BlacklistPattern.count
 
     post :new, 'blacklist_pattern' => { }
-    assert_response :redirect, :action => 'list'
+    assert_response :redirect, :action => 'index'
 
     assert_equal num_blacklist_patterns + 1, BlacklistPattern.count
   end
@@ -39,7 +39,7 @@ describe Admin::BlacklistController do
 
   def test_update
     post :edit, 'id' => blacklist_patterns(:first_blacklist_pattern).id
-    assert_response :redirect, :action => 'list'
+    assert_response :redirect, :action => 'index'
   end
 
   def test_destroy
@@ -50,7 +50,7 @@ describe Admin::BlacklistController do
     assert_response :success
 
     post :destroy, 'id' => pattern_id
-    assert_response :redirect, :action => 'list'
+    assert_response :redirect, :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       blacklist_pattern = BlacklistPattern.find(pattern_id)

@@ -21,11 +21,7 @@ class Admin::FeedbackController < Admin::BaseController
       conditions.last.merge!(:status_confirmed => false)
     end
 
-    @pages, @feedback = paginate(:feedback,
-      :order => 'feedback.created_at desc',
-      :conditions => conditions,
-      :per_page => 40)
-
+    @feedback = Feedback.paginate :page => params[:page], :order => 'feedback.created_at desc', :conditions => conditions, :per_page => 10
   end
 
   def delete

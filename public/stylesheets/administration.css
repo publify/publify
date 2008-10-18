@@ -9,23 +9,19 @@ html, body {
 body {
   margin:0;
   padding:0;
-/*  font: 12px Tahoma, Helvetica, sans-serif; */
-	font: 0.75em "HelveticaNeue", Helvetica, Arial, sans-serif;
-  line-height: 1.8em;
+	font: 62.5% Verdana, Helvetica sans-serif;
+  line-height: 1.6em;
   color: #000;
-  background: #fff;
+  background: #f1ebdc;
 }
 
 /* Top Navbar */
-/* OK */
 #topnav {
   height: 36px;
   margin: 0;
-  background: transparent url("../images/admin/bgoff.png") repeat-x top left;
-  font: 12px Tahoma, Helvetica, sans-serif;
+	background: #282826;
 }
 
-/* OK */
 #topnav ul {
   margin: 0;
   padding: 0;
@@ -33,35 +29,38 @@ body {
   width: auto;
 }
 
-/* OK */
 #topnav ul li {
-  display: block;
   float: left;
   margin: 0;
 }
 
-/* OK */
+
 #topnav  ul li a {
   display: block;
-  float: left;
   padding: 11px 20px 0 20px;
   height: 25px;
   text-decoration: none;
-  color: #333;
+  color: #fafafa;
   text-transform: capitalize;
-  background: transparent url("../images/admin/bgdivider.png") no-repeat top right;
+	border-right: #525251 1px solid;
+	font-size: 1.4em;
+}
+
+#topnav ul li.right {
+	float: right;
+	font-size: 0.7em;
 }
 
 /* OK */
 #topnav  ul li a:hover {
   color: #fff;
-  background: #fff url("../images/admin/bgover.png") repeat-x top left;
+  background: #525251;
 }
 
 /* OK */
-#topnav ul li a.current {
+#topnav ul li.current {
   color: #fff;
-  background: #fff url("../images/admin/bgselected.png") repeat-x top left;
+  background: #525251;
 }
 
 /* OK */
@@ -81,8 +80,9 @@ body {
 
 /* OK */
 #overall {
-  background: #fff;
-  margin: 0 20px;
+  padding: 0 10px 20px 20px;
+	width: 100em;
+	background: #fff;
 }
 
 /* OK */
@@ -127,7 +127,6 @@ color: #aaa;
   background: #525251;
   border-bottom: #000 1px solid;
   padding: 5px 20px;
-  margin-bottom: 15px;
 }
 
 /* OK */
@@ -148,6 +147,7 @@ color: #aaa;
 .tasks li a {
   text-decoration: none;
   color: #fff;
+	font-size: 1.1em;
 }
 
 /* OK */
@@ -160,18 +160,18 @@ color: #aaa;
 .tasks li a.current {
   color: #fff;
   text-decoration: underline;
-  font-weight: bold;
 }
 /* @end */
 
 /* @group Headings */
 
 h2 {
-	font: normal 1.7em Tahoma, Helvetica, sans-serif;
-	letter-spacing: 3px;
-	color: #224272;
-	margin: 20px 0;
-	margin-left: 3px;
+	font-size: 1.8em;
+	font-weight: normal;
+	letter-spacing: 2px;
+	color: #f60;
+	margin: 0 0 20px 3px;
+	padding-top: 20px;
 }
 
 h2 span a {
@@ -244,7 +244,8 @@ th.operation {
   width: 100%;
 	border-spacing: 0;
 	border-bottom: #ddd 1px solid;
-	border-collapse: collapse
+	border-collapse: collapse;
+	background: #fff;
 }
 
 .list table tr.first {
@@ -255,7 +256,7 @@ th.operation {
 .list table th {
   text-align: left;
   padding: 2px 5px;
-  color: #324e79;
+  color: #2c8146;
 	font-size: 12px;
 }
 
@@ -266,6 +267,7 @@ th.operation {
 
 .list table tr td {
   padding: 3px;
+	font-size: 1.1em;
 }
 
 .list table tr td a {
@@ -281,12 +283,9 @@ li.shade {
 }
 
 .paginate {
-  background: url("../images/admin/bc-bg.gif") #e7e7e7 repeat-x top left;
-  padding: 5px 20px;
+  background: #ddd repeat-x top left;
+  padding: 10px;
   margin-bottom: 15px;
-	border-left: #ddd 1px solid;
-	border-right: #ddd 1px solid;
-	border-right: #ddd 1px solid;
 	text-align: center;
 
 }
@@ -345,6 +344,10 @@ td.paginate {
 	padding: 3px;	
 }
 
+#article_form textarea.medium {
+	width: 700px;
+}
+
 #article_form input.large,
 #article_form textarea.large ,
 #article_form select.large,
@@ -397,6 +400,10 @@ legend {
   padding: 0 10px 5px 10px;
   margin-bottom: 10px;
   position: relative;
+}
+
+.set fieldset {
+	margin-top: 10px;
 }
 
 .admin ul {
@@ -995,7 +1002,7 @@ div.auto_complete ul strong.highlight {
 }
 
 tr.menubar {
-	background : #bbb;
+	background : #503a30;
 }
 
 .theme {

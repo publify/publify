@@ -4,47 +4,12 @@ class Admin::SettingsController < Admin::BaseController
     if this_blog.base_url.blank?
       this_blog.base_url = blog_base_url
     end
-    
-    if request.post?
-      self.update
-    end
   end
   
-  def read
-    if request.post?
-      self.update
-    end    
-  end
-  
-  def write
-    if request.post?
-      self.update
-    end    
-  end
-
-  def feedback
-    if request.post?
-      self.update
-    end    
-  end
-
-  def spam
-    if request.post?
-      self.update
-    end    
-  end
-  
-  def podcast
-    if request.post?
-      self.update
-    end    
-  end
-  
-  def import
-    if request.post
-      
-    end
-  end
+  def read; end
+  def write; end
+  def feedback; end
+  def seo; end
   
   def redirect
     flash[:notice] = _("Please review and save the settings before continuing")
@@ -58,7 +23,7 @@ class Admin::SettingsController < Admin::BaseController
         this_blog.save
         flash[:notice] = _('config updated.')
       end
-      redirect_to :action => 'index'
+      redirect_to :action => params[:from]
     end
   end
   

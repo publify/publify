@@ -45,31 +45,26 @@
 AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/base"
 
-  map.project_module :dashboard, "admin/dashboard" do |project|
-    project.menu    _("Dashboard"),               { :action => :index }
-    project.submenu _("Typo documentation"), "http://typosphere.org/main_page"
-  end
-  
   map.project_module :write, nil do |project|
     project.menu    _("Write"),                 { :controller => "admin/content",    :action => "new" }
-    project.submenu _("Write a posts"),         { :controller => "admin/content",    :action => "new" }
-	  project.submenu _("Write a page"),         { :controller => "admin/pages",       :action => "new" }
+    project.submenu _("Article"),         { :controller => "admin/content",    :action => "new" }
+	  project.submenu _("Page"),         { :controller => "admin/pages",       :action => "new" }
   end
 
   map.project_module :content, nil do |project|
-    project.menu    _("Manage"),                { :controller => "admin/content",    :action => "index" }
-    project.submenu _("Manage posts"),          { :controller => "admin/content",    :action => "index" }
-	  project.submenu _("Manage pages"),          { :controller => "admin/pages",       :action => "index" }
-	  project.submenu _("Manage categories"),     { :controller => "admin/categories", :action => "index" }
-	  project.submenu _("Manage uploads"),        { :controller => "admin/resources",  :action => "index" }
-	  project.submenu _("Manage tags"),           { :controller => "admin/tags",       :action => "index" }
+    project.menu    _("Manage"),         { :controller => "admin/content",    :action => "index" }
+    project.submenu _("Articles"),       { :controller => "admin/content",    :action => "index" }
+	  project.submenu _("Pages"),          { :controller => "admin/pages",       :action => "index" }
+	  project.submenu _("Categories"),     { :controller => "admin/categories", :action => "index" }
+	  project.submenu _("Uploads"),        { :controller => "admin/resources",  :action => "index" }
+	  project.submenu _("Tags"),           { :controller => "admin/tags",       :action => "index" }
   end
 
   map.project_module :feedback, nil do |project|
-    project.menu    _("Feedback"),              { :controller => "admin/feedback",  :confirmed => "f" }
-    project.submenu _("Unapproved comments"),   { :controller => "admin/feedback",  :confirmed     => "f" }    
+    project.menu    _("Comments"),              { :controller => "admin/feedback" }
+    project.submenu _("All comments"),          { :controller => "admin/feedback" }    
+    project.submenu _("Unapproved comments"),   { :controller => "admin/feedback",  :confirmed  => "f" }    
     project.submenu _("Limit to spam"),         { :controller => "admin/feedback",  :published  => "f" }
-    project.submenu _("Blacklist"),             { :controller => "admin/blacklist", :action => "index" }
     project.submenu _(""),                      { :controller => "admin/comments", :action => "show" }
     project.submenu _(""),                      { :controller => "admin/comments", :action => "new" }
     project.submenu _(""),                      { :controller => "admin/comments", :action => "edit" }
@@ -80,14 +75,26 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu _(""),             { :controller => "admin/trackbacks", :action => "destroy" }
   end
 
-  map.project_module :themes, "admin/themes" do |project|
-    project.menu    _("Themes"),                { :action     => "index"  }
-    project.submenu _("Choose theme"),          { :action     => "index"  }
-    project.submenu _("Theme editor"),          { :action     => "editor" }
+  map.project_module :themes, nil do |project|
+    project.menu    _("Design"),                { :controller => "admin/themes", :action => "index"  }
+    project.submenu _("Theme editor"),          { :controller => "admin/themes", :action => "editor" }
+    project.submenu _("Sidebar"),               { :controller => "admin/sidebar", :action => "index" }
+  end
+
+  map.project_module :dashboard, "admin/dashboard" do |project|
+    project.menu    _("Dashboard"),               { :action => :index }
+    project.submenu _("Typo documentation"), "http://typosphere.org/main_page"
   end
   
-  map.project_module :sidebar, "admin/sidebar" do |project|
-    project.menu    _("Sidebar"),               { :action     => "index" }
+  map.project_module :settings, nil do |project|
+    project.menu    _("Settings"),              { :controller => "admin/settings", :action => "index" }
+    project.submenu _("General settings"),      { :controller => "admin/settings", :action => "index" }
+    project.submenu _("Write"),                 { :controller => "admin/settings", :action => "write" }
+    project.submenu _("Read"),                  { :controller => "admin/settings", :action => "read" }
+    project.submenu _("Feedback"),              { :controller => "admin/settings", :action => "feedback" }			
+    project.submenu _("SEO"),                   { :controller => "admin/settings", :action => "seo" }
+    project.submenu _("Text Filters"),          { :controller => "admin/textfilters", :action => "index" }
+    project.submenu _("Blacklist"),             { :controller => "admin/blacklist", :action => "index" }
   end  
   
   map.project_module :users, "admin/users" do |project|
@@ -95,16 +102,4 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu _("Users"),                 { :action => "index" }
   end  
   
-  map.project_module :settings, nil do |project|
-    project.menu    _("Settings"),              { :controller => "admin/settings", :action => "index" }
-    project.submenu _("General settings"),      { :controller => "admin/settings", :action => "index" }
-    project.submenu _("Read"),                  { :controller => "admin/settings", :action => "read" }
-    project.submenu _("Write"),                 { :controller => "admin/settings", :action => "write" }
-    project.submenu _("Feedback"),              { :controller => "admin/settings", :action => "feedback" }			
-    project.submenu _("Spam"),                  { :controller => "admin/settings", :action => "spam" }
-    project.submenu _("Podcasts"),              { :controller => "admin/settings", :action => "podcast" }
-    project.submenu _("Text Filters"),          { :controller => "admin/textfilters", :action => "index" }
-    project.submenu _("Empty Fragment Cache"),  { :controller => "admin/cache",    :action => "sweep" }
-    project.submenu _("Rebuild cached HTML"),   { :controller => "admin/cache",    :action => "sweep_html" }
-  end  
 end

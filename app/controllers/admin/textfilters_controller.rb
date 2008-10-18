@@ -1,9 +1,4 @@
 class Admin::TextfiltersController < Admin::BaseController
-  def list
-    index
-    render :action => 'index'
-  end
-
   def index
     @textfilters = TextFilter.find(:all, :order => "id DESC")
     @textfilter_map = TextFilter.filters_map
@@ -67,7 +62,7 @@ class Admin::TextfiltersController < Admin::BaseController
     @textfilter = TextFilter.find(params[:id])
     if request.post?
       @textfilter.destroy
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 

@@ -1,4 +1,4 @@
-  <% @page_heading = _('Manage posts') %>
+  <% @page_heading = _('Manage articles') %>
   <% subtabs_for(:content) %>
 
   <%= render :partial => "drafts" %>
@@ -15,19 +15,15 @@
     <tr class="first">
       <th><%= _("Title") %></th>
       <th><%= _("Categories") %></th>
-      <th><%= _("Feedback")%></th>
       <th><%= _("Date") %></th>
       <th><%= _("Author")%></th>
       <th><%= _("Status") %></th>
-      <th><%= _("Preview")%></th>
-      <th><%= _("Edit")%></th>
-      <th><%= _("Delete")%></th>
+      <th><%= _("Feedback")%></th>
     </tr>
     <tr class="menubar">
       <td>&nbsp;</td>
        <td><%= collection_select_with_current('search', 'category', @categories, "id", "name", @search[:category].to_i, true)
       %></td>
-      <td></td>
       <td>
         <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
       </td>
@@ -39,7 +35,7 @@
           <option value="1">Published</option>
         </select>
       </td>
-      <td colspan="3"><input type="submit" value="Filter" />
+      <td><input type="submit" value="Filter" />
     </tr>
     <tbody id="articleList">
       <%= render :partial => 'article_list', :object => @articles -%>

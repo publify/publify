@@ -1,17 +1,17 @@
-  <% @page_heading = _('Users') + ' <span> &raquo; '+ link_to(_('add new'), :action=>'new') +'</span>' %>
-  <% subtabs_for(:users) %>
+<% @page_heading = _('Users') + ' <span> &raquo; '+ link_to(_('add new'), :action=>'new') +'</span>' %>
+<% subtabs_for(:users) %>
 
 <div class="list">
   <table>
     <tr class="first">
-	  	<th class="first"><%= _("Name")%></th>
+      <th class="first"><%= _("Name")%></th>
       <th><%= _("Username")%></th>
       <th><%= _("Profile")%></th>
       <th><%= _("Articles")%></th>
       <th><%= _("Comments")%></th>
-	  	<th><%= _("View") %></th>
-			<th><%= _("Edit") %></th>
-			<th class="last"><%= _("Delete") %></th>
+      <th><%= _("View") %></th>
+      <th><%= _("Edit") %></th>
+      <th class="last"><%= _("Delete") %></th>
     </tr>
     <% for user in @users -%>
     <tr <%= alternate_class %>>
@@ -20,10 +20,11 @@
       <td class="field"><%= _(user.profile.nicename) %></td>
       <td class="field"><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
       <td class="field"><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
-	  <td class="operation"><%= link_to image_tag('admin/show.png'), {:controller => 'content', :action => 'list', "search[user_id]" => user.id} %></td>
+      <td class="operation"><%= link_to image_tag('admin/show.png'), {:controller => 'content', :action => 'list', "search[user_id]" => user.id} %></td>
       <td class="operation"><%= link_to_edit user %></td>
       <td class="operation last"><%= link_to_destroy user %></td>    
     </tr>  
     <% end -%>
+    <tr><td colspan="8" class="paginate"><%= will_paginate @users %></td></tr>
   </table>
 </div>

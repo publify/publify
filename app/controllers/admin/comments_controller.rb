@@ -2,11 +2,6 @@ class Admin::CommentsController < Admin::BaseController
 
   before_filter :get_article
 
-  def list
-    index
-    render :action => 'index'
-  end
-
   def index
     @comments = @article.comments.find(:all, :order => "id ASC")
   end
@@ -22,7 +17,7 @@ class Admin::CommentsController < Admin::BaseController
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham!
       flash[:notice] = _('Comment was successfully created.')
-      redirect_to :controller => '/admin/comments', :article_id => @article.id, :action => 'list'
+      redirect_to :controller => '/admin/comments', :article_id => @article.id, :action => 'index'
     end
   end
 
@@ -40,7 +35,7 @@ class Admin::CommentsController < Admin::BaseController
     @comment = @article.comments.find(params[:id])
     if request.post?
       @comment.destroy
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
   end
 

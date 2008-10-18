@@ -54,7 +54,7 @@ module Admin::BaseHelper
     content_tag :li, link_to(label, options, { "class"=> style })
   end
 
-  def cancel(url = {:action => 'list'})
+  def cancel(url = {:action => 'index'})
     link_to _("Cancel"), url
   end
 
@@ -95,15 +95,10 @@ module Admin::BaseHelper
   end
 
   def link_to_destroy_with_profiles(record, controller = @controller.controller_name)
-    if current_user.profile.label == 'admin'
-      link_to(image_tag('admin/delete.png', :alt => _("delete"), :title => _("Delete content")), 
-      { :controller => controller, :action => 'destroy', :id => record.id, :search => params[:search], 
-        :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post)
-    else
-      link_to(image_tag('admin/delete.png', :alt => _("delete"), :title => _("Delete content")), 
-      { :controller => controller, :action => 'destroy', :id => record.id, :search => params[:search], 
-        :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post) if current_user.id == record.user_id
-    end
+    if current_user.profile.label == 'admin' || current_user.id == record.user_id
+      link_to(_("delete"), 
+        { :controller => controller, :action => 'destroy', :id => record.id }, :confirm => _("Are you sure?"), :method => :post, :title => _("Delete content"))
+      end
   end
 
   def text_filter_options
@@ -173,39 +168,23 @@ module Admin::BaseHelper
   end
 
   def class_feedback
-    if controller.controller_name  =~ /feedback/
-    "current"
-    end
+    "current" if controller.controller_name  =~ /feedback/
   end
 
   def class_themes
-    if controller.controller_name  =~ /themes/
-    "current"
-    end
-  end
-
-  def class_sidebar
-    if controller.controller_name  =~ /sidebar/
-    "current"
-    end
+    "current" if controller.controller_name  =~ /themes|sidebar/
   end
   
   def class_users
-    if controller.controller_name  =~ /users/
-    "current"
-    end
+    controller.controller_name  =~ /users/ ? "current right" : "right"
   end
 
   def class_dashboard
-    if controller.controller_name  =~ /dashboard/
-    "current"
-    end
+    controller.controller_name  =~ /dashboard/ ? "current right" : "right"
   end    
 
   def class_settings
-    if controller.controller_name  =~ /settings|textfilter/
-    "current"
-    end
+    controller.controller_name  =~ /settings|textfilter/ ? "current right" : "right"
   end
 
   def t_textarea(object_name, method, options)
