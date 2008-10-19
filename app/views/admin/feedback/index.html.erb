@@ -16,8 +16,8 @@
   <%= hidden_field_tag "search", params[:search]%>
   <%= hidden_field_tag "page", params[:page]%>
   <table>
-    <tr class="first">
-      <th class="first"><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+    <tr>
+      <th><input class="feedback_check" type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
       <th><%= _("Status")%></th>
       <th><%= _("Article")%></th>
       <th><%= _("Author")%></th>
@@ -25,7 +25,7 @@
       <th><%= _("IP")%></th>
       <th><%= _("View")%></th>
       <th><%= _("Edit")%></th>
-      <th class="last"><%= _("Delete") %></th>
+      <th><%= _("Delete") %></th>
     </tr>
     <%= render :partial => 'item', :collection => @feedback %>
     <tr><td class="paginate" colspan="9"><%= will_paginate @feedback %></td></tr>

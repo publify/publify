@@ -25,13 +25,13 @@
 <fieldset class="list set">
 	<legend><%= _("Post-processing filters")%></legend>
 <table style="margin-top: 15px">
-	<th colspan="2" class="first"><%= _("Name") %></th>
-	<th class="last">Description</th>
+	<th colspan="2"><%= _("Name") %></th>
+	<th>Description</th>
 <% @postprocess_options.sort_by {|f| f[1]}.each do |filter| %>
   <tr <%= alternate_class %>>
-  <td class="first"><input name="filter[<%= filter[0] %>]" type="checkbox" value="1" <% if (filter[3]) %>checked="true"<% end %>/></td>
+  <td><input name="filter[<%= filter[0] %>]" type="checkbox" value="1" <% if (filter[3]) %>checked="true"<% end %>/></td>
   <td><label title="<%=h filter[2] %>"><%= filter[1]%></label></td>
-  <td class="last"><em><%= filter[2]%></em></td>
+  <td><em><%= filter[2]%></em></td>
   </tr>
 <% end -%>
 </table>
