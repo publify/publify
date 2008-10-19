@@ -30,6 +30,8 @@ class GroupingController < ContentController
   def index
     self.groupings = grouping_class.find_all_with_article_counters(1000)
     @page_title = "#{self.class.to_s.sub(/Controller$/,'')}"
+    @keywords = ""
+    @description = "#{_(self.class.to_s.sub(/Controller$/,'') + ' for')} #{this_blog.blog_name}"
     render_index(groupings)
   end
 
@@ -37,6 +39,8 @@ class GroupingController < ContentController
     grouping = grouping_class.find_by_permalink(params[:id])
     @page_title = "#{self.class.to_s.sub(/Controller$/,'').singularize} #{params[:id]}, everything about #{params[:id]}"
     @page_title << " page " << params[:page] if params[:page]
+    @description = (grouping.description.blank?) ? "" : grouping.description
+    @keywords = (grouping.keywords.blank?) ? "" : grouping.keywords
     render_articles(grouping.published_articles)
   end
 

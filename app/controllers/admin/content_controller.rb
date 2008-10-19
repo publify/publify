@@ -43,7 +43,7 @@ class Admin::ContentController < Admin::BaseController
     now = Time.now
     build_filter_params
     setup_categories
-    @articles = Article.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 10
+    @articles = Article.paginate :page => params[:page], :conditions => @conditions, :order => 'created_at DESC', :per_page => 10
     
     if request.xhr?
       render :partial => 'article_list', :object => @articles

@@ -44,18 +44,13 @@ module Admin::BaseHelper
       end
   end
 
-  def link_to_edit(record, controller = @controller.controller_name)
-    link_to image_tag('admin/edit.png', :alt => _("edit"), :title => _("Edit content")),
-      :controller => controller, :action => 'edit', :id => record.id
+  def link_to_edit(label, record, controller = @controller.controller_name)
+    link_to label, :controller => controller, :action => 'edit', :id => record.id
   end
   
-  def link_to_edit_with_profiles(record, controller = @controller.controller_name)
-    if current_user.profile.label == 'admin'
-    link_to image_tag('admin/edit.png', :alt => _("edit"), :title => _("Edit content")),
-      :controller => controller, :action => 'edit', :id => record.id
-    else
-      link_to(image_tag('admin/edit.png', :alt => _("edit"), :title => _("Edit content")),
-        :controller => controller, :action => 'edit', :id => record.id) if current_user.id == record.user_id
+  def link_to_edit_with_profiles(label, record, controller = @controller.controller_name)
+    if current_user.profile.label == 'admin' || current_user.id == record.user_id
+      link_to label, :controller => controller, :action => 'edit', :id => record.id 
     end
   end
 
@@ -177,6 +172,10 @@ module Admin::BaseHelper
     result << save( _("Save") + " &raquo")
     result << '</p>'
     return result
+  end
+  
+  def link_to_published(item)
+    item.published? ? link_to_permalink(item, _("published")) : _("unpublished")
   end
   
 end

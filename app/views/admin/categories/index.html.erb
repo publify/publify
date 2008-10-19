@@ -1,10 +1,6 @@
-  <% @page_heading = _('Categories') + ' <span>&raquo; ' + task_quickpost(_('add new')) + '</span>' %>
+  <% @page_heading = _('Categories') +  "<span>&raquo; #{link_to(_('add new'), :controller => 'categories', :action => 'new')}</span>" %>
   <% subtabs_for(:content) %>
 
-  <div id="quick-post" style="display:none;position:absolute;">
-    <%= render :partial => "quick_post" %>
-  </div>
-  
   <div id="category_container" class="list">	
     <%= render :partial => 'categories' %>  
   </div>                      

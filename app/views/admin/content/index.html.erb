@@ -1,17 +1,17 @@
-  <% @page_heading = _('Manage articles') %>
-  <% subtabs_for(:content) %>
+<% @page_heading = _('Manage articles') %>
+<% subtabs_for(:content) %>
 
-  <%= render :partial => "drafts" %>
+<%= render :partial => "drafts" %>
 
-  <div class="list" id="articles">	
-    <% form_remote_tag  :url      => {:action => 'index'},
-                        :method   => :get,
-                        :name     => 'article',
-                        :update   => {:success => 'articleList'},
-                        :loading  => "loading()" \
-    do %>
+<div class="list" id="articles">	
+  <% form_remote_tag  :url      => {:action => 'index'},
+  :method   => :get,
+  :name     => 'article',
+  :update   => {:success => 'articleList'},
+  :loading  => "loading()" \
+  do %>
 
-    <table>
+  <table>
     <tr class="first">
       <th><%= _("Title") %></th>
       <th><%= _("Categories") %></th>
@@ -22,7 +22,7 @@
     </tr>
     <tr class="menubar">
       <td>&nbsp;</td>
-       <td><%= collection_select_with_current('search', 'category', @categories, "id", "name", @search[:category].to_i, true)
+      <td><%= collection_select_with_current('search', 'category', @categories, "id", "name", @search[:category].to_i, true)
       %></td>
       <td>
         <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
@@ -36,9 +36,11 @@
         </select>
       </td>
       <td><input type="submit" value="Filter" />
-    </tr>
-    <tbody id="articleList">
-      <%= render :partial => 'article_list', :object => @articles -%>
+      </tr>
+      <tbody id="articleList">
+        <%= render :partial => 'article_list', :object => @articles -%>
+      </tbody>
+    </table>
+
     <%end%>
   </div>                      
-  

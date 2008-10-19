@@ -24,7 +24,7 @@ class Admin::PagesController < Admin::BaseController
       @search = { :user_id => nil, :published_at => nil, :status => nil }
     end
     
-    @pages = Page.find(:all, :conditions => conditions)
+    @pages = Page.paginate :page => params[:page], :conditions => conditions, :order => 'title ASC', :per_page => 10
     @page = Page.new(params[:page])
     @page.text_filter ||= this_blog.text_filter
   end

@@ -71,6 +71,10 @@ class Blog < CachedModel
   setting :cache_option,               :string, 'caches_page'
   setting :allow_signup,               :integer, 0
 
+  # SEO
+  setting :meta_description,           :string, ''
+  setting :meta_keywords,              :string, ''
+  
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
 

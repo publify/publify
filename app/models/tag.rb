@@ -1,7 +1,9 @@
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :articles, :order => 'created_at DESC'
   validates_uniqueness_of :name
- 
+  attr_reader :description
+  attr_reader :keywords
+  
   def self.get(name)
     tagname = name.tr(' ', '').downcase
     tag = find_by_name_or_display_name(tagname, name)

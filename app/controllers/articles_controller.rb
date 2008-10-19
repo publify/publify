@@ -18,9 +18,10 @@ class ArticlesController < ContentController
 
   def index
     @articles = Article.find_all_by_date(*params.values_at(:year, :month, :day))
-
     @page_title = index_title
-
+    @description = (this_blog.meta_description.empty?) ? "#{this_blog.blog_name} #{this_blog.blog_subtitle}" : this_blog.meta_description
+    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.keywords
+    
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
@@ -37,6 +38,8 @@ class ArticlesController < ContentController
     @article      = this_blog.requested_article(params)
     @comment      = Comment.new
     @page_title   = @article.title
+    article_meta
+    
     auto_discovery_feed
     respond_to do |format|
       format.html { render :action => 'read' }
@@ -57,7 +60,9 @@ class ArticlesController < ContentController
 
   def archives
     @articles = Article.find_published
-    @page_title = "Archives"
+    @page_title = "#{_('Archives for')} #{this_blog.blog_name}"
+    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.keywords
+    @description = "#{_('Archives for')} #{this_blog.blog_name} - #{this_blog.blog_subtitle}"
   end
 
   def comment_preview
@@ -113,6 +118,13 @@ class ArticlesController < ContentController
     render(:text => (object.errors.full_messages.join(", ") rescue object.to_s), :status => status)
   end
 
+  def article_meta
+    @keywords = ""
+    @keywords << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
+    @keywords << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?  
+    @description = @article.body.strip_html.slice(0, 200)
+  end
+  
   def set_headers
     headers["Content-Type"] = "text/html; charset=utf-8"
   end

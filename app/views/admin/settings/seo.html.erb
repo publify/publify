@@ -19,6 +19,14 @@
           <label for="blog_title_prefix_0"><%= _("Don't show blog name in page title")%></label>
         </span>
       </li>
+      <li>
+          <label class="float" for="meta_description"><%= _("Meta description")%></label>
+          <textarea name="setting[meta_description]" id="meta_description" rows="5" cols="50"><%=h this_blog.meta_description %></textarea>
+      </li>
+      <li>
+          <label class="float" for="meta_keywords"><%= _("Meta keywords")%></label>
+          <input type="text" name="setting[meta_keywords]" id="meta_keywords" size="25" value="<%=h this_blog.meta_keywords %>" />
+      </li>
     </ul>
   </fieldset>
   <%= hidden_field_tag 'from', 'index' %>  

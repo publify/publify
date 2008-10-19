@@ -1,28 +1,25 @@
 class Admin::CategoriesController < Admin::BaseController
 
   def index
-    @categories = Category.find(:all, :order => :position)
+    @categories = Category.find(:all, :order => :position, :conditions => { :parent_id => nil })
   end
 
   def new
     @category = Category.new(params[:category])
-
-    if request.post? and @category.save
-      flash[:notice] = _('Category was successfully created.')
-    else
-      flash[:error] = _('Category could not be created.')
+    if request.post?
+      save_category
+      return
     end
-
-    redirect_to :action => 'index'
   end
 
   def edit
     @category = Category.find(params[:id])
     @category.attributes = params[:category]
-    if request.post? and @category.save
-      flash[:notice] = _('Category was successfully updated.')
-      redirect_to :action => 'index'
+    if request.post?
+      save_category
+      return
     end
+    render :action => 'new'
   end
 
   def destroy
@@ -52,4 +49,16 @@ class Admin::CategoriesController < Admin::BaseController
     @categories = Category.find(:all, :order => :position)
     render :layout => false
   end
+  
+  private
+  
+  def save_category
+    if @category.save!
+      flash[:notice] = _('Category was successfully saved.') 
+    else
+      flash[:error] = _('Category could not be saved.')
+    end
+      redirect_to :action => 'index'
+  end
+  
 end

@@ -182,6 +182,8 @@ module ApplicationHelper
     <<-HTML
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.empty? }
+  #{ meta_tag 'description', @description unless @description.empty? }
+  #{ meta_tag 'keywords', @keywords unless @keywords.empty? }
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ @auto_discovery_url_atom }" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ @auto_discovery_url_rss }" />

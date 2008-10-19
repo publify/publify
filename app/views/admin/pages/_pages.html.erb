@@ -2,16 +2,13 @@
 <table cellspacing="1" cellpadding="0">
   <tr class="first">
     <th><%= _("Title") %></th>
-    <th><%= _("Permalink")%></th>
     <th><%= _("Date") %></th>
     <th><%= _("Author")%></th>
     <th><%= _("Status") %></th>
-    <th><%= _("Preview")%></th>
-    <th><%= _("Edit")%></th>
-    <th><%= _("Delete")%></th>
+    <th><%= _("Permalink")%></th>
   </tr>
   <tr class="menubar">
-    <td colspan=2>&nbsp;</td>
+    <td>&nbsp;</td>
     <td>
     <%= collection_select_with_current(:search, :published_at, Page.find_by_published_at, "publication", "publication", @search[:published_at].to_s, true) %>      
     </td>
@@ -23,27 +20,21 @@
         <option value="1"><%= _("Published") %></option>
       </select>
     </td>
-    <td colspan="3"><input type="submit" value="<%= _("Filter") %>" />
+    <td><input type="submit" value="<%= _("Filter") %>" />
   </tr>
-  <%= render_void_table(@pages.size, 8)  %>
+  <%= render_void_table(@pages.size, 5)  %>
 
   <% for page in @pages %>
   <tr <%= alternate_class %>>
-    <td><%= link_to_permalink(page, page.title) %></td>
-    <td><%= page.name%></td>
-    <td><%= page.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+    <td><%= link_to_edit_with_profiles page.title, page %></td>
+    <td><%= page.created_at.strftime('%d/%m/%Y') %></td>
     <td><%= author_link(page) %></td>
-    <td class="operation">
-    <% if page.published? %>
-    <%= image_tag('admin/checked.png', :alt => "online", :title => _("Online")) %>
-    <% else %>
-    <%= image_tag('admin/cancel.png', :alt => "offline", :title => _("Offline"))  %>
-    <% end %>
-    </td>
-    <td class='operation'><%= link_to_show page %></td>
-    <td class='operation'><%= link_to_edit_with_profiles page %></td>
-    <td class="operation"><%= link_to_destroy_with_profiles page %></td>
+    <td><%= link_to_published page %></td>
+    <td><%= page.name%></td>
   </tr>
   <% end %>
+  <tr>
+    <td colspan="5"><%= will_paginate @pages %></td>
+  </tr>
   </table>
 <% end %>

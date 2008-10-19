@@ -1,12 +1,12 @@
 <%= render_void_table(@articles.size, 7)  %>
 <% for article in @articles %>
 <tr <%= alternate_class %>>
-  <td> <%= link_to_permalink article, h(article.title) %></td>
+  <td> <%= link_to h(article.title), :action => 'edit', :id => article.id %></td>
   <td><%= article.categories.map { |c| link_to h(c.name), {:controller => 'content', :action => 'index', "search[category]" => c.id}}.join(", ") %></td>
   <td><%= article.published_at.strftime("%d/%m/%Y") %></td>
   <td><%= author_link(article)%></td>
-  <td><%= (article.published?) ? _("published") : _("unpublished") %></td>
-  <td><%= link_to("#{article.comments.size.to_s} " + _(pluralize(article.comments.size, 'comment', 'comment', 'comments')), :controller => '/admin/comments', :article_id => article.id, :action => 'index') %></td>
+  <td><%= link_to_published article %></td>
+  <td class="operation"><%= (article.allow_comments?) ? link_to(article.comments.size.to_s, :controller => '/admin/comments', :article_id => article.id, :action => 'index') : '-' %></td>
 </tr>
 <% end %>
 <tr>
@@ -14,6 +14,3 @@
     <%= will_paginate @articles -%>
   </td>
 </tr>
-</tbody>
-</table>
-
