@@ -63,7 +63,7 @@ class Admin::ContentController < Admin::BaseController
   
   def edit
     @drafts = Article.find(:all, :conditions => "state='draft'")
-    article = Article.find(params[:id])
+    @article = Article.find(params[:id])
     
     if current_user.profile.label != 'admin' and article.user_id != current_user.id 
       redirect_to :action => 'index'
@@ -187,6 +187,7 @@ class Admin::ContentController < Admin::BaseController
         set_article_categories
         set_the_flash
         redirect_to :action => 'index'
+        return
       end
     else
       get_extended
