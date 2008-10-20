@@ -16,12 +16,6 @@ describe Admin::CategoriesController do
     get :index
     assert_template 'index'
     assert_template_has 'categories'
-  end
-
-  def test_list
-    get :list
-    assert_template 'index'
-    assert_template_has 'categories'
     assert_tag :tag => "div",
       :attributes => { :id => "category_container" }
   end
@@ -37,7 +31,7 @@ describe Admin::CategoriesController do
 
   def test_edit
     get :edit, :id => categories(:software).id
-    assert_template 'edit'
+    assert_template 'new'
     assert_template_has 'category'
     assert_valid assigns(:category)
   end

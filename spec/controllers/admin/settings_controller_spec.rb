@@ -30,16 +30,11 @@ describe Admin::SettingsController do
     assert_template 'feedback'
   end
   
-  def test_spam
-    get :spam
-    assert_template 'spam'
+  def test_seo
+    get :seo
+    assert_template 'seo'
   end
   
-  def test_podcasts
-    get :podcast
-    assert_template 'podcast'
-  end
-
   def test_redirect
     get :redirect
     assert_response :redirect, :controller => 'admin/settings', :action => 'index'

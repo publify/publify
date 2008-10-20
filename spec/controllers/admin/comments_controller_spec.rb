@@ -15,11 +15,6 @@ describe Admin::CommentsController do
   def test_index
     get :index, :article_id => @art_id
     assert_template 'index'
-  end
-
-  def test_list
-    get :list, :article_id => @art_id
-    assert_template 'index'
     assert_template_has 'comments'
   end
 
@@ -65,7 +60,7 @@ describe Admin::CommentsController do
     assert_response :success
 
     post :destroy, :id => feedback(:spam_comment).id, :article_id => @art_id
-    assert_response :redirect, :action => 'list'
+    assert_response :redirect, :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       comment = Comment.find(feedback(:spam_comment).id)

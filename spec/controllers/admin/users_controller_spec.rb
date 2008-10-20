@@ -20,12 +20,6 @@ describe Admin::UsersController, "rough port of the old functional test" do
       assert_template_has 'users'
     end
 
-    def test_list
-      get :list
-      assert_template 'index'
-      assert_template_has 'users'
-    end
-
     def test_new
       get :new
       assert_template 'new'

@@ -5,8 +5,8 @@ describe 'Given a new test theme' do
     @theme = Theme.new("test", "test")
   end
 
-  it 'layout path should be "../../themes/test/layouts/default"'  do
-    @theme.layout.should == "../../themes/test/layouts/default"
+  it 'layout path should be "../../themes/test/layouts/default.html.erb"'  do
+    @theme.layout.should == "../../themes/test/layouts/default.html.erb"
   end
 end
 

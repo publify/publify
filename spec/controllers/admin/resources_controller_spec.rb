@@ -10,8 +10,8 @@ describe Admin::ResourcesController do
     @request.session = { :user => users(:tobi).id }
   end
 
-  def test_list
-    get :list
+  def test_index
+    get :index
     assert_response :success
     assert_template 'index'
     assert_template_has 'resources'
@@ -29,7 +29,7 @@ describe Admin::ResourcesController do
     assert_not_nil assigns(:file)
 
     post :destroy, :id => res_id
-    response.should redirect_to(:action => 'list')
+    response.should redirect_to(:action => 'index')
   end
 
   def test_new

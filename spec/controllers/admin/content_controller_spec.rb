@@ -28,12 +28,6 @@ describe Admin::ContentController do
     response.should be_success
   end
 
-  def test_list
-    get :list
-    assert_template 'index'
-    assert_template_has 'articles'
-  end
-
   def test_show
     get :show, 'id' => contents(:article1).id
     assert_template 'show'
@@ -131,7 +125,7 @@ describe Admin::ContentController do
   def test_edit
     get :edit, 'id' => contents(:article1).id
     assert_equal assigns(:selected), contents(:article1).categories.collect {|c| c.id}
-    assert_template 'edit'
+    assert_template 'new'
     assert_template_has 'article'
     assert_valid assigns(:article)
   end
