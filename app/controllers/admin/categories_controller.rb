@@ -4,23 +4,8 @@ class Admin::CategoriesController < Admin::BaseController
     @categories = Category.find(:all, :order => :position, :conditions => { :parent_id => nil })
   end
 
-  def new
-    @category = Category.new(params[:category])
-    if request.post?
-      save_category
-      return
-    end
-  end
-
-  def edit
-    @category = Category.find(params[:id])
-    @category.attributes = params[:category]
-    if request.post?
-      save_category
-      return
-    end
-    render :action => 'new'
-  end
+  def new; new_or_edit ; end
+  def edit; new_or_edit;  end
 
   def destroy
     @category = Category.find(params[:id])
@@ -51,6 +36,21 @@ class Admin::CategoriesController < Admin::BaseController
   end
   
   private
+  
+  def new_or_edit
+    @category = case params[:id]
+    when nil
+      Category.new
+    else
+      Category.find(params[:id])
+    end
+    @category.attributes = params[:category]
+    if request.post?
+      save_category
+      return
+    end    
+    render :action => 'new'
+  end
   
   def save_category
     if @category.save!
