@@ -21,12 +21,10 @@ describe Admin::CategoriesController do
   end
 
   def test_create
-    num_categories = Category.count
-
-    post :new, 'category' => { :name => "test category" }
-    assert_response :redirect, :action => 'index'
-
-    assert_equal num_categories + 1, Category.count
+    assert_difference 'Category.count' do
+      post :edit, 'category' => { :name => "test category" }
+      assert_response :redirect, :action => 'index'
+    end
   end
 
   def test_edit
@@ -77,7 +75,7 @@ describe Admin::CategoriesController do
     assert_tag :tag => "table",
       :children => { :count => Category.count + 1,
         :only => { :tag => "tr",
-          :children => { :count => 5,
+          :children => { :count => 2,
             :only => { :tag => /t[dh]/ } } } }
   end
 
