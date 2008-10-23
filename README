@@ -28,6 +28,20 @@ Installation
 
 See doc/Installer.text and doc/typo-5.0.3-release-notes.txt.
 
+Installation by git repository
+==============================
+
+Typo use git in developpement. If you want clone the lastest version, you need
+clone the git repository
+
+    git-clone git://github.com/fdv/typo
+
+Several third-part is link in git repository by submodule. So you need update it.
+
+    git-submodule init
+    git-submodule update
+
+
 Usage
 ======
 
