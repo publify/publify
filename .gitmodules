@@ -1,3 +1,6 @@
 [submodule "vendor/rails"]
 	path = vendor/rails
 	url = git://github.com/rails/rails
+[submodule "vendor/actionwebservice"]
+	path = vendor/actionwebservice
+	url = git://github.com/datanoise/actionwebservice.git
