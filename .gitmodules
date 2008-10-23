@@ -4,3 +4,9 @@
 [submodule "vendor/actionwebservice"]
 	path = vendor/actionwebservice
 	url = git://github.com/datanoise/actionwebservice.git
+[submodule "vendor/plugins/rspec"]
+	path = vendor/plugins/rspec
+	url = git://github.com/dchelimsky/rspec.git
+[submodule "vendor/plugins/rspec-rails"]
+	path = vendor/plugins/rspec-rails
+	url = git://github.com/dchelimsky/rspec-rails.git
