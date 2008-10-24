@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
     vendor/redcloth/lib
     vendor/bluecloth/lib
     vendor/flickr
-    vendor/syntax/lib
+    vendor/gems/coderay
     vendor/sparklines/lib
     vendor/uuidtools/lib
     vendor/mocha/lib

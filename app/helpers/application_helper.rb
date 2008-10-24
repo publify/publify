@@ -187,7 +187,7 @@ module ApplicationHelper
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ @auto_discovery_url_atom }" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ @auto_discovery_url_rss }" />
-  #{ stylesheet_link_tag 'typo_code.css', :media => 'all' }
+  #{ stylesheet_link_tag 'coderay.css', :media => 'all' }
   #{ stylesheet_link_tag 'user-styles.css', :media => 'all' }
   #{ javascript_include_tag "lang/" + Localization.lang.to_s }
   #{ javascript_include_tag "cookies" }

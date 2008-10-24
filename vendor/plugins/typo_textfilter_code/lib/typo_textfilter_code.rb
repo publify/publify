@@ -1,10 +1,18 @@
-require 'syntax/convertors/html'
+require 'coderay'
 
 class Typo
   class Textfilter
     class Code < TextFilterPlugin::MacroPre
       plugin_display_name "Code"
-      plugin_description "Apply syntax highlighting to a code block"
+      plugin_description "Apply coderay highlighting to a code block"
+
+      DEFAULT_OPTIONS = {:css => :class, 
+        :wrap => :div, 
+        :line_numbers => nil, 
+        :tab_width => 2, 
+        :bold_every => 5, 
+        :hint => false, 
+        :line_number_start => 1}
 
       def self.help_text
         %{
@@ -18,7 +26,7 @@ You can use `<typo:code>` to include syntax-highlighted code blocks.  Example:
     end
     </typo:code>
 
-This uses the Ruby [Syntax](http://syntax.rubyforge.org/) module.  Options:
+This uses the Ruby [Syntax](http://coderay.rubychan.de) module.  Options:
 
 * **lang**.  Sets the programming language.  Currently supported languages are
 `ruby`, `yaml`, and `xml`.  Other languages will format correctly but will not
@@ -29,25 +37,19 @@ have syntax highlighting.
 }
       end
 
-      def self.macrofilter(blog,content,attrib,params,text="")
-        lang       = attrib['lang'] || 'default'
+      def self.macrofilter(blog, content, attrib, params, text="")
+        lang       = attrib['lang']
         title      = attrib['title']
         cssclass   = attrib['class']
-        linenumber = attrib['linenumber']
+        options = DEFAULT_OPTIONS
+        if attrib['linenumber']
+          options[:line_numbers] = :table
+        end
 
         text = text.to_s.gsub(/\r/,'').gsub(/\A\n/,'').chomp
 
-        convertor = Syntax::Convertors::HTML.for_syntax lang
-        text = convertor.convert(text)
-        text.gsub!(/<pre>/,"<pre><code class=\"typocode_#{lang} #{cssclass}\"><notextile>")
-        text.gsub!(/<\/pre>/,"</notextile></code></pre>")
-
-        if(linenumber)
-          lines = text.split(/\n/).size
-          linenumbers = (1..lines).to_a.collect{|line| line.to_s}.join("\n")
-
-          text = "<table class=\"typocode_linenumber\"><tr><td class=\"lineno\">\n<pre>\n#{linenumbers}\n</pre>\n</td><td width=\"100%\">#{text}</td></tr></table>"
-        end
+        text = CodeRay.scan(text, lang.to_sym).html(options)
+        text = "<notextile>#{text}</notextile>"
 
         if(title)
           titlecode="<div class=\"codetitle\">#{title}</div>"
