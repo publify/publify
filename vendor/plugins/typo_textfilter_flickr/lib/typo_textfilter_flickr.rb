@@ -1,5 +1,5 @@
 require 'net/http'
-require 'flickr/flickr'
+require 'flickr'
 
 class Typo
   class Textfilter
