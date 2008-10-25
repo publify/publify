@@ -64,7 +64,6 @@ class Admin::ResourcesController < Admin::BaseController
     redirect_to :action => "index"
   end
 
-
   def upload_status
     render :inline => "<%= upload_progress.completed_percent rescue 0 %> % " + _("complete"), :layout => false
   end

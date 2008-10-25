@@ -1,0 +1,199 @@
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (4.6ms)[0m   [0;1mselect * from sessions[0m
+
+
+Processing Admin::ResourcesController#index (for 127.0.0.1 at 2008-10-25 22:16:07) [GET]
+  Session ID: 5d064eac430bc6e67a093a361ff17831
+  Parameters: {"action"=>"index", "controller"=>"admin/resources"}
+  [4;35;1mTrigger Load (0.3ms)[0m   [0mSELECT * FROM `triggers` WHERE (due_at <= '2008-10-25 22:16:07') [0m
+  [4;36;1mBlog Load (0.2ms)[0m   [0;1mSELECT * FROM `blogs` ORDER BY id LIMIT 1[0m
+  [4;35;1mBlog Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `blogs`[0m
+  [4;36;1mUser Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mProfile Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `profiles`[0m
+  [4;35;1mProfile Load (0.5ms)[0m   [0mSELECT * FROM `profiles` WHERE (`profiles`.`id` = 1) [0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mResource Columns (3.1ms)[0m   [0;1mSHOW FIELDS FROM `resources`[0m
+  [4;35;1mResource Load (2.2ms)[0m   [0mSELECT * FROM `resources` ORDER BY created_at DESC LIMIT 0, 10[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSELECT count(*) AS count_all FROM `resources` [0m
+Rendering template within layouts/administration
+Rendering admin/resources/index
+DEPRECATION WARNING: @resources will no longer be implicitly assigned to resources  See http://www.rubyonrails.org/deprecation for details. (called from _run_erb_app47views47admin47resources47_resources46html46erb_locals_object_resources at /Users/neuro/Documents/code/typo/typo/app/views/admin/resources/_resources.html.erb:10)
+Rendered admin/resources/_mime_edit (1.4ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (4.4ms)
+Rendered admin/resources/_mime_edit (0.6ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (0.9ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (0.9ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (0.9ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (0.9ms)
+Rendered admin/resources/_metadata_add (1.9ms)
+Rendered admin/resources/_resources (102.2ms)
+Completed in 182ms (View: 126, DB: 16) | 200 OK [http://localhost/admin/resources]
+
+
+Processing Admin::ResourcesController#new (for 127.0.0.1 at 2008-10-25 22:16:19) [GET]
+  Session ID: 5d064eac430bc6e67a093a361ff17831
+  Parameters: {"action"=>"new", "controller"=>"admin/resources"}
+  [4;35;1mTrigger Load (0.3ms)[0m   [0mSELECT * FROM `triggers` WHERE (due_at <= '2008-10-25 22:16:19') [0m
+  [4;36;1mBlog Load (0.2ms)[0m   [0;1mSELECT * FROM `blogs` ORDER BY id LIMIT 1[0m
+  [4;35;1mBlog Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `blogs`[0m
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mProfile Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `profiles`[0m
+  [4;35;1mProfile Load (0.3ms)[0m   [0mSELECT * FROM `profiles` WHERE (`profiles`.`id` = 1) [0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Rendering template within layouts/administration
+Rendering admin/resources/new
+Completed in 61ms (View: 33, DB: 9) | 200 OK [http://localhost/admin/resources/new]
+
+
+Processing Admin::ResourcesController#upload_status (for 127.0.0.1 at 2008-10-25 22:16:24) [POST]
+  Session ID: 5d064eac430bc6e67a093a361ff17831
+  Parameters: {"authenticity_token"=>"661d298f6e45223f7cbb0ed505a11c922b9980c9", "action"=>"upload_status", "controller"=>"admin/resources", "upload_id"=>"1"}
+  [4;36;1mTrigger Load (0.3ms)[0m   [0;1mSELECT * FROM `triggers` WHERE (due_at <= '2008-10-25 22:16:24') [0m
+  [4;35;1mBlog Load (0.2ms)[0m   [0mSELECT * FROM `blogs` ORDER BY id LIMIT 1[0m
+  [4;36;1mBlog Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `blogs`[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mProfile Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `profiles`[0m
+  [4;36;1mProfile Load (1.1ms)[0m   [0;1mSELECT * FROM `profiles` WHERE (`profiles`.`id` = 1) [0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Completed in 28ms (View: 2, DB: 8) | 200 OK [http://localhost/admin/resources/upload_status?upload_id=1]
+
+
+Processing Admin::ResourcesController#upload (for 127.0.0.1 at 2008-10-25 22:16:25) [POST]
+  Session ID: 5d064eac430bc6e67a093a361ff17831
+  Parameters: {"commit"=>"Upload", "authenticity_token"=>"661d298f6e45223f7cbb0ed505a11c922b9980c9", "action"=>"upload", "upload"=>{"filename"=>#<File:/var/folders/9h/9hy1uLJrE2iubwAWmajgAU+++TI/-Tmp-/CGI.71721.1>}, "controller"=>"admin/resources", "upload_id"=>"1"}
+  [4;35;1mTrigger Load (0.3ms)[0m   [0mSELECT * FROM `triggers` WHERE (due_at <= '2008-10-25 22:16:25') [0m
+  [4;36;1mBlog Load (0.2ms)[0m   [0;1mSELECT * FROM `blogs` ORDER BY id LIMIT 1[0m
+  [4;35;1mBlog Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `blogs`[0m
+  [4;36;1mUser Columns (4.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mProfile Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `profiles`[0m
+  [4;35;1mProfile Load (1.5ms)[0m   [0mSELECT * FROM `profiles` WHERE (`profiles`.`id` = 1) [0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mResource Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `resources`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mResource Exists (0.7ms)[0m   [0;1mSELECT `resources`.id FROM `resources` WHERE (`resources`.`filename` = BINARY '1224151686262.jpg') LIMIT 1[0m
+  [4;35;1mResource Create (29.0ms)[0m   [0mINSERT INTO `resources` (`size`, `updated_at`, `itunes_duration`, `itunes_summary`, `itunes_category`, `itunes_subtitle`, `itunes_keywords`, `itunes_explicit`, `itunes_author`, `filename`, `article_id`, `mime`, `created_at`, `itunes_metadata`) VALUES(NULL, '2008-10-25 22:16:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1224151686262.jpg', NULL, 'image/jpeg', '2008-10-25 22:16:25', NULL)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mResource Update (1.1ms)[0m   [0mUPDATE `resources` SET `updated_at` = '2008-10-25 22:16:25', `size` = 76697 WHERE `id` = 462[0m
+Completed in 166ms (View: 1, DB: 48) | 200 OK [http://localhost/admin/resources/upload?upload_id=1]
+
+
+Processing Admin::ResourcesController#index (for 127.0.0.1 at 2008-10-25 22:16:27) [GET]
+  Session ID: 5d064eac430bc6e67a093a361ff17831
+  Parameters: {"action"=>"index", "controller"=>"admin/resources"}
+  [4;36;1mTrigger Load (0.3ms)[0m   [0;1mSELECT * FROM `triggers` WHERE (due_at <= '2008-10-25 22:16:27') [0m
+  [4;35;1mBlog Load (0.2ms)[0m   [0mSELECT * FROM `blogs` ORDER BY id LIMIT 1[0m
+  [4;36;1mBlog Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `blogs`[0m
+  [4;35;1mUser Columns (80.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (11.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mProfile Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `profiles`[0m
+  [4;36;1mProfile Load (0.7ms)[0m   [0;1mSELECT * FROM `profiles` WHERE (`profiles`.`id` = 1) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mResource Columns (3.5ms)[0m   [0mSHOW FIELDS FROM `resources`[0m
+  [4;36;1mResource Load (2.1ms)[0m   [0;1mSELECT * FROM `resources` ORDER BY created_at DESC LIMIT 0, 10[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT count(*) AS count_all FROM `resources` [0m
+Rendering template within layouts/administration
+Rendering admin/resources/index
+DEPRECATION WARNING: @resources will no longer be implicitly assigned to resources  See http://www.rubyonrails.org/deprecation for details. (called from _run_erb_app47views47admin47resources47_resources46html46erb_locals_object_resources at /Users/neuro/Documents/code/typo/typo/app/views/admin/resources/_resources.html.erb:10)
+Rendered admin/resources/_mime_edit (0.8ms)
+Rendered admin/resources/_itunes_category_add (1.5ms)
+Rendered admin/resources/_metadata_add (4.7ms)
+Rendered admin/resources/_mime_edit (0.7ms)
+Rendered admin/resources/_itunes_category_add (1.3ms)
+Rendered admin/resources/_metadata_add (2.7ms)
+Rendered admin/resources/_mime_edit (0.8ms)
+Rendered admin/resources/_itunes_category_add (1.1ms)
+Rendered admin/resources/_metadata_add (2.4ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.1ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (0.9ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.6ms)
+Rendered admin/resources/_itunes_category_add (0.9ms)
+Rendered admin/resources/_metadata_add (1.9ms)
+Rendered admin/resources/_mime_edit (0.4ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.1ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (0.9ms)
+Rendered admin/resources/_metadata_add (1.9ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.0ms)
+Rendered admin/resources/_mime_edit (0.5ms)
+Rendered admin/resources/_itunes_category_add (1.0ms)
+Rendered admin/resources/_metadata_add (2.1ms)
+Rendered admin/resources/_resources (45.3ms)
+Completed in 210ms (View: 60, DB: 105) | 200 OK [http://localhost/admin/resources]
+
+
+Processing Admin::SettingsController#index (for 127.0.0.1 at 2008-10-25 22:20:48) [GET]
+  Session ID: 5d064eac430bc6e67a093a361ff17831
+  Parameters: {"action"=>"index", "controller"=>"admin/settings"}
+  [4;36;1mTrigger Load (0.4ms)[0m   [0;1mSELECT * FROM `triggers` WHERE (due_at <= '2008-10-25 22:20:48') [0m
+  [4;35;1mBlog Load (0.2ms)[0m   [0mSELECT * FROM `blogs` ORDER BY id LIMIT 1[0m
+  [4;36;1mBlog Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `blogs`[0m
+  [4;35;1mUser Columns (2.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mProfile Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `profiles`[0m
+  [4;36;1mProfile Load (0.5ms)[0m   [0;1mSELECT * FROM `profiles` WHERE (`profiles`.`id` = 1) [0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Rendering template within layouts/administration
+Rendering admin/settings/index
+Rendered admin/settings/_submit (0.2ms)
+Completed in 50ms (View: 21, DB: 9) | 200 OK [http://localhost/admin/settings]
+
+
+Processing Admin::TextfiltersController#index (for 127.0.0.1 at 2008-10-25 22:20:50) [GET]
+  Session ID: 5d064eac430bc6e67a093a361ff17831
+  Parameters: {"action"=>"index", "controller"=>"admin/textfilters"}
+  [4;35;1mTrigger Load (0.3ms)[0m   [0mSELECT * FROM `triggers` WHERE (due_at <= '2008-10-25 22:20:50') [0m
+  [4;36;1mBlog Load (0.2ms)[0m   [0;1mSELECT * FROM `blogs` ORDER BY id LIMIT 1[0m
+  [4;35;1mBlog Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `blogs`[0m
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mProfile Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `profiles`[0m
+  [4;35;1mProfile Load (0.3ms)[0m   [0mSELECT * FROM `profiles` WHERE (`profiles`.`id` = 1) [0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mTextFilter Load (0.5ms)[0m   [0;1mSELECT * FROM `text_filters` ORDER BY id DESC[0m
+Rendering template within layouts/administration
+Rendering admin/textfilters/index
+  [4;35;1mTextFilter Columns (2.2ms)[0m   [0mSHOW FIELDS FROM `text_filters`[0m
+Rendered admin/textfilters/_textfilters (11.5ms)
+Rendered admin/textfilters/_macros (2.7ms)
+Completed in 164ms (View: 111, DB: 9) | 200 OK [http://localhost/admin/textfilters]

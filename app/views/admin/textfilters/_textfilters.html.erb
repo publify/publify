@@ -13,7 +13,7 @@
   <td><%=h textfilter.description %></td>
   <td><%=h @textfilter_map[textfilter.markup].display_name %></td>
   <td><%= textfilter.filters.collect { |f| h(@textfilter_map[f.to_s].display_name) }.join(" &#8594; ") %></td>
-  <td class="operation"><%= link_to_edit textfilter %></td>
+  <td class="operation"><%= link_to_edit "edit", textfilter %></td>
   <td class="operation"><%= link_to_destroy textfilter %></td>    
 </tr>  
 <% end %>
