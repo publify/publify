@@ -6,6 +6,9 @@ require 'admin/textfilters_controller'
 class Admin::TextfiltersController; def rescue_action(e) raise e end; end
 
 describe Admin::TextfiltersController do
+
+  integrate_views
+
   before do
     request.session = { :user => users(:tobi).id }
   end
@@ -21,4 +24,14 @@ describe Admin::TextfiltersController do
       :description => 'Filter X', :markup => 'markdown' }
     assert_response :redirect, :action => 'show'
   end
+
+  describe 'macro help action' do
+
+    it 'should render success' do
+      get 'macro_help', :id => 'code'
+      response.should be_success
+    end
+
+  end
+
 end
