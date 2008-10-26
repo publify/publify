@@ -48,7 +48,10 @@ have syntax highlighting.
 
         text = text.to_s.gsub(/\r/,'').gsub(/\A\n/,'').chomp
 
-        text = CodeRay.scan(text, lang.to_sym).span(options)
+        begin
+          text = CodeRay.scan(text, lang.to_sym).span(options)
+        rescue
+        end
         text = "<notextile>#{text}</notextile>"
 
         if(title)

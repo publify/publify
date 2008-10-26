@@ -136,19 +136,27 @@ describe TextfilterController do
     assert_response :error
   end
 
-  def test_code
-    assert_equal %{<div class="typocode"><pre><code class="typocode_default "><notextile>foo-code</notextile></code></pre></div>},
-      filter_text('<typo:code>foo-code</typo:code>',[:macropre,:macropost])
+  describe 'code textfilter' do
+    
+    describe 'single line' do
 
-    assert_equal %{<div class="typocode"><pre><code class="typocode_ruby "><notextile><span class="ident">foo</span><span class="punct">-</span><span class="ident">code</span></notextile></code></pre></div>},
-      filter_text('<typo:code lang="ruby">foo-code</typo:code>',[:macropre,:macropost])
+      it 'should made nothin if no args' do
+        filter_text('<typo:code>foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><notextile>foo-code</notextile></div>}
+      end
 
-    assert_equal %{<div class="typocode"><pre><code class="typocode_ruby "><notextile><span class="ident">foo</span><span class="punct">-</span><span class="ident">code</span></notextile></code></pre></div> blah blah <div class="typocode"><pre><code class="typocode_xml "><notextile>zzz</notextile></code></pre></div>},
-      filter_text('<typo:code lang="ruby">foo-code</typo:code> blah blah <typo:code lang="xml">zzz</typo:code>',[:macropre,:macropost])
-  end
+      it 'should parse ruby lang' do
+        filter_text('<typo:code lang="ruby">foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><notextile><span class=\"CodeRay\">foo-code</span></notextile></div>}
+      end
 
-  def test_code_multiline
-    assert_equal %{\n<div class="typocode"><pre><code class="typocode_ruby "><notextile><span class="keyword">class </span><span class="class">Foo</span>\n  <span class="keyword">def </span><span class="method">bar</span>\n    <span class="attribute">@a</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">zzz</span><span class="punct">&quot;</span>\n  <span class="keyword">end</span>\n<span class="keyword">end</span></notextile></code></pre></div>\n},
+      it 'should parse ruby and xml in same sentence but not in same place' do
+        filter_text('<typo:code lang="ruby">foo-code</typo:code> blah blah <typo:code lang="xml">zzz</typo:code>',[:macropre,:macropost]).should == %{<div class="CodeRay"><notextile><span class="CodeRay">foo-code</span></notextile></div> blah blah <div class="CodeRay"><notextile><span class="CodeRay">zzz</span></notextile></div>}
+      end
+
+    end
+
+    describe 'multiline' do
+
+      it 'should render ruby' do
       filter_text(%{
 <typo:code lang="ruby">
 class Foo
@@ -157,7 +165,15 @@ class Foo
   end
 end
 </typo:code>
-},[:macropre,:macropost])
+},[:macropre,:macropost]).should == %{
+<div class=\"CodeRay\"><notextile><span class=\"CodeRay\"><span class=\"r\">class</span> <span class=\"cl\">Foo</span>
+  <span class=\"r\">def</span> <span class=\"fu\">bar</span>
+    <span class=\"iv\">@a</span> = <span class=\"s\"><span class=\"dl\">&quot;</span><span class=\"k\">zzz</span><span class=\"dl\">&quot;</span></span>
+  <span class=\"r\">end</span>
+<span class=\"r\">end</span></span></notextile></div>
+}
+      end
+    end
   end
 
   def test_named_filter
