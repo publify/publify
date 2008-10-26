@@ -7,7 +7,7 @@ class Typo
       plugin_description "Apply coderay highlighting to a code block"
 
       DEFAULT_OPTIONS = {:css => :class, 
-        :wrap => :div, 
+        :wrap => :span, 
         :line_numbers => nil, 
         :tab_width => 2, 
         :bold_every => 5, 
@@ -41,15 +41,18 @@ have syntax highlighting.
         lang       = attrib['lang']
         title      = attrib['title']
         cssclass   = attrib['class']
-        options = DEFAULT_OPTIONS
-        if attrib['linenumber']
-          options[:line_numbers] = :table
+        if attrib['linenumber'] == "true"
+          options = DEFAULT_OPTIONS.merge(:line_numbers => :table,
+                                  :wrap => :div)
+        else
+          options = DEFAULT_OPTIONS
         end
 
         text = text.to_s.gsub(/\r/,'').gsub(/\A\n/,'').chomp
 
-        text = CodeRay.scan(text, lang.to_sym).html(options)
+        text = CodeRay.scan(text, lang.to_sym).span(options)
         text = "<notextile>#{text}</notextile>"
+        logger.info "options : #{options}"
 
         if(title)
           titlecode="<div class=\"codetitle\">#{title}</div>"
