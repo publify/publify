@@ -29,7 +29,7 @@ You can use `<typo:code>` to include syntax-highlighted code blocks.  Example:
 This uses the Ruby [Syntax](http://coderay.rubychan.de) module.  Options:
 
 * **lang**.  Sets the programming language.  Currently supported languages are
-`ruby`, `C`, `Delphi`, `HTML`, `RHTML`, `CSS`, `Diff`, `Java`, `Javascript` and `yaml`.  Other languages will format correctly but will not
+`ruby`, `yaml`, and `xml`.  Other languages will format correctly but will not
 have syntax highlighting.
 * **linenumber**.  Turns on line numbering.  Use `linenumber="true"` to enable.
 * **title**.  Adds a title block to the top of the code block.
@@ -57,7 +57,7 @@ have syntax highlighting.
           titlecode=''
         end
 
-        "<div class='CodeRay'>#{titlecode}#{text}</div>"
+        "<div class=\"typocode\">#{titlecode}#{text}</div>"
       end
     end
   end
