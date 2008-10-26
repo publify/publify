@@ -33,14 +33,12 @@ This uses the Ruby [Syntax](http://coderay.rubychan.de) module.  Options:
 have syntax highlighting.
 * **linenumber**.  Turns on line numbering.  Use `linenumber="true"` to enable.
 * **title**.  Adds a title block to the top of the code block.
-* **class**.  Adds a new CSS class to the wrapper around the code block.
 }
       end
 
       def self.macrofilter(blog, content, attrib, params, text="")
         lang       = attrib['lang']
         title      = attrib['title']
-        cssclass   = attrib['class']
         if attrib['linenumber'] == "true"
           options = DEFAULT_OPTIONS.merge(:line_numbers => :table,
                                   :wrap => :div)
@@ -52,7 +50,6 @@ have syntax highlighting.
 
         text = CodeRay.scan(text, lang.to_sym).span(options)
         text = "<notextile>#{text}</notextile>"
-        logger.info "options : #{options}"
 
         if(title)
           titlecode="<div class=\"codetitle\">#{title}</div>"
