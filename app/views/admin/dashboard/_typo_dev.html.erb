@@ -1,0 +1,17 @@
+<div class="dashboard">
+  <h3><%= _("Last news from Typo development blog") %></h3>
+  <ul>
+    <% if @typo_links.size == 0 %>
+      <li <%= alternate_class %>><%= _("Oh no, nothing new") %></li>
+    <% else %>
+      <% @typo_links.each do |link| -%>
+        <li <%= alternate_class %>>
+          <%= link_to("<strong>#{link.title}</strong><br /", link.link) %>
+          <%= "#{link.date}<br />" %>
+          <%= link.description.strip_html.slice(0, 200) %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <hr />
+</div>
