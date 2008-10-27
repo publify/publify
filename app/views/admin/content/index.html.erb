@@ -11,6 +11,7 @@
   :loading  => "loading()" \
   do %>
 
+  <label><%= _("Search")%></label>  <input type="text" name="search[searchstring]" /><input type="submit" value='<%= _("Search") %>'>
   <table>
     <tr>
       <th><%= _("Title") %></th>
@@ -35,7 +36,7 @@
           <option value="1">Published</option>
         </select>
       </td>
-      <td><input type="submit" value="Filter" />
+      <td><input type="submit" value='<%= _("Filter") %>' />
       </tr>
       <tbody id="articleList">
         <%= render :partial => 'article_list', :object => @articles -%>
