@@ -6,7 +6,7 @@
   <td><%= article.published_at.strftime("%d/%m/%Y") %></td>
   <td><%= author_link(article)%></td>
   <td><%= link_to_published article %></td>
-  <td class="operation"><%= (article.allow_comments?) ? link_to(article.comments.size.to_s, :controller => '/admin/comments', :article_id => article.id, :action => 'index') : '-' %></td>
+  <td class="operation"><%= (article.allow_comments?) ? link_to(article.comments.size.to_s, :controller => '/admin/feedback', :id => article.id, :action => 'articles') : '-' %></td>
 </tr>
 <% end %>
 <tr>

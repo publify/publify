@@ -24,6 +24,11 @@ class Admin::FeedbackController < Admin::BaseController
     @feedback = Feedback.paginate :page => params[:page], :order => 'feedback.created_at desc', :conditions => conditions, :per_page => 10
   end
 
+  def article
+    @article = Article.find(params[:id])
+    @feedbacks = Feedback.find(:all, :conditions => "article_id = #{params[:id]}")
+  end
+  
   def delete
     if request.post?
       begin
