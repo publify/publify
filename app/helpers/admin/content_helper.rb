@@ -26,7 +26,7 @@ module Admin::ContentHelper
     options_for_select = container.inject([]) do |options, element|
       text, value = option_text_and_value(element)
       selected_attribute = ' checked' if option_value_selected?(value, selected)
-      options << %(<input type="checkbox" name="categories[]" value="#{html_escape(value.to_s)}"#{selected_attribute} />#{html_escape(text.to_s)})
+      options << %(<input type="checkbox" name="categories[]" id="category_#{html_escape(value.to_s)}" value="#{html_escape(value.to_s)}"#{selected_attribute} /><label for="category_#{html_escape(value.to_s)}">#{html_escape(text.to_s)}</label>)
     end
 
     options_for_select.join("<br />")
