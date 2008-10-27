@@ -20,6 +20,10 @@
         </span>
       </li>
       <li>
+          <label class="float" for="google_analytics"><%= _("Google Analytics")%></label>
+          <input type="text" name="setting[google_analytics]" id="google_analytics" size="25" value="<%=h this_blog.google_analytics %>" />
+      </li>
+      <li>
           <label class="float" for="meta_description"><%= _("Meta description")%></label>
           <textarea name="setting[meta_description]" id="meta_description" rows="5" cols="50"><%=h this_blog.meta_description %></textarea>
       </li>

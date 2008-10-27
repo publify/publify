@@ -168,6 +168,21 @@ module ApplicationHelper
     end
   end
 
+  def google_analytics
+    unless this_blog.google_analytics.empty?
+      <<-HTML
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      var pageTracker = _gat._getTracker("#{this_blog.google_analytics}");
+      pageTracker._trackPageview();
+      </script>
+      HTML
+    end
+  end
+
   def page_header
     page_header_includes = contents.collect { |c| c.whiteboard }.collect do |w|
       w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
@@ -195,8 +210,9 @@ module ApplicationHelper
   #{ javascript_include_tag "prototype" }
   #{ javascript_include_tag "effects" }
   #{ javascript_include_tag "typo" }
-#{ page_header_includes.join("\n") }
+  #{ page_header_includes.join("\n") }
   <script type="text/javascript">#{ @content_for_script }</script>
+  #{ google_analytics }
     HTML
     ).chomp
   end

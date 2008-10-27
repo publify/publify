@@ -74,6 +74,7 @@ class Blog < CachedModel
   # SEO
   setting :meta_description,           :string, ''
   setting :meta_keywords,              :string, ''
+  setting :google_analytics,            :string, ''
   
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
