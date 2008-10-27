@@ -47,6 +47,7 @@ Localization.define('fr_FR') do |l|
   l.store "No comments yet", "Aucun commentaire"
   l.store "Nothing to show yet", "Rien à déclarer"
   l.store "No posts yet, why don't you start and write one", "Vous n'avez encore écrit aucun billet, pourquoi ne pas commencer par là"
+  l.store "You have no internet connection", "Vous n'avez pas de connection à internet"
   
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "Derniers commentaires"

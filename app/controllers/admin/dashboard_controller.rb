@@ -50,6 +50,8 @@ class Admin::DashboardController < Admin::BaseController
     open(url) do |http|
       @inbound_links = parse_rss(http.read)
     end
+  rescue
+    @inbound_links = nil
   end
   
   def typo_dev
@@ -57,6 +59,8 @@ class Admin::DashboardController < Admin::BaseController
     open(url) do |http|
       @typo_links = parse_rss(http.read)[0..1]
     end
+  rescue
+    @typo_links = nil
   end
   
   private
