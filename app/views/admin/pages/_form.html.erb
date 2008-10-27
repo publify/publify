@@ -6,33 +6,21 @@
     <%= text_field 'page', 'title', :class => 'large'  %>
   </li>
   <li>
-    <label for="page_body" class="block content"><%= _("Content")%></label>
-    <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
-  </li>
-  <li class="paginate l">
-    <label for="options">
-      <%= link_to_function _("Options") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "options", :duration => 0.2) } %>
-    </label>
-    <ul>
-      <li id="options" style='display: none;'>
-        <ul>
-          <li>
-            <label for="page_name" class="float"><%= _("Permalink")%>:</label>
-            <%= text_field 'page', 'name', :size => 25  %>
-          </li>
-          <li>
-            <label for="page_published" class="float"><%= _("Online")%>:</label>
-            <%= check_box 'page', 'published'  %>
-            <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <div style="float: right; width: 230px;">
+      <label class="block content"><%= _("Options") %></label>
+      <p class="paginate r paginate_1">
+          <label for="page_name"><%= _("Permalink")%>:</label><br />
+          <%= text_field 'page', 'name', :size => 25  %>
+          <label for="page_published"><%= _("Online")%>:</label>
+          <%= check_box 'page', 'published'  %><br />
+        <%= link_to_destroy_with_profiles @page%>
+        <%= save( _("Publish") + " &raquo;") %>
+      </p>
+    </div>
+    <div id="editor">
+      <label for="page_body" class="block content"><%= _("Content")%></label>
+      <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
+    </div>
+    <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
   </li>
 </ul>
-
-<p class="paginate r">
-  <%= save(_("Publish") + " &raquo") %>
-</p>
-
-<!--[eoform:pages]-->

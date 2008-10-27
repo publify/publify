@@ -9,13 +9,19 @@
   <li>
     <div style="float: right; width: 230px;">
       <label class="block content"><%= _("Categories") %></label>
-      <div id="categories">
+      <div id="categories" style="height: 170px;">
         <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
       </div>
       <p class="paginate r paginate_1">
+          <label for="article_allow_comments"><%= _("Allow comments") %>: </label>
+          <%= check_box 'article', 'allow_comments'  %><br />
+          <label for="article_allow_pings"><%= _("Allow trackbacks")%>: </label>
+          <%= check_box 'article', 'allow_pings'  %><br />
+          <label for="article_published"><%= _("Published")%>:</label>
+          <%= check_box 'article', 'published'  %><br />
         <%= link_to_destroy_draft @article %>
-        <%= save( _("Publish") + " &raquo;") %>
         <%= link_to_destroy_with_profiles @article%>
+        <%= save( _("Publish") + " &raquo;") %>
       </p>
     </div>
     <div id="editor">
@@ -49,26 +55,14 @@
         <label class="float"><%= _("Publish at")%>:</label>
         <%= datetime_select 'article', 'published_at', :include_blank => true  %>            
       </li>
-      <li class="checkbox">
-        <label for="article_published" class="float"><%= _("Online")%>:</label>
-        <%= check_box 'article', 'published'  %>
-      </li>
       <li>
         <label for="article_permalink" class="float"><%= _("Permalink") %></label>
         <span id="permalink"><%= text_field 'article', 'permalink' %></span>
       </li>     
-      <li class="checkbox">
-        <label for="article_allow_comments" class="float"><%= _("Allow comments") %>: </label>
-        <%= check_box 'article', 'allow_comments'  %>
-      </li>
-      <li class="checkbox">
-        <label for="article_allow_pings" class="float"><%= _("Allow trackbacks")%>: </label>
-        <%= check_box 'article', 'allow_pings'  %>
-        <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
-      </li>
     </ul>
   </li>
 </ul>
+<%= hidden_field_tag 'text_filter', this_blog.text_filter %>
 
 <% if this_blog.editor == 0 %>
 <%= hidden_field_tag 'id', @article.id unless @article.id.nil? %>
