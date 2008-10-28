@@ -224,21 +224,36 @@ class Article < Content
   def self.find_by_permalink(year, month=nil, day=nil, title=nil)
     unless month
       case year
+      when String
+        title = year
+        year = nil
       when Hash
         year, month, day, title = date_from(year)
       when Array
         year, month, day, title = year
       end
     end
-    date_range = self.time_delta(year, month, day)
+    conditions = ['permalink = ?', title]
+    if year
+      from, to = self.time_delta(year, month, day)
+      conditions[0] += 'AND published_at BETWEEN ? AND ?'
+      conditions += self.time_delta(year, month, day)
+    end
+
     find_published(:first,
-                   :conditions => { :permalink => title,
-                                    :published_at => date_range }) \
+                   :conditions => conditions) \
       or raise ActiveRecord::RecordNotFound
   end
-
+  
   def self.find_by_params_hash(params = {})
-    params[:id] ||= params[:article_id]
+    if params[:title]
+      params[:id] ||= params[:title]
+    end
+
+    if params[:article_id]
+      params[:id] ||= params[:article_id] 
+    end
+
     if params[:id]
       find_by_permalink(params)
     else

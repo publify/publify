@@ -102,6 +102,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources(:feedback)
 
   # allow neat perma urls
+  map.connect ':title',
+    :controller => 'articles', :action => 'show'
+
+  map.connect ':title' + '.rss',
+      :controller => 'articles', :action => 'show', :format => 'rss'
+
+  map.connect ':title' + '.atom',
+      :controller => 'articles', :action => 'show', :format => 'atom'
+  
   map.connect 'page/:page',
     :controller => 'articles', :action => 'index',
     :page => /\d+/
