@@ -64,10 +64,9 @@
 </ul>
 <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
 
-<% if this_blog.editor == 0 %>
-<%= hidden_field_tag 'id', @article.id unless @article.id.nil? %>
-<%   #      :update => 'autosave', %>
-<%= observe_form "article_form",
-:frequency => 60,
+<% #if this_blog.editor == 0 %>
+<%#= hidden_field_tag 'id', @article.id unless @article.id.nil? %>
+<%#= observe_form "article_form",
+:frequency => 5,
 :url => { :action => "autosave" }  %>
-<% end %>
+<%# end %>

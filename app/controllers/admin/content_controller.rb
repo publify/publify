@@ -147,7 +147,7 @@ class Admin::ContentController < Admin::BaseController
       @article.state = "draft" unless @article.state == "withdrawn"
       if @article.save
         render(:update) do |page|
-          page.replace_html('autosave', _("Article was successfully saved at ") + Time.now.to_s + "<input type='hidden' name='id' value='#{@article.id}' />")
+          page.replace_html('autosave', _("Article was successfully saved at ") + Time.now.to_s + (hidden_field_tag 'totoid', @article.id))
           page.replace_html('permalink', text_field('article', 'permalink'))
         end
 
@@ -176,7 +176,7 @@ class Admin::ContentController < Admin::BaseController
     get_or_build_article
     @article.published = true
     
-    params[:article] ||= {}
+    #params[:article] ||= {}
 
     @resources = Resource.find(:all, :order => 'created_at DESC')
     @article.attributes = params[:article]
