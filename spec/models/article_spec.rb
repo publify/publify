@@ -290,4 +290,9 @@ describe Article do
     assert_equal 'textile', a.default_text_filter.name
   end
 
+  it 'should get only ham not spam comment' do
+    contents(:article2).comments.ham.should == [feedback(:spam_comment)]
+    contents(:article2).comments.count.should == 2
+  end
+
 end

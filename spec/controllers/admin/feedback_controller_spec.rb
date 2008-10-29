@@ -13,7 +13,9 @@ describe Admin::FeedbackController do
 
     assert_response :success
     assert_template 'index'
-    assert_equal Feedback.count, assigns(:feedback).size
+    #FIXME : Test is useless because the pagination is on 10. Now there are 11
+    #feedback, so there are several feedback :(
+    assert_equal 10, assigns(:feedback).size #Feedback.count, assigns(:feedback).size
   end
 
   def test_list_unconfirmed

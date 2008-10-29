@@ -8,7 +8,15 @@ class Article < Content
 
   has_many :pings,      :dependent => :destroy, :order => "created_at ASC"
 
-  has_many :comments,   :dependent => :destroy, :order => "created_at ASC"
+  has_many :comments,   :dependent => :destroy, :order => "created_at ASC" do
+
+    # Get only ham or presumed_ham comments
+    def ham
+      find :all, :conditions => {:state => ["presumed_ham", "ham"]}
+    end
+
+  end
+
   with_options(:conditions => { :published => true }, :order => 'created_at DESC') do |this|
     this.has_many :published_comments,   :class_name => "Comment", :order => "created_at ASC"
     this.has_many :published_trackbacks, :class_name => "Trackback", :order => "created_at ASC"
