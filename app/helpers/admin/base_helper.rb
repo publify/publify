@@ -5,7 +5,7 @@ module Admin::BaseHelper
     output = []
     AccessControl.project_module(current_user.profile.label, current_module).submenus.each_with_index do |m,i| 
       current = (m.url[:controller] == params[:controller] && m.url[:action] == params[:action]) ? "current" : ""
-      output << subtab(m.name, current, m.url)
+      output << subtab(_(m.name), current, m.url)
     end     
     content_for(:tasks) { output.join("\n") }
   end
