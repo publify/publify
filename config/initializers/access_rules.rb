@@ -63,6 +63,7 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.project_module :feedback, nil do |project|
     project.menu    _("Comments"),              { :controller => "admin/feedback" }
     project.submenu _("All comments"),          { :controller => "admin/feedback" }    
+    project.submenu _("Limit to ham"),          { :controller => "admin/feedback",  :ham => 'f' }
     project.submenu _("Unapproved comments"),   { :controller => "admin/feedback",  :confirmed  => "f" }    
     project.submenu _("Limit to spam"),         { :controller => "admin/feedback",  :published  => "f" }
     project.submenu _(""),                      { :controller => "admin/comments", :action => "show" }
