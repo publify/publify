@@ -18,11 +18,6 @@ describe Admin::CacheController, "rough port of the old functional test" do
       response.should redirect_to(:controller => '/admin/settings')
     end
 
-    it 'should send notice' do
-      get 'sweep'
-      flash[:notice].should == 'Cache was cleared' 
-    end
-
   end
 
   describe 'sweep_html action' do
@@ -30,11 +25,6 @@ describe Admin::CacheController, "rough port of the old functional test" do
     it 'should redirect to setting index' do
       get 'sweep_html'
       response.should redirect_to(:controller => '/admin/settings')
-    end
-
-    it 'should send notice' do
-      get 'sweep_html'
-      flash[:notice].should == 'Cache was cleared' 
     end
 
   end

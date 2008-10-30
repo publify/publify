@@ -44,6 +44,7 @@
 
 AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/base"
+  map.permission "admin/cache"
 
   map.project_module :write, nil do |project|
     project.menu    _("Write"),                 { :controller => "admin/content",    :action => "new" }
