@@ -44,4 +44,10 @@ describe Admin::FeedbackController do
 
     Feedback.count(:conditions => { :published => false, :status_confirmed => false }).should == assigns(:feedback).size
   end
+
+  it 'should get page 1 if page params empty' do
+    get :index, :page => ''
+    response.should be_success
+    response.should render_template('index')
+  end
 end
