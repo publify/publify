@@ -2,7 +2,7 @@
 
   <div class="list">
 	<ol>
-	<% for feedback in @feedbacks -%>
+	<% for feedback in @article.feedback -%>
 	  <li <%= alternate_class %>>
 	    <p><strong><%= mail_to h(feedback.email), h(feedback.author) %></strong> |
 		<%= link_to_unless feedback.url.blank?, h(feedback.url), feedback.url %> | 

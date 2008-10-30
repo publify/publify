@@ -31,7 +31,6 @@ class Admin::FeedbackController < Admin::BaseController
 
   def article
     @article = Article.find(params[:id])
-    @feedbacks = Feedback.find(:all, :conditions => {:article_id => params[:id]})
   end
   
   def delete

@@ -25,6 +25,7 @@ class Article < Content
 
   has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
 
+  #TODO: change it because more logical with s in end : feedbacks
   has_many :feedback,                           :order => "created_at DESC"
 
   has_many :resources, :order => "created_at DESC",
