@@ -7,8 +7,8 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<%= javascript_include_tag :fckeditor %>
 	<%= stylesheet_link_tag "administration", "lightbox" %>
-  <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
-	<%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox" %>
+    <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
+	<%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox", "administration" %>
 </head>
 
 <body>
@@ -22,10 +22,10 @@
 				<li class="right"><%= link_to _('your blog'), this_blog.base_url %>
 			</ul>
 		</div>
-		<% if not _first_render =~ /login|signup|logout/ %>
+		<% if not @_render_stack.first =~ /login|signup|logout/ %>
 		<div class="tasks">
 			<ul>
-				<%= @content_for_tasks %>
+				<%= yield :tasks %>
 			</ul>
 			<div style="clear:both;"></div>
 		</div>
@@ -42,7 +42,7 @@
 			<div id="main">
 				<h2><%= @page_heading %></h2>
 
-				<%= @content_for_layout %>
+				<%= yield  %>
 			</div>
 		</div>
 		<div id="footer">

@@ -5,7 +5,7 @@ module Admin::BaseHelper
     output = []
     AccessControl.project_module(current_user.profile.label, current_module).submenus.each_with_index do |m,i| 
       current = (m.url[:controller] == params[:controller] && m.url[:action] == params[:action]) ? "current" : ""
-      output << subtab(m.name, current, m.url)
+      output << subtab(_(m.name), current, m.url)
     end     
     content_for(:tasks) { output.join("\n") }
   end
@@ -14,7 +14,7 @@ module Admin::BaseHelper
     output = []
 
     for key,value in flash
-      output << "<span class=\"#{key.to_s.downcase}\">#{value}</span>"
+      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
     end if flash
 
     output.join("<br/>\n")
@@ -28,11 +28,11 @@ module Admin::BaseHelper
     link_to _("Cancel"), url
   end
 
-  def save(val = "Store")
+  def save(val = _("Store"))
     '<input type="submit" value="' + val + '" class="submit" />'
   end
 
-  def confirm_delete(val = "Delete")
+  def confirm_delete(val = _("Delete"))
    '<input type="submit" value="' + val + '" />'
   end
 

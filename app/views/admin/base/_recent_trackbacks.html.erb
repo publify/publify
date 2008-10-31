@@ -2,8 +2,8 @@
 <ul class="recent">
 <% for trackback in Trackback.find(:all, :limit => 5, :order => 'id DESC' ) %>
   <li>
-    <%= link_to truncate(trackback.excerpt, 20), :controller => "/admin/trackbacks", :action => "show", :id => trackback.id, :article_id => trackback.article_id %><br />
-    by <%= truncate(trackback.blog_name, 20) %><br />
+  <%= link_to truncate(trackback.excerpt, :length => 20), :controller => "/admin/trackbacks", :action => "show", :id => trackback.id, :article_id => trackback.article_id %><br />
+  by <%= truncate(trackback.blog_name, :length => 20) %><br />
     <%= time_ago_in_words(trackback.created_at) %> ago
   </li>
 <% end %>

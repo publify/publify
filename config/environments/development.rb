@@ -17,3 +17,5 @@ def log_to(stream)
   ActiveRecord::Base.logger = Logger.new(stream)
   ActiveRecord::Base.clear_active_connections!
 end
+
+config.log_level = :debug

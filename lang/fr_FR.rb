@@ -227,6 +227,12 @@ Localization.define('fr_FR') do |l|
   l.store "Blacklist", "Liste noire"
   l.store "Feedback Search", "Rechercher dans les discussions"
   l.store "Comments and Trackbacks for", "Commentaires et rétroliens pour"
+
+  #admin/feedback/index.html.erb
+  l.store "Limit to ham", "Uniquement les commentaires valides"
+  
+  #admin/feedback/article.html.erb
+  l.store "All comments", "Tous les commentaires"
  
   #admin/general/task
   l.store "Basic settings", "Configuration de base"

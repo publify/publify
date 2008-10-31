@@ -21,12 +21,28 @@ class Admin::FeedbackController < Admin::BaseController
       conditions.last.merge!(:status_confirmed => false)
     end
 
+    if params[:ham] == 'f'
+      conditions.first << ' AND state = :state '
+      conditions.last.merge!(:state => 'ham')
+    end
+
+    # no need params[:page] if empty of == 0, there are a crash otherwise
+    if params[:page].blank? || params[:page] == "0"
+      params.delete(:page)
+    end
+
     @feedback = Feedback.paginate :page => params[:page], :order => 'feedback.created_at desc', :conditions => conditions, :per_page => 10
   end
 
   def article
     @article = Article.find(params[:id])
-    @feedbacks = Feedback.find(:all, :conditions => "article_id = #{params[:id]}")
+    if params[:ham] && params[:spam].blank?
+      @comments = @article.comments.ham
+    end
+    if params[:spam] && params[:ham].blank?
+      @comments = @article.comments.spam
+    end
+    @comments ||= @article.comments
   end
   
   def delete

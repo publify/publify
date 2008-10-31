@@ -11,6 +11,19 @@ spam_comment:
   guid: 12313123123123123
   state: ham
 
+comment_article2_spam:
+  type: Comment
+  published: true
+  article: article2
+  author: Bob Foo2
+  url: http://fakeurl.com
+  body: Test <a href="http://fakeurl.co.uk">body</a>
+  created_at: 2005-01-01 02:00:00
+  updated_at: 2005-01-01 02:00:00
+  published_at: 2005-01-01 02:00:00
+  guid: 12313123123123123
+  state: spam
+
 comment2:
   type: Comment
   published: true

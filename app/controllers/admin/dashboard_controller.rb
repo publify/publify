@@ -39,7 +39,7 @@ class Admin::DashboardController < Admin::BaseController
   def popular
     @bestof = Article.find(:all,
                            :select => 'contents.*, comment_counts.count AS comment_count',
-                           :from => "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
+                           :from => "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
                            :conditions => ['comment_counts.article_id = contents.id AND published = ?', true],
                            :order => 'comment_counts.count DESC',
                            :limit => 5) 
