@@ -230,6 +230,9 @@ Localization.define('fr_FR') do |l|
 
   #admin/feedback/index.html.erb
   l.store "Limit to ham", "Uniquement les commentaires valides"
+  
+  #admin/feedback/article.html.erb
+  l.store "All comments", "Tous les commentaires"
  
   #admin/general/task
   l.store "Basic settings", "Configuration de base"

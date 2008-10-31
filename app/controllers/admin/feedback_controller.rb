@@ -36,6 +36,13 @@ class Admin::FeedbackController < Admin::BaseController
 
   def article
     @article = Article.find(params[:id])
+    if params[:ham] && params[:spam].blank?
+      @comments = @article.comments.ham
+    end
+    if params[:spam] && params[:ham].blank?
+      @comments = @article.comments.spam
+    end
+    @comments ||= @article.comments
   end
   
   def delete

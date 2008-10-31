@@ -15,6 +15,11 @@ class Article < Content
       find :all, :conditions => {:state => ["presumed_ham", "ham"]}
     end
 
+    # Get only spam or presumed_spam comments
+    def spam
+      find :all, :conditions => {:state => ["presumed_spam", "spam"]}
+    end
+
   end
 
   with_options(:conditions => { :published => true }, :order => 'created_at DESC') do |this|
@@ -26,7 +31,7 @@ class Article < Content
   has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
 
   #TODO: change it because more logical with s in end : feedbacks
-  has_many :feedback,                           :order => "created_at DESC"
+  has_many :feedback, :order => "created_at DESC"
 
   has_many :resources, :order => "created_at DESC",
            :class_name => "Resource", :foreign_key => 'article_id'

@@ -1,26 +1,33 @@
-  <% @page_heading = _("Comments for %s (%s)","#{ link_to h(@article.title), :controller => '/admin/content', :action => 'new', :id => @article.id }","#{ link_to _('add a comment'), '#comment' }") %>
+<% @page_heading = _("Comments for %s (%s)","#{ link_to h(@article.title), :controller => '/admin/content', :action => 'new', :id => @article.id }","#{ link_to _('add a comment'), '#comment' }") %>
 
-  <div class="list">
-	<ol>
-	<% for feedback in @article.feedback -%>
-	  <li <%= alternate_class %>>
-	    <p><strong><%= mail_to h(feedback.email), h(feedback.author) %></strong> |
-		<%= link_to_unless feedback.url.blank?, h(feedback.url), feedback.url %> | 
-		IP: <%=h feedback.ip %></p>
-		<%= feedback.body %>
-		<p><%=feedback.created_at.strftime("%m/%d/%Y %H:%M") %> – [ 
-		   <%= link_to_edit "edit", feedback %> | 
-		   <%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => feedback.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
-		   <%= feedback.state %> ]
-		</p>
-	  </li>
-	<% end -%>
-	</ol>
-  </div>
+<% content_for (:tasks) do %>
+  <%= subtab(_('All comments'),'', {:action => :article, :id => @article.id, :ham => 'y', :spam => 'y'} ) %>
+  <%= subtab(_('Limit to ham'), '', {:action => :article, :id => @article.id, :ham => 'y'}) %>
+  <%= subtab(_('Limit to spam'), '', {:action => :article, :id => @article.id, :spam => 'y'}) %>
+<% end %>
+
+<div class="list">
+  <ol>
+  <% for comment in @comments -%>
+    <li <%= alternate_class %>>
+      <p><strong><%= mail_to h(comment.email), h(comment.author) %></strong> |
+      <%= link_to_unless comment.url.blank?, h(comment.url), comment.url %> | 
+      IP: <%=h comment.ip %></p>
+      <%= comment.body %>
+      <p>
+        <%= comment.created_at.strftime("%m/%d/%Y %H:%M") %> – [ 
+        <%= link_to_edit _("Edit"), comment %> | 
+        <%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
+        <%= comment.state %> ]
+      </p>
+    </li>
+  <% end -%>
+  </ol>
+</div>
+
 <hr />  
-  <% form_tag :action=>"new" do %>
-    <%= render :partial => "form" %>
 
-    <%= cancel_or_save %>
-  <% end %>
-  
+<% form_tag :action=>"new" do %>
+  <%= render :partial => "form" %>
+  <%= cancel_or_save %>
+<% end %>
