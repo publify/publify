@@ -14,7 +14,7 @@ module Admin::BaseHelper
     output = []
 
     for key,value in flash
-      output << "<span class=\"#{key.to_s.downcase}\">#{value}</span>"
+      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
     end if flash
 
     output.join("<br/>\n")
@@ -28,11 +28,11 @@ module Admin::BaseHelper
     link_to _("Cancel"), url
   end
 
-  def save(val = "Store")
+  def save(val = _("Store"))
     '<input type="submit" value="' + val + '" class="submit" />'
   end
 
-  def confirm_delete(val = "Delete")
+  def confirm_delete(val = _("Delete"))
    '<input type="submit" value="' + val + '" />'
   end
 
