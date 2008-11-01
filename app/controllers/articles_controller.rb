@@ -20,7 +20,7 @@ class ArticlesController < ContentController
     @articles = Article.find_all_by_date(*params.values_at(:year, :month, :day))
     @page_title = index_title
     @description = index_description
-    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.keywords
+    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
     
     respond_to do |format|
       format.html { render_paginated_index }
