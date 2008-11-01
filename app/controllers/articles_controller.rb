@@ -19,7 +19,7 @@ class ArticlesController < ContentController
   def index
     @articles = Article.find_all_by_date(*params.values_at(:year, :month, :day))
     @page_title = index_title
-    @description = (this_blog.meta_description.empty?) ? "#{this_blog.blog_name} #{this_blog.blog_subtitle}" : this_blog.meta_description
+    @description = index_description
     @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.keywords
     
     respond_to do |format|
@@ -150,6 +150,22 @@ class ArticlesController < ContentController
       if params[:page]
         page_title << 'Older posts' if page_title.blank?
         page_title << ", page " << params[:page]
+      end
+    end
+  end
+  
+  def index_description
+    returning('') do |page_description|
+      if this_blog.meta_description.empty?
+      page_description << "#{this_blog.blog_name} #{this_blog.blog_subtitle}" 
+      else
+        page_description << this_blog.meta_description
+      end
+      
+      page_description << formatted_date_selector(_(', Articles for '))
+      
+      if params[:page]
+        page_description << ", page " << params[:page]
       end
     end
   end
