@@ -1,4 +1,5 @@
-<div class="entry">
+<div class="post">
+  <h2 class="title"><%= _(controller.controller_name.capitalize) %></h2>
 <% unless @groupings.empty? -%>
 <% max_counter = @groupings[0].article_counter -%>
 <%= ul_tag_for @grouping_class %>
