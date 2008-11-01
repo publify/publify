@@ -122,14 +122,17 @@ class ArticlesController < ContentController
     @keywords = ""
     @keywords << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
     @keywords << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?  
-    @description = @article.body.strip_html.slice(0, 200)
+    @description = "#{@article.title}, " 
+    @description << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
+    @description << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?
+    @description << " #{this_blog.blog_name}"
   end
   
   def set_headers
     headers["Content-Type"] = "text/html; charset=utf-8"
   end
 
-  def render_paginated_index(on_empty = "No posts found...")
+  def render_paginated_index(on_empty = _("No posts found..."))
     return error(on_empty, :status => 200) if @articles.empty?
 
     @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, params[:page]
@@ -142,7 +145,7 @@ class ArticlesController < ContentController
 
   def index_title
     returning('') do |page_title|
-      page_title << formatted_date_selector('Archives for ')
+      page_title << formatted_date_selector(_('Archives for '))
 
       if params[:page]
         page_title << 'Older posts' if page_title.blank?
