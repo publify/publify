@@ -16,6 +16,10 @@ publisher:
   nicename: Blog publisher
   modules:
   - :users
+  - :dashboard
+  - :write
+  - :content
+  - :feedback
 
 contributor:
   label: contributor
