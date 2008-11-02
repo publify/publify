@@ -132,4 +132,15 @@ describe Admin::FeedbackController do
 
   end
 
+  describe 'edit action' do
+
+    it 'should render edit form' do
+      get 'edit', :id => feedback(:comment2).id
+      assigns(:comment).should == feedback(:comment2)
+      assigns(:article).should == contents(:article1)
+      response.should be_success
+    end
+
+  end
+
 end

@@ -66,6 +66,12 @@ class Admin::FeedbackController < Admin::BaseController
     redirect_to :action => 'article', :id => @article.id
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    @article = @comment.article
+  end
+
+
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
     items = Feedback.find(ids)
