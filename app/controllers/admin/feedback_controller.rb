@@ -1,6 +1,3 @@
-require 'comment'
-require 'trackback'
-
 class Admin::FeedbackController < Admin::BaseController
 
   def index
@@ -57,6 +54,18 @@ class Admin::FeedbackController < Admin::BaseController
     redirect_to :action => 'index', :page => params[:page], :search => params[:search]
   end
 
+  def create
+    @article = Article.find(params[:article_id])
+    @comment = @article.comments.build(params[:comment])
+
+    if request.post? and @comment.save
+      # We should probably wave a spam filter over this, but for now, just mark it as published.
+      @comment.mark_as_ham!
+      flash[:notice] = _('Comment was successfully created.')
+    end
+    redirect_to :action => 'article', :id => @article.id
+  end
+
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
     items = Feedback.find(ids)
@@ -106,4 +115,5 @@ class Admin::FeedbackController < Admin::BaseController
     PageCache.sweep_all
     expire_fragment(/.*/)
   end
+
 end

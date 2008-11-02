@@ -233,6 +233,9 @@ Localization.define('fr_FR') do |l|
   
   #admin/feedback/article.html.erb
   l.store "All comments", "Tous les commentaires"
+
+  #admin/feedback/create
+  l.store "Comment was successfully created.", "Commentaire crée avec succès."
  
   #admin/general/task
   l.store "Basic settings", "Configuration de base"
