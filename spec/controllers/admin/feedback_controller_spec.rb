@@ -139,6 +139,32 @@ describe Admin::FeedbackController do
       assigns(:comment).should == feedback(:comment2)
       assigns(:article).should == contents(:article1)
       response.should be_success
+      response.should render_template('edit')
+    end
+
+  end
+
+  describe 'publisher access' do
+
+    before :each do
+      request.session = { :user => users(:user_publisher).id }
+    end
+
+    describe 'edit action' do
+
+      it 'should not edit comment no own article' do
+        get 'edit', :id => feedback(:comment2).id
+        response.should redirect_to(:action => 'index')
+      end
+
+      it 'should edit comment if own article' do
+        get 'edit', :id => feedback(:comment_on_publisher_article).id
+        response.should be_success
+        response.should render_template('edit')
+        assigns(:comment).should == feedback(:comment_on_publisher_article)
+        assigns(:article).should == contents(:publisher_article)
+      end
+
     end
 
   end

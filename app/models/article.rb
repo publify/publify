@@ -447,6 +447,10 @@ class Article < Content
     self.categorizations.build(:category => category, :is_primary => is_primary)
   end
 
+  def access_by?(user) 
+    user.profile.label == 'admin' || user_id == user.id 
+  end
+
   protected
 
   before_create :set_defaults, :create_guid

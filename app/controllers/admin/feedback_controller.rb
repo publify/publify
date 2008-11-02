@@ -69,6 +69,15 @@ class Admin::FeedbackController < Admin::BaseController
   def edit
     @comment = Comment.find(params[:id])
     @article = @comment.article
+    unless @article.access_by? current_user
+      redirect_to :action => 'index'
+      return
+    end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+
   end
 
 
