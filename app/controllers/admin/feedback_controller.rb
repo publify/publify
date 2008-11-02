@@ -76,8 +76,18 @@ class Admin::FeedbackController < Admin::BaseController
   end
 
   def update
-    @comment = Comment.find(params[:id])
-
+    comment = Comment.find(params[:id])
+    unless comment.article.access_by? current_user
+      redirect_to :action => 'index'
+      return
+    end
+    comment.attributes = params[:comment]
+    if request.post? and comment.save
+      flash[:notice] = _('Comment was successfully updated.')
+      redirect_to :action => 'article', :id => comment.article.id
+    else
+      redirect_to :action => 'edit', :id => comment.id
+    end
   end
 
 

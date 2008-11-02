@@ -236,6 +236,7 @@ Localization.define('fr_FR') do |l|
 
   #admin/feedback/create
   l.store "Comment was successfully created.", "Commentaire crée avec succès."
+  l.store "Comment was successfully updated.", "Commentaire mis à jour avec succès."
  
   #admin/general/task
   l.store "Basic settings", "Configuration de base"
