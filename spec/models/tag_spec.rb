@@ -40,10 +40,10 @@ describe 'Given loaded fixtures' do
     tags.should have(2).entries
 
     tags.first.name.should == "foo"
-    tags.first.article_counter.should == 2
+    tags.first.article_counter.should == 3
 
     tags.last.name.should == 'bar'
-    tags.last.article_counter.should == 1
+    tags.last.article_counter.should == 2
   end
 
   it 'permalink_url should be of form /tag/<name>' do

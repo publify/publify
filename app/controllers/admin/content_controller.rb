@@ -71,9 +71,10 @@ class Admin::ContentController < Admin::BaseController
     @drafts = Article.find(:all, :conditions => "state='draft'")
     @article = Article.find(params[:id])
     
-    if current_user.profile.label != 'admin' and article.user_id != current_user.id 
+    if current_user.profile.label != 'admin' and @article.user_id != current_user.id 
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
+      return
     end
     new_or_edit 
   end
@@ -84,11 +85,13 @@ class Admin::ContentController < Admin::BaseController
     if current_user.profile.label != 'admin' and @article.user_id != current_user.id 
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
+      return
     end
     
     if request.post?
       @article.destroy
       redirect_to :action => 'index'
+      return
     end
   end
 

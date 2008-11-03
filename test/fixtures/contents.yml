@@ -175,3 +175,21 @@ spammed_article:
   published: true
   state: published
 
+publisher_article:
+  title: Article write by publisher
+  body: body
+  extended: extended content
+  created_at: <%= (Time.now - 1.days).to_s(:db) %>
+  updated_at: <%= (Time.now - 1.days).to_s(:db) %>
+  published_at: <%= (Time.now - 1.days).to_s(:db) %>
+  allow_comments: true
+  allow_pings: true
+  permalink: article-write-by-publisher
+  user: user_publisher
+  author: user_publisher
+  guid: a87c4220-18d4-11db-aadd-1002a5d5c51c
+  type: Article
+  published: true
+  state: published
+  tags: foo, bar
+  

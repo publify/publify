@@ -77,6 +77,59 @@ describe Admin::FeedbackController do
       assigns(:comments).size.should == 1
     end
 
+    it 'should redirect_to index if bad article id' do
+      lambda{
+        get :article, :id => 102302
+      }.should raise_error(ActiveRecord::RecordNotFound)
+    end
+
+  end
+
+  describe 'create action' do
+
+    def base_comment(options = {})
+      {"body"=>"a new comment", "author"=>"Me", "url"=>"http://typosphere.org", "email"=>"dev@typosphere.org"}.merge(options)
+    end
+
+    describe 'by get access' do
+      it "should raise ActiveRecordNotFound if article doesn't exist" do
+        lambda {
+          get 'create', :article_id => 120431, :comment => base_comment
+        }.should raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it 'should not create comment' do
+        assert_no_difference 'Comment.count' do
+          get 'create', :article_id => contents(:article1).id, :comment => base_comment
+          response.should redirect_to(:action => 'article', :id => contents(:article1).id)
+        end
+      end
+
+    end
+
+    describe 'by post access' do
+      it "should raise ActiveRecordNotFound if article doesn't exist" do
+        lambda {
+          post 'create', :article_id => 123104, :comment => base_comment
+        }.should raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it 'should create comment' do
+        assert_difference 'Comment.count' do
+          post 'create', :article_id => contents(:article1).id, :comment => base_comment
+          response.should redirect_to(:action => 'article', :id => contents(:article1).id)
+        end
+      end
+
+      it 'should create comment mark as ham' do
+        assert_difference 'Comment.count(:conditions => {:state => "ham"})' do
+          post 'create', :article_id => contents(:article1).id, :comment => base_comment
+          response.should redirect_to(:action => 'article', :id => contents(:article1).id)
+        end
+      end
+
+    end
+
   end
 
 end

@@ -147,7 +147,7 @@ describe Article do
   def test_find_published_by_tag_name
     @articles = Tag.find_by_name(tags(:foo).name).published_articles
 
-    assert_results_are(:article1, :article2)
+    assert_results_are(:article1, :article2, :publisher_article)
   end
 
 
@@ -155,7 +155,7 @@ describe Article do
     @articles = Article.find_published
     assert_results_are(:search_target, :article1, :article2,
                        :article3, :inactive_article,:xmltest,
-                       :spammed_article)
+                       :spammed_article, :publisher_article )
 
     @articles = Article.find_published(:all,
                                                   :conditions => "title = 'Article 1!'")
