@@ -61,7 +61,7 @@ class ArticlesController < ContentController
   def archives
     @articles = Article.find_published
     @page_title = "#{_('Archives for')} #{this_blog.blog_name}"
-    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.keywords
+    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
     @description = "#{_('Archives for')} #{this_blog.blog_name} - #{this_blog.blog_subtitle}"
   end
 
