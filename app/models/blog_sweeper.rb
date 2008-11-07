@@ -71,7 +71,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     expire_fragment(%r{.*/articles/.*})
     unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
       PageCache.zap_pages(%w{index.* articles.* page
-                     pages.* feedback feedback.*
+                     pages.* feedback feedback.* *.html
                      comments comments.*
                      category categories.* xml
                      tag tags.* category archive.* *.rss *.atom  })

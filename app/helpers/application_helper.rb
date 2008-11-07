@@ -18,7 +18,7 @@ module ApplicationHelper
     anchor = "##{anchor}" if anchor
     case item
     when Article
-      "<a href=\"#{this_blog.base_url}#{item.permalink}#{anchor}\" rel=\"#{nofollow}\" class=\"#{style}\">#{title}</a>"
+      "<a href=\"#{this_blog.base_url}/#{item.permalink}#{anchor}\" rel=\"#{nofollow}\" class=\"#{style}\">#{title}</a>"
     else
       "<a href=\"#{item.permalink_url}#{anchor}\" rel=\"#{nofollow}\" class=\"#{style}\">#{title}</a>"
     end

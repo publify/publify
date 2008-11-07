@@ -75,7 +75,6 @@ ActionController::Routing::Routes.draw do |map|
                             :member => {
                               :markup_help => :get
                             }) do |dated|
-    dated.resources :comments, :new => { :preview => :any }
     dated.resources :trackbacks
     dated.connect 'trackbacks', :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
   end
@@ -110,6 +109,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect ':title' + '.atom',
       :controller => 'articles', :action => 'show', :format => 'atom'
+  
+  map.connect ':title/comments',
+    :controller => 'comments', :action => 'create', :conditions => {:method => :post}
   
   map.connect 'page/:page',
     :controller => 'articles', :action => 'index',
