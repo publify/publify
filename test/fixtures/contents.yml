@@ -179,9 +179,9 @@ publisher_article:
   title: Article write by publisher
   body: body
   extended: extended content
-  created_at: <%= (Time.now - 1.days).to_s(:db) %>
-  updated_at: <%= (Time.now - 1.days).to_s(:db) %>
-  published_at: <%= (Time.now - 1.days).to_s(:db) %>
+  created_at: 2004-06-02 20:00:03
+  updated_at: 2004-06-02 20:00:03
+  published_at: 2004-06-02 20:00:03
   allow_comments: true
   allow_pings: true
   permalink: article-write-by-publisher

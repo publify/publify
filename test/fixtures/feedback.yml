@@ -150,3 +150,17 @@ definitely_spam_comment:
   guid: 12313123123123125
   state: spam
   status_confirmed: true
+
+comment_on_publisher_article:
+  type: Comment
+  published: true
+  article: publisher_article
+  author: Bob Foo
+  url: http://fakeurl.com
+  body: Test <a href="http://fakeurl.co.uk">body</a>
+  created_at: 2005-01-01 02:00:01
+  updated_at: 2005-01-01 02:00:01
+  published_at: 2005-01-01 02:00:01
+  guid: 12313123123123126
+  state: ham
+  status_confirmed: true

@@ -66,6 +66,31 @@ class Admin::FeedbackController < Admin::BaseController
     redirect_to :action => 'article', :id => @article.id
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    @article = @comment.article
+    unless @article.access_by? current_user
+      redirect_to :action => 'index'
+      return
+    end
+  end
+
+  def update
+    comment = Comment.find(params[:id])
+    unless comment.article.access_by? current_user
+      redirect_to :action => 'index'
+      return
+    end
+    comment.attributes = params[:comment]
+    if request.post? and comment.save
+      flash[:notice] = _('Comment was successfully updated.')
+      redirect_to :action => 'article', :id => comment.article.id
+    else
+      redirect_to :action => 'edit', :id => comment.id
+    end
+  end
+
+
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
     items = Feedback.find(ids)

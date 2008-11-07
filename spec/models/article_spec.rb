@@ -295,4 +295,16 @@ describe Article do
     contents(:article2).comments.count.should == 2
   end
 
+  describe '#access_by?' do
+
+    it 'admin should be access to an article write by another' do
+      contents(:article2).should be_access_by(users(:tobi))
+    end
+
+    it 'admin should be access to an article write by himself' do
+      contents(:article1).should be_access_by(users(:tobi))
+    end
+
+  end
+
 end

@@ -71,7 +71,7 @@ class Admin::ContentController < Admin::BaseController
     @drafts = Article.find(:all, :conditions => "state='draft'")
     @article = Article.find(params[:id])
     
-    if current_user.profile.label != 'admin' and @article.user_id != current_user.id 
+    unless @article.access_by? current_user 
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
@@ -82,7 +82,7 @@ class Admin::ContentController < Admin::BaseController
   def destroy
     @article = Article.find(params[:id])
     
-    if current_user.profile.label != 'admin' and @article.user_id != current_user.id 
+    unless @article.access_by?(current_user)
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
       return

@@ -132,4 +132,89 @@ describe Admin::FeedbackController do
 
   end
 
+  describe 'edit action' do
+
+    it 'should render edit form' do
+      get 'edit', :id => feedback(:comment2).id
+      assigns(:comment).should == feedback(:comment2)
+      assigns(:article).should == contents(:article1)
+      response.should be_success
+      response.should render_template('edit')
+    end
+
+  end
+
+  describe 'update action' do
+
+    it 'should update comment if post request' do
+      post 'update', :id => feedback(:comment2).id, 
+        :comment => {:author => 'Bob Foo2', 
+                     :url => 'http://fakeurl.com',
+                     :body => 'updated comment'}
+      response.should redirect_to(:action => 'article', :id => contents(:article1).id)
+      feedback(:comment2).reload
+      feedback(:comment2).body.should == 'updated comment'
+    end
+
+    it 'should not  update comment if get request' do
+      get 'update', :id => feedback(:comment2).id, 
+        :comment => {:author => 'Bob Foo2', 
+                     :url => 'http://fakeurl.com',
+                     :body => 'updated comment'}
+      response.should redirect_to(:action => 'edit', :id => feedback(:comment2).id)
+      feedback(:comment2).reload
+      feedback(:comment2).body.should_not == 'updated comment'
+    end
+
+  end
+
+  describe 'publisher access' do
+
+    before :each do
+      request.session = { :user => users(:user_publisher).id }
+    end
+
+    describe 'edit action' do
+
+      it 'should not edit comment no own article' do
+        get 'edit', :id => feedback(:comment2).id
+        response.should redirect_to(:action => 'index')
+      end
+
+      it 'should edit comment if own article' do
+        get 'edit', :id => feedback(:comment_on_publisher_article).id
+        response.should be_success
+        response.should render_template('edit')
+        assigns(:comment).should == feedback(:comment_on_publisher_article)
+        assigns(:article).should == contents(:publisher_article)
+      end
+
+    end
+
+    describe 'update action' do
+
+      it 'should update comment if own article' do
+        post 'update', :id => feedback(:comment_on_publisher_article).id, 
+          :comment => {:author => 'Bob Foo2', 
+                       :url => 'http://fakeurl.com',
+                       :body => 'updated comment'}
+        response.should redirect_to(:action => 'article', :id => contents(:publisher_article).id)
+        feedback(:comment_on_publisher_article).reload
+        feedback(:comment_on_publisher_article).body.should == 'updated comment'
+      end
+
+      it 'should not update comment if not own article' do
+        post 'update', :id => feedback(:comment2).id, 
+          :comment => {:author => 'Bob Foo2', 
+                       :url => 'http://fakeurl.com',
+                       :body => 'updated comment'}
+        response.should redirect_to(:action => 'index')
+        feedback(:comment2).reload
+        feedback(:comment2).body.should_not == 'updated comment'
+      end
+
+    end
+
+  end
+
 end
