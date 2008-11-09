@@ -3,7 +3,7 @@
 <tr <%= alternate_class %>>
   <td> <%= link_to h(article.title), :action => 'edit', :id => article.id %></td>
   <td><%= article.categories.map { |c| link_to h(c.name), {:controller => 'content', :action => 'index', "search[category]" => c.id}}.join(", ") %></td>
-  <td><%= article.published_at.strftime("%d/%m/%Y") %></td>
+  <td><%= article.published_at.strftime("%m/%d/%Y") %></td>
   <td><%= author_link(article)%></td>
   <td><%= link_to_published article %></td>
   <td class="operation"><%= (article.allow_comments?) ? link_to(article.comments.ham.size.to_s, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %></td>

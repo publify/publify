@@ -90,6 +90,13 @@ class Admin::FeedbackController < Admin::BaseController
     end
   end
 
+  def preview
+    feedback = Feedback.find(params[:id])
+    render(:update) do |page|
+      page.replace_html("feedback_#{feedback.id}", feedback.body)
+    end
+    
+  end
 
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)

@@ -23,9 +23,7 @@
       <th><%= _("Author")%></th>
       <th><%= _("Comment Excerpt")%></th>
       <th><%= _("IP")%></th>
-      <th><%= _("View")%></th>
-      <th><%= _("Edit")%></th>
-      <th><%= _("Delete") %></th>
+      <th><%= _("Date")%></th>
     </tr>
     <%= render :partial => 'item', :collection => @feedback %>
     <tr><td class="paginate" colspan="9"><%= will_paginate @feedback %></td></tr>
