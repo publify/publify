@@ -31,6 +31,13 @@
           <label class="float" for="meta_keywords"><%= _("Meta keywords")%></label>
           <input type="text" name="setting[meta_keywords]" id="meta_keywords" size="25" value="<%=h this_blog.meta_keywords %>" />
       </li>
+      <li class="checkbox">
+        <label class="float" for="rss_description"><%= _("Use RSS description")%>:</label>
+        <input name="setting[rss_description]" id="rss_description" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.rss_description %> />
+       <input name="setting[rss_description]" type="hidden" value="0" />
+       <span class="float"><%= "#{_('This will display')} <em>#{_('Original article writen by')} ... #{_('and published on')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a> | <a href='#{this_blog.base_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}</em> #{_('at the bottom of each of your post in the RSS feed')}"%></span>
+      </li>
+
     </ul>
   </fieldset>
   <%= hidden_field_tag 'from', 'index' %>  

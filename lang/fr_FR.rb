@@ -689,5 +689,11 @@ Localization.define('fr_FR') do |l|
   l.store "%%d. %%b", Proc.new {|date|
      sprintf( date.strftime("%d. %%s"), _(date.strftime("%b")).downcase )
   }
-
+  l.store "Original article writen by", "Article original écrit par" 
+  l.store "and published on", "et publié sur"
+  l.store "direct link to this article", "lien direct vers cet article" 
+  l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur" 
+  l.store "it has been illegally reproduced and without proper authorization", "c'est qu'il a été reproduit illégalement et sans autorisation"
+  l.store "This will display", "Cela affichera"
+  l.store "at the bottom of each of your post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
 end
