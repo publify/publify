@@ -11,7 +11,10 @@
   :loading  => "loading()" \
   do %>
 
-  <label><%= _("Search")%></label>  <input type="text" name="search[searchstring]" /><input type="submit" value='<%= _("Search") %>'>
+  <label><%= _("Search articles that contains...")%></label><br />  
+  <input type="text" name="search[searchstring]" size="30" />
+  <%= submit_tag _("Search") %>
+
   <table>
     <tr>
       <th><%= _("Title") %></th>

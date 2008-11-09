@@ -17,7 +17,7 @@
       <p>
         <%= comment.created_at.strftime("%m/%d/%Y %H:%M") %> – [ 
         <%= link_to_edit _("Edit"), comment %> | 
-        <%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
+        <%= link_to _("Delete") , {:action => 'delete', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
         <%= comment.state %> ]
       </p>
     </li>
