@@ -671,23 +671,29 @@ Localization.define('fr_FR') do |l|
   l.store "Oct", "Oct"
   l.store "Nov", "Nov"
   l.store "Dec", "Déc"
-  l.store "January", "Janvier"    
-  l.store "February", "Février"
-  l.store "March", "Mars"
-  l.store "April", "Avril"
-  l.store "May", "Mai"
-  l.store "June", "Juin"
-  l.store "July", "Juillet"
-  l.store "August", "Août"
-  l.store "September", "Septembre"
-  l.store "October", "Octobre"
-  l.store "November", "Novembre"
-  l.store "December", "Décembre"
+  l.store "January", "janvier"    
+  l.store "February", "février"
+  l.store "March", "mars"
+  l.store "April", "avril"
+  l.store "May", "mai"
+  l.store "June", "juin"
+  l.store "July", "juillet"
+  l.store "August", "août"
+  l.store "September", "septembre"
+  l.store "October", "octobre"
+  l.store "November", "novembre"
+  l.store "December", "décembre"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new {|date|
      sprintf( date.strftime("%%s %d %%s %Y %H:%M:%S GMT"), _(date.strftime("%a")), _(date.strftime("%b")).downcase )
   }
   l.store "%%d. %%b", Proc.new {|date|
      sprintf( date.strftime("%d. %%s"), _(date.strftime("%b")).downcase )
   }
-
+  l.store "Original article writen by", "Article original écrit par" 
+  l.store "and published on", "et publié sur"
+  l.store "direct link to this article", "lien direct vers cet article" 
+  l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur" 
+  l.store "it has been illegally reproduced and without proper authorization", "c'est qu'il a été reproduit illégalement et sans autorisation"
+  l.store "This will display", "Cela affichera"
+  l.store "at the bottom of each of your post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
 end
