@@ -200,11 +200,11 @@ EOF
     expects_markdown = <<-EOF
 <p><em>header text here</em></p>
 
-<div class="typocode"><pre><code class="typocode_ruby "><span class="keyword">class </span><span class="class">test</span>
-  <span class="keyword">def </span><span class="method">method</span>
-    <span class="punct">&quot;</span><span class="string">foo</span><span class="punct">&quot;</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="CodeRay"><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
+  <span class="r">def</span> <span class="fu">method</span>
+    <span class="s"><span class="dl">&quot;</span><span class="k">foo</span><span class="dl">&quot;</span></span>
+  <span class="r">end</span>
+<span class="r">end</span></span></div>
 
 <p><em>footer text here</em></p>
 EOF
@@ -213,11 +213,11 @@ EOF
 <p><strong>header text here</strong></p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby "><span class="keyword">class </span><span class="class">test</span>
-  <span class="keyword">def </span><span class="method">method</span>
-    <span class="punct">&quot;</span><span class="string">foo</span><span class="punct">&quot;</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="CodeRay"><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
+  <span class="r">def</span> <span class="fu">method</span>
+    <span class="s"><span class="dl">&quot;</span><span class="k">foo</span><span class="dl">&quot;</span></span>
+  <span class="r">end</span>
+<span class="r">end</span></span></div>
 
 \t<p><em>footer text here</em></p>
 EOF
