@@ -19,7 +19,7 @@
 					<%= content_tag :li, (link_to _(pm.human_name), pm.menus.first.url), :class => send("class_#{pm.name}") %>
 				<% end %>
 				<li class="right"><%= link_to _("log out"), :controller => "/accounts", :action=>"logout" %></li>
-				<li class="right"><%= link_to _('your blog'), this_blog.base_url %>
+				<li class="right"><%= link_to _('your blog'), this_blog.base_url %></li>
 			</ul>
 		</div>
 		<% if not @_render_stack.first =~ /login|signup|logout/ %>
