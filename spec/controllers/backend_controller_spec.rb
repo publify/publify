@@ -11,6 +11,10 @@ require 'base64'
 # Re-raise errors caught by the controller.
 class BackendController; def rescue_action(e) raise e end; end
 
+BackendController.class_eval do
+  include ActionWebService::Protocol::XmlRpc
+end
+
 describe BackendController do
   include FlexMock::TestCase
 
