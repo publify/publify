@@ -24,6 +24,10 @@ module Admin::BaseHelper
     content_tag :li, link_to(label, options, { "class"=> style })
   end
 
+  def show_page_heading
+    content_tag(:h2, @page_heading) unless @page_heading.blank?
+  end
+
   def cancel(url = {:action => 'index'})
     link_to _("Cancel"), url
   end
