@@ -11,6 +11,9 @@
       <th><%= _("Articles") %></th>
       <th><%= _("Comments") %></th>
     </tr>
+    <tr class="menubar">
+      <td colspan="6">&nbsp;</td>
+    </tr>
     <% for user in @users -%>
     <tr <%= alternate_class %>>
       <td class="field"><%= link_to_edit user.login, user%></td>

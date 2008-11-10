@@ -12,8 +12,8 @@ class Admin::TagsController < Admin::BaseController
     end
     
     count = Tag.count
-    @tags_pages = Paginator.new(self, count, 20, params[:id])
-    @tags = Tag.find_all_with_article_counters(20 , order, @tags_pages.current.offset)
+    @tags_pages = Paginator.new(self, count, 10, params[:id])
+    @tags = Tag.find_all_with_article_counters(10 , order, @tags_pages.current.offset)
   end
   
   def edit

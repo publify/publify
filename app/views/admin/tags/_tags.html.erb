@@ -4,6 +4,9 @@
   <th><%= _("Name") %></th>
   <th><%= _("Articles") %></th>
 </tr>
+<tr class="menubar">
+  <td colspan="3">&nbsp;</td>
+</tr>
 <%= render_void_table(@tags.size, 3)  %>
 <% for tag in @tags %>
 <tr <%= alternate_class %>>

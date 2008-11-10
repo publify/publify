@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 		<% if not @_render_stack.first =~ /login|signup|logout/ %>
-		<div class="tasks">
+		<div id="subtabs">
 			<ul>
 				<%= yield :tasks %>
 			</ul>
@@ -40,13 +40,13 @@
 			<% end %>
 
 			<div id="main">
-				<h2><%= @page_heading %></h2>
+        <%= show_page_heading %>
 
 				<%= yield  %>
 			</div>
 		</div>
 		<div id="footer">
-			Typo <%=h TYPO_VERSION %> <%= _("with %s AER OS XK iconset %s", '<a href="http://gnome-look.org/content/show.php/AER-OS-XK?content=49990">', '</a>') %>
+			Typo <%=h TYPO_VERSION %>
 		</div>
 		
 	</div>
