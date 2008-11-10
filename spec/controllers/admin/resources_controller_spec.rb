@@ -16,7 +16,6 @@ describe Admin::ResourcesController do
     assert_template 'index'
     assert_template_has 'resources'
     assert_not_nil assigns(:resources)
-    assert_not_nil assigns(:resources_pages)
   end
 
   def test_destroy

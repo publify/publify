@@ -9,7 +9,7 @@ class Admin::ContentController < Admin::BaseController
   end
   
   def build_filter_params
-    @conditions = ["state in('published', 'withdrawn')"]
+    @conditions = ["state <> 'draft'"]
     if params[:search]
       @search = params[:search]
 
