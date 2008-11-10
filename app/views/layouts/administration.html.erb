@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 		<% if not @_render_stack.first =~ /login|signup|logout/ %>
-		<div class="tasks">
+		<div id="subtabs">
 			<ul>
 				<%= yield :tasks %>
 			</ul>

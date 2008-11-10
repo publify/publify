@@ -1,4 +1,4 @@
-<% @page_heading = _("Comments and Trackbacks for") + " #{ this_blog.settings['blog_name'] }" %>
+<% @page_heading =  _("Feedback for") + " #{ this_blog.settings['blog_name'] }" %>
 <% subtabs_for(:feedback) %>
 
 <div class="search">
@@ -23,6 +23,9 @@
       <th><%= _("Author")%></th>
       <th><%= _("Comment Excerpt")%></th>
       <th><%= _("IP")%></th>
+    </tr>
+    <tr class="menubar">
+      <td colspan="6">&nbsp;</td>
     </tr>
     <%= render :partial => 'item', :collection => @feedback %>
     <tr><td class="paginate" colspan="9"><%= will_paginate @feedback %></td></tr>

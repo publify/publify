@@ -3,6 +3,10 @@
     <th><%= _("Title") %></th>
     <th><%= _("Posts") %></th>
   </tr>
+  <tr class="menubar">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
   <%= render_void_table(@categories.size, 2)  %>
   
   <% for category in @categories -%>

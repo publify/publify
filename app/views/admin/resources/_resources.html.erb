@@ -7,6 +7,10 @@
   <th><%= _("Date")%></th>
   <th><%= _("Delete")%></th>
 </tr>
+<tr class="menubar">
+  <td colspan="6">&nbsp;</td>
+</tr
+>
 <% for upload in resources -%>
 <tr <%= alternate_class -%>>
   <td><%= link_to "#{upload.filename}", "#{this_blog.base_url}/files/#{upload.filename}" -%></td>
@@ -33,7 +37,7 @@
   <% end -%>
   <td><%=h upload.size rescue 0 -%> bytes</td>
   <td><%=h upload.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
-  <td class="operation"><%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td>
+  <td class="operation"><%= link_to _("delete"), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td>
     
 </tr>  
 <% end -%>
