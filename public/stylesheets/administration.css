@@ -659,12 +659,11 @@ div.user {
 
 /* Login */
 #loginform {
-  width: 300px;
+  width: 320px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
 }
-
 
 #loginform label {
 	color: #224272;
@@ -713,20 +712,8 @@ input.submit {
 
 
 #loginform h3 {
-	text-align: left;
-}
-
-
-#loginform h4 {
-	font-weight: normal;
-	font: 14px Tahoma Helvetica sans-serif;
-	color: #f00;
-	border: #f00 1px solid;
-	padding: 4px;
 	text-align: center;
-	margin-bottom: 20px;
 }
-
 
 #loginform .errorExplanation {
 	border: 1px solid #f00;
@@ -744,43 +731,29 @@ input.submit {
 	margin: 0;
 }
 
-
-#loginform .errorExplanation ul {
-	margin-left: 5px;
-}
-
-
-#loginform .errorExplanation ul li {
-	list-style: square;
-	line-height: 1.6em;
-}
-
-
-#loginform img {
-	float: left;
-	margin-right: 5px;
+#loginform a img {
+	border: none;
 }
 /* End of login form */
 
 /* Notices, infos and errors */
-
 #flash span {
+  background: #fff;
   padding: 5px;
   margin-top: 10px;
-  color: #0C2504;
+  color: #000;
   display: block;
 }
 
 #flash .notice {
-  background: #ccc;
-  border: 1px solid #336699;
+  border: 2px solid #2C8146;
 }
 
 #flash .error {
-  background: #e99;
-  border-top: 1px solid #822;
-  border-bottom: 1px solid #822;
+	border: #f00 1px solid;
+	background: #FFEBE8;
 }
+/* End of notices, infos and errors */
 
 #category_list {
   list-style: none;

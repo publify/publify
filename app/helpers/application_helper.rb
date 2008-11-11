@@ -140,6 +140,16 @@ module ApplicationHelper
     tag
   end
 
+  def render_flash
+    output = []
+
+    for key,value in flash
+      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
+    end if flash
+
+    output.join("<br/>\n")
+  end
+  
   # Generate the image tag for a commenters gravatar based on their email address
   # Valid options are described at http://www.gravatar.com/implement.php
   def gravatar_tag(email, options={})

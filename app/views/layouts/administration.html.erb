@@ -1,54 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>Typo Administration:  <%= controller.controller_name %></title>
-	<meta http-equiv="imagetoolbar" content="no" />
-	<%= javascript_include_tag :fckeditor %>
-	<%= stylesheet_link_tag "administration", "lightbox" %>
-    <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
-	<%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox", "administration" %>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Typo Administration:  <%= controller.controller_name %></title>
+  <meta http-equiv="imagetoolbar" content="no" />
+  <%= javascript_include_tag :fckeditor %>
+  <%= stylesheet_link_tag "administration", "lightbox" %>
+  <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
+  <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox", "administration" %>
 </head>
 
 <body>
-	<div id="container">
-		<div id="topnav">
-			<ul id="tabs">
-				<% for pm in current_user.project_modules %>
-					<%= content_tag :li, (link_to _(pm.human_name), pm.menus.first.url), :class => send("class_#{pm.name}") %>
-				<% end %>
-				<li class="right"><%= link_to _("log out"), :controller => "/accounts", :action=>"logout" %></li>
-				<li class="right"><%= link_to _('your blog'), this_blog.base_url %></li>
-			</ul>
-		</div>
-		<% if not @_render_stack.first =~ /login|signup|logout/ %>
-		<div id="subtabs">
-			<ul>
-				<%= yield :tasks %>
-			</ul>
-			<div style="clear:both;"></div>
-		</div>
-		<% end %>
+  <div id="container">
+    <div id="topnav">
+      <ul id="tabs">
+        <% for pm in current_user.project_modules %>
+          <%= content_tag :li, (link_to _(pm.human_name), pm.menus.first.url), :class => send("class_#{pm.name}") %>
+        <% end %>
+        <li class="right"><%= link_to _("log out"), :controller => "/accounts", :action=>"logout" %></li>
+        <li class="right"><%= link_to _('your blog'), this_blog.base_url %></li>
+      </ul>
+    </div>
+    <% if not @_render_stack.first =~ /login|signup|logout/ %>
+    <div id="subtabs">
+      <ul>
+        <%= yield :tasks %>
+      </ul>
+      <div style="clear:both;"></div>
+    </div>
+    <% end %>
 
 
-		<div id="overall">
-			<% if flash[:notice] or flash[:error] %>
-			<div id="flash">
-				<%= render_flash rescue nil %>
-			</div>
-			<% end %>
+    <div id="overall">
+      <% if flash[:notice] or flash[:error] %>
+      <div id="flash">
+        <%= render_flash rescue nil %>
+      </div>
+      <% end %>
 
-			<div id="main">
+      <div id="main">
         <%= show_page_heading %>
 
-				<%= yield  %>
-			</div>
-		</div>
-		<div id="footer">
-			Typo <%=h TYPO_VERSION %>
-		</div>
-		
-	</div>
+        <%= yield  %>
+      </div>
+    </div>
+    <div id="footer">
+      Typo <%=h TYPO_VERSION %>
+    </div>
+
+  </div>
 </body>
 </html>

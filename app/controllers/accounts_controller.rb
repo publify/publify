@@ -10,10 +10,15 @@ class AccountsController < ApplicationController
       if logged_in?
         session[:user_id] = self.current_user.id
 
+        if params[:remember_me] == "1"
+          self.current_user.remember_me unless self.current_user.remember_token?
+          cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+        end
+
         flash[:notice]  = _("Login successful")
         redirect_back_or_default :controller => "admin/dashboard", :action => "index"
       else
-        flash.now[:notice]  = _("Login unsuccessful")
+        flash.now[:error]  = _("Login unsuccessful")
         @login = params[:user_login]
       end
     end
@@ -37,8 +42,11 @@ class AccountsController < ApplicationController
   end
 
   def logout
+    flash[:notice]  = _("Successfully logged out")
+    self.current_user.forget_me
     self.current_user = nil
     session[:user_id] = nil
+    render :action => 'login'
   end
 
   private
