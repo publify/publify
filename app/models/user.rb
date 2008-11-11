@@ -1,6 +1,5 @@
 require 'digest/sha1'
 
-# this model expects a certain database layout and its based on the name/login pattern.
 class User < CachedModel
   belongs_to :profile
   has_many :notifications, :foreign_key => 'notify_user_id'
@@ -22,14 +21,30 @@ class User < CachedModel
   @@salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
   cattr_accessor :salt
 
-  # Authenticate a user.
-  #
-  # Example:
-  #   @user = User.authenticate('bob', 'bobpass')
-  #
   def self.authenticate(login, pass)
     find(:first,
          :conditions => ["login = ? AND password = ?", login, sha1(pass)])
+  end
+
+  # These create and unset the fields required for remembering users between browser closes
+  def remember_me
+    remember_me_for 2.weeks
+  end
+
+  def remember_me_for(time)
+    remember_me_until time.from_now.utc
+  end
+
+  def remember_me_until(time)
+    self.remember_token_expires_at = time
+    self.remember_token            = Digest::SHA1.hexdigest("#{email}--#{remember_token_expires_at}")
+    save(false)
+  end
+
+  def forget_me
+    self.remember_token_expires_at = nil
+    self.remember_token            = nil
+    save(false)
   end
 
   def permalink_url(anchor=nil, only_path=true)

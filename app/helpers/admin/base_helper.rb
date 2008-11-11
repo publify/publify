@@ -10,16 +10,6 @@ module Admin::BaseHelper
     content_for(:tasks) { output.join("\n") }
   end
 
-  def render_flash
-    output = []
-
-    for key,value in flash
-      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
-    end if flash
-
-    output.join("<br/>\n")
-  end
-  
   def subtab(label, style, options = {})
     content_tag :li, link_to(label, options, { "class"=> style })
   end

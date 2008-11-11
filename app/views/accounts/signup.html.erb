@@ -1,7 +1,7 @@
 <% form_tag :action=> "signup" do %>
 
 <div title="Account signup" id="loginform">
-  <%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website", :style => "height: 24px"), "http://typosphere.org") + _(" Signup") %>
+  <%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
   <div  class="form admin">
 	<%= error_messages_for 'user' %>
 	<ul>
