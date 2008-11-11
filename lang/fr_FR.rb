@@ -696,4 +696,6 @@ Localization.define('fr_FR') do |l|
   l.store "it has been illegally reproduced and without proper authorization", "c'est qu'il a été reproduit illégalement et sans autorisation"
   l.store "This will display", "Cela affichera"
   l.store "at the bottom of each of your post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
+  l.store "for", "pour"
+  l.store "everything about", "tout sur"
 end
