@@ -10,10 +10,8 @@ class Admin::TagsController < Admin::BaseController
     else
       order = 'display_name ASC'
     end
-    
-    count = Tag.count
-    @tags_pages = Paginator.new(self, count, 10, params[:id])
-    @tags = Tag.find_all_with_article_counters(10 , order, @tags_pages.current.offset)
+
+    @tags = Tag.paginate(:page => params[:page], :order => :display_name, :per_page => 10)
   end
   
   def edit

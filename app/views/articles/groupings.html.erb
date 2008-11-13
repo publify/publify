@@ -1,10 +1,9 @@
 <div class="post">
   <h2 class="title"><%= _(controller.controller_name.capitalize) %></h2>
 <% unless @groupings.empty? -%>
-<% max_counter = @groupings[0].article_counter -%>
 <%= ul_tag_for @grouping_class %>
 <% for grp in @groupings.sort_by{|grp|grp.display_name} -%>
-  <li class="<%= calc_distributed_class(grp.article_counter, max_counter, @grouping_class, 0, 10) %>">
+  <li>
     <%= link_to_permalink(grp, grp.display_name) %>
   </li>
 <% end -%>
@@ -13,3 +12,4 @@
 <p><%= _("There are")%> <%= @grouping_class.to_s.underscore.pluralize %>.</p>
 <% end -%>
 </div>
+<p><%= will_paginate %></p>

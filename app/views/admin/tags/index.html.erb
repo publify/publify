@@ -6,7 +6,5 @@
   </div>                      
   
   <div class="paginate">
-    <%= link_to _("Previous page"), { :id => @tags_pages.current.previous } if @tags_pages.current.previous -%>
-    <%= pagination_links @tags_pages, :name => 'id' -%>
-    <%= link_to _("Next page"), { :id => @tags_pages.current.next } if @tags_pages.current.next -%>
+    <%= will_paginate @tags %>
 	</div>

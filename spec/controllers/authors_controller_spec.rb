@@ -45,9 +45,6 @@ describe AuthorsController, '/articles/category/foo' do
     User.stub!(:find_by_permalink) \
       .and_return(@author)
 
-    ActionController::Pagination::Paginator.stub!(:new) \
-      .and_return(mock('pages', :null_object => true))
-
     controller.stub!(:template_exists?) \
       .and_return(true)
     this_blog = Blog.default
