@@ -45,11 +45,12 @@
 AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/base"
   map.permission "admin/cache"
+  map.permission "admin/dashboard"
 
   map.project_module :write, nil do |project|
     project.menu    "Write",            { :controller => "admin/content",    :action => "new" }
     project.submenu "Article",          { :controller => "admin/content",    :action => "new" }
-	project.submenu "Page",             { :controller => "admin/pages",      :action => "new" }
+	  project.submenu "Page",             { :controller => "admin/pages",      :action => "new" }
   end
 
   map.project_module :content, nil do |project|
@@ -81,11 +82,6 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.menu    "Design",                { :controller => "admin/themes", :action => "index"  }
     project.submenu "Theme editor",          { :controller => "admin/themes", :action => "editor" }
     project.submenu "Sidebar",               { :controller => "admin/sidebar", :action => "index" }
-  end
-
-  map.project_module :dashboard, "admin/dashboard" do |project|
-    project.menu    "Dashboard",               { :action => :index }
-    project.submenu "Typo documentation", "http://typosphere.org/main_page"
   end
   
   map.project_module :settings, nil do |project|

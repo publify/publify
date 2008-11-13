@@ -6,6 +6,4 @@
   </div>
 <% end -%>
 
-<% unless @pages.item_count <= this_blog.limit_article_display %>
-  <p id="pagination"><%= _("Older posts")%>: <%= pagination_links @pages, :params => { :action => @controller.action_name } %></p>
-<% end -%>
+<p id="pagination"><%= will_paginate @articles %></p>

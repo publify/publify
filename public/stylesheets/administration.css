@@ -171,18 +171,6 @@ h3 {
   margin-bottom: 0;
 }
 
-.form h3,  h3 {
-  background: #637987;
-  color: #fff;
-  font-weight: normal;
-}
-
-.form h4 {
-  padding: 2px;
-  margin: 0;
-  font-size: 120%;
-}
-
 .set h3 {
   background: none;
   margin: 0 0 5px 0;
@@ -685,7 +673,7 @@ div.user {
 .submit {
 	width: 260px;
 	background: #b5b5b5;
-	font: 14px "Trebuchet MS", Helvetica, sans-serif;
+	font: 14px;
 }
 
 
@@ -796,8 +784,7 @@ input.submit {
   font-weight: bold
 }
 
-/* oard */
-
+/* Dashboard */
 .dashboard-small {
 	width: 23%;
 	float: left;
@@ -812,38 +799,36 @@ input.submit {
 	margin-bottom: 10px;
 }
 
-
-.dashboard h3, 
-.dashboard-small h3 {
-	padding: 0 0 5px 0;
+#dashboard h3 {
+	padding: 0;
 	margin: 0;
-	background: none;
-	color: #324e79;
-	font-size: 16px;
+	color: #ff6600;
+	font-size: 1.6em;
 	font-weight: normal;
-	border-bottom: #324e79 1px solid;
 }
 
+#dashboard .dashboard h3 {
+	color: #2C8146;
+}
 
-.dashboard ul,
-.dashboard-small ul {
+#dashboard ul {
 	margin: 0;
 	padding: 0;
-	padding-top: 10px;
+	padding-top: 5px;
 	padding-bottom: 10px;
 }
 
-.dashboard ul li,
-.dashboard-small ul li {
+#dashboard ul li {
 	margin-left: 0;
 	padding: 4px 10px 4px 2px;
 	list-style: none;
+	font-size: 1.1em;
 }
 
-.dashboard ul li.shade,
-.dashboard-small ul li.shade {
-	background : #d0d0d0;
+#dashboard ul li.shade {
+	background : #f0f0f0;
 }
+/* End of dashboard */
 
 hr {
 	border: medium none;

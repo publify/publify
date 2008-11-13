@@ -28,7 +28,7 @@ class GroupingController < ContentController
   end
 
   def index
-    self.groupings = grouping_class.find_all_with_article_counters(1000)
+    self.groupings = grouping_class.paginate(:page => params[:page], :per_page => 100)
     @page_title = "#{self.class.to_s.sub(/Controller$/,'')}"
     @keywords = ""
     @description = "#{_(self.class.to_s.sub(/Controller$/,''))} #{'for'} #{this_blog.blog_name}"
@@ -42,7 +42,8 @@ class GroupingController < ContentController
     @page_title << " page " << params[:page] if params[:page]
     @description = (grouping.description.blank?) ? "" : grouping.description
     @keywords = (grouping.keywords.blank?) ? "" : grouping.keywords
-    render_articles(grouping.published_articles)
+    @articles = grouping.articles.paginate(:page => params[:page], :conditions => { :published => true})
+    render_articles
   end
 
   protected
@@ -71,19 +72,16 @@ class GroupingController < ContentController
     end
   end
 
-  def render_articles(articles)
+  def render_articles
     respond_to do |format|
       format.html do
-        return error("Can't find any articles for '#{params[:id]}'") if articles.empty?
-
-        @pages = Paginator.new self, articles.size, this_blog.limit_article_display, params[:page]
-        @articles = articles.slice(@pages.current.offset, this_blog.limit_article_display)
+        return error("Can't find any articles for '#{params[:id]}'") if @articles.empty?
 
         render :template => 'articles/index' unless template_exists?
       end
 
-      format.atom { render_feed 'atom_feed',  articles }
-      format.rss  { render_feed 'rss20_feed', articles }
+      format.atom { render_feed 'atom_feed',  @articles }
+      format.rss  { render_feed 'rss20_feed', @articles }
     end
   end
 

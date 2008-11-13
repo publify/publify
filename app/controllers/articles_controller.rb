@@ -17,7 +17,18 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
-    @articles = Article.find_all_by_date(*params.values_at(:year, :month, :day))
+    respond_to do |format|
+      format.html { @limit = this_blog.limit_article_display }
+      format.rss { @limit = this_blog.limit_rss_display }
+      format.atom { @limit = this_blog.limit_rss_display }
+    end
+    
+    unless params[:year].blank?
+      @articles = Article.paginate :page => params[:page], :conditions => { :published_at => time_delta(*params.values_at(:year, :month, :day)), :published => true }, :order => 'created_at DESC', :per_page => @limit
+    else
+      @articles = Article.paginate :page => params[:page], :conditions => { :published => true }, :order => 'created_at DESC', :per_page => @limit      
+    end
+    
     @page_title = index_title
     @description = index_description
     @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
@@ -25,11 +36,11 @@ class ArticlesController < ContentController
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
-        render :partial => 'articles/atom_feed', :object => @articles[0,this_blog.limit_rss_display]
+        render :partial => 'articles/atom_feed', :object => @articles
       end
       format.rss do
         auto_discovery_feed(:only_path => false)
-        render :partial => 'articles/rss20_feed', :object => @articles[0,this_blog.limit_rss_display]
+        render :partial => 'articles/rss20_feed', :object => @articles
       end
     end
   end
@@ -134,12 +145,6 @@ class ArticlesController < ContentController
 
   def render_paginated_index(on_empty = _("No posts found..."))
     return error(on_empty, :status => 200) if @articles.empty?
-
-    @pages = Paginator.new self, @articles.size, this_blog.limit_article_display, params[:page]
-    start = @pages.current.offset
-    stop  = (@pages.current.next.offset - 1) rescue @articles.size
-    # Why won't this work? @articles.slice!(start..stop)
-    @articles = @articles.slice(start..stop)
     render :action => 'index'
   end
 
@@ -170,6 +175,16 @@ class ArticlesController < ContentController
     end
   end
   
+  def time_delta(year, month = nil, day = nil)
+    from = Time.mktime(year, month || 1, day || 1)
+
+    to = from.next_year
+    to = from.next_month unless month.blank?
+    to = from + 1.day unless day.blank?
+    to = to - 1 # pull off 1 second so we don't overlap onto the next day
+    return from..to
+  end
+    
   def formatted_date_selector(prefix = '')
     return '' unless params[:year]
     format = prefix

@@ -15,11 +15,12 @@
   <div id="container">
     <div id="topnav">
       <ul id="tabs">
+        <li class="right"><%= link_to _('your blog'), this_blog.base_url %></li>
+        <li class="right"><%= link_to _("log out"), :controller => "/accounts", :action=>"logout" %></li>
         <% for pm in current_user.project_modules %>
           <%= content_tag :li, (link_to _(pm.human_name), pm.menus.first.url), :class => send("class_#{pm.name}") %>
         <% end %>
-        <li class="right"><%= link_to _("log out"), :controller => "/accounts", :action=>"logout" %></li>
-        <li class="right"><%= link_to _('your blog'), this_blog.base_url %></li>
+        <li class="right"><%= link_to _('Dashboard'), :controller => '/admin' %></li>
       </ul>
     </div>
     <% if not @_render_stack.first =~ /login|signup|logout/ %>
