@@ -59,7 +59,7 @@ class ArticlesController < ContentController
       format.xml  { redirect_to :format => 'atom' }
     end
     rescue ActiveRecord::RecordNotFound
-      error("Post not found...")
+      redirect_to "/", :status => 301
   end
 
   def search
