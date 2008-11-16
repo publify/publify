@@ -49,8 +49,7 @@ class InitialSchema < ActiveRecord::Migration
         :allow_comments => 1,
         :allow_pings =>1,
         :published => 1,
-        :permalink => 'hello-world',
-        :user_id => 1
+        :permalink => 'hello-world'
       )
 
       create_table :blacklist_patterns do |t|
