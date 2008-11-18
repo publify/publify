@@ -127,7 +127,7 @@ module Admin::BaseHelper
   end
 
   def t_textarea(object_name, method, options)
-    if this_blog.editor == 2
+    if current_user.editor == 2
       fckeditor_textarea(object_name, method, options)
     else
       text_area(object_name, method, options)

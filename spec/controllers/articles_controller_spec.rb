@@ -32,7 +32,6 @@ describe 'ArticlesController' do
   it 'index' do
     get 'index'
     response.should render_template(:index)
-    assigns[:pages].should_not be_nil
     assigns[:articles].should_not be_nil
   end
 end

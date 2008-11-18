@@ -7,15 +7,6 @@
 	<fieldset id="write" class="set">
 		<legend><%= _("Write")%></legend>
 		<ul>
-			<li>
-				<label class="float"><%= _("Editor")%>:</label>
-				<input type="radio" name="setting[editor]" value="2" id="editor_2" <%= 'checked="checked"' if this_blog.editor == 2 %>/>
-				<label for="editor_2"><%= _("Use visual rich editor")%></label>
-				<span class="float">
-					<input type="radio" name="setting[editor]" value="0" id="editor_0" <%= 'checked="checked"' if this_blog.editor == 0 %>/>
-				    <label for="editor_0"><%= _("Use simple editor without live preview")%></label>
-				</span>
-		  	</li>
 		    <li>
             <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
             <select name="setting[text_filter]" id="text_filter">
