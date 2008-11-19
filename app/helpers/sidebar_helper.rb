@@ -28,4 +28,16 @@ module SidebarHelper
     end
   end
 
+  def articles?
+    not Article.first.nil?
+  end
+
+  def trackbacks?
+    not Trackback.first.nil?
+  end
+
+  def comments?
+    not Comment.first.nil?
+  end
+
 end
