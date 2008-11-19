@@ -1,5 +1,7 @@
 class Admin::FeedbackController < Admin::BaseController
 
+  cache_sweeper :blog_sweeper
+
   def index
     conditions = ['1 = 1', {}]
 

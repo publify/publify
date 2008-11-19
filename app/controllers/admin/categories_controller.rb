@@ -1,5 +1,7 @@
 class Admin::CategoriesController < Admin::BaseController
 
+  cache_sweeper :blog_sweeper
+
   def index
     @categories = Category.find(:all, :order => :position, :conditions => { :parent_id => nil })
   end

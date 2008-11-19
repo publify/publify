@@ -1,5 +1,7 @@
 class Admin::ThemesController < Admin::BaseController
 
+  cache_sweeper :blog_sweeper
+
   def index
     @themes = Theme.find_all
     @themes.each do |theme|

@@ -1,10 +1,10 @@
 class Admin::SidebarController < Admin::BaseController
+
   def index
     @available = available
     # Reset the staged position based on the active position.
     Sidebar.delete_all('active_position is null')
-    @active = Sidebar.find(:all, :order => 'active_position ASC')
-    flash[:sidebars] = @active.map {|sb| sb.id }
+    flash_sidebars
   end
 
   def set_active
@@ -14,7 +14,7 @@ class Admin::SidebarController < Admin::BaseController
       hash.merge({ klass.short_name => klass })
     end
     # Get all already active plugins
-    activemap = flash[:sidebars].inject({}) do |h, sb_id|
+    activemap = flash_sidebars.inject({}) do |h, sb_id|
       sb = Sidebar.find(sb_id.to_i)
       sb ? h.merge(sb.html_id => sb_id) : h
     end
@@ -23,9 +23,7 @@ class Admin::SidebarController < Admin::BaseController
     # lay them out in a easy accessible sequential array
     flash[:sidebars] = params[:active].inject([]) do |array, name|
       if klass_for.has_key?(name)
-        @new_item = klass_for[name].create!
-        @target = name
-        array << @new_item.id
+        array << klass_for[name].create.id
       elsif activemap.has_key?(name)
         array << activemap[name]
       else
@@ -35,7 +33,7 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   def remove
-    flash[:sidebars] = flash[:sidebars].reject do |sb_id|
+    flash[:sidebars] = flash_sidebars.reject do |sb_id|
       sb_id == params[:id].to_i
     end
     @element_to_remove = params[:element]
@@ -47,7 +45,7 @@ class Admin::SidebarController < Admin::BaseController
       params[:configure] ||= { }
       # Crappy workaround to rails update_all bug with PgSQL / SQLite
       ActiveRecord::Base.connection.execute("update sidebars set active_position=null")
-      flash[:sidebars].each do |id|
+      flash_sidebars.each do |id|
         sidebar = Sidebar.find(id)
         sb_attribs = params[:configure][id.to_s] || {}
         # If it's a checkbox and unchecked, convert the 0 to false
@@ -62,10 +60,12 @@ class Admin::SidebarController < Admin::BaseController
       end
       Sidebar.delete_all('active_position is null')
     end
+    sweep_cache
     index
   end
 
   protected
+  
   def show_available
     render :partial => 'availables', :object => available
   end
@@ -73,5 +73,14 @@ class Admin::SidebarController < Admin::BaseController
   def available
     ::Sidebar.available_sidebars
   end
+
+  def flash_sidebars
+    unless flash[:sidebar]
+      @active = Sidebar.find(:all, :order => 'active_position ASC')
+      flash[:sidebars] = @active.map {|sb| sb.id }
+    end
+    flash[:sidebars]
+  end
+
   helper_method :available
 end

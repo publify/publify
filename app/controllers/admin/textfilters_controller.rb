@@ -1,4 +1,7 @@
 class Admin::TextfiltersController < Admin::BaseController
+
+  cache_sweeper :blog_sweeper
+
   def index
     @textfilters = TextFilter.find(:all, :order => "id DESC")
     @textfilter_map = TextFilter.filters_map

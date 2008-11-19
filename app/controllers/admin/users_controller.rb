@@ -1,5 +1,7 @@
 class Admin::UsersController < Admin::BaseController
 
+  cache_sweeper :blog_sweeper
+
   def index
     if current_user.profile.label == 'admin'
       @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => 10

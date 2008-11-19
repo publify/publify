@@ -1,5 +1,7 @@
 class Admin::TagsController < Admin::BaseController
   
+  cache_sweeper :blog_sweeper
+
   def index
     if params[:order] and params[:order] =~ /\A(?:name|display_name|article_counter)\Z/
       if params[:sense] and params[:sense] == 'desc'

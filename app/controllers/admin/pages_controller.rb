@@ -2,6 +2,8 @@ require 'base64'
 
 class Admin::PagesController < Admin::BaseController
   layout "administration", :except => 'show'
+  cache_sweeper :blog_sweeper
+
   def index
     conditions = "id > 0"
 

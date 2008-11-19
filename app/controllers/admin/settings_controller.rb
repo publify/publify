@@ -1,5 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
+  cache_sweeper :blog_sweeper
+
   def index
     if this_blog.base_url.blank?
       this_blog.base_url = blog_base_url

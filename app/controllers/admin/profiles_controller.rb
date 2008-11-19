@@ -1,5 +1,7 @@
 class Admin::ProfilesController < Admin::BaseController
 
+  cache_sweeper :blog_sweeper
+
   def index
 
   end
