@@ -4,7 +4,7 @@ class MoveEditorToUser < ActiveRecord::Migration
     
     unless $schema_generator
       blog = Blog.default
-      editor = blog.settings.fetch('editor')
+      editor = blog.editor
       users = User.find(:all)
       users.each do |user|
         user.editor = editor.to_i
