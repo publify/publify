@@ -9,6 +9,10 @@ describe "CommentClosing from Test::Unit; no I don't know why it's in article_cl
     @blog = blogs(:default)
     @blog.sp_article_auto_close = 0
     @blog.default_allow_comments = true
+
+    # Blog.default may have already cached a copy of the default blog, and
+    # it won't see our changes.  So override the caching.
+    Blog.stub!(:default).and_return(@blog)
   end
 
   def test_new_article_should_be_open_if_auto_close_is_zero
