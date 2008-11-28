@@ -44,6 +44,10 @@ Rails::Initializer.run do |config|
     app/apis
   ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
 
+  # Declare the gems in vendor/gems, so that we can easily freeze and/or
+  # install them.
+  config.gem 'coderay'
+
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug

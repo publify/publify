@@ -1,0 +1,114 @@
+--- !ruby/object:Gem::Specification 
+name: coderay
+version: !ruby/object:Gem::Version 
+  version: 0.8.260
+platform: ruby
+authors: 
+- murphy
+autorequire: coderay
+bindir: bin
+cert_chain: []
+
+date: 2008-10-07 00:00:00 -04:00
+default_executable: 
+dependencies: []
+
+description: "CodeRay is a Ruby library for syntax highlighting. I try to make CodeRay easy to use and intuitive, but at the same time fully featured, complete, fast and efficient.  Usage is simple: require 'coderay' code = 'some %q(weird (Ruby) can't shock) me!' puts CodeRay.scan(code, :ruby).html"
+email: murphy@cYcnus.de
+executables: 
+- coderay
+- coderay_stylesheet
+extensions: []
+
+extra_rdoc_files: 
+- ./README
+- ./FOLDERS
+files: 
+- ./lib/coderay/duo.rb
+- ./lib/coderay/encoder.rb
+- ./lib/coderay/encoders/_map.rb
+- ./lib/coderay/encoders/count.rb
+- ./lib/coderay/encoders/debug.rb
+- ./lib/coderay/encoders/div.rb
+- ./lib/coderay/encoders/html/css.rb
+- ./lib/coderay/encoders/html/numerization.rb
+- ./lib/coderay/encoders/html/output.rb
+- ./lib/coderay/encoders/html.rb
+- ./lib/coderay/encoders/null.rb
+- ./lib/coderay/encoders/page.rb
+- ./lib/coderay/encoders/span.rb
+- ./lib/coderay/encoders/statistic.rb
+- ./lib/coderay/encoders/text.rb
+- ./lib/coderay/encoders/tokens.rb
+- ./lib/coderay/encoders/xml.rb
+- ./lib/coderay/encoders/yaml.rb
+- ./lib/coderay/for_redcloth.rb
+- ./lib/coderay/helpers/file_type.rb
+- ./lib/coderay/helpers/gzip_simple.rb
+- ./lib/coderay/helpers/plugin.rb
+- ./lib/coderay/helpers/word_list.rb
+- ./lib/coderay/scanner.rb
+- ./lib/coderay/scanners/_map.rb
+- ./lib/coderay/scanners/c.rb
+- ./lib/coderay/scanners/css.rb
+- ./lib/coderay/scanners/debug.rb
+- ./lib/coderay/scanners/delphi.rb
+- ./lib/coderay/scanners/diff.rb
+- ./lib/coderay/scanners/html.rb
+- ./lib/coderay/scanners/java/builtin_types.rb
+- ./lib/coderay/scanners/java.rb
+- ./lib/coderay/scanners/java_script.rb
+- ./lib/coderay/scanners/json.rb
+- ./lib/coderay/scanners/nitro_xhtml.rb
+- ./lib/coderay/scanners/plaintext.rb
+- ./lib/coderay/scanners/rhtml.rb
+- ./lib/coderay/scanners/ruby/patterns.rb
+- ./lib/coderay/scanners/ruby.rb
+- ./lib/coderay/scanners/scheme.rb
+- ./lib/coderay/scanners/sql.Keith.rb
+- ./lib/coderay/scanners/sql.rb
+- ./lib/coderay/scanners/xml.rb
+- ./lib/coderay/style.rb
+- ./lib/coderay/styles/_map.rb
+- ./lib/coderay/styles/cycnus.rb
+- ./lib/coderay/styles/murphy.rb
+- ./lib/coderay/token_classes.rb
+- ./lib/coderay/tokens.rb
+- ./lib/coderay.rb
+- ./lib/term/ansicolor.rb
+- ./README
+- ./LICENSE
+- ./FOLDERS
+- bin/coderay
+- bin/coderay_stylesheet
+has_rdoc: true
+homepage: http://coderay.rubychan.de
+post_install_message: 
+rdoc_options: 
+- -SNw2
+- -mREADME
+- -a
+- -t CodeRay Documentation
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: 1.8.2
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: 
+- strscan
+rubyforge_project: coderay
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: CodeRay is a fast syntax highlighter engine for many languages.
+test_files: []
+
