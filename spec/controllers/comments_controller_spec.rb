@@ -48,6 +48,7 @@ describe "All Requests", :shared => true do
 
     Comment.stub!(:find).and_return(@comment)
     Blog.stub!(:find).and_return(@blog)
+    Blog.stub!(:default).and_return(@blog)
   end
 end
 
