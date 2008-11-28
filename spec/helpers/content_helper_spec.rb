@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ContentHelper, 'calc_distributed_class' do
+  include ContentHelper
+
   it 'should behave as specified in the old test_calc_distributed_class_basic ' do
     calc_distributed_class(0, 0, "prefix", 5, 15).should == 'prefix5'
 
