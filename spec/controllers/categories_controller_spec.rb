@@ -87,7 +87,7 @@ describe CategoriesController, '/articles/category/foo' do
   end
 
   it 'should render an error when the category is empty' do
-    @category.should_receive(:published_articles) \
+    @category.should_receive(:articles) \
       .and_return([])
 
     do_get

@@ -87,7 +87,7 @@ describe TagsController, '/articles/tag/foo' do
   end
 
   it 'should render an error when the tag is empty' do
-    @tag.should_receive(:published_articles) \
+    @tag.should_receive(:articles) \
       .and_return([])
 
     do_get

@@ -87,7 +87,7 @@ describe AuthorsController, '/articles/category/foo' do
   end
 
   it 'should render an error when the author has no articles' do
-    @author.should_receive(:published_articles) \
+    @author.should_receive(:articles) \
       .and_return([])
 
     do_get
