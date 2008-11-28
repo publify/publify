@@ -32,7 +32,9 @@ class XmlController < ApplicationController
     else
       @items = Array.new
       @blog = this_blog
-      @feed_title = this_blog.blog_name
+      # We use @feed_title.<< to destructively modify @feed_title, below, so
+      # make sure we have our own copy to modify.
+      @feed_title = this_blog.blog_name.dup
       @link = this_blog.base_url
 
       if respond_to?("prep_#{params[:type]}")

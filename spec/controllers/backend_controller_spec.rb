@@ -34,7 +34,7 @@ describe BackendController do
     args = [ 'foo', 'tobi', 'whatever' ]
 
     result = invoke_layered :blogger, :getUsersBlogs, *args
-    assert_equal result.first['blogName'], 'test blog'
+    assert_equal 'test blog', result.first['blogName']
   end
 
   def test_blogger_get_user_info
