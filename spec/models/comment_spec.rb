@@ -124,13 +124,18 @@ describe Comment do
 
     # Test each filter to make sure that we don't allow scripts through.
     # Yes, this is ugly.
-    ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
-      Blog.default.comment_text_filter = filter
+    saved_filter = Blog.default.comment_text_filter
+    begin
+      ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
+        Blog.default.comment_text_filter = filter
 
-      assert c.save
-      assert c.errors.empty?
+        assert c.save
+        assert c.errors.empty?
 
-      assert c.html(:body) !~ /<script>/
+        assert c.html(:body) !~ /<script>/
+      end
+    ensure
+      Blog.default.comment_text_filter = saved_filter
     end
   end
 
