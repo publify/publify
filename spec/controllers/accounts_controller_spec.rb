@@ -179,11 +179,17 @@ describe 'User is logged in' do
   before(:each) do
     @user = mock_model(User)
 
+    # The AccountsController class uses session[:user_id], and the
+    # Typo LoginSystem uses session[:user].  So we need to set both of
+    # these up correctly.  I'm not sure why the duplication exists.
     session[:user_id] = @user.id
+    @controller.send(:current_user=, @user)
+
     User.should_receive(:find) \
-      .with(@user.id) \
+      .with(:first, :conditions => { :id => @user.id }) \
       .any_number_of_times \
       .and_return(@user)
+    @user.should_receive(:forget_me)
 
     request.cookies[:is_admin] = 'yes'
   end
@@ -193,9 +199,9 @@ describe 'User is logged in' do
     session[:user_id].should == nil
   end
 
-  it 'renders the logout action' do
+  it 'renders the login action' do
     get 'logout'
-    response.should render_template('logout')
+    response.should render_template('login')
   end
 
   it 'logging out deletes the "is_admin" cookie' do
