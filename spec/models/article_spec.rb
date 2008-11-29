@@ -307,4 +307,38 @@ describe Article do
 
   end
 
+  describe 'with extended content' do
+    before :each do 
+      @article = contents(:article1)
+      @original_body = @article.body
+      @original_extended = @article.extended
+    end
+
+    it 'should support merging extended content into body' do
+      @article.merge_extended_into_body!
+      @article.body.should ==
+        "#{@original_body}\n<!--more-->\n#{@original_extended}"
+      @article.extended.should be_empty
+    end
+
+    describe 'merged into body' do
+      before :each do
+        @article.merge_extended_into_body!
+      end
+
+      it 'should support extracting extended content' do
+        @article.extract_extended_from_body!
+        @article.body.should == @original_body
+        @article.extended.should == @original_extended
+      end
+
+      it 'should preserve extra <!--more--> tags' do
+        @article.body += "<!--more-->even more"
+        @article.extract_extended_from_body!
+        @article.body.should == @original_body
+        @article.extended.should == @original_extended + "<!--more-->even more"
+      end
+    end
+  end
+
 end

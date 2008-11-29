@@ -367,6 +367,32 @@ class Article < Content
     [:body, :extended]
   end
 
+  # The web interface no longer distinguishes between separate "body" and
+  # "extended" fields, and instead edits everything in a single edit field,
+  # separating the extended content using "<!--more-->".  The
+  # #merge_extended_into_body! and #extract_extended_from_body! functions
+  # handle this transformation for us.
+  #
+  # These two functions were refactored out of ContentController to make
+  # them easier to test.  In the long run, we actually want to push this
+  # change through to the underlying database tables and remove these
+  # functions.
+  def merge_extended_into_body!
+    unless extended.blank?
+      self.body = body + "\n<!--more-->\n" + extended
+      self.extended = ''
+    end        
+  end
+
+  # See #merge_extended_into_body!.
+  def extract_extended_from_body!
+    if body =~ /<!--more-->/ && (extended.nil? || extended.blank?)
+      parts = body.split(/\n?<!--more-->\n?/, 2)
+      self.body = parts[0]
+      self.extended = parts[1]
+    end
+  end
+
   ## Feed Stuff
   def rss_trackback(xml)
     return unless allow_pings?

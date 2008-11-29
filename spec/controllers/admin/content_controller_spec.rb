@@ -187,6 +187,8 @@ describe Admin::ContentController do
         response.should render_template('new')
         assert_template_has 'article'
         assigns(:article).should be_valid
+        response.should have_text(/body/)
+        response.should have_text(/extended content/)
       end
 
       it 'should update article by edit action' do
@@ -211,8 +213,17 @@ describe Admin::ContentController do
         end
       end
 
+      it 'should extract extended body when updating article' do
+        article = contents(:article1)
+        post :edit, 'id' => article.id, 'article' => {
+          'body' => 'foo<!--more-->bar<!--more-->baz'
+        }
+        assert_response :redirect
+        article.reload
+        article.body.should == 'foo'
+        article.extended.should == 'bar<!--more-->baz'
+      end
     end
-
 
     describe 'resource_add action' do
 
