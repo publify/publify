@@ -199,9 +199,9 @@ describe 'User is logged in' do
     session[:user_id].should == nil
   end
 
-  it 'renders the login action' do
+  it 'redirects to the login action' do
     get 'logout'
-    response.should render_template('login')
+    response.should redirect_to(:action => 'login')
   end
 
   it 'logging out deletes the "is_admin" cookie' do
