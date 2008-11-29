@@ -26,6 +26,9 @@
     </div>
     <div id="editor">
       <label for="article_body"class="block content"><%= _("Content")%></label>
+      <% if current_user.editor == 0 -%>
+        <script type="text/javascript">edToolbar('article_body');</script>
+      <% end -%>
       <%= t_textarea 'article', 'body', {:height => '300', :class => 'medium'} %>
     </div>
   </li>
