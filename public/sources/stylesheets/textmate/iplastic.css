@@ -1,0 +1,142 @@
+/* Stylesheet generated from TextMate theme
+ *
+ * iPlastic
+ * 
+ *
+ */
+
+div.textmate-source.iplastic pre.textmate-source {
+	color: #000000;
+	background-color: rgba(238, 238, 238, 0.92);
+}
+
+pre.textmate-source .linenum {
+	width: 75px;
+	padding: 0.1em 1em 0.2em 0;
+	color: #888;
+	background-color: #eee;
+}
+div.textmate-source.iplastic pre.textmate-source span {
+   padding-top: 0.2em;
+   padding-bottom: 0.1em;
+}
+div.textmate-source.iplastic pre.textmate-source ::selection {
+	background-color: #BAD6FD;
+}
+/* String */
+div.textmate-source.iplastic pre.textmate-source .string {
+	color: #009933;
+}
+
+/* Number */
+div.textmate-source.iplastic pre.textmate-source .constant_numeric {
+	color: #0066FF;
+}
+
+/* Regular expression */
+div.textmate-source.iplastic pre.textmate-source .string_regexp {
+	color: #FF0080;
+}
+
+/* Keyword */
+div.textmate-source.iplastic pre.textmate-source .keyword {
+	color: #0000FF;
+}
+
+/* Identifier */
+div.textmate-source.iplastic pre.textmate-source .constant_language {
+	color: #9700CC;
+}
+
+/* Exception */
+div.textmate-source.iplastic pre.textmate-source .support_class_exception {
+	color: #990000;
+}
+
+/* Function name */
+div.textmate-source.iplastic pre.textmate-source .entity_name_function {
+	color: #FF8000;
+}
+
+/* Type name */
+div.textmate-source.iplastic pre.textmate-source .entity_name_type {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+/* Arguments */
+div.textmate-source.iplastic pre.textmate-source .variable_parameter {
+	font-style: italic;
+}
+
+/* Comment */
+div.textmate-source.iplastic pre.textmate-source .comment {
+	color: #0066FF;
+	font-style: italic;
+}
+
+/* Invalid */
+div.textmate-source.iplastic pre.textmate-source .invalid {
+	color: #FF0000;
+	background-color: rgba(231, 26, 17, 0.30);
+}
+
+/* Trailing whitespace */
+div.textmate-source.iplastic pre.textmate-source .invalid_deprecated_trailing-whitespace {
+	background-color: rgba(231, 26, 17, 0.00);
+}
+
+/* Embedded source */
+div.textmate-source.iplastic pre.textmate-source .text .source {
+	color: #000000;
+	background-color: rgba(250, 250, 250, 0.99);
+}
+
+/* Tag */
+div.textmate-source.iplastic pre.textmate-source .meta_tag, div.textmate-source.iplastic pre.textmate-source .declaration_tag {
+	color: #0033CC;
+}
+
+/* Constant */
+div.textmate-source.iplastic pre.textmate-source .constant, div.textmate-source.iplastic pre.textmate-source .support_constant {
+	color: #6782D3;
+}
+
+/* Support */
+div.textmate-source.iplastic pre.textmate-source .support {
+	color: #3333FF;
+	font-weight: bold;
+}
+
+/* Storage */
+div.textmate-source.iplastic pre.textmate-source .storage {
+	font-weight: bold;
+}
+
+/* Section name */
+div.textmate-source.iplastic pre.textmate-source .entity_name_section {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+/* Frame title */
+div.textmate-source.iplastic pre.textmate-source .entity_name_function_frame {
+	color: #000000;
+	font-weight: bold;
+}
+
+/* XML Declaration */
+div.textmate-source.iplastic pre.textmate-source .meta_tag_preprocessor_xml {
+	color: #333333;
+}
+
+/* Tag Attribute */
+div.textmate-source.iplastic pre.textmate-source .entity_other_attribute-name {
+	color: #3366CC;
+	font-style: italic;
+}
+
+/* Tag Name */
+div.textmate-source.iplastic pre.textmate-source .entity_name_tag {
+	font-weight: bold;
+}
