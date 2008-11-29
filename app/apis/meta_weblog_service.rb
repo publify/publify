@@ -167,7 +167,7 @@ class MetaWeblogService < TypoWebService
       :mt_allow_pings    => article.allow_pings? ? 1 : 0,
       :mt_convert_breaks => (article.text_filter.name.to_s rescue ''),
       :mt_tb_ping_urls   => article.pings.collect { |p| p.url },
-      :dateCreated       => (article.published_at.getutc.to_formatted_s(:db) rescue "")
+      :dateCreated       => (article.published_at.utc rescue '')
       )
   end
 end
