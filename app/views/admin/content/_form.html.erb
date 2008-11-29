@@ -30,6 +30,7 @@
         <script type="text/javascript">edToolbar('article_body');</script>
       <% end -%>
       <%= t_textarea 'article', 'body', {:height => '300', :class => 'medium'} %>
+      <%= render_macros(@macros) unless current_user.editor == 2 %>
     </div>
   </li>
   <li>

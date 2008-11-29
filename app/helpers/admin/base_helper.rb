@@ -172,4 +172,29 @@ module Admin::BaseHelper
     item.published? ? link_to_permalink(item, _("published")) : _("unpublished")
   end
   
+  def macro_help_popup(macro, text)
+    unless current_user.editor == 2
+      "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Typo Macro Help')\">#{text}</a>"
+    end    
+  end
+  
+  def render_macros(macros)
+    result = link_to_function _("Show help on Typo macros") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "macros", :duration => 0.2) }
+    result << "<table id='macros' style='display: none;'>"
+    result << "<tr>"
+    result << "<th>#{_('Name')}</th>"
+    result << "<th>#{_('Description')}</th>"
+    result << "<th>#{_('Tag')}</th>"
+    result << "</tr>"
+    
+    for macro in macros.sort_by { |f| f.short_name }
+      result << "<tr #{alternate_class}>"
+      result << "<td>#{macro_help_popup macro, macro.display_name}</td>"
+      result << "<td>#{h macro.description}</td>"
+      result << "<td><code>&lt;typo:#{h macro.short_name}gt;</code></td>"
+      result << "</tr>"
+    end
+    result << "</table>"
+  end
+  
 end

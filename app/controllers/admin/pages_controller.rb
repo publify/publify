@@ -52,6 +52,7 @@ class Admin::PagesController < Admin::BaseController
   }
 
   def new
+    @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
     @page.text_filter ||= this_blog.text_filter
@@ -68,6 +69,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def edit
+    @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @page = Page.find(params[:id])
     @page.attributes = params[:page]
     if request.post? and @page.save

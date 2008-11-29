@@ -179,6 +179,7 @@ class Admin::ContentController < Admin::BaseController
 
   def new_or_edit
     get_or_build_article
+    @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @article.published = true
     
     params[:article] ||= {}

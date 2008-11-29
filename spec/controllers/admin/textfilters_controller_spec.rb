@@ -13,18 +13,6 @@ describe Admin::TextfiltersController do
     request.session = { :user => users(:tobi).id }
   end
 
-  def test_new_without_filters
-    post :new, :textfilter => { :name => 'filterx',
-      :description => 'Filter X', :markup => 'markdown' }
-    assert_response :redirect, :action => 'show'
-  end
-
-  def test_edit_without_filters
-    post :edit, :id => text_filters(:markdown_filter).id, :textfilter => { :name => 'filterx',
-      :description => 'Filter X', :markup => 'markdown' }
-    assert_response :redirect, :action => 'show'
-  end
-
   describe 'macro help action' do
 
     it 'should render success' do
