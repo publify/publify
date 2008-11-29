@@ -19,10 +19,10 @@
     </div>
     <div id="editor">
       <label for="page_body" class="block content"><%= _("Content")%></label>
-      <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
-      <% if current_user.editor == 0 -%>
-        <script type="text/javascript">edToolbar('article_body');</script>
+      <% unless current_user.editor == 2 -%>
+        <script type="text/javascript">edToolbar('page_body');</script>
       <% end -%>
+      <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
     </div>
     <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
   </li>
