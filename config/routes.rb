@@ -97,7 +97,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.inflected_resource(:tags, :path_prefix => '')
   map.connect '/tag/:id/page/:page',
-  :controller => 'tags', :action => 'show'
+    :controller => 'tags', :action => 'show'
+  map.connect '/tags/page/:page', 
+    :controller => 'tags', :action => 'index'
   
   map.resources(:feedback)
 
