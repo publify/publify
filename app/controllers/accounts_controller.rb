@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
   before_filter :verify_users, :only => [:login]
 
   def login
+    @page_title = "#{this_blog.blog_name} - #{_('login')}"
     case request.method
       when :post
       self.current_user = User.authenticate(params[:user_login], params[:user_password])
@@ -25,6 +26,7 @@ class AccountsController < ApplicationController
   end
   
   def signup
+    @page_title = "#{this_blog.blog_name} - #{_('signup')}"
     unless User.count.zero? or this_blog.allow_signup == 1
       redirect_to :action => 'login'
       return
@@ -46,7 +48,7 @@ class AccountsController < ApplicationController
     self.current_user.forget_me
     self.current_user = nil
     session[:user_id] = nil
-    render :action => 'login'
+    redirect_to :action => 'login'
   end
 
   private
