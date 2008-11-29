@@ -150,6 +150,16 @@ edButtons.push(
 
 edButtons.push(
 	new edButton(
+		'ed_code'
+		,'more'
+		,'\n<!--more-->\n'
+		,''
+		,''
+	)
+);
+
+edButtons.push(
+	new edButton(
 		'ed_typocode'
 		,'typo:code'
 		,''
