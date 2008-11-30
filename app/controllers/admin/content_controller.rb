@@ -177,14 +177,6 @@ class Admin::ContentController < Admin::BaseController
     @selected = @article.categories.collect { |c| c.id }
     @drafts = Article.find(:all, :conditions => "state='draft'")
     if request.post?
-      unless params[:article][:extended]
-        # If we're not passed an :extended field, that means that we're
-        # dealing with the new editor form, which keeps everything in the
-        # :body field.  So zap our existing extended content and extract
-        # the new version from the body supplied by the POST.
-        @article.extended = '' 
-        @article.extract_extended_from_body!
-      end
       set_article_author
       save_attachments
       @article.state = "draft" if @article.draft
@@ -194,8 +186,6 @@ class Admin::ContentController < Admin::BaseController
         redirect_to :action => 'index'
         return
       end
-    else
-      @article.merge_extended_into_body!
     end
     render :action => 'new'
   end

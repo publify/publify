@@ -25,11 +25,11 @@
       </p>
     </div>
     <div id="editor">
-      <label for="article_body"class="block content"><%= _("Content")%></label>
+      <label for="article_body_and_extended" class="block content"><%= _("Content")%></label>
       <% unless current_user.editor == 2 -%>
-        <script type="text/javascript">edToolbar('article_body');</script>
+        <script type="text/javascript">edToolbar('article_body_and_extended');</script>
       <% end -%>
-      <%= t_textarea 'article', 'body', {:height => '300', :class => 'medium'} %>
+      <%= t_textarea 'article', 'body_and_extended', {:height => '300', :class => 'medium'} %>
       <%= render_macros(@macros) unless current_user.editor == 2 %>
     </div>
   </li>

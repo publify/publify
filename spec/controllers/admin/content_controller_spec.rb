@@ -213,10 +213,10 @@ describe Admin::ContentController do
         end
       end
 
-      it 'should extract extended body when updating article' do
+      it 'should allow updating body_and_extended' do
         article = contents(:article1)
         post :edit, 'id' => article.id, 'article' => {
-          'body' => 'foo<!--more-->bar<!--more-->baz'
+          'body_and_extended' => 'foo<!--more-->bar<!--more-->baz'
         }
         assert_response :redirect
         article.reload
