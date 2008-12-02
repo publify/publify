@@ -45,15 +45,16 @@ class Admin::FeedbackController < Admin::BaseController
   end
   
   def delete
+    feed = Feedback.find(params[:id])
     if request.post?
       begin
-        Feedback.destroy(params[:id])
+        feed.destroy
         flash[:notice] = _("Deleted")
       rescue ActiveRecord::RecordNotFound
         flash[:notice] = _("Not found")
       end
     end
-    redirect_to :action => 'index', :page => params[:page], :search => params[:search]
+    redirect_to :action => 'article', :id => feed.article.id
   end
 
   def create

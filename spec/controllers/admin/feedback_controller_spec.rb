@@ -166,6 +166,32 @@ describe Admin::FeedbackController do
       feedback(:comment2).body.should_not == 'updated comment'
     end
 
+    describe 'destroy feedback' do
+      it 'should destroy feedback' do
+        lambda do
+          post :delete, :id => feedback(:spam_comment).id
+        end.should change(Feedback, :count)
+        lambda do
+          Feedback.find(feedback(:spam_comment).id)
+        end.should raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it 'should redirect to feedback from article' do
+        post :delete, :id => feedback(:spam_comment).id
+        response.should redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback(:spam_comment).article.id)
+      end
+
+      it 'should not delete feedback in get request' do
+        lambda do
+          get :delete, :id => feedback(:spam_comment).id
+        end.should_not change(Feedback, :count)
+        lambda do
+          Feedback.find(feedback(:spam_comment).id)
+        end.should_not raise_error(ActiveRecord::RecordNotFound)
+        response.should redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback(:spam_comment).article.id)
+      end
+    end
+
   end
 
   describe 'publisher access' do
