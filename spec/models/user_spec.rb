@@ -108,3 +108,17 @@ describe 'With a user, "bob" in the database' do
     u.errors.should be_invalid('login')
   end
 end
+
+describe User do
+  describe '#admin?' do
+
+    it 'should return true if user is admin' do
+      users(:tobi).should be_admin
+    end
+
+    it 'should return false if user is not admin' do
+      users(:user_publisher).should_not be_admin
+    end
+
+  end
+end

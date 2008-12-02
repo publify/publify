@@ -1,6 +1,8 @@
 class Profile < ActiveRecord::Base
   serialize :modules
   validates_uniqueness_of :label
+
+  ADMIN = 'admin'
   
   def modules
     read_attribute(:modules) || []

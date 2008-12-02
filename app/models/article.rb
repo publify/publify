@@ -476,7 +476,7 @@ class Article < Content
   end
 
   def access_by?(user) 
-    user.profile.label == 'admin' || user_id == user.id 
+    user.admin? || user_id == user.id 
   end
 
   protected

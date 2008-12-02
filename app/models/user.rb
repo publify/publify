@@ -121,6 +121,10 @@ class User < CachedModel
     permalink
   end
 
+  def admin?
+    profile.label == Profile::ADMIN
+  end
+
   protected
 
   # Apply SHA1 encryption to the supplied password.
