@@ -19,7 +19,7 @@ class PageCache
                      comments comments.*
                      category categories.* xml
                      *.rss *.atom
-                     tag tags.* category archive.*})
+                     tag tags.* category archives.*})
 
       self.zap_pages((1990..2020))
       self.zap_pages([*1990..2020].collect { |y| "#{y}.*" })
