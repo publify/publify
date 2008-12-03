@@ -15,9 +15,7 @@
     <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
     <td>
       <select name="search[published]">
-        <option value=""><%= _("Please select") %></option>
-        <option value="0"><%= _("Unpublished") %></option>
-        <option value="1"><%= _("Published") %></option>
+        <%= options_for_select([[_("Please select"), ""], [_("Unpublished"), "0"], [ _("Published"), "1"]], @search[:published]) %>
       </select>
     </td>
     <td><input type="submit" value="<%= _("Filter") %>" />
