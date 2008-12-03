@@ -21,6 +21,18 @@ class Content < ActiveRecord::Base
 
   has_many :triggers, :as => :pending_item, :dependent => :delete_all
 
+  named_scope :published_at_like, lambda {|date_at| {:conditions => ['published_at LIKE ? ', "%#{date_at}%"]}}
+  named_scope :user_id, lambda {|user_id| {:conditions => ['user_id = ?', user_id]}}
+  named_scope :published, {:conditions => ['published = ?', true]}
+  named_scope :not_published, {:conditions => ['published = ?', false]}
+  named_scope :draft, {:conditions => ['state = ?', 'draft']}
+  named_scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'created_at DESC'}
+  named_scope :searchstring, lambda {|search_string|
+    tokens = search_string.split.collect {|c| "%#{c.downcase}%"}
+    {:conditions => [(['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
+                      *tokens.collect{ |token| [token] * 3 }.flatten]}
+  }
+
   serialize :whiteboard
 
   attr_accessor :just_changed_published_status
@@ -131,6 +143,31 @@ class Content < ActiveRecord::Base
         
         dates
       end
+    end
+
+    def function_search_no_draft(search_hash)
+      list_function = []
+      if search_hash.nil?
+        search_hash = {}
+      end
+
+      if search_hash[:searchstring]
+        list_function << 'searchstring(search_hash[:searchstring])'
+      end
+
+      if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
+        list_function << 'published_at_like(search_hash[:published_at])'
+      end
+
+      if search_hash[:user_id] && search_hash[:user_id].to_i > 0
+        list_function << 'user_id(search_hash[:user_id])'
+      end
+
+      if search_hash[:published]
+        list_function << 'published' if search_hash[:published].to_s == '1'
+        list_function << 'not_published' if search_hash[:published].to_s == '0'
+      end
+      list_function
     end
   end
 

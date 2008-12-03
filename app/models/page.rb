@@ -9,6 +9,13 @@ class Page < Content
     'name ASC'
   end
 
+  def self.search_paginate(search_hash, paginate_hash)
+    list_function = ["Page"] + function_search_no_draft(search_hash)
+    paginate_hash[:order] = 'title ASC'
+    list_function << "paginate(paginate_hash)"
+    eval(list_function.join('.'))
+  end
+
   typo_deprecate :location => :permalink_url
   
   def permalink_url(anchor=nil, only_path=true)
