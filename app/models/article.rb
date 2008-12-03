@@ -59,37 +59,6 @@ class Article < Content
                       *tokens.collect{ |token| [token] * 3 }.flatten]}
   }
 
-  def self.search_no_draft_paginate(search_hash, paginate_hash)
-    list_function  = ["Article.no_draft"]
-    if search_hash.nil?
-      search_hash = {}
-    end
-
-    if search_hash[:searchstring]
-      list_function << 'searchstring(search_hash[:searchstring])'
-    end
-
-    if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
-      list_function << 'published_at_like(search_hash[:published_at])'
-    end
-
-    if search_hash[:user_id] && search_hash[:user_id].to_i > 0
-      list_function << 'user_id(user_id)'
-    end
-
-    if search_hash[:published]
-      list_function << 'published' if search_hash[:published].to_s == '1'
-      list_function << 'not_published' if search_hash[:published].to_s == '0'
-    end
-
-    if search_hash[:category] and search_hash[:category].to_i > 0
-      list_function << 'category(search_hash[:category])'
-    end
-
-    paginate_hash[:order] = 'created_at DESC'
-    list_function << "paginate(paginate_hash)"
-    eval(list_function.join('.'))
-  end
 
   belongs_to :user
 
@@ -119,6 +88,39 @@ class Article < Content
     def count_published_articles
       count(:conditions => { :published => true })
     end
+
+    def search_no_draft_paginate(search_hash, paginate_hash)
+      list_function  = ["Article.no_draft"]
+      if search_hash.nil?
+        search_hash = {}
+      end
+
+      if search_hash[:searchstring]
+        list_function << 'searchstring(search_hash[:searchstring])'
+      end
+
+      if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
+        list_function << 'published_at_like(search_hash[:published_at])'
+      end
+
+      if search_hash[:user_id] && search_hash[:user_id].to_i > 0
+        list_function << 'user_id(search_hash[:user_id])'
+      end
+
+      if search_hash[:published]
+        list_function << 'published' if search_hash[:published].to_s == '1'
+        list_function << 'not_published' if search_hash[:published].to_s == '0'
+      end
+
+      if search_hash[:category] and search_hash[:category].to_i > 0
+        list_function << 'category(search_hash[:category])'
+      end
+
+      paginate_hash[:order] = 'created_at DESC'
+      list_function << "paginate(paginate_hash)"
+      eval(list_function.join('.'))
+    end
+
   end
 
   accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
@@ -308,9 +310,7 @@ class Article < Content
   # Fulltext searches the body of published articles
   def self.search(query)
     if !query.to_s.strip.empty?
-      tokens = query.split.collect {|c| "%#{c.downcase}%"}
-      find_published(:all,
-                     :conditions => [(["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 3 }.flatten])
+      Article.searchstring(query)
     else
       []
     end
