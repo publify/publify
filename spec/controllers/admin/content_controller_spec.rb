@@ -28,6 +28,20 @@ describe Admin::ContentController do
       response.should be_success
     end
 
+    it 'should restrict only by searchstring' do
+      get :index, :search => {:searchstring => 'public'}
+      assigns(:articles).should == [contents(:article4)]
+      response.should render_template('index')
+      response.should be_success
+    end
+
+    it 'should restrict by searchstring and published_at' do
+      get :index, :search => {:searchstring => 'public', :published_at => '2008-08'}
+      assigns(:articles).should be_empty
+      response.should render_template('index')
+      response.should be_success
+    end
+
   end
 
   describe 'show action', :shared => true do

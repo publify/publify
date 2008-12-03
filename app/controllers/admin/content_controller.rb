@@ -18,7 +18,6 @@ class Admin::ContentController < Admin::BaseController
       if @search[:searchstring]
         tokens = @search[:searchstring].split.collect {|c| "%#{c.downcase}%"}
         @conditions = [(["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 3 }.flatten]
-        return
       end
 
       if @search[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ @search[:published_at]
