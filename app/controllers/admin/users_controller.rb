@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    if current_user.profile.label == 'admin'
+    if current_user.admin?
       @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => 10
     else
       redirect_to :action => 'edit'
@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
-    if current_user.profile.label == 'admin'
+    if current_user.admin?
       @user = User.find_by_id(params[:id])
     else
       if params[:id] and params[:id].to_i != current_user[:id]

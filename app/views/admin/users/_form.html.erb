@@ -6,7 +6,7 @@
   <label class="float" for="user_login"><%= _("Login")%>:</label>
   <%= text_field 'user', 'login'  %>
 </li>
-<% if current_user.profile.label == 'admin' %>
+<% if current_user.admin? %>
 <li>
   
 	<label class="float" for="user_profile"><%= _("Profile")%>:</label>
