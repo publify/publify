@@ -8,12 +8,14 @@
   :method   => :get,
   :name     => 'article',
   :update   => {:success => 'articleList'},
-  :loading  => "loading()" \
+  :before   => "Element.show('spinner')",
+  :complete => "Element.hide('spinner')" \
   do %>
 
   <label><%= _("Search articles that contains...")%></label><br />  
   <input type="text" name="search[searchstring]" size="30" />
   <%= submit_tag _("Search") %>
+  <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
 
   <table>
     <tr>
