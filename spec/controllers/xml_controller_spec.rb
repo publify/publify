@@ -46,7 +46,10 @@ describe XmlController do
   end
 
   def assert_feedvalidator(rss, todo=nil)
-    return unless $validator_installed
+    unless $validator_installed
+      puts 'not test of validating feed because no validator (feedvalidator in python) installed'
+      return
+    end
 
     begin
       file = Tempfile.new('typo-feed-test')
