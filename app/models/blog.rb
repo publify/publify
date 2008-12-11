@@ -17,6 +17,7 @@ end
 # matches the base_url computed for each request.
 class Blog < CachedModel
   include ConfigManager
+  extend ActiveSupport::Memoizable
 
   validate_on_create { |blog|
     unless Blog.count.zero?
@@ -128,8 +129,9 @@ class Blog < CachedModel
 
   # The +Theme+ object for the current theme.
   def current_theme
-    @cached_theme ||= Theme.find(theme)
+    Theme.find(theme)
   end
+  memoize :current_theme
 
   # Generate a URL based on the +base_url+.  This allows us to generate URLs
   # without needing a controller handy, so we can produce URLs from within models
