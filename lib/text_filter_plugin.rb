@@ -81,6 +81,11 @@ class TextFilterPlugin::Macro < TextFilterPlugin
       attributes[key] = value.gsub(/"/,'')
     end
 
+    string.gsub(/([^ =]+='[^']*')/) do |match|
+      key,value = match.split(/=/,2)
+      attributes[key] = value.gsub(/'/,'')
+    end
+
     attributes
   end
 
