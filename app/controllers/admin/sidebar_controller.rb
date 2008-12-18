@@ -5,6 +5,7 @@ class Admin::SidebarController < Admin::BaseController
     # Reset the staged position based on the active position.
     Sidebar.delete_all('active_position is null')
     flash_sidebars
+    @active = Sidebar.find(:all, :order => 'active_position ASC') unless @active
   end
 
   def set_active
@@ -79,8 +80,8 @@ class Admin::SidebarController < Admin::BaseController
 
   def flash_sidebars
     unless flash[:sidebars]
-      @active = Sidebar.find(:all, :order => 'active_position ASC')
-      flash[:sidebars] = @active.map {|sb| sb.id }
+      active = Sidebar.find(:all, :order => 'active_position ASC')
+      flash[:sidebars] = active.map {|sb| sb.id }
     end
     flash[:sidebars]
   end
