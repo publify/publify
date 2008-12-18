@@ -13,6 +13,7 @@ class Admin::SidebarController < Admin::BaseController
     klass_for = available.inject({}) do |hash, klass|
       hash.merge({ klass.short_name => klass })
     end
+
     # Get all already active plugins
     activemap = flash_sidebars.inject({}) do |h, sb_id|
       sb = Sidebar.find(sb_id.to_i)
@@ -23,7 +24,9 @@ class Admin::SidebarController < Admin::BaseController
     # lay them out in a easy accessible sequential array
     flash[:sidebars] = params[:active].inject([]) do |array, name|
       if klass_for.has_key?(name)
-        array << klass_for[name].create.id
+        new_sidebar_id = klass_for[name].create.id
+        @new_item = Sidebar.find(new_sidebar_id)
+        array << new_sidebar_id
       elsif activemap.has_key?(name)
         array << activemap[name]
       else
@@ -75,7 +78,7 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   def flash_sidebars
-    unless flash[:sidebar]
+    unless flash[:sidebars]
       @active = Sidebar.find(:all, :order => 'active_position ASC')
       flash[:sidebars] = @active.map {|sb| sb.id }
     end

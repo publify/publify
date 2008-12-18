@@ -2,7 +2,7 @@ if flash[:sidebars].size == 1
   page.remove 'sidebar_instructions'
 end
 if @new_item
-  page.replace("available_#{@target}", :partial => 'active',
+  page.replace("available_#{@new_item.short_name}", :partial => 'active',
                :object => @new_item)
 end
 page.replace_html('available_box', :partial => 'availables',
