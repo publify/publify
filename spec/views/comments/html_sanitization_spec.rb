@@ -7,7 +7,6 @@ describe "CommentSanitization", :shared => true do
     @blog = mock_model(Blog, :use_gravatar => false)
     @blog.stub!(:lang).and_return('en_US')
     @controller.template.stub!(:this_blog).and_return(@blog)
-    Blog.stub!(:find).and_return(@blog)
 
     prepare_comment
 
