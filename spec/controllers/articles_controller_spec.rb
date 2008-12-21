@@ -11,6 +11,8 @@ describe 'ArticlesController' do
   controller_name :articles
   Article.delete_all
 
+  integrate_views
+
   before(:each) do
     IPSocket.stub!(:getaddress).and_return do
       raise SocketError.new("getaddrinfo: Name or service not known")
@@ -32,6 +34,12 @@ describe 'ArticlesController' do
   it 'index' do
     get 'index'
     response.should render_template(:index)
+    assigns[:articles].should_not be_nil
+  end
+
+  it 'search' do
+    get 'search', :q => 'a'
+    response.should render_template(:search)
     assigns[:articles].should_not be_nil
   end
 end
