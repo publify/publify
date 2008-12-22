@@ -100,7 +100,7 @@ class Blog < CachedModel
 
   # The default Blog.  This is the lowest-numbered blog, almost always id==1.
   def self.default
-    @@default ||= find(:first, :order => 'id')
+    find(:first, :order => 'id')
   rescue
     logger.warn 'You have not Blog install.'
     nil
