@@ -63,7 +63,7 @@ class ArticlesController < ContentController
   end
 
   def search
-    @articles = this_blog.articles_matching(params[:q])
+    @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
     render_paginated_index("No articles found...")
   end
 
