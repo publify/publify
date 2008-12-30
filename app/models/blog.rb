@@ -100,7 +100,7 @@ class Blog < CachedModel
 
   # The default Blog.  This is the lowest-numbered blog, almost always id==1.
   def self.default
-    @@default ||= find(:first, :order => 'id')
+    find(:first, :order => 'id')
   rescue
     logger.warn 'You have not Blog install.'
     nil
@@ -212,8 +212,8 @@ class Blog < CachedModel
     Article.find_all_by_date(*params.values_at(:year, :month, :day))
   end
 
-  def articles_matching(query)
-    Article.search(query)
+  def articles_matching(query, args={})
+    Article.search(query, args)
   end
 
   def rss_limit_params

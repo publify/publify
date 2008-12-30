@@ -25,6 +25,18 @@ describe "Given the first Blog fixture" do
   end
 end
 
+describe "The default blog" do
+  it "should pick up updates after a cache clear" do
+    a = Blog.default
+    CachedModel.cache_reset
+    b = blogs(:default)
+    b.blog_name = "some other name"
+    c = Blog.default
+    c.blog_name.should == "some other name"
+  end
+end
+
+
 describe "Given no blogs" do
   before(:each)  { Blog.destroy_all }
 

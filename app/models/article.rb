@@ -277,9 +277,12 @@ class Article < Content
   end
 
   # Fulltext searches the body of published articles
-  def self.search(query)
-    if !query.to_s.strip.empty?
+  def self.search(query, args={})
+    query_s = query.to_s.strip
+    if !query_s.empty? && args.empty?
       Article.searchstring(query)
+    elsif !query_s.empty? && !args.empty?
+      Article.searchstring(query).paginate(args)
     else
       []
     end
