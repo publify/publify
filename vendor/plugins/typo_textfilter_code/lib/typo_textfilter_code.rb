@@ -60,7 +60,7 @@ have syntax highlighting.
           titlecode=''
         end
 
-        "<div class=\"CodeRay\">#{titlecode}#{text}</div>"
+        "<div class=\"CodeRay\"><pre>#{titlecode}#{text}</pre></div>"
       end
     end
   end
