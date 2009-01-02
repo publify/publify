@@ -41,17 +41,14 @@ end
 ActionController::Routing::Routes.draw do |map|
 
   # default
-  map.index '', :controller  => 'articles', :action => 'index'
+  map.root :controller  => 'articles', :action => 'index'
   map.admin 'admin', :controller  => 'admin/dashboard', :action => 'index'
 
   # make rss feed urls pretty and let them end in .xml
   # this improves caches_page because now apache and webrick will send out the
   # cached feeds with the correct xml mime type.
 
-  map.xml 'articles.rss', 
-  :controller => 'articles', :action => 'index', :format => 'rss'
-  map.xml 'articles.atom', 
-  :controller => 'articles', :action => 'index', :format => 'atom'
+  map.xml 'articles.:format', :controller => 'articles', :action => 'index', :format => /rss|atom/
   map.xml 'xml/itunes/feed.xml', :controller => 'xml', :action => 'itunes'
   map.xml 'xml/articlerss/:id/feed.xml', :controller => 'xml', :action => 'articlerss'
   map.xml 'xml/commentrss/feed.xml', :controller => 'xml', :action => 'commentrss'
