@@ -141,15 +141,15 @@ describe TextfilterController do
     describe 'single line' do
 
       it 'should made nothin if no args' do
-        filter_text('<typo:code>foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><notextile>foo-code</notextile></div>}
+        filter_text('<typo:code>foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>}
       end
 
       it 'should parse ruby lang' do
-        filter_text('<typo:code lang="ruby">foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><notextile><span class=\"CodeRay\">foo-code</span></notextile></div>}
+        filter_text('<typo:code lang="ruby">foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile><span class=\"CodeRay\">foo-code</span></notextile></pre></div>}
       end
 
       it 'should parse ruby and xml in same sentence but not in same place' do
-        filter_text('<typo:code lang="ruby">foo-code</typo:code> blah blah <typo:code lang="xml">zzz</typo:code>',[:macropre,:macropost]).should == %{<div class="CodeRay"><notextile><span class="CodeRay">foo-code</span></notextile></div> blah blah <div class="CodeRay"><notextile><span class="CodeRay">zzz</span></notextile></div>}
+        filter_text('<typo:code lang="ruby">foo-code</typo:code> blah blah <typo:code lang="xml">zzz</typo:code>',[:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div> blah blah <div class="CodeRay"><pre><notextile><span class="CodeRay">zzz</span></notextile></pre></div>}
       end
 
     end
@@ -166,11 +166,11 @@ class Foo
 end
 </typo:code>
 },[:macropre,:macropost]).should == %{
-<div class=\"CodeRay\"><notextile><span class=\"CodeRay\"><span class=\"r\">class</span> <span class=\"cl\">Foo</span>
+<div class=\"CodeRay\"><pre><notextile><span class=\"CodeRay\"><span class=\"r\">class</span> <span class=\"cl\">Foo</span>
   <span class=\"r\">def</span> <span class=\"fu\">bar</span>
     <span class=\"iv\">@a</span> = <span class=\"s\"><span class=\"dl\">&quot;</span><span class=\"k\">zzz</span><span class=\"dl\">&quot;</span></span>
   <span class=\"r\">end</span>
-<span class=\"r\">end</span></span></notextile></div>
+<span class=\"r\">end</span></span></notextile></pre></div>
 }
       end
     end
@@ -200,11 +200,11 @@ EOF
     expects_markdown = <<-EOF
 <p><em>header text here</em></p>
 
-<div class="CodeRay"><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
+<div class="CodeRay"><pre><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
   <span class="r">def</span> <span class="fu">method</span>
     <span class="s"><span class="dl">&quot;</span><span class="k">foo</span><span class="dl">&quot;</span></span>
   <span class="r">end</span>
-<span class="r">end</span></span></div>
+<span class="r">end</span></span></pre></div>
 
 <p><em>footer text here</em></p>
 EOF
@@ -213,11 +213,11 @@ EOF
 <p><strong>header text here</strong></p>
 
 
-<div class="CodeRay"><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
+<div class="CodeRay"><pre><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
   <span class="r">def</span> <span class="fu">method</span>
     <span class="s"><span class="dl">&quot;</span><span class="k">foo</span><span class="dl">&quot;</span></span>
   <span class="r">end</span>
-<span class="r">end</span></span></div>
+<span class="r">end</span></span></pre></div>
 
 \t<p><em>footer text here</em></p>
 EOF
