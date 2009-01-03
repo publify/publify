@@ -1,10 +1,5 @@
 <% form_tag({:controller => 'articles',  :action => 'search'}, {:method => 'get', :id => 'sform'}) do %>
- <label for="q">_("Live Search:")</label><input type="text" id="q" name="q" value="" size="15" />
-<%= image_tag "spinner-blue.gif", :id => 'search_spinner', :style => 'display:none;' %>
+  <label for="q"><%= _("Search") %></label><br />
+  <input type="text" id="q" name="q" value="" size="15" />
+  <input type='submit' value='<%= _("Search") %>' />
 <% end %>
-<%= observe_field "q", :frequency => 1,
-    :url => { :controller => "live", :action => "search" },
-    :loading => "Element.show('search_spinner')",
-    :complete => "Element.hide('search_spinner')",
-    :update => "search-results",
-    :with => "'q=' + encodeURIComponent($F('q'))" -%>
