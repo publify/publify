@@ -92,8 +92,8 @@ describe TagsController, '/articles/tag/foo' do
 
     do_get
 
-    response.should render_template('articles/error')
-    assigns[:message].should == "Can't find any articles for 'foo'"
+    response.status.should == "301 Moved Permanently"
+    response.should redirect_to(Blog.default.base_url)
   end
 
   it 'should render the atom feed for /articles/tag/foo.atom' do

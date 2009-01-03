@@ -3,12 +3,16 @@ require File.dirname(__FILE__) + "/../spec_helper"
 require 'dns_mock'
 
 describe Comment do
-  before(:each) do
-    CachedModel.cache_reset
+
+  def valid_comment(options={})
+    Comment.new({:author => 'Bob',
+                :article_id => contents(:article1).id,
+                :body => 'nice post',
+                :ip => '1.2.3.4'}.merge(options))
   end
 
-  describe 'save' do
-    it 'should not save with article not allow comment'
+  before(:each) do
+    CachedModel.cache_reset
   end
 
   describe '#permalink_url' do
@@ -33,6 +37,7 @@ describe Comment do
   end
 
   describe '#save' do
+
     it 'should save good comment' do
       assert feedback(:comment2).save
       assert_equal "http://www.google.com", feedback(:comment2).url
@@ -44,11 +49,9 @@ describe Comment do
     end
 
     it 'should not save in invalid article' do
-      c = Comment.new do |c|
-        c.author = "Old Spammer"
-        c.body = "Old trackback body"
-        c.article = contents(:inactive_article)
-      end
+      c = valid_comment(:author => "Old Spammer",
+                        :body => "Old trackback body",
+                        :article => contents(:inactive_article))
 
       assert ! c.save
       assert c.errors.invalid?('article_id')
@@ -66,17 +69,28 @@ describe Comment do
       assert c.errors.empty?
     end
 
+    it 'should save a valid comment' do
+      c = valid_comment # article created 2 days ago
+      c.save.should be_true
+      c.errors.should be_empty
+    end
+
+    it 'should not save with article not allow comment'  do
+      b = Blog.default
+      b.sp_article_auto_close = 1
+      b.save
+
+      c = valid_comment # article created 2 days ago
+      c.save.should_not be_true
+      c.errors.should_not be_empty
+    end
+
   end
 
   describe '#create' do
 
     it 'should create comment' do
-      c = Comment.new
-      c.author = 'Bob'
-      c.article_id = contents(:article1).id
-      c.body = 'nice post'
-      c.ip = '1.2.3.4'
-
+      c = valid_comment
       assert c.save
       assert c.guid.size > 15
     end
@@ -85,47 +99,37 @@ describe Comment do
 
   describe '#spam?' do
     it 'should reject spam rbl' do
-      cmt = Comment.new do |c|
-        c.author = "Spammer"
-        c.body = %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}
-        c.url = "http://buy-computer.us"
-        c.ip = "212.42.230.206"
-      end
-      assert cmt.spam?
-      assert !cmt.status_confirmed?
+      c = valid_comment(:author => "Spammer",
+                        :body => %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.},
+                        :url => "http://buy-computer.us")
+      should_be_spam(c)
     end
 
     it 'should not define spam a comment rbl with lookup succeeds' do
-      cmt      = Comment.new do |c|
-        c.author = "Not a Spammer"
-        c.body   = "Useful commentary!"
-        c.url    = "http://www.bofh.org.uk"
-        c.ip     = "10.10.10.10"
-      end
-      assert !cmt.spam?
-      assert !cmt.status_confirmed?
+      c = valid_comment(:author => "Not a Spammer",
+                        :body   => "Useful commentary!",
+                        :url    => "http://www.bofh.org.uk")
+      c.should_not be_spam
+      c.should_not be_status_confirmed
     end
 
     it 'should reject spam pattern' do
-      cmt = Comment.new do |c|
-        c.author = "Another Spammer"
-        c.body = "Texas hold-em poker crap"
-        c.url = "http://texas.hold-em.us"
-      end
-      assert cmt.spam?
-      assert !cmt.status_confirmed?
+      c = valid_comment(:author => "Another Spammer",
+                          :body => "Texas hold-em poker crap",
+                          :url => "http://texas.hold-em.us")
+      should_be_spam(c)
     end
 
     it 'should reject spam with uri limit' do
-      c = Comment.new do |c|
-        c.author = "Yet Another Spammer"
-        c.body = %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }
-        c.url = "http://www.uri-limit.com"
-        c.ip = "123.123.123.123"
-      end
+      c = valid_comment(:author => "Yet Another Spammer",
+                        :body => %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> },
+                        :url => "http://www.uri-limit.com")
+      should_be_spam(c)
+    end
 
-      assert c.spam?
-      assert !c.status_confirmed?
+    def should_be_spam(comment)
+      comment.should be_spam
+      comment.should_not be_status_confirmed
     end
 
   end

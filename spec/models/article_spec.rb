@@ -55,7 +55,7 @@ describe Article do
   def test_permalink
     assert_equal( contents(:article3), Article.find_by_date(2004,06,01) )
     assert_equal( [contents(:article2), contents(:article1)],
-                  Article.find_all_by_date(2.days.ago.year) )
+                  Article.find_all_by_date(2.days.ago.year) ) # not works the 2 January of each years \o/
   end
 
   def test_permalink_with_title
