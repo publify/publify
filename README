@@ -13,7 +13,7 @@ Requirements
 Currently you need all of those things to get typo to run:
 
  * Ruby 1.8.6 or Ruby Enterprise Edition. 
- * Rails 2.2, Trunk DOES NOT support Rails 2.1.
+ * Rails 2.2, Typo 5.2 DOES NOT support Rails 2.1.
  * A database.  Typo supports MySQL, PostgreSQL, and SQLite.
  * Ruby drivers for your database.
  * For best performance, you should have a web server running either
@@ -26,20 +26,7 @@ Currently you need all of those things to get typo to run:
 Installation
 ============
 
-See doc/Installer.text and doc/typo-5.0.3-release-notes.txt.
-
-Installation by git repository
-==============================
-
-Typo use git in developpement. If you want clone the lastest version, you need
-clone the git repository
-
-    git clone git://github.com/fdv/typo
-
-Several third-part is link in git repository by submodule. So you need update it.
-
-    git submodule update --init
-
+See doc/Installer.text and doc/typo-5.2-release-notes.txt.
 
 Usage
 ======

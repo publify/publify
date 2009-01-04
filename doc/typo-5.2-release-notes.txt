@@ -1,0 +1,52 @@
+Typo 5.2
+========
+
+Welcome to Typo 5.2.  Typo is a blogging platform, like Movable Typo or 
+Wordpress, written using Ruby on Rails.
+
+This is the first major release since Typo 5.0.  
+
+
+Changes since Typo 5.1
+----------------------
+
+* Migration to Ruby on Rails 2.2
+
+* A complete admin rewriting, faster, easier to use
+
+* Coderay text filter plugin, for more easy syntax highlighting for code
+
+* Performances improved, Typo is not the bloatware it used to be anymore
+
+* Even better theme support. Up to date themes are at http://typogarden.org
+
+* Cleaner migrations.
+
+* A better search with live search moved as a plugin
+
+
+How to Install Typo
+-------------------
+
+There are two ways to install Typo: automatically, using the new Typo installer, or manually, by downloading the source and building a working Rails environment (database, etc) for it.
+
+New users should use the installer wherever possible because it's substantially easier and less trouble-prone.
+
+
+### Installing Typo via the Typo Installer 
+
+The documentation has moved to http://github.com/fdv/typo/wikis/install-typo-with-typo-installer
+
+
+### Installing Typo Manually
+
+The documentation has moved to  http://github.com/fdv/typo/wikis/install-typo-from-sources
+
+
+Support, or where to turn when things break
+-------------------------------------------
+
+Typo development occurs via http://typosphere.org.  If you find a bug, please
+file a bug report via http://typosphere.org/projects/typo/issues
+
+If you have problems, please send mail to typo-list@rubyforge.org.  You can also visit Typo's IRC channel, #typo on irc.freenode.net and ask for help.
