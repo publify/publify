@@ -1,0 +1,8 @@
+<% for article in @articles -%>
+ <div class="post">
+   <h2><%= link_to_permalink article,article.title %></h2>
+   <%= article.body.gsub(/<\/?[^>]*>/, "").slice(0..300) %>...
+  </div>
+<% end -%>
+
+<p id="pagination"><%= will_paginate @articles %></p>
