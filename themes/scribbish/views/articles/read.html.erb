@@ -31,12 +31,18 @@
 <% end -%>
 
 <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
-  <h5><a name="comments"><%= _("Comments") %></a></h5>
-  <p><a href="#commentform"><%= _("Leave a comment") %></a></p>
+
+  <% if !@article.comments_closed? and @article.published_comments.size > 0 %>
+    <h5><a name="comments"><%= _("Comments") %></a></h5>
+  <% end -%>
+
+  <% unless @article.comments_closed? %>
+    <p><a href="#commentform"><%= _("Leave a comment") %></a></p>
+  <% end - %>
 
   <div id="comments_div">
     <%= render :partial => "comment_list" %>
   </div>
 <% end -%>
 
-<%= render :partial => 'comment_form' if @article.allow_comments? %>
+<%= render :partial => 'comment_form' unless @article.comments_closed? %>
