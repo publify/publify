@@ -10,15 +10,6 @@ class SpamProtection
     self.this_blog = a_blog
   end
 
-  def article_closed?(record)
-    return false if this_blog.sp_article_auto_close.zero? or not record.new_record?
-
-    if record.article.published_at.to_i < this_blog.sp_article_auto_close.days.ago.to_i
-      logger.info("[SP] Blocked interaction with #{record.article.title}")
-      return true
-    end
-  end
-
   def is_spam?(string)
     return false unless this_blog.sp_global
     return false if string.blank?
@@ -122,15 +113,6 @@ module ActiveRecord
 
         validates_each(attr_names, configuration) do |record, attr_name, value|
           record.errors.add(attr_name, configuration[:message]) if SpamProtection.new(record.blog).is_spam?(value)
-        end
-      end
-      def validates_age_of(*attr_names)
-        configuration = { :on => :create, :message => "points to an item that is no longer available for interaction"}
-        configuration.update(attr_names.pop) if attr_names.last.is_a?(Hash)
-
-        validates_each(attr_names, configuration) do |record, attr_name, value|
-          next unless value.to_i > 0
-          record.errors.add(attr_name, configuration[:message]) if SpamProtection.new(record.blog).article_closed?(record)
         end
       end
     end

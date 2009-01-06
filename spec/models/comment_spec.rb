@@ -56,7 +56,7 @@ describe Comment do
       assert ! c.save
       assert c.errors.invalid?('article_id')
 
-      c.article = @article1
+      c.article = contents(:article1)
 
       assert c.save
       assert c.errors.empty?
