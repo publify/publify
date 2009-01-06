@@ -8,4 +8,9 @@ class XmlSidebar < Sidebar
 
   setting :format, 'atom10', :input_type => :radio,
           :choices => [["rss20",  "RSS 2.0"], ["atom10", "Atom 1.0"]]
+
+  def format_strip
+    format.gsub(/\d+/,'')
+  end
+
 end
