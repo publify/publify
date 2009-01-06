@@ -49,7 +49,6 @@ require File.dirname(__FILE__) + '/../../spec_helper'
       end
       
       it "should have pagination link to page 1 with q param if on page 2" do
-        p response.body
         response.should have_tag("a[href=?]", "/search?page=1&amp;q=body") # *notice
       end    
     end
