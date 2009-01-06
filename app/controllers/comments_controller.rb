@@ -36,7 +36,11 @@ class CommentsController < FeedbackController
     set_headers
     @comment = Comment.new(params[:comment])
 
-    render :template => 'articles/comment_preview'
+    unless Article.find_by_params_hash(params).comments_closed?
+      render :template => 'articles/comment_preview'
+    else
+      render :text => 'Comment are closed'
+    end
   end
 
   protected
