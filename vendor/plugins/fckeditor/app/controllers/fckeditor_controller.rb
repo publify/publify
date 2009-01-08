@@ -133,7 +133,7 @@ class FckeditorController < ActionController::Base
   end
   
   def upload_directory_path
-    uploaded = request.relative_url_root.to_s+"#{UPLOADED}/#{params[:Type]}"
+    uploaded = "#{RAILS_ROOT}/public/#{UPLOADED}/#{params[:Type]}"
     "#{uploaded}#{params[:CurrentFolder]}"
   end
   
@@ -149,7 +149,8 @@ class FckeditorController < ActionController::Base
   
   def check_path(path)
     exp_path = File.expand_path path
-    if exp_path !~ %r[^#{File.expand_path(RAILS_ROOT)}/public#{UPLOADED}]
+
+    unless %r[^#{File.expand_path(RAILS_ROOT)}/public#{UPLOADED}].match(exp_path)
       @errorNumber = 403
       throw Exception.new
     end
