@@ -38,7 +38,7 @@
 
   <% unless @article.comments_closed? %>
     <p><a href="#commentform"><%= _("Leave a comment") %></a></p>
-  <% end - %>
+  <% end -%>
 
   <div id="comments_div">
     <%= render :partial => "comment_list" %>
