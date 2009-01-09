@@ -1,0 +1,22 @@
+<% @page_heading = _('Theme catalogue') %>
+<% subtabs_for(:themes) %>
+
+<% i = 0 %>
+<% for theme in @themes %>
+<% i = i+1 %>
+
+  <% @themes.each do |theme| %>
+  <div class="set theme">
+    <div>
+      <%= link_to(image_tag(theme.image), theme.url) %>
+      <h3><%= theme.name %></h3>
+    </div>
+  </div>
+  <% end -%>
+<% if i == 3 %>
+  <% i = 0%>
+  <hr class="clear" />
+<% end %>
+
+<% end %>
+<hr class="clear" />
