@@ -1,4 +1,7 @@
 class Admin::ThemesController < Admin::BaseController
+  require 'open-uri'
+  require 'time'
+  require 'rexml/document'
 
   cache_sweeper :blog_sweeper
 
@@ -65,9 +68,39 @@ class Admin::ThemesController < Admin::BaseController
     end
   end
 
+  def catalogue
+      url = "http://typogarden.org/themes.xml"
+      open(url) do |http|
+        @themes = parse_catalogue(http.read)
+      end
+  end
+
   protected
 
   def zap_theme_caches
     FileUtils.rm_rf(%w{stylesheets javascript images}.collect{|v| page_cache_directory + "/#{v}/theme"})
   end
+
+  private
+  
+  class ThemeItem < Struct.new(:image, :name, :url)
+    def to_s; name; end
+  end
+  
+  def parse_catalogue(body)
+    xml = REXML::Document.new(body)
+ 
+    items = []
+ 
+    REXML::XPath.each(xml, "/themes/theme/") do |elem|
+      item = ThemeItem.new
+      item.image    = REXML::XPath.match(elem, "image/text()").first.value rescue ""
+      item.url      = REXML::XPath.match(elem, "url/text()").first.value rescue ""
+      item.name     = REXML::XPath.match(elem, "name/text()").first.value rescue ""
+      items << item
+    end
+    items
+    items.sort_by { |item| item.name }
+  end
+  
 end

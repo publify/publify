@@ -1,8 +1,5 @@
 <% @page_heading = _('Theme editor') %>
-<% content_for('tasks') do %>
-	<%= subtab _("Choose themes"), "", {:controller=>"themes", :action=>"index"} %>
-	<%= subtab _("Theme editor"), "current", {:controller=>"themes", :action=>"editor"} %>
-<% end %> 
+<% subtabs_for(:themes) %>
 
 <div id="theme_list">	
 	<h3>Stylesheets</h3>
