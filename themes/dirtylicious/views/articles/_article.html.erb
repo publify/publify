@@ -9,14 +9,14 @@
   </div>
 
   <div class="content">
-    <%= article.html(:body) %>
+    <%= simple_format article.html(:body) %>
 
     <% if article.extended? -%>
       <div class="extended">
         <% if controller.action_name == 'index' -%>
           <p><%= link_to_permalink article,"Continue reading..." %></p>
         <% else -%>
-          <%= article.html(:extended) %>
+          <%= simple_format article.html(:extended) %>
         <% end -%>
       </div>
     <% end -%>
