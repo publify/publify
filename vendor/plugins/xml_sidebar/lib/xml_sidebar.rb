@@ -11,6 +11,8 @@ class XmlSidebar < Sidebar
 
   def format_strip
     format.gsub(/\d+/,'')
+    format.gsub('1.0', '')
+    format.gsub('2.0', '')
   end
 
 end
