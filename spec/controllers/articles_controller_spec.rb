@@ -73,4 +73,12 @@ describe ArticlesController, "feeds" do
     scoped_getter.get 'index', :format => 'rss'
     response.should render_template("_rss20_feed")
   end
+
+  it 'should not render &eacute; in atom feed' do
+    article = contents(:article2)
+    article.body = '&eacute;coute The future is cool!'
+    article.save!
+    get 'index', :format => 'atom'
+    response.body.should =~ /écoute The future is cool!/
+  end
 end
