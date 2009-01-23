@@ -128,6 +128,8 @@ class Admin::FeedbackController < Admin::BaseController
     when 'Confirm Classification of Checked Items'
       update_feedback(items, :confirm_classification!)
       flash[:notice] = _("Confirmed classification of %s item(s)",ids.size)
+    when 'Delete all spam'
+      delete_all_spam
     else
       flash[:notice] = _("Not implemented")
     end
@@ -136,6 +138,13 @@ class Admin::FeedbackController < Admin::BaseController
   end
 
   protected
+
+  def delete_all_spam
+    if request.post?
+      Feedback.delete_all('state in ("presumed_spam", "spam")')
+      flash[:notice] = _("All spam have been deleted")
+    end
+  end
 
   def update_feedback(items, method)
     items.each do |value|
