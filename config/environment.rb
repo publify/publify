@@ -47,6 +47,7 @@ Rails::Initializer.run do |config|
   # Declare the gems in vendor/gems, so that we can easily freeze and/or
   # install them.
   config.gem 'coderay'
+  config.gem 'htmlentities'
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
