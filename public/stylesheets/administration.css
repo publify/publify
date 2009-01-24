@@ -11,6 +11,20 @@ body {
   background: #f1ebdc;
 }
 
+form {
+  margin: 0;
+  padding: 0;
+}
+
+a, a:visited {
+	color: #224272;
+	text-decoration: none;
+}
+
+a:hover, a:visited:hover {
+	text-decoration: underline;
+	color: #aaa;
+}
 
 /* Top navigation */
 #topnav {
@@ -117,26 +131,6 @@ color: #000;
 border-top: #ccc 1px solid;
 }
 
-/* @group Utility */
-
-
-form {
-  margin: 0;
-  padding: 0;
-}
-
-a:link, a:visited {
-	color: #224272;
-	text-decoration: none;
-}
-
-a:hover, a:visited:hover {
-	text-decoration: underline;
-	color: #aaa;
-}
-
-/* @end */
-
 /* @group Headings */
 
 h2 {
@@ -148,21 +142,13 @@ h2 {
 	padding-top: 20px;
 }
 
-h2 span a {
-	text-decoration: underline;
-}
-
-h2 a:visited {
-	color: #666;
-}
-
-h2 a:hover {
-	text-decoration: none;
-	color: #993333;
-}
-
 h2 span {
 	font-size: 0.7em;
+}
+
+h2 span a,
+h2 span a:visited {
+	text-decoration: underline;
 }
 
 h3 {
@@ -241,7 +227,6 @@ li.shade {
   padding: 10px;
   margin-bottom: 15px;
 	text-align: center;
-
 }
 
 td.paginate {
@@ -264,24 +249,12 @@ td.paginate {
 }
 
 #blog_name {
-  font-size: 130%;
-}
-
-/* @end */
-
-/* @group Popups/Tooltips */
-
-.tip-catlist {
-  width: 200px;
-  background: #EEF1FE;
-  border: 2px solid #C2D2E7;
-  padding: 5px;
+  font-size: 1.3em;
 }
 
 /* @end */
 
 /* Article forms */
-
 
 #article_form input,
 #article_form textarea,
@@ -329,21 +302,6 @@ td.paginate {
 legend {
         font-size: 16px;
         color: #224272;
-}
-
-
-#preview {
-  background: #fff;
-  border-left: 1px dashed #ccc;
-	border-right: none;
-	border-top: none;
-	border-bottom: none;
-  padding: 0 0 0 5px;
-  width: 50%;
-  height: 430px;
-  float: right;
-	margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 /* @end */
@@ -430,12 +388,10 @@ legend {
 
 /* @group Sidebar */
 
-
 #sidebar-config p {
   margin: 0;
   padding-left: 5px;
 }
-
 
 #active, #cnt-active {
   width: 325px;
@@ -443,12 +399,10 @@ legend {
   padding-bottom: 10px;
 }
 
-
 #cnt-active {
   margin-left: 360px;
   border: #ccc 1px solid;
 }
-
 
 #available {
   padding-bottom: 10px;
@@ -457,7 +411,6 @@ legend {
   width: 325px;
 }
 
-
 #available h3, #active h3, #cnt-active h3 {
   background: #b5b5b5;
   color: #000;
@@ -465,11 +418,9 @@ legend {
   padding: 2px 5px;
 }
 
-
 .dropbox {
   width: 300px;
 }
-
 
 .handle {
   cursor: move;
@@ -478,16 +429,13 @@ legend {
   margin: 0;
 }
 
-
 .dragitem, .dropitem {
   margin: 0 0 5px 12px;
 }
 
-
 .dragitem {
   width: 300px;
 }
-
 
 .target {
   background: #F8F7EF;
@@ -503,18 +451,6 @@ legend {
   padding: 0 0 5px;
 }
 
-#info {
-  color: #4A4902;
-}
-
-#info a {
-  color: #4A4902;
-}
-
-#info a:hover {
-  border-bottom: 1px dotted #222;
-}
-
 .form p>small {
   color: gray;
 }
@@ -524,16 +460,13 @@ legend {
   font-size: 90%;
 }
 
-
 .l {
 	text-align: left;
 }
 
-
 .r {
   text-align: right;
 }
-
 
 .c {
   text-align: center;
@@ -614,14 +547,6 @@ div.user {
 
 /* @end */
 
-#quick-navigate {
-  background: #F8F7EF;
-  padding: 2px 5px 0px 5px;
-  border: 1px dotted #9cabba;
-  margin-left: 10px;
-  border-top: none;
-}
-
 #quick-post {
 	background: #ffffff;
 	border-top: #333 1px solid;
@@ -629,16 +554,6 @@ div.user {
 	border-right: #333 3px solid;
 	border-bottom: #333 3px solid;
 	padding: 5px;
-}
-
-#advanced {
-  line-height: 1.3em;
-}
-
-#advanced label {
-  clear: left;
-  float: left;
-  width: 15em;
 }
 
 .clear {
@@ -666,7 +581,6 @@ div.user {
 	padding: 3px 3px;
 }
 
-
 #loginform input,
 #article_form input.submit,
 #page_form input.submit,
@@ -690,14 +604,12 @@ input.submit {
 	width: auto;
 }
 
-
 #loginform div.form {
   border: none;
   background: #fff;
   margin-bottom: 10px;
   padding: 30px 10px 10px;
 }
-
 
 #loginform h3 {
 	text-align: center;
@@ -709,7 +621,6 @@ input.submit {
 	margin: 0;
 	background: #fff;
 }
-
 
 #loginform .errorExplanation h2 {
 	font-weight: normal;
@@ -757,32 +668,6 @@ input.submit {
 }
 
 /* @end */
-
-/* @group Feedback */
-
-.feedbackbody td {
-  border-bottom: 1px dotted #ccc;
-}
-
-.presumed_ham td {
-  border-bottom: 1px dotted #ccc;
-}
-
-.presumed_spam td {
-  border-bottom: 1px dotted #ccc;
-}
-
-.ham td {
-  border-bottom: 1px dotted #ccc;
-}
-
-.spam td {
-  border-bottom: 1px dotted #ccc;
-}
-
-.spam .state {
-  font-weight: bold
-}
 
 /* Dashboard */
 .dashboard-small {
