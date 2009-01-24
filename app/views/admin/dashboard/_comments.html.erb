@@ -2,10 +2,10 @@
   <h3><%= _("Last Comments") %></h3>
   <ul>
     <% if @comments.size == 0 %>
-      <li <%= alternate_class %>><%= _("No comments yet") %></li>
+      <li><%= _("No comments yet") %></li>
     <% else %>
       <% for comment in @comments -%>
-        <li <%= alternate_class %>>
+        <li>
           <%= link_to_permalink comment, h(_("by %s on %s", comment.author, comment.article.title)) %>
         </li>
       <% end %>

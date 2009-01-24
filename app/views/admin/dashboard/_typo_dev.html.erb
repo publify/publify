@@ -5,7 +5,7 @@
   <% else %>
     <ul>
       <% if @typo_links.size == 0 %>
-        <li <%= alternate_class %>><%= _("Oh no, nothing new") %></li>
+        <li><%= _("Oh no, nothing new") %></li>
       <% else %>
         <% @typo_links.each do |link| -%>
           <li <%= alternate_class %>>

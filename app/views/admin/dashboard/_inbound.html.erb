@@ -5,10 +5,10 @@
   <% else %>
     <ul>
       <% if @inbound_links.size == 0 %>
-        <li <%= alternate_class %>><%= _("No one made a link to you yet") %></li>
+        <li><%= _("No one made a link to you yet") %></li>
       <% else %>
         <% for link in @inbound_links -%>
-          <li <%= alternate_class %>>
+          <li>
             <%= link_to(link.author, link.link) + _(" made a link to you saying ") + link.description.slice(0, 50) %> 
           </li>
         <% end %>

@@ -2,10 +2,10 @@
   <h3><%= _("Most popular") %></h3>
   <ul>
     <% if @bestof.size == 0 %>
-      <li <%= alternate_class %>><%= _("Nothing to show yet") %> !</li>
+      <li><%= _("Nothing to show yet") %> !</li>
     <% else %>
       <% for article in @bestof -%>
-        <li <%= alternate_class %>><%= link_to_permalink article, article.title  %> (<%= link_to_permalink article, article.comment_count %>)</li>
+        <li><%= link_to_permalink article, article.title  %> (<%= link_to_permalink article, article.comment_count %>)</li>
       <% end %>
     <% end -%>
   </ul>

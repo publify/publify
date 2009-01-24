@@ -692,17 +692,10 @@ input.submit {
 	margin-left: 28%;
 	margin-bottom: 10px;
 }
-/*
+
 #dashboard h3 {
 	padding: 0;
 	margin: 0;
-	color: #ff6600;
-	font-size: 1.6em;
-	font-weight: normal;
-}*/
-
-#dashboard .dashboard h3 {
-	color: #2C8146;
 }
 
 #dashboard ul {
@@ -714,14 +707,12 @@ input.submit {
 
 #dashboard ul li {
 	margin-left: 0;
-	padding: 4px 10px 4px 2px;
+	padding: 12px 3px 12px 3px;
 	list-style: none;
 	font-size: 1.1em;
+	border-bottom: #eee 1px solid;
 }
 
-#dashboard ul li.shade {
-	background : #f0f0f0;
-}
 /* End of dashboard */
 
 hr {
