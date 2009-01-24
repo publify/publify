@@ -1,13 +1,13 @@
 <table cellspacing="1" cellpadding="0">
-<tr>
-  <th><%= _("Pattern") %></th>
-  <th><%= _("Type") %></th>
-</tr>
-<% for blacklist_pattern in @blacklist_patterns -%>
-<tr <%= alternate_class -%>>  
-  <td class="field"><%= link_to h(blacklist_pattern.pattern), :action => "edit", :id => blacklist_pattern.id %></td>
-  <td class="field"><%= blacklist_pattern.class %></td>
-</tr>  
+  <tr>
+    <th><%= _("Pattern") %></th>
+    <th><%= _("Type") %></th>
+  </tr>
+  <% for blacklist_pattern in @blacklist_patterns -%>
+  <tr <%= alternate_class -%>>  
+    <td><%= link_to h(blacklist_pattern.pattern), :action => "edit", :id => blacklist_pattern.id %></td>
+    <td><%= blacklist_pattern.class %></td>
+  </tr>  
 <% end -%>
-<tr class="paginate"><td colspan="3"><%= will_paginate @blacklist_patterns %></td></tr>
+  <tr class="paginate"><td colspan="3"><%= will_paginate @blacklist_patterns %></td></tr>
 </table>
