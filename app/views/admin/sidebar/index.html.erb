@@ -13,18 +13,18 @@
 
   <div id="sidebar-config">
     <div id="available" class="dropbox">
-      <h3><%= _("Available Items")%></h3>
+      <h2><%= _("Available Items")%></h2>
       <div id="available_box">
         <%= render :partial => 'availables', :object => @available %>
       </div>
     </div>
 
     <div id="cnt-active">
-      <h3 id="hdr-active">
+      <h2 id="hdr-active">
         <%= _("Active Sidebar items")%>
         <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
                       :style => 'display:none;' -%>
-      </h3>
+      </h2>
       <div id="active" class="dropbox">
         <%= render :partial => 'actives', :object => @active %>
       </div>
@@ -37,8 +37,8 @@
 
   </div>
   
-<h2><%= _("Get more themes") %></h2>
-  <p>You can download and install sidebar plugins from our official <a href="http://typosphere.org/wiki/typo/Finding_Typo_Plugins">plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory. You can aso run</p> 
+<h2><%= _("Get more plugins") %></h2>
+  <p>You can download and install sidebar plugins from our official <a href="http://wiki.github.com/fdv/typo/typo-plugins-list">plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory. You can aso run</p> 
   
   <p><code>script/plugins install http://svn.typosphere.org/plugins/myplugin.</code></p>
   

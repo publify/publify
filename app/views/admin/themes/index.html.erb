@@ -4,7 +4,7 @@
 <% i = 0 %>
 <% for theme in @themes %>
 <% i = i+1 %>
-<div class="set theme">
+<div class="theme">
   <div>
     <% if theme.path == @active.path -%>
       <%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>

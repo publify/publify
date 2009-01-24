@@ -169,7 +169,8 @@ module Admin::BaseHelper
   end
   
   def link_to_published(item)
-    item.published? ? link_to_permalink(item, _("published")) : _("unpublished")
+    
+    item.published? ? link_to_permalink(item, _("published"), '', 'published') : "<span class='unpublished'>#{_("unpublished")}</span>"  
   end
   
   def macro_help_popup(macro, text)

@@ -12,8 +12,8 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
-  <label><%= _("Search articles that contains...")%></label><br />  
-  <input type="text" name="search[searchstring]" size="30" />
+  <label for="search"><%= _("Search articles that contains...")%></label><br />  
+  <input id="search" type="text" name="search[searchstring]" size="30" />
   <%= submit_tag _("Search") %>
   <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
 

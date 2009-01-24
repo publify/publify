@@ -1,7 +1,7 @@
 
 <%= error_messages_for 'comment' %>
 <%= hidden_field_tag 'article_id', @article.id %>
-<ul class="set admin" id="comment">
+<ul class="admin" id="comment">
   <li>
     <label for="comment_author" class="block content"><%= _("Author")%></label>
     <%= text_field 'comment', 'author', "value" => (current_user.name if controller.action_name == "list") %>

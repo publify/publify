@@ -1,7 +1,7 @@
 <%= error_messages_for 'article' %>
 <div id="autosave"></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
-<ul class="set admin">
+<ul class="admin">
   <li>
     <label for="article_title" class="block title"><%= _("Title")%></label>
     <%= text_field 'article', 'title', :class => 'large' %>
@@ -40,7 +40,7 @@
   </li>
 </ul>
 
-<ul class="admin set">
+<ul class="admin">
   <li class="paginate l">
     <label class="block">
       <%= link_to_function _("Excerpt") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "excerpt", :duration => 0.2) } %>
