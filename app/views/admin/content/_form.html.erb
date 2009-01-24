@@ -43,7 +43,7 @@
 <ul class="admin set">
   <li class="paginate l">
     <label class="block">
-      <%= link_to_function _("Excertp") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "excerpt", :duration => 0.2) } %>
+      <%= link_to_function _("Excerpt") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "excerpt", :duration => 0.2) } %>
     </label>
     <ul id="excerpt" <%= "style='display: none;'" if @article.excerpt.blank? %>>
       <li>
