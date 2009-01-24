@@ -132,7 +132,7 @@ class Admin::ContentController < Admin::BaseController
     
     params[:article] ||= {}
 
-    @resources = Resource.find(:all, :order => 'created_at DESC')
+    @resources = Resource.find(:all, :order => 'filename')
     @article.attributes = params[:article]
     
     setup_categories
