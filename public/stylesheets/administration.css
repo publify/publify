@@ -5,10 +5,10 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-	font: 62.5% Verdana, Helvetica sans-serif;
+	font: 12px/18px "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
   line-height: 1.6em;
-  color: #000;
-  background: #f1ebdc;
+  color: #222;
+	background: #f9f9f9;
 }
 
 form {
@@ -17,13 +17,74 @@ form {
 }
 
 a, a:visited {
-	color: #224272;
+	color: #38b;
 	text-decoration: none;
+	font-weight: bold;
 }
 
 a:hover, a:visited:hover {
 	text-decoration: underline;
-	color: #aaa;
+	color: #333;
+}
+
+h2 {
+	font-size: 16px;
+	letter-spacing: 2px;
+	color: #464646;
+	margin: 0 0 20px 0;
+	padding-top: 20px;
+}
+
+h2 span {
+	font-size: 12px;
+}
+
+h2 span a,
+h2 span a:visited {
+	text-decoration: underline;
+}
+
+fieldset {
+	margin-top: 10px;
+}
+
+label {
+	font-weight: normal;
+	color: #464646;
+}
+
+label.float {
+  display: block;
+  float: left;
+  width: 200px;
+  margin-left: 0;
+  margin-right: 12px;
+  padding: 0;
+  text-align: right;
+}
+
+label.block {
+  display: block;
+	margin-bottom: 10px;
+}
+
+label.title {
+	font-size: 16px;
+}
+
+label.content {
+	font-size: 14px;
+	margin-top: 6px;
+}
+
+legend {
+	font-size: 14px;
+	color: #464646;
+	font-weight: bold;
+}
+
+small {
+	font-size: 11px;
 }
 
 /* Top navigation */
@@ -43,39 +104,37 @@ a:hover, a:visited:hover {
 #topnav ul li {
   float: left;
   margin: 0;
+	font-size: 15px;
 }
 
 #topnav ul li.right {
 	float: right;
-	font-size: 0.7em;
+	font-size: 11.5px;
 }
 
 #topnav ul li.current {
   color: #fff;
-  background: #525251;
+  background: #464646;
 }
 
 #topnav ul li a {
   display: block;
-  padding: 11px 20px 0 20px;
+  padding: 11px 20px 0;
   height: 25px;
-  text-decoration: none;
-  color: #fafafa;
+  color: #fff;
   text-transform: capitalize;
 	border-right: #525251 1px solid;
-	font-size: 1.4em;
 }
 
 #topnav  ul li a:hover {
   color: #fff;
-  background: #525251;
+  background: #464646;
 }
 /* End of Top navigation */
 
-
 /* Sub navigation */
 #subtabs {
-  background: #525251;
+  background: #464646;
   padding: 5px 20px;
 }
 
@@ -88,13 +147,11 @@ a:hover, a:visited:hover {
 #subtabs ul li {
 	float: left;
 	padding: 2px 20px 2px 0;
- 	line-height: normal;
+	font-size: 12px;
 }
 
 #subtabs li a {
-  text-decoration: none;
   color: #fff;
-	font-size: 1.1em;
 }
 
 #subtabs li a:hover {
@@ -106,8 +163,8 @@ a:hover, a:visited:hover {
   color: #fff;
   text-decoration: underline;
 }
-/* End of sub navigation */
 
+/* End of sub navigation */
 
 #container {
   text-align: left;
@@ -115,49 +172,26 @@ a:hover, a:visited:hover {
 }
 
 #overall {
-  padding: 10px 10px 20px 20px;
-	width: 100em;
+  padding: 10px 0 20px 20px;
+	width: 1000px;
 	background: #fff;
 }
 
 #footer {
-float: left;
-width: 100%;
-margin-top: 30px;
-padding-top: 10px;
-padding-bottom: 0;
-text-align: center;
-color: #000;
-border-top: #ccc 1px solid;
+	float: left;
+	width: 100%;
+	margin-top: 30px;
+	padding: 10px 0 0 0;
+	text-align: center;
+	border-top: #ccc 1px solid;
 }
 
 /* @group Headings */
 
-h2 {
-	font-size: 1.8em;
-	font-weight: normal;
-	letter-spacing: 2px;
-	color: #f60;
-	margin: 0 0 20px 3px;
-	padding-top: 20px;
-}
-
-h2 span {
-	font-size: 0.7em;
-}
-
-h2 span a,
-h2 span a:visited {
-	text-decoration: underline;
-}
-
 h3 {
-  font-size: 130%;
+  font-size: 13px;
   padding: 5px;
   margin-bottom: 0;
-}
-
-.set h3 {
   background: none;
   margin: 0 0 5px 0;
   color: #1F273F;
@@ -166,6 +200,26 @@ h3 {
 /* @end */
 
 /* @group Table Listings */
+
+table {
+  width: 100%;
+	border-spacing: 0;
+	border-bottom: #444 1px solid;
+	border-collapse: collapse;
+	background: #fff;
+}
+
+th {
+  text-align: left;
+  padding: 2px 5px;
+  color: #464646;
+	font-size: 12px;
+}
+
+td {
+  padding: 12px 3px;
+	border-bottom: #eee 1px solid;
+}
 
 td.operation {
   width: 25px;
@@ -180,50 +234,12 @@ th.operation {
   clear: left;
 }
 
-.list table {
-  width: 100%;
-	border-spacing: 0;
-	border-bottom: #ddd 1px solid;
-	border-collapse: collapse;
-	background: #fff;
-}
-
-.list table tr.first {
-	border-bottom: #324e79 1px solid;
-	padding-bottom: 5px;
-}
-
-.list table th {
-  text-align: left;
-  padding: 2px 5px;
-  color: #2c8146;
-	font-size: 12px;
-}
-
-.list table th a {
-	color: #324e79;
-	text-decoration: underline;
-}
-
-.list table tr td {
-  padding: 3px;
-	font-size: 1.1em;
-}
-
-.list table tr td a {
-	color: #224272;
-}
-
-tr.shade {
-  background: #f0f0f0;
-}
-
 li.shade {
   background: #f7f7f7;
 }
 
 .paginate {
-  background: #ddd repeat-x top left;
+  background: #dfdfdf;
   padding: 10px;
   margin-bottom: 15px;
 	text-align: center;
@@ -231,6 +247,14 @@ li.shade {
 
 td.paginate {
 	text-align: center;
+}
+
+tr.menubar td {
+	padding: 5px 3px;
+}
+
+tr.menubar {
+	background : #dfdfdf;
 }
 
 /* @end */
@@ -289,34 +313,24 @@ td.paginate {
 	font-size: 1.7em;
 }
 
-#article_form label,
-#page_form label,
-.admin label {
-	color: #224272;
-}
+
 
 #article_form select.large option {
 	padding: 3px;
 }
 
-legend {
-        font-size: 16px;
-        color: #224272;
-}
+
 
 /* @end */
 
 /* @group General Settings Screen */
 
-.set {
+.admin {
   padding: 0 10px 5px 10px;
   margin-bottom: 10px;
   position: relative;
 }
 
-.set fieldset {
-	margin-top: 10px;
-}
 
 .admin ul {
   margin: 0;
@@ -338,35 +352,9 @@ legend {
   line-height: 1.4em;
 }
 
-.admin label.float {
-  display: block;
-  float: left;
-  width: 200px;
-  margin-left: 0;
-  margin-right: 12px;
-  padding: 0;
-  text-align: right;
-	color: #224272;
-}
 
-.admin label.block {
-  display: block;
-	margin-bottom: 10px;
-}
 
-.admin label.title {
-	font-size: 1.7em;
-}
 
-.admin label.content {
-	font-size: 1.4em;
-	margin-top: 0.5em;
-}
-
-.admin label.tags {
-	font-size: 1.4em;
-	margin-top: 0;
-}
 
 .admin input.float {
   width: auto;
@@ -566,10 +554,10 @@ div.user {
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
+	border: #464646 1px solid;
 }
 
 #loginform label {
-	color: #224272;
 	display: block;
 }
 
@@ -770,7 +758,7 @@ hr {
 
 li.paginate {
   margin-bottom: 15px;
-  border-left: #b0b0b0 5px solid;
+  border-left: #b0b0b0 8px solid;
 }
 
 div.auto_complete {
@@ -804,10 +792,6 @@ div.auto_complete ul strong.highlight {
 
 .hidden {
 	display: none;
-}
-
-tr.menubar {
-	background : #503a30;
 }
 
 .theme {

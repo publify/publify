@@ -34,7 +34,7 @@
     </div>
   </li>
   <li>
-    <label class="block tags" for="article_keywords"><%= _("Tags") %></label>
+    <label class="block content" for="article_keywords"><%= _("Tags") %></label>
     <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large'} %>
     <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
   </li>
