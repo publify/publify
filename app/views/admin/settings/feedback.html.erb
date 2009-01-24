@@ -3,7 +3,7 @@
 
 <% form_tag :action => 'update' do %>
 <div class="admin">
-  <fieldset id="discuss" class="set">
+  <fieldset id="discuss">
     <legend><%= _("Feedback")%></legend>
     <ul>
       <li class="checkbox">
@@ -43,7 +43,7 @@
     </ul>
   </fieldset>
 
-  <fieldset id="notification" class="set">
+  <fieldset id="notification">
     <legend><%= _("Notification")%></legend>
     <ul>
       <li><%= _("Typo can notify you when new articles or comments are posted")%></li>
@@ -55,7 +55,7 @@
     </ul>
   </fieldset>
 
-  <fieldset id="spam" class="set">
+  <fieldset id="spam">
     <legend><%= _("Spam")%></legend>
     <ul>
       <li><%= _("Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</li>

@@ -2,7 +2,7 @@
 <% subtabs_for(:settings) %>
 
 <div id="settings">
-  <div id="gensettings" class="set">
+  <div id="gensettings">
     <h3><%= _("Information")%></h3>
     <p>
       <label><%= _("Current database version")%>:</label>
@@ -19,7 +19,7 @@
   </div>
 
   <% unless @needed_migrations.blank? %>
-  <div id="need" class="set">
+  <div id="need">
     <h3><%= _("Needed migrations")%></h3>
     <ul>
       <% for migration in @needed_migrations %>

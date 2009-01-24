@@ -17,15 +17,21 @@ class Admin::BlacklistController < Admin::BaseController
 
     if request.post? and @blacklist_pattern.save
       flash[:notice] = _('Blacklist Pattern was successfully created.')
-      redirect_to :action => 'index'
+    else
+      flash[:error] = _('Blacklist Pattern could not be created.')
     end
+    redirect_to :action => 'index'
   end
 
   def edit
     @blacklist_pattern = BlacklistPattern.find(params[:id])
     @blacklist_pattern.attributes = params[:blacklist_pattern]
-    if request.post? and @blacklist_pattern.save
-      flash[:notice] = _('BlacklistPattern was successfully updated.')
+    if request.post? 
+      if @blacklist_pattern.save
+        flash[:notice] = _('BlacklistPattern was successfully updated.')
+      else
+        flash[:error] = _('Blacklist Pattern could not be updated.')
+      end
       redirect_to :action => 'index'
     end
   end
