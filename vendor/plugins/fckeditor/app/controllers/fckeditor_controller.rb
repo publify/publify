@@ -17,7 +17,7 @@ class FckeditorController < ActionController::Base
   xml.instruct!
     #=> <?xml version="1.0" encoding="utf-8" ?>
   xml.Connector("command" => params[:Command], "resourceType" => 'File') do
-    xml.CurrentFolder("url" => @url, "path" => params[:CurrentFolder])
+    xml.CurrentFolder("url" => @fck_url, "path" => params[:CurrentFolder])
     xml.Folders do
       @folders.each do |folder|
         xml.Folder("name" => folder)
@@ -49,7 +49,8 @@ class FckeditorController < ActionController::Base
     @folders = Array.new
     @files = {}
     begin
-      @url = upload_directory_path
+      @fck_url = upload_directory_path
+      @fck_url.gsub!("#{RAILS_ROOT}/public/", "")
       @current_folder = current_directory_path
       Dir.entries(@current_folder).each do |entry|
         next if entry =~ /^\./
@@ -64,9 +65,9 @@ class FckeditorController < ActionController::Base
 
   def create_folder
     begin 
-      @url = current_directory_path
-      path = @url + params[:NewFolderName]
-      if !(File.stat(@url).writable?)
+      @fck_url = current_directory_path
+      path = @fck_url + params[:NewFolderName]
+      if !(File.stat(@fck_url).writable?)
         @errorNumber = 103
       elsif params[:NewFolderName] !~ /[\w\d\s]+/
         @errorNumber = 102
@@ -84,7 +85,7 @@ class FckeditorController < ActionController::Base
   def upload_file
     begin
       @new_file = check_file(params[:NewFile])
-      @url = upload_directory_path
+      @fck_url = upload_directory_path
       ftype = @new_file.content_type.strip
       if ! MIME_TYPES.include?(ftype)
         @errorNumber = 202
@@ -149,8 +150,7 @@ class FckeditorController < ActionController::Base
   
   def check_path(path)
     exp_path = File.expand_path path
-
-    unless %r[^#{File.expand_path(RAILS_ROOT)}/public#{UPLOADED}].match(exp_path)
+    if exp_path !~ %r[^#{File.expand_path(RAILS_ROOT)}/public#{UPLOADED}]
       @errorNumber = 403
       throw Exception.new
     end

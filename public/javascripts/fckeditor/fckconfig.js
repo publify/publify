@@ -50,9 +50,9 @@ FCKConfig.PreloadImages = [ FCKConfig.SkinPath + 'images/toolbar.start.gif', FCK
 
 FCKConfig.PluginsPath = FCKConfig.BasePath + 'plugins/' ;
 
-//FCKConfig.Plugins.Add( 'autogrow' ) ;
-//FCKConfig.Plugins.Add( 'dragresizetable' );
-// FCKConfig.AutoGrowMax = 400 ;
+// FCKConfig.Plugins.Add( 'autogrow' ) ;
+// FCKConfig.Plugins.Add( 'dragresizetable' );
+FCKConfig.AutoGrowMax = 400 ;
 
 // FCKConfig.ProtectedSource.Add( /<%[\s\S]*?%>/g ) ;	// ASP style server side code <%...%>
 // FCKConfig.ProtectedSource.Add( /<\?[\s\S]*?\?>/g ) ;	// PHP style server side code
@@ -97,13 +97,20 @@ FCKConfig.TemplateReplaceCheckbox = true ;
 FCKConfig.ToolbarLocation = 'In' ;
 
 FCKConfig.ToolbarSets["Default"] = [
-	['FontFormat','Bold', 'Italic', 'StrikeThrough'],
-	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'], 
-    ['OrderedList','UnorderedList','-','Outdent','Indent','Blockquote'],
-    ['Link','Unlink'],
-    ['Image','Flash', 'Smiley'],
-    ['FitWindow','SpellCheck'],
-    ['RemoveFormat', '-', 'Source']
+	['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
+	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
+	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField'],
+	'/',
+	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
+	['OrderedList','UnorderedList','-','Outdent','Indent','Blockquote'],
+	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
+	['Link','Unlink','Anchor'],
+	['Image','Flash','Table','Rule','Smiley','SpecialChar','PageBreak'],
+	'/',
+	['Style','FontFormat','FontName','FontSize'],
+	['TextColor','BGColor'],
+	['FitWindow','ShowBlocks','-','About']		// No comma for the last row.
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
@@ -141,8 +148,8 @@ FCKConfig.BrowserContextMenuOnCtrl = false ;
 FCKConfig.EnableMoreFontColors = true ;
 FCKConfig.FontColors = '000000,993300,333300,003300,003366,000080,333399,333333,800000,FF6600,808000,808080,008080,0000FF,666699,808080,FF0000,FF9900,99CC00,339966,33CCCC,3366FF,800080,999999,FF00FF,FFCC00,FFFF00,00FF00,00FFFF,00CCFF,993366,C0C0C0,FF99CC,FFCC99,FFFF99,CCFFCC,CCFFFF,99CCFF,CC99FF,FFFFFF' ;
 
-FCKConfig.FontFormats	= 'p;h1;h2;h3;h4;h5;pre;address;div' ;
-FCKConfig.FontNames		= 'Arial;Courier New;Tahoma;Times New Roman;Verdana' ;
+FCKConfig.FontFormats	= 'p;h1;h2;h3;h4;h5;h6;pre;address;div' ;
+FCKConfig.FontNames		= 'Arial;Comic Sans MS;Courier New;Tahoma;Times New Roman;Verdana' ;
 FCKConfig.FontSizes		= 'smaller;larger;xx-small;x-small;small;medium;large;x-large;xx-large' ;
 
 FCKConfig.StylesXmlPath		= FCKConfig.EditorPath + 'fckstyles.xml' ;
@@ -261,8 +268,8 @@ FCKConfig.JustifyClasses = [] ;
 // inline when creating the editor instance. In that cases you must set the
 // values of LinkBrowserURL, ImageBrowserURL and so on.
 // Custom implementations should just ignore it.
-var _FileBrowserLanguage	= 'perl' ;	// asp | aspx | cfm | lasso | perl | php | py
-var _QuickUploadLanguage	= 'perl' ;	// asp | aspx | cfm | lasso | perl | php | py
+var _FileBrowserLanguage	= 'php' ;	// asp | aspx | cfm | lasso | perl | php | py
+var _QuickUploadLanguage	= 'php' ;	// asp | aspx | cfm | lasso | perl | php | py
 
 // Don't care about the following two lines. It just calculates the correct connector
 // extension to use for the default File Browser (Perl uses "cgi").
