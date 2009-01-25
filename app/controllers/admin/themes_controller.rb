@@ -69,10 +69,23 @@ class Admin::ThemesController < Admin::BaseController
   end
 
   def catalogue
-      url = "http://typogarden.org/themes.xml"
-      open(url) do |http|
-        @themes = parse_catalogue(http.read)
-      end
+    # Data get by this URI is a JSON formatted
+    # The return is a list. All element represent a item
+    # Each item is a hash with this key :
+    #  * uid
+    #  * download_uri
+    #  * name
+    #  * author
+    #  * description
+    #  * tags
+    #  * screenshot_uri
+    url = "http://www.dev411.com/typo/themes_2-1.txt"
+    open(url) do |http|
+      @themes = parse_catalogue_by_json(http.read)
+    end
+  rescue OpenURI::HTTPError
+    @themes = []
+    @error = true
   end
 
   protected
@@ -83,24 +96,25 @@ class Admin::ThemesController < Admin::BaseController
 
   private
   
-  class ThemeItem < Struct.new(:image, :name, :url)
+  class ThemeItem < Struct.new(:image, :name, :url, :author, :description)
     def to_s; name; end
   end
-  
-  def parse_catalogue(body)
-    xml = REXML::Document.new(body)
- 
+
+  def parse_catalogue_by_json(body)
+    require 'json'
+    items_json = JSON.parse(body)
     items = []
- 
-    REXML::XPath.each(xml, "/themes/theme/") do |elem|
+    items_json.each do |elem|
+      next unless elem['download_uri'] # No display theme without download URI
       item = ThemeItem.new
-      item.image    = REXML::XPath.match(elem, "image/text()").first.value rescue ""
-      item.url      = REXML::XPath.match(elem, "url/text()").first.value rescue ""
-      item.name     = REXML::XPath.match(elem, "name/text()").first.value rescue ""
+      item.image = elem['screenshot_uri']
+      item.url = elem['download_uri']
+      item.name = elem['name']
+      item.author = elem['author']
+      item.description = elem['description']
       items << item
     end
     items
     items.sort_by { |item| item.name }
   end
-  
 end

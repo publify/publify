@@ -807,14 +807,16 @@ div.auto_complete ul strong.highlight {
 }
 
 .theme {
-	width: 260px;
+    width: 260px;
+    height: 300px;
 	float: left;
 	margin-right: 20px;
 	overflow: hidden;
 }
 
 .theme img {
-	width: 240px;
+    width: 400px;
+    height: 200px;
 }
 
 .theme hr {

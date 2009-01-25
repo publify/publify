@@ -446,6 +446,10 @@ Localization.define('fr_FR') do |l|
   l.store "Active theme", "Thème actif"
   l.store "You can download third party themes from officially supported %s ", "Vous pouvez télécharger des thèmes officiellement supportés sur %s "
   l.store "dev 411 Typo themes viewer", "le visualisateur de thèmes de dev411"
+
+  #admin/themes/catalogue.html.erb
+  l.store "Theme catalogue", "Catalogue de thème"
+  l.store "Sorry the theme catalogue is not available", "Désolé le catalogue de thème n'est pas disponible"
   
   #admin/trackbacks/edit.rhtml
   l.store "Trackbacks for", "Rétroliens pour"
