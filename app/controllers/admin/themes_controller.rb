@@ -101,7 +101,6 @@ class Admin::ThemesController < Admin::BaseController
   end
 
   def parse_catalogue_by_json(body)
-    require 'json'
     items_json = JSON.parse(body)
     items = []
     items_json.each do |elem|
