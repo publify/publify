@@ -7,21 +7,19 @@
 
 <% i = 0 %>
 <% for theme in @themes %>
-<% i = i+1 %>
+  <% i = i+1 %>
 
-  <% @themes.each do |theme| %>
-  <div class="theme">
-    <div>
-      <%= link_to(image_tag(theme.image), theme.url) %>
-      <h3><%= theme.name %> created by <%= theme.author %></h3>
-      <p><%= theme.description %></p>
+    <div class="theme">
+      <div>
+        <%= link_to(image_tag(theme.image), theme.url) %>
+        <h3><%= theme.name %> created by <%= theme.author %></h3>
+        <p><%= theme.description %></p>
+      </div>
     </div>
-  </div>
-  <% end -%>
-<% if i == 3 %>
-  <% i = 0%>
-  <hr class="clear" />
-<% end %>
+  <% if i == 3 %>
+    <% i = 0%>
+    <hr class="clear" />
+  <% end %>
 
 <% end %>
 <hr class="clear" />
