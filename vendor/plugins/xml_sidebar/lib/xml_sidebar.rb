@@ -10,9 +10,11 @@ class XmlSidebar < Sidebar
           :choices => [["rss",  "RSS"], ["atom", "Atom"]]
 
   def format_strip
-    format.gsub(/\d+/,'')
-    format.gsub('1.0', '')
-    format.gsub('2.0', '')
+    strip_format = self.format
+    strip_format.gsub!(/\d+/,'')
+    strip_format.gsub!('1.0', '')
+    strip_format.gsub!('2.0', '')
+    strip_format
   end
 
 end
