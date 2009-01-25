@@ -20,8 +20,9 @@
           <label for="article_published"><%= _("Published")%>:</label>
           <%= check_box 'article', 'published'  %><br />
         <%= link_to_destroy_draft @article %>
+        <input class="submit" type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
+        <%= save( _("Publish") + " &raquo;") %><br />
         <%= link_to_destroy_with_profiles @article%>
-        <%= save( _("Publish") + " &raquo;") %>
       </p>
     </div>
     <div id="editor">
