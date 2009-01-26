@@ -146,7 +146,7 @@ describe Admin::ContentController do
       new_article = Article.find(:first, :order => "created_at DESC")
       assert_equal body, new_article.body
       assert_equal extended, new_article.extended
-      assert_equal "textile", new_article.text_filter.name
+      assert_equal "none", new_article.text_filter.name
       assert_equal "<p>body via <strong>textile</strong></p>", new_article.html(:body)
       assert_equal "<p><strong>foo</strong></p>", new_article.html(:extended)
     end

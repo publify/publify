@@ -66,6 +66,12 @@ module Admin::BaseHelper
     end
   end
 
+  def text_filter_options_with_id
+    TextFilter.find(:all).collect do |filter|
+      [ filter.description, filter.id ]
+    end
+  end
+
   def alternate_class
     @class = @class != '' ? '' : 'class="shade"'
   end

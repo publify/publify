@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class User < CachedModel
   belongs_to :profile
+  belongs_to :text_filter
   has_many :notifications, :foreign_key => 'notify_user_id'
   has_many :notify_contents, :through => :notifications,
     :source => 'notify_content',

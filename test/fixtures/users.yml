@@ -9,6 +9,7 @@ tobi:
   notify_on_new_articles: false
   notify_on_comments: true
   profile: admin
+  text_filter: markdown
 
 bob:
   login: bob
@@ -19,6 +20,7 @@ bob:
   notify_on_new_articles: true
   notify_on_comments: false
   profile: admin
+  text_filter: none
 
 existingbob:
   login: existingbob
@@ -29,6 +31,7 @@ existingbob:
   notify_on_new_articles: false
   notify_on_comments: false
   profile: admin
+  text_filter: markdown
 
 longbob:
   login: longbob
@@ -39,6 +42,7 @@ longbob:
   notify_on_new_articles: false
   notify_on_comments: false
   profile: admin
+  text_filter: markdown
 
 randomuser:
   login: randomuser
@@ -49,7 +53,8 @@ randomuser:
   notify_on_new_articles: true
   notify_on_comments: true
   profile: admin
-
+  text_filter: none
+  
 user_publisher:
   login: shingara
   password: 8e9b1a9a38e66ca572a5e8fdac8e256848842dfa # longtest
@@ -59,4 +64,5 @@ user_publisher:
   notify_on_new_articles: false
   notify_on_comments: false
   profile: publisher
+  text_filter: markdown
 

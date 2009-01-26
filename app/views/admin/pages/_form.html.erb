@@ -27,4 +27,15 @@
     </div>
     <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
   </li>
+  <li class="paginate l">
+    <label class="block">
+      <%= link_to_function _("Page settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
+    </label>
+    <ul id="publishing_options" <%= "style='display: none;'" unless @page.published.blank? %>>
+      <li>
+          <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
+          <select name="page[text_filter]" id="text_filter">
+            <%= options_for_select text_filter_options, @page.text_filter %>
+          </select>
+      </li>  
 </ul>

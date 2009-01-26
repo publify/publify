@@ -75,8 +75,13 @@
       <li>
         <label for="article_permalink" class="float"><%= _("Permalink") %></label>
         <span id="permalink"><%= text_field 'article', 'permalink' %></span>
-      </li>     
+      </li>
+      <li>
+          <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
+          <select name="article[text_filter]" id="text_filter">
+            <%= options_for_select text_filter_options, @article.text_filter %>
+          </select>
+      </li>
     </ul>
   </li>  
 </ul>
-<%= hidden_field_tag 'text_filter', this_blog.text_filter %>

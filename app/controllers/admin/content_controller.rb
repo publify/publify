@@ -207,6 +207,7 @@ class Admin::ContentController < Admin::BaseController
                returning(Article.new) do |art|
                  art.allow_comments = this_blog.default_allow_comments
                  art.allow_pings    = this_blog.default_allow_pings
+                 art.text_filter    = current_user.text_filter
                end
             else
               Article.find(params[:id])

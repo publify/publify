@@ -12,6 +12,7 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new(params[:user])
+    @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
     setup_profiles
     if request.post? and @user.save
       flash[:notice] = _('User was successfully created.')

@@ -1,6 +1,4 @@
 <%= error_messages_for 'user' %>
-<!--[form:user]-->
-<fieldset>
 <ul>
 <li>
   <label class="float" for="user_login"><%= _("Login")%>:</label>
@@ -8,7 +6,6 @@
 </li>
 <% if current_user.admin? %>
 <li>
-  
 	<label class="float" for="user_profile"><%= _("Profile")%>:</label>
 	<%=  select("user", "profile_id", @profiles.collect {|p| [ _(p.nicename), p.id ] }, { :include_blank => true }) %>
   <% # _("Blog publisher"), _("Contributor") , _("Typo administrator") %>
@@ -38,8 +35,13 @@
 		<input type="radio" name="user[editor]" value="0" id="editor_0" <%= 'checked="checked"' if @user.editor == 0 %>/>
 	    <label for="editor_0"><%= _("Use simple editor without live preview")%></label>
 	</span>
-	</li>
-
+</li>
+<li>
+    <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
+    <select name="user[text_filter_id]" id="text_filter">
+      <%= options_for_select text_filter_options_with_id, @user.text_filter.id %>
+    </select>
+</li>
 <li>
   <label class="float" for="user_notify_via_email"><%= _("Send notification messages via email")%>?</label>
   <%= check_box 'user', 'notify_via_email'  %> 
@@ -54,5 +56,3 @@
   <%= check_box 'user', 'notify_on_comments'  %>
 </li>
 </ul>
-</fieldset>
-<!--[eoform:user]-->

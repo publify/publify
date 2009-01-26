@@ -35,7 +35,7 @@ class Admin::PagesController < Admin::BaseController
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
-    @page.text_filter ||= this_blog.text_filter
+    @page.text_filter ||= current_user.text_filter
     if request.post? 
       if @page.name.blank?
         @page.name = @page.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url 
