@@ -11,15 +11,6 @@ describe Admin::CacheController, "rough port of the old functional test" do
     request.session = { :user => users(:tobi).id }
   end
 
-  describe 'sweep action' do
-
-    it 'should redirect to setting index' do
-      get 'sweep'
-      response.should redirect_to(:controller => '/admin/settings')
-    end
-
-  end
-
   describe 'sweep_html action' do
 
     it 'should redirect to setting index' do

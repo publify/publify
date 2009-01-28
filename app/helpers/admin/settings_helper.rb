@@ -15,9 +15,4 @@ module Admin::SettingsHelper
 	end
 	options
   end
-  
-  def sweep_cache_link
-    cache = this_blog.cache_option == "caches_action_with_params" ? "sweep" : "sweep_html"
-    link_to _("Sweep cache"), { :controller => "admin/cache",    :action => cache }
-  end
 end

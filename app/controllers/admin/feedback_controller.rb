@@ -157,7 +157,6 @@ class Admin::FeedbackController < Admin::BaseController
   def flush_cache
     @unexpired = false
     PageCache.sweep_all
-    expire_fragment(/.*/)
   end
 
   def only_own_feedback

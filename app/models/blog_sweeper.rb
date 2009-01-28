@@ -60,7 +60,6 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def sweep_all
     PageCache.sweep_all
-    expire_fragment(/.*/)
   end
 
   def sweep_theme
@@ -68,16 +67,11 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def sweep_articles
-    expire_fragment(%r{.*/articles/.*})
     PageCache.sweep_all
   end
 
   def sweep_pages
-    expire_fragment(/.*\/pages\/.*/)
-    expire_fragment(/.*\/view_page.*/)
-    unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
-      PageCache.zap_pages('pages')
-    end
+    PageCache.zap_pages('pages') unless Blog.default.nil?
   end
 
   def logger
