@@ -86,12 +86,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "trackbacks/:id/:day/:month/:year",
     :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
 
-  # Redirects from old permalinks
-  map.connect "articles/:controler/:name",
-    :controller => 'redirect', :action => 'redirect'
-    map.connect "articles/:controler",
-      :controller => 'redirect', :action => 'redirect'
-
   map.inflected_resource(:categories, :path_prefix => '')
   map.connect '/category/:id/page/:page',
   :controller => 'categories', :action => 'show'
@@ -146,7 +140,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   # Work around the Bad URI bug
-  %w{ accounts articles backend files live sidebar textfilter xml }.each do |i|
+  %w{ accounts backend files live sidebar textfilter xml }.each do |i|
     map.connect "#{i}", :controller => "#{i}", :action => 'index'
     map.connect "#{i}/:action", :controller => "#{i}"
     map.connect "#{i}/:action/:id", :controller => i, :id => nil

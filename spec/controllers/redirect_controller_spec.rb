@@ -16,6 +16,21 @@ describe RedirectController do
       :controller => 'redirect', :action => 'redirect'}
   end
 
+  def test_redirect_from_articles_routing
+    assert_routing "articles", {
+      :from => ["articles"],
+      :controller => 'redirect', :action => 'redirect'}
+    assert_routing "articles/foo", {
+      :from => ["articles", "foo"],
+      :controller => 'redirect', :action => 'redirect'}
+    assert_routing "articles/foo/bar", {
+      :from => ["articles", "foo", "bar"],
+      :controller => 'redirect', :action => 'redirect'}
+    assert_routing "articles/foo/bar/baz", {
+      :from => ["articles", "foo", "bar", "baz"],
+      :controller => 'redirect', :action => 'redirect'}
+  end
+
   def test_redirect
     get :redirect, :from => ["foo", "bar"]
     assert_response 301
