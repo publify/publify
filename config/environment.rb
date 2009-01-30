@@ -63,9 +63,9 @@ Rails::Initializer.run do |config|
   config.gem 'json'
 
   # Declare needed (github) gems
-  config.gem 'datanoise-actionwebservice', :version => '2.2.2', :lib => 'actionwebservice'
-  config.gem 'mislav-will_paginate', :version => '2.3.6', :lib => 'will_paginate'
-  #config.gem 'rspec-rails', :lib => 'spec/rails', :version => '~> 1.1.11'
+  config.gem 'datanoise-actionwebservice', :version => '2.2.2', :lib => 'actionwebservice', :source => 'http://gems.github.com'
+  config.gem 'mislav-will_paginate', :version => '2.3.6', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'rspec-rails', :lib => 'spec/rails', :version => '~> 1.1.11'
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
