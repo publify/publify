@@ -7,6 +7,6 @@
     <%=h item.email.to_s.slice(0,40) %>
   </td>
   <td id="feedback_<%=item.id%>">
-    <%=link_to_remote(simple_format(h(truncate(item.body, :length => 100))), :url => { :action => 'preview', :id => item.id })%></td>
+    <%=link_to_remote(h(truncate(item.body, :length => 100)), :url => { :action => 'preview', :id => item.id })%></td>
   <td><%=h item.ip %></td>
 </tr>

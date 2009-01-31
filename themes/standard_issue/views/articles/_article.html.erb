@@ -1,14 +1,14 @@
 <div class="atomentry" id="article-<%= article.id %>">
   <h2 class="title"><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h2>
   <div class="content">
-    <%= simple_format article.html(:body) %>
+    <%= article.html(:body) %>
 
     <% if article.extended? -%>
       <div class="extended">
         <% if controller.action_name == 'index' -%>
           <p><%= link_to_permalink article,_("Continue reading...") %></p>
         <% else -%>
-          <%= simple_format article.html(:extended) %>
+          <%= article.html(:extended) %>
         <% end -%>
       </div>
     <% end -%>

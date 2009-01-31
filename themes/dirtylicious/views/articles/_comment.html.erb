@@ -5,7 +5,7 @@
     <abbr title="<%= comment.created_at.xmlschema %>"><%= distance_of_time_in_words comment.article.published_at, comment.created_at %> later:</abbr>
   </div>
   <div class="content">
-    <%= simple_format comment.html %>
+    <%= comment.html %>
   </div>
   <% unless comment.published -%>
   <div class="spamwarning"><%= _("This comment has been flagged for moderator approval.") %></div>

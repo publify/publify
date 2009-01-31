@@ -4,7 +4,7 @@
     <cite><%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url) %></cite>
     <abbr title="<%= comment.created_at.xmlschema %>"><%= distance_of_time_in_words comment.article.published_at, comment.created_at %> <%= _("later")%>:</abbr>
   </div>
-    <%= simple_format comment.html %>
+    <%= comment.html %>
   <% unless comment.published -%>
   <div class="spamwarning"><%= _("This comment has been flagged for moderator approval.") %></div>
   <% end -%>
