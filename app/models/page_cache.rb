@@ -13,7 +13,7 @@ class PageCache
 
   def self.sweep_all
     logger.debug "PageCache - sweep_all called by #{caller[1].inspect}"
-    unless Blog.default && Blog.default.cache_option == "caches_action_with_params"
+    unless Blog.default
       self.zap_pages(%w{index.* articles.* pages page
                      pages.* feedback feedback.*
                      comments comments.*

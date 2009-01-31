@@ -4,12 +4,7 @@ class GroupingController < ContentController
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :show]
-
-  if Blog.default && Blog.default.cache_option == "caches_action_with_params"
-    caches_action_with_params *cached_pages
-  else
-    caches_page *cached_pages
-  end
+  caches_page *cached_pages
 
   class << self
     def grouping_class(klass = nil)
