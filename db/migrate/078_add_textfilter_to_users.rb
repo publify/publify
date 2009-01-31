@@ -1,6 +1,6 @@
 class AddTextfilterToUsers < ActiveRecord::Migration
   def self.up
-    f = TextFilter.find(:first, :conditions => 'name = "none"')
+    f = TextFilter.find(:first, :conditions => ["name = ?", "none"])
     add_column :users, :text_filter_id, :string, :default => f.id
 
     unless Blog.default.nil?
