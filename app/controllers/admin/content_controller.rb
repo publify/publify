@@ -1,5 +1,4 @@
 require 'base64'
-require 'auto_complete'
 
 module Admin; end
 class Admin::ContentController < Admin::BaseController
