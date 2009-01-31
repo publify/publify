@@ -3,7 +3,7 @@
 article1:
   title: Article 1!
   body: body
-  extended: extended content
+  extended: "extended content"
   created_at: <%= (Time.now - 2.days).to_s(:db) %>
   updated_at: <%= (Time.now - 2.days).to_s(:db) %>
   published_at: <%= (Time.now - 2.days).to_s(:db) %>
@@ -17,6 +17,7 @@ article1:
   published: true
   state: published
   tags: foo, bar
+  text_filter: markdown_filter
 
 article2:
   type: Article

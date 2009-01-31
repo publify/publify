@@ -30,6 +30,11 @@ require File.dirname(__FILE__) + '/../../spec_helper'
       it "should have pagination link to page 1 without q param if on page 2" do
         response.should have_tag("a[href=?]", "/page/1")
       end
+
+      it "should not have too many paragraph marks around body" do
+        response.should have_tag("p", "body")
+        response.should_not have_tag("p>p", "body")
+      end
     end
     
     # *notice
