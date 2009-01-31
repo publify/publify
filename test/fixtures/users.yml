@@ -9,7 +9,7 @@ tobi:
   notify_on_new_articles: false
   notify_on_comments: true
   profile: admin
-  text_filter: markdown
+  text_filter: markdown_filter
 
 bob:
   login: bob
@@ -20,7 +20,7 @@ bob:
   notify_on_new_articles: true
   notify_on_comments: false
   profile: admin
-  text_filter: none
+  text_filter: none_filter
 
 existingbob:
   login: existingbob
@@ -31,7 +31,7 @@ existingbob:
   notify_on_new_articles: false
   notify_on_comments: false
   profile: admin
-  text_filter: markdown
+  text_filter: markdown_filter
 
 longbob:
   login: longbob
@@ -42,7 +42,7 @@ longbob:
   notify_on_new_articles: false
   notify_on_comments: false
   profile: admin
-  text_filter: markdown
+  text_filter: markdown_filter
 
 randomuser:
   login: randomuser
@@ -53,7 +53,7 @@ randomuser:
   notify_on_new_articles: true
   notify_on_comments: true
   profile: admin
-  text_filter: none
+  text_filter: none_filter
   
 user_publisher:
   login: shingara
@@ -64,5 +64,5 @@ user_publisher:
   notify_on_new_articles: false
   notify_on_comments: false
   profile: publisher
-  text_filter: markdown
+  text_filter: markdown_filter
 

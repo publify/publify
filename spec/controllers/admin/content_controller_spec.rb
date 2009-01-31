@@ -138,7 +138,7 @@ describe Admin::ContentController do
     end
 
     it 'should create a filtered article' do
-      body = "body via *textile*"
+      body = "body via *markdown*"
       extended="*foo*"
       post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
       assert_response :redirect, :action => 'show'
@@ -146,9 +146,9 @@ describe Admin::ContentController do
       new_article = Article.find(:first, :order => "created_at DESC")
       assert_equal body, new_article.body
       assert_equal extended, new_article.extended
-      assert_equal "none", new_article.text_filter.name
-      assert_equal "<p>body via <strong>textile</strong></p>", new_article.html(:body)
-      assert_equal "<p><strong>foo</strong></p>", new_article.html(:extended)
+      assert_equal "markdown", new_article.text_filter.name
+      assert_equal "<p>body via <em>markdown</em></p>", new_article.html(:body)
+      assert_equal "<p><em>foo</em></p>", new_article.html(:extended)
     end
 
   end
