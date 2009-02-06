@@ -1,4 +1,5 @@
 require 'test/unit'
+$:.unshift File.dirname(__FILE__) + '/../lib'
 $:.unshift '../../../rails/actionpack/lib'
 begin
   require 'action_controller'
@@ -7,7 +8,7 @@ rescue LoadError
   require 'action_controller'
 end
 require 'action_controller/assertions'
-require '../lib/action_view_patch'
+require 'action_view_patch'
 
 # borrow BaseTest from prototype_helper_test
 module BaseTest

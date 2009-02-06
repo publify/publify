@@ -1,6 +1,6 @@
 require 'test/unit'
 
-class Typo-textfilter-codeTest < Test::Unit::TestCase
+class TypoTextfilterCodeTest < Test::Unit::TestCase
   # Replace this with your real tests.
   def test_this_plugin
     flunk
