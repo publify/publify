@@ -1,5 +1,5 @@
 <div class="dashboard">
-  <h3><%= _("Last posts") %></h3>
+  <h3><%= _("Latest posts") %></h3>
   <ul>
 	<% if @recent_posts.size == 0 %>
       <li> <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>

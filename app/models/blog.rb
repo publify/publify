@@ -102,7 +102,7 @@ class Blog < CachedModel
   def self.default
     find(:first, :order => 'id')
   rescue
-    logger.warn 'You have not Blog install.'
+    logger.warn 'You have no blog installed.'
     nil
   end
 
