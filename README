@@ -2,7 +2,7 @@ What is it?
 ===========
 
 Typo is a weblog system written in Ruby using Ruby on Rails. Weblogs are cool,
-weblogs are "in" and everyone who writes code has an different opinion on how
+weblogs are "in" and everyone who writes code has a different opinion on how
 a weblog should be written. Typo is our take on it. Typo is designed to be
 usable by programmers and non-programmers, while being easy for programmers to
 extend.
