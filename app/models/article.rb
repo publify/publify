@@ -313,6 +313,10 @@ class Article < Content
     !(allow_comments? && in_feedback_window?)
   end
 
+  def pings_closed?
+    !(allow_pings? && in_feedback_window?)
+  end
+
   # check if time to comment is open or not
   def in_feedback_window?
     self.blog.sp_article_auto_close.zero? ||

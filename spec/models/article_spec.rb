@@ -359,4 +359,17 @@ describe Article do
     end
   end
 
+  def test_can_ping_fresh_article_iff_it_allows_pings
+    a = Article.find(contents(:article1).id)
+    assert_equal(false, a.pings_closed?)
+    a.allow_pings = false
+    assert_equal(true, a.pings_closed?)
+  end
+
+  def test_cannot_ping_old_article
+    a = Article.find(contents(:article3).id)
+    assert_equal(true, a.pings_closed?)
+    a.allow_pings = false
+    assert_equal(true, a.pings_closed?)
+  end
 end
