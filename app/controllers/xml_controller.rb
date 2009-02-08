@@ -36,6 +36,7 @@ class XmlController < ApplicationController
       # make sure we have our own copy to modify.
       @feed_title = this_blog.blog_name.dup
       @link = this_blog.base_url
+      @self_url = url_for(params)
 
       if respond_to?("prep_#{params[:type]}")
         self.send("prep_#{params[:type]}")
@@ -43,6 +44,7 @@ class XmlController < ApplicationController
         render :text => 'Unsupported action', :status => 404
         return
       end
+
       respond_to do |format|
         format.googlesitemap
         format.atom
