@@ -68,7 +68,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :comments, :name_prefix => 'admin_'
   map.resources :trackbacks
-  map.resources :users
 
   map.datestamped_resources(:articles,
                             :collection => {
@@ -91,8 +90,6 @@ ActionController::Routing::Routes.draw do |map|
   map.inflected_resource(:categories, :path_prefix => '')
   map.connect '/category/:id/page/:page',
   :controller => 'categories', :action => 'show'
-  
-  map.inflected_resource(:authors, :path_prefix => '')
   
   map.inflected_resource(:tags, :path_prefix => '')
   map.connect '/tag/:id/page/:page',
