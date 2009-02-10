@@ -77,6 +77,7 @@ class Blog < CachedModel
   setting :meta_keywords,              :string, ''
   setting :google_analytics,           :string, ''
   setting :rss_description,            :boolean, false
+  setting :permalink_format,           :string, '/%year%/%month%/%day%/%title%'
   
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
@@ -206,10 +207,6 @@ class Blog < CachedModel
 
   def requested_article(params)
     Article.find_by_params_hash(params)
-  end
-
-  def requested_articles(params)
-    Article.find_all_by_date(*params.values_at(:year, :month, :day))
   end
 
   def articles_matching(query, args={})

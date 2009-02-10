@@ -1,0 +1,4 @@
+== Since Typo 5.2.1
+
+ * In articles/_comment_box.html.erb use <code>@article.comment_url</code>
+   instead of <code>comments_path(@article)</code>

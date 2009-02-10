@@ -69,6 +69,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :comments, :name_prefix => 'admin_'
   map.resources :trackbacks
 
+  map.connect "/live_search/:q", :controller => "articles", :action => "live_search"
+  map.connect "/search/:q", :controller => "articles", :action => "search"
+
   map.datestamped_resources(:articles,
                             :collection => {
                               :search => :get, 

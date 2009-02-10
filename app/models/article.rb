@@ -151,6 +151,10 @@ class Article < Content
     blog.url_for(permalink_url_options(true).merge(:controller => 'trackbacks', :action => 'index'))
   end
 
+  def comment_url
+    blog.url_for(permalink_url_options(true).merge(:controller => 'comments', :action => 'index'))
+  end
+
   def feed_url(format = :rss20)
     blog.url_for(:controller => 'xml', :action => 'feed', :type => 'article', :format => format, :id => id)
   end
