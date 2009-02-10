@@ -64,6 +64,12 @@ class ArticlesController < ContentController
     render :action => 'search'
   end
 
+  def live_search
+    @search = params[:q]
+    @articles = Article.search(@search)
+    render :layout => false, :action => :live_search
+  end
+
   ### Deprecated Actions ###
 
   def archives
