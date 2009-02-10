@@ -90,10 +90,6 @@ class ArticlesController < ContentController
     @controller = self
   end
 
-  def author
-    redirect_to authors_path, :status => 301
-  end
-
   def category
     redirect_to categories_path, :status => 301
   end
