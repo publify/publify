@@ -112,22 +112,31 @@ class Article < Content
     self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
   end
 
+  def year_url
+    published_at.year
+  end
+
+  def month_url
+    sprintf("%.2d", published_at.month)
+  end
+
+  def day_url
+    sprintf("%.2d", published_at.day)
+  end
+
+  def title_url
+    permalink
+  end
+
   def permalink_url_options(nesting = false)
-    {:year                         => published_at.year,
-     :month                        => sprintf("%.2d", published_at.month),
-     :day                          => sprintf("%.2d", published_at.day),
-     :controller                   => 'articles',
-     :action                       => 'show',
-     (nesting ? :article_id : :id) => permalink}
+    "#{year_url}/#{month_url}/#{day_url}/#{title_url}"
   end
 
   def permalink_url(anchor=nil, only_path=true)
     @cached_permalink_url ||= {}
 
     @cached_permalink_url["#{anchor}#{only_path}"] ||= \
-      blog.with_options(permalink_url_options) do |b|
-        b.url_for(:anchor => anchor, :only_path => only_path)
-      end
+      blog.url_for(permalink_url_options, :anchor => anchor, :only_path => only_path)
   end
 
   def param_array
@@ -148,11 +157,15 @@ class Article < Content
   end
 
   def trackback_url
-    blog.url_for(permalink_url_options(true).merge(:controller => 'trackbacks', :action => 'index'))
+    blog.url_for(permalink_url_options(true) + "/trackbacks")
   end
 
   def comment_url
-    blog.url_for(permalink_url_options(true).merge(:controller => 'comments', :action => 'index'))
+    blog.url_for("comments?article_id=#{self.id}")
+  end
+
+  def preview_comment_url
+    blog.url_for("comments/preview?article_id=#{self.id}")
   end
 
   def feed_url(format = :rss20)

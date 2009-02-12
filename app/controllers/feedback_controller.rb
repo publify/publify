@@ -2,11 +2,12 @@ class FeedbackController < ApplicationController
   helper :theme
 
   session :new_session => false
-  before_filter :login_required, :only => [:update, :destroy]
-  before_filter :get_article, :only => [:create, :update, :show]
+  before_filter :get_article, :only => [:create, :update]
 
   cache_sweeper :blog_sweeper
 
+  # Used only by comments. Maybe need move to comments controller
+  # or use it in our code with send some feed about trackback
   def index
     @page_title = self.class.name.to_s.sub(/Controller$/, '')
     respond_to do |format|
@@ -20,37 +21,6 @@ class FeedbackController < ApplicationController
       end
       format.atom { render :partial => 'articles/atom_feed', :object => get_feedback }
       format.rss { render :partial => 'articles/rss20_feed', :object => get_feedback }
-    end
-  end
-
-  def show
-    @feedback = @article.feedback.find_by_guid(params[:id])
-
-    respond_to do |format|
-      format.html do
-        redirect_to article_path(@article) + "\##{dom_id(@feedback)}"
-      end
-    end
-  end
-
-  def create
-    raise "Subclass responsibility"
-  end
-
-  def update
-    raise "Subclass responsibility"
-  end
-
-  def destroy
-    fb = Feedback.find(params[:id]).destroy
-
-    respond_to do |format|
-      format.html { redirect_to article_path(article) }
-      format.js do
-        render :update do |page|
-          page.visual_effect(:puff, "#{fb.class.to_s.underscore}-#{fb.id}")
-        end
-      end
     end
   end
 

@@ -140,9 +140,14 @@ class Blog < CachedModel
   #
   # It also uses our new RouteCache, so repeated URL generation requests should be
   # fast, as they bypass all of Rails' route logic.
-  def url_for(options = {}, *extra_params)
+  def url_for(options = {}, extra_params = {})
     case options
-    when String then options # They asked for 'url_for "/some/path"', so return it unedited.
+    when String
+      url_generated = ''
+      url_generated = self.base_url if extra_params[:only_path]
+      url_generated += "/#{options}" # They asked for 'url_for "/some/path"', so return it unedited.
+      url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
+      url_generated
     when Hash
       unless RouteCache[options]
         options.reverse_merge!(:only_path => true, :controller => '',

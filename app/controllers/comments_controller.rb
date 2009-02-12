@@ -1,5 +1,6 @@
 class CommentsController < FeedbackController
   before_filter :check_request_type, :only => [:create]
+  before_filter :get_article, :only => [:create, :preview]
 
   def create
     @comment = @article.with_options(new_comment_defaults) do |art|
@@ -36,7 +37,7 @@ class CommentsController < FeedbackController
     set_headers
     @comment = Comment.new(params[:comment])
 
-    unless Article.find_by_params_hash(params).comments_closed?
+    unless @article.comments_closed?
       render :template => 'articles/comment_preview'
     else
       render :text => 'Comment are closed'
@@ -61,7 +62,7 @@ class CommentsController < FeedbackController
       :user       => @current_user,
       :user_agent => request.env['HTTP_USER_AGENT'],
       :referrer   => request.env['HTTP_REFERER'],
-      :permalink  => article_path(@article) }
+      :permalink  => @article.permalink_url }
   end
 
   def set_headers
@@ -80,5 +81,9 @@ class CommentsController < FeedbackController
       add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(@comment.email.strip))
     end
     add_to_cookies(:url, @comment.url)
+  end
+
+  def get_article
+    @article = Article.find(params[:article_id])
   end
 end

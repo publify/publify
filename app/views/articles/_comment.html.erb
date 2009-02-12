@@ -1,5 +1,4 @@
 <li id="comment-<%= comment.id %>" <%= 'class="author_comment"' if comment.user %> <%= 'style="display:none"' if controller.request.xhr? %><%= onhover_show_admin_tools(:comment, comment.id) %>>
-  <%= admin_tools_for comment %>
   <a name="comment-<%= comment.id %>"></a>
   <%= gravatar_tag(comment.email) if this_blog.use_gravatar and comment.email %>
   <cite><strong><%= link_to_unless(comment.url.blank?, h(comment.author), comment.url) %></strong> </cite> <%= _("said")%> <%= distance_of_time_in_words comment.article.published_at, comment.created_at %> later:<br />

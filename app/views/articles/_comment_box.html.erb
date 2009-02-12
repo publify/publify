@@ -36,7 +36,7 @@
       <td colspan="2" id="frm-btns">
       <span id="comment_loading" style="display:none;"><%= image_tag "spinner.gif" %></span>&nbsp;&nbsp;
       <%= markup_help_popup TextFilter.find_by_name(this_blog.comment_text_filter), _("Comment Markup Help") %>
-      <a href="#" onclick="new Ajax.Updater('preview', '<%= preview_new_comment_path(@article) %>',  {asynchronous:true, evalScripts:true, parameters:Form.serialize('commentform'), onComplete:function(request){Element.show('preview')}}); return false;"><%= _("Preview comment")%></a>
+      <a href="#" onclick="new Ajax.Updater('preview', '<%= @article.preview_comment_url %>',  {asynchronous:true, evalScripts:true, parameters:Form.serialize('commentform'), onComplete:function(request){Element.show('preview')}}); return false;"><%= _("Preview comment")%></a>
       <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
       </td>
     </tr>
