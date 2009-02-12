@@ -2,15 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe CategoriesController, "/index" do
   before(:each) do
-    Category.stub!(:find_all_with_article_counters) \
-      .and_return(mock('categories', :null_object => true))
-
     controller.stub!(:template_exists?) \
       .and_return(true)
-
-    this_blog = Blog.default
-    controller.stub!(:this_blog) \
-      .and_return(this_blog)
   end
 
   def do_get
@@ -36,24 +29,14 @@ describe CategoriesController, "/index" do
   end
 end
 
-describe CategoriesController, '/articles/category/foo' do
+describe CategoriesController, '/articles/category/personal' do
   before(:each) do
-    @category = mock('category', :null_object => true)
-    @category.stub!(:empty?) \
-      .and_return(false)
-
-    Category.stub!(:find_by_permalink) \
-      .and_return(@category)
-
     controller.stub!(:template_exists?) \
       .and_return(true)
-    this_blog = Blog.default
-    controller.stub!(:this_blog) \
-      .and_return(this_blog)
   end
 
   def do_get
-    get 'show', :id => 'foo'
+    get 'show', :id => 'personal'
   end
 
   it 'should be successful' do
@@ -63,7 +46,7 @@ describe CategoriesController, '/articles/category/foo' do
 
   it 'should call Category.find_by_permalink' do
     Category.should_receive(:find_by_permalink) \
-      .with('foo') \
+      .with('personal') \
       .and_return(mock('category', :null_object => true))
     do_get
   end
@@ -81,29 +64,40 @@ describe CategoriesController, '/articles/category/foo' do
     response.should render_template('articles/index')
   end
 
-  it 'should set the page title to "Category foo"' do
-    do_get
-    assigns[:page_title].should == 'Category foo, everything about foo'
+  it 'should show only published articles' do
+    c = categories(:personal)
+    c.articles.size.should == 4
+    c.published_articles.size.should == 3
+
+    get 'show', :id => 'personal'
+
+    response.should be_success
+    assigns[:articles].size.should == 3
   end
 
-  it 'should render an error when the category is empty' do
-    @category.should_receive(:articles) \
-      .and_return([])
-
+  it 'should set the page title to "Category personal"' do
     do_get
-
-    response.status.should == "301 Moved Permanently"
-    response.should redirect_to(Blog.default.base_url)
+    assigns[:page_title].should == 'Category personal, everything about personal'
   end
 
-  it 'should render the atom feed for /articles/category/foo.atom' do
-    get 'show', :id => 'foo', :format => 'atom'
+  it 'should render the atom feed for /articles/category/personal.atom' do
+    get 'show', :id => 'personal', :format => 'atom'
     response.should render_template('articles/_atom_feed')
   end
 
-  it 'should render the rss feed for /articles/category/foo.rss' do
-    get 'show', :id => 'foo', :format => 'rss'
+  it 'should render the rss feed for /articles/category/personal.rss' do
+    get 'show', :id => 'personal', :format => 'rss'
     response.should render_template('articles/_rss20_feed')
+  end
+
+end
+
+describe CategoriesController, 'empty category life-on-mars' do
+  it 'should redirect to home when the category is empty' do
+    get 'show', :id => 'life-on-mars'
+
+    response.status.should == "301 Moved Permanently"
+    response.should redirect_to(Blog.default.base_url)
   end
 end
 
