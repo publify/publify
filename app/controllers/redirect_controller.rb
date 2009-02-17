@@ -21,13 +21,18 @@ class RedirectController < ContentController
     month = params[:from][1]
     day = params[:from][2]
     title = params[:from][3]
-    @article = this_blog.requested_article({:year => year, :month => month, :day => day, :id => title})
+    begin
+      @article = this_blog.requested_article({:year => year, :month => month, :day => day, :id => title})
+    rescue
+      #Not really good. 
+      # TODO :Check in request_article type of DATA made in next step
+    end
     return show_article if @article
 
     if (params[:from].first == 'articles')
-      path = request.path.sub('/articles', '')
+      path = params[:from][1..-1].join('/') # get all params without first ('articles')
       url_root = self.class.relative_url_root
-      path = url_root + path unless url_root.nil?
+      path = url_root + '/' + path unless url_root.nil?
       redirect_to path, :status => 301
       return
     end
