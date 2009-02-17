@@ -44,31 +44,6 @@ describe Admin::ContentController do
 
   end
 
-  describe 'show action', :shared => true do
-
-    it 'should render article' do
-      get :show, 'id' => contents(:article1).id
-      response.should render_template('show')
-      assert_template_has 'article'
-      assigns(:article).should be_valid
-      assigns(:article).should_not be_nil
-    end
-
-    it 'show article with trigger' do
-      art = Article.create!(:title => 'future article',
-                            :body => 'content',
-                            :published_at => Time.now + 2.seconds,
-                            :published => true)
-      art.should_not be_published
-      get(:show, :id => art.id)
-      assigns(:article).should_not be_published
-      sleep 3
-      get(:show, :id => art.id)
-      assigns(:article).should be_published
-    end
-
-  end
-
 
   describe 'new action', :shared => true do
 
@@ -189,7 +164,6 @@ describe Admin::ContentController do
     end
 
     it_should_behave_like 'index action'
-    it_should_behave_like 'show action'
     it_should_behave_like 'new action'
     it_should_behave_like 'destroy action'
 
@@ -303,7 +277,6 @@ describe Admin::ContentController do
     end
 
     it_should_behave_like 'index action'
-    it_should_behave_like 'show action'
     it_should_behave_like 'new action'
     it_should_behave_like 'destroy action'
 
