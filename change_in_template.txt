@@ -2,3 +2,9 @@
 
  * In articles/_comment_box.html.erb use <code>@article.comment_url</code>
    instead of <code>comments_path(@article)</code>
+
+ * all link <code>preview_new_comment_path(@article)</code> are change to
+   <code>@article.preview_comment_url</code>
+
+ * all link <code>rl_for formatted_article_path(@article, :rss)</code> are change to
+   <code>@article.feed_url(:rss)</code>
