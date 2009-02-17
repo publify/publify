@@ -112,7 +112,7 @@ describe XmlController do
 
   def test_feed_rss20_article
     get :feed, :format => 'rss20', :type => 'article', :id => contents(:article1).id
-    assert_moved_permanently_to formatted_article_url(contents(:article1), :rss)
+    assert_moved_permanently_to contents(:article1).permalink_by_format(:rss)
   end
 
   def test_feed_rss20_category
@@ -161,7 +161,7 @@ describe XmlController do
 
   def test_feed_atom10_article
     get :feed, :format => 'atom10', :type => 'article', :id => contents(:article1).id
-    assert_moved_permanently_to formatted_article_url(contents(:article1), 'atom')
+    assert_moved_permanently_to contents(:article1).permalink_by_format('atom')
   end
 
   def test_feed_atom10_category

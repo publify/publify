@@ -6,5 +6,8 @@
  * all link <code>preview_new_comment_path(@article)</code> are change to
    <code>@article.preview_comment_url</code>
 
- * all link <code>rl_for formatted_article_path(@article, :rss)</code> are change to
+ * all link <code>url_for formatted_article_path(@article, :rss)</code> are change to
    <code>@article.feed_url(:rss)</code>
+
+ * all link <code>formatted_article_url(@article, @format)</code> are change to
+   <code>@article.permalink_by_format(@format)</code>

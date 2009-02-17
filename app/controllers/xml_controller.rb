@@ -25,7 +25,7 @@ class XmlController < ApplicationController
     when 'comments'
       head :moved_permanently, :location => formatted_admin_comments_url(@format)
     when 'article'
-      head :moved_permanently, :location => formatted_article_url(Article.find(params[:id]), @format)
+      head :moved_permanently, :location => Article.find(params[:id]).permalink_by_format(@format)
     when 'category', 'tag', 'author'
       head :moved_permanently, \
         :location => self.send("formatted_#{params[:type]}_url", params[:id], @format)

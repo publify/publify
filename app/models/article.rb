@@ -160,6 +160,18 @@ class Article < Content
     blog.url_for(permalink_url_options(true) + "/trackbacks")
   end
 
+  def permalink_by_format(format=nil)
+    if format.nil?
+      permalink_url
+    elsif format.to_sym == :rss
+      feed_url(:rss)
+    elsif format.to_sym == :atom
+      feed_url(:atom)
+    else
+      raise UnSupportedFormat
+    end
+  end
+
   def comment_url
     blog.url_for("comments?article_id=#{self.id}")
   end
