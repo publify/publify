@@ -24,10 +24,6 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  def show
-    @article = Article.find(params[:id])
-  end
-
   def new 
     new_or_edit
   end
