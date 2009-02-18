@@ -13,13 +13,13 @@ class CommentsController < FeedbackController
       if request.xhr?
         render :partial => '/articles/comment', :object => @comment
       else
-        redirect_to article_path(@article)
+        redirect_to @article.permalink_url
       end
     else
       if request.xhr?
         render :partial => '/articles/comment_failed', :object => @comment
       else
-        redirect_to article_path(@article)
+        redirect_to @article.permalink_url
       end      
     end
   end
@@ -49,7 +49,7 @@ class CommentsController < FeedbackController
   def get_feedback
     @comments = \
       if params[:article_id]
-        Article.find_by_params_hash(params).published_comments
+        Article.find(params[:article_id]).published_comments
       else
         Comment.find_published(:all, this_blog.rss_limit_params.merge(:order => 'created_at DESC'))
       end
