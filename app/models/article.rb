@@ -113,7 +113,7 @@ class Article < Content
   end
 
   def year_url
-    published_at.year
+    published_at.year.to_s
   end
 
   def month_url
@@ -125,11 +125,20 @@ class Article < Content
   end
 
   def title_url
-    permalink
+    permalink.to_s
   end
 
   def permalink_url_options(nesting = false)
-    "#{year_url}/#{month_url}/#{day_url}/#{title_url}"
+    format_url = blog.permalink_format
+    format_url.gsub!('%year%', year_url)
+    format_url.gsub!('%month%', month_url)
+    format_url.gsub!('%day%', day_url)
+    format_url.gsub!('%title%', title_url)
+    if format_url[0,1] == '/'
+      format_url[1..-1]
+    else
+      format_url
+    end
   end
 
   def permalink_url(anchor=nil, only_path=true)

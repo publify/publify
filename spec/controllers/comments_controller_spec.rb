@@ -146,7 +146,7 @@ describe CommentsController, "GET /comments.:format" do
     response.should render_template("articles/_atom_feed")
   end
 
-  it ":format => 'rss' should return an rss feed" do
+  it ":format => 'rss' should return an rss feed"do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("articles/_rss20_feed")
