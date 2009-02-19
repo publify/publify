@@ -166,7 +166,7 @@ class Article < Content
   end
 
   def trackback_url
-    blog.url_for(permalink_url_options(true) + "/trackbacks")
+    blog.url_for("trackbacks?article_id=#{self.id}", :only_path => true)
   end
 
   def permalink_by_format(format=nil)

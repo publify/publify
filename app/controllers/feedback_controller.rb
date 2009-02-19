@@ -8,6 +8,21 @@ class FeedbackController < ApplicationController
 
   # Used only by comments. Maybe need move to comments controller
   # or use it in our code with send some feed about trackback
+  #
+  # Redirect to article with good anchor with /comments?article_id=xxx ou
+  # /trackacks?article_id=xxx
+  #
+  # If no article_id params, so no page found. TODO: See all
+  # comments/trackbacks with paginate ?
+  #
+  # If /comments.rss|atom or /trabacks.atom|rss see a feed about all comments
+  # or trackback
+  #
+  # If article_id params in feed see only this comment|feedback on this
+  # article.
+  #
+  # TODO: It's usefull but use anywhere. Create some extension in xml_sidebar
+  # to define this feed.
   def index
     @page_title = self.class.name.to_s.sub(/Controller$/, '')
     respond_to do |format|
