@@ -20,6 +20,10 @@
         </span>
       </li>
       <li>
+          <label class="float" for="permalink_format"><%= _("Format of permalink")%></label>
+          <input type="text" name="setting[permalink_format]" id="permalink_format" size="25" value="<%=h this_blog.permalink_format %>" />
+      </li>
+      <li>
           <label class="float" for="google_analytics"><%= _("Google Analytics")%></label>
           <input type="text" name="setting[google_analytics]" id="google_analytics" size="25" value="<%=h this_blog.google_analytics %>" />
       </li>

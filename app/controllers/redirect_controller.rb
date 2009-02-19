@@ -17,10 +17,12 @@ class RedirectController < ContentController
   end
 
   def redirect
-    year = params[:from].first
-    month = params[:from][1]
-    day = params[:from][2]
-    title = params[:from][3]
+    part = this_blog.permalink_format.split('/')
+    part.delete('') # delete all par of / where no data. Avoid all // or / started
+    year = params[:from][part.index('%year%')]
+    month = params[:from][part.index('%month%')]
+    day = params[:from][part.index('%day%')]
+    title = params[:from][part.index('%title%')]
     begin
       @article = this_blog.requested_article({:year => year, :month => month, :day => day, :id => title})
     rescue
