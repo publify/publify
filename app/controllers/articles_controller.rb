@@ -6,7 +6,7 @@ class ArticlesController < ContentController
 
   cache_sweeper :blog_sweeper
 
-  cached_pages = [:index, :read, :show, :archives, :view_page]
+  cached_pages = [:index, :read, :archives, :view_page]
 
   caches_page *cached_pages
 

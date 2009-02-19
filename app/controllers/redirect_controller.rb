@@ -6,7 +6,7 @@ class RedirectController < ContentController
 
   cache_sweeper :blog_sweeper
 
-  cached_pages = [:index, :read, :show, :archives, :view_page]
+  cached_pages = [:index, :read, :show, :archives, :view_page, :redirect]
 
   caches_page *cached_pages
 
