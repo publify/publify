@@ -285,7 +285,7 @@ class Article < Content
   def self.date_from(params_hash)
     params_hash[:article_year] \
       ? params_hash.values_at(:article_year, :article_month, :article_day, :article_id) \
-      : params_hash.values_at(:year, :month, :day, :id)
+      : params_hash.values_at(:year, :month, :day, :title)
   end
 
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
@@ -306,8 +306,8 @@ class Article < Content
   end
 
   def self.find_by_params_hash(params = {})
-    params[:id] ||= params[:article_id]
-    if params[:id]
+    params[:title] ||= params[:article_id]
+    if params[:title]
       find_by_permalink(params)
     else
       find_by_date(*date_from(params))

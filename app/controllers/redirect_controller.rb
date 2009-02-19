@@ -19,12 +19,23 @@ class RedirectController < ContentController
   def redirect
     part = this_blog.permalink_format.split('/')
     part.delete('') # delete all par of / where no data. Avoid all // or / started
-    year = params[:from][part.index('%year%')]
-    month = params[:from][part.index('%month%')]
-    day = params[:from][part.index('%day%')]
-    title = params[:from][part.index('%title%')]
+    params[:from].delete('')
+    zip_part = part.zip(params[:from])
+    article_params = {}
+    zip_part.each do |asso|
+      ['%year%', '%month%', '%day%', '%title%'].each do |format_string|
+        if asso[0] =~ /(.*)#{format_string}(.*)/
+          before_format = $1
+          after_format = $2
+          next if asso[1].nil?
+          result =  asso[1].gsub(before_format, '')
+          result.gsub!(after_format, '')
+          article_params[format_string.gsub('%', '').to_sym] = result
+        end
+      end
+    end
     begin
-      @article = this_blog.requested_article({:year => year, :month => month, :day => day, :id => title})
+      @article = this_blog.requested_article(article_params)
     rescue
       #Not really good. 
       # TODO :Check in request_article type of DATA made in next step
