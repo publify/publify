@@ -41,23 +41,6 @@ class ArticlesController < ContentController
     end
   end
 
-  def show
-    @article      = this_blog.requested_article(params)
-    @comment      = Comment.new
-    @page_title   = @article.title
-    article_meta
-    
-    auto_discovery_feed
-    respond_to do |format|
-      format.html { render :action => 'read' }
-      format.atom {  render :partial => 'articles/atom_feed', :object => @article.published_feedback }
-      format.rss  { render :partial => 'articles/rss20_feed', :object => @article.published_feedback }
-      format.xml  { redirect_to :format => 'atom' }
-    end
-    rescue ActiveRecord::RecordNotFound
-      error("Post not found...")
-  end
-
   def search
     @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
     return error(on_empty, :status => 200) if @articles.empty?
@@ -128,16 +111,6 @@ class ArticlesController < ContentController
     render(:text => (object.errors.full_messages.join(", ") rescue object.to_s), :status => status)
   end
 
-  def article_meta
-    @keywords = ""
-    @keywords << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
-    @keywords << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?  
-    @description = "#{@article.title}, " 
-    @description << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
-    @description << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?
-    @description << " #{this_blog.blog_name}"
-  end
-  
   def set_headers
     headers["Content-Type"] = "text/html; charset=utf-8"
   end
