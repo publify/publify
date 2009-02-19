@@ -261,57 +261,29 @@ class Article < Content
     end
   end
 
-  # Find all articles on a certain date
-  def self.find_all_by_date(year, month = nil, day = nil)
-    if !year.blank?
-      find_published(:all,
-                     :conditions => { :published_at =>
-                       time_delta(year,month,day) })
-    else
-      find_published(:all)
-    end
-  end
-
-  # Find one article on a certain date
-
-  def self.find_by_date(year, month, day)
-    find_all_by_date(year, month, day).first
-  end
-
   def self.find_by_published_at
     super(:published_at)
   end
 
-  def self.date_from(params_hash)
-    params_hash[:article_year] \
-      ? params_hash.values_at(:article_year, :article_month, :article_day, :article_id) \
-      : params_hash.values_at(:year, :month, :day, :title)
-  end
-
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
-  def self.find_by_permalink(year, month=nil, day=nil, title=nil)
-    unless month
-      case year
-      when Hash
-        year, month, day, title = date_from(year)
-      when Array
-        year, month, day, title = year
-      end
+  # params is a Hash
+  def self.find_by_permalink(params)
+    date_range = self.time_delta(params[:year], params[:month], params[:day])
+    req_params = {}
+    if params[:title]
+      req_params[:permalink] = params[:title]
     end
-    date_range = self.time_delta(year, month, day)
-    find_published(:first,
-                   :conditions => { :permalink => title,
-                                    :published_at => date_range }) \
-      or raise ActiveRecord::RecordNotFound
+
+    if date_range
+      req_params[:published_at] = date_range
+    end
+
+    find_published(:first, :conditions => req_params) or raise ActiveRecord::RecordNotFound
   end
 
   def self.find_by_params_hash(params = {})
     params[:title] ||= params[:article_id]
-    if params[:title]
-      find_by_permalink(params)
-    else
-      find_by_date(*date_from(params))
-    end
+    find_by_permalink(params)
   end
 
   # Fulltext searches the body of published articles
@@ -581,7 +553,8 @@ class Article < Content
     self.notify_users.uniq!
   end
 
-  def self.time_delta(year, month = nil, day = nil)
+  def self.time_delta(year = nil, month = nil, day = nil)
+    return nil if year.nil? && month.nil? && day.nil?
     from = Time.mktime(year, month || 1, day || 1)
 
     to = from.next_year

@@ -51,17 +51,11 @@ describe Article do
     assert_equal 1, b.categories.size
   end
 
-  def test_permalink
-    assert_equal( contents(:article3), Article.find_by_date(2004,06,01) )
-    assert_equal( [contents(:article2), contents(:article1)],
-                  Article.find_all_by_date(2.days.ago.year) ) # not works the 2 January of each years \o/
-  end
-
   def test_permalink_with_title
     assert_equal( contents(:article3),
-                  Article.find_by_permalink(2004, 06, 01, "article-3") )
+                  Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
-      Article.find_by_permalink(2005, 06, 01, "article-5")
+      Article.find_by_permalink :year => 2005, :month => "06", :day => "01", :title => "article-5"
     end
   end
 
@@ -246,30 +240,6 @@ describe Article do
     contents(:article3).update_attribute :keywords, "my new tags"
     assert_equal 3, contents(:article3).reload.tags.size
     assert contents(:article3).tags.include?(Tag.find_by_name("new"))
-  end
-
-  # this also tests time_delta, indirectly
-  def test_find_all_by_date
-    feb28 = Article.new(:published => true)
-    mar1  = Article.new(:published => true)
-    mar2  = Article.new(:published => true)
-
-    feb28.title = "February 28"
-    mar1.title  = "March 1"
-    mar2.title  = "March 2"
-
-    feb28.created_at = feb28.published_at = "2004-02-28"
-    mar1.created_at  = mar1.published_at = "2004-03-01"
-    mar2.created_at  = mar2.published_at = "2004-03-02"
-
-    [feb28, mar1, mar2].each do |x|
-      x.state = :published
-      x.save
-    end
-
-    assert_equal(1, Article.find_all_by_date(2004,02).size)
-    assert_equal(2, Article.find_all_by_date(2004,03).size)
-    assert_equal(1, Article.find_all_by_date(2004,03,01).size)
   end
 
   def test_withdrawal
