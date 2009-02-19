@@ -2,7 +2,7 @@ class FeedbackController < ApplicationController
   helper :theme
 
   session :new_session => false
-  before_filter :get_article, :only => [:create, :update]
+  before_filter :get_article, :only => [:create]
 
   cache_sweeper :blog_sweeper
 
@@ -40,10 +40,6 @@ class FeedbackController < ApplicationController
   end
 
   protected
-
-  def get_article
-    @article = this_blog.requested_article(params)
-  end
 
   def get_feedback
     if params[:article_id]
