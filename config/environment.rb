@@ -64,7 +64,7 @@ Rails::Initializer.run do |config|
 
   # Declare needed (github) gems
   config.gem 'datanoise-actionwebservice', :version => '2.2.2', :lib => 'actionwebservice', :source => 'http://gems.github.com'
-  config.gem 'mislav-will_paginate', :version => '2.3.6', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'mislav-will_paginate', :version => '2.3.7', :lib => 'will_paginate', :source => 'http://gems.github.com'
   # Rails 2.2.2 bug : decommenting this line forces the use of the test database regardless of the RAILS_ENV
   # config.gem 'rspec-rails', :lib => 'spec/rails', :version => '~> 1.1.11'
 
