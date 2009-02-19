@@ -31,7 +31,7 @@ class TrackbacksController < FeedbackController
       if params[:article_id]
         Article.find(params[:article_id]).published_trackbacks
       else
-        this_blog.published_trackbacks.find(:all, this_blog.rss_limit_params(:order => 'created_at DESC'))
+        Trackback.find_published(:all, this_blog.rss_limit_params.merge(:order => 'created_at DESC'))
       end
   end
 
