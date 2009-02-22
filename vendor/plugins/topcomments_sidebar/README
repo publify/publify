@@ -1,0 +1,21 @@
+Typo Top Commenters Sidebar
+===========================
+
+Typo Top Commenters Sidebar displays your top commenters on your Typo blog sidebar. Sounds obvious no? Default number is 10, but this can be changed in your admin. 
+
+
+Install
+=======
+
+Installing Typo Top Commenters Sidebar is easy. 
+
+Go to your Typo blog directory and run
+
+./script/plugin install git://github.com/fdv/topcomments_sidebar.git
+
+Then, restart your Typo blog, go to your admin to enable to plugin into your sidebar.
+
+If you don't have shell access to your Typo blog, you'll have to download the source and upload them using, for example, a FTP client.
+
+
+Copyright (c) 2009 Frédéric de Villamil, released under the MIT license
