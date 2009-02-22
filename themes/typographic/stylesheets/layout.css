@@ -250,19 +250,16 @@ p.tags {
 		background:url(../../images/theme/accept.png) no-repeat #f6e0c6 2% 50%;
 	}
 
-ol#commentList {
-	margin-left: 25px;
-}
-
 ol#commentList  li {
-	margin: 10px 0 10px 0
+	margin: 10px 0 10px 0;
+	list-style: none;
+	list-style-type: none;
 }
 
 div.commentContent {
 	padding:10px;
 	background:url(../../images/theme/bg_white.png);
-	margin:5px 0 0 0 
-	
+	margin:5px 0 0 0;
 }
 
 div.author cite {
