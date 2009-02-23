@@ -41,7 +41,13 @@
        <input name="setting[rss_description]" type="hidden" value="0" />
        <span class="float"><%= "#{_('This will display')} <em>#{_('Original article writen by')} ... #{_('and published on')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a> | <a href='#{this_blog.base_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}</em> #{_('at the bottom of each of your post in the RSS feed')}"%></span>
       </li>
-
+      <li>
+        <label class="float" for="robots"><%= _("Robots.txt")%></label>
+        <textarea name="setting[robots]" id="robots" <%= 'readonly="true"' unless File.writable?"#{RAILS_ROOT}/public/robots.txt" %> rows="10" cols="50"><%=h this_blog.robots %></textarea>
+        <% unless File.writable?"#{RAILS_ROOT}/public/robots.txt" -%>
+          <span class=' float mandatory'><small><%= _("You robots.txt file is not writeable. Typo won't be able to write it")%></small></span>
+        <% end -%>
+      </li>
     </ul>
   </fieldset>
   <%= hidden_field_tag 'from', 'index' %>  

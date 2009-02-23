@@ -11,7 +11,16 @@ class Admin::SettingsController < Admin::BaseController
   def read; end
   def write; end
   def feedback; end
-  def seo; end
+  
+  def seo
+    if File.exists? "#{RAILS_ROOT}/public/robots.txt"
+      this_blog.robots = ""
+      file = File.readlines("#{RAILS_ROOT}/public/robots.txt")
+      file.each do |line|
+        this_blog.robots << line
+      end
+    end
+  end
   
   def redirect
     flash[:notice] = _("Please review and save the settings before continuing")
@@ -25,6 +34,9 @@ class Admin::SettingsController < Admin::BaseController
         this_blog.save
         flash[:notice] = _('config updated.')
       end
+      
+      save_robots unless params[:setting][:robots].blank?
+      
       redirect_to :action => params[:from]
     end
   end
@@ -45,4 +57,12 @@ class Admin::SettingsController < Admin::BaseController
     end
   end
   
+  private
+  def save_robots
+    if File.writable? "#{RAILS_ROOT}/public/robots.txt"
+      robots = File.new("#{RAILS_ROOT}/public/robots.txt", "r+")
+      robots.write(params[:setting][:robots])
+      robots.close
+    end
+  end
 end
