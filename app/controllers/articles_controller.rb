@@ -20,9 +20,11 @@ class ArticlesController < ContentController
     end
     
     unless params[:year].blank?
+      @noindex = 1
       @articles = Article.paginate :page => params[:page], :conditions => { :published_at => time_delta(*params.values_at(:year, :month, :day)), :published => true }, :order => 'published_at DESC', :per_page => @limit
     else
-      @articles = Article.paginate :page => params[:page], :conditions => { :published => true }, :order => 'published_at DESC', :per_page => @limit      
+      @noindex = 1 unless params[:page].blank?
+      @articles = Article.paginate :page => params[:page], :conditions => { :published => true }, :order => 'published_at DESC', :per_page => @limit
     end
     
     @page_title = index_title

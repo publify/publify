@@ -32,6 +32,7 @@ class GroupingController < ContentController
   end
 
   def show
+    @noindex = 1 unless params[:page].blank?
     grouping = grouping_class.find_by_permalink(params[:id])
     @page_title = "#{self.class.to_s.sub(/Controller$/,'').singularize} #{params[:id]}, #{_('everything about')} #{params[:id]}"
     @page_title << " page " << params[:page] if params[:page]
