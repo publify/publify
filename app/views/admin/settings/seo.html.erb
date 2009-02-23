@@ -41,6 +41,18 @@
        <input name="setting[rss_description]" type="hidden" value="0" />
        <span class="float"><%= "#{_('This will display')} <em>#{_('Original article writen by')} ... #{_('and published on')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a> | <a href='#{this_blog.base_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}</em> #{_('at the bottom of each of your post in the RSS feed')}"%></span>
       </li>
+      <li class="checkbox">
+        <label class="float" for="index_categories"><%= _("Index categories")%>:</label>
+        <input name="setting[index_categories]" id="index_categories" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.index_categories %> />
+        <input name="setting[index_categories]" type="hidden" value="0" />
+        <span class="float"><%= _("Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues") %></span>
+      </li>
+      <li class="checkbox">
+        <label class="float" for="index_tags"><%= _("Index tags")%>:</label>
+        <input name="setting[index_tags]" id="index_tags" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.index_tags %> />
+        <input name="setting[index_tags]" type="hidden" value="0" />
+        <span class="float"><%= _("Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues") %></span>
+      </li>
       <li>
         <label class="float" for="robots"><%= _("Robots.txt")%></label>
         <textarea name="setting[robots]" id="robots" <%= 'readonly="true"' unless File.writable?"#{RAILS_ROOT}/public/robots.txt" %> rows="10" cols="50"><%=h this_blog.robots %></textarea>
