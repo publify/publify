@@ -5,9 +5,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # TODO: use only in archive sidebar. See how made other system
   map.articles_by_month ':year/:month', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/
-  map.articles_by_month ':year/:month/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/
+  map.articles_by_month_page ':year/:month/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/
   map.articles_by_year ':year', :controller => 'articles', :action => 'index', :year => /\d{4}/
-  map.articles_by_year ':year/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/
+  map.articles_by_year_page ':year/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/
 
   map.admin 'admin', :controller  => 'admin/dashboard', :action => 'index'
 
