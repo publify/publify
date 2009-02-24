@@ -60,7 +60,8 @@ class Admin::FeedbackController < Admin::BaseController
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(params[:comment])
-
+    @comment.user_id = current_user.id
+    
     if request.post? and @comment.save
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham!

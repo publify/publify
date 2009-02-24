@@ -7,6 +7,13 @@ class CommentsController < FeedbackController
       art.add_comment(params[:comment].symbolize_keys)
     end
 
+    unless current_user.id.nil? or session[:user_id].nil?
+      # maybe useless, but who knows ?
+      if current_user.id == session[:user_id]
+        @comment.user_id = current_user.id
+      end
+    end
+
     set_comment_cookies
 
     if @comment.save
