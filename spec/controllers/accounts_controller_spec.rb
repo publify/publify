@@ -195,22 +195,29 @@ describe 'User is logged in' do
       .with(:first, :conditions => { :id => @user.id }) \
       .any_number_of_times \
       .and_return(@user)
-    @user.should_receive(:forget_me)
 
     cookies[:typo_user_profile] = 'admin'
   end
 
+  it 'trying to log in once again redirects to admin/dashboard/index' do
+    get 'login'
+    response.should redirect_to(:controller => 'admin')
+  end
+
   it 'logging out deletes the session[:user_id]' do
+    @user.should_receive(:forget_me)
     get 'logout'
     session[:user_id].should be_blank
   end
 
   it 'redirects to the login action' do
+    @user.should_receive(:forget_me)
     get 'logout'
     response.should redirect_to(:action => 'login')
   end
 
   it 'logging out deletes cookies containing credentials' do
+    @user.should_receive(:forget_me)
     get 'logout'
     cookies[:auth_token].should == []
     cookies[:typo_user_profile].should == []
