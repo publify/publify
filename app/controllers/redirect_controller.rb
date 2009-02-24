@@ -42,13 +42,37 @@ class RedirectController < ContentController
     end
     return show_article if @article
 
-    if (params[:from].first == 'articles')
-      path = params[:from][1..-1].join('/') # get all params without first ('articles')
-      url_root = self.class.relative_url_root
-      path = url_root + '/' + path unless url_root.nil?
-      redirect_to path, :status => 301
-      return
+    # Redirect old version with /:year/:month/:day/:title to new format.
+    # because it's change
+    ["%year%/%month%/%day%/%title%".split('/'), "articles/%year%/%month%/%day%/%title%".split('/')].each do |part|
+      part.delete('') # delete all par of / where no data. Avoid all // or / started
+      params[:from].delete('')
+      zip_part = part.zip(params[:from])
+      article_params = {}
+      zip_part.each do |asso|
+        ['%year%', '%month%', '%day%', '%title%'].each do |format_string|
+          if asso[0] =~ /(.*)#{format_string}(.*)/
+            before_format = $1
+            after_format = $2
+            next if asso[1].nil?
+            result =  asso[1].gsub(before_format, '')
+            result.gsub!(after_format, '')
+            article_params[format_string.gsub('%', '').to_sym] = result
+          end
+        end
+      end
+      begin
+        @article = this_blog.requested_article(article_params)
+      rescue
+        #Not really good. 
+        # TODO :Check in request_article type of DATA made in next step
+      end
+      if @article
+        redirect_to @article.permalink_url, :status => 301
+        return
+      end
     end
+
 
     # see how manage all by this redirect to redirect in different possible
     # way maybe define in a controller in admin part in insert in this table
