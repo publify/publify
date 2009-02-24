@@ -56,7 +56,7 @@
       <li>
         <label class="float" for="robots"><%= _("Robots.txt")%></label>
         <textarea name="setting[robots]" id="robots" <%= 'readonly="true"' unless robot_writable? %> rows="10" cols="50"><%=h this_blog.robots %></textarea>
-        <% unless robo_writable? -%>
+        <% unless robot_writable? -%>
           <span class=' float mandatory'><small><%= _("You robots.txt file is not writeable. Typo won't be able to write it")%></small></span>
         <% end -%>
       </li>
