@@ -15,4 +15,9 @@ module Admin::SettingsHelper
 	end
 	options
   end
+
+  def robot_writable?
+    File.writable?"#{RAILS_ROOT}/public/robots.txt"
+  end
+
 end
