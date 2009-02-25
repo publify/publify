@@ -54,35 +54,36 @@ describe RedirectController do
   end
 
   def test_redirect_articles
-    get :redirect, :from => ["articles", "foo", "bar", "baz"]
+    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
     assert_response 301
-    assert_redirected_to "http://test.host/foo/bar/baz"
-  end
-
-  def test_redirect_articles_with_articles_in_path
-    get :redirect, :from => ["articles", "foo", "articles", "baz"]
-    assert_response 301
-    assert_redirected_to "http://test.host/foo/articles/baz"
+    assert_redirected_to "http://myblog.net/2004/04/01/second-blog-article"
   end
 
   def test_url_root_redirect_articles
-    ActionController::Base.relative_url_root = "/blog"
-    get :redirect, :from => ["articles", "foo", "bar", "baz"]
+    b = blogs(:default)
+    b.base_url = "http://test.host/blog"
+    b.save
+    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
     assert_response 301
-    assert_redirected_to "http://test.host/blog/foo/bar/baz"
+    assert_redirected_to "http://test.host/blog/2004/04/01/second-blog-article"
   end
 
   def test_url_root_redirect_articles_when_url_root_is_articles
-    ActionController::Base.relative_url_root = "/articles"
-    get :redirect, :from => ["articles", "foo", "bar", "baz"]
+    b = blogs(:default)
+    b.base_url = "http://test.host/articles"
+    b.save
+    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
     assert_response 301
-    assert_redirected_to "http://test.host/articles/foo/bar/baz"
+    assert_redirected_to "http://test.host/articles/2004/04/01/second-blog-article"
   end
 
   def test_url_root_redirect_articles_with_articles_in_url_root
-    ActionController::Base.relative_url_root = "/aaa/articles/bbb"
-    get :redirect, :from => ["articles", "foo", "bar", "baz"]
+    b = blogs(:default)
+    b.base_url = "http://test.host/aaa/articles/bbb"
+    b.save
+
+    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
     assert_response 301
-    assert_redirected_to "http://test.host/aaa/articles/bbb/foo/bar/baz"
+    assert_redirected_to "http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article"
   end
 end
