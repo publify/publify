@@ -45,7 +45,7 @@ class ArticlesController < ContentController
 
   def search
     @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
-    return error(on_empty, :status => 200) if @articles.empty?
+    return error(_("No posts found..."), :status => 200) if @articles.empty?
     render :action => 'search'
   end
 
