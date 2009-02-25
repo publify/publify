@@ -2,9 +2,11 @@ class AccountsController < ApplicationController
 
   before_filter :verify_users, :only => [:login]
 
-  def login
-    
-    redirect_back_or_default :controller => "admin/dashboard", :action => "index" if session[:user_id] == self.current_user.id
+  def login 
+    if session[:user_id] && session[:user_id] == self.current_user.id
+      redirect_back_or_default :controller => "admin/dashboard", :action => "index"
+      return
+    end
       
     @page_title = "#{this_blog.blog_name} - #{_('login')}"
     case request.method

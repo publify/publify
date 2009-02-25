@@ -7,6 +7,7 @@ describe 'A successfully authenticated login' do
     @user = mock_model(User, :new_record? => false, :reload => @user)
     @user.stub!(:profile).and_return(Profile.find_by_label('admin'))
     User.stub!(:authenticate).and_return(@user)
+    User.stub!(:find_by_id).with(@user.id).and_return(@user)
     User.stub!(:count).and_return(1)
     controller.stub!(:this_blog).and_return(Blog.default)
   end
@@ -30,6 +31,17 @@ describe 'A successfully authenticated login' do
     request.session[:return_to] = '/bogus/location'
     make_request
     response.should redirect_to('/bogus/location')
+  end
+  
+  it 'redirects to /admin if no return' do
+    make_request
+    response.should redirect_to(:controller => 'admin')
+  end
+
+  it 'redirects to /admin if no return and your are logged' do
+    session[:user_id] = session[:user] = @user.id
+    make_request
+    response.should redirect_to(:controller => 'admin')
   end
 
   it "should redirect to signup if no users" do
