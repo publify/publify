@@ -70,7 +70,7 @@
     <ul id="publishing_options" <%= "style='display: none;'" unless @article.published.blank? %>>
       <li>
         <label class="float"><%= _("Publish at")%>:</label>
-        <%= datetime_select 'article', 'published_at', :include_blank => true  %>            
+        <%= calendar_date_select 'article', 'published_at' %>
       </li>
       <li>
         <label for="article_permalink" class="float"><%= _("Permalink") %></label>

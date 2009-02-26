@@ -61,6 +61,7 @@ Rails::Initializer.run do |config|
   config.gem 'coderay'
   config.gem 'htmlentities'
   config.gem 'json'
+  config.gem 'calendar_date_select'
 
   # Declare needed (github) gems
   config.gem 'datanoise-actionwebservice', :version => '2.2.2', :lib => 'actionwebservice', :source => 'http://gems.github.com'
