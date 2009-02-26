@@ -42,6 +42,12 @@ describe 'ArticlesController' do
     response.should render_template(:search)
     assigns[:articles].should_not be_nil
   end
+
+  it 'search with empty result' do
+    get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
+    response.should render_template('articles/error.html.erb')
+    assigns[:articles].should be_empty
+  end
 end
 
 describe ArticlesController, "feeds" do
