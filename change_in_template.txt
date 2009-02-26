@@ -11,3 +11,7 @@
 
  * all link <code>formatted_article_url(@article, @format)</code> are change to
    <code>@article.permalink_by_format(@format)</code>
+
+ * The classical search has moved to sidebar. So if you want, you can delete
+   the render of shared/search in your layout and use the search_sidebar
+   instead of.

@@ -1,5 +1,7 @@
+<h3 class='sidebar-title'>
+  <label for="q"><%= @sidebar.title %></label>
+</h3>
 <% form_tag({:controller => 'articles',  :action => 'search'}, {:method => 'get', :id => 'sform'}) do %>
-  <label for="q"><%= _("Search") %></label><br />
   <input type="text" id="q" name="q" value="" size="15" />
   <input type='submit' value='<%= _("Search") %>' />
 <% end %>
