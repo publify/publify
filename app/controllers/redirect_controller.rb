@@ -18,6 +18,8 @@ class RedirectController < ContentController
 
   def redirect
     part = this_blog.permalink_format.split('/')
+    p part
+    p this_blog.permalink_format
     part.delete('') # delete all par of / where no data. Avoid all // or / started
     params[:from].delete('')
     zip_part = part.zip(params[:from])
@@ -35,11 +37,15 @@ class RedirectController < ContentController
       end
     end
     begin
+      puts 'article_params'
+      p article_params
       @article = this_blog.requested_article(article_params)
     rescue
       #Not really good. 
       # TODO :Check in request_article type of DATA made in next step
     end
+    p this_blog
+    p @article
     return show_article if @article
 
     # Redirect old version with /:year/:month/:day/:title to new format.

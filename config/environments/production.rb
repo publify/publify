@@ -17,3 +17,4 @@ config.action_controller.perform_caching             = true
 # config.action_mailer.raise_delivery_errors = false
 
 Migrator.offer_migration_when_available            = true
+config.log_level = :debug
