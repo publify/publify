@@ -28,22 +28,10 @@
     <div id="editor">
       <div id="editor-menu">
         <span id="f" class="<%= 'active' if current_user.editor == 2 %>">
-          <%= link_to_remote("Visual", 
-                              :url => { :action => 'create_fck_editor' }, 
-                              :loading => "new Element.show('update_spinner_fck')",
-                              :success => "new Element.toggle('update_spinner_fck')",
-                              :update => "simple_editor")  %>
-          <%= image_tag "spinner-blue.gif", :id => 'update_spinner_fck',
-                              :style => 'display:none;' -%>
+          <%= build_editor_link("Visual", 'create_fck_editor', 'fck', 'simple_editor') %>
         </span>
         <span id="s" class="<%= 'active' if current_user.editor == 0 %>">
-          <%= link_to_remote("HTML", 
-                              :url => { :action => 'create_simple_editor'}, 
-                              :loading => "new Element.show('update_spinner_simple')",
-                              :success => "new Element.toggle('update_spinner_simple')",
-                              :update => "simple_editor") %>
-          <%= image_tag "spinner-blue.gif", :id => 'update_spinner_simple',
-                              :style => 'display:none;' -%>
+          <%= build_editor_link("HTML", 'create_simple_editor', 'simple', 'simple_editor') %>
         </span>
       </div>
       <div id='quicktags'>
