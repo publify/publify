@@ -18,12 +18,21 @@
       </p>
     </div>
     <div id="editor">
-      <label for="page_body" class="block content"><%= _("Content")%></label>
-      <% unless current_user.editor == 2 -%>
+      <div id="editor-menu">
+        <span id="f" class="<%= 'active' if current_user.editor == 2 %>">
+          <%= build_editor_link("Visual", 'create_fck_editor', 'fck', 'simple_editor') %>
+        </span>
+        <span id="s" class="<%= 'active' if current_user.editor == 0 %>">
+          <%= build_editor_link("HTML", 'create_simple_editor', 'simple', 'simple_editor') %>
+        </span>
+      </div>
+      <div id='quicktags'>
         <script type="text/javascript">edToolbar('page_body');</script>
-      <% end -%>
-      <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
-      <%= render_macros(@macros) unless current_user.editor == 2 %>
+      </div>
+      <div id="simple_editor">
+        <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
+        <%= render_macros(@macros) if current_user.editor == 2 %>
+      <div>
     </div>
     <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
   </li>
