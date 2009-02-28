@@ -129,7 +129,7 @@ class Article < Content
   end
 
   def permalink_url_options(nesting = false)
-    format_url = blog.permalink_format
+    format_url = blog.permalink_format.dup
     format_url.gsub!('%year%', year_url)
     format_url.gsub!('%month%', month_url)
     format_url.gsub!('%day%', day_url)
