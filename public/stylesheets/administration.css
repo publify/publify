@@ -296,7 +296,7 @@ tr.menubar {
 }
 
 #article_form textarea.medium {
-	width: 700px;
+	width: 670px;
 }
 
 #article_form input.large,
@@ -351,10 +351,6 @@ tr.menubar {
 .admin li.checkbox {
   line-height: 1.4em;
 }
-
-
-
-
 
 .admin input.float {
   width: auto;
@@ -833,4 +829,29 @@ div.auto_complete ul strong.highlight {
 
 #editor {
 	width: 700px;
+}
+
+#simple_editor {
+	background: #464646;
+	padding: 10px;
+}
+
+#quicktags {
+	background: #464646;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#editor-menu {
+	text-align: right;
+}
+
+#editor-menu span.active {
+	background: #464646;
+	padding: 5px;
+}
+
+#editor-menu span.inactive {
+	background: #f9f9f9;
+	padding: 0px;
 }

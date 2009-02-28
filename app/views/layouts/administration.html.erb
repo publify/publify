@@ -5,11 +5,9 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Typo Administration:  <%= controller.controller_name %></title>
   <meta http-equiv="imagetoolbar" content="no" />
-  <%= javascript_include_tag :fckeditor if current_user.editor == 2 %>
-  <%= javascript_include_tag 'quicktags' if current_user.editor == 0 %>
   <%= stylesheet_link_tag "administration", "lightbox" %>
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
-  <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox", "administration" %>
+  <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "lightbox", "administration", "quicktags", :fckeditor %>
   <%= calendar_date_select_includes %>
 </head>
 
