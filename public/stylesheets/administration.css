@@ -214,6 +214,7 @@ th {
   padding: 2px 5px;
   color: #464646;
 	font-size: 12px;
+	background: none;
 }
 
 td {
@@ -665,11 +666,13 @@ input.submit {
 	padding: 12px 3px;
 }
 
-.published {
+.published,
+a.published {
 	color: #66AA00;
 }
 
-.unpublished {
+.unpublished,
+a.unpublished {
 	color: #FF1177;
 }
 
