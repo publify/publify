@@ -44,6 +44,25 @@ describe Admin::ContentController do
 
   end
 
+  describe 'insert_editor action' do
+    
+    before do
+      @user = users(:tobi)
+      request.session = { :user => @user.id }
+    end
+    
+    it 'should render _simple_editor' do
+      get(:insert_editor, :editor => 'simple')
+      response.should render_template('simple_editor')
+    end
+
+    it 'should render _visual_editor' do
+      get(:insert_editor, :editor => 'visual')
+      response.should render_template('visual_editor')
+    end
+
+  end
+
 
   describe 'new action', :shared => true do
 
