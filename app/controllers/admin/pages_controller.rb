@@ -31,18 +31,6 @@ class Admin::PagesController < Admin::BaseController
     o
   }
 
-  def create_fck_editor
-    current_user.editor = 2
-    current_user.save!
-    render :partial => "fckeditor"
-  end
-  
-  def create_simple_editor
-    current_user.editor = 0
-    current_user.save!
-    render :partial => "simple_editor"
-  end
-  
   def new
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @page = Page.new(params[:page])
@@ -77,4 +65,13 @@ class Admin::PagesController < Admin::BaseController
       redirect_to :action => 'index'
     end
   end
+  
+  def insert_editor
+    return unless params[:editor].to_s =~ /simple|visual/
+    current_user.editor = params[:editor].to_s
+    current_user.save!
+    
+    render :partial => "#{params[:editor].to_s}_editor"
+  end
+  
 end

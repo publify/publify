@@ -133,11 +133,8 @@ module Admin::BaseHelper
   end
 
   def t_textarea(object_name, method, options)
-    if current_user.editor == 2
-      fckeditor_textarea(object_name, method, options)
-    else
-      text_area(object_name, method, options)
-    end
+    return fckeditor_textarea(object_name, method, options) if current_user.editor == 'visual'
+    text_area(object_name, method, options)
   end
   
   def collection_select_with_current(object, method, collection, value_method, text_method, current_value, prompt=false)
@@ -180,7 +177,7 @@ module Admin::BaseHelper
   end
   
   def macro_help_popup(macro, text)
-    unless current_user.editor == 2
+    unless current_user.editor == 'visual'
       "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Typo Macro Help')\">#{text}</a>"
     end    
   end
@@ -204,9 +201,9 @@ module Admin::BaseHelper
     result << "</table>"
   end
   
-  def build_editor_link(label, action, id, update)
+  def build_editor_link(label, action, id, update, editor)
     link = link_to_remote(label, 
-            :url => { :action => action}, 
+            :url => { :action => action, 'editor' => editor}, 
             :loading => "new Element.show('update_spinner_#{id}')",
             :success => "new Element.toggle('update_spinner_#{id}')",
             :update => "#{update}")

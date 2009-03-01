@@ -27,19 +27,19 @@
     </div>
     <div id="editor">
       <div id="editor-menu">
-        <span id="f" class="<%= 'active' if current_user.editor == 2 %>">
-          <%= build_editor_link("Visual", 'create_fck_editor', 'fck', 'simple_editor') %>
+        <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
+          <%= build_editor_link("Visual", 'insert_editor', 'fck', 'simple_editor', 'visual') %>
         </span>
-        <span id="s" class="<%= 'active' if current_user.editor == 0 %>">
-          <%= build_editor_link("HTML", 'create_simple_editor', 'simple', 'simple_editor') %>
+        <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
+          <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
         </span>
       </div>
-      <div id='quicktags'>
+      <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
         <script type="text/javascript">edToolbar('article_body_and_extended');</script>
       </div>
       <div id="simple_editor">
         <%= t_textarea('article', 'body_and_extended', {:height => '300', :class => 'medium'}) %>
-        <%= render_macros(@macros) if current_user.editor == 2 %>
+        <%= render_macros(@macros) if current_user.editor == 'visual' %>
       <div>
     </div>
   </li>

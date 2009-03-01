@@ -295,7 +295,8 @@ tr.menubar {
 	padding: 3px;	
 }
 
-#article_form textarea.medium {
+#article_form textarea.medium,
+#page_form textarea.medium {
 	width: 670px;
 }
 

@@ -68,7 +68,7 @@ class Blog < CachedModel
   setting :ping_urls,                  :string, "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'typo@example.com'
-  setting :editor,                     :integer, 2
+  setting :editor,                     :integer, 'visual'
   setting :cache_option,               :string, 'caches_page'
   setting :allow_signup,               :integer, 0
 

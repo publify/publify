@@ -27,18 +27,6 @@ class Admin::ContentController < Admin::BaseController
   def new 
     new_or_edit
   end
-
-  def create_fck_editor
-    current_user.editor = 2
-    current_user.save!
-    render :partial => "fckeditor"
-  end
-  
-  def create_simple_editor
-    current_user.editor = 0
-    current_user.save!
-    render :partial => "simple_editor"
-  end
   
   def edit
     @drafts = Article.find(:all, :conditions => "state='draft'")
@@ -66,6 +54,14 @@ class Admin::ContentController < Admin::BaseController
       redirect_to :action => 'index'
       return
     end
+  end
+
+  def insert_editor
+    return unless params[:editor].to_s =~ /simple|visual/
+    current_user.editor = params[:editor].to_s
+    current_user.save!
+    
+    render :partial => "#{params[:editor].to_s}_editor"
   end
 
   def category_add; do_add_or_remove_fu; end

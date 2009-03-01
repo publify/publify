@@ -29,11 +29,11 @@
 </li>
 <li>
 	<label class="float"><%= _("Editor")%>:</label>
-	<input type="radio" name="user[editor]" value="2" id="editor_2" <%= 'checked="checked"' if @user.editor == 2 %>/>
+	<input type="radio" name="user[editor]" value="visual" id="editor_2" <%= 'checked="checked"' if @user.editor == 'visual' %>/>
 	<label for="editor_2"><%= _("Use visual rich editor")%></label>
 	<span class="float">
-		<input type="radio" name="user[editor]" value="0" id="editor_0" <%= 'checked="checked"' if @user.editor == 0 %>/>
-	    <label for="editor_0"><%= _("Use simple editor without live preview")%></label>
+		<input type="radio" name="user[editor]" value="simple" id="editor_0" <%= 'checked="checked"' if @user.editor == 'simple' %>/>
+	    <label for="editor_0"><%= _("Use simple editor")%></label>
 	</span>
 </li>
 <li>
