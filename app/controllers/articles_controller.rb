@@ -37,6 +37,7 @@ class ArticlesController < ContentController
         send_feed('atom')
       end
       format.rss do
+        auto_discovery_feed(:only_path => false)
         send_feed('rss20')
       end
     end

@@ -50,11 +50,11 @@ require File.dirname(__FILE__) + '/../../spec_helper'
       end
     
       it "should not have pagination link to page 2 with q param" do
-        response.should_not have_tag("a[href=?]", "/articles/search?page=2&amp;q=body") # *notice
+        response.should_not have_tag("a[href=?]", "/search?page=2&amp;q=body") # *notice
       end
       
       it "should have pagination link to page 1 with q param if on page 2" do
-        response.should have_tag("a[href=?]", "/articles/search?page=1&amp;q=body") # *notice
+        response.should have_tag("a[href=?]", "/search?page=1&amp;q=body") # *notice
       end    
     end
   end
