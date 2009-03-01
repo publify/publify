@@ -20,6 +20,11 @@
 			    <input name="setting[show_extended_on_rss]" id="show_extended_on_rss" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.show_extended_on_rss%> />
 			    <input name="setting[show_extended_on_rss]" type="hidden" value="0" />
 			</li>
+      <li>
+        <label class="float" for="feedburner_url"><%= _("Feedburner ID")%>:</label>
+        <input name="setting[feedburner_url]" id="feedburner_url" type="text" value="<%=h this_blog.feedburner_url %>" class="medium" />
+        <span class="float">You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.</span>
+      </li>
 		</ul>
 	</fieldset>
   <%= hidden_field_tag 'from', 'read' %>

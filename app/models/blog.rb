@@ -76,6 +76,7 @@ class Blog < CachedModel
   setting :meta_description,           :string, ''
   setting :meta_keywords,              :string, ''
   setting :google_analytics,           :string, ''
+  setting :feedburner_url,             :string, ''
   setting :rss_description,            :boolean, false
   setting :permalink_format,           :string, '/%year%/%month%/%day%/%title%'
   setting :robots,                     :string, ''
