@@ -1,6 +1,4 @@
 page.replace_html('available_box', :partial => 'availables',
                   :object => @available)
 page.replace_html('active', :partial => 'actives', :object => @active)
-page.visual_effect(:highlight, "messages", :duration => 3)
-page.replace_html('messages', '<p>Changes published</p>')
 page.hide('update_spinner')

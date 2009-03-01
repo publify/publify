@@ -104,7 +104,7 @@ class Admin::ContentController < Admin::BaseController
       @article.state = "draft" unless @article.state == "withdrawn"
       if @article.save
         render(:update) do |page|
-          page.replace_html('autosave', _("Article was successfully saved at ") + Time.now.to_s + hidden_field_tag('id', @article.id))
+          page.replace_html('autosave', hidden_field_tag('id', @article.id))
           page.replace_html('permalink', text_field('article', 'permalink'))
         end
 

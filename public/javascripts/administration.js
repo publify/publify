@@ -4,7 +4,11 @@ function autosave_request(e) {
                                         asynchronous:true, 
                                         evalScripts:true, 
                                         parameters: Form.serialize(e)
-                                      })})
+                                      })
+			var g = new k.Growler({location : 'br'}); 
+			g.info('Article was successfully saved', {life: 3});
+})
+  
 }
 
 Event.observe(window, 'load', function() {
