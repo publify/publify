@@ -14,3 +14,12 @@ function autosave_request(e) {
 Event.observe(window, 'load', function() {
   $$('.autosave').each(function(e){autosave_request(e)})
 })
+
+function FCKeditor_OnComplete( editorInstance )
+{
+	if((editorInstance.Name == 'article__body_and_extended_editor' || editorInstance.Name == 'page__body_editor') && typeof(html2) != 'undefined') {
+		FCKeditorAPI.GetInstance(editorInstance.Name).InsertHtml(html2);
+		html2 = null;
+		$('simple_editor').innerHTML = "";
+	} 
+}

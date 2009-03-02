@@ -136,6 +136,11 @@ module Admin::BaseHelper
     return fckeditor_textarea(object_name, method, options) if current_user.editor == 'visual'
     text_area(object_name, method, options)
   end
+
+  def alternate_editor
+    return 'visual' if current_user.editor == 'simple'
+    return 'simple'
+  end
   
   def collection_select_with_current(object, method, collection, value_method, text_method, current_value, prompt=false)
     result = "<select name='#{object}[#{method}]'>\n" 

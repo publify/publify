@@ -29,7 +29,8 @@
       <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
         <script type="text/javascript">edToolbar('page_body');</script>
       </div>
-      <div id="simple_editor">
+      <div id='<%= alternate_editor %>_editor'></div>
+      <div id='<%= "#{current_user.editor}_editor" %>'>
         <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
         <%= render_macros(@macros) if current_user.editor == 'visual' %>
       <div>

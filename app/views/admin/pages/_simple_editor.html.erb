@@ -2,5 +2,12 @@
   $('quicktags').style.display = 'block';
   $('s').className = 'active';
   $('f').className = 'inactive';
+  html = FCKeditorAPI.GetInstance('page__body_editor').GetHTML();
 </script>
 <%= text_area('page', 'body', {:class => 'medium', :height => '300'}) %>
+
+<script type="text/javascript">
+  $('page_body').innerHTML = html;
+  $('visual_editor').innerHTML = "";
+  html = null;
+</script>

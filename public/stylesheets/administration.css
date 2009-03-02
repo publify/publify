@@ -835,7 +835,8 @@ div.auto_complete ul strong.highlight {
 	width: 700px;
 }
 
-#simple_editor {
+#simple_editor,
+#visual_editor {
 	background: #464646;
 	padding: 10px;
 }
