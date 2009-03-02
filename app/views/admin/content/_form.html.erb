@@ -1,4 +1,5 @@
 <%= error_messages_for 'article' %>
+<input type="hidden" name="current_editor" id="current_editor" value="<%= current_user.editor %>" />
 <div id="autosave"></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 <ul class="admin">

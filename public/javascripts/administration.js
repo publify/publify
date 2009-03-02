@@ -1,5 +1,9 @@
 function autosave_request(e) {
-  new Form.Observer (e, 60, function(element, value) {
+  new Form.Observer (e, 5, function(element, value) {
+			if ($('current_editor').value == 'visual') {
+				$('article__body_and_extended_editor').value = FCKeditorAPI.GetInstance('article__body_and_extended_editor').GetHTML();
+			}
+			
       new Ajax.Request(e.action.gsub(/\/new\/{0,1}/, '/autosave/') , {
                                         asynchronous:true, 
                                         evalScripts:true, 
