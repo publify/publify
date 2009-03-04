@@ -29,8 +29,8 @@ class Content < ActiveRecord::Base
   named_scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'created_at DESC'}
   named_scope :searchstring, lambda {|search_string|
     tokens = search_string.split.collect {|c| "%#{c.downcase}%"}
-    {:conditions => [(['state = "published" AND (LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
-                      *tokens.collect{ |token| [token] * 3 }.flatten]}
+    {:conditions => [(['state = ? AND (LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
+                        "published", *tokens.collect{ |token| [token] * 3 }.flatten]}
   }
 
   serialize :whiteboard
