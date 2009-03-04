@@ -1,5 +1,5 @@
 function autosave_request(e) {
-  new Form.Observer (e, 5, function(element, value) {
+  new Form.Observer (e, 30, function(element, value) {
 			if ($('current_editor').value == 'visual') {
 				$('article__body_and_extended_editor').value = FCKeditorAPI.GetInstance('article__body_and_extended_editor').GetHTML();
 			}
