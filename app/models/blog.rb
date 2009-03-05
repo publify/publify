@@ -85,6 +85,9 @@ class Blog < CachedModel
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
 
+
+  validate :permalink_has_identifier
+
   def initialize(*args)
     super
     # Yes, this is weird - PDC
@@ -228,5 +231,12 @@ class Blog < CachedModel
       ? {} \
       : {:limit => limit}
   end
+
+  def permalink_has_identifier
+    unless permalink_format =~ /(%year%|%month%|%day%|%title%)/
+      errors.add(:permalink_format, 'You need a Format of permalink with an identifier : %month%, %year%, %day%, %title')
+    end
+  end
+
 end
 

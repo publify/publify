@@ -1,6 +1,8 @@
 <% @page_heading = _('Search Engine Optimization') %>
 <% subtabs_for(:settings) %>
 
+<%= error_messages_for 'blog' %>
+
 <% form_tag :action => 'update' do %>
 <div class="admin">
   <fieldset>
@@ -62,7 +64,7 @@
       </li>
     </ul>
   </fieldset>
-  <%= hidden_field_tag 'from', 'index' %>  
+  <%= hidden_field_tag 'from', 'seo' %>  
   <%= render :partial => 'submit' %>
 </div>
 <% end %>
