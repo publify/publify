@@ -18,6 +18,7 @@ class PageCache
                      pages.* feedback feedback.*
                      comments comments.*
                      category categories.* xml
+                     sitemap.xml
                      *.rss *.atom
                      tag tags.* category archives.*})
 

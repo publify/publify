@@ -19,21 +19,8 @@ class ContentController < ApplicationController
   end
 
   include LoginSystem
-#  model :user
   before_filter :setup_themer
   helper :theme
-#  before_filter :auto_discovery_defaults
-
-  def self.cache_page(content, path)
-    begin
-      # Don't cache the page if there are any questionmark characters in the url
-      unless path =~ /\?\w+/ or path =~ /page\d+$/
-        super(content,path)
-      end
-    rescue # if there's a caching error, then just return the content.
-      content
-    end
-  end
 
   protected
 
