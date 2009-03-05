@@ -5,10 +5,7 @@ class ArticlesController < ContentController
   layout :theme_layout, :except => [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
-
-  cached_pages = [:index, :read, :archives, :view_page]
-
-  caches_page *cached_pages
+  caches_page :index, :read, :archives, :view_page
 
   helper :'admin/base'
 

@@ -11,7 +11,17 @@ class PageCache
     ActionController::Base.page_cache_directory
   end
 
+  # Delete all file save in path_cache by page_cache system
   def self.sweep_all
+    logger.debug "PageCache - sweep_all called by #{caller[1].inspect}"
+    return unless File.exist?(File.join(Rails.root,'path_cache'))
+    File.read(File.join(Rails.root,'path_cache')).split("\n").each do |page_save|
+      FileUtils.rm File.join(public_path, page_save)
+    end
+    FileUtils.rm_f File.join(Rails.root,'path_cache')
+  end
+
+  def self.old_sweep_all
     logger.debug "PageCache - sweep_all called by #{caller[1].inspect}"
     unless Blog.default.nil?
       self.zap_pages(%w{index.* articles.* pages page
