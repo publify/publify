@@ -42,6 +42,12 @@ describe 'ArticlesController' do
     response.should render_template(:search)
     assigns[:articles].should_not be_nil
   end
+  
+  it 'archives' do
+    get 'archives'
+    response.should render_template(:archives)
+    assigns[:articles].should_not be_nil
+  end
 
   it 'search with empty result' do
     get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
