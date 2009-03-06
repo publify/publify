@@ -48,7 +48,41 @@ describe 'A successfully authenticated login' do
     User.stub!(:count).and_return(0)
     make_request
     response.should redirect_to('/accounts/signup')
+  end  
+end
+
+describe 'User is inactive' do
+  controller_name :accounts
+
+  before(:each) do
+    User.stub!(:authenticate).and_return(nil)
+    User.stub!(:count).and_return(1)
   end
+ 
+  def make_request
+    post 'login', { :user_login => 'inactive', :password => 'longtest' } 
+  end
+  
+  it 'no user in goes in the session' do
+    make_request
+    response.session[:user_id].should be_nil
+  end
+  
+  it 'login should == "inactive"' do
+    make_request
+    assigns[:login].should == 'inactive'
+  end
+
+  it 'typo_user_profile cookie should be blank' do
+    make_request
+    cookies[:typo_user_profile].should be_blank
+  end
+
+  it 'should render login action' do
+    make_request
+    response.should render_template(:login)
+  end
+  
 end
 
 describe 'Login gets the wrong password' do

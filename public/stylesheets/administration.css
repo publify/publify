@@ -667,13 +667,20 @@ input.submit {
 }
 
 .published,
-a.published {
+a.published,
+td.active {
 	color: #66AA00;
 }
 
 .unpublished,
-a.unpublished {
+a.unpublished,
+td.inactive {
 	color: #FF1177;
+}
+
+td.active,
+td.inactive {
+	font-weight: bold;
 }
 
 /* @end */

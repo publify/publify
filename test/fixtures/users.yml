@@ -10,7 +10,8 @@ tobi:
   notify_on_comments: true
   profile: admin
   text_filter: markdown_filter
-
+  state: active
+  
 bob:
   login: bob
   password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
@@ -21,7 +22,8 @@ bob:
   notify_on_comments: false
   profile: admin
   text_filter: none_filter
-
+  state: active
+  
 existingbob:
   login: existingbob
   password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
@@ -32,6 +34,7 @@ existingbob:
   notify_on_comments: false
   profile: admin
   text_filter: markdown_filter
+  state: active
 
 longbob:
   login: longbob
@@ -43,7 +46,8 @@ longbob:
   notify_on_comments: false
   profile: admin
   text_filter: markdown_filter
-
+  state: active
+  
 randomuser:
   login: randomuser
   password: 8e9b1a9a38e66ca572a5e8fdac8e256848842dfa # longtest
@@ -54,6 +58,7 @@ randomuser:
   notify_on_comments: true
   profile: admin
   text_filter: none_filter
+  state: active
   
 user_publisher:
   login: shingara
@@ -65,4 +70,16 @@ user_publisher:
   notify_on_comments: false
   profile: publisher
   text_filter: markdown_filter
+  state: active
 
+inactive_user:
+  login: inactive
+  password: 8e9b1a9a38e66ca572a5e8fdac8e256848842dfa # longtest
+  name: inactive
+  email: inactive@example.com
+  notify_via_email: false
+  notify_on_new_articles: false
+  notify_on_comments: false
+  profile: publisher
+  text_filter: markdown_filter
+  state: inactive

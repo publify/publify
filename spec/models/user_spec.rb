@@ -13,6 +13,10 @@ describe 'With the contents and users fixtures loaded' do
     User.authenticate('bob', 'wrong password').should be_nil
   end
 
+  it 'User.authenticate(inactive,valid) returns nil' do
+    User.authenticate('inactive', 'longtest').should be_nil
+  end
+
   it 'User.authenticate(invalid,whatever) returns nil' do
     User.authenticate('userwhodoesnotexist', 'what ever').should be_nil
   end

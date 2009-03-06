@@ -10,9 +10,10 @@
       <th><%= _("Profile") %></th>
       <th><%= _("Articles") %></th>
       <th><%= _("Comments") %></th>
+      <th><%= _("State") %></th>
     </tr>
     <tr class="menubar">
-      <td colspan="6">&nbsp;</td>
+      <td colspan="7">&nbsp;</td>
     </tr>
     <% for user in @users -%>
     <tr <%= alternate_class %>>
@@ -22,6 +23,7 @@
       <td><%= _(user.profile.nicename) %></td>
       <td><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
       <td><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
+      <td class='<%= user.state %>'><%= _("#{user.state}")%></td>
     </tr>  
     <% end -%>
     <tr><td colspan="8" class="paginate"><%= will_paginate @users %></td></tr>

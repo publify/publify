@@ -24,7 +24,7 @@ class User < CachedModel
 
   def self.authenticate(login, pass)
     find(:first,
-         :conditions => ["login = ? AND password = ?", login, sha1(pass)])
+         :conditions => ["login = ? AND password = ? AND state = ?", login, sha1(pass), 'active'])
   end
 
   # These create and unset the fields required for remembering users between browser closes

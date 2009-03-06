@@ -28,6 +28,13 @@
   <%= password_field 'user', 'password_confirmation'  %>
 </li>
 <li>
+  <label class='float' for="user_state"><%= _("State")%></label>
+  <select name="user[state]">
+    <option value="active" <%= 'selected' if @user.state == 'active' %>><%= _("Active")%></option>
+    <option value="inactive" <%= 'selected' if @user.state == 'inactive'%>><%= _("Inactive")%></option>
+  </select>
+</li>
+<li>
 	<label class="float"><%= _("Editor")%>:</label>
 	<input type="radio" name="user[editor]" value="visual" id="editor_2" <%= 'checked="checked"' if @user.editor == 'visual' %>/>
 	<label for="editor_2"><%= _("Use visual rich editor")%></label>
