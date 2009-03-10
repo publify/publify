@@ -215,7 +215,7 @@ class Article < Content
   def really_send_pings(serverurl = blog.base_url, articleurl = nil)
     return unless blog.send_outbound_pings
 
-    articleurl ||= permalink_url(nil, false)
+    articleurl ||= permalink_url(nil)
 
     weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
     pingback_or_trackback_urls = self.html_urls
