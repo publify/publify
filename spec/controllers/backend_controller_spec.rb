@@ -5,6 +5,7 @@ require 'action_web_service/test_invoke'
 require 'backend_controller'
 require 'blogger_service'
 require 'meta_weblog_service'
+require 'app/apis/movable_type_service.rb'
 require 'digest/sha1'
 require 'base64'
 
