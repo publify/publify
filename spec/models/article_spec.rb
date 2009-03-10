@@ -194,7 +194,11 @@ describe Article do
   def assert_sets_trigger(art)
     assert_equal 1, Trigger.count
     assert Trigger.find(:first, :conditions => ['pending_item_id = ?', art.id])
-    sleep 4
+    assert !art.published
+    t = Time.now
+    # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
+    # speed up in test
+    Time.stub!(:now).and_return(t + 5.seconds)
     Trigger.fire
     art.reload
     assert art.published
