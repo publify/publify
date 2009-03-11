@@ -31,3 +31,17 @@ Spec::Runner.configure do |config|
   # If you declare global fixtures, be aware that they will be declared
   # for all of your examples, even those that don't use them.
 end
+
+def define_spec_public_cache_directory
+  ActionController::Base.page_cache_directory = File.join(Rails.root, 'spec', 'public')
+  unless File.exist? ActionController::Base.page_cache_directory
+    FileUtils.mkdir_p ActionController::Base.page_cache_directory
+  end
+end
+
+def create_file_in_spec_public_cache_directory(file)
+  define_spec_public_cache_directory
+  file_path = File.join(ActionController::Base.page_cache_directory, file)
+  File.open(file_path, 'a').close
+  file_path
+end
