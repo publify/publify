@@ -126,3 +126,24 @@ describe 'Given a remote site to notify, eg technorati' do
     ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post')
   end
 end
+
+describe Ping do
+
+  describe '#send_trackback' do
+
+    it 'should send a trackback' do
+      ping = Ping.new(:article_id => contents(:xmltest).id,
+                      :url => 'http://github.com/fdv/typo')
+
+      post = "title=#{CGI.escape("Associations aren't :dependent => true anymore")}"
+      post << "&excerpt=#{CGI.escape("originally seen on blog.rubyonrails.org")}" # not original text see if normal ?
+      post << "&url=#{contents(:xmltest).permalink_url}"
+      post << "&blog_name=#{CGI.escape('test blog')}"
+
+      net_http = mock(Net::HTTP)
+      net_http.should_receive(:post).with('/fdv/typo', post,'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
+      Net::HTTP.should_receive(:start).with('github.com', 80).and_yield(net_http)
+      ping.send_trackback('http://github.com/fdv/typo', contents(:xmltest).permalink_url)
+    end
+  end
+end
