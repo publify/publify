@@ -5,7 +5,7 @@ class AddStateToUser < ActiveRecord::Migration
     unless $schema_generator
       users = User.find(:all)
       users.each do |user|
-        user.editor = 'active'
+        user.state = 'active'
         user.save!
       end
     end
