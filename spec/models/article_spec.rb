@@ -148,7 +148,7 @@ describe Article do
     @articles = Article.find_published
     assert_results_are(:search_target, :article1, :article2,
                        :article3, :inactive_article,:xmltest,
-                       :spammed_article, :publisher_article )
+                       :spammed_article, :publisher_article, :markdown_article)
 
     @articles = Article.find_published(:all,
                                                   :conditions => "title = 'Article 1!'")

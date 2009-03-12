@@ -131,7 +131,8 @@ describe Ping do
 
   describe '#send_trackback' do
 
-    it 'should send a trackback' do
+    it 'should send a trackback without html tag in excerpt' do
+      # contents(:xmltest).body = originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
       ping = Ping.new(:article_id => contents(:xmltest).id,
                       :url => 'http://github.com/fdv/typo')
 
@@ -145,5 +146,22 @@ describe Ping do
       Net::HTTP.should_receive(:start).with('github.com', 80).and_yield(net_http)
       ping.send_trackback('http://github.com/fdv/typo', contents(:xmltest).permalink_url)
     end
+
+    it 'should send a trackback without markdown tag in excerpt' do
+      # contents(:markdown_article) #in markdown format\n * we\n * use\n [ok](http://blog.ok.com) to define a link
+      ping = Ping.new(:article_id => contents(:markdown_article).id,
+                      :url => 'http://github.com/fdv/typo')
+
+      post = "title=#{CGI.escape("How made link with markdown")}"
+      post << "&excerpt=#{CGI.escape("in markdown format we use ok to define a link")}" # not original text see if normal ?
+      post << "&url=#{contents(:markdown_article).permalink_url}"
+      post << "&blog_name=#{CGI.escape('test blog')}"
+
+      net_http = mock(Net::HTTP)
+      net_http.should_receive(:post).with('/fdv/typo', post,'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
+      Net::HTTP.should_receive(:start).with('github.com', 80).and_yield(net_http)
+      ping.send_trackback('http://github.com/fdv/typo', contents(:markdown_article).permalink_url)
+    end
+
   end
 end

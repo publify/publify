@@ -22,9 +22,9 @@ describe 'With the contents and users fixtures loaded' do
   end
 
   it 'The various article finders work appropriately' do
-    users(:tobi).articles.size.should == 7
+    users(:tobi).articles.size.should == 8
 #    User.find(1).articles.find_published.size.should == Article.find(:all, :conditions => {:published => true}).size
-    users(:tobi).articles.published.size.should == 6
+    users(:tobi).articles.published.size.should == 7
   end
 
   it 'authenticate? works as expected' do
