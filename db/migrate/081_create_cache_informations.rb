@@ -9,7 +9,7 @@ class CreateCacheInformations < ActiveRecord::Migration
     # It's use only to all edge blog updated several time
     if File.exist?(File.join(Rails.root,'path_cache'))
       File.read(File.join(Rails.root,'path_cache')).split("\n").each do |page_save|
-        FileUtils.rm File.join(PageCage.public_path, page_save)
+        FileUtils.rm File.join(PageCache.public_path, page_save)
       end
       FileUtils.rm_f File.join(Rails.root,'path_cache')
     end
