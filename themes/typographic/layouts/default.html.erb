@@ -18,23 +18,25 @@
     </div>
     <!-- end header -->
 
-  <div id="page">
-    <div id="sidebar">
-      <!-- sidebar components -->
-      <%= render_sidebars %>
-    </div>
+    <div id="page">
+      <div id="sidebar">
+        <!-- sidebar components -->
+        <%= render_sidebars %>
+      </div>
 
-    <div id="content">
-      <%= @content_for_layout %>
-      <%= javascript_tag 'show_dates_as_local_time()' %>
-    </div>
+      <div id="content">
+        <%= @content_for_layout %>
+        <%= javascript_tag 'show_dates_as_local_time()' %>
+      </div>
 
-  <div id="footer">
-    <div class="wrap">
-      <p id="legal">
-        <%= _("Powered by %s", link_to('typo', 'http://typosphere.org')) %>
-        <%= _("Designed by %s ", link_to('Hélène', 'http://www.o2sources.com/people/helene')) %>
-      </p>
+      <div id="footer">
+        <div class="wrap">
+          <p id="legal">
+          <%= _("Powered by %s", link_to('typo', 'http://typosphere.org')) %>
+          <%= _("Designed by %s ", link_to('Hélène', 'http://www.o2sources.com/people/helene')) %>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </body>
