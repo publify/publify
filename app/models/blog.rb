@@ -234,7 +234,12 @@ class Blog < CachedModel
 
   def permalink_has_identifier
     unless permalink_format =~ /(%year%|%month%|%day%|%title%)/
-      errors.add(:permalink_format, 'You need a Format of permalink with an identifier : %month%, %year%, %day%, %title')
+      errors.add(:permalink_format, _('You need a Format of permalink with an identifier : %%month%%, %%year%%, %%day%%, %%title%%'))
+    end
+
+    # A permalink can be finish by .atom or .rss. it's reserved to feed
+    if permalink_format =~ /\.(atom|rss)$/
+      errors.add(:permalink_format, _("Can't finish by .rss or .atom. It's reserved to be use by feed"))
     end
   end
 

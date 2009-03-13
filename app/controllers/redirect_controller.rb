@@ -17,6 +17,13 @@ class RedirectController < ContentController
     part = this_blog.permalink_format.split('/')
     part.delete('') # delete all par of / where no data. Avoid all // or / started
     params[:from].delete('')
+    if params[:from].last =~ /\.atom$/
+      params[:format] = 'atom'
+      params[:from].last.gsub!(/\.atom$/, '')
+    elsif params[:from].last =~ /\.rss$/
+      params[:format] = 'rss'
+      params[:from].last.gsub!(/\.rss$/, '')
+    end
     zip_part = part.zip(params[:from])
     article_params = {}
     zip_part.each do |asso|
@@ -105,7 +112,7 @@ class RedirectController < ContentController
     error("Post not found...")
   end
 
-  def render_atom(type)
+  def render_feed(type)
     render :partial => "/articles/#{type}_feed", :object => @article.published_feedback 
   end
 

@@ -10,13 +10,13 @@ describe RedirectController do
     ActionController::Base.relative_url_root = nil # avoid failures if environment.rb defines a relative URL root
   end
 
-  def test_routing_splits_path
+  it 'should split routing path' do
     assert_routing "foo/bar/baz", {
       :from => ["foo", "bar", "baz"],
       :controller => 'redirect', :action => 'redirect'}
   end
 
-  def test_redirect_from_articles_routing
+  it 'should redirect from articles_routing' do
     assert_routing "articles", {
       :from => ["articles"],
       :controller => 'redirect', :action => 'redirect'}
@@ -31,13 +31,14 @@ describe RedirectController do
       :controller => 'redirect', :action => 'redirect'}
   end
 
-  def test_redirect
+
+  it 'should redirect' do
     get :redirect, :from => ["foo", "bar"]
     assert_response 301
     assert_redirected_to "http://test.host/someplace/else"
   end
 
-  def test_url_root_redirect
+  it 'should redirect with url_root' do
     ActionController::Base.relative_url_root = "/blog"
     get :redirect, :from => ["foo", "bar"]
     assert_response 301
@@ -48,18 +49,18 @@ describe RedirectController do
     assert_redirected_to "http://test.host/blog/someplace/else"
   end
 
-  def test_no_redirect
+  it 'should no redirect' do
     get :redirect, :from => ["something/that/isnt/there"]
     assert_response 404
   end
 
-  def test_redirect_articles
+  it 'should redirect to article' do
     get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
     assert_response 301
     assert_redirected_to "http://myblog.net/2004/04/01/second-blog-article"
   end
 
-  def test_url_root_redirect_articles
+  it 'should redirect to article with url_root' do
     b = blogs(:default)
     b.base_url = "http://test.host/blog"
     b.save
@@ -68,7 +69,7 @@ describe RedirectController do
     assert_redirected_to "http://test.host/blog/2004/04/01/second-blog-article"
   end
 
-  def test_url_root_redirect_articles_when_url_root_is_articles
+  it 'should redirect to article when url_root is articles' do
     b = blogs(:default)
     b.base_url = "http://test.host/articles"
     b.save
@@ -77,7 +78,7 @@ describe RedirectController do
     assert_redirected_to "http://test.host/articles/2004/04/01/second-blog-article"
   end
 
-  def test_url_root_redirect_articles_with_articles_in_url_root
+  it 'should redirect to article with articles in url_root' do
     b = blogs(:default)
     b.base_url = "http://test.host/aaa/articles/bbb"
     b.save
@@ -85,5 +86,79 @@ describe RedirectController do
     get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
     assert_response 301
     assert_redirected_to "http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article"
+  end
+
+  describe 'render article' do
+
+    integrate_views
+
+    before(:each) do
+      b = blogs(:default)
+      b.permalink_format = '/%title%.html'
+      b.save
+      get :redirect, :from => ["#{contents(:article1).permalink}.html"]
+    end
+
+    it 'should render template read to article' do
+      response.should render_template('articles/read.html.erb')
+    end
+
+    it 'should have good rss feed' do
+      response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.rss")
+    end
+
+    it 'should have good atom feed' do
+      response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.atom")
+    end
+
+  end
+
+  describe 'with permalink_format like %title%.html' do
+    before(:each) do
+      b = blogs(:default)
+      b.permalink_format = '/%title%.html'
+      b.save
+    end
+    describe 'render article' do
+
+      integrate_views
+
+      before(:each) do
+        get :redirect, :from => ["#{contents(:article1).permalink}.html"]
+      end
+
+      it 'should render template read to article' do
+        response.should render_template('articles/read.html.erb')
+      end
+
+      it 'should have good rss feed' do
+        response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.rss")
+      end
+
+      it 'should have good atom feed' do
+        response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.atom")
+      end
+
+    end
+
+    describe 'render atom feed' do
+      before(:each) do
+        get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+      end
+
+      it 'should render atom partial' do
+        response.should render_template('/articles/_atom_feed')
+      end
+    end
+
+    describe 'render rss feed' do
+      before(:each) do
+        get :redirect, :from => ["#{contents(:article1).permalink}.html.rss"]
+      end
+
+      it 'should render atom partial' do
+        response.should render_template('/articles/_rss20_feed')
+      end
+    end
   end
 end
