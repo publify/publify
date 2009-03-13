@@ -200,7 +200,7 @@ module ApplicationHelper
   #{ stylesheet_link_tag 'user-styles.css', :media => 'all' }
   #{ javascript_include_tag "lang/" + Localization.lang.to_s }
   #{ javascript_include_tag "cookies" }
-  #{javascript_tag "window._token = '#{form_authenticity_token}'"}
+  #{ javascript_tag "window._token = '#{form_authenticity_token}'"}
   #{ javascript_include_tag "prototype" }
   #{ javascript_include_tag "effects" }
   #{ javascript_include_tag "typo" }

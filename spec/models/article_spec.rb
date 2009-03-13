@@ -33,8 +33,8 @@ describe Article do
 
   def test_feed_url
     a = contents(:article3)
-    assert_equal "http://myblog.net/xml/atom10/article/#{a.id}/feed.xml", a.feed_url(:atom10)
-    assert_equal "http://myblog.net/xml/rss20/article/#{a.id}/feed.xml", a.feed_url(:rss20)
+    assert_equal "http://myblog.net/2004/06/01/article-3.atom", a.feed_url(:atom10)
+    assert_equal "http://myblog.net/2004/06/01/article-3.rss", a.feed_url(:rss20)
   end
 
   def test_create

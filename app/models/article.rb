@@ -190,7 +190,8 @@ class Article < Content
   end
 
   def feed_url(format = :rss20)
-    blog.url_for(:controller => 'xml', :action => 'feed', :type => 'article', :format => format, :id => id)
+    format_extension = format.to_s.gsub(/\d/,'')
+    permalink_url + ".#{format_extension}"
   end
 
   def edit_url
