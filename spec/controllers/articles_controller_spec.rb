@@ -79,6 +79,18 @@ describe 'ArticlesController' do
 
     end
 
+    it 'should render feed rss by search' do
+      get 'search', :q => 'a', :format => 'rss'
+      response.should be_success
+      response.should render_template('articles/_rss20_feed')
+    end
+
+    it 'should render feed atom by search' do
+      get 'search', :q => 'a', :format => 'atom'
+      response.should be_success
+      response.should render_template('articles/_atom_feed')
+    end
+
     it 'search with empty result' do
       get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
       response.should render_template('articles/error.html.erb')

@@ -43,7 +43,11 @@ class ArticlesController < ContentController
   def search
     @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
     return error(_("No posts found..."), :status => 200) if @articles.empty?
-    render :action => 'search'
+    respond_to do |format|
+      format.html { render :action => 'search' }
+      format.rss { render :partial => "articles/rss20_feed", :object => @articles }
+      format.atom { render :partial => "articles/atom_feed", :object => @articles }
+    end
   end
 
   def live_search
