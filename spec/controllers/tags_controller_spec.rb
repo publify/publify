@@ -107,6 +107,23 @@ describe TagsController, '/articles/tag/foo' do
   end
 end
 
+describe TagsController, 'with integrate_view' do
+  integrate_views
+
+  before(:each) do
+    get 'show', :id => 'foo'
+  end
+
+  it 'should have good rss feed link in head' do
+    response.should have_tag('head>link[href=?]','http://test.host/tag/foo.rss')
+  end
+
+  it 'should have good atom feed link in head' do
+    response.should have_tag('head>link[href=?]','http://test.host/tag/foo.atom')
+  end
+
+end
+
 ## Old tests that still need conversion
 
 #   def test_autodiscovery_tag
