@@ -82,6 +82,14 @@ describe Article do
     assert_equal 'this-is-a-test', a.permalink
   end
 
+  def test_multibyte_title
+    a = Article.new
+    a.title = "ルビー"
+    assert a.save
+
+    assert_equal '%E3%83%AB%E3%83%93%E3%83%BC', a.permalink
+  end
+
   def test_urls
     urls = contents(:article4).html_urls
     assert_equal ["http://www.example.com/public"], urls

@@ -109,7 +109,7 @@ class Article < Content
   }
 
   def stripped_title
-    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
+    CGI.escape(self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
   end
 
   def year_url
