@@ -1,14 +1,11 @@
 class RedirectController < ContentController
   before_filter :verify_config
-  before_filter :auto_discovery_feed, :only => [:show, :index]
 
-  layout :theme_layout, :except => [:comment_preview, :trackback]
+  layout :theme_layout
 
   cache_sweeper :blog_sweeper
 
-  cached_pages = [:index, :read, :show, :archives, :view_page, :redirect]
-
-  caches_page *cached_pages
+  caches_page :redirect
 
   helper :'admin/base'
 
@@ -88,6 +85,10 @@ class RedirectController < ContentController
     end
   end
 
+
+  private
+
+  # See an article We need define @article before
   def show_article
     @comment      = Comment.new
     @page_title   = @article.title
@@ -96,12 +97,16 @@ class RedirectController < ContentController
     auto_discovery_feed
     respond_to do |format|
       format.html { render :template => '/articles/read' }
-      format.atom { render :partial => '/articles/atom_feed', :object => @article.published_feedback }
-      format.rss  { render :partial => '/articles/rss20_feed', :object => @article.published_feedback }
-      format.xml  { redirect_to :format => 'atom' }
+      format.atom { render_feed('atom') }
+      format.rss  { render_feed('rss20') }
+      format.xml  { render_feed('atom') }
     end
   rescue ActiveRecord::RecordNotFound
     error("Post not found...")
+  end
+
+  def render_atom(type)
+    render :partial => "/articles/#{type}_feed", :object => @article.published_feedback 
   end
 
   def article_meta
@@ -114,6 +119,8 @@ class RedirectController < ContentController
     @description << " #{this_blog.blog_name}"
   end
 
+  # Test in fist time if we need create some data
+  # Use only in bootstraping
   def verify_config
     if User.count == 0
       redirect_to :controller => "accounts", :action => "signup"
