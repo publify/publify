@@ -53,11 +53,39 @@ describe 'ArticlesController' do
     end
   end
 
-  it 'search' do
-    get 'search', :q => 'a'
-    response.should render_template(:search)
-    assigns[:articles].should_not be_nil
+
+  describe '#search action' do
+
+    describe 'a valid research' do
+      before :each do
+        get 'search', :q => 'a'
+      end
+
+      it 'should render template search' do
+        response.should render_template(:search)
+      end
+
+      it 'should assigns articles' do
+        assigns[:articles].should_not be_nil
+      end
+
+      it 'should have good feed rss link' do
+        response.should have_tag('head>link[href=?]','http://test.host/search/a.rss')
+      end
+
+      it 'should have good feed atom link' do
+        response.should have_tag('head>link[href=?]','http://test.host/search/a.atom')
+      end
+
+    end
+
+    it 'search with empty result' do
+      get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
+      response.should render_template('articles/error.html.erb')
+      assigns[:articles].should be_empty
+    end
   end
+
   
   it 'archives' do
     get 'archives'
@@ -65,11 +93,6 @@ describe 'ArticlesController' do
     assigns[:articles].should_not be_nil
   end
 
-  it 'search with empty result' do
-    get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
-    response.should render_template('articles/error.html.erb')
-    assigns[:articles].should be_empty
-  end
 end
 
 describe ArticlesController, "feeds" do
