@@ -31,10 +31,26 @@ describe 'ArticlesController' do
     response.should redirect_to(tags_path)
   end
 
-  it 'index' do
-    get 'index'
-    response.should render_template(:index)
-    assigns[:articles].should_not be_nil
+  describe 'index action' do
+    before :each do
+      get 'index'
+    end
+
+    it 'should be render template index' do
+      response.should render_template(:index)
+    end
+
+    it 'should assigns articles' do
+      assigns[:articles].should_not be_nil
+    end
+
+    it 'should have good link feed rss' do
+      response.should have_tag('head>link[href=?]','http://test.host/articles.rss')
+    end
+
+    it 'should have good link feed atom' do
+      response.should have_tag('head>link[href=?]','http://test.host/articles.atom')
+    end
   end
 
   it 'search' do

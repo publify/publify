@@ -1,8 +1,8 @@
 <% for article in @articles -%>
- <div class="post">
-  <%= render :partial => "articles/article", :object => article %>
-  <%= link_to_permalink article, _("Read more") + "..." if article.extended? %>
-  <p class="meta"><%= article_links article %></p>
+  <div class="post">
+    <%= render :partial => "articles/article", :object => article %>
+    <%= link_to_permalink article, _("Read more") + "..." if article.extended? %>
+    <p class="meta"><%= article_links article %></p>
   </div>
 <% end -%>
 
