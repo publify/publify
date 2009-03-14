@@ -847,6 +847,17 @@ div.auto_complete ul strong.highlight {
 	background: #464646;
 	padding: 10px;
 	border-radius: 3px;
+}
+
+#simple_editor {
+	border-radius: 3px;
+	-moz-border-bottom-left-radius: 3px;
+	-moz-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+#visual_editor {
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 4px;
 }
@@ -855,9 +866,9 @@ div.auto_complete ul strong.highlight {
 	background: #464646;
 	padding-top: 10px;
 	padding-left: 10px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 4px;
+	border-radius: 3px 0 0 0;
+	-moz-border-top-left-radius: 3px 0 0 0;
+	-webkit-border-top-left-radius: 4px;
 }
 
 #saveblock {
@@ -873,6 +884,11 @@ div.auto_complete ul strong.highlight {
 #editor-menu span.active {
 	background: #464646;
 	padding: 5px;
+	border-radius: 3px 0 0 0;
+	-moz-border-top-left-radius: 3px 0 0 0;
+	-moz-border-top-right-radius: 3px 0 0 0;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
 }
 
 #editor-menu span.inactive {
