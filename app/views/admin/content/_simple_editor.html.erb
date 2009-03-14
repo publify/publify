@@ -1,5 +1,6 @@
 <script type="text/javascript">
   $('quicktags').style.display = 'block';
+  $('simple_editor').style.display = 'block';
   $('s').className = 'active';
   $('f').className = 'inactive';
   html = FCKeditorAPI.GetInstance('article__body_and_extended_editor').GetHTML();
@@ -8,5 +9,6 @@
 <script type="text/javascript">
   $('article_body_and_extended').innerHTML = html;
   $('visual_editor').innerHTML = "";
+  $('visual_editor').style.display = 'none';
   html = null;
 </script>

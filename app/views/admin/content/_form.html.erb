@@ -13,7 +13,7 @@
       <div id="categories" style="height: 170px;">
         <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
       </div>
-      <p class="paginate r">
+      <p class='paginate r' id='saveblock'>
           <label for="article_allow_comments"><%= _("Allow comments") %>: </label>
           <%= check_box 'article', 'allow_comments'  %><br />
           <label for="article_allow_pings"><%= _("Allow trackbacks")%>: </label>
@@ -38,11 +38,11 @@
       <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
         <script type="text/javascript">edToolbar('article_body_and_extended');</script>
       </div>
-      <div id='<%= alternate_editor %>_editor'></div>
+      <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
       <div id='<%= "#{current_user.editor}_editor" %>'>
         <%= t_textarea('article', 'body_and_extended', {:height => '300', :class => 'medium'}) %>
         <%= render_macros(@macros) if current_user.editor == 'simple' %>
-      <div>
+      </div>
     </div>
   </li>
   <li>

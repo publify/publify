@@ -2,6 +2,7 @@
   $('quicktags').style.display = 'block';
   $('s').className = 'active';
   $('f').className = 'inactive';
+  $('simple_editor').style.display = 'block';
   html = FCKeditorAPI.GetInstance('page__body_editor').GetHTML();
 </script>
 <%= text_area('page', 'body', {:class => 'medium', :height => '300'}) %>
@@ -9,5 +10,6 @@
 <script type="text/javascript">
   $('page_body').innerHTML = html;
   $('visual_editor').innerHTML = "";
+  $('visual_editor').style.display = 'none';
   html = null;
 </script>

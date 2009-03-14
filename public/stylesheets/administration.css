@@ -846,12 +846,24 @@ div.auto_complete ul strong.highlight {
 #visual_editor {
 	background: #464646;
 	padding: 10px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 4px;
 }
 
 #quicktags {
 	background: #464646;
 	padding-top: 10px;
 	padding-left: 10px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 4px;
+}
+
+#saveblock {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 4px;
 }
 
 #editor-menu {
