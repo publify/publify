@@ -1,0 +1,140 @@
+UPGRADING TO TYPO 5.3 HOWTO
+
+*** BEFORE UPGRADING ***
+
+Pre migration steps are divided into 2 categories : things you should do, and things you must do.
+
+You should make a backup of your current blog, either using a file transfer software or an archiver like zip or tar.
+
+You should make a backup of your database, using either mysqldump, pgdump or phpmyadmin, whichever you feel safe with.
+
+If you're using a pre 5.0 version, you should remove all the following sidebars before migrating:
+
+* AIM presence
+* Audioscrobbler
+* Backpack
+* Delicious
+* Flickr
+* 43 things
+* 43 places
+* Magnolia
+* Recent comments
+* Tada
+* Upcoming
+* Xbox
+
+These sidebars have been removed from Typo core at 5.0 and are now hosted on a separate repository. You can also migrate, then reinstall those plugins before trying to access your blog frontend or admin.
+
+If you're using a Typo version priori to 5.1, you must manually remove the lib directory inside your typo install.
+
+If you're using a third party theme, you'll have do some changes to your template as well. This is explained later.
+
+*** UPGRADING ***
+
+Upgrading should be a really easy process, depending on how you installed your typo first.
+
+** UPGRADING WITH TYPO INSTALLER FROM TYPO 2.0 to 5.0 **
+
+Automagically upgrading Typo 2.0 to 5.0 using Typo instaler is not possible, but you can catch on the train anyway, it will just be a little harder. By default Typo uses MySQL database. If you want to use something else, check our installation documentation.
+
+* UPGRADING FILES *
+
+First, move your production Typo directory somewhere else :
+
+$ mv typo_path old_typo
+
+If you have root access to your host, launch:
+
+$ sudo gem install typo
+$ typo install typo_path
+
+or 
+
+$ sudo gem update typo
+$ typo install typo_path
+
+If you don't have root access, things are just a bit more complicated
+
+$ export GEM_PATH=~/gems
+$ gem install -i ~/gems typo
+$ ~/gems/bin/typo install typo_path
+
+or
+
+$ export GEM_PATH=~/gems
+$ gem update -i ~/gems typo
+$ ~/gems/bin/typo install typo_path
+
+Then, move your theme (which is certainly not compatible anymore at all), your database confiuration and your uploaded files to your new blog:
+
+$ mv old_typo/public/files/* typo_path/public/files
+$ mv old_typo/themes/your_theme typo_path/themes/
+$ mv old_typo/config/database.yml typo_path/config
+
+Ensure all your typo files have the good perms, then restart your Typo instance.
+
+* UPGRADING DATABASE *
+
+Login in to your Typo admin using your favourite web browser. You'll access to the database migration page. Just click on the "migrate" button.
+
+If something goes wrong, go back to your terminal, and run
+
+$ cd typo_path
+$ rake RAILS_ENV=production db:migrate
+
+If things really goes wrong, then please ask for help on the Typo mailing list or on IRC #typo@irc.freenode.net
+
+** UPGRADING WITH TYPO INSTALLER FROM TYPO 5.0 and later **
+
+* UPGRADING FILES *
+
+First, install or update your Typo gem.
+
+If you have root access to your host, launch:
+
+$ sudo gem install typo
+$ typo install typo_path
+
+or 
+
+$ sudo gem update typo
+$ typo install typo_path
+
+If you don't have root access, things are just a bit more complicated
+
+$ export GEM_PATH=~/gems
+$ gem install -i ~/gems typo
+$ ~/gems/bin/typo install typo_path
+
+or
+
+$ export GEM_PATH=~/gems
+$ gem update -i ~/gems typo
+$ ~/gems/bin/typo install /some/path
+
+Ensure all your typo files have the good perms, then restart your Typo instance.
+
+* UPGRADING DATABASE *
+
+Login in to your Typo admin using your favourite web browser. You'll access to the database migration page. Just click on the "migrate" button.
+
+If something goes wrong, go back to your terminal, and run
+
+$ cd typo_path
+$ rake RAILS_ENV=production db:migrate
+
+If things really goes wrong, then please ask for help on the Typo mailing list or on IRC #typo@irc.freenode.net
+
+*** UPGRADING YOUR THEME ***
+
+** UPGRADING FROM TYPO 5.2 **
+
+* In articles/_comment_box.html.erb use @article.comment_url instead of comments_path(@article)
+
+* all link preview_new_comment_path(@article) are changed to @article.preview_comment_url
+
+* all link url_for formatted_article_path(@article, :rss) are changed to @article.feed_url(:rss)
+
+* all link formatted_article_url(@article, @format) are changed to   @article.permalink_by_format(@format)
+
+* The classical search has moved to sidebar. So if you want, you can delete the render of shared/search in your layout and use the search_sidebar instead of.

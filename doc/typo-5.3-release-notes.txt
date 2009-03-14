@@ -1,0 +1,105 @@
+Typo 5.3
+========
+
+Welcome to Typo 5.3.  Typo is a blogging platform, like Movable Type or 
+Wordpress, written using Ruby on Rails. This was supposed to be a 2 month minor release, but we went so far that we can't call it this way anymore.
+
+
+New features since Typo 5.2
+===========================
+
+* The main goal for Typo 5.3 was the dynamic permalink scheme, which forced us to completely rewrite our URL generation system and our cache system.
+
+* Feedburner support directly into your admin.
+
+* Semi static caching was buggy, and heavy, so we removed it. Typo now only does static caching. 
+
+* Text filters configuration are now on a per user and on a per article basis. When migrating, all users will be given the blog default's text filter.
+
+* More performance improvement, Typo is really fast now
+
+* Even more SEO capabilities. Tags and categories can be removed from search engines, using noindex, removed from sitemap.xml, and Typo now has a robots.txt editor.
+
+* Old drop down menus were replaced with some fancy calendar like date pickers.
+
+* Notifications for sidebar save and autosave are now done using growler, a nice growl like javascript thing.
+
+* Inline editor switching à la Wordpress. Isn't that one cool?
+
+* Admin can now deactivate users. 
+
+Bug Fixes
+=========
+
+#11 Movable Type API brocken with Windows Live Writer.
+
+#17 Fix flickr_sidebar plugin
+
+#18 Fix admin CSS
+
+#19 Fixed an old bug on javascript admin tasks using cookies.
+
+#26 Brocken autocomplete.
+
+#27 Simple_format inserts excessive p or br
+
+#32 Fixes a XSS vulnerability in Feedback view.
+
+#36 xml_sidebar wrong in show article
+
+#37 Search with empty result failed
+
+#42 When logged in, /accounts/login should redirect to /admin
+
+#43 User id is never added into comments
+
+#47 Search displays drafts
+
+#52 Search route is wrong
+
+#53 title_url should be CGI.escaped
+
+#54 Cache is brocken since URL change
+
+#55 /archives is brocken
+
+#59 Text filters are not applied on trackbacks
+
+#60 Upgrade from 5.0.3 fails with PgSQL
+
+#61 Cache brocken on comments RSS and Atom
+
+#62 Dynamic permalinks break comment feed by article
+
+
+Upgrading TYPO
+==============
+
+Read UPGRADE file
+
+
+How to Install Typo
+-------------------
+
+There are two ways to install Typo: automatically, using the new Typo installer, or manually, by downloading the source and building a working Rails environment (database, etc) for it.
+
+New users should use the installer wherever possible because it's substantially easier and less trouble-prone.
+
+
+### Installing Typo via the Typo Installer 
+
+The documentation has moved to http://github.com/fdv/typo/wikis/install-typo-with-typo-installer
+
+
+### Installing Typo Manually
+
+The documentation has moved to  http://github.com/fdv/typo/wikis/install-typo-from-sources
+
+
+Support, or where to turn when things break
+-------------------------------------------
+
+Typo development occurs via http://typosphere.org.  If you find a bug, please
+file a bug report via http://typosphere.org/projects/typo/issues
+
+If you have problems, please send mail to typo-list@rubyforge.org.  You can also visit Typo's IRC channel, #typo on irc.freenode.net and ask for help.
