@@ -172,9 +172,12 @@ small {
 }
 
 #overall {
-  padding: 10px 0 20px 20px;
 	width: 1000px;
 	background: #fff;
+}
+
+#main {
+	padding: 10px 0 20px 20px;
 }
 
 #footer {
@@ -330,7 +333,6 @@ tr.menubar {
 .admin {
   padding: 0 10px 5px 10px;
   margin-bottom: 10px;
-  position: relative;
 }
 
 
@@ -894,4 +896,9 @@ div.auto_complete ul strong.highlight {
 #editor-menu span.inactive {
 	background: #f9f9f9;
 	padding: 0px;
+}
+
+ul.admin {
+	margin-left: 0;
+	padding-left: 0;
 }
