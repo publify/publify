@@ -1,9 +1,14 @@
 module SidebarHelper
   def render_sidebars(*sidebars)
-    (sidebars.blank? ? Sidebar.find(:all, :order => 'active_position ASC') : sidebars).inject('') do |acc, sb|
-      @sidebar = sb
-      sb.parse_request(contents, params)
-      acc + render_sidebar(sb)
+    begin
+      (sidebars.blank? ? Sidebar.find(:all, :order => 'active_position ASC') : sidebars).inject('') do |acc, sb|
+        @sidebar = sb
+        sb.parse_request(contents, params)
+        acc + render_sidebar(sb)
+      end
+    rescue
+      _("It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
+        ")
     end
   end
 
