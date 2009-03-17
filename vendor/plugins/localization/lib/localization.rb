@@ -5,7 +5,7 @@ module Localization
   @@lang = :default
   
   def self._(string_to_localize, *args)
-    translated = @@l10s[@@lang][string_to_localize] ? string_to_localize : @@l10s[@@lang][string_to_localize]
+    translated = @@l10s[@@lang][string_to_localize].nil? ? string_to_localize : @@l10s[@@lang][string_to_localize]
     return translated.call(*args).to_s  if translated.is_a? Proc
     if translated.is_a? Array
       translated = if translated.size == 3 
@@ -18,7 +18,7 @@ module Localization
   end
   
   def self.__(string_to_localize, *args)
-    translated = @@l10s[@@lang][string_to_localize] ? string_to_localize : @@l10s[@@lang][string_to_localize]
+    translated = @@l10s[@@lang][string_to_localize].nil? ? string_to_localize : @@l10s[@@lang][string_to_localize]
     return translated.call(*args).to_s  if translated.is_a? Proc
     if translated.is_a? Array
       translated = if translated.size == 3 
