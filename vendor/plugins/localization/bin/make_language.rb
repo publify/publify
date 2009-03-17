@@ -6,11 +6,11 @@ class LangaugeFile
   end
   
   def generate_language_file(language,duplicate)
-    filename = "lang\\#{language}.rb";
+    filename = File.join("lang", "#{language}.rb");
     
     
     stringMap = {}
-    executeStage "Loading last langauge file #{filename}" do
+    executeStage "Loading last language file #{filename}" do
       File.read(filename).scan(/["](.*?)["],(.*)/u).each do |pp|
         stringMap[pp[0]] = pp[1]
       end
