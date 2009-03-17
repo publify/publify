@@ -27,7 +27,7 @@
   <%= article_links @article %>
 </p>
 <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
-  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+  <a name="comments"></a><h4 class="blueblk"><%= _('Comments') %></h4>
   <% unless @article.comments_closed? -%>
     <p class="postmetadata alt">
       <small><a href="#respond"><%= _("Leave a response")%></a></small>

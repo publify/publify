@@ -16,7 +16,7 @@
   <table cellpadding="4" cellspacing="0" class="frm-tbl">
     <tr>
       <td><p><label for="comment_author"><%= _("Your name")%></label></p></td>
-      <td> <%= text_field "comment", "author", :size => 20 %> <small><%= link_to_function("(leave url/email &#187;)", "Element.toggle('guest_url'); Element.toggle('guest_email')") %></small></td>
+      <td> <%= text_field "comment", "author", :size => 20 %> <small><%= link_to_function(_("(leave url/email &#187;)"), "Element.toggle('guest_url'); Element.toggle('guest_email')") %></small></td>
     </tr>
     <tr id="guest_url" style="display:none;">
       <td><p><label for="comment_url"><%= _("Your blog")%></label></p></td>
