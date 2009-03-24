@@ -1,4 +1,4 @@
-  <% @page_heading = _("%s Category") % controller.action_name.capitalize %>
+  <% @page_heading = _("%s Category", controller.action_name.capitalize) %>
   <% subtabs_for(:content) %>
   <% form_tag :action=>"edit", :id => @category.id do %>
   <div class="admin">
