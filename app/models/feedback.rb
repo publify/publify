@@ -140,12 +140,20 @@ class Feedback < Content
 
   def report_as_spam
     return if blog.sp_akismet_key.blank?
-    Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitSpam(akismet_options) }
+    begin
+      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitSpam(akismet_options) }
+    rescue 
+      Timeout::Error => e
+    end
   end
 
   def report_as_ham
     return if blog.sp_akismet_key.blank?
-    Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitHam(akismet_options) }
+    begin
+      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitHam(akismet_options) }
+    rescue 
+      Timeout::Error => e
+    end
   end
 
   def withdraw!
