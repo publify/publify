@@ -14,7 +14,11 @@ class PageCache
   # Delete all file save in path_cache by page_cache system
   def self.sweep_all
     logger.debug "PageCache - sweep_all called by #{caller[1].inspect}"
-    CacheInformation.all.each{|c| c.destroy}
+    begin
+      CacheInformation.all.each{|c| c.destroy}
+    rescue
+      logger.debug "PageCache - OOOOPS table is missing"
+    end
   end
 
 
