@@ -142,8 +142,8 @@ class Feedback < Content
     return if blog.sp_akismet_key.blank?
     begin
       Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitSpam(akismet_options) }
-    rescue 
-      Timeout::Error => e
+    rescue Timeout::Error => e
+      nil
     end
   end
 
@@ -151,8 +151,8 @@ class Feedback < Content
     return if blog.sp_akismet_key.blank?
     begin
       Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitHam(akismet_options) }
-    rescue 
-      Timeout::Error => e
+    rescue Timeout::Error => e
+      nil
     end
   end
 
