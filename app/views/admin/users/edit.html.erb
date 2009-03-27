@@ -2,9 +2,6 @@
   <% subtabs_for(:users) %>
   <% form_tag :action=>"edit", :id => @user.id do %>
 
-  <div class="admin">
-    <%= render :partial => "form" %>
-  </div>
+  <%= render :partial => "form" %>
 
-  <%= cancel_or_save %>
   <% end %>

@@ -14,6 +14,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(params[:user])
     @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
     setup_profiles
+    @user.name = @user.login
     if request.post? and @user.save
       flash[:notice] = _('User was successfully created.')
       redirect_to :action => 'index'
