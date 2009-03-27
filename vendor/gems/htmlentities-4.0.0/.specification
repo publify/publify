@@ -1,0 +1,68 @@
+--- !ruby/object:Gem::Specification 
+name: htmlentities
+version: !ruby/object:Gem::Version 
+  version: 4.0.0
+platform: ruby
+authors: 
+- Paul Battley
+autorequire: 
+bindir: bin
+cert_chain: 
+date: 2007-03-15 00:00:00 +01:00
+default_executable: 
+dependencies: []
+
+description: 
+email: pbattley@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.txt
+- History.txt
+- COPYING.txt
+files: 
+- lib/htmlentities.rb
+- lib/htmlentities/html4.rb
+- lib/htmlentities/legacy.rb
+- lib/htmlentities/string.rb
+- lib/htmlentities/xhtml1.rb
+- test/entities_test.rb
+- test/html4_test.rb
+- test/legacy_test.rb
+- test/roundtrip_test.rb
+- test/string_test.rb
+- test/test_all.rb
+- test/xhtml1_test.rb
+- README.txt
+- History.txt
+- COPYING.txt
+has_rdoc: true
+homepage: http://htmlentities.rubyforge.org/
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">"
+    - !ruby/object:Gem::Version 
+      version: 0.0.0
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 1
+summary: A module for encoding and decoding (X)HTML entities.
+test_files: 
+- test/test_all.rb

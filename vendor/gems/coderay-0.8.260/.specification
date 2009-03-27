@@ -9,7 +9,7 @@ autorequire: coderay
 bindir: bin
 cert_chain: []
 
-date: 2008-10-07 00:00:00 -04:00
+date: 2008-10-07 06:00:00 +02:00
 default_executable: 
 dependencies: []
 
@@ -90,6 +90,7 @@ rdoc_options:
 - -a
 - -t CodeRay Documentation
 require_paths: 
+- bin
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
   requirements: 
