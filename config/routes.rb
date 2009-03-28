@@ -57,6 +57,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect '/tag/:id/page/:page', :controller => 'tags', :action => 'show'
   map.connect '/tags/page/:page', :controller => 'tags', :action => 'index'
+
+  map.connect '/author/:id', :controller => 'authors', :action => 'show'
   
   # allow neat perma urls
   map.connect 'page/:page',

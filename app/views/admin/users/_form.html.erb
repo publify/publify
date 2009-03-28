@@ -99,30 +99,45 @@
       <li>
         <label class="float" for="user_url"><%= _("Your site")%>:</label>
         <%= text_field 'user', 'url' %>
+        <%= check_box 'user', 'show_url' %> 
+        <label for='user_show_url'><%= _("display url on public profile") %></label>
       </li>
       <li>
         <label class="float" for="user_msn"><%= _("Your MSN")%>:</label>
         <%= text_field 'user', 'msn' %>
+        <%= check_box 'user', 'show_msn' %> 
+        <label for='user_show_msn'><%= _("display MSN ID on public profile") %></label>
       </li>
       <li>
         <label class="float" for="user_yahoo"><%= _("Your Yahoo ID")%>:</label>
         <%= text_field 'user', 'yahoo' %>
+        <%= check_box 'user', 'show_yahoo' %> 
+        <label for='user_show_yahoo'><%= _("display Yahoo! ID on public profile") %></label>
+        
       </li>
       <li>
         <label class="float" for="user_jabber"><%= _("Your Jabber ID")%>:</label>
         <%= text_field 'user', 'jabber' %>
+        <%= check_box 'user', 'show_jabber' %> 
+        <label for='user_show_jabber'><%= _("display Jabber ID on public profile") %></label>
+        
       </li>
       <li>
         <label class="float" for="user_aim"><%= _("Your AIM id")%>:</label>
         <%= text_field 'user', 'aim' %>
+        <%= check_box 'user', 'show_aim' %> 
+        <label for='user_show_aim'><%= _("display AIM ID on public profile") %></label>
+        
       </li>
       <li>
         <label class="float" for="user_twitter"><%= _("Your Twitter username")%>:</label>
         <%= text_field 'user', 'twitter' %>
+        <%= check_box 'user', 'show_twitter' %> 
+        <label for='user_show_twitter'><%= _("display twitter on public profile") %></label>
       </li>
       <li>
           <label class="float" for="user_description"><%= _("Tell us more about you")%></label>
-          <textarea name="setting[description]" id="user_description" rows="5" cols="50"><%=h @user.description %></textarea>
+          <textarea name="user[description]" id="user_description" rows="5" cols="50"><%=h @user.description %></textarea>
       </li>
     </ul>
   </fieldset>
