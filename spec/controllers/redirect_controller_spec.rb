@@ -114,6 +114,9 @@ describe RedirectController do
   end
 
   describe 'with permalink_format like %title%.html' do
+
+    integrate_views
+
     before(:each) do
       b = blogs(:default)
       b.permalink_format = '/%title%.html'
@@ -147,7 +150,7 @@ describe RedirectController do
       end
 
       it 'should render atom partial' do
-        response.should render_template('/articles/_atom_feed')
+        response.should render_template('articles/_atom_feed.atom.builder')
       end
     end
 
@@ -157,7 +160,7 @@ describe RedirectController do
       end
 
       it 'should render atom partial' do
-        response.should render_template('/articles/_rss20_feed')
+        response.should render_template('articles/_rss20_feed.rss.builder')
       end
     end
   end
