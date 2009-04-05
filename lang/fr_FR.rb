@@ -1,6 +1,8 @@
 Localization.define('fr_FR') do |l|
   # General
   l.store "your blog", "votre blog"
+  l.store "Category", "Catégorie"
+  l.store "Archives for", "Archives de"
   l.store "Typo admin", "administration typo"
   l.store "Publish", "Écrire"
   l.store "Manage", "Gérer"

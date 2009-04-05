@@ -22,6 +22,7 @@ class Admin::ThemesController < Admin::BaseController
     this_blog.save
     zap_theme_caches
     this_blog.current_theme(:reload)
+    flash[:notice] = _("Theme changed successfully")
     redirect_to :action => 'index'
   end
 
