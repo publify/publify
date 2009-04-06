@@ -98,6 +98,23 @@ describe 'ArticlesController' do
     end
   end
 
+  describe '#livesearch action' do
+
+    describe 'with a query with several words' do
+
+      before :each do
+        get :live_search, :q => 'hello world'
+      end
+
+      it 'should be valid' 
+      it 'should render without layout'
+      it 'should render template live_search'
+      it 'should not have h3 tag'
+
+
+    end
+  end
+
   
   it 'archives' do
     get 'archives'

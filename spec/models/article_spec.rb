@@ -304,6 +304,41 @@ describe Article do
     end
   end
 
+  describe '#search' do
+
+    describe 'is an array', :shared => true do
+      it 'should get an array' do
+        @articles.should be_a(Array)
+      end
+    end
+
+    describe 'with several words and no result' do
+
+      before :each do
+        @articles = Article.search('hello world')
+      end
+
+      it_should_behave_like 'is an array'
+
+      it 'should be empty' do
+        @articles.should be_empty
+      end
+    end
+
+    describe 'with one word and result' do
+
+      before :each do
+        @articles = Article.search('extended')
+      end
+
+      it_should_behave_like 'is an array'
+
+      it 'should have one item' do
+        assert_equal 8, @articles.size
+      end
+    end
+  end
+
   describe 'body_and_extended=' do
     before :each do 
       @article = contents(:article1)
