@@ -41,6 +41,7 @@ describe TagsController, '/articles/tag/foo' do
     @tag = mock('tag', :null_object => true)
     @tag.stub!(:empty?) \
       .and_return(false)
+    @tag.stub!(:name).and_return('foo')
 
     Tag.stub!(:find_by_permalink) \
       .and_return(@tag)

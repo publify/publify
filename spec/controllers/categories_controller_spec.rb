@@ -75,9 +75,9 @@ describe CategoriesController, '/articles/category/personal' do
     assigns[:articles].size.should == 3
   end
 
-  it 'should set the page title to "Category personal"' do
+  it 'should set the page title to "Category Personal"' do
     do_get
-    assigns[:page_title].should == 'Category personal, everything about personal'
+    assigns[:page_title].should == 'Category Personal, everything about Personal'
   end
 
   it 'should render the atom feed for /articles/category/personal.atom' do
