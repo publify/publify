@@ -292,6 +292,18 @@ describe Admin::FeedbackController do
       end
 
     end
+
+    describe '#bulkops action' do
+
+      before :each do
+        post :bulkops, :bulkop => 'Delete all spam'
+      end
+
+      it 'should redirect to action' do
+        @response.should redirect_to(:action => 'index')
+      end
+    end
+
   end
 
 end
