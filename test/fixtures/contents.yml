@@ -211,4 +211,21 @@ publisher_article:
   published: true
   state: published
   tags: foo, bar
-  
+
+utf8_article:
+  title: ルビー
+  body: body
+  extended: extended content
+  created_at: 2004-06-02 20:00:03
+  updated_at: 2004-06-02 20:00:03
+  published_at: 2004-06-02 20:00:03
+  allow_comments: true
+  allow_pings: true
+  permalink: ルビー
+  user: user_publisher
+  author: user_publisher
+  guid: a87c4220-18d4-11db-aadd-1002a5d5c51d
+  type: Article
+  published: true
+  state: published
+  tags: foo, bar

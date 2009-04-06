@@ -144,6 +144,11 @@ describe RedirectController do
 
     end
 
+    it 'should get good article with utf8 title' do
+      get :redirect, :from => ['2004', '06', '02', 'ルビー']
+      assigns(:article).should == contents(:utf8_article)
+    end
+
     describe 'render atom feed' do
       before(:each) do
         get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]

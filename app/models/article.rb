@@ -108,8 +108,16 @@ class Article < Content
     o
   }
 
+  def permalink
+    if read_attribute(:permalink)
+      CGI.escape(read_attribute(:permalink))
+    else
+      nil
+    end
+  end
+
   def stripped_title
-    CGI.escape(self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
+    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
   end
 
   def year_url
