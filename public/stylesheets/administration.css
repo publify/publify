@@ -635,6 +635,10 @@ input.submit {
 /* End of login form */
 
 /* Notices, infos and errors */
+#overall #flash {
+	margin-left: 20px;
+}
+
 #flash span {
   background: #fff;
   padding: 5px;
