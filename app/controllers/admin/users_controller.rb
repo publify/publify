@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     if current_user.admin?
-      @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => 10
+      @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => this_blog.admin_display_elements
     else
       redirect_to :action => 'edit'
     end

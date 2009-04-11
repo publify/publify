@@ -78,7 +78,7 @@ class Admin::ResourcesController < Admin::BaseController
   def index
     @r = Resource.new
     @itunes_category_list = @r.get_itunes_categories
-    @resources = Resource.paginate :page => params[:page], :conditions => @conditions, :order => 'created_at DESC', :per_page => 10
+    @resources = Resource.paginate :page => params[:page], :conditions => @conditions, :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
   end
 
   def destroy

@@ -35,6 +35,11 @@
           <label for="allow_signup_1"><%= _("Yes")%></label>
         </span>
       </li>
+      <li>
+        <label class="float" for="admin_display_elements"><%= _("Items to display in admin lists")%>:</label>
+        <input name="setting[admin_display_elements]" id="admin_display_elements" type="text" value="<%=h this_blog.admin_display_elements %>" size="4" />
+      </li>
+
     </ul>
   </fieldset>
 

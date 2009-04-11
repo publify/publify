@@ -1,6 +1,6 @@
 class Admin::BlacklistController < Admin::BaseController
   def index
-    @blacklist_patterns = BlacklistPattern.paginate :page => params[:page], :order => 'pattern ASC', :per_page => 10
+    @blacklist_patterns = BlacklistPattern.paginate :page => params[:page], :order => 'pattern ASC', :per_page => this_blog.admin_display_elements
   end
 
   def new

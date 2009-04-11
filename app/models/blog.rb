@@ -82,6 +82,7 @@ class Blog < CachedModel
   setting :robots,                     :string, ''
   setting :index_categories,           :boolean, true
   setting :index_tags,                 :boolean, true
+  setting :admin_display_elements,     :integer, 10
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
 

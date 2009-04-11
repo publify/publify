@@ -13,7 +13,7 @@ class Admin::TagsController < Admin::BaseController
       order = 'display_name ASC'
     end
 
-    @tags = Tag.paginate(:page => params[:page], :order => :display_name, :per_page => 10)
+    @tags = Tag.paginate(:page => params[:page], :order => :display_name, :per_page => this_blog.admin_display_elements)
   end
   
   def edit
