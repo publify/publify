@@ -44,12 +44,16 @@ class AccountsController < ApplicationController
 
     @user = User.new(params[:user])
 
-    if request.post? and @user.save
-      self.current_user = @user
-      session[:user_id] = @user.id
-      flash[:notice]  = _("Signup successful")
-      redirect_to :controller => "admin/settings", :action => "index"
-      return
+    if request.post? 
+      @user.password = generate_password
+      @user.name = @user.login
+      if @user.save
+        self.current_user = @user
+        session[:user_id] = @user.id
+        flash[:notice]  = _("Signup successful")
+        redirect_to :controller => "admin/settings", :action => "index"
+        return
+      end
     end
   end
 
@@ -64,6 +68,13 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def generate_password
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    newpass = ""
+    1.upto(7) { |i| newpass << chars[rand(chars.size-1)] }
+    return newpass
+  end
 
   def verify_users
     redirect_to(:controller => "accounts", :action => "signup") if User.count == 0

@@ -40,24 +40,6 @@ describe 'With a new user' do
     set_password 'a secure password'
   end
 
-  it 'password cannot be too short' do
-    set_password 'tiny'
-    @user.should_not be_valid
-    @user.errors.should be_invalid('password')
-  end
-
-  it 'password cannot be too long' do
-    set_password 'x' * 80
-    @user.should_not be_valid
-    @user.errors.should be_invalid('password')
-  end
-
-  it 'password cannot be blank' do
-    set_password ''
-    @user.should_not be_valid
-    @user.errors.should be_invalid('password')
-  end
-
   it 'password can be just right' do
     set_password 'Just right'
     @user.should be_valid

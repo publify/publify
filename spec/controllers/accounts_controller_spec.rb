@@ -158,8 +158,7 @@ describe 'POST signup and >0 existing user' do
   end
 
   def params
-    {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-        'password_confirmation' => 'newpassword'}}
+    {'user' =>  {'login' => 'newbob'}}
   end
 end
 
