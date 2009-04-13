@@ -7,19 +7,23 @@
     Posted by <cite><%= author_link(article) %></cite>
     <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
   </div>
-
+  
   <div class="content">
-    <%= article.html(:body) %>
-
-    <% if article.extended? -%>
-      <div class="extended">
-        <% if controller.action_name == 'index' -%>
+    <% if controller.action_name == 'show' or controller.action_name == 'index' %>
+      <% if article.excerpt? %>
+        <%= article.excerpt %>
+      <% else %>
+        <%= article.html(:body) %>
+        <div class="extended">
           <p><%= link_to_permalink article,"Continue reading..." %></p>
-        <% else -%>
-          <%= article.html(:extended) %>
-        <% end -%>
+        </div>
+      <% end %>
+    <% else %>
+      <%= article.html(:body) %>
+      <div class="extended">
+        <%= article.html(:extended) %>
       </div>
-    <% end -%>
+    <% end %>
   </div>
 
 	<p class="info">

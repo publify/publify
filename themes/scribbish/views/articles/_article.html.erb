@@ -10,17 +10,21 @@
   </p>
 
   <div class="content">
-    <%= article.html(:body) %>
-
-    <% if article.extended? -%>
+    <% if controller.action_name == 'show' or controller.action_name == 'index' %>
+      <% if article.excerpt? %>
+        <%= article.excerpt %>
+      <% else %>
+        <%= article.html(:body) %>
+        <div class="extended">
+          <p><%= link_to_permalink article,"Continue reading..." %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <%= article.html(:body) %>
       <div class="extended">
-        <% if controller.action_name == 'index' -%>
-          <p><%= link_to_permalink article, _("Continue reading...") %></p>
-        <% else -%>
-          <%= article.html(:extended) %>
-        <% end -%>
+        <%= article.html(:extended) %>
       </div>
-    <% end -%>
+    <% end %>
   </div>
 
   <ul class="meta">
