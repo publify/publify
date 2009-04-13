@@ -375,6 +375,18 @@ describe Article do
     end
   end
 
+  describe '#comment_url' do
+    it 'should render complete url of comment' do
+      contents(:article1).comment_url.should == "http://myblog.net/comments?article_id=#{contents(:article1).id}"
+    end
+  end
+
+  describe '#preview_comment_url' do
+    it 'should render complete url of comment' do
+      contents(:article1).preview_comment_url.should == "http://myblog.net/comments/preview?article_id=#{contents(:article1).id}"
+    end
+  end
+
   def test_can_ping_fresh_article_iff_it_allows_pings
     a = Article.find(contents(:article1).id)
     assert_equal(false, a.pings_closed?)
