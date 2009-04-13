@@ -24,6 +24,7 @@ class Content < ActiveRecord::Base
   named_scope :published_at_like, lambda {|date_at| {:conditions => ['published_at LIKE ? ', "%#{date_at}%"]}}
   named_scope :user_id, lambda {|user_id| {:conditions => ['user_id = ?', user_id]}}
   named_scope :published, {:conditions => ['published = ?', true]}
+  named_scope :order, lambda {|order_by| {:order => order_by}}
   named_scope :not_published, {:conditions => ['published = ?', false]}
   named_scope :draft, {:conditions => ['state = ?', 'draft']}
   named_scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'created_at DESC'}

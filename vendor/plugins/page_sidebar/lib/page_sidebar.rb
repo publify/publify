@@ -5,6 +5,6 @@ class PageSidebar < Sidebar
   setting :maximum_pages, 10
 
   def pages
-    @pages ||= Page.find(:all).sort_by {|t| t.name}
+    @pages ||= Page.published.order(:title)
   end
 end
