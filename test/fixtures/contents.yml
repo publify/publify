@@ -228,4 +228,4 @@ utf8_article:
   type: Article
   published: true
   state: published
-  tags: foo, bar
+  tags: foo2, bar2
