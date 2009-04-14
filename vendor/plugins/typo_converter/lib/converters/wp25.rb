@@ -37,7 +37,7 @@ class Wp25Converter < BaseConverter
         
         a = ::Article.new \
           :title        => CGI::unescapeHTML(wp_article.post_title),
-          :body         => body,
+          :body_and_extended => body,
           :created_at   => wp_article.post_date,
           :published_at => wp_article.post_date,
           :updated_at   => wp_article.post_modified,
