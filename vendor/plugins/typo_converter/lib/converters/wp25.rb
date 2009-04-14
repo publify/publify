@@ -56,6 +56,7 @@ class Wp25Converter < BaseConverter
         :author       => wp_comment.comment_author,
         :url          => wp_comment.comment_author_url,
         :email        => wp_comment.comment_author_email,
+        :state        => converter.comment_state(wp_comment.comment_approved),
         :ip           => wp_comment.comment_author_IP
     end
   end
@@ -124,5 +125,13 @@ class Wp25Converter < BaseConverter
       tags_post << tags[tag]
     }
     tags_post
+  end
+  
+  def comment_state(wp_approved)
+    case wp_approved
+    when 'spam': :spam
+    when '1': :ham
+    else :unclassified
+    end
   end
 end
