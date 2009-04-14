@@ -1,0 +1,18 @@
+<div title="Account signup" id="loginform">
+  <%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
+  <div  class="form admin">
+	<ul>
+		<li>
+		  <%= _("You have successfully signed up") %>
+		</li>
+		<li>
+      <%= _("Login %s", current_user.login)%>
+		</li>
+		<li>
+		  <%= _("Password %s", @password) %>
+		</li>
+    <li><%= _("Don't lose the mail sent at #{current_user.email} or you won't be able to login anymore")%></li>
+    <li><%= _("Proceed to") + " " + link_to(_("admin"), :controller => 'admin/settings') %> </li>
+	</ul>
+  </div>
+</div>

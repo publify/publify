@@ -46,15 +46,20 @@ class AccountsController < ApplicationController
 
     if request.post? 
       @user.password = generate_password
+      session[:tmppass] = @user.password
       @user.name = @user.login
       if @user.save
         self.current_user = @user
         session[:user_id] = @user.id
-        flash[:notice]  = _("Signup successful")
-        redirect_to :controller => "admin/settings", :action => "index"
+        redirect_to :controller => "accounts", :action => "confirm", :password => params[:password]
         return
       end
     end
+  end
+
+  def confirm
+    @password = session[:tmppass]
+#    session[:tmppass] = nil
   end
 
   def logout

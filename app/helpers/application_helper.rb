@@ -218,5 +218,5 @@ module ApplicationHelper
   def feed_rss
     url_for(:format => :rss, :only_path => false)
   end
-
+  
 end
