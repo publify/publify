@@ -1,3 +1,4 @@
+require 'converters/wp25/option'
 require 'converters/wp25/post'
 require 'converters/wp25/comment'
 require 'converters/wp25/term'
@@ -10,6 +11,7 @@ class Wp25Converter < BaseConverter
     converter = new(options)
     
     unless (options[:prefix].nil?)
+      WP25::Option.prefix = options[:prefix]
       WP25::Post.prefix = options[:prefix]
       WP25::Comment.prefix = options[:prefix]
       WP25::User.prefix = options[:prefix]
@@ -17,6 +19,12 @@ class Wp25Converter < BaseConverter
       WP25::TermRelationship.prefix = options[:prefix]
       WP25::TermTaxonomy.prefix = options[:prefix]
     end
+
+    Blog.default.update_attributes(
+      :blog_name => WP25::Option.find_by_option_name('blogname').option_value,
+      :blog_subtitle => WP25::Option.find_by_option_name('blogdescription').option_value
+    )
+
     converter.import_users do |wp_user|
       ::User.new \
         :name => wp_user.display_name,
