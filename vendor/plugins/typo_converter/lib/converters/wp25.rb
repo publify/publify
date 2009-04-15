@@ -47,6 +47,25 @@ class Wp25Converter < BaseConverter
       end
     end
     
+    converter.import_pages do |wp_page|
+      unless wp_page.post_content.blank? || wp_page.post_title.blank?
+        user = wp_page.post_author.nil? ? nil : converter.users[WP25::User.find(wp_page.post_author.to_i).ID]
+        
+        excerpt, body = !wp_page.post_excerpt.blank? ?
+          [wp_page.post_excerpt, wp_page.post_content] :
+          [nil, wp_page.post_content]
+        
+        ::Page.new \
+          :title        => CGI::unescapeHTML(wp_page.post_title),
+          :name         => wp_page.post_name,
+          :body         => body,
+          :created_at   => wp_page.post_date,
+          :published_at => wp_page.post_date,
+          :updated_at   => wp_page.post_modified,
+          :author       => user
+      end
+    end
+
     converter.import_comments do |wp_comment|
       ::Comment.new \
         :body         => wp_comment.comment_content,
@@ -68,9 +87,23 @@ class Wp25Converter < BaseConverter
                                            :include => :categorie, 
                                            :conditions => ["post_pub = ? AND cat_libelle IN (?)", true, @options[:categories]])
     else
-      @old_article ||= WP25::Post.find_all_by_post_status 'publish'
+      @old_article ||= WP25::Post.find :all,
+        :conditions => { :post_status => 'publish', :post_type => 'post' }
     end
     @old_article
+  end
+
+  def old_pages
+    if @options.has_key?(:categories)
+      #TODO: understand the categories configuration
+      @old_page ||= WP25::Post.find(:all, 
+                                           :include => :categorie, 
+                                           :conditions => ["post_pub = ? AND cat_libelle IN (?)", true, @options[:categories]])
+    else
+      @old_page ||= WP25::Post.find :all,
+        :conditions => { :post_status => 'publish', :post_type => 'page' }
+    end
+    @old_page
   end
 
   def old_users

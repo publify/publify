@@ -1,5 +1,5 @@
 class EmailNotifier < ActiveRecord::Observer
-  observe Article, Comment
+  observe Article, Page, Comment
   
   def after_save(content)
     true
@@ -18,7 +18,7 @@ class BaseConverter
   cattr_accessor :new_user_password
 
   def initialize(options = {})
-    @count   = {:users => 0, :articles => 0, :comments => 0}
+    @count   = {:users => 0, :articles => 0, :comments => 0, :pages => 0}
     @options = options
   end
 
@@ -28,6 +28,11 @@ class BaseConverter
   #   converter.import_users do |other_user|
   #     # build Typo User object from other user
   #     ::User.new ...
+  #   end
+  #   
+  #   convert.import_pages do |other_page|
+  #     # build Typo Page object from other page
+  #     ::Page.new ...
   #   end
   #   
   #   convert.import_articles do |other_article|
@@ -48,6 +53,13 @@ class BaseConverter
   #   @old_articles ||= Article.find(:all)
   def old_articles
     raise NotImplementedError
+  end
+
+  # override this to provide array of all pages to migrate.
+  #
+  #   @old_pages ||= Page.find(:all)
+  def old_pages
+    [] # don't raise an error; some sources won't have pages
   end
 
   # override this to find all users from the source database
@@ -181,6 +193,24 @@ class BaseConverter
     raise
   end
 
+  def create_page(other_page, &block)
+    page = block.call(other_page)
+    if page
+      page.allow_comments = true
+      page.allow_pings    = false
+      page.published      = true
+      page.user           ||= default_user
+      page.text_filter    ||= filter
+      page.save!
+      print '.'
+      @count[:pages] += 1
+    end
+  rescue ActiveRecord::RecordInvalid
+    puts "Invalid Page: %s " % $!.record.errors.full_messages.join(' ')
+    puts $!.record.inspect
+    raise
+  end
+
   def create_comment(article, other_comment, &block)
     ActiveRecord::Base.logger.info "adding comment"
     returning block.call(other_comment) do |comment|
@@ -232,6 +262,15 @@ class BaseConverter
     end
     print "\n"
     puts "migrated #{@count[:articles]} article(s)..."
+  end
+  
+  def import_pages(&block)
+    puts "started pages migration..."
+    old_pages.each do |other_page|
+      create_page other_page, &block
+    end
+    print "\n"
+    puts "migrated #{@count[:pages]} page(s)..."
   end
   
   def import_comments(&block)
