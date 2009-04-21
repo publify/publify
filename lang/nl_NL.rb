@@ -59,7 +59,7 @@ Localization.define("nl_NL") do |l|
   l.store "Sort alphabetically", ""
 
   # app/views/admin/categories/new.html.erb
-  l.store "#{controller.action_name.capitalize} Category", ""
+  l.store "%s Category", ""
 
   # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", ""
@@ -651,15 +651,6 @@ Localization.define("nl_NL") do |l|
   l.store "Ham", ""
   l.store "Spam?", ""
   l.store "Just Marked As Spam", ""
-
-  # vendor/actionwebservice/lib/action_web_service/casting.rb
-  l.store "#{name}=", ""
-
-  # vendor/actionwebservice/lib/action_web_service/struct.rb
-  l.store "%s=", ""
-
-  # vendor/bluecloth/lib/bluecloth.rb
-  l.store "#{r}=", ""
 
   # vendor/plugins/xml_sidebar/lib/xml_sidebar.rb
   l.store "XML Syndication", ""
