@@ -77,6 +77,10 @@ describe 'ArticlesController' do
         response.should have_tag('head>link[href=?]','http://test.host/search/a.atom')
       end
 
+      it 'should have content markdown interpret and without html tag' do
+        response.should have_tag('div', /in markdown format\n\n\nwe\nuse\nok to define a link\n...\n/)
+      end
+
     end
 
     it 'should render feed rss by search' do
