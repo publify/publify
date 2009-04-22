@@ -190,6 +190,9 @@ describe 'POST signup with 0 existing users' do
     User.stub!(:count).and_return(0)
     @user = mock_model(User)
     @user.stub!(:login).and_return('newbob')
+    @user.stub!(:password=).and_return(true)
+    @user.stub!(:password).and_return('foo')
+    @user.stub!(:name=).and_return(true)
     User.stub!(:new).and_return(@user)
     User.stub!(:authenticate).and_return(@user)
     @user.stub!(:save).and_return(@user)
@@ -202,20 +205,14 @@ describe 'POST signup with 0 existing users' do
     assigns[:user].should == @user
   end
 
-  it 'redirects to /admin/settings' do
+  it 'redirects to /account/confirm' do
     post 'signup', params
-    response.should redirect_to(:controller => 'admin/settings', :action => 'index')
+    response.should redirect_to(:action => 'confirm')
   end
 
   it 'session gets a user' do
     post 'signup', params
-    flash[:notice].should == _('Signup successful')
     request.session[:user_id].should == @user.id
-  end
-
-  it 'Sets the flash notice to "Signup successful"' do
-    post 'signup', params
-    flash[:notice].should == _('Signup successful')
   end
 
   def params
