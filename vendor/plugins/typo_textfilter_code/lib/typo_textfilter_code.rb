@@ -1,4 +1,5 @@
 require 'coderay'
+require 'htmlentities'
 
 class Typo
   class Textfilter
@@ -51,6 +52,7 @@ have syntax highlighting.
         begin
           text = CodeRay.scan(text, lang.to_sym).span(options)
         rescue
+          text = HTMLEntities.new("xhtml1").encode(text)
         end
         text = "<notextile>#{text}</notextile>"
 
