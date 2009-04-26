@@ -13,9 +13,9 @@ class PageCache
 
   # Delete all file save in path_cache by page_cache system
   def self.sweep_all
-    logger.debug "PageCache - sweep_all called by #{caller[1].inspect}"
     begin
       CacheInformation.all.each{|c| c.destroy}
+      self.sweep_theme_cache
     rescue
       logger.debug "PageCache - OOOOPS table is missing"
     end
@@ -23,17 +23,15 @@ class PageCache
 
 
   def self.sweep_theme_cache
-    logger.debug "PageCache - sweep_theme_cache called by #{caller[1].inspect}"
-    self.zap_pages(%{images/theme stylesheets/theme javascripts/theme})
+    self.zap_pages(%w{images/theme/* stylesheets/theme/* javascripts/theme/*})
   end
 
   def self.zap_pages(paths)
-    logger.debug "PageCache - About to zap: #{paths.inspect}"
+    puts "PageCache - About to zap: #{paths.inspect}"
     srcs = paths.inject([]) { |o,v|
       o + Dir.glob(public_path + "/#{v}")
     }
     return true if srcs.empty?
-    logger.debug "PageCache - About to delete: #{srcs.inspect}"
     trash = RAILS_ROOT + "/tmp/typodel.#{UUID.random_create}"
     FileUtils.makedirs(trash)
     FileUtils.mv(srcs, trash, :force => true)
