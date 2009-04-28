@@ -8,8 +8,8 @@ class Theme
     @name, @path = name, path
   end
 
-  def layout
-    if controller.action_name == 'view_page'
+  def layout(action)
+    if action.to_s == 'view_page'
       if File.exists? "../../themes/#{name}/layouts/pages.html.erb"
         return "../../themes/#{name}/layouts/pages.html.erb"
       end

@@ -36,7 +36,7 @@ class ContentController < ApplicationController
   end
 
   def theme_layout
-    this_blog.current_theme.layout
+    this_blog.current_theme.layout(self.action_name)
   end
 
   helper_method :contents
