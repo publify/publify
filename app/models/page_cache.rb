@@ -27,7 +27,6 @@ class PageCache
   end
 
   def self.zap_pages(paths)
-    puts "PageCache - About to zap: #{paths.inspect}"
     srcs = paths.inject([]) { |o,v|
       o + Dir.glob(public_path + "/#{v}")
     }
