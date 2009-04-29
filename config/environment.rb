@@ -62,6 +62,7 @@ Rails::Initializer.run do |config|
   config.gem 'htmlentities'
   config.gem 'json'
   config.gem 'calendar_date_select'
+  config.gem 'bluecloth', :version => '~> 2.0.0'
 
   # Declare needed (github) gems
   # This is for legacy documentation, these gems are vendored for release.
