@@ -100,7 +100,7 @@ module Stateful
           end
           self[:#{name}] = memento.to_s
           new_state = self.class.class_eval(memento.to_s.classify).new(self)
-          @#{name}_obj.exit_hook(new_state)
+          @#{name}_obj.exit_hook(new_state) if @#{name}_obj
           @#{name}_obj = new_state
           @#{name}_obj.enter_hook
           @#{name}_obj

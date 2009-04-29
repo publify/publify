@@ -1,3 +1,4 @@
+require 'converters/wp25/option'
 require 'converters/wp25/post'
 require 'converters/wp25/comment'
 require 'converters/wp25/term'
@@ -10,6 +11,7 @@ class Wp25Converter < BaseConverter
     converter = new(options)
     
     unless (options[:prefix].nil?)
+      WP25::Option.prefix = options[:prefix]
       WP25::Post.prefix = options[:prefix]
       WP25::Comment.prefix = options[:prefix]
       WP25::User.prefix = options[:prefix]
@@ -17,6 +19,12 @@ class Wp25Converter < BaseConverter
       WP25::TermRelationship.prefix = options[:prefix]
       WP25::TermTaxonomy.prefix = options[:prefix]
     end
+
+    Blog.default.update_attributes(
+      :blog_name => WP25::Option.find_by_option_name('blogname').option_value,
+      :blog_subtitle => WP25::Option.find_by_option_name('blogdescription').option_value
+    )
+
     converter.import_users do |wp_user|
       ::User.new \
         :name => wp_user.display_name,
@@ -37,7 +45,7 @@ class Wp25Converter < BaseConverter
         
         a = ::Article.new \
           :title        => CGI::unescapeHTML(wp_article.post_title),
-          :body         => body,
+          :body_and_extended => body,
           :created_at   => wp_article.post_date,
           :published_at => wp_article.post_date,
           :updated_at   => wp_article.post_modified,
@@ -47,6 +55,25 @@ class Wp25Converter < BaseConverter
       end
     end
     
+    converter.import_pages do |wp_page|
+      unless wp_page.post_content.blank? || wp_page.post_title.blank?
+        user = wp_page.post_author.nil? ? nil : converter.users[WP25::User.find(wp_page.post_author.to_i).ID]
+        
+        excerpt, body = !wp_page.post_excerpt.blank? ?
+          [wp_page.post_excerpt, wp_page.post_content] :
+          [nil, wp_page.post_content]
+        
+        ::Page.new \
+          :title        => CGI::unescapeHTML(wp_page.post_title),
+          :name         => wp_page.post_name,
+          :body         => body,
+          :created_at   => wp_page.post_date,
+          :published_at => wp_page.post_date,
+          :updated_at   => wp_page.post_modified,
+          :author       => user
+      end
+    end
+
     converter.import_comments do |wp_comment|
       ::Comment.new \
         :body         => wp_comment.comment_content,
@@ -56,6 +83,7 @@ class Wp25Converter < BaseConverter
         :author       => wp_comment.comment_author,
         :url          => wp_comment.comment_author_url,
         :email        => wp_comment.comment_author_email,
+        :state        => converter.comment_state(wp_comment.comment_approved),
         :ip           => wp_comment.comment_author_IP
     end
   end
@@ -67,9 +95,23 @@ class Wp25Converter < BaseConverter
                                            :include => :categorie, 
                                            :conditions => ["post_pub = ? AND cat_libelle IN (?)", true, @options[:categories]])
     else
-      @old_article ||= WP25::Post.find_all_by_post_status 'publish'
+      @old_article ||= WP25::Post.find :all,
+        :conditions => { :post_status => 'publish', :post_type => 'post' }
     end
     @old_article
+  end
+
+  def old_pages
+    if @options.has_key?(:categories)
+      #TODO: understand the categories configuration
+      @old_page ||= WP25::Post.find(:all, 
+                                           :include => :categorie, 
+                                           :conditions => ["post_pub = ? AND cat_libelle IN (?)", true, @options[:categories]])
+    else
+      @old_page ||= WP25::Post.find :all,
+        :conditions => { :post_status => 'publish', :post_type => 'page' }
+    end
+    @old_page
   end
 
   def old_users
@@ -124,5 +166,13 @@ class Wp25Converter < BaseConverter
       tags_post << tags[tag]
     }
     tags_post
+  end
+  
+  def comment_state(wp_approved)
+    case wp_approved
+    when 'spam': :spam
+    when '1': :ham
+    else :unclassified
+    end
   end
 end
