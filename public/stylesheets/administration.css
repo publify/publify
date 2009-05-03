@@ -589,6 +589,10 @@ div.user {
 	font: 14px;
 }
 
+#loginform input[type=checkbox] {
+	width: auto;
+	background: inherit;
+}
 
 #loginform input#submit,
 #article_form input.submit,
