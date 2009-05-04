@@ -10,3 +10,6 @@ require 'converters/wp25/user'
 # TODO: factory_girl can guess WP25::Option from 'WP25/option', but it tries
 # to look up the class with const_get, which doesn't work for classes in modules.
 Factory.define 'WP25/option', :class => WP25::Option do |c| end
+Factory.define 'WP25/user', :class => WP25::User do |u|
+  u.user_registered true
+end

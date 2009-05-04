@@ -15,7 +15,21 @@ describe "WordPress 2.5 converter" do
   end
   
   describe "given a user" do
-    it "creates a user"
+    before :each do
+      User.delete_all # clear Typo's factories
+      
+      Factory('WP25/user',
+        :display_name => 'A. User',
+        :user_email => 'auser@notfound.com',
+        :user_login => 'auser',
+        :user_pass => 'not a valid password'
+      )
+    end
+    
+    it "creates a user" do
+      run_converter
+      User.count.should == 1
+    end
   end
   
   describe "given a post" do
