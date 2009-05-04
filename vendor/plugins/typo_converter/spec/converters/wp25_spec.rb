@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+# These are integration tests.
+
 describe "WordPress 2.5 converter" do
   before :each do
     Factory('WP25/option',
@@ -9,7 +11,7 @@ describe "WordPress 2.5 converter" do
   end
   
   it "runs without crashing" do
-    TypoPlugins.convert_from :wp25
+    run_converter
   end
   
   describe "given a user" do
@@ -34,5 +36,17 @@ describe "WordPress 2.5 converter" do
   
   describe "given tags and categories" do
     it "behaves in a manner to be determined"
+  end
+  
+protected
+  
+  def run_converter(options = {})
+    real_stdout = $stdout
+    begin
+      $stdout = StringIO.new unless options[:verbose]
+      TypoPlugins.convert_from :wp25
+    ensure
+      $stdout = real_stdout
+    end
   end
 end
