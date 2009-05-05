@@ -27,29 +27,29 @@ describe "WordPress 2.5 converter" do
     it "creates a user" do
       lambda { run_converter }.should change(User, :count).by(1)
     end
-  end
-  
-  describe "given a post" do
-    it "creates an article"
-    
-    describe "with a comment" do
-      it "creates a comment"
+
+    describe "and a post" do
+      it "creates an article"
       
-      describe "that is spam" do
-        it "marks the created comment as spam"
+      describe "with a comment" do
+        it "creates a comment"
+        
+        describe "that is spam" do
+          it "marks the created comment as spam"
+        end
       end
+      
+      describe "given tags and categories" do
+        it "behaves in a manner to be determined"
+      end 
     end
     
-    describe "that is a page" do
+    describe "and a page" do
       it "creates a page"
     end
   end
   
-  describe "given tags and categories" do
-    it "behaves in a manner to be determined"
-  end
-  
-protected
+  protected
   
   def run_converter(options = {})
     real_stdout = $stdout
