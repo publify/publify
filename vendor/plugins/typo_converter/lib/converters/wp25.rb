@@ -36,7 +36,7 @@ class Wp25Converter < BaseConverter
 
     converter.import_articles do |wp_article|
       unless wp_article.post_content.blank? || wp_article.post_title.blank?
-        user = wp_article.post_author.nil? ? nil : converter.users[WP25::User.find(wp_article.post_author.to_i).ID]
+        user = wp_article.post_author.nil? ? nil : converter.users[WP25::User.find(wp_article.post_author.to_i).user_login]
         
         excerpt, body = !wp_article.post_excerpt.blank? ?
           [wp_article.post_excerpt, wp_article.post_content] :
@@ -49,7 +49,8 @@ class Wp25Converter < BaseConverter
           :created_at   => wp_article.post_date,
           :published_at => wp_article.post_date,
           :updated_at   => wp_article.post_modified,
-          :author       => user,
+          :user         => user,
+          :author       => user.login,
           :tags         => converter.find_or_create_tags(wp_article.tags)
         [a, converter.find_or_create_categories(wp_article)]
       end
@@ -57,7 +58,7 @@ class Wp25Converter < BaseConverter
     
     converter.import_pages do |wp_page|
       unless wp_page.post_content.blank? || wp_page.post_title.blank?
-        user = wp_page.post_author.nil? ? nil : converter.users[WP25::User.find(wp_page.post_author.to_i).ID]
+        user = wp_page.post_author.nil? ? nil : converter.users[WP25::User.find(wp_page.post_author.to_i).login]
         
         excerpt, body = !wp_page.post_excerpt.blank? ?
           [wp_page.post_excerpt, wp_page.post_content] :

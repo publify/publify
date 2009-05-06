@@ -42,7 +42,7 @@ describe "WordPress 2.5 converter" do
           :post_title => 'A Post',
           :post_excerpt => '',
           :post_content => 'I got something to say!',
-          :post_author => @poster.id
+          :post_author => @poster.ID
         )
       end
       
@@ -50,7 +50,11 @@ describe "WordPress 2.5 converter" do
         lambda { run_converter }.should change(Article, :count).by(1)
       end
       
-      it "assigns the article's author"
+      it "assigns the article's author" do
+        run_converter
+        Article.find(:first, :order => 'created_at DESC').user.login.should ==
+          @poster.user_login
+      end
       
       describe "with a comment" do
         before :each do
