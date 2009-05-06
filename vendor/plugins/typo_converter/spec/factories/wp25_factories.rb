@@ -29,3 +29,12 @@ Factory.define 'WP25/post', :class => WP25::Post do |p|
   p.pinged '' # TODO: ?
   p.post_content_filtered {|p| p.post_content + ' [filtered]'} # TODO: ?
 end
+
+Factory.define 'WP25/comment', :class => WP25::Comment do |c|
+  now = Time.now
+  c.comment_author {|c| c.user ? c.user.display_name : nil}
+  c.comment_date now
+  # TODO: figure out how to handle GMT conversion
+  c.comment_date_gmt {|c| c.comment_date}
+  c.comment_content 'This is my comment.'
+end
