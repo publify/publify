@@ -15,19 +15,34 @@ Factory.define 'WP25/user', :class => WP25::User do |u|
   u.user_registered true
 end
 
-Factory.define 'WP25/post', :class => WP25::Post do |p|
+# Don't use this one, it's just an abstract superclass.
+Factory.define 'WP25/content', :class => WP25::Post do |p|
   now = Time.now
   p.post_date now
   # TODO: figure out how to handle GMT conversion
   p.post_date_gmt {|p| p.post_date }
   p.post_modified {|p| p.post_date }
   p.post_modified_gmt {|p| p.post_modified }
-  p.post_title 'Default Title'
-  p.post_content 'This is default content.'
-  p.post_excerpt ''
   p.to_ping '' # TODO: ?
   p.pinged '' # TODO: ?
   p.post_content_filtered {|p| p.post_content + ' [filtered]'} # TODO: ?
+end
+
+Factory.define 'WP25/post', :parent => 'WP25/content' do |p|
+  p.post_type 'post'
+  p.post_title 'Default Title'
+  p.post_content 'This is default content.'
+  p.post_excerpt 'Default excerpt.'
+end
+
+Factory.sequence(:page) {|n| n} # dur
+
+Factory.define 'WP25/page', :parent => 'WP25/content' do |p|
+  p.post_type 'page'
+  p.post_title 'Default Page Title'
+  p.post_content 'This is default page content.'
+  p.post_excerpt 'Default page excerpt.'
+  p.post_name {|p| "#{Factory.next(:page)}-#{p.post_title.to_url}"}
 end
 
 Factory.define 'WP25/comment', :class => WP25::Comment do |c|

@@ -58,7 +58,7 @@ class Wp25Converter < BaseConverter
     
     converter.import_pages do |wp_page|
       unless wp_page.post_content.blank? || wp_page.post_title.blank?
-        user = wp_page.post_author.nil? ? nil : converter.users[WP25::User.find(wp_page.post_author.to_i).login]
+        user = wp_page.post_author.nil? ? nil : converter.users[WP25::User.find(wp_page.post_author.to_i).user_login]
         
         excerpt, body = !wp_page.post_excerpt.blank? ?
           [wp_page.post_excerpt, wp_page.post_content] :
@@ -71,7 +71,8 @@ class Wp25Converter < BaseConverter
           :created_at   => wp_page.post_date,
           :published_at => wp_page.post_date,
           :updated_at   => wp_page.post_modified,
-          :author       => user
+          :user         => user,
+          :author       => user.login
       end
     end
 

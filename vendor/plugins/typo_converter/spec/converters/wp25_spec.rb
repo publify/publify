@@ -39,9 +39,6 @@ describe "WordPress 2.5 converter" do
       before :each do
         # TODO: figure out if we're handling GMT conversion correctly
         @post = Factory('WP25/post',
-          :post_title => 'A Post',
-          :post_excerpt => '',
-          :post_content => 'I got something to say!',
           :post_author => @poster.ID
         )
       end
@@ -119,9 +116,24 @@ describe "WordPress 2.5 converter" do
     end
     
     describe "and a page" do
-      it "creates a page"
-
-      it "assigns the page's author"
+      before :each do
+        # TODO: figure out if we're handling GMT conversion correctly
+        @page = Factory('WP25/page',
+          :post_author => @poster.ID
+        )
+      end
+      
+      it "creates a page" do
+        lambda { run_converter }.should change(Page, :count).by(1)
+      end
+      
+      it "assigns the page's author" do
+        run_converter
+        @typo_page = Page.find(:first, :order => 'created_at DESC')
+        # NOTE: Page.author is from User.login; Comment.author is from User.name
+        @typo_page.author.should == @poster.user_login
+        @typo_page.user.login.should == @poster.user_login
+      end
     end
   end
   
