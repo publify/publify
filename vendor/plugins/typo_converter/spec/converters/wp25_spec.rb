@@ -7,7 +7,10 @@ describe "WordPress 2.5 converter" do
   before :each do
     # Fixtures aren't being rolled back in the WP DB, so we delete them all before
     # each test. This is a simple hack, but slows things down.
-    [WP25::Option, WP25::User, WP25::Post, WP25::Comment].each do |model_class|
+    [
+      WP25::Option, WP25::User, WP25::Post, WP25::Comment,
+      WP25::Term, WP25::TermTaxonomy, WP25::TermRelationship
+    ].each do |model_class|
       model_class.delete_all
     end
     
@@ -110,9 +113,30 @@ describe "WordPress 2.5 converter" do
         end
       end
       
-      describe "given tags and categories" do
-        it "behaves in a manner to be determined"
-      end 
+      describe "with tags" do
+        before :each do
+          @tag = Factory('WP25/term', :name => 'A Tag')
+          @taxonomy = Factory('WP25/term_taxonomy',
+            :term_id => @tag.term_id,
+            :taxonomy => 'post_tag',
+            :count => 1)
+          @relationship = Factory('WP25/term_relationship',
+            # TODO: use post association
+            :object_id => @post.id,
+            :term_taxonomy => @taxonomy)
+        end
+        
+        it "applies the tags to the created post" do
+          run_converter
+          @article = Article.find(:first, :order => 'created_at DESC')
+          @article.tags.count.should == 1
+          @article.tags.first.name == @tag.name
+        end
+      end
+      
+      describe "with a category" do
+        it "places the created post in the category"
+      end
     end
     
     describe "and a page" do

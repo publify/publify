@@ -53,3 +53,20 @@ Factory.define 'WP25/comment', :class => WP25::Comment do |c|
   c.comment_date_gmt {|c| c.comment_date}
   c.comment_content 'This is my comment.'
 end
+
+Factory.define 'WP25/term', :class => WP25::Term do |t|
+  t.slug {|t| t.name.to_url}
+end
+
+Factory.define 'WP25/tag', :parent => 'WP25/term' do |t|
+  t.name 'A Tag'
+  # TODO: use associations to place tags in the taxonomy
+end
+
+Factory.define 'WP25/term_taxonomy', :class => WP25::TermTaxonomy do |tt|
+  tt.description ''
+end
+
+Factory.define 'WP25/term_relationship', :class => WP25::TermRelationship do |tr|
+  
+end
