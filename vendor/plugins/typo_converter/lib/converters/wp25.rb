@@ -76,11 +76,14 @@ class Wp25Converter < BaseConverter
     end
 
     converter.import_comments do |wp_comment|
+      user = wp_comment.user.nil? ? nil : converter.users[wp_comment.user.user_login]
+
       ::Comment.new \
         :body         => wp_comment.comment_content,
         :created_at   => wp_comment.comment_date,
         :updated_at   => wp_comment.comment_date,
         :published_at => wp_comment.comment_date,
+        :user         => user,
         :author       => wp_comment.comment_author,
         :url          => wp_comment.comment_author_url,
         :email        => wp_comment.comment_author_email,

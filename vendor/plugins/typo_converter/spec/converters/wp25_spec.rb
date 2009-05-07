@@ -52,15 +52,23 @@ describe "WordPress 2.5 converter" do
       
       it "assigns the article's author" do
         run_converter
-        Article.find(:first, :order => 'created_at DESC').user.login.should ==
-          @poster.user_login
+        @article = Article.find(:first, :order => 'created_at DESC')
+        # NOTE: Article.author is from User.login; Comment.author is from User.name
+        @article.author.should == @poster.user_login
+        @article.user.login.should == @poster.user_login
       end
       
-      describe "with a comment" do
+      describe "with an owned comment" do
         before :each do
+          @commenter = Factory('WP25/user',
+            :display_name => 'A. Commenter',
+            :user_email => 'acommenter@notfound.com',
+            :user_login => 'acommenter',
+            :user_pass => 'not a valid password'
+          )
           @comment = Factory('WP25/comment',
             :comment_post_ID => @post.ID,
-            :comment_author => 'Anonymous Commenter'
+            :user => @commenter
           )
         end
         
@@ -68,7 +76,29 @@ describe "WordPress 2.5 converter" do
           lambda { run_converter }.should change(Comment, :count).by(1)
         end
         
-        it "assigns the comment's author"
+        it "assigns the comment's author" do
+          run_converter
+          @typo_comment = Comment.find(:first, :order => 'created_at DESC')
+          # NOTE: Article.author is from User.login; Comment.author is from User.name
+          @typo_comment.author.should == @commenter.display_name
+          @typo_comment.user.login.should == @commenter.user_login
+        end
+      end
+      
+      describe "with an anonymous comment" do
+        before :each do
+          @comment = Factory('WP25/comment',
+            :comment_post_ID => @post.ID,
+            :comment_author => 'Anonymous Commenter'
+          )
+        end
+        
+        it "does not assign the comment's author" do
+          run_converter
+          @typo_comment = Comment.find(:first, :order => 'created_at DESC')
+          @typo_comment.author.should == @comment.comment_author
+          @typo_comment.user.should == nil
+        end
             
         describe "that is spam" do
           it "marks the created comment as spam"
@@ -82,6 +112,8 @@ describe "WordPress 2.5 converter" do
     
     describe "and a page" do
       it "creates a page"
+
+      it "assigns the page's author"
     end
   end
   
