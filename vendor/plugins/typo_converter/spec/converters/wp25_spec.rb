@@ -115,7 +115,7 @@ describe "WordPress 2.5 converter" do
       
       describe "with tags" do
         before :each do
-          @tag = Factory('WP25/term', :name => 'A Tag')
+          @tag = Factory('WP25/tag')
           @taxonomy = Factory('WP25/term_taxonomy',
             :term_id => @tag.term_id,
             :taxonomy => 'post_tag',
@@ -135,7 +135,24 @@ describe "WordPress 2.5 converter" do
       end
       
       describe "with a category" do
-        it "places the created post in the category"
+        before :each do
+          @category = Factory('WP25/category')
+          @taxonomy = Factory('WP25/term_taxonomy',
+            :term_id => @category.term_id,
+            :taxonomy => 'category',
+            :count => 1)
+          @relationship = Factory('WP25/term_relationship',
+            # TODO: use post association
+            :object_id => @post.id,
+            :term_taxonomy => @taxonomy)
+        end
+        
+        it "places the created post in the category" do
+          run_converter
+          @article = Article.find(:first, :order => 'created_at DESC')
+          @article.categories.count.should == 1
+          @article.categories.first.name == @category.name
+        end
       end
     end
     

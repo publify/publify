@@ -63,6 +63,11 @@ Factory.define 'WP25/tag', :parent => 'WP25/term' do |t|
   # TODO: use associations to place tags in the taxonomy
 end
 
+Factory.define 'WP25/category', :parent => 'WP25/term' do |t|
+  t.name 'A Category'
+  # TODO: use associations to place categories in the taxonomy
+end
+
 Factory.define 'WP25/term_taxonomy', :class => WP25::TermTaxonomy do |tt|
   tt.description ''
 end
