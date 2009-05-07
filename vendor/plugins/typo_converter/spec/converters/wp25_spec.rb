@@ -101,7 +101,15 @@ describe "WordPress 2.5 converter" do
         end
             
         describe "that is spam" do
-          it "marks the created comment as spam"
+          before :each do
+            @comment.update_attribute(:comment_approved, 'spam')
+          end
+          
+          it "marks the created comment as spam" do
+            run_converter
+            @typo_comment = Comment.find(:first, :order => 'created_at DESC')
+            @typo_comment.should be_spam
+          end
         end
       end
       
