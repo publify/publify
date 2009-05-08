@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text    "meta_value", :limit => 2147483647
   end
 
-  add_index "wp_usermeta", ["meta_key"], :name => "meta_key"
+  add_index "wp_usermeta", ["meta_key"], :name => "usermeta_meta_key"
   add_index "wp_usermeta", ["user_id"], :name => "user_id"
 
   create_table "wp_users", :primary_key => "ID", :force => true do |t|
