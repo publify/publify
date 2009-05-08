@@ -52,8 +52,7 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "wp_links", ["link_category"], :name => "link_category"
   add_index "wp_links", ["link_visible"], :name => "link_visible"
 
-  create_table "wp_options", :id => false, :force => true do |t|
-    t.integer "option_id",    :limit => 8,                             :null => false
+  create_table "wp_options", :primary_key => "option_id", :force => true do |t|
     t.integer "blog_id",                            :default => 0,     :null => false
     t.string  "option_name",  :limit => 64,         :default => "",    :null => false
     t.text    "option_value", :limit => 2147483647,                    :null => false
