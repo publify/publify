@@ -50,7 +50,6 @@ class ApplicationController < ActionController::Base
     if !session
       session :session => new
     end
-    CachedModel.cache_reset
     @current_user = nil
   end
 

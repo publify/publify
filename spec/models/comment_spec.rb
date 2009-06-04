@@ -11,10 +11,6 @@ describe Comment do
                 :ip => '1.2.3.4'}.merge(options))
   end
 
-  before(:each) do
-    CachedModel.cache_reset
-  end
-
   describe '#permalink_url' do
     it 'should render permalink to comment in public part' do
       c = feedback(:old_comment)

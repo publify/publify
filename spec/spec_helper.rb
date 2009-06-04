@@ -15,7 +15,6 @@ Spec::Runner.configure do |config|
         tags text_filters triggers users }
 
   config.before(:each) do
-    CachedModel.cache_reset
     Localization.lang = :default
   end
 

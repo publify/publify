@@ -22,7 +22,6 @@ class Test::Unit::TestCase
     yield(STARTED, name)
     @_result = result
     begin
-      CachedModel.cache_reset
       setup
       __send__(@method_name)
     rescue Test::Unit::AssertionFailedError => e

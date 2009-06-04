@@ -17,7 +17,6 @@ describe 'ArticlesController' do
     IPSocket.stub!(:getaddress).and_return do
       raise SocketError.new("getaddrinfo: Name or service not known")
     end
-    CachedModel.cache_reset
     controller.send(:reset_blog_ids)
   end
 

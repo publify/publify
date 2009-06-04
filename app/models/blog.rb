@@ -15,7 +15,7 @@ end
 #
 # Typo decides which Blog object to use by searching for a Blog base_url that
 # matches the base_url computed for each request.
-class Blog < CachedModel
+class Blog < ActiveRecord::Base
   include ConfigManager
   extend ActiveSupport::Memoizable
 
