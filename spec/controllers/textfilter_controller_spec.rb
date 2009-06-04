@@ -31,14 +31,6 @@ describe TextfilterController do
     @whiteboard = nil
   end
 
-  def sparklines_available
-    begin
-      Plugins::Textfilters::SparklineController
-    rescue NameError
-      false
-    end
-  end
-
   def test_unknown
     text = filter_text('*foo*',[:unknowndoesnotexist])
     assert_equal '*foo*', text
@@ -89,51 +81,6 @@ describe TextfilterController do
       filter_text('<typo:flickr img="notaflickrid" />',
         [:macropre, :macropost],
         { 'flickr-user' => 'scott@sigkill.org' })
-  end
-
-  def test_sparkline
-    return unless sparklines_available
-
-    tag = filter_text('<typo:sparkline foo="bar"/>',[:macropre,:macropost])
-    # url_for returns query params in hash order, which isn't stable, so we can't just compare
-    # with a static string.  Yuck.
-    assert tag =~ %r{^<img  src="http://test.host/plugins/filters/sparkline/plot\?(data=|foo=bar|&)+"/>$}
-
-    assert_equal "<img  title=\"aaa\" src=\"http://test.host/plugins/filters/sparkline/plot?data=\"/>",
-      filter_text('<typo:sparkline title="aaa"/>',[:macropre,:macropost])
-
-    assert_equal "<img  style=\"bbb\" src=\"http://test.host/plugins/filters/sparkline/plot?data=\"/>",
-      filter_text('<typo:sparkline style="bbb"/>',[:macropre,:macropost])
-
-    tag = filter_text('<typo:sparkline alt="ccc"/>',[:macropre,:macropost])
-    assert_tag_in tag, :tag => 'img', :attributes => {
-        'alt' => 'ccc',
-        'src' => URI.parse('http://test.host/plugins/filters/sparkline/plot?data=')
-    }, :children => { :count => 0 }
-
-    tag = filter_text('<typo:sparkline type="smooth" data="1 2 3 4"/>',[:macropre,:macropost])
-    assert_tag_in tag, :tag => 'img', :attributes => {
-        'src' => URI.parse('http://test.host/plugins/filters/sparkline/plot?data=1%2C2%2C3%2C4&type=smooth')
-    }, :children => { :count => 0 }
-
-    assert_equal "<img  src=\"http://test.host/plugins/filters/sparkline/plot?data=1%2C2%2C3%2C4%2C5%2C6\"/>",
-      filter_text('<typo:sparkline>1 2 3 4 5 6</typo:sparkline>',[:macropre,:macropost])
-  end
-
-  def test_sparkline_plot
-    return unless sparklines_available
-
-    get 'public_action', :filter => 'sparkline', :public_action => 'plot', :data => '1,2,3'
-    assert_response :success
-
-    get 'public_action', :filter => 'sparkline', :public_action => 'plot2', :data => '1,2,3'
-    assert_response :missing
-
-    get 'public_action', :filter => 'sparkline', :public_action => 'plot', :data => '1,2,3', :type => 'smooth'
-    assert_response :success
-
-    get 'public_action', :filter => 'sparkline', :public_action => 'plot', :data => '1,2,3', :type => 'instance_methods'
-    assert_response :error
   end
 
   describe 'code textfilter' do

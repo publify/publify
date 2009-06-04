@@ -41,7 +41,6 @@ Rails::Initializer.run do |config|
     vendor/bluecloth/lib
     vendor/flickr
     vendor/gems/coderay
-    vendor/sparklines/lib
     vendor/uuidtools/lib
     vendor/mocha/lib
     vendor/rails/railties
