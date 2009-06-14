@@ -114,4 +114,9 @@ class GroupingController < ContentController
     @noindex = 1 unless params[:page].blank?
   end
 
+  def template_exists?(path = default_template_name)
+    self.view_paths.find_template(path, response.template.template_format)
+  rescue ActionView::MissingTemplate
+    false
+  end
 end
