@@ -204,7 +204,7 @@ class Content < ActiveRecord::Base
     elsif self.class.html_map(field)
       generate_html(field)
     else
-      raise "Unknown field: #{field.inspect} in article.html"
+      raise "Unknown field: #{field.inspect} in content.html"
     end
   end
 

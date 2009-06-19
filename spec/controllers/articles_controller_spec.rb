@@ -55,7 +55,7 @@ describe 'ArticlesController' do
 
   describe '#search action' do
 
-    describe 'a valid research' do
+    describe 'a valid search' do
       before :each do
         get 'search', :q => 'a'
       end
