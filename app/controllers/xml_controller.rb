@@ -22,12 +22,12 @@ class XmlController < ApplicationController
     when 'feed'
       redirect_to :controller => 'articles', :action => 'index', :format => @format, :status => 301
     when 'comments'
-      head :moved_permanently, :location => formatted_admin_comments_url(@format)
+      head :moved_permanently, :location => admin_comments_url(:format => @format)
     when 'article'
       head :moved_permanently, :location => Article.find(params[:id]).permalink_by_format(@format)
     when 'category', 'tag', 'author'
       head :moved_permanently, \
-        :location => self.send("formatted_#{params[:type]}_url", params[:id], @format)
+        :location => self.send("#{params[:type]}_url", params[:id], :format => @format)
     else
       @items = Array.new
       @blog = this_blog

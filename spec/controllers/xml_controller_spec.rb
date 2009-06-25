@@ -99,7 +99,7 @@ describe XmlController do
   def test_feed_rss20_comments
     get :feed, :format => 'rss20', :type => 'comments'
     assert_response :moved_permanently
-    assert_moved_permanently_to formatted_admin_comments_url(:rss)
+    assert_moved_permanently_to admin_comments_url(:format=>:rss)
   end
 
   def test_feed_rss20_trackbacks
@@ -117,12 +117,12 @@ describe XmlController do
 
   def test_feed_rss20_category
     get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
-    assert_moved_permanently_to(formatted_category_url('personal', 'rss'))
+    assert_moved_permanently_to(category_url('personal', :format => 'rss'))
   end
 
   def test_feed_rss20_tag
     get :feed, :format => 'rss20', :type => 'tag', :id => 'foo'
-    assert_moved_permanently_to(formatted_tag_url('foo', 'rss'))
+    assert_moved_permanently_to(tag_url('foo', :format=>'rss'))
   end
 
   def test_feed_atom10_feed
@@ -134,7 +134,7 @@ describe XmlController do
   def test_feed_atom10_comments
     get :feed, :format => 'atom10', :type => 'comments'
     assert_response :moved_permanently
-    assert_moved_permanently_to formatted_admin_comments_url('atom')
+    assert_moved_permanently_to admin_comments_url(:format=>'atom')
   end
 
   def test_feed_atom10_trackbacks
@@ -166,12 +166,12 @@ describe XmlController do
 
   def test_feed_atom10_category
     get :feed, :format => 'atom10', :type => 'category', :id => 'personal'
-    assert_moved_permanently_to(formatted_category_url('personal', 'atom'))
+    assert_moved_permanently_to(category_url('personal', :format => 'atom'))
   end
 
   def test_feed_atom10_tag
     get :feed, :format => 'atom10', :type => 'tag', :id => 'foo'
-    assert_moved_permanently_to(formatted_tag_url('foo', 'atom'))
+    assert_moved_permanently_to(tag_url('foo',:format => 'atom'))
   end
 
   def test_articlerss
