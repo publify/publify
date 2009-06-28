@@ -45,7 +45,7 @@
 #  - make a kickass demo, including autocompleting-ajax photo lookup ala http://mir.aculo.us/images/autocomplete1.mov
 
 require 'cgi'
-require 'net/http'
+require 'open-uri'
 
 # Flickr client class. Requires an API key, and optionally takes an email and password for authentication
 class Flickr
@@ -78,7 +78,7 @@ class Flickr
   
   # Does an HTTP GET on a given URL and returns the response body
   def http_get(url)
-    Net::HTTP.get_response(URI.parse(url)).body.to_s
+    open(URI.parse(url)) {|h| h.read }
   end
 
   # Stores authentication credentials to use on all subsequent calls.
@@ -318,7 +318,7 @@ class Flickr
 
     # Returns the photo file data itself, in any specified size. Example: File.open(photo.title, 'w') { |f| f.puts photo.file }
     def file(size='Medium')
-      Net::HTTP.get_response(URI.parse(source(size))).body
+      open(URI.parse(source(size))) {|h| h.read }
     end
 
     # Unique filename for the image, based on the Flickr NSID
