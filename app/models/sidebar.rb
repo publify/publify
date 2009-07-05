@@ -74,8 +74,8 @@ class Sidebar < ActiveRecord::Base
 
     class CheckBoxField < self
       def input_html(sidebar)
-        check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)+
-        hidden_field_tag(input_name(sidebar),0)
+        hidden_field_tag(input_name(sidebar),0)+
+        check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)
       end
 
       def line_html(sidebar)

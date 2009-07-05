@@ -11,7 +11,7 @@
 
 <div class="list">
   <% form_tag({:action => 'bulkops'}, :method => :post) do %>
-  <%= render :partial => 'button' %>
+  <%= render :partial => 'button', :locals => { :position => 'top' } %>
 
   <%= hidden_field_tag "search", params[:search]%>
   <%= hidden_field_tag "page", params[:page]%>
@@ -31,7 +31,7 @@
     <tr><td class="paginate" colspan="9"><%= will_paginate @feedback %></td></tr>
   </table>
 
-  <%= render :partial => 'button' %>
+  <%= render :partial => 'button', :locals => { :position => 'bottom' } %>
   <% end %>
 </div>
 

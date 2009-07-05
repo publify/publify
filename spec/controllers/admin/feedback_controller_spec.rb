@@ -296,7 +296,7 @@ describe Admin::FeedbackController do
     describe '#bulkops action' do
 
       before :each do
-        post :bulkops, :bulkop => 'Delete all spam'
+        post :bulkops, :bulkop_top => 'Delete all spam'
       end
 
       it 'should redirect to action' do
