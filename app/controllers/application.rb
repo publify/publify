@@ -53,13 +53,8 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
-  # Axe?
   def server_url
     this_blog.base_url
-  end
-
-  def cache
-    $cache ||= SimpleCache.new 1.hour
   end
 
   # The Blog object for the blog that matches the current request.  This is looked
