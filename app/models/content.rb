@@ -310,7 +310,7 @@ class Content < ActiveRecord::Base
   end
 
   def rss_description(xml)
-    if respond_to?(:user) && self.user.name
+    if respond_to?(:user) && && self.user && self.user.name
       rss_desc = "<hr /><p><small>#{_('Original article writen by')} #{self.user.name} #{_('and published on')} <a href='#{blog.base_url}'>#{blog.blog_name}</a> | <a href='#{self.permalink_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{blog.base_url}'>#{blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}.</small></p>"
     else
       rss_desc = ""
