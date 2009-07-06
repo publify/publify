@@ -8,13 +8,13 @@
 		<legend><%= _("Write")%></legend>
 		<ul>
 		    <li>
-            <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
+            <label class="float" for="text_filter"><%= _("Article filter")%></label>
             <select name="setting[text_filter]" id="text_filter">
               <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.text_filter) %>
             </select>
         </li>
         <li>
-            <label for="comment_text_filter" class="float"><%= _("Comments filter")%>:</label>
+            <label for="comment_text_filter" class="float"><%= _("Comments filter")%></label>
             <select name="setting[comment_text_filter]" id="comment_text_filter">
             <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
             </select>
@@ -29,16 +29,16 @@
               <%= _("When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%>
           </li>
           <li class="checkbox">
-            <label class="float" for="send_outbound_pings"><%= _("Send trackbacks")%>:</label>
+            <label class="float" for="send_outbound_pings"><%= _("Send trackbacks")%></label>
             <input name="setting[send_outbound_pings]" id="send_outbound_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.send_outbound_pings%> />
            <input name="setting[send_outbound_pings]" type="hidden" value="0" />
           </li>
           <li>
-              <label class="float" for="ping_urls"><%= _("URLs to ping automatically")%>:</label>
+              <label class="float" for="ping_urls"><%= _("URLs to ping automatically")%></label>
               <textarea name="setting[ping_urls]" id="ping_urls" rows="5" cols="50"><%=h this_blog.ping_urls %></textarea>
           </li>
           <li>
-              <label class="float" for="geourl_location"><%= _("Latitude, Longitude")%>:</label>
+              <label class="float" for="geourl_location"><%= _("Latitude, Longitude")%></label>
               <input name="setting[geourl_location]" size="20" id="geourl_location" type="text" value="<%= this_blog.geourl_location %>" />
               <span class="float"><%= _("Display")%> <a href="http://geourl.org"><%= _("your lattitude and longitude")%></a> (<%= _("exemple")%> <tt>47.774,-122.201</tt>)</span>
           </li>
@@ -51,33 +51,33 @@
     <ul>
       <li><%= _("The below settings act as defaults when you choose to publish an enclosure with iTunes metadata")%>.</li>
       <li>
-        <label for="itunes_author" class="float"><%= _("Author")%>:</label>
+        <label for="itunes_author" class="float"><%= _("Author")%></label>
         <input name="setting[itunes_author]" size="25" id="itunes_author" type="text" value="<%= this_blog.itunes_author %>" />
       </li>
       <li>
-        <label for="itunes_subtitle" class="float"><%= _("Subtitle")%>: <span class="mandatory">*</span></label>
+        <label for="itunes_subtitle" class="float"><%= _("Subtitle")%> <span class="mandatory">*</span></label>
         <input name="setting[itunes_subtitle]" size="25" id="itunes_subtitle" type="text" value="<%= this_blog.itunes_subtitle %>" />
       </li>
       <li>
-        <label class="float" for="itunes_summary"><%= _("Summary")%>: <span class="mandatory">*</span></label>
+        <label class="float" for="itunes_summary"><%= _("Summary")%> <span class="mandatory">*</span></label>
         <textarea name="setting[itunes_summary]" cols="40" rows="3"><%=h this_blog.itunes_summary %></textarea>
         <span class="float mandatory">* <%= _("Setting for channel")%></span>
       </li>
       <li>
-        <label class="float" for="itunes_email"><%= _("Email")%>: <span class="mandatory">**</span></label>
+        <label class="float" for="itunes_email"><%= _("Email")%> <span class="mandatory">**</span></label>
         <input name="setting[itunes_email]" size="25" id="itunes_email" type="text" value="<%= this_blog.itunes_email %>" />
       </li>
       <li>
-        <label class="float" for="itunes_name"><%= _("Optional Name")%>: <span class="mandatory">**</span></label>
+        <label class="float" for="itunes_name"><%= _("Optional Name")%> <span class="mandatory">**</span></label>
         <input name="setting[itunes_name]" size="25" id="itunes_name" type="text" value="<%= this_blog.itunes_name %>" />
         <span class="float mandatory">** <%= _("Not published by Apple")%></span>
       </li>
       <li>
-        <label class="float" for="itunes_copyright"><%= _("Copyright Information")%>:</label>
+        <label class="float" for="itunes_copyright"><%= _("Copyright Information")%></label>
         <input name="setting[itunes_copyright]" size="25" id="itunes_copyright" type="text" value="<%= this_blog.itunes_copyright %>" />
       </li>
       <li class="checkbox">
-        <label class="float" for="itunes_explicit"><%= _("Explicit")%>:</label>
+        <label class="float" for="itunes_explicit"><%= _("Explicit")%></label>
         <input name="setting[itunes_explicit]" id="itunes_explicit" type="checkbox"  value="1" <%= 'checked="checked"' if this_blog.itunes_explicit%> />
         <input name="setting[itunes_explicit]" type="hidden" value="0" />
       </li>

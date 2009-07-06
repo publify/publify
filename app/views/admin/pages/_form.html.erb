@@ -9,9 +9,9 @@
     <div style="float: right; width: 230px;">
       <label class="block content"><%= _("Options") %></label>
       <p class="paginate r" id="saveblock">
-          <label for="page_name"><%= _("Permalink")%>:</label><br />
+          <label for="page_name"><%= _("Permalink")%></label><br />
           <%= text_field 'page', 'name', :size => 25  %><br />
-          <label for="page_published"><%= _("Online")%>:</label>
+          <label for="page_published"><%= _("Online")%></label>
           <%= check_box 'page', 'published'  %><br />
         <%= link_to_destroy_with_profiles @page%>
         <%= save( _("Publish") + " &raquo;") %>
@@ -43,7 +43,7 @@
     </label>
     <ul id="publishing_options" <%= "style='display: none;'" if @page.published.blank? %>>
       <li>
-          <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
+          <label class="float" for="text_filter"><%= _("Article filter")%></label>
           <select name="page[text_filter]" id="text_filter">
             <%= options_for_select text_filter_options, @page.text_filter %>
           </select>

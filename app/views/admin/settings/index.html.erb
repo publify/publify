@@ -8,26 +8,26 @@
     <legend><%= _("Your blog")%></legend>
     <ul>
       <li>
-        <label for="blog_name" class="float"><%= _("Blog name")%>:</label>
+        <label for="blog_name" class="float"><%= _("Blog name")%></label>
         <input name="setting[blog_name]" id="blog_name" type="text" value="<%=h this_blog.blog_name %>" size="<%= this_blog.blog_name.length %>" />
       </li>
       <li>
-        <label class="float" for="blog_subtitle"><%= _("Blog subtitle")%>:</label>
+        <label class="float" for="blog_subtitle"><%= _("Blog subtitle")%></label>
         <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h this_blog.blog_subtitle %>" size="<%= this_blog.blog_subtitle.length%>" />
       </li>
       <li>
-        <label class="float" for="base_url"><%= _("Blog URL")%>:</label>
+        <label class="float" for="base_url"><%= _("Blog URL")%></label>
         <input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" size="<%= this_blog.base_url.length %> " />
       </li>
       <li>
-        <label class="float" for="lang"><%= _("Language")%>:</label>
+        <label class="float" for="lang"><%= _("Language")%></label>
         <select name="setting[lang]">
           <%= fetch_langs %>
         </select>
       </li>
       <li><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</li>
       <li>
-        <label class="float" for="allow_signup"><%= _("Allow users to register")%>:</label>
+        <label class="float" for="allow_signup"><%= _("Allow users to register")%></label>
         <input type="radio" name="setting[allow_signup]" value="0" id="allow_signup_0" <%= 'checked="checked"' if this_blog.allow_signup == 0 %>/>
         <label for="allow_signup_0"><%= _("No")%></label>
         <span class="float">
@@ -36,7 +36,7 @@
         </span>
       </li>
       <li>
-        <label class="float" for="admin_display_elements"><%= _("Items to display in admin lists")%>:</label>
+        <label class="float" for="admin_display_elements"><%= _("Items to display in admin lists")%></label>
         <input name="setting[admin_display_elements]" id="admin_display_elements" type="text" value="<%=h this_blog.admin_display_elements %>" size="4" />
       </li>
 
@@ -47,7 +47,7 @@
     <legend><%= _("Cache")%></legend>
     <ul>
       <li>
-        <label class="float"><%= _("Sweep cache")%>:</label>
+        <label class="float"><%= _("Sweep cache")%></label>
         <%= link_to _("Sweep cache"), { :controller => "admin/cache",    :action => "sweep_html" } %>
       </li>
     </ul>

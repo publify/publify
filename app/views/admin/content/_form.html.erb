@@ -14,11 +14,11 @@
         <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
       </div>
       <p class='paginate r' id='saveblock'>
-          <label for="article_allow_comments"><%= _("Allow comments") %>: </label>
+          <label for="article_allow_comments"><%= _("Allow comments") %></label>
           <%= check_box 'article', 'allow_comments'  %><br />
-          <label for="article_allow_pings"><%= _("Allow trackbacks")%>: </label>
+          <label for="article_allow_pings"><%= _("Allow trackbacks")%></label>
           <%= check_box 'article', 'allow_pings'  %><br />
-          <label for="article_published"><%= _("Published")%>:</label>
+          <label for="article_published"><%= _("Published")%></label>
           <%= check_box 'article', 'published'  %><br />
         <%= link_to_destroy_draft @article %>
         <input class="submit" type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
@@ -80,7 +80,7 @@
     </label>
     <ul id="publishing_options" <%= "style='display: none;'" unless @article.published.blank? %>>
       <li>
-        <label class="float"><%= _("Publish at")%>:</label>
+        <label class="float"><%= _("Publish at")%></label>
         <%= calendar_date_select 'article', 'published_at' %>
       </li>
       <li>
@@ -88,7 +88,7 @@
         <span id="permalink"><%= text_field 'article', 'permalink' %></span>
       </li>
       <li>
-          <label class="float" for="text_filter"><%= _("Article filter")%>:</label>
+          <label class="float" for="text_filter"><%= _("Article filter")%></label>
           <select name="article[text_filter]" id="text_filter">
             <%= options_for_select text_filter_options, @article.text_filter %>
           </select>
