@@ -57,11 +57,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  def confirm
-    @password = session[:tmppass]
-#    session[:tmppass] = nil
-  end
-
   def logout
     flash[:notice]  = _("Successfully logged out")
     self.current_user.forget_me

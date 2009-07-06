@@ -185,11 +185,6 @@ class Blog < ActiveRecord::Base
     "#{base_url}/files/#{filename}"
   end
 
-  # The base server URL.
-  def server_url
-    base_url
-  end
-
   def requested_article(params)
     Article.find_by_params_hash(params)
   end

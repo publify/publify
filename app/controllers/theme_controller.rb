@@ -60,7 +60,5 @@ class ThemeController < ContentController
       'application/binary'
     end
   end
-
-
 end
 

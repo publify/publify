@@ -116,12 +116,6 @@ class ArticlesController < ContentController
     end
   end
   
-  alias_method :rescue_action_in_public, :error
-
-  def render_error(object = '', status = 500)
-    render(:text => (object.errors.full_messages.join(", ") rescue object.to_s), :status => status)
-  end
-
   def set_headers
     headers["Content-Type"] = "text/html; charset=utf-8"
   end

@@ -21,8 +21,6 @@ class ApplicationController < ActionController::Base
       cache_page_without_log_page(content, path)
       CacheInformation.create(:path => page_cache_file(path))
     end
-    alias_method_chain :cache_page, :log_page
-
   end
 
   protected
@@ -51,10 +49,6 @@ class ApplicationController < ActionController::Base
       session :session => new
     end
     @current_user = nil
-  end
-
-  def server_url
-    this_blog.base_url
   end
 
   # The Blog object for the blog that matches the current request.  This is looked
