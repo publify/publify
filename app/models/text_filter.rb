@@ -70,11 +70,6 @@ class TextFilter < ActiveRecord::Base
       [:macropre, markup, :macropost, filters].flatten, params)
   end
 
-  def filter(text)
-    typo_deprecated "What does this do?"
-    self.class.filter(text,self.filters,self.params)
-  end
-
   def help
     filter_map = TextFilter.filters_map
     filter_types = TextFilter.available_filter_types

@@ -15,10 +15,6 @@ class Trackback < Feedback
 
   before_create :process_trackback
 
-  def make_nofollow
-    typo_deprecated 'Do it via postprocessing.'
-  end
-
   def process_trackback
     if excerpt.length >= 251
       # this limits excerpt to 250 chars, including the trailing "..."

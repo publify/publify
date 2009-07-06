@@ -68,52 +68,6 @@ module ApplicationHelper
       ''
     end
   end
-  
-  # Deprecated helpers
-  typo_deprecate :server_url_for => :url_for
-
-  def config_value(name)
-    typo_deprecated "Use this_blog.#{name} instead."
-    this_blog.send(name)
-  end
-
-  def config
-    typo_deprecated "Use this_blog.configname instead of config[:configname]"
-    raise "Unimplemented"
-  end
-
-  def item_link(title, item, anchor=nil)
-    typo_deprecated "Use link_to_permalink instead of item_link"
-    link_to_permalink(item, title, anchor)
-  end
-
-  alias_method :article_link,     :item_link
-  alias_method :page_link,        :item_link
-  alias_method :comment_url_link, :item_link
-
-  def url_of(item, only_path=true, anchor=nil)
-    typo_deprecated "Use item.permalink_url instead"
-    item.permalink_url
-  end
-
-  alias_method :trackback_url, :url_of
-  alias_method :comment_url,   :url_of
-  alias_method :article_url,   :url_of
-  alias_method :page_url,      :url_of
-
-  def html(content, what = :all, deprecated = false)
-    if deprecated
-      msg = "use html(#{content.class.to_s.underscore}" + ((what == :all) ? "" : ", #{what.inspect}") + ")"
-      typo_deprecated(msg)
-    end
-
-    content.html(what)
-  end
-
-  def strip_html(text)
-    typo_deprecated "use text.strip_html"
-    text.strip_html
-  end
 
   def onhover_show_admin_tools(type, id = nil)
     tag = []
@@ -149,6 +103,11 @@ module ApplicationHelper
       ? "#{this_blog.blog_name} : #{@page_title}" \
       : this_blog.blog_name
   end
+
+  def html(content, what = :all, deprecated = false)
+    content.html(what)
+  end
+
 
   def author_link(article)
     if this_blog.link_to_author and article.user and article.user.email.to_s.size>0

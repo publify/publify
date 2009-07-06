@@ -10,8 +10,6 @@ RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 # need this early for plugins
-require 'typo_deprecated'
-
 class Rails::Configuration
   attr_accessor :action_web_service
 end

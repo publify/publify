@@ -378,22 +378,12 @@ class Article < Content
     self[:body]
   end
 
-  def body_html
-    typo_deprecated "Use html(:body)"
-    html(:body)
-  end
-
   def extended=(newval)
     if self[:extended] != newval
       changed if published?
       self[:extended] = newval
     end
     self[:extended]
-  end
-
-  def extended_html
-    typo_deprecated "Use html(:extended)"
-    html(:extended)
   end
 
   def self.html_map(field=nil)

@@ -16,8 +16,6 @@ class Page < Content
     eval(list_function.join('.'))
   end
 
-  typo_deprecate :location => :permalink_url
-  
   def permalink_url(anchor=nil, only_path=true)
     blog.url_for(
       :controller => '/articles',

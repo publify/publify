@@ -67,7 +67,6 @@ class Content < ActiveRecord::Base
         end
         unless self.method_defined?("#{field}_html")
           define_method("#{field}_html") do
-            typo_deprecated "Use html(:#{field})"
             html(field.to_sym)
           end
         end
@@ -338,13 +337,6 @@ class Content < ActiveRecord::Base
     xml.content(:type => 'xhtml') do
       xml.div(:xmlns => 'http://www.w3.org/1999/xhtml') { xml << html(:all) }
     end
-  end
-
-
-  # deprecated
-  def full_html
-    typo_deprecated "use .html instead"
-    html
   end
 end
 
