@@ -58,7 +58,8 @@ Rails::Initializer.run do |config|
   config.gem 'json'
   config.gem 'calendar_date_select'
   config.gem 'bluecloth', :version => '~> 2.0.0'
-
+  config.gem 'coderay', :version => '~> 0.8'
+  
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake create_sessions_table')
   config.action_controller.session_store = :active_record_store
