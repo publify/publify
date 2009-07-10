@@ -7,7 +7,7 @@ describe 'Given a new test theme' do
 
   it 'layout path should be "../../themes/test/layouts/default.html.erb"'  do
     @theme.layout('index').should == "../../themes/test/layouts/default.html.erb"
-  end
+  end  
 end
 
 describe 'Given a the default theme' do
