@@ -200,7 +200,7 @@ module Admin::BaseHelper
       result << "<tr #{alternate_class}>"
       result << "<td>#{macro_help_popup macro, macro.display_name}</td>"
       result << "<td>#{h macro.description}</td>"
-      result << "<td><code>&lt;typo:#{h macro.short_name}gt;</code></td>"
+      result << "<td><code>&lt;typo:#{h macro.short_name}&gt;</code></td>"
       result << "</tr>"
     end
     result << "</table>"
