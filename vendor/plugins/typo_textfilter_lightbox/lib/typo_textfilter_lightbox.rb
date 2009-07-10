@@ -68,6 +68,8 @@ Common attributes:
         caption       = attrib['caption']
         title         = attrib['title']
         alt           = attrib['alt']
+        thumburl      = ''
+        displayurl    = ''
 
         img           = attrib['img']
         if img
@@ -91,8 +93,8 @@ Common attributes:
           title ||= flickrimage.title
           alt ||= title
         else
-          thumburl = attrib['thumbsrc']
-          displayurl = attrib['src']
+          thumburl = attrib['thumbsrc'] unless attrib['thumbsrc'].nil?
+          displayurl = attrib['src'] unless attrib['src'].nil?
 
           if thumburl.empty?
             thumburl = displayurl
