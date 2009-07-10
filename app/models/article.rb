@@ -108,16 +108,8 @@ class Article < Content
     o
   }
 
-  def permalink
-    if read_attribute(:permalink)
-      CGI.escape(read_attribute(:permalink))
-    else
-      nil
-    end
-  end
-
   def stripped_title
-    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
+    CGI.escape(self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
   end
 
   def year_url
@@ -280,7 +272,7 @@ class Article < Content
     date_range = self.time_delta(params[:year], params[:month], params[:day])
     req_params = {}
     if params[:title]
-      req_params[:permalink] = params[:title]
+      req_params[:permalink] = CGI.escape(params[:title].tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
     end
 
     if date_range
