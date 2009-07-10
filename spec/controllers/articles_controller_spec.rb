@@ -148,7 +148,7 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("_rss20_feed")
-    response.should have_tag('link', 'http://test.host/articles.rss')
+    response.should have_tag('link', 'http://myblog.net')
   end
 
   def scoped_getter

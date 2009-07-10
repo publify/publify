@@ -5,8 +5,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
         "xmlns:trackback" => "http://madskills.com/public/xml/rss/module/trackback/" do
   xml.channel do
     xml.title feed_title
-    xml.link @auto_discovery_url_rss
-    xml.language "en-us"
+    xml.link this_blog.base_url
+    xml.language this_blog.lang
     xml.ttl "40"
     xml.description this_blog.blog_subtitle
 
