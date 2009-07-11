@@ -2,7 +2,7 @@
   <label for="q"><%= @sidebar.title %></label>
 </h3>
 <% form_tag({:controller => 'articles',  :action => 'search'}, {:method => 'get', :id => 'sform'}) do %>
-  <input type="text" id="live_search" name="q" value="" size="15" />
+  <%= text_field_tag :q, '', {:id => "live_search", :size => 15, :autocomplete => "off"} %>
   <%= image_tag "spinner-blue.gif", :id => 'search_spinner', :style => 'display:none;' %>
 <% end %>
 <%= observe_field "live_search", :frequency => 1,
