@@ -109,7 +109,7 @@ class Article < Content
   }
 
   def stripped_title
-    escape_stripped_title_url(self.title)
+    CGI.escape(self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
   end
 
   def year_url
@@ -272,7 +272,7 @@ class Article < Content
     date_range = self.time_delta(params[:year], params[:month], params[:day])
     req_params = {}
     if params[:title]
-      req_params[:permalink] = escape_stripped_title_url(params[:title])
+      req_params[:permalink] = params[:title]
     end
 
     if date_range
@@ -566,9 +566,5 @@ class Article < Content
       fu.article_id = nil
       fu.save
     end
-  end
-
-  def escape_stripped_title_url(title)
-    CGI.escape(title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
   end
 end
