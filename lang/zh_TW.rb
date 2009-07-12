@@ -44,7 +44,7 @@ Localization.define('zh_TW') do |l|
   l.store "No comments yet", "沒有任何評論"
   
   # app/views/admin/dashboard/_comments.html.erb
-  l.store "Last Comments", "最近評論"
+  l.store "Latest Comments", "最近評論"
   l.store "No comments yet", "沒有任何評論"
   l.store "by %s on %s", "由%s在%s"
 
@@ -55,10 +55,10 @@ Localization.define('zh_TW') do |l|
   l.store "You have no internet connection", "你沒有連結到網路"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s , %s or %s.", "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%s， %s或%s"
-  l.store "Update your profile or change your password", "更新資料或者修改密碼"
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%s， %s或%s"
+  l.store "update your profile or change your password", "更新資料或者修改密碼"
   l.store "You can also do a bit of design, %s or %s.", "你也可以作一些設計, %s或%s."
-  l.store "Change your blog presentation", "修改你的部落格外觀"
+  l.store "change your blog presentation", "修改你的部落格外觀"
   l.store "enable plugins", "啟動plugins"
   l.store "write a post", "寫一篇文章"
   l.store "write a page", "寫一個頁面"
@@ -68,7 +68,7 @@ Localization.define('zh_TW') do |l|
   l.store "Nothing to show yet", "還沒有東西"
 
   # app/views/admin/dashboard/_posts.html.erb
-  l.store "Last posts", "最近發文"
+  l.store "Latest posts", "最近發文"
   l.store "No posts yet, why don't you start and write one", "你還沒有發文"
 
   # app/views/admin/dashboard/_sysinfo.html.erb
@@ -81,7 +81,7 @@ Localization.define('zh_TW') do |l|
   l.store "Spam comments : %d", "垃圾評論：%d"
 
   # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Last news from Typo development blog", "Typo開發部落格的最新消息"
+  l.store "Latest news from the Typo development blog", "Typo開發部落格的最新消息"
   l.store "Oh no, nothing new", "沒有新訊息"
   
   # admin/dashboard/_overview.html.erb
