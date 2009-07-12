@@ -91,7 +91,7 @@ ActionController::Routing::Routes.draw do |map|
     map.connect "#{i}/:action/:id", :controller => i, :id => nil
   end
 
-  %w{advanced blacklist cache categories comments content feedback general pages
+  %w{advanced blacklist cache categories comments content profiles feedback general pages
      resources sidebar textfilters themes trackbacks users settings tags }.each do |i|
     map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil

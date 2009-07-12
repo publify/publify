@@ -3,11 +3,7 @@ class Admin::UsersController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    if current_user.admin?
-      @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => this_blog.admin_display_elements
-    else
-      redirect_to :action => 'edit'
-    end
+    @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => this_blog.admin_display_elements
   end
 
   def new
@@ -22,16 +18,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
-    if current_user.admin?
-      @user = User.find_by_id(params[:id])
-    else
-      if params[:id] and params[:id].to_i != current_user[:id]
-        flash[:error] = _("Error, you are not allowed to perform this action")
-      end
-    end
-    if @user.nil?
-      @user = current_user
-    end
+    @user = User.find_by_id(params[:id])
+
     setup_profiles
     @user.attributes = params[:user]
     if request.post? and @user.save

@@ -1,0 +1,6 @@
+  <% @page_heading = _('Your profile') %>
+  <% form_tag :action=>"index", :id => @user.id do %>
+
+  <%= render :partial => "admin/users/form" %>
+
+  <% end %>

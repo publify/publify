@@ -131,6 +131,11 @@ module Admin::BaseHelper
   def class_settings
     controller.controller_name  =~ /settings|textfilter/ ? "current right" : "right"
   end
+  
+  def class_profile
+    controller.controller_name  =~ /profiles/ ? "current right" : "right"
+  end
+  
 
   def t_textarea(object_name, method, options)
     return fckeditor_textarea(object_name, method, options) if current_user.editor == 'visual'

@@ -45,6 +45,6 @@ describe AuthorsController do
     get 'show', :id => 'tobi', :format => 'rss'
     response.should be_success
     response.should render_template("articles/_rss20_feed")
-    response.should have_tag('link', 'http://test.host/author/tobi.rss')
+    response.should have_tag('link', 'http://myblog.net')
   end
 end

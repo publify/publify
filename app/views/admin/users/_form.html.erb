@@ -27,7 +27,7 @@
   <fieldset>
     <legend><%= _("Blog settings")%></legend>
     <ul>
-      <% if current_user.admin? %>
+      <% if controller.controller_name == 'users' %>
       <li>
       	<label class="float" for="user_profile"><%= _("Profile")%></label>
       	<%=  select("user", "profile_id", @profiles.collect {|p| [ _(p.nicename), p.id ] }, { :include_blank => true }) %>

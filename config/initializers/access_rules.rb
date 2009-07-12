@@ -95,5 +95,13 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "SEO",                   { :controller => "admin/settings", :action => "seo" }
     project.submenu "Blacklist",             { :controller => "admin/blacklist", :action => "index" }
     project.submenu "Users",                 { :controller => "admin/users", :action => "index" }
+    project.submenu "",                 { :controller => "admin/users", :action => "show" }
+    project.submenu "",                 { :controller => "admin/users", :action => "new" }
+    project.submenu "",                 { :controller => "admin/users", :action => "edit" }
+    project.submenu "",                 { :controller => "admin/users", :action => "destroy" }
   end    
+  
+  map.project_module :profile, "admin/profiles" do |project|
+    project.menu    "Profile",                 { :action => "index" }
+  end
 end

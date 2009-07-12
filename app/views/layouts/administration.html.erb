@@ -21,8 +21,6 @@
         <% for pm in current_user.project_modules %>
           <%= content_tag :li, (link_to _(pm.human_name), pm.menus.first.url), :class => send("class_#{pm.name}") %>
         <% end %>
-        <li class="right"><%= link_to _('Profile'), :controller => '/admin/users', :action => 'edit', :id => current_user.id %></li>
-
       </ul>
     </div>
     <% if not @_render_stack.first =~ /login|signup|logout/ %>
