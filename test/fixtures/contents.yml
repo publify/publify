@@ -163,7 +163,7 @@ xmltest:
 markdown_article:
   type: Article
   title: How made link with markdown
-  body: "in markdown format\n * we\n * use\n [ok](http://blog.ok.com) to define a link"
+  body: "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link"
   extended: extended content
   allow_comments: true
   allow_pings: true
