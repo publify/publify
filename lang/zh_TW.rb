@@ -42,6 +42,50 @@ Localization.define('zh_TW') do |l|
   l.store "Most popular", "人氣文章"
   l.store "Typo documentation", "Typo文件"
   l.store "No comments yet", "沒有任何評論"
+  
+  # app/views/admin/dashboard/_comments.html.erb
+  l.store "Last Comments", "最近評論"
+  l.store "No comments yet", "沒有任何評論"
+  l.store "by %s on %s", "由%s在%s"
+
+  # app/views/admin/dashboard/_inbound.html.erb
+  l.store "Inbound links", "導入連結"
+  l.store "No one made a link to you yet", "目前沒有人連結到你"
+  l.store " made a link to you saying ", "連結到你，並且說"
+  l.store "You have no internet connection", "你沒有連結到網路"
+
+  # app/views/admin/dashboard/_overview.html.erb
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s , %s or %s.", "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%s， %s或%s"
+  l.store "Update your profile or change your password", "更新資料或者修改密碼"
+  l.store "You can also do a bit of design, %s or %s.", "你也可以作一些設計, %s或%s."
+  l.store "Change your blog presentation", "修改你的部落格外觀"
+  l.store "enable plugins", "啟動plugins"
+  l.store "write a post", "寫一篇文章"
+  l.store "write a page", "寫一個頁面"
+
+  # app/views/admin/dashboard/_popular.html.erb
+  l.store "Most popular", "最受歡迎"
+  l.store "Nothing to show yet", "還沒有東西"
+
+  # app/views/admin/dashboard/_posts.html.erb
+  l.store "Last posts", "最近發文"
+  l.store "No posts yet, why don't you start and write one", "你還沒有發文"
+
+  # app/views/admin/dashboard/_sysinfo.html.erb
+  l.store "System information", "系統資訊"
+  l.store "You're running Typo %s", "你現在是使用Typo %s"
+  l.store "Statistics", "統計資訊"
+  l.store "Total posts : %d", "發文總計：%d"
+  l.store "Your posts : %d", "你的發文：%d"
+  l.store "Total comments : %d", "評論總計：%d"
+  l.store "Spam comments : %d", "垃圾評論：%d"
+
+  # app/views/admin/dashboard/_typo_dev.html.erb
+  l.store "Last news from Typo development blog", "Typo開發部落格的最新消息"
+  l.store "Oh no, nothing new", "沒有新訊息"
+  
+  # admin/dashboard/_overview.html.erb
+  l.store "Welcome back, %s!", "歡迎回來， %s！"
 
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "最近評論"
