@@ -1,6 +1,14 @@
 class CleanupContentsTable < ActiveRecord::Migration
   def self.up
-    remove_index(:contents, :article_id) rescue nil
+    if adapter_name == 'PostgreSQL'
+      indexes(:contents).each do |index|
+        if index.name =~ /article_id/
+          remove_index(:contents, :name => index.name)
+        end
+      end
+    else
+      remove_index :contents, :article_id rescue nil
+    end
 
     remove_column :contents, :article_id rescue nil
     remove_column :contents, :email 

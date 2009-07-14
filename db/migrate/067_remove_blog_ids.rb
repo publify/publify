@@ -1,6 +1,14 @@
 class RemoveBlogIds < ActiveRecord::Migration
   def self.up
-    remove_index :contents, :blog_id rescue nil
+    if adapter_name == 'PostgreSQL'
+      indexes(:contents).each do |index|
+        if index.name =~ /blog_id/
+          remove_index(:contents, :name => index.name)
+        end
+      end
+    else
+      remove_index :contents, :blog_id rescue nil
+    end
     remove_column :contents, :blog_id 
     remove_column :sidebars, :blog_id 
     remove_column :feedback, :blog_id 

@@ -4,11 +4,7 @@ class MoveEditorAsString < ActiveRecord::Migration
     add_column :users, :editor, :string, :default => 'simple'
     
     unless $schema_generator
-      users = User.find(:all)
-      users.each do |user|
-        user.editor = 'simple'
-        user.save!
-      end
+      User.update_all("editor = 'simple'")
     end
     
   end

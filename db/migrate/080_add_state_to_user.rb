@@ -3,11 +3,7 @@ class AddStateToUser < ActiveRecord::Migration
     add_column :users, :state, :string, :default => 'active'
     
     unless $schema_generator
-      users = User.find(:all)
-      users.each do |user|
-        user.state = 'active'
-        user.save!
-      end
+      User.update_all("state = 'active'")
     end
     
   end
