@@ -13,7 +13,7 @@ class PageCache
 
   # Delete all file save in path_cache by page_cache system
   def self.sweep_all
-    if ActiveRecord::Base.connection.table_exists?(:cache_information)
+    if ActiveRecord::Base.connection.table_exists?(:cache_informations)
       CacheInformation.all.each{|c| c.destroy}
     else
       logger.debug "PageCache - OOOOPS table is missing"
