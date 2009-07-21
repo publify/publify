@@ -3,7 +3,7 @@ module ArticlesHelper
     if params[:action] == 'search'
       url_for(:only_path => false,:format => :atom, :q => params[:q])
     else
-      super
+      @auto_discovery_url_atom
     end
   end
 
@@ -11,7 +11,7 @@ module ArticlesHelper
     if params[:action] == 'search'
       url_for(:only_path => false,:format => :rss, :q => params[:q])
     else
-      super
+      @auto_discovery_url_rss
     end
   end
 end
