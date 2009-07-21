@@ -109,7 +109,7 @@ class ArticlesController < ContentController
   end
   
   def send_feed(format)
-    if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"][/Feedburner/i] 
+    if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
       render :partial => "articles/#{format}_feed", :object => @articles
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
