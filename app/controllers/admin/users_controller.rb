@@ -18,7 +18,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
-    @user = User.find_by_id(params[:id])
+    @user = params[:id] ? User.find_by_id(params[:id]) : current_user
 
     setup_profiles
     @user.attributes = params[:user]

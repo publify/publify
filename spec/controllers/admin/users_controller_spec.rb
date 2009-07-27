@@ -29,27 +29,44 @@ describe Admin::UsersController, "rough port of the old functional test" do
       response.should redirect_to(:action => 'index')
     end
 
-    def test_edit
-      user_id = users(:tobi).id
-      get :edit, :id => user_id
-      assert_template 'edit'
-      assert_valid assigns(:user)
+    describe '#EDIT action' do
+      describe 'with POST request' do
+        before do
+          post :edit, :id => users(:tobi).id, :user => { :login => 'errand',
+            :email => 'corey@test.com', :password => 'testpass',
+            :password_confirmation => 'testpass' }
+        end
+        it 'should redirect to index' do
+          response.should redirect_to(:action => 'index')
+        end
+      end
 
-      post :edit, :id => user_id, :user => { :login => 'errand',
-        :email => 'corey@test.com', :password => 'testpass',
-        :password_confirmation => 'testpass' }
-      response.should redirect_to(:action => 'index')
-    end
+      describe 'with GET request' do
+        describe 'edit admin render', :shared => true do
+          it 'should render template edit' do
+            assert_template 'edit'
+          end
 
-    it 'should edit himself if no params[:id]' do
-      get :edit
-      assert_template 'edit'
-      assert_valid assigns(:user)
+          it 'should assigns tobi user' do
+            assert_valid assigns(:user)
+            assigns(:user).should == users(:tobi)
+          end
+        end
+        describe 'with no id params' do
+          before do
+            get :edit
+          end
+          it_should_behave_like 'edit admin render'
+        end
 
-      post :edit, :user => { :login => 'errand',
-        :email => 'corey@test.com', :password => 'testpass',
-        :password_confirmation => 'testpass' }
-      response.should redirect_to(:action => 'index')
+        describe 'with id params' do
+          before do
+            get :edit, :id => users(:tobi).id
+          end
+          it_should_behave_like 'edit admin render'
+        end
+
+      end
     end
 
     def test_destroy
@@ -76,11 +93,22 @@ describe Admin::UsersController, "rough port of the old functional test" do
       response.should redirect_to('/accounts/login')
     end
 
-    it 'try update another user' do
-      post :edit, :id => users(:tobi).id, :profile_id => profiles(:contributor).id
-      response.should redirect_to('/accounts/login')
-      u = users(:tobi).reload
-      u.profile_id.should == profiles(:admin).id
+    describe 'EDIT Action' do
+
+      describe 'try update another user' do
+        before do
+          post :edit,
+            :id => users(:tobi).id,
+            :profile_id => profiles(:contributor).id
+        end
+        it 'should redirect to login' do
+          response.should redirect_to('/accounts/login')
+        end
+        it 'should not change user profile' do
+          u = users(:tobi).reload
+          u.profile_id.should == profiles(:admin).id
+        end
+      end
     end
   end
 end
