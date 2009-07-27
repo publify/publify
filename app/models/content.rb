@@ -21,7 +21,20 @@ class Content < ActiveRecord::Base
 
   has_many :triggers, :as => :pending_item, :dependent => :delete_all
 
-  named_scope :published_at_like, lambda {|date_at| {:conditions => ['published_at LIKE ? ', "%#{date_at}%"]}}
+  named_scope :published_at_like, lambda {|date_at| {:conditions => {
+    :published_at => (
+      if date_at =~ /\d{4}-\d{2}-\d{2}/
+        DateTime.strptime(date_at, '%Y-%m-%d').beginning_of_day..DateTime.strptime(date_at, '%Y-%m-%d').end_of_day
+      elsif date_at =~ /\d{4}-\d{2}/
+        DateTime.strptime(date_at, '%Y-%m').beginning_of_month..DateTime.strptime(date_at, '%Y-%m').end_of_month
+      elsif date_at =~ /\d{4}/
+        DateTime.strptime(date_at, '%Y').beginning_of_year..DateTime.strptime(date_at, '%Y').end_of_year
+      else
+        date_at
+      end
+    )}
+  }
+  }
   named_scope :user_id, lambda {|user_id| {:conditions => ['user_id = ?', user_id]}}
   named_scope :published, {:conditions => ['published = ?', true]}
   named_scope :order, lambda {|order_by| {:order => order_by}}

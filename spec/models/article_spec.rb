@@ -425,6 +425,7 @@ describe Article do
       @article_2_last_month = Factory(:article, :published_at => 1.month.ago)
 
       @article_two_month_ago = Factory(:article, :published_at => 2.month.ago)
+      @article_2_two_month_ago = Factory(:article, :published_at => (2.month.ago - 1.day))
       @article_two_year_ago = Factory(:article, :published_at => 2.year.ago)
       @article_2_two_year_ago = Factory(:article, :published_at => 2.year.ago)
     end
