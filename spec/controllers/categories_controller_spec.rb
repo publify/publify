@@ -44,11 +44,12 @@ describe CategoriesController, '/articles/category/personal' do
     response.should be_success
   end
 
-  it 'should call Category.find_by_permalink' do
+  it 'should raise ActiveRecord::RecordNotFound' do
     Category.should_receive(:find_by_permalink) \
-      .with('personal') \
-      .and_return(mock('category', :null_object => true))
-    do_get
+      .with('personal').and_raise(ActiveRecord::RecordNotFound)
+    lambda do
+      do_get
+    end.should raise_error(ActiveRecord::RecordNotFound)
   end
 
   it 'should render :show by default' do
@@ -59,9 +60,10 @@ describe CategoriesController, '/articles/category/personal' do
   it 'should fall back to rendering articles/index' do
     controller.should_receive(:template_exists?) \
       .with() \
-      .and_return(false)
-    do_get
-    response.should render_template('articles/index')
+      .and_raise(ActiveRecord::RecordNotFound)
+    lambda do
+      do_get
+    end.should raise_error(ActiveRecord::RecordNotFound)
   end
 
   it 'should show only published articles' do

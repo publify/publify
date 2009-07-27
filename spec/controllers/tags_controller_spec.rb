@@ -65,8 +65,10 @@ describe TagsController, '/articles/tag/foo' do
   it 'should call Tag.find_by_permalink' do
     Tag.should_receive(:find_by_permalink) \
       .with('foo') \
-      .and_return(mock('tag', :null_object => true))
-    do_get
+      .and_raise(ActiveRecord::RecordNotFound)
+    lambda do
+      do_get
+    end.should raise_error(ActiveRecord::RecordNotFound)
   end
 
   it 'should render :show by default' do
