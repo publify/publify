@@ -1,8 +1,26 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Article do
+
+
   before do
     @articles = []
+  end
+
+  describe 'Factory Girl' do
+    it 'should article factory valid' do
+      Factory(:article).should be_valid
+      Factory.build(:article).should be_valid
+    end
+    it 'should second_article factory valid' do
+      Factory(:second_article).should be_valid
+      Factory.build(:second_article).should be_valid
+
+    end
+    it 'should article_with_accent_in_html' do
+      Factory(:article_with_accent_in_html).should be_valid
+      Factory.build(:article_with_accent_in_html).should be_valid
+    end
   end
 
   def assert_results_are(*expected)
@@ -399,5 +417,28 @@ describe Article do
     assert_equal(true, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
+  end
+
+  describe '#published_at_like' do
+    before do
+      @article_last_month = Factory(:article, :published_at => 1.month.ago)
+      @article_2_last_month = Factory(:article, :published_at => 1.month.ago)
+
+      @article_two_month_ago = Factory(:article, :published_at => 2.month.ago)
+      @article_two_year_ago = Factory(:article, :published_at => 2.year.ago)
+      @article_2_two_year_ago = Factory(:article, :published_at => 2.year.ago)
+    end
+
+    it 'should return all content on this year if year send' do
+      Article.published_at_like(2.year.ago.strftime('%Y')).map(&:id).sort.should == [@article_two_year_ago.id, @article_2_two_year_ago.id].sort
+    end
+
+    it 'should return all content on this month if month send' do
+      Article.published_at_like(1.month.ago.strftime('%Y-%m')).map(&:id).sort.should == [@article_last_month.id, @article_2_last_month.id].sort
+    end
+
+    it 'should return all content on this date if date send' do
+      Article.published_at_like(2.month.ago.strftime('%Y-%m-%d')).map(&:id).sort.should == [@article_two_month_ago.id].sort
+    end
   end
 end
