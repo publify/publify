@@ -10,16 +10,24 @@ describe Admin::PagesController do
     request.session = { :user => users(:tobi).id }
   end
 
-  def test_index
-    get :index
-    assert_response :success
-    assert_template "index"
 
-    assert_not_nil assigns(:pages)
-    #assert_equal Page.count, assigns(:pages).size
+  describe '#index' do
 
-    assert_not_nil assigns(:page)
-    assert_equal TextFilter.find_by_name(this_blog.text_filter), assigns(:page).text_filter
+
+    it 'should response success' do
+      get :index
+      response.should be_success
+      assert_template 'index'
+      assert_not_nil assigns(:pages)
+    end
+
+    it 'should response success with :page args' do
+      get :index, :page => 1
+      response.should be_success
+      assert_template 'index'
+      assert_not_nil assigns(:pages)
+    end
+
   end
 
   def test_show
