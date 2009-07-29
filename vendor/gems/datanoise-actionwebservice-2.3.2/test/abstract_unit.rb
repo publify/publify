@@ -4,7 +4,9 @@ require 'rubygems'
 require 'test/unit'
 require 'action_web_service'
 require 'action_controller'
-require 'action_controller/test_process'
+require 'action_controller/test_case'
+require 'action_view'
+require 'action_view/test_case'
 
 # Show backtraces for deprecated behavior for quicker cleanup.
 ActiveSupport::Deprecation.debug = true
@@ -14,6 +16,7 @@ ActiveRecord::Base.logger = ActionController::Base.logger = Logger.new("debug.lo
 
 begin
   require 'activerecord'
+  require "active_record/test_case"
   require "active_record/fixtures" unless Object.const_defined?(:Fixtures)
 rescue LoadError => e
   fail "\nFailed to load activerecord: #{e}"
@@ -30,4 +33,7 @@ ActiveRecord::Base.configurations = {
 
 ActiveRecord::Base.establish_connection 'mysql'
 
-Test::Unit::TestCase.fixture_path = "#{File.dirname(__FILE__)}/fixtures/"
+class ActiveSupport::TestCase
+  include ActiveRecord::TestFixtures
+  self.fixture_path = "#{File.dirname(__FILE__)}/fixtures/"
+end

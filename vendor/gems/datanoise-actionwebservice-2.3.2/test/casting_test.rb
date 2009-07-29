@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/abstract_unit'
 
 module CastingTest
+  class A < ActionWebService::Struct; end
+  class B < A; end
   class API < ActionWebService::API::Base
     api_method :int,       :expects => [:int]
     api_method :str,       :expects => [:string]
@@ -14,6 +16,8 @@ module CastingTest
     api_method :int_array,   :expects => [[:int]]
     api_method :str_array,   :expects => [[:string]]
     api_method :bool_array,  :expects => [[:bool]]
+    
+    api_method :a, :expects => [A]
   end
 end
 
@@ -77,6 +81,10 @@ class TC_Casting < Test::Unit::TestCase
     assert_raises ArgumentError do
       cast_expects(:int_array, ['1', '2.021', '4'])
     end
+  end
+  
+  def test_structured_type_casting_with_polymorphism
+    assert cast_expects(:a, B.new)[0].is_a?(B)
   end
 
   private

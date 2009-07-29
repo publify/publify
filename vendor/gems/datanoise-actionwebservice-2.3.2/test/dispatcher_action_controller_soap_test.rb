@@ -129,7 +129,8 @@ class TC_DispatcherActionControllerSoap < Test::Unit::TestCase
     end
 
     def ensure_valid_wsdl_action(controller)
-      test_request = ActionController::TestRequest.new({ 'action' => 'wsdl' })
+      test_request = ActionController::TestRequest.new
+      test_request.action = 'wsdl'
       test_response = ActionController::TestResponse.new
       wsdl = controller.process(test_request, test_response).body
       ensure_valid_wsdl(controller, wsdl, DispatcherTest::WsdlNamespace)

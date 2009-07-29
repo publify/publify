@@ -358,7 +358,7 @@ module DispatcherCommonTests
         response = ActionController::TestResponse.new
         controller.process(request, response)
         # puts response.body
-        assert(response.headers['Status'] =~ /^500/)
+        assert(response.status =~ /^500/)
       end
       send_garbage_request.call
       controller.class.web_service_exception_reporting = false
@@ -538,7 +538,8 @@ module DispatcherCommonTests
     
     def http_method_allowed?(method)
       method = method.to_s.upcase
-      test_request = ActionController::TestRequest.new({ 'action' => 'api' })
+      test_request = ActionController::TestRequest.new
+      test_request.action = 'api'
       test_response = ActionController::TestResponse.new
       test_request.env['REQUEST_METHOD'] = method
       result = @direct_controller.process(test_request, test_response)

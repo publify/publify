@@ -47,7 +47,7 @@ Rails::Initializer.run do |config|
     vendor/rails/activesupport/lib
     vendor/rails/activerecord/lib
     vendor/rails/actionmailer/lib
-    vendor/actionwebservice/lib
+    vendor/gems/datanoise-actionwebservice-2.3.2/lib
     app/apis
   ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
 

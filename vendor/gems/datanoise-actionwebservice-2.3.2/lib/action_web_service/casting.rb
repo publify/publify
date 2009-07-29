@@ -117,8 +117,13 @@ module ActionWebService # :nodoc:
 
         def cast_to_structured_type(value, signature_type) # :nodoc:
           obj = nil
-          obj = value if canonical_type(value.class) == canonical_type(signature_type.type)
-          obj ||= signature_type.type_class.new
+          # if the canonical classes are the same or if the given value is of 
+          # a type that is derived from the signature_type do not attempt to 
+          # "cast" the value into the signature_type as it's already good to go
+          obj = (
+            canonical_type(value.class) == canonical_type(signature_type.type) or 
+            derived_from?(signature_type.type, value.class)
+          ) ? value : signature_type.type_class.new
           if value.respond_to?(:each_pair)
             klass = signature_type.type_class
             value.each_pair do |name, val|

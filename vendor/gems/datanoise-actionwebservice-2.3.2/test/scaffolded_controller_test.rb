@@ -64,12 +64,12 @@ class ScaffoldedController < ActionController::Base
   end
 end
 
-class ScaffoldedControllerTest < Test::Unit::TestCase
-  def setup
-    @controller = ScaffoldedController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
+class ScaffoldedControllerTest < ActionController::TestCase
+  # def setup
+  #   @controller = ScaffoldedController.new
+  #   @request    = ActionController::TestRequest.new
+  #   @response   = ActionController::TestResponse.new
+  # end
 
   def test_scaffold_invoke
     get :scaffold_invoke

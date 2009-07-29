@@ -69,7 +69,7 @@ module ActionWebService
                 post_params = params['method_params'] ? params['method_params'].dup : nil
                 params = []
                 @scaffold_method.expects.each_with_index do |spec, i|
-                  params << post_params[i.to_s]                                            
+                  params << post_params[i.to_s]
                 end if @scaffold_method.expects
                 params = @scaffold_method.cast_expects(params)
                 method_name = public_method_name(@scaffold_service.name, @scaffold_method.public_name)
@@ -106,9 +106,9 @@ module ActionWebService
             def render_invocation_scaffold(action)
               customized_template = "\#{self.class.controller_path}/#{action_name}/\#{action}"
               default_template = scaffold_path(action)
-              if template_exists?(customized_template)
+              begin
                 content = @template.render(:file => customized_template)
-              else
+              rescue ActionView::MissingTemplate
                 content = @template.render(:file => default_template)
               end
               @template.instance_variable_set("@content_for_layout", content)
@@ -125,7 +125,7 @@ module ActionWebService
 
             def reset_invocation_response
               erase_render_results
-              response.headers = ::ActionController::AbstractResponse::DEFAULT_HEADERS.merge("cookie" => [])
+              response.instance_variable_set :@header, Rack::Utils::HeaderHash.new(::ActionController::Response::DEFAULT_HEADERS.merge("cookie" => []))
             end
 
             def public_method_name(service_name, method_name)

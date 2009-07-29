@@ -12,7 +12,7 @@ module APITest
   end
 end
 
-class TC_API < Test::Unit::TestCase
+class TC_API < ActiveSupport::TestCase
   API = APITest::API
 
   def test_api_method_declaration

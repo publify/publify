@@ -34,7 +34,7 @@ module BaseTest
   end
 end
 
-class TC_Base < Test::Unit::TestCase
+class TC_Base < ActiveSupport::TestCase
   def test_options
     assert(BaseTest::PristineService.web_service_api.inflect_names == false)
     assert(BaseTest::Service.web_service_api.inflect_names == true)

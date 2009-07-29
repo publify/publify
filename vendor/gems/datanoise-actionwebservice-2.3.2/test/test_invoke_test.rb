@@ -49,7 +49,7 @@ class TestInvokeLayeredController < TestController
   web_service(:two) { @service_two ||= TestInvokeService.new }
 end
 
-class TestInvokeTest < Test::Unit::TestCase
+class TestInvokeTest < ActiveSupport::TestCase
   def setup
     @request  = ActionController::TestRequest.new
     @response = ActionController::TestResponse.new

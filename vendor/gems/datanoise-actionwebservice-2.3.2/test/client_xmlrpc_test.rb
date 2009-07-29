@@ -42,7 +42,7 @@ module ClientXmlRpcTest
   end
 end
 
-class TC_ClientXmlRpc < Test::Unit::TestCase
+class TC_ClientXmlRpc < ActiveSupport::TestCase
   include ClientTest
   include ClientXmlRpcTest
   

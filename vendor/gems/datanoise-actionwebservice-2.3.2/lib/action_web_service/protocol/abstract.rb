@@ -12,7 +12,7 @@ module ActionWebService # :nodoc:
 
       def encode_action_pack_request(service_name, public_method_name, raw_body, options={})
         klass = options[:request_class] || SimpleActionPackRequest
-        request = klass.new
+        request = klass.new({})
         request.request_parameters['action'] = service_name.to_s
         request.env['RAW_POST_DATA'] = raw_body
         request.env['REQUEST_METHOD'] = 'POST'
@@ -71,9 +71,9 @@ module ActionWebService # :nodoc:
       end
     end
 
-    class SimpleActionPackRequest < ActionController::AbstractRequest # :nodoc:
-      def initialize
-        @env = {}
+    class SimpleActionPackRequest < ActionController::Request # :nodoc:
+      def initialize(env = {})
+        @env = env
         @qparams = {}
         @rparams = {}
         @cookies = {}
