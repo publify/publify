@@ -2,7 +2,7 @@
 # Likewise will all the methods added be available for all controllers.
 class ApplicationController < ActionController::Base
   include ::LoginSystem
-  protect_from_forgery :secret => '1c8b953667056f1a3c324d6b369f6158', :only => [:edit, :update, :delete]
+  protect_from_forgery :only => [:edit, :update, :delete]
   
   before_filter :reset_local_cache, :fire_triggers, :load_lang
   after_filter :reset_local_cache
