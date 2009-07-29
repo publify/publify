@@ -36,7 +36,7 @@ Rails::Initializer.run do |config|
     vendor/rubypants
     vendor/akismet
     vendor/redcloth/lib
-    vendor/bluecloth/lib
+    vendor/gems/bluecloth-2.0.5/lib
     vendor/flickr
     vendor/gems/coderay
     vendor/uuidtools/lib
@@ -57,7 +57,7 @@ Rails::Initializer.run do |config|
   config.gem 'htmlentities'
   config.gem 'json'
   config.gem 'calendar_date_select'
-  config.gem 'bluecloth', :version => '~> 2.0.0'
+  config.gem 'bluecloth', :version => '~> 2.0.5'
   config.gem 'coderay', :version => '~> 0.8'
   
   # Use the database for sessions instead of the file system
