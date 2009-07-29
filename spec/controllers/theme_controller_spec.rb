@@ -11,14 +11,15 @@ describe ThemeController do
   def test_stylesheets
     get :stylesheets, :filename => "style.css"
     assert_response :success
-    assert_equal "text/css; charset=utf-8", @response.headers['type']
+    assert_equal "text/css", @response.content_type
+    assert_equal "utf-8", @response.charset
     assert_equal "inline; filename=\"style.css\"", @response.headers['Content-Disposition']
   end
 
   def test_images
     get :images, :filename => "bg_white.png"
     assert_response :success
-    assert_equal "image/png", @response.headers['type']
+    assert_equal "image/png", @response.content_type
     assert_equal "inline; filename=\"bg_white.png\"", @response.headers['Content-Disposition']
   end
 
@@ -37,7 +38,7 @@ describe ThemeController do
   def disabled_test_javascript
     get :stylesheets, :filename => "typo.js"
     assert_response :success
-    assert_equal "text/javascript", @response.headers['type']
+    assert_equal "text/javascript", @response.content_type
     assert_equal "inline; filename=\"typo.js\"", @response.headers['Content-Disposition']
   end
 end
