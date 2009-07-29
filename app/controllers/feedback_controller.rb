@@ -1,7 +1,6 @@
 class FeedbackController < ApplicationController
   helper :theme
 
-  session :new_session => false
   before_filter :get_article, :only => [:create]
 
   cache_sweeper :blog_sweeper
