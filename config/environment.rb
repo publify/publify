@@ -13,7 +13,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 class Rails::Configuration
   attr_accessor :action_web_service
 end
-
 Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use
   config.frameworks -= [ :active_resource ]
@@ -30,7 +29,7 @@ Rails::Initializer.run do |config|
   # I need the localization plugin to load first
   # Otherwise, I can't localize plugins <= localization
   # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
-  config.plugins = [ 'localization', :all ]
+  config.plugins = [ :localization, :all ]
   
   config.load_paths += %W(
     vendor/rubypants
@@ -38,9 +37,7 @@ Rails::Initializer.run do |config|
     vendor/redcloth/lib
     vendor/gems/bluecloth-2.0.5/lib
     vendor/flickr
-    vendor/gems/coderay
     vendor/uuidtools/lib
-    vendor/mocha/lib
     vendor/rails/railties
     vendor/rails/railties/lib
     vendor/rails/actionpack/lib
@@ -71,7 +68,6 @@ end
 
 # Load included libraries.
 require 'rubypants'
-#require 'flickr'
 require 'uuidtools'
 
 require 'migrator'
