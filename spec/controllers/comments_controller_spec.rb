@@ -38,19 +38,19 @@ describe "General Comment Creation", :shared => true do
 
   it "should set an author cookie" do
     make_the_request
-    cookies["author"].should == ['bob']
+    cookies["author"].should == 'bob'
   end
 
   it "should set a gravatar_id cookie" do
     make_the_request(:body => 'content', :author => 'bob',
                      :email => 'bob@home', :url => 'http://bobs.home/')
-    cookies["gravatar_id"].should == [Digest::MD5.hexdigest('bob@home')]
+    cookies["gravatar_id"].should == Digest::MD5.hexdigest('bob@home')
   end
 
   it "should set a url cookie" do
     make_the_request(:body => 'content', :author => 'bob',
                      :email => 'bob@home', :url => 'http://bobs.home/')
-    cookies["url"].should == ['http://bobs.home/']
+    cookies["url"].should == 'http://bobs.home/'
   end
 
   it "should create a comment" do

@@ -24,7 +24,7 @@ describe 'A successfully authenticated login' do
 
   it 'sets typo_user_profile cookie' do
     make_request
-    cookies[:typo_user_profile].should == ['admin']
+    cookies[:typo_user_profile].should == 'admin'
   end
 
   it 'redirects to /bogus/location' do
@@ -261,7 +261,7 @@ describe 'User is logged in' do
   it 'logging out deletes cookies containing credentials' do
     @user.should_receive(:forget_me)
     get 'logout'
-    cookies[:auth_token].should == []
-    cookies[:typo_user_profile].should == []
+    cookies[:auth_token].should == nil
+    cookies[:typo_user_profile].should == nil
   end
 end
