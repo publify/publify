@@ -24,3 +24,6 @@ Factory.define :article_with_accent_in_html, :parent => :article do |a|
   a.permalink 'article-with-accent'
   a.published_at Time.now - 2.seconds
 end
+
+Factory.define :blog do |b|
+end
