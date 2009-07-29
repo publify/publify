@@ -8,7 +8,7 @@ $TESTING = true
 
 User.salt = 'change-me'
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase
   self.use_transactional_fixtures = true
 
   # Instantiated fixtures are slow, but give you @david where you otherwise would need people(:david)
