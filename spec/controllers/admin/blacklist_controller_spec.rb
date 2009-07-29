@@ -34,7 +34,7 @@ describe Admin::BlacklistController do
     get :edit, 'id' => blacklist_patterns(:first_blacklist_pattern).id
     assert_template 'edit'
     assert_template_has('blacklist_pattern')
-    assert_valid assigns(:blacklist_pattern)
+    assert assigns(:blacklist_pattern).valid?
   end
 
   def test_update

@@ -48,7 +48,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
           end
 
           it 'should assigns tobi user' do
-            assert_valid assigns(:user)
+            assert assigns(:user).valid?
             assigns(:user).should == users(:tobi)
           end
         end
@@ -73,7 +73,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       user_count = User.count
       get :destroy, :id => users(:bob).id
       assert_template 'destroy'
-      assert_valid assigns(:user)
+      assert assigns(:user).valid?
 
       assert_equal user_count, User.count
       post :destroy, :id => users(:bob).id

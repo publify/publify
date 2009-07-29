@@ -31,7 +31,7 @@ describe Admin::CategoriesController do
     get :edit, :id => categories(:software).id
     assert_template 'new'
     assert_template_has 'category'
-    assert_valid assigns(:category)
+    assert assigns(:category).valid?
   end
 
   def test_update

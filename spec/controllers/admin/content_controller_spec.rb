@@ -256,8 +256,8 @@ describe Admin::ContentController do
         get :resource_remove, :id => art_id, :resource_id => resources(:resource1).id
 
         response.should render_template('_show_resources')
-        assert_valid assigns(:article)
-        assert_valid assigns(:resource)
+        assert assigns(:article).valid?
+        assert assigns(:resource).valid?
         assert !Article.find(art_id).resources.include?(resources(:resource1))
         assert_not_nil assigns(:article)
         assert_not_nil assigns(:resource)
