@@ -85,6 +85,23 @@ describe 'User is inactive' do
   
 end
 
+describe 'Login with nil user and password' do
+  controller_name :accounts
+
+  before(:each) do
+    User.stub!(:count).and_return(1)
+  end
+  
+  def make_request
+   post 'login', {:user_login => nil, :password => nil}
+  end
+
+  it 'should render login action' do
+    make_request
+    response.should render_template(:login)
+  end
+end
+
 describe 'Login gets the wrong password' do
   controller_name :accounts
 
