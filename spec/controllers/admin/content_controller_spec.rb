@@ -53,12 +53,12 @@ describe Admin::ContentController do
     
     it 'should render _simple_editor' do
       get(:insert_editor, :editor => 'simple')
-      response.should render_template('simple_editor')
+      response.should render_template('_simple_editor')
     end
 
     it 'should render _visual_editor' do
       get(:insert_editor, :editor => 'visual')
-      response.should render_template('visual_editor')
+      response.should render_template('_visual_editor')
     end
 
   end
