@@ -34,7 +34,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("rails-app-installer", ">= 0.2.0")
   s.add_dependency("ruby-debug", ">= 0.10.3")
   s.add_dependency("flexmock", ">= 0.8.3")
-  s.add_dependency("rspec-rails", "= 1.1.11")
+  s.add_dependency("rspec-rails", "= 1.2.7.1")
 end
 
 Rake::GemPackageTask.new(spec) do |p|
