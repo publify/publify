@@ -43,3 +43,9 @@ Factory.define :profile_contributor, :class => :profile do |l|
   l.nicename 'Contributor'
   l.modules [:dashboard, :profile]
 end
+
+Factory.define :category do |c|
+  c.name 'SoftwareFactory'
+  c.permalink 'softwarefactory'
+  c.position 1
+end

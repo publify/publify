@@ -100,18 +100,21 @@ describe Admin::ContentController do
       begin
         ActionMailer::Base.perform_deliveries = true
         ActionMailer::Base.deliveries = []
-        num_articles = Article.count_published_articles
+        category = Factory(:category)
         emails = ActionMailer::Base.deliveries
-        tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
-        post :new, 'article' => base_article(:keywords => tags) , 'categories' => [categories(:software).id]
-        assert_response :redirect, :action => 'show'
 
-        assert_equal num_articles + 1, Article.count_published_articles
+        assert_difference 'Article.count_published_articles' do
+          tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
+          post :new, 
+            'article' => base_article(:keywords => tags) , 
+            'categories' => [category.id]
+          assert_response :redirect, :action => 'show'
+        end
 
-        new_article = Article.find(:first, :order => "id DESC")
+        new_article = Article.last
         assert_equal @user, new_article.user
         assert_equal 1, new_article.categories.size
-        assert_equal [categories(:software)], new_article.categories
+        assert_equal [category], new_article.categories
         assert_equal 4, new_article.tags.size
 
         assert_equal(1, emails.size)

@@ -143,7 +143,7 @@ class Admin::ContentController < Admin::BaseController
     
     setup_categories
     @selected = @article.categories.collect { |c| c.id }
-    @drafts = Article.find(:all, :conditions => "state='draft'")
+    @drafts = Article.drafts
     if request.post?
       set_article_author
       save_attachments

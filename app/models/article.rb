@@ -41,12 +41,14 @@ class Article < Content
   has_many :categories, \
     :through => :categorizations, \
     :include => :categorizations, \
+    :select => '"categories".*', \
     :uniq => true, \
-    :order => 'categorizations.is_primary DESC, categories.position '
+    :order => 'categorizations.is_primary DESC'
 
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
 
   named_scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
+  named_scope :drafts, :conditions => ['state = ?', 'draft']
 
 
   belongs_to :user

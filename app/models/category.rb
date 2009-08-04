@@ -13,6 +13,8 @@ class Category < ActiveRecord::Base
     :conditions => { :published => true },
     :order      => "published_at DESC"
 
+  default_scope :order => 'position ASC'
+
   module Finders
     def find_all_with_article_counters(maxcount=nil)
       self.find_by_sql([%{
@@ -25,12 +27,6 @@ class Category < ActiveRecord::Base
       GROUP BY categories.id, categories.name, categories.position, categories.permalink
       ORDER BY position
       }, true]).each {|item| item.article_counter = item.article_counter.to_i }
-    end
-
-    def find(*args)
-      with_scope :find => {:order => 'position ASC'} do
-        super
-      end
     end
 
     def find_by_permalink(permalink, options = {})
