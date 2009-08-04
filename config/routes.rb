@@ -38,8 +38,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :trackbacks
 
   map.live_search_articles '/live_search/', :controller => "articles", :action => "live_search"
-  map.connect '/search/:q.:format', :controller => "articles", :action => "search"
-  map.connect '/search/', :controller => "articles", :action => "search"
+  map.search '/search/:q.:format', :controller => "articles", :action => "search"
+  map.search_base '/search/', :controller => "articles", :action => "search"
   map.connect '/archives/', :controller => "articles", :action => "archives"
 
   # I thinks it's useless. More investigating

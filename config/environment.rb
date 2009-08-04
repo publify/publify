@@ -56,6 +56,8 @@ Rails::Initializer.run do |config|
   config.gem 'calendar_date_select'
   config.gem 'bluecloth', :version => '~> 2.0.5'
   config.gem 'coderay', :version => '~> 0.8'
+  config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', 
+          :source => 'http://gems.github.com'
   
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake create_sessions_table')
