@@ -15,7 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   # this improves caches_page because now apache and webrick will send out the
   # cached feeds with the correct xml mime type.
 
-  map.xml 'articles.:format', :controller => 'articles', :action => 'index', :format => /rss|atom/
+  map.rss 'articles.rss', :controller => 'articles', :action => 'index', :format => 'rss'
+  map.atom 'articles.atom', :controller => 'articles', :action => 'index', :format => 'atom'
   
   map.with_options :controller => 'xml', :path_prefix => 'xml' do |controller|
     controller.xml 'itunes/feed.xml', :action => 'itunes'
