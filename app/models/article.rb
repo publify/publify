@@ -41,7 +41,7 @@ class Article < Content
   has_many :categories, \
     :through => :categorizations, \
     :include => :categorizations, \
-    :select => '"categories".*', \
+    :select => 'categories.*', \
     :uniq => true, \
     :order => 'categorizations.is_primary DESC'
 
