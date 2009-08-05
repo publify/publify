@@ -159,15 +159,12 @@ EOF
 
     expects_textile = <<-EOF
 <p><strong>header text here</strong></p>
-
-
 <div class="CodeRay"><pre><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
   <span class="r">def</span> <span class="fu">method</span>
     <span class="s"><span class="dl">&quot;</span><span class="k">foo</span><span class="dl">&quot;</span></span>
   <span class="r">end</span>
 <span class="r">end</span></span></pre></div>
-
-\t<p><em>footer text here</em></p>
+<p><em>footer text here</em></p>
 EOF
 
     assert_equal expects_markdown.strip, TextFilter.filter_text_by_name(blog, text, 'markdown')

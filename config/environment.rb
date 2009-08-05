@@ -34,8 +34,6 @@ Rails::Initializer.run do |config|
   config.load_paths += %W(
     vendor/rubypants
     vendor/akismet
-    vendor/redcloth/lib
-    vendor/gems/bluecloth-2.0.5/lib
     vendor/flickr
     vendor/uuidtools/lib
     vendor/rails/railties
@@ -58,6 +56,7 @@ Rails::Initializer.run do |config|
   config.gem 'coderay', :version => '~> 0.8'
   config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', 
           :source => 'http://gems.github.com'
+  config.gem 'RedCloth', :version => '~> 4.2.2'
   
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake create_sessions_table')

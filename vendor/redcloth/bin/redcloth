@@ -1,3 +1,0 @@
-#!/usr/bin/ruby18
-require 'redcloth'
-puts RedCloth.new( ARGF.read ).to_html
