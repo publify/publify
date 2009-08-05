@@ -6,23 +6,22 @@
 	<fieldset id="read">
 		<ul>
 			<li>
-				<label for="limit_article_display" class="float"><%= _("Display")%> </label>
-				<input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= this_blog.limit_article_display %>" />
+				<label for="setting_limit_article_display" class="float"><%= _("Display")%> </label>
+				<%= text_field(:setting, :limit_article_display, :size => 4)%>
 				<%= _("articles on my homepage by default")%>
 			</li>
 			<li>
-			    <label for="limit_rss_display" class="float"><%= _("Display")%> </label>
-			    <input name="setting[limit_rss_display]" size="4" id="limit_rss_display" type="text" value="<%= this_blog.limit_rss_display %>" />
+			    <label for="setting_limit_rss_display" class="float"><%= _("Display")%> </label>
+			    <%= text_field(:setting, :limit_rss_display, :size => 4)%>
 				<%= _("articles in my news feed by default")%>.
 			</li>
 			<li class="checkbox">
-				<label class="float" for="show_extended_on_rss"><%= _("Show full article on feed")%>:</label>
-			    <input name="setting[show_extended_on_rss]" id="show_extended_on_rss" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.show_extended_on_rss%> />
-			    <input name="setting[show_extended_on_rss]" type="hidden" value="0" />
+				<label class="float" for="setting_show_extended_on_rss"><%= _("Show full article on feed")%>:</label>
+				<%= check_box(:setting, :show_extended_on_rss) %>
 			</li>
       <li>
-        <label class="float" for="feedburner_url"><%= _("Feedburner ID")%></label>
-        <input name="setting[feedburner_url]" id="feedburner_url" type="text" value="<%=h this_blog.feedburner_url %>" class="medium" />
+        <label class="float" for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
+        <%= text_field(:setting, :feedburner_url, :class => 'medium')%>
         <span class="float">You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.</span>
       </li>
 		</ul>

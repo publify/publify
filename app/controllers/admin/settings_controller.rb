@@ -6,18 +6,20 @@ class Admin::SettingsController < Admin::BaseController
     if this_blog.base_url.blank?
       this_blog.base_url = blog_base_url
     end
+    load_settings
   end
   
-  def read; end
-  def write; end
-  def feedback; end
+  def read; load_settings end
+  def write; load_settings end
+  def feedback; load_settings end
   
   def seo
+    load_settings
     if File.exists? "#{RAILS_ROOT}/public/robots.txt"
-      this_blog.robots = ""
+      @setting.robots = ""
       file = File.readlines("#{RAILS_ROOT}/public/robots.txt")
       file.each do |line|
-        this_blog.robots << line
+        @setting.robots << line
       end
     end
   end
@@ -60,6 +62,10 @@ class Admin::SettingsController < Admin::BaseController
   end
   
   private
+  def load_settings
+    @setting = this_blog
+  end
+  
   def save_robots
     if File.writable? "#{RAILS_ROOT}/public/robots.txt"
       robots = File.new("#{RAILS_ROOT}/public/robots.txt", "r+")

@@ -8,38 +8,37 @@
     <legend><%= _("Your blog")%></legend>
     <ul>
       <li>
-        <label for="blog_name" class="float"><%= _("Blog name")%></label>
-        <input name="setting[blog_name]" id="blog_name" type="text" value="<%=h this_blog.blog_name %>" size="<%= this_blog.blog_name.length %>" />
+        <label for="setting_blog_name" class="float"><%= _("Blog name")%></label>
+        <%= text_field(:setting, :blog_name, :size => this_blog.blog_name.length)%>
       </li>
       <li>
-        <label class="float" for="blog_subtitle"><%= _("Blog subtitle")%></label>
-        <input name="setting[blog_subtitle]" id="blog_subtitle" type="text" value="<%=h this_blog.blog_subtitle %>" size="<%= this_blog.blog_subtitle.length%>" />
+        <label class="float" for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>
+        <%= text_field(:setting, :blog_subtitle, :size => this_blog.blog_subtitle.length)%>
       </li>
       <li>
         <label class="float" for="base_url"><%= _("Blog URL")%></label>
-        <input name="setting[base_url]" id="base_url" type="text" value="<%=h this_blog.base_url %>" size="<%= this_blog.base_url.length %> " />
+        <%= text_field(:setting, :base_url, :size => this_blog.base_url.length)%>
       </li>
       <li>
-        <label class="float" for="lang"><%= _("Language")%></label>
-        <select name="setting[lang]">
+        <label class="float" for="setting_lang"><%= _("Language")%></label>
+        <select name="setting[lang]" id='setting_lang'>
           <%= fetch_langs %>
         </select>
       </li>
       <li><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</li>
       <li>
-        <label class="float" for="allow_signup"><%= _("Allow users to register")%></label>
-        <input type="radio" name="setting[allow_signup]" value="0" id="allow_signup_0" <%= 'checked="checked"' if this_blog.allow_signup == 0 %>/>
-        <label for="allow_signup_0"><%= _("No")%></label>
+        <label class="float" for="setting_allow_signup"><%= _("Allow users to register")%></label>
+        <%= radio_button(:setting, :allow_signup, 0)%>
+        <label for="setting_allow_signup_0"><%= _("No")%></label>
         <span class="float">
-          <input type="radio" name="setting[allow_signup]" value="1" id="allow_signup_1" <%= 'checked="checked"' if this_blog.allow_signup == 1 %>/>
-          <label for="allow_signup_1"><%= _("Yes")%></label>
+          <%= radio_button(:setting, :allow_signup, 1)%>
+          <label for="setting_allow_signup_1"><%= _("Yes")%></label>
         </span>
       </li>
       <li>
-        <label class="float" for="admin_display_elements"><%= _("Items to display in admin lists")%></label>
-        <input name="setting[admin_display_elements]" id="admin_display_elements" type="text" value="<%=h this_blog.admin_display_elements %>" size="4" />
+        <label class="float" for="setting_admin_display_elements"><%= _("Items to display in admin lists")%></label>
+        <%= text_field(:setting, :admin_display_elements, :size => 4)%>
       </li>
-
     </ul>
   </fieldset>
 

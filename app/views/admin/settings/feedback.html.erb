@@ -7,38 +7,32 @@
     <legend><%= _("Feedback")%></legend>
     <ul>
       <li class="checkbox">
-        <label class="float" for="default_allow_pings"><%= _("Enable Trackbacks by default")%></label>
-        <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_pings%> />
-        <input name="setting[default_allow_pings]" type="hidden" value="0" />
+        <label class="float" for="setting_default_allow_pings"><%= _("Enable Trackbacks by default")%></label>
+        <%= check_box(:setting, :default_allow_pings)%>
       </li>
       <li class="checkbox">
-        <label class="float" for="default_allow_comments"><%= _("Enable comments by default")%></label>
-        <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />
-        <input name="setting[default_allow_comments]" type="hidden" value="0" />
+        <label class="float" for="setting_default_allow_comments"><%= _("Enable comments by default")%></label>
+        <%= check_box(:setting, :default_allow_comments)%>
       </li>
       <li class="checkbox">
-        <label class="float" for="use_gravatar"><%= _("Enable gravatars")%></label>
-        <input name="setting[use_gravatar]" id="use_gravatar" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.use_gravatar %> />
-        <input name="setting[use_gravatar]" type="hidden" value="0" />
+        <label class="float" for="setting_use_gravatar"><%= _("Enable gravatars")%></label>
+        <%= check_box(:setting, :use_gravatar)%>
       </li>
       <li>
         <%= _("This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.")%>
       </li>
       <li class="checkbox">
-        <label class="float" for="global_pings_disable"><%= _("Disable trackbacks site-wide")%></label>
-        <input name="setting[global_pings_disable]" id="global_pings_disable" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.global_pings_disable%> />
-        <input name="setting[global_pings_disable]" type="hidden" value="0" />
+        <label class="float" for="setting_global_pings_disable"><%= _("Disable trackbacks site-wide")%></label>
+        <%= check_box(:setting, :global_pings_disable)%>
       </li>
       <li><%= _("You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it")%>.</li>
       <li class="checkbox">
-        <label class="float" for="default_moderate_comments"><%= _("Enable feedback moderation")%></label>
-        <input name="setting[default_moderate_comments]" id="default_moderate_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_moderate_comments %> />
-        <input name="setting[default_moderate_comments]" type="hidden" value="0" />
+        <label class="float" for="setting_default_moderate_comments"><%= _("Enable feedback moderation")%></label>
+        <%= check_box(:setting, :default_moderate_comments)%>
       </li>
       <li class="checkbox">
-        <label class="float" for="link_to_author"><%= _("Show your email address") %></label>
-        <input name="setting[link_to_author]" id="link_to_author" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.link_to_author%> />
-        <input name="setting[link_to_author]" type="hidden" value="0" />
+        <label class="float" for="setting_link_to_author"><%= _("Show your email address") %></label>
+        <%= check_box(:setting, :link_to_author)%>
       </li>
     </ul>
   </fieldset>
@@ -48,8 +42,8 @@
     <ul>
       <li><%= _("Typo can notify you when new articles or comments are posted")%></li>
       <li>
-        <label class="float" for="email_from"><%= _("Source Email")%></label>
-        <input name="setting[email_from]" size="25" id="email_from" type="text" value="<%= this_blog.email_from %>" />
+        <label class="float" for="setting_email_from"><%= _("Source Email")%></label>
+        <%= text_field(:setting, :email_from, :size => 25) %>
         <span class="float"><%= _("Email address used by Typo to send notifications")%>.</span>
       </li>
     </ul>
@@ -60,32 +54,32 @@
     <ul>
       <li><%= _("Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</li>
       <li class="checkbox">
-        <label for="sp_global" class="float"><%= _("Enable spam protection")%></label>
-        <input name="setting[sp_global]" id="sp_global" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_global%> /><input name="setting[sp_global]" type="hidden" value="0" />
+        <label for="setting_sp_global" class="float"><%= _("Enable spam protection")%></label>
+        <%= check_box(:setting, :sp_global)%>
       </li>
       <li><%= _("Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%> .
       </li>
       <li>
-        <label class="float" for="sp_akismet_key"><%= _("Akismet Key")%></label>
-        <input name="setting[sp_akismet_key]" id="sp_akismet_key" type="text" value="<%=h this_blog.sp_akismet_key %>" />
+        <label class="float" for="setting_sp_akismet_key"><%= _("Akismet Key")%></label>
+        <%= text_field(:setting, :sp_akismet_key, :class => 'medium') %>
       </li>
       <li>
         <%= _("You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.")%>
       </li>
       <li class="checkbox">
-        <label for="sp_allow_non_ajax_comments" class="float"><%= _("Allow non-ajax comments") %></label>
-        <input name="setting[sp_allow_non_ajax_comments]" id="sp_allow_non_ajax_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.sp_allow_non_ajax_comments%> />
-        <input name="setting[sp_allow_non_ajax_comments]" type="hidden" value="0" />
+        <label for="setting_sp_allow_non_ajax_comments" class="float"><%= _("Allow non-ajax comments") %></label>
+        <%= check_box(:setting, :sp_allow_non_ajax_comments)%>
       </li>
       <li>
-        <label for="sp_article_auto_close" class="float"><%= _("Disable comments after")%></label>
-        <input name="setting[sp_article_auto_close]" size="4" id="sp_article_auto_close" type="text" value="<%= this_blog.sp_article_auto_close %>" /> <%= _("days") %>
+        <label for="setting_sp_article_auto_close" class="float"><%= _("Disable comments after")%></label>
+        <%= text_field(:setting, :sp_article_auto_close, :size => 4)%>
+        <%= _("days") %>
         <span class="float"><%= _("Set to 0 to never disable comments")%></span>
       </li>
       <li>
         <p><%= _("Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.</p>
-        <label class="float" for="sp_url_limit"><%= _("Max Links")%></label>
-        <input name="setting[sp_url_limit]" size="4" id="sp_url_limit" type="text" value="<%= this_blog.sp_url_limit %>" />
+        <label class="float" for="setting_sp_url_limit"><%= _("Max Links")%></label>
+        <%= text_field(:setting, :sp_url_limit, :size => 4)%>       
         <span class="float"><%= _("Set to 0 to never reject comments")%></span>
       </li>
     </ul>
