@@ -7,11 +7,11 @@
 	<ul>
 		<li>
 			<label for="user_login"><%= _("Username") %>:</label>
-			<%= text_field "user", "login" %>
+			<%= text_field :user, :login %>
 		</li>
 		<li>
 			<label for="user_email"><%= _("Email")%>:</label>
-  		<%= text_field "user", "email", :size => 30 %>
+  		<%= text_field :user, :email, :size => 30 %>
 		</li>
 		<li class="r">
 	  	<input type="submit" id="submit" value="<%= _('Signup') + " &raquo;" %>" />
