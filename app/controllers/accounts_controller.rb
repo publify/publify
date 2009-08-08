@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
     @page_title = "#{this_blog.blog_name} - #{_('login')}"
     case request.method
       when :post
-      self.current_user = User.authenticate(params[:user_login], params[:user_password])
+      self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
             
       if logged_in?
         session[:user_id] = self.current_user.id
@@ -30,7 +30,7 @@ class AccountsController < ApplicationController
         redirect_back_or_default :controller => "admin/dashboard", :action => "index"
       else
         flash.now[:error]  = _("Login unsuccessful")
-        @login = params[:user_login]
+        @login = params[:user][:login]
       end
     end
   end
