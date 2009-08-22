@@ -48,7 +48,6 @@ Rails::Initializer.run do |config|
 
   # Declare the gems in vendor/gems, so that we can easily freeze and/or
   # install them.
-  config.gem 'coderay'
   config.gem 'htmlentities'
   config.gem 'json'
   config.gem 'calendar_date_select'
