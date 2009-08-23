@@ -111,9 +111,14 @@ describe 'ArticlesController' do
 
       it 'should be valid' 
       it 'should render without layout'
-      it 'should render template live_search'
-      it 'should not have h3 tag'
 
+      it 'should render template live_search' do
+        response.should render_template(:live_search)
+      end
+
+      it 'should not have h3 tag' do
+        response.should_not have_tag("h3")
+      end
 
     end
   end
