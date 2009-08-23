@@ -1,11 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe CategoriesController, "/index" do
-  before(:each) do
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-  end
-
   def do_get
     get 'index'
   end
@@ -15,7 +10,10 @@ describe CategoriesController, "/index" do
     response.should be_success
   end
 
-  it "should render :index" do
+  it "should render :index"
+  if false
+    controller.stub!(:template_exists?) \
+      .and_return(true)
     do_get
     response.should render_template(:index)
   end
@@ -30,11 +28,6 @@ describe CategoriesController, "/index" do
 end
 
 describe CategoriesController, '/articles/category/personal' do
-  before(:each) do
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-  end
-
   def do_get
     get 'show', :id => 'personal'
   end
@@ -52,7 +45,10 @@ describe CategoriesController, '/articles/category/personal' do
     end.should raise_error(ActiveRecord::RecordNotFound)
   end
 
-  it 'should render :show by default' do
+  it 'should render :show by default'
+  if false
+    controller.stub!(:template_exists?) \
+      .and_return(true)
     do_get
     response.should render_template(:show)
   end

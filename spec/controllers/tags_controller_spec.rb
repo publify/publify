@@ -5,9 +5,6 @@ describe TagsController, "/index" do
     Tag.stub!(:find_all_with_article_counters) \
       .and_return(mock('tags', :null_object => true))
 
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-
     this_blog = Blog.default
     controller.stub!(:this_blog) \
       .and_return(this_blog)
@@ -22,7 +19,11 @@ describe TagsController, "/index" do
     response.should be_success
   end
 
-  it "should render :index" do
+  it "should render :index"
+  if false
+    controller.stub!(:template_exists?) \
+      .and_return(true)
+
     do_get
     response.should render_template(:index)
   end
@@ -46,8 +47,6 @@ describe TagsController, '/articles/tag/foo' do
     Tag.stub!(:find_by_permalink) \
       .and_return(@tag)
 
-    controller.stub!(:template_exists?) \
-      .and_return(true)
     this_blog = Blog.default
     controller.stub!(:this_blog) \
       .and_return(this_blog)
@@ -71,7 +70,10 @@ describe TagsController, '/articles/tag/foo' do
     end.should raise_error(ActiveRecord::RecordNotFound)
   end
 
-  it 'should render :show by default' do
+  it 'should render :show by default'
+  if false
+    controller.stub!(:template_exists?) \
+      .and_return(true)
     do_get
     response.should render_template(:show)
   end
