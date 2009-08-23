@@ -10,7 +10,7 @@ describe 'Given a new test theme' do
   end  
 end
 
-describe 'Given a the default theme' do
+describe 'Given the default theme' do
   before(:each) do
     @theme = Blog.default.current_theme
   end

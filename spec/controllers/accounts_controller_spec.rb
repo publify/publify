@@ -13,7 +13,7 @@ describe 'A successfully authenticated login' do
   end
 
   def make_request
-    post 'login', { :user_login => 'bob', :password => 'test' }
+    post 'login', {:user => {:login => 'bob', :password => 'test'}}
   end
 
   it 'session gets a user' do
@@ -60,7 +60,7 @@ describe 'User is inactive' do
   end
  
   def make_request
-    post 'login', { :user_login => 'inactive', :password => 'longtest' } 
+    post 'login', {:user => {:login => 'inactive', :password => 'longtest'}}
   end
   
   it 'no user in goes in the session' do
@@ -93,7 +93,7 @@ describe 'Login with nil user and password' do
   end
   
   def make_request
-   post 'login', {:user_login => nil, :password => nil}
+   post 'login', {:user => {:login => nil, :password => nil}}
   end
 
   it 'should render login action' do
@@ -111,7 +111,7 @@ describe 'Login gets the wrong password' do
   end
 
   def make_request
-   post 'login', {:user_login => 'bob', :password => 'test'}
+   post 'login', {:user => {:login => 'bob', :password => 'test'}}
   end
 
   it 'no user in goes in the session' do
