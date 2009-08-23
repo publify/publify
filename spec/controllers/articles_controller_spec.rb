@@ -130,6 +130,21 @@ describe 'ArticlesController' do
     assigns[:articles].should_not be_nil
   end
 
+  describe 'index for a month' do
+
+    before :each do
+      get 'index', :year => 2004, :month => 4
+    end
+
+    it 'should render template index' do
+      response.should render_template(:index)
+    end
+
+    it 'should contain some articles' do
+      assigns[:articles].should_not be_nil
+    end
+  end
+
 end
 
 describe ArticlesController, "feeds" do
