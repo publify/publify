@@ -27,9 +27,13 @@ def define_spec_public_cache_directory
   end
 end
 
-def create_file_in_spec_public_cache_directory(file)
+def path_for_file_in_spec_public_cache_directory(file)
   define_spec_public_cache_directory
-  file_path = File.join(ActionController::Base.page_cache_directory, file)
+  File.join(ActionController::Base.page_cache_directory, file)
+end
+
+def create_file_in_spec_public_cache_directory(file)
+  file_path = path_for_file_in_spec_public_cache_directory(file)
   File.open(file_path, 'a').close
   file_path
 end
