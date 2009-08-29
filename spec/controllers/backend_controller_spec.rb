@@ -1,6 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require 'action_web_service/test_invoke'
-require 'flexmock'
 require 'backend_controller'
 require 'blogger_service'
 require 'meta_weblog_service'
@@ -15,8 +14,6 @@ BackendController.class_eval do
 end
 
 describe BackendController do
-  include FlexMock::TestCase
-
   before do
     @protocol = :xmlrpc
   end
