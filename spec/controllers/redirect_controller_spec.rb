@@ -1,9 +1,4 @@
-require File.dirname(__FILE__) + '/../../test/test_helper'
 require File.dirname(__FILE__) + '/../spec_helper'
-require 'redirect_controller'
-
-# Re-raise errors caught by the controller.
-class RedirectController; def rescue_action(e) raise e end; end
 
 describe RedirectController do
   before do

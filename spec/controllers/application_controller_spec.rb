@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe 'The application controller' do
-  controller_name :application
+describe ApplicationController do
   it 'safely caches a page' do
     define_spec_public_cache_directory
     ApplicationController.perform_caching = true

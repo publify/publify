@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require File.dirname(__FILE__) + '/../../test/test_helper'
 require 'xml_controller'
 require 'dns_mock'
 
@@ -26,9 +25,6 @@ if($validator_installed == nil)
     nil
   end
 end
-
-# Re-raise errors caught by the controller.
-class XmlController; def rescue_action(e) raise e end; end
 
 describe XmlController do
   integrate_views

@@ -37,6 +37,7 @@ def create_file_in_spec_public_cache_directory(file)
   File.open(file_path, 'a').close
   file_path
 end
+
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
@@ -69,3 +70,20 @@ end
   # 
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
+
+# TODO: Rewrite to be more RSpec-like instead of Test::Unit-like.
+def assert_template_has(key=nil, message=nil)
+  msg = build_message(message, "<?> is not a template object", key)
+  assert_block(msg) { @response.has_template_object?(key) }
+end
+
+def assert_xml(xml)
+  assert_nothing_raised do
+    assert REXML::Document.new(xml)
+  end
+end
+
+def this_blog
+  Blog.default || Blog.create!
+end
+

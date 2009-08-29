@@ -1,9 +1,4 @@
-require File.dirname(__FILE__) + '/../../test/test_helper'
 require File.dirname(__FILE__) + '/../spec_helper'
-require 'theme_controller'
-
-# Re-raise errors caught by the controller.
-class ThemeController; def rescue_action(e) raise e end; end
 
 describe ThemeController do
   integrate_views

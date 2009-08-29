@@ -1,12 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require File.dirname(__FILE__) + '/../../test/test_helper'
-require 'textfilter_controller'
 
 require 'flickr_mock'
-
-# Re-raise errors caught by the controller.
-class TextfilterController; def rescue_action(e) raise e end; end
-class ActionController::Base; def rescue_action(e) raise e end; end
 
 describe TextfilterController do
   before do
