@@ -5,7 +5,9 @@ class RedirectController < ContentController
 
   cache_sweeper :blog_sweeper
 
-  caches_page :redirect
+  caches_page :redirect, :if => Proc.new {|c|
+    c.request.query_string == ''
+  }
 
   helper :'admin/base'
 
