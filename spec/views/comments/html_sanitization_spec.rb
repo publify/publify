@@ -101,3 +101,19 @@ describe "XSS2" do
     { :body => %{<a href="javascript:bad">bad link</a>}}
   end
 end
+
+describe "Comment with bare http URL" do
+  it_should_behave_like "CommentSanitization"
+
+  def comment_options
+    { :body => %{http://www.example.com} }
+  end
+end
+
+describe "Comment with bare email address" do
+  it_should_behave_like "CommentSanitization"
+
+  def comment_options
+    { :body => %{foo@example.com} }
+  end
+end

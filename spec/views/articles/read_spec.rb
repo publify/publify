@@ -48,6 +48,22 @@ require File.dirname(__FILE__) + '/../../spec_helper'
         response.should_not have_tag("p>p>em", "italic")
       end
     end
+
+    context "formatting comments with bare links" do
+      before(:each) do
+        Blog.default.comment_text_filter = 'textile'
+        @controller.action_name = "read"
+        assigns[:article] = contents('article3')
+        render "articles/read"
+      end
+    
+      it "should automatically add links" do
+	response.should have_tag("a[href=mailto:foo@bar.com]",
+				 "foo@bar.com")
+        response.should have_tag("a[href=http://www.bar.com]",
+				 "http://www.bar.com")
+      end
+    end
   end
 end
 
