@@ -164,3 +164,17 @@ comment_on_publisher_article:
   guid: 12313123123123126
   state: ham
   status_confirmed: true
+
+comment_for_auto_link:
+  type: Comment
+  published: true
+  state: ham
+  status_confirmed: true
+  article: article3
+  author: Foo Bar
+  body: Hello foo@bar.com http://www.bar.com
+  created_at: 2005-01-01 02:00:07
+  updated_at: 2005-01-01 02:00:07
+  published_at: 2005-01-01 02:00:07
+  guid: 4534564564564568
+

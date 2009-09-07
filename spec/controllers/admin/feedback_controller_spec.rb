@@ -1,4 +1,3 @@
-require File.dirname(__FILE__) + '/../../../test/test_helper'
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Admin::FeedbackController do

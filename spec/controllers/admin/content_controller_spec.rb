@@ -1,14 +1,6 @@
-require File.dirname(__FILE__) + '/../../../test/test_helper'
 require File.dirname(__FILE__) + '/../../spec_helper'
-require 'admin/content_controller'
 
 require 'http_mock'
-
-# Re-raise errors caught by the controller.
-module Admin
-end
-
-class Admin::ContentController; def rescue_action(e) raise e end; end
 
 describe Admin::ContentController do
   integrate_views

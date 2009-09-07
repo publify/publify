@@ -360,6 +360,7 @@ class Object
 end
 
 class ContentTextHelpers
+  include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper

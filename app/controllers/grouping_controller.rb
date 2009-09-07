@@ -3,8 +3,9 @@ class GroupingController < ContentController
   layout :theme_layout
   cache_sweeper :blog_sweeper
 
-  cached_pages = [:index, :show]
-  caches_page *cached_pages
+  caches_page :index, :show, :if => Proc.new {|c|
+    c.request.query_string == ''
+  }
 
   class << self
     def grouping_class(klass = nil)
