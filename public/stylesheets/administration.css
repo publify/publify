@@ -17,20 +17,20 @@ form {
 }
 
 a, a:visited {
-	color: #38b;
+	color: #405dac;
 	text-decoration: none;
 	font-weight: bold;
 }
 
 a:hover, a:visited:hover {
 	text-decoration: underline;
-	color: #333;
+	color: #405dac;
 }
 
 h2 {
 	font-size: 16px;
 	letter-spacing: 2px;
-	color: #464646;
+	color: #2a5db0;
 	margin: 0 0 20px 0;
 	padding-top: 20px;
 }
@@ -46,6 +46,7 @@ h2 span a:visited {
 
 fieldset {
 	margin-top: 10px;
+	border: #6694e3 3px solid;
 }
 
 label {
@@ -79,7 +80,7 @@ label.content {
 
 legend {
 	font-size: 14px;
-	color: #464646;
+	color: #2a5db0;
 	font-weight: bold;
 }
 
@@ -91,7 +92,7 @@ small {
 #topnav {
   height: 36px;
   margin: 0;
-	background: #282826;
+	background: #6694E3;
 }
 
 #topnav ul {
@@ -113,8 +114,8 @@ small {
 }
 
 #topnav ul li.current {
-  color: #fff;
-  background: #464646;
+  color: #405dac;
+  background: #e0ecff;
 }
 
 #topnav ul li a {
@@ -123,18 +124,23 @@ small {
   height: 25px;
   color: #fff;
   text-transform: capitalize;
-	border-right: #525251 1px solid;
+	border-right: #405dac 1px solid;
 }
 
+#topnav ul li.current a {
+	color: #405dac;
+}
+
+
 #topnav  ul li a:hover {
-  color: #fff;
-  background: #464646;
+  color: #405dac;
+  background: #e0ecff;
 }
 /* End of Top navigation */
 
 /* Sub navigation */
 #subtabs {
-  background: #464646;
+  background: #e0ecff;
   padding: 5px 20px;
 }
 
@@ -151,16 +157,16 @@ small {
 }
 
 #subtabs li a {
-  color: #fff;
+  color: #405dac;
 }
 
 #subtabs li a:hover {
-  color: #fff;
+  color: #405dac;
   text-decoration: underline;
 }
 
 #subtabs li a.current {
-  color: #fff;
+  color: #405dac;
   text-decoration: underline;
 }
 
@@ -243,7 +249,7 @@ li.shade {
 }
 
 .paginate {
-  background: #dfdfdf;
+  background: #e0ecff;
   padding: 10px;
   margin-bottom: 15px;
 	text-align: center;
@@ -258,7 +264,7 @@ tr.menubar td {
 }
 
 tr.menubar {
-	background : #dfdfdf;
+	background : #e0ecff;
 }
 
 /* @end */
@@ -294,7 +300,7 @@ tr.menubar {
 .admin select,
 .admin textarea {
 	font: 12px Helvetica, sans-serif;
-	border: 1px solid #b0b0b0;
+	border: 1px solid #6694e3;
 	color: #000;
 	padding: 3px;	
 }
@@ -426,7 +432,7 @@ tr.menubar {
 .dragitem, .dropitem {
 	padding: 12px;
 	margin-bottom: 12px;
-	background: #eee;
+	background: #e0ecff;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 4px;
@@ -565,7 +571,7 @@ div.user {
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
-	border: #464646 1px solid;
+	border: #6694e3 1px solid;
 }
 
 #loginform label {
@@ -734,8 +740,8 @@ td.inactive {
 
 hr {
 	border: medium none;
-	color: #ccc;
-	background: #ccc;
+	color: #e0ecff;
+	background: #e0ecff;
 	height: 1px;
 	margin-bottom: 1.4em;
 }
@@ -787,7 +793,7 @@ hr {
 
 li.paginate {
   margin-bottom: 15px;
-  border-left: #b0b0b0 8px solid;
+  border-left: #6694e3 8px solid;
 }
 
 div.auto_complete {
@@ -854,7 +860,7 @@ div.auto_complete ul strong.highlight {
 
 #simple_editor,
 #visual_editor {
-	background: #464646;
+	background: #e0ecff;
 	padding: 10px;
 	border-radius: 3px;
 }
@@ -873,7 +879,7 @@ div.auto_complete ul strong.highlight {
 }
 
 #quicktags {
-	background: #464646;
+	background: #e0ecff;
 	padding-top: 10px;
 	padding-left: 10px;
 	border-radius: 3px 0 0 0;
@@ -892,7 +898,7 @@ div.auto_complete ul strong.highlight {
 }
 
 #editor-menu span.active {
-	background: #464646;
+	background: #e0ecff;
 	padding: 5px;
 	border-radius: 3px 0 0 0;
 	-moz-border-top-left-radius: 3px 0 0 0;
