@@ -23,7 +23,7 @@
       <td><%= _(user.profile.nicename) %></td>
       <td><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
       <td><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
-      <td class='<%= user.state %>'><%= _("#{user.state}")%></td>
+      <td class='<%= user.state %>'><%= _("%s user", user.state)%></td>
     </tr>  
     <% end -%>
     <tr><td colspan="8" class="paginate"><%= will_paginate @users %></td></tr>

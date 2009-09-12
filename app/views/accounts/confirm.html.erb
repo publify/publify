@@ -11,7 +11,7 @@
 		<li>
 		  <%= _("Password %s", @password) %>
 		</li>
-    <li><%= _("Don't lose the mail sent at #{current_user.email} or you won't be able to login anymore")%></li>
+    <li><%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%></li>
     <li><%= _("Proceed to") + " " + link_to(_("admin"), :controller => 'admin/settings') %> </li>
 	</ul>
   </div>
