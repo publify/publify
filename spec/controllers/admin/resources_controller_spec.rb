@@ -26,12 +26,6 @@ describe Admin::ResourcesController do
     response.should redirect_to(:action => 'index')
   end
 
-  def test_new
-    get :new
-    assert_response :success
-    assert_template 'new'
-  end
-
   def test_upload
     # unsure how to test upload constructs :'(
   end

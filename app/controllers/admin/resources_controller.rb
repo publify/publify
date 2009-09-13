@@ -93,7 +93,4 @@ class Admin::ResourcesController < Admin::BaseController
       raise
     end
   end
-
-  def new
-  end
 end

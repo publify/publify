@@ -916,3 +916,8 @@ ul.admin {
 	margin-left: 0;
 	padding-left: 0;
 }
+
+.progressBar .border { background-color: #fff; border: 1px solid #fff; width: 100%; }
+.progressBar .background { background-color: #e0ecff; height: 18px; width: 0%; }
+
+#resources { margin-top: 20px;}
