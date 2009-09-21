@@ -172,14 +172,15 @@ Localization.define('da_DK') do |l|
 
   #admin/content/_articles.rhtml
   l.store "Post title", "Titel på artikel"
-  l.store "Posted at", "Offentliggjort den"
+  l.store "Posted on", "Offentliggjort den"
+  l.store "Posted in", "Offentliggjort i"
   l.store "%d Comments", ["Kommentar", "%d Kommentarer"]
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Status", "Status"
   l.store "Offline", "Offline"
   l.store "Online", "Online"
-  l.store "no trackbacks", "ingen Trackbacks"
-  l.store "no comments", "ingen Kommentarer"
+  l.store "no trackbacks", "ingen trackbacks"
+  l.store "no comments", "ingen kommentarer"
 
   #admin/content/_attachment.rhtml
   l.store "Remove", "Slet"
@@ -353,7 +354,7 @@ Localization.define('da_DK') do |l|
 
   #admin/pages/show.rhtml
   l.store "Edit this page", "Rediger denne side"
-  l.store "by", "by"
+  l.store "by", "af"
 
   #admin/ressources/_metadata_add.rhtml
   l.store "Resource MetaData", "Ressource MetaData"
@@ -513,6 +514,7 @@ Localization.define('da_DK') do |l|
   l.store "Your message", "Din besked"
   l.store "Comment Markup Help", "Hjælp med kommentar markup"
   l.store "Preview comment", "Vis kommentar eksempel"
+  l.store "Submit", "Indsend"
 
   #articles/_trackback.rhtml
   l.store "From", "Fra"
@@ -531,11 +533,13 @@ Localization.define('da_DK') do |l|
   l.store "Older posts", "Ældre artikler"
 
   #articles/read.rhtml
-  l.store "Leave a response", "Efterlad en kommentar"
+  l.store "Leave a response", "Skriv en kommentar"
+  l.store "Leave a comment", "Skriv en kommentar"
   l.store "Use the following link to trackback from your own site", "Brug følgende link til lave trackback fra din egen side"
   l.store "RSS feed for this post", "RSS Feed for denne artikel"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
+  l.store "enabled", "aktiveret"
 
   l.store "Pictures from", "Bileder fra"
 
