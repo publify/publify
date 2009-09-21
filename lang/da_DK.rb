@@ -147,6 +147,7 @@ Localization.define('da_DK') do |l|
   l.store "Author", "Forfatter"
   l.store "Url", "Url"
   l.store "Body", "Tekst"
+  l.store "Name (required)", "Navn (skal udfyldes)"
 
   #admin/comments/comments.rhtml
   l.store "on", "på"
@@ -174,7 +175,10 @@ Localization.define('da_DK') do |l|
   l.store "Post title", "Titel på artikel"
   l.store "Posted on", "Offentliggjort den"
   l.store "Posted in", "Offentliggjort i"
-  l.store "%d Comments", ["Kommentar", "%d Kommentarer"]
+  l.store "%d Comments", "%d Kommentarer"
+  l.store "Comments", "Kommentarer"
+  l.store "%d comments", "%d kommentarer"
+  l.store "1 comment", "1 kommentar"
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Status", "Status"
   l.store "Offline", "Offline"
@@ -505,7 +509,11 @@ Localization.define('da_DK') do |l|
 
   #articles/_comment.rhtml
   l.store "said", "sagde"
+  l.store "Says", "Sagde"
+  l.store "later", "senere"
+  l.store "Continue reading &raquo;", "L&aelig;s videre &raquo;"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den."
+  l.store "Oops, something wrong happened. Have you filled out message and name?", "Hov der gik noget galt, har du udfyldt besked og dit navn?"
 
   #articles/_comment_box.rhtml
   l.store "Your name", "Dit Navn"
