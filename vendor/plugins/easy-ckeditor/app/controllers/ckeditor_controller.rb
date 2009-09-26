@@ -3,7 +3,7 @@ require 'tmpdir'
 
 class CkeditorController < ActionController::Base
 
-  UPLOAD_FOLDER = "/uploads"
+  UPLOAD_FOLDER = "/files"
   UPLOAD_ROOT = RAILS_ROOT + "/public" + UPLOAD_FOLDER
 
   MIME_TYPES = [
@@ -114,7 +114,7 @@ class CkeditorController < ActionController::Base
   private
 
   def load_file_from_params
-    @new_file = check_file(params[:newFile])
+    @new_file = check_file(params[:upload])
     @ck_url  = upload_directory_path
     @ftype     = @new_file.content_type.strip
     log_upload
@@ -165,7 +165,7 @@ class CkeditorController < ActionController::Base
   # Puts some data in the current log
   #
   def log_upload
-    log "CKEDITOR - #{params[:newFile]}"
+    log "CKEDITOR - #{params[:upload]}"
     log "CKEDITOR - UPLOAD_FOLDER: #{UPLOAD_FOLDER}"
     log "CKEDITOR - #{File.expand_path(RAILS_ROOT)}/public#{UPLOAD_FOLDER}/" +
         "#{@new_file.original_filename}"
@@ -184,7 +184,7 @@ class CkeditorController < ActionController::Base
   # Returns the upload url folder with the current folder
   #
   def upload_directory_path
-    url_root = ActionController::Base.relative_url_root.to_s
+    url_root = ::ActionController::Base.relative_url_root.to_s
     uploaded = url_root + "#{UPLOAD_FOLDER}/#{params[:Type]}"
     "#{uploaded}#{params[:currentFolder]}"
   end
