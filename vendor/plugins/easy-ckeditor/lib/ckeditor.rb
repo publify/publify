@@ -7,13 +7,13 @@ module Ckeditor
   end
   PLUGIN_NAME = 'easy-ckeditor'
   PLUGIN_PATH = "#{RAILS_ROOT}/vendor/plugins/#{PLUGIN_NAME}"
-  PLUGIN_PUBLIC_PATH = CONFIG.blank? ? "#{RAILS_ROOT}/public/uploads" : CONFIG['public_path'].blank? ? "" : CONFIG['public_path']
-  PLUGIN_PUBLIC_URI = CONFIG.blank? ? "/uploads" : CONFIG['public_uri'].blank? ? "" : CONFIG['public_uri']
+  PLUGIN_PUBLIC_PATH = "#{RAILS_ROOT}/public/files"
+  PLUGIN_PUBLIC_URI = "/files"
   PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app/controllers"
   PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app/views"
   PLUGIN_HELPER_PATH = "#{PLUGIN_PATH}/app/helpers"
-  PLUGIN_FILE_MANAGER_URI = CONFIG.blank? ? "" : CONFIG['file_manager_uri'].blank? ? "" : CONFIG['file_manager_uri']
-  PLUGIN_FILE_MANAGER_UPLOAD_URI = CONFIG.blank? ? "" : CONFIG['file_manager_upload_uri'].blank? ? "" : CONFIG['file_manager_upload_uri']
+  PLUGIN_FILE_MANAGER_URI = '/ckeditor/command'
+  PLUGIN_FILE_MANAGER_UPLOAD_URI = '/ckeditor/upload'
 
   module Helper
     def ckeditor_textarea(object, field, options = {})
