@@ -138,7 +138,7 @@ module Admin::BaseHelper
   
 
   def t_textarea(object_name, method, options)
-    return fckeditor_textarea(object_name, method, options) if current_user.editor == 'visual'
+    return ckeditor_textarea(object_name, method, options) if current_user.editor == 'visual'
     text_area(object_name, method, options)
   end
 
