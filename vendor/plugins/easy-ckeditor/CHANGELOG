@@ -1,0 +1,15 @@
+0.9.0 - Replaced FCKeditor with CKEditor
+
+0.8.1 - Remove plugin files on uninstall
+
+0.8.0 - Added uninstall rake task
+
+0.8.0 - Refactoring for fckeditor controller
+
+0.8.0 - Added Easy upload plugin http://martinezdelizarrondo.com/easyupload/
+
+0.8.0 - Change for works with FCKeditor 2.6.3
+
+0.2.2 - Added fckeditor_form_remote_tag helper to allow multiple editors in a single form
+
+0.2.1 - Added spell check from Ken Pratt

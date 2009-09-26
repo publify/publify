@@ -1,0 +1,164 @@
+Easy CKEditor Rails plugin
+===========================
+
+John Bradley
+
+http://johnmichaelbradley.com/
+
+This is my first foray into public Rails development, so please bear with me and help me out if you can. Thanks!
+
+I am going to leave Gaston's README intact for the most part, obvious changes excepted. The conversion process is done, now it's time to patch up the differences between
+FCK- and CKeditor.
+
+I've added basic support for a configuration YAML file (RAILS_ROOT/config/ckeditor.yml). It's very simple right now. This file is not entirely needed yet, but if
+you plan to use a file manager, you will need this to set file_manager_uri and _upload_uri. In all honesty, this won't work yet.
+
+ckeditor.yml example:
+development:
+  public_path: "#{path_to_your_public_directory}/uploads"
+  public_uri: '/uploads'
+  file_manager_uri: '/ckeditor/command'
+  file_manager_upload_uri: '/ckeditor/upload'
+production:
+  ...
+
+It should be noted that there are a lot of features from FCKeditor that either haven't been implemented in CKeditor yet or will never be implemented in CKeditor.
+
+Easy CKEditor Rails plugin
+===========================
+
+**Gast&oacute;n Ramos**
+
+ramos.gaston [at] gmail [dot] com
+
+http://gastonramos.wordpress.com/
+
+**Easy CKEditor is a Rails Plugin thats generate a WYSIWYG text editor helper**. This version is a fork of Scott Rutherford [great plugin](http://blog.caronsoftware.com/2007/11/16/Ckeditor-plugin-0-4-2-released) with a [EasyUpload plugin](http://martinezdelizarrondo.com/easyupload/) inlcuded of Alfonso Mart&iacute;nez de Lizarrondo.
+
+This plugin installs the CKeditor editor into your rails app, along with some helpers to use in your views.
+
+Features
+========
+#--> John: more to come.
+
+   * WYSIWYG text editor helper.
+
+Versions
+========
+
+This plugin is tested with:
+
+  * Rails 2.3
+  * Ruby 1.8.6 Patchlevel 287
+  * CKeditor 3.0
+
+Install
+=======
+
+If you got this using:
+
+ruby script/plugin install git://github.com/johnmichaelbradley/easy-ckeditor.git
+
+Then the install should of copied all the appropriate files to their homes. If you download a tar then you can either do
+
+  rake ckeditor:install
+
+from the root of your app, or the file will be installed the first time you startup after untaring the plugin.
+
+Uninstall
+=========
+
+Then the install should run task:
+
+  rake ckeditor:uninstall
+
+and all the installed files will be removed.
+
+Files
+=====
+
+Basically the whole of the CKeditor suite is copied to: public/javascripts/ckeditor
+
+There is a separate config file copied to: public/javascripts/ckcustom.js, that you can use to customize the install. This file is
+never overriden by upgrades or reinstalls. At the moment, public/javascripts/ckeditor/config.js symlinks to ckcustom.js.
+
+
+IMPORTANT
+=========
+
+#--> John: I have not tested whether or not this still applies with CKEditor.
+
+If you are hosting your rails app in a subdirectory you need to open:
+
+  public/javascripts/ckcustom.js
+
+and modify the CKRelativePath = ''; to suite your needs.
+
+For example if I have an app at www.mydomain.com/app/
+
+then the line should read:
+
+  CKRelativePath = '/app';
+
+
+Usage
+=====
+
+Basically include this in the page you wish to use the editor in
+
+  <%= javascript_include_tag :ckeditor %>
+
+Then instead of the normal textarea helper from Rails use this one
+
+  <%= ckeditor_textarea("object", "field", :width => '100%', :height => '200px') %>
+
+Thats it unless you are using AJAX
+
+AJAX
+====
+
+#--> John: I have not tested AJAX functionality.
+
+To use a remote form you need to do something like this
+
+  <%= form_remote_tag :url => @options.merge(:controller => @scaffold_controller),
+                    :before => Ckeditor_before_js('note', 'text') %>
+
+    <%= ckeditor_textarea( "note", "text", :ajax => true ) %>
+
+  <%= end_form_tag %>
+
+If you forget to put in the :before it won't work, you can also use the Ckeditor_form_remote_tag described below
+
+Multiple Editors in a form
+==========================
+
+To create a form using multiple editors use the Ckeditor_form_remote_tag helper and pass the :editors option. This takes an hash of model symbol keys with each having
+an array as its value. The array should contain the list of fields that will have editors attached to them.
+
+  <%= ckeditor_form_remote_tag :url => @options.merge(:controller => @scaffold_controller),
+                              :editors => { :multinote => ['text1', 'text2'] } %>
+
+    <%= ckeditor_textarea( "multinote", "text1", :ajax => true ) %>
+    <%= ckeditor_textarea( "multinote", "text2", :ajax => true ) %>
+
+  <%= end_form_tag %>
+
+There is also a ckeditor_remote_form_for version.
+
+Spell Check
+===========
+
+CKEditor uses an online spellchecker provided by spellchecker.net.
+
+
+Contribute
+==========
+
+#--> John: To discuss easy-ckeditor, report bugs, etc., please do so on GitHub:
+#--> http://github.com/johnmichaelbradley/easy-ckeditor/issues
+
+
+There is a lighthouseapp account if you want to send a patch or report a bug
+
+http://easy_Ckeditor.lighthouseapp.com/projects/27883-easy-Ckeditor/overview
