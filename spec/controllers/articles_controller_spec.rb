@@ -106,18 +106,32 @@ describe 'ArticlesController' do
     describe 'with a query with several words' do
 
       before :each do
+        Factory.create(:article, :body => "hello world and im herer")
+        Factory.create(:article, :title => "hello", :body => "worldwide")
+        Factory.create(:article)
         get :live_search, :q => 'hello world'
       end
 
-      it 'should be valid' 
-      it 'should render without layout'
+      it 'should be valid' do 
+        assigns[:articles].should_not be_empty
+        assigns[:articles].should have(2).records
+      end
+
+      it 'should render without layout' do
+        controller.should_receive(:render).with(:layout =>false, :action => :live_search)
+        get :live_search, :q => 'hello world'
+      end
 
       it 'should render template live_search' do
         response.should render_template(:live_search)
       end
 
       it 'should not have h3 tag' do
-        response.should_not have_tag("h3")
+        response.should have_tag("h3")
+      end
+
+      it "should assign @search the search string" do
+        assigns[:search].should be_equal(params[:q])
       end
 
     end
