@@ -40,32 +40,40 @@ describe 'With a new user' do
     set_password 'a secure password'
   end
 
-  it 'password can be just right' do
-    set_password 'Just right'
-    @user.should be_valid
+  describe "the password" do
+    it 'can be just right' do
+      set_password 'Just right'
+      @user.should be_valid
+    end
+
+    { 'too short' => 'x',
+      'too long' => 'repetitivepass' * 10,
+      'empty' => ''
+    }.each do |problematic, password|
+      it "cannot be #{problematic}" do
+        set_password password
+        @user.should_not be_valid
+        @user.errors.should be_invalid('password')
+      end
+    end
   end
 
-  it 'login cannot be too short' do
-    @user.login = 'x'
-    @user.should_not be_valid
-    @user.errors.should be_invalid('login')
-  end
+  describe 'the login' do
+    it 'can be just right' do
+      @user.login = 'okbob'
+      @user.should be_valid
+    end
 
-  it 'login cannot be too long' do
-    @user.login = 'repetitivebob' * 10
-    @user.should_not be_valid
-    @user.errors.should be_invalid('login')
-  end
-
-  it 'login cannot be blank' do
-    @user.login = ''
-    @user.should_not be_valid
-    @user.errors.should be_invalid('login')
-  end
-
-  it 'login can be just right' do
-    @user.login = 'okbob'
-    @user.should be_valid
+    { 'too short' => 'x',
+      'too long' => 'repetitivepass' * 10,
+      'empty' => ''
+    }.each do |problematic, login|
+      it "cannot be #{problematic}" do
+        @user.login = login
+        @user.should_not be_valid
+        @user.errors.should be_invalid('login')
+      end
+    end
   end
 
   it 'email cannot be blank' do
@@ -92,6 +100,48 @@ describe 'With a user, "bob" in the database' do
 
     u.should_not be_valid
     u.errors.should be_invalid('login')
+  end
+end
+
+describe 'Updating an existing user' do
+  before(:each) do
+    User.delete_all
+    @user = User.new :login => 'bob'
+    @user.email = 'typo@typo.com'
+    set_password 'a secure password'
+    @user.save!
+  end
+
+  describe "the password" do
+    { 'just right' => 'Just right',
+      'empty' => ''
+    }.each do |ok, password|
+      it "can be #{ok}" do
+        set_password password
+        @user.should be_valid
+      end
+    end
+
+    { 'too short' => 'x',
+      'too long' => 'repetitivepass' * 10,
+    }.each do |problematic, password|
+      it "cannot be #{problematic}" do
+        set_password password
+        @user.should_not be_valid
+        @user.errors.should be_invalid('password')
+      end
+    end
+  end
+
+  describe 'the login' do
+    it 'must not change' do
+      @user.login = 'not_bob'
+      @user.should_not be_valid
+    end
+  end
+
+  def set_password(newpass)
+    @user.password = @user.password_confirmation = newpass
   end
 end
 
