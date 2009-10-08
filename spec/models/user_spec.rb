@@ -56,6 +56,13 @@ describe 'With a new user' do
         @user.errors.should be_invalid('password')
       end
     end
+
+    it "has to match confirmation" do
+      @user.password = "foo"
+      @user.password_confirmation = "bar"
+      @user.should_not be_valid
+      @user.errors.should be_invalid('password')
+    end
   end
 
   describe 'the login' do
@@ -130,6 +137,13 @@ describe 'Updating an existing user' do
         @user.should_not be_valid
         @user.errors.should be_invalid('password')
       end
+    end
+
+    it "has to match confirmation" do
+      @user.password = "foo"
+      @user.password_confirmation = "bar"
+      @user.should_not be_valid
+      @user.errors.should be_invalid('password')
     end
   end
 
