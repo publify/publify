@@ -45,7 +45,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', 
           :source => 'http://gems.github.com'
   config.gem 'RedCloth', :version => '~> 4.2.2'
-  config.gem 'datanoise-actionwebservice', :version => '~>2.3.2', :lib => 'actionwebservice',
+  config.gem 'dougbarth-actionwebservice', :version => '2.3.3', :lib => 'actionwebservice',
           :source => 'http://gems.github.com'
 
   
