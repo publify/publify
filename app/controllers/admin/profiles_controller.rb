@@ -8,7 +8,7 @@ class Admin::ProfilesController < Admin::BaseController
     if request.post? and @user.save
       current_user = @user
       flash[:notice] = _('User was successfully updated.')
-      redirect_to '/admin'    
+      redirect_to :controller => '/admin', :action => 'index'
     end
   end
 
