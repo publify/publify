@@ -145,6 +145,13 @@ describe 'Updating an existing user' do
       @user.should_not be_valid
       @user.errors.should be_invalid('password')
     end
+
+    it "is not actually changed when set to empty" do
+      set_password ''
+      @user.save!
+      User.authenticate('bob', '').should be_nil
+      User.authenticate('bob', 'a secure password').should == @user
+    end
   end
 
   describe 'the login' do
