@@ -47,7 +47,7 @@ class GroupingController < ContentController
 
       if @grouping.respond_to? :display_name and
           not @grouping.display_name.nil?
-        @page_title += grouping.display_name
+        @page_title += @grouping.display_name
       else
         @page_title += @grouping.name
       end
