@@ -157,6 +157,7 @@ module ApplicationHelper
   #{ javascript_tag "window._token = '#{form_authenticity_token}'"}
   #{ javascript_include_tag "prototype" }
   #{ javascript_include_tag "effects" }
+  #{ javascript_include_tag "builder" }
   #{ javascript_include_tag "typo" }
   #{ page_header_includes.join("\n") }
   <script type="text/javascript">#{ @content_for_script }</script>
