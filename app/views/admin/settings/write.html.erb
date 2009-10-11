@@ -7,12 +7,6 @@
 	<fieldset id="write" class="set">
 		<legend><%= _("Write")%></legend>
 		<ul>
-		    <li>
-            <label class="float" for="text_filter"><%= _("Article filter")%></label>
-            <select name="setting[text_filter]" id="text_filter">
-              <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.text_filter) %>
-            </select>
-        </li>
         <li>
             <label for="comment_text_filter" class="float"><%= _("Comments filter")%></label>
             <select name="setting[comment_text_filter]" id="comment_text_filter">
