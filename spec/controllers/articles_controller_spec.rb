@@ -189,18 +189,14 @@ describe ArticlesController, "feeds" do
     assert_feedvalidator response.body
   end
 
-  def scoped_getter
-    with_options(:year => 2007, :month => 10, :day => 11, :id => 'slug') { |item| item }
-  end
-
-  specify "/yyyy/mm/dd/slug.atom should be an atom feed" do
-    scoped_getter.get 'index', :format => 'atom'
+  specify "atom feed for archive should be valid" do
+    get 'index', :year => 2004, :month => 4, :format => 'atom'
     response.should render_template("_atom_feed")
     assert_feedvalidator response.body
   end
 
-  specify "/yyyy/mm/dd/slug.rss should be an rss20 feed" do
-    scoped_getter.get 'index', :format => 'rss'
+  specify "RSS feed for archive should be valid" do
+    get 'index', :year => 2004, :month => 4, :format => 'rss'
     response.should render_template("_rss20_feed")
     assert_feedvalidator response.body
   end
@@ -213,4 +209,5 @@ describe ArticlesController, "feeds" do
     response.body.should =~ /écoute The future is cool!/
     assert_feedvalidator response.body
   end
+
 end
