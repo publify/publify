@@ -148,13 +148,6 @@ describe XmlController do
     assert_select 'summary'
   end
 
-  def test_feed_atom10_with_accent
-    Article.create!(:title => "News from the future!",
-                    :body => "The future is cool!",
-                    :keywords => "future",
-                    :created_at => Time.now + 12.minutes)
-  end
-
   def test_feed_atom10_article
     get :feed, :format => 'atom10', :type => 'article', :id => contents(:article1).id
     assert_moved_permanently_to contents(:article1).permalink_by_format('atom')
