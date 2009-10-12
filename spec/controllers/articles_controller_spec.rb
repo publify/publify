@@ -86,12 +86,14 @@ describe 'ArticlesController' do
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
       response.should render_template('articles/_rss20_feed')
+      assert_feedvalidator response.body
     end
 
     it 'should render feed atom by search' do
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
       response.should render_template('articles/_atom_feed')
+      assert_feedvalidator response.body
     end
 
     it 'search with empty result' do
@@ -176,6 +178,7 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'atom'
     response.should be_success
     response.should render_template("_atom_feed")
+    assert_feedvalidator response.body
   end
 
   specify "/articles.rss => an RSS 2.0 feed" do
@@ -183,6 +186,7 @@ describe ArticlesController, "feeds" do
     response.should be_success
     response.should render_template("_rss20_feed")
     response.should have_tag('link', 'http://myblog.net')
+    assert_feedvalidator response.body
   end
 
   def scoped_getter
@@ -192,11 +196,13 @@ describe ArticlesController, "feeds" do
   specify "/yyyy/mm/dd/slug.atom should be an atom feed" do
     scoped_getter.get 'index', :format => 'atom'
     response.should render_template("_atom_feed")
+    assert_feedvalidator response.body
   end
 
   specify "/yyyy/mm/dd/slug.rss should be an rss20 feed" do
     scoped_getter.get 'index', :format => 'rss'
     response.should render_template("_rss20_feed")
+    assert_feedvalidator response.body
   end
 
   it 'should not render &eacute; in atom feed' do
@@ -205,5 +211,6 @@ describe ArticlesController, "feeds" do
     article.save!
     get 'index', :format => 'atom'
     response.body.should =~ /écoute The future is cool!/
+    assert_feedvalidator response.body
   end
 end
