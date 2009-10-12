@@ -46,6 +46,7 @@ class XmlController < ApplicationController
         return
       end
 
+      # TODO: Use templates from articles controller.
       respond_to do |format|
         format.googlesitemap
         format.atom
