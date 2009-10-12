@@ -25,6 +25,7 @@
         <input class="submit" type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
         <%= save( _("Publish") + " &raquo;") %><br />
         <%= link_to_destroy_with_profiles @article%>
+        <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/previews', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
       </p>
     </div>
     <div id="editor">
