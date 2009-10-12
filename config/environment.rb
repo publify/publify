@@ -47,6 +47,7 @@ Rails::Initializer.run do |config|
   config.gem 'RedCloth', :version => '~> 4.2.2'
   config.gem 'dougbarth-actionwebservice', :version => '2.3.3', :lib => 'actionwebservice',
           :source => 'http://gems.github.com'
+  config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
 
   
   # Use the database for sessions instead of the file system

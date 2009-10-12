@@ -314,7 +314,8 @@ class Content < ActiveRecord::Base
       rss_groupings(xml)
       rss_enclosure(xml)
       rss_trackback(xml)
-      xml.link permalink_url
+      # TODO: Perhaps permalink_url should produce valid URI's instead of IRI's
+      xml.link Addressable::URI.parse(permalink_url).normalize
     end
   end
 
