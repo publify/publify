@@ -96,10 +96,14 @@ module ApplicationHelper
   end
 
   def feed_title
-    return @feed_title if @feed_title
-    return @page_title \
-      ? "#{this_blog.blog_name} : #{@page_title}" \
-      : this_blog.blog_name
+    case
+    when @feed_title
+      return @feed_title
+    when (@page_title and not @page_title.blank?)
+      return "#{this_blog.blog_name} : #{@page_title}"
+    else
+      return this_blog.blog_name
+    end
   end
 
   def html(content, what = :all, deprecated = false)
