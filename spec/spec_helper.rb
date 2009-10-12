@@ -53,3 +53,68 @@ def this_blog
   Blog.default || Blog.create!
 end
 
+# This test now has optional support for validating the generated RSS feeds.
+# Since Ruby doesn't have a RSS/Atom validator, I'm using the Python source
+# for http://feedvalidator.org and calling it via 'system'.
+#
+# To install the validator, download the source from
+# http://sourceforge.net/cvs/?group_id=99943
+# Then copy src/feedvalidator and src/rdflib into a Python lib directory.
+# Finally, copy src/demo.py into your path as 'feedvalidator', make it executable,
+# and change the first line to something like '#!/usr/bin/python'.
+
+if($validator_installed == nil)
+  $validator_installed = false
+  begin
+    IO.popen("feedvalidator 2> /dev/null","r") do |pipe|
+      if (pipe.read =~ %r{Validating http://www.intertwingly.net/blog/index.})
+        puts "Using locally installed Python feed validator"
+        $validator_installed = true
+      end
+    end
+  rescue
+    nil
+  end
+end
+
+def assert_feedvalidator(rss, todo=nil)
+  unless $validator_installed
+    puts 'not test of validating feed because no validator (feedvalidator in python) installed'
+    return
+  end
+
+  begin
+    file = Tempfile.new('typo-feed-test')
+    filename = file.path
+    file.write(rss)
+    file.close
+
+    messages = ''
+
+    IO.popen("feedvalidator file://#{filename}") do |pipe|
+      messages = pipe.read
+    end
+
+    okay, messages = parse_validator_messages(messages)
+
+    if todo && ! ENV['RUN_TODO_TESTS']
+      assert !okay, messages + "\nTest unexpectedly passed!\nFeed text:\n"+rss
+    else
+      assert okay, messages + "\nFeed text:\n"+rss
+    end
+  end
+end
+
+def parse_validator_messages(message)
+  messages=message.split(/\n/).reject do |m|
+    m =~ /Feeds should not be served with the "text\/plain" media type/ ||
+      m =~ /Self reference doesn't match document location/
+  end
+
+  if(messages.size > 1)
+    [false, messages.join("\n")]
+  else
+    [true, ""]
+  end
+end
+
