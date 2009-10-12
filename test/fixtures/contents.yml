@@ -77,9 +77,9 @@ first_page:
   name: page_one
   title: Page One Title
   body: ho ho ho
-  created_at: 2005-05-05 01:00:00
-  published_at: 2005-05-05 01:00:00
-  updated_at: 2005-05-05 01:00:00
+  created_at: 2005-05-05 01:00:01
+  published_at: 2005-05-05 01:00:01
+  updated_at: 2005-05-05 01:00:01
   user: tobi
   published: true
   state: published
@@ -102,9 +102,9 @@ markdown_page:
   title: Markdown Page
   text_filter: markdown_filter
   body: this is *markdown*.
-  created_at: 2005-05-05 01:00:00
-  updated_at: 2005-05-05 01:00:00
-  published_at: 2005-05-05 01:00:00
+  created_at: 2005-05-05 01:00:02
+  updated_at: 2005-05-05 01:00:02
+  published_at: 2005-05-05 01:00:02
   user: tobi
   published: true
   state: published
@@ -151,9 +151,9 @@ xmltest:
   allow_comments: true
   allow_pings: true
   permalink: associations-arent-dependent-true-anymore
-  created_at: 2003-04-28 05:31:00
-  updated_at: 2003-04-28 05:31:00
-  published_at: 2003-04-28 05:31:00
+  created_at: 2003-04-28 05:31:01
+  updated_at: 2003-04-28 05:31:01
+  published_at: 2003-04-28 05:31:01
   user: tobi
   author: Tobi
   guid: urn:uuid:0d676c66-4135-4a8b-9d65-b6a3248d3032
@@ -216,9 +216,9 @@ utf8_article:
   title: ルビー
   body: body
   extended: extended content
-  created_at: 2004-06-02 20:00:03
-  updated_at: 2004-06-02 20:00:03
-  published_at: 2004-06-02 20:00:03
+  created_at: 2004-06-02 20:00:04
+  updated_at: 2004-06-02 20:00:04
+  published_at: 2004-06-02 20:00:04
   allow_comments: true
   allow_pings: true
   permalink: ルビー
