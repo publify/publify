@@ -6,7 +6,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
   xml.channel do
     xml.title feed_title
     xml.link this_blog.base_url
-    xml.language this_blog.lang
+    xml.language this_blog.lang.gsub("_", "-").downcase
     xml.ttl "40"
     xml.description this_blog.blog_subtitle
 
