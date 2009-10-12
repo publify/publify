@@ -57,7 +57,7 @@ class Trackback < Feedback
   end
 
   def atom_title(xml)
-    xml.title "Trackback from #{blog_name}: #{title} on #{article.title}", :type => 'text/html'
+    xml.title "Trackback from #{blog_name}: #{title} on #{article.title}", :type => 'html'
   end
 
   def rss_title(xml)
