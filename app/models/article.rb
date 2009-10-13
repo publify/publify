@@ -475,27 +475,19 @@ class Article < Content
     end
   end
 
-  def atom_content(xml)
+  def atom_content(entry)
     if self.user && self.user.name
       rss_desc = "<hr /><p><small>#{_('Original article writen by')} #{self.user.name} #{_('and published on')} <a href='#{blog.base_url}'>#{blog.blog_name}</a> | <a href='#{self.permalink_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{blog.base_url}'>#{blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}.</small></p>"
     else
       rss_desc = ""
     end
     
-    # This HTMLEntities is use to convert bad entities on dabase. We can check 
-    # some bad data insert by FCKEditor. We can found to &eacute; by exemple.
-    # If we doesn't change that, the atom feed is invalid
-    coder = HTMLEntities.new
-    post = coder.decode(html(blog.show_extended_on_rss ? :all : :body))
-    content = blog.rss_description ? post + rss_desc : post
-
-    xml.summary "type" => "xhtml" do
-      xml.div(:xmlns => "http://www.w3.org/1999/xhtml") {xml << coder.decode(html(:body)) }
-    end
+    entry.summary html(:body), "type" => "html"
     if blog.show_extended_on_rss
-      xml.content(:type => "xhtml") do
-        xml.div(:xmlns => 'http://www.w3.org/1999/xhtml') { xml << content }
-      end
+      post = html(:all)
+      content = blog.rss_description ? post + rss_desc : post
+
+      entry.content(content, :type => "html")
     end
   end
 
