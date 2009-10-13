@@ -37,7 +37,7 @@
   <% if @article.published_comments.blank? %>
     <li id="dummy_comment" style="display: none"></li>
   <% else %>
-    <%= render(:partial => "comment", :collection => @article.published_comments) %>
+    <%= render(:partial => "/articles/comment", :collection => @article.published_comments) %>
   <% end %>
   </ol>
 <% end -%>
@@ -49,7 +49,7 @@
     <span class="light-bg"><%= @article.trackback_url %></span>
     </p>
   <%= content_tag(:ol,
-        render(:partial => "trackback", :collection => @article.published_trackbacks),
+        render(:partial => "/articles/trackback", :collection => @article.published_trackbacks),
         :id => 'trackbackList', :class => 'trackback-list') unless @article.published_trackbacks.blank? %>
 <% end -%>
 
@@ -63,7 +63,7 @@
 </p>
 
 <% unless @article.comments_closed? -%>
-  <%= render :partial => 'comment_box' %>
+  <%= render :partial => '/articles/comment_box' %>
 <% else -%>
   <p><%= _("Comments are disabled")%></p>
 <% end -%>
