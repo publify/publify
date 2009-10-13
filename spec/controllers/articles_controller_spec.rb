@@ -201,13 +201,20 @@ describe ArticlesController, "feeds" do
     assert_feedvalidator response.body
   end
 
-  it 'should not render &eacute; in atom feed' do
+  it 'should create valid atom feed when article contains &eacute;' do
     article = contents(:article2)
-    article.body = '&eacute;coute The future is cool!'
+    article.body = '&eacute;coute!'
     article.save!
     get 'index', :format => 'atom'
-    response.body.should =~ /écoute The future is cool!/
+    #response.body.should =~ /écoute!/
     assert_feedvalidator response.body
   end
 
+  it 'should create valid atom feed when article contains loose <' do
+    article = contents(:article2)
+    article.body = 'is 4 < 2? no!'
+    article.save!
+    get 'index', :format => 'atom'
+    assert_feedvalidator response.body
+  end
 end
