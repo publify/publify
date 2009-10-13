@@ -119,7 +119,7 @@ describe RedirectController do
       assigns(:article).should == contents(:utf8_article)
     end
 
-    describe 'render atom feed' do
+    describe 'rendering as atom feed' do
       before(:each) do
         get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
       end
@@ -133,7 +133,7 @@ describe RedirectController do
       end
     end
 
-    describe 'render rss feed' do
+    describe 'rendering as rss feed' do
       before(:each) do
         get :redirect, :from => ["#{contents(:article1).permalink}.html.rss"]
       end
@@ -146,5 +146,20 @@ describe RedirectController do
         assert_feedvalidator response.body
       end
     end
+
+    describe 'rendering comment feed with problematic characters' do
+      before(:each) do
+        @comment = contents(:article1).comments.first
+        @comment.body = "&eacute;coute! 4 < 2, non?"
+        @comment.save!
+        get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+      end
+
+      it 'should result in a valid atom feed' do
+        assigns(:article).should == contents(:article1)
+        assert_feedvalidator response.body
+      end
+    end
+
   end
 end
