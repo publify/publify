@@ -347,10 +347,8 @@ class Content < ActiveRecord::Base
   def atom_enclosures(xml)
   end
 
-  def atom_content(xml)
-    xml.content(:type => 'xhtml') do
-      xml.div(:xmlns => 'http://www.w3.org/1999/xhtml') { xml << html(:all) }
-    end
+  def atom_content(entry)
+    entry.content(html(:all), :type => 'html')
   end
 end
 
