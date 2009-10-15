@@ -90,27 +90,38 @@ class Admin::ContentController < Admin::BaseController
 
   def autosave
     get_or_build_article
-    unless @article.published
-      params[:article] ||= {}
-      @article.attributes = params[:article]
-      @article.published = false
-      setup_categories
-      @selected = @article.categories.collect { |c| c.id }
-      set_article_author
-      save_attachments
 
-      set_article_title_for_autosave
+    # This is ugly, but I have to check whether or not the article is 
+    # published to create the dummy draft I'll replace later so that the
+    # published article doesn't get overriden on the front
+    if @article.published
+      parent_id = @article.id
+      @article = Article.new
+      @article.allow_comments = this_blog.default_allow_comments
+      @article.allow_pings    = this_blog.default_allow_pings
+      @article.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
+      @article.parent_id      = parent_id
+    end
+  
+    params[:article] ||= {}
+    @article.attributes = params[:article]
+    @article.published = false
+    setup_categories
+    @selected = @article.categories.collect { |c| c.id }
+    set_article_author
+    save_attachments
 
-      @article.state = "draft" unless @article.state == "withdrawn"
-      if @article.save
-        render(:update) do |page|
-          page.replace_html('autosave', hidden_field_tag('id', @article.id))
-          page.replace_html('permalink', text_field('article', 'permalink'))
-          page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/previews', :id => @article.id}, {:target => 'new'}))
-        end
+    set_article_title_for_autosave
 
-        return true
+    @article.state = "draft" unless @article.state == "withdrawn"
+    if @article.save
+      render(:update) do |page|
+        page.replace_html('autosave', hidden_field_tag('id', @article.id))
+        page.replace_html('permalink', text_field('article', 'permalink'))
+        page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/previews', :id => @article.id }, {:target => 'new'}))
       end
+
+      return true
     end
     render :text => nil
   end
@@ -133,6 +144,7 @@ class Admin::ContentController < Admin::BaseController
 
   def new_or_edit
     get_or_build_article
+    
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @article.published = true
     
@@ -149,7 +161,9 @@ class Admin::ContentController < Admin::BaseController
       set_article_author
       save_attachments
       @article.state = "draft" if @article.draft
+      
       if @article.save
+        destroy_the_draft unless @article.draft
         set_article_categories
         set_the_flash
         redirect_to :action => 'index'
@@ -168,6 +182,11 @@ class Admin::ContentController < Admin::BaseController
     else
       raise "I don't know how to tidy up action: #{params[:action]}"
     end
+  end
+
+  def destroy_the_draft
+    draft = Article.find(:first, :conditions => { :parent_id => @article.id })
+    draft.destroy if draft
   end
 
   def set_article_author
