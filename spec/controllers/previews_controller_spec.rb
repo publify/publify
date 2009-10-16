@@ -22,11 +22,12 @@ describe 'PreviewsController' do
 
   describe 'index action' do
     before :each do
-      get :index, :id => 1
+      @request.session = {:user => users(:tobi).id}
+      get :index, :id => Factory(:article).id
     end
 
     it 'should be render template /articles/read' do
-      response.should render_template('/articles/read')
+      response.should render_template('articles/read.html.erb')
     end
   end
 end
