@@ -22,6 +22,41 @@ describe XmlController do
     assert_equal location, @response.headers["Location"]
   end
 
+  describe "without format parameter" do
+    it "redirects main feed to articles RSS feed" do
+      get :feed, :type => 'feed'
+      assert_moved_permanently_to 'http://test.host/articles.rss'
+    end
+
+    it "redirects comments feed to Comments RSS feed" do
+      get :feed, :type => 'comments'
+      assert_moved_permanently_to admin_comments_url(:format=>:rss)
+    end
+
+    it "returns valid RSS feed for trackbacks feed type" do
+      get :feed, :type => 'trackbacks'
+      assert_response :success
+      assert_xml @response.body
+      assert_feedvalidator @response.body
+      assert_rss20
+    end
+
+    it "redirects article feed to Article RSS feed" do
+      get :feed, :type => 'article', :id => contents(:article1).id
+      assert_moved_permanently_to contents(:article1).permalink_by_format(:rss)
+    end
+
+    it "redirects category feed to Category RSS feed" do
+      get :feed, :type => 'category', :id => 'personal'
+      assert_moved_permanently_to(category_url('personal', :format => 'rss'))
+    end
+
+    it "redirects tag feed to Tag RSS feed" do
+      get :feed, :type => 'tag', :id => 'foo'
+      assert_moved_permanently_to(tag_url('foo', :format=>'rss'))
+    end
+  end
+
   def test_feed_rss20
     get :feed, :format => 'rss20', :type => 'feed'
     assert_moved_permanently_to 'http://test.host/articles.rss'
@@ -29,7 +64,6 @@ describe XmlController do
 
   def test_feed_rss20_comments
     get :feed, :format => 'rss20', :type => 'comments'
-    assert_response :moved_permanently
     assert_moved_permanently_to admin_comments_url(:format=>:rss)
   end
 
