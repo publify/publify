@@ -6,16 +6,28 @@ describe PreviewsController do
   integrate_views
 
   before(:each) do
-    request.session = { :user => users(:tobi).id }
   end
 
   describe 'index action' do
-    before :each do
-      get :index, :id => contents(:article1).id
-    end
+    describe 'with non logged user' do
+      before :each do
+        @request.session = {}
+        get :index, :id => Factory(:article).id
+      end
 
-    it 'should render template /articles/read' do
-      response.should render_template('articles/read.html.erb')
+      it 'should be redirect to login' do
+        response.should redirect_to(:controller => "accounts/login", :action => :index)
+      end
+    end
+    describe 'with logged user' do
+      before :each do
+        @request.session = {:user => users(:tobi).id}
+        get :index, :id => Factory(:article).id
+      end
+
+      it 'should render template /articles/read' do
+        response.should render_template('articles/read.html.erb')
+      end
     end
   end
 end

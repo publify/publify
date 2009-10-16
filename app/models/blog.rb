@@ -202,7 +202,7 @@ class Blog < ActiveRecord::Base
 
   def permalink_has_identifier
     unless permalink_format =~ /(%year%|%month%|%day%|%title%)/
-      errors.add(:permalink_format, _('You need a Format of permalink with an identifier : %%month%%, %%year%%, %%day%%, %%title%%'))
+      errors.add(:permalink_format, _("You need a Format of permalink with an identifier : %%month%%, %%year%%, %% day%%, %%title%%"))
     end
 
     # A permalink can be finish by .atom or .rss. it's reserved to feed

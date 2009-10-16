@@ -741,7 +741,7 @@ Localization.define("fr_FR") do |l|
 
   # app/models/blog.rb
   l.store "Can't finish by .rss or .atom. It's reserved to be use by feed", "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
-  l.store "You need a Format of permalink with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Vous devez spécifier un identifiant : %%month%%, %%year%%, %%day%%, %%title%%"
+  l.store "You need a Format of permalink with an identifier : %%month%%, %%year%%, %% day%%, %%title%%", "Vous devez spécifier un identifiant : %%month%%, %%year%%, %%day%%, %%title%%"
 
   # app/models/feedback/states.rb
   l.store "Unclassified", ""
