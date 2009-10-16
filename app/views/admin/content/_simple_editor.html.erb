@@ -4,9 +4,11 @@
   $('s').className = 'active';
   $('f').className = 'inactive';
   $('text_filter').value = $('user_textfilter').value;
+  content = CKEDITOR.instances.article__body_and_extended_editor.getData();
 </script>
 <%= text_area('article', 'body_and_extended', {:height => '300', :class => 'medium'}) %>
 <script type="text/javascript">
   $('visual_editor').innerHTML = "";
   $('visual_editor').style.display = 'none';
+  $('article_body_and_extended').innerHTML = content;
 </script>
