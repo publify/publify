@@ -85,7 +85,7 @@ class XmlController < ApplicationController
     if params[:format]
       params[:format] = NORMALIZED_FORMAT_FOR[params[:format]]
     else
-      params[:foramt] = 'rss'
+      params[:format] = 'rss'
     end
     return true
   end
