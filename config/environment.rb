@@ -4,7 +4,7 @@
 # (Use only when you can't set environment variables through your web/app server)
 # ENV['RAILS_ENV'] = 'production'
 
-RAILS_GEM_VERSION = '2.3.3' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -45,7 +45,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', 
           :source => 'http://gems.github.com'
   config.gem 'RedCloth', :version => '~> 4.2.2'
-  config.gem 'dougbarth-actionwebservice', :version => '2.3.3', :lib => 'actionwebservice',
+  config.gem 'dougbarth-actionwebservice', :version => '2.3.4', :lib => 'actionwebservice',
           :source => 'http://gems.github.com'
   config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
 
