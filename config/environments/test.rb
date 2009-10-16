@@ -24,4 +24,5 @@ require 'ruby-debug'
 config.gem "thoughtbot-factory_girl",
   :lib    => "factory_girl",
   :source => "http://gems.github.com"
-
+config.gem 'rspec', :lib => false
+config.gem 'rspec-rails', :lib => false
