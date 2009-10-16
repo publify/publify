@@ -1,17 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe AuthorsController do
-  controller_name :authors
-  Article.delete_all
-
   integrate_views
-
-  before(:each) do
-    IPSocket.stub!(:getaddress).and_return do
-      raise SocketError.new("getaddrinfo: Name or service not known")
-    end
-    controller.send(:reset_blog_ids)
-  end
 
   describe 'show action' do
     before :each do
@@ -39,6 +29,7 @@ describe AuthorsController do
     get 'show', :id => 'tobi', :format => 'atom'
     response.should be_success
     response.should render_template("articles/_atom_feed")
+    assert_feedvalidator @response.body
   end
 
   specify "/author/tobi.rss => a rss feed" do
@@ -46,5 +37,6 @@ describe AuthorsController do
     response.should be_success
     response.should render_template("articles/_rss20_feed")
     response.should have_tag('link', 'http://myblog.net')
+    assert_feedvalidator @response.body
   end
 end

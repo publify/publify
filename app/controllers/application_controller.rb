@@ -61,9 +61,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :this_blog
 
-  def reset_blog_ids
-  end
-
   # The base URL for this request, calculated by looking up the URL for the main
   # blog index page.  This is matched with Blog#base_url to determine which Blog
   # is supposed to handle this URL

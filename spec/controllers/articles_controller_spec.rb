@@ -1,24 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-class Content
-  def self.find_last_posted
-    find(:first, :conditions => ['created_at < ?', Time.now],
-         :order => 'created_at DESC')
-  end
-end
-
-describe 'ArticlesController' do
-  controller_name :articles
-  Article.delete_all
-
+describe ArticlesController do
   integrate_views
-
-  before(:each) do
-    IPSocket.stub!(:getaddress).and_return do
-      raise SocketError.new("getaddrinfo: Name or service not known")
-    end
-    controller.send(:reset_blog_ids)
-  end
 
   it "should redirect category to /categories" do
     get 'category'
@@ -166,13 +149,6 @@ end
 describe ArticlesController, "feeds" do
   
   integrate_views
-
-  before do
-    @mock = mock('everything', :null_object => true)
-    Category.stub!(:find_by_permalink).and_return(@mock)
-    Tag.stub!(:find_by_permalink).and_return(@mock)
-    User.stub!(:find_by_permalink).and_return(@mock)
-  end
 
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
