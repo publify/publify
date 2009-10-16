@@ -298,6 +298,7 @@ Localization.define("fr_FR") do |l|
   l.store "Show full article on feed", "Afficher la totalité du billet dans le flux RSS"
   l.store "Feedburner ID", "Identifiant Feedburner"
   l.store "Read", "Lire"
+  l.store 'You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.',"Vous pouvez utiliser votre compte Google Feedburner au lieu de vos feeds Typo. Pour l'activer, remplisser ce formulaire avec votre identifiant Feedburner."
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Optimisation pour les moteurs de recherche"
@@ -630,7 +631,8 @@ Localization.define("fr_FR") do |l|
   l.store "Content Type was successfully updated.", "Le type du contenu a été mis à jour avec succès."
 
   # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
+  l.store "Settings", "Configurations"
+  l.store "Please review and save the settings before continuing", "S'il vérifiez et enregistrer votre configuration avant de continuer"
   l.store "config updated.", "Configuration mis à jour."
 
   # app/controllers/admin/sidebar_controller.rb
