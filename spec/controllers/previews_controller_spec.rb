@@ -1,12 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PreviewsController do
-  controller_name :previews
-
   integrate_views
-
-  before(:each) do
-  end
 
   describe 'index action' do
     describe 'with non logged user' do
