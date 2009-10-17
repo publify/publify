@@ -427,7 +427,7 @@ Localization.define("nl_NL") do |l|
   l.store "Preview comment", "Bekijk reactie"
 
   # app/views/articles/_comment_failed.html.erb
-  l.store "Opps, something wrong happened, the comment could not be saved", "Er is iets mis gegaan en je reactie is niet bewaard"
+  l.store "Oops, something wrong happened, the comment could not be saved", "Er is iets mis gegaan en je reactie is niet bewaard"
 
   # app/views/articles/_trackback.html.erb
   l.store "From", "Van"

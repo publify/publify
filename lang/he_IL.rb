@@ -502,7 +502,7 @@ Localization.define("he_IL") do |l|
   l.store "Preview comment", "תצוגה מקדימה של התגובה"
 
   # app/views/articles/_comment_failed.html.erb
-  l.store "Opps, something wrong happened, the comment could not be saved", "אופס, משהו השתבש, התגובה אינה יכולה להישמר"
+  l.store "Oops, something wrong happened, the comment could not be saved", "אופס, משהו השתבש, התגובה אינה יכולה להישמר"
 
   # app/views/articles/_trackback.html.erb
   l.store "From", "מאת"
