@@ -178,12 +178,12 @@ small {
 }
 
 #overall {
-	width: 1000px;
+	width: 100%;
 	background: #fff;
 }
 
 #main {
-	padding: 10px 0 20px 20px;
+	padding: 10px 20px;
 }
 
 #footer {
@@ -307,7 +307,7 @@ tr.menubar {
 
 #article_form textarea.medium,
 #page_form textarea.medium {
-	width: 670px;
+	width: 100%;
 }
 
 #article_form input.large,
@@ -791,10 +791,18 @@ hr {
 	padding-bottom: 0;
 }
 
+div.paginate,
 li.paginate {
   margin-bottom: 15px;
   border-left: #6694e3 8px solid;
 }
+
+div.paginate ul li {
+	margin-left: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
 
 div.auto_complete {
   width: 350px;
@@ -854,10 +862,6 @@ div.auto_complete ul strong.highlight {
 	border: #ddd 1px solid;
 }
 
-#editor {
-	width: 700px;
-}
-
 #simple_editor,
 #visual_editor {
 	background: #e0ecff;
@@ -895,6 +899,7 @@ div.auto_complete ul strong.highlight {
 
 #editor-menu {
 	text-align: right;
+	margin-top: 30px;
 }
 
 #editor-menu span.active {
@@ -921,3 +926,20 @@ ul.admin {
 .progressBar .background { background-color: #e0ecff; height: 18px; width: 0%; }
 
 #resources { margin-top: 20px;}
+
+#editorright {
+	float: right;
+	width: 300px;
+}
+
+#editorleft {
+	margin-right: 320px;
+}
+
+div.paginage .noborder {
+	border: none;
+}
+
+#editor {
+	margin-bottom: 20px;
+}

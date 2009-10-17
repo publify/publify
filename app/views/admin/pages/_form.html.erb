@@ -1,51 +1,56 @@
 <%= error_messages_for 'page' %>
 <!--[form:pages]-->
-<ul class="admin">
-  <li>
+<div id='editorright'>
+  <label class="block content"><%= _("Options") %></label>
+  <p class="paginate r" id="saveblock">
+      <label for="page_name"><%= _("Permalink")%></label><br />
+      <%= text_field 'page', 'name', :size => 25  %><br />
+      <label for="page_published"><%= _("Online")%></label>
+      <%= check_box 'page', 'published'  %><br />
+    <%= link_to_destroy_with_profiles @page%>
+    <%= save( _("Publish") + " &raquo;") %>
+  </p>
+  
+  
+</div>
+
+
+<div id='editorleft'>
+  <div>
     <label for="page_title" class="block title"><%= _("Title")%></label>
     <%= text_field 'page', 'title', :class => 'large'  %>
-  </li>
-  <li>
-    <div style="float: right; width: 230px;">
-      <label class="block content"><%= _("Options") %></label>
-      <p class="paginate r" id="saveblock">
-          <label for="page_name"><%= _("Permalink")%></label><br />
-          <%= text_field 'page', 'name', :size => 25  %><br />
-          <label for="page_published"><%= _("Online")%></label>
-          <%= check_box 'page', 'published'  %><br />
-        <%= link_to_destroy_with_profiles @page%>
-        <%= save( _("Publish") + " &raquo;") %>
-      </p>
+  </div>
+  <div id="editor">
+    <div id="editor-menu">
+      <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
+        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'simple_editor', 'visual') %>
+      </span>
+      <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
+        <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+      </span>
     </div>
-    <div id="editor">
-      <div id="editor-menu">
-        <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
-          <%= build_editor_link("Visual", 'insert_editor', 'fck', 'simple_editor', 'visual') %>
-        </span>
-        <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
-          <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-        </span>
-      </div>
-      <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
-        <script type="text/javascript">edToolbar('page_body');</script>
-      </div>
-      <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
-      <div id='<%= "#{current_user.editor}_editor" %>'>
-        <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
-        <%= render_macros(@macros) if current_user.editor == 'visual' %>
-      </div>
+    <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
+      <script type="text/javascript">edToolbar('page_body');</script>
     </div>
-    <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
-  </li>
-  <li class="paginate l">
-    <label class="block">
-      <%= link_to_function _("Page settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
-    </label>
-    <ul id="publishing_options" <%= "style='display: none;'" if @page.published.blank? %>>
-      <li>
-          <label class="float" for="text_filter"><%= _("Article filter")%></label>
-          <select name="page[text_filter]" id="text_filter">
-            <%= options_for_select text_filter_options, @page.text_filter %>
-          </select>
-      </li>  
-</ul>
+    <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
+    <div id='<%= "#{current_user.editor}_editor" %>'>
+      <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
+      <%= render_macros(@macros) if current_user.editor == 'visual' %>
+    </div>
+  </div>
+  <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
+
+    <div class="paginate l">
+      <label class="block">
+        <%= link_to_function _("Page settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
+      </label>
+      <ul id="publishing_options" <%= "style='display: none;'" if @page.published.blank? %>>
+        <li>
+            <label class="float" for="text_filter"><%= _("Article filter")%></label>
+            <select name="page[text_filter]" id="text_filter">
+              <%= options_for_select text_filter_options, @page.text_filter %>
+            </select>
+        </li>  
+  </ul>
+  </div>  
+</div>
