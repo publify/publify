@@ -93,6 +93,15 @@ ActionMailer::Base.default_charset = 'utf-8'
 #  end
 #end
 
+# Work around interpolation deprecation problem: %d is replaced by
+# {{count}}, even when we don't want them to.
+# FIXME: We should probably fully convert to standard Rails I18n.
+class I18n::Backend::Simple
+  def interpolate(locale, string, values = {})
+    interpolate_without_deprecated_syntax(locale, string, values)
+  end
+end
+
 if RAILS_ENV != 'test'
   begin
     mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))

@@ -26,7 +26,7 @@
 
   <% unless @article.published_trackbacks.blank? -%>
   <ol id="trackbacks" class="comments">
-    <%= render(:partial => "trackback", :collection => @article.published_trackbacks) %>
+    <%= render(:partial => "/articles/trackback", :collection => @article.published_trackbacks) %>
   </ol>
   <% end -%>
 <% end -%>
