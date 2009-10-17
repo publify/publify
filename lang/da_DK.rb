@@ -513,7 +513,6 @@ Localization.define('da_DK') do |l|
   l.store "later", "senere"
   l.store "Continue reading &raquo;", "L&aelig;s videre &raquo;"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den."
-  l.store "Oops, something wrong happened. Have you filled out message and name?", "Hov der gik noget galt, har du udfyldt besked og dit navn?"
 
   #articles/_comment_box.rhtml
   l.store "Your name", "Dit Navn"
@@ -523,6 +522,10 @@ Localization.define('da_DK') do |l|
   l.store "Comment Markup Help", "Hjælp med kommentar markup"
   l.store "Preview comment", "Vis kommentar eksempel"
   l.store "Submit", "Indsend"
+
+  # app/views/articles/_comment_failed.html.erb
+  #l.store "Oops, something wrong happened. Have you filled out message and name?", "Hov der gik noget galt, har du udfyldt besked og dit navn?"
+  l.store "Oops, something wrong happened, the comment could not be saved", ""
 
   #articles/_trackback.rhtml
   l.store "From", "Fra"
