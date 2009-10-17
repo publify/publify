@@ -3,70 +3,69 @@
 <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter.name %>" />
 <div id="autosave"></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
-<ul class="admin">
-  <li>
+
+<div id='editorright'>
+  <label class="block content"><%= _("Categories") %></label>
+  <div id="categories" style="height: 170px;">
+    <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
+  </div>
+  <p class='paginate r' id='saveblock'>
+      <label for="article_allow_comments"><%= _("Allow comments") %></label>
+      <%= check_box 'article', 'allow_comments'  %><br />
+      <label for="article_allow_pings"><%= _("Allow trackbacks")%></label>
+      <%= check_box 'article', 'allow_pings'  %><br />
+      <label for="article_published"><%= _("Published")%></label>
+      <%= check_box 'article', 'published'  %><br />
+    <%= link_to_destroy_draft @article %>
+    <input class="submit" type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
+    <%= save( _("Publish") + " &raquo;") %><br />
+    <%= link_to_destroy_with_profiles @article%>
+    <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/previews', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
+  </p>
+  <%= render :partial => 'drafts'%>
+  
+</div>
+
+<div id='editorleft'>
+  <div>
     <label for="article_title" class="block title"><%= _("Title")%></label>
     <%= text_field 'article', 'title', :class => 'large' %>
-  </li>
-  <li>
-    <div style="float: right; width: 230px;">
-      <label class="block content"><%= _("Categories") %></label>
-      <div id="categories" style="height: 170px;">
-        <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
-      </div>
-      <p class='paginate r' id='saveblock'>
-          <label for="article_allow_comments"><%= _("Allow comments") %></label>
-          <%= check_box 'article', 'allow_comments'  %><br />
-          <label for="article_allow_pings"><%= _("Allow trackbacks")%></label>
-          <%= check_box 'article', 'allow_pings'  %><br />
-          <label for="article_published"><%= _("Published")%></label>
-          <%= check_box 'article', 'published'  %><br />
-        <%= link_to_destroy_draft @article %>
-        <input class="submit" type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
-        <%= save( _("Publish") + " &raquo;") %><br />
-        <%= link_to_destroy_with_profiles @article%>
-        <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/previews', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
-      </p>
+  </div>
+  
+  <div id="editor-menu">
+    <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
+      <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+    </span>
+    <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
+      <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+    </span>
+  </div>
+  <div id="editor">
+    <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
+      <script type="text/javascript">edToolbar('article_body_and_extended');</script>
     </div>
-    <div id="editor">
-      <div id="editor-menu">
-        <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
-          <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-        </span>
-        <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
-          <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-        </span>
-      </div>
-      <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
-        <script type="text/javascript">edToolbar('article_body_and_extended');</script>
-      </div>
-      <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
-      <div id='<%= "#{current_user.editor}_editor" %>'>
-        <%= t_textarea('article', 'body_and_extended', {:height => '300', :class => 'medium'}) %>
-        <%= render_macros(@macros) if current_user.editor == 'simple' %>
-      </div>
+    <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
+    <div id='<%= "#{current_user.editor}_editor" %>'>
+      <%= t_textarea('article', 'body_and_extended', {:height => '100%', :class => 'medium', :height => '100%', :rows => '40'}) %>
+      <%= render_macros(@macros) if current_user.editor == 'simple' %>
     </div>
-  </li>
-  <li>
+  </div>
+  <div>
     <label class="block content" for="article_keywords"><%= _("Tags") %></label>
     <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large'} %>
     <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
-  </li>
-</ul>
+  </div>
 
-<ul class="admin">
-  <li class="paginate l">
+  <div class="paginate l">
     <label class="block">
       <%= link_to_function _("Excerpt") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "excerpt", :duration => 0.2) } %>
     </label>
-    <ul id="excerpt" <%= "style='display: none;'" if @article.excerpt.blank? %>>
-      <li>
-        <%= t_textarea 'article', 'excerpt', {:height => '150', :class => 'medium', :rows => '8'} %>
-      </li>     
-    </ul>
-  </li>
-    
-  <li class="paginate l">
+    <div id="excerpt" <%= "style='display: none;'" if @article.excerpt.blank? %>>
+      <%= t_textarea 'article', 'excerpt', {:height => '150', :class => 'medium', :rows => '8'} %>
+    </div>
+  </div>
+  
+  <div class="paginate l">
     <label class="block">
       <%= link_to_function _("Uploads") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "attachments", :duration => 0.2) } %>
     </label>
@@ -74,27 +73,27 @@
       <li><small>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</small></li>
       <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
     </ul>
-  </li>
-
-  <li class="paginate l">
+  </div>
+  
+  <div class="paginate l">
     <label class="block">
       <%= link_to_function _("Post settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
     </label>
-    <ul id="publishing_options" <%= "style='display: none;'" unless @article.published.blank? %>>
-      <li>
+    <div id="publishing_options" <%= "style='display: none;'" unless @article.published.blank? %>>
+      <div>
         <label class="float"><%= _("Publish at")%></label>
         <%= calendar_date_select 'article', 'published_at' %>
-      </li>
-      <li>
+      </div>
+      <div>
         <label for="article_permalink" class="float"><%= _("Permalink") %></label>
         <span id="permalink"><%= text_field 'article', 'permalink' %></span>
-      </li>
-      <li>
+      </div>
+      <div>
           <label class="float" for="text_filter"><%= _("Article filter")%></label>
           <select name="article[text_filter]" id="text_filter">
             <%= options_for_select text_filter_options, @article.text_filter %>
           </select>
-      </li>
-    </ul>
-  </li>  
-</ul>
+      </div>
+    </div>
+  </div>    
+</div>
