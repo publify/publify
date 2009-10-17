@@ -51,7 +51,7 @@ class AccountsController < ApplicationController
       if @user.save
         self.current_user = @user
         session[:user_id] = @user.id
-        redirect_to :controller => "accounts", :action => "confirm", :password => params[:password]
+        redirect_to :controller => "accounts", :action => "confirm"
         return
       end
     end
