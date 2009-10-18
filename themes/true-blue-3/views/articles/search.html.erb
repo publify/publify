@@ -1,0 +1,28 @@
+<% @article_counter = -1 %>
+<h1>Résultats de recherche pour : <%= h(params[:q]) %></h1>
+
+<% @articles.each do |article| %>
+<div class='category-excerpt <%= "border" if @article_counter >= 0 %>' id="article-<%= article.id %>">
+  <h2><%= link_to_permalink(article,article.title) %></h2>
+  <p><%= article.body.strip_html.slice(0, 300) %> [...]</p>
+  <div class='author'>
+    Le <%= "#{article.published_at.strftime('%d')} #{_(article.published_at.strftime('%B'))} #{article.published_at.strftime('%Y')}" %>
+  </div>
+  <div class='comments'>
+    <%= pluralize_comments article.published_comments.size %>
+  </div>
+</div>
+
+<% @article_counter+=1 %>
+<% if @article_counter == 2 -%>
+  <% @article_counter = 0 %>
+<% end -%>
+<% if @article_counter == 0 -%>
+  <br class='clear' />
+<% end %>
+
+<% end %>
+
+<div id='paginate'>
+<%= will_paginate @articles, { :previous_label => 'Précédent', :next_label => 'Suivant'  } %>
+</div>

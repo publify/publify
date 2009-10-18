@@ -1,0 +1,22 @@
+<div class='category-excerpt <%= "border" if @article_counter >= 0 %>' id="article-<%= article.id %>">
+  <h2><%= (controller.controller_name == 'redirect') ? article.title : link_to_permalink(article,article.title) %></h2>
+    <% if article.excerpt? %>
+      <%= article.excerpt %>
+    <% else %>
+      <% if article.extended %>
+        <% article.body = article.body + link_to_permalink(article, "[...]") %>
+        <%= article.html(:body) %>
+      <% else %>
+        <%= article.html(:body) %>
+        <%= article.html(:extended) %>
+      <% end %>
+    <% end %>
+  <div class='author'>
+    Published on <%= _(article.published_at.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M", article.published_at.utc))) %>
+  </div>
+  <div class='comments'>
+    <%= display_comments_counter(article) %>
+  </div>
+</div>
+
+<% @article_counter+=1 %>
