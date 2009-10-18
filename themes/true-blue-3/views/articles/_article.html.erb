@@ -4,7 +4,6 @@
       <%= article.excerpt %>
     <% else %>
       <% if article.extended %>
-        <% article.body = article.body + link_to_permalink(article, "[...]") %>
         <%= article.html(:body) %>
       <% else %>
         <%= article.html(:body) %>
