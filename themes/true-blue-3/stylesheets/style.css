@@ -88,7 +88,7 @@ a {
 	color: #00131e;
 	padding: 5px 10px 0 10px;
 	height: 25px;
-	display: block;
+	display: inline-block;
 	text-decoration: none;
 }
 
@@ -112,6 +112,7 @@ a {
 	color: #fff;
 	padding-top: 5px;
 	overflow: hidden;
+	width: 980px;
 }
 
 #breadcrumb a {
@@ -159,12 +160,14 @@ a {
 
 #sidebar ul {
 	padding-left: 0;
+	margin-left: 0;
 }
 
 #sidebar ul li {
 	border-top: #f0f0f0 1px solid;
 	padding: 3px 0;
 	list-style: none;
+	margin-left: 0;
 }
 
 #sidebar a {
@@ -212,7 +215,7 @@ a {
 	top: 55px;
 	left: 50%;
 	width: 48px;
-	margin-left: 447px;
+	margin-left: 437px;
 }
 
 #external a {
