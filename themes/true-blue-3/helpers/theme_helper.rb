@@ -72,7 +72,7 @@ def display_comments_counter(article)
   pluralize(article.published_comments.size, 
     _('%d comments', article.published_comments.size),
     _('%d comment', article.published_comments.size), 
-    _('comments', article.published_comments.size))  
+    _('%d comments', article.published_comments.size))  
 end
 
 def show_pages_links
