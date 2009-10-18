@@ -718,6 +718,10 @@ Localization.define("fr_FR") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new {|date|
      sprintf( date.strftime("%%s %d %%s %Y %H:%M:%S GMT"), _(date.strftime("%a")), _(date.strftime("%b")).downcase )
   }
+  l.store "%%a, %%d %%b %%Y %%H:%%M", Proc.new {|date|
+     sprintf( date.strftime("%%s %d %%s %Y %H:%M"), _(date.strftime("%a")), _(date.strftime("%b")).downcase )
+  }
+  
   l.store "%%d. %%b", Proc.new {|date|
      sprintf( date.strftime("%d. %%s"), _(date.strftime("%b")).downcase )
   }
