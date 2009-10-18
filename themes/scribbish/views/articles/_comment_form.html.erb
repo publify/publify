@@ -47,7 +47,7 @@
                          :complete => "Element.show('preview')",
                          :url    => @article.preview_comment_url) %>
     <%= submit_tag _('Submit'), :id => 'form-submit-button',  :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
-    <%= image_tag '/images/theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
+    <%= image_tag 'theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
   </p>
 </fieldset>
 <% end %>

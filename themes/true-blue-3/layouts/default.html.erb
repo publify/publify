@@ -5,7 +5,7 @@
   <title><%= h(page_title) %></title>
   <meta name="verify-v1" content="Fh7aCrb+3EIdBKEQUAInQ9YS1dqcvZHNa60DuFy1y4Y=" />
   <meta http-equiv="Content-Language" content="fr" />
-  <link rel="icon" href="/images/theme/favicon.png" type="image/png" /> 
+  <link rel="icon" href="<%= image_path 'theme/favicon.png' %>" type="image/png" /> 
 
   <%= stylesheet_link_tag "/stylesheets/theme/style", :media => 'all' %>
   <%= page_header %>
@@ -50,7 +50,7 @@
 </ul>  
 <div id='external'>
   <a href='<%= @auto_discover_rss %>'>
-    <img src="/images/theme/rss.png" alt="RSS" />
+    <%= image_tag "theme/rss.png", :alt => "RSS" %>
   </a>  
 </div>
 <div id="breadcrumb">
