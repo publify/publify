@@ -42,7 +42,7 @@
                          :url    => @article.preview_comment_url,
 												 :html => {:class => 'submit', :id => 'form-preview-button'}) %>
     <%= submit_tag _('Submit'), :id => 'form-submit-button', :class => 'submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
-    <%= image_tag '/images/theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
+    <%= image_tag 'theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
   </p>
 </div>
 <% end %>
