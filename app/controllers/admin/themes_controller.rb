@@ -23,6 +23,7 @@ class Admin::ThemesController < Admin::BaseController
     zap_theme_caches
     this_blog.current_theme(:reload)
     flash[:notice] = _("Theme changed successfully")
+    require "#{this_blog.current_theme.path}/helpers/theme_helper.rb" if File.exists? "#{this_blog.current_theme.path}/helpers/theme_helper.rb"
     redirect_to :action => 'index'
   end
 
