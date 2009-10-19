@@ -73,7 +73,7 @@ describe 'Given a new blog' do
   end
 
   it '#theme should be "typographic"' do
-    @blog.theme.should == 'typographic'
+    @blog.theme.should == 'true-blue-3'
   end
 
   it 'should not use gravatar' do
