@@ -17,24 +17,22 @@
   </h2>
   <% end %>
 
-<% if @article.allow_comments? or @article.published_comments.size > 0 -%>
+  <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
   <h3 class="feedback" id="commentaires">
     <%= display_comments_counter(@article) %>
     <a href="#commentform" ref="nofollow"> &raquo;</a>
   </h3>
-
   <%= render :partial => "/articles/comment_list" %>
-<% end -%>
+  <% end -%>
 
-<%= render :partial => '/articles/comment_form' if @article.allow_comments? %>
+  <%= render :partial => '/articles/comment_form' if @article.allow_comments? %>
 
-<% if @article.allow_pings? -%>
+  <% if @article.allow_pings? -%>
   <h5 class="feedback" id="trackbacks"><%= _('Trackbacks for')%> <em><%= @article.title %></em></h5>
   <% unless @article.published_trackbacks.blank? -%>
   <ol id="trackbacks" class="trackbacks">
     <%= render(:partial => "/articles/trackback", :collection => @article.published_trackbacks) %>
   </ol>
   <% end -%>
-<% end -%>
-
+  <% end -%>
 </div>

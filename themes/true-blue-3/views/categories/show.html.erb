@@ -1,8 +1,7 @@
 <% @article_counter = -1 %>
 
 <h1><%= link_to category_name(params[:id]), "#{this_blog.base_url}/category/#{params[:id]}" %></h1>
-
 <%= render :partial => 'article', :collection => @articles %>
 <div id='paginate'>
-<%= will_paginate @articles, { :previous_label => _('Previous'), :next_label => _('Next')  } %>
+  <%= will_paginate @articles, { :previous_label => _('Previous'), :next_label => _('Next')  } %>
 </div>

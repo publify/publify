@@ -1,25 +1,23 @@
 <% form_tag @article.comment_url do %>
 <div id='commentform'>
-	<h3><%= _("Comment")%> <em><%=@article.title%></em></h3>
-	  
-	<p class='comment'>
-      	<%= text_field "comment", "author" %>
-		<label for="comment_author"><%= _("Your name")%></label>
-	</p>
-	<p class='comment'>
-		<%= text_field "comment", "email" %>
-		<label for="comment_email"><%= _("Email address")%></label>
-  	</p>
-  	<p class='comment'>
-		<%= text_field "comment", "url" %>
-		<label for="comment_url"><%= _("Your website")%></label>
-  	</p>
-	<p class='body'>
-		<%= text_area 'comment', 'body' %>
-	</p>
-	<p class='comment_submit'>
-        <input type='image' id='form-submit-button' onclick='this.form.submit()' src='<%= image_path "theme/comment.jpg"%>' />
-	  
+  <h3><%= _("Comment")%> <em><%=@article.title%></em></h3>
+  <p class='comment'>
+    <%= text_field "comment", "author" %>
+    <label for="comment_author"><%= _("Your name")%></label>
+  </p>
+  <p class='comment'>
+    <%= text_field "comment", "email" %>
+    <label for="comment_email"><%= _("Email address")%></label>
+  </p>
+  <p class='comment'>
+    <%= text_field "comment", "url" %>
+    <label for="comment_url"><%= _("Your website")%></label>
+  </p>
+  <p class='body'>
+    <%= text_area 'comment', 'body' %>
+  </p>
+  <p class='comment_submit'>
+    <input type='image' id='form-submit-button' onclick='this.form.submit()' src='<%= image_path "theme/comment.jpg"%>' />
   </p>
 </div>
 <% end %>

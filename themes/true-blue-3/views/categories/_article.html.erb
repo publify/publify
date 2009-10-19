@@ -1,5 +1,5 @@
 <div class='category-excerpt <%= "border" if @article_counter >= 0 %>' id="article-<%= article.id %>">
-  <h2><%= (controller.controller_name == 'redirect') ? article.title : link_to_permalink(article,article.title) %></h2>
+  <h2><%= link_to_permalink(article,article.title %></h2>
     <% if article.excerpt? %>
       <%= article.excerpt %>
     <% else %>

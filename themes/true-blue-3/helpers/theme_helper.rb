@@ -6,7 +6,7 @@ def render_breadcrumb
   else
     breadcrumb << link_to(this_blog.blog_name, this_blog.base_url)
   end
-    
+
   if controller.controller_name == "redirect" and @article 
     if @article.categories.first
       breadcrumb << " &gt; "
@@ -36,7 +36,7 @@ def render_breadcrumb
     breadcrumb << " &gt; "
     breadcrumb << @page.title
   end
-  
+
   return breadcrumb
 end
 
@@ -70,9 +70,9 @@ end
 
 def display_comments_counter(article)
   pluralize(article.published_comments.size, 
-    _('%d comments', article.published_comments.size),
-    _('%d comment', article.published_comments.size), 
-    _('%d comments', article.published_comments.size))  
+          _('%d comments', article.published_comments.size),
+          _('%d comment', article.published_comments.size), 
+          _('%d comments', article.published_comments.size))  
 end
 
 def show_pages_links

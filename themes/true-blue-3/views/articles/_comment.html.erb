@@ -1,13 +1,13 @@
 <li class="comment <%= 'fdv' if comment.user_id? %>" id="comment-<%= comment.id %>">
   <%= gravatar_tag(comment.email) if this_blog.use_gravatar and comment.email %>
-	<h4>
+  <h4>
     <%= _("By") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url, :rel => "nofollow") %>
     <%= distance_of_time_in_words comment.article.published_at, comment.created_at %> <%= _("later:")%>
   </h4>
   <br class='clear' />
   <div class='thecomment'>
     <%= comment.html %>
-  	<% unless comment.published -%>
+    <% unless comment.published -%>
     <div class="spamwarning"><%= _("This comment has been flagged for moderator approval.") %></div>
     <% end -%>    
   </div>

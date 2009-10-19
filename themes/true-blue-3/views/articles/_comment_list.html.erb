@@ -1,8 +1,8 @@
 <% @comid = 0%>
 <ol id="commentList">
-  <% if @article.published_comments.any? -%>
-    <%= render(:partial => "/articles/comment", :collection => @article.published_comments) %>
-  <% else -%>
-    <li class="dummy_comment" style="display:none">Aucun commentaire pour l'instant'</li>
-  <% end -%>
+<% if @article.published_comments.any? -%>
+  <%= render(:partial => "/articles/comment", :collection => @article.published_comments) %>
+<% else -%>
+  <li class="dummy_comment" style="display:none">Aucun commentaire pour l'instant'</li>
+<% end -%>
 </ol>
