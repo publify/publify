@@ -10,6 +10,10 @@ CKEDITOR.editorConfig = function( config )
  	//config.language = '';
   config.uiColor = '#E0ECFF';
 	config.toolbar = 'Basic';
+	config.entities_greek = false;
+	config.entities_latin = false;
+	config.entities_processNumerical = false;
+		
 	config.toolbar_Basic =
 	[
 	        ['Format', '-', 'Bold', 'Italic'], 
