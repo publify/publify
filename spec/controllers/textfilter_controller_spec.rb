@@ -25,17 +25,17 @@ describe TextfilterController do
     @whiteboard = nil
   end
 
-  def test_unknown
+  it "test_unknown" do
     text = filter_text('*foo*',[:unknowndoesnotexist])
     assert_equal '*foo*', text
   end
 
-  def test_smartypants
+  it "test_smartypants" do
     text = filter_text('"foo"',[:smartypants])
     assert_equal '&#8220;foo&#8221;', text
   end
 
-  def test_markdown
+  it "test_markdown" do
     text = filter_text('*foo*', [:markdown])
     assert_equal '<p><em>foo</em></p>', text
 
@@ -43,7 +43,7 @@ describe TextfilterController do
     assert_equal "<p>foo</p>\n\n<p>bar</p>", text
   end
 
-  def test_filterchain
+  it "test_filterchain" do
     assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
       filter_text('*"foo"*',[:markdown,:smartypants])
 
@@ -51,7 +51,7 @@ describe TextfilterController do
       filter_text('*"foo"*',[:doesntexist1,:markdown,"doesn't exist 2",:smartypants,:nopenotmeeither])
   end
 
-  def test_flickr
+  it "test_flickr" do
     assert_equal "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
       filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',
         [:macropre,:macropost],
@@ -70,7 +70,7 @@ describe TextfilterController do
         {'flickr-user' => 'scott@sigkill.org'})
   end
 
-  def test_broken_flickr_link
+  it "test_broken_flickr_link" do
     assert_equal %{<div class='broken_flickr_link'>\`notaflickrid\' could not be displayed because: <br />Photo not found</div>},
       filter_text('<typo:flickr img="notaflickrid" />',
         [:macropre, :macropost],
@@ -117,12 +117,12 @@ end
     end
   end
 
-  def test_named_filter
+  it "test_named_filter" do
     assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
       TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
   end
 
-  def test_code_plus_markup_chain
+  it "test_code_plus_markup_chain" do
     text = <<-EOF
 *header text here*
 
@@ -165,7 +165,7 @@ EOF
     assert_equal expects_textile.strip, TextFilter.filter_text_by_name(blog, text, 'textile')
   end
 
-  def test_lightbox
+  it "test_lightbox" do
     assert_equal "<div style=\"float:left\" class=\"lightboxplugin\"><a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_t.jpg\" width=\"67\" height=\"100\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p></div>",
       filter_text('<typo:lightbox img="31366117" thumbsize="Thumbnail" displaysize="Large" style="float:left"/>',
         [:macropre,:macropost],

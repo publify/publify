@@ -6,7 +6,7 @@ describe BlacklistPattern, 'from Test::Unit' do
   end
 
   # Replace this with your real tests.
-  def test_truth
+  it "test_truth" do
     assert_kind_of BlacklistPattern,  @blacklist_pattern
   end
 end

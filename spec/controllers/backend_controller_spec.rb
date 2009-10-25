@@ -19,28 +19,28 @@ describe BackendController do
   end
 
   # BloggerApi Tests
-  def test_blogger_delete_post
+  it "test_blogger_delete_post" do
     args = [ 'foo', contents(:article3).id, 'tobi', 'whatever', 1 ]
 
     result = invoke_layered :blogger, :deletePost, *args
     assert_raise(ActiveRecord::RecordNotFound) { Article.find(contents(:article3).id) }
   end
 
-  def test_blogger_get_users_blogs
+  it "test_blogger_get_users_blogs" do
     args = [ 'foo', 'tobi', 'whatever' ]
 
     result = invoke_layered :blogger, :getUsersBlogs, *args
     assert_equal 'test blog', result.first['blogName']
   end
 
-  def test_blogger_get_user_info
+  it "test_blogger_get_user_info" do
     args = [ 'foo', 'tobi', 'whatever' ]
 
     result = invoke_layered :blogger, :getUserInfo, *args
     assert_equal 'tobi', result['userid']
   end
 
-  def test_blogger_new_post
+  it "test_blogger_new_post" do
     args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title>new post *body*', 1]
 
     result = invoke_layered :blogger, :newPost, *args
@@ -55,7 +55,7 @@ describe BackendController do
     assert new_post[:published_at]
   end
 
-  def test_blogger_new_post_no_title
+  it "test_blogger_new_post_no_title" do
     args = [ 'foo', '1', 'tobi', 'whatever', 'new post body for post without title but with a lenghty body', 1]
 
     result = invoke_layered :blogger, :newPost, *args
@@ -66,7 +66,7 @@ describe BackendController do
     assert_equal "<p>new post body for post without title but with a lenghty body</p>", new_post.html(:body)
   end
 
-  def test_blogger_new_post_with_categories
+  it "test_blogger_new_post_with_categories" do
     args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title><category>Software, Hardware</category>new post body', 1]
 
     result = invoke_layered :blogger, :newPost, *args
@@ -78,7 +78,7 @@ describe BackendController do
     assert new_post.published?
   end
 
-  def test_blogger_new_post_with_non_existing_categories
+  it "test_blogger_new_post_with_non_existing_categories" do
     args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title><category>Idontexist, Hardware</category>new post body', 1]
 
     result = invoke_layered :blogger, :newPost, *args
@@ -87,28 +87,28 @@ describe BackendController do
     assert_equal [categories(:hardware)], new_post.categories
   end
 
-  def test_blogger_fail_authentication
+  it "test_blogger_fail_authentication" do
     args = [ 'foo', 'tobi', 'using a wrong password' ]
     # This will be a little more useful with the upstream changes in [1093]
     assert_raise(XMLRPC::FaultException) { invoke_layered :blogger, :getUsersBlogs, *args }
   end
 
   # Meta Weblog Tests
-  def test_meta_weblog_get_categories
+  it "test_meta_weblog_get_categories" do
     args = [ 1, 'tobi', 'whatever' ]
 
     result = invoke_layered :metaWeblog, :getCategories, *args
     assert_equal 'Software', result.first
   end
 
-  def test_meta_weblog_get_post
+  it "test_meta_weblog_get_post" do
     args = [ contents(:article1).id, 'tobi', 'whatever' ]
 
     result = invoke_layered :metaWeblog, :getPost, *args
     assert_equal result['title'], contents(:article1).title
   end
 
-  def test_meta_weblog_get_recent_posts
+  it "test_meta_weblog_get_recent_posts" do
     args = [ 1, 'tobi', 'whatever', 2 ]
 
     result = invoke_layered :metaWeblog, :getRecentPosts, *args
@@ -116,7 +116,7 @@ describe BackendController do
     assert_equal result.last['title'], Article.find(:first, :offset => 1, :order => 'created_at desc').title
   end
 
-  def test_meta_weblog_delete_post
+  it "test_meta_weblog_delete_post" do
     art_id = contents(:article2).id
     args = [ 1, art_id, 'tobi', 'whatever', 1 ]
 
@@ -124,7 +124,7 @@ describe BackendController do
     assert_raise(ActiveRecord::RecordNotFound) { Article.find(art_id) }
   end
 
-  def test_meta_weblog_edit_post
+  it "test_meta_weblog_edit_post" do
     art_id = contents(:article1).id
     article = Article.find(art_id)
     article.title = "Modified!"
@@ -146,7 +146,7 @@ describe BackendController do
   end
 
   # TODO: Work out what the correct response is when a post can't be saved...
-  def test_meta_weblog_new_post_fails
+  it "test_meta_weblog_new_post_fails" do
     @article = Article.new(:title => 'test', :body => 'body', :extended => 'extended',
                            :text_filter => TextFilter.find_by_name('textile'),
                            :published_at => Time.now.utc.midnight)
@@ -159,7 +159,7 @@ describe BackendController do
                   'Internal server error (exception raised)')
   end
 
-  def test_meta_weblog_new_post
+  it "test_meta_weblog_new_post" do
     article = Article.new
     article.title = "Posted via Test"
     article.body = "body"
@@ -182,7 +182,7 @@ describe BackendController do
     assert_equal article.published_at, new_post.published_at.utc
   end
 
-  def test_meta_weblog_new_unpublished_post_with_blank_creation_date
+  it "test_meta_weblog_new_unpublished_post_with_blank_creation_date" do
     dto = MetaWeblogStructs::Article.new(
       :description       => "Some text",
       :title             => "A Title"
@@ -196,7 +196,7 @@ describe BackendController do
     assert !new_post.published?
   end
   
-  def test_meta_weblog_edit_unpublished_post_with_old_creation_date
+  it "test_meta_weblog_edit_unpublished_post_with_old_creation_date" do
     article = Article.new
     article.title = "Posted via Test"
     article.body = "body"
@@ -212,7 +212,7 @@ describe BackendController do
     assert !new_post.published?
   end
   
-  def test_meta_weblog_new_media_object
+  it "test_meta_weblog_new_media_object" do
     media_object = MetaWeblogStructs::MediaObject.new(
       "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".gif",
       "type" => "image/gif",
@@ -226,13 +226,13 @@ describe BackendController do
     assert File.unlink(File.expand_path(RAILS_ROOT) + "/public/files/#{media_object['name']}")
   end
 
-  def test_meta_weblog_fail_authentication
+  it "test_meta_weblog_fail_authentication" do
     args = [ 1, 'tobi', 'using a wrong password', 2 ]
     # This will be a little more useful with the upstream changes in [1093]
     assert_raise(XMLRPC::FaultException) { invoke_layered :metaWeblog, :getRecentPosts, *args }
   end
 
-  def test_meta_weblog_should_preserve_date_time_on_roundtrip_edit
+  it "test_meta_weblog_should_preserve_date_time_on_roundtrip_edit" do
     # The XML-RPC spec and the MetaWeblog API are ambiguous about how to
     # intrepret the timezone in the dateCreated field.  But _however_ we
     # interpret it, we want to be able to fetch an article from the server,
@@ -253,14 +253,14 @@ describe BackendController do
 
   # Movable Type Tests
 
-  def test_mt_get_category_list
+  it "test_mt_get_category_list" do
     args = [ 1, 'tobi', 'whatever' ]
 
     result = invoke_layered :mt, :getCategoryList, *args
     assert result.map { |c| c['categoryName'] }.include?('Software')
   end
 
-  def test_mt_get_post_categories
+  it "test_mt_get_post_categories" do
     art_id = contents(:article1).id
     article = Article.find(art_id)
     article.categories << categories(:software)
@@ -271,14 +271,14 @@ describe BackendController do
     assert_equal Set.new(result.collect {|v| v['categoryName']}), Set.new(article.categories.collect(&:name))
   end
 
-  def test_mt_get_recent_post_titles
+  it "test_mt_get_recent_post_titles" do
     args = [ 1, 'tobi', 'whatever', 2 ]
 
     result = invoke_layered :mt, :getRecentPostTitles, *args
     assert_equal result.first['title'], contents(:article2).title
   end
 
-  def test_mt_set_post_categories
+  it "test_mt_set_post_categories" do
     art_id = contents(:article2).id
     args = [ art_id, 'tobi', 'whatever',
       [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => categories(:personal).id, 'isPrimary' => 1)] ]
@@ -296,19 +296,19 @@ describe BackendController do
 
   end
 
-  def test_mt_supported_text_filters
+  it "test_mt_supported_text_filters" do
     result = invoke_layered :mt, :supportedTextFilters
     assert result.map {|f| f['label']}.include?('Markdown')
     assert result.map {|f| f['label']}.include?('Textile')
   end
 
-  def test_mt_supported_methods
+  it "test_mt_supported_methods" do
     result = invoke_layered :mt, :supportedMethods
     assert_equal 8, result.size
     assert result.include?("publishPost")
   end
 
-  def test_mt_get_trackback_pings
+  it "test_mt_get_trackback_pings" do
     args = [ contents(:article1).id ]
 
     result = invoke_layered :mt, :getTrackbackPings, *args
@@ -316,7 +316,7 @@ describe BackendController do
     assert_equal result.first['pingTitle'], 'Trackback Entry'
   end
 
-  def test_mt_publish_post
+  it "test_mt_publish_post" do
     art_id = contents(:article4).id
     args = [ art_id, 'tobi', 'whatever' ]
 
@@ -329,7 +329,7 @@ describe BackendController do
     assert Article.find(art_id)[:published_at]
   end
 
-  def test_mt_fail_authentication
+  it "test_mt_fail_authentication" do
     args = [ 1, 'tobi', 'using a wrong password', 2 ]
     # This will be a little more useful with the upstream changes in [1093]
     assert_raise(XMLRPC::FaultException) { invoke_layered :mt, :getRecentPostTitles, *args }

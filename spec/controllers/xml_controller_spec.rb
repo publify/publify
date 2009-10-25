@@ -57,17 +57,17 @@ describe XmlController do
     end
   end
 
-  def test_feed_rss20
+  it "test_feed_rss20" do
     get :feed, :format => 'rss20', :type => 'feed'
     assert_moved_permanently_to 'http://test.host/articles.rss'
   end
 
-  def test_feed_rss20_comments
+  it "test_feed_rss20_comments" do
     get :feed, :format => 'rss20', :type => 'comments'
     assert_moved_permanently_to admin_comments_url(:format=>:rss)
   end
 
-  def test_feed_rss20_trackbacks
+  it "test_feed_rss20_trackbacks" do
     get :feed, :format => 'rss20', :type => 'trackbacks'
     assert_response :success
     assert_xml @response.body
@@ -75,34 +75,34 @@ describe XmlController do
     assert_rss20
   end
 
-  def test_feed_rss20_article
+  it "test_feed_rss20_article" do
     get :feed, :format => 'rss20', :type => 'article', :id => contents(:article1).id
     assert_moved_permanently_to contents(:article1).permalink_by_format(:rss)
   end
 
-  def test_feed_rss20_category
+  it "test_feed_rss20_category" do
     get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
     assert_moved_permanently_to(category_url('personal', :format => 'rss'))
   end
 
-  def test_feed_rss20_tag
+  it "test_feed_rss20_tag" do
     get :feed, :format => 'rss20', :type => 'tag', :id => 'foo'
     assert_moved_permanently_to(tag_url('foo', :format=>'rss'))
   end
 
-  def test_feed_atom10_feed
+  it "test_feed_atom10_feed" do
     get :feed, :format => 'atom10', :type => 'feed'
     assert_response :moved_permanently
     assert_moved_permanently_to "http://test.host/articles.atom"
   end
 
-  def test_feed_atom10_comments
+  it "test_feed_atom10_comments" do
     get :feed, :format => 'atom10', :type => 'comments'
     assert_response :moved_permanently
     assert_moved_permanently_to admin_comments_url(:format=>'atom')
   end
 
-  def test_feed_atom10_trackbacks
+  it "test_feed_atom10_trackbacks" do
     get :feed, :format => 'atom10', :type => 'trackbacks'
     assert_response :success
     assert_xml @response.body
@@ -117,47 +117,47 @@ describe XmlController do
     assert_select 'summary'
   end
 
-  def test_feed_atom10_article
+  it "test_feed_atom10_article" do
     get :feed, :format => 'atom10', :type => 'article', :id => contents(:article1).id
     assert_moved_permanently_to contents(:article1).permalink_by_format('atom')
   end
 
-  def test_feed_atom10_category
+  it "test_feed_atom10_category" do
     get :feed, :format => 'atom10', :type => 'category', :id => 'personal'
     assert_moved_permanently_to(category_url('personal', :format => 'atom'))
   end
 
-  def test_feed_atom10_tag
+  it "test_feed_atom10_tag" do
     get :feed, :format => 'atom10', :type => 'tag', :id => 'foo'
     assert_moved_permanently_to(tag_url('foo',:format => 'atom'))
   end
 
-  def test_articlerss
+  it "test_articlerss" do
     get :articlerss, :id => contents(:article1).id
     assert_response :redirect
   end
 
-  def test_commentrss
+  it "test_commentrss" do
     get :commentrss, :id => 1
     assert_response :redirect
   end
 
-  def test_trackbackrss
+  it "test_trackbackrss" do
     get :trackbackrss, :id => 1
     assert_response :redirect
   end
 
-  def test_bad_format
+  it "test_bad_format" do
     get :feed, :format => 'atom04', :type => 'feed'
     assert_response :missing
   end
 
-  def test_bad_type
+  it "test_bad_type" do
     get :feed, :format => 'rss20', :type => 'foobar'
     assert_response :missing
   end
 
-  def test_rsd
+  it "test_rsd" do
     get :rsd, :id => 1
     assert_response :success
     assert_nothing_raised do
@@ -165,13 +165,13 @@ describe XmlController do
     end
   end
 
-  def test_atom03
+  it "test_atom03" do
     get :feed, :format => 'atom03', :type => 'feed'
     assert_response :moved_permanently
     assert_moved_permanently_to 'http://test.host/articles.atom'
   end
 
-  def test_itunes
+  it "test_itunes" do
     get :itunes
     assert_response :success
     assert_xml @response.body
@@ -179,7 +179,7 @@ describe XmlController do
   end
 
   # TODO(laird): make this more robust
-  def test_sitemap
+  it "test_sitemap" do
     get :feed, :format => 'googlesitemap', :type => 'sitemap'
 
     assert_response :success

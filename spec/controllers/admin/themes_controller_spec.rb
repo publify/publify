@@ -12,18 +12,18 @@ describe Admin::ThemesController, 'ported from the tests' do
   end
 
   # Replace this with your real tests.
-  def test_index
+  it "test_index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:themes)
   end
 
-  def test_switchto
+  it "test_switchto" do
     get :switchto, :theme => 'typographic'
     assert_response :redirect, :action => 'index'
   end
 
-  def test_preview
+  it "test_preview" do
     get :preview, :theme => 'typographic'
     assert_response :success
   end

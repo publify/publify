@@ -5,18 +5,18 @@ describe Admin::BlacklistController do
     request.session = { :user => users(:tobi).id }
   end
 
-  def test_index
+  it "test_index" do
     get :index
     assert_template 'index'
   end
 
-  def test_list
+  it "test_list" do
     get :index
     assert_template 'index'
     assert_template_has 'blacklist_patterns'
   end
 
-  def test_create
+  it "test_create" do
     num_blacklist_patterns = BlacklistPattern.count
 
     post :new, 'blacklist_pattern' => { }
@@ -25,19 +25,19 @@ describe Admin::BlacklistController do
     assert_equal num_blacklist_patterns + 1, BlacklistPattern.count
   end
 
-  def test_edit
+  it "test_edit" do
     get :edit, 'id' => blacklist_patterns(:first_blacklist_pattern).id
     assert_template 'edit'
     assert_template_has('blacklist_pattern')
     assert assigns(:blacklist_pattern).valid?
   end
 
-  def test_update
+  it "test_update" do
     post :edit, 'id' => blacklist_patterns(:first_blacklist_pattern).id
     assert_response :redirect, :action => 'index'
   end
 
-  def test_destroy
+  it "test_destroy" do
     pattern_id = blacklist_patterns(:first_blacklist_pattern).id
     assert_not_nil BlacklistPattern.find(pattern_id)
 

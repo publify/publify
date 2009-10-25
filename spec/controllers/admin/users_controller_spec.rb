@@ -9,13 +9,13 @@ describe Admin::UsersController, "rough port of the old functional test" do
       request.session = { :user => users(:tobi).id }
     end
 
-    def test_index
+    it "test_index" do
       get :index
       assert_template 'index'
       assert_template_has 'users'
     end
 
-    def test_new
+    it "test_new" do
       get :new
       assert_template 'new'
 
@@ -64,7 +64,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       end
     end
 
-    def test_destroy
+    it "test_destroy" do
       user_count = User.count
       get :destroy, :id => users(:bob).id
       assert_template 'destroy'

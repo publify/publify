@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
-class NotificationTest < Test::Unit::TestCase
+describe Notification do
   # Replace this with your real tests.
-  def test_truth
+  it "test_truth" do
     assert true
   end
 end

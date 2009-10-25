@@ -15,18 +15,18 @@ describe "CommentClosing from Test::Unit; no I don't know why it's in article_cl
     Blog.stub!(:default).and_return(@blog)
   end
 
-  def test_new_article_should_be_open_if_auto_close_is_zero
+  it "test_new_article_should_be_open_if_auto_close_is_zero" do
     art = an_article
     art.created_at = Time.now
     assert !art.comments_closed?
   end
 
-  def test_old_article_should_be_open_if_auto_close_is_zero
+  it "test_old_article_should_be_open_if_auto_close_is_zero" do
     art = an_article(:created_at => Time.now - 1000.days)
     assert !art.comments_closed?
   end
 
-  def test_new_article_should_be_open_if_auto_close_is_thirty
+  it "test_new_article_should_be_open_if_auto_close_is_thirty" do
     @blog.sp_article_auto_close = 30
     art = an_article
     assert !art.comments_closed?
@@ -34,7 +34,7 @@ describe "CommentClosing from Test::Unit; no I don't know why it's in article_cl
     assert !art.comments_closed?
   end
 
-  def test_old_article_should_be_closed_if_auto_close_is_thirty
+  it "test_old_article_should_be_closed_if_auto_close_is_thirty" do
     @blog.sp_article_auto_close = 30
     art = an_article(:created_at => Time.now - 31.days)
     assert art.comments_closed?

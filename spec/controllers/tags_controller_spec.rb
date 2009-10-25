@@ -131,7 +131,7 @@ end
 
 ## Old tests that still need conversion
 
-#   def test_autodiscovery_tag
+#   it "test_autodiscovery_tag" do
 #     get :tag, :id => 'hardware'
 #     assert_response :success
 #     assert_select 'link[title=RSS]' do

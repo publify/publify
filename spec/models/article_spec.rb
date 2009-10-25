@@ -30,32 +30,32 @@ describe Article do
     end
   end
 
-  def test_content_fields
+  it "test_content_fields" do
     a = Article.new
     assert_equal [:body, :extended], a.content_fields
   end
 
-  def test_permalink_url
+  it "test_permalink_url" do
     assert_equal 'http://myblog.net/2004/06/01/article-3', contents(:article3).permalink_url(anchor=nil, only_path=true)
   end
 
-  def test_edit_url
+  it "test_edit_url" do
     a = contents(:article3)
     assert_equal "http://myblog.net/admin/content/edit/#{a.id}", a.edit_url
   end
 
-  def test_delete_url
+  it "test_delete_url" do
     a = contents(:article3)
     assert_equal "http://myblog.net/admin/content/destroy/#{a.id}", a.delete_url
   end
 
-  def test_feed_url
+  it "test_feed_url" do
     a = contents(:article3)
     assert_equal "http://myblog.net/2004/06/01/article-3.atom", a.feed_url(:atom10)
     assert_equal "http://myblog.net/2004/06/01/article-3.rss", a.feed_url(:rss20)
   end
 
-  def test_create
+  it "test_create" do
     a = Article.new
     a.user_id = 1
     a.body = "Foo"
@@ -69,7 +69,7 @@ describe Article do
     assert_equal 1, b.categories.size
   end
 
-  def test_permalink_with_title
+  it "test_permalink_with_title" do
     assert_equal( contents(:article3),
                   Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
@@ -77,7 +77,7 @@ describe Article do
     end
   end
 
-  def test_strip_title
+  it "test_strip_title" do
     assert_equal "article-3", "Article-3".to_url
     assert_equal "article-3", "Article 3!?#".to_url
     assert_equal "there-is-sex-in-my-violence", "There is Sex in my Violence!".to_url
@@ -86,13 +86,13 @@ describe Article do
     assert_equal "my-cats-best-friend", "My Cat's Best Friend".to_url
   end
 
-  def test_perma_title
+  it "test_perma_title" do
     assert_equal "article-1", contents(:article1).stripped_title
     assert_equal "article-2", contents(:article2).stripped_title
     assert_equal "article-3", contents(:article3).stripped_title
   end
 
-  def test_html_title
+  it "test_html_title" do
     a = Article.new
     a.title = "This <i>is</i> a <b>test</b>"
     assert a.save
@@ -100,7 +100,7 @@ describe Article do
     assert_equal 'this-is-a-test', a.permalink
   end
 
-  def test_multibyte_title
+  it "test_multibyte_title" do
     a = Article.new
     a.title = "ルビー"
     assert a.save
@@ -108,20 +108,20 @@ describe Article do
     assert_equal '%E3%83%AB%E3%83%93%E3%83%BC', a.permalink
   end
 
-  def test_urls
+  it "test_urls" do
     urls = contents(:article4).html_urls
     assert_equal ["http://www.example.com/public"], urls
   end
 
   ### XXX: Should we have a test here?
-  def test_send_pings
+  it "test_send_pings" do
   end
 
   ### XXX: Should we have a test here?
-  def test_send_multiple_pings
+  it "test_send_multiple_pings" do
   end
 
-  def test_tags
+  it "test_tags" do
     a = Article.new(:title => 'Test tag article',
                     :keywords => 'test tag tag stuff');
 
@@ -163,14 +163,14 @@ describe Article do
     assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort
   end
 
-  def test_find_published_by_tag_name
+  it "test_find_published_by_tag_name" do
     @articles = Tag.find_by_name(tags(:foo).name).published_articles
 
     assert_results_are(:article1, :article2, :publisher_article)
   end
 
 
-  def test_find_published
+  it "test_find_published" do
     @articles = Article.find_published
     assert_results_are(:search_target, :article1, :article2,
                        :article3, :inactive_article,:xmltest,
@@ -181,7 +181,7 @@ describe Article do
     assert_results_are :article1
   end
 
-  def test_just_published_flag
+  it "test_just_published_flag" do
     art = Article.new(:title => 'title',
                                    :body => 'body',
                                    :published => true)
@@ -198,18 +198,18 @@ describe Article do
     assert ! art.just_changed_published_status?
   end
 
-  def test_future_publishing
+  it "test_future_publishing" do
     assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
                                         :published => true,
                                         :published_at => Time.now + 4.seconds))
   end
 
-  def test_future_publishing_without_published_flag
+  it "test_future_publishing_without_published_flag" do
     assert_sets_trigger Article.create!(:title => 'title', :body => 'body',
                                         :published_at => Time.now + 4.seconds)
   end
 
-  def test_triggers_are_dependent
+  it "test_triggers_are_dependent" do
     art = Article.create!(:title => 'title', :body => 'body',
                           :published_at => Time.now + 1.hour)
     assert_equal 1, Trigger.count
@@ -230,7 +230,7 @@ describe Article do
     assert art.published
   end
 
-  def test_find_published_by_category
+  it "test_find_published_by_category" do
     Article.create!(:title      => "News from the future!",
                     :body       => "The future is cool!",
                     :keywords   => "future",
@@ -243,13 +243,13 @@ describe Article do
     assert_results_are :article1
   end
 
-  def test_find_published_by_nonexistent_category_raises_exception
+  it "test_find_published_by_nonexistent_category_raises_exception" do
     assert_raises ActiveRecord::RecordNotFound do
       Category.find_by_permalink('does-not-exist').published_articles
     end
   end
 
-  def test_destroy_file_upload_associations
+  it "test_destroy_file_upload_associations" do
     a = contents(:article1)
     assert_equal 2, a.resources.size
     a.resources << resources(:resource3)
@@ -266,13 +266,13 @@ describe Article do
     assert_equal ['bob', 'randomuser'], a.notify_users.collect {|u| u.login }.sort
   end
 
-  def test_tags_on_update
+  it "test_tags_on_update" do
     contents(:article3).update_attribute :keywords, "my new tags"
     assert_equal 3, contents(:article3).reload.tags.size
     assert contents(:article3).tags.include?(Tag.find_by_name("new"))
   end
 
-  def test_withdrawal
+  it "test_withdrawal" do
     art = Article.find(contents(:article1).id)
     assert   art.published?
     assert ! art.withdrawn?
@@ -284,7 +284,7 @@ describe Article do
     assert   art.withdrawn?
   end
 
-  def test_default_filter
+  it "test_default_filter" do
     a = Article.find(contents(:article1).id)
     assert_equal 'textile', a.default_text_filter.name
   end
@@ -405,14 +405,14 @@ describe Article do
     end
   end
 
-  def test_can_ping_fresh_article_iff_it_allows_pings
+  it "test_can_ping_fresh_article_iff_it_allows_pings" do
     a = Article.find(contents(:article1).id)
     assert_equal(false, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
   end
 
-  def test_cannot_ping_old_article
+  it "test_cannot_ping_old_article" do
     a = Article.find(contents(:article3).id)
     assert_equal(true, a.pings_closed?)
     a.allow_pings = false

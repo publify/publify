@@ -9,7 +9,7 @@ describe 'Ping::Pinger with Test::Unit' do
     end
   end
 
-  def test_pingback_url_nil
+  it "test_pingback_url_nil" do
     @pinger.response = mock('response')
     @pinger.response.stub!(:body).and_return('')
     @pinger.response.stub!(:[]).and_return(nil)
@@ -17,14 +17,14 @@ describe 'Ping::Pinger with Test::Unit' do
   end
 
   # TODO: why do we assume that we can XML attribute order?
-  def test_pingback_url_from_body
+  it "test_pingback_url_from_body" do
     @pinger.response = mock('response')
     @pinger.response.stub!(:body).and_return('<link rel="pingback" href="foo" />')
     @pinger.response.stub!(:[]).and_return(nil)
     assert_equal 'foo', @pinger.pingback_url
   end
 
-  def test_pingback_url
+  it "test_pingback_url" do
     @pinger.response = mock('response')
     @pinger.response.stub!(:body).and_return('')
     @pinger.response.stub!(:[]).and_return(:x_pingback)

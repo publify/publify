@@ -5,7 +5,7 @@ describe Admin::ResourcesController do
     @request.session = { :user => users(:tobi).id }
   end
 
-  def test_index
+  it "test_index" do
     get :index
     assert_response :success
     assert_template 'index'
@@ -13,7 +13,7 @@ describe Admin::ResourcesController do
     assert_not_nil assigns(:resources)
   end
 
-  def test_destroy
+  it "test_destroy" do
     res_id = resources(:resource1).id
     assert_not_nil Resource.find(res_id)
 
@@ -26,7 +26,7 @@ describe Admin::ResourcesController do
     response.should redirect_to(:action => 'index')
   end
 
-  def test_upload
+  it "test_upload" do
     # unsure how to test upload constructs :'(
   end
 end

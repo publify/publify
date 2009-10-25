@@ -101,7 +101,7 @@ end
 
 ## Old tests that still need conversion
 
-#   def test_autodiscovery_category
+#   it "test_autodiscovery_category" do
 #     get :category, :id => 'hardware'
 #     assert_response :success
 #     assert_select 'link[title=RSS]' do
