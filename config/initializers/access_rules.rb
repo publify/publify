@@ -58,19 +58,12 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.project_module :content, nil do |project|
     project.menu    "Manage",           { :controller => "admin/content",    :action => "index" }
     project.submenu "Articles",         { :controller => "admin/content",    :action => "index" }
-	project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
-	project.submenu "Categories",       { :controller => "admin/categories", :action => "index" }
-	project.submenu "Uploads",          { :controller => "admin/resources",  :action => "index" }
-	project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
-  end
-
-  map.project_module :feedback, nil do |project|
-    project.menu    "Comments",              { :controller => "admin/feedback" }
-    project.submenu "All comments",          { :controller => "admin/feedback" }    
-    project.submenu "Limit to ham",          { :controller => "admin/feedback",  :ham => 'f' }
-    project.submenu "Unapproved comments",   { :controller => "admin/feedback",  :confirmed  => "f" }    
-    project.submenu "Limit to spam",         { :controller => "admin/feedback",  :published  => "f" }
-    project.submenu "",                      { :controller => "admin/comments", :action => "show" }
+    project.submenu "Comments",         { :controller => "admin/feedback" }
+	  project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
+	  project.submenu "Categories",       { :controller => "admin/categories", :action => "index" }
+	  project.submenu "Uploads",          { :controller => "admin/resources",  :action => "index" }
+	  project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
+	  project.submenu "",                      { :controller => "admin/comments", :action => "show" }
     project.submenu "",                      { :controller => "admin/comments", :action => "new" }
     project.submenu "",                      { :controller => "admin/comments", :action => "edit" }
     project.submenu "",                      { :controller => "admin/comments", :action => "destroy" }

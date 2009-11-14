@@ -1,5 +1,5 @@
 <% @page_heading =  _("Feedback for") + " #{ this_blog.settings['blog_name'] }" %>
-<% subtabs_for(:feedback) %>
+<% subtabs_for(:content) %>
 
 <div class="search">
   <% form_tag({:action => 'index'}, :method => :get) do %>
@@ -25,7 +25,15 @@
       <th><%= _("IP")%></th>
     </tr>
     <tr class="menubar">
-      <td colspan="6">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td colspan="5">
+        <select onchange='window.location=this.options[this.selectedIndex].value;'>
+          <option value=''><%= _("All comments")%></option>
+          <option value='?ham=f' <%= 'selected' if params[:ham] %>><%= _("Limit to ham") %></option>
+          <option value='?confirmed=f' <%= 'selected' if params[:confirmed] %>><%= _("Unapproved comments") %></option>
+          <option value='?published=f' <%= 'selected' if params[:published] %>><%= _("Limit to spam")%></option>
+        </select>
+      </td>
     </tr>
     <%= render :partial => 'item', :collection => @feedback %>
     <tr><td class="paginate" colspan="9"><%= will_paginate @feedback %></td></tr>

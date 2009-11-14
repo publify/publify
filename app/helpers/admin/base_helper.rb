@@ -107,13 +107,9 @@ module Admin::BaseHelper
   end
   
   def class_content
-    if controller.controller_name  =~ /content|pages|categories|resources/
+    if controller.controller_name  =~ /content|pages|categories|resources|feedback/
       "current" if controller.action_name =~ /list|index|show/
     end
-  end
-
-  def class_feedback
-    "current" if controller.controller_name  =~ /feedback/
   end
 
   def class_themes
