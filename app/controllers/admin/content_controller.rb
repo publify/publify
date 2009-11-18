@@ -29,7 +29,7 @@ class Admin::ContentController < Admin::BaseController
   end
   
   def edit
-    @drafts = Article.find(:all, :conditions => "state='draft'")
+    @drafts = Article.draft.all
     @article = Article.find(params[:id])
     
     unless @article.access_by? current_user 
