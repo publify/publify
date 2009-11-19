@@ -4,6 +4,7 @@
     <th><%= _("Type") %></th>
     <th><%= _("Delete")%></th>
   </tr>
+  <%= render_void_table(@blacklist_patterns.size, 3)  %>
   <% for blacklist_pattern in @blacklist_patterns -%>
   <tr <%= alternate_class -%>>  
     <td><%= link_to h(blacklist_pattern.pattern), :action => "edit", :id => blacklist_pattern.id %></td>

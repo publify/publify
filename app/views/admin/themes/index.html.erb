@@ -1,26 +1,20 @@
 <% @page_heading = _('Choose a theme') %>
 <% subtabs_for(:themes) %>
 
-<% i = 0 %>
 <% for theme in @themes %>
-<% i = i+1 %>
 <div class="theme">
-  <div>
+  <div class='inner'>
     <% if theme.path == @active.path -%>
       <%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>
     <% else %>
       <%= link_to(image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)), :action => 'switchto', :theme => theme.name) %>
     <% end %>
-    </div>
-  <%= theme.description_html %>
-  <% if theme.path == @active.path -%>
-  <em>(<%= _("Active theme")%>)</em>
-  <% end -%>
+    <%= theme.description_html %>
+    <% if theme.path == @active.path -%>
+    <em>(<%= _("Active theme")%>)</em>
+    <% end -%>
+  </div>
 </div>
-<% if i == 3 %>
-  <% i = 0%>
-  <hr class="clear" />
-<% end %>
 <% end %>
 
 <hr class="clear" />

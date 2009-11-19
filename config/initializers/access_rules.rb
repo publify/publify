@@ -75,9 +75,10 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :themes, nil do |project|
     project.menu    "Customize",             { :controller => "admin/themes", :action => "index"  }
+    project.submenu "Choose theme",          { :controller => "admin/themes", :action => "index" }
+    project.submenu "Customize sidebar",     { :controller => "admin/sidebar", :action => "index" }
     project.submenu "Theme editor",          { :controller => "admin/themes", :action => "editor" }
-    project.submenu "Sidebar",               { :controller => "admin/sidebar", :action => "index" }
-    project.submenu "Theme catalogue",       { :controller => "admin/themes", :action => "catalogue" }
+    project.submenu "View theme catalogue",       { :controller => "admin/themes", :action => "catalogue" }
   end
   
   map.project_module :settings, nil do |project|

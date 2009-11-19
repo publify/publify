@@ -5,21 +5,13 @@
   <p><%= _("Sorry the theme catalogue is not available") %></p>
 <% end %>
 
-<% i = 0 %>
 <% for theme in @themes %>
-  <% i = i+1 %>
-
-    <div class="theme">
-      <div>
-        <%= link_to(image_tag(theme.image), theme.url) %>
-        <h3><%= theme.name %> created by <%= theme.author %></h3>
-        <p><%= theme.description %></p>
-      </div>
+  <div class="theme">
+    <div class='inner'>
+      <%= link_to(image_tag(theme.image), theme.url) %>
+      <h3><%= theme.name %> created by <%= theme.author %></h3>
+      <p><%= theme.description %></p>
     </div>
-  <% if i == 3 %>
-    <% i = 0%>
-    <hr class="clear" />
-  <% end %>
-
+  </div>
 <% end %>
 <hr class="clear" />

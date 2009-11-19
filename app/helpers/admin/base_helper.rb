@@ -184,7 +184,7 @@ module Admin::BaseHelper
   
   def macro_help_popup(macro, text)
     unless current_user.editor == 'visual'
-      "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Typo Macro Help')\">#{text}</a>"
+      "<a rel='lightbox' href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Typo Macro Help')\">#{text}</a>"
     end    
   end
   
