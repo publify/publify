@@ -26,6 +26,9 @@ class AccountsController < ApplicationController
         end
         add_to_cookies(:typo_user_profile, self.current_user.profile.label, '/')
 
+        self.current_user.last_venue = self.current_user.last_connection
+        self.current_user.last_connection = Time.now
+        self.current_user.save
         flash[:notice]  = _("Login successful")
         redirect_back_or_default :controller => "admin/dashboard", :action => "index"
       else

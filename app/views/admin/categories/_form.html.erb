@@ -1,21 +1,19 @@
 <%= error_messages_for 'category' %>
-<ul class="admin" id="article_form">
-  <li>
-    <label for="category_name" class="title block"><%= _("Name")%></label> 
-    <%= text_field :category, :name, :class => 'medium'  %>
-  </li>
-  <li>
-    <label for="category_keywords" class="content block"><%= _("Keywords") %></label>
-    <%= text_field :category, :keywords, :class => 'large' %>
-  </li>
-  <li>
-    <label for="category_description" class="content block"><%= _("Description") %></label>
-    <%= text_area :category, :description, :class => 'large' %>
-  </li>
-  
-</ul>
-<p>
-  
-  
-</p>
-<!--[eoform:cateogry]-->
+<div>
+  <h2><label for="category_name"><%= _("Name")%></label> </h2>
+  <p class='input_text_title'>
+    <%= text_field :category, :name, :class => 'large title'  %>
+  </p>
+</div>
+<div>
+  <h3><label for="category_keywords" class="content block"><%= _("Keywords") %></label></h3>
+  <p class='input_text_title'>
+    <%= text_field :category, :keywords, :class => 'large small' %>
+  </p>
+</div>
+<div>
+  <h3><label for="category_description" class="content block"><%= _("Description") %></label></h3>
+  <p class='input_text_title'>
+    <%= text_area :category, :description, :rows => 5, :class => 'large small' %>
+  </p>
+</div>

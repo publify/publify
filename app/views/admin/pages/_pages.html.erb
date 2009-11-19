@@ -31,8 +31,6 @@
     <td><%= page.name%></td>
   </tr>
   <% end %>
-  <tr>
-    <td colspan="5"><%= will_paginate @pages %></td>
-  </tr>
+  <%= display_pagination(@pages, 5)%>
   </table>
 <% end %>

@@ -1,18 +1,16 @@
-<div title="Account signup" id="loginform">
-  <%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
-  <div  class="form admin">
-	<ul>
-		<li>
-		  <%= _("You have successfully signed up") %>
-		</li>
-		<li>
-      <%= _("Login %s", current_user.login)%>
-		</li>
-		<li>
-		  <%= _("Password %s", session[:tmppass]) %>
-		</li>
-    <li><%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%></li>
-    <li><%= _("Proceed to") + " " + link_to(_("admin"), :controller => 'admin/settings') %> </li>
-	</ul>
-  </div>
-</div>
+<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
+
+<h3 class='mt20'><%= _("Congratulation!") %></h3>
+<p class='input_text_title'><%= _("You have successfully signed up") %></p>  
+<p class='input_text_title'>
+  <%= _("<strong>Login:</strong> %s", current_user.login)%>
+</p>
+<p class='input_text_title'>
+  <%= _("<strong>Password:</strong> %s", session[:tmppass]) %>
+</p>
+<p class='input_text_title'>
+  <%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%>
+</p>
+<p class='input_text_title right'>
+  <%= _("Proceed to %s",  link_to(_("admin"), :controller => 'admin/settings')) %>
+</p>

@@ -1,10 +1,19 @@
-  <% @page_heading = _('Manage tags') %>
-  <% subtabs_for(:content) %>
+<% @page_heading = _('Manage tags') %>
+<% subtabs_for(:content) %>
   
-  <div class="list" id="tags">	
-    <%= render :partial => 'tags' %>
-  </div>                      
-  
-  <div class="paginate">
-    <%= will_paginate @tags %>
-	</div>
+<table cellspacing="1" cellpadding="0">
+  <tr>
+    <th><%= _("Display Name") %></th>
+    <th><%= _("Name") %></th>
+    <th><%= _("Articles") %></th>
+  </tr>
+  <%= render_void_table(@tags.size, 3)  %>
+  <% for tag in @tags %>
+  <tr <%= alternate_class %>>
+    <td> <%= link_to_edit tag.display_name, tag %></td>
+    <td><%= tag.name %></td>
+    <td><%= link_to_permalink tag, tag.articles.count %></td>
+  </tr>  
+  <% end %>
+  <%= display_pagination(@tags, 3)%>  
+</table>

@@ -1,7 +1,6 @@
-<label class="block content"><%= _("Drafts:") %></label>
-<div class='paginate noborder  l'>
+<div class='bordered'>
+  <h3><label class="block content"><%= _("Drafts:") %></label></h3>
   <% for draft in @drafts %>
-    <%= content_tag(:div, link_to(draft.title, :action => 'edit', :id => draft.id)) %>
+    <%= link_to("#{draft.title}<br />", :action => 'edit', :id => draft.id) %>
   <% end %>
-  
 </div>

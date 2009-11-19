@@ -1,4 +1,4 @@
-<div class="dashboard">
+<div class="bordered">
   <h3><%= _("Latest Comments") %></h3>
   <ul>
     <% if @comments.size == 0 %>
@@ -6,10 +6,9 @@
     <% else %>
       <% for comment in @comments -%>
         <li>
-          <%= link_to_permalink comment, h(_("by %s on %s", comment.author, comment.article.title)) %>
+          <%= link_to_permalink comment, h(_("By %s on %s", comment.author, comment.article.title)) %>
         </li>
       <% end %>
     <% end %>
   </ul>
-  <hr />
 </div>

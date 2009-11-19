@@ -11,5 +11,5 @@
     <td><%= link_to _("Delete"), :action => 'destroy',  :id => blacklist_pattern.id %></td>
   </tr>  
 <% end -%>
-  <tr class="paginate"><td colspan="3"><%= will_paginate @blacklist_patterns %></td></tr>
+<%= display_pagination(@blacklist_patterns, 3)%>
 </table>

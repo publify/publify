@@ -1,33 +1,31 @@
-<div id="loginform">
-  <h3>
-    <a href='http://typosphere.org'>
-      <img src="<%= this_blog.base_url%>/images/admin/typologo.gif" alt="Typo home site" />
-    </a>
-  </h3>
-  <div class="form admin">
-    <div id="flash"><%= render_flash rescue nil %></div>
+<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
+
+<div id="flash"><%= render_flash rescue nil %></div>
     
-    <% form_tag :action=> "login" do %>
-    <ul>
-      <li>
-        <label for="user_login"><%= _('Login')%></label>
-        <%= text_field(:user, :login)%>
-      </li>
-      <li>
-        <label for="user_password"><%= _('Password') %></label>
-        <%= password_field(:user, :password)%>
-      </li>
-      <li>
-        <label for="remember_me"><%= _('Remember me')%>
-          <%= check_box_tag 'remember_me' %>  
-        </label>
-      </li>
-    	<li class="r">
-    	  <input type="submit" name="login" value= "<%= _('Login') %> &#187;" class="primary" id="submit" />
-    	</li>
-    </ul>
+<% form_tag :action=> "login" do %>
+<div>
+  <h2><label for="user_login"><%= _('Login')%></label></h2>
+  <p class='input_text_title'>
+    <%= text_field(:user, :login, {:class => 'title large'})%>
+  </p>
+</div>
+<div>
+  <h2><label for="user_password"><%= _('Password')%></label></h2>
+  <p class='input_text_title'>
+    <%= password_field(:user, :password, {:class => 'title large'})%>
+  </p>
+</div>
+<div>
+  <label for="remember_me"><%= _('Remember me')%>
+    <%= check_box_tag 'remember_me' %>  
+  </label>
+</div>
+<p>
+  <input type="submit" name="login" value= "<%= _('Submit') %>" class="save large" id="submit" />
+</p>
+
     <p>
-    <%= link_to "&laquo; #{_('Back to ')} #{this_blog.blog_name}", this_blog.base_url %>
+    <small><%= link_to "&laquo; #{_('Back to ')} #{this_blog.blog_name}", this_blog.base_url %></small>
     </p>
     <% end %>
   </div>

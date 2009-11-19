@@ -15,7 +15,7 @@ module Admin::BaseHelper
   end
 
   def show_page_heading
-    content_tag(:h2, @page_heading) unless @page_heading.blank?
+    content_tag(:h2, @page_heading, :class => 'mb20') unless @page_heading.blank?
   end
 
   def cancel(url = {:action => 'index'})
@@ -23,7 +23,7 @@ module Admin::BaseHelper
   end
 
   def save(val = _("Store"))
-    '<input type="submit" value="' + val + '" class="submit" />'
+    '<input type="submit" value="' + val + '" class="save" />'
   end
 
   def confirm_delete(val = _("Delete"))
@@ -162,12 +162,12 @@ module Admin::BaseHelper
 
   def render_void_table(size, cols)
     if size == 0
-      "<tr>\n<td colspan=#{cols}>" + _("There is no %s yet. Why don't you start and create one?", _(controller.controller_name)) + "</td>\n</tr>\n"
+      "<tr>\n<td colspan=#{cols}>" + _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)) + "</td>\n</tr>\n"
     end
   end
   
   def cancel_or_save
-    result = '<p class="paginate r">'
+    result = '<p class="right">'
     result << cancel 
     result << " "
     result << _("or") 
@@ -215,5 +215,10 @@ module Admin::BaseHelper
             :update => "#{update}")
     link << image_tag("spinner-blue.gif", :id => "update_spinner_#{id}", :style => 'display:none;')
   end
-  
+
+  def display_pagination(collection, cols)
+    if WillPaginate::ViewHelpers.total_pages_for_collection(collection) > 1
+      return "<tr><td colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
+    end
+  end 
 end

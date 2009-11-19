@@ -1,24 +1,21 @@
-<% form_tag :action=> "signup" do %>
+<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
 
-<div title="Account signup" id="loginform">
-  <%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
-  <div  class="form admin">
-	<%= error_messages_for 'user' %>
-	<ul>
-		<li>
-			<label for="user_login"><%= _("Username") %>:</label>
-			<%= text_field :user, :login %>
-		</li>
-		<li>
-			<label for="user_email"><%= _("Email")%>:</label>
-  		<%= text_field :user, :email, :size => 30 %>
-		</li>
-		<li class="r">
-	  	<input type="submit" id="submit" value="<%= _('Signup') + " &raquo;" %>" />
-		</li>
-	</ul>
-  </div>
+<div id="flash"><%= error_messages_for 'user' %></div>
+
+<% form_tag :action=> "signup" do %>
+<div>
+  <h2><label for="user_login"><%= _("Username") %>:</label></h2>
+  <p class='input_text_title'>
+    <%= text_field(:user, :login, {:class => 'title large'})%>
+  </p>
 </div>
+<div>
+  <h2><label for="user_email"><%= _("Email")%>:</label></h2>
+  <p class='input_text_title'>
+    <%= text_field(:user, :email, {:class => 'title large'})%>
+  </p>
+</div>
+<p><input type="submit" id="submit" class='save large' value="<%= _('Signup')%>" /></p>
 
 <% end %>
 

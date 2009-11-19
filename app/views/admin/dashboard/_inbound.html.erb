@@ -1,5 +1,4 @@
-<div class="dashboard">
-  <h3><%= _("Inbound links") %></h3>
+<h3><%= _("Inbound links") %></h3>
   <% if @inbound_links.nil? %>
     <%= _('You have no internet connection') %>
   <% else %>
@@ -9,11 +8,9 @@
       <% else %>
         <% for link in @inbound_links -%>
           <li>
-            <%= link_to(link.author, link.link) + _(" made a link to you saying ") + link.description.slice(0, 50) %> 
+            <%= link_to(link.author, link.link) + _(" made a link to you saying ") + link.description.slice(0, 100) + "[...]"%> 
           </li>
         <% end %>
       <% end %>
     </ul>
   <% end %>
-  <hr />
-</div>

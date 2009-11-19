@@ -1,8 +1,6 @@
 <% @page_heading = _('Manage articles') %>
 <% subtabs_for(:content) %>
 
-<%= render :partial => "drafts" %>
-
 <div class="list" id="articles">	
   <% form_remote_tag  :url      => {:action => 'index'},
   :method   => :get,
@@ -12,9 +10,9 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
-  <label for="search"><%= _("Search articles that contains...")%></label><br />  
-  <input id="search" type="text" name="search[searchstring]" size="30" />
-  <%= submit_tag _("Search") %>
+  <h4 class='mt30'><label for="search"><%= _("Search articles that contains...")%></label></h4>
+  <input id="search" type="text" name="search[searchstring]" class='small medium' />
+  <%= submit_tag(_("Search"), {:class => 'search'}) %>
   <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
 
   <table>

@@ -3,56 +3,84 @@
 
 <% form_tag :action => 'update' do %>
 
-<div class="admin">
-  <fieldset>
-    <legend><%= _("Your blog")%></legend>
-    <ul>
-      <li>
-        <label for="setting_blog_name" class="float"><%= _("Blog name")%></label>
-        <%= text_field(:setting, :blog_name, :size => this_blog.blog_name.length)%>
-      </li>
-      <li>
-        <label class="float" for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>
-        <%= text_field(:setting, :blog_subtitle, :size => this_blog.blog_subtitle.length)%>
-      </li>
-      <li>
-        <label class="float" for="base_url"><%= _("Blog URL")%></label>
-        <%= text_field(:setting, :base_url, :size => this_blog.base_url.length)%>
-      </li>
-      <li>
-        <label class="float" for="setting_lang"><%= _("Language")%></label>
-        <select name="setting[lang]" id='setting_lang'>
-          <%= fetch_langs %>
-        </select>
-      </li>
-      <li><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</li>
-      <li>
-        <label class="float" for="setting_allow_signup"><%= _("Allow users to register")%></label>
-        <%= radio_button(:setting, :allow_signup, 0)%>
-        <label for="setting_allow_signup_0"><%= _("No")%></label>
-        <span class="float">
-          <%= radio_button(:setting, :allow_signup, 1)%>
-          <label for="setting_allow_signup_1"><%= _("Yes")%></label>
-        </span>
-      </li>
-      <li>
-        <label class="float" for="setting_admin_display_elements"><%= _("Items to display in admin lists")%></label>
-        <%= text_field(:setting, :admin_display_elements, :size => 4)%>
-      </li>
-    </ul>
-  </fieldset>
+<fieldset>
+  <legend><%= _("Your blog")%></legend>
+  
+  <div>
+    <label for="setting_blog_name" class="float"><%= _("Blog name")%></label>
+    <p class='input_text_title'>
+      <%= text_field(:setting, :blog_name, {:class => 'small', :size => this_blog.blog_name.length})%>
+    </p>
+  </div>
+  <div>
+    <label class="float" for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>
+    <p class='input_text_title'>
+      <%= text_field(:setting, :blog_subtitle, {:class => 'small', :size => this_blog.blog_subtitle.length})%>
+    </p>
+  </div>
+  <div>
+    <label class="float" for="base_url"><%= _("Blog URL")%></label>
+    <p class='input_text_title'>
+      <%= text_field(:setting, :base_url, {:size => this_blog.base_url.length, :class => 'small'})%>
+    </p>
+  </div>
+  <div>
+    <label class="float" for="setting_lang"><%= _("Language")%></label>
+    <p class='input_text_title'>
+      <select name="setting[lang]" id='setting_lang'>
+        <%= fetch_langs %>
+      </select>
+    </p>
+  </div>
+  <p><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</p>
+  <div>
+    <label class="float" for="setting_allow_signup"><%= _("Allow users to register")%></label>
+    <p class='input_text_title'>
+      <%= radio_button(:setting, :allow_signup, 0)%>
+      <label for="setting_allow_signup_0"><%= _("No")%></label>
+      <%= radio_button(:setting, :allow_signup, 1)%>
+      <label for="setting_allow_signup_1"><%= _("Yes")%></label>
+    </p>
+  </div>
+  <div>
+    <label class="float" for="setting_admin_display_elements"><%= _("Items to display in admin lists")%></label>
+    <p class='input_text_title'>
+      <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'small'})%>
+    </p>
+  </div>
+</fieldset>
 
-  <fieldset id="Cache">
-    <legend><%= _("Cache")%></legend>
-    <ul>
-      <li>
-        <label class="float"><%= _("Sweep cache")%></label>
-        <%= link_to _("Sweep cache"), { :controller => "admin/cache",    :action => "sweep_html" } %>
-      </li>
-    </ul>
-  </fieldset>
+<fieldset>
+  <legend>Publishing options</legend>
+  <div>
+    <label for="setting_limit_article_display" class="float"><%= _("Display")%> </label>
+    <p class='input_text_title'>
+      <%= text_field(:setting, :limit_article_display, {:size => 4, :class => 'small'})%>
+      <%= _("articles on my homepage by default")%>
+    </p>
+  </div>
+  <div>
+    <label for="setting_limit_rss_display" class="float"><%= _("Display")%> </label>
+    <p class='input_text_title'>
+      <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'small'})%>
+      <%= _("articles in my news feed by default")%>.
+    </p>
+  </div>
+  <div>
+    <label class="float" for="setting_show_extended_on_rss"><%= _("Show full article on feed")%>:</label>
+    <p class='input_text_title'>
+      <%= check_box(:setting, :show_extended_on_rss) %>    
+    </p>
+  </div>
+  <p><%= _('You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.') %></p>
+  <div>
+    <label class="float" for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
+    <p class='input_text_title'>
+      <%= text_field(:setting, :feedburner_url, :class => 'small medium')%>
+    </p>
+  </div>
+</fieldset>
 
-  <%= hidden_field_tag 'from', 'index' %>  
-  <%= render :partial => 'submit' %>
-</div>
+<%= hidden_field_tag 'from', 'index' %>  
+<%= render :partial => 'submit' %>
 <% end %>

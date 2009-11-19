@@ -1,34 +1,35 @@
 <%= error_messages_for 'page' %>
-<!--[form:pages]-->
-<div id='editorright'>
-  <label class="block content"><%= _("Options") %></label>
-  <p class="paginate r" id="saveblock">
-      <label for="page_name"><%= _("Permalink")%></label><br />
-      <%= text_field 'page', 'name', :size => 25  %><br />
-      <label for="page_published"><%= _("Online")%></label>
-      <%= check_box 'page', 'published'  %><br />
+
+<div id='editor-right'>
+  <h3>Publish settings</h3>
+  <div id='publishing'>
+    <%= check_box 'page', 'published'  %>
+    <label for="page_published"><%= _("Online")%></label><br />
     <%= link_to_destroy_with_profiles @page%>
     <%= save( _("Publish") + " &raquo;") %>
-  </p>
-  
-  
+  </div>
+  <div class='editor_bottom'>
+    <div class='editor_bottom_right'></div>
+  </div>
 </div>
 
-
-<div id='editorleft'>
+<div id='editor-left'>
   <div>
-    <label for="page_title" class="block title"><%= _("Title")%></label>
-    <%= text_field 'page', 'title', :class => 'large'  %>
+    <h2><label for="page_title" class="block title"><%= _("Title")%></label></h2>
+    <p class='input_text_title'>
+      <%= text_field 'page', 'title', :class => 'large title'  %>
+    </p>
   </div>
-  <div id="editor">
-    <div id="editor-menu">
-      <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
-        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'simple_editor', 'visual') %>
-      </span>
-      <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
-        <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-      </span>
-    </div>
+
+  <div id="editor-menu">
+    <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
+      <%= build_editor_link("Visual", 'insert_editor', 'fck', 'simple_editor', 'visual') %>
+    </span>
+    <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
+      <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+    </span>
+  </div>
+  <div id='editor'>
     <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
       <script type="text/javascript">edToolbar('page_body');</script>
     </div>
@@ -38,18 +39,30 @@
       <%= render_macros(@macros) if current_user.editor == 'visual' %>
     </div>
   </div>
+  <div class='editor_bottom'>
+    <div class='editor_bottom_right'></div>
+  </div>
   <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
 
-    <div class="paginate l">
-      <label class="block">
-        <%= link_to_function _("Page settings") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "publishing_options", :duration => 0.2) } %>
-      </label>
-      <ul id="publishing_options" <%= "style='display: none;'" if @page.published.blank? %>>
-        <li>
-            <label class="float" for="text_filter"><%= _("Article filter")%></label>
-            <select name="page[text_filter]" id="text_filter">
-              <%= options_for_select text_filter_options, @page.text_filter %>
-            </select>
+  <h3><%= _("Page settings") %></h3>
+  <div class='blue_block'>
+    <div>
+      <label for="page_name" class='float'><%= _("Permanent link")%></label>
+      <p class='input_text_title'>
+        <%= text_field 'page', 'name', :class => 'small medium' %>
+      </p>
+    </div>
+    <div>
+      <label class="float" for="text_filter"><%= _("Article filter")%></label>
+      <p class='input_text_title'>
+        <select class='small medium' name="page[text_filter]" id="text_filter">
+          <%= options_for_select text_filter_options, @page.text_filter %>
+        </select>
+      </p>
+    </div>
+  </div>
+
+
         </li>  
   </ul>
   </div>  

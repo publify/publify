@@ -9,8 +9,4 @@
   <td class="operation"><%= (article.allow_comments?) ? link_to(article.comments.ham.size.to_s, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %></td>
 </tr>
 <% end %>
-<tr>
-  <td class="paginate" colspan="7">
-    <%= will_paginate @articles -%>
-  </td>
-</tr>
+<%= display_pagination(@articles, 7)%>
