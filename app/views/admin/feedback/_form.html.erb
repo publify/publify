@@ -1,21 +1,32 @@
 
 <%= error_messages_for 'comment' %>
 <%= hidden_field_tag 'article_id', @article.id %>
-<ul class="admin" id="comment">
-  <li>
-    <label for="comment_author" class="block content"><%= _("Author")%></label>
-    <%= text_field 'comment', 'author', "value" => (current_user.name if controller.action_name == "list") %>
-  </li>
-  <li>
-    <label for="comment_url" class="block content"><%= _("Url") %></label>
-    <%= text_field 'comment', 'url', "value" => (this_blog.base_url if controller.action_name == "list")  %>
-  </li>
-  <li>
-    <label for="comment_email" class="block content"><%= _("Email")%></label>
-    <%= text_field 'comment', 'email', "value" => (current_user.email if controller.action_name == "list") %>
-  </li>
-  <li>
-    <label for="comment_body" class="block content"><%= _("Content")%></label>
-    <%= text_area 'comment', 'body', { :height => '300', :cols => '100'} %>
-  </li>
-</ul>
+
+<fieldset>
+  <legend><%= _("Add a comment") %></legend>
+
+  <div>
+    <label for="comment_author" class='float'><%= _("Author")%></label>
+    <p class='input_text_title'>
+      <%= text_field 'comment', 'author', :class => 'small medium' %>
+    </p>
+  </div>
+  <div>
+    <label for="comment_url" class='float'><%= _("Url") %></label>
+    <p class='input_text_title'>
+      <%= text_field 'comment', 'url', :class => 'small medium' %>
+    </p>
+  </div>
+  <div>
+    <label for="comment_email" class='float'><%= _("Email")%></label>
+    <p class='input_text_title'>
+      <%= text_field 'comment', 'email', :class => 'small medium' %>
+    </p>
+  </div>
+  <div>
+    <label for="comment_body" class='float'><%= _("Content")%></label>
+    <p class='input_text_title'>
+      <%= text_area 'comment', 'body', { :rows => '10', :class => 'small medium'} %>
+    </p>
+  </div>    
+</fieldset>
