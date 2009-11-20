@@ -24,13 +24,13 @@
       </div>
     </div>
 
-    <div id="cnt-active">
+    <div id="cnt-active" class='dropbox'>
       <h2 id="hdr-active">
         <%= _("Active Sidebar items")%>
         <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
                       :style => 'display:none;' -%>
       </h2>
-      <div id="active" class="dropbox">
+      <div id="active">
         <%= render :partial => 'actives', :object => @active %>
       </div>
     </div>

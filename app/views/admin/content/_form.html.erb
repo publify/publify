@@ -13,11 +13,13 @@
     <label for="article_allow_pings"><%= _("Allow trackbacks")%></label><br />
     <%= check_box 'article', 'published'  %>  
     <label for="article_published"><%= _("Published")%></label><br />
+    <p class='right'>
+      <input id='save_draft' type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
+      <%= save( _("Publish") + " &raquo;") %><br />
+      <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
+      <%= link_to_destroy_draft @article %>      
+    </p>
     <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/previews', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
-    <%= link_to_destroy_with_profiles @article%>
-    <%= link_to_destroy_draft @article %>
-    <input id='save_draft' type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
-    <%= save( _("Publish") + " &raquo;") %>
   </div>
   <div class='editor_bottom'>
     <div class='editor_bottom_right'></div>
