@@ -9,6 +9,20 @@
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
   <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "quicktags", "growler", "administration", :ckeditor %>
   <%= calendar_date_select_includes %>
+  
+  <!--[if IE]>
+    <%= javascript_include_tag "roundies" %>
+    
+    <script type='text/javascript'>
+      DD_roundies.addRule('.title', '4px');
+      DD_roundies.addRule('.small', '4px');
+      DD_roundies.addRule('#logincontainer', '8px');
+      DD_roundies.addRule('.theme', '4px');
+      
+    </script>
+  <![endif]-->
+  
+  
 </head>
 
 <body>

@@ -237,7 +237,6 @@ input.title {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
-	behavior: url("../../stylesheets/border-radius.htc");
 	font: 16px/20px "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 }
 
@@ -525,8 +524,6 @@ td.paginate {
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
-	behavior: url("../../stylesheets/border-radius.htc");
-	
 }
 
 #innerlogin {
@@ -561,7 +558,6 @@ td.paginate {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
-	behavior: url("../../stylesheets/border-radius.htc");  
 	color: #fff;
 }
 
