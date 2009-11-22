@@ -11,6 +11,7 @@ tobi:
   profile: admin
   text_filter: markdown_filter
   state: active
+  last_connection: 2009-11-21 12:15:58
   
 bob:
   login: bob
@@ -23,6 +24,7 @@ bob:
   profile: admin
   text_filter: none_filter
   state: active
+  last_connection: 2009-11-21 12:15:58
   
 existingbob:
   login: existingbob
@@ -35,6 +37,7 @@ existingbob:
   profile: admin
   text_filter: markdown_filter
   state: active
+  last_connection: 2009-11-21 12:15:58
 
 longbob:
   login: longbob
@@ -47,6 +50,7 @@ longbob:
   profile: admin
   text_filter: markdown_filter
   state: active
+  last_connection: 2009-11-21 12:15:58
   
 randomuser:
   login: randomuser
@@ -59,6 +63,7 @@ randomuser:
   profile: admin
   text_filter: none_filter
   state: active
+  last_connection: 2009-11-21 12:15:58
   
 user_publisher:
   login: shingara
@@ -71,6 +76,7 @@ user_publisher:
   profile: publisher
   text_filter: markdown_filter
   state: active
+  last_connection: 2009-11-21 12:15:58
 
 inactive_user:
   login: inactive
@@ -83,3 +89,5 @@ inactive_user:
   profile: publisher
   text_filter: markdown_filter
   state: inactive
+  last_connection: 2009-11-21 12:15:58
+  
