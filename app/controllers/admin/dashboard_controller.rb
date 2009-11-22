@@ -4,6 +4,8 @@ class Admin::DashboardController < Admin::BaseController
   require 'rexml/document'
   
   def index
+    @newposts = Article.count(:all, :conditions => ['published = ? and published_at > ?', true, current_user.last_venue])
+    @newcomments = Feedback.count(:all, :conditions =>['state in (?,?) and published_at > ?', 'presumed_ham', 'ham', current_user.last_venue])
     comments
     lastposts
     popular
