@@ -6,6 +6,7 @@ describe 'A successfully authenticated login' do
   before(:each) do
     @user = mock_model(User, :new_record? => false, :reload => @user)
     @user.stub!(:profile).and_return(Profile.find_by_label('admin'))
+    @user.stub!(:update_connection_time)
     User.stub!(:authenticate).and_return(@user)
     User.stub!(:find_by_id).with(@user.id).and_return(@user)
     User.stub!(:count).and_return(1)

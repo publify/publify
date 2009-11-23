@@ -28,6 +28,12 @@ class User < ActiveRecord::Base
          :conditions => ["login = ? AND password = ? AND state = ?", login, sha1(pass), 'active'])
   end
 
+  def update_connection_time
+    self.last_venue = last_connection
+    self.last_connection = Time.now
+    self.save
+  end
+
   # These create and unset the fields required for remembering users between browser closes
   def remember_me
     remember_me_for 2.weeks
