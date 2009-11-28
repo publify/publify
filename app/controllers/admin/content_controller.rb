@@ -117,7 +117,7 @@ class Admin::ContentController < Admin::BaseController
     if @article.save
       render(:update) do |page|
         page.replace_html('autosave', hidden_field_tag('id', @article.id))
-        page.replace_html('permalink', text_field('article', 'permalink'))
+        page.replace_html('permalink', text_field('article', 'permalink', {:class => 'small medium'}))
         page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/previews', :id => @article.id }, {:target => 'new'}))
       end
 
