@@ -92,8 +92,9 @@ class CkeditorController < ActionController::Base
   end
 
   def upload_file
-    begin
+    begin      
       load_file_from_params
+      Resource.create(:filename => @new_file.original_filename, :mime => @ftype, :created_at => Time.now)    
       copy_tmp_file(@new_file) if mime_types_ok(@ftype)
     rescue => e
       @errorNumber = 110 if @errorNumber.nil?
