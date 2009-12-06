@@ -637,4 +637,16 @@ td.paginate {
   background: #dcf6fe;
 }
 
-.
+.published {
+  color: #6a0;
+}
+
+.unpublished {
+  color: #c00;
+}
+
+#article_keywords_auto_complete ul li {
+  list-style: none;
+  background: #DCF6FE;
+  border-bottom: #00131E 1px solid;
+}
