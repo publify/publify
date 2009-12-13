@@ -1,641 +1,1494 @@
-commit cc4f6c2b18d9c942c7619476ac92fac988e6f131
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add rss/atom feed in search result
-
-commit 11d3b96e30d762979a8a40771cbcf975b0a11d6e
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    improve feed link in search view
-
-commit c466ad506001bc756cac73438fc0f0a5722c9c98
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix error with feed in tag part
-
-commit 77acc759641f4fc6d0e2a20b7b8e224e17ea55eb
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add system to add .rss or .atom in feed_url. Define like rss or atom system
-
-commit 84db2422150ead6a176c24a961b8407d654a4c6e
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    little refactor in redirect controller
-
-commit cc6a2a8669c74907bfb2ce8e65dc621cd731effa
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add spec to check good feed in head. Reformat some HTML with good indentation
-
-commit f76703653b368a5ebdcf6f9e7ff7c4120bba8d7b
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    end all html tag properly
-
-commit f74831552efe198f01084adba65de934ed5d9b65
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    change url generation in feed_url method
-
-commit 8076b8626f8bd82fa2c15c66fcd3fe43e09d6c05
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    cgi escape all title fixed #53
-
-commit 4720de13554e35c8600bddd3fd1a93afe2574264
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    same one me really sorry tobias
-
-commit db3ced9dca97bd031ba4249357b97791cc2d1a93
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    when trackback in article creation, we delete all formating part even in markdown [#59 state:resolved]
-
-commit 7c9f8312933ff8580bce930729bd4fee2e0e7166
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add some test in Ping model
-
-commit 08055c37fca724ca495f91c59a1d37eeab2f343a
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix little issue to all user of Typo edge. Thanks to tobias to report that
-
-commit 745e4ee7fc9f68c985ab7f87d072b89cf90b858d
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix error in migration 80. All user doesn't be active
-
-commit 11adda7107722141bcda412f94597bcc71cba0ec
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add cache_informations table in database. Use this table to save all cache
-
-commit e3f8bd9f8093de09a4216d37f84ada3be86b7431
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add require to avoid some module unknow
-
-commit b64e195701f91f1aab2cf3ab90a4be3041c02fa6
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    improve speed in spec. 70s instead of 105s
-
-commit e4bd70a43d12d5ad943f06d0cb9c8475f82d45cc
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    Fix all spec
-
-commit e6268426f77409af217692d4e006b40115e20d84
+commit 78264da749c9df534442540f1eeae6b7450fc7dc
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Introduces users deactivation. Needs some fine tuning to be really good
+    Updating release task
 
-commit 4e4e133fc894b86cbc6691187e987047931c87d8
+commit ac4ae0e36b2bd363b6ee053171a1be14fa4344ae
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Last stylesheet tweak
+
+commit 5fcd54831989293b6c37d63fa982820542ea324e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing dead files
+
+commit 90ae87244f9a2deb32468ad7dbb8bb8075bccfa3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Hiding file browser button til someone recode it
+
+commit 3e634bc4d980d2a5fcda90c4392235b23e02d4a5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing CKEditor sources
+
+commit aeef4aab78cf16883df79861da3f30114a2a7ed5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Plugs CKEditor to Typo resources manager
+
+commit 009f37a3823a07a7401626cb45390bb5f9d5bc97
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes CKEditor file upload
+
+commit 6021984b53d34d51906f5a822c630a7e35d774f3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a nasty bug that breaks the autosave
+
+commit b38475277ef27538ea41992aba81e41ffc2339db
+Author: Jakob Skov-Pedersen <jasp@keepfocus.dk>
+
+    Fix testability of accounts controller
+
+commit 58327ad4143e7b11c93101559001e2ff799c5ac2
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Forgot something with the dashboard
+
+commit 66ec23a0117b105465f9546b20b7eba9a0aa1f73
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes brocken admin test
+
+commit 101077c5868380230fb2a2a7852b57bfa25bbef8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bug with pgsql
+
+commit 3c89a170f3ee269df54c7444ca7c9c6e30bc3171
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    This solution did not work for IE 8
+
+commit f12d91f43ec46cbea438e7eeeaa4bfbc06264f7d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Test for IE
+
+commit 0dbbd1fcf9b782aa47f4c98843eefd0d7c81129c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds the comment editor
+
+commit eefd944287126a3671e70c5328f09455038320fe
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Rebuilds sidebar selection. Closes ticket #35
+
+commit 40ef8e0162d9cdaba84e380b3211def7183f6753
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ooooops, I forgot the whole customize thing
+
+commit 80fa5a4c237f4de5e8ac59eeb63c65b6b71fb750
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Implementing new admin. I may have brocken some things here and there, will fix quickly I promise
+
+commit ba5ee7d61062c6057a66676b78a0687a02bba477
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moving drafts to named_scope
+
+commit ac015bbf1eaa22946d576aa5f81d68bb7b596303
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing useless code: parent_id is always nil so far (we haven't implemented sub categories) and order is defined in the model default scope
+
+commit 406027a0753bb48909e88aafc502e594d37581bf
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    A bit of refactoring, moving the comments management as a sub module of the management itself. Next somes a 'What can you do' view of the dashboard
+
+commit 9a137c19e57a862e398741e4284e812c9dd58464
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove empty spec file
+
+commit a9e94c82412d01cffcc8959e81b2ee51fd1f43fa
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Replace all Test::Unit style tests with RSpec style specs, since RSpec's
+    handling of these tests proved unreliable: In particular, a test would fail
+    when the full suite was run, but pass when only the single spec file was
+    run.
+
+commit 348b596680d5d7c94d3eb3e07abdaf26a0ec888d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Improving fck editor
+
+commit 53bd09b6927b04825fa6eabb3e3b1978e7aa61c8
 Author: Cyril Mougel <cyril.mougel@gmail.com>
 
-    add validation of permalink_format with good format. Failed if bad format
+    fix some spec broken
 
-commit 41b0ce63c2a506776bee3bf0434de15b3eb3d335
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add file to track all page cache. Delete all by this file when sweep cache
-
-commit e6f104469df48aa72eb0721c0c7cf96b6e7c67bc
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add sitemap.xml in delete when sweep cache
-
-commit a14a0d22a74171236b01ab13d175536dcd44fce8
+commit 20dbd920bcb06f6134ab8cf9fad54d8f46957c54
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixing ticket 55 : /archives is brocken + test. Route was missing
+    Fixes a bug in the search + drops a French string that had nothing to do here
 
-commit 35dfe835a815fbe5d520be7d7e82b14e4790782f
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    change SQL specifique MySQL
-
-commit 9f041b806c495cc32f3a48a8a713bb2d987cdacd
+commit d2a38c4bb814d01b6752f3eb03c607e83d3d69e6
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Updating autosave time
+    Some cleaning and a bit of refactoring
 
-commit 4c8cba1f269a6d01511c0c430e52f7b42d427410
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding autosave to FCK Editor w00t, one more ticket close on the road to 5.3
-
-commit 138851141e97aba5afbea01da42057c50b20de40
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Allowing to send content from an editor to another and back. I know. It's ugly. Please send a patch if you're better at Javascript than me, I'd be really glad
-
-commit bc3c801772b107976cf5e2aa00959134fa4d4aa3
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adds tests for editor switching
-
-commit f5d7e4bab43edfe71f13f65936075b4c45f0896a
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixing brocken tests
-
-commit d7b6a3d0a5d339a60b971e409730cd0eab973545
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes ticket 47 + search routing issue
-
-commit f50ba4c9e8e0f0d42bfe90d8e3dc25835548ab8d
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixing some CSS bugs due Growler inclusion
-
-commit 58fc900d97faa0c3e3d692c0e0e17f1ec97f1128
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding feedburner support
-
-commit bc9a9f16f2409441f28304bddcd7f8c01f3a4f77
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding growler to autosave and sidebar save
-
-commit 9395a70275432fffe1a960261cfafdc22add72a4
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Some editor refactoring, it really needed it after yesterday's change.
-
-commit 6cb1c137f033fca0df27798e5f3271e845487051
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding editor switching to pages. This needs a few refactoring and tests too
-
-commit 74822cf7a11ae726a56b013a9ed35066b49e7c73
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    A bit of refactoring
-
-commit ca27f7442e287af11bfd8b2bcd38e4e7f96d4c94
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding some niceness to the editor's switching
-
-commit a9fd312184b0eaf9aaebb95653ed8f493e07b052
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Saving the user's default editor when switching from editor
-
-commit e6969bc96e06e55342ab236d00e8a846c8270829
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Now saves the editor as the user's default editor when switching
-
-commit 569a1dd5b2085dff5fb379dc1de2a1a41e06653e
-Merge: 3a6a81e... 443ee0f...
+commit ec9ffd103f9295466506ea8d41c6d24d8637f0e1
+Merge: 6c62e9b... 435a083...
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
     Merge branch 'master' of git@github.com:fdv/typo
 
-commit 3a6a81e0a0f349274d5f6727ba027ae02902a671
+commit 6c62e9bdaf22494b4d44fb4312525b4b94eff53c
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    First attempt of switching editor from the editing form
+    Improves IE6 and IE7 compatibility
 
-commit 443ee0f860b3d305274d0beeb6d64764c474e5ff
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    revert all debug introduce by previous commit
-
-commit 9b0b6331d272052704e21673e9bc31a0a1eba1e7
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix error with assignation by reference. get big error
-
-commit 4df80f8d80749fb5500157ddd0929824031e678e
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-     Use Calendar_date_select instead_of datetime_select in create article
-
-commit 01d6abc506ea8e42aeca8b678e0dffd013494ff0
+commit 435a08313b2efffdf608fc799786bd099c55f635
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Remove some mocking so specs test behavior instead of implementation
+    Don't use absolute paths for images: Makes sub-URI deployment work.
 
-commit 30f6dfb2710c0b9551336be7824c609cae2ef6ef
-Merge: f4a5a64... 1292197...
-Author: Cyril Mougel <cyril.mougel@gmail.com>
+commit 37ca50ef51b3650febb0bb7a8d8d5c6aea946a09
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a cool bug that just wiped your article at the autosave when using CKEditor. Nice isn't it?
+
+commit 9b7b1a437a1acd191e763d18102b94e48a13a758
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removes a french string, fixes a typo
+
+commit 67d24340bb68c1003cff75a43a6b065d021d299e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removes a french string
+
+commit 3b8d92a6ff1e1092a7883f168bb56d8338ad376b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a typo
+
+commit 76738bb05e9d1b64ea1514bd18e4c25a4a60f00a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a crash when changing to a theme having helpers if it was not loaded by default
+
+commit 2a6e692c5c5b2af068e6142d79bb5cdb490ea691
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding new theme True Blue 3 as default theme. Paint is still wet, and there may be 1 or 2 French String remaining. Theme is brocken on IE6 too, needs some CSS fixes for this
+
+commit 4100365cf8bda92a3c27536e4042df3163ad6c61
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds a new date format
+
+commit 14f2b7e0ea18a28ed9a95a0597526cc605f6bb8e
+Merge: 2685f51... 1c618bc...
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 1c618bc9e90112c500edce35f40f7d8e02181e8e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Switching admin back to 100% to give the editor more room
+
+commit 2685f517fae0571e5b386c610dd4214717dbae43
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Update translation key.
+
+commit a1a34eff32e7a30c23ba6557a3e7e97e3667d1a8
+Merge: c25cfb9... d583d0a...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
     Merge branch 'master' of git@github.com:fdv/typo
 
-commit f4a5a645fae4695fd4139710701af1bb5dab5e82
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    Move the search in sidebar. No define in layout
-
-commit 12921973e7f788c23c950ecf4d80c1aa73ba9432
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    Fix error on search with no result
-
-commit 9aee822d660597bb53c674aa0fbc8d5d84b32241
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add file in log to keep directory
-
-commit 582e70a686f1c76ae59c4485800713af505f9884
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix some test on redirect controller and fix some error if no current_user
-
-commit c4a4257af82b09d6d021175145373d01b112a1e0
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix error with redirect to admin if already logged
-
-commit 34b41d72aadd0cac5fb930246471f6960c4a068c
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add redirect all /articles/%year%/%month%/%day%/%title% and /%year%/%month%/%day%/%title% to new permalink if define
-
-commit aa43afa02d8d5f505e9044b611d98b8793da4806
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix error in route because 2 routes with same name
-
-commit 084f63d200b74d2242a7e8fc82a5440ec514c414
+commit c25cfb92434704109220665f81e3a2f35c091c72
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Ticket 43: when a commenter is logged in, his user_id should be added to the comment (useful to count a user's comment) both on admin and frontend)
+    Fixes signup with password not displaying anymore
 
-commit b3c2410328b799150d7b61a209f62c3e1bc53f6e
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Ticket 42: when logged in and trying to access accounts/login, user should be redirected to admin/dashboard instead of having to log in again
-
-commit dd45c50591aa6095c9bdef175d53e1abc6d6b49d
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes a little Typo
-
-commit 8a76a5594fc847562f02b066b2ab8004ad92c320
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    little refactor more readable
-
-commit fc9ba697063a16d0700b7ff52965a32cb8851427
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Allow on demand search removal for tags and categories. This adds noindex follow headers on related pages, and removes them from sitemap.xml
-
-commit 0e5f2c18613d6b89a11f99f09d7a335185e8fdec
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding configurable robots.txt in settings
-
-commit 4f17daf9507c89c7f21743f48473da5fffae4d25
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding meta noindex follow on archives, paginated index, paginated categories and paginated tags to avoid duplicate content
-
-commit 9e3119519ec5bf6d6e2c9c1a4912873f6fa8839e
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixing some CSS issue on typographic when enabling gravatar
-
-commit 329bf7854bc49000caef39880d3518a4793b0b4c
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Crappy git
-
-commit 87a5913460696e4703987c5b0c3b8e9675766d1e
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Updating README and LICENCE files
-
-commit fa826d879af004c5713995abda55e92069f30fdc
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixed some missing routes
-
-commit 67da3ee8f3f56d082e5b3bae4fa90d4c5a953a86
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    search article with different formating
-
-commit aea30309984623f93026155a2c57ca97de90658b
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    delete unused code
-
-commit 176717be2eff34da5f9126031291239a142ea670
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    Fix link /trackback.atom|rss broken before
-
-commit 865334008e8e1a543ef9067bf009d3d92590ec35
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix some issue in trackback system
-
-commit a913e2cc9cbcd887e51653f6a9c6a6fe0ce8794f
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    update cache_page with redirect and article controller
-
-commit 2392c7477bb68acc70b647849fb599be164e046d
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    delete some unuse code
-
-commit 0f779b59e13221d5da1f3c6bc2186581a8f55491
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add support of extra variable in your url string
-
-commit 0c341bf68484f5443ea0fad3f4a961e179da1ed8
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    add setting url in SEO administration. Can change order of title/year/month and day
-
-commit 67040fe2b341b95a6583df97544d5f121ce24dc9
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix error in route with archive
-
-commit 3a41dba46683c81e749bd828f0c8d0010bb64896
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    start to use a format url define in blog setting
-
-commit 0ec2128585fbb698d1ed3f86aa39a2b599fdbd4a
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix spec in comment controller with non use of mock
-
-commit e1d83dbff65a8b0a5b74ec965dd364f3f3e8f1f7
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix spec in xmlcontroller
-
-commit 480914dd33e09429c6ac90844411bfdf6c6a2a99
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix spec about redirect
-
-commit f276237e5d39849620ac9d847cf51dce58538edc
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    delete url_policy not use
-
-commit 4af5e350ef49424b2692496a18be9258761d2d7a
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    fix some spec
-
-commit bb6156ec502a570a1800fdbbfc55335ad9e71926
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    delete spec about show action in content admin (delete with preview)
-
-commit 72f8d1da28a3ca7cd194d8157af0a117d824d034
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    delete show article because no preview now
-
-commit 27b28dec042eb0a228a746c177ec7ff664d5302c
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    start using same formating but only define by a string
-
-commit f21dbb817d8b835053672436b9179fd0a786ddd6
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    try to clean some url construction
-
-commit de8a865d64a20b0a342b4eff05670501f9e3a06a
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    delete all authors relation
-
-commit 05856469becfedb783eb19b00ed5e4a81aaeb733
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    delete author and users controller. Useless
-
-commit e9df19c1ea0887a8ab1af02f9b8bbe5a58095c98
-Author: Cyril Mougel <cyril.mougel@gmail.com>
-
-    update will_paginate gem. Fix issue #11?
-
-commit ce767dff1f88f1dd3b4363e9976504a755713525
+commit d583d0a3a9e9c0a4211dd06363affdfde7e5cdba
+Merge: 8d29054... d377f4e...
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Remove action_view_patch plugin, as it does nothing anymore.
+    Merge branch 'master' of github.com:fdv/typo
 
-commit db1a939276f560a44cef4e9e911e15b0684d39cb
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Satisfy warnings in themes: don't put space before argument parentheses.
-
-commit fc5c7babec889a0c215ed91be74c6951a2441e4a
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Remove old submodule directories
-
-commit d778c3a43fc53eb0da014794cb913d49214510f0
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Make feed validate
-
-commit 8ba3224a64bcbe59ae3fc493587e27b879692812
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Add pings_closed? method to Article, analogous to comments_closed?
-
-commit 59668dc3bbb46b9c741c4c26aba7ee4d614ef05d
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Small spelling fix
-
-commit 90617b166068c91b06f3e25ea3f6293badfb1fe6
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Fix formatting of theme lists.
-    Scale theme previews to fit in the containing divs, while retaining their
-    aspect ratio. Also, do not limit those divs vertically, instead allowing
-    them to grow as needed.
-
-commit 99bbd0fa16b5a6465567874142c0ca81c2104f78
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Fix grammar and spacing issues
-
-commit 618bc5a9737132184755af02d31b54cd162bf5e5
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Fix plugin tests: syntax errors, library load errors.
-
-commit 128e09815c5d94e740fb4397df374b693b42750f
+commit d377f4e2e721eff1ff1c31b13e6c1d9acbb8817e
 Author: Cyril Mougel <cyril.mougel@gmail.com>
 
-    fix Cross Site Scripting issue in feedback view [#32 state:resolved]
+    add some translation in french
 
-commit 6b246b9fd33d79b06f861adab27e422691d5529d
+commit 54f744bf46cc9e448cf23bad24d5e05ad2e83e6a
 Author: Cyril Mougel <cyril.mougel@gmail.com>
 
-    fix error in xml_sidebar if format doesn't defined
+    fix problem with deprecated system in i18n
 
-commit d0819616c72ba7f4536c2a67a5e06a92ad5783f0
-Author: Cyril Mougel <cyril.mougel@jtek.fr>
+commit 8d290543afe5cee7ac680cb57f291f423c0858d4
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    delete live controller with move live search in article controller. Fix some live search issue
+    Update messages:
+    - Undo earlier fix for %d problem;
+      (undoes commit 1efca32ec6de96458acf1907f34ba5bd78a62636)
+    - Improve English permalink format error messages.
 
-commit 9d98143403e771dc37ecdbf3f7f734699be999ec
-Author: Cyril Mougel <cyril.mougel@jtek.fr>
+commit 79554d4c328b4da930e53f71f2b90796b6dbdf62
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    delete relicat from submodule not use now
+    Workaround for %d problem.
 
-commit 0470c2e549cd4c527da526f7b5417c403b5b37f2
-Author: Cyril Mougel <cyril.mougel@jtek.fr>
+commit fa7451d4c0efafc3ebcc141b2be5919a909e60dd
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    backport some fix in nice_permalinks but not in master branch
+    Clean up PreviewsController specs.
 
-commit 5bbe31a698b6e6b54cae6c6307640501ccf3791b
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
+commit cdaf5e082250c0a44ef7e242d505d120b23f85f9
+Merge: f0357e9... 1fbbb06...
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Test article search controller and view
+    Merge branch 'master' of github.com:fdv/typo
 
-commit 30dc7a94dddc06f1bf634ccab56bb610fd36addc
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
+commit f0357e9f101e853f07f0ffc01b47ca499338e94a
+Author: Diego Elio 'Flameeyes' Pettenò <flameeyes@gmail.com>
 
-    Remove use of simple_format
-    This reverts commits a137b958daf8f791e0bd63932dcdb78ef05d3b7b and
-    10cff9dbaa740a1505697f1c8a32565aa83d8435
+    Fix feed_title to not append a final " : " on the general feed.
 
-commit 86c11077520b4843d0fb0f28f235231ec9a363b5
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
+commit 4ae8a8c93a2ac60e541ec1a3ac95cfbb5c3dd688
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Spec that shows problem of combining a text filter with simple_format.
-    For articles and for comments.
+    Spec cleanup:
+    - Remove outdated boilerplate.
+    - Remove useless reset_blog_ids method.
+    - Check authors feeds.
 
-commit 141e434b43a31a3ce6d99295ca8afc2dfecb9bf1
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
+commit 1fbbb061dd9663d2b6600e7c91cd12facaee6d1d
+Author: Yuka Ouka <yuka@melissa.(none)>
 
-    Make admin content controller specs pass:
-    - Formatter is markdown, not textile
-    - Correctly link text filters to users in fixtures
+    japanese language file commit
 
-commit a3d554a4794909a1957b06badba8885c2015e5e2
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
+commit 1efca32ec6de96458acf1907f34ba5bd78a62636
+Author: Cyril Mougel <cyril.mougel@gmail.com>
 
-    Ignore vim swap files
+    fix problem in spec because override %d to {{count}}
 
-commit caa491309b7fb6f1c8ea37e54111a8dca10b4494
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
+commit 7642356301625cae6e360c6cfbf8faba0ca90ef2
+Author: Cyril Mougel <cyril.mougel@gmail.com>
 
-    Make migration succeed on PostgreSQL
+    update to Rails 2.3.4 (security fix)
 
-commit 7d454c8d3f16bf54f587189a71ff91e8496b2308
+commit bf067580b9730024d009f764564c733846dd3e03
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    add some test in preview
+
+commit 83a86eaf1107439ed5512c485c4a6c5689df1faa
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Clean up PreviewsController spec and make it pass.
+
+commit 6aea03a678cd9f65175af3ba55f06484349d59c4
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix spec in preview controller
+
+commit 83b6f92b1229ab990c9ebcf38ddd055b0045b012
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    add dependencies needed if you want launch test
+
+commit fef6e9a0fb6491867227dddd072f8dc47157305f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix feed behavior without format parameter.
+
+commit 069ee491fa7eeb8d51ab0953cae3b00300529964
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Spec XML controller behavior without format parameter;
+    These fail due to a typo in the code!
+
+commit af99059013be2ccd5161c69a9bbe603e74a20970
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Seens I had something wrong with that condition.
+    Fixing the simple / visual editor switch without losing your content
 
-commit 8e281c0df44f38359e120ad41e864d7c00b7f6a0
+commit 2897e7ad7a0e46ea5f7513e5a7e12329ba87f91b
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    There's a rails 2.2.2 bug when adding config.gem to rspec forcing the use of test database. A ticket is currently opened at http://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/1834-adding-rspec-rails-in-configgem-forces-the-use-of-test-database for more information.
+    Adding autosave to already published article. It creates a new draft and set up a parent if first. The, when the article is republished, the draft is destroyed. Allows people to edit their published posts without having them changed on the front
 
-commit e4b131f5d80b7e66b74f49147ec1c094284abfec
+commit f8b81e61f2e1cfc41ea25104351b68fd4f31a087
+Merge: 34a4301... 4c98673...
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 34a4301a506422a9885bac102f2ebd5ede10de94
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix escaping in feed for comments.
+
+commit 2477867dea3807e5f12f886fc7c4540e4dbaf5ee
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Spec proper escaping in comments, too.
+
+commit 41c1968c18f6e929927d2e44ca7ff8048c6ac052
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Embed contents as type html rather than xhtml: This solves both the case of
+    &eacute; and of &lt; in the body.
+
+commit 51b40bdf956278e28e7af46b09e00d29a21f2805
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Articles containing HTML entities or <'s should result in valid Atom feeds,
+    but we should not care how they're encoded.
+
+commit 4f6adf11747e506ba5c106bfca658cfae33d869b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Convert IRIs to URIs for inclusion in RSS feed.
+
+commit 75e38d9bd39dbb1494b8c89a5642dabedb9467fa
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Type in atom_title should be html, not text/html.
+
+commit cd3166c3cf93efe526fc2ccf6c0e86b900549d35
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Typo is at version 5.x now.
+
+commit 54bd0eb4b1766467578c8c03a3933e175c25ae9d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Move individual article feed specs to redirect_controller_spec, spec
+    monthly index feeds.
+
+commit c892272820f6cab61e228171d985b88232f1bbba
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add valid atom:link tag to RSS feed.
+
+commit 1ef238c17a456f4b31f9852effa7edb468579b66
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    TODO: use same rss template everywhere.
+
+commit 1f51d89dc955867d67571abde779a4a4f47cef7f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    RSS language code should conform to http://www.rssboard.org/rss-language-codes
+
+commit 89c71afc928644b16dc77a3b4354ea97ec98e5cb
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Updated dates should all be different to validate Atom feed.
+
+commit 548a58000c2b8a67d27dc1d906740083656ac592
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Spec validation of articles feeds.
+
+commit 4a0c67cba6fb19ef4492c279da83ea8d5b479af1
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Move feed validation method out into spec_helper.
+
+commit 67794b957bfc31f3a9a916f9477058ea0856c1d6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Clean up spec_helper.
+
+commit affddf6fa1f4fafabd26331f8553524e280937ac
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove test that tests nothing.
+
+commit 4c98673923f4391a8d6db1621ddd8d7919f4ea7d
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Moving autocomplete plugin into admin/content helpers because of a plugin related bug that made everything crash in production mode
+    Added article preview, not the cleanest way, but at least it works
 
-commit 9a53a3a5f8793da8b4fa7701e8d98d4521cabafd
+commit 6e5e72ee889fe36dae4f4655fc59f2c39659c1ce
+Author: Diego Elio 'Flameeyes' Pettenò <flameeyes@gmail.com>
+
+    permalink: set rel and class attributes only when they are given.
+
+commit bca2d8903475d0de2c2b70ffef977398ec4af3b0
+Author: Diego Elio 'Flameeyes' Pettenò <flameeyes@gmail.com>
+
+    If CodeRay parsing fails, fallback to just escape entities.
+
+commit ad91e370da3464acfb5d9c3a172da75a83f858c6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix redirect to work with sub-urls.
+    If anyone knows how to adjust the specs so this gets tested
+    throughout the application, please! do so ...
+
+commit c798a4ccca2bf79f911b03ef743ee564150209ed
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add spec for current behavior of profiles_controller
+
+commit 6c2b84bd61dfeddf05b6cf7e9f695a49d6c133de
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Caches_action_with_params was not properly removed. Seems I forgot some things here and there that actually breaks everything if caches_action_with_params is actually the caching methode
+    Updating lightbox to last release and fixing lightbox brocken on current Typo
 
-commit 48d128a3888089cf5d5a70d02885fda95239224c
+commit 395e86ff8911c37d1dc2d03fb4d41d96c2577002
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Seems auto complete broke if we don't enable this
+    Fixes [#120]
 
-commit 070b34e14f38727a9c6396aae878645203c96503
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
-
-    Remove buggy old article redirect routing (with tests).
-
-commit a2937099aee0f52b475a34499138c28c4af8bdcb
+commit 92aa953c7ed1be40392b2ccc4119310964156104
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Forcing source download for github located gems
+    Removes a useless debug string
 
-commit d811e457e0523b0072fc59ef83475d70dfef98b3
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
-
-    Fix javascript to show edit controls when logged in.
-
-commit aa3b130c03c468c0b7dcf1ed8dff565fd806ba2a
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
-
-    Ensure use of rails gem 2.2.2
-
-commit 4cfdeaa16c1c2dbde761540e912a3155052380a1
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
-
-    Remove rails module so typo uses rails gem
-    Use gems instead of plugins
-    Declare gems in environment to allow auto-install
-
-commit 29df2d7ba2118e5a044edec071abc51764883ef4
-Author: Nicolas Mérouze <nicolas.merouze@gmail.com>
-
-    Refactoring of XmlController routes.
-
-commit 16dfe47be7d05bb82cd4b4f5a338812cccb3e0ef
-Author: Laszlo Bacsi <lackac@lackac.hu>
-
-    Order articles by published_at
-
-commit 01c9ae26bbc14423cbac7ecfd1c29ff82451c597
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
-
-    Fix thinko in datestamped_resources
-
-commit a36e61036ba2ca683e89e10b3fc63987e5e0f142
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
-
-    Make view specs succeed
-
-commit d15f5c7051c3e832ad3d5f801dfde7e0e82959ac
-Author: Matijs van Zuijlen <Matijs.van.Zuijlen@xs4all.nl>
-
-    Properly load actionwebservice in environment.rb
-
-commit cb0b5cfcf9c96ce5b8c6112ecfd119d76606eef3
+commit a4b65b8d064f46bf4417630d4482e63d3ec9cdfe
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes a bug due to the removal of caches_actions_with_params that should have been removed sooner
+    Removes default text filter for posts, now only using the users text filter
+    Disables text filter when switching to visual editor
+    Reenables it when switching back to simple editor
+    [#90 state:resolved]
 
-commit 5770ded130b44c1a68d6cf4173d4a54e98e7d817
+commit 617fd7e93015eac63775de74298681ec57d42dd4
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Some cache refactoring, removing dead or useless code
+    Allow RSS widget to locally display links to articles, categories and tags feed
 
-commit 22ef2eca4ada098b9f758fd3c89e789fd6013aac
+commit 74da3b28827e532a1ca024ddb36f62070d5e3a09
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Removing old caches_actions_with params, caches_page is enough, less ressource consumming and much better
+    Change the grouping visibility to be able to access data like name and description from the themes and plugins
 
-commit c8e3bb0638970b9d09872c19a949616f0ac709b6
+commit 0320ab3022f8d2461ca88a50af91f1bdbb1d8572
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Added text filters back on pages nd articles forms, moved text filters to users instead of global configuration
+    Change the grouping visibility to be able to access data like name and description from the themes and plugins
 
-commit 7b5c2a1b37331f9d1d14b7f6b86b969cc8c142fc
+commit afa529aacd40ee0957a29a5d1b38077643186aa6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add spec that setting password to empty keeps the old one.
+
+commit 10ba3d05e2a8bd84edc80589e6ce45604d7cffeb
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Adjust model to make password handling specs pass.
+
+commit 390894ac1c3f9db24ffc7e022bbe89b083d0f06e
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Spec out user password confirmation.
+
+commit d3ed869bad9c0c80c3bae4bb105c84211ba238dd
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Spec out password length behavior on user creation and update.
+
+commit 75fdf656b44cc3c1a19c0963c8eda288f588c3dd
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    setup_profiles should be private
+
+commit 3fb1b6685ce0df1123ddabd0c3869d37dad71df1
+Author: mpagalan <mpagalan@lan-203.office.manila.exist.com>
+
+    remove the admin module definition in base_controller
+
+commit d366a8ecc6c4a3e467d4f177ce7da568cb5ca9ae
+Author: mpagalan <mpagalan@lan-203.office.manila.exist.com>
+
+    fixed invalid assertion on the articles livesearch action, wrote assertions on the pending specs
+
+commit 655686d82ac5e134f28dfbb5d3a7f7bdb25165a8
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make sure cached file does not exist before and after spec.
+
+commit 088a27d49dc1dd8250675118d310dce28f450664
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Ignore theme files in public; Ignore ckeditor's config.js
+
+commit 79da5b5a3a1275f3c18698f795f902242a1dccc0
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use doughbarth-actionwebservice gem (2.3.3), since it matches Rails 2.3.3.
+
+commit 771eb9cb1be22e2a429239cc41d9198e30d531d6
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    FIxing a scribbish typo
+    Fixes a bug due to ckconfig
+
+commit 9d2c8c0f6131e0360e975b4be8b4380b6654ed9e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing CKEDITOR plugin
+
+commit c800d821934ade988880d61218d665b6227e1c73
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes editor switching. Need to add content switching as well
+
+commit 686dd1ee4e0d47c040df1174114ac6cc4cc26c93
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating CKEditor config
+
+commit aec3d0274c033fef5cdcadb8ce1f4ebe7d4d63ae
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating layout and helpers with CKEditor
+
+commit 0001a54aa3ae677b4b311aac59c8bada281cd05c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Replacing FCKEditor 2 with CKEditor 3.
+
+commit 764241c0a7e5b695166104ff8b88b553eca9c361
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    A bit of file upload refactoring. Having a separate screen to upload is stupid. Next: switch to paperclip but ensure backward compatibility
+
+commit d826b07e5d7c00346d9672ba295a5e76735f876a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Rewriting admin stylesheet in blue. Next to come : other colors
+
+commit cc05a3599b11ffb91703141043db8cc770f1ed31
+Merge: 887c3a9... 2c48c70...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git@github.com:fdv/typo
+
+commit 2c48c70185ba08a87800bcdb81755f9526b793d8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes sprintf issues + complete french translation
+
+commit 80792391f728f74268ec6dee5e43432a09f7f967
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes incorrect html
+
+commit 887c3a9a14c521276b3aefc9e8e0139e860a7017
+Merge: 2774969... 62c9979...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git@github.com:fdv/typo
+
+commit 62c9979f6694612d9659259f8a68d71048ae9a5b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Only do page caching if there's no query string.
+
+commit 6f77afb0d6be06a400e097961392dc39157398f7
+Author: Mike Mondragon <mikemondragon@gmail.com>
+
+    after upgrading a Typo 4.0.3 blog to 5.3.x the blog was "getting ActionView::TemplateError: undefined method `mail_to' for ContentTextHelpers" errors for any rss request, mail_to is in ActionView::Helpers::UrlHelper
+
+commit 0806102f121b8125f514c373056e292ebad89724
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add fixture and specs to test auto-linking in comments.
+
+commit 3400fe9069eda729ed0d8aaa3e6f8737e8d17d9c
+Author: Erik Ostrom <erik@echographia.com>
+
+    The 'remember me' checkbox shouldn't be 260 pixels wide.
+
+commit f288cf203cb61eed52aac0e53d18c98ac1ed495f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge trackback specs and test only actual API of Ping
+
+commit 8aaa277c93900108cdd76600608c2f5b6623c13d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    This hack has also been merged into upstream Rails;
+    See http://dev.rubyonrails.org/changeset/8770
+
+commit 34d3a20661957835514c029bc824ab8f45ae77ca
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    This hack has been merged into upstream Rails
+
+commit 963896525150fa1f1c5cfe8985a6e3bc9341ff8b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Clean up unused test_helper
+
+commit ff61e624ec080fa1049633cd9aa57482915c21cb
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Not really using flexmock
+
+commit 87f07f7592aac346721d3ac1facbf58aeee46c42
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Clean up specs boiler plate and remove dependency on test/test_helper.rb.
+
+commit c4c53b24f881926e76521b7f8cc0f493071a58bc
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Test page caching from controller
+
+commit 7684c760ed17d959364cb33b107974965a17ce0b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove unnecessary left-over if
+
+commit 2774969f995b14801c9b7700d339247faf5058cd
+Merge: dc9c761... b03b638...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git@github.com:fdv/typo
+
+commit b03b63831f3c0ab17261d65cd987d95e4f604b56
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Test articles index with time parameters
+
+commit fd67357a311c1a269a319f33df9f9dd74215807d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Correct some text
+
+commit c9bcc6e72dd9ac36bfdbb007a6ba9989c171ac5f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Flesh out some tests
+
+commit dc9c76120e720b6f13cfcd07d3647fac6e7b70c7
+Merge: e14f95f... a0564c1...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git@github.com:fdv/typo
+
+commit a0564c1a21bd01ff32d60695d14ccb5a589153cd
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix AccountsController specs
+
+commit c6e29b313acf099c9ae4e5a3316fa78a2241b44e
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Update to rails 2.3.3 broke the mocking in these tests:
+    - Stop mocking that template exists: makes most tests pass again
+    - Disable tests checking that default template is used: I'm unable to fake
+      their existence at this time.
+
+commit 2f8321b1f09b7182e8fde329578feec59d48bb75
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Grammar correction
+
+commit 482372a1bcf7aeb281ec0efe5af0deb9b9342a5f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Only need one config.gem line for coderay
+
+commit e14f95f4e1e684108d5889d86da91dd6de8f492e
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Only need one config.gem line for coderay
+
+commit 086e01bb868a419d61ea12d836826b5014a6f49f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use regular gem mechanism for actionwebservice.
+
+commit 3d7abfa3840913b79c4ce769822b0be09e7b5ea5
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Don't fail if gem not installed, so rake gems:install works.
+    Maybe this is needed for other plugins, too?
+
+commit 96f83d9b750b5e57caffc65fd90e89e2bf7efe6f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing a bug with login form
+
+commit 0808b40863f79c98f69c52ff081dab33e0fdbbea
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Oooops
+
+commit 88b9eb703d37839c65da8f13ccf9c18fd26c14d5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Reviewing the login / subscribe form
+
+commit 04def8792e7f5f0a5b5cb950b2012b8133860856
+Author: Erik Ostrom <erik@echographia.com>
+
+    Keep site-specific and temporary files out of the repository.
+
+commit 9c74540d475210dcdaa14b591a18b46611800118
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating categories form
+
+commit b1cadb4967022f1475ebc8b969a454c09939607a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Update blacklist pattenr form
+
+commit 5d02f2eefc35dbbf1a556c0716a97d2013de0f9b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Rewrite settings, fixes a bug with checkbox since the upgrade to rails 2.3.3, and limits the risk for errors
+
+commit 7c088d5c21551f500bf651d81ddae21fadc26b36
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    use redcloth by gem not freeze it (in release we can freeze it)
+
+commit 517c54ac571d552514fabd5f54e69cff82cb54aa
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix compatibility with several database. Test with Mysql PostgreSQL and SQLite3
+
+commit 745b21b5c76c57f4ad3a8c984c0277adcb236577
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix error on test and use will_paginate last version by gem instead of by plugin
+
+commit 2939a7baf5d63608fb02f979ccb0c0878bac56d6
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix error not redirect if /articles
+
+commit a182789316bdf6cdd434b44cb9f45563ec44ef8e
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    need require RedCloth to be use textile :)
+
+commit c9e05b5454bb552964148755e438f15b23b92340
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix error in categories has_many. Maybe a postgreSQL issue. Test with MySQL please
+
+commit 5ebd1e9484428a65c911d3736fb6536b78c1005b
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    partials must be spelled with the preceding underscore.
+
+commit a83f485735f5dbf1b653b83cd80974892376b2f3
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    update rspec dependency
+
+commit 19b3c4eb3b5e7eb4948310d92524317275d9585a
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    update to rails 2.3.3
+
+commit 14186cd6f9af7472d0b8ead47e74b2eb6b77796e
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    remove text area escaping becuase done automaticly in rails 2.3.3.
+
+commit 9333c2ee7dc6f0aa1fab184e0ccea81733a77697
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    remove rails 2.3.2
+
+commit c590e3d52fa45bf90c3f3bc3858f6a340a6d9b5a
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    added test for nil username password login
+
+commit 95c04d018ab92fd02d4e5404814c103822843c91
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    fix bulk feedback checkbox bug caused by change in processing order
+
+commit c99a2d808b9343f569a93caef0ba5e212a11716e
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    convert prohibited relative to absolute paths
+
+commit 35995a5fd79b85a292333ac5b9afab52a9f3b63d
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    update response.headers['type'] -> response.content_type response.charset
+
+commit 50839bfba07e843ebf2eed59e895e8196487f8d3
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    update assert_valid -> assert .valid?
+
+commit 214da3eb7696b69dbe6010722bde91d448212c75
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    update to 2.3 cookie behaviour
+
+commit e1d4a9c498525fb65240e9c8b750581272b3c8a6
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    changed depreciated formatted url/path
+
+commit 8034d590ed52af20d32801e3e2b11db0487ae05d
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    add default argument to layout
+
+commit 3a2c889ba1c0a027339f727d91dc0de0759f77fb
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    convert @_render_stack.first to @_first_render because depreciated
+
+commit 0ccd8c4fb8bcc22eb1a220cc24ab13e156631a09
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    add template_exists? method back in
+
+commit 80c33785d8aa485dafee2265cca627a73649de2a
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    update test helper name
+
+commit a77d86dc121964ccefc62625765f9f51a9e6633b
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    remove rails 2.3 depreciated manual session management
+
+commit 9a1799ef33017e7816fae18b7478c5483048f62d
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    renaming application controller to application_controller
+
+commit beb26511376b3701955a0429a634e124892e2d05
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    config file cleanup
+
+commit 04adf4587af5c2d739cbf3dbb15228212b142b18
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    rspec updates
+
+commit d551e8e2bbe479e36e140586229ce2475ed06e35
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    update to bluecloth to 2.0.5
+
+commit 7d8adcddc474db3b0bf0627f7b83ef7242f7d21a
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    add datanoise actionwebservice 2.3.2
+
+commit 8f6fcee541701104335fd415061c1e06502758a2
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    add rails gem dependencies
+
+commit 3bc33b71d58e691a5d0ed37a356fa409984d4f01
+Author: Edward Middleton <edward.middleton@vortorus.net>
+
+    add rails 2.3.2
+
+commit e33ef96a9ab4da41abf78a25f1b430aff3cb2cd8
+Author: Wei Jen Lu <weijenlu@gmail.com>
+
+    add javascript translate file for traditional chinese in public/javascripts/lang/zh_TW.js
+
+commit cb36ae62de80626c27d5f21c8ba11e0e5270e81e
+Author: Wei Jen Lu <weijenlu@gmail.com>
+
+    fix: the zh_TW translate for admin/dashboard
+
+commit a63603f6205a7fc11b1965dd3bd562462a788a95
+Author: Wei Jen Lu <weijenlu@gmail.com>
+
+    fix: the zh_TW translate for admin/dashboard
+
+commit ed26e3c0584cba8a8fd77689bb16814b74c36453
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove double condition
+
+commit 78ec107b21cd33ac2ee9d615dfe598dcf8e55d82
+Author: jzellman <jzellman@gmail.com>
+
+    Fixes bug with articles_categories not migrating.
+
+commit c9add78abbd26f961872943b30de11654f71f954
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    finish the first signup scenario
+
+commit bd017389fd5d433be84a80ce731a0242855d5266
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    starting using cucumber
+
+commit 3b2ec8e564f26cffd266f27928cbb5fa6190752c
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix little error in for association
+
+commit f9c8d73b88e1df1976a4ff18ef3870004a45cec8
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    error in index page if params[:page] send [state:fixed #118]
+
+commit 4c1d1862901d1c9787e435f8a992eea321210bcc
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    change published_at mode SQL compiliant with PostgreSQL 8.3 by example
+
+commit ce6867e3b201c3c72e9d4ed0fd74058e2798c742
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    add some spec about published_at_like named_scope
+
+commit 7799c30a0b268b323693b133c7b93ffb4c715a94
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    improve spec about edit user
+
+commit 40c85fd9e6560474445a668aa3470da68c037a97
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix error on spec
+
+commit 493c3e40800ffb3b2f338fc103b7cda109496d15
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    GRMPHOMGWTF
+
+commit 18193efc53b0b99635cbf53b11c0bfbc62cdb2d8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes another bug in feedburner
+
+commit bda155046b30ace0da6522bd5e37958bf4bb7237
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixed a bug in RSS feed generation with feedburner enabled
+
+commit 78275cb8d3df9d5b177f50b57f547b7e2a54e50e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes brocken cache bug
+
+commit ad7816b814c096ed553db82ab1a7608afd02f329
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix error in migration if CacheInformation doesn't exist
+
+commit 812c0fab156c09b7bf00040b047bb59bf586f806
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix error in migration where categorie lost
+
+commit 32e79cad1694529eb34344f8dfee3abb875b006c
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    update migration to works with postgresql since typo 4.0.3
+
+commit 90cf1ba6da4ba4c654ce8b4bcfd85710b55d21aa
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Reverts ticket 104 since it's going to break existing
+
+commit e605dbd96299d78bd6bf9ccdad30faaf37c9e19f
+Merge: bbccdc8... d22e008...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git@github.com:fdv/typo
+
+commit bbccdc8c7fbb9368e2fcbdbed6b4e9f3161ec209
+Merge: 8ec4578... 34f77a4...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git://github.com/weijen/typo into weijen/master
+
+commit d22e0083d5b3527be628a7bda84fd76458d78198
+Author: Cyril Mougel <cyril.mougel@af83.com>
+
+    fix a spec in markdown filter because need one \n before * to be interpret like <ul><li>.. tag
+
+commit b6ae633e8692aa17a0dfd161fafa07e0644ec281
+Author: Cyril Mougel <cyril.mougel@af83.com>
+
+    little refactorisation
+
+commit 8ec45786de786804960d0b6aa037bc30fc310ddc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Move the user edition from the Admin::UserController to a Admin::ProfileController. Now the user creation / edition is part of the admin/settings and admins are the only one to edit them. It also fixes a huge security hole where any logged in user can create / delete users without the admin credential. Also removes a bunch of unnecessary hazardous conditions we didn't really need
+
+commit 3de63b8be0d63e7a31b1486fecd1de12c9b14d77
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Added an author sidebar along with categories and archives
+
+commit f02efb77c97dd9a5e7e8809662cb570a5eb18ae4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Better title for grouping pages. Closes ticket #100
+
+commit 57e6129a79ad8ab9e040d7c98d331fd2bad60df3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding some links into dashboard, and a profile link
+
+commit 072e59ba3342f5580749ba4bebaead55293c700e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moving users management to settings
+
+commit af753083835099c710b8e3228d4d9d02d5fa9008
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moving users management to settings
+
+commit 5eb901388e20662474234c11987c891670d19d0b
+Merge: c909c59... 3134f13...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git://github.com/mreinsch/typo into mreinsch/master
+
+commit 34f77a4d91783b886066cdcb98f1755a95277595
+Author: Wei Jen Lu <weijenlu@gmail.com>
+
+    add zh_TW.rb for tranditional chinese
+
+commit c909c5945c3a7c61077a7e55294ce64d8dc78de5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes RSS feed bug #110
+
+commit a67480fcd1ea0fa653c3c2a7b6b7cc5558e63911
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a brocken theme test
+
+commit 3712fdefb6e2d8219e99af2df9d2e792fc12fe0f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a missing gem
+
+commit aad34bd2e0b48dbcf547dd6c8b9ad949127a4251
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes ticket 104
+
+commit 0633907fa0428af90368bb899bf4a01091c0a3f3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing bug #102: feedburner user agent not correct
+
+commit ef43a8713166e5b33c2a1b49be9fe1d9931486e3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing gems bundled with the application, this is stupid and can cause conflicts
+
+commit 129be7793d5a4dc2d4bf3e88fbb8eaa5d68d97ef
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixed bug 114
+
+commit 25f9749047a928a6076485ea24cdc4f304f7b6a8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing ticket 113
+
+commit 7f5944eec68b4620899a800503e422ea6e7573c2
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes archives sidebar
+
+commit f8da7e4939f5dba5f8daa1d52507c111043a2b52
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixed categories sidebar ticket #115
+
+commit 11cc0e1fb29d35c3bb7918096de2364ff3a7d24f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing more dead code
+
+commit 8d906661086b2928e41b09a774f7738e3946f403
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes Incongruent use of ':' on forms ticket #103
+
+commit 9c2e12907672431027899628c1d384d9a85831a3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Doing some cleaning removing typo_deprecated lib.
+
+commit 9234910712a9eb2c8e40410a7163cd6d770ef43a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Oooops
+
+commit c75f7ed5cf587e52008d47442cbe19996897027f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing useless SimpleCache
+
+commit b0be710c1dc86812706236603bd98e1f43a4c659
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a crash in the post RSS feed
+
+commit 7fa3e20d0d21f519389fe0a00f849167ef052076
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing a bug where vendor/flickr/flickr.rb could not handle 302 response. Closes ticket #106
+
+commit c77b14b5f45a5034cc12134c5f494157c203b0aa
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Commenting database autoload since it adds connections everytime a page is loaded for no reason. We need to find out something else
+
+commit 3134f13228be25ea40ec7b40b3352f531c7d4992
+Author: Michael Reinsch <michael@mobalean.com>
+
+    use helper method and make sure the browser's autocompletion is off so the user will see the live search results
+
+commit 39bd5684aa1263d0c6974f13cf573b122705b588
+Author: Michael Reinsch <michael@mobalean.com>
+
+    added test cases for authors controller
+
+commit e16bd86a107aa826136c39badcb57dce029079f6
+Author: Michael Reinsch <michael@mobalean.com>
+
+    raise an error for now in case the user does not exist
+
+commit f5891be8efc30251e00989f1f1d61414898e949d
+Author: Michael Reinsch <michael@mobalean.com>
+
+    enable author based RSS/atom feeds as in typo 5.2
+
+commit e8b829674022aef326cee31e8024f1983302a90f
+Author: Michael Reinsch <michael@mobalean.com>
+
+    nicer URLs for author based RSS/atom feeds
+
+commit 2de1f8dbc09bc87643ff3eb5b70f756c98b03e5b
+Author: Michael Reinsch <michael@mobalean.com>
+
+    avoid double colon
+
+commit 38941b6ca6b945d511f0a3146be72ebd5420e3a4
+Author: Michael Reinsch <michael@mobalean.com>
+
+    dummy implementation to avoid crash
+
+commit e08ffd56a6101741d491ad5232819f514d895322
+Author: Michael Reinsch <michael@mobalean.com>
+
+    use system gem to avoid version conflict
+
+commit 890c377a7da0cf89f458314a085db8129ef5e831
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    A bit more cleaning
+
+commit 15d83f216f65331e51667e6e5a1023c5e4368d70
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing datestamped resources not called anywhere anymore
+
+commit 660ac9396f39022bbff1182c7fd246d23ee1eb05
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    WTF sparkline default support in Typo ? This is crazy
+
+commit e31bcef30dc34005d3c715d2fbd9f20a6d3a5473
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing cached_model + memcache, useless since we're now doing static caching. First step for Typo diet
+
+commit ede85f5658455f040dd704425149378f21a3fb65
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix primary key for wp_options
+
+commit f681ece6a92c114a3f06a4ee4e4231dfd92c5e59
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use configuration wp25_test database, and load schema into it during spec
+    run
+
+commit b43ee80d9d341244a16e1f4f8d243b5a04a76d20
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make wordpress 2.5 schema work with sqlite3
+
+commit b10cb8e598354b5991c1b65860fa74ebae418425
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added spec for converting categories from WordPress.
+
+commit f2ae528b1498a8d2b51f33602e7c8c0b8178c5d9
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added spec for converting tags from WordPress.
+
+commit 905a76a53173c4e3ebf8e0dbf3a8be419548fd77
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added specs for converting pages from WP, and fixed an authorship bug.
+
+commit 5aa0e8a94bf7859be224a0cb1e96d8d7ec03dfab
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added spec for converting spam status from WordPress.
+
+commit 372fd51f33dc9da0cf7b5d5e81cbcf87c6a3034e
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added specs for converting comment authorship from WP, and made them pass.
+
+commit 850418cefc22346e5ec8017779c01a9f7d757f21
+Author: Erik Ostrom <erik@echographia.com>
+
+    Fixed: Article authorship wasn't being converted correctly from WP.
+
+commit 1ab4a483365b973144dd5e128992d4a88f22bab7
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added a simple test for converting WP25 comments.
+
+commit 92a616a4f8ffe3fd4f0fd84d56054286077375a3
+Author: Erik Ostrom <erik@echographia.com>
+
+    Test WP converter for articles. Also, work around a fixtures issue.
+
+commit e76c24603b415db3286ac46fe3e27a270af343d3
+Author: Erik Ostrom <erik@echographia.com>
+
+    Posts require Users, so put post specs in a user context.
+
+commit 3bdba14b83d17148db4f3d94820ef6105c634aff
+Author: Erik Ostrom <erik@echographia.com>
+
+    Less brittle spec for converting a user.
+
+commit 160377c89cbeafad520d960753684f3295197b68
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added a simple spec for converting users.
+
+commit 10de7a0b48a17f4b29226a4a3e3081da33d86665
+Author: Erik Ostrom <erik@echographia.com>
+
+    Suppress output from converter when running tests.
+
+commit 33a621acc7f48e53d3873f4ae3711beed6ed0951
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added a bunch of pending specs.
+
+commit f6558f81ec550f7210e300862d43fd0776d3547a
+Author: Erik Ostrom <erik@echographia.com>
+
+    Added WP25 converter spec to make sure it at least loads and runs.
+
+commit 29bbb3b4a94b4e5c5f4ce1ff81426194ddef4019
+Author: Erik Ostrom <erik@echographia.com>
+
+    Rake task to load the WP25 schema (for testing).
+
+commit a4b9ace9803ac3755b585b58143e3d0281e1a911
+Author: Erik Ostrom <erik@echographia.com>
+
+    Add forgotten class WP25::Option of wordpress convertor
+
+commit d7eb9f80eac0898594961848e43b39b1e01dbae1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding search helper back for backward compatibility
+
+commit a51bb2cf7cd51dc061e362c931e3aa25d0e7c171
+Merge: 8b56551... 2c01cc5...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git@github.com:fdv/typo
+
+commit 8b56551e5a093f329cba8dba25e6b028a73c7147
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Replacing old bluecloth with bluecloth 2. Externalising bluecloth gem to avoid C based issue
+
+commit e59efaff9144cd51bf958c972d1e2c145499a425
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing a debug trace
+
+commit 2c01cc55327d19f0e49a62ceae45bba88a2e293c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing a bug on the new layout defined pages
+
+commit a73ca6377bc136153dffcfacdc0efa5f15da2f04
+Merge: 9e93560... 22e936a...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of git@github.com:fdv/typo
+
+commit 9e93560dde862b8f38e61c1e5d9a47e251d26292
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Solves ticket #41 : allows to define a secondary layout for Pages (ie a sidebar less layout)
+
+commit 22e936a1b4ffcec307afef05052357f9308e42ad
+Author: Kurt Werle <kurt@bamboo.local>
+
+    Ignore .DS_Store files (mac).
+    Ignore all .sqlite files.
+
+commit 81b73bfb9341e45392282aae5ae4646dc7c5623e
+Author: Erik Ostrom <erik@echographia.com>
+
+    Import blog name and subtitle from WordPress.
+
+commit d19d44049842b402724f5daaabda84e938a7d0b4
+Author: Erik Ostrom <erik@echographia.com>
+
+    Import WordPress pages as pages, not articles.
+
+commit 9f92ac246e4c47d145a1c40789317c704f5365e5
+Author: Erik Ostrom <erik@echographia.com>
+
+    Fixed speling eror.
+
+commit 9e8729587b7f3f472aa758ef71d2d47792e88579
+Author: Erik Ostrom <erik@echographia.com>
+
+    Transfer spam/ham state when converting comments from WordPress.
+
+commit 896a322e39305bbe055d7b33dc2a8b499302e15d
+Author: Erik Ostrom <erik@echographia.com>
+
+    Split posts into body and extended parts when converting from WordPress.
+
+commit 2bf3d1d2e4e18f51911a9ae5ea9dd02b8c9605ef
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes ticket 96: sweep cache should clear css. This also applies to cache reset
+
+commit 66957332eea8c0470f1394b70c76f97645e79698
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix some spec broken
+
+commit cc617680eaee49e89c45c7cffc0323fc730ee7d3
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    generate html with textfilter in search result
+
+commit a5357732f11d5f889494d6590f07c554ff6cc8fa
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing brocken languages
+
+commit a96993a26da149f8a35638df934ae3eb86094eec
+Author: Hans de Graaff <hans@winkwaves.com>
+
+    Initial Dutch translation.
+
+commit e944b93821e4d5739502f666ad04a09e17521f4b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding a step to the registration process. Otherwise, some users won't get their password
+
+commit 80c3190f1a230eb7a388eb4919493e8e02326c71
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes excerpt behavior (ticket 65)
+
+commit aa9c19d6b7dca72e51ff9fda0f4e6b9fad0dda8e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Users creation simplification. Users have now their password generated, and display name is set as login
+
+commit 9f62e8e7cf923045875113d066a60422aa8c15e3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing ticket 84: unpublished pages are listed
+
+commit ff645dbdd2a5567e5a856b32d26e43f8a2e8fd3a
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix bug #85 with no only_path in comment_url
+
+commit c353ac5c7f0699a86a8cba45022ab522f36650e3
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix spec
+
+commit 412abfe7557bbbf4257772633ab64b84f29939b0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a visual bug on the flashes
+
+commit 45116ac6e705a6f26dcd96032276aeffdec8a846
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding an option to chose how many items to display in the admin
+
+commit cf2c21de39d2b47a55fe990ae8ebce2274a3035a
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix reopen bug #53. cgi escape only when you want see. Not save escape
+
+commit fa98e2ec379a98ab51e1480e8c1ced3375547b5b
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix bug #76 which not delete all spam with postgresql database
+
+commit 2f17432c6066d4343a47fd1e54e640fdbd6cdd2b
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix bug about live_search with pouype
+
+commit 29fe0bb6bca54e2dd17cc3bb954583b63247254d
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix (with pouype) spec failed after previous commit
+
+commit fe55179ab5cc6b9e8c5fdbf221077271d81dc809
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Pushing some usability changes
+
+commit 0831e795829d97f31b8fabd04ffa7b4b32164e1b
+Author: Cyril Mougel <cyril.mougel@gmail.com>
+
+    fix bug #74. No feed rss generate if trackback in article
+
+commit 650cfc248f3abcb6957eb85c72a3e013b647e7f9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Thou shall not cache!
+
+commit a24ec44cddf4b55a1e34245a26cf2e202d204a20
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Giving users a public profile. Elements to display are defined in the profile
+
+commit 7043c233d795c81cfa01c0223e673cfa22bac7ec
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Improving user's profile, adding fields for msn, aim, twitter... and a better display name. Avatar and dedicated pages will come later
