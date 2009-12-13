@@ -23,9 +23,13 @@ Watir::Waiter.wait_until{ @browser.div(:id, 'footer').exists? }
 @browser.goto("#{TYPO_TEST}/admin/themes")
 Watir::Waiter.wait_until{ @browser.div(:id, 'footer').exists? }
 
-
+links = []
 @browser.divs(:class, /theme/).each do |div|
-  div.link(:index, 1).click
+  links << div.link(:index, 1).href
+end
+
+links.each do |link|
+  @browser.goto(link)
   Watir::Waiter.wait_until{ @browser.div(:id, 'footer').exists? }
   
   @browser.goto(TYPO_TEST)
