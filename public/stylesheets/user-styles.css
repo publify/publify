@@ -1,9 +1,11 @@
-.alignleft {
+.alignleft,
+img.left {
         float: left;
         margin: 0 5px 5px 0;
 }
 
-.alignright {
+.alignright,
+img.right {
         float: right;
         margin: 0 0 5px 5px;
 }
