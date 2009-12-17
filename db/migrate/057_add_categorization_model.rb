@@ -27,7 +27,15 @@ class AddCategorizationModel < ActiveRecord::Migration
         drop_table :articles_categories
       end
     end
-
+    # Adds the article category to the first post if and only if generating the schema
+    if User.count.zero?
+      puts "Adding category to default article"
+      article = Article.find(:first)
+      category = Category.find(:first)
+      Categorization.create!(:article_id => article.id,
+                             :category_id => category.id,
+                             :is_primary => 1)
+    end
   end
 
   def self.down
