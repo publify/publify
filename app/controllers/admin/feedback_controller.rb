@@ -97,7 +97,7 @@ class Admin::FeedbackController < Admin::BaseController
   def preview
     feedback = Feedback.find(params[:id])
     render(:update) do |page|
-      page.replace_html("feedback_#{feedback.id}", feedback.body)
+      page.replace_html("feedback_#{feedback.id}", h(feedback.body))
     end
     
   end

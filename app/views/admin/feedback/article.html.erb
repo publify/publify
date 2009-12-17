@@ -13,7 +13,7 @@
       <p><strong><%= mail_to h(comment.email), h(comment.author) %></strong> |
       <%= link_to_unless comment.url.blank?, h(comment.url), comment.url %> | 
       IP: <%=h comment.ip %></p>
-      <%= comment.body %>
+      <%= h(comment.body) %>
       <p>
         <%= comment.created_at.strftime("%m/%d/%Y %H:%M") %> – [ 
         <%= link_to_edit _("Edit"), comment %> | 
