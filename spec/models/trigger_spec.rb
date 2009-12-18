@@ -7,6 +7,7 @@ describe 'With the contents fixture' do
     @page.stub!(:type).and_return('Page')
     @page.stub!(:new_record?).and_return(false)
     @page.stub!(:class).and_return(Page)
+    @page.stub!(:destroyed?).and_return(false)
     Content.stub!(:find).and_return(@page)
     @current_utime = 1
     Time.stub!(:now).and_return { Time.at(@current_utime) }
