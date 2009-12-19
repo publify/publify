@@ -53,6 +53,10 @@ Rails::Initializer.run do |config|
   # (create the session table with 'rake create_sessions_table')
   config.action_controller.session_store = :active_record_store
 
+  # Disable use of the Accept header, since it causes bad results with our
+  # static caching (e.g., caching an atom feed as index.html).
+  config.action_controller.use_accept_header = false
+
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
   config.active_record.observers = :email_notifier, :web_notifier

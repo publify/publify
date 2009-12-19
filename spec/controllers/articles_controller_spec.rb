@@ -194,3 +194,11 @@ describe ArticlesController, "feeds" do
     assert_feedvalidator response.body
   end
 end
+
+describe ArticlesController, "the index" do
+  it "should ignore the HTTP Accept: header" do
+    request.env["HTTP_ACCEPT"] = "application/atom+xml"
+    get "index"
+    response.should_not render_template("_atom_feed")
+  end
+end
