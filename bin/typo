@@ -55,6 +55,10 @@ class TypoInstaller < RailsInstaller
     message "Migrating #{@@app_name.capitalize}'s database to newest release"
     
     in_directory install_directory do
+      unless system("rake -s gems:install")
+        raise InstallFailed, "Missing dependencies"
+      end
+      
       unless system("rake -s db:migrate")
         raise InstallFailed, "Migration failed"
       end
