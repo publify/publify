@@ -30,7 +30,7 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY 
   s.executables = ['typo']
   
-  s.add_dependency("rails", "= 2.3.4")
+  s.add_dependency("rails", "= 2.3.5")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
   s.add_dependency("ruby-debug", ">= 0.10.3")
   s.add_dependency("flexmock", ">= 0.8.3")
