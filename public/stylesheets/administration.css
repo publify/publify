@@ -53,10 +53,6 @@ p {
 	padding-top: 20px;
 }
 
-textarea {
-	border: none;
-}
-
 .clear {
   clear: both;
 }
@@ -245,7 +241,11 @@ p.input_text_title {
 	margin-top: 10px;
 }
 
-input.small, #article_published_at, textarea.small {
+textarea {
+	border: none;
+}
+
+input.small, #article_published_at, textarea.small, #theme_body {
 	padding: 2px 0 4px 5px;
 	margin: 0;
 	border: 0;
@@ -255,6 +255,10 @@ input.small, #article_published_at, textarea.small {
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
 	behavior: url("../../stylesheets/border-radius.htc");
+}
+
+#theme_body {
+  font-family: courier, sans-serif;
 }
 
 .ed_button {

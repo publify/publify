@@ -1,7 +1,8 @@
 <% @page_heading = _('Theme editor') %>
 <% subtabs_for(:themes) %>
 
-<div id="theme_list">	
+<% form_tag do %>
+<div id='editor-right'>
 	<h3>Stylesheets</h3>
 	<div class="theme-filer">	
 		<%= fetch_stylesheets %>
@@ -11,16 +12,18 @@
 	<div class="theme-filer">	
 		<%= fetch_layouts %>
 	</div>
-
+  
 </div>
 
-<% form_tag do %>
-<div id="theme_editor">
-<textarea name="theme_body">
-<%= @file %>
-</textarea>
-<%= hidden_field_tag 'type', params[:type] %>
-<%= hidden_field_tag 'file', params[:file] %>
+<div id="editor-left">
+  <textarea id="theme_body" name="theme_body" class='large' rows='25'>
+  <%= @file %>
+  </textarea>
+  <%= hidden_field_tag 'type', params[:type] %>
+  <%= hidden_field_tag 'file', params[:file] %>
+  </div>
 </div>
-<div class="paginate r" style="clear: both; margin-top: 15px"><input type="submit" class="submit" value="<%= _('save') %>" />
+<p class='right'>
+  <%= cancel_or_save %>
+</div>
 <% end %>
