@@ -27,6 +27,31 @@ require 'rails-installer'
         }        
       end
     end
+    
+    class Sqlite3 < RailsInstaller::Database
+      # The name of the sqlite database file
+      def self.db_file(installer)
+        File.join(installer.install_directory,'db','database.sqlite')
+      end
+      
+      def self.yml(installer)
+        %q{
+        login: &login
+          adapter: sqlite3
+          database: db/database.sqlite
+
+        development:
+          <<: *login
+
+        production:
+          <<: *login
+
+        test:
+          database: ":memory"
+          <<: *login
+        }        
+      end
+    end
 
 class TypoInstaller < RailsInstaller
   application_name 'typo'
