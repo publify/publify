@@ -11,13 +11,13 @@
     <label for="article_allow_comments"><%= _("Allow comments") %></label><br />
     <%= check_box 'article', 'allow_pings' %>
     <label for="article_allow_pings"><%= _("Allow trackbacks")%></label><br />
-    <%= check_box 'article', 'published'  %>  
+    <%= check_box 'article', 'published'  %>
     <label for="article_published"><%= _("Published")%></label><br />
     <p class='right'>
       <input id='save_draft' type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
       <%= save( _("Publish") + " &raquo;") %><br />
       <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
-      <%= link_to_destroy_draft @article %>      
+      <%= link_to_destroy_draft @article %>
     </p>
     <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/previews', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
   </div>
@@ -26,7 +26,10 @@
   </div>
   <div id="categories">
     <h3><%= _("Categories") %></h3>
-    <%= checkboxes_from_collection(@categories, "id", "name", @selected) %>        
+    <%- @categories.each do |cat| %>
+      <%= check_box_tag('categories[]', cat.id, (cat.id.to_s == @selected.to_s), :id => "category_#{h(cat.id)}") %>
+      <%= label_tag "category_#{h(cat.id)}", h(cat.name) %>
+    <% end -%>
   </div>
   <%= render :partial => 'drafts'%>
 </div>
