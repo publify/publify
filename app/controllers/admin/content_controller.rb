@@ -95,7 +95,7 @@ class Admin::ContentController < Admin::BaseController
     # published article doesn't get overriden on the front
     if @article.published
       parent_id = @article.id
-      @article = Article.new
+      @article = Article.drafts.child_of(parent_id).first || Article.new
       @article.allow_comments = this_blog.default_allow_comments
       @article.allow_pings    = this_blog.default_allow_pings
       @article.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1

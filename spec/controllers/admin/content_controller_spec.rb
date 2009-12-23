@@ -51,6 +51,39 @@ describe Admin::ContentController do
       end.should change(Article, :count)
       end.should change(Tag, :count)
     end
+
+    it 'should create an article like draft and parent_id define like article if article is edit and already published' do
+      article = contents(:article1)
+      lambda do
+        post :autosave, :id => article.id,
+          :article => {:allow_comments => article.allow_comments,
+          :body_and_extended => 'my draft in autosave',
+          :keywords => '',
+          :permalink => article.permalink,
+          :title => article.title,
+          :text_filter => article.text_filter,
+          :published => '1',
+          :published_at => 'December 23, 2009 03:20 PM'}
+      end.should change(Article, :count)
+      Article.last.parent_id.should == article.id
+    end
+
+    it 'should not create another draft article with parent_id if article has already a draft associated' do
+      article = contents(:article1)
+      draft = Article.create!(article.attributes.merge(:guid => nil, :state => 'draft', :parent_id => article.id))
+      lambda do
+        post :autosave, :id => article.id,
+          :article => {:allow_comments => article.allow_comments,
+          :body_and_extended => 'my draft in autosave',
+          :keywords => '',
+          :permalink => article.permalink,
+          :title => article.title,
+          :text_filter => article.text_filter,
+          :published => '1',
+          :published_at => 'December 23, 2009 03:20 PM'}
+      end.should_not change(Article, :count)
+      Article.last.parent_id.should == article.id
+    end
   end
 
   describe 'insert_editor action' do

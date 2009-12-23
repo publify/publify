@@ -49,6 +49,7 @@ class Article < Content
 
   named_scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
   named_scope :drafts, :conditions => ['state = ?', 'draft']
+  named_scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
 
 
   belongs_to :user
@@ -481,7 +482,7 @@ class Article < Content
     else
       rss_desc = ""
     end
-    
+
     entry.summary html(:body), "type" => "html"
     if blog.show_extended_on_rss
       post = html(:all)
@@ -499,8 +500,8 @@ class Article < Content
     self.categorizations.build(:category => category, :is_primary => is_primary)
   end
 
-  def access_by?(user) 
-    user.admin? || user_id == user.id 
+  def access_by?(user)
+    user.admin? || user_id == user.id
   end
 
   protected
@@ -517,9 +518,9 @@ class Article < Content
   end
 
   def set_defaults
-    if self.attributes.include?("permalink") and 
-          (self.permalink.blank? or 
-          self.permalink.to_s =~ /article-draft/ or 
+    if self.attributes.include?("permalink") and
+          (self.permalink.blank? or
+          self.permalink.to_s =~ /article-draft/ or
           self.state == "draft"
     )
       self.permalink = self.stripped_title
