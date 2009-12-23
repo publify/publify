@@ -649,8 +649,23 @@ td.paginate {
   color: #c00;
 }
 
+#article_keywords_auto_complete {
+  margin-top: 2px;
+}
+
+#article_keywords_auto_complete ul {
+  margin: 0;
+  padding: 0;
+}
+
 #article_keywords_auto_complete ul li {
   list-style: none;
   background: #DCF6FE;
-  border-bottom: #00131E 1px solid;
+  border-bottom: #a7eafe 1px solid;
+  padding: 3px 5px;
 }
+
+#article_keywords_auto_complete ul li.selected {
+  background: #a7eafe;
+}
+
