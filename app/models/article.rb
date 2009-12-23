@@ -52,6 +52,9 @@ class Article < Content
   named_scope :without_parent, {:conditions => {:parent_id => nil}}
   named_scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
 
+  def has_child?
+    Article.exists?({:parent_id => self.id})
+  end
 
   belongs_to :user
 

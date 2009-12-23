@@ -441,4 +441,14 @@ describe Article do
       Article.published_at_like(2.month.ago.strftime('%Y-%m-%d')).map(&:id).sort.should == [@article_two_month_ago.id].sort
     end
   end
+
+  describe '#has_child?' do
+    it 'should be true if article has one to link it by parent_id' do
+      Factory(:article, :parent_id => contents(:article1).id)
+      contents(:article1).should be_has_child
+    end
+    it 'should be false if article has no article to link it by parent_id' do
+      contents(:article1).should_not be_has_child
+    end
+  end
 end
