@@ -36,6 +36,23 @@ describe Admin::ContentController do
 
   end
 
+  describe 'autosave action', :shared => true do
+    it 'should save new article with draft status and link to other article if first autosave' do
+      lambda do
+      lambda do
+        post :autosave, :article => {:allow_comments => '1',
+          :body_and_extended => 'my draft in autosave',
+          :keywords => 'mientag',
+          :permalink => 'big-post',
+          :title => 'big post',
+          :text_filter => 'none',
+          :published => '1',
+          :published_at => 'December 23, 2009 03:20 PM'}
+      end.should change(Article, :count)
+      end.should change(Tag, :count)
+    end
+  end
+
   describe 'insert_editor action' do
 
     before do
@@ -180,6 +197,7 @@ describe Admin::ContentController do
     it_should_behave_like 'index action'
     it_should_behave_like 'new action'
     it_should_behave_like 'destroy action'
+    it_should_behave_like 'autosave action'
 
     describe 'edit action' do
 
