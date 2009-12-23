@@ -49,6 +49,7 @@ class Article < Content
 
   named_scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
   named_scope :drafts, :conditions => ['state = ?', 'draft']
+  named_scope :without_parent, {:conditions => {:parent_id => nil}}
   named_scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
 
 

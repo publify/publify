@@ -1,6 +1,6 @@
 <div class='bordered'>
   <h3><label class="block content"><%= _("Drafts:") %></label></h3>
-  <% for draft in @drafts %>
+  <% Article.drafts.without_parent.all.each do |draft| %>
     <%= link_to("#{draft.title}<br />", :action => 'edit', :id => draft.id) %>
   <% end %>
 </div>

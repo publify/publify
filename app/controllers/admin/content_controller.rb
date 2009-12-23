@@ -12,7 +12,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def index
-    @drafts = Article.draft.all
     @search = params[:search] ? params[:search] : {}
     @articles = Article.search_no_draft_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
 
@@ -28,7 +27,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def edit
-    @drafts = Article.draft.all
     @article = Article.find(params[:id])
 
     unless @article.access_by? current_user
@@ -152,7 +150,6 @@ class Admin::ContentController < Admin::BaseController
     @article.attributes = params[:article]
 
 
-    @drafts = Article.drafts
     if request.post?
       set_article_author
       save_attachments
