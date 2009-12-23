@@ -26,7 +26,7 @@
   </div>
   <div id="categories">
     <h3><%= _("Categories") %></h3>
-    <%- @categories.each do |cat| %>
+    <%- Category.all.each do |cat| %>
       <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
       <%= label_tag "category_#{h(cat.id)}", h(cat.name) %>
     <% end -%>

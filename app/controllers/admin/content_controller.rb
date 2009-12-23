@@ -13,7 +13,6 @@ class Admin::ContentController < Admin::BaseController
 
   def index
     @drafts = Article.draft.all
-    setup_categories
     @search = params[:search] ? params[:search] : {}
     @articles = Article.search_no_draft_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
 
@@ -106,7 +105,6 @@ class Admin::ContentController < Admin::BaseController
     params[:article] ||= {}
     @article.attributes = params[:article]
     @article.published = false
-    setup_categories
     set_article_author
     save_attachments
 
@@ -168,7 +166,6 @@ class Admin::ContentController < Admin::BaseController
         return
       end
     end
-    setup_categories
     render :action => 'new'
   end
 
@@ -236,10 +233,6 @@ class Admin::ContentController < Admin::BaseController
             else
               Article.find(params[:id])
             end
-  end
-
-  def setup_categories
-    @categories = Category.find(:all, :order => 'UPPER(name)')
   end
 
   def setup_resources

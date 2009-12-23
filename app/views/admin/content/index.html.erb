@@ -1,7 +1,7 @@
 <% @page_heading = _('Manage articles') %>
 <% subtabs_for(:content) %>
 
-<div class="list" id="articles">	
+<div class="list" id="articles">
   <% form_remote_tag  :url      => {:action => 'index'},
   :method   => :get,
   :name     => 'article',
@@ -26,7 +26,7 @@
     </tr>
     <tr class="menubar">
       <td>&nbsp;</td>
-      <td><%= collection_select_with_current('search', 'category', @categories, "id", "name", @search[:category].to_i, true)
+      <td><%= collection_select_with_current('search', 'category', Category.all, "id", "name", @search[:category].to_i, true)
       %></td>
       <td>
         <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
@@ -47,4 +47,4 @@
     </table>
 
     <%end%>
-  </div>                      
+  </div>
