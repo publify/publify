@@ -77,6 +77,14 @@ class Article < Content
   include Article::States
 
   class << self
+    def last_draft(article_id)
+      article = Article.find(article_id)
+      while article.has_child?
+        article = Article.child_of(article.id).first
+      end
+      article
+    end
+
     def published_articles
       find(:conditions => { :published => true }, :order => 'published_at DESC')
     end

@@ -451,4 +451,14 @@ describe Article do
       contents(:article1).should_not be_has_child
     end
   end
+
+  describe 'self#last_draft(id)' do
+    it 'should return article if no draft associated' do
+      Article.last_draft(contents(:article1).id).should == contents(:article1)
+    end
+    it 'should return draft associated to this article if there are one' do
+      draft = Factory(:article, :parent_id => contents(:article1).id, :state => 'draft')
+      Article.last_draft(contents(:article1).id).should == draft
+    end
+  end
 end
