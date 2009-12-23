@@ -1,5 +1,5 @@
 class Admin::TagsController < Admin::BaseController
-  
+
   cache_sweeper :blog_sweeper
 
   def index
@@ -15,7 +15,7 @@ class Admin::TagsController < Admin::BaseController
 
     @tags = Tag.paginate(:page => params[:page], :order => :display_name, :per_page => this_blog.admin_display_elements)
   end
-  
+
   def edit
     @tag = Tag.find(params[:id])
     @tag.attributes = params[:tag]
@@ -25,7 +25,7 @@ class Admin::TagsController < Admin::BaseController
       redirect_to :action => 'index'
     end
   end
-    
+
   def destroy
     @tag = Tag.find(params[:id])
     if request.post?
@@ -33,5 +33,5 @@ class Admin::TagsController < Admin::BaseController
       redirect_to :action => 'index'
     end
   end
-  
+
 end

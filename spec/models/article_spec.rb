@@ -15,7 +15,6 @@ describe Article do
     it 'should second_article factory valid' do
       Factory(:second_article).should be_valid
       Factory.build(:second_article).should be_valid
-
     end
     it 'should article_with_accent_in_html' do
       Factory(:article_with_accent_in_html).should be_valid
@@ -307,7 +306,7 @@ describe Article do
   end
 
   describe 'body_and_extended' do
-    before :each do 
+    before :each do
       @article = contents(:article1)
     end
 
@@ -358,7 +357,7 @@ describe Article do
   end
 
   describe 'body_and_extended=' do
-    before :each do 
+    before :each do
       @article = contents(:article1)
     end
 
@@ -367,7 +366,7 @@ describe Article do
       @article.body.should == 'foo'
       @article.extended.should == 'bar'
     end
-    
+
     it 'should remove newlines around <!--more-->' do
       @article.body_and_extended = "foo\n<!--more-->\nbar"
       @article.body.should == 'foo'

@@ -10,13 +10,13 @@ class Admin::ContentController < Admin::BaseController
     @items = Tag.find_with_char params[:article][:keywords].strip
     render :inline => "<%= auto_complete_result @items, 'name' %>"
   end
-  
+
   def index
     @drafts = Article.draft.all
     setup_categories
     @search = params[:search] ? params[:search] : {}
     @articles = Article.search_no_draft_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
-    
+
     if request.xhr?
       render :partial => 'article_list', :object => @articles
     else
@@ -24,31 +24,31 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  def new 
+  def new
     new_or_edit
   end
-  
+
   def edit
     @drafts = Article.draft.all
     @article = Article.find(params[:id])
-    
-    unless @article.access_by? current_user 
+
+    unless @article.access_by? current_user
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
     end
-    new_or_edit 
+    new_or_edit
   end
 
   def destroy
     @article = Article.find(params[:id])
-    
+
     unless @article.access_by?(current_user)
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
     end
-    
+
     if request.post?
       @article.destroy
       redirect_to :action => 'index'
@@ -60,7 +60,7 @@ class Admin::ContentController < Admin::BaseController
     return unless params[:editor].to_s =~ /simple|visual/
     current_user.editor = params[:editor].to_s
     current_user.save!
-    
+
     render :partial => "#{params[:editor].to_s}_editor"
   end
 
@@ -91,7 +91,7 @@ class Admin::ContentController < Admin::BaseController
   def autosave
     get_or_build_article
 
-    # This is ugly, but I have to check whether or not the article is 
+    # This is ugly, but I have to check whether or not the article is
     # published to create the dummy draft I'll replace later so that the
     # published article doesn't get overriden on the front
     if @article.published
@@ -102,12 +102,11 @@ class Admin::ContentController < Admin::BaseController
       @article.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
       @article.parent_id      = parent_id
     end
-  
+
     params[:article] ||= {}
     @article.attributes = params[:article]
     @article.published = false
     setup_categories
-    @selected = @article.categories.collect { |c| c.id }
     set_article_author
     save_attachments
 
@@ -144,24 +143,23 @@ class Admin::ContentController < Admin::BaseController
 
   def new_or_edit
     get_or_build_article
-    
+
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @article.published = true
-    
+
     # TODO Test if we can delete the next line. It's delete on nice_permalinks branch
     params[:article] ||= {}
 
     @resources = Resource.find(:all, :order => 'filename')
     @article.attributes = params[:article]
-    
-    setup_categories
-    @selected = @article.categories.collect { |c| c.id }
+
+
     @drafts = Article.drafts
     if request.post?
       set_article_author
       save_attachments
       @article.state = "draft" if @article.draft
-      
+
       if @article.save
         destroy_the_draft unless @article.draft
         set_article_categories
@@ -170,6 +168,7 @@ class Admin::ContentController < Admin::BaseController
         return
       end
     end
+    setup_categories
     render :action => 'new'
   end
 
@@ -199,7 +198,7 @@ class Admin::ContentController < Admin::BaseController
     lastid = Article.find(:first, :order => 'id DESC').id
     @article.title = @article.title.blank? ? "Draft article " + lastid.to_s : @article.permalink = @article.stripped_title
   end
-  
+
   def save_attachments
     return if params[:attachments].nil?
     params[:attachments].each do |k,v|
@@ -215,7 +214,6 @@ class Admin::ContentController < Admin::BaseController
         @article.categories << cat
       end
     end
-    @selected = params[:categories] || []
   end
 
   def def_build_body
@@ -224,7 +222,7 @@ class Admin::ContentController < Admin::BaseController
       @article.body = body[0]
       @article.extended = body[1]
     end
-    
+
   end
 
   def get_or_build_article

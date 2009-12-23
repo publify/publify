@@ -37,12 +37,12 @@ describe Admin::ContentController do
   end
 
   describe 'insert_editor action' do
-    
+
     before do
       @user = users(:tobi)
       request.session = { :user => @user.id }
     end
-    
+
     it 'should render _simple_editor' do
       get(:insert_editor, :editor => 'simple')
       response.should render_template('_simple_editor')
@@ -68,7 +68,7 @@ describe Admin::ContentController do
       { :title => "posted via tests!",
         :body => "A good body",
         :keywords => "tagged",
-        :allow_comments => '1', 
+        :allow_comments => '1',
         :allow_pings => '1' }.merge(options)
     end
 
@@ -97,8 +97,8 @@ describe Admin::ContentController do
 
         assert_difference 'Article.count_published_articles' do
           tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
-          post :new, 
-            'article' => base_article(:keywords => tags) , 
+          post :new,
+            'article' => base_article(:keywords => tags) ,
             'categories' => [category.id]
           assert_response :redirect, :action => 'show'
         end
@@ -185,7 +185,6 @@ describe Admin::ContentController do
 
       it 'should edit article' do
         get :edit, 'id' => contents(:article1).id
-        assigns(:selected).should == contents(:article1).categories.collect {|c| c.id}
         response.should render_template('new')
         assert_template_has 'article'
         assigns(:article).should be_valid
@@ -303,7 +302,6 @@ describe Admin::ContentController do
 
       it 'should edit article' do
         get :edit, 'id' => contents(:publisher_article).id
-        assigns(:selected).should == contents(:publisher_article).categories.collect {|c| c.id}
         response.should render_template('new')
         assert_template_has 'article'
         assigns(:article).should be_valid
