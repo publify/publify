@@ -181,8 +181,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def destroy_the_draft
-    draft = Article.find(:first, :conditions => { :parent_id => @article.id })
-    draft.destroy if draft
+    Article.all(:conditions => { :parent_id => @article.id }).map(&:destroy)
   end
 
   def set_article_author

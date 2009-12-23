@@ -242,6 +242,26 @@ describe Admin::ContentController do
         article.body.should == 'foo'
         article.extended.should == 'bar<!--more-->baz'
       end
+
+      it 'should delete draft about this article if update' do
+        article = contents(:article1)
+        draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
+        lambda do
+          post :edit, 'id' => article.id, 'article' => { 'title' => 'new'}
+        end.should change(Article, :count).by(-1)
+        Article.should_not be_exists({:id => draft.id})
+      end
+
+      it 'should delete all draft about this article if update not happen but why not' do
+        article = contents(:article1)
+        draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
+        draft_2 = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
+        lambda do
+          post :edit, 'id' => article.id, 'article' => { 'title' => 'new'}
+        end.should change(Article, :count).by(-2)
+        Article.should_not be_exists({:id => draft.id})
+        Article.should_not be_exists({:id => draft_2.id})
+      end
     end
 
     describe 'resource_add action' do
