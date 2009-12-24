@@ -1,5 +1,6 @@
 Localization.define("fr_FR") do |l|
 
+
   # app/views/accounts/confirm.html.erb
   l.store "You have successfully signed up", "Vous vous %etes inscrit avec succès"
   l.store "Login %s", "Identifiant %s"
@@ -127,7 +128,7 @@ Localization.define("fr_FR") do |l|
   l.store "You have no internet connection", "Vous n'avez pas de connection à internet"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", ""
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Voici un rapide aperçu de ce que peux faire votre blog Typo. Peux-être voulez vous %s, %s ou %s"
   l.store "update your profile or change your password", "mettre votre profil à jour ou changer votre mot de passe"
   l.store "You can also do a bit of design, %s or %s.", "Vous pouvez également faire un peu de personnalisation, %s, %s"
   l.store "change your blog presentation", "changer l'apparence de votre blog"
@@ -176,18 +177,19 @@ Localization.define("fr_FR") do |l|
   l.store "Are you sure?", "Êtes-vous certain ?"
   l.store "add a comment", "Ajouter un commentaire"
   l.store "All comments", "Tous les commentaires"
-  l.store "Limit to ham", "Uniquement les commentaires valides"
+  l.store "Limit to ham", "Uniquement les commentaires validés"
   l.store "Limit to spam", "Afficher le spam"
 
   # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Commentaires pour"
 
   # app/views/admin/feedback/index.html.erb
-  l.store "Feedback for", "Feedback sur"
+  l.store "Feedback for", "Feedbacks sur"
   l.store "Search Comments and Trackbacks that contain", "Chercher les commentaires et les trackbacks contenant"
   l.store "Article", "Article"
   l.store "Comment Excerpt", "Extrait du commentaire"
   l.store "IP", "Adresse IP"
+  l.store "Unapproved comments", "Commentaires non validés"
 
   # app/views/admin/pages/_form.html.erb
   l.store "Options", "Options"
@@ -282,7 +284,7 @@ Localization.define("fr_FR") do |l|
   l.store "Blog subtitle", "Sous-titre du blog"
   l.store "Blog URL", "Adresse du blog"
   l.store "Language", "Langue"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
+  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "Vous pouvez permettre aux utilisateur de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
   l.store "Allow users to register", "Autoriser les utilisateurs à s'enregistrer"
   l.store "No", "Non"
   l.store "Yes", "Oui"
@@ -306,23 +308,23 @@ Localization.define("fr_FR") do |l|
   l.store "At the beginning of page title", "Au début du titre de la page"
   l.store "At the end of page title", "À la fin du titre de la page"
   l.store "Don't show blog name in page title", "Ne pas afficher le nom du blog dans le titre de la page"
-  l.store "Format of permalink", ""
-  l.store "Google Analytics", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "Index categories", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Index tags", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
+  l.store "Format of permalink", "Format des liens permanents"
+  l.store "Google Analytics", "Google Analytics"
+  l.store "Meta description", "Meta description"
+  l.store "Meta keywords", "Meta keywords"
+  l.store "Use RSS description", "Utilisation de la description RSS"
+  l.store "Index categories", "Index de catégories"
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", "Détiquer cette options ajoutera le meta tags <code>noindex, follow</code> dans toutes les pages de chaque categorie. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
+  l.store "Index tags", "Index des tags"
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", "Détiquer cette options ajoutera le meta tags <code>noindex, follow</code> dans toutes les pages de chaque tag. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
+  l.store "Robots.txt", "Robots.txt"
+  l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Votre fichier Robots.txt n'est pas écrivable. Typo ne peux donc pas l'écrire."
+  l.store "Search Engine Optimization", "Optimisation pour les moteurs de recherches"
   l.store "This will display", "Cela affichera"
-  l.store "Original article writen by", "Article original écrit par" 
+  l.store "Original article writen by", "Article original écrit par"
   l.store "and published on", "et publié sur"
-  l.store "direct link to this article", "lien direct vers cet article" 
-  l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur" 
+  l.store "direct link to this article", "lien direct vers cet article"
+  l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur"
   l.store "it has been illegally reproduced and without proper authorization", "c'est qu'il a été reproduit illégalement et sans autorisation"
   l.store "at the bottom of each of your post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
 
@@ -402,7 +404,7 @@ Localization.define("fr_FR") do |l|
   l.store "Get more themes", "Téléchargez d'autres thèmes"
   l.store "You can download third party themes from officially supported %s ", "Vous pouvez télécharger des thèmes officiellement supportés sur %s "
   l.store "Typogarden", "Typogarden"
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", ""
+  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", "Pour installer votre thèmes, il suffit de l'uploader dans le dossier themes de votre projet."
   l.store "Choose a theme", "Sélectionnez un thème"
 
   # app/views/admin/users/_form.html.erb
@@ -421,7 +423,7 @@ Localization.define("fr_FR") do |l|
   l.store "Use visual rich editor", "Utiliser l'éditeur visuel"
   l.store "Use simple editor", "Utiliser l'éditeur simplifié"
   l.store "Send notification messages via email", "Envoi de notification des messages par email"
-  l.store "Send notification messages when new articles are posted", "Envoi de notification de messages quand de nouveaux articles sont postés" 
+  l.store "Send notification messages when new articles are posted", "Envoi de notification de messages quand de nouveaux articles sont postés"
   l.store "Send notification messages when comments are posted", "Envoi de notification de messages quand des commentaires sont postés"
   l.store "Contact options", "Options de contact"
   l.store "Your site", "Votre site"
@@ -462,14 +464,14 @@ Localization.define("fr_FR") do |l|
 
   # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Votre nom "
-  l.store "(leave url/email &#187;)", ""
+  l.store "(leave url/email &#187;)", "(laissez votre url/email &#187;)"
   l.store "Your email", "Votre courriel"
   l.store "Your message", "Votre commentaire"
   l.store "Comment Markup Help", "Aide sur le balisage des commentaires"
   l.store "Preview comment", "Prévisualiser le commentaire"
 
   # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
+  l.store "Oops, something wrong happened, the comment could not be saved", "Oops, quelque chose s'est mal déroulé. Votre commentaire n'a donc pu être enregistré."
 
   # app/views/articles/_trackback.html.erb
   l.store "From", "De"
@@ -489,7 +491,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/articles/read.html.erb
   l.store "Leave a response", "Réagir à ce billet"
-  l.store "Trackbacks", ""
+  l.store "Trackbacks", "Trackbacks"
   l.store "Use the following link to trackback from your own site", "Utilisez le lien ci-dessous pour envoyer un trackback depuis votre site"
   l.store "RSS feed for this post", "Flux RSS de ce billet"
   l.store "trackback uri", "URL de rétrolien"
@@ -676,22 +678,22 @@ Localization.define("fr_FR") do |l|
   l.store "Destroy this draft", "Supprimer ce brouillon"
 
   # app/helpers/application_helper.rb
-  # Dates 
+  # Dates
   l.store "Mon", "Lun"
   l.store "Tue", "Mar"
   l.store "Wed", "Mer"
-  l.store "Thu", "Jeu"  
-  l.store "Fri", "Ven"  
-  l.store "Sat", "Sam"  
+  l.store "Thu", "Jeu"
+  l.store "Fri", "Ven"
+  l.store "Sat", "Sam"
   l.store "Sun", "Dim"
   l.store "Monday", "Lundi"
   l.store "Tuesday", "Mardi"
   l.store "Wednesday", "Mercredi"
-  l.store "Thursday", "Jeudi"  
-  l.store "Friday", "Vendredi"  
-  l.store "Saturday", "Samedi"  
+  l.store "Thursday", "Jeudi"
+  l.store "Friday", "Vendredi"
+  l.store "Saturday", "Samedi"
   l.store "Sunday", "Dimanche"
-  l.store "Jan", "Jan"    
+  l.store "Jan", "Jan"
   l.store "Feb", "Fév"
   l.store "Mar", "Mars"
   l.store "Apr", "Avr"
@@ -703,7 +705,7 @@ Localization.define("fr_FR") do |l|
   l.store "Oct", "Oct"
   l.store "Nov", "Nov"
   l.store "Dec", "Déc"
-  l.store "January", "janvier"    
+  l.store "January", "janvier"
   l.store "February", "février"
   l.store "March", "mars"
   l.store "April", "avril"
@@ -721,14 +723,14 @@ Localization.define("fr_FR") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M", Proc.new {|date|
      sprintf( date.strftime("%%s %d %%s %Y %H:%M"), _(date.strftime("%a")), _(date.strftime("%b")).downcase )
   }
-  
+
   l.store "%%d. %%b", Proc.new {|date|
      sprintf( date.strftime("%d. %%s"), _(date.strftime("%b")).downcase )
   }
-  l.store "Original article writen by", "Article original écrit par" 
+  l.store "Original article writen by", "Article original écrit par"
   l.store "and published on", "et publié sur"
-  l.store "direct link to this article", "lien direct vers cet article" 
-  l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur" 
+  l.store "direct link to this article", "lien direct vers cet article"
+  l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur"
   l.store "it has been illegally reproduced and without proper authorization", "c'est qu'il a été reproduit illégalement et sans autorisation"
   l.store "This will display", "Cela affichera"
   l.store "at the bottom of each of your post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
@@ -750,11 +752,11 @@ Localization.define("fr_FR") do |l|
   l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Vous devez spécifier un identifiant : %%month%%, %%year%%, %%day%%, %%title%%"
 
   # app/models/feedback/states.rb
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
-  l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
+  l.store "Unclassified", "Non vérifié"
+  l.store "Just Presumed Ham", "Marqué commme supposé désirable"
+  l.store "Ham?", "Désirable?"
+  l.store "Just Marked As Ham", "Marqué comme désirable"
+  l.store "Ham", "Désirable"
+  l.store "Spam?", "Spam?"
+  l.store "Just Marked As Spam", "Marqué comme spam"
 end
