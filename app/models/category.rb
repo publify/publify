@@ -7,11 +7,6 @@ class Category < ActiveRecord::Base
     :through => :categorizations,
     :order   => "published_at DESC, created_at DESC"
 
-  has_many :published_articles,
-    :through    => :categorizations,
-    :class_name => 'Article',
-    :conditions => { :published => true },
-    :order      => "published_at DESC"
 
   default_scope :order => 'position ASC'
 
@@ -60,7 +55,7 @@ class Category < ActiveRecord::Base
   end
 
   def published_articles
-    self.articles.find_already_published
+    articles.already_published
   end
 
   def display_name

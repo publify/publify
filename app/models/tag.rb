@@ -3,7 +3,7 @@ class Tag < ActiveRecord::Base
   validates_uniqueness_of :name
   attr_reader :description
   attr_reader :keywords
-  
+
   def self.get(name)
     tagname = name.tr(' ', '').downcase
     tag = find_by_name_or_display_name(tagname, name)
@@ -43,8 +43,8 @@ class Tag < ActiveRecord::Base
         ON articles_tags.article_id = articles.id
       WHERE articles.published = ?
       GROUP BY tags.id, tags.name, tags.display_name
-      ORDER BY #{orderby} 
-      LIMIT ? OFFSET ? 
+      ORDER BY #{orderby}
+      LIMIT ? OFFSET ?
       },true, limit, start]).each{|item| item.article_counter = item.article_counter.to_i }
   end
 
@@ -59,15 +59,15 @@ class Tag < ActiveRecord::Base
   def self.to_prefix
     'tag'
   end
-   
-  # Return all tags with the char or string 
+
+  # Return all tags with the char or string
   # send by parameter
   def self.find_with_char(char)
     find :all, :conditions => ['name LIKE ? ', "%#{char}%"], :order => 'name ASC'
   end
-  
+
   def published_articles
-    articles.find_already_published
+    articles.already_published
   end
 
   def permalink
@@ -95,5 +95,5 @@ class Tag < ActiveRecord::Base
   def to_param
     permalink
   end
-  
+
 end

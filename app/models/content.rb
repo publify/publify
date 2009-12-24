@@ -8,6 +8,7 @@ class Content < ActiveRecord::Base
     :source => 'notify_user',
     :uniq => true
 
+
   def notify_users=(collection)
     return notify_users.clear if collection.empty?
     self.class.transaction do
@@ -46,6 +47,9 @@ class Content < ActiveRecord::Base
     {:conditions => ['state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
                         "published", *tokens.collect{ |token| [token] * 3 }.flatten]}
   }
+  named_scope :already_published, lambda { {:conditions => ['published = ? AND published_at < ?', true, Time.now],
+    :order => default_order,
+    }}
 
   serialize :whiteboard
 
@@ -122,27 +126,27 @@ class Content < ActiveRecord::Base
         find_published(what, options)
       end
     end
-    
+
     def find_by_published_at(column_name = :published_at)
       from_where = "FROM #{self.table_name} WHERE #{column_name} is not NULL AND type='#{self.name}'"
 
       # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
-      
+
       if defined?(ActiveRecord::ConnectionAdapters::MysqlAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::MysqlAdapter)
         # MySQL uses date_format
         find_by_sql("SELECT date_format(#{column_name}, '%Y-%m') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-        
+
       elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
         # PostgreSQL uses to_char
         find_by_sql("SELECT to_char(#{column_name}, 'YYYY-MM') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-        
+
       else
         # If we don't have an adapter-safe conversion from date -> YYYY-MM,
         # we'll do the GROUP BY server-side. There won't be very many objects
         # in this array anyway.
         date_map = {}
         dates = find_by_sql("SELECT #{column_name} AS publication #{from_where}")
-    
+
         dates.map! do |d|
           d.publication = Time.parse(d.publication).strftime('%Y-%m')
           d.freeze
@@ -153,7 +157,7 @@ class Content < ActiveRecord::Base
         end
         dates.reject!{|d| d.blank? || d.publication.blank?}
         dates.sort!{|a,b| b.publication <=> a.publication}
-        
+
         dates
       end
     end

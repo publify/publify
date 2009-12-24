@@ -1,6 +1,6 @@
 <% @page_heading = _('Manage tags') %>
 <% subtabs_for(:content) %>
-  
+
 <table cellspacing="1" cellpadding="0">
   <tr>
     <th><%= _("Display Name") %></th>
@@ -12,8 +12,8 @@
   <tr <%= alternate_class %>>
     <td> <%= link_to_edit tag.display_name, tag %></td>
     <td><%= tag.name %></td>
-    <td><%= link_to_permalink tag, tag.articles.count %></td>
-  </tr>  
+    <td><%= link_to_permalink tag, tag.published_articles.count %></td>
+  </tr>
   <% end %>
-  <%= display_pagination(@tags, 3)%>  
+  <%= display_pagination(@tags, 3)%>
 </table>

@@ -34,7 +34,7 @@
       </td>
     </tr>
     <%= render_void_table(@feedback.size, 9) %>
-    
+
     <%= render :partial => 'item', :collection => @feedback %>
     <%= display_pagination(@feedback, 6)%>
   </table>
