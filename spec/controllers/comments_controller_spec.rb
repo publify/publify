@@ -66,14 +66,6 @@ describe CommentsController, 'create' do
     post :create, :comment => comment, :article_id => contents(:article1).id
   end
 
-  it "should throw an error if sp_allow_non_ajax_comments is false and there are no xhr headers" do
-    b = blogs(:default)
-    b.sp_allow_non_ajax_comments = false
-    b.save
-    make_the_request
-    response.response_code.should == 400
-  end
-
   it "should redirect to the article" do
     make_the_request
     response.should redirect_to("#{blogs(:default).base_url}/#{contents(:article1).created_at.year}/#{sprintf("%.2d", contents(:article1).created_at.month)}/#{sprintf("%.2d", contents(:article1).created_at.day)}/#{contents(:article1).permalink}")
@@ -85,15 +77,6 @@ describe CommentsController, 'AJAX creation' do
 
   def make_the_request(comment = {:body => 'content', :author => 'bob'})
     xhr :post, :create, :comment => comment, :article_id => contents(:article1).id
-  end
-
-  it "should be be successful if blog.sp_allow_non_ajax_comments is false" do
-    b = blogs(:default)
-    b.sp_allow_non_ajax_comments = false
-    b.save
-    b.sp_allow_non_ajax_comments.should_not be_true
-    make_the_request
-    response.should be_success
   end
 
   it "should render the comment partial" do

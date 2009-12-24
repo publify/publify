@@ -74,13 +74,6 @@
     </p>
   </div>
   <div>
-    <p><%= _("You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.")%></p>
-    <label for="setting_sp_allow_non_ajax_comments" class="float"><%= _("Allow non-ajax comments") %></label>
-    <p class='input_text_title'>
-      <%= check_box(:setting, :sp_allow_non_ajax_comments)%>
-    </p>
-  </div>
-  <div>
     <label for="setting_sp_article_auto_close" class="float"><%= _("Disable comments after")%></label>
     <p class='input_text_title'>
       <%= text_field(:setting, :sp_article_auto_close, {:size => 4, :class => 'small'})%>

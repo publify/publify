@@ -32,5 +32,4 @@ default:
     link_to_author: false
     itunes_summary: ""
     comment_text_filter: markdown
-    sp_allow_non_ajax_comments: true
     permalink_format: /%year%/%month%/%day%/%title%

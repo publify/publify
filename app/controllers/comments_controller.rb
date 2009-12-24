@@ -1,5 +1,4 @@
 class CommentsController < FeedbackController
-  before_filter :check_request_type, :only => [:create]
   before_filter :get_article, :only => [:create, :preview]
 
   def create
@@ -74,12 +73,6 @@ class CommentsController < FeedbackController
 
   def set_headers
     headers["Content-Type"] = "text/html; charset=utf-8"
-  end
-
-  def check_request_type
-    return true if this_blog.sp_allow_non_ajax_comments || request.xhr?
-    render :nothing => true, :status => :bad_request
-    return false
   end
 
   def set_comment_cookies

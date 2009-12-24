@@ -38,7 +38,6 @@ class Blog < ActiveRecord::Base
   # Spam
   setting :sp_global,                  :boolean, false
   setting :sp_article_auto_close,      :integer, 0
-  setting :sp_allow_non_ajax_comments, :boolean, true
   setting :sp_url_limit,               :integer, 0
   setting :sp_akismet_key,             :string, ''
 
