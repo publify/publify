@@ -27,9 +27,9 @@
       <td colspan="5">
         <select onchange='window.location=this.options[this.selectedIndex].value;'>
           <option value=''><%= _("All comments")%></option>
-          <option value='?ham=f' <%= 'selected' if params[:ham] %>><%= _("Limit to ham") %></option>
-          <option value='?confirmed=f' <%= 'selected' if params[:confirmed] %>><%= _("Unapproved comments") %></option>
-          <option value='?published=f' <%= 'selected' if params[:published] %>><%= _("Limit to spam")%></option>
+          <option value='?ham=f' <%= 'selected' if params[:ham] == 'f' %>><%= _("Limit to ham") %></option>
+          <option value='?confirmed=f' <%= 'selected' if params[:confirmed] == 'f' %>><%= _("Unapproved comments") %></option>
+          <option value='?published=f' <%= 'selected' if params[:published] == 'f' %>><%= _("Limit to spam")%></option>
         </select>
       </td>
     </tr>

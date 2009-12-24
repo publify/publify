@@ -59,7 +59,7 @@ module Feedback::States
     def before_save
       classify_content
     end
-    
+
     def to_s
       _("Unclassified")
     end
@@ -73,7 +73,7 @@ module Feedback::States
     end
     def to_s
       _("Just Presumed Ham")
-    end    
+    end
   end
 
   class PresumedHam < Base
@@ -119,7 +119,7 @@ module Feedback::States
     end
     def to_s
       _("Just Marked As Ham")
-    end    
+    end
   end
 
   class Ham < Base
@@ -153,7 +153,7 @@ module Feedback::States
     end
     def to_s
       _("Ham")
-    end   
+    end
   end
 
   class PresumedSpam < Base
@@ -194,7 +194,7 @@ module Feedback::States
     end
     def to_s
       _("Just Marked As Spam")
-    end    
+    end
   end
 
   class Spam < Base
@@ -215,6 +215,6 @@ module Feedback::States
     end
     def to_s
       _("Spam")
-    end     
+    end
   end
 end
