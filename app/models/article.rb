@@ -495,13 +495,9 @@ class Article < Content
       rss_desc = ""
     end
 
-    entry.summary html(:body), "type" => "html"
-    if blog.show_extended_on_rss
-      post = html(:all)
-      content = blog.rss_description ? post + rss_desc : post
-
-      entry.content(content, :type => "html")
-    end
+    post = blog.show_extended_on_rss ? post = html(:all) : post = html(:body)
+    content = blog.rss_description ? post + rss_desc : post
+    entry.content(content, :type => "html")
   end
 
   def add_comment(params)

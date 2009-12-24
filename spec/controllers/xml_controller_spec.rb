@@ -149,7 +149,7 @@ describe XmlController do
 
   it "test_bad_format" do
     get :feed, :format => 'atom04', :type => 'feed'
-    assert_response :missing
+    assert_response 404
   end
 
   it "test_bad_type" do
