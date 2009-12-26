@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-# test standard view and all themes
-[ nil, "dirtylicious", "scribbish", "standard_issue", "typographic" ].each do |theme|
-  view_path = theme ? "#{RAILS_ROOT}/themes/#{theme}/views" : "" 
+with_each_theme do |theme, view_path|
   describe "#{view_path}/articles/read" do
     before(:each) do
       @controller.view_paths = [ "#{RAILS_ROOT}/themes/#{theme}/views" ] if theme

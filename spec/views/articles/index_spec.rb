@@ -1,11 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-# test standard view and all themes
-[ nil, "true-blue-3", "dirtylicious", "scribbish", "standard_issue", "typographic" ].each do |theme|
-  view_path = theme ? "#{RAILS_ROOT}/themes/#{theme}/views" : ""
-  if File.exists?("#{RAILS_ROOT}/themes/#{theme}/helpers/theme_helper.rb")
-    require "#{RAILS_ROOT}/themes/#{theme}/helpers/theme_helper.rb"
-  end
+with_each_theme do |theme, view_path|
   describe "#{view_path}/articles/index" do
     before(:each) do
       @controller.view_paths = [ "#{RAILS_ROOT}/themes/#{theme}/views" ] if theme
