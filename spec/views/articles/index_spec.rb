@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 with_each_theme do |theme, view_path|
   describe "#{view_path}/articles/index" do
     before(:each) do
-      @controller.view_paths = [ "#{RAILS_ROOT}/themes/#{theme}/views" ] if theme
+      @controller.view_paths.unshift(view_path) if theme
       # we only want to test pagination links
       ActionView::Base.class_eval do
         def article_links(article)
