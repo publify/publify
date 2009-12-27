@@ -1,12 +1,12 @@
 <h2><%= link_to_permalink article,article.title %></h2>
 <p class="auth"><%= _("Posted by")%> <%= author_link(article) %>
 <%= js_distance_of_time_in_words_to_now article.published_at %></p>
-<% if controller.action_name == 'show' or controller.action_name == 'index' %>
+<% unless controller.action_name == 'redirect' %>
   <% if article.excerpt? %>
     <%= article.excerpt %>
   <% else %>
     <%= article.html(:body) %>
-    <% unless article.extended.empty? %>
+    <% if article.extended? %>
       <div class="extended">
         <p><%= link_to_permalink article, _("Continue reading...") %></p>
       </div>

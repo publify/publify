@@ -16,7 +16,7 @@ with_each_theme do |theme, view_path|
   
     context "applying text filters" do
       before(:each) do
-        @controller.action_name = "read"
+        @controller.action_name = "redirect"
         assigns[:article] = contents('article1')
         render "articles/read"
       end
