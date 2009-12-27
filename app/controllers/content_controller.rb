@@ -24,6 +24,7 @@ class ContentController < ApplicationController
 
   protected
 
+  # TODO: Make this work for all content.
   def auto_discovery_feed(options = { })
     with_options(options.reverse_merge(:only_path => true)) do |opts|
       @auto_discovery_url_rss = opts.url_for(:format => 'rss')
