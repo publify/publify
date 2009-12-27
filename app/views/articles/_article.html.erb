@@ -6,9 +6,11 @@
     <%= article.excerpt %>
   <% else %>
     <%= article.html(:body) %>
-    <div class="extended">
-      <p><%= link_to_permalink article, _("Continue reading...") %></p>
-    </div>
+    <% unless article.extended.empty? %>
+      <div class="extended">
+        <p><%= link_to_permalink article, _("Continue reading...") %></p>
+      </div>
+    <% end %>
   <% end %>
 <% else %>
   <%= article.html(:body) %>
