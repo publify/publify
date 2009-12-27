@@ -20,6 +20,14 @@ describe Article do
       Factory(:article_with_accent_in_html).should be_valid
       Factory.build(:article_with_accent_in_html).should be_valid
     end
+    it 'should store user too' do
+      a = Factory(:article)
+      Article.find(a.id).user.should_not be_nil
+    end
+    it 'should multiple article factory valid' do
+      Factory(:article).should be_valid
+      Factory(:article).should be_valid
+    end
   end
 
   def assert_results_are(*expected)

@@ -1,8 +1,13 @@
 require 'factory_girl'
 
+Factory.sequence :user do |n|
+  "user#{n}"
+end
+
 Factory.define :user do |u|
-  u.login 'shingara'
-  u.email 'cyril.mougel@gmail.com'
+  u.login { Factory.next(:user) }
+  u.email 'some.where@out.there'
+  u.password 'top-secret'
 end
 
 Factory.define :article do |a|
@@ -10,7 +15,7 @@ Factory.define :article do |a|
   a.body 'A content with several data'
   a.permalink 'a-big-article'
   a.published_at Time.now
-  a.user Factory.build(:user)
+  a.association :user, :factory => :user
 end
 
 Factory.define :second_article, :parent => :article do |a|

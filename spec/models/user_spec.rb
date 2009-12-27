@@ -1,5 +1,18 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe User do
+  describe 'Factory Girl' do
+    it 'should user factory valid' do
+      Factory.create(:user).should be_valid
+      Factory.build(:user).should be_valid
+    end
+    it 'should multiple user factory valid' do
+      Factory.create(:user).should be_valid
+      Factory.create(:user).should be_valid
+    end
+  end
+end
+
 describe 'With the contents and users fixtures loaded' do
   before(:each) do
     User.stub!(:salt).and_return('change-me')
