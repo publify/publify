@@ -20,9 +20,12 @@ describe PreviewsController do
         @article = Factory(:article)
       end
 
-      it 'should render template /articles/read' do
-        get :index, :id => @article.id
-        response.should render_template('articles/read.html.erb')
+      with_each_theme do |theme, view_path|
+        it "should render template #{view_path}/articles/read" do
+          this_blog.theme = theme if theme
+          get :index, :id => @article.id
+          response.should render_template('articles/read.html.erb')
+        end
       end
 
       it 'should assigns article define with id' do
