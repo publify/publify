@@ -188,8 +188,13 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def set_article_title_for_autosave
-    lastid = Article.find(:first, :order => 'id DESC').id
-    @article.title = @article.title.blank? ? "Draft article " + lastid.to_s : @article.permalink = @article.stripped_title
+    if @article.title.blank?
+      lastid = Article.find(:first, :order => 'id DESC').id
+      @article.title = "Draft article " + lastid.to_s
+    end
+    unless @article.parent_id and Article.find(@article.parent_id).published
+      @article.permalink = @article.stripped_title
+    end
   end
 
   def save_attachments
