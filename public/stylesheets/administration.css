@@ -645,7 +645,8 @@ td.paginate {
   color: #6a0;
 }
 
-.unpublished {
+.unpublished,
+.mandatory {
   color: #c00;
 }
 

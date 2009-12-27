@@ -18,6 +18,14 @@
     </p>
   </div>
   <div>
+    <label for="comment_text_filter" class="float large"><%= _("Comments filter")%></label>
+    <p class='input_text_title'>
+      <select name="setting[comment_text_filter]" id="comment_text_filter">
+        <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
+      </select>      
+    </p>
+  </div>
+  <div>
     <label class="float large" for="setting_use_gravatar"><%= _("Enable gravatars")%></label>
     <p class='input_text_title'>
       <%= check_box(:setting, :use_gravatar)%>
