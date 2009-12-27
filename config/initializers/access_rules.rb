@@ -47,7 +47,11 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/cache"
   map.permission "admin/dashboard"
   map.permission "admin/textfilters"
+  # FIXME: For previews, during production 'previews' is needed, during
+  # test, 'articles' is needed. Proposed solution: move previews to
+  # ArticlesController
   map.permission "previews"
+  map.permission "articles"
 
   map.project_module :write, nil do |project|
     project.menu    "Write",            { :controller => "admin/content",    :action => "new" }
