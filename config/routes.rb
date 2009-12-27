@@ -85,7 +85,7 @@ ActionController::Routing::Routes.draw do |map|
       :controller => 'textfilter', :action => 'public_action'
   end
 
-  map.connect 'previews/:id', :controller => 'previews', :action => 'index'
+  map.connect 'previews/:id', :controller => 'articles', :action => 'preview'
 
   # Work around the Bad URI bug
   %w{ accounts backend files sidebar textfilter xml }.each do |i|

@@ -1,5 +1,6 @@
 class ArticlesController < ContentController
   before_filter :verify_config
+  before_filter :login_required, :only => [:preview]
   before_filter :auto_discovery_feed, :only => [:show, :index]
 
   layout :theme_layout, :except => [:comment_preview, :trackback]
@@ -56,6 +57,11 @@ class ArticlesController < ContentController
     @search = params[:q]
     @articles = Article.search(@search)
     render :layout => false, :action => :live_search
+  end
+
+  def preview
+    @article = Article.last_draft(params[:id])
+    render :action => 'read'
   end
 
   ### Deprecated Actions ###

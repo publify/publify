@@ -19,7 +19,7 @@
       <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
       <%= link_to_destroy_draft @article %>
     </p>
-    <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/previews', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
+    <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
   </div>
   <div class='editor_bottom'>
     <div class='editor_bottom_right'></div>
