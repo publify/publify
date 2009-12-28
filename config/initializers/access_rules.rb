@@ -65,7 +65,8 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Comments",         { :controller => "admin/feedback" }
 	  project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
 	  project.submenu "Categories",       { :controller => "admin/categories", :action => "index" }
-	  project.submenu "Uploads",          { :controller => "admin/resources",  :action => "index" }
+	  project.submenu "Files",            { :controller => "admin/resources",  :action => "index" }
+	  project.submenu "Images",           { :controller => "admin/resources",  :action => "images"}
 	  project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
 	  project.submenu "",                      { :controller => "admin/comments", :action => "show" }
     project.submenu "",                      { :controller => "admin/comments", :action => "new" }

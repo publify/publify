@@ -1,0 +1,10 @@
+<%= form_tag_with_upload_progress({:action => 'upload'}, { :begin => "new Effect.Appear('status')", :finish => "$('message').innertHTML = arguments[0]" }) %>
+
+<fieldset>
+  <legend><%= _('Upload a File to your Site') %></legend>
+  <label for="upload_filename"><%= _('File') %>:</label> <%= file_field('upload', 'filename') -%>
+  <%= submit_tag(_('Upload'), {:class => 'save'}) -%>
+  <div id='status' style="display: none"><%= upload_status_tag %></div>
+  <div id="message"><%= @message %></div>
+  </fieldset>
+</form>

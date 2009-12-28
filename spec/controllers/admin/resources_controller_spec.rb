@@ -13,6 +13,14 @@ describe Admin::ResourcesController do
     assert_not_nil assigns(:resources)
   end
 
+  it "test_images" do
+    get :images
+    assert_response :success
+    assert_template 'images'
+    assert_template_has 'resources'
+    assert_not_nil assigns(:resources)
+  end
+
   it "test_destroy" do
     res_id = resources(:resource1).id
     assert_not_nil Resource.find(res_id)

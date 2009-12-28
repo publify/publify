@@ -1,4 +1,5 @@
 require 'tempfile'
+require 'RMagick'
 
 class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
@@ -31,6 +32,7 @@ class Resource < ActiveRecord::Base
       end
     end
   end
+  
   def fullpath(file = nil)
     "#{RAILS_ROOT}/public/files/#{file.nil? ? filename : file}"
   end
@@ -59,6 +61,19 @@ class Resource < ActiveRecord::Base
     end
   end
 
+  def create_thumbnail
+    return unless self.mime =~ /image/ or File.exists?(fullpath("thumb_#{self.filename}"))
+    begin
+      img_orig = Magick::Image.read(fullpath(self.filename)).first
+      img = img_orig.resize_to_fit(125,125)
+      file = File.open(fullpath("thumb_#{self.filename}"), "wb")
+      file.write(img.to_blob)
+    rescue
+      nil
+    end
+  end
+
+  
 
   protected
   def uniq_filename_on_disk

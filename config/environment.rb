@@ -47,7 +47,7 @@ Rails::Initializer.run do |config|
   config.gem 'RedCloth', :version => '~> 4.2.2'
   config.gem 'panztel-actionwebservice', :version => '2.3.5', :lib => 'actionwebservice'
   config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
-
+  config.gem 'rmagick', :version => '~> 2.12.2', :lib => 'RMagick'
   
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake create_sessions_table')

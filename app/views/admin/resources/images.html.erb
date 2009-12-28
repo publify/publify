@@ -1,0 +1,28 @@
+<% @page_heading = _('Images')  %>
+<% subtabs_for(:content) %>
+
+<%= render :partial => 'upload' -%>
+
+<table>
+<tr>
+  <th><%= _("Thumbnail")%> <small>(<%= _('right-click for link')%>)</small></th>
+  <th><%= _("Content Type")%></th>
+  <th><%= _("File Size")%></th>
+  <th><%= _("Date")%></th>
+  <th><%= _("Delete")%></th>
+</tr>
+<%= render_void_table(@resources.size, 6) %>
+<% @resources.each do |image| %>
+<tr>
+  <td>
+    <a href='<%= "#{this_blog.base_url}/files/#{image.filename}" %>' rel='lightbox'>
+      <%= show_thumbnail(image) %>
+    </a>
+  </td>
+  <td><%= image.mime %></td>
+  <td><%=h image.size rescue 0 -%> bytes</td>
+  <td><%=h image.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
+  <td class="operation"><%= link_to _("delete"), {:action => 'destroy', :id => image.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td></tr>
+<% end %>
+
+</table>
