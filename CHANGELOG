@@ -1,44 +1,37 @@
-After 9 months of hard work, we're proud to announce the official release of Typo 5.4 Willy Ronis, the most advanced and user friendly blogging platform on Rails. Despite having a minor version number, Typo 5.4 is a major release, coming with a lot of new features and some bugfixes as Willy Ronis was a great photographer who died this year at the age of 99. Since Typo 5.4 fixes some major security issues, you should really think about upgrading.
+Only 1 week after releasing Typo 5.4, we're back with another cool Typo release. Since it was fixing a major security breach, Typo 5.4 was released a bit too quickly, and we left some bugs here and there we promptly fixed. So don't expect any new feature here, it's only about bug fixing and refactoring. Apparently, Matijs and Cyril had great fun doing this. I started to work on the first Typo user's guide as in our documentation effort. The 0.1 version is provided in Typo 5.4.1. We've also upgraded every theme at Typogarden to make them 5.4.1 compliant.
 
-Typo 5.4 is also a major release because we had many contributors from all over the world sending new features and fixes along this year. After contributing for a while, Matijs van Zuijlen (http://www.matijs.net/) finally joined the core team in late February and did a great job on this release. We would also like to thank, in alphabetical order: Diego Elio 'Flameeyes' Pettenò, Edward Middleton, Erik Ostrom, Hans de Graaff, Jakob Skov-Pedersen, Kurt Werle, Michael Reinsch, Mike Mondragon, Wei Jen Lu, Yuka Ouka, jzellman, and mpagalan.
+Since we're still working on what we want to see in the next Typo, don't mind opening a ticket to ask for something you want.
 
-So, what's new in Typo 5.4? A lot of things
+[#68] Atom feed has duplicated content
+There was a duplicate content in atom feed because of the use of atom:summary with extended content. Since summary is not mandatory, and it should not duplicate content, we've decided to remove it one from the feed. 
 
-= A brand new theme
-As we announced on our blog, Typo has now a default new theme. True Blue 3 is a port of the theme used at http://t37.net. Typographic is a great theme, but we needed something that would fit everyone's blog. Typographic is still proposed as a standard theme in Typo, but it's not the default theme anymore.
+[#75] <typo:code> textfilter need change all < by &lt; in atom feed
 
-= A brand new admin
-Once again, we've deeply changed the admin. It now comes in the same blue flavor we've been using on True Blue 3. Some things have moved, some others have disappeared. 
+[#86] Migrations out of necessary sequence
 
-= Performances improvement
-Performances improvement has been a huge part of the work on Typo 5.4. We followed 3 axes to give Typo better performances:
-  * Switching to Rails 2.3.4 divided the memory footprint by 2 since a major bug was fixed in this release.
-  * Removing lots of dead, legacy code made Typo slightly faster. It may break your theme though, but the changed are easy.
-  * Switching from Ruby Bluecloth to C Bluecloth 2 has surprising effects on page generation speed. Generating a page with 4500 comments switched from more than 2 minutes to about 2 seconds on our testing machines.
+[#124] &gt; and &lt; entities are decoded in the atom feed
 
-= Autosave for all
-Previsouly reserved to new posts only with the simple editor, autosave is now avaliable when you create and edit posts, on both simple and visual editor.
+[#126] Previews give an application error 
 
-= New visual editor
-Speaking of the visual editor, we've upgraded to the new CKEditor, aka FCKEditor 3. Lighter, producing better code, CKEditor is the new generation of visual web editors. CKEditor is now plugged to Typo resources engine, providing better backward compatibility with older blogs. Switch between simple and visual editor without losing content has also been fixed.
+[#127] Changing post's title changes the permalink slug
 
-= Articles preview
-A long awaited feature was the article preview during edition. It is now avaliable, so you can be sure of what you're going to publish.
+[#128] Fix typogarden themes
+Seems obvious isn't it?
 
-= User creation simplified
-Users creation from the front end has been simplified. You now just need to provide a login and an email, and you're done! 
+[#130] Theme editor textbox is too small
+There was actually wet paint in our new admin. We fixed that quickly.
 
-= Users public profiles
-Users public pages are back, coming with an improved profile, allowing you to display your msn, aim, or twitter id. You can also chose the name you'll display on screen, chosing from your login, real name, or anything else. Authors also have their RSS and Atom feed back. An author sidebar is now also avaliable.
+[#131] New Tags are created two times
+The way autosave on new / saved articles worked was quite complicated and ended with strange behavior.
 
-= Chinese support
-Simple Chinese joins the number of languages supported by Typo. Cool.
+[#132] Categories are brocken
+A typo in the category views.
 
-= Better Wordpress converter
-Wordpress converter has been greatly improved, fixing lots of points that made the import incomplete: pages imported as article, spam comments considered as ham, blog name and subtitle not imported... Switching to Typo has never been easier.
+[#133] Installer parameter database=sqlite3 doesn't work
+Awated parameter was database=sqlite, but since this could be confusing, we've made sqlite3 avaliable as well.
 
-= Secondary layout for pages
-Lost of users have been asking for the possibility to define a secondary layout for pages. It's now done. Just add a pages.html.erb in your theme layout directory, mix some HTML and Ruby and you're done!
+[#134] "Continue reading ..." link appears for posts that do not have additional content. 
+This one was actually the tree hiding the forest of all our themes being brocken because it constant renaming of the read controller and action name.
 
-= Cache unification
-Since we've fixed the static cache, we've decided to drop the cached model support along with the memcache support for cache model. It results in a lighter, simpler code, and less errors possible.
+
+
