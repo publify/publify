@@ -65,9 +65,8 @@ class Resource < ActiveRecord::Base
     return unless self.mime =~ /image/ or File.exists?(fullpath("thumb_#{self.filename}"))
     begin
       img_orig = Magick::Image.read(fullpath(self.filename)).first
-      img = img_orig.resize_to_fit(125,125)
-      file = File.open(fullpath("thumb_#{self.filename}"), "wb")
-      file.write(img.to_blob)
+      img = img_orig.resize_to_fit(125,125)    
+      img.write(fullpath("thumb_#{self.filename}"))
     rescue
       nil
     end
