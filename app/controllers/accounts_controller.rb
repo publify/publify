@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
 
   before_filter :verify_users, :only => [:login]
+  filter_parameter_logging "password"
 
   def login 
     if session[:user_id] && session[:user_id] == self.current_user.id
