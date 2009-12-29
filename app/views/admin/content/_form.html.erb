@@ -52,6 +52,15 @@
   <div id="editor">
     <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
       <script type="text/javascript">edToolbar('article_body_and_extended');</script>
+      <div id="carousel-wrapper">
+          <div id="carousel-content">
+            <% @images.each do |image| %>
+              <div class="slide">
+                <%= show_thumbnail_for_editor(image) %>
+              </div>
+            <% end %>
+          </div>
+      </div>
     </div>
     <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
     <div id='<%= "#{current_user.editor}_editor" %>'>
