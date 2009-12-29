@@ -147,6 +147,7 @@ class Admin::ContentController < Admin::BaseController
     params[:article] ||= {}
 
     @resources = Resource.find(:all, :order => 'filename')
+    @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.attributes = params[:article]
 
 

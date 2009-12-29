@@ -467,6 +467,17 @@ function edInsertImage(which) {
 	}
 }
 
+function edInsertImageFromCarousel(which, image) {
+    myField = document.getElementById(which);
+	if (image) {
+		myValue = '<img src="' 
+				+ image 
+				+ '" alt="' + prompt('Enter a description of the image', '') 
+				+ '" />';
+		edInsertContent(which, myValue);
+	}
+}
+
 function countInstances(string, substr) {
 	var count = string.split(substr);
 	return count.length - 1;

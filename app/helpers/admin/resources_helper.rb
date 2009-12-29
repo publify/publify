@@ -4,5 +4,5 @@ module Admin::ResourcesHelper
       
     "<img class='tumb' src='#{this_blog.base_url}/files/thumb_#{image.filename}' alt='#{this_blog.base_url}/files/#{image.filename}' />"  
   end
-  
+    
 end

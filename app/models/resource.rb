@@ -72,7 +72,6 @@ class Resource < ActiveRecord::Base
     end
   end
 
-  
 
   protected
   def uniq_filename_on_disk

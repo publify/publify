@@ -221,4 +221,14 @@ module Admin::BaseHelper
       return "<tr><td colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
     end
   end 
+  
+  def show_thumbnail_for_editor(image)
+    image.create_thumbnail unless File.exists? "#{RAILS_ROOT}/public/files/thumb_#{image.filename}"
+    
+    picture = "<img class='tumb' src='#{this_blog.base_url}/files/thumb_#{image.filename}' "
+    picture << "alt='#{this_blog.base_url}/files/#{image.filename}' "
+    picture << " onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{this_blog.base_url}/files/#{image.filename}');\" />"
+    return picture
+  end
+  
 end
