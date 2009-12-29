@@ -676,10 +676,13 @@ td.paginate {
     overflow: hidden;
 }
 #carousel-content {
-    width: 1500px;
+    width: 1400px;
 }
 #carousel-content .slide {
     float: left;
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 125px;
+    padding: 10px 0;
+    background: #8AE3F9;
+    text-align: center;
 }

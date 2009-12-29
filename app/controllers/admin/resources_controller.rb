@@ -86,6 +86,15 @@ class Admin::ResourcesController < Admin::BaseController
     @resources = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
   end
   
+  def get_thumbnails
+    position = params[:position].to_i
+    
+    @resources = Resource.find(:all, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :limit => "#{position}, 10")
+    
+    render 'get_thumbnails', :layout => false
+    
+  end
+  
   def destroy
     begin
       @file = Resource.find(params[:id])

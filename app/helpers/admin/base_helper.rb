@@ -223,9 +223,15 @@ module Admin::BaseHelper
   end 
   
   def show_thumbnail_for_editor(image)
-    image.create_thumbnail unless File.exists? "#{RAILS_ROOT}/public/files/thumb_#{image.filename}"
+    thumb = "#{RAILS_ROOT}/public/files/thumb_#{image.filename}"
+    picture = "#{this_blog.base_url}/files/#{image.filename}"
     
-    picture = "<img class='tumb' src='#{this_blog.base_url}/files/thumb_#{image.filename}' "
+    image.create_thumbnail unless File.exists? thumb
+    
+    # If something went wrong with thumbnail generation, we just display a place holder
+    thumbnail = (File.exists? thumb) ? "#{this_blog.base_url}/files/thumb_#{image.filename}" : "#{this_blog.base_url}/images/thumb_blank.jpg" 
+    
+    picture = "<img class='tumb' src='#{thumbnail}' "
     picture << "alt='#{this_blog.base_url}/files/#{image.filename}' "
     picture << " onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{this_blog.base_url}/files/#{image.filename}');\" />"
     return picture
