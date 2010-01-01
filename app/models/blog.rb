@@ -10,11 +10,13 @@ class BlogRequest
   end
 end
 
-# The Blog class represents one blog.  It stores most configuration settings
-# and is linked to most of the assorted content classes via has_many.
+# The Blog class represents the one and only blog.  It stores most
+# configuration settings and is linked to most of the assorted content
+# classes via has_many.
 #
-# Typo decides which Blog object to use by searching for a Blog base_url that
-# matches the base_url computed for each request.
+# Once upon a time, there were plans to make typo handle multiple blogs,
+# but it never happened and typo is now firmly single-blog.
+#
 class Blog < ActiveRecord::Base
   include ConfigManager
   extend ActiveSupport::Memoizable
@@ -98,14 +100,8 @@ class Blog < ActiveRecord::Base
     end
   end
 
-  # Find the Blog that matches a specific base URL.  If no Blog object is found
-  # that matches, then grab the default blog.  If *that* fails, then create a new
-  # Blog.  The last case should only be used when Typo is first installed.
-  def self.find_blog(base_url)
-    Blog.default || Blog.create
-  end
-
-  # The default Blog.  This is the lowest-numbered blog, almost always id==1.
+  # The default Blog. This is the lowest-numbered blog, almost always
+  # id==1. This should be the only blog as well.
   def self.default
     find(:first, :order => 'id')
   rescue
@@ -145,8 +141,8 @@ class Blog < ActiveRecord::Base
   # without needing a controller handy, so we can produce URLs from within models
   # where appropriate.
   #
-  # It also uses our new RouteCache, so repeated URL generation requests should be
-  # fast, as they bypass all of Rails' route logic.
+  # It also caches the result in the RouteCache, so repeated URL generation
+  # requests should be fast, as they bypass all of Rails' route logic.
   def url_for(options = {}, extra_params = {})
     case options
     when String

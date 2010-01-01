@@ -52,9 +52,7 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
-  # The Blog object for the blog that matches the current request.  This is looked
-  # up using Blog.find_blog and cached for the lifetime of the controller instance;
-  # generally one request.
+  # Helper method to get the blog object.
   def this_blog
     @blog ||= Blog.default
   end
@@ -62,8 +60,7 @@ class ApplicationController < ActionController::Base
   helper_method :this_blog
 
   # The base URL for this request, calculated by looking up the URL for the main
-  # blog index page.  This is matched with Blog#base_url to determine which Blog
-  # is supposed to handle this URL
+  # blog index page.
   def blog_base_url
     url_for(:controller => '/articles').gsub(%r{/$},'')
   end
