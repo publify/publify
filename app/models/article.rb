@@ -156,7 +156,7 @@ class Article < Content
     end
   end
 
-  def permalink_url(anchor=nil, only_path=true)
+  def permalink_url(anchor=nil, only_path=false)
     @cached_permalink_url ||= {}
 
     @cached_permalink_url["#{anchor}#{only_path}"] ||= \
@@ -181,7 +181,7 @@ class Article < Content
   end
 
   def trackback_url
-    blog.url_for("trackbacks?article_id=#{self.id}", :only_path => true)
+    blog.url_for("trackbacks?article_id=#{self.id}", :only_path => false)
   end
 
   def permalink_by_format(format=nil)
@@ -197,11 +197,11 @@ class Article < Content
   end
 
   def comment_url
-    blog.url_for("comments?article_id=#{self.id}", :only_path => true)
+    blog.url_for("comments?article_id=#{self.id}", :only_path => false)
   end
 
   def preview_comment_url
-    blog.url_for("comments/preview?article_id=#{self.id}", :only_path => true)
+    blog.url_for("comments/preview?article_id=#{self.id}", :only_path => false)
   end
 
   def feed_url(format = :rss20)

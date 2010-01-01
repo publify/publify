@@ -35,7 +35,7 @@ class Feedback < Content
     article
   end
 
-  def permalink_url(anchor=:ignored, only_path=true)
+  def permalink_url(anchor=:ignored, only_path=false)
     article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
   end
 
