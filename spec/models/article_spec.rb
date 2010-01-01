@@ -428,21 +428,27 @@ describe Article do
 
   describe '#published_at_like' do
     before do
-      @article_last_month = Factory(:article, :published_at => 1.month.ago)
-      @article_2_last_month = Factory(:article, :published_at => 1.month.ago)
-
+      # Note: these choices of times depend on no other articles within
+      # these timeframes existing in test/fixtures/contents.yaml.
+      # In particular, all articles there are from 2005 or earlier, which
+      # is now more than two years ago, except for two, which are from
+      # yesterday and the day before. The existence of those two makes
+      # 1.month.ago not suitable, because yesterday can be last month.
       @article_two_month_ago = Factory(:article, :published_at => 2.month.ago)
-      @article_2_two_month_ago = Factory(:article, :published_at => (2.month.ago - 1.day))
+
+      @article_four_months_ago = Factory(:article, :published_at => 4.month.ago)
+      @article_2_four_months_ago = Factory(:article, :published_at => 4.month.ago)
+
       @article_two_year_ago = Factory(:article, :published_at => 2.year.ago)
       @article_2_two_year_ago = Factory(:article, :published_at => 2.year.ago)
     end
 
-    it 'should return all content on this year if year send' do
+    it 'should return all content for the year if only year sent' do
       Article.published_at_like(2.year.ago.strftime('%Y')).map(&:id).sort.should == [@article_two_year_ago.id, @article_2_two_year_ago.id].sort
     end
 
-    it 'should return all content on this month if month send' do
-      Article.published_at_like(1.month.ago.strftime('%Y-%m')).map(&:id).sort.should == [@article_last_month.id, @article_2_last_month.id].sort
+    it 'should return all content for the month if year and month sent' do
+      Article.published_at_like(4.month.ago.strftime('%Y-%m')).map(&:id).sort.should == [@article_four_months_ago.id, @article_2_four_months_ago.id].sort
     end
 
     it 'should return all content on this date if date send' do
