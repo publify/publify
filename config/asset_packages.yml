@@ -1,0 +1,12 @@
+javascripts: 
+- base: 
+  - cookies
+  - prototype
+  - effects
+  - builder
+  - typo
+stylesheets: 
+- base: 
+  - coderay
+  - user-styles
+  
