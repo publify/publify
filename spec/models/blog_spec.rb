@@ -1,7 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Given the first Blog fixture" do
-  before(:each) { @blog = blogs(:default) }
+  before(:each) {
+    Blog.destroy_all
+    RouteCache.clear
+    @blog = Factory.create :blog
+  }
 
   it ":blog_name == 'test blog'" do
     @blog.blog_name.should == 'test blog'
@@ -16,10 +20,53 @@ describe "Given the first Blog fixture" do
     end
   end
 
-  it "blog.url_for does the right thing" do
-    @blog.url_for(:controller => 'articles', :action => 'read', :id => 1).should == 'http://myblog.net/articles/read/1'
+  describe "running in the host root" do
+    it ":base_url == 'http://myblog.net/'" do
+      @blog.base_url.should == 'http://myblog.net'
+    end
+
+    describe "blog.url_for" do
+      it "should return the correct URL for a hash argument" do
+        @blog.url_for(:controller => 'articles', :action => 'read', :id => 1).should == 'http://myblog.net/articles/read/1'
+      end
+      it "should return the correct URL for a hash argument with only_path" do
+        @blog.base_url.should == 'http://myblog.net'
+        @blog.url_for(:controller => 'articles', :action => 'read', :id => 1,
+                     :only_path => true).should == '/articles/read/1'
+      end
+      it "should return the correct URL for a string argument" do
+        @blog.url_for('articles/read/1').should == 'http://myblog.net/articles/read/1'
+      end
+      it "should return the correct URL for a hash argument with only_path" do
+        @blog.url_for('articles/read/1', :only_path => true).should == '/articles/read/1'
+      end
+    end
   end
 
+  describe "running in a sub-URI" do
+    before :each do
+      @blog.base_url = 'http://myblog.net/sub-uri'
+    end
+
+    describe "blog.url_for" do
+      it "should return the correct URL for a hash argument" do
+        @blog.url_for(:controller => 'articles', :action => 'read',
+                      :id => 1).should == 'http://myblog.net/sub-uri/articles/read/1'
+      end
+      it "should return the correct URL for a hash argument with only_path" do
+        @blog.url_for(:controller => 'articles', :action => 'read', :id => 1,
+                     :only_path => true).should == '/sub-uri/articles/read/1'
+      end
+      it "should return the correct URL for a string argument" do
+        @blog.url_for('articles/read/1'
+                     ).should == 'http://myblog.net/sub-uri/articles/read/1'
+      end
+      it "should return the correct URL for a hash argument with only_path" do
+        @blog.url_for('articles/read/1',
+                      :only_path => true).should == '/sub-uri/articles/read/1'
+      end
+    end
+  end
   it "should be the only blog allowed" do
     Blog.new.should_not be_valid
   end

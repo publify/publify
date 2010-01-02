@@ -4,9 +4,14 @@ class BlogRequest
   attr_accessor :protocol, :host_with_port, :path, :symbolized_path_parameters, :relative_url_root
 
   def initialize(root)
-    @protocol = @host_with_port = @path = ''
+    unless root =~ /(https?):\/\/([^\/]*)(.*)/
+      raise "Invalid root argument: #{root}"
+    end
+    @protocol = $1
+    @host_with_port = $2
+    @relative_url_root = $3.gsub(%r{/$},'')
+    @path = ''
     @symbolized_path_parameters = {}
-    @relative_url_root = root.gsub(%r{/$},'')
   end
 end
 
@@ -144,27 +149,28 @@ class Blog < ActiveRecord::Base
   # It also caches the result in the RouteCache, so repeated URL generation
   # requests should be fast, as they bypass all of Rails' route logic.
   def url_for(options = {}, extra_params = {})
+    @request ||= BlogRequest.new(self.base_url)
     case options
     when String
-      url_generated = ''
-      url_generated = self.base_url if !extra_params[:only_path]
+      if extra_params[:only_path]
+        url_generated = @request.relative_url_root
+      else
+        url_generated = self.base_url
+      end
       url_generated += "/#{options}" # They asked for 'url_for "/some/path"', so return it unedited.
       url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
       url_generated
     when Hash
       unless RouteCache[options]
-        options.reverse_merge!(:only_path => true, :controller => '',
+        options.reverse_merge!(:only_path => false, :controller => '',
                                :action => 'permalink')
-        # In Rails > 2.2 the rewrite method use
-        # ActionController::Base.relative_url_root instead of
-        # @request.relative_url_root
+        @url ||= ActionController::UrlRewriter.new(@request, {})
         if ActionController::Base.relative_url_root.nil?
           old_relative_url = nil
         else
           old_relative_url = ActionController::Base.relative_url_root.dup
         end
-        ActionController::Base.relative_url_root = self.base_url
-        @url ||= ActionController::UrlRewriter.new(BlogRequest.new(self.base_url), {})
+        ActionController::Base.relative_url_root = @request.relative_url_root
         RouteCache[options] = @url.rewrite(options)
         ActionController::Base.relative_url_root = old_relative_url
       end

@@ -16,7 +16,7 @@ class Page < Content
     eval(list_function.join('.'))
   end
 
-  def permalink_url(anchor=nil, only_path=true)
+  def permalink_url(anchor=nil, only_path=false)
     blog.url_for(
       :controller => '/articles',
       :action => 'view_page',

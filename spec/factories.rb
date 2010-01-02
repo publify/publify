@@ -31,6 +31,8 @@ Factory.define :article_with_accent_in_html, :parent => :article do |a|
 end
 
 Factory.define :blog do |b|
+  b.base_url 'http://myblog.net'
+  b.blog_name 'test blog'
 end
 
 Factory.define :profile_admin, :class => :profile do |l|
