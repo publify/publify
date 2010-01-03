@@ -155,6 +155,10 @@ describe Admin::ContentController do
 
     it 'should create' do
       begin
+        u = users(:randomuser)
+        u.notify_via_email = true
+        u.notify_on_new_articles = true
+        u.save!
         ActionMailer::Base.perform_deliveries = true
         ActionMailer::Base.deliveries = []
         category = Factory(:category)

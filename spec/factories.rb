@@ -4,18 +4,29 @@ Factory.sequence :user do |n|
   "user#{n}"
 end
 
+Factory.sequence :guid do |n|
+  "deadbeef#{n}"
+end
+
 Factory.define :user do |u|
   u.login { Factory.next(:user) }
   u.email 'some.where@out.there'
+  u.notify_via_email false
+  u.notify_on_new_articles false
+  u.notify_watch_my_articles false
+  u.notify_on_comments false
   u.password 'top-secret'
 end
 
 Factory.define :article do |a|
   a.title 'A big article'
   a.body 'A content with several data'
+  a.guid { Factory.next(:guid) }
   a.permalink 'a-big-article'
   a.published_at Time.now
-  a.association :user, :factory => :user
+  # Using an existing user avoids the password reminder mail overhead
+  a.user { User.find(:first) }
+  #a.association :user, :factory => :user
 end
 
 Factory.define :second_article, :parent => :article do |a|

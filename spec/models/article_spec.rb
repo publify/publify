@@ -21,6 +21,7 @@ describe Article do
     end
     it 'should store user too' do
       a = Factory(:article)
+      a.user.should be_valid
       Article.find(a.id).user.should_not be_nil
     end
     it 'should create multiple valid articles' do
@@ -299,6 +300,9 @@ describe Article do
   end
 
   it 'should notify' do
+    [:randomuser, :bob].each do |tag|
+      u = users(tag); u.notify_on_new_articles = true; u.save!
+    end
     a = Article.new(:title => 'New Article', :body => 'Foo', :author => 'Tobi', :user => users(:tobi))
     assert a.save
 

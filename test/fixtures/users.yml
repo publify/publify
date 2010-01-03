@@ -5,9 +5,10 @@ tobi:
   password: ea0f5fd4398054c1c7aa0fbc7aaea30914a14441 # whatever
   name: Tobi
   email: tobi@example.com
-  notify_via_email: true
+  notify_via_email: false
   notify_on_new_articles: false
-  notify_on_comments: true
+  notify_on_comments: false
+  notify_watch_my_articles: false
   profile: admin
   text_filter: markdown_filter
   state: active
@@ -19,8 +20,9 @@ bob:
   name: Bob
   email: bob@example.com
   notify_via_email: false
-  notify_on_new_articles: true
+  notify_on_new_articles: false
   notify_on_comments: false
+  notify_watch_my_articles: false
   profile: admin
   text_filter: none_filter
   state: active
@@ -31,9 +33,10 @@ existingbob:
   password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
   name: Also Bob
   email: alsobob@example.com
-  notify_via_email: true
+  notify_via_email: false
   notify_on_new_articles: false
   notify_on_comments: false
+  notify_watch_my_articles: false
   profile: admin
   text_filter: markdown_filter
   state: active
@@ -47,6 +50,7 @@ longbob:
   notify_via_email: false
   notify_on_new_articles: false
   notify_on_comments: false
+  notify_watch_my_articles: false
   profile: admin
   text_filter: markdown_filter
   state: active
@@ -57,9 +61,10 @@ randomuser:
   password: 8e9b1a9a38e66ca572a5e8fdac8e256848842dfa # longtest
   name: Random User
   email: randomuser@example.com
-  notify_via_email: true
-  notify_on_new_articles: true
-  notify_on_comments: true
+  notify_via_email: false
+  notify_on_new_articles: false
+  notify_on_comments: false
+  notify_watch_my_articles: false
   profile: admin
   text_filter: none_filter
   state: active
@@ -73,6 +78,7 @@ user_publisher:
   notify_via_email: false
   notify_on_new_articles: false
   notify_on_comments: false
+  notify_watch_my_articles: false
   profile: publisher
   text_filter: markdown_filter
   state: active
@@ -86,6 +92,7 @@ inactive_user:
   notify_via_email: false
   notify_on_new_articles: false
   notify_on_comments: false
+  notify_watch_my_articles: false
   profile: publisher
   text_filter: markdown_filter
   state: inactive
