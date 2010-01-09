@@ -451,9 +451,7 @@ class Article < Content
   end
 
   def rss_comments(xml)
-    iri = permalink_url
-    uri = Addressable::URI.parse(iri).normalize
-    xml.comments(uri + "#comments")
+    xml.comments(normalized_permalink_url + "#comments")
   end
 
   def link_to_author?
