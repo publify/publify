@@ -1,5 +1,5 @@
 require 'tempfile'
-require 'RMagick'
+require 'mini_magick'
 
 class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
@@ -63,10 +63,11 @@ class Resource < ActiveRecord::Base
 
   def create_thumbnail
     return unless self.mime =~ /image/ or File.exists?(fullpath("thumb_#{self.filename}"))
+    return unless File.exists?(fullpath("#{self.filename}"))
     begin
-      img_orig = Magick::Image.read(fullpath(self.filename)).first
-      img = img_orig.resize_to_fit(125,125)    
-      img.write(fullpath("thumb_#{self.filename}"))
+      img_orig = MiniMagick::Image.from_file(fullpath(self.filename))
+      img_orig = img_orig.resize('125x125')
+      img_orig.write(fullpath("thumb_#{self.filename}"))
     rescue
       nil
     end
