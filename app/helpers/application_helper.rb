@@ -161,8 +161,8 @@ module ApplicationHelper
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ feed_atom }" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ feed_rss }" />
-  #{ javascript_include_merged :base }
-  #{ stylesheet_link_merged :base }
+  #{ javascript_include_tag 'cookies', 'prototype', 'effects', 'builder', 'typo', :cache => true }
+  #{ stylesheet_link_tag 'coderay', 'user-styles', :cache => true }
   #{ javascript_include_lang }
   #{ javascript_tag "window._token = '#{form_authenticity_token}'"}
   #{ page_header_includes.join("\n") }
