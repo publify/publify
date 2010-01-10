@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require 'xml_controller'
 require 'dns_mock'
 
 describe XmlController do
@@ -11,10 +10,7 @@ describe XmlController do
   end
 
   before do
-    Article.create!(:title => "News from the future!",
-                    :body => "The future is cool!",
-                    :keywords => "future",
-                    :created_at => Time.now + 12.minutes)
+    @article = Factory.create(:article)
   end
 
   def assert_moved_permanently_to(location)
@@ -42,8 +38,8 @@ describe XmlController do
     end
 
     it "redirects article feed to Article RSS feed" do
-      get :feed, :type => 'article', :id => contents(:article1).id
-      assert_moved_permanently_to contents(:article1).permalink_by_format(:rss)
+      get :feed, :type => 'article', :id => @article.id
+      assert_moved_permanently_to @article.permalink_by_format(:rss)
     end
 
     it "redirects category feed to Category RSS feed" do
@@ -76,8 +72,8 @@ describe XmlController do
   end
 
   it "test_feed_rss20_article" do
-    get :feed, :format => 'rss20', :type => 'article', :id => contents(:article1).id
-    assert_moved_permanently_to contents(:article1).permalink_by_format(:rss)
+    get :feed, :format => 'rss20', :type => 'article', :id => @article.id
+    assert_moved_permanently_to @article.permalink_by_format(:rss)
   end
 
   it "test_feed_rss20_category" do
@@ -118,8 +114,8 @@ describe XmlController do
   end
 
   it "test_feed_atom10_article" do
-    get :feed, :format => 'atom10', :type => 'article', :id => contents(:article1).id
-    assert_moved_permanently_to contents(:article1).permalink_by_format('atom')
+    get :feed, :format => 'atom10', :type => 'article', :id => @article.id
+    assert_moved_permanently_to @article.permalink_by_format('atom')
   end
 
   it "test_feed_atom10_category" do
@@ -133,7 +129,7 @@ describe XmlController do
   end
 
   it "test_articlerss" do
-    get :articlerss, :id => contents(:article1).id
+    get :articlerss, :id => @article.id
     assert_response :redirect
   end
 
@@ -192,9 +188,5 @@ describe XmlController do
 
   def assert_atom10
     assert_select 'feed:root[xmlns="http://www.w3.org/2005/Atom"] > entry', :count => assigns(:items).size
-  end
-
-  def set_extended_on_rss(value)
-    this_blog.show_extended_on_rss = value
   end
 end

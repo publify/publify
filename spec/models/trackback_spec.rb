@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe 'With the various trackback filters loaded and DNS mocked out appropriately' do
+describe Trackback, 'With the various trackback filters loaded and DNS mocked out appropriately' do
   before(:each) do
     IPSocket.stub!(:getaddress).and_return { raise SocketError.new("getaddrinfo: Name or service not known") }
     @blog = Blog.default
