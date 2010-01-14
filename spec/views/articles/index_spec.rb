@@ -33,6 +33,10 @@ with_each_theme do |theme, view_path|
         response.should have_tag("p", "body")
         response.should_not have_tag("p>p", "body")
       end
+
+      it "should not have div nested inside p" do
+	response.should_not have_tag("p>div")
+      end
     end
 
     # *notice
