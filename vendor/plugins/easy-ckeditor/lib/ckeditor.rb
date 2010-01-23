@@ -76,8 +76,7 @@ module Ckeditor
     alias_method :ckeditor_form_remote_for, :ckeditor_remote_form_for
 
     def ckeditor_element_id(object, field)
-      id = eval("@#{object}.id")
-      "#{object}_#{id}_#{field}_editor"
+      "#{object}__#{field}_editor"
     end
 
     def ckeditor_div_id(object, field)

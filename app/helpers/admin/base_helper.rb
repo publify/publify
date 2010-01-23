@@ -132,12 +132,6 @@ module Admin::BaseHelper
     controller.controller_name  =~ /profiles/ ? "current right" : "right"
   end
   
-
-  def t_textarea(object_name, method, options)
-    return ckeditor_textarea(object_name, method, options) if current_user.editor == 'visual'
-    text_area(object_name, method, options)
-  end
-
   def alternate_editor
     return 'visual' if current_user.editor == 'simple'
     return 'simple'

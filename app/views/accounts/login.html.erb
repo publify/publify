@@ -25,7 +25,8 @@
 </p>
 
     <p>
-    <small><%= link_to "&laquo; #{_('Back to ')} #{this_blog.blog_name}", this_blog.base_url %></small>
+    <small><%= link_to "&laquo; #{_('Back to ')} #{this_blog.blog_name}", this_blog.base_url %></small><br />
+    <small><%= link_to "#{_("I've lost my password")} &raquo;", :action => 'recover_password' %></small>
     </p>
     <% end %>
   </div>

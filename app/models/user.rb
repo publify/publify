@@ -165,6 +165,7 @@ class User < ActiveRecord::Base
       user = self.class.find(self.id)
       self.password = user.password
     else
+      send_create_notification
       write_attribute "password", self.class.sha1(password(true))
       @password = nil
     end

@@ -1,37 +1,23 @@
-Only 1 week after releasing Typo 5.4, we're back with another cool Typo release. Since it was fixing a major security breach, Typo 5.4 was released a bit too quickly, and we left some bugs here and there we promptly fixed. So don't expect any new feature here, it's only about bug fixing and refactoring. Apparently, Matijs and Cyril had great fun doing this. I started to work on the first Typo user's guide as in our documentation effort. The 0.1 version is provided in Typo 5.4.1. We've also upgraded every theme at Typogarden to make them 5.4.1 compliant.
+3 weeks after releasing Typo 5.4.1, and only 1 month after releasing Typo 5.4, we're happy to release Typo 5.4.2, an important bugfix release. Don't expect many feature here, even though we thought about some of them, it's really a bugfix, and nothing else.
 
-Since we're still working on what we want to see in the next Typo, don't mind opening a ticket to ask for something you want.
+** Features
 
-[#68] Atom feed has duplicated content
-There was a duplicate content in atom feed because of the use of atom:summary with extended content. Since summary is not mandatory, and it should not duplicate content, we've decided to remove it one from the feed. 
+We've split the attachments between images and non images assets. Provided you're using the simple editor, you can now use a fancy images carousel and insert your images in your text within a single click. This comes with a nice set of thumbnails.
 
-[#75] <typo:code> textfilter need change all < by &lt; in atom feed
+Finally, the long awaited "forgot my password" link is here. It will send you a new password whenever you lose yours. Cool isn't it?
 
-[#86] Migrations out of necessary sequence
+We've also done some optimization in the way Typo sends assets and manages cache. CSS and Javascript are now sent into 1 file, making them faster to load. RSS generation has also been fastened up.
 
-[#124] &gt; and &lt; entities are decoded in the atom feed
+** Bugs
 
-[#126] Previews give an application error 
+A bug screwing up the editor when switching from simple to visual, causing users to lose their content when switching. Fixing that is a good reason to release today in itself.
 
-[#127] Changing post's title changes the permalink slug
+A bug preventing your registration email to go when creating your account, making you lose your password unless you change it manually before logging out.
 
-[#128] Fix typogarden themes
-Seems obvious isn't it?
+Fixed a security issue making the user passwords to be logged in clear in the application logs.
 
-[#130] Theme editor textbox is too small
-There was actually wet paint in our new admin. We fixed that quickly.
+Fixed a bug causing CKEditor to crash under MS Windows due to the lack of symlinks on windows.
 
-[#131] New Tags are created two times
-The way autosave on new / saved articles worked was quite complicated and ended with strange behavior.
-
-[#132] Categories are brocken
-A typo in the category views.
-
-[#133] Installer parameter database=sqlite3 doesn't work
-Awated parameter was database=sqlite, but since this could be confusing, we've made sqlite3 avaliable as well.
-
-[#134] "Continue reading ..." link appears for posts that do not have additional content. 
-This one was actually the tree hiding the forest of all our themes being brocken because it constant renaming of the read controller and action name.
 
 
 

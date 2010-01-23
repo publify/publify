@@ -49,10 +49,10 @@ module CkeditorFileUtils
       unless File.symlink?(config_symlink)
         FileUtils.rm(backup_config) if File.exist?(backup_config)
         FileUtils.mv(config_symlink,backup_config)
-        FileUtils.ln_s(dest, config_symlink)
+        FileUtils.cp(dest, config_symlink)
       end
     else
-      FileUtils.ln_s(dest, config_symlink)
+      FileUtils.cp(dest, config_symlink)
     end
   end
 

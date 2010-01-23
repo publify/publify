@@ -6,6 +6,11 @@
   $('f').className = 'active';
   $('text_filter').value = 'none';
   html = $('article_body_and_extended').value;
+  
+  if (CKEDITOR.instances.article__body_and_extended_editor &&
+    typeof(CKEDITOR.instances.article__body_and_extended_editor) == 'object') {
+      delete(CKEDITOR.instances.article__body_and_extended_editor);
+    }
 </script>
 <%= ckeditor_textarea('article', 'body_and_extended', {:height => '300', :class => 'medium'}) %>
 <script type="text/javascript">

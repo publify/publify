@@ -150,6 +150,26 @@ describe 'GET /login' do
   end
 end
 
+describe 'GET /login with 0 existing users' do
+  controller_name :accounts
+
+  before(:each) do
+    User.stub!(:count).and_return(0)
+  end
+
+  it 'should render action :signup' do
+    get 'login'
+    response.should redirect_to(:action => 'signup')
+    assigns[:login].should be_nil
+  end
+
+  it 'should render :signup' do
+    get 'recover_password'
+
+    response.should redirect_to(:action => 'signup')
+  end
+end
+
 describe 'GET signup and >0 existing user' do
   controller_name :accounts
 
@@ -281,5 +301,32 @@ describe 'User is logged in' do
     get 'logout'
     cookies[:auth_token].should == nil
     cookies[:typo_user_profile].should == nil
+  end
+end
+
+describe 'User has lost his password and send a good email' do
+  controller_name :accounts
+  
+  before(:each) do
+    @user = mock_model(User, :new_record? => false, :reload => @user)
+    @user.stub!(:profile).and_return(Profile.find_by_label('admin'))
+    User.stub!(:find_by_login).with('tobi').and_return(@user)
+    User.stub!(:count).and_return(1)
+  end
+  
+  it 'should render recover_password' do
+    get 'recover_password'
+    
+    response.should render_template('recover_password')
+  end
+  
+  it 'should render login' do
+    make_request
+    
+    response.should redirect_to(:action => 'login')
+  end
+  
+  def make_request
+   post 'recover_password', {:user => {:login => 'tobi'}}
   end
 end

@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
 
-  before_filter :verify_users, :only => [:login]
+  before_filter :verify_users, :only => [:login, :recover_password]
   filter_parameter_logging "password"
 
   def login 
@@ -63,6 +63,22 @@ class AccountsController < ApplicationController
         
         redirect_to :controller => "accounts", :action => "confirm"
         return
+      end
+    end
+  end
+  
+  def recover_password
+    @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
+    if request.post?
+      @user = User.find(:first, :conditions => ["login = ? or email = ?", params[:user][:login], params[:user][:login]])
+      
+      if @user
+        @user.password = generate_password
+        @user.save
+        flash[:notice] = _("An email has been successfully sent to your address with your new password")
+        redirect_to :action => 'login'
+      else
+        flash[:error] = _("Oops, something wrong just happened")
       end
     end
   end

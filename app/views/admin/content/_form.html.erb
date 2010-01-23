@@ -50,27 +50,16 @@
     </span>
   </div>
   <div id="editor">
-    <a href="javascript:" class="carousel-control" rel="prev">Previous</a>
-    <div id="carousel-wrapper">
-        <div id="carousel-content">
-          <% @images.each do |image| %>
-            <div class="slide">
-              <%= show_thumbnail_for_editor(image) %>
-            </div>
-          <% end %>
-        </div>
-    </div>
-    <a href="javascript:" class="carousel-control" rel="next">Next</a>
-    <script type='text/javascript'>
-    new Carousel('carousel-wrapper', $$('#carousel-content .slide'), $$('a.carousel-control', 'a.carousel-jumper'), {duration: 0.4, circular: false});
-    </script>
+    <%= render(:partial => 'images', :object => @images) unless @images.empty? %>
     <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
       <script type="text/javascript">edToolbar('article_body_and_extended');</script>
     </div>
-    <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
-    <div id='<%= "#{current_user.editor}_editor" %>'>
-      <%= t_textarea('article', 'body_and_extended', {:height => '300px', :class => 'large', :height => '300px', :rows => '15'}) %>
-      <%= render_macros(@macros) if current_user.editor == 'simple' %>
+    <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
+      <%= ckeditor_textarea('article', 'body_and_extended', {:height => '300px', :class => 'large', :height => '300px', :rows => '15'}) if current_user.editor == 'visual' %>
+    </div>
+    <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
+      <%= text_area('article', 'body_and_extended', {:height => '300px', :class => 'large', :height => '300px', :rows => '15'}) %>
+      <%= render_macros(@macros) if current_user.editor == 'simple' %>  
     </div>
   </div>
   <div class='editor_bottom'>
@@ -86,7 +75,7 @@
 
   <h3><label for='article_excerpt'><%= _("Excerpt") %></label></h3>
   <div class='blue_block'>
-    <%= t_textarea 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '4'} %>
+    <%= text_area 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '5'} %>
     <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself")%></p>
   </div>
 
