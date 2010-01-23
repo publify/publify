@@ -4,11 +4,15 @@
   $('visual_editor').style.display = 'block';
   $('s').className = 'inactive';
   $('f').className = 'active';
+  html = $('page_body').value;  
   
-  if (typeof(html2) != 'undefined') {
-    html2 = null;
-  }
-  html2 = $('page_body').innerHTML;
-  
+  if (CKEDITOR.instances.page__body_editor &&
+    typeof(CKEDITOR.instances.page__body_editor) == 'object') {
+      delete(CKEDITOR.instances.page__body_editor);
+    }
+    
 </script>
 <%= ckeditor_textarea('page', 'body', {:height => '300', :class => 'medium'}) %>
+<script type="text/javascript">
+  content = CKEDITOR.instances.page__body_editor.setData(html);
+</script>
