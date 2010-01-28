@@ -408,7 +408,7 @@ class Article < Content
 
   # The web interface no longer distinguishes between separate "body" and
   # "extended" fields, and instead edits everything in a single edit field,
-  # separating the extended content using "<!--more-->".
+  # separating the extended content using "\<!--more-->".
   def body_and_extended
     if extended.nil? || extended.empty?
       body
@@ -417,7 +417,7 @@ class Article < Content
     end
   end
 
-  # Split apart value around a "<!--more-->" comment and assign it to our
+  # Split apart value around a "\<!--more-->" comment and assign it to our
   # #body and #extended fields.
   def body_and_extended= value
     parts = value.split(/\n?<!--more-->\n?/, 2)
