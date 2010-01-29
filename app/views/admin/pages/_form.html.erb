@@ -36,10 +36,10 @@
       <script type="text/javascript">edToolbar('page_body');</script>
     </div>
     <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
-      <%= ckeditor_textarea('page', 'body', {:height => '300px', :class => 'large', :height => '300px', :rows => '15'}) if current_user.editor == 'visual' %>
+      <%= ckeditor_textarea('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
     </div>
     <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
-      <%= text_area('page', 'body', {:height => '300px', :class => 'large', :height => '300px', :rows => '15'}) %>
+      <%= text_area('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) %>
       <%= render_macros(@macros) if current_user.editor == 'simple' %>  
     </div>
   </div>
