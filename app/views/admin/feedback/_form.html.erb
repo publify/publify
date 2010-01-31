@@ -8,19 +8,19 @@
   <div>
     <label for="comment_author" class='float'><%= _("Author")%></label>
     <p class='input_text_title'>
-      <%= text_field 'comment', 'author', :class => 'small medium' %>
-    </p>
-  </div>
-  <div>
-    <label for="comment_url" class='float'><%= _("Url") %></label>
-    <p class='input_text_title'>
-      <%= text_field 'comment', 'url', :class => 'small medium' %>
+      <%= text_field 'comment', 'author', :class => 'small medium', :value => current_user.display_name %>
     </p>
   </div>
   <div>
     <label for="comment_email" class='float'><%= _("Email")%></label>
     <p class='input_text_title'>
-      <%= text_field 'comment', 'email', :class => 'small medium' %>
+      <%= text_field 'comment', 'email', :class => 'small medium', :value => current_user.email %>
+    </p>
+  </div>
+  <div>
+    <label for="comment_url" class='float'><%= _("Url") %></label>
+    <p class='input_text_title'>
+      <%= text_field 'comment', 'url', :class => 'small medium', :value => current_user.url %>
     </p>
   </div>
   <div>
