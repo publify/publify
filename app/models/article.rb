@@ -100,7 +100,7 @@ class Article < Content
         list_function << 'category(search_hash[:category])'
       end
 
-      paginate_hash[:order] = 'created_at DESC'
+      paginate_hash[:order] = 'published_at DESC'
       list_function << "paginate(paginate_hash)"
       eval(list_function.join('.'))
     end
