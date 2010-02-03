@@ -4,6 +4,7 @@
   $('visual_editor').style.display = 'block';
   $('s').className = 'inactive';
   $('f').className = 'active';
+  $('text_filter').value = 'none';
   html = $('page_body').value;  
   
   if (CKEDITOR.instances.page__body_editor &&
@@ -12,7 +13,7 @@
     }
     
 </script>
-<%= ckeditor_textarea('page', 'body', {:height => '300', :class => 'medium'}) %>
+<%= ckeditor_textarea('page', 'body', {:height => '300', :class => 'large'}) %>
 <script type="text/javascript">
   content = CKEDITOR.instances.page__body_editor.setData(html);
 </script>

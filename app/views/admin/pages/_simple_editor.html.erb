@@ -1,15 +1,16 @@
 <script type="text/javascript">
   $('quicktags').style.display = 'block';
+  $('simple_editor').style.display = 'block';
   $('s').className = 'active';
   $('f').className = 'inactive';
-  $('simple_editor').style.display = 'block';
-  html = FCKeditorAPI.GetInstance('page__body_editor').GetHTML();
+  $('text_filter').value = $('user_textfilter').value;
+  content = CKEDITOR.instances.page__body_editor.getData();
 </script>
-<%= text_area('page', 'body', {:class => 'medium', :height => '300'}) %>
+
+<%= text_area('page', 'body', {:class => 'large', :height => '300', :rows => 15}) %>
 
 <script type="text/javascript">
-  $('page_body').innerHTML = html;
   $('visual_editor').innerHTML = "";
   $('visual_editor').style.display = 'none';
-  html = null;
+  $('page_body').innerHTML = content;
 </script>

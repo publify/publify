@@ -1,3 +1,5 @@
+<input type="hidden" name="current_editor" id="current_editor" value="<%= current_user.editor %>" />
+<input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter.name %>" />
 <%= error_messages_for 'page' %>
 
 <div id='editor-right'>
@@ -33,10 +35,12 @@
     <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
       <script type="text/javascript">edToolbar('page_body');</script>
     </div>
-    <div id='<%= alternate_editor %>_editor' style='display: none;'></div>
-    <div id='<%= "#{current_user.editor}_editor" %>'>
-      <%= t_textarea 'page', 'body', {:height => '300', :class => 'large'} %> 
-      <%= render_macros(@macros) if current_user.editor == 'visual' %>
+    <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
+      <%= ckeditor_textarea('page', 'body', {:height => '300px', :class => 'large', :height => '300px', :rows => '15'}) if current_user.editor == 'visual' %>
+    </div>
+    <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
+      <%= text_area('page', 'body', {:height => '300px', :class => 'large', :height => '300px', :rows => '15'}) %>
+      <%= render_macros(@macros) if current_user.editor == 'simple' %>  
     </div>
   </div>
   <div class='editor_bottom'>
