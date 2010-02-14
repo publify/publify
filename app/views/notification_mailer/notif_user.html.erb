@@ -1,12 +1,12 @@
-<p>You account is create on <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a></p>
+<p>You account has been created on <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a></p>
 
 <%= render :partial => 'mail_header' %>
 
-<p>All information about your account are :</p>
+<p>Account details:</p>
 
 <ul>
-  <li>Login : <%= h @user.login %></li>
-  <li>Password : <%= h @user.password %></li>
+  <li>Login: <%= h @user.login %></li>
+  <li>Password: <%= h @user.password %></li>
 </ul>
 
 </div>
