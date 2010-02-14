@@ -1,5 +1,25 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe AccountsController do
+  before(:each) do
+    User.salt = 'change-me'
+  end
+
+  describe "A successful login with 'Remember me' checked" do
+    def make_request
+      post 'login', {:user => {:login => 'bob', :password => 'test'},
+        :remember_me => '1'}
+    end
+
+    it 'should not cause password to change' do
+      User.authenticate('bob', 'test').should == users(:bob)
+      make_request
+      request.session[:user_id].should == users(:bob).id
+      User.authenticate('bob', 'test').should == users(:bob)
+    end
+  end
+end
+
 describe 'A successfully authenticated login' do
   controller_name :accounts
 
