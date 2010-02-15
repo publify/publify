@@ -162,6 +162,15 @@ describe 'Updating an existing user' do
     end
   end
 
+  describe "saving twice" do
+    it "should not change the password" do
+      (found = User.authenticate(@user.login, 'a secure password')).should == @user
+      found.save
+      found.save
+      User.authenticate(@user.login, 'a secure password').should == found
+    end
+  end
+
   describe 'the login' do
     it 'must not change' do
       @user.login = 'not_bob'
