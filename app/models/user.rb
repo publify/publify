@@ -163,7 +163,7 @@ class User < ActiveRecord::Base
   def crypt_unless_empty
     if password(true).empty?
       user = self.class.find(self.id)
-      self.password = user.password
+      write_attribute "password", user.password
     else
       send_create_notification
       write_attribute "password", self.class.sha1(password(true))
