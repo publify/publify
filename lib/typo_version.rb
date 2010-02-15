@@ -1,1 +1,1 @@
-TYPO_VERSION = '5.4.2'
+TYPO_VERSION = '5.4.3'

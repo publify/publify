@@ -1,23 +1,15 @@
-3 weeks after releasing Typo 5.4.1, and only 1 month after releasing Typo 5.4, we're happy to release Typo 5.4.2, an important bugfix release. Don't expect many feature here, even though we thought about some of them, it's really a bugfix, and nothing else.
+Typo 5.4.3 fixes some nasty bugs that went through Typo 5.4.2 despite running tests before releasing. If you've been using Typo 5.4.2, you really should upgrade. And if you're running any prior version, you should upgrade too.
 
-** Features
+Now sorting articles by publication date instead of creation date in the admin.
 
-We've split the attachments between images and non images assets. Provided you're using the simple editor, you can now use a fancy images carousel and insert your images in your text within a single click. This comes with a nice set of thumbnails.
+In the admin, comment forms fields are now filled with the user info. Url and 
+email fields have been switched too to fit front end comment forms.
 
-Finally, the long awaited "forgot my password" link is here. It will send you a new password whenever you lose yours. Cool isn't it?
+Extending the editor a little bit, easier to use now.
 
-We've also done some optimization in the way Typo sends assets and manages cache. CSS and Javascript are now sent into 1 file, making them faster to load. RSS generation has also been fastened up.
+Ticket 143: Publish at post setting does not work
 
-** Bugs
+Fixing a critial bug that made the page editor crash at loading. 
 
-A bug screwing up the editor when switching from simple to visual, causing users to lose their content when switching. Fixing that is a good reason to release today in itself.
-
-A bug preventing your registration email to go when creating your account, making you lose your password unless you change it manually before logging out.
-
-Fixed a security issue making the user passwords to be logged in clear in the application logs.
-
-Fixed a bug causing CKEditor to crash under MS Windows due to the lack of symlinks on windows.
-
-
-
+Fixing a bug in RDOC that raised an error when installing.
 
