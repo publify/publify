@@ -4,13 +4,7 @@ describe 'A successfully authenticated login' do
   controller_name :accounts
 
   before(:each) do
-    @user = mock_model(User, :new_record? => false, :reload => @user)
-    @user.stub!(:profile).and_return(Profile.find_by_label('admin'))
-    @user.stub!(:update_connection_time)
-    User.stub!(:authenticate).and_return(@user)
-    User.stub!(:find_by_id).with(@user.id).and_return(@user)
-    User.stub!(:count).and_return(1)
-    controller.stub!(:this_blog).and_return(Blog.default)
+    User.stub!(:salt).and_return('change-me')
   end
 
   def make_request
@@ -18,9 +12,8 @@ describe 'A successfully authenticated login' do
   end
 
   it 'session gets a user' do
-    User.should_receive(:authenticate).and_return(@user)
     make_request
-    request.session[:user_id].should == @user.id
+    request.session[:user_id].should == users(:bob).id
   end
 
   it 'sets typo_user_profile cookie' do
@@ -40,7 +33,7 @@ describe 'A successfully authenticated login' do
   end
 
   it 'redirects to /admin if no return and your are logged' do
-    session[:user_id] = session[:user] = @user.id
+    session[:user_id] = session[:user] = users(:bob).id
     make_request
     response.should redirect_to(:controller => 'admin')
   end
@@ -64,7 +57,7 @@ describe 'User is inactive' do
     post 'login', {:user => {:login => 'inactive', :password => 'longtest'}}
   end
   
-  it 'no user in goes in the session' do
+  it 'no user id goes in the session' do
     make_request
     response.session[:user_id].should be_nil
   end
