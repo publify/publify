@@ -10,5 +10,8 @@ installer/rails_installer.yml
 /public/files
 /public/images/theme
 /public/javascripts/ckeditor/config.js
+/public/javascripts/all.js
 /public/stylesheets/theme
+/public/stylesheets/all.css
 tmp/*
+/coverage/
