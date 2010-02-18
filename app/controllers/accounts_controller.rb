@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
 
+  before_filter :verify_config
   before_filter :verify_users, :only => [:login, :recover_password]
   filter_parameter_logging "password"
 
@@ -106,5 +107,8 @@ class AccountsController < ApplicationController
     redirect_to(:controller => "accounts", :action => "signup") if User.count == 0
     true
   end
-
+  
+  def verify_config
+    redirect_to :controller => "setup", :action => "index" if  ! this_blog.configured?
+  end
 end

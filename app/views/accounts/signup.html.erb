@@ -4,6 +4,7 @@
 
 <% form_tag :action=> "signup" do %>
 <div>
+  <h1><%= _("Create an account")%></h1>
   <h2><label for="user_login"><%= _("Username") %>:</label></h2>
   <p class='input_text_title'>
     <%= text_field(:user, :login, {:class => 'title large'})%>
