@@ -1,0 +1,20 @@
+<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
+
+<div id="flash"><%= error_messages_for 'setup' %></div>
+
+<% form_tag :action=> 'index' do %>
+<div>
+  <h1><%= _("Setup")%></h1>
+  <h2><label for="user_login"><%= _("Blog name") %>:</label></h2>
+  <p class='input_text_title'>
+    <%= text_field(:setting, :blog_name, {:class => 'title large'})%>
+  </p>
+</div>
+<div>
+  <h2><label for="user_email"><%= _("Blog url")%>:</label></h2>
+  <p class='input_text_title'>
+    <%= text_field(:setting, :base_url, {:class => 'title large'})%>
+  </p>
+</div>
+<p><input type="submit" id="submit" class='save large' value="<%= _('Save')%>" /></p>
+<% end %>

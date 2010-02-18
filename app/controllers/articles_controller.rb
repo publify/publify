@@ -1,8 +1,8 @@
 class ArticlesController < ContentController
-  before_filter :verify_config
   before_filter :login_required, :only => [:preview]
   before_filter :auto_discovery_feed, :only => [:show, :index]
-
+  before_filter :verify_config
+  
   layout :theme_layout, :except => [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
@@ -187,10 +187,10 @@ class ArticlesController < ContentController
   private
 
   def verify_config
-    if User.count == 0
+    if  ! this_blog.configured?
+      redirect_to :controller => "setup", :action => "index"
+    elsif User.count == 0
       redirect_to :controller => "accounts", :action => "signup"
-    elsif ! this_blog.configured?
-      redirect_to :controller => "admin/settings", :action => "redirect"
     else
       return true
     end

@@ -146,6 +146,33 @@ describe ArticlesController do
 
 end
 
+describe ArticlesController, "nosettings" do
+  before(:each) do
+    Blog.delete_all
+    @blog = Blog.new.save
+  end
+
+  it 'redirects to setup' do
+    get 'index'
+    response.should redirect_to(:controller => 'setup', :action => 'index')
+  end
+  
+end
+
+describe ArticlesController, "nousers" do
+  before(:each) do
+    User.stub!(:count).and_return(0)
+    @user = mock("user")
+    @user.stub!(:reload).and_return(@user)
+    User.stub!(:new).and_return(@user)
+  end
+
+  it 'redirects to signup' do
+    get 'index'
+    response.should redirect_to(:controller => 'accounts', :action => 'signup')
+  end
+end
+
 describe ArticlesController, "feeds" do
   
   integrate_views

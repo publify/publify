@@ -234,6 +234,75 @@ describe 'GET signup with 0 existing users' do
   end
 end
 
+describe 'GET signup with 0 existing users and unconfigured blog' do
+  controller_name :accounts
+
+  before(:each) do
+    Blog.delete_all
+    @blog = Blog.new.save
+    User.delete_all
+  end
+
+  it 'redirects to setup' do
+    get 'signup'
+    response.should redirect_to(:controller => 'setup', :action => 'index')
+  end
+end
+
+describe 'POST signup with 0 existing users and unconfigured blog' do
+  controller_name :accounts
+
+  before(:each) do
+    Blog.delete_all
+    @blog = Blog.new.save
+    User.delete_all
+  end
+
+  it 'redirects to setup' do
+    post 'signup', params
+    response.should redirect_to(:controller => 'setup', :action => 'index')
+  end
+  
+  def params
+    {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
+        'password_confirmation' => 'newpassword'}}
+  end
+end
+
+describe 'GET login with 0 existing users and unconfigured blog' do
+  controller_name :accounts
+
+  before(:each) do
+    Blog.delete_all
+    @blog = Blog.new.save
+    User.delete_all
+  end
+
+  it 'redirects to setup' do
+    get 'login'
+    response.should redirect_to(:controller => 'setup', :action => 'index')
+  end
+end
+
+describe 'POST login with 0 existing users and unconfigured blog' do
+  controller_name :accounts
+
+  before(:each) do
+    Blog.delete_all
+    @blog = Blog.new.save
+    User.delete_all
+  end
+
+  it 'redirects to setup' do
+    post 'login', params
+    response.should redirect_to(:controller => 'setup', :action => 'index')
+  end
+  
+  def params
+    {'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}}
+  end
+end
+
 describe 'POST signup with 0 existing users' do
   controller_name :accounts
 
