@@ -1,7 +1,8 @@
 class ArticlesController < ContentController
   before_filter :login_required, :only => [:preview]
   before_filter :auto_discovery_feed, :only => [:show, :index]
-
+  before_filter :verify_config
+  
   layout :theme_layout, :except => [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
