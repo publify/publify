@@ -154,7 +154,7 @@ describe ArticlesController, "nosettings" do
 
   it 'redirects to setup' do
     get 'index'
-    response.should resirect_to(:controller => 'setup', :action => 'index')
+    response.should redirect_to(:controller => 'setup', :action => 'index')
   end
   
 end
