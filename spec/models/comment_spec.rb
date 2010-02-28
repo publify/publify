@@ -109,13 +109,6 @@ describe Comment do
       c.should_not be_status_confirmed
     end
 
-    it 'should reject spam pattern' do
-      c = valid_comment(:author => "Another Spammer",
-                          :body => "Texas hold-em poker crap",
-                          :url => "http://texas.hold-em.us")
-      should_be_spam(c)
-    end
-
     it 'should reject spam with uri limit' do
       c = valid_comment(:author => "Yet Another Spammer",
                         :body => %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> },

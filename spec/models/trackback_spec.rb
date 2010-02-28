@@ -43,14 +43,6 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
     tb.should be_spam
   end
 
-  it 'Trackbacks with a blacklisted pattern in the excerpt should be rejected' do
-    BlacklistPattern.should_receive(:find).with(:all).at_least(:once)\
-      .and_return([StringPattern.new(:pattern => 'poker'),
-                   RegexPattern.new(:pattern => '^Texas')])
-    Trackback.new(ham_params.merge(:excerpt => 'Mmm... come to my shiny poker site')).should be_spam
-    Trackback.new(ham_params.merge(:excerpt => 'Texas hold-em rules!')).should be_spam
-  end
-
   def add_spam_domain(domain = 'chinaircatering.com')
     IPSocket.should_receive(:getaddress).with("#{domain}.bsb.empty.us").at_least(:once).and_return('127.0.0.2')
   end
