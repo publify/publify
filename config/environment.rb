@@ -42,8 +42,7 @@ Rails::Initializer.run do |config|
   config.gem 'calendar_date_select'
   config.gem 'bluecloth', :version => '~> 2.0.5'
   config.gem 'coderay', :version => '~> 0.8'
-  config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', 
-          :source => 'http://gems.github.com'
+  config.gem 'will_paginate', :version => '~> 2.3.11'
   config.gem 'RedCloth', :version => '~> 4.2.2'
   config.gem 'panztel-actionwebservice', :version => '2.3.5', :lib => 'actionwebservice'
   config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
