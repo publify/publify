@@ -39,19 +39,9 @@ class SpamProtection
     uri_list = string.scan(/(http:\/\/[^\s"]+)/m).flatten
 
     check_uri_count(uri_list)
-    check_against_blacklist(string)
     scan_uris(uri_list)
 
     return false
-  end
-
-  def check_against_blacklist(text)
-    # Pattern scanning
-    BlacklistPattern.find(:all).each do |pattern|
-      logger.info("[SP] Scanning for #{pattern.class} #{pattern.pattern}")
-
-      throw :hit, "#{pattern} matched" if pattern.matches?(text)
-    end
   end
 
   def check_uri_count(uris)

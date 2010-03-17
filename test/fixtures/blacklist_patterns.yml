@@ -1,8 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first_blacklist_pattern:
-  type: StringPattern
-  pattern: poker
-
-another_blacklist_pattern:
-  type: RegexPattern
-  pattern: ^Texas
