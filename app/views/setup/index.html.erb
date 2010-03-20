@@ -3,18 +3,15 @@
 <div id="flash"><%= error_messages_for 'setup' %></div>
 
 <% form_tag :action=> 'index' do %>
-<div>
-  <h1><%= _("Setup")%></h1>
-  <h2><label for="user_login"><%= _("Blog name") %>:</label></h2>
+  <h1><%= _("Welcome")%></h1>
+  <p><%= _("Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", link_to("Typo", 'http://typosphere.org'))%></p>
+  <h3><label for="user_login"><%= _("Blog name") %>:</label></h3>
   <p class='input_text_title'>
     <%= text_field(:setting, :blog_name, {:class => 'title large'})%>
   </p>
-</div>
-<div>
-  <h2><label for="user_email"><%= _("Blog url")%>:</label></h2>
+  <h3><label for="user_email"><%= _("Your email")%>:</label></h3>
   <p class='input_text_title'>
-    <%= text_field(:setting, :base_url, {:class => 'title large'})%>
+    <%= text_field(:setting, :email, {:class => 'title large'})%>
   </p>
-</div>
 <p><input type="submit" id="submit" class='save large' value="<%= _('Save')%>" /></p>
 <% end %>

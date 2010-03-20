@@ -14,23 +14,6 @@ describe 'GET setup with no configured blog' do
   end
 end
 
-describe 'GET setup with a configured blog and no user' do
-  controller_name :setup
-
-  before(:each) do
-    User.stub!(:count).and_return(0)
-    @user = mock("user")
-    @user.stub!(:reload).and_return(@user)
-    User.stub!(:new).and_return(@user)
-    
-  end
-
-  it 'redirects to setup' do
-    get 'index'
-    response.should redirect_to(:controller => 'accounts', :action => 'signup')
-  end
-end
-
 describe 'GET setup with a configured blog and some users' do
   controller_name :setup
 

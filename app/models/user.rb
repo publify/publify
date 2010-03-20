@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     find(:first,
          :conditions => ["login = ? AND password = ? AND state = ?", login, sha1(pass), 'active'])
   end
-
+  
   def update_connection_time
     self.last_venue = last_connection
     self.last_connection = Time.now

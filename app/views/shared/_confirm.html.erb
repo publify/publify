@@ -1,0 +1,16 @@
+<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
+
+<h1><%= _("Congratulation!") %></h1>
+<p><%= _("You have successfully signed up") %></p>  
+<p>
+  <%= _("<strong>Login:</strong> %s", current_user.login)%>
+</p>
+<p>
+  <%= _("<strong>Password:</strong> %s", session[:tmppass]) %>
+</p>
+<p>
+  <%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%>
+</p>
+<p>
+  <%= _("Proceed to %s",  link_to(_("admin"), :controller => 'admin/content/new')) %>
+</p>

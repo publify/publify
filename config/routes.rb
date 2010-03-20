@@ -42,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.search_base '/search/', :controller => "articles", :action => "search"
   map.connect '/archives/', :controller => "articles", :action => "archives"
   map.connect '/setup', :controller => 'setup', :action => 'index'
+  map.connect '/setup/confirm', :controller => 'setup', :action => 'confirm'
   
   # I thinks it's useless. More investigating
   map.connect "trackbacks/:id/:day/:month/:year",
