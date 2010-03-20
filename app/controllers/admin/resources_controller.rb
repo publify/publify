@@ -98,10 +98,15 @@ class Admin::ResourcesController < Admin::BaseController
   def destroy
     begin
       @file = Resource.find(params[:id])
+      mime = @file.mime
       case request.method
         when :post
           @file.destroy
-          redirect_to :action => 'index'
+          if mime =~ /image/
+            redirect_to :action => 'images'
+          else
+            redirect_to :action => 'index'
+          end
       end
     rescue
       raise

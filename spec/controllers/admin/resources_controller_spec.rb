@@ -21,8 +21,21 @@ describe Admin::ResourcesController do
     assert_not_nil assigns(:resources)
   end
 
-  it "test_destroy" do
+  it "test_destroy_image" do
     res_id = resources(:resource1).id
+    assert_not_nil Resource.find(res_id)
+
+    get :destroy, :id => res_id
+    assert_response :success
+    assert_template 'destroy'
+    assert_not_nil assigns(:file)
+
+    post :destroy, :id => res_id
+    response.should redirect_to(:action => 'images')
+  end
+
+  it "test_destroy_regular_file" do
+    res_id = resources(:resource3).id
     assert_not_nil Resource.find(res_id)
 
     get :destroy, :id => res_id
@@ -33,7 +46,7 @@ describe Admin::ResourcesController do
     post :destroy, :id => res_id
     response.should redirect_to(:action => 'index')
   end
-
+  
   it "test_upload" do
     # unsure how to test upload constructs :'(
   end
