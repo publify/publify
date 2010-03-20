@@ -168,8 +168,8 @@ class Content < ActiveRecord::Base
         search_hash = {}
       end
 
-      if search_hash[:searchstring]
-        list_function << 'searchstring(search_hash[:searchstring])'
+      if search_hash[:searchstring] 
+        list_function << 'searchstring(search_hash[:searchstring])' unless search_hash[:searchstring].to_s.empty?
       end
 
       if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
@@ -180,10 +180,11 @@ class Content < ActiveRecord::Base
         list_function << 'user_id(search_hash[:user_id])'
       end
 
-      if search_hash[:published]
+      if search_hash[:published]      
         list_function << 'published' if search_hash[:published].to_s == '1'
         list_function << 'not_published' if search_hash[:published].to_s == '0'
       end
+      
       list_function
     end
   end
