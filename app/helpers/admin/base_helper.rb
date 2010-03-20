@@ -30,14 +30,6 @@ module Admin::BaseHelper
    '<input type="submit" value="' + val + '" />'
   end
 
-  def link_to_show(record, controller = @controller.controller_name)
-    if record.published?
-      link_to image_tag('admin/show.png', :alt => _("show"), :title => _("Show content")), 
-        {:controller => controller, :action => 'show', :id => record.id}, 
-        {:class => "lbOn"}
-      end
-  end
-
   def link_to_edit(label, record, controller = @controller.controller_name)
     link_to label, :controller => controller, :action => 'edit', :id => record.id
   end
