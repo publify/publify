@@ -146,10 +146,9 @@ class Admin::ContentController < Admin::BaseController
     # TODO Test if we can delete the next line. It's delete on nice_permalinks branch
     params[:article] ||= {}
 
-    @resources = Resource.find(:all, :order => 'filename')
+    @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
     @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.attributes = params[:article]
-
 
     if request.post?
       set_article_author
