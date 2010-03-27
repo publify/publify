@@ -1,7 +1,12 @@
-<h3><%= _("Inbound links") %></h3>
-  <% if @inbound_links.nil? %>
-    <%= _('You have no internet connection') %>
-  <% else %>
+<div class='dashboard ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+    <span class='ui-icon ui-icon-link'> </span>
+    <%= _("Inbound links") %>
+  </h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <% if @inbound_links.nil? %>
+      <%= _('You have no internet connection') %>
+    <% else %>
     <ul>
       <% if @inbound_links.size == 0 %>
         <li><%= _("No one made a link to you yet") %></li>
@@ -14,3 +19,5 @@
       <% end %>
     </ul>
   <% end %>
+  </div>
+</div>

@@ -1,12 +1,17 @@
-<div class="bordered">
-  <h3><%= _("Most popular") %></h3>
-  <ul>
-    <% if @bestof.size == 0 %>
-      <li><%= _("Nothing to show yet") %> !</li>
-    <% else %>
-      <% for article in @bestof -%>
-        <li><%= link_to_permalink article, article.title  %> (<%= link_to_permalink article, article.comment_count %>)</li>
-      <% end %>
-    <% end -%>
-  </ul>
+<div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+    <span class='ui-icon ui-icon-star'> </span>
+    <%= _("Most popular") %>
+  </h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <ul>
+      <% if @bestof.size == 0 %>
+        <li><%= _("Nothing to show yet") %> !</li>
+      <% else %>
+        <% for article in @bestof -%>
+          <li><%= link_to_permalink article, article.title  %> (<%= link_to_permalink article, article.comment_count %>)</li>
+        <% end %>
+      <% end -%>
+    </ul>
+  </div>
 </div>

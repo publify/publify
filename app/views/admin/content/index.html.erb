@@ -1,8 +1,9 @@
 <% @page_heading = _('Manage articles') %>
+<% @link_to_new = link_to(_("New Article"), {:controller => 'contents', :action => 'new'}, :id => 'dialog-link', :class => 'ui-state-default ui-corner-all') %>
+
 <% subtabs_for(:content) %>
 
-<div class="list" id="articles">
-  <% form_remote_tag  :url      => {:action => 'index'},
+<% form_remote_tag  :url      => {:action => 'index'},
   :method   => :get,
   :name     => 'article',
   :update   => {:success => 'articleList'},
@@ -10,41 +11,43 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
-  <h4 class='mt30'><label for="search"><%= _("Search articles that contains...")%></label></h4>
+<div class='settings'>
+  <h4><label for="search"><%= _("Search articles that contains...")%></label></h4>
   <input id="search" type="text" name="search[searchstring]" class='small medium' />
   <%= submit_tag(_("Search"), {:class => 'search'}) %>
-  <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
+  <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>  
+</div>
 
-  <table>
-    <tr>
-      <th><%= _("Title") %></th>
-      <th><%= _("Categories") %></th>
-      <th><%= _("Date") %></th>
-      <th><%= _("Author")%></th>
-      <th><%= _("Status") %></th>
-      <th><%= _("Feedback")%></th>
-    </tr>
-    <tr class="menubar">
-      <td>&nbsp;</td>
-      <td><%= collection_select_with_current('search', 'category', Category.all, "id", "name", @search[:category].to_i, true)
-      %></td>
-      <td>
-        <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
-      </td>
-      <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
-      <td>
-        <select name="search[published]">
-          <option value="">Please select</option>
-          <option value="0">Unpublished</option>
-          <option value="1">Published</option>
-        </select>
-      </td>
-      <td><input type="submit" value='<%= _("Filter") %>' />
-      </tr>
-      <tbody id="articleList">
-        <%= render :partial => 'article_list', :object => @articles -%>
-      </tbody>
-    </table>
+<%= render :partial => 'drafts'%>
 
-    <%end%>
-  </div>
+<table>
+  <tr>
+    <th><%= _("Title") %></th>
+    <th><%= _("Categories") %></th>
+    <th><%= _("Date") %></th>
+    <th><%= _("Author")%></th>
+    <th><%= _("Status") %></th>
+    <th><%= _("Feedback")%></th>
+  </tr>
+  <tr class="menubar">
+    <td>&nbsp;</td>
+    <td><%= collection_select_with_current('search', 'category', Category.all, "id", "name", @search[:category].to_i, true)
+    %></td>
+    <td>
+      <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
+    </td>
+    <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
+    <td>
+      <select name="search[published]">
+        <option value="">Please select</option>
+        <option value="0">Unpublished</option>
+        <option value="1">Published</option>
+      </select>
+    </td>
+    <td><input type="submit" value='<%= _("Filter") %>' />
+  </tr>
+  <tbody id="articleList">
+    <%= render :partial => 'article_list', :object => @articles -%>
+  </tbody>
+</table>
+<%end%>

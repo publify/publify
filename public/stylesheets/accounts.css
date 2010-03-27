@@ -1,25 +1,26 @@
 body {
   margin: 0;
   padding: 0;
-	font: 12px/18px "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+	font: 12px/18px 'Lucida Grande', 'Lucida Sans',Arial,sans-serif;
   color: #000;
 	background: #023;
 }
 
 a {
-	color: #00131e;
-	text-decoration: underline;
+	color: #2779AA;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 a:hover {
-	text-decoration: none;
+	color: #116088;
 }
 
 h1, h2, h3 {
 	margin: 0;
 	padding: 0;
 	font-weight: bold;
-	color: #023;
+	color: #116088;
 }
 
 h1 {
@@ -47,7 +48,7 @@ p {
 }
 
 .large {
-	width: 100%;
+	width: 99%;
 }
 
 .medium {
@@ -55,12 +56,12 @@ p {
 }
 
 input.title {
-	padding: 5px 0 5px 5px;
+	padding: 3px 5px;
 	margin: 0;
-	border: #00131e 1px solid;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	border: #023 1px solid;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	font: 16px/20px "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 }
 
@@ -68,22 +69,23 @@ input.save {
   color: #fff;
   background: #fb7c00;
   border: #fb7c00 1px solid;
-  -moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+  -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 12px;
 	padding: 5px;
+	width: 100%;
 }
 
 #logincontainer, #setupcontainer {
   background: #fff;
   margin: 80px auto 0 auto;
   border: #00131e 1px solid;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
 }
 
 #logincontainer {

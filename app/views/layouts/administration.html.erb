@@ -10,42 +10,40 @@
   <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "quicktags", "growler", "typo_carousel", "administration", :ckeditor %>
   <%= calendar_date_select_includes %>  
 </head>
-
 <body>
   <div id='header'>
     <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
   </div>
-  <div id='menu'>
-    <ul id='tabs'>
-      <li <%='class="current"' if controller.controller_name == 'dashboard' %>><%= link_to _('Dashboard'), :controller => '/admin' %></li>
-      <% for pm in current_user.project_modules %>
-        <%= content_tag :li, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
-      <% end %>
-    </ul>
-    <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"}, :id => 'logout' %>
-  </div>
-  <% unless (@_first_render =~ /login|signup|logout/) %>
-    <div id="submenu">
-      <ul>
+  <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"}, :id => 'logout' %>
+
+
+  <div id='container' class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
+    <div id='menu' class='ui-widget-header ui-corner-all'>
+      <ul id='tabs' class='ui-tabs-nav ui-helper-reset ui-helper-clearfix '>
+        <%= content_tag :li, (link_to _('Dashboard'), :controller => '/admin'), :class => class_dashboard  %>
+        <% for pm in current_user.project_modules %>
+          <%= content_tag :li, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
+        <% end %>
+      </ul>
+      <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix submenu'>
         <%= yield :tasks %>
       </ul>
     </div>
-  <% end %>
-
-  <div id='content'>
-    <% if flash[:notice] or flash[:error] %>
-    <div id="flash">
-      <%= render_flash rescue nil %>
-    </div>
-    <% end %>
     
-    <%= show_page_heading %>
-    <%= yield  %>
+    <div id='content' class='ui-tabs-panel'>
+      <% if flash[:notice] or flash[:error] %>
+      <div id="flash">
+        <%= render_flash rescue nil %>
+      </div>
+      <% end %>
+
+      <%= show_page_heading %>
+      <%= yield  %>
+    </div>
   </div>
 
-  <div id="footer">
-    <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Typo <%=h TYPO_VERSION %>
-  </div>
-
+    <div id="footer">
+      <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Typo <%=h TYPO_VERSION %>
+    </div>
 </body>
 </html>

@@ -4,111 +4,119 @@
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 
 <%= error_messages_for 'article' %>
+
 <div id='editor-right'>
-  <h3>Publish settings</h3>
-  <div id='publishing'>
-    <%= check_box 'article', 'allow_comments' %>
-    <label for="article_allow_comments"><%= _("Allow comments") %></label><br />
-    <%= check_box 'article', 'allow_pings' %>
-    <label for="article_allow_pings"><%= _("Allow trackbacks")%></label><br />
-    <%= check_box 'article', 'published'  %>
-    <label for="article_published"><%= _("Published")%></label><br />
-    <p class='right'>
-      <input id='save_draft' type="submit" value="<%= _('Save as draft') %> &raquo;" name="article[draft]"/>&nbsp;
-      <%= save( _("Publish") + " &raquo;") %><br />
-      <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
-      <%= link_to_destroy_draft @article %>
-    </p>
-    <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
+  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-star'> </span><%= _("Publish settings")%></h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <%= check_box 'article', 'allow_comments' %>
+      <label for="article_allow_comments"><%= _("Allow comments") %></label><br />
+      <%= check_box 'article', 'allow_pings' %>
+      <label for="article_allow_pings"><%= _("Allow trackbacks")%></label><br />
+      <%= check_box 'article', 'published'  %>
+      <label for="article_published"><%= _("Published")%></label><br />
+      <p class='right'>
+        <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ui-state-default ui-corner-all' />
+        <%= save( _("Publish") + " &raquo;") %><br />
+        <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
+        <%= link_to_destroy_draft @article %>
+      </p>
+      <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
+    </div>
   </div>
-  <div class='editor_bottom'>
-    <div class='editor_bottom_right'></div>
+  
+  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-star'> </span><%= _("Categories")%></h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <%- Category.all.each do |cat| %>
+        <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
+        <%= label_tag "category_#{h(cat.id)}", h(cat.name) %><br />
+      <% end -%>
+    </div>
   </div>
-  <div id="categories">
-    <h3><%= _("Categories") %></h3>
-    <%- Category.all.each do |cat| %>
-      <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
-      <%= label_tag "category_#{h(cat.id)}", h(cat.name) %><br />
-    <% end -%>
-  </div>
-  <%= render :partial => 'drafts'%>
 </div>
 
 <div id='editor-left'>
-  <div>
+  <div class='settings'>
     <h2><label for="article_title"><%= _("Title")%></label></h2>
-    <p class='input_text_title'>
-      <%= text_field 'article', 'title', :class => 'large title' %>
+    <p class='input_text'>
+      <%= text_field 'article', 'title', :class => 'large' %>
     </p>
-  </div>
-  <div id='editor-menu'>
-    <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
-      <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-    </span>
-    <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
-      <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-    </span>
-  </div>
-  <div id="editor">
+  
     <%= render(:partial => 'images', :object => @images) unless @images.empty? %>
-    <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
-      <script type="text/javascript">edToolbar('article_body_and_extended');</script>
+
+    <ul id='editor-menu'>
+      <li id="f" class=" <%= 'active' if current_user.editor == 'visual' %>">
+        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+      </li>
+      <li id="s" class=" <%= 'active' if current_user.editor == 'simple' %>">
+        <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+      </li>
+    </ul>
+
+    <div id="editor" class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
+        <script type="text/javascript">edToolbar('article_body_and_extended');</script>
+      </div>
+    
+      <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
+        <%= ckeditor_textarea('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
+      </div>
+      
+      <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
+        <%= text_area('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) %>
+        <%= render_macros(@macros) if current_user.editor == 'simple' %>  
+      </div>
     </div>
-    <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
-      <%= ckeditor_textarea('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
-    </div>
-    <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
-      <%= text_area('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) %>
-      <%= render_macros(@macros) if current_user.editor == 'simple' %>  
-    </div>
-  </div>
-  <div class='editor_bottom'>
-    <div class='editor_bottom_right'></div>
-  </div>
-  <div>
+
     <h3><label for="article_keywords"><%= _("Tags") %></label></h3>
-    <p class='input_text_title'>
+    <p class='input_text'>
       <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large small'} %>
     </p>
     <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
   </div>
 
-  <h3><label for='article_excerpt'><%= _("Excerpt") %></label></h3>
-  <div class='blue_block'>
-    <%= text_area 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '5'} %>
-    <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself")%></p>
+  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-star'> </span><%= _("Excerpt")%></h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself")%></p>
+      <%= text_area 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '5'} %>
+    </div>  
   </div>
-
-  <h3><label class="block"><%= _("Uploads") %></label></h3>
-  <div class='blue_block'>
-    Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.
-    <ul id='attachments'>
-      <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
-    </ul>
+  
+  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-star'> </span><%= _("Uploads")%></h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <p>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
+    
+      <ul id='attachments'>
+        <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
+      </ul>
+    </div>
   </div>
-
-  <h3><label class="block"><%= _("Post settings") %></label></h3>
-  <div class='blue_block'>
-    <div>
-      <label class='float'><%= _("Publish at")%></label>
-      <p class='input_text_title'>
-        <%= calendar_date_select 'article', 'published_at' %>
-      </p>
-    </div>
-    <div>
-      <label class='float' for="article_permalink"><%= _("Permalink") %></label>
-      <p class='input_text_title' id='permalink'>
-        <%= text_field 'article', 'permalink', {:class => 'small medium'} %>
-      </p>
-    </div>
-    <div>
+  
+  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-star'> </span><%= _("Post settings")%></h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <div class='setting'>
+        <label class='float'><%= _("Publish at")%></label>
+        <div class='input_text'>
+          <%= calendar_date_select 'article', 'published_at' %>
+        </div>
+      </div>
+      <div class='setting clear'>
+        <label class='float' for="article_permalink"><%= _("Permalink") %></label>
+        <div class='input_text' id='permalink'>
+          <%= text_field 'article', 'permalink', {:class => 'medium'} %>
+        </div>        
+      </div>
+    <div class='setting clear'>
       <label class='float' for="text_filter"><%= _("Article filter")%></label>
-      <p class='input_text_title'>
+      <div class='input_text'>
         <select name="article[text_filter]" id="text_filter">
           <%= options_for_select text_filter_options, @article.text_filter %>
         </select>
-      </p>
+      </div>
     </div>
   </div>
-
 </div>

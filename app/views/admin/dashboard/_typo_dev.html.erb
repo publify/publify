@@ -1,8 +1,12 @@
-<div class="bordered-orange">
-  <h3><%= _("Latest news from the Typo development blog") %></h3>
-  <% if @typo_links.nil? %>
-    <%= _('You have no internet connection') %>
-  <% else %>
+<div class='dashboard ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+    <span class='ui-icon ui-icon-signal-diag'> </span>
+    <%= _("Latest news from the Typo development blog") %>
+  </h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <% if @typo_links.nil? %>
+      <%= _('You have no internet connection') %>
+    <% else %>
     <ul>
       <% if @typo_links.size == 0 %>
         <li><%= _("Oh no, nothing new") %></li>
@@ -17,5 +21,5 @@
       <% end %>
     </ul>
   <% end %>
-  <hr />
+  </div>
 </div>

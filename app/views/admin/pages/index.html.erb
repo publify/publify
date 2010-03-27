@@ -1,6 +1,7 @@
-  <% @page_heading = _('Manage pages') %>
-  <% subtabs_for(:content) %>
+<% @page_heading = _('Manage pages') %>
+<% @link_to_new = link_to(_("New Page"), {:controller => 'contents', :action => 'new'}, :id => 'dialog-link', :class => 'ui-state-default ui-corner-all') %>
+<% subtabs_for(:content) %>
   
-  <div class="list" id="pages">	
-    <%= render :partial => 'pages' %>
-  </div>                      
+<div class="list" id="pages">	
+  <%= render :partial => 'pages' %>
+</div>                      

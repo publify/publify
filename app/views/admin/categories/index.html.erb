@@ -1,11 +1,12 @@
-  <% @page_heading = _('Categories') +  "<span>&raquo; #{link_to(_('add new'), :controller => 'categories', :action => 'new')}</span>" %>
-  <% subtabs_for(:content) %>
+<% @page_heading = _('Categories') %>
+<% @link_to_new = link_to(_("New Category"), {:controller => 'categories', :action => 'new'}, :id => 'dialog-link', :class => 'ui-state-default ui-corner-all') %>
+<% subtabs_for(:content) %>
 
-  <div id="category_container" class="list">	
-    <%= render :partial => 'categories' %>  
-  </div>                      
+<div id="category_container" class="list">	
+  <%= render :partial => 'categories' %>  
+</div>                      
 
-  <div class="paginate">
-    <%= link_to_remote(_('Reorder'), :update => 'category_container', :url => { :action => 'reorder' }) %> |
-  	<%= link_to_remote(_('Sort alphabetically'), :update => 'category_container', :url => { :action => 'asort' }) %>
-  </div>
+<div class="paginate">
+  <%= link_to_remote(_('Reorder'), :update => 'category_container', :url => { :action => 'reorder' }) %> |
+	<%= link_to_remote(_('Sort alphabetically'), :update => 'category_container', :url => { :action => 'asort' }) %>
+</div>

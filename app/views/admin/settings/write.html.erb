@@ -3,78 +3,32 @@
 
 <% form_tag :action => 'update' do %>
 
-<fieldset>
-  <legend><%= _("Publish")%></legend>
-  <div>
-    <label class="float" for="setting_send_outbound_pings"><%= _("Send trackbacks")%></label>
-    <p class='input_text_title'>
-      <%= check_box(:setting, :send_outbound_pings) %>
-    </p>
-    <p><%= _("When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%></p>
+<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Publish")%></h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <div class='setting'>
+      <label class="float" for="setting_send_outbound_pings"><%= _("Send trackbacks")%></label>      
+      <div class='input_text'>
+        <%= check_box(:setting, :send_outbound_pings) %>
+        <span><%= _("When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%></span>
+      </div>      
+    </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_ping_urls"><%= _("URLs to ping automatically")%></label>
+      <div class='input_text'>
+        <%= text_area(:setting, :ping_urls, :rows => 3, :class => 'medium') %>
+      </div>      
+    </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_geourl_location"><%= _("Latitude, Longitude")%></label>
+      <div class='input_text'>
+        <%= text_field(:setting, :geourl_location, { :class => 'medium'})%>
+        <span><%= _("Display")%> <a href="http://geourl.org"><%= _("your lattitude and longitude")%></a> (<%= _("exemple")%> <tt>47.774,-122.201</tt>)</span>
+      </div>
+    </div>
   </div>
-  <div>
-    <label class="float" for="setting_ping_urls"><%= _("URLs to ping automatically")%></label>
-    <p class='input_text_title ml140'>
-      <%= text_area(:setting, :ping_urls, :rows => 3, :class => 'small medium') %>
-    </p>
-  </div>
-  <div>
-    <label class="float" for="setting_geourl_location"><%= _("Latitude, Longitude")%></label>
-    <p class='input_text_title ml140'>
-      <%= text_field(:setting, :geourl_location, { :class => 'small medium'})%><br />
-      <small><%= _("Display")%> <a href="http://geourl.org"><%= _("your lattitude and longitude")%></a> (<%= _("exemple")%> <tt>47.774,-122.201</tt>)</small>
-    </p>
-  </div>
-  </fieldset>
-
-  <fieldset>
-    <legend><%= _("Podcasts")%></legend>
-    <div>
-      <p><%= _("The below settings act as defaults when you choose to publish an enclosure with iTunes metadata")%>.</p>
-      <label for="setting_itunes_author" class="float"><%= _("Author")%></label>
-      <p class='input_text_title'>
-        <%= text_field(:setting, :itunes_author, { :class => 'small medium'}) %>
-      </p>      
-    </div>
-    <div>
-      <label for="setting_itunes_subtitle" class="float"><%= _("Subtitle")%> <span class="mandatory">*</span></label>
-      <p class='input_text_title'>
-        <%= text_field(:setting, :itunes_subtitle, { :class => 'small medium'}) %>
-      </p>  
-    </div>
-    <div>
-      <label class="float" for="setting_itunes_summary"><%= _("Summary")%> <span class="mandatory">*</span></label>
-      <p class='input_text_title ml140'>
-        <%= text_area :setting, :itunes_summary, :rows => 3, :class => 'small medium' %>
-      </p>
-    </div>
-    <div>
-      <label class="float" for="setting_itunes_email"><%= _("Email")%> <span class="mandatory">**</span></label>
-      <p class='input_text_title'>
-        <%= text_field(:setting, :itunes_email, {:class => 'small medium'}) %>
-      </p>      
-    </div>
-    <div>
-      <label class="float" for="setting_itunes_name"><%= _("Optional Name")%> <span class="mandatory">**</span></label>
-      <p class='input_text_title'>
-        <%= text_field(:setting, :itunes_name, {:class => 'small medium'}) %><br />
-        <small>** <%= _("Not published by Apple")%></small>
-      </p>
-    </div>
-    <div>
-      <label class="float" for="setting_itunes_copyright"><%= _("Copyright Information")%></label>
-      <p class='input_text_title'>
-        <%= text_field(:setting, :itunes_copyright, {:class => 'small medium'}) %>
-      </p>      
-    </div>
-    <div>
-      <label class="float" for="setting_itunes_explicit"><%= _("Explicit")%></label>
-      <p class='input_text_title'>
-        <%= check_box(:setting, :itunes_explicit)%>
-      </p>
-    </div>
-  </fieldset>
-  <%= hidden_field_tag 'from', 'write' %>
-  <%= render :partial => 'submit' %>
 </div>
+
+<%= hidden_field_tag 'from', 'write' %>
+<%= render :partial => 'submit' %>
 <% end %>

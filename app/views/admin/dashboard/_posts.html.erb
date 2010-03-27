@@ -1,14 +1,19 @@
-<div class="bordered">
-  <h3><%= _("Latest posts") %></h3>
-  <ul>
-	<% if @recent_posts.size == 0 %>
-      <li> <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
-    <% else %>
-      <% for post in @recent_posts -%>
-        <li>
-          <%= link_to_permalink post, post.title %> (<%= link_to_permalink(post, post.published_comments.size) %>)
-        </li>
-      <% end %> 
-    <% end %>
-  </ul>
+<div class='dashboard ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+    <span class='ui-icon ui-icon-note'> </span>
+    <%= _("Latest Posts") %>
+  </h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <ul>
+	    <% if @recent_posts.size == 0 %>
+        <li> <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
+      <% else %>
+        <% for post in @recent_posts -%>
+          <li>
+            <%= link_to_permalink post, post.title %> (<%= link_to_permalink(post, post.published_comments.size) %>)
+          </li>
+        <% end %> 
+      <% end %>
+    </ul>
+  </div>
 </div>

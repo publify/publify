@@ -1,14 +1,19 @@
-<div class="bordered">
-  <h3><%= _("Latest Comments") %></h3>
-  <ul>
-    <% if @comments.size == 0 %>
-      <li><%= _("No comments yet") %></li>
-    <% else %>
-      <% for comment in @comments -%>
-        <li>
-          <%= link_to_permalink comment, h(_("By %s on %s", comment.author, comment.article.title)) %>
-        </li>
+<div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+    <span class='ui-icon ui-icon-comment'> </span>
+    <%= _("Latest Comments") %>
+  </h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <ul>
+      <% if @comments.size == 0 %>
+        <li><%= _("No comments yet") %></li>
+      <% else %>
+        <% for comment in @comments -%>
+          <li>
+            <%= link_to_permalink comment, h(_("By %s on %s", comment.author, comment.article.title)) %>
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>

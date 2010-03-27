@@ -1,9 +1,9 @@
 <% @page_heading = _("Comments for %s (%s)","#{ link_to h(@article.title), :controller => '/admin/content', :action => 'new', :id => @article.id }","#{ link_to _('add a comment'), '#comment' }") %>
 
 <% content_for (:tasks) do %>
-  <%= subtab(_('All comments'),'', {:action => :article, :id => @article.id, :ham => 'y', :spam => 'y'} ) %>
-  <%= subtab(_('Limit to ham'), '', {:action => :article, :id => @article.id, :ham => 'y'}) %>
-  <%= subtab(_('Limit to spam'), '', {:action => :article, :id => @article.id, :spam => 'y'}) %>
+  <%= subtab(_('All comments'), {:action => :article, :id => @article.id, :ham => 'y', :spam => 'y'} ) %>
+  <%= subtab(_('Limit to ham'), {:action => :article, :id => @article.id, :ham => 'y'}) %>
+  <%= subtab(_('Limit to spam'), {:action => :article, :id => @article.id, :spam => 'y'}) %>
 <% end %>
 
 <div class="list">

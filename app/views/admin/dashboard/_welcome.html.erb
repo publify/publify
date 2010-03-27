@@ -1,3 +1,17 @@
-<h2><%= _("Welcome back, %s!" ,current_user.name ) -%></h2>
-
-<p><%= _("%d articles and %d comments were posted since your last connexion", @newposts, @newcomments) %></p>
+<div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+    <span class='ui-icon ui-icon-person'> </span>
+    <%= _("Welcome back, %s!" ,current_user.name ) -%>
+  </h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts, @newcomments) %></p>
+    <p><%= _("You're running Typo %s", TYPO_VERSION) %></p>
+    <ul> 
+      <li> <%= _("Total posts : %d", @statposts) %></li>
+      <li> <%= _("Your posts : %d" , @statuserposts) %></li>
+      <li> <%= _("Total comments : %d" , @statcomments) %></li>
+      <li> <%= _("Spam comments : %d" , @statspam) %></li>
+    </ul>
+    
+  </div>
+</div>
