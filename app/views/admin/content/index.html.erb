@@ -1,5 +1,5 @@
 <% @page_heading = _('Manage articles') %>
-<% @link_to_new = link_to(_("New Article"), {:controller => 'contents', :action => 'new'}, :id => 'dialog-link', :class => 'ui-state-default ui-corner-all') %>
+<% @link_to_new = link_to(_("New Article"), {:controller => 'content', :action => 'new'}, :id => 'dialog-link', :class => 'ui-state-default ui-corner-all') %>
 
 <% subtabs_for(:content) %>
 
@@ -11,14 +11,16 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
+<%= render :partial => 'drafts'%>
+
 <div class='settings'>
   <h4><label for="search"><%= _("Search articles that contains...")%></label></h4>
-  <input id="search" type="text" name="search[searchstring]" class='small medium' />
-  <%= submit_tag(_("Search"), {:class => 'search'}) %>
-  <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>  
+  <div class='input_text'>
+    <input id="search" type="text" name="search[searchstring]" class='small medium' />
+    <%= submit_tag(_("Search"), {:class => 'ed_button'}) %>
+    <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>  
+  </div>
 </div>
-
-<%= render :partial => 'drafts'%>
 
 <table>
   <tr>

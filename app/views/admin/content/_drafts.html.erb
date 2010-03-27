@@ -1,6 +1,8 @@
-<div class='bordered'>
-  <h3><label class="block content"><%= _("Drafts:") %></label></h3>
-  <% Article.drafts.all.each do |draft| %>
-    <%= link_to("#{draft.title}<br />", :action => 'edit', :id => draft.id) %>
-  <% end %>
+<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><%= _("Drafts")%></h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <% Article.drafts.all.each do |draft| %>
+      <%= link_to("#{draft.title},", :action => 'edit', :id => draft.id) %>
+    <% end %>
+  </div>
 </div>

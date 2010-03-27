@@ -505,6 +505,7 @@ div.setting { float: left; margin-bottom: 12px;}
 .right { text-align: right;}
 .save { background: #FB7C00; border: #FB7C00 1px solid; color: #fff; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px; font-weight: bold;}
 .unpublished, a.unpublished { color: #c00;}
+.published, a.published { color: #6eac2c;}
 
 /* Footer */
 #footer { clear: both;}
@@ -542,6 +543,14 @@ td {
 	background:url("../../images/admin/ui-bg_highlight-hard_100_f2f5f7_1x100.png") repeat-x scroll 50% top #F2F5F7;
 	border:1px solid #DDDDDD;
 	color:#362B36;
+}
+
+tr.shade td {
+	background: #F0F0F6;
+}
+
+td.paginate {
+	text-align: center;
 }
 
 /* Éditeur */
@@ -603,4 +612,14 @@ td {
 .page_new a {
 	padding: 0.4em 1em 0.4em 1em;
 	
+}
+
+.ed_button {
+	-moz-border-radius: 3px;
+	-webkit-border-radius : 3px;
+	background:url("../../images/admin/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50% #D7EBF9;
+	border:1px solid #AED0EA;
+	color:#2779AA;
+	font-weight:bold;
+	margin-right: 0.2em;
 }
