@@ -11,7 +11,7 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
-<%= render :partial => 'drafts'%>
+<%= render :partial => 'drafts' unless Article.drafts.empty? %>
 
 <div class='settings'>
   <h4><label for="search"><%= _("Search articles that contains...")%></label></h4>
@@ -31,7 +31,7 @@
     <th><%= _("Status") %></th>
     <th><%= _("Feedback")%></th>
   </tr>
-  <tr class="menubar">
+  <tr>
     <td>&nbsp;</td>
     <td><%= collection_select_with_current('search', 'category', Category.all, "id", "name", @search[:category].to_i, true)
     %></td>
@@ -46,7 +46,7 @@
         <option value="1">Published</option>
       </select>
     </td>
-    <td><input type="submit" value='<%= _("Filter") %>' />
+    <td><input type="submit" value='<%= _("Filter") %>' class='ed_button' />
   </tr>
   <tbody id="articleList">
     <%= render :partial => 'article_list', :object => @articles -%>
