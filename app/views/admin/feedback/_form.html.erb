@@ -1,32 +1,32 @@
-
 <%= error_messages_for 'comment' %>
 <%= hidden_field_tag 'article_id', @article.id %>
 
-<fieldset>
-  <legend><%= _("Add a comment") %></legend>
-
-  <div>
-    <label for="comment_author" class='float'><%= _("Author")%></label>
-    <p class='input_text_title'>
-      <%= text_field 'comment', 'author', :class => 'small medium', :value => current_user.display_name %>
-    </p>
+<div id='comment' class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Add a comment")%></h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <div class='setting'>
+      <label for="comment_author" class='float'><%= _("Author")%></label>
+      <p class='input_text'>
+        <%= text_field 'comment', 'author', :class => 'medium', :value => current_user.display_name %>
+      </p>
+    </div>
+    <div class='setting clear'>
+      <label for="comment_email" class='float'><%= _("Email")%></label>
+      <p class='input_text'>
+        <%= text_field 'comment', 'email', :class => 'medium', :value => current_user.email %>
+      </p>
+    </div>
+    <div class='setting clear'>
+      <label for="comment_url" class='float'><%= _("Url") %></label>
+      <p class='input_text'>
+        <%= text_field 'comment', 'url', :class => 'medium', :value => current_user.url %>
+      </p>
+    </div>
+    <div class='setting clear'>
+      <label for="comment_body" class='float'><%= _("Content")%></label>
+      <p class='input_text'>
+        <%= text_area 'comment', 'body', { :rows => '10', :class => 'small medium'} %>
+      </p>
+    </div>
   </div>
-  <div>
-    <label for="comment_email" class='float'><%= _("Email")%></label>
-    <p class='input_text_title'>
-      <%= text_field 'comment', 'email', :class => 'small medium', :value => current_user.email %>
-    </p>
-  </div>
-  <div>
-    <label for="comment_url" class='float'><%= _("Url") %></label>
-    <p class='input_text_title'>
-      <%= text_field 'comment', 'url', :class => 'small medium', :value => current_user.url %>
-    </p>
-  </div>
-  <div>
-    <label for="comment_body" class='float'><%= _("Content")%></label>
-    <p class='input_text_title'>
-      <%= text_area 'comment', 'body', { :rows => '10', :class => 'small medium'} %>
-    </p>
-  </div>    
-</fieldset>
+</div>

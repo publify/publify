@@ -1,4 +1,5 @@
-<% @page_heading = _("Comments for %s (%s)","#{ link_to h(@article.title), :controller => '/admin/content', :action => 'new', :id => @article.id }","#{ link_to _('add a comment'), '#comment' }") %>
+<% @page_heading = _("Comments for %s", @article.title) %>
+<% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'ui-state-default ui-corner-all'}) %>
 
 <% content_for (:tasks) do %>
   <%= subtab(_('All comments'), {:action => :article, :id => @article.id, :ham => 'y', :spam => 'y'} ) %>

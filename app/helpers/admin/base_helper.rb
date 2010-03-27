@@ -113,7 +113,7 @@ module Admin::BaseHelper
   
   def class_content
     if controller.controller_name  =~ /content|pages|categories|resources|feedback/
-      return class_selected_tab if controller.action_name =~ /list|index|show/
+      return class_selected_tab if controller.action_name =~ /list|index|show|article/
     end
     class_tab
   end
@@ -172,7 +172,7 @@ module Admin::BaseHelper
   end
   
   def cancel_or_save
-    result = '<p class="right">'
+    result = '<p>'
     result << cancel 
     result << " "
     result << _("or") 
