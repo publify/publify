@@ -1,10 +1,11 @@
 <%= form_tag_with_upload_progress({:action => 'upload'}, { :begin => "new Effect.Appear('status')", :finish => "$('message').innertHTML = arguments[0]" }) %>
 
-<fieldset>
-  <legend><%= _('Upload a File to your Site') %></legend>
-  <label for="upload_filename"><%= _('File') %>:</label> <%= file_field('upload', 'filename') -%>
-  <%= submit_tag(_('Upload'), {:class => 'save'}) -%>
-  <div id='status' style="display: none"><%= upload_status_tag %></div>
-  <div id="message"><%= @message %></div>
-  </fieldset>
-</form>
+<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><%= _('Upload a File to your Site') %></h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <label for="upload_filename"><%= _('File') %>:</label> <%= file_field('upload', 'filename') -%>
+    <%= submit_tag(_('Upload'), {:class => 'save'}) -%>
+    <div id='status' class='ui-progressbar ui-widget ui-widget-content ui-corner-all' style="display: none"><%= upload_status_tag %></div>
+    <div id="message"><%= @message %></div>
+  </div>
+</div>

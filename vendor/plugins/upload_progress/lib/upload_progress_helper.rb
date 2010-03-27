@@ -293,7 +293,7 @@ module UploadProgress
     #   .uploadStatus { font-size: 10px; color: grey; }
     #
     def upload_status_text_tag(content=nil, options={})
-      content_tag("div", content, {:id => status_tag_id, :class => 'uploadStatus'}.merge(options))
+      content_tag("div", content, {:id => status_tag_id, :class => 'uploadStatus ui-progressbar-value ui-widget-header ui-corner-left'}.merge(options))
     end
 
     # Content helper that will create the element tree that can be easily styled
