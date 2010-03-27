@@ -624,6 +624,8 @@ td.paginate {
 	margin-right: 0.2em;
 }
 
+
+
 /* categories */
 #category_list { width: 400px;}
 #category_list li { list-style: none; margin-bottom: 2px; padding: 0.5em 0.5em 0.5em 0.5em; cursor: move;}
