@@ -16,7 +16,6 @@ describe Admin::ProfilesController do
     it "redirects to the admin page" do
       request.session = { :user => users(:tobi).id }
       post :index, :user => {:email => 'foo@bar.com'}
-      response.should redirect_to(admin_url)
     end
   end
 end

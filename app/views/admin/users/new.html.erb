@@ -1,8 +1,6 @@
-  <% @page_heading = _('Add User') %>
-  <% content_for('tasks') do %>
-    <%= subtab _("Users"), {:controller=>"users", :action=>"index"} %>
-  <% end%>
-  <% form_tag :action=>"new" do %>
+<% @page_heading = _('Add User') %>
+<% subtabs_for(:settings) %>
 
-  <%= render :partial => "form" %>
-  <% end %>
+<% form_tag :action=>"new" do %>
+  <%= render :partial => "admin/users/form" %>
+<% end %>

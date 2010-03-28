@@ -115,18 +115,13 @@ module Admin::BaseHelper
     class_tab
   end
   
-  def class_users
-    return class_selected_tab if controller.controller_name  =~ /users/ 
-    class_tab
-  end
-
   def class_dashboard
     return class_selected_tab if controller.controller_name  =~ /dashboard/ 
     class_tab
   end    
 
   def class_settings
-    return class_selected_tab if controller.controller_name  =~ /settings/ 
+    return class_selected_tab if controller.controller_name  =~ /settings|users/ 
     class_tab
   end
   
