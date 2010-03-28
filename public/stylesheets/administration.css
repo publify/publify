@@ -624,7 +624,11 @@ td.paginate {
 	margin-right: 0.2em;
 }
 
+#status {
+	margin-top: 10px;
+}
 
+.uploadStatus { 	padding: 0.5em 20px;}
 
 /* categories */
 #category_list { width: 400px;}
