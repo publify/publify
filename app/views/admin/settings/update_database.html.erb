@@ -1,42 +1,42 @@
 <% @page_heading = _('Database migration') %>
 <% subtabs_for(:settings) %>
 
-<div id="settings">
-  <div id="gensettings">
-    <h3><%= _("Information")%></h3>
+<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Information")%></h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+
     <p>
-      <label><%= _("Current database version")%>:</label>
-      <span class="db_version"><%= @current_version %></span>
+      <strong><%= _("Current database version")%>:</strong>
+      <%= @current_version %>
     </p>
+
+    <% unless @needed_migrations.blank? %>
     <p>
-      <label><%= _("New database version")%>:</label>
-      <span class="db_version"><%= @needed_version %></span>
+      <strong><%= _("New database version")%>:</strong>
+      <%= @needed_version %>
     </p>
     <p>
       <label><%= _("Your database supports migrations")%>:</label>
-      <span class="db_version"><%= @support ? _('yes') : _('no') %></span>
+      <%= @support ? _('yes') : _('no') %>
     </p>
-  </div>
-
-  <% unless @needed_migrations.blank? %>
-  <div id="need">
     <h3><%= _("Needed migrations")%></h3>
     <ul>
       <% for migration in @needed_migrations %>
       <li><%= migration.humanize %></li>
       <% end %>
     </ul>
+    <% end %>
+
+    <% form_tag :action => 'migrate' do %>
+      <% if @current_version == @needed_version %>
+      <div class='ui-widget ui-widget ui-helper-reset' >
+        <div class='ui-state-highlight ui-corner-all' style='padding: 0pt 0.7em;'>
+          <p><span class='ui-icon ui-icon-info' style='float: left; margin-right: 0.3em;'></span><strong><%= _("You are up to date!")%></strong></p>
+        </div>
+      </div>
+      <% else %>
+      <%= save(_("Update database now")) %>  <small><%= _("may take a moment")%></small>
+      <% end %>
+    <% end %>
   </div>
-  <% end %>
-
 </div>
-
-<% form_tag :action => 'migrate' do %>
-<div id="operations" class="paginate l">
-  <% if @current_version == @needed_version %>
-  <strong><%= _("You are up to date!")%></strong>
-  <% else %>
-  <%= save(_("Update database now")) %>  <small><%= _("may take a moment")%></small>
-  <% end %>
-</div>
-<% end %>
