@@ -1,5 +1,0 @@
-backgroubnd color : #5c9ccc 55%
-
-border: #4297d7
-
-icon : #d8e7f3
