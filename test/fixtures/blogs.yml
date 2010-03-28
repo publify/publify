@@ -3,33 +3,25 @@ default:
   base_url: http://myblog.net
   settings:
     show_extended_on_rss: true
-    itunes_owner: ""
     blog_name: test blog
     title_prefix: 1
     limit_article_display: 2
     sp_url_limit: 3
     use_gravatar: false
-    itunes_email: ""
     blog_subtitle: test subtitle
     limit_rss_display: 10
-    itunes_explicit: false
     ping_urls: |-
       http://ping.example.com/ping
       http://alsoping.example.com/rpc/ping
-    itunes_name: ""
     geourl_location: ""
     default_allow_pings: false
-    itunes_author: ""
     send_outbound_pings: false
-    itunes_copyright: ""
     sp_global: true
     default_allow_comments: true
-    itunes_subtitle: ""
     email_from: scott@sigkill.org
     theme: typographic
     text_filter: textile
     sp_article_auto_close: 300
     link_to_author: false
-    itunes_summary: ""
     comment_text_filter: markdown
     permalink_format: /%year%/%month%/%day%/%title%

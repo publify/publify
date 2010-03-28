@@ -2,10 +2,6 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe XmlController do
   describe "route generation" do
-    it "should map #itunes" do
-      route_for(:controller => "xml", :action => "itunes").should == "/xml/itunes/feed.xml"
-    end
-    
     it "should map #articlerss" do
       route_for(:controller => "xml", :action => "articlerss", :id => "1").should == "/xml/articlerss/1/feed.xml"
     end
@@ -40,10 +36,6 @@ describe XmlController do
   end
 
   describe "route recognition" do
-    it "should generate params for #itunes" do
-      params_from(:get, "/xml/itunes/feed.xml").should == {:controller => "xml", :action => "itunes"}
-    end
-    
     it "should generate params for #articlerss" do
       params_from(:get, "/xml/articlerss/1/feed.xml").should == {:controller => "xml", :action => "articlerss", :id => "1"}
     end

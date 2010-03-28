@@ -19,7 +19,6 @@ ActionController::Routing::Routes.draw do |map|
   map.atom 'articles.atom', :controller => 'articles', :action => 'index', :format => 'atom'
   
   map.with_options :controller => 'xml', :path_prefix => 'xml' do |controller|
-    controller.xml 'itunes/feed.xml', :action => 'itunes'
     controller.xml 'articlerss/:id/feed.xml', :action => 'articlerss'
     controller.xml 'commentrss/feed.xml', :action => 'commentrss'
     controller.xml 'trackbackrss/feed.xml', :action => 'trackbackrss'

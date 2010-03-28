@@ -48,16 +48,6 @@ class Blog < ActiveRecord::Base
   setting :sp_url_limit,               :integer, 0
   setting :sp_akismet_key,             :string, ''
 
-  # Podcasting
-  setting :itunes_explicit,            :boolean, false
-  setting :itunes_author,              :string, ''
-  setting :itunes_subtitle,            :string, ''
-  setting :itunes_summary,             :string, ''
-  setting :itunes_owner,               :string, ''
-  setting :itunes_email,               :string, ''
-  setting :itunes_name,                :string, ''
-  setting :itunes_copyright,           :string, ''
-
   # Mostly Behaviour
   setting :text_filter,                :string, 'markdown smartypants'
   setting :comment_text_filter,        :string, 'markdown smartypants'

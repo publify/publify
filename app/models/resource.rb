@@ -6,32 +6,6 @@ class Resource < ActiveRecord::Base
   after_destroy :delete_filename_on_disk
   before_validation_on_create :uniq_filename_on_disk
   belongs_to :article
-
-  #Reads YAML file from config dir (iTunes.yml) for easy updating
-  def get_itunes_categories
-      itunes_categories_raw = YAML::load( File.open( "#{RAILS_ROOT}/config/iTunes.yml" ) )
-      itunes_categories = []
-      itunes_categories_raw.keys.sort.each do |cat|
-        itunes_categories.push cat => itunes_categories_raw[cat]
-      end
-      return itunes_categories
-  end
-
-  def validate_on_update
-    if itunes_explicit?
-      errors.add_to_base("You must check the box to activate metadata.") unless itunes_metadata?
-      errors.add_to_base("You must specify an author.") if itunes_author.blank?
-      errors.add_to_base("You must specify an subtitle.") if itunes_subtitle.blank?
-      errors.add_to_base("You must specify a summary.") if itunes_summary.blank?
-      errors.add_to_base("You must specify keywords.") if itunes_keywords.blank?
-      if !itunes_duration.blank?
-        errors.add_to_base("You must specify duration in a HH:MM:SS format.") unless itunes_duration =~ /^(\d{0,2}:)?\d{1,2}:?\d{2}$/
-      end
-      if !itunes_category.nil?
-        errors.add_to_base("You can only specify one parent category, but you can choose multiple sub categories.") if itunes_category.length > 1
-      end
-    end
-  end
   
   def fullpath(file = nil)
     "#{RAILS_ROOT}/public/files/#{file.nil? ? filename : file}"

@@ -28,28 +28,10 @@ class Admin::ResourcesController < Admin::BaseController
     end
   end
 
-  def remove_itunes_metadata
-    @resource = Resource.find(params[:id])
-    @resource.itunes_metadata = false
-    @resource.save(false)
-    flash[:notice] = _('Metadata was successfully removed.')
-    redirect_to :action => 'index'
-  end
-
   def update
     @resource = Resource.find(params[:resource][:id])
     @resource.attributes = params[:resource]
 
-    unless params[:itunes_category].nil?
-      itunes_categories = params[:itunes_category]
-      itunes_category_pre = Hash.new {|h, k| h[k] = [] }
-      itunes_categories.each do |cat|
-        cat_split = cat.split('-')
-        itunes_category_pre[cat_split[0]] << cat_split[1] unless
-        itunes_category_pre[cat_split[0]].include?(cat_split[0])
-      end
-      @resource.itunes_category = itunes_category_pre
-    end
     if request.post? and @resource.save
       flash[:notice] = _('Metadata was successfully updated.')
     else
@@ -78,7 +60,6 @@ class Admin::ResourcesController < Admin::BaseController
 
   def index
     @r = Resource.new
-    @itunes_category_list = @r.get_itunes_categories
     @resources = Resource.paginate :page => params[:page], :conditions => "mime NOT LIKE '%image%'", :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
   end
   

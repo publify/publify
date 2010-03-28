@@ -55,15 +55,6 @@ class XmlController < ApplicationController
     end
   end
 
-  def itunes
-    @feed_title = "#{this_blog.blog_name} Podcast"
-    @items = Resource.find(:all, :order => 'created_at DESC',
-      :conditions => ['itunes_metadata = ?', true], :limit => this_blog.limit_rss_display)
-    respond_to do |format|
-      format.rss { render :action => "itunes_feed" }
-    end
-  end
-
   def articlerss
     redirect_to :action => 'feed', :format => 'rss', :type => 'article', :id => params[:id]
   end

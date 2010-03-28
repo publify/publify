@@ -167,13 +167,6 @@ describe XmlController do
     assert_moved_permanently_to 'http://test.host/articles.atom'
   end
 
-  it "test_itunes" do
-    get :itunes
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
-  end
-
   # TODO(laird): make this more robust
   it "test_sitemap" do
     get :feed, :format => 'googlesitemap', :type => 'sitemap'

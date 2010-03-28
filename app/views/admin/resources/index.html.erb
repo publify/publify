@@ -22,21 +22,6 @@
       <%= render :partial => "mime_edit", :locals => {:id => upload.id, :mime => upload.mime} %>
     </div>
   </td>
-  <% if upload.itunes_metadata? %>
-  <td>
-    <%= task_edit_resource_metadata(_("Edit MetaData") + ' (+/-)', upload.id) %>
-    <div id="edit-resource-metadata-<%= upload.id%>" style="display:none;position:absolute;">
-      <%= render :partial => "metadata_edit" , :locals => {:id => upload.id, :resource => upload}%>
-    </div>
-  </td>
-  <% else -%>
-  <td>
-    <%= task_add_resource_metadata(_("Add MetaData") + ' (+/-)', upload.id) %>
-    <div id="add-resource-metadata-<%= upload.id%>" style="display:none;position:absolute;">
-      <%= render :partial => "metadata_add", :locals => {:id => upload.id} %>
-    </div>
-  </td>
-  <% end -%>
   <td><%=h upload.size rescue 0 -%> bytes</td>
   <td><%=h upload.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
   <td class="operation"><%= link_to _("delete"), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td>

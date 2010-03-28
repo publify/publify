@@ -31,17 +31,6 @@ describe 'Given a new blog' do
     @blog.sp_akismet_key.should == ''
   end
 
-  # Another icky setting name
-  it "#itunes_explicit should be false" do
-    @blog.itunes_explicit.should be_false
-  end
-
-  it "Other itunes settings should be blank" do
-    %w{ author subtitle summary owner email name copyright}.each do |setting|
-      @blog.send("itunes_#{setting}").should == ''
-    end
-  end
-
   it '#text_filter and #comment_text_filter should be markdown smartypants' do
     @blog.text_filter.should == 'markdown smartypants'
     @blog.comment_text_filter.should == 'markdown smartypants'
