@@ -39,7 +39,7 @@
       <%= ckeditor_textarea('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
     </div>
     <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
-      <%= text_area('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) %>
+      <%= text_area('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'simple' %>
       <%= render_macros(@macros) if current_user.editor == 'simple' %>  
     </div>
   </div>
