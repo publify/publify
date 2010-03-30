@@ -89,6 +89,7 @@ class Feedback < Content
 
   def classify
     begin
+      return :ham if self.user_id
       return :spam if blog.default_moderate_comments
       return :ham unless blog.sp_global
     rescue NoMethodError

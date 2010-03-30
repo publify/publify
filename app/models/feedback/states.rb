@@ -69,7 +69,8 @@ module Feedback::States
     def enter_hook
       super
       content.just_changed_published_status = true
-      content.state = :presumed_ham
+      content.state = :presumed_ham unless content.user_id
+      content.state = :just_marked_as_ham if content.user_id
     end
     def to_s
       _("Just Presumed Ham")

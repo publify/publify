@@ -200,4 +200,41 @@ describe Comment do
     assert_equal 'markdown', a.default_text_filter.name
   end
 
+  describe 'with feedback moderation enabled' do
+    before(:each) do
+      @blog = Blog.default
+      @blog.sp_global = false
+      @blog.default_moderate_comments = true
+      @blog.save!
+    end
+
+    it 'should save comment as presumably spam' do
+      comment = Comment.new do |c|
+        c.body = "Test foo"
+        c.author = 'Bob'
+        c.article_id = contents(:article1).id
+      end
+      assert comment.save!
+      
+      assert ! comment.published?
+      assert comment.spam?
+      assert ! comment.status_confirmed?
+    end
+
+    it 'should save comment as confirmed ham' do
+      comment = Comment.new do |c|
+        c.body = "Test foo"
+        c.author = 'Bob'
+        c.article_id = contents(:article1).id
+        c.user_id = users(:tobi).id
+      end
+      assert comment.save!
+      
+      assert comment.published?
+      assert comment.ham?
+      assert comment.status_confirmed?
+      
+    end
+  end
+
 end
