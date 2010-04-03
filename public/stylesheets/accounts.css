@@ -107,3 +107,13 @@ h3 a img {
 .mt20 {
   margin-top: 20px;
 }
+
+/* Import for flash, maybe this should go into a common.css? */
+.ui-widget { font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 1.1em; }
+.settings { margin-bottom: 20px;}
+.ui-corner-all { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+.ui-icon-alert { background-position: 0 -144px; }
+.ui-icon-info { background-position: -16px -144px; }
+.ui-state-highlight {border: 1px solid #f9dd34; background: #ffef8f url(../../images/admin/ui-bg_highlight-soft_25_ffef8f_1x100.png) 50% top repeat-x; color: #363636; }
+.ui-state-error {border: 1px solid #cd0a0a; background: #cd0a0a url(../../images/admin/ui-bg_flat_15_cd0a0a_40x100.png) 50% 50% repeat-x; color: #ffffff; }
