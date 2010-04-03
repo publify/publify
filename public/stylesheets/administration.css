@@ -71,7 +71,7 @@ a { color: #2779AA;}
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #2779aa; text-decoration: none; }
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { border: 1px solid #74b2e2; background: #e4f1fb url(../../images/admin/ui-bg_glass_100_e4f1fb_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #116088; }
 .ui-state-hover a, .ui-state-hover a:hover { color: #116088; text-decoration: none; }
-.ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #2694e8; background: #116088 url(../../images/admin/ui-bg_glass_50_116088_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
+.ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #2694e8; background: #116088 url(../../images/admin/ui-bg_highlight-soft_50_116088_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
 .ui-widget :active { outline: none; }
 
@@ -491,7 +491,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
 
 /* Subtabs */
-.submenu { border-bottom: 1px solid #2694E8; background: #116088 url(../../images/admin/ui-bg_glass_50_116088_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
+.submenu { border-bottom: 1px solid #2694E8; background: #116088 url(../../images/admin/ui-bg_highlight-soft_50_116088_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
 .submenu a, .submenu a:link, .submenu a:visited { color: #ffffff; text-decoration: none; }
 .ui-tabs .ui-tabs-nav li span.subtabs { float:left; padding:0.5em 1em; color: #222; }
 
