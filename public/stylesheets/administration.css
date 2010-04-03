@@ -312,7 +312,7 @@ a { color: #2779AA;}
 .ui-accordion .ui-accordion-header-active { border-bottom: 0 !important; }
 .ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding: .5em .5em .5em .7em; }
 .ui-accordion-icons .ui-accordion-header a { padding-left: 2.2em; }
-h3.ui-accordion-header { padding: .5em 2.2em;}
+h3.ui-accordion-header, h4.ui-accordion-header { padding: .5em 2.2em;}
 .ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
 .ui-accordion .ui-accordion-content { padding: 1em 2.2em; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; }
 .ui-accordion .ui-accordion-content-active { display: block; }/* Autocomplete
@@ -646,3 +646,16 @@ td.paginate {
   display: block;
   margin: 0 auto;
 }
+
+#available {
+  float: left;
+  width: 48%;
+}
+
+#cnt-active {
+  float: left;
+  width: 48%;
+  margin-left: 4%;
+}
+
+.target { cursor: move;}

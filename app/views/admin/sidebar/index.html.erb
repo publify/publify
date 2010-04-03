@@ -11,33 +11,33 @@
                 			:failure => "var g = new k.Growler({location : 'br'}); 
                 			g.error('Oops, something wrong happened', {life: 3});
                 			")  %>
-  <div class="paginate r">
-    <input value="<%= _('Publish changes')%>" class="submit" type="submit"/>
+  <div>
+    <%= save(_('Publish changes'))%>
   </div>
   <div id="messages">&nbsp;</div>
 
   <div id="sidebar-config">
-    <div id="available" class="dropbox">
-      <h2><%= _("Available Items")%></h2>
-      <div id="available_box">
+    <div id="available" class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+      <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><%= _("Available Items")%></h3>
+      <div id="available_box" class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
         <%= render :partial => 'availables', :object => @available %>
       </div>
     </div>
 
-    <div id="cnt-active" class='dropbox'>
-      <h2 id="hdr-active">
+    <div id="cnt-active" class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
+      <h3 id="hdr-active" class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
         <%= _("Active Sidebar items")%>
         <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
                       :style => 'display:none;' -%>
-      </h2>
-      <div id="active">
+      </h3>
+      <div id="active" class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
         <%= render :partial => 'actives', :object => @active %>
       </div>
     </div>
-    <br clear="all" />
+    <br class='clear' />
 
-	  <div class="paginate r">
-	    <input value="<%= _('Publish changes')%>" class="submit" type="submit"/>
+	  <div>
+	    <%= save(_('Publish changes'))%>
 	  </div>
 
   </div>
