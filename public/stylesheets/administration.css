@@ -634,3 +634,15 @@ td.paginate {
 #category_list { width: 400px;}
 #category_list li { list-style: none; margin-bottom: 2px; padding: 0.5em 0.5em 0.5em 0.5em; cursor: move;}
 #category_list li span { float: left;}
+
+/* Themes */
+.theme {
+  width: 30%; float: left; margin-right: 2%;
+  overflow: hidden;
+}
+
+.theme img {
+  width: 250px;
+  display: block;
+  margin: 0 auto;
+}

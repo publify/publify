@@ -1,20 +1,30 @@
 <% @page_heading = _('Choose a theme') %>
 <% subtabs_for(:themes) %>
-
+<% i = 0 %>
 <% for theme in @themes %>
-<div class="theme">
-  <div class='inner'>
-    <% if theme.path == @active.path -%>
-      <%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>
-    <% else %>
-      <%= link_to(image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)), :action => 'switchto', :theme => theme.name) %>
-    <% end %>
-    <%= theme.description_html %>
-    <% if theme.path == @active.path -%>
-    <em>(<%= _("Active theme")%>)</em>
-    <% end -%>
+  <div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons theme settings'>
+    <h3 class='ui-accordion-header ui-helper-reset <%= theme.path == @active.path ? 'ui-state-active' : 'ui-state-default' %> ui-corner-top'>
+      <span class='ui-icon <%= theme.path == @active.path ? 'ui-icon-star' : 'ui-icon-image'  %>'> </span>
+      <%= theme.name %>
+    </h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <% if theme.path == @active.path -%>
+        <%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>
+      <% else %>
+        <%= link_to(image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)), :action => 'switchto', :theme => theme.name) %>
+      <% end %>
+      <%= theme.description_html %>
+      <% if theme.path == @active.path -%>
+        <em>(<%= _("Active theme")%>)</em>
+      <% end -%>
+    </div>
   </div>
-</div>
+<% if i == 2 %>
+  <% i = 0 %>
+  <br class='clear' />
+<% else %>
+  <% i+=1 %>
+<% end %>
 <% end %>
 
 <hr class="clear" />
