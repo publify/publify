@@ -70,8 +70,7 @@ describe Admin::CategoriesController do
     assert_tag :tag => "table",
       :children => { :count => Category.count + 1,
         :only => { :tag => "tr",
-          :children => { :count => 2,
-            :only => { :tag => /t[dh]/ } } } }
+          :children => { :count => 1 } } }
   end
 
   it "test_reorder" do
