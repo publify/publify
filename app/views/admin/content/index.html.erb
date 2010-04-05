@@ -26,25 +26,17 @@
   <tr>
     <th><%= _("Title") %></th>
     <th><%= _("Categories") %></th>
-    <th><%= _("Date") %></th>
     <th><%= _("Author")%></th>
-    <th><%= _("Status") %></th>
+    <th><%= _("Date") %></th>
     <th><%= _("Feedback")%></th>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td><%= collection_select_with_current('search', 'category', Category.all, "id", "name", @search[:category].to_i, true)
     %></td>
-    <td>
-      <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
-    </td>
     <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
     <td>
-      <select name="search[published]">
-        <option value="">Please select</option>
-        <option value="0">Unpublished</option>
-        <option value="1">Published</option>
-      </select>
+      <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
     </td>
     <td><input type="submit" value='<%= _("Filter") %>' class='ed_button' />
   </tr>

@@ -1,41 +1,39 @@
 <% @page_heading =  _("Feedback for") + " #{ this_blog.settings['blog_name'] }" %>
 <% subtabs_for(:content) %>
 
-  <% form_tag({:action => 'index'}, :method => :get) do %>
-  <div class='settings'>
-    <h4><label for="search"><%= _("Search Comments and Trackbacks that contain")%>...:</label></h4>
-    <div class='input_text'>
-      <input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" class='medium' />
-      <%= submit_tag(_("Search"), {:class => 'ed_button'}) %>
-    </div>    
-  </div>
-  <% end %>
+<% form_tag({:action => 'index'}, :method => :get) do %>
+<div class='settings'>
+  <h4><label for="search"><%= _("Search Comments and Trackbacks that contain")%>...:</label></h4>
+  <div class='input_text'>
+    <input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" class='medium' />
+    <%= submit_tag(_("Search"), {:class => 'ed_button'}) %>
+  </div>    
+</div>
+<% end %>
 
 <% form_tag({:action => 'bulkops'}, :method => :post) do %>
 <%= render :partial => 'button', :locals => { :position => 'top' } %>
 
 <%= hidden_field_tag "search", params[:search]%>
 <%= hidden_field_tag "page", params[:page]%>
-<table>
+<div class='settings'>
+  <select onchange='window.location=this.options[this.selectedIndex].value;'>
+    <option value=''><%= _("All comments")%></option>
+    <option value='?ham=f' <%= 'selected' if params[:ham] == 'f' %>><%= _("Limit to ham") %></option>
+    <option value='?confirmed=f' <%= 'selected' if params[:confirmed] == 'f' %>><%= _("Unapproved comments") %></option>
+    <option value='?published=f' <%= 'selected' if params[:published] == 'f' %>><%= _("Limit to spam")%></option>
+  </select>
+</div>
+<table class='settings'>
   <tr>
     <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
     <th><%= _("Status")%></th>
+    <th><%= _("Comment Excerpt")%></th>
     <th><%= _("Article")%></th>
     <th><%= _("Author")%></th>
-    <th><%= _("Comment Excerpt")%></th>
-    <th><%= _("IP")%></th>
+    <th><%= _("Date")%></th>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td colspan="5">
-      <select onchange='window.location=this.options[this.selectedIndex].value;'>
-        <option value=''><%= _("All comments")%></option>
-        <option value='?ham=f' <%= 'selected' if params[:ham] == 'f' %>><%= _("Limit to ham") %></option>
-        <option value='?confirmed=f' <%= 'selected' if params[:confirmed] == 'f' %>><%= _("Unapproved comments") %></option>
-        <option value='?published=f' <%= 'selected' if params[:published] == 'f' %>><%= _("Limit to spam")%></option>
-      </select>
-    </td>
-  </tr>
+
   <%= render_void_table(@feedback.size, 9) %>
 
   <%= render :partial => 'item', :collection => @feedback %>

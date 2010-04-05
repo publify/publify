@@ -2,7 +2,7 @@
 <% @link_to_new = link_to(_("New Category"), {:controller => 'categories', :action => 'new'}, :id => 'dialog-link', :class => 'ui-state-default ui-corner-all') %>
 <% subtabs_for(:content) %>
 
-<div id="category_container" class="list">	
+<div id="category_container" class="list">
   <%= render :partial => 'categories' %>  
 </div>                      
 

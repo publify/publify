@@ -23,7 +23,7 @@
     </div>
   </td>
   <td><%=h upload.size rescue 0 -%> bytes</td>
-  <td><%=h upload.created_at.strftime('%Y-%m-%d %H:%M:%S') -%></td>
+  <td><%= format_date upload.created_at -%></td>
   <td class="operation"><%= link_to _("delete"), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td>
 </tr>  
 <% end -%>

@@ -1,36 +1,17 @@
-<% form_tag({:action => 'index'}, :method => :get, :name => 'search') do %>
-<table cellspacing="1" cellpadding="0">
-  <tr>
-    <th><%= _("Title") %></th>
-    <th><%= _("Date") %></th>
-    <th><%= _("Author")%></th>
-    <th><%= _("Status") %></th>
-    <th><%= _("Permalink")%></th>
-  </tr>
-  <tr class="menubar">
-    <td>&nbsp;</td>
-    <td>
-    <%= collection_select_with_current(:search, :published_at, Page.find_by_published_at, "publication", "publication", @search[:published_at].to_s, true) %>      
-    </td>
-    <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
-    <td>
-      <select name="search[published]">
-        <%= options_for_select([[_("Please select"), ""], [_("Unpublished"), "0"], [ _("Published"), "1"]], @search[:published]) %>
-      </select>
-    </td>
-    <td><input type="submit" value="<%= _("Filter") %>" />
-  </tr>
-  <%= render_void_table(@pages.size, 5)  %>
+<%= render_void_table(@pages.size, 5)  %>
 
-  <% for page in @pages %>
-  <tr <%= alternate_class %>>
-    <td><%= link_to_edit_with_profiles page.title, page %></td>
-    <td><%= page.created_at.strftime('%d/%m/%Y') %></td>
-    <td><%= author_link(page) %></td>
-    <td><%= link_to_published page %></td>
-    <td><%= page.name%></td>
-  </tr>
-  <% end %>
-  <%= display_pagination(@pages, 5)%>
-  </table>
+<% for page in @pages %>
+<tr <%= alternate_class %>>
+  <td>
+    <%= link_to_edit_with_profiles page.title, page %>
+    <%= show_actions page %>
+  </td>
+  <td><%= page.name%></td>
+  <td><%= author_link(page) %></td>
+  <td>
+    <%= format_date page.created_at %><br />
+    <%= published_or_not page %>
+  </td>
+</tr>
 <% end %>
+<%= display_pagination(@pages, 5)%>

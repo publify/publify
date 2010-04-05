@@ -1,12 +1,19 @@
 <tr <%= alternate_class %>>
   <td><input class= "feedback_check" type="checkbox" name="feedback_check[<%= item.id %>]"/></td>
   <td class='<%= comment_class item.state %>'><%= item.state %></td>
+  <td>
+    <div id="feedback_<%=item.id%>">
+      <%= link_to_remote(h(truncate(item.body, :length => 100)), :url => { :action => 'preview', :id => item.id })%>
+    </div>
+    <%= show_actions item %>
+  </td>
   <td><%= link_to item.article.title, :controller => 'feedback', :action => 'article', :id => item.article_id %></td>
   <td>
     <%= link_to_unless item.url.blank?, ((h(item.author) || '(unknown)').slice(0,40)), item.url %><br />
     <%=h item.email.to_s.slice(0,40) %>
   </td>
-  <td id="feedback_<%=item.id%>">
-    <%=link_to_remote(h(truncate(item.body, :length => 100)), :url => { :action => 'preview', :id => item.id })%></td>
-  <td><%=h item.ip %></td>
+  <td>
+    <%= format_date item.created_at %>
+    <%= published_or_not item %>
+  </td>
 </tr>

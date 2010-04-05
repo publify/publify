@@ -168,11 +168,29 @@ module Admin::BaseHelper
     result << '</p>'
     return result
   end
-  
+
+  def show_actions item
+    html = <<-HTML 
+      <div class='action' style='margin-top: 10px;'>
+        <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
+        <small>#{link_to_published item}</small> |
+        <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small>
+    </div>
+    HTML
+  end
+    
+  def format_date(date)
+    date.strftime('%d/%m/%Y')
+  end
+    
   def link_to_published(item)
-    icon = "<span class='ui-icon ui-icon-newwin' style='float: left'></span>"
-    return link_to_permalink(item,  _("published"), '', 'published') if item.published
-    link_to(_("unpublished %s", icon), {:controller => '/articles', :action => 'preview', :id => item.id}, {:class => 'unpublished', :target => '_new'})
+    return link_to_permalink(item,  _("Show"), '', 'published') if item.published
+    link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => item.id}, {:class => 'unpublished', :target => '_new'})
+  end
+  
+  def published_or_not(item)
+    return "<small class='published'>#{_("Published")}</small>" if item.published
+    "<small class='unpublished'>#{_("Unpublished")}</small>"
   end
   
   def macro_help_popup(macro, text)

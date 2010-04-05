@@ -1,4 +1,4 @@
-<p>
+<div class='settings'>
   <%= hidden_field_tag "confirmed", params[:confirmed] %>
   <%= hidden_field_tag "published", params[:published] %>
   <%= hidden_field_tag "bulkop_#{position}", "",{:id=>"bulkop"} %>
@@ -7,4 +7,4 @@
   <%= submit_tag _("Mark Checked Items as Spam"), {:class => 'ed_button',:onclick=>"getElementById('bulkop').value='Mark Checked Items as Spam'"} %>
   <%= submit_tag _("Mark Checked Items as Ham"), {:class => 'ed_button',:onclick=>"getElementById('bulkop').value='Mark Checked Items as Ham'"} %>
   <%= submit_tag _("Confirm Classification of Checked Items"), {:class => 'ed_button', :onclick=>"getElementById('bulkop').value='Confirm Classification of Checked Items'"} %>
-</p>
+</div>

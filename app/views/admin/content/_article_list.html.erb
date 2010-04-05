@@ -1,11 +1,16 @@
 <%= render_void_table(@articles.size, 7)  %>
 <% for article in @articles %>
 <tr <%= alternate_class %>>
-  <td> <%= link_to h(article.title), :action => 'edit', :id => article.id %></td>
+  <td>
+    <%= link_to h(article.title), :action => 'edit', :id => article.id %>
+    <%= show_actions article %>
+  </td>
   <td><%= article.categories.map { |c| link_to h(c.name), {:controller => 'content', :action => 'index', "search[category]" => c.id}}.join(", ") %></td>
-  <td><%= article.published_at.strftime("%m/%d/%Y") %></td>
   <td><%= author_link(article)%></td>
-  <td><%= link_to_published article %></td>
+  <td>
+    <%= format_date article.published_at %><br />
+    <%= published_or_not article %>
+  </td>
   <td><%= (article.allow_comments?) ? link_to(article.comments.ham.size.to_s, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %></td>
 </tr>
 <% end %>

@@ -1,7 +1,13 @@
 <% @page_heading = _('Manage pages') %>
 <% @link_to_new = link_to(_("New Page"), {:controller => 'contents', :action => 'new'}, :id => 'dialog-link', :class => 'ui-state-default ui-corner-all') %>
 <% subtabs_for(:content) %>
-  
-<div class="list" id="pages">	
+
+<table cellspacing="1" cellpadding="0">
+  <tr>
+    <th><%= _("Title") %></th>
+    <th><%= _("Permalink")%></th>
+    <th><%= _("Author")%></th>
+    <th><%= _("Date") %></th>
+  </tr>
   <%= render :partial => 'pages' %>
-</div>                      
+</table>

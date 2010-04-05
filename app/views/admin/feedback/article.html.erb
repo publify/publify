@@ -16,7 +16,7 @@
       IP: <%=h comment.ip %></p>
       <%= h(comment.body) %>
       <p>
-        <%= comment.created_at.strftime("%m/%d/%Y %H:%M") %> – [ 
+        <%= format_date comment.created_at %> – [ 
         <%= link_to_edit _("Edit"), comment %> | 
         <%= link_to _("Delete") , {:action => 'delete', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
         <%= comment.state %> ]
