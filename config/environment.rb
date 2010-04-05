@@ -51,8 +51,9 @@ Rails::Initializer.run do |config|
   
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake create_sessions_table')
-  config.action_controller.session_store = :active_record_store
-
+  # config.action_controller.session_store = :active_record_store
+  config.action_controller.session = { :key => "_typo_session", :secret => "8d7879bd56b9470b659cdcae88792622" }
+  
   # Disable use of the Accept header, since it causes bad results with our
   # static caching (e.g., caching an atom feed as index.html).
   config.action_controller.use_accept_header = false

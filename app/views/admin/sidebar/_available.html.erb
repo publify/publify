@@ -1,5 +1,7 @@
-<div id="available_<%= available.short_name %>" class="dragitem">
-  <h4 class="handle"><%= available.display_name %></h4>
-  <p><%= available.description %></p>
+<div id="available_<%= available.short_name %>" class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings target'>
+  <h4 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><%= available.display_name %></h4>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <p><%= available.description %></p>
+  </div>
 </div>
 <%= draggable_element "available_#{available.short_name}" %>

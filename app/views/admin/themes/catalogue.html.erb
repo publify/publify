@@ -5,13 +5,26 @@
   <p><%= _("Sorry the theme catalogue is not available") %></p>
 <% end %>
 
+<% i = 0 %>
 <% for theme in @themes %>
-  <div class="theme">
-    <div class='inner'>
+<div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons theme settings'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'>
+    <span class='ui-icon ui-icon-image'> </span>
+    <%= theme.name %>
+  </h3>
+  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+
       <%= link_to(image_tag(theme.image), theme.url) %>
-      <h3><%= theme.name %> created by <%= theme.author %></h3>
+      <p>Created by <%= theme.author %></p>
       <p><%= theme.description %></p>
     </div>
   </div>
+  <% if i == 2 %>
+    <% i = 0 %>
+    <br class='clear' />
+  <% else %>
+    <% i+=1 %>
+  <% end %>
+  
 <% end %>
 <hr class="clear" />

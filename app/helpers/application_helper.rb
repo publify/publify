@@ -179,5 +179,18 @@ module ApplicationHelper
   def feed_rss
     url_for(:format => :rss, :only_path => false)
   end
+
+  def render_the_flash
+    return unless flash[:notice] or flash[:error]
+    the_class = flash[:error] ? 'ui-state-error' : 'ui-state-highlight'
+    the_icon = flash[:error] ? 'ui-icon-alert' : 'ui-icon-info'
+    
+    html = "<div class='ui-widget settings'>"
+    html << "<div class='#{the_class} ui-corner-all' style='padding: 0 .7em;'>" 
+    html << "<p><span class='ui-icon #{the_icon}' style='float: left; margin-right: .3em;'></span>"
+    html << render_flash rescue nil	
+    html << "</div>"
+    html << "</div>"    
+  end
   
 end

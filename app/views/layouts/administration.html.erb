@@ -31,12 +31,8 @@
     </div>
     
     <div id='content' class='ui-tabs-panel'>
-      <% if flash[:notice] or flash[:error] %>
-      <div id="flash">
-        <%= render_flash rescue nil %>
-      </div>
-      <% end %>
-
+      <%= render_the_flash %>
+      
       <%= show_page_heading %>
       <%= yield  %>
     </div>

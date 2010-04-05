@@ -1,6 +1,6 @@
 <%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
 
-<div id="flash"><%= render_flash rescue nil %></div>
+<div id="flash"><%= render_the_flash %></div>
     
 <% form_tag :action=> "login" do %>
   <h3><label for="user_login"><%= _('Login')%></label></h3>
