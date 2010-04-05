@@ -7,10 +7,8 @@
       <label for="upload_filename" class='float'><%= _('File') %>:</label> 
       <div class='input_text'>
         <%= file_field('upload', 'filename') -%>      
+        <%= submit_tag(_('Upload'), {:class => 'save'}) -%>
       </div>
-    </div>
-    <div class='clear'>
-      <%= submit_tag(_('Upload'), {:class => 'save'}) -%>
     </div>
     
     <div id='status' class='ui-progressbar ui-widget ui-widget-content ui-corner-all' style="display: none"><%= upload_status_tag %></div>
