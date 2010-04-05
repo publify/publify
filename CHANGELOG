@@ -1,15 +1,28 @@
-Typo 5.4.3 fixes some nasty bugs that went through Typo 5.4.2 despite running tests before releasing. If you've been using Typo 5.4.2, you really should upgrade. And if you're running any prior version, you should upgrade too.
+After releasing Typo 5.4.3, we realized something we actually knew for a while. If we wanted Typo to spread more, we had to make it prettier, easier to install and easier to use. That may sound obvious, but we were working with a quite old product, having legacy feature we didn't need, but, for some reason, we kept release after release, trying to work around instead of just dumping them. If we wanted to make Typo better, we first had to make it smaller. Dead obvious once again.
 
-Now sorting articles by publication date instead of creation date in the admin.
+Being the fourth of the Willy Ronis series, that version is the first going towards simplification: less useless feature, simpler, better interface, and lighter memory footprint. 
 
-In the admin, comment forms fields are now filled with the user info. Url and 
-email fields have been switched too to fit front end comment forms.
+Typo now comes with a new, easier to use setup that suppresses needed initial configuration. Just provide an email and a blog title, and you're done. This setup is the first stone in refreshing Typo installation process.
 
-Extending the editor a little bit, easier to use now.
+Previous admin refresh was not very satisfying, and we needed to rework it. Instead of trying to play the webdesigners, which none of us is, we used Jquery UI for the graphic part, and focused on Typo interface instead. The result is, for now, quite satisfying, even though we know we still can improve it. 
 
-Ticket 143: Publish at post setting does not work
+IPs and pattern blacklist has been completely removed. With Akismet and real time blacklist (RBL), Typo already provided 2 simple ways to fight against spam. Blacklisting IPs and patterns was a very advanced feature, which is definitely not a blogware job. If people want to do that type of filtering, they have many way to do it, using intrusion detection systems (IDS), Apache mod_security, or even packet filtering such as Linux Netfilter. 
 
-Fixing a critial bug that made the page editor crash at loading. 
+For ages, Typo provided a full iTunes metadata support for podcast publishers. We've completely removed them since it was useless for 99.99% of us. Typo still supports enclosure (files attached to a blog post, appearing in the RSS feed but not on the post itself) though.
 
-Fixing a bug in RDOC that raised an error when installing.
+We've also resolved a bunch of bugs as well:
+
+The main reason why we've released that new version so early was because of a bug in the visual editor, losing posts content at saving time. Editors are very difficult to test since they rely on Javascript. However, we plan to add some Watir tests in a near future.
+
+#152: fix poor email grammar.
+
+#148: fixes a bug that prevents admin to edit a user without providing his password.
+
+#160: 404 error on the lightbox loading.gif and closelabel.gif.
+
+#155: after deleting an image, the file page is loaded.
+
+#143: publishing posts in the future didn't work unless you manually unpublishes them.
+
+
 

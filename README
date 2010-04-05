@@ -12,8 +12,8 @@ Requirements
 
 Currently you need all of those things to get typo to run:
 
- * Ruby 1.8.6 or Ruby Enterprise Edition. 
- * Rails 2.3.5, Typo 5.4.3 DOES NOT support any older Rails version.
+ * Ruby 1.8.6, 1.8.7 or Ruby Enterprise Edition. 
+ * Rails 2.3.5, Typo 5.4.4 DOES NOT support any older Rails version.
  * A database.  Typo supports MySQL, PostgreSQL, and SQLite.
  * Ruby drivers for your database.
  * For best performance, you should have a web server running either

@@ -1,7 +1,7 @@
 How to use the Typo Rails installer
 ===================================
 
-Typo 4.0 includes an installer that makes it easy to install Typo.
+Typo 4.4 includes an installer that makes it easy to install Typo.
 
 Quick Start
 -----------
@@ -17,10 +17,10 @@ Prerequisites
 
 You'll need the following software installed on your system:
 
-1.  Ruby 1.8.4
+1.  Ruby 1.8.6 or greater
 2.  RubyGems (http://www.rubygems.org)
 3.  SWIG (http://www.swig.org)
-4.  SQLite 3
+4.  MySQL, PostgreSQL or SQLite 3
 
 Most modern Unix systems should have all four of these easily available in
 pre-built form.
