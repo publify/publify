@@ -175,6 +175,8 @@ class ArticlesController < ContentController
   def view_page
     if(@page = Page.find_by_name(params[:name].map { |c| c }.join("/"))) && @page.published?
       @page_title = @page.title
+      @description = (this_blog.meta_description.empty?) ? "" : this_blog.meta_description
+      @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
     else
       render :nothing => true, :status => 404
     end
