@@ -1,8 +1,15 @@
 module AuthorsHelper
 
   def display_profile_item(item, show_item, item_desc)
-    content_tag :li do
-      "#{item_desc} #{item}"
-    end if show_item
+    if show_item
+      item = link_to(item, item) if is_url?(item)
+      content_tag :li do
+        "#{item_desc} #{item}"
+      end
+    end
+  end
+
+  def is_url?(str)
+    [URI::HTTP, URI::HTTPS].include?(URI.parse(str.to_s).class)
   end
 end
