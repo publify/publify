@@ -10,6 +10,10 @@ module AuthorsHelper
   end
 
   def is_url?(str)
-    [URI::HTTP, URI::HTTPS].include?(URI.parse(str.to_s).class)
+    begin
+      [URI::HTTP, URI::HTTPS].include?(URI.parse(str.to_s).class)
+    rescue URI::InvalidURIError
+      false
+    end 
   end
 end
