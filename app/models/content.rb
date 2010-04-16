@@ -56,16 +56,19 @@ class Content < ActiveRecord::Base
   attr_accessor :just_changed_published_status
   alias_method :just_changed_published_status?, :just_changed_published_status
 
+  after_save :invalidates_cache?
+  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+
   include Stateful
 
   @@content_fields = Hash.new
   @@html_map       = Hash.new
 
   def invalidates_cache?(on_destruction = false)
-    if on_destruction
+    @invalidates_cache ||= if on_destruction
       just_changed_published_status? || published?
     else
-      changed? && published? || just_changed_published_status?
+      (changed? && published?) || just_changed_published_status?
     end
   end
 
@@ -168,7 +171,7 @@ class Content < ActiveRecord::Base
         search_hash = {}
       end
 
-      if search_hash[:searchstring] 
+      if search_hash[:searchstring]
         list_function << 'searchstring(search_hash[:searchstring])' unless search_hash[:searchstring].to_s.empty?
       end
 
@@ -180,11 +183,11 @@ class Content < ActiveRecord::Base
         list_function << 'user_id(search_hash[:user_id])'
       end
 
-      if search_hash[:published]      
+      if search_hash[:published]
         list_function << 'published' if search_hash[:published].to_s == '1'
         list_function << 'not_published' if search_hash[:published].to_s == '0'
       end
-      
+
       list_function
     end
   end
