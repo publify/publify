@@ -30,8 +30,9 @@ You can use `<typo:code>` to include syntax-highlighted code blocks.  Example:
 This uses the Ruby [Syntax](http://coderay.rubychan.de) module.  Options:
 
 * **lang**.  Sets the programming language.  Currently supported languages are
-`ruby`, `C`, `Delphi`, `HTML`, `RHTML`, `Nitro-XHTML`, `CSS`, `Diff`, `Java`, `Javascript` and `yaml`.  Other languages will format correctly but will not
-have syntax highlighting.
+*C, C++ (&#42;), CSS, Delphi, diff, Groovy (&#42;), HTML, Java, JavaScript, JSON,
+PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.  
+&#42; Only available in CodeRay >= 0.9.1
 * **linenumber**.  Turns on line numbering.  Use `linenumber="true"` to enable.
 * **title**.  Adds a title block to the top of the code block.
 }
@@ -50,7 +51,7 @@ have syntax highlighting.
         text = text.to_s.gsub(/\r/,'').gsub(/\A\n/,'').chomp
 
         begin
-          text = CodeRay.scan(text, lang.to_sym).span(options)
+          text = CodeRay.scan(text, lang.downcase.to_sym).span(options)
         rescue
           text = HTMLEntities.new("xhtml1").encode(text)
         end
