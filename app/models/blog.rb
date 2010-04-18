@@ -65,7 +65,6 @@ class Blog < ActiveRecord::Base
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'typo@example.com'
   setting :editor,                     :integer, 'visual'
-  setting :cache_option,               :string, 'caches_page'
   setting :allow_signup,               :integer, 0
 
   # SEO
@@ -79,9 +78,6 @@ class Blog < ActiveRecord::Base
   setting :index_categories,           :boolean, true
   setting :index_tags,                 :boolean, true
   setting :admin_display_elements,     :integer, 10
-  #deprecation warning for plugins removal
-  setting :deprecation_warning,        :integer, 1
-
 
   validate :permalink_has_identifier
 
