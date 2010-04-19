@@ -4,6 +4,7 @@ To fully profit from Typo static caching capabilities, you need to add the follo
 
   RewriteEngine On
 
+  RewriteCond %{DOCUMENT_ROOT}/cache/index.html -f
   RewriteRule ^/$ /cache/index.html [PT]
   
   RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_FILENAME} -f
