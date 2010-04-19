@@ -9,7 +9,6 @@ describe PageCache do
       @all_paths = []
       all_files.each do |path|
         @all_paths << create_file_in_spec_public_cache_directory(path)
-        CacheInformation.create!(:path => path)
       end
     end
 
@@ -19,12 +18,6 @@ describe PageCache do
         File.should_not be_exist(path)
       end
     end
-
-    it 'should delete all CacheInformation' do
-      PageCache.sweep_all
-      CacheInformation.all.should be_empty
-    end
-
   end
 
 end

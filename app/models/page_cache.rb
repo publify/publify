@@ -13,20 +13,17 @@ class PageCache
 
   # Delete all file save in path_cache by page_cache system
   def self.sweep_all
-    if ActiveRecord::Base.connection.table_exists?(:cache_informations)
-      CacheInformation.all.each{|c| c.destroy}
-    else
-      logger.debug "PageCache - OOOOPS table is missing"
-    end
-    self.sweep_theme_cache
+    self.zap_pages(%w{*})
   end
-
 
   def self.sweep_theme_cache
     self.zap_pages(%w{images/theme/* stylesheets/theme/* javascripts/theme/*})
   end
 
   def self.zap_pages(paths)
+    # Ensure no one is going to wipe his own blog public directory
+    # It happened once on a release and was no fun at all
+    return if public_path == "#{RAILS_ROOT}/public"
     srcs = paths.inject([]) { |o,v|
       o + Dir.glob(public_path + "/#{v}")
     }
@@ -36,6 +33,7 @@ class PageCache
     FileUtils.mv(srcs, trash, :force => true)
     FileUtils.rm_rf(trash)
   end
+  
 
   # DEPRECATED
   #
@@ -60,4 +58,5 @@ class PageCache
       self.zap_pages([*1990..2020].collect { |y| "#{y}.*" })
     end
   end
+  
 end

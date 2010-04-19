@@ -13,8 +13,10 @@ Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use
   config.frameworks -= [ :active_resource ]
 
-  # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/app/services )
+  # Setup the cache path
+  config.action_controller.page_cache_directory = "#{RAILS_ROOT}/public/cache/"
+  config.cache_store=:file_store, "#{RAILS_ROOT}/public/cache/"
+
 
   # I need the localization plugin to load first
   # Otherwise, I can't localize plugins <= localization
@@ -48,9 +50,7 @@ Rails::Initializer.run do |config|
   config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
   config.gem 'mini_magick', :version => '~> 1.2.5', :lib => 'mini_magick'
   
-  # Use the database for sessions instead of the file system
-  # (create the session table with 'rake create_sessions_table')
-  # config.action_controller.session_store = :active_record_store
+  # Use the filesystem for sessions instead of the database
   config.action_controller.session = { :key => "_typo_session", :secret => "8d7879bd56b9470b659cdcae88792622" }
   
   # Disable use of the Accept header, since it causes bad results with our
@@ -79,22 +79,6 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
 )
 
 ActionMailer::Base.default_charset = 'utf-8'
-
-# I wanted to put this as a "setup" page, but it seems I can't catch the 
-# exception fast enough and get a 500 error
-#if RAILS_ENV != 'test'
-#  begin
-#    ActiveRecord::Base.connection.select_all("select * from sessions")
-#  rescue
-#    begin
-#      ActiveRecord::Base.connection.current_database
-#      Migrator.migrate
-#    rescue
-#      # if there are no database, migrator doesn't no start
-      # use case : rake db:create in rails tasks
-#    end
-#  end
-#end
 
 # Work around interpolation deprecation problem: %d is replaced by
 # {{count}}, even when we don't want them to.

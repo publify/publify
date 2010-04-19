@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
     def cache_page_with_log_page(content, path)
       return unless perform_caching
       cache_page_without_log_page(content, path)
-      CacheInformation.create(:path => page_cache_file(path))
     end
     alias_method_chain :cache_page, :log_page
   end
