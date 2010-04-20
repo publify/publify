@@ -76,12 +76,31 @@ module AccessControl
       return controllers.uniq.compact
     end
     
+    def search_plugins_directory
+      plugins_root = File.join(RAILS_ROOT, 'vendor', 'plugins')
+      Dir.glob("#{plugins_root}/typo_plugin_*").each do |file|
+        File.readable?(File.join("#{file}/", "#{file.split(plugins_root)}_controller.rb"))
+      end.compact
+    end
+    
+    def get_plugin_litteral_name(plugin)
+      get_plugin_controller_name(plugin).tr('_', ' ').capitalize
+    end
+
+    def get_plugin_controller_name(plugin)
+      plugin.split("#{plugin_root}/typo_plugin_").second
+    end
+    
   private
     def mappers(role)
       @mappers.select { |m| m.roles.include?(role.to_s.downcase.to_sym) }
     end
+    
+    def plugin_root
+      File.join(RAILS_ROOT, 'vendor', 'plugins')
+    end
   end
-  
+    
   class Mapper
     attr_reader :project_modules, :roles
     
