@@ -78,8 +78,8 @@ module AccessControl
     
     def search_plugins_directory
       plugins_root = File.join(RAILS_ROOT, 'vendor', 'plugins')
-      Dir.glob("#{plugins_root}/typo_plugin_*").each do |file|
-        File.readable?(File.join("#{file}/", "#{file.split(plugins_root)}_controller.rb"))
+      Dir.glob("#{plugins_root}/typo_plugin_*").select do |file|
+        File.readable?(File.join(plugin_admin_controller_path(file), file.split("#{plugins_root}/typo_plugin_").second + "_controller.rb"))
       end.compact
     end
     
@@ -99,6 +99,10 @@ module AccessControl
     def plugin_root
       File.join(RAILS_ROOT, 'vendor', 'plugins')
     end
+    
+    def plugin_admin_controller_path(plugin)
+      File.join("#{plugin}", "lib", "app", "controllers", "admin")
+    end    
   end
     
   class Mapper
