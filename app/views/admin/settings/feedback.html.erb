@@ -35,7 +35,7 @@
     <div class='setting clear'>
       <label class="float" for="setting_use_gravatar"><%= _("Enable gravatars")%></label>
       <div class='input_text'>
-        <%= check_box(:setting, :use_gravatar)%><span><%= _("This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.")%></span>
+        <%= check_box(:setting, :use_gravatar)%>
       </div>      
     </div>
     <div class='setting clear'>
@@ -82,6 +82,7 @@
       <label class="float" for="setting_global_pings_disable"><%= _("Disable trackbacks site-wide")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :global_pings_disable)%>
+        <span><%= _("This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.")%></span>
       </div>      
     </div>
     <div class='setting clear'>
