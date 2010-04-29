@@ -143,7 +143,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def delete_all_spam
     if request.post?
-      Feedback.delete_all(['state in (?,?)', 'presumed_spam', 'spam'])
+      Feedback.delete_all(['state = ?', 'spam'])
       flash[:notice] = _("All spam have been deleted")
     end
   end
