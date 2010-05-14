@@ -68,7 +68,7 @@ describe Admin::CategoriesController do
     assert_response :success
     assert_template "_categories"
     assert_tag :tag => "table",
-      :children => { :count => Category.count + 1,
+      :children => { :count => Category.count + 2,
         :only => { :tag => "tr",
           :children => { :count => 1 } } }
   end
