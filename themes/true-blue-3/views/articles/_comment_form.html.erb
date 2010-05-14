@@ -17,7 +17,7 @@
     <%= text_area 'comment', 'body' %>
   </p>
   <p class='comment_submit'>
-    <input type='image' id='form-submit-button' onclick='this.form.submit()' src='<%= image_path "theme/comment.jpg"%>' />
+    <input type='submit' id='form-submit-button' value="<%= _('comment') %>" />
   </p>
 </div>
 <% end %>

@@ -69,10 +69,10 @@ def category_name(id)
 end
 
 def display_comments_counter(article)
-  pluralize(article.published_comments.size, 
+  link_to pluralize(article.published_comments.size, 
           _('%d comments', article.published_comments.size),
           _('%d comment', article.published_comments.size), 
-          _('%d comments', article.published_comments.size))  
+          _('%d comments', article.published_comments.size)), article.permalink_url
 end
 
 def show_pages_links
