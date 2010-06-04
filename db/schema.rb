@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150807134129) do
     t.integer  "parent_id"
     t.text     "settings"
     t.string   "post_type",      default: "read"
+    t.integer  "blog_id"
   end
 
   add_index "contents", ["id", "type"], name: "index_contents_on_id_and_type", using: :btree
@@ -153,6 +154,7 @@ ActiveRecord::Schema.define(version: 20150807134129) do
     t.text    "config"
     t.integer "staged_position"
     t.string  "type"
+    t.integer "blog_id",         null: false
   end
 
   add_index "sidebars", ["id", "type"], name: "index_sidebars_on_id_and_type", using: :btree
