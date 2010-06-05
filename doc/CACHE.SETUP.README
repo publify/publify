@@ -1,4 +1,6 @@
-To fully profit from Typo static caching capabilities, you need to add the following rewrite rules to either your .htaccess or your virtualhost after declaring the document root.
+To fully profit from Typo static caching capabilities, you need to add the
+following rewrite rules to either your .htaccess or your virtualhost after
+declaring the document root.
 
 == Rewrite Rules For Apache
 
