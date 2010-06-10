@@ -470,6 +470,9 @@ Localization.define('de_DE') do |l|
  
   l.store "Pictures from", "Bilder von"
 
+  #views/shared/_search.rhtml
+  l.store 'Live Search', 'Suche'
+
   #vendor/plugins/aimpresence_sidebar/aimpresence_sidebar.rb
   l.store "AIM Presence", "AIM Anwesenheit"
 

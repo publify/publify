@@ -504,7 +504,10 @@ Localization.define('pl_PL') do |l|
   l.store "Comments are disabled", "Komentarze wyłączone"
  
   l.store "Pictures from", "Zdjęcia z"
-  
+
+  #views/shared/_search.rhtml
+  l.store 'Live Search', 'Wyszukiwarka'
+
   #vendor/plugins/aimpresence_sidebar/aimpresence_sidebar.rb
   l.store "AIM Presence", "Status AIM"
 
