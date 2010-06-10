@@ -457,6 +457,7 @@ Localization.define('de_DE') do |l|
   
   #articles/index.rhtml
   l.store "Read more", "Mehr lesen"
+  l.store "Continue reading", "Weiter lesen"
   l.store "Older posts", "Weitere Artikel"
   
   #articles/read.rhtml
