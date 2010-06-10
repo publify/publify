@@ -1,11 +1,14 @@
 # localization Marcin Gil <marcin.gil@gmail.com>
+# additional localization Szymon (jeznet) Jeż <szymon@jez.net.pl>
 
 Localization.define('pl_PL') do |l|
   # General
   l.store "your blog", "Twój blog"
   l.store "Typo admin", "administracja Typo"
   l.store "Publish", "Publikuj"
+  l.store "Dashboard", "Podsumowanie"
   l.store "Manage", "Zarządzaj"
+  l.store "Customize", "Personalizuj"
   l.store "Feedback", "Komentarze"
   l.store "Design", "Wygląd"
   l.store "%d users", "%d użytkownicy"
@@ -14,6 +17,7 @@ Localization.define('pl_PL') do |l|
   l.store "Settings", "Ustawienia"
   l.store "Things you can do", "Dostępne działania"
   l.store "with %s Famfamfam iconset %s", "z %s ze zbioru ikon Famfamfam %s"
+  l.store "is proudly powered by", "dumnie działa na"
 
   #admin/login.rhtml
   l.store "Username", "Użytkownik"
@@ -41,11 +45,44 @@ Localization.define('pl_PL') do |l|
   l.store "Update your profile or change your password", "Zaktualizować profil lub zmienić hasło"
   l.store "Change your blog presentation", "Zmienić wygląd swojego bloga"
   l.store "Enable plugins", "Aktywować wtyczki"
-  l.store "Last Comments", "Ostatnie komentarze"
-  l.store "Last posts", "Ostatnie wpisy"
-  l.store "Most popular", "Najpopularniejsze"
+  l.store "Latest Posts", "Ostatnie Wpisy"
   l.store "Typo documentation", "Oficjalna dokumentacja Typo"
   l.store "No comments yet", "Brak komentarzy"
+  l.store "Latest news from the Typo development blog", "Najnowsze wieści z bloga developerskiego Typo"
+
+  # app/views/admin/dashboard/_overview.html.erb
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.",
+    "To miejsce daje ci szybki podgląd na to co dzieje się na twoim blogu i to co możesz zrobić. Może chcesz %s, %s or %s."
+  l.store "update your profile or change your password", "zaktualizować profil lub zmienić hasło"
+  l.store "You can also do a bit of design, %s or %s.", "Możesz również trochę poprojektować wygląd, %s lub %s."
+  l.store "change your blog presentation", "zmienić wygląd swojego bloga"
+  l.store "enable plugins", "aktywować wtyczkę"
+  l.store "write a post", "utworzyć wpis"
+  l.store "write a page", "utworzyć stronę"
+
+  # app/views/admin/dashboard/_welcome.html.erb
+  l.store "Welcome back, %s!", "Witamy spowrotem, %s!"
+  l.store "%d articles and %d comments were posted since your last connexion", "%d artykułów i %d komentarzy zostało opublikowanych od twojego ostaniego połączenia"
+  l.store "You're running Typo %s", "Działasz na Typo %s"
+  l.store "Total posts : %d", "Liczba wszystkich wpisów: %d"
+  l.store "Your posts : %d", "Twoje wpisy: %d"
+  l.store "Total comments : %d", "Liczba wszystkich komentarzy: %d"
+  l.store "Spam comments : %d", "Niechciane komentarze (spam): %d"
+
+  # app/views/admin/dashboard/_inbound.html.erb
+  l.store "Inbound links", "Linki przychodzące"
+  l.store "No one made a link to you yet", "Nikt jeszcze nie stworzył do ciebie łącza"
+  l.store " made a link to you saying ", " wykonał do ciebie łącze o treści "
+  l.store "You have no internet connection", "Nie masz połączenia internetowego"
+
+  # app/views/admin/dashboard/_comments.html.erb
+  l.store "Latest Comments", "Ostatnie komentarze"
+  l.store "No comments yet", "Brak komentarzy"
+  l.store "By %s on %s", "Przez %s odnośnie %s"
+
+  # app/views/admin/dashboard/_popular.html.erb
+  l.store "Most popular", "Najpopularniejsze"
+  l.store "Nothing to show yet", "Nie ma jeszcze nic do pokazania"
 
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "Ostatnie komentarze"
@@ -112,6 +149,7 @@ Localization.define('pl_PL') do |l|
   #admin/category/list.rhtml
   l.store "Manage Categories", "Zarządzaj kategoriami"
   l.store "Create new category", "Utwórz nową kategorię"
+  l.store "New Category", "Utwórz nową kategorię"
   l.store "Reorder", "Zmień porządek"
   l.store "Sort alphabetically", "Sortuj alfabetycznie"
   l.store "Manage Articles", "Zarządzaj artykułami"
@@ -164,6 +202,8 @@ Localization.define('pl_PL') do |l|
   l.store "no trackbacks", "brak trackbacków"
   l.store "no comments", "brak komentarzy"
   l.store "Continue reading", "Czytaj dalej"
+  l.store "Files", "Pliki"
+  l.store "Images", "Grafika"
 
   #admin/content/_attachment.rhtml
   l.store "Remove", "Skasuj"
@@ -420,7 +460,7 @@ Localization.define('pl_PL') do |l|
 
   #admin/textfilters/list.rhtml
   l.store "Create new text filter", "Utwórz nowy filtr"
-  l.store "Customize Sidebar", "Spersonalizuj pasek boczny"
+  l.store "Customize Sidebar", "Personalizuj pasek boczny"
   l.store "Macros", "Makra"
 
   #admin/textfilters/macro_help.rhtml
@@ -565,4 +605,81 @@ Localization.define('pl_PL') do |l|
   l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
   l.store "Error occurred while updating Content Type.", "Wystąpił błąd w trakcie aktualizacji typu zawartości."
   l.store "complete", "zakończony"
+
+  #vendor/plugins/xml_sidebar/views/content.rhtml
+  l.store 'Articles feed', 'Artykuły RSS'
+  l.store 'Comments feed', 'Komentarze RSS'
+  l.store 'Trackbacks feed', 'Trackbacki RSS' # FIXME This translation could be better?
+  l.store 'Articles', 'Artykuły'
+  l.store 'Comments', 'Komentarze'
+  l.store 'Trackbacks', 'Trackbacki' # FIXME
+
+  #vendor/plugins/category_sidebar/views/content.rhtml
+  l.store 'Categories', 'Kategorie'
+
+  #app/helpers/articles_helper.rb
+  l.store 'Posted in', 'Opublikowano w'
+  l.store 'posted in', 'opublikowano w'
+
+  #articles/_comment_box.rhtml
+  l.store 'submit', 'Prześlij'
+
+  #vendor/plugins/will-paginate
+  l.store "Previous", "Poprzednie"
+  l.store "Next", "Następne"
+
+  # Other, Not sorted
+  l.store "Search", "Szukaj"
+  l.store "Date", "Data"
+  l.store "Log out", "Wyloguj"
+
+  # Taken from the es_MX translation.
+
+  #app/helpers/application_helper.rb
+  l.store 'no', 'nie'
+  l.store 'comment', 'komentarz'
+  l.store 'comments', 'komentarze'
+  l.store 'trackback', '' # FIXME
+  l.store 'trackbacki', ''
+  l.store 'less than', 'mniej niż'
+  l.store 'a minute', 'minuta'
+  l.store 'second', 'sekunda'
+  l.store 'seconds', 'sekundy'
+  l.store 'minute', 'minuta'
+  l.store 'minutes', 'minuty'
+  l.store 'hour', 'godzina'
+  l.store 'hours', 'godziny'
+  l.store '20 seconds', '20 sekund'
+  l.store 'half a minute', 'pół minuty'
+  l.store 'about', 'o' # FIXME
+  l.store '1 hour', 'jedna godzina'
+  l.store '1 minute', 'jedna minuta'
+  l.store '1 day', 'jeden dzień'
+  l.store '1 year', 'jeden rok'
+  l.store '1 month', 'jeden miesiąc'
+  l.store 'day', 'dzień'
+  l.store 'days', 'dni'
+  l.store 'month', 'miesiąc'
+  l.store 'months', 'miesiące'
+  l.store 'year', 'rok'
+  l.store 'years', 'lata'
+  l.store 'over', 'ponad'
+  l.store 'ago', 'temu'
+
+  # TODO: How to make this work? Why is it not working.
+  # All Javascript strings go here, with the js_ prefix (only needed in this file)
+  l.store 'js_hour', 'godzina'
+  l.store 'js_minute', 'minuta'
+  l.store 'js_hours', 'godziny'
+  l.store 'js_minutes', 'minuty'
+  l.store 'js_days', 'dni'
+  l.store 'js_in', 'w'
+  l.store 'js_since', 'od'
+  l.store 'js_from now', 'od teraz'
+  l.store 'js_ago', 'temu'
+  l.store 'js_on', ' '
+  l.store 'js_less than a minute', 'mniej niż minutę temu'
+  l.store 'js_about one hour', 'około godzinę temu'
+  l.store 'js_one day', 'jednen dzień'
+  l.store 'js_about one day', 'około jednego dnia'
 end
