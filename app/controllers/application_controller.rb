@@ -41,6 +41,9 @@ class ApplicationController < ActionController::Base
 
   def load_lang
     Localization.lang = this_blog.lang
+    lang = I18n.available_locales.include?(this_blog.lang.to_sym) ? this_blog.lang :
+           I18n.available_locales.include?(this_blog.lang[0..1].to_sym) ? this_blog.lang[0..1] : nil
+    I18n.locale = lang if lang
     # _("Localization.rtl") 
   end
 
