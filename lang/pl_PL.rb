@@ -478,6 +478,7 @@ Localization.define('pl_PL') do |l|
   l.store "Your message", "Treść"
   l.store "Comment Markup Help", "Pomoc języka formatowania"
   l.store "Preview comment", "Obejrzyj komentarz"
+  l.store 'leave url/email', 'zostaw url/email'
   
   #articles/_trackback.rhtml
   l.store "From", "Z"

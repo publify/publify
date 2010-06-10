@@ -442,7 +442,8 @@ Localization.define('de_DE') do |l|
   l.store "Your message", "Meine Nachricht"
   l.store "Comment Markup Help", "Hilfe zu Kommentar Markup"
   l.store "Preview comment", "Kommentar Vorschau"
-  
+  l.store 'leave url/email', 'hinterlasse url/email'
+
   #articles/_trackback.rhtml
   l.store "From", "Von"
   
