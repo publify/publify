@@ -147,8 +147,10 @@ Localization.define('pl_PL') do |l|
   l.store "Uploads", "Załadowane zasoby"
   l.store "Post title", "Tytuł wpisu"
   l.store "Posted at", "Data publikacji"
-  l.store "%d Comments", ["Komentarz", "%d Komentarze"]
-  l.store "%d Trackbacks", ["Trackback", "%d Trackbacki"]
+  l.store "%d comments", ["komentarz", "%d komentarze"]
+  l.store "1 comment", "1 komentarz"
+  l.store "%d trackbacks", ["trackback", "%d trackbacki"]
+  l.store "1 trackback", "1 trackback"
   l.store "View", "Obejrzyj"
   l.store "Status", "Stan"
   l.store "Offline", "Offline"
