@@ -155,6 +155,7 @@ Localization.define('pl_PL') do |l|
   l.store "Online", "Online"
   l.store "no trackbacks", "brak trackbacków"
   l.store "no comments", "brak komentarzy"
+  l.store "Continue reading", "Czytaj dalej"
   
   #admin/content/_attachment.rhtml
   l.store "Remove", "Skasuj"
