@@ -24,11 +24,14 @@ module ApplicationHelper
 
   # The '5 comments' link from the bottom of articles
   def comments_link(article)
-    link_to_permalink(article,pluralize(article.published_comments.size, _('no comments') , _('1 comment'), __('%d comments')),'comments')
+    comment_count = article.published_comments.size
+    # FIXME Why using own pluralize metchod when the Localize._ provides the same funciotnality, but better? (by simply calling _('%d comments', comment_count) and using the en translation: l.store "%d comments", ["No nomments", "1 comment", "%d comments"])
+    link_to_permalink(article,pluralize(comment_count, _('no comments'), _('1 comment'), _('%d comments', comment_count)),'comments')
   end
 
   def trackbacks_link(article)
-    link_to_permalink(article,pluralize(article.published_trackbacks.size, _('no trackbacks') , _('1 trackback'), __('%d trackbacks')),'trackbacks')
+    trackbacks_count = article.published_trackbacks.size
+    link_to_permalink(article,pluralize(trackbacks_count, _('no trackbacks'), _('1 trackback'), _('%d trackbacks',trackbacks_count)),'trackbacks')
   end
 
   def check_cache(aggregator, *args)
