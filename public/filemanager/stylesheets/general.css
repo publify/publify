@@ -1,0 +1,135 @@
+BODY {
+	FONT-SIZE: 12px; MARGIN: 0px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+FIELDSET {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; PADDING-BOTTOM: 8px; PADDING-TOP: 8px
+}
+ HTML FIELDSET {
+	MARGIN-TOP: -12px
+}
+FORM {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+leg2end {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LEGEND {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; FONT-FAMILY: "MS Sans Serif", Verdana, Arial
+}
+A:link {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+}
+A:active {
+	TEXT-DECORATION: underline
+}
+A:visited {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+TD {
+	FONT-SIZE: 9pt; FONT-FAMILY: "MS Sans Serif", Verdana, Arial
+}
+.statusError {
+	COLOR: #880000
+}
+.statusMsg {
+	COLOR: #000000
+}
+.disabledFileName {
+	COLOR: #888888
+}
+.inputText {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BACKGROUND: #ffffff; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+.inputFile {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BACKGROUND: #ffffff; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+.inputFile:unknown {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #888888 1px solid; BACKGROUND: #dddddd; BORDER-LEFT: #888888 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+INPUT {
+	FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+SELECT {
+	FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+TEXTAREA {
+	FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.title {
+	FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.title {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px
+}
+.button {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #888888 1px solid; BACKGROUND: #dddddd; BORDER-LEFT: #888888 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+#insert {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #ffffff
+}
+#view {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #ffffff
+}
+.button {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #ffffff
+}
+.previewText {
+	FONT-SIZE: 9pt; FONT-FAMILY: "MS Sans Serif", Verdana, Arial
+}
+.previewSubTitle {
+	FONT-SIZE: 9pt; FONT-FAMILY: "MS Sans Serif", Verdana, Arial
+}
+.previewSubTitle {
+	FONT-WEIGHT: bold
+}
+.previewText {
+	PADDING-BOTTOM: 5px
+}
+#errorBody {
+	BACKGROUND-COLOR: #f0f0ee
+}
+#previewBody {
+	BACKGROUND-IMAGE: url(../images/preview_bg.gif); MARGIN: 24px 12px 12px; BACKGROUND-REPEAT: repeat-y; BACKGROUND-COLOR: #f0f0ee
+}
+#previewWrapper {
+	
+}
+#previewIframe {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; WIDTH: 100%; BORDER-BOTTOM: #000000 1px solid; HEIGHT: 200px; BACKGROUND-COLOR: #ffffff
+}
+UNKNOWN {
+	WIDTH: 252px
+}
+UNKNOWN {
+	PADDING-TOP: 5px
+}
+ HTML #previewIframe {
+	MARGIN-TOP: 4px
+}
+ HTML #previewNoPreviewBox {
+	MARGIN-TOP: 4px
+}
+#previewNoPreviewBox {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; WIDTH: 100%; BORDER-BOTTOM: #000000 1px solid; HEIGHT: 200px; TEXT-ALIGN: center
+}
+#previewNoPreviewText {
+	FONT-SIZE: 9pt; FONT-FAMILY: "MS Sans Serif", Verdana, Arial; POSITION: relative; TOP: 45%
+}
+.downloadLink:link {
+	TEXT-DECORATION: underline
+}
+.downloadLink:visited {
+	TEXT-DECORATION: underline
+}
+#createdirBody {
+	BACKGROUND-COLOR: #f0f0ee
+}
+#createzipBody {
+	BACKGROUND-COLOR: #f0f0ee
+}
+#previewNewDocIframe {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; WIDTH: 200px; BORDER-BOTTOM: #000000 1px solid; HEIGHT: 200px; BACKGROUND-COLOR: #ffffff
+}

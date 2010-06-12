@@ -3,6 +3,9 @@ ActionController::Routing::Routes.draw do |map|
   # default
   map.root :controller  => 'articles', :action => 'index'
 
+  # for Filemanager
+  map.connect 'fm/filemanager/:action/:id', :controller => 'Fm::Filemanager'
+
   # TODO: use only in archive sidebar. See how made other system
   map.articles_by_month ':year/:month', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/
   map.articles_by_month_page ':year/:month/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/

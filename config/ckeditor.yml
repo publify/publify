@@ -1,0 +1,14 @@
+default: &default
+  public_path: "#{path_to_your_public_directory}/files"
+  public_uri: /files
+  file_manager_uri: /fm/filemanager
+  file_manager_upload_uri: /ckeditor/upload
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

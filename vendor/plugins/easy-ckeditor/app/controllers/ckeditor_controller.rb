@@ -12,6 +12,7 @@ class CkeditorController < ActionController::Base
     "image/pjpeg",
     "image/gif",
     "image/png",
+    "image/x-png",
     "application/x-shockwave-flash"
   ]
 
@@ -104,7 +105,7 @@ class CkeditorController < ActionController::Base
     <html>
       <body>
         <script type="text/javascript">
-          window.parent.CKEDITOR.tools.callFunction(1, "#{url_for(:controller => "/articles").gsub(%r{/$},'')}/#{uploaded_file_path}");
+          window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, "#{uploaded_file_path}");
         </script>
       </body>
     </html>'
