@@ -1,9 +1,8 @@
 <% for article in @articles -%>
   <div class="post">
     <%= render :partial => "articles/article", :object => article %>
-    <%= link_to_permalink article, _("Read more") + "..." if article.extended? %>
     <p class="meta"><%= article_links article %></p>
   </div>
 <% end -%>
 
-<%= will_paginate @articles %>
+<%= will_paginate @articles, :next_label => "#{_("Next page")} &raquo;", :previous_label => "&laquo; #{_('Previous page')}" %>

@@ -1,18 +1,24 @@
 # localization Marcin Gil <marcin.gil@gmail.com>
+# additional localization Szymon (jeznet) Jeż <szymon@jez.net.pl>
 
 Localization.define('pl_PL') do |l|
   # General
   l.store "your blog", "Twój blog"
   l.store "Typo admin", "administracja Typo"
   l.store "Publish", "Publikuj"
+  l.store "Dashboard", "Podsumowanie"
   l.store "Manage", "Zarządzaj"
+  l.store "Customize", "Personalizuj"
   l.store "Feedback", "Komentarze"
   l.store "Design", "Wygląd"
-  l.store "%d Users", ["Użytkownik", "%d Użytkownicy"]
+  l.store "%d users", "%d użytkownicy"
+  l.store "1 user", "użytkownik"
+  l.store "no users", "brak użytkowników"
   l.store "Settings", "Ustawienia"
   l.store "Things you can do", "Dostępne działania"
   l.store "with %s Famfamfam iconset %s", "z %s ze zbioru ikon Famfamfam %s"
-  
+  l.store "is proudly powered by", "dumnie działa na"
+
   #admin/login.rhtml
   l.store "Username", "Użytkownik"
   l.store "Password", "Hasło"
@@ -23,7 +29,7 @@ Localization.define('pl_PL') do |l|
   l.store "You are now logged out of the system", "Wylogowano z systemu"
   l.store "Do you want to go to your blog?", "Czy chcesz obejrzeć Twój blog?"
   l.store "Logoff", "Wyloguj"
-  
+
   # admin/signup.rhtml
   l.store "Signup", "Zapisz się"
   l.store "Desired login", "Proponowany login"
@@ -31,7 +37,7 @@ Localization.define('pl_PL') do |l|
   l.store "Email", "Email"
   l.store "Choose password", "Wybierz hasło"
   l.store "Confirm password", "Potwierdź hasło"
-  
+
   # admin/dashboard/index.rhtml
   l.store "What can you do ?", "Co możesz zrobić?"
   l.store "Write Post", "Utworzyć wpis"
@@ -39,82 +45,120 @@ Localization.define('pl_PL') do |l|
   l.store "Update your profile or change your password", "Zaktualizować profil lub zmienić hasło"
   l.store "Change your blog presentation", "Zmienić wygląd swojego bloga"
   l.store "Enable plugins", "Aktywować wtyczki"
-  l.store "Last Comments", "Ostatnie komentarze"
-  l.store "Last posts", "Ostatnie wpisy"
-  l.store "Most popular", "Najpopularniejsze"
+  l.store "Latest Posts", "Ostatnie Wpisy"
   l.store "Typo documentation", "Oficjalna dokumentacja Typo"
   l.store "No comments yet", "Brak komentarzy"
-  
+  l.store "Latest news from the Typo development blog", "Najnowsze wieści z bloga developerskiego Typo"
+
+  # app/views/admin/dashboard/_overview.html.erb
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.",
+    "To miejsce daje ci szybki podgląd na to co dzieje się na twoim blogu i to co możesz zrobić. Może chcesz %s, %s or %s."
+  l.store "update your profile or change your password", "zaktualizować profil lub zmienić hasło"
+  l.store "You can also do a bit of design, %s or %s.", "Możesz również trochę poprojektować wygląd, %s lub %s."
+  l.store "change your blog presentation", "zmienić wygląd swojego bloga"
+  l.store "enable plugins", "aktywować wtyczkę"
+  l.store "write a post", "utworzyć wpis"
+  l.store "write a page", "utworzyć stronę"
+
+  # app/views/admin/dashboard/_welcome.html.erb
+  l.store "Welcome back, %s!", "Witamy spowrotem, %s!"
+  l.store "%d articles and %d comments were posted since your last connexion", "%d artykułów i %d komentarzy zostało opublikowanych od twojego ostaniego połączenia"
+  l.store "You're running Typo %s", "Działasz na Typo %s"
+  l.store "Total posts : %d", "Liczba wszystkich wpisów: %d"
+  l.store "Your posts : %d", "Twoje wpisy: %d"
+  l.store "Total comments : %d", "Liczba wszystkich komentarzy: %d"
+  l.store "Spam comments : %d", "Niechciane komentarze (spam): %d"
+
+  # app/views/admin/dashboard/_inbound.html.erb
+  l.store "Inbound links", "Linki przychodzące"
+  l.store "No one made a link to you yet", "Nikt jeszcze nie stworzył do ciebie łącza"
+  l.store " made a link to you saying ", " wykonał do ciebie łącze o treści "
+  l.store "You have no internet connection", "Nie masz połączenia internetowego"
+
+  # app/views/admin/dashboard/_comments.html.erb
+  l.store "Latest Comments", "Ostatnie komentarze"
+  l.store "No comments yet", "Brak komentarzy"
+  l.store "By %s on %s", "Przez %s odnośnie %s"
+
+  # app/views/admin/dashboard/_popular.html.erb
+  l.store "Most popular", "Najpopularniejsze"
+  l.store "Nothing to show yet", "Nie ma jeszcze nic do pokazania"
+
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "Ostatnie komentarze"
 
   #admin/base/recent_trackbacks.rhtml
   l.store "Recent trackbacks", "Ostatnie trackbacki"
-  
+
   #admin/blacklist/_blacklis_patterns.rhtml
   l.store "Pattern", "Wzorzec"
   l.store "Type", "Typ"
   l.store "Edit", "Zmień"
   l.store "Delete", "Usuń"
-  
+
   #admin/blacklist/_form.rhtml
   l.store "String", "Ciąg znaków"
   l.store "Regex", "Wyrażenie regularne"
-  
+
   #admin/blacklist/_quick_post.rhtml
   l.store "Add pattern", "Dodaj wzorzec"
   l.store "Cancel", "Anuluj"
   l.store "or", "lub"
-  
+
   #admin/blacklist/destroy.rhtml
   l.store "Blacklist Patterns", "Czarna lista"
   l.store "Show this pattern", "Pokaż ten wzorzec"
   l.store "Are you sure you want to delete this item?", "Czy na pewno chcesz usunąć tą pozycję?"
-  
+
   #admin/blacklist/edit.rhtml
   l.store "Editing pattern", "Zmiana wzorca"
-  
+
   #admin/blacklist/list.rhtml
   l.store "Create new Blacklist", "Utwórz nową czarną listę"
-  
+
   #admin/cache/list.rhtml
   l.store "Cache", "Bufor"
-  
+
   #admin/categories/_categories.rhtml
   l.store "Category title", "Tytuł kategorii"
-  l.store "%d Articles", ["Artykuł", "%d Artykuły"]
-  
+  l.store "%d articles", "%d artykuły"
+  l.store "1 article", "1 artykuł"
+  l.store "no articles", "brak artykułów"
+
   #admin/categories/_form.rhtml
   l.store "Name", "Nazwa"
-  
+
   #admin/categories/_quick_post.rhtml
   l.store "Title", "Tytuł"
   l.store "Add category", "Dodaj kategorię"
-  
+
   #admin/categorie/destroy.rhtml
-  l.store "%d Categories", ["Kategoria", "%d Kategorie"]
+  l.store "%d categories", "%d kategorie"
+  l.store "1 category", "kategoria"
+  l.store "no categories", "brak kategori"
   l.store "Show this category", "Pokaż tą kategorię"
   l.store "Delete this category", "Usuń tą kategorię"
   l.store "Are you sure you want to delete the category ", "Czy na pewno chcesz skasować kategorię "
 
   #admin/category/list.html.erb
   l.store "add new", "dodaj nową"
-  
+
   #admin/category/edit.rhtml
-  l.store "Editing category", "Edytuj kategorię" 
-  
+  l.store "Editing category", "Edytuj kategorię"
+
   #admin/category/list.rhtml
   l.store "Manage Categories", "Zarządzaj kategoriami"
   l.store "Create new category", "Utwórz nową kategorię"
+  l.store "New Category", "Utwórz nową kategorię"
   l.store "Reorder", "Zmień porządek"
   l.store "Sort alphabetically", "Sortuj alfabetycznie"
   l.store "Manage Articles", "Zarządzaj artykułami"
   l.store "Manage Pages", "Zarządzaj stronami"
   l.store "Manage Resources", "Zarządzaj zasobami"
-  
+
   #admin/category/reorder.rhtml
   l.store "(Done)", "(Zakończono)"
-  
+
   #admin/category/show
   l.store "Edit this category", "Edytuj tą kategorię"
   l.store "Articles in", "Artykuły w"
@@ -122,45 +166,50 @@ Localization.define('pl_PL') do |l|
   #admin/comments/_form.rhtml
   l.store "Author", "Autor"
   l.store "Url", "Strona web"
-  l.store "Body", "Treść" 
-  
+  l.store "Body", "Treść"
+
   #admin/comments/comments.rhtml
   l.store "on", "na"
 
   #admin/comments/destroy.rhtml
   l.store "Comments for", "Komentarze do"
-  
+
   #admin/comments/edit.rhtml
   l.store "Show this comment", "Pokaż komentarz"
   l.store "View comment on your blog", "Obejrzyj komentarz na blogu"
   l.store "Editing comment", "Edycja komentarza"
-  
+
   #admin/comments/list.rhtml
   l.store "IP", "Adres IP"
   l.store "Posted date", "Data publikacji"
-  
+
   #admin/comments/new.rhtml
   l.store "Creating comment", "Tworzenie komentarza"
-  
+
   #admin/content/_articles.rhtml
   l.store "Posts", "Wpisy"
   l.store "Uploads", "Załadowane zasoby"
   l.store "Post title", "Tytuł wpisu"
   l.store "Posted at", "Data publikacji"
-  l.store "%d Comments", ["Komentarz", "%d Komentarze"]
-  l.store "%d Trackbacks", ["Trackback", "%d Trackbacki"]
+  l.store "%d comments", "%d komentarze"
+  l.store "1 comment", "1 komentarz"
+  l.store "%d trackbacks", "%d trackbacki"
+  l.store "1 trackback", "1 trackback"
   l.store "View", "Obejrzyj"
   l.store "Status", "Stan"
   l.store "Offline", "Offline"
   l.store "Online", "Online"
   l.store "no trackbacks", "brak trackbacków"
   l.store "no comments", "brak komentarzy"
-  
+  l.store "Continue reading", "Czytaj dalej"
+  l.store "Files", "Pliki"
+  l.store "Images", "Grafika"
+
   #admin/content/_attachment.rhtml
   l.store "Remove", "Skasuj"
   l.store "Really delete attachment", "Na pewno skasować?"
   l.store "Add Another Attachment", "Dodaj kolejny załącznik"
-  
+
   #admin/content/_form.rhtml
   l.store "Article Body", "Nagłówek artykułu"
   l.store "Post", "Wpis"
@@ -168,7 +217,9 @@ Localization.define('pl_PL') do |l|
   l.store "Optional Extended Content", "Opcjonalna treść rozszerzona"
   l.store "Article Content", "Treść artykułu"
   l.store "Extended Content", "Treść rozszerzona"
-  l.store "%d Tags", ["Tag", "%d Tagi"]
+  l.store "%d tags", "%d tagi"
+  l.store "1 tag", "1 tag"
+  l.store "no tags", "brak tagów"
   l.store "Save", "Zapisz"
   l.store "Article Attachments", "Załączniki artykułu"
   l.store "Article Options", "Opcje artykułu"
@@ -179,24 +230,24 @@ Localization.define('pl_PL') do |l|
   l.store "Publish at", "Opublikowane dnia"
   l.store "Textfilter", "Filtr tekstu"
   l.store "Toggle Extended Content", "Przełącz treść rozszerzoną"
-  
+
   #admin/content/_pages.rhtml
   l.store "Previous page", "Poprzednia strona"
   l.store "Next page", "Następna strona"
-  
+
   #admin/content/_show_categories.rhtml
   l.store "Currently this article is listed in following categories", "Artykuł jest opublikowany w następujących kategoriach"
   l.store "You can add it to the following categories", "Możesz dodać go do następujących kategorii"
-  
+
   #admin/content/_show_ressources.rhtml
   l.store "Currently this article has the following resources", "Artykuł ma dołączone następujące zasoby"
   l.store "You can associate the following resources", "Możesz przypisać do artykułu następujące zasoby"
-  
+
   #admin/content/destroy.rhtml
   l.store "Show this article", "Pokaż artykuł"
   l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
   l.store "Delete this article", "Usuń artykuł"
-  
+
   #admin/content/edit.rhtml
   l.store "Edit Article", "Edytuj artykuł"
   l.store "View article on your blog", "Obejrzyj artykuł na blogu"
@@ -207,13 +258,13 @@ Localization.define('pl_PL') do |l|
 
   #admin/content/preview.rhtml
   l.store "Posted by", "Opublikowane przez"
-  
+
   #admin/content/show.rhtml
   l.store "Preview Article", "Podgląd artykułu"
   l.store "Edit this article", "Edytuj ten artykuł"
   l.store "Last updated", "Ostatnio zmieniany"
   l.store "Attachments", "Załączniki"
-  
+
   #admin/feedback/list.rhtml
   l.store "Limit to spam", "Pokaż spam"
   l.store "Limit to unconfirmed", "Pokaż niepotwierdzone"
@@ -221,12 +272,12 @@ Localization.define('pl_PL') do |l|
   l.store "Blacklist", "Czarna lista"
   l.store "Feedback Search", "Przeszukaj komentarze"
   l.store "Comments and Trackbacks for", "Komentarze i trackbacki do"
- 
+
   #admin/general/task
   l.store "Basic settings", "Ustawienia podstawowe"
   l.store "Advanced settings", "Ustawienia zaawansowane"
   l.store "Blog advanced settings", "Ustawienia zaawansowane bloga"
-  
+
   #admin/general/index.rhtml
   l.store "Blog settings", "Ustawienia bloga"
   l.store "Which settings group would you like to edit", "Którą grupę ustawień chcesz zmodyfikować"
@@ -299,7 +350,7 @@ Localization.define('pl_PL') do |l|
   l.store "Empty Fragment Cache", "Usuń bufor fragmentów"
   l.store "Rebuild cached HTML", "Przebuduj bufor HTML"
   l.store "days", "dni"
-  
+
   #admin/general/update_database
   l.store "Database migration", "Migruj bazę danych"
   l.store "Information", "Informacja"
@@ -313,30 +364,30 @@ Localization.define('pl_PL') do |l|
   l.store "Update database now", "Aktualizuj bazę danych"
   l.store "may take a moment", "może zająć dłuższą chwilę"
   l.store "config updated.", "konfiguracja zaktualizowana."
-  
+
   #admin/pages/_form.rhtml
   l.store "Page Body", "Nagłówek strony"
   l.store "Page Content", "Treść strony"
   l.store "Location", "Lokacja"
   l.store "Page Options", "Opcje strony"
-  
+
   #admin/pages/_pages.rhtml
   l.store "Action", "Akcje"
   l.store "Pages", "Strony"
   l.store "Show this page", "Pokaż tą stronę"
   l.store "Are you sure you want to delete the page", "Czy na pewno chcesz usunąć tą stronę"
   l.store "Delete this page", "Usuń tą stronę"
-  
+
   #admin/pages/edit.rhtml
   l.store "Create new page", "Utwórz nową stronę"
   l.store "View page on your blog", "Zaprezentuj stronę na blogu"
   l.store "Editing page", "Edytuj stronę"
   l.store "Manage Text Filters", "Zarządzaj filtrami tekstu"
-  
+
   #admin/pages/show.rhtml
   l.store "Edit this page", "Edytuj tą stronę"
   l.store "by", "przez"
-  
+
   #admin/ressources/_metadata_add.rhtml
   l.store "Resource MetaData", "Metadane zasobu"
   l.store "Set iTunes metadata for this enclosure", "Ustaw metadane iTunes"
@@ -344,11 +395,11 @@ Localization.define('pl_PL') do |l|
   l.store "Key Words", "Słowa kluczowe"
   l.store "seperate with spaces", "rozdziel spacjami"
   l.store "Category", "Kategoria"
-  
+
   #admin/resources/_metadata_edit.rhtml
   l.store "Remove iTunes Metadata", "Usuń metadane iTunes"
   l.store "Content Type", "Typ treści"
-  
+
   #admin/resources/_resources.rhtml
   l.store "Filename", "Nazwa pliku"
   l.store "right-click for link", "Kliknij PPM by uzyskać łącze"
@@ -369,16 +420,16 @@ Localization.define('pl_PL') do |l|
   l.store "Upload", "Wyślij"
   l.store "Upload a new Resource", "Wyślij nowy zasób"
   l.store "File", "Plik"
-  
+
   #admin/sidebar/_avaliables.rhtml
   l.store "You have no plugins installed", "Brak zainstalowanych wtyczek"
-  
+
   #admin/sidebar/_publish.rhtml
   l.store "Changes published", "Opublikowane zmiany"
-  
+
   #admin/sidebar/_target.rhtml
   l.store "Drag some plugins here to fill your sidebar", "Przeciągnij i upuść wtyczki na pasek boczny"
-  
+
   #admin/sidebar/index.rhtml
   l.store "Choose theme", "Wybierz temat"
   l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
@@ -391,85 +442,85 @@ Localization.define('pl_PL') do |l|
   l.store "Markup type", "Typ znaczników"
   l.store "Post-processing filters", "Filtr post-process"
   l.store "Parameters", "Parametry"
-  
+
   #admin/textfilters/_macros.rhtml
   l.store "Show Help", "Pomoc"
-  
+
   #admin/textfilters/_textfilters.rhtml
   l.store "Markup", "Znaczniki"
   l.store "Filters", "Filtry"
-  
+
   #admin/textfilters/destroy.rhtml
   l.store "Text Filters", "Filtry tekstu"
   l.store "Are you sure you want to delete this filter", "Czy na pewno chcesz usunąć ten filtr tekstu"
   l.store "Delete this filter", "Usuń filtr"
-  
+
   #admin/textfilters/edit.rhtml
   l.store "Editing textfilter", "Modyfikuj filtr"
-  
+
   #admin/textfilters/list.rhtml
   l.store "Create new text filter", "Utwórz nowy filtr"
-  l.store "Customize Sidebar", "Spersonalizuj pasek boczny"
+  l.store "Customize Sidebar", "Personalizuj pasek boczny"
   l.store "Macros", "Makra"
-  
+
   #admin/textfilters/macro_help.rhtml
   l.store "Macro Filter Help", "Pomoc makr filtrów"
   l.store "Creating text filter", "Tworzenie filtra tekstó"
-  
+
   #admin/textfilters/show.rhtml
   l.store "Text Filter Details", "Szczegóły filtra tekstu"
   l.store "Edit this filter", "Modyfikuj ten filtr"
   l.store "See help text for this filter", "Zobacz pomoc dla tego filtra"
-  
+
   #admin/themes/index.rhtml
   l.store "Choose theme", "Wybierz temat"
   l.store "Activate", "Aktywuj"
   l.store "Active theme", "Temat aktywny"
-  
+
   #admin/trackbacks/edit.rhtml
   l.store "Trackbacks for", "Trackbacki do"
   l.store "Editing trackback", "Modyfikuj trackback"
-  
+
   #admin/trackbacks/new.rhtml
   l.store "Creating trackback", "Tworzenie trackbacka"
   l.store "Edit this trackback", "Modyfikuj ten trackback"
-  
+
   #admin/users/_form.rhtml
   l.store "Jabber", "Jabber"
   l.store "Password Confirmation", "Potwierdzenie hasła"
   l.store "Send notification messages via email", "Wysyłaj powiadomienia emailem"
   l.store "Send notification messages when new articles are posted", "Wysyłaj powiadomienia o nowych artykułach"
   l.store "Send notification messages when comments are posted", "Wysyłaj powiadomienia o nowych komentarzach"
-  
+
   #admin/user/_user.rhtml
   l.store "Number of Articles", "Liczba artykułów"
   l.store "Number of Comments", "Liczba komentarzy"
   l.store "Notified", "Powiadamiony"
   l.store "via email", "emailem"
-  
+
   #admin/user/destroy.rhtml
   l.store "Show this user", "Pokazuj tego użytkownika"
   l.store "Really delete user", "Na pewno usunąć użytkownika"
-  
+
   #admin/user/edit.rhtml
   l.store "Edit User", "Zmień dane użytkownika"
   l.store "Editing User", "Zmiana danych użytkownika"
   l.store "New User", "Nowy użytkownik"
   l.store "Add new user", "Dodaj nowego użytkownika"
-  
+
   #admin/user/new.rhtml
   l.store "Creating user", "Tworzenie użytkownika"
-  
+
   #admin/user/show.rhtml
   l.store "User's articles", "Artykuły użytkownika"
   l.store "Notify via email", "Powiadamiaj emailem"
   l.store "Notify on new articles", "Powiadamiaj o nowych artykułach"
   l.store "Notify on new comments", "Powiadamiaj o nowych komentarzach"
-  
+
   #articles/_comment.rhtml
   l.store "said", "powiedział"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ten komentarz oczekuje na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora."
-  
+
   #articles/_comment_box.rhtml
   l.store "Your name", "Twoja nazwa"
   l.store "Your blog", "Twój blog"
@@ -477,50 +528,54 @@ Localization.define('pl_PL') do |l|
   l.store "Your message", "Treść"
   l.store "Comment Markup Help", "Pomoc języka formatowania"
   l.store "Preview comment", "Obejrzyj komentarz"
-  
+  l.store 'leave url/email', 'zostaw url/email'
+
   #articles/_trackback.rhtml
   l.store "From", "Z"
-  
+
   #articles/archives.rhtml
   l.store "No articles found", "Brak artykułów"
-  
+
   #articles/comment_preview.rhtml
   l.store "is about to say", "zaraz powie"
-  
+
   #articles/groupings.rhtml
   l.store "There are", "Istnieje"
-  
+
   #articles/index.rhtml
   l.store "Read more", "Czytaj dalej"
   l.store "Older posts", "Starsze wpisy"
-  
+
   #articles/read.rhtml
   l.store "Leave a response", "Skomentuj"
   l.store "Use the following link to trackback from your own site", "Użyj następującego trackbacka na swojej stronie"
   l.store "RSS feed for this post", "Subskrypcja RSS dla tego wpisu"
   l.store "trackback uri", "Adres trackback"
   l.store "Comments are disabled", "Komentarze wyłączone"
- 
+
   l.store "Pictures from", "Zdjęcia z"
-  
+
+  #views/shared/_search.rhtml
+  l.store 'Live Search', 'Wyszukiwarka'
+
   #vendor/plugins/aimpresence_sidebar/aimpresence_sidebar.rb
   l.store "AIM Presence", "Status AIM"
 
   #vendor/plugins/aimpresence_sidebar/views/content.rb
   l.store "AIM Status", "Status AIM"
-  
+
   #vendor/plugins/xml_sidebar/xml_sidebar.rb
   l.store "XML Syndication", "Subskrypcja XML"
 
   #vendor/plugins/xml_sidebar/xml_sidebar.rb
   l.store "Syndicate", "Subskrypcje"
-  
+
   #vendor/plugins/archives_sidebar/views/content.rb
   l.store "Archives", "Archiwa"
-  
+
   #vendor/plugins/tags_sidebar/views/content.rb
   l.store "Tags", "Tagi"
-  
+
   #app/helpers/admin/base_helper.rb
   l.store "Back to overview", "Wróć do podglądu"
   l.store "log out", "wyloguj"
@@ -550,4 +605,81 @@ Localization.define('pl_PL') do |l|
   l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
   l.store "Error occurred while updating Content Type.", "Wystąpił błąd w trakcie aktualizacji typu zawartości."
   l.store "complete", "zakończony"
+
+  #vendor/plugins/xml_sidebar/views/content.rhtml
+  l.store 'Articles feed', 'Artykuły RSS'
+  l.store 'Comments feed', 'Komentarze RSS'
+  l.store 'Trackbacks feed', 'Trackbacki RSS' # FIXME This translation could be better?
+  l.store 'Articles', 'Artykuły'
+  l.store 'Comments', 'Komentarze'
+  l.store 'Trackbacks', 'Trackbacki' # FIXME
+
+  #vendor/plugins/category_sidebar/views/content.rhtml
+  l.store 'Categories', 'Kategorie'
+
+  #app/helpers/articles_helper.rb
+  l.store 'Posted in', 'Opublikowano w'
+  l.store 'posted in', 'opublikowano w'
+
+  #articles/_comment_box.rhtml
+  l.store 'submit', 'Prześlij'
+
+  #vendor/plugins/will-paginate
+  l.store "Previous", "Poprzednie"
+  l.store "Next", "Następne"
+
+  # Other, Not sorted
+  l.store "Search", "Szukaj"
+  l.store "Date", "Data"
+  l.store "Log out", "Wyloguj"
+
+  # Taken from the es_MX translation.
+
+  #app/helpers/application_helper.rb
+  l.store 'no', 'nie'
+  l.store 'comment', 'komentarz'
+  l.store 'comments', 'komentarze'
+  l.store 'trackback', '' # FIXME
+  l.store 'trackbacki', ''
+  l.store 'less than', 'mniej niż'
+  l.store 'a minute', 'minuta'
+  l.store 'second', 'sekunda'
+  l.store 'seconds', 'sekundy'
+  l.store 'minute', 'minuta'
+  l.store 'minutes', 'minuty'
+  l.store 'hour', 'godzina'
+  l.store 'hours', 'godziny'
+  l.store '20 seconds', '20 sekund'
+  l.store 'half a minute', 'pół minuty'
+  l.store 'about', 'o' # FIXME
+  l.store '1 hour', 'jedna godzina'
+  l.store '1 minute', 'jedna minuta'
+  l.store '1 day', 'jeden dzień'
+  l.store '1 year', 'jeden rok'
+  l.store '1 month', 'jeden miesiąc'
+  l.store 'day', 'dzień'
+  l.store 'days', 'dni'
+  l.store 'month', 'miesiąc'
+  l.store 'months', 'miesiące'
+  l.store 'year', 'rok'
+  l.store 'years', 'lata'
+  l.store 'over', 'ponad'
+  l.store 'ago', 'temu'
+
+  # TODO: How to make this work? Why is it not working.
+  # All Javascript strings go here, with the js_ prefix (only needed in this file)
+  l.store 'js_hour', 'godzina'
+  l.store 'js_minute', 'minuta'
+  l.store 'js_hours', 'godziny'
+  l.store 'js_minutes', 'minuty'
+  l.store 'js_days', 'dni'
+  l.store 'js_in', 'w'
+  l.store 'js_since', 'od'
+  l.store 'js_from now', 'od teraz'
+  l.store 'js_ago', 'temu'
+  l.store 'js_on', ' '
+  l.store 'js_less than a minute', 'mniej niż minutę temu'
+  l.store 'js_about one hour', 'około godzinę temu'
+  l.store 'js_one day', 'jednen dzień'
+  l.store 'js_about one day', 'około jednego dnia'
 end

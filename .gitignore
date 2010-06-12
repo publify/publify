@@ -15,3 +15,5 @@ installer/rails_installer.yml
 /public/stylesheets/all.css
 tmp/*
 /coverage/
+nbproject
+public/cache/*

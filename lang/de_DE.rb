@@ -442,7 +442,8 @@ Localization.define('de_DE') do |l|
   l.store "Your message", "Meine Nachricht"
   l.store "Comment Markup Help", "Hilfe zu Kommentar Markup"
   l.store "Preview comment", "Kommentar Vorschau"
-  
+  l.store 'leave url/email', 'hinterlasse url/email'
+
   #articles/_trackback.rhtml
   l.store "From", "Von"
   
@@ -457,6 +458,7 @@ Localization.define('de_DE') do |l|
   
   #articles/index.rhtml
   l.store "Read more", "Mehr lesen"
+  l.store "Continue reading", "Weiter lesen"
   l.store "Older posts", "Weitere Artikel"
   
   #articles/read.rhtml
@@ -467,6 +469,9 @@ Localization.define('de_DE') do |l|
   l.store "Comments are disabled", "Kommentare sind deaktiviert"
  
   l.store "Pictures from", "Bilder von"
+
+  #views/shared/_search.rhtml
+  l.store 'Live Search', 'Suche'
 
   #vendor/plugins/aimpresence_sidebar/aimpresence_sidebar.rb
   l.store "AIM Presence", "AIM Anwesenheit"
