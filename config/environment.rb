@@ -74,6 +74,9 @@ $KCODE = 'u'
 require 'jcode'
 require 'transforms'
 
+$FM_OVERWRITE = true
+require 'filemanager'
+
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :long_weekday => '%a %B %e, %Y %H:%M'
 )

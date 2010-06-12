@@ -11,9 +11,6 @@ AddHandler cgi-script .cgi
 #   RewriteCond %{REQUEST_URI} ^/notrails.*
 #   RewriteRule .* - [L]
 
-# Redirect all requests not available on the filesystem to Rails
-RewriteEngine On
-
 # If Typo is accessed via an Alias directive, then you MUST also set 
 # the RewriteBase in this htaccess file.
 #
@@ -21,8 +18,12 @@ RewriteEngine On
 #   Alias /blog /path/to/typo/public
 #   RewriteBase /blog
 
-RewriteRule ^$ index.html [QSA]
-RewriteRule ^([^.]+)/!$ $1.html [QSA]
+RewriteEngine On
+RewriteRule ^/$ /cache/index.html [QSA]
+RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_FILENAME} -f
+RewriteRule ^/(.*)$ /cache/$1 [PT]
+RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_FILENAME}.html -f
+RewriteRule ^/(.*)$ /cache/$1.html [PT]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 

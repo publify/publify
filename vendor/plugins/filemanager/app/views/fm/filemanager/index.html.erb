@@ -1,0 +1,512 @@
+<html>
+<head>
+<title>Filemanager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%= javascript_include_tag 'prototype', 'scriptaculous', 'effetcs', 'builder', 'lightbox', 'prototype_ext', :cache => true %>
+
+<script src="<%= this_blog.base_url %>/javascripts/prototype.js" type="text/javascript"></script>
+<script src="<%= this_blog.base_url %>/javascript/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
+<script src="/filemanager/javascripts/lang/<%= this_blog.lang %>.js" type="text/javascript"></script>
+<script src="/filemanager/javascripts/translate.js" type="text/javascript"></script>
+<script src="/filemanager/javascripts/filemanager.js" type="text/javascript"></script>
+<script language=javascript type=text/javascript>
+var currentFile = null;
+function showControl(file) {
+  setCssClass($('imageControl'), "hidelayer");
+	setCssClass($('viewControl'), "showlayer");
+	currentFile = file;
+	if(file.length > 4) {
+	    var suffix = file.substring(file.length -3).toLowerCase();
+	    if (suffix == 'jpg' || suffix == 'gif' || suffix == 'png') {
+	    	setCssClass($('imageControl'), "showlayer");
+	    }
+	}
+}
+</script>
+<link href="/filemanager/stylesheets/general.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/filemanager/stylesheets/filelist.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/filemanager/stylesheets/lightbox.css" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">   
+body, select, textarea, div {
+	margin:0;
+	padding:0;
+	font-family: "Arial";
+	font-size: 9pt;
+	line-height:1.5em;
+}
+input{
+	margin:0;
+	padding:0;
+	font-family: "Arial";
+	font-size:9pt;
+	line-height: 1.5em;
+	vertical-align:middle;
+}
+
+
+img {
+    border:0px;
+    vertical-align:middle;
+}
+form {
+	margin:0px;
+	padding:0px;
+}
+a {
+color:#000000;
+text-decoration: none;
+}
+a:hover {
+color:#FF0000
+}
+
+.hidelayer {
+	display:none;
+	visibility:hidden;
+}
+.showlayer {
+	display:block;
+	visibility:visible;
+}
+.hideMenu {   
+position:absolute;   
+list-style:none;   
+margin:0;   
+padding:0;   
+display:none;   
+border:1px   solid   #DDDDDD;   
+background-color:#EEEEEE;   
+}   
+.hideMenu  li{   
+padding:1px;   
+}   
+.hideMenu   li   a{   
+padding:3px;   
+display:block;   
+text-decoration:none;   
+cursor:default;   
+}   
+.hideMenu   li   a:link, a:visited{   
+color:black;
+}
+.hideMenu   li   a:hover{   
+color:white;   
+background-color:#039;   
+}   
+</style> 
+</head>
+<body >
+  <div id="loading" style="display:none">Loading...</div>
+  <ul id='foldMenu' class="hideMenu">   
+  <li><a href="javascript:rename()"><span fmLang="rename">Rename</span></a></li>   
+  <li><a href="javascript:copyFile()"><span fmLang="copy">Copy</span></a></li>   
+  <li><a href="javascript:cutFile()"><span fmLang="cut">Cut</span></a></li>
+  <li><a href="javascript:pasteFile()"><span fmLang="paste">Paste</span></a></li> 
+  <li><a href="javascript:removeFile()"><span fmLang="remove">Remove</span></a></li>   
+  <li><a href="javascript:zipDownload();"><span fmLang="download">Download</span></a></li>
+  </ul>
+  <ul id='fileMenu' class="hideMenu">   
+  <li><a href="javascript:selectFile()"><span fmLang="selectFile">Select File</span></a></li>
+  <li id="unzip"><a href="javascript:unzipFile()"><span fmLang="unzipFile">Unzip File</span></a></li>    
+  <li><a href="javascript:rename()"><span fmLang="rename">Rename</span></a></li>   
+  <li><a href="javascript:copyFile()"><span fmLang="copy">Copy</span></a></li>   
+  <li><a href="javascript:cutFile()"><span fmLang="cut">Cut</span></a></li>
+  <li><a href="javascript:removeFile()"><span fmLang="remove">Remove</span></a></li>   
+  <li><a href="javascript:zipDownload();"><span fmLang="download">Download</span></a></li>
+  </ul> 
+  <ul id='blankMenu' class="hideMenu">
+  <li><a href="javascript:newFolder()"><span fmLang="new_folder">New Folder</span></a></li>
+  <li><a href="javascript:newFile()"><span fmLang="new_file">New File</span></a></li> 
+  <li><a href="javascript:pasteFile()"><span fmLang="paste">Paste</span></a></li> 
+  <li><a href="javascript:;" onmouseover="setCssClass($('uploadForm'), 'showlayer');"><span fmLang="upload_file">Upload File</span></a>
+  		<div id="uploadForm" align="right" class="hidelayer">
+		<form id="fileForm" method="post" enctype="multipart/form-data">
+		    <input type="file" name="upload" class="file" />
+		    <input type="button" fmLang="upload" value="Upload" onclick="uploadFile();"/>
+		</form>
+		</div>
+  </li> 
+  </ul>
+<div id=filelist>
+    <table cellspacing=0 cellpadding=3 width="100%" height="100%" border=0>
+      <tr>
+        <td valign="top">
+            <hr style="height:1px">
+		    <form name=filelistform action=filelist.php method=post>
+		    <table cellspacing=0 cellpadding=2 width="100%" border=0>
+		      <tbody>
+		        <tr height=0>
+		          <td nowrap width=1></td>
+		          <td nowrap width=1></td>
+		          <td nowrap width="100%"></td>
+		          <td nowrap width=1></td>
+		          <td nowrap width="1%"></td>
+		          <td id=spacercol width=0></td>
+		        </tr>
+			    <tr class=filelistheadrow id=filelistheadreal>
+			      <td id=selectcol1 valign=center nowrap align=middle width=1><a onmousedown="return false;" title="toggle all" href="javascript:checkAll();"><img id=toggleall height=10 alt="toggle all" hspace=3 src="/filemanager/images/box.gif" width=10 border=0></a></td>
+			      <td id=iconcol1 nowrap width=20><img height=1 src="/filemanager/images/spacer.gif" width=10></td>
+			      <td class=filelistheadcol id=fnamecol1 nowrap width="100%"> <span fmLang="file_name">File Name</span> </td>
+			      <td class=filelistheadcol id=fsizecol1 nowrap width="2%"> <span fmLang="file_size">File Size</span> </td>
+			      <td class=filelistheadcol id=fmodcol1 nowrap width="2%" align="center"> <span fmLang="modification_date">Modification Date</span> </td>
+			    </tr>
+<%
+	path = @controller.encode(@path)
+	unless @parent_path.nil?
+%>
+		        <tr class=filelistroweven>
+		          <td width=1></td>
+		          <td><a onmousedown="return false;" href="#"><img class="" title=directory height=16 alt=directory src="/filemanager/images/folder.gif" width=16 border=0></a></td>
+		          <td class=filelistfilename><a onmousedown="return false;" href="?path=<%= @controller.encode(@parent_path) %>">..</a></td>
+		          <td nowrap></td>
+		          <td nowrap><%= File.ctime(@resource_path + @parent_path).strftime("%Y-%m-%d %H:%M:%S") %></td>
+		        </tr>
+<%
+	end
+  unless @directories.nil?
+  	@directories.each do |i|
+			next if i == '.' || i == '..'
+			old_i = i
+			i = @controller.encode(i)
+%>
+		        <tr class=filelistroweven id="tr_<%= i %>">
+		          <td width=1><input onclick="triggerselect(this)" type="checkbox" name="fileCheck" value="<%= i %>"></td>
+		          <td><a onmousedown="return false;" href="#"><img class="" title=directory height=16 alt=directory src="/filemanager/images/folder.gif" width=16 border=0></a></td>
+		          <td class=filelistfilename>
+		            <a id="context_fold_<%= i %>" onmousedown="return false;" title="<%= path + '/' + i %>" href="?path=<%= URI.encode(path + '/' + i) %>"><%= i %></a>
+		          </td>
+		          <td nowrap>
+		          </td>
+		          <td nowrap><%= File.ctime(@current_path + '/' + old_i).strftime("%Y-%m-%d %H:%M:%S") %></td>
+		        </tr>
+<%
+		end
+  end
+  unless @files.nil?
+    @files.each do |i|
+		old_i = i
+		i = @controller.encode(i)
+%>
+		        <tr class=filelistroweven id="tr_<%= i %>">
+		          <td width=1><input onclick="triggerselect(this)" type="checkbox" name="fileCheck" value="<%= i %>"></td>
+		          <td><a onmousedown="return false;" name="<%= i %>"></a><a href="#"><img class="" height=16 src="/filemanager/images/<%= @controller.get_file_type(i) %>.gif" width=16 border=0></a></td>
+		          <td class=filelistfilename>
+					    <!-- <a id="context_file_<%= i %>" title="<%= path + '/' + i %>" href="javascript:ajaxLink('/fm/filemanager/view?path=<%= path + '/' + i %>', 'view', 'none');" onmousedown="hideMenu();" onclick="showControl('<%= path + '/' + i %>')" ><%= i %></a> -->
+					    <a id="context_file_<%= i %>" title="<%= path + '/' + i %>" href="javascript:selectFile('<%= path + '/' + i %>')" onmouseover="ajaxLink('/fm/filemanager/view?path=<%= URI.encode(path + '/' + i).gsub("#","%23") %>', 'view', 'none');" onmousedown="hideMenu();" onclick="showControl('<%= path + '/' + i %>')" ><%= i %></a>
+		          </td>
+		          <td nowrap><%= @controller.hsize(File.size(@current_path + '/' + old_i).to_f) %></td>
+		          <td nowrap><%= File.ctime(@current_path + '/' + old_i).strftime("%Y-%m-%d %H:%M:%S") %></td>
+		        </tr>
+<%
+		end
+  end
+%>
+		      </tbody>
+		    </table>
+		  </form>
+      </td>
+      <td width="300" valign="top">
+		<fieldset style="margin:0px">
+			<legend align=left><span fmLang="directory_information">Directory Information</span></legend>
+			<div style="margin: 2px; overflow: hidden; width: 100%">
+				<div class=previewsubtitle><span fmLang="directory_name">Directory Name</span></div>
+				<div class=previewtext><%= @controller.encode(File.basename(@current_path)) %></div>
+			</div>
+			<div style="float: left; margin: 2px; width: 45%">
+				<div class=previewsubtitle><span fmLang="sub_directories">Sub-directories</span>:</div>
+				<div class=previewtext><%= @directories.size - 2 %></div>
+				<div class=previewsubtitle><span fmLang="modification_date">Modification Date</span>:</div>
+				<div class=previewtext><%= File.ctime(@current_path).strftime("%Y-%m-%d %H:%M:%S") %></div>
+			</div>
+			<div style="float: right; margin: 2px; width: 45%">
+				<div class=previewsubtitle><span fmLang="files">Files</span>:</div>
+				<div class=previewtext><%= @files.size %></div>
+				<div class=previewsubtitle><span fmLang="file_total_size">File Total Size</span>:</div>
+				<div class=previewtext><%= @controller.hsize(@file_total_size) %></div>
+
+			</div>
+			<br style="clear: both">
+		</fieldset>
+    
+		<div id="view" style="width:300px; height:300px;overflow:auto;border:1px solid #aaaaaa">
+    <div  align="center">
+		<br><br>
+		<span fmLang="preview_area">Preview Area</span>
+		</div>
+		</div>
+    
+		<div id="viewControl" align="right" class="hidelayer">
+		
+		<div id="imageControl" class="hidelayer">
+		<!--
+		<form id="sizeForm" >
+		<span fmLang="width">Width</span>：<input type="text" name="width" value="" size="3" maxlength="4"/> * <span fmLang="height">Height</span>：<input type="text" name="height" value="" size="3" maxlength="4"/>
+		<br>
+		<input type="checkbox" name="keepRadioFlag" value="true"/><span fmLang="keep_radio">Keep Radio</span>
+		<input type="checkbox" name="thumbFlag" value="true"/><span fmLang="thumb">Thumb</span>
+		<input type="button" class="button" fmLang="submit" value="Submit" onclick="adjustSize(currentFile);"/>
+		</form>
+		<form id="rotateForm" >
+		<span fmLang="angle">Angle</span>：<input type="text" name="rotateNum" value="" size="4" maxlength="4"/>
+		<input type="button" class="button" fmLang="submit" value="Submit" onclick="rotate(currentFile);"/>
+		</form>
+    -->
+		</div>
+    <div>
+    
+		<input type="button" class="button" fmLang="view" value="View" onclick="window.open('<%= @lock_path %>'+currentFile,'','')"/>
+		</div>
+		</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<script   language="javascript">   
+
+var foldMenu = $("foldMenu");
+var fileMenu = $("fileMenu");
+var blankMenu = $("blankMenu");
+var selectedName = "";
+var lastObject = false;
+var old_name = "";
+var lastMenu = false;
+function hideMenu() {
+if (lastMenu) {
+lastMenu.style.visibility = "hidden";
+lastMenu.style.display = "none";
+}
+setCssClass($('uploadForm'), 'hidelayer');
+} 
+function showMenu(obj) {
+obj.style.visibility = "visible";
+obj.style.display = "block";
+}   
+document.oncontextmenu   =   function(e){
+  hideMenu();
+  lastObject = false;
+  e   =   window.event   ||   e;
+  var target = (e.target) ? e.target : e.srcElement;
+  var menu = false;
+  if (target && target.id.length > 8 && target.id.substring(0,8) == 'context_') {
+      old_name = target.innerHTML;
+      lastObject = target;
+      if (target.id.substring(8, 12) == 'fold') {
+      	menu = foldMenu;
+      } else if (target.id.substring(8, 12) == 'file') {
+        var upzipStr = target.id.substring(target.id.length-3, target.id.length);
+        if (upzipStr == 'zip') {
+            $('unzip').show();
+        } else {
+            $('unzip').hide();
+        }
+        menu = fileMenu;
+      }
+      currentFile = target.title;
+  } else {
+      menu = blankMenu;
+  }
+  lastMenu = menu;
+  x   =   e.x   ||   e.layerX;   
+  y   =   e.y   ||   e.layerY;   
+  menu.style.left   =   x   +   "px";   
+  menu.style.top     =   y   +   "px";   
+  showMenu(menu) ;
+  return false;   
+}
+document.onclick   =   function(e){
+  e   =   window.event   ||   e;
+  var target = (e.target) ? e.target : e.srcElement;
+ 
+  if (target) {
+      try {
+          if (target.type == 'undefined' || target.type == null) {
+             hideMenu();
+          } else if (target.type == "file") {
+          } else {
+             hideMenu();
+          }
+      } catch(e1) {
+          hideMenu();
+      }
+  } else {
+	  hideMenu();
+  }
+}
+var refreshLink;
+function refreshPage() {
+	refreshLink = '/fm/filemanager?path=<%= path %>' + "&randomid=" + new Date().toJSON();
+	setTimeout(waitFefresh, 500);
+}
+function waitFefresh() {
+	location.href = refreshLink;
+}
+function gotoPage(link) {
+	location.href = link;
+}
+function updateHtml(obj, content) {
+	obj.innerHTML = content;
+}     
+function rename() {
+	var new_name = prompt(getText("prompt_input_new_name", "Please input new name"), old_name); 
+	if (new_name != null && new_name != "" && new_name != old_name) {
+	    ajaxLink("/fm/filemanager/rename?path=<%= path %>&old_name=" + old_name + "&new_name=" + new_name, $("view"), null, refreshPage());
+	}
+}
+function markObject(obj) {obj.style.color='#aaaaaa';};
+function unmarkObject(obj) {obj.style.color='#000000';};
+function unzipFile() {
+	ajaxLink("/fm/filemanager/unzip?path=<%= path %>&old_name=" + old_name, $("view"), null, refreshPage());
+}
+function removeFile() {
+	if (selectedName.length == 0) {
+		if (confirm(getText("remove", "Remove") + ' ' + old_name)) {
+		    ajaxLink("/fm/filemanager/remove?path=<%= path %>&source[]=" + old_name, $("view"), null, refreshPage());
+		}
+  } else {
+    if (confirm(getText("remove", "Remove"))) {
+      var nameArray = new Array();
+      nameArray = selectedName.split('*');
+      var parameter = "";
+      for (var i = 0; i < nameArray.length; i++) {
+        parameter += "&source[]=" + nameArray[i];
+      }
+      ajaxLink("/fm/filemanager/remove?path=<%= path %>" + parameter, $("view"), null, refreshPage());
+    }
+  }
+}
+function copyFile() {
+    if (selectedName.length == 0) {
+    	ajaxLink("/fm/filemanager/copy?path=<%= path %>&source[]=" + old_name, $("view"), null);
+    } else {
+        var nameArray=new Array();   
+    	nameArray = selectedName.split('*');
+    	var parameter = "";
+    	for (var i = 0; i < nameArray.length; i++) {
+    	    parameter += "&source[]=" + nameArray[i];
+    	}
+    	ajaxLink("/fm/filemanager/copy?path=<%= path %>" + parameter, $("view"), null);
+    }
+}
+function cutFile() {
+    if (selectedName.length == 0) {
+    	  ajaxLink("/fm/filemanager/cut?path=<%= path %>&source[]=" + old_name, $("view"), null, markObject(lastObject));
+    } else {
+        var nameArray=new Array();   
+      	nameArray = selectedName.split('*');
+      	var parameter = "";
+      	for (var i = 0; i < nameArray.length; i++) {
+      	    parameter += "&source[]=" + nameArray[i];
+      	}
+      	ajaxLink("/fm/filemanager/cut?path=<%= path %>" + parameter, $("view"), null);
+    }
+}
+function checkAll() {
+    var inputs=document.getElementsByTagName("input");
+	if (selectedName.length != 0) {
+	    for(var i=0;i<inputs.length;i++){
+	        var input=inputs[i];
+	        if("checkbox" == input.type && input.name == "fileCheck") {
+	        	input.checked = false;
+	        }
+	    }
+	    selectedName = "";
+	} else {
+	    for(var i=0;i<inputs.length;i++){
+	        var input=inputs[i];
+	        if("checkbox" == input.type && input.name == "fileCheck") {
+	        	input.checked = true;
+	        	if (selectedName.length == 0) {
+	        	    selectedName = input.value;
+	        	} else {
+	        	    selectedName += "*" + input.value;
+	        	}
+	        }
+	    }
+	}
+}
+function pasteFile() {
+    if (lastObject) {
+        if (confirm(getText("prompt_pasteTo", "Paste to") + ' ' + old_name)) {
+        	ajaxLink("/fm/filemanager/paste?path=<%= path %>/" + old_name, $("view"), null, refreshPage());
+        }
+    } else {
+        if (confirm(getText("prompt_pasteToCurrent", "Paste to current"))) {
+            ajaxLink("/fm/filemanager/paste?path=<%= path %>", $("view"), null, refreshPage());
+        }
+    }
+}
+function newFile() {
+    var new_name = prompt(getText("prompt_input_name", "Please input name"), ""); 
+    if (new_name != null && new_name.length > 0) {
+      ajaxLink("/fm/filemanager/new_file?path=<%= path %>&new_name=" + new_name, $("view"), null, refreshPage());
+    }
+}
+function newFolder() {
+    var new_name = prompt(getText("prompt_input_name", "Please input name"), ""); 
+    if (new_name != null && new_name.length > 0) {
+    	ajaxLink("/fm/filemanager/new_folder?path=<%= path %>&new_name=" + new_name, $("view"), null, refreshPage());
+    }
+}
+function zipDownload(){
+	if(confirm(getText("prompt_zip_download", "Zip and download") + ' ' + old_name))
+    if (selectedName.length == 0) {
+    	  window.location.href = "/fm/filemanager/download?path=<%= path %>&source[]=" + old_name;
+    } else {
+        var nameArray=new Array();   
+      	nameArray = selectedName.split('*');
+      	var parameter = "";
+      	for (var i = 0; i < nameArray.length; i++) {
+      	    parameter += "&source[]=" + nameArray[i];
+      	}
+      	window.location.href = "/fm/filemanager/download?path=<%= path %>" + parameter;
+    }
+}
+function triggerselect(obj) {
+    var name = "*" + obj.value;
+	if (selectedName.indexOf(name) == -1 && (selectedName.length < obj.value.length || selectedName.substring(0, obj.value.length) != obj.value)) {
+	    if (obj.checked) {
+		    if (selectedName.length == 0) {
+		    	selectedName += obj.value;
+		    } else {
+		        selectedName += name;
+		    }
+	    }
+	} else if (!obj.checked) {
+		var pos = selectedName.indexOf(obj.value);
+		if (pos == 0) {
+		    if (selectedName.length > obj.value.length) {
+		    	selectedName = selectedName.substring(obj.value.length + 1);
+		    } else {
+		        selectedName = "";
+		    }
+		} else {
+		    if (selectedName.length > (pos + obj.value.length)) {
+		        selectedName = selectedName.substring(0, pos-1) + selectedName.substring(pos + obj.value.length);
+		    } else {
+		        selectedName = selectedName.substring(0, pos-1);
+		    }
+		}
+	}
+}
+
+function selectFile() {
+    if (opener) {
+      window.opener.CKEDITOR.tools.callFunction(<%= params[:CKEditorFuncNum] %>, ('<%= @lock_path %>' + currentFile).replace( '#', '%23' ));
+      window.close();
+      window.top.opener.focus() ;
+    }
+}
+function uploadFile() {
+$("fileForm").action = "/fm/filemanager/upload?path=<%= path %>";
+$("fileForm").submit(); 
+}
+function adjustSize(file) {
+    ajaxPost("/fm/filemanager/adjust_size?path=" + file, $("sizeForm"), $("view"), null, refreshPage());
+}
+function rotate(file) {
+    ajaxPost("/fm/filemanager/rotate?path=" + file, $("rotateForm"), $("view"), null, refreshPage());
+}
+
+  </script>
+</body>
+</html>
