@@ -182,6 +182,7 @@ class User < ActiveRecord::Base
   end
 
   validates_uniqueness_of :login, :on => :create
+  validates_uniqueness_of :email, :on => :create
   validates_length_of :password, :within => 5..40, :if => Proc.new { |user|
     user.read_attribute('password').nil? or user.password.to_s.length > 0
   }
