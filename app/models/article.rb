@@ -61,7 +61,7 @@ class Article < Content
   has_many :triggers, :as => :pending_item
   after_save :post_trigger
 
-  attr_accessor :draft
+  attr_accessor :draft, :keywords
 
   has_state(:state,
             :valid_states  => [:new, :draft,

@@ -28,7 +28,6 @@ class Admin::ContentController < Admin::BaseController
 
   def edit
     @article = Article.find(params[:id])
-
     unless @article.access_by? current_user
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
@@ -148,6 +147,7 @@ class Admin::ContentController < Admin::BaseController
 
     @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
     @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
+    @article.keywords = @article.tags.map { |tag| tag.display_name }.sort.join(", ")
     @article.attributes = params[:article]
 
     if request.post?

@@ -201,9 +201,17 @@ describe Article do
     c.keywords_to_tags
 
     assert_equal 3, c.tags.size
-    assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort
+    assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort    
   end
+  
+  it "more than 255 chars of tags should be OK" do
+    keywords = ""
+    (1..42).each { |tag| keywords << "tag#{tag}, " }
 
+    art = Article.create(:title => "Test article", :keywords => keywords)
+    art.tags.size.should == 42
+  end
+  
   it "test_find_published_by_tag_name" do
     @articles = Tag.find_by_name(tags(:foo).name).published_articles
 
@@ -513,3 +521,4 @@ describe Article do
     end
   end
 end
+
