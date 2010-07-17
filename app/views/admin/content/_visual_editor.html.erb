@@ -7,6 +7,7 @@
   $('text_filter').value = 'none';
   html = $('article_body_and_extended').value;
   $('simple_editor').innerHTML = '';
+  $('carousel-wrapper').style.display = 'none';
   
   if (CKEDITOR.instances.article__body_and_extended_editor &&
     typeof(CKEDITOR.instances.article__body_and_extended_editor) == 'object') {
