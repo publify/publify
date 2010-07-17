@@ -34,6 +34,7 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
     @page.text_filter ||= current_user.text_filter
+    @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     if request.post? 
       if @page.name.blank?
         @page.name = @page.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url 
