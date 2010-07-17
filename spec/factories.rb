@@ -10,7 +10,7 @@ end
 
 Factory.define :user do |u|
   u.login { Factory.next(:user) }
-  u.email 'some.where@out.there'
+  u.email { Factory.next(:user) }
   u.notify_via_email false
   u.notify_on_new_articles false
   u.notify_watch_my_articles false
