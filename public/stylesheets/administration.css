@@ -659,3 +659,20 @@ td.paginate {
 }
 
 .target { cursor: move;}
+
+#header {
+  float: left;
+  width: 70%;
+}
+
+#logout {
+  display: block;
+  width: 28%;
+  margin-left: 70%;
+  text-align: right;
+  padding-top: 10px;
+}
+
+#container {
+  clear: both;
+}
