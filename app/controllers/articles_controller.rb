@@ -63,7 +63,17 @@ class ArticlesController < ContentController
     @article = Article.last_draft(params[:id])
     render :action => 'read'
   end
-
+    
+  def check_password
+    return unless request.xhr?
+    @article = Article.find(params[:article][:id])
+    if @article.password == params[:article][:password]
+      render :partial => 'article_content' 
+    else
+      render :partial => 'password_form', :locals => { :article => @article }
+    end
+  end
+  
   def redirect
     part = this_blog.permalink_format.split('/')
     part.delete('') # delete all par of / where no data. Avoid all // or / started

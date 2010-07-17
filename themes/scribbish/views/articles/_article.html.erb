@@ -10,23 +10,27 @@
   </p>
 
   <div class="content">
-    <% unless controller.action_name == 'redirect' %>
-      <% if article.excerpt? %>
-        <%= article.excerpt %>
+    <% if article.password.nil? or session[:user_id]  %>
+      <% unless controller.action_name == 'redirect' %>
+        <% if article.excerpt? %>
+          <%= article.excerpt %>
+        <% else %>
+          <%= article.html(:body) %>
+          <% if article.extended? %>
+            <div class="extended">
+              <p><%= link_to_permalink article,"Continue reading..." %></p>
+            </div>
+          <% end %>
+        <% end %>
       <% else %>
         <%= article.html(:body) %>
-        <% if article.extended? %>
-          <div class="extended">
-            <p><%= link_to_permalink article,"Continue reading..." %></p>
-          </div>
-        <% end %>
+        <div class="extended">
+          <%= article.html(:extended) %>
+        </div>
       <% end %>
-    <% else %>
-      <%= article.html(:body) %>
-      <div class="extended">
-        <%= article.html(:extended) %>
-      </div>
-    <% end %>
+      <% else %>
+        <%= render :partial => 'password_form', :locals => { :article => article } %>
+      <% end %>
   </div>
 
   <ul class="meta">

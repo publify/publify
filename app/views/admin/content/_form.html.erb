@@ -7,14 +7,16 @@
 
 <div id='editor-right'>
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings")%></h3>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
       <%= check_box 'article', 'allow_comments' %>
       <label for="article_allow_comments"><%= _("Allow comments") %></label><br />
       <%= check_box 'article', 'allow_pings' %>
-      <label for="article_allow_pings"><%= _("Allow trackbacks")%></label><br />
+      <label for="article_allow_pings"><%= _("Allow trackbacks") %></label><br />
       <%= check_box 'article', 'published'  %>
-      <label for="article_published"><%= _("Published")%></label><br />
+      <label for="article_published"><%= _("Published") %></label><br />
+      <label for="article_password"><%= _("Password:") %></label><br />
+      <%= password_field(:article, :password) %>
       <p class='right'>
         <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ui-state-default ui-corner-all' />
         <%= save( _("Publish") + " &raquo;") %><br />
@@ -26,7 +28,7 @@
   </div>
   
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Categories")%></h3>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Categories") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
       <%- Category.all.each do |cat| %>
         <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
@@ -38,7 +40,7 @@
 
 <div id='editor-left'>
   <div class='settings'>
-    <h2><label for="article_title"><%= _("Title")%></label></h2>
+    <h2><label for="article_title"><%= _("Title") %></label></h2>
     <p class='input_text'>
       <%= text_field 'article', 'title', :class => 'large' %>
     </p>
@@ -77,15 +79,15 @@
   </div>
 
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Excerpt")%></h3>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Excerpt") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
-      <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself")%></p>
+      <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself") %></p>
       <%= text_area 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '5'} %>
     </div>  
   </div>
   
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Uploads")%></h3>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Uploads") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
       <p>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
     
@@ -96,10 +98,10 @@
   </div>
   
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Post settings")%></h3>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Post settings") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
       <div class='setting'>
-        <label class='float'><%= _("Publish at")%></label>
+        <label class='float'><%= _("Publish at") %></label>
         <div class='input_text'>
           <%= calendar_date_select 'article', 'published_at' %>
         </div>
@@ -111,7 +113,7 @@
         </div>        
       </div>
     <div class='setting clear'>
-      <label class='float' for="text_filter"><%= _("Article filter")%></label>
+      <label class='float' for="text_filter"><%= _("Article filter") %></label>
       <div class='input_text'>
         <select name="article[text_filter]" id="text_filter">
           <%= options_for_select text_filter_options, @article.text_filter %>
