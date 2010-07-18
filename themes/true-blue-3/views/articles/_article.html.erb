@@ -1,6 +1,6 @@
 <div class='category-excerpt <%= "border" if @article_counter >= 0 %>' id="article-<%= article.id %>">
   <h2><%= (controller.controller_name == 'redirect') ? article.title : link_to_permalink(article,article.title) %></h2>
-  <% if article.password.nil? or session[:user_id]  %>
+  <% if article.password.nil? %>
     <% unless controller.action_name == 'redirect' %>
       <% if article.excerpt? %>
         <%= article.excerpt %>

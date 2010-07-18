@@ -1,7 +1,7 @@
 <div class="atomentry" id="article-<%= article.id %>">
   <h2 class="title"><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h2>
   <div class="content">
-    <% if article.password.nil? or session[:user_id]  %>
+    <% if article.password.nil? %>
       <% unless controller.action_name == 'redirect' %>
         <% if article.excerpt? %>
           <%= article.excerpt %>

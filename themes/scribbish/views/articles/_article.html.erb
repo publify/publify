@@ -10,7 +10,7 @@
   </p>
 
   <div class="content">
-    <% if article.password.nil? or session[:user_id]  %>
+    <% if article.password.nil? %>
       <% unless controller.action_name == 'redirect' %>
         <% if article.excerpt? %>
           <%= article.excerpt %>
