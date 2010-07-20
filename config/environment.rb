@@ -4,7 +4,7 @@
 # (Use only when you can't set environment variables through your web/app server)
 # ENV['RAILS_ENV'] = 'production'
 
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -46,7 +46,7 @@ Rails::Initializer.run do |config|
   config.gem 'coderay', :version => '~> 0.8'
   config.gem 'will_paginate', :version => '~> 2.3.11'
   config.gem 'RedCloth', :version => '~> 4.2.2'
-  config.gem 'panztel-actionwebservice', :version => '2.3.5', :lib => 'actionwebservice'
+  config.gem 'fdv-actionwebservice', :version => '2.3.8', :lib => 'actionwebservice'
   config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
   config.gem 'mini_magick', :version => '~> 1.2.5', :lib => 'mini_magick'
   
@@ -86,6 +86,7 @@ ActionMailer::Base.default_charset = 'utf-8'
 # Work around interpolation deprecation problem: %d is replaced by
 # {{count}}, even when we don't want them to.
 # FIXME: We should probably fully convert to standard Rails I18n.
+require 'i18n_interpolation_deprecation'
 class I18n::Backend::Simple
   def interpolate(locale, string, values = {})
     interpolate_without_deprecated_syntax(locale, string, values)
