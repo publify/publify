@@ -1,7 +1,7 @@
 class Admin::FeedbackController < Admin::BaseController
 
   cache_sweeper :blog_sweeper
-  before_filter :only_own_feedback, :only => [:delete]
+  before_filter :only_own_feedback, :only => [:destroy]
 
   def index
     conditions = ['1 = 1', {}]
@@ -45,7 +45,7 @@ class Admin::FeedbackController < Admin::BaseController
     @comments ||= @article.comments
   end
   
-  def delete
+  def destroy
     if request.post?
       begin
         @feedback.destroy

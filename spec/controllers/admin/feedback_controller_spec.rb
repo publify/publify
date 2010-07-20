@@ -7,7 +7,7 @@ describe Admin::FeedbackController do
   describe "destroy feedback with feedback from own article", :shared => true  do
     it 'should destroy feedback' do
       lambda do
-        post 'delete', :id => feedback_from_own_article.id
+        post 'destroy', :id => feedback_from_own_article.id
       end.should change(Feedback, :count)
       lambda do
         Feedback.find(feedback_from_own_article.id)
@@ -15,13 +15,13 @@ describe Admin::FeedbackController do
     end
 
     it 'should redirect to feedback from article' do
-      post 'delete', :id => feedback_from_own_article.id
+      post 'destroy', :id => feedback_from_own_article.id
       response.should redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback_from_own_article.article.id)
     end
 
-    it 'should not delete feedback in get request' do
+    it 'should not destroy feedback in get request' do
       lambda do
-        get 'delete', :id => feedback_from_own_article.id
+        get 'destroy', :id => feedback_from_own_article.id
       end.should_not change(Feedback, :count)
       lambda do
         Feedback.find(feedback_from_own_article.id)
@@ -45,13 +45,13 @@ describe Admin::FeedbackController do
       request.session = { :user => users(:tobi).id }
     end
 
-    describe 'delete action' do
+    describe 'destroy action' do
 
       it_should_behave_like "destroy feedback with feedback from own article"
 
-      it "should delete feedback from article doesn't own" do
+      it "should destroy feedback from article doesn't own" do
         lambda do
-          post 'delete', :id => feedback_from_not_own_article.id
+          post 'destroy', :id => feedback_from_not_own_article.id
         end.should change(Feedback, :count)
         lambda do
           Feedback.find(feedback_from_not_own_article.id)
@@ -236,13 +236,13 @@ describe Admin::FeedbackController do
       feedback(:comment2)
     end
 
-    describe 'delete action' do
+    describe 'destroy action' do
 
       it_should_behave_like "destroy feedback with feedback from own article"
 
-      it "should not delete feedback doesn't own" do
+      it "should not destroy feedback doesn't own" do
         lambda do
-          post 'delete', :id => feedback_from_not_own_article.id
+          post 'destroy', :id => feedback_from_not_own_article.id
         end.should_not change(Feedback, :count)
         lambda do
           Feedback.find(feedbackfrom_not_own_article.id)
@@ -295,7 +295,7 @@ describe Admin::FeedbackController do
     describe '#bulkops action' do
 
       before :each do
-        post :bulkops, :bulkop_top => 'Delete all spam'
+        post :bulkops, :bulkop_top => 'destroy all spam'
       end
 
       it 'should redirect to action' do
