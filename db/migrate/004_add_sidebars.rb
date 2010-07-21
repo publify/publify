@@ -28,15 +28,9 @@ class AddSidebars < ActiveRecord::Migration
       show_count: true
       count: "10"')
       Bare4Sidebar.create(:active_position=>3, :controller=>'static', :active_config=>'--- !map:HashWithIndifferentAccess 
-      title: Links
-      body: |+
-      <ul>
-        <li><a href="http://www.typosphere.org" title="Typo">Typosphere</a></li>
-        <li><a href="http://typogarden.org">Typogarden</a></li>
-        <li><a href="http://www.bofh.org.uk" title="Just a Summary">Just A Summary</a></li>
-        <li><a href="http://fredericdevillamil.com" title="Frédéric de Villamil">Ergonomie, Rails et bonnes pratiques du web</a></li>
-        <li><a href="/admin">Admin</a></li>
-      </ul>'
+      body: "<ul>\n  <li><a href=\"http://www.typosphere.org\" title=\"Typo\">Typosphere</a></li>\n  <li><a href=\"http://typogarden.org\">Typogarden</a></li>\n  <li><a href=\"http://t37.net.com\" title=\"Ergonomie Web\">Fr\xC3\xA9d\xC3\xA9ric</a></li>\n  <li><a href=\"http://www.matijs.net/\" title=\"Matijs\">Matijs</a></li>\n  <li><a href=\"http://blog.shingara.fr\" title=\"Cyril\">Cyril</a></li>\n  <li><a href=\"http://www.bofh.org.uk\" title=\"Just a Summary\">Piers</a></li>\n  <li><a href=\"/admin\">Admin</a></li>\n\
+        </ul>\n"
+      title: Links'
       )
       Bare4Sidebar.create(:active_position=>4, :controller=>'xml', :active_config=>'--- !map:HashWithIndifferentAccess 
       format: rss20
