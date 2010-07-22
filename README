@@ -1,19 +1,38 @@
-What is it?
-===========
+About Typo 5.5
+==============
 
-Typo is a weblog system written in Ruby using Ruby on Rails. Weblogs are cool,
-weblogs are "in" and everyone who writes code has a different opinion on how
-a weblog should be written. Typo is our take on it. Typo is designed to be
-usable by programmers and non-programmers, while being easy for programmers to
-extend.
+On July 22th, 2010, Typo version 5.5 named for famous photographer Richard Avedon was released to the public. Typo 5.5 is the result of the work of the Typo community, just like you, on adding or suggesting feature, reporting and fixing bugs.
+
+With its new admin and setup, Typo 5.4.4 was supposed to be the latest minor version running on Ruby on Rails 2.3, and we spent a few months exploring 2 new ways.
+
+The first one was being able to upgrade to Ruby on Rails 3.0 as soon as it would be released as production ready. Despite porting our own code without problems, we promptly discovered that too many plugins needed to be ported to Rails 3.0 before we could release.
+
+The second one was making Typo multiblog aware. Despite some interesting results, making it production ready was not the work of a single release. Our architecture is definitely mono blog oriented, and making it multi blog would force us to rewrite most of the code.
+
+So, we decided to make one more release on Ruby on Rails 2.3, upgrading to Rails 2.3.8. This release is Typo 5.5. It comes with a few new feature, bug fixes, and internal improvements. 
+
+== Highlights:
+
+Typo now runs on Ruby on Rails 2.3.8, which means it won't run with an older Rails version.
+
+Typo visual editor had no way to upload, browse, and use images. Thanks to htty, we now have a very nice resource browser CKEditor compliant. 
+
+As I wrote on Typo Weblog (http://res.to/aQz6), we've added a way to display users plugins setup into Typo admin. This is a first step on the way to a real plugin API.
+
+Typo now comes with a new cache system, way simpler than the database based cache we used to do. Files are stored into public/cache and Typo knows how to served cached file. You may need to update your configuration, please read doc/CACHE.SETUP.README
+
+For more information on Typo 5.5, please read the CHANGELOG file.
+
+As usual, we want to thank the Typo community, and in particular, by reverse commit order: Daniel Schweighoefer, htty, Yannick Francois,Szymon 'jeznet' Jeż, Diego Elio 'Flameeyes' Pettenò, Kristopher Murata and Michael Reinsch.
+
 
 Requirements
 ============
 
 Currently you need all of those things to get typo to run:
 
- * Ruby 1.8.6, 1.8.7 or Ruby Enterprise Edition. 
- * Rails 2.3.5, Typo 5.4.4 DOES NOT support any older Rails version.
+ * Ruby 1.8.7 or Ruby Enterprise Edition. 
+ * Rails 2.3.8, Typo 5.5 DOES NOT support any older Rails version.
  * A database.  Typo supports MySQL, PostgreSQL, and SQLite.
  * Ruby drivers for your database.
  * For best performance, you should have a web server running either
@@ -22,11 +41,6 @@ Currently you need all of those things to get typo to run:
    We recommend the use of Apache + mod_rails (aka Passenger) for fast and 
    easy deployment along with speed.
  * rspec, rcov and ruby-debug are necessary to run the test suit.
-
-Installation
-============
-
-See doc/Installer.txt and doc/typo-5.3-release-notes.txt.
 
 Usage
 ======
@@ -37,12 +51,6 @@ change Typo's configuration settings. For posting new content, you can
 either use this administrative web interface or a desktop blog editor
 like MarsEdit or Ecto. For a short list of clients which are confirmed
 to work please visit http://typosphere.org/wiki/DesktopClients.
-
-Client setup
-============
-
-Set your desktop client to Movable Type API and enter
-http://your.domain.com/backend/xmlrpc as endpoint address.
 
 Enjoy,
 Your typo team

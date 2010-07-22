@@ -1,4 +1,4 @@
-UPGRADING TO TYPO 5.3 HOWTO
+UPGRADING TO TYPO 5.5 HOWTO
 
 *** BEFORE UPGRADING ***
 
@@ -8,7 +8,7 @@ You should make a backup of your current blog, either using a file transfer soft
 
 You should make a backup of your database, using either mysqldump, pgdump or phpmyadmin, whichever you feel safe with.
 
-If you're using a pre 5.0 version, you should remove all the following sidebars before migrating:
+If you're upgrading from a pre 5.0 version, you should remove all the following sidebars before migrating:
 
 * AIM presence
 * Audioscrobbler
@@ -32,6 +32,10 @@ If you're using a third party theme, you'll have do some changes to your templat
 *** UPGRADING ***
 
 Upgrading should be a really easy process, depending on how you installed your typo first.
+
+I assume you're running typo on a production environment, so firt run:
+
+$ export RAILS_ENV=production
 
 ** UPGRADING WITH TYPO INSTALLER FROM TYPO 2.0 to 5.0 **
 

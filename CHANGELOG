@@ -1,28 +1,59 @@
-After releasing Typo 5.4.3, we realized something we actually knew for a while. If we wanted Typo to spread more, we had to make it prettier, easier to install and easier to use. That may sound obvious, but we were working with a quite old product, having legacy feature we didn't need, but, for some reason, we kept release after release, trying to work around instead of just dumping them. If we wanted to make Typo better, we first had to make it smaller. Dead obvious once again.
-
-Being the fourth of the Willy Ronis series, that version is the first going towards simplification: less useless feature, simpler, better interface, and lighter memory footprint. 
-
-Typo now comes with a new, easier to use setup that suppresses needed initial configuration. Just provide an email and a blog title, and you're done. This setup is the first stone in refreshing Typo installation process.
-
-Previous admin refresh was not very satisfying, and we needed to rework it. Instead of trying to play the webdesigners, which none of us is, we used Jquery UI for the graphic part, and focused on Typo interface instead. The result is, for now, quite satisfying, even though we know we still can improve it. 
-
-IPs and pattern blacklist has been completely removed. With Akismet and real time blacklist (RBL), Typo already provided 2 simple ways to fight against spam. Blacklisting IPs and patterns was a very advanced feature, which is definitely not a blogware job. If people want to do that type of filtering, they have many way to do it, using intrusion detection systems (IDS), Apache mod_security, or even packet filtering such as Linux Netfilter. 
-
-For ages, Typo provided a full iTunes metadata support for podcast publishers. We've completely removed them since it was useless for 99.99% of us. Typo still supports enclosure (files attached to a blog post, appearing in the RSS feed but not on the post itself) though.
-
-We've also resolved a bunch of bugs as well:
-
-The main reason why we've released that new version so early was because of a bug in the visual editor, losing posts content at saving time. Editors are very difficult to test since they rely on Javascript. However, we plan to add some Watir tests in a near future.
-
-#152: fix poor email grammar.
-
-#148: fixes a bug that prevents admin to edit a user without providing his password.
-
-#160: 404 error on the lightbox loading.gif and closelabel.gif.
-
-#155: after deleting an image, the file page is loaded.
-
-#143: publishing posts in the future didn't work unless you manually unpublishes them.
-
-
-
+Frédéric de Villamil: Makes the editor IE compliant
+Daniel Schweighoefer: fix in the 'create new page' link
+Frédéric de Villamil: Adding specs to password protected posts
+Frédéric de Villamil: Fixes some nasty bugs with password protection. I need to add tests in the views
+Frédéric de Villamil: Upgrading Typo version to 5.5. Cleaning release task since most of the code is not relevant anymore
+Frédéric de Villamil: Workaround to a Rails 2.3.8 bug, see https://rails.lighthouseapp.com/projects/8994/tickets/4695-string-added-to-rails_helpers-gets-html-escaped for more information.
+Frédéric de Villamil: Adds Matijs and Cyril to mainteners list and static sidebars, fixes static sidebar, removes useless doc
+Frédéric de Villamil: Upgrading to Rails 2.3.8. I had to backport some Rails 2.3.5 deprecation and fork actionwebservice to upgrade it to Rails 2.3.8. I think we will definitely use our own version since we may be the latest on earth to use it.
+Frédéric de Villamil: Fixes the destroy link in admin/feedback by moving delete method to destroy (and adding consistency)
+Frédéric de Villamil: Fixes ticket 178 and make specs pass. Ugly fix, but the carousel doesn't work either yet, so I'll fix both of them at the same time.
+Frédéric de Villamil: WTF does this test here? [#177 status:closed]
+Frédéric de Villamil: Reverting an aspect of pssword protected posts: if we don't hide the protected posts to logged in users, the supposely hidden post will be cached...
+Frédéric de Villamil: Adding password protected posts. Things are done 100% AJAX because of the static cache. Logged in users are considered as being able to see a protected post. Protected posts content is removed from RSS feed. Need to add some specs, it's curious to see that they didn't break
+Frédéric de Villamil: fix specs
+Frédéric de Villamil: Adding image browsing to static pages as well
+Frédéric de Villamil: Hides the image carousel in visual editor mode since we now have a dedicated browser in visual mode
+Frédéric de Villamil: Fixinx the logout link style in the admin
+Frédéric de Villamil: Solves ticket #175: Lift 255-char tag list limit. Not sure it's the best way to do it, don't mind reverting if needed
+Frédéric de Villamil: Adds a restriction on unique email (how come didn't it already exist, [#170,solved]
+Yannick Francois: fix link to 'write a page' problem on dashboard
+Matijs van Zuijlen: Merge branch 'master' of github.com:fdv/typo
+Matijs van Zuijlen: Specify factory_girl version, since versions starting from 1.3.0 don't
+Frédéric de Villamil: Adding htty filemanager patch for CKEditor after tweaking it a bit to work well with Typo
+Frédéric de Villamil: Merge branch 'master' of git@github.com:fdv/typo
+Frédéric de Villamil: Adds new cache rules into .htaccess
+Matijs van Zuijlen: Merge branch 'master' into dont-sweep-for-drafts
+Matijs van Zuijlen: Merge branch 'master' of github.com:fdv/typo
+Szymon 'jeznet' Jeż: Made polish translation more up to date. Much work in the admin area is still to do.
+Szymon 'jeznet' Jeż: Fixed Polish translation of pluralized words (articles, comments etc.).
+Szymon 'jeznet' Jeż: Fixed translation in comments_link and trackbacks_link. It was not working for more than one item.
+Szymon 'jeznet' Jeż: Added 'Live Search' translation and added according german and polish translations.
+Szymon 'jeznet' Jeż: Refactoring of the code from last commit => 'Added setting of I18n.locale when setting Localization.lang'
+Szymon 'jeznet' Jeż: Added setting of I18n.locale when setting Localization.lang
+Szymon 'jeznet' Jeż: Fixed 'leave url/email' translation and added according german and polish translations.
+Szymon 'jeznet' Jeż: Added german translation for "Continue reading" string
+Szymon 'jeznet' Jeż: Added polish translation for "Continue reading" string
+Szymon 'jeznet' Jeż: Fixed: "Read more" link apearing next to "Continue reading". Now only "Continue reading" is used.
+Szymon 'jeznet' Jeż: Fixed will_paginate ussage to use translations.
+Szymon 'jeznet' Jeż: Excluded public/cache/* and NetBeans project dir nbproject from versioning.
+Matijs van Zuijlen: Adjust formatting.
+Matijs van Zuijlen: Make specs pass.
+Diego Elio 'Flameeyes' Pettenò: Fix comparison.
+Diego Elio 'Flameeyes' Pettenò: Don't sweep the cache if we're saving a draft.
+Frédéric de Villamil: Removes the background on fields
+Frédéric de Villamil: Adds link on the comment count and replaces the french button (no one told me about this?) on the comment form
+Matijs van Zuijlen: Adjust spec to reflect changed layout.
+Matijs van Zuijlen: Silence deprecation warning.
+Frédéric de Villamil: Fixes ticket 162 views/admin/tags/edit.html.erb bug
+Frédéric de Villamil: Fixes ticket 166 'Delete all spam' deletes unconfirmed comments
+Frédéric de Villamil: Fixes ticket 167: Trackback help text in wrong place
+Frédéric de Villamil: Oooops seems some code was not taken into my last commit
+Frédéric de Villamil: Adding a basic way to dynamically load user mades plugins into
+Frédéric de Villamil: Fixes a mistake in Apache caching doc
+Frédéric de Villamil: Moves cache to public/cache. Ditches database use for cache storing. Please, read doc/CACHE.SETUP.README to setup the new cache system, otherwise Typo now runs smoothly without cache, I've been running it cacheless for months on a fairly crowded blog without even knowing it
+Fabiano Francesconi: Fixed coderay textfilter
+Barney Livingston: Add meta tags to pages.
+Kristopher Murata: Adds rescue for URI::InvalidURIError
+Kristopher Murata: Display links on author pages when item is an url
+Michael Reinsch: switch to gems from rubygems
