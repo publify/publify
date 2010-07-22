@@ -512,7 +512,7 @@ div.setting { float: left; margin-bottom: 12px;}
 
 /* Form */
 .float { display: block; float: left; width: 200px; line-height: 20px; }
-.large { width: 100%; }
+.large { width: 99%; }
 .medium { width: 300px;}
 p.settings { width: 530px; text-align: right; }
 .input_text input, .input_text textarea { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
