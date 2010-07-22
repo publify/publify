@@ -261,8 +261,12 @@ describe Article do
   it "test_triggers_are_dependent" do
     art = Article.create!(:title => 'title', :body => 'body',
                           :published_at => Time.now + 1.hour)
+    triggers = Trigger.find(:all)
+    STDERR.puts triggers.inspect
     assert_equal 1, Trigger.count
     art.destroy
+    triggers = Trigger.find(:all)
+    STDERR.puts triggers.inspect    
     assert_equal 0, Trigger.count
   end
 

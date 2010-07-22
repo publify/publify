@@ -435,6 +435,25 @@ describe ArticlesController, "redirecting" do
         assert_feedvalidator response.body
       end
     end
-
   end
+  
+  
+end
+
+describe ArticlesController, "password protected" do
+  before(:each) do
+    b = blogs(:default)
+    b.permalink_format = '/%title%.html'
+    b.save
+  end
+  
+  integrate_views
+
+  it 'article alone should be password protected' do
+    get :redirect, :from => ["#{contents(:article2).permalink}.html"]
+    
+    assert_tag :tag => "input",
+      :attributes => { :id => "article_password" }
+  end 
+  
 end

@@ -129,6 +129,17 @@ describe TagsController, 'with integrate_view' do
 
 end
 
+describe TagsController, "password protected article" do
+  integrate_views
+
+  it 'article in tag should be password protected' do
+    get 'show', :id => 'foo'
+    
+    assert_tag :tag => "input",
+      :attributes => { :id => "article_password" }
+  end 
+end
+
 ## Old tests that still need conversion
 
 #   it "test_autodiscovery_tag" do

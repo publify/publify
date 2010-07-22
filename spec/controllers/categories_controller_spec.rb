@@ -99,6 +99,17 @@ describe CategoriesController, 'empty category life-on-mars' do
   end
 end
 
+describe CategoriesController, "password protected article" do
+  integrate_views
+
+  it 'article in category should be password protected' do
+    get 'show', :id => 'personal'
+    
+    assert_tag :tag => "input",
+      :attributes => { :id => "article_password" }
+  end 
+end
+
 ## Old tests that still need conversion
 
 #   it "test_autodiscovery_category" do
