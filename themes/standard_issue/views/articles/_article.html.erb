@@ -1,7 +1,7 @@
 <div class="atomentry" id="article-<%= article.id %>">
   <h2 class="title"><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h2>
   <div class="content">
-    <% if article.password.nil? %>
+    <% if article.password.nil? or article.password.empty? %>
       <% unless controller.action_name == 'redirect' %>
         <% if article.excerpt? %>
           <%= article.excerpt %>
@@ -20,7 +20,7 @@
         </div>
       <% end %>
     <% else %>
-      <%= render :partial => 'password_form', :locals => { :article => article } %>
+      <%= render :partial => 'articles/password_form', :locals => { :article => article } %>
     <% end %>
   </div>
 	<div class="meta">

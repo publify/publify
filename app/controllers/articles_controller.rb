@@ -68,9 +68,9 @@ class ArticlesController < ContentController
     return unless request.xhr?
     @article = Article.find(params[:article][:id])
     if @article.password == params[:article][:password]
-      render :partial => 'article_content' 
+      render :partial => 'articles/article_content' 
     else
-      render :partial => 'password_form', :locals => { :article => @article }
+      render :partial => 'articles/password_form', :locals => { :article => @article }
     end
   end
   

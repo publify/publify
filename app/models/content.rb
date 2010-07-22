@@ -331,7 +331,7 @@ class Content < ActiveRecord::Base
 
   def rss_description(xml)
     post = html(blog.show_extended_on_rss ? :all : :body)
-    post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless self.class.name == 'Article' and self.password.nil?
+    post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless self.class.name == 'Article' and (self.password.nil?  or self.password.empty?)
     
     if blog.rss_description
       if respond_to?(:user) && self.user && self.user.name

@@ -1,7 +1,7 @@
 <h2><%= link_to_permalink article,article.title %></h2>
 <p class="auth"><%= _("Posted by")%> <%= author_link(article) %>
 <%= js_distance_of_time_in_words_to_now article.published_at %></p>
-<% if article.password.nil? %>
+<% if article.password.nil? or article.password.empty? %>
   <% unless controller.action_name == 'redirect' %>
     <% if article.excerpt? %>
       <%= article.excerpt %>
@@ -20,5 +20,5 @@
     </div>
   <% end %>
 <% else %>
-  <%= render :partial => 'password_form', :locals => { :article => article } %>
+  <%= render :partial => 'articles/password_form', :locals => { :article => article } %>
 <% end %>
