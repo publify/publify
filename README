@@ -15,6 +15,8 @@ So, we decided to make one more release on Ruby on Rails 2.3, upgrading to Rails
 
 Typo now runs on Ruby on Rails 2.3.8, which means it won't run with an older Rails version.
 
+Being a long time wanted feature, Typo now handles password protected posts. 
+
 Typo visual editor had no way to upload, browse, and use images. Thanks to htty, we now have a very nice resource browser CKEditor compliant. 
 
 As I wrote on Typo Weblog (http://res.to/aQz6), we've added a way to display users plugins setup into Typo admin. This is a first step on the way to a real plugin API.
