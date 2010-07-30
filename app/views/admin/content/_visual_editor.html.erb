@@ -7,14 +7,18 @@
   $('text_filter').value = 'none';
   html = $('article_body_and_extended').value;
   $('simple_editor').innerHTML = '';
-  $('carousel-wrapper').style.display = 'none';
-  
+  if ($('carousel-wrapper')) {
+    $('carousel-wrapper').style.display = 'none';
+  }
+
   if (CKEDITOR.instances.article__body_and_extended_editor &&
     typeof(CKEDITOR.instances.article__body_and_extended_editor) == 'object') {
       delete(CKEDITOR.instances.article__body_and_extended_editor);
     }
+    alert("test avant");
 </script>
 <%= ckeditor_textarea('article', 'body_and_extended', {:height => '300', :class => 'large'}) %>
 <script type="text/javascript">
+  alert("test après");
   content = CKEDITOR.instances.article__body_and_extended_editor.setData(html);
 </script>
