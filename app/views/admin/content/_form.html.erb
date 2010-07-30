@@ -16,7 +16,7 @@
       <%= check_box 'article', 'published'  %>
       <label for="article_published"><%= _("Published") %></label><br />
       <label for="article_password"><%= _("Password:") %></label><br />
-      <%= password_field(:article, :password) %>
+      <%= password_field :article, :password, :class => 'small' %>
       <p class='right'>
         <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ui-state-default ui-corner-all' />
         <%= save( _("Publish") + " &raquo;") %><br />
@@ -103,7 +103,7 @@
       <div class='setting'>
         <label class='float'><%= _("Publish at") %></label>
         <div class='input_text'>
-          <%= calendar_date_select 'article', 'published_at' %>
+          <%= calendar_date_select 'article', 'published_at', {:class => 'medium'} %>
         </div>
       </div>
       <div class='setting clear'>

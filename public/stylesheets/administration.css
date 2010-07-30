@@ -513,9 +513,11 @@ div.setting { float: left; margin-bottom: 12px;}
 /* Form */
 .float { display: block; float: left; width: 200px; line-height: 20px; }
 .large { width: 99%; }
-.medium { width: 300px;}
+.medium { width: 300px; }
+.small { width: 200px; }
+input.large, input.medium, input.small, textarea.large { border: 1px solid #ddd; padding: 5px; -moz-border-radius: 3px}
 p.settings { width: 530px; text-align: right; }
-.input_text input, .input_text textarea { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+.input_text input, .input_text  { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 .setting .input_text { margin: 0 0 0 200px; }
 .clear { clear: both;}
 
@@ -676,3 +678,9 @@ td.paginate {
 #container {
   clear: both;
 }
+
+#editor {
+  padding: 5px;
+}
+
+#ed_toolbar_article_body_and_extended { margin: 5px 0; }
