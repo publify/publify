@@ -31,6 +31,12 @@
       </div>      
     </div>
     <div class='setting clear'>
+      <label class="float" for="setting_google_verification"><%= _("Google verification link")%></label>
+      <div class='input_text'>
+        <%= text_field(:setting, :google_verification, :class => 'medium')%>
+      </div>      
+    </div>
+    <div class='setting clear'>
       <label class="float" for="setting_meta_description"><%= _("Meta description")%></label>
       <div class='input_text'>
         <%= text_area(:setting, :meta_description, :rows => 3, :class => 'medium')%>

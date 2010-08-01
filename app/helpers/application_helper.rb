@@ -159,6 +159,7 @@ module ApplicationHelper
   #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.blank? }
   #{ meta_tag 'description', @description unless @description.blank? }
   #{ meta_tag 'robots', 'noindex, follow' unless @noindex.nil? }
+  #{ meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?}
   <meta name="generator" content="Typo #{TYPO_VERSION}" />
   #{ meta_tag 'keywords', @keywords unless @keywords.blank? }
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
