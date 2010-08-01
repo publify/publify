@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
   config.gem 'mini_magick', :version => '~> 1.3', :lib => 'mini_magick'
   config.gem 'uuidtools', :version => '~>2.1.1'
   config.gem 'flickr', :version => '~> 1.0.2'
+  config.gem 'rubypants', :version => '~> 0.2.0'
 
   # I need the localization plugin to load first
   # Otherwise, I can't localize plugins <= localization
@@ -35,7 +36,6 @@ Rails::Initializer.run do |config|
   config.plugins = [ :localization, :all ]
 
   config.load_paths += %W(
-    vendor/rubypants
     vendor/akismet
     app/apis
   ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
@@ -53,7 +53,6 @@ Rails::Initializer.run do |config|
 end
 
 # Load included libraries.
-require 'rubypants'
 #require 'uuidtools'
 
 require 'migrator'
