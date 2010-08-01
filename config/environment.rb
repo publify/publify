@@ -26,7 +26,6 @@ Rails::Initializer.run do |config|
   config.load_paths += %W(
     vendor/rubypants
     vendor/akismet
-    vendor/flickr
     vendor/rails/railties
     vendor/rails/railties/lib
     vendor/rails/actionpack/lib
@@ -49,6 +48,7 @@ Rails::Initializer.run do |config|
   config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
   config.gem 'mini_magick', :version => '~> 1.3', :lib => 'mini_magick'
   config.gem 'uuidtools', :version => '~>2.1.1'
+  config.gem 'flickr', :version => '~> 1.0.2'
   
   # Use the filesystem for sessions instead of the database
   config.action_controller.session = { :key => "_typo_session", :secret => "8d7879bd56b9470b659cdcae88792622" }

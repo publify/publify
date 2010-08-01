@@ -47,8 +47,7 @@ This macro takes a number of parameters:
         alt     = attrib['alt']
 
         begin
-          flickr      = ::Flickr.new(FLICKR_KEY)
-          flickrimage = ::Flickr::Photo.new(img)
+          flickrimage = ::Flickr::Photo.new(img, FLICKR_KEY)
           sizes       = flickrimage.sizes
 
           details     = sizes.find {|s| s['label'].downcase == size.downcase } || sizes.first
