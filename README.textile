@@ -5,7 +5,8 @@ extension. It is available as a gem or source tarball.
 
 Current version is Typo 5.5 for Ruby on Rails 2.3.8. 
 
-h2. Some useful links:
+
+h2. Useful Links:
 
 * "Download Typo 5.5 source code:":http://rubyforge.org/frs/?group_id=555&release_id=42715
 * "*Report a bug*":http://fdv.lighthouseapp.com/projects/11171-typo-blog/overview
@@ -19,6 +20,31 @@ h2. Get some help
 
 * IRC: #typo on irc.freenode.net
 * "Mailing list":http://rubyforge.org/mailman/listinfo/typo-list
+
+h2. Maintainers
+This is a list of Typo maintainers. If you have a commit bit, please add your name and contact details to the list.
+
+h3. The Cool Kids
+
+*Frédéric de Villamil* <frederic@de-villamil.com>
+blog: http://t37.net
+irc: neuro`
+
+*Matijs van Zuijlen*
+blog: http://www.matijs.net/blog/
+irc: matijs
+
+*Cyril Mougel*
+blog: http://blog.shingara.fr
+irc: shingara
+
+
+h3. Original Author
+
+Tobias Luetke
+blog: http://blog.leetsoft.com/
+irc:  xal
+
 
 h1. Installing Typo
 
