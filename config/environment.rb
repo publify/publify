@@ -47,7 +47,7 @@ Rails::Initializer.run do |config|
   config.gem 'RedCloth', :version => '~> 4.2.2'
   config.gem 'fdv-actionwebservice', :version => '2.3.8', :lib => 'actionwebservice'
   config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
-  config.gem 'mini_magick', :version => '~> 1.2.5', :lib => 'mini_magick'
+  config.gem 'mini_magick', :version => '~> 1.3', :lib => 'mini_magick'
   config.gem 'uuidtools', :version => '~>2.1.1'
   
   # Use the filesystem for sessions instead of the database
