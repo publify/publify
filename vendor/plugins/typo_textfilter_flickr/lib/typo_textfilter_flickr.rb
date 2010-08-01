@@ -1,5 +1,4 @@
 require 'net/http'
-require 'flickr'
 
 class Typo
   class Textfilter
@@ -47,7 +46,8 @@ This macro takes a number of parameters:
         alt     = attrib['alt']
 
         begin
-          flickrimage = ::Flickr::Photo.new(img, FLICKR_KEY)
+          flickr      = ::Flickr.new(FLICKR_KEY)
+          flickrimage = ::Flickr::Photo.new(img)
           sizes       = flickrimage.sizes
 
           details     = sizes.find {|s| s['label'].downcase == size.downcase } || sizes.first
