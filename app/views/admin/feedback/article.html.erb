@@ -18,7 +18,7 @@
       <p>
         <%= format_date comment.created_at %> – [ 
         <%= link_to_edit _("Edit"), comment %> | 
-        <%= link_to _("Delete") , {:action => 'delete', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
+        <%= link_to _("Delete") , {:action => 'destroy', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
         <%= comment.state %> ]
       </p>
     </li>
