@@ -23,9 +23,9 @@
       </p>
     </div>
     <div class='setting clear'>
-      <label for="comment_body" class='float'><%= _("Content")%></label>
       <p class='input_text'>
-        <%= text_area 'comment', 'body', { :rows => '10', :class => 'small medium'} %>
+        <script type="text/javascript">edToolbar('comment_body');</script>
+        <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
       </p>
     </div>
   </div>

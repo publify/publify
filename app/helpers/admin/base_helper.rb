@@ -182,6 +182,10 @@ module Admin::BaseHelper
   def format_date(date)
     date.strftime('%d/%m/%Y')
   end
+
+  def format_date_time(date)
+    date.strftime('%d/%m/%Y %H:%M')
+  end
     
   def link_to_published(item)
     return link_to_permalink(item,  _("Show"), '', 'published') if item.published
@@ -189,8 +193,8 @@ module Admin::BaseHelper
   end
   
   def published_or_not(item)
-    return "<small class='published'>#{_("Published")}</small>" if item.published
-    "<small class='unpublished'>#{_("Unpublished")}</small>"
+    return "<span class='published'>#{_("Published")}</span>" if item.published
+    "<span class='unpublished'>#{_("Unpublished")}</span>"
   end
   
   def macro_help_popup(macro, text)

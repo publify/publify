@@ -37,12 +37,12 @@ class Admin::FeedbackController < Admin::BaseController
   def article
     @article = Article.find(params[:id])
     if params[:ham] && params[:spam].blank?
-      @comments = @article.comments.ham
+      @feedback = @article.comments.ham
     end
     if params[:spam] && params[:ham].blank?
-      @comments = @article.comments.spam
+      @feedback = @article.comments.spam
     end
-    @comments ||= @article.comments
+    @feedback ||= @article.comments
   end
   
   def destroy
@@ -93,13 +93,21 @@ class Admin::FeedbackController < Admin::BaseController
       redirect_to :action => 'edit', :id => comment.id
     end
   end
-
-  def preview
+    
+  def change_state
+    return unless request.xhr?
+    
     feedback = Feedback.find(params[:id])
-    render(:update) do |page|
-      page.replace_html("feedback_#{feedback.id}", h(feedback.body))
+    if (feedback.state.to_s.downcase == 'spam')
+      feedback.mark_as_ham!
+    else
+      feedback.mark_as_spam!
     end
     
+    template = (feedback.state.to_s.downcase == 'spam') ? 'spam' : 'ham'
+    render(:update) do |page|
+      page.replace("feedback_#{feedback.id}", :partial => template, :locals => {:comment => feedback})
+    end
   end
 
   def bulkops
@@ -136,7 +144,11 @@ class Admin::FeedbackController < Admin::BaseController
       flash[:notice] = _("Not implemented")
     end
 
-    redirect_to :action => 'index', :page => params[:page], :search => params[:search], :confirmed => params[:confirmed], :published => params[:published]
+    if params[:article_id] 
+      redirect_to :action => 'article', :id => params[:article_id], :confirmed => params[:confirmed], :published => params[:published]
+    else
+      redirect_to :action => 'index', :page => params[:page], :search => params[:search], :confirmed => params[:confirmed], :published => params[:published]
+    end
   end
 
   protected

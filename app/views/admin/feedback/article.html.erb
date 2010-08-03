@@ -1,32 +1,32 @@
 <% @page_heading = _("Comments for %s", @article.title) %>
-<% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'ui-state-default ui-corner-all'}) %>
+<% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'ui-state-default ui-corner-all noborder'}) %>
 
-<% content_for (:tasks) do %>
-  <%= subtab(_('All comments'), {:action => :article, :id => @article.id, :ham => 'y', :spam => 'y'} ) %>
-  <%= subtab(_('Limit to ham'), {:action => :article, :id => @article.id, :ham => 'y'}) %>
-  <%= subtab(_('Limit to spam'), {:action => :article, :id => @article.id, :spam => 'y'}) %>
-<% end %>
+<% subtabs_for(:content) %>
+<% form_tag({:action => 'bulkops'}, :method => :post) do %>
 
-<div class="list">
-  <ol>
-  <% for comment in @comments -%>
-    <li <%= alternate_class %>>
-      <p><strong><%= mail_to h(comment.email), h(comment.author) %></strong> |
-      <%= link_to_unless comment.url.blank?, h(comment.url), comment.url %> | 
-      IP: <%=h comment.ip %></p>
-      <%= h(comment.body) %>
-      <p>
-        <%= format_date comment.created_at %> – [ 
-        <%= link_to_edit _("Edit"), comment %> | 
-        <%= link_to _("Delete") , {:action => 'destroy', :id => comment.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %> |
-        <%= comment.state %> ]
-      </p>
-    </li>
-  <% end -%>
-  </ol>
-</div>
+<%= hidden_field 'article_id', @article.id %>
+<%= render :partial => 'button', :locals => { :position => 'top' } %>
 
-<hr />  
+<table class='settings'>
+  <tr>
+    <th class='first'><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+    <th><%= _("Status")%></th>
+    <th><%= _("Comment Author")%></th>
+    <th><%= _("Comment")%></th>
+  </tr>
+  <%= render_void_table(@feedback.size, 5) %>
+  
+  <% @feedback.each do |comment| %>
+  <tr <%= alternate_class %> id='<%= "feedback_#{comment.id}" %>'>
+    <% if comment.state.to_s.downcase == 'spam'  %>
+      <%= render :partial => 'spam', :locals => {:comment => comment} %>
+    <% else %>
+      <%= render :partial => 'ham', :locals => {:comment => comment} %>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<%end%>
 
 <% form_tag :action => "create" do %>
   <%= render :partial => "form" %>

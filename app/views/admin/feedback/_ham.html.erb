@@ -1,0 +1,20 @@
+<td><input class= "feedback_check" type="checkbox" name="feedback_check[<%= comment.id %>]"/></td>
+<td class='<%= comment_class comment.state.to_s.downcase %>'><%= comment.state %></td>
+<td>
+  <%= gravatar_tag(comment.email, {:size => 32}) unless comment.email.nil? %>
+  <div class='comment_content'>
+    <strong><%= mail_to h(comment.email), h(comment.author), {:class => 'noborder'} %></strong><br />
+    <%= link_to "#{h(comment.url)}<br />", comment.url, {:class => 'noborder'} unless comment.url.blank? %>
+    <%= format_date_time comment.created_at %>
+  </div>
+</td>
+<td>
+  <%= comment.html(:all) %>
+  <p>
+    <%= show_actions comment %>
+  </p>
+</td>
+
+<% if controller.action_name == 'index' %>
+<td><%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %></td>
+<% end %>

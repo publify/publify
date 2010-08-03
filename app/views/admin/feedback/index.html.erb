@@ -1,4 +1,4 @@
-<% @page_heading =  _("Feedback for") + " #{ this_blog.settings['blog_name'] }" %>
+<% @page_heading =  _("Feedback") %>
 <% subtabs_for(:content) %>
 
 <% form_tag({:action => 'index'}, :method => :get) do %>
@@ -16,28 +16,28 @@
 
 <%= hidden_field_tag "search", params[:search]%>
 <%= hidden_field_tag "page", params[:page]%>
-<div class='settings'>
-  <select onchange='window.location=this.options[this.selectedIndex].value;'>
-    <option value=''><%= _("All comments")%></option>
-    <option value='?ham=f' <%= 'selected' if params[:ham] == 'f' %>><%= _("Limit to ham") %></option>
-    <option value='?confirmed=f' <%= 'selected' if params[:confirmed] == 'f' %>><%= _("Unapproved comments") %></option>
-    <option value='?published=f' <%= 'selected' if params[:published] == 'f' %>><%= _("Limit to spam")%></option>
-  </select>
-</div>
 <table class='settings'>
   <tr>
-    <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+    <th class='first'><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
     <th><%= _("Status")%></th>
-    <th><%= _("Comment Excerpt")%></th>
+    <th><%= _("Comment Author")%></th>
+    <th><%= _("Comment")%></th>
     <th><%= _("Article")%></th>
-    <th><%= _("Author")%></th>
-    <th><%= _("Date")%></th>
   </tr>
 
-  <%= render_void_table(@feedback.size, 9) %>
+  <%= render_void_table(@feedback.size, 5) %>
+  
+  <% @feedback.each do |comment| %>
+  <tr <%= alternate_class %> id='<%= "feedback_#{comment.id}" %>'>
+    <% if comment.state.to_s.downcase == 'spam'  %>
+      <%= render :partial => 'spam', :locals => {:comment => comment} %>
+    <% else %>
+      <%= render :partial => 'ham', :locals => {:comment => comment} %>
+    <% end %>
+  </tr>
+  <% end %>
 
-  <%= render :partial => 'item', :collection => @feedback %>
-  <%= display_pagination(@feedback, 6)%>
+  <%= display_pagination(@feedback, 5) %>
 </table>
 
 <%= render :partial => 'button', :locals => { :position => 'bottom' } %>

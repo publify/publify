@@ -92,7 +92,7 @@ module ApplicationHelper
   def gravatar_tag(email, options={})
     options.update(:gravatar_id => Digest::MD5.hexdigest(email.strip))
     options[:default] = CGI::escape(options[:default]) if options.include?(:default)
-    options[:size] ||= 60
+    options[:size] ||= 48
 
     image_tag("http://www.gravatar.com/avatar.php?" <<
       options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")

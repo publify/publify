@@ -111,21 +111,21 @@ describe Admin::FeedbackController do
         get :article, :id => contents(:article1).id
         should_success_with_article_view(response)
         assigns(:article).should == contents(:article1)
-        assigns(:comments).size.should == 2
+        assigns(:feedback).size.should == 2
       end
 
       it 'should see only spam feedback on one article' do
         get :article, :id => contents(:article1).id, :spam => 'y'
         should_success_with_article_view(response)
         assigns(:article).should == contents(:article1)
-        assigns(:comments).size.should == 1
+        assigns(:feedback).size.should == 1
       end
 
       it 'should see only ham feedback on one article' do
         get :article, :id => contents(:article1).id, :ham => 'y'
         should_success_with_article_view(response)
         assigns(:article).should == contents(:article1)
-        assigns(:comments).size.should == 1
+        assigns(:feedback).size.should == 1
       end
 
       it 'should redirect_to index if bad article id' do
