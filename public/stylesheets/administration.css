@@ -648,3 +648,4 @@ td.paginate {
 .gravatar { float: left; padding: 3px;}
 .comment_content { margin-left: 45px; padding-right: 40px; }
 a.noborder { border: none; text-decoration: none;}
+h1 a { border: none; text-decoration: none;}

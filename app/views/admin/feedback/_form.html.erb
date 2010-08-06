@@ -22,7 +22,7 @@
         <%= text_field 'comment', 'url', :class => 'medium', :value => current_user.url %>
       </p>
     </div>
-    <div class='setting clear'>
+    <div id='simple_editor' class='setting clear'>
       <p class='input_text'>
         <script type="text/javascript">edToolbar('comment_body');</script>
         <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
