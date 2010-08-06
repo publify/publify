@@ -14,7 +14,10 @@
   <div id='header'>
     <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
   </div>
-  <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"}, :id => 'logout' %>
+  <div id='logout'>
+    <%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %> |
+    <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"} %>    
+  </div>
 
 
   <div id='container' class='ui-tabs ui-widget ui-widget-content ui-corner-all'>

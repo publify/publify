@@ -47,6 +47,8 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/cache"
   map.permission "admin/dashboard"
   map.permission "admin/textfilters"
+  map.permission "admin/profiles"
+
   # FIXME: For previews, during production 'previews' is needed, during
   # test, 'articles' is needed. Proposed solution: move previews to
   # ArticlesController
@@ -60,7 +62,7 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   end
 
   map.project_module :content, nil do |project|
-    project.menu    "Manage",           { :controller => "admin/content",    :action => "index" }
+    project.menu    "Content",           { :controller => "admin/content",    :action => "index" }
     project.submenu "Articles",         { :controller => "admin/content",    :action => "index" }
     project.submenu "Comments",         { :controller => "admin/feedback" }
 	  project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
@@ -79,7 +81,7 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   end
 
   map.project_module :themes, nil do |project|
-    project.menu    "Customize",             { :controller => "admin/themes", :action => "index"  }
+    project.menu    "Design",             { :controller => "admin/themes", :action => "index"  }
     project.submenu "Choose theme",          { :controller => "admin/themes", :action => "index" }
     project.submenu "Customize sidebar",     { :controller => "admin/sidebar", :action => "index" }
     project.submenu "Theme editor",          { :controller => "admin/themes", :action => "editor" }
@@ -103,8 +105,4 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "",                 { :controller => "admin/users", :action => "edit" }
     project.submenu "",                 { :controller => "admin/users", :action => "destroy" }
   end    
-  
-  map.project_module :profile, "admin/profiles" do |project|
-    project.menu    "Profile",                 { :action => "index" }
-  end
 end
