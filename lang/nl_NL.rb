@@ -1,15 +1,15 @@
 Localization.define("nl_NL") do |l|
 
   # app/views/accounts/signup.html.erb
-  l.store "Desired login", ""
-  l.store "Display name", ""
-  l.store "Email", ""
-  l.store "Choose password", ""
-  l.store "Confirm password", ""
-  l.store "Signup", ""
+  l.store "Desired login", "Gewenste login"
+  l.store "Display name", "Schermnaam"
+  l.store "Email", "Email"
+  l.store "Choose password", "Kies wachtwoord"
+  l.store "Confirm password", "Bevestig wachtwoord"
+  l.store "Signup", "Meld aan"
 
   # app/views/admin/base/_recent_comments.html.erb
-  l.store "Recent comments", ""
+  l.store "Recent comments", "Recente reacties"
 
   # app/views/admin/base/_recent_trackbacks.html.erb
   l.store "Recent trackbacks", ""
@@ -23,46 +23,46 @@ Localization.define("nl_NL") do |l|
   l.store "Regex", ""
 
   # app/views/admin/blacklist/_quick_post.html.erb
-  l.store "Cancel", ""
-  l.store "or", ""
-  l.store "Save", ""
+  l.store "Cancel", "Terug"
+  l.store "or", "of"
+  l.store "Save", "Bewaar"
 
   # app/views/admin/blacklist/destroy.html.erb
-  l.store "Are you sure you want to delete this item?", ""
-  l.store "Blacklist Patterns", ""
+  l.store "Are you sure you want to delete this item?", "Weet je zeker dat je dit item wilt verwijderen?"
+  l.store "Blacklist Patterns", "Blacklist patronen"
 
   # app/views/admin/blacklist/edit.html.erb
-  l.store "Editing pattern", ""
+  l.store "Editing pattern", "Wijzig patroon"
 
   # app/views/admin/blacklist/index.html.erb
-  l.store "add new", ""
+  l.store "add new", "voeg toe"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", ""
-  l.store "Posts", ""
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
+  l.store "Title", "Titel"
+  l.store "Posts", "Berichten"
+  l.store "no articles", "geen artikelen"
+  l.store "1 article", "1 artikel"
+  l.store "%d articles", "%d artikelen"
 
   # app/views/admin/categories/_form.html.erb
-  l.store "Name", ""
-  l.store "Keywords", ""
-  l.store "Description", ""
+  l.store "Name", "Naam"
+  l.store "Keywords", "Trefwoorden"
+  l.store "Description", "Omschrijving"
 
   # app/views/admin/categories/destroy.html.erb
-  l.store "Are you sure you want to delete the category ", ""
-  l.store "Delete this category", ""
+  l.store "Are you sure you want to delete the category ", "Weet je zeker dat je de categorie wilt verwijderen?"
+  l.store "Delete this category", "Verwijder deze categorie"
   l.store "Categories", "Categoriën"
 
   # app/views/admin/categories/index.html.erb
-  l.store "Reorder", ""
-  l.store "Sort alphabetically", ""
+  l.store "Reorder", "Orden opnieuw"
+  l.store "Sort alphabetically", "Sorteer alfabetisch"
 
   # app/views/admin/categories/new.html.erb
-  l.store "%s Category", ""
+  l.store "%s Category", "%s Categorie"
 
   # app/views/admin/categories/reorder.html.erb
-  l.store "(Done)", ""
+  l.store "(Done)", "(Gedaan)"
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", ""
@@ -75,12 +75,12 @@ Localization.define("nl_NL") do |l|
   l.store "Drafts:", ""
 
   # app/views/admin/content/_form.html.erb
-  l.store "Allow comments", ""
+  l.store "Allow comments", "Sta reacties toe"
   l.store "Allow trackbacks", ""
-  l.store "Published", ""
-  l.store "Publish", ""
-  l.store "Content", ""
-  l.store "Tags", ""
+  l.store "Published", "Gepubliceerd"
+  l.store "Publish", "Publiceer"
+  l.store "Content", "Inhoud"
+  l.store "Tags", "Trefwoorden"
   l.store "Excerpt", ""
   l.store "Uploads", ""
   l.store "Post settings", ""
@@ -89,30 +89,30 @@ Localization.define("nl_NL") do |l|
   l.store "Save as draft", ""
 
   # app/views/admin/content/destroy.html.erb
-  l.store "Are you sure you want to delete this article", ""
-  l.store "Delete this article", ""
-  l.store "Articles", ""
+  l.store "Are you sure you want to delete this article", "Weet je zeker dat je dit artikel wilt verwijderen?"
+  l.store "Delete this article", "Verwijder dit artikel"
+  l.store "Articles", "Artikelen"
 
   # app/views/admin/content/index.html.erb
-  l.store "Search articles that contains...", ""
-  l.store "Search", ""
-  l.store "Date", ""
-  l.store "Author", ""
-  l.store "Status", ""
-  l.store "Feedback", ""
-  l.store "Filter", ""
-  l.store "Manage articles", ""
+  l.store "Search articles that contains...", "Zoek artikelen met ..."
+  l.store "Search", "Zoek"
+  l.store "Date", "Datum"
+  l.store "Author", "Auteur"
+  l.store "Status", "Status"
+  l.store "Feedback", "Feedback"
+  l.store "Filter", "Filter"
+  l.store "Manage articles", "Beheer artikelen"
 
   # app/views/admin/dashboard/_comments.html.erb
-  l.store "Last Comments", ""
-  l.store "No comments yet", ""
-  l.store "by %s on %s", ""
+  l.store "Last Comments", "Laatste reacties"
+  l.store "No comments yet", "Nog geen reacties"
+  l.store "by %s on %s", "door %s op %s"
 
   # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", ""
-  l.store "No one made a link to you yet", ""
-  l.store " made a link to you saying ", ""
-  l.store "You have no internet connection", ""
+  l.store "Inbound links", "Binnenkomende links"
+  l.store "No one made a link to you yet", "Niemand maakte nog een link naar je"
+  l.store " made a link to you saying ", " maakte een link naar je met als tekst "
+  l.store "You have no internet connection", "Je hebt geen internet verbinding"
 
   # app/views/admin/dashboard/_overview.html.erb
   l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s , %s or %s.", ""
@@ -124,35 +124,35 @@ Localization.define("nl_NL") do |l|
   l.store "write a page", ""
 
   # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", ""
-  l.store "Nothing to show yet", ""
+  l.store "Most popular", "Meest populair"
+  l.store "Nothing to show yet", "Nog niets te zien"
 
   # app/views/admin/dashboard/_posts.html.erb
-  l.store "Last posts", ""
-  l.store "No posts yet, why don't you start and write one", ""
+  l.store "Last posts", "Laatste berichten"
+  l.store "No posts yet, why don't you start and write one", "Nog geen berichten, waarom begin je er niet een te schrijven"
 
   # app/views/admin/dashboard/_sysinfo.html.erb
-  l.store "System information", ""
-  l.store "You're running Typo %s", ""
-  l.store "Statistics", ""
-  l.store "Total posts : %d", ""
-  l.store "Your posts : %d", ""
-  l.store "Total comments : %d", ""
-  l.store "Spam comments : %d", ""
+  l.store "System information", "Systeem informatie"
+  l.store "You're running Typo %s", "Je gebruikt Typo %s"
+  l.store "Statistics", "Statistieken"
+  l.store "Total posts : %d", "Aantal berichten : %d"
+  l.store "Your posts : %d", "Jouw berichten : %d"
+  l.store "Total comments : %d", "Aantal reacties : %d"
+  l.store "Spam comments : %d", "Spam reacties : %d"
 
   # app/views/admin/dashboard/_typo_dev.html.erb
   l.store "Last news from Typo development blog", ""
   l.store "Oh no, nothing new", ""
 
   # app/views/admin/dashboard/_welcome.html.erb
-  l.store "Welcome back, %s!", ""
+  l.store "Welcome back, %s!", "Welkom terug, %s!"
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "Mark Checked Items as Spam", ""
-  l.store "Confirm Classification of Checked Items", ""
-  l.store "Delete all spam", ""
+  l.store "Delete Checked Items", "Verwijder aangevinkte reacties"
+  l.store "Mark Checked Items as Ham", "Markeer aangevinkte reacties als Ham"
+  l.store "Mark Checked Items as Spam", "Markeer aangevinkte reacties als Spam"
+  l.store "Confirm Classification of Checked Items", "Bevestig classificatie van aangevinkte reacties"
+  l.store "Delete all spam", "Verwijder alle spam"
 
   # app/views/admin/feedback/_form.html.erb
   l.store "Url", ""
@@ -186,9 +186,9 @@ Localization.define("nl_NL") do |l|
   l.store "Unpublished", ""
 
   # app/views/admin/pages/destroy.html.erb
-  l.store "Pages", ""
-  l.store "Are you sure you want to delete the page", ""
-  l.store "Delete this page", ""
+  l.store "Pages", "Pagina's"
+  l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
+  l.store "Delete this page", "Verwijder deze pagina"
 
   # app/views/admin/pages/index.html.erb
   l.store "Manage pages", ""
@@ -208,11 +208,11 @@ Localization.define("nl_NL") do |l|
   l.store "Remove iTunes Metadata", ""
 
   # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", ""
+  l.store "Content Type", "Content Type"
 
   # app/views/admin/resources/_pages.html.erb
-  l.store "Previous page", ""
-  l.store "Next page", ""
+  l.store "Previous page", "Vorige pagina"
+  l.store "Next page", "Volgende pagina"
 
   # app/views/admin/resources/_resources.html.erb
   l.store "Filename", ""
@@ -318,7 +318,7 @@ Localization.define("nl_NL") do |l|
   l.store "no", ""
 
   # app/views/admin/settings/write.html.erb
-  l.store "Write", ""
+  l.store "Write", "Schrijf"
   l.store "Article filter", ""
   l.store "Comments filter", ""
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", ""
@@ -383,7 +383,7 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/users/_form.html.erb
   l.store "Login", ""
-  l.store "Profile", ""
+  l.store "Profile", "Profiel"
   l.store "Blog publisher", ""
   l.store "Contributor", ""
   l.store "Typo administrator", ""
@@ -406,7 +406,7 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/users/index.html.erb
   l.store "Username", ""
-  l.store "Comments", ""
+  l.store "Comments", "Reacties"
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
@@ -460,11 +460,11 @@ Localization.define("nl_NL") do |l|
   l.store "Localization.rtl", ""
   l.store "log out", ""
   l.store "your blog", ""
-  l.store "Dashboard", ""
+  l.store "Dashboard", "Dashboard"
 
   # app/views/shared/_loginform.html.erb
-  l.store "Remember me", ""
-  l.store "Back to ", ""
+  l.store "Remember me", "Onthou me"
+  l.store "Back to ", "Terug naar"
 
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Powered by %s"
@@ -644,12 +644,12 @@ Localization.define("nl_NL") do |l|
   l.store "%d posts", "%d berichten"
 
   # app/models/feedback/states.rb
-  l.store "Unclassified", ""
+  l.store "Unclassified", "Niet geclassificeerd"
   l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
+  l.store "Ham?", "Ham?"
   l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
-  l.store "Spam?", ""
+  l.store "Ham", "Ham"
+  l.store "Spam?", "Spam?"
   l.store "Just Marked As Spam", ""
 
   # vendor/plugins/xml_sidebar/lib/xml_sidebar.rb
