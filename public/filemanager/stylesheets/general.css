@@ -95,7 +95,7 @@ TEXTAREA {
 	BACKGROUND-IMAGE: url(../images/preview_bg.gif); MARGIN: 24px 12px 12px; BACKGROUND-REPEAT: repeat-y; BACKGROUND-COLOR: #f0f0ee
 }
 #previewWrapper {
-	
+
 }
 #previewIframe {
 	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; WIDTH: 100%; BORDER-BOTTOM: #000000 1px solid; HEIGHT: 200px; BACKGROUND-COLOR: #ffffff
