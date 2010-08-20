@@ -221,7 +221,7 @@ class Article < Content
     urls = Array.new
     html.gsub(/<a\s+[^>]*>/) do |tag|
       if(tag =~ /\bhref=(["']?)([^ >"]+)\1/)
-        urls.push($2)
+        urls.push($2.strip)
       end
     end
 
@@ -233,7 +233,7 @@ class Article < Content
 
     articleurl ||= permalink_url(nil)
 
-    weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
+    weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/).map(&:strip)
     pingback_or_trackback_urls = self.html_urls
 
     ping_urls = weblogupdatesping_urls + pingback_or_trackback_urls
@@ -242,7 +242,7 @@ class Article < Content
 
     ping_urls.uniq.each do |url|
       begin
-        unless existing_ping_urls.include?(url.strip)
+        unless existing_ping_urls.include?(url)
           ping = pings.build("url" => url)
 
           if weblogupdatesping_urls.include?(url)
