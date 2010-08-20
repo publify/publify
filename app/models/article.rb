@@ -238,9 +238,11 @@ class Article < Content
 
     ping_urls = weblogupdatesping_urls + pingback_or_trackback_urls
 
+    existing_ping_urls = pings.collect { |p| p.url }
+
     ping_urls.uniq.each do |url|
       begin
-        unless pings.collect { |p| p.url }.include?(url.strip)
+        unless existing_ping_urls.include?(url.strip)
           ping = pings.build("url" => url)
 
           if weblogupdatesping_urls.include?(url)
