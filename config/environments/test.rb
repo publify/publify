@@ -21,6 +21,6 @@ config.action_controller.allow_forgery_protection    = false
 
 Migrator.offer_migration_when_available            = false
 require 'ruby-debug'
-config.gem "factory_girl", :version => '~> 1.2.4'
+config.gem "factory_girl", :version => '~> 1.3.1'
 config.gem 'rspec', :lib => false
 config.gem 'rspec-rails', :lib => false
