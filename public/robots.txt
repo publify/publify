@@ -1,6 +1,8 @@
-User-agent: *
+# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
+#
+User-Agent: *
 Disallow: /admin/
 Disallow: /page/
 Disallow: /cgi-bin
-User-agent: Googlebot-Image
+User-Agent: Googlebot-Image
 Allow: /*

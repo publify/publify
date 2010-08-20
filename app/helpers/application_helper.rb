@@ -1,4 +1,4 @@
-# The methods added to this helper will be available to all templates in the application.
+# Methods added to this helper will be available to all templates in the application.
 require 'digest/sha1'
 
 module ApplicationHelper
