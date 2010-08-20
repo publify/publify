@@ -11,7 +11,7 @@ if defined?(ActiveRecord)
   ActiveRecord::Base.store_full_sti_class = true
 end
 
-ActionController::Routing.generate_best_match = false
+#ActionController::Routing.generate_best_match = false
 
 # Use ISO 8601 format for JSON serialized times and dates.
 ActiveSupport.use_standard_json_time_format = true
