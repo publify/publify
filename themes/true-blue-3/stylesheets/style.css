@@ -41,7 +41,7 @@ a {
 #sidebar div {
   margin-bottom: 20px;
   border-bottom: #356aa0 2px solid;
-  padding-bottom: 10px;	
+  padding-bottom: 10px;
 }
 
 #sidebar div ul,
@@ -73,7 +73,7 @@ a {
   position: absolute;
   top: 0;
   left: 50%;
-  width: 990px;	
+  width: 990px;
   background: #8ae3f9;
   margin: 0 0 0 -495px;
   padding: 0;
@@ -198,10 +198,10 @@ a {
 .category-excerpt .comments {
   width: 110px;
   margin-left: 540px;
-  color: #fb7c00;	
+  color: #fb7c00;
 }
 
-.excerpt .author, 
+.excerpt .author,
 .excerpt .comments,
 .category-excerpt .author,
 .category-excerpt .comments {
@@ -459,7 +459,7 @@ p.comment {
 
 #comment_body {
   border: none;
-  font: 13px/20px "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;	
+  font: 13px/20px "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
   width: 640px;
   height: 175px;
 	border: #000 1px solid;
@@ -535,7 +535,7 @@ p.comment_submit {
 #carousel-content .slide p a:hover {
   opacity:0.9;
   filter:alpha(opacity=90);
-} 
+}
 
 a#carousel-previous,
 a#carousel-next  {
@@ -557,7 +557,7 @@ a#carousel-next:hover {
 }
 
 a#carousel-previous {
-  left: 0;	
+  left: 0;
 }
 
 #carousel-next {

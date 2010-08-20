@@ -60,5 +60,5 @@ describe Admin::TagsController do
     end
 
   end
-  
+
 end

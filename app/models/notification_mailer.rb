@@ -1,6 +1,6 @@
 class NotificationMailer < ActionMailer::Base
   helper :mail
-  
+
   def article(article, user)
     setup(user, article)
     @subject        = "[#{article.blog.blog_name}] New article: #{article.title}"

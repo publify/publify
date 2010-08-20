@@ -134,10 +134,10 @@ describe TagsController, "password protected article" do
 
   it 'article in tag should be password protected' do
     get 'show', :id => 'foo'
-    
+
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
-  end 
+  end
 end
 
 ## Old tests that still need conversion

@@ -44,7 +44,7 @@ class Admin::FeedbackController < Admin::BaseController
     end
     @feedback ||= @article.comments
   end
-  
+
   def destroy
     if request.post?
       begin
@@ -61,7 +61,7 @@ class Admin::FeedbackController < Admin::BaseController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(params[:comment])
     @comment.user_id = current_user.id
-    
+
     if request.post? and @comment.save
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham!
@@ -93,17 +93,17 @@ class Admin::FeedbackController < Admin::BaseController
       redirect_to :action => 'edit', :id => comment.id
     end
   end
-    
+
   def change_state
     return unless request.xhr?
-    
+
     feedback = Feedback.find(params[:id])
     if (feedback.state.to_s.downcase == 'spam')
       feedback.mark_as_ham!
     else
       feedback.mark_as_spam!
     end
-    
+
     template = (feedback.state.to_s.downcase == 'spam') ? 'spam' : 'ham'
     render(:update) do |page|
       page.replace("feedback_#{feedback.id}", :partial => template, :locals => {:comment => feedback})
@@ -144,7 +144,7 @@ class Admin::FeedbackController < Admin::BaseController
       flash[:notice] = _("Not implemented")
     end
 
-    if params[:article_id] 
+    if params[:article_id]
       redirect_to :action => 'article', :id => params[:article_id], :confirmed => params[:confirmed], :published => params[:published]
     else
       redirect_to :action => 'index', :page => params[:page], :search => params[:search], :confirmed => params[:confirmed], :published => params[:published]

@@ -35,9 +35,9 @@ class Admin::PagesController < Admin::BaseController
     @page.user_id = current_user.id
     @page.text_filter ||= current_user.text_filter
     @images = Resource.paginate :page => 1, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
-    if request.post? 
+    if request.post?
       if @page.name.blank?
-        @page.name = @page.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url 
+        @page.name = @page.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
       end
       @page.published_at = Time.now
       if @page.save
@@ -65,13 +65,13 @@ class Admin::PagesController < Admin::BaseController
       redirect_to :action => 'index'
     end
   end
-  
+
   def insert_editor
     return unless params[:editor].to_s =~ /simple|visual/
     current_user.editor = params[:editor].to_s
     current_user.save!
-    
+
     render :partial => "#{params[:editor].to_s}_editor"
   end
-  
+
 end

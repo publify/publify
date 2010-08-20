@@ -10,7 +10,7 @@ Localization.define('it_IT') do |l|
   l.store "Settings", "Configurazione"
   l.store "Things you can do", "Cose che puoi fare"
   l.store "with %s Famfamfam iconset %s", "con %s le icone Famfamfam %s"
-  
+
   #admin/login.rhtml
   l.store "Username", "Nome Utente"
   l.store "Password", "Password"
@@ -22,7 +22,7 @@ Localization.define('it_IT') do |l|
   l.store "Do you want to go to your blog?", "Vuoi andare al tuo blog?"
   l.store "Successfully logged out", "Sei correttamente uscito"
   l.store "Logoff", "Esci"
-  
+
   # admin/signup.rhtml
   l.store "Signup", "Iscrizione"
   l.store "Desired login", "Nome utente"
@@ -30,7 +30,7 @@ Localization.define('it_IT') do |l|
   l.store "Email", "Email"
   l.store "Choose password", "Password"
   l.store "Confirm password", "Conferma password"
-  
+
   # admin/dashboard/index.rhtml
   l.store "What can you do ?", "Cosa puoi fare?"
   l.store "Write a post", "Scrivere Articoli"
@@ -43,54 +43,54 @@ Localization.define('it_IT') do |l|
   l.store "Most popular", "I più popolari"
   l.store "Typo documentation", "Documentazione ufficale Typo"
   l.store "No comments yet", "Nessun commento"
-  
+
   #admin/base/recent_comments.rhtml
   l.store "Recent comments", "Commenti recenti"
 
   #admin/base/recent_trackbacks.rhtml
   l.store "Recent trackbacks", "Trackbacks recenti"
-  
+
   #admin/blacklist/_blacklis_patterns.rhtml
   l.store "Pattern", "Modello"
   l.store "Type", "Tipo"
   l.store "Edit", "Modifica"
   l.store "Delete", "Elimina"
-  
+
   #admin/blacklist/_form.rhtml
   l.store "String", "Stringa"
   l.store "Regex", "Espressione regolare"
-  
+
   #admin/blacklist/_quick_post.rhtml
   l.store "Add pattern", "Aggiungi modello"
   l.store "Cancel", "Annulla"
   l.store "Store", "Salva"
   l.store "or", "o"
-  
+
   #admin/blacklist/destroy.rhtml
   l.store "Blacklist Patterns", "Lista nera"
   l.store "Show this pattern", "Vedi modello"
   l.store "Are you sure you want to delete this item?", "Sei sicuro di voler eliminare questo elemento?"
-  
+
   #admin/blacklist/edit.rhtml
   l.store "Editing pattern", "Modifica modello"
-  
+
   #admin/blacklist/list.rhtml
   l.store "Create new Blacklist", "Aggiungi nuova lista nera"
-  
+
   #admin/cache/list.rhtml
   l.store "Cache", "Cache"
-  
+
   #admin/categories/_categories.rhtml
   l.store "Category title", "Nome della categoria"
   l.store "%d Articles", ["Categoria", "%d Categorie"]
-  
+
   #admin/categories/_form.rhtml
   l.store "Name", "Nome"
-  
+
   #admin/categories/_quick_post.rhtml
   l.store "Title", "Titolo"
   l.store "Add category", "Aggiungi categoria"
-  
+
   #admin/categorie/destroy.rhtml
   l.store "%d Categories", ["Categoria", "%d Categorie"]
   l.store "Show this category", "Mostra questa categoria"
@@ -100,10 +100,10 @@ Localization.define('it_IT') do |l|
   #admin/category/list.html.erb
   l.store "add new", "aggiungi nuovo"
   l.store "Profile", "Profilo"
-  
+
   #admin/category/edit.rhtml
-  l.store "Editing category", "Modifica categoria" 
-  
+  l.store "Editing category", "Modifica categoria"
+
   #admin/category/list.rhtml
   l.store "Manage Categories", "Gestisci categorie"
   l.store "Create new category", "Crea una nuova categoria"
@@ -112,10 +112,10 @@ Localization.define('it_IT') do |l|
   l.store "Manage Articles", "Gestisci gli articoli"
   l.store "Manage Pages", "Gestisci le pagine"
   l.store "Manage Resources", "Gestici le risorse"
-  
+
   #admin/category/reorder.rhtml
   l.store "(Done)", "(Termina)"
-  
+
   #admin/category/show
   l.store "Edit this category", "Modifica questa categoria"
   l.store "Articles in", "Articoli in"
@@ -123,26 +123,26 @@ Localization.define('it_IT') do |l|
   #admin/comments/_form.rhtml
   l.store "Author", "Autore"
   l.store "Url", "Sito"
-  l.store "Body", "Messaggio" 
-  
+  l.store "Body", "Messaggio"
+
   #admin/comments/comments.rhtml
   l.store "on", "su"
 
   #admin/comments/destroy.rhtml
   l.store "Comments for", "Commenti per"
-  
+
   #admin/comments/edit.rhtml
   l.store "Show this comment", "Mostra questo commento"
   l.store "View comment on your blog", "Visualizza commento sul blog"
   l.store "Editing comment", "Modifica commento"
-  
+
   #admin/comments/list.rhtml
   l.store "IP", "IP"
   l.store "Posted date", "Data di inserimento"
-  
+
   #admin/comments/new.rhtml
   l.store "Creating comment", "Creazione commento"
-  
+
   #admin/content/_articles.rhtml
   l.store "Posts", "Articoli"
   l.store "Uploads", "Uploads"
@@ -157,12 +157,12 @@ Localization.define('it_IT') do |l|
   l.store "no trackbacks", "nessun trackback"
   l.store "no comments", "nessun commento"
   l.store "Options", "Opzioni"
-  
+
   #admin/content/_attachment.rhtml
   l.store "Remove", "Elimina"
   l.store "Really delete attachment", "Vuoi realmente eliminare l'allegato"
   l.store "Add Another Attachment", "Aggiungi un'altro allegato"
-  
+
   #admin/content/_form.rhtml
   l.store "Article Body", "Contenuto articolo"
   l.store "Post", "Contenuto"
@@ -181,24 +181,24 @@ Localization.define('it_IT') do |l|
   l.store "Publish at", "Pubblicato il"
   l.store "Textfilter", "Formato testo"
   l.store "Toggle Extended Content", "Mostra contenuto esteso"
-  
+
   #admin/content/_pages.rhtml
   l.store "Previous page", "Pagina precedente"
   l.store "Next page", "Pagina successiva"
-  
+
   #admin/content/_show_categories.rhtml
   l.store "Currently this article is listed in following categories", "Questo articolo e' presente nelle seguenti categorie"
   l.store "You can add it to the following categories", "Puoi aggiungerlo alle seguenti categorie"
-  
+
   #admin/content/_show_ressources.rhtml
   l.store "Currently this article has the following resources", "Questo articolo ha le seguenti risorse"
   l.store "You can associate the following resources", "Puoi associare le seguenti risorse"
-  
+
   #admin/content/destroy.rhtml
   l.store "Show this article", "Vedi l'articolo"
   l.store "Are you sure you want to delete this article", "Sei sicuro di voler eliminare questo articolo"
   l.store "Delete this article", "Elimina articolo"
-  
+
   #admin/content/edit.rhtml
   l.store "Edit Article", "Modifica articolo"
   l.store "View article on your blog", "Guarda l'articolo sul blog"
@@ -209,13 +209,13 @@ Localization.define('it_IT') do |l|
 
   #admin/content/preview.rhtml
   l.store "Posted by", "Scritto da"
-  
+
   #admin/content/show.rhtml
   l.store "Preview Article", "Anteprima articolo"
   l.store "Edit this article", "Modifica questo articolo"
   l.store "Last updated", "Ultimo aggiornamento"
   l.store "Attachments", "Allegati"
-  
+
   #admin/feedback/list.rhtml
   l.store "Limit to spam", "Limita a spam"
   l.store "Limit to unconfirmed", "Limita a non confermati"
@@ -233,12 +233,12 @@ Localization.define('it_IT') do |l|
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Search", "Cerca"
   l.store "Comment Excerpt", "Contenuto commento"
- 
+
   #admin/general/task
   l.store "Basic settings", "Configurazione base"
   l.store "Advanced settings", "Configurazione avanzata"
   l.store "Blog advanced settings", "Settaggi avanzati del blog"
-  
+
   #admin/general/index.rhtml
   l.store "Blog settings", "Configurazione blog"
   l.store "Which settings group would you like to edit", "Quale gruppo di settaggi vuoi modificare "
@@ -309,7 +309,7 @@ Localization.define('it_IT') do |l|
   l.store "Empty Fragment Cache", "Svuota la cache"
   l.store "Rebuild cached HTML", "Ricostruisci l'html in cache"
   l.store "days", "giorni"
-  
+
   #admin/general/update_database
   l.store "Database migration", "Migrazione del database"
   l.store "Information", "Informazioni"
@@ -323,30 +323,30 @@ Localization.define('it_IT') do |l|
   l.store "Update database now", "Aggiorna il tuo database ora"
   l.store "may take a moment", "attendi alcuni istanti"
   l.store "config updated.", "Configurazione aggiornata."
-  
+
   #admin/pages/_form.rhtml
   l.store "Page Body", "Contenuto della pagina"
   l.store "Page Content", "Contenuto della pagina"
   l.store "Location", "Link permanente"
   l.store "Page Options", "Opzioni pagina"
-  
+
   #admin/pages/_pages.rhtml
   l.store "Action", "Azioni"
   l.store "Pages","Pagine"
   l.store "Show this page", "Mostra questa pagina"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
   l.store "Delete this page", "Elimina questa pagina"
-  
+
   #admin/pages/edit.rhtml
   l.store "Create new page", "Crea una nuova pagina"
   l.store "View page on your blog", "Visualizza pagina sul blog"
   l.store "Editing page", "Modifica pagina"
   l.store "Manage Text Filters", "Gestisci i filtri del testo"
-  
+
   #admin/pages/show.rhtml
   l.store "Edit this page", "Modifica questa pagina"
   l.store "by", "da"
-  
+
   #admin/ressources/_metadata_add.rhtml
   l.store "Resource MetaData", "Risorse metadata"
   l.store "Set iTunes metadata for this enclosure", "Setta i metadata iTunes per questa risorsa"
@@ -354,11 +354,11 @@ Localization.define('it_IT') do |l|
   l.store "Key Words", "Parole chiave"
   l.store "seperate with spaces", "séparez-les par des espaces"
   l.store "Category", "Catégorie"
-  
+
   #admin/resources/_metadata_edit.rhtml
   l.store "Remove iTunes Metadata", "Rimuovi i metadata iTunes"
   l.store "Content Type", "Tipo di contenuto"
-  
+
   #admin/resources/_resources.rhtml
   l.store "Filename", "Nome del file"
   l.store "right-click for link", "clicca col destro per il link"
@@ -379,16 +379,16 @@ Localization.define('it_IT') do |l|
   l.store "Upload", "Invia"
   l.store "Upload a new Resource", "Invia una nuova risorsa"
   l.store "File", "File"
-  
+
   #admin/sidebar/_avaliables.rhtml
   l.store "You have no plugins installed", "Non hai plugins installati"
-  
+
   #admin/sidebar/_publish.rhtml
   l.store "Changes published", "Modifiche pubblicate"
-  
+
   #admin/sidebar/_target.rhtml
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
-  
+
   #admin/sidebar/index.rhtml
   l.store "Choose a theme", "Seleziona un tema"
   l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
@@ -401,87 +401,87 @@ Localization.define('it_IT') do |l|
   l.store "Markup type", "Tipo di markup"
   l.store "Post-processing filters", "Filtri di dopo il produzione"
   l.store "Parameters", "Parametri"
-  
+
   #admin/textfilters/_macros.rhtml
   l.store "Show Help", "Mostra l'aiuto"
-  
+
   #admin/textfilters/_textfilters.rhtml
   l.store "Markup", "Markup"
   l.store "Filters", "Filtri"
-  
+
   #admin/textfilters/destroy.rhtml
   l.store "Text Filters", "Filtri testo"
   l.store "Are you sure you want to delete this filter", "Sei sicuro di voler eliminare questo filtro"
   l.store "Delete this filter", "Elimina questo filtro"
-  
+
   #admin/textfilters/edit.rhtml
   l.store "Editing textfilter", "Modifica filtro testo"
-  
+
   #admin/textfilters/list.rhtml
   l.store "Create new text filter", "Crea un nuovo filtro testo"
   l.store "Customize Sidebar", "Personalizza la Sidebar"
   l.store "Macros", "Macros"
-  
+
   #admin/textfilters/macro_help.rhtml
   l.store "Macro Filter Help", "Aiuto filtro macro"
   l.store "Creating text filter", "Crea un nuovo filtro testo"
-  
+
   #admin/textfilters/show.rhtml
   l.store "Text Filter Details", "Dettagli filtro testo"
   l.store "Edit this filter", "Modifica questo filtro"
   l.store "See help text for this filter", "Visualizza aiuto per questo filtro"
-  
+
   #admin/themes/index.rhtml
   l.store "Choose theme", "Scegli un tema"
   l.store "Theme editor", "Editor dei temi"
   l.store "Activate", "Attiva"
   l.store "Active theme", "Tema Attivo"
   l.store "Themes", "Temi"
-  
+
   #admin/trackbacks/edit.rhtml
   l.store "Trackbacks for", "Trackbacks per"
   l.store "Editing trackback", "Modifica trackback"
-  
+
   #admin/trackbacks/new.rhtml
   l.store "Creating trackback", "Creaa trackback"
   l.store "Edit this trackback", "Modifica questo trackback"
-  
+
   #admin/users/_form.rhtml
   l.store "Jabber", "Jabber"
   l.store "Password Confirmation", "Conferma password"
   l.store "Send notification messages via email", "Invia notifiche via mail"
   l.store "Send notification messages when new articles are posted", "Invia notifiche quando viene pubblicato un nuovo articolo"
   l.store "Send notification messages when comments are posted", "Invia notifiche quando viene inserito un nuovo commento"
-  
+
   #admin/user/_user.rhtml
   l.store "Number of Articles", "Numero di articoli"
   l.store "Number of Comments", "Numero di commenti"
   l.store "Notified", "Notificato"
   l.store "via email", "per mail"
-  
+
   #admin/user/destroy.rhtml
   l.store "Show this user", "Visualizza questo utente"
   l.store "Really delete user", "Veramente eliminare questo utente"
-  
+
   #admin/user/edit.rhtml
   l.store "Edit User", "Modifica utente"
   l.store "Editing User", "Modifica utente"
   l.store "New User", "Nuovo utente"
   l.store "Add new user", "Aggiungi nuovo utente"
-  
+
   #admin/user/new.rhtml
   l.store "Add User", "Aggiungi Utente"
-  
+
   #admin/user/show.rhtml
   l.store "User's articles", "Articoli dell'utente"
   l.store "Notify via email", "Notifiche via mail"
   l.store "Notify on new articles", "Notifiche di nuovi articoli"
   l.store "Notify on new comments", "Notifiche di nuovi commenti"
-  
+
   #articles/_comment.rhtml
   l.store "said", "dice"
   l.store "This comment has been flagged for moderator approval. It won't appear on this blog until the author approves it", "Questo commento e' stato segnalato per essere moderato. Non apparira' finche' gli amministratori non l'approvano"
-  
+
   #articles/_comment_box.rhtml
   l.store "Your name", "Tuo nome "
   l.store "Your blog", "Tuo blog "
@@ -489,51 +489,51 @@ Localization.define('it_IT') do |l|
   l.store "Your message", "Tuo messaggio"
   l.store "Comment Markup Help", "Aiuto sul markup dei comemnti"
   l.store "Preview comment", "Anteprima commento"
-  
+
   #articles/_trackback.rhtml
   l.store "From", "Da"
-  
+
   #articles/archives.rhtml
   l.store "No articles found", "Nessun articolo trovato"
-  
+
   #articles/comment_preview.rhtml
   l.store "is about to say", "sta per dire"
-  
+
   #articles/groupings.rhtml
   l.store "There are", "Ci sono"
-  
+
   #articles/index.rhtml
   l.store "Read more", "Continua"
   l.store "Read full article", "Leggi articolo completo"
   l.store "Older posts", "Articoli precedenti"
-  
+
   #articles/read.rhtml
   l.store "Leave a response", "Commenta"
   l.store "Use the following link to trackback from your own site", "Usa il link seguente per fare un trackback dal tuo sito"
   l.store "RSS feed for this post", "Feed RSS per questo post"
   l.store "trackback uri", "trackback urk"
   l.store "Comments are disabled", "Commenti disabilitati"
- 
+
   l.store "Pictures from", "Immagine da"
-  
+
   #vendor/plugins/aimpresence_sidebar/aimpresence_sidebar.rb
   l.store "AIM Presence", "Presenza AIM"
 
   #vendor/plugins/aimpresence_sidebar/views/content.rb
   l.store "AIM Status", "Stato AIM"
-  
+
   #vendor/plugins/xml_sidebar/xml_sidebar.rb
   l.store "XML Syndication", "XML Syndication"
 
   #vendor/plugins/xml_sidebar/xml_sidebar.rb
   l.store "Syndicate", "Syndicate"
-  
+
   #vendor/plugins/archives_sidebar/views/content.rb
   l.store "Archives", "Archivi"
-  
+
   #vendor/plugins/tags_sidebar/views/content.rb
   l.store "Tags", "Tags"
-  
+
   #app/helpers/admin/base_helper.rb
   l.store "Back to overview", "Torna al sommario"
   l.store "log out", "esci"

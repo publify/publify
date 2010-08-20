@@ -16,7 +16,7 @@
     <% else %>
       <%= render :partial => 'articles/password_form', :locals => { :article => article } %>
     <% end %>
-    
+
   <div class='author'>
     Published on <%= _(article.published_at.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M", article.published_at.utc))) %>
   </div>

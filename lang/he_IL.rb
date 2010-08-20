@@ -90,7 +90,7 @@ Localization.define("he_IL") do |l|
   l.store "on", "על"
   l.store "URL", "כתובת"
   l.store "IP", "כתובת IP"
-  l.store "Body", "גוף הכתבה" 
+  l.store "Body", "גוף הכתבה"
 
   # app/views/admin/comments/_form.html.erb
   l.store "Author", "כותב"
@@ -456,7 +456,7 @@ Localization.define("he_IL") do |l|
   l.store "Password", "סיסמה"
   l.store "Password confirmation", "אימות סיסמה"
   l.store "Send notification messages via email", "שלח עדכונים באמצאות הדואל"
-  l.store "Send notification messages when new articles are posted", "עדכן בעת כתבות חדשים" 
+  l.store "Send notification messages when new articles are posted", "עדכן בעת כתבות חדשים"
   l.store "Send notification messages when comments are posted", "עדכן בעת תגובות חדשות"
 
   # app/views/admin/users/_user.html.erb

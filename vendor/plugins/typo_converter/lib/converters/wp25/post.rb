@@ -29,7 +29,7 @@ module WP25
     def comments
       WP25::Comment.find_all_by_comment_post_ID(self.ID)
     end
-    
+
     def self.prefix=(prefix)
       set_table_name "#{prefix}_posts"
     end

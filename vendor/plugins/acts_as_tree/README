@@ -23,4 +23,4 @@ association. This requires that you have a foreign key column, which by default 
   root.children # => [child1]
   root.children.first.children.first # => subchild1
 
-Copyright (c) 2007 David Heinemeier Hansson, released under the MIT license  
+Copyright (c) 2007 David Heinemeier Hansson, released under the MIT license

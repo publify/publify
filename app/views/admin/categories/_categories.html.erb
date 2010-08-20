@@ -3,20 +3,20 @@
     <th><%= _("Title") %></th>
   </tr>
   <%= render_void_table(@categories.size, 2)  %>
-  
+
   <% for category in @categories -%>
   <tr <%= alternate_class -%> id="category_<%= category.id -%>">
     <td>
       <%= link_to_edit category.name, category %><br />
       <%= show_actions category %>
       </td>
-  </tr>  
+  </tr>
   <% end -%>
   <tr>
     <td class='paginate'>
       <%= link_to_remote(_('Reorder'), :update => 'category_container', :url => { :action => 'reorder' }) %> |
       <%= link_to_remote(_('Sort alphabetically'), :update => 'category_container', :url => { :action => 'asort' }) %>
-      
+
     </td>
   </tr>
 </table>

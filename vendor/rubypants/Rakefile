@@ -35,10 +35,10 @@ def get_darcs_tree_version
   changes = `darcs changes`
   count = 0
   tag = "0.0"
-  
+
   changes.each("\n\n") { |change|
     head, title, desc = change.split("\n", 3)
-    
+
     if title =~ /^  \*/
       # Normal change.
       count += 1

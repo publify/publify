@@ -20,12 +20,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.rss 'articles.rss', :controller => 'articles', :action => 'index', :format => 'rss'
   map.atom 'articles.atom', :controller => 'articles', :action => 'index', :format => 'atom'
-  
+
   map.with_options :controller => 'xml', :path_prefix => 'xml' do |controller|
     controller.xml 'articlerss/:id/feed.xml', :action => 'articlerss'
     controller.xml 'commentrss/feed.xml', :action => 'commentrss'
     controller.xml 'trackbackrss/feed.xml', :action => 'trackbackrss'
-    
+
     controller.with_options :action => 'feed' do |action|
       action.xml 'rss', :type => 'feed', :format => 'rss'
       action.xml 'sitemap.xml', :format => 'googlesitemap', :type => 'sitemap', :path_prefix => nil
@@ -34,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
       action.xml ':format/:type/:id/feed.xml'
     end
   end
-  
+
 
   map.resources :comments, :name_prefix => 'admin_', :collection => [:preview]
   map.resources :trackbacks
@@ -55,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories, :as => 'category', :only => [:show, :edit, :update, :destroy]
 
   map.connect '/category/:id/page/:page', :controller => 'categories', :action => 'show'
-  
+
   # Before use inflected_resource
   map.resources :tags, :except => [:show, :update, :destroy, :edit]
   map.resources :tags, :as => 'tag', :only => [:show, :edit, :update, :destroy]
@@ -65,7 +65,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect '/author/:id', :controller => 'authors', :action => 'show'
   map.xml '/author/:id.:format', :controller => 'authors', :action => 'show', :format => /rss|atom/
-  
+
   # allow neat perma urls
   map.connect 'page/:page',
     :controller => 'articles', :action => 'index',

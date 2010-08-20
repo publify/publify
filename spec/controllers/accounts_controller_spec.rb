@@ -46,7 +46,7 @@ describe 'A successfully authenticated login' do
     make_request
     response.should redirect_to('/bogus/location')
   end
-  
+
   it 'redirects to /admin if no return' do
     make_request
     response.should redirect_to(:controller => 'admin')
@@ -62,7 +62,7 @@ describe 'A successfully authenticated login' do
     User.stub!(:count).and_return(0)
     make_request
     response.should redirect_to('/accounts/signup')
-  end  
+  end
 end
 
 describe 'User is inactive' do
@@ -72,16 +72,16 @@ describe 'User is inactive' do
     User.stub!(:authenticate).and_return(nil)
     User.stub!(:count).and_return(1)
   end
- 
+
   def make_request
     post 'login', {:user => {:login => 'inactive', :password => 'longtest'}}
   end
-  
+
   it 'no user id goes in the session' do
     make_request
     response.session[:user_id].should be_nil
   end
-  
+
   it 'login should == "inactive"' do
     make_request
     assigns[:login].should == 'inactive'
@@ -96,7 +96,7 @@ describe 'User is inactive' do
     make_request
     response.should render_template(:login)
   end
-  
+
 end
 
 describe 'Login with nil user and password' do
@@ -105,7 +105,7 @@ describe 'Login with nil user and password' do
   before(:each) do
     User.stub!(:count).and_return(1)
   end
-  
+
   def make_request
    post 'login', {:user => {:login => nil, :password => nil}}
   end
@@ -262,7 +262,7 @@ describe 'POST signup with 0 existing users and unconfigured blog' do
     post 'signup', params
     response.should redirect_to(:controller => 'setup', :action => 'index')
   end
-  
+
   def params
     {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
         'password_confirmation' => 'newpassword'}}
@@ -297,7 +297,7 @@ describe 'POST login with 0 existing users and unconfigured blog' do
     post 'login', params
     response.should redirect_to(:controller => 'setup', :action => 'index')
   end
-  
+
   def params
     {'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}}
   end
@@ -388,26 +388,26 @@ end
 
 describe 'User has lost his password and send a good email' do
   controller_name :accounts
-  
+
   before(:each) do
     @user = mock_model(User, :new_record? => false, :reload => @user)
     @user.stub!(:profile).and_return(Profile.find_by_label('admin'))
     User.stub!(:find_by_login).with('tobi').and_return(@user)
     User.stub!(:count).and_return(1)
   end
-  
+
   it 'should render recover_password' do
     get 'recover_password'
-    
+
     response.should render_template('recover_password')
   end
-  
+
   it 'should render login' do
     make_request
-    
+
     response.should redirect_to(:action => 'login')
   end
-  
+
   def make_request
    post 'recover_password', {:user => {:login => 'tobi'}}
   end

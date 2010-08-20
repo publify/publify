@@ -41,14 +41,14 @@ font-size: small;
 }
 
 channel > link,
-channel > copyright, 
-channel > lastBuildDate, 
-channel > generator, 
-channel > docs, 
-language, 
-lastBuildDate, 
-ttl, 
-guid, 
+channel > copyright,
+channel > lastBuildDate,
+channel > generator,
+channel > docs,
+language,
+lastBuildDate,
+ttl,
+guid,
 category {
 display: none;
 }

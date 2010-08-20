@@ -106,7 +106,7 @@ class GroupingController < ContentController
     articles = collection[0,this_blog.limit_rss_display]
     render :partial => template.sub(%r{^(?:articles/)?}, 'articles/'), :object => articles
   end
-  
+
   private
   def set_noindex
     # irk there must be a better way to do this

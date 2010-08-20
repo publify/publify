@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe ApplicationHelper do
 
   helper_name 'application'
-  
+
   describe '#render_flash' do
     it 'should render empty string if no flash' do
       render_flash.should == ''

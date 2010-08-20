@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `sessid` (`sessid`)
-);  
+);
 
 CREATE TABLE IF NOT EXISTS  `users` (
   `id` int(11) NOT NULL auto_increment,

@@ -7,19 +7,19 @@ options = { :environment => (ENV['RUBY_ENV'] || "development").dup }
 
 ARGV.options do |opts|
   script_name = File.basename($0)
-  
+
   opts.banner = "Usage: migrate [options]"
   opts.separator ""
-  
+
   opts.on("-e", "--environment=name", String,
           "Specifies the environment to migrate (test/development/production).",
           "Default: development") { |options[:environment]| }
-  
+
   opts.separator ""
-  
+
   opts.on("-h", "--help",
           "Show this help message.") { puts opts; exit }
-  
+
 end
 
 ENV["RAILS_ENV"] = options[:environment]

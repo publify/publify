@@ -36,7 +36,7 @@ class ThemeController < ContentController
       FileUtils.cp(src, "#{dst}.#{$$}")
       FileUtils.ln("#{dst}.#{$$}", dst) rescue nil
       FileUtils.rm("#{dst}.#{$$}", :force => true)
-    end 
+    end
     send_file(src, :type => mime, :disposition => 'inline', :stream => true)
   end
 

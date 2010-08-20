@@ -1,12 +1,12 @@
 # Apache 2.0/2.2 HTTP proxy example for Typo with Mongrel
 #
-# Before any of this will work, you need to make sure that the mod_proxy and 
-# mod_proxy_http modules are loaded.  For shared hosting, your provider will 
-# have do this globally.  The two lines required look like this, although the 
+# Before any of this will work, you need to make sure that the mod_proxy and
+# mod_proxy_http modules are loaded.  For shared hosting, your provider will
+# have do this globally.  The two lines required look like this, although the
 # exact path may vary:
 #
-#   LoadModule proxy_module /usr/lib/apache2/modules/mod_proxy.so                   
-#   LoadModule proxy_http_module /usr/lib/apache2/modules/mod_proxy_http.so 
+#   LoadModule proxy_module /usr/lib/apache2/modules/mod_proxy.so
+#   LoadModule proxy_http_module /usr/lib/apache2/modules/mod_proxy_http.so
 #
 # Then you'll want a VirtualHost section that looks about like this:
 

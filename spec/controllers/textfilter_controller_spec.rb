@@ -78,7 +78,7 @@ describe TextfilterController do
   end
 
   describe 'code textfilter' do
-    
+
     describe 'single line' do
 
       it 'should made nothin if no args' do

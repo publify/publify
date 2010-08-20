@@ -17,7 +17,7 @@ require 'ckeditor_controller'
 
 class ActionController::Routing::RouteSet
   unless (instance_methods.include?('draw_with_ckeditor'))
-    class_eval <<-"end_eval", __FILE__, __LINE__  
+    class_eval <<-"end_eval", __FILE__, __LINE__
       alias draw_without_ckeditor draw
       def draw_with_ckeditor
         draw_without_ckeditor do |map|

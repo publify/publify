@@ -28,7 +28,7 @@
         <ul>
           <%= content_tag(:li, link_to(_('Home'), this_blog.base_url, {:class => render_active_home}))%>
           <%= content_tag(:li, link_to(_('Articles'), {:controller => 'categories'}, {:class => render_active_articles}))%>
-          <%= show_pages_links %>  
+          <%= show_pages_links %>
           <li><a href="http://t37.net/">Thème Frédéric de Villamil</a></li>
         </ul>
       </div>
@@ -39,11 +39,11 @@
     <%= content_tag(:li, link_to(_('Home'), this_blog.base_url, {:class => render_active_home}))%>
     <%= content_tag(:li, link_to(_('Articles'), {:controller => 'categories'}, {:class => render_active_articles}))%>
     <%= show_pages_links %>
-  </ul>  
+  </ul>
   <div id='external'>
     <a href='<%= @auto_discover_rss %>'>
       <%= image_tag "theme/rss.png", :alt => "RSS" %>
-    </a>  
+    </a>
   </div>
   <div id="breadcrumb">
     <%= render_breadcrumb %>

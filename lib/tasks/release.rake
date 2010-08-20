@@ -13,23 +13,23 @@ spec = Gem::Specification.new do |s|
   s.version = PKG_VERSION
   s.summary = "Modern weblog engine."
   s.has_rdoc = false
-  
-  s.files = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f| 
-     [ /\.$/, /config\/database.yml$/, /config\/database.yml-/, 
+
+  s.files = Dir.glob('**/*', File::FNM_DOTMATCH).reject do |f|
+     [ /\.$/, /config\/database.yml$/, /config\/database.yml-/,
      /database\.sqlite/,
-     /\.log$/, /^pkg/, /\.git/, /^vendor\/rails/, 
-     /^public\/(files|xml|articles|pages|index.html)/, 
-     /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/, 
+     /\.log$/, /^pkg/, /\.git/, /^vendor\/rails/,
+     /^public\/(files|xml|articles|pages|index.html)/,
+     /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/,
      /\/\._/, /\/#/ ].any? {|regex| f =~ regex }
   end
   s.require_path = '.'
   s.author = "Frédéric de Villamil"
   s.email = "frederic@de-villamil.com"
-  s.homepage = "http://typosphere.org"  
+  s.homepage = "http://typosphere.org"
   s.rubyforge_project = "typo"
-  s.platform = Gem::Platform::RUBY 
+  s.platform = Gem::Platform::RUBY
   s.executables = ['typo']
-  
+
   s.add_dependency("rails", "= 2.3.8")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
   s.add_dependency("ruby-debug", ">= 0.10.3")

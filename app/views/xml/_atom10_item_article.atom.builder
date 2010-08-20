@@ -35,5 +35,5 @@ xm.entry do
     end
   end
   xm.summary html(item, :body), "type"=>"html"
-  xm.content html(item, :all), "type"=>"html" if this_blog.show_extended_on_rss 
+  xm.content html(item, :all), "type"=>"html" if this_blog.show_extended_on_rss
 end

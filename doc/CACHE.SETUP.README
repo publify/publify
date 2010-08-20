@@ -8,29 +8,29 @@ declaring the document root.
 
   RewriteCond %{DOCUMENT_ROOT}/cache/index.html -f
   RewriteRule ^/$ /cache/index.html [PT]
-  
+
   RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_FILENAME} -f
   RewriteRule ^/(.*)$ /cache/$1 [PT]
 
   RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_FILENAME}.html -f
-  RewriteRule ^/(.*)$ /cache/$1.html [PT]  
+  RewriteRule ^/(.*)$ /cache/$1.html [PT]
 
 == Rewrite Rules For Nginx
 
-  if (-f $request_filename) { 
-    break; 
+  if (-f $request_filename) {
+    break;
   }
-      
+
   if (-f $document_root/cache/index.html) {
     rewrite ^/$ /cache/index.html break;
   }
 
-  if (-f $document_root/cache$uri) { 
+  if (-f $document_root/cache$uri) {
     rewrite (.*) /cache$1 break;
-    break; 
+    break;
   }
 
-  if (-f $document_root/cache$uri.html) { 
+  if (-f $document_root/cache$uri.html) {
     rewrite (.*) /cache$1.html break;
-    break; 
+    break;
   }

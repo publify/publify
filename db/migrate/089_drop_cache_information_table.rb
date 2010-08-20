@@ -9,14 +9,14 @@ class DropCacheInformationTable < ActiveRecord::Migration
     # That means we first need to wipe existing files or they will be served
     # And the cache will never be accessed
     list = CacheInformation.find(:all)
-    
+
     list.each do |file|
       path = File.join(RAILS_ROOT, 'public', file.path)
       if File.exist?(path)
         FileUtils.rm(path)
       end
     end
-    
+
     drop_table :cache_informations
   end
 

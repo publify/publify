@@ -16,26 +16,26 @@
           <%= article.html(:extended) %>
         <% end -%>
       </div>
-    <% end -%>  
+    <% end -%>
   </div>
   <% if controller.controller_name == "articles" and controller.action_name == "show" %>
   <div class="meta">
     <p class="infos"><small>
       <%= _("This entry was posted on %s", content_tag(:abbr, js_distance_of_time_in_words_to_now (@article.published_at), {:class => 'published', :title => @article.published_at.xmlschema})) %>
-      <%= _("and %s", category_links(@article)) unless @article.categories.empty? %>. 
-      <%= _("You can follow any any response to this entry through the %s", link_to(_("Atom feed"), @auto_discovery_url_atom)) %>. 
-      <%= _("You can leave a %s", link_to_permalink(article, _('comment'), 'comments')) if @article.allow_comments? %> 
+      <%= _("and %s", category_links(@article)) unless @article.categories.empty? %>.
+      <%= _("You can follow any any response to this entry through the %s", link_to(_("Atom feed"), @auto_discovery_url_atom)) %>.
+      <%= _("You can leave a %s", link_to_permalink(article, _('comment'), 'comments')) if @article.allow_comments? %>
       <%= _("or a %s from your own site", link_to_permalink(@article, _('trackback'), 'trackbacks')) if @article.allow_pings? %>.
     </small></p>
     <p class="tags">
       <%= tag_links(@article) unless @article.tags.empty? %>
     </p>
-  </div>    
+  </div>
   <% else %>
 	<p class="links">
 		<%= link_to_permalink(article, _("Read full article"), nil, 'more') if controller.action_name != 'permalink' %>
 		<%= link_to_permalink(article,pluralize(article.published_comments.size, _('no comments') , _('1 comment'), __('%d comments') ),'comments', 'comments') %>
-	</p>    
+	</p>
   <% end %>
   <br style="clear:both;" />
 </div>

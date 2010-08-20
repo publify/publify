@@ -1,9 +1,9 @@
 h1. About Typo
 
-Being around since March 2005, Typo is (probably) the oldest blogging platform in Rails. It has a full set of feature you would expect from such an engine, powerful SEO capabilities and full themes and plugin 
+Being around since March 2005, Typo is (probably) the oldest blogging platform in Rails. It has a full set of feature you would expect from such an engine, powerful SEO capabilities and full themes and plugin
 extension. It is available as a gem or source tarball.
 
-Current version is Typo 5.5 for Ruby on Rails 2.3.8. 
+Current version is Typo 5.5 for Ruby on Rails 2.3.8.
 
 
 h2. Useful Links:
@@ -84,13 +84,13 @@ To install Typo with the default options, just run:
   typo install /some/path
 </pre>
 
-This will install typo with SQLite3 and will spawn it to some random port. 
+This will install typo with SQLite3 and will spawn it to some random port.
 
 To chose your database engine and web server, run the following:
 
 <pre>
   typo install /some/path web-server=my_server database=my_db db_password=password db_user=my_app db_name=my_app some/path
-</pre> 
+</pre>
 
 Options for _web-server_ are:
 

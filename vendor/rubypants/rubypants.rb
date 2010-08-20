@@ -25,9 +25,9 @@
 #
 #
 # == Description
-# 
+#
 # RubyPants can perform the following transformations:
-# 
+#
 # * Straight quotes (<tt>"</tt> and <tt>'</tt>) into "curly" quote
 #   HTML entities
 # * Backticks-style quotes (<tt>``like this''</tt>) into "curly" quote
@@ -36,12 +36,12 @@
 #   entities
 # * Three consecutive dots (<tt>...</tt> or <tt>. . .</tt>) into an
 #   ellipsis entity
-# 
+#
 # This means you can write, edit, and save your posts using plain old
 # ASCII straight quotes, plain dashes, and plain dots, but your
 # published posts (and final HTML output) will appear with smart
 # quotes, em-dashes, and proper ellipses.
-# 
+#
 # RubyPants does not modify characters within <tt><pre></tt>,
 # <tt><code></tt>, <tt><kbd></tt>, <tt><math></tt> or
 # <tt><script></tt> tag blocks. Typically, these tags are used to
@@ -50,35 +50,35 @@
 #
 #
 # == Backslash Escapes
-# 
+#
 # If you need to use literal straight quotes (or plain hyphens and
 # periods), RubyPants accepts the following backslash escape sequences
 # to force non-smart punctuation. It does so by transforming the
 # escape sequence into a decimal-encoded HTML entity:
-# 
+#
 #   \\    \"    \'    \.    \-    \`
 #
 # This is useful, for example, when you want to use straight quotes as
 # foot and inch marks: 6'2" tall; a 17" iMac.  (Use <tt>6\'2\"</tt>
 # resp. <tt>17\"</tt>.)
 #
-# 
+#
 # == Algorithmic Shortcomings
-# 
+#
 # One situation in which quotes will get curled the wrong way is when
 # apostrophes are used at the start of leading contractions. For
 # example:
-# 
+#
 #   'Twas the night before Christmas.
-# 
+#
 # In the case above, RubyPants will turn the apostrophe into an
 # opening single-quote, when in fact it should be a closing one. I
 # don't think this problem can be solved in the general case--every
 # word processor I've tried gets this wrong as well. In such cases,
 # it's best to use the proper HTML entity for closing single-quotes
 # ("<tt>&#8217;</tt>") by hand.
-# 
-# 
+#
+#
 # == Bugs
 #
 # To file bug reports or feature requests (except see above) please
@@ -89,39 +89,39 @@
 #
 #
 # == Authors
-# 
+#
 # John Gruber did all of the hard work of writing this software in
 # Perl for Movable Type and almost all of this useful documentation.
 # Chad Miller ported it to Python to use with Pyblosxom.
 #
 # Christian Neukirchen provided the Ruby port, as a general-purpose
 # library that follows the *Cloth API.
-# 
+#
 #
 # == Copyright and License
-# 
+#
 # === SmartyPants license:
-# 
+#
 # Copyright (c) 2003 John Gruber
 # (http://daringfireball.net)
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
 # are met:
-# 
+#
 # * Redistributions of source code must retain the above copyright
 #   notice, this list of conditions and the following disclaimer.
-# 
+#
 # * Redistributions in binary form must reproduce the above copyright
 #   notice, this list of conditions and the following disclaimer in
 #   the documentation and/or other materials provided with the
 #   distribution.
-# 
+#
 # * Neither the name "SmartyPants" nor the names of its contributors
 #   may be used to endorse or promote products derived from this
 #   software without specific prior written permission.
-# 
+#
 # This software is provided by the copyright holders and contributors
 # "as is" and any express or implied warranties, including, but not
 # limited to, the implied warranties of merchantability and fitness
@@ -134,23 +134,23 @@
 # liability, or tort (including negligence or otherwise) arising in
 # any way out of the use of this software, even if advised of the
 # possibility of such damage.
-# 
+#
 # === RubyPants license
-# 
+#
 # RubyPants is a derivative work of SmartyPants and smartypants.py.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
 # are met:
-# 
+#
 # * Redistributions of source code must retain the above copyright
 #   notice, this list of conditions and the following disclaimer.
-# 
+#
 # * Redistributions in binary form must reproduce the above copyright
 #   notice, this list of conditions and the following disclaimer in
 #   the documentation and/or other materials provided with the
 #   distribution.
-# 
+#
 # This software is provided by the copyright holders and contributors
 # "as is" and any express or implied warranties, including, but not
 # limited to, the implied warranties of merchantability and fitness
@@ -163,7 +163,7 @@
 # liability, or tort (including negligence or otherwise) arising in
 # any way out of the use of this software, even if advised of the
 # possibility of such damage.
-# 
+#
 #
 # == Links
 #
@@ -182,7 +182,7 @@ class RubyPants < String
   # Create a new RubyPants instance with the text in +string+.
   #
   # Allowed elements in the options array:
-  # 
+  #
   # 0  :: do nothing
   # 1  :: enable all, using only em-dash shortcuts
   # 2  :: enable all, using old school en- and em-dash shortcuts (*default*)
@@ -246,7 +246,7 @@ class RubyPants < String
 
     # Parse the HTML
     tokens = tokenize
-    
+
     # Keep track of when we're inside <pre> or <code> tags.
     in_pre = false
 
@@ -273,7 +273,7 @@ class RubyPants < String
 
         unless in_pre
           t = process_escapes t
-          
+
           t.gsub!(/&quot;/, '"')  if convert_quotes
 
           if do_dashes
@@ -306,7 +306,7 @@ class RubyPants < String
                 t = "&#8220;"
               end
             else
-              # Normal case:                  
+              # Normal case:
               t = educate_quotes t
             end
           end
@@ -398,7 +398,7 @@ class RubyPants < String
     punct_class = '[!"#\$\%\'()*+,\-.\/:;<=>?\@\[\\\\\]\^_`{|}~]'
 
     str = str.dup
-      
+
     # Special case if the very first character is a quote followed by
     # punctuation at a non-word-break. Close the quotes by brute
     # force:
@@ -415,7 +415,7 @@ class RubyPants < String
 
     close_class = %![^\ \t\r\n\\[\{\(\-]!
     dec_dashes = '&#8211;|&#8212;'
-    
+
     # Get most opening single quotes:
     str.gsub!(/(\s|&nbsp;|--|&[mn]dash;|#{dec_dashes}|&#x201[34];)'(?=\w)/,
              '\1&#8216;')
@@ -446,13 +446,13 @@ class RubyPants < String
     str.
       gsub(/&#8211;/, '-').      # en-dash
       gsub(/&#8212;/, '--').     # em-dash
-      
+
       gsub(/&#8216;/, "'").      # open single quote
       gsub(/&#8217;/, "'").      # close single quote
-      
+
       gsub(/&#8220;/, '"').      # open double quote
       gsub(/&#8221;/, '"').      # close double quote
-      
+
       gsub(/&#8230;/, '...')     # ellipsis
   end
 
@@ -477,7 +477,7 @@ class RubyPants < String
     scan(tag_soup) {
       tokens << [:text, $1]  if $1 != ""
       tokens << [:tag, $2]
-      
+
       prev_end = $~.end(0)
     }
 

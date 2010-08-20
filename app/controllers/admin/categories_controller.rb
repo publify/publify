@@ -36,9 +36,9 @@ class Admin::CategoriesController < Admin::BaseController
     @categories = Category.find(:all, :order => :position)
     render :layout => false
   end
-  
+
   private
-  
+
   def new_or_edit
     @category = case params[:id]
     when nil
@@ -50,17 +50,17 @@ class Admin::CategoriesController < Admin::BaseController
     if request.post?
       save_category
       return
-    end    
+    end
     render :action => 'new'
   end
-  
+
   def save_category
     if @category.save!
-      flash[:notice] = _('Category was successfully saved.') 
+      flash[:notice] = _('Category was successfully saved.')
     else
       flash[:error] = _('Category could not be saved.')
     end
       redirect_to :action => 'index'
   end
-  
+
 end

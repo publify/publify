@@ -52,7 +52,7 @@ If you have root access to your host, launch:
 $ sudo gem install typo
 $ typo install typo_path
 
-or 
+or
 
 $ sudo gem update typo
 $ typo install typo_path
@@ -99,7 +99,7 @@ If you have root access to your host, launch:
 $ sudo gem install typo
 $ typo install typo_path
 
-or 
+or
 
 $ sudo gem update typo
 $ typo install typo_path

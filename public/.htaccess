@@ -6,12 +6,12 @@ AddHandler cgi-script .cgi
 
 # If you don't want Rails to look in certain directories,
 # use the following rewrite rules so that Apache won't rewrite certain requests
-# 
+#
 # Example:
 #   RewriteCond %{REQUEST_URI} ^/notrails.*
 #   RewriteRule .* - [L]
 
-# If Typo is accessed via an Alias directive, then you MUST also set 
+# If Typo is accessed via an Alias directive, then you MUST also set
 # the RewriteBase in this htaccess file.
 #
 # Example:
@@ -29,7 +29,7 @@ RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
 # In case Typo experiences terminal errors
 # Instead of displaying this message you can supply a file here which will be rendered instead
-# 
+#
 # Example:
 #   ErrorDocument 500 /500.html
 

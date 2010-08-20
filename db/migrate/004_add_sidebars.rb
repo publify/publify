@@ -19,20 +19,20 @@ class AddSidebars < ActiveRecord::Migration
         t.column :staged_config, :text
       end
 
-      Bare4Sidebar.create(:active_position=>0, :controller=>'page', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>0, :controller=>'page', :active_config=>'--- !map:HashWithIndifferentAccess
       maximum_pages: "10"')
-      Bare4Sidebar.create(:active_position=>1, :controller=>'category', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>1, :controller=>'category', :active_config=>'--- !map:HashWithIndifferentAccess
       empty: false
       count: true')
-      Bare4Sidebar.create(:active_position=>2, :controller=>'archives', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>2, :controller=>'archives', :active_config=>'--- !map:HashWithIndifferentAccess
       show_count: true
       count: "10"')
-      Bare4Sidebar.create(:active_position=>3, :controller=>'static', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>3, :controller=>'static', :active_config=>'--- !map:HashWithIndifferentAccess
       body: "<ul>\n  <li><a href=\"http://www.typosphere.org\" title=\"Typo\">Typosphere</a></li>\n  <li><a href=\"http://typogarden.org\">Typogarden</a></li>\n  <li><a href=\"http://t37.net.com\" title=\"Ergonomie Web\">Fr\xC3\xA9d\xC3\xA9ric</a></li>\n  <li><a href=\"http://www.matijs.net/\" title=\"Matijs\">Matijs</a></li>\n  <li><a href=\"http://blog.shingara.fr\" title=\"Cyril\">Cyril</a></li>\n  <li><a href=\"http://www.bofh.org.uk\" title=\"Just a Summary\">Piers</a></li>\n  <li><a href=\"/admin\">Admin</a></li>\n\
         </ul>\n"
       title: Links'
       )
-      Bare4Sidebar.create(:active_position=>4, :controller=>'xml', :active_config=>'--- !map:HashWithIndifferentAccess 
+      Bare4Sidebar.create(:active_position=>4, :controller=>'xml', :active_config=>'--- !map:HashWithIndifferentAccess
       format: rss20
       trackbacks: true
       comments: true

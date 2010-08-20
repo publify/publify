@@ -28,7 +28,7 @@ require "erb"
 require "yaml"
 $FM_PROPERTIES = YAML::load(ERB.new(IO.read(FM_CONFIG_FILE)).result)
 
-FM_IMAGE_TYPES   = $FM_PROPERTIES['image.type'].split(' ') 
+FM_IMAGE_TYPES   = $FM_PROPERTIES['image.type'].split(' ')
 FM_FLASH_TYPES   = $FM_PROPERTIES['flash.type'].split(' ')
 FM_MOVIE_TYPES   = $FM_PROPERTIES['movie.type'].split(' ')
 FM_RM_TYPES      = $FM_PROPERTIES['rm.type'].split(' ')

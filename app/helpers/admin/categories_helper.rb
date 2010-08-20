@@ -1,6 +1,6 @@
 module Admin::CategoriesHelper
   def show_actions item
-    html = <<-HTML 
+    html = <<-HTML
       <div class='action' style='margin-top: 10px;'>
         <small>#{link_to_permalink item, pluralize(item.articles.size, _('no articles') , _('1 article'), __('%d articles'))}</small> |
         <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |

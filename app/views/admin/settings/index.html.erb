@@ -7,22 +7,22 @@
   <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Your blog")%></h3>
   <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
     <div class='setting'>
-      <label for="setting_blog_name" class="float"><%= _("Blog name")%></label>      
+      <label for="setting_blog_name" class="float"><%= _("Blog name")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :blog_name, {:class => 'medium', :size => this_blog.blog_name.length })%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
-      <label class="clear float" for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>  
+      <label class="clear float" for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :blog_subtitle, {:class => 'medium', :size => this_blog.blog_subtitle.length})%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="base_url"><%= _("Blog URL")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :base_url, {:size => this_blog.base_url.length, :class => 'medium'})%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_lang"><%= _("Language")%></label>
@@ -30,20 +30,20 @@
         <select name="setting[lang]" id='setting_lang'>
           <%= fetch_langs %>
         </select>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_allow_signup"><%= _("Allow users to register")%></label>
       <div class='input_text'>
-        <%= check_box(:setting, :allow_signup) %>    
-        <span><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</span>        
-      </div>      
+        <%= check_box(:setting, :allow_signup) %>
+        <span><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</span>
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_admin_display_elements"><%= _("Items to display in admin lists")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'small'})%>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
@@ -53,34 +53,34 @@
   <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
     <div class='setting'>
       <label for="setting_limit_article_display" class="float"><%= _("Display")%> </label>
-      <div class='input_text'>      
+      <div class='input_text'>
         <%= text_field(:setting, :limit_article_display, {:size => 4, :class => 'small'})%>
         <%= _("articles on my homepage by default")%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
-      <label for="setting_limit_rss_display" class="float"><%= _("Display")%> </label>    
+      <label for="setting_limit_rss_display" class="float"><%= _("Display")%> </label>
       <div class='input_text'>
         <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'small'})%>
         <%= _("articles in my news feed by default")%>.
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_show_extended_on_rss"><%= _("Show full article on feed")%>:</label>
       <div class='input_text'>
-        <%= check_box(:setting, :show_extended_on_rss) %>    
-      </div>      
+        <%= check_box(:setting, :show_extended_on_rss) %>
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
       <div class='input_text'>
-        <%= text_field(:setting, :feedburner_url, :class => 'medium')%> 
+        <%= text_field(:setting, :feedburner_url, :class => 'medium')%>
         <span><%= _('You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
 
-<%= hidden_field_tag 'from', 'index' %>  
+<%= hidden_field_tag 'from', 'index' %>
 <%= render :partial => 'submit' %>
 <% end %>

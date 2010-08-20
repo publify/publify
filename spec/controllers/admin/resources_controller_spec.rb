@@ -46,7 +46,7 @@ describe Admin::ResourcesController do
     post :destroy, :id => res_id
     response.should redirect_to(:action => 'index')
   end
-  
+
   it "test_upload" do
     # unsure how to test upload constructs :'(
   end

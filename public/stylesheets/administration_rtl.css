@@ -297,7 +297,7 @@ tr.menubar {
 	font: 12px Helvetica, sans-serif;
 	border: 1px solid #b0b0b0;
 	color: #000;
-	padding: 3px;	
+	padding: 3px;
 }
 
 #article_form textarea.medium,
@@ -807,7 +807,7 @@ div.auto_complete ul li.selected {
 }
 
 div.auto_complete ul strong.highlight {
-  color: #800; 
+  color: #800;
   margin:0;
   padding:0;
 }
@@ -836,8 +836,8 @@ div.auto_complete ul strong.highlight {
 }
 
 #categories {
-	height: 220px; 
-	overflow-y: scroll; 
+	height: 220px;
+	overflow-y: scroll;
 	border: #ddd 1px solid;
 }
 

@@ -4,13 +4,13 @@ class AddUsersOptions < ActiveRecord::Migration
     add_column :users, :lastname, :string
     add_column :users, :nickname, :string
     add_column :users, :url, :string
-    add_column :users, :msn, :string    
-    add_column :users, :aim, :string    
+    add_column :users, :msn, :string
+    add_column :users, :aim, :string
     add_column :users, :yahoo, :string
     add_column :users, :twitter, :string
     add_column :users, :description, :text
     remove_column :users, :notify_via_jabber
-    
+
     unless $schema_generator
       users = User.find(:all)
       users.each do |user|

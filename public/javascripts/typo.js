@@ -34,7 +34,7 @@ function show_dates_as_local_time() {
         } else {
           gmtdate = new Date() ;
           gmtdate.setTime( parseInt(res[1]) * 1000 )  ;
-        }      
+        }
         e.update(get_local_time_for_date(gmtdate))
     })
 }
@@ -42,7 +42,7 @@ function show_dates_as_local_time() {
 function get_local_time_for_date(time) {
   if (typeof(time)=='date') {
     system_date = time ;
-  } else { 
+  } else {
     system_date = new Date(time);
   }
   user_date = new Date();

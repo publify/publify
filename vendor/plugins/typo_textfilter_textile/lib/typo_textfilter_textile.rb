@@ -9,7 +9,7 @@ class Typo
 See [_why's Textile reference](http://hobix.com/textile/).
 }
       end
-  
+
       def self.filtertext(blog,content,text,params)
         RedCloth.new(text).to_html(:textile)
       end

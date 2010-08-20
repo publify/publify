@@ -8,7 +8,7 @@
   <%= stylesheet_link_tag "growler", "administration", "lightbox" %>
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
   <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "growler", "typo_carousel", "administration", "ckeditor/ckeditor" %>
-  <%= calendar_date_select_includes %>  
+  <%= calendar_date_select_includes %>
 </head>
 <body>
   <div id='header'>
@@ -16,7 +16,7 @@
   </div>
   <div id='logout'>
     <%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %> |
-    <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"} %>    
+    <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"} %>
   </div>
 
 
@@ -32,10 +32,10 @@
         <%= yield :tasks %>
       </ul>
     </div>
-    
+
     <div id='content' class='ui-tabs-panel'>
       <%= render_the_flash %>
-      
+
       <%= show_page_heading %>
       <%= yield  %>
     </div>

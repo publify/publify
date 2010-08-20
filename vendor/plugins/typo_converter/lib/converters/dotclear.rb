@@ -17,12 +17,12 @@ class DotclearConverter < BaseConverter
     converter.import_articles do |dc_article|
       unless dc_article.post_content.blank? && dc_article.post_chapo.blank? || dc_article.post_titre.blank?
         user = dc_article.user_id.nil? ? nil : converter.users[Dotclear::User.find(dc_article.user_id.to_i).user_id]
-        
+
         body = !dc_article.post_chapo.blank? ?
           dc_article.post_chapo + '<br /> ' + dc_article.post_content :
           dc_article.post_content
 
-        
+
         a = ::Article.new \
           :title        => CGI::unescapeHTML(dc_article.post_titre),
           :body         => body,
@@ -33,7 +33,7 @@ class DotclearConverter < BaseConverter
         [a, converter.find_or_create_categories(dc_article)]
       end
     end
-    
+
     converter.import_comments do |dc_comment|
       ::Comment.new \
         :body         => dc_comment.comment_content,
@@ -49,8 +49,8 @@ class DotclearConverter < BaseConverter
 
   def old_articles
     if @options.has_key?(:categories)
-      @old_article ||= Dotclear::Post.find(:all, 
-                                           :include => :categorie, 
+      @old_article ||= Dotclear::Post.find(:all,
+                                           :include => :categorie,
                                            :conditions => ["post_pub = 1 AND cat_libelle IN (?)", @options[:categories]])
     else
       @old_article ||= Dotclear::Post.find_all_by_post_pub true
@@ -73,19 +73,19 @@ class DotclearConverter < BaseConverter
   def handle_bad_comment_author_email(dc_comment, email)
     dc_comment.comment_email = email
   end
-  
+
   def handle_bad_comment_author_url(dc_comment, url)
     dc_comment.comment_site = url
   end
-  
+
   def handle_bad_comment_author(dc_comment, author)
     dc_comment.comment_auteur = author
   end
-  
+
   def handle_bad_comment_content(dc_comment, content)
     dc_comment.comment_content = content
   end
- 
+
   def create_sections(libelle)
     @sections[libelle] = site.sections.create!(:name => libelle, :path => libelle)
     @sections[libelle]

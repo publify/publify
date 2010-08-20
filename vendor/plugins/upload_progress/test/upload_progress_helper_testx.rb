@@ -128,7 +128,7 @@ class UploadProgressHelperTest < Test::Unit::TestCase
   def test_form_tag_with_upload_progress_custom
     assert_dom_equal(
       "<form action=\"http://www.example.com\" enctype=\"multipart/form-data\" method=\"post\" onsubmit=\"if (this.action.indexOf('upload_id') &lt; 0){ this.action += '?upload_id=5'; }this.target = 'awindow';$('UploadStatus0').innerHTML='Upload starting...'; if($('UploadProgressBar0')){$('UploadProgressBar0').firstChild.firstChild.style.width='0%'}; alert('foo'); if (document.uploadStatus0) { document.uploadStatus0.stop(); }document.uploadStatus0 = new Ajax.PeriodicalUpdater('UploadStatus0','http://www.example.com', Object.extend({asynchronous:true, evalScripts:true, onComplete:function(request){$('UploadStatus0').innerHTML='A message';if($('UploadProgressBar0')){$('UploadProgressBar0').firstChild.firstChild.style.width='100%'};document.uploadStatus0 = null; alert('bar')}},{decay:7,frequency:6})); return true\" target=\"awindow\">",
-      form_tag_with_upload_progress({:upload_id => 5}, {:begin => "alert('foo')", :finish => "alert('bar')", :frequency => 6, :decay => 7, :target => 'awindow'}) 
+      form_tag_with_upload_progress({:upload_id => 5}, {:begin => "alert('foo')", :finish => "alert('bar')", :frequency => 6, :decay => 7, :target => 'awindow'})
     )
   end
 end

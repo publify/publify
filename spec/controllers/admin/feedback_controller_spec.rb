@@ -198,8 +198,8 @@ describe Admin::FeedbackController do
     describe 'update action' do
 
       it 'should update comment if post request' do
-        post 'update', :id => feedback(:comment2).id, 
-          :comment => {:author => 'Bob Foo2', 
+        post 'update', :id => feedback(:comment2).id,
+          :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
         response.should redirect_to(:action => 'article', :id => contents(:article1).id)
@@ -208,8 +208,8 @@ describe Admin::FeedbackController do
       end
 
       it 'should not  update comment if get request' do
-        get 'update', :id => feedback(:comment2).id, 
-          :comment => {:author => 'Bob Foo2', 
+        get 'update', :id => feedback(:comment2).id,
+          :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
         response.should redirect_to(:action => 'edit', :id => feedback(:comment2).id)
@@ -231,7 +231,7 @@ describe Admin::FeedbackController do
     def feedback_from_own_article
       feedback(:comment_on_publisher_article)
     end
-    
+
     def feedback_from_not_own_article
       feedback(:comment2)
     end
@@ -271,8 +271,8 @@ describe Admin::FeedbackController do
     describe 'update action' do
 
       it 'should update comment if own article' do
-        post 'update', :id => feedback_from_own_article.id, 
-          :comment => {:author => 'Bob Foo2', 
+        post 'update', :id => feedback_from_own_article.id,
+          :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
         response.should redirect_to(:action => 'article', :id => feedback_from_own_article.article.id)
@@ -281,8 +281,8 @@ describe Admin::FeedbackController do
       end
 
       it 'should not update comment if not own article' do
-        post 'update', :id => feedback_from_not_own_article.id, 
-          :comment => {:author => 'Bob Foo2', 
+        post 'update', :id => feedback_from_not_own_article.id,
+          :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
         response.should redirect_to(:action => 'index')

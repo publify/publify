@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   include ::LoginSystem
   protect_from_forgery :only => [:edit, :update, :delete]
-  
+
   before_filter :reset_local_cache, :fire_triggers, :load_lang
   after_filter :reset_local_cache
 
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
     elsif I18n.available_locales.include?(this_blog.lang[0..1].to_sym)
       I18n.locale = this_blog.lang[0..1]
     end
-    # _("Localization.rtl") 
+    # _("Localization.rtl")
   end
 
   def reset_local_cache

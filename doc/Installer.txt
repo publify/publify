@@ -51,7 +51,7 @@ Installing Typo
 Upgrading Typo
 --------------
 
-The Typo installer can upgrade an existing installer-created Typo install by 
+The Typo installer can upgrade an existing installer-created Typo install by
 simple running 'typo install DIRECTORY'.  The installer will automatically
 detect that it's upgrading an existing install and will attempt to preserve
 the existing configuration as much as possible.

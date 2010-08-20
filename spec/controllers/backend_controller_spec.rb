@@ -195,7 +195,7 @@ describe BackendController do
     new_post = Article.find(result)
     assert !new_post.published?
   end
-  
+
   it "test_meta_weblog_edit_unpublished_post_with_old_creation_date" do
     article = Article.new
     article.title = "Posted via Test"
@@ -211,7 +211,7 @@ describe BackendController do
     new_post = Article.find(result)
     assert !new_post.published?
   end
-  
+
   it "test_meta_weblog_new_media_object" do
     media_object = MetaWeblogStructs::MediaObject.new(
       "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".gif",

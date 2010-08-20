@@ -104,10 +104,10 @@ describe CategoriesController, "password protected article" do
 
   it 'article in category should be password protected' do
     get 'show', :id => 'personal'
-    
+
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
-  end 
+  end
 end
 
 ## Old tests that still need conversion

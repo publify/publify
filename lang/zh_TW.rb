@@ -42,7 +42,7 @@ Localization.define('zh_TW') do |l|
   l.store "Most popular", "人氣文章"
   l.store "Typo documentation", "Typo文件"
   l.store "No comments yet", "沒有任何評論"
-  
+
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "最近評論"
   l.store "No comments yet", "沒有任何評論"
@@ -83,7 +83,7 @@ Localization.define('zh_TW') do |l|
   # app/views/admin/dashboard/_typo_dev.html.erb
   l.store "Latest news from the Typo development blog", "Typo開發部落格的最新消息"
   l.store "Oh no, nothing new", "沒有新訊息"
-  
+
   # admin/dashboard/_overview.html.erb
   l.store "Welcome back, %s!", "歡迎回來， %s！"
 
@@ -163,69 +163,69 @@ Localization.define('zh_TW') do |l|
   l.store "Articles in", "記事"
 
   #admin/comments/_form.rhtml
-  l.store "Author", "作者" 
+  l.store "Author", "作者"
   l.store "Url", "Url"
-  l.store "Body", "本文主體" 
+  l.store "Body", "本文主體"
 
   #admin/comments/comments.rhtml
   l.store "on", "の"
 
   #admin/comments/destroy.rhtml
-  l.store "Comments for", "做出評論" 
+  l.store "Comments for", "做出評論"
 
   #admin/comments/edit.rhtml
-  l.store "Show this comment", "秀出評論" 
+  l.store "Show this comment", "秀出評論"
   l.store "View comment on your blog", " 查看評論"
-  l.store "Editing comment", "修改評論" 
+  l.store "Editing comment", "修改評論"
 
   #admin/comments/list.rhtml
   l.store "IP", "IP"
-  l.store "Posted date", "貼上日期" 
+  l.store "Posted date", "貼上日期"
 
   #admin/comments/new.rhtml
-  l.store "Creating comment", "設計評論" 
+  l.store "Creating comment", "設計評論"
 
   #admin/content/_articles.rhtml
   l.store "Posts", "貼出 "
-  l.store "Uploads", "上載" 
-  l.store "Post title", "貼上標題" 
-  l.store "Posted at", "上傳"  
-  l.store "Comments", "評論" 
-  l.store "Trackbacks", "引用" 
-  l.store "View", "查看" 
-  l.store "Status", "身分" 
-  l.store "Offline", "下線" 
-  l.store "Online", "上線" 
-  l.store "no trackbacks", "沒有引用" 
-  l.store "no comments", "沒有評論" 
+  l.store "Uploads", "上載"
+  l.store "Post title", "貼上標題"
+  l.store "Posted at", "上傳"
+  l.store "Comments", "評論"
+  l.store "Trackbacks", "引用"
+  l.store "View", "查看"
+  l.store "Status", "身分"
+  l.store "Offline", "下線"
+  l.store "Online", "上線"
+  l.store "no trackbacks", "沒有引用"
+  l.store "no comments", "沒有評論"
 
   #admin/content/_attachment.rhtml
   l.store "Remove", "移除"
-  l.store "Really delete attachment", "確定刪除附件？" 
-  l.store "Add Another Attachment", "新增其他附件" 
+  l.store "Really delete attachment", "確定刪除附件？"
+  l.store "Add Another Attachment", "新增其他附件"
 
   #admin/content/_form.rhtml
   l.store "Article Body", "文章主體"
   l.store "Post", "Post"
-  l.store "Optional extended content", "選擇擴增內容" 
-  l.store "Optional Extended Content", "選擇延續內容" 
+  l.store "Optional extended content", "選擇擴增內容"
+  l.store "Optional Extended Content", "選擇延續內容"
   l.store "Article Content", " 文章內容"
-  l.store "Extended Content", "擴增內容" 
-  l.store "Tags", "標籤" 
-  l.store "Save", "存檔" 
-  l.store "Article Attachments", "文章附件" 
+  l.store "Extended Content", "擴增內容"
+  l.store "Tags", "標籤"
+  l.store "Save", "存檔"
+  l.store "Article Attachments", "文章附件"
   l.store "Article Options","文章選項"
-  l.store "Permalink", "固定連接" 
-  l.store "Allow comments", "允許評論" 
-  l.store "Allow trackbacks", "允許引用" 
-  l.store "Published", "已公開的" 
-  l.store "Publish at", "公開" 
-  l.store "Textfilter", "文章篩選" 
-  l.store "Toggle Extended Content", "切換擴增內容" 
+  l.store "Permalink", "固定連接"
+  l.store "Allow comments", "允許評論"
+  l.store "Allow trackbacks", "允許引用"
+  l.store "Published", "已公開的"
+  l.store "Publish at", "公開"
+  l.store "Textfilter", "文章篩選"
+  l.store "Toggle Extended Content", "切換擴增內容"
 
   #admin/content/_pages.rhtml
   l.store "Previous page", "前一頁"
-  l.store "Next page", "下一頁" 
+  l.store "Next page", "下一頁"
 
   #admin/content/_show_categories.rhtml
   l.store "Currently this article is listed in following categories", "將本篇文章列在以下分類中"

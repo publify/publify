@@ -2,8 +2,8 @@ login: &login
   adapter: mysql
   host: localhost
   username: root
-  password: 
-  
+  password:
+
 
 development:
   database: typo_dev

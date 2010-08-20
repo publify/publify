@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
+<!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
      "DTD/xhtml1-transitional.dtd">
 
@@ -25,7 +25,7 @@
 			return false;
 
 		elemStyle = elem.style;
-		
+
 		if ( elemStyle.display != "block" ) {
 			elemStyle.display = "block"
 		} else {
@@ -34,10 +34,10 @@
 
 		return true;
 	}
-	
+
 	// Make codeblocks hidden by default
 	document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
-	
+
 	// ]]>
 	</script>
 
@@ -303,7 +303,7 @@ href="http://daringfireball.net/projects/smartypants">daringfireball.net/project
 
 
 
-			
+
 
 	</div>
 
@@ -324,7 +324,7 @@ href="http://daringfireball.net/projects/smartypants">daringfireball.net/project
 					<span class="method-name">new</span><span class="method-args">(string, options=[2])</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Create a new <a href="RubyPants.html">RubyPants</a> instance with the text
@@ -409,7 +409,7 @@ ASCII counterparts.
 					<span class="method-name">to_html</span><span class="method-args">()</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Apply SmartyPants transformations.
@@ -422,7 +422,7 @@ Apply SmartyPants transformations.
 213:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_html</span>
 214:     <span class="ruby-identifier">do_quotes</span> = <span class="ruby-identifier">do_backticks</span> = <span class="ruby-identifier">do_dashes</span> = <span class="ruby-identifier">do_ellipses</span> = <span class="ruby-identifier">do_stupify</span> = <span class="ruby-keyword kw">nil</span>
 215:     <span class="ruby-identifier">convert_quotes</span> = <span class="ruby-keyword kw">false</span>
-216: 
+216:
 217:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">0</span>
 218:       <span class="ruby-comment cmt"># Do nothing.</span>
 219:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
@@ -452,22 +452,22 @@ Apply SmartyPants transformations.
 243:       <span class="ruby-identifier">convert_quotes</span> =           <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:convertquotes</span>
 244:       <span class="ruby-identifier">do_stupefy</span> =               <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:stupefy</span>
 245:     <span class="ruby-keyword kw">end</span>
-246: 
+246:
 247:     <span class="ruby-comment cmt"># Parse the HTML</span>
 248:     <span class="ruby-identifier">tokens</span> = <span class="ruby-identifier">tokenize</span>
-249:     
+249:
 250:     <span class="ruby-comment cmt"># Keep track of when we're inside &lt;pre&gt; or &lt;code&gt; tags.</span>
 251:     <span class="ruby-identifier">in_pre</span> = <span class="ruby-keyword kw">false</span>
-252: 
+252:
 253:     <span class="ruby-comment cmt"># Here is the result stored in.</span>
 254:     <span class="ruby-identifier">result</span> = <span class="ruby-value str">&quot;&quot;</span>
-255: 
+255:
 256:     <span class="ruby-comment cmt"># This is a cheat, used to get some context for one-character</span>
 257:     <span class="ruby-comment cmt"># tokens that consist of just a quote char. What we do is remember</span>
 258:     <span class="ruby-comment cmt"># the last character of the previous text token, to use as context</span>
 259:     <span class="ruby-comment cmt"># to curl single- character quote tokens correctly.</span>
 260:     <span class="ruby-identifier">prev_token_last_char</span> = <span class="ruby-keyword kw">nil</span>
-261: 
+261:
 262:     <span class="ruby-identifier">tokens</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">token</span><span class="ruby-operator">|</span>
 263:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:tag</span>
 264:         <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">token</span>[<span class="ruby-value">1</span>]
@@ -476,29 +476,29 @@ Apply SmartyPants transformations.
 267:         <span class="ruby-keyword kw">end</span>
 268:       <span class="ruby-keyword kw">else</span>
 269:         <span class="ruby-identifier">t</span> = <span class="ruby-identifier">token</span>[<span class="ruby-value">1</span>]
-270: 
+270:
 271:         <span class="ruby-comment cmt"># Remember last char of this token before processing.</span>
 272:         <span class="ruby-identifier">last_char</span> = <span class="ruby-identifier">t</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">chr</span>
-273: 
+273:
 274:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">in_pre</span>
 275:           <span class="ruby-identifier">t</span> = <span class="ruby-identifier">process_escapes</span> <span class="ruby-identifier">t</span>
-276:           
+276:
 277:           <span class="ruby-identifier">t</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;quot;/</span>, <span class="ruby-value str">'&quot;'</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">convert_quotes</span>
-278: 
+278:
 279:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span>
 280:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_dashes</span> <span class="ruby-identifier">t</span>            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:normal</span>
 281:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_dashes_oldschool</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:oldschool</span>
 282:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_dashes_inverted</span> <span class="ruby-identifier">t</span>   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_dashes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:inverted</span>
 283:           <span class="ruby-keyword kw">end</span>
-284: 
+284:
 285:           <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_ellipses</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_ellipses</span>
-286: 
+286:
 287:           <span class="ruby-comment cmt"># Note: backticks need to be processed before quotes.</span>
 288:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_backticks</span>
 289:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_backticks</span> <span class="ruby-identifier">t</span>
 290:             <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_single_backticks</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_backticks</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:both</span>
 291:           <span class="ruby-keyword kw">end</span>
-292: 
+292:
 293:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_quotes</span>
 294:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">t</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;'&quot;</span>
 295:               <span class="ruby-comment cmt"># Special case: single-character ' token</span>
@@ -519,15 +519,15 @@ Apply SmartyPants transformations.
 310:               <span class="ruby-identifier">t</span> = <span class="ruby-identifier">educate_quotes</span> <span class="ruby-identifier">t</span>
 311:             <span class="ruby-keyword kw">end</span>
 312:           <span class="ruby-keyword kw">end</span>
-313: 
+313:
 314:           <span class="ruby-identifier">t</span> = <span class="ruby-identifier">stupefy_entities</span> <span class="ruby-identifier">t</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">do_stupefy</span>
 315:         <span class="ruby-keyword kw">end</span>
-316: 
+316:
 317:         <span class="ruby-identifier">prev_token_last_char</span> = <span class="ruby-identifier">last_char</span>
 318:         <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>
 319:       <span class="ruby-keyword kw">end</span>
 320:     }
-321: 
+321:
 322:     <span class="ruby-comment cmt"># Done</span>
 323:     <span class="ruby-identifier">result</span>
 324:   <span class="ruby-keyword kw">end</span>
@@ -546,7 +546,7 @@ Apply SmartyPants transformations.
 					<span class="method-name">educate_backticks</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return the string, with
@@ -574,7 +574,7 @@ translated into HTML curly quote entities.
 					<span class="method-name">educate_dashes</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 The string, with each instance of &quot;<tt>&#8212;</tt>&quot; translated
@@ -601,7 +601,7 @@ to an em-dash HTML entity.
 					<span class="method-name">educate_dashes_inverted</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return the string, with each instance of &quot;<tt>&#8212;</tt>&quot;
@@ -635,7 +635,7 @@ shortcut should be shorter to type. (Thanks to Aaron Swartz for the idea.)
 					<span class="method-name">educate_dashes_oldschool</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 The string, with each instance of &quot;<tt>&#8212;</tt>&quot; translated
@@ -663,7 +663,7 @@ to an em-dash HTML entity.
 					<span class="method-name">educate_ellipses</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return the string, with each instance of &quot;<tt>&#8230;</tt>&quot;
@@ -691,7 +691,7 @@ are spaces between the dots.
 					<span class="method-name">educate_quotes</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return the string, with &quot;educated&quot; curly quote HTML entities.
@@ -703,26 +703,26 @@ Return the string, with &quot;educated&quot; curly quote HTML entities.
      <span class="ruby-comment cmt"># File rubypants.rb, line 397</span>
 397:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate_quotes</span>(<span class="ruby-identifier">str</span>)
 398:     <span class="ruby-identifier">punct_class</span> = <span class="ruby-value str">'[!&quot;#\$\%\'()*+,\-.\/:;&lt;=&gt;?\@\[\\\\\]\^^_`{|}~]'</span>
-399: 
+399:
 400:     <span class="ruby-identifier">str</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">dup</span>
-401:       
+401:
 402:     <span class="ruby-comment cmt"># Special case if the very first character is a quote followed by</span>
 403:     <span class="ruby-comment cmt"># punctuation at a non-word-break. Close the quotes by brute</span>
 404:     <span class="ruby-comment cmt"># force:</span>
 405:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/^'(?=#{punct_class}\B)/</span>, <span class="ruby-value str">'&amp;#8217;'</span>)
 406:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/^&quot;(?=#{punct_class}\B)/</span>, <span class="ruby-value str">'&amp;#8221;'</span>)
-407: 
+407:
 408:     <span class="ruby-comment cmt"># Special case for double sets of quotes, e.g.:</span>
 409:     <span class="ruby-comment cmt">#   &lt;p&gt;He said, &quot;'Quoted' words in a larger quote.&quot;&lt;/p&gt;</span>
 410:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&quot;'(?=\w)/</span>, <span class="ruby-value str">'&amp;#8220;&amp;#8216;'</span>)
 411:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'&quot;(?=\w)/</span>, <span class="ruby-value str">'&amp;#8216;&amp;#8220;'</span>)
-412: 
+412:
 413:     <span class="ruby-comment cmt"># Special case for decade abbreviations (the '80s):</span>
 414:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'(?=\d\ds)/</span>, <span class="ruby-value str">'&amp;#8217;'</span>)
-415: 
+415:
 416:     <span class="ruby-identifier">close_class</span> = <span class="ruby-value str">%![^\ \t\r\n\\[\{\(\-]!</span>
 417:     <span class="ruby-identifier">dec_dashes</span> = <span class="ruby-value str">'&amp;#8211;|&amp;#8212;'</span>
-418:     
+418:
 419:     <span class="ruby-comment cmt"># Get most opening single quotes:</span>
 420:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/(\s|&amp;nbsp;|--|&amp;[mn]dash;|#{dec_dashes}|&amp;#x201[34];)'(?=\w)/</span>,
 421:              <span class="ruby-value str">'\1&amp;#8216;'</span>)
@@ -731,7 +731,7 @@ Return the string, with &quot;educated&quot; curly quote HTML entities.
 424:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'(\s|s\b|$)/</span>, <span class="ruby-value str">'&amp;#8217;\1'</span>)
 425:     <span class="ruby-comment cmt"># Any remaining single quotes should be opening ones:</span>
 426:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/'/</span>, <span class="ruby-value str">'&amp;#8216;'</span>)
-427: 
+427:
 428:     <span class="ruby-comment cmt"># Get most opening double quotes:</span>
 429:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/(\s|&amp;nbsp;|--|&amp;[mn]dash;|#{dec_dashes}|&amp;#x201[34];)&quot;(?=\w)/</span>,
 430:              <span class="ruby-value str">'\1&amp;#8220;'</span>)
@@ -740,7 +740,7 @@ Return the string, with &quot;educated&quot; curly quote HTML entities.
 433:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&quot;(\s|s\b|$)/</span>, <span class="ruby-value str">'&amp;#8221;\1'</span>)
 434:     <span class="ruby-comment cmt"># Any remaining quotes should be opening ones:</span>
 435:     <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&quot;/</span>, <span class="ruby-value str">'&amp;#8220;'</span>)
-436: 
+436:
 437:     <span class="ruby-identifier">str</span>
 438:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -756,7 +756,7 @@ Return the string, with &quot;educated&quot; curly quote HTML entities.
 					<span class="method-name">educate_single_backticks</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return the string, with &quot;<tt>`backticks&#8217;</tt>&quot;-style single
@@ -783,7 +783,7 @@ quotes translated into HTML curly quote entities.
 					<span class="method-name">process_escapes</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return the string, with after processing the following backslash escape
@@ -822,7 +822,7 @@ Escaped are:
 					<span class="method-name">stupefy_entities</span><span class="method-args">(str)</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return the string, with each <a href="RubyPants.html">RubyPants</a> HTML
@@ -840,13 +840,13 @@ Note: This is not reversible (but exactly the same as in SmartyPants)
 446:     <span class="ruby-identifier">str</span>.
 447:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8211;/</span>, <span class="ruby-value str">'-'</span>).      <span class="ruby-comment cmt"># en-dash</span>
 448:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8212;/</span>, <span class="ruby-value str">'--'</span>).     <span class="ruby-comment cmt"># em-dash</span>
-449:       
+449:
 450:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8216;/</span>, <span class="ruby-value str">&quot;'&quot;</span>).      <span class="ruby-comment cmt"># open single quote</span>
 451:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8217;/</span>, <span class="ruby-value str">&quot;'&quot;</span>).      <span class="ruby-comment cmt"># close single quote</span>
-452:       
+452:
 453:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8220;/</span>, <span class="ruby-value str">'&quot;'</span>).      <span class="ruby-comment cmt"># open double quote</span>
 454:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8221;/</span>, <span class="ruby-value str">'&quot;'</span>).      <span class="ruby-comment cmt"># close double quote</span>
-455:       
+455:
 456:       <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#8230;/</span>, <span class="ruby-value str">'...'</span>)     <span class="ruby-comment cmt"># ellipsis</span>
 457:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -862,7 +862,7 @@ Note: This is not reversible (but exactly the same as in SmartyPants)
 					<span class="method-name">tokenize</span><span class="method-args">()</span>
 					</a>
 				</div>
-			
+
 				<div class="method-description">
 					<p>
 Return an array of the tokens comprising the string. Each token is either a
@@ -887,21 +887,21 @@ in the Python port of SmartyPants.
      <span class="ruby-comment cmt"># File rubypants.rb, line 471</span>
 471:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tokenize</span>
 472:     <span class="ruby-identifier">tag_soup</span> = <span class="ruby-regexp re">/([^&lt;]*)(&lt;[^&gt;]*&gt;)/</span>
-473: 
+473:
 474:     <span class="ruby-identifier">tokens</span> = []
-475: 
+475:
 476:     <span class="ruby-identifier">prev_end</span> = <span class="ruby-value">0</span>
 477:     <span class="ruby-identifier">scan</span>(<span class="ruby-identifier">tag_soup</span>) {
 478:       <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">:text</span>, <span class="ruby-identifier">$1</span>]  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$1</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;&quot;</span>
 479:       <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">:tag</span>, <span class="ruby-identifier">$2</span>]
-480:       
+480:
 481:       <span class="ruby-identifier">prev_end</span> = <span class="ruby-identifier">$~</span>.<span class="ruby-identifier">end</span>(<span class="ruby-value">0</span>)
 482:     }
-483: 
+483:
 484:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prev_end</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">size</span>
 485:       <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">:text</span>, <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">prev_end</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]]
 486:     <span class="ruby-keyword kw">end</span>
-487: 
+487:
 488:     <span class="ruby-identifier">tokens</span>
 489:   <span class="ruby-keyword kw">end</span>
 </pre>

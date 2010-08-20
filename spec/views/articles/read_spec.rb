@@ -13,14 +13,14 @@ with_each_theme do |theme, view_path|
         alias :tag_links :article_links
       end
     end
-  
+
     context "applying text filters" do
       before(:each) do
         @controller.action_name = "redirect"
         assigns[:article] = contents('article1')
         render "articles/read"
       end
-    
+
       it "should not have too many paragraph marks around body" do
         response.should have_tag("p", "body")
         response.should_not have_tag("p>p", "body")
@@ -39,7 +39,7 @@ with_each_theme do |theme, view_path|
         assigns[:article] = contents('article1')
         render "articles/read"
       end
-    
+
       it "should not have too many paragraph marks around comment contents" do
         response.should have_tag("p>em", "italic")
         response.should have_tag("p>strong", "bold")
@@ -54,7 +54,7 @@ with_each_theme do |theme, view_path|
         assigns[:article] = contents('article3')
         render "articles/read"
       end
-    
+
       it "should automatically add links" do
 	response.should have_tag("a[href=mailto:foo@bar.com]",
 				 "foo@bar.com")

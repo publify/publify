@@ -7,7 +7,7 @@ class AddModulesToProfile < ActiveRecord::Migration
 
   def self.up
     add_column :profiles, :modules, :text
-    
+
     Profile.find_by_label("admin").update_attributes(:modules => [:dashboard, :write, :content, :feedback, :themes, :sidebar, :users, :settings])
     Profile.find_by_label("publisher").update_attributes(:modules => [:dashboard, :write, :content, :feedback ])
   end

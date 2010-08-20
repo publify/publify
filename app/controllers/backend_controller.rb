@@ -13,7 +13,7 @@ class BackendController < ContentController
   def xmlrpc
     api
   end
-  
+
   def api
     dispatch_web_service_request
   end

@@ -10,17 +10,17 @@
  */
 body {
 	text-align: center;
-	margin: 0; padding: 1em; 
+	margin: 0; padding: 1em;
 }
 
 #container {
 	width: 740px;
-	text-align: left; 
+	text-align: left;
 	margin: 0 auto; padding: 0;
 }
 
 #header {
-	height: 60px; 
+	height: 60px;
 	margin: 0 0 15px; padding: 0;
 }
 
@@ -35,9 +35,9 @@ body {
 }
 
 #footer {
-	height: 40px; 
+	height: 40px;
 	margin: 10px 0 0; padding: 10px 0 0;
-	clear:both; 
+	clear:both;
 }
 
 /*--------------------------------------------------------------
@@ -47,12 +47,12 @@ body {
 /* BEGIN: Right Sidebar */
 #sidebar {
 	float: right; text-align: left;
-	padding-left: 15px; 
-	border-left: 1px dotted #ddd; 
+	padding-left: 15px;
+	border-left: 1px dotted #ddd;
 }
 #content {
 	float: left;
-	padding-left: 5px; 
+	padding-left: 5px;
 }
 /* END: Right Sidebar */
 
@@ -60,8 +60,8 @@ body {
 /* BEGIN: Left Sidebar
 #sidebar {
 	float: left; text-align: right;
-	padding-right: 20px; 
-	border-right: 1px dotted #ddd; 
+	padding-right: 20px;
+	border-right: 1px dotted #ddd;
 }
 
 #content {

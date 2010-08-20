@@ -26,7 +26,7 @@
       <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
     </div>
   </div>
-  
+
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
     <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Categories") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
@@ -44,7 +44,7 @@
     <p class='input_text'>
       <%= text_field 'article', 'title', :class => 'large' %>
     </p>
-  
+
     <%= render(:partial => 'images', :object => @images) unless @images.empty? %>
 
     <ul id='editor-menu'>
@@ -60,14 +60,14 @@
       <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
         <script type="text/javascript">edToolbar('article_body_and_extended');</script>
       </div>
-    
+
       <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
         <%= ckeditor_textarea('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
       </div>
-      
+
       <div id='simple_editor' class='input_text' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
         <%= text_area('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'simple' %>
-        <%= render_macros(@macros) if current_user.editor == 'simple' %>  
+        <%= render_macros(@macros) if current_user.editor == 'simple' %>
       </div>
     </div>
 
@@ -83,20 +83,20 @@
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
       <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself") %></p>
       <%= text_area 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '5'} %>
-    </div>  
+    </div>
   </div>
-  
+
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
     <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Uploads") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
       <p>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
-    
+
       <ul id='attachments'>
         <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
       </ul>
     </div>
   </div>
-  
+
   <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
     <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Post settings") %></h3>
     <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
@@ -110,7 +110,7 @@
         <label class='float' for="article_permalink"><%= _("Permalink") %></label>
         <div class='input_text' id='permalink'>
           <%= text_field 'article', 'permalink', {:class => 'medium'} %>
-        </div>        
+        </div>
       </div>
     <div class='setting clear'>
       <label class='float' for="text_filter"><%= _("Article filter") %></label>

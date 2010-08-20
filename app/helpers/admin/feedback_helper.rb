@@ -4,7 +4,7 @@ module Admin::FeedbackHelper
   end
 
   def show_actions item
-    html = <<-HTML 
+    html = <<-HTML
       <div class='action'>
         #{published_or_not item} |
         #{change_status item} |

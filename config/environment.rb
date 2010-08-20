@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   # Otherwise, I can't localize plugins <= localization
   # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
   config.plugins = [ :localization, :all ]
-  
+
   config.load_paths += %W(
     vendor/rubypants
     vendor/akismet
@@ -49,10 +49,10 @@ Rails::Initializer.run do |config|
   config.gem 'mini_magick', :version => '~> 1.3', :lib => 'mini_magick'
   config.gem 'uuidtools', :version => '~>2.1.1'
   config.gem 'flickr', :version => '~> 1.0.2'
-  
+
   # Use the filesystem for sessions instead of the database
   config.action_controller.session = { :key => "_typo_session", :secret => "8d7879bd56b9470b659cdcae88792622" }
-  
+
   # Disable use of the Accept header, since it causes bad results with our
   # static caching (e.g., caching an atom feed as index.html).
   config.action_controller.use_accept_header = false

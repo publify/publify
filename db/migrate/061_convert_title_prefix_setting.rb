@@ -1,7 +1,7 @@
 class ConvertTitlePrefixSetting < ActiveRecord::Migration
   class BareBlog < ActiveRecord::Base
     include BareMigration
-    
+
     serialize :settings, Hash
   end
 

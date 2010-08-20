@@ -97,7 +97,7 @@ describe ArticlesController do
         get :live_search, :q => 'hello world'
       end
 
-      it 'should be valid' do 
+      it 'should be valid' do
         assigns[:articles].should_not be_empty
         assigns[:articles].should have(2).records
       end
@@ -122,7 +122,7 @@ describe ArticlesController do
     end
   end
 
-  
+
   it 'archives' do
     get 'archives'
     response.should render_template(:archives)
@@ -156,7 +156,7 @@ describe ArticlesController, "nosettings" do
     get 'index'
     response.should redirect_to(:controller => 'setup', :action => 'index')
   end
-  
+
 end
 
 describe ArticlesController, "nousers" do
@@ -174,7 +174,7 @@ describe ArticlesController, "nousers" do
 end
 
 describe ArticlesController, "feeds" do
-  
+
   integrate_views
 
   specify "/articles.atom => an atom feed" do
@@ -436,8 +436,8 @@ describe ArticlesController, "redirecting" do
       end
     end
   end
-  
-  
+
+
 end
 
 describe ArticlesController, "password protected" do
@@ -446,14 +446,14 @@ describe ArticlesController, "password protected" do
     b.permalink_format = '/%title%.html'
     b.save
   end
-  
+
   integrate_views
 
   it 'article alone should be password protected' do
     get :redirect, :from => ["#{contents(:article2).permalink}.html"]
-    
+
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
-  end 
-  
+  end
+
 end

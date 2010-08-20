@@ -16,11 +16,11 @@
   <% if @sidebar.tag_feeds and controller.controller_name == 'tags' and controller.action_name == 'show' %>
     <% format = (@sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
     <%= content_tag(:li, _("Tag %s",  link_to(@grouping.display_name, format))) %>
-  <% end %>  
+  <% end %>
   <% if @sidebar.article_comments and controller.controller_name == 'redirect' %>
     <% format = (@sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
     <%= content_tag(:li, link_to(@article.title, format)) %>
   <% end %>
-  
-  
+
+
 </ul>

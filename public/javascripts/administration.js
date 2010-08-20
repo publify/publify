@@ -3,16 +3,16 @@ function autosave_request(e) {
 			if ($('current_editor').value == 'visual') {
 				$('article__body_and_extended_editor').value = CKEDITOR.instances.article__body_and_extended_editor.getData();;
 			}
-			
+
       new Ajax.Request(e.action.gsub(/\/new\/{0,1}/, '/autosave/') , {
-                                        asynchronous:true, 
-                                        evalScripts:true, 
+                                        asynchronous:true,
+                                        evalScripts:true,
                                         parameters: Form.serialize(e)
                                       })
-			var g = new k.Growler({location : 'br'}); 
+			var g = new k.Growler({location : 'br'});
 			g.info('Article was successfully saved', {life: 3});
 })
-  
+
 }
 
 Event.observe(window, 'load', function() {
@@ -24,7 +24,7 @@ Event.observe(window, 'load', function() {
 // Copyright (c) 2002-2008 Alex King
 // http://alexking.org/projects/js-quicktags
 //
-// Thanks to Greg Heo <greg@node79.com> for his changes 
+// Thanks to Greg Heo <greg@node79.com> for his changes
 // to support multiple toolbars per page.
 //
 // Licensed under the LGPL license
@@ -33,7 +33,7 @@ Event.observe(window, 'load', function() {
 // **********************************************************************
 // This program is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // **********************************************************************
 
 
@@ -203,7 +203,7 @@ function edShowButton(which, button, i) {
 			break;
 		case 'ed_typocode':
 			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="ed_button" onclick="edInsertTypoCode(\'' + which + '\', ' + i + ');" value="' + button.display + '" />');
-			break;			
+			break;
 		default:
 			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="ed_button" onclick="edInsertTag(\'' + which + '\', ' + i + ');" value="' + button.display + '"  />');
 			break;
@@ -248,7 +248,7 @@ function edCheckOpenTags(which, button) {
 	else {
 		return false; // tag not found
 	}
-}	
+}
 
 function edCloseAllTags(which) {
 	var count = edOpenTags[which].length;
@@ -263,7 +263,7 @@ function edQuickLink(i, thisSelect) {
 		if (edLinks[i].newWin == 1) {
 			newWin = ' target="_blank"';
 		}
-		var tempStr = '<a href="' + edLinks[i].URL + '"' + newWin + '>' 
+		var tempStr = '<a href="' + edLinks[i].URL + '"' + newWin + '>'
 		            + edLinks[i].display
 		            + '</a>';
 		thisSelect.selectedIndex = 0;
@@ -357,21 +357,21 @@ function edInsertTag(which, i) {
 		if (startPos != endPos) {
 			myField.value = myField.value.substring(0, startPos)
 			              + edButtons[i].tagStart
-			              + myField.value.substring(startPos, endPos) 
+			              + myField.value.substring(startPos, endPos)
 			              + edButtons[i].tagEnd
 			              + myField.value.substring(endPos, myField.value.length);
 			cursorPos += edButtons[i].tagStart.length + edButtons[i].tagEnd.length;
 		}
 		else {
 			if (!edCheckOpenTags(which, i) || edButtons[i].tagEnd == '') {
-				myField.value = myField.value.substring(0, startPos) 
+				myField.value = myField.value.substring(0, startPos)
 				              + edButtons[i].tagStart
 				              + myField.value.substring(endPos, myField.value.length);
 				edAddTag(which, i);
 				cursorPos = startPos + edButtons[i].tagStart.length;
 			}
 			else {
-				myField.value = myField.value.substring(0, startPos) 
+				myField.value = myField.value.substring(0, startPos)
 				              + edButtons[i].tagEnd
 				              + myField.value.substring(endPos, myField.value.length);
 				edRemoveTag(which, i);
@@ -411,7 +411,7 @@ function edInsertContent(which, myValue) {
 		var endPos = myField.selectionEnd;
 		var scrollTop = myField.scrollTop;
 		myField.value = myField.value.substring(0, startPos)
-		              + myValue 
+		              + myValue
                       + myField.value.substring(endPos, myField.value.length);
 		myField.focus();
 		myField.selectionStart = startPos + myValue.length;
@@ -462,9 +462,9 @@ function edInsertImage(which) {
     myField = document.getElementById(which);
 	var myValue = prompt('Enter the URL of the image', 'http://');
 	if (myValue) {
-		myValue = '<img src="' 
-				+ myValue 
-				+ '" alt="' + prompt('Enter a description of the image', '') 
+		myValue = '<img src="'
+				+ myValue
+				+ '" alt="' + prompt('Enter a description of the image', '')
 				+ '" />';
 		edInsertContent(which, myValue);
 	}
@@ -473,9 +473,9 @@ function edInsertImage(which) {
 function edInsertImageFromCarousel(which, image) {
     myField = document.getElementById(which);
 	if (image) {
-		myValue = '<img src="' 
-				+ image 
-				+ '" alt="' + prompt('Enter a description of the image', '') 
+		myValue = '<img src="'
+				+ image
+				+ '" alt="' + prompt('Enter a description of the image', '')
 				+ '" />';
 		edInsertContent(which, myValue);
 	}
@@ -491,7 +491,7 @@ function edInsertVia(which) {
 	var myValue = prompt('Enter the URL of the source link', 'http://');
 	if (myValue) {
 		myValue = '(Thanks <a href="' + myValue + '" rel="external">'
-				+ prompt('Enter the name of the source', '') 
+				+ prompt('Enter the name of the source', '')
 				+ '</a>)';
 		edInsertContent(which, myValue);
 	}

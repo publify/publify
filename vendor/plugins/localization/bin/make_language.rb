@@ -1,14 +1,14 @@
 class LangaugeFile
-  
-  def executeStage(message) 
+
+  def executeStage(message)
     puts message
     yield
   end
-  
+
   def generate_language_file(language,duplicate)
     filename = File.join("lang", "#{language}.rb");
-    
-    
+
+
     stringMap = {}
     executeStage "Loading last language file #{filename}" do
       File.read(filename).scan(/["](.*?)["],(.*)/u).each do |pp|
@@ -16,7 +16,7 @@ class LangaugeFile
       end
     end
 
-    
+
     stringAll = []
     executeStage "Generating #{filename}" do
       rc  = ""
@@ -26,8 +26,8 @@ class LangaugeFile
         strings  += File.read(ff).scan(/_\([ ]*['](.*?)[']/)
         if strings.length > 0
           strings.uniq!
-          stringsRemove = strings          
-          strings -= stringAll           
+          stringsRemove = strings
+          strings -= stringAll
           stringAll += stringsRemove
           stringAll.uniq!
           if strings.length > 0
@@ -58,17 +58,17 @@ end
 class Tool
   def initialize
     @language  = 'en_US'
-    @duplicate = true  
-    
+    @duplicate = true
+
     if ( ARGV[0] )
       @language  = ARGV[0]
       @duplicate = false
-    end    
+    end
   end
- 
-  def run 
-    lang = LangaugeFile.new 
-    lang.generate_language_file(@language,@duplicate);  
+
+  def run
+    lang = LangaugeFile.new
+    lang.generate_language_file(@language,@duplicate);
   end
 end
 

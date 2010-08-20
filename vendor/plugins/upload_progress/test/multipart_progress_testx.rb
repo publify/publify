@@ -26,49 +26,49 @@ module Controllers
       @params = {}
     end
   end
-  
+
   class SingleUploadController < ActionController::Base
     upload_status_for   :one
-    
+
     def one; end
   end
 
   class DoubleUploadController < ActionController::Base
     upload_status_for   :one, :two
-    
+
     def one; end
     def two; end
   end
-  
+
   class DoubleStatusUploadController < ActionController::Base
     upload_status_for   :one, :two, :status => :custom_status
-    
+
     def one; end
     def two; end
   end
-  
+
   class DoubleSeperateController < ActionController::Base
     upload_status_for :one
     upload_status_for :two
-    
-    def one; end    
+
+    def one; end
     def two; end
-  end  
-  
+  end
+
   class UploadController < ActionController::Base
     upload_status_for   :norendered, :rendered, :redirected, :finish_param_dict, :finish_param_string, :finish_param_number
-    
-    def norendered 
+
+    def norendered
     end
-      
+
     def rendered
       render_text("rendered")
     end
-    
+
     def redirected
       redirect_to "/redirected/"
     end
-    
+
     def finish_param_dict
       finish_upload_status "{a: 'b'}"
     end
@@ -105,7 +105,7 @@ class MockIO < StringIO
     data = super
 
     test_logger.debug("Calling read callback")
-    @block.call 
+    @block.call
 
     test_logger.debug("Returning data: #{data.size}")
     data
@@ -141,7 +141,7 @@ class MockCGI < CGI
   def stdinput
     @sio
   end
-  
+
   def env_table
     @env
   end
@@ -158,8 +158,8 @@ class MockCGI < CGI
     @env['CONTENT_TYPE'] = "multipart/form-data; boundary=#{BOUNDARY}"
     @env['CONTENT_LENGTH'] = @sio.tell - EOL.size
 
-    @session_options = ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.inject({}) { |options, pair| 
-      options[pair.first.to_s] = pair.last; options 
+    @session_options = ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.inject({}) { |options, pair|
+      options[pair.first.to_s] = pair.last; options
     }
     session = CGI::Session.new({}, @session_options.merge({'new_session' => true}))
     @session_id = session.session_id
@@ -191,14 +191,14 @@ class MockCGI < CGI
 end
 
 class MultipartProgressTest < Test::Unit::TestCase
-  
+
   def test_domain_language_single
     c = Controllers::SingleUploadController.new
     assert_respond_to(c, :one)
     assert_respond_to(c, :upload_status)
     assert_respond_to(c, :finish_upload_status)
   end
-  
+
   def test_domain_language_double
     c = Controllers::DoubleUploadController.new
     assert_respond_to(c, :one)
@@ -206,7 +206,7 @@ class MultipartProgressTest < Test::Unit::TestCase
     assert_respond_to(c, :upload_status)
     assert_respond_to(c, :finish_upload_status)
   end
-    
+
   def test_domain_language_double_status
     c = Controllers::DoubleStatusUploadController.new
     assert_respond_to(c, :one)
@@ -214,7 +214,7 @@ class MultipartProgressTest < Test::Unit::TestCase
     assert_respond_to(c, :custom_status)
     assert_respond_to(c, :finish_upload_status)
   end
-    
+
   def test_domain_language_double_seperate
     c = Controllers::DoubleSeperateController.new
     assert_respond_to(c, :one)
@@ -229,7 +229,7 @@ class MultipartProgressTest < Test::Unit::TestCase
 
     res = process(:action => 'norendered', :upload_id => 1)
     assert_match(/ActionView::ActionViewError/s, res.body)
-    
+
     res = process(:action => :upload_status, :upload_id => 1)
     assert_match(/Upload finished/s, res.body)
 
@@ -243,21 +243,21 @@ class MultipartProgressTest < Test::Unit::TestCase
     res = process(:action => :rendered, :upload_id => 1)
     assert_match(/stop\(\)/s, res.body)
     assert_no_match(/rendered/s, res.body)
-    
+
     res = process(:action => :upload_status, :upload_id => 1)
     assert_match(/Upload finished/s, res.body)
-    
+
     res = process(:action => :rendered)
     assert_no_match(/stop\(\)/s, res.body)
     assert_match(/rendered/, res.body)
-  end 
-  
+  end
+
   def test_finish_status_redirected
     test_logger.debug('test_finish_status_redirected')
 
     res = process(:action => :redirected, :upload_id => 1)
     assert_match(/location\.replace/s, res.body)
-    
+
     res = process(:action => :redirected)
     assert_no_match(/location\.replace/s, res.body)
     assert_match(/\/redirected\//s, res.headers['location'])
@@ -266,7 +266,7 @@ class MultipartProgressTest < Test::Unit::TestCase
     res = process(:action => :upload_status, :upload_id => 1)
     assert_match(/Upload finished/s, res.body)
   end
-  
+
   def test_finish_status_finish_param
     test_logger.debug('test_finish_status_param')
 
@@ -288,7 +288,7 @@ class MultipartProgressTest < Test::Unit::TestCase
     assert_match(/replace\('\http:\/\/localhost\/redirected\/'\).*?/s, res.body)
     assert_no_redirect res
   end
-  
+
   def test_basic_setup
     test_logger.debug('test_basic_setup')
 
@@ -347,7 +347,7 @@ class MultipartProgressTest < Test::Unit::TestCase
       block.call(cgi) if block_given?
     end
 
-    assert(cgi.private_methods.include?("read_multipart_with_progress")) 
+    assert(cgi.private_methods.include?("read_multipart_with_progress"))
     return [cgi, ActionController::CgiRequest.new(cgi), ActionController::CgiResponse.new(cgi)]
   end
 

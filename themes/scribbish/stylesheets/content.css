@@ -2,12 +2,12 @@
  Header
  --------------------------------------------------------------*/
 
-#header { 
+#header {
 	background: url(../../images/theme/header_shadow.gif) repeat-x left bottom;
 }
 
 #header a:link,
-#header a:visited { 
+#header a:visited {
 	color:#000;
 	text-decoration: none;
 }
@@ -19,16 +19,16 @@
 }
 
 #header h1 {
-	font: bold 400% georgia, serif; 
-	letter-spacing: -1px; 
+	font: bold 400% georgia, serif;
+	letter-spacing: -1px;
 	margin: 0;
-	float: left; 
+	float: left;
 }
 
 #header h2 {
-	font: normal 12px verdana, arial, sans-serif;  
+	font: normal 12px verdana, arial, sans-serif;
 	margin: 2.5em 0 0 0.8em;
-	float: left; 
+	float: left;
 }
 
 /*--------------------------------------------------------------
@@ -41,41 +41,41 @@
 #content h2,
 #content h3,
 #content h4,
-#content h5 { 
-	font-family: "lucidamac bold", "lucida grande", arial, sans-serif; 
+#content h5 {
+	font-family: "lucidamac bold", "lucida grande", arial, sans-serif;
 	letter-spacing: -1px;
 }
 
-#content h1 { 
+#content h1 {
 	font-size: 24px;
-	margin: 0 0 0.3em;	
+	margin: 0 0 0.3em;
 }
 
-#content h2 { 
+#content h2 {
 	font-size: 22px;
-	margin: 0 0 0.3em;	
+	margin: 0 0 0.3em;
 }
 
-#content h3 { 
+#content h3 {
 	font-size: 20px;
-	margin: 1.2em 0 0.3em;	
+	margin: 1.2em 0 0.3em;
 }
 
-#content h4 { 
+#content h4 {
 	font-size: 18px;
-	margin: 1.2em 0 0.3em;	
+	margin: 1.2em 0 0.3em;
 	border-bottom: 1px dotted #bbb;
 }
 
 #content h5 {
 	font-size: 18px;
 	background: #ffd;
-	margin: 1.2em 0 0.3em;	
+	margin: 1.2em 0 0.3em;
 	border-bottom: 1px dotted #aaa;
 }
 
 #content p {
-	line-height: 15px; 
+	line-height: 15px;
 	margin: 0 0 1.2em;
 }
 
@@ -90,17 +90,17 @@
 }
 
 #content li {
-	line-height: 15px; 
+	line-height: 15px;
 	margin: 0 0 0 1em; padding: 0;
 }
 
 #content blockquote {
 	color: #555;
-	border-left: 5px solid #ccc; 
+	border-left: 5px solid #ccc;
 	margin: 1.3em 1em; padding: 0 1em;
 }
 
-#content code { 
+#content code {
 	font: normal 12px "bitstream vera sans mono", monaco "lucida console", "courier new", courier, serif;
 }
 
@@ -113,25 +113,25 @@
 }
 
 /* Article Entries - class names based on http://microformats.org/wiki/hatom] */
-#content .atomentry { 
+#content .atomentry {
 	margin: 0 0 3em 0;
 }
 
 #content .atomentry .title {
 	font-size: 24px;
 	line-height: 94%;
-	letter-spacing: -1.5px; 
+	letter-spacing: -1.5px;
 	margin: 0;
 }
 
 #content .atomentry .title a:link,
-#content .atomentry .title a:visited { 
+#content .atomentry .title a:visited {
 	color: #930;
 	text-decoration: none;
 }
 
 #content .atomentry .title a:hover,
-#content .atomentry .title a:active { 
+#content .atomentry .title a:active {
 	color: #000;
 	background: transparent;
 }
@@ -158,7 +158,7 @@
 
 #content .atomentry .content {}
 
-#content .atomentry ul.meta { 
+#content .atomentry ul.meta {
 	font-size: 10px;
 	background: #eee;
 	margin: 0; padding: 5px;
@@ -166,7 +166,7 @@
 	list-style-type: none;
 }
 
-#content .atomentry ul.meta li { 
+#content .atomentry ul.meta li {
 	line-height: 13px;
 	margin: 0; padding: 0;
 }
@@ -195,13 +195,13 @@
 	margin: 0 0 1.5em; padding: 1em;
 }
 
-#content .comment.preview { 
+#content .comment.preview {
 	background: #ffc;
 	border: 3px solid #fab444;
 }
 
 #content .comment   .author,
-#content .trackback .author { 
+#content .trackback .author {
 	font-weight: bold;
 	margin-bottom: 1em;
 }
@@ -212,12 +212,12 @@
 	letter-spacing: -1px;
 }
 
-#content .comment   .author abbr, 
+#content .comment   .author abbr,
 #content .trackback .author abbr { color: #999; }
 
-#content .comment .author .gravatar { 
+#content .comment .author .gravatar {
 	margin: 0 0 0.5em 0.5em;
-	float: right; 
+	float: right;
 }
 
 /* uncomment to enable a default gravatar
@@ -225,7 +225,7 @@
 	margin: 0 0 0.5em 0.5em;
  	width: 60px; height: 60px;
 	background: url(../../images/theme/gravatar.gif) no-repeat left top;
-	float: right; 
+	float: right;
 }*/
 
 
@@ -235,19 +235,19 @@
 	padding: 1em 0.5em;
 }
 
-#content form.comments fieldset { 
+#content form.comments fieldset {
 	border: none;
 }
 
-#content form.comments legend { 
+#content form.comments legend {
 	display: none;
 }
 
-#content form.comments label { 
+#content form.comments label {
 	font-weight: bold;
 }
 
-#content form.comments textarea { 
+#content form.comments textarea {
 	width: 90%; height: 150px;
 	padding: 3px;
 }
@@ -256,10 +256,10 @@
  Sidebar
  --------------------------------------------------------------*/
 #sidebar {
-	font-size: 11px; 
+	font-size: 11px;
 }
 
-#sidebar h3 { 
+#sidebar h3 {
 	font: bold 14px "lucidamac bold", "lucida grande", verdana, arial, helvetica, sans-serif;
 	margin: 0 0 0.5em;
 }
@@ -275,11 +275,11 @@
 }
 
 #sidebar ul {
-	list-style-type: none; 
+	list-style-type: none;
 	margin: 0 0 2em; padding: 0;
 }
 
-#sidebar li { 
+#sidebar li {
 	margin: 0;
 	padding: 1px 0;
 }
@@ -287,7 +287,7 @@
 #sidebar em { font-style: normal; }
 
 /* Live-search and results */
-#sidebar .search p { 
+#sidebar .search p {
 	margin: 0;
 }
 
@@ -301,7 +301,7 @@
 	height: 15px;
 }
 
-#sidebar .search .results { 
+#sidebar .search .results {
 	margin: 0 0 1.25em;
 }
 
@@ -309,12 +309,12 @@
 	margin-top: 1em;
 }
 
-#sidebar .search .results p { 
+#sidebar .search .results p {
 	font: bold 14px "lucidamac bold", "lucida grande", verdana, arial, helvetica, sans-serif;
 	margin: 0 0 0.5em;
 }
 
-#sidebar .search .results ul { 
+#sidebar .search .results ul {
 	margin: 0; padding: 3px;
 }
 
@@ -325,7 +325,7 @@
 	color: #222;
 }
 
-#sidebar .search .results a:hover, 
+#sidebar .search .results a:hover,
 #sidebar .search .results a:active  {
 	color: #fff;
 }
@@ -339,18 +339,18 @@
 #sidebar #flickr div {
 }
 
-#sidebar #flickr img { 
+#sidebar #flickr img {
 	margin: 0 0 5px;
 	padding: 5px;
 	border: 1px solid #ddd;
 	display: block;
 }
-        
+
 #sidebar #flickr img:hover {
 	background: #ffc;
 }
-        
-#sidebar #flickr a { 
+
+#sidebar #flickr a {
 	border: none;
 }
 
@@ -359,17 +359,17 @@
  --------------------------------------------------------------*/
 
 #footer {
-	border-top: 1px solid #ccc; 
-	font-size: 90%; 
+	border-top: 1px solid #ccc;
+	font-size: 90%;
 }
 
 #footer a:link,
-#footer a:visited { 
+#footer a:visited {
 	color: #000;
 }
 
 #footer a:hover,
-#footer a:active { 
+#footer a:active {
 	color: #fff;
 	background: #000;
 }
@@ -380,20 +380,20 @@
 
 #footer p {
 	width: 40%;
-	float: left; 
-	margin: 0; padding: 0; 
+	float: left;
+	margin: 0; padding: 0;
 }
 
 #footer ul {
 	width: 40%;
 	margin: 0; padding: 0;
-	list-style-type: none; 
-	text-align: right; 
-	float: right; 
+	list-style-type: none;
+	text-align: right;
+	float: right;
 }
 
 #footer li {
 	margin: 0; padding: 0 0 0 1em;
-	display: inline; 
+	display: inline;
 }
 

@@ -9,40 +9,40 @@
       <label class="float" for="setting_default_allow_comments"><%= _("Enable comments by default")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :default_allow_comments)%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_default_allow_pings"><%= _("Enable Trackbacks by default")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :default_allow_pings)%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_default_moderate_comments"><%= _("Enable feedback moderation")%></label>
       <div class='input_text'>
-        <%= check_box(:setting, :default_moderate_comments)%> 
+        <%= check_box(:setting, :default_moderate_comments)%>
         <span><%= _("You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it")%>.</span>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label for="comment_text_filter" class="float"><%= _("Comments filter")%></label>
       <div class='input_text'>
         <select name="setting[comment_text_filter]" id="comment_text_filter">
           <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
-        </select>      
-      </div>      
+        </select>
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_use_gravatar"><%= _("Enable gravatars")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :use_gravatar)%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_link_to_author"><%= _("Show your email address") %></label>
       <div class='input_text'>
         <%= check_box(:setting, :link_to_author)%>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
@@ -56,7 +56,7 @@
       <div class='input_text'>
         <%= text_field(:setting, :email_from, { :class => 'medium'}) %>
         <span><%= _("Email address used by Typo to send notifications")%></span>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
@@ -69,21 +69,21 @@
       <label for="setting_sp_global" class="float"><%= _("Enable spam protection")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :sp_global)%>
-      </div>          
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_sp_akismet_key"><%= _("Akismet Key")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :sp_akismet_key, {:class => 'medium'}) %>
         <span><%= _("Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%>.</span>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_global_pings_disable"><%= _("Disable trackbacks site-wide")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :global_pings_disable)%>
         <span><%= _("This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.")%></span>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label for="setting_sp_article_auto_close" class="float"><%= _("Disable comments after")%></label>
@@ -91,15 +91,15 @@
         <%= text_field(:setting, :sp_article_auto_close, {:size => 4, :class => 'small'})%>
         <%= _("days") %>.
         <%= _("Set to 0 to never disable comments")%>
-      </div>      
+      </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_sp_url_limit"><%= _("Max Links")%></label>
       <div class='input_text'>
-        <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'small'})%> 
+        <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'small'})%>
         <span><%= _("Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.
         <%= _("Set to 0 to never reject comments")%></span>
-      </div>      
+      </div>
     </div>
   </div>
 </div>

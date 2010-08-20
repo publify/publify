@@ -13,6 +13,6 @@ class Admin::BaseController < ApplicationController
   end
 
   def sweep_cache
-    PageCache.sweep_all  
+    PageCache.sweep_all
   end
 end
