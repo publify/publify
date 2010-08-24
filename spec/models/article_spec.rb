@@ -213,9 +213,11 @@ describe Article do
   end
 
   it "test_find_published_by_tag_name" do
-    @articles = Tag.find_by_name(tags(:foo).name).published_articles
-
-    assert_results_are(:article1, :article2, :publisher_article)
+    art1 = Factory(:article)
+    art2 = Factory(:article)
+    Factory(:tag, :name => 'foo', :articles => [art1, art2])
+    articles = Tag.find_by_name('foo').published_articles
+    assert_equal 2, articles.size
   end
 
 

@@ -116,6 +116,8 @@ describe TagsController, 'with integrate_view' do
   integrate_views
 
   before(:each) do
+    #TODO need to add default article into tag_factory build to remove this :articles =>...
+    foo = Factory(:tag, :name => 'foo', :articles => [Factory(:article)])
     get 'show', :id => 'foo'
   end
 
@@ -133,26 +135,11 @@ describe TagsController, "password protected article" do
   integrate_views
 
   it 'article in tag should be password protected' do
+    #TODO need to add default article into tag_factory build to remove this :articles =>...
+    a = Factory(:article, :password => 'password')
+    foo = Factory(:tag, :name => 'foo', :articles => [a])
     get 'show', :id => 'foo'
-
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
   end
 end
-
-## Old tests that still need conversion
-
-#   it "test_autodiscovery_tag" do
-#     get :tag, :id => 'hardware'
-#     assert_response :success
-#     assert_select 'link[title=RSS]' do
-#       assert_select '[rel=alternate]'
-#       assert_select '[type=application/rss+xml]'
-#       assert_select '[href=http://test.host/articles/tag/hardware.rss]'
-#     end
-#     assert_select 'link[title=Atom]' do
-#       assert_select '[rel=alternate]'
-#       assert_select '[type=application/atom+xml]'
-#       assert_select '[href=http://test.host/articles/tag/hardware.atom]'
-#     end
-#   end

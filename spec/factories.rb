@@ -1,4 +1,6 @@
-require 'factory_girl'
+Factory.sequence :name do |n|
+  "name_#{n}"
+end
 
 Factory.sequence :user do |n|
   "user#{n}"
@@ -66,4 +68,9 @@ Factory.define :category do |c|
   c.name 'SoftwareFactory'
   c.permalink 'softwarefactory'
   c.position 1
+end
+
+Factory.define :tag do |tag|
+  tag.name {Factory.next(:name)}
+  tag.display_name {Factory.next(:name)}
 end

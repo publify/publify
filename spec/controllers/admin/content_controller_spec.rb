@@ -1,10 +1,9 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+require 'spec_helper'
 
 require 'http_mock'
 
 describe Admin::ContentController do
   integrate_views
-
 
   # Like it's a shared, need call everywhere
   describe 'index action', :shared => true do
@@ -351,18 +350,24 @@ describe Admin::ContentController do
 
     describe 'auto_complete_for_article_keywords action' do
       it 'should return foo for keywords fo' do
+        Factory(:tag, :name => 'foo', :articles => [Factory(:article)])
+        Factory(:tag)
         get :auto_complete_for_article_keywords, :article => {:keywords => 'fo'}
         response.should be_success
         response.body.should == '<ul><li>foo</li></ul>'
       end
 
       it 'should return nothing for hello' do
+        Factory(:tag)
         get :auto_complete_for_article_keywords, :article => {:keywords => 'hello'}
         response.should be_success
         response.body.should == '<ul></ul>'
       end
 
       it 'should return bar and baz for ba keyword' do
+        Factory(:tag, :name => 'bazz', :articles => [Factory(:article)])
+        Factory(:tag, :name => 'bar', :articles => [Factory(:article)])
+        Factory(:tag)
         get :auto_complete_for_article_keywords, :article => {:keywords => 'ba'}
         response.should be_success
         response.body.should == '<ul><li>bar</li><li>bazz</li></ul>'
@@ -435,9 +440,6 @@ describe Admin::ContentController do
           response.should redirect_to(:action => 'index')
         end
       end
-
     end
-
   end
-
 end
