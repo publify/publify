@@ -1,53 +1,180 @@
 Localization.define("nl_NL") do |l|
 
-  # app/views/accounts/signup.html.erb
-  l.store "Desired login", "Gewenste login"
-  l.store "Display name", "Schermnaam"
-  l.store "Email", "Email"
-  l.store "Choose password", "Kies wachtwoord"
-  l.store "Confirm password", "Bevestig wachtwoord"
-  l.store "Signup", "Meld aan"
+  # app/controllers/accounts_controller.rb
+  l.store "Login successful", ""
+  l.store "Login unsuccessful", ""
+  l.store "An email has been successfully sent to your address with your new password", ""
+  l.store "Oops, something wrong just happened", "Oeps, er is net iets misgegaan"
+  l.store "Successfully logged out", ""
+  l.store "login", ""
+  l.store "signup", ""
+  l.store "Recover your password", ""
 
-  # app/views/admin/base/_recent_comments.html.erb
-  l.store "Recent comments", "Recente reacties"
+  # app/controllers/admin/categories_controller.rb
+  l.store "Category was successfully saved.", ""
+  l.store "Category could not be saved.", ""
 
-  # app/views/admin/base/_recent_trackbacks.html.erb
-  l.store "Recent trackbacks", "Recente trackbacks"
+  # app/controllers/admin/content_controller.rb
+  l.store "Error, you are not allowed to perform this action", ""
+  l.store "Preview", "Bekijk"
+  l.store "Article was successfully created", ""
+  l.store "Article was successfully updated.", ""
 
-  # app/views/admin/blacklist/_blacklist_patterns.html.erb
-  l.store "Pattern", "Patroon"
-  l.store "Type", "Type"
+  # app/controllers/admin/feedback_controller.rb
+  l.store "Deleted", ""
+  l.store "Not found", ""
+  l.store "Deleted %d item(s)", ""
+  l.store "Marked %d item(s) as Ham", ""
+  l.store "Marked %d item(s) as Spam", ""
+  l.store "Confirmed classification of %s item(s)", "Classificatie van %s item(s) bevestigd"
+  l.store "Not implemented", ""
+  l.store "All spam have been deleted", ""
+  l.store "Comment was successfully created.", ""
+  l.store "Comment was successfully updated.", ""
 
-  # app/views/admin/blacklist/_form.html.erb
-  l.store "String", ""
-  l.store "Regex", ""
+  # app/controllers/admin/pages_controller.rb
+  l.store "Page was successfully created.", ""
+  l.store "Page was successfully updated.", ""
 
-  # app/views/admin/blacklist/_quick_post.html.erb
+  # app/controllers/admin/profiles_controller.rb
+  l.store "User was successfully updated.", ""
+
+  # app/controllers/admin/resources_controller.rb
+  l.store "Error occurred while updating Content Type.", ""
+  l.store "complete", ""
+  l.store "File uploaded: ", ""
+  l.store "Unable to upload", ""
+  l.store "Metadata was successfully updated.", ""
+  l.store "Not all metadata was defined correctly.", ""
+  l.store "Content Type was successfully updated.", ""
+
+  # app/controllers/admin/settings_controller.rb
+  l.store "Please review and save the settings before continuing", ""
+  l.store "config updated.", ""
+
+  # app/controllers/admin/sidebar_controller.rb
+  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
+
+  # app/controllers/admin/tags_controller.rb
+  l.store "Tag was successfully updated.", ""
+
+  # app/controllers/admin/themes_controller.rb
+  l.store "Theme changed successfully", ""
+  l.store "You are not authorized to open this file", ""
+  l.store "File saved successfully", ""
+  l.store "Unable to write file", ""
+
+  # app/controllers/admin/users_controller.rb
+  l.store "User was successfully created.", ""
+
+  # app/controllers/application_controller.rb
+  l.store "Localization.rtl", ""
+
+  # app/controllers/articles_controller.rb
+  l.store "No posts found...", "Geen berichten gevonden..."
+  l.store "Archives for", "Archieven voor"
+  l.store "Archives for ", "Archieven voor "
+  l.store ", Articles for ", ", Berichten voor "
+
+  # app/controllers/grouping_controller.rb
+  l.store "page", "pagina"
+  l.store "everything about", "alles over"
+
+  # app/helpers/admin/base_helper.rb
   l.store "Cancel", "Terug"
+  l.store "Store", ""
+  l.store "Delete", ""
+  l.store "delete", ""
+  l.store "Delete content", ""
+  l.store "Are you sure?", ""
+  l.store "Please select", ""
+  l.store "There are no %s yet. Why don't you start and create one?", "Er zijn nog geen %s. Waarom begin je er niet een te maken?"
   l.store "or", "of"
   l.store "Save", "Bewaar"
+  l.store "Edit", ""
+  l.store "Show", ""
+  l.store "Published", "Gepubliceerd"
+  l.store "Unpublished", ""
+  l.store "Show help on Typo macros", ""
+  l.store "Back to overview", ""
+  l.store "Name", "Naam"
+  l.store "Description", "Omschrijving"
+  l.store "Tag", ""
 
-  # app/views/admin/blacklist/destroy.html.erb
-  l.store "Are you sure you want to delete this item?", "Weet je zeker dat je dit item wilt verwijderen?"
-  l.store "Blacklist Patterns", "Blacklist patronen"
-
-  # app/views/admin/blacklist/edit.html.erb
-  l.store "Editing pattern", "Wijzig patroon"
-
-  # app/views/admin/blacklist/index.html.erb
-  l.store "add new", "voeg toe"
-
-  # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Titel"
-  l.store "Posts", "Berichten"
+  # app/helpers/admin/categories_helper.rb
   l.store "no articles", "geen artikelen"
   l.store "1 article", "1 artikel"
   l.store "%d articles", "%d artikelen"
 
+  # app/helpers/admin/content_helper.rb
+  l.store "Destroy this draft", ""
+
+  # app/helpers/admin/feedback_helper.rb
+  l.store "Show conversation", ""
+  l.store "Flag as %s", ""
+
+  # app/helpers/application_helper.rb
+  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
+  l.store "%%d. %%b", "%%d. %%b"
+  l.store "%d comments", "%d reacties"
+  l.store "no comments", "geen reacties"
+  l.store "1 comment", "één reactie"
+  l.store "no trackbacks", "geen trackbacks"
+  l.store "1 trackback", "één trackback"
+  l.store "%d trackbacks", "%d trackbacks"
+
+  # app/helpers/content_helper.rb
+  l.store "Posted in", "Geplaatst in"
+  l.store "Tags", "Trefwoorden"
+  l.store "no posts", "geen berichten"
+  l.store "1 post", "één bericht"
+  l.store "%d posts", "%d berichten"
+
+  # app/models/article.rb
+  l.store "Original article writen by", ""
+  l.store "and published on", ""
+  l.store "direct link to this article", ""
+  l.store "If you are reading this article elsewhere than", ""
+  l.store "it has been illegally reproduced and without proper authorization", ""
+
+  # app/models/blog.rb
+  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
+  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
+
+  # app/models/feedback/states.rb
+  l.store "Unclassified", "Niet geclassificeerd"
+  l.store "Just Presumed Ham", ""
+  l.store "Ham?", "Ham?"
+  l.store "Just Marked As Ham", ""
+  l.store "Ham", "Ham"
+  l.store "Spam?", "Spam?"
+  l.store "Just Marked As Spam", ""
+  l.store "Spam", "Spam"
+
+  # app/views/accounts/login.html.erb
+  l.store "I've lost my password", ""
+  l.store "Login", ""
+  l.store "Password", ""
+  l.store "Remember me", "Onthou me"
+  l.store "Submit", "Verstuur"
+  l.store "Back to ", "Terug naar"
+
+  # app/views/accounts/recover_password.html.erb
+  l.store "Username or email", ""
+
+  # app/views/accounts/signup.html.erb
+  l.store "Create an account", ""
+  l.store "Username", ""
+  l.store "Email", "Email"
+  l.store "Signup", "Meld aan"
+
+  # app/views/admin/categories/_categories.html.erb
+  l.store "Title", "Titel"
+  l.store "Reorder", "Orden opnieuw"
+  l.store "Sort alphabetically", "Sorteer alfabetisch"
+
   # app/views/admin/categories/_form.html.erb
-  l.store "Name", "Naam"
   l.store "Keywords", "Trefwoorden"
-  l.store "Description", "Omschrijving"
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Weet je zeker dat je de categorie wilt verwijderen?"
@@ -55,8 +182,7 @@ Localization.define("nl_NL") do |l|
   l.store "Categories", "Categoriën"
 
   # app/views/admin/categories/index.html.erb
-  l.store "Reorder", "Orden opnieuw"
-  l.store "Sort alphabetically", "Sorteer alfabetisch"
+  l.store "New Category", ""
 
   # app/views/admin/categories/new.html.erb
   l.store "%s Category", "%s Categorie"
@@ -72,20 +198,21 @@ Localization.define("nl_NL") do |l|
   l.store "Add Another Attachment", ""
 
   # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts:", ""
+  l.store "Drafts", ""
 
   # app/views/admin/content/_form.html.erb
+  l.store "Publish settings", ""
   l.store "Allow comments", "Sta reacties toe"
   l.store "Allow trackbacks", ""
-  l.store "Published", "Gepubliceerd"
+  l.store "Password:", ""
   l.store "Publish", "Publiceer"
-  l.store "Content", "Inhoud"
-  l.store "Tags", "Trefwoorden"
   l.store "Excerpt", ""
+  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", ""
   l.store "Permalink", ""
+  l.store "Article filter", ""
   l.store "Save as draft", ""
 
   # app/views/admin/content/destroy.html.erb
@@ -94,19 +221,19 @@ Localization.define("nl_NL") do |l|
   l.store "Articles", "Artikelen"
 
   # app/views/admin/content/index.html.erb
+  l.store "New Article", ""
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
   l.store "Search", "Zoek"
-  l.store "Date", "Datum"
   l.store "Author", "Auteur"
-  l.store "Status", "Status"
+  l.store "Date", "Datum"
   l.store "Feedback", "Feedback"
   l.store "Filter", "Filter"
   l.store "Manage articles", "Beheer artikelen"
 
   # app/views/admin/dashboard/_comments.html.erb
-  l.store "Last Comments", "Laatste reacties"
+  l.store "Latest Comments", "Laatste reacties"
   l.store "No comments yet", "Nog geen reacties"
-  l.store "by %s on %s", "door %s op %s"
+  l.store "By %s on %s", "door %s op %s"
 
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", "Binnenkomende links"
@@ -115,10 +242,10 @@ Localization.define("nl_NL") do |l|
   l.store "You have no internet connection", "Je hebt geen internet verbinding"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s , %s or %s.", ""
-  l.store "Update your profile or change your password", ""
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", ""
+  l.store "update your profile or change your password", ""
   l.store "You can also do a bit of design, %s or %s.", ""
-  l.store "Change your blog presentation", ""
+  l.store "change your blog presentation", ""
   l.store "enable plugins", ""
   l.store "write a post", ""
   l.store "write a page", ""
@@ -128,62 +255,57 @@ Localization.define("nl_NL") do |l|
   l.store "Nothing to show yet", "Nog niets te zien"
 
   # app/views/admin/dashboard/_posts.html.erb
-  l.store "Last posts", "Laatste berichten"
+  l.store "Latest Posts", "Laatste berichten"
   l.store "No posts yet, why don't you start and write one", "Nog geen berichten, waarom begin je er niet een te schrijven"
 
-  # app/views/admin/dashboard/_sysinfo.html.erb
-  l.store "System information", "Systeem informatie"
+  # app/views/admin/dashboard/_typo_dev.html.erb
+  l.store "Latest news from the Typo development blog", ""
+  l.store "Oh no, nothing new", ""
+
+  # app/views/admin/dashboard/_welcome.html.erb
+  l.store "Welcome back, %s!", "Welkom terug, %s!"
+  l.store "%d articles and %d comments were posted since your last connexion", ""
   l.store "You're running Typo %s", "Je gebruikt Typo %s"
-  l.store "Statistics", "Statistieken"
   l.store "Total posts : %d", "Aantal berichten : %d"
   l.store "Your posts : %d", "Jouw berichten : %d"
   l.store "Total comments : %d", "Aantal reacties : %d"
   l.store "Spam comments : %d", "Spam reacties : %d"
 
-  # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Last news from Typo development blog", ""
-  l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
-  l.store "Welcome back, %s!", "Welkom terug, %s!"
-
   # app/views/admin/feedback/_button.html.erb
+  l.store "Select action", ""
   l.store "Delete Checked Items", "Verwijder aangevinkte reacties"
-  l.store "Mark Checked Items as Ham", "Markeer aangevinkte reacties als Ham"
-  l.store "Mark Checked Items as Spam", "Markeer aangevinkte reacties als Spam"
-  l.store "Confirm Classification of Checked Items", "Bevestig classificatie van aangevinkte reacties"
   l.store "Delete all spam", "Verwijder alle spam"
-
-  # app/views/admin/feedback/_form.html.erb
-  l.store "Url", ""
-
-  # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s (%s)", ""
-  l.store "Edit", ""
-  l.store "Delete", ""
-  l.store "Are you sure?", ""
-  l.store "add a comment", ""
+  l.store "Mark Checked Items as Spam", "Markeer aangevinkte reacties als Spam"
+  l.store "Mark Checked Items as Ham", "Markeer aangevinkte reacties als Ham"
   l.store "All comments", ""
   l.store "Limit to ham", ""
+  l.store "Unapproved comments", ""
   l.store "Limit to spam", ""
+
+  # app/views/admin/feedback/_form.html.erb
+  l.store "Add a comment", ""
+  l.store "Url", ""
+
+  # app/views/admin/feedback/_spam.html.erb
+  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
+
+  # app/views/admin/feedback/article.html.erb
+  l.store "Comments for %s", ""
+  l.store "Status", "Status"
+  l.store "Comment Author", ""
+  l.store "Comment", "Reactie"
 
   # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", ""
 
   # app/views/admin/feedback/index.html.erb
-  l.store "Feedback for", ""
   l.store "Search Comments and Trackbacks that contain", ""
   l.store "Article", ""
-  l.store "Comment Excerpt", ""
-  l.store "IP", ""
 
   # app/views/admin/pages/_form.html.erb
-  l.store "Options", ""
   l.store "Online", ""
-
-  # app/views/admin/pages/_pages.html.erb
-  l.store "Please select", ""
-  l.store "Unpublished", ""
+  l.store "Page settings", ""
+  l.store "Permanent link", ""
 
   # app/views/admin/pages/destroy.html.erb
   l.store "Pages", "Pagina's"
@@ -191,21 +313,11 @@ Localization.define("nl_NL") do |l|
   l.store "Delete this page", "Verwijder deze pagina"
 
   # app/views/admin/pages/index.html.erb
+  l.store "New Page", ""
   l.store "Manage pages", ""
 
-  # app/views/admin/resources/_metadata_add.html.erb
-  l.store "Resource MetaData", ""
-  l.store "Set iTunes metadata for this enclosure", ""
-  l.store "Subtitle", ""
-  l.store "Duration", ""
-  l.store "Summary", ""
-  l.store "Category", ""
-  l.store "Key Words", ""
-  l.store "seperate with spaces", ""
-  l.store "Explicit", ""
-
-  # app/views/admin/resources/_metadata_edit.html.erb
-  l.store "Remove iTunes Metadata", ""
+  # app/views/admin/profiles/index.html.erb
+  l.store "Your profile", ""
 
   # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Content Type"
@@ -214,51 +326,53 @@ Localization.define("nl_NL") do |l|
   l.store "Previous page", "Vorige pagina"
   l.store "Next page", "Volgende pagina"
 
-  # app/views/admin/resources/_resources.html.erb
-  l.store "Filename", ""
-  l.store "MetaData", ""
-  l.store "File Size", ""
-  l.store "Edit MetaData", ""
-  l.store "Add MetaData", ""
-  l.store "delete", ""
-  l.store "right-click for link", ""
-
-  # app/views/admin/resources/destroy.html.erb
-  l.store "Are you sure you want to delete this file", ""
-  l.store "Delete this file from the webserver?", ""
-  l.store "File Uploads", ""
-
-  # app/views/admin/resources/new.html.erb
+  # app/views/admin/resources/_upload.html.erb
   l.store "Upload a File to your Site", ""
   l.store "File", ""
   l.store "Upload", ""
 
+  # app/views/admin/resources/destroy.html.erb
+  l.store "Are you sure you want to delete this file", "Weet je zeker dat je dit bestand wilt verwijderen?"
+  l.store "Delete this file from the webserver?", ""
+  l.store "File Uploads", ""
+
+  # app/views/admin/resources/images.html.erb
+  l.store "Thumbnail", ""
+  l.store "File Size", ""
+  l.store "Images", ""
+  l.store "right-click for link", ""
+
+  # app/views/admin/resources/index.html.erb
+  l.store "Filename", ""
+
+  # app/views/admin/settings/_submit.html.erb
+  l.store "Update settings", ""
+
   # app/views/admin/settings/feedback.html.erb
-  l.store "Enable Trackbacks by default", ""
   l.store "Enable comments by default", ""
-  l.store "Enable gravatars", ""
-  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", ""
-  l.store "Disable trackbacks site-wide", ""
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
+  l.store "Enable Trackbacks by default", ""
   l.store "Enable feedback moderation", ""
+  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
+  l.store "Comments filter", ""
+  l.store "Enable gravatars", ""
   l.store "Show your email address", ""
-  l.store "Notification", ""
+  l.store "Notifications", ""
   l.store "Typo can notify you when new articles or comments are posted", ""
   l.store "Source Email", ""
   l.store "Email address used by Typo to send notifications", ""
-  l.store "Spam", ""
   l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", ""
   l.store "Enable spam protection", ""
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", ""
   l.store "Akismet Key", ""
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", ""
-  l.store "Allow non-ajax comments", ""
+  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", ""
+  l.store "Disable trackbacks site-wide", ""
+  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", ""
   l.store "Disable comments after", ""
   l.store "days", ""
   l.store "Set to 0 to never disable comments", ""
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", ""
   l.store "Max Links", ""
+  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", ""
   l.store "Set to 0 to never reject comments", ""
+  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", ""
@@ -266,24 +380,17 @@ Localization.define("nl_NL") do |l|
   l.store "Blog subtitle", ""
   l.store "Blog URL", ""
   l.store "Language", ""
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Allow users to register", ""
-  l.store "No", ""
-  l.store "Yes", ""
-  l.store "Cache", ""
-  l.store "By default, Typo generates static HTML pages for your posts. However, if you plan to publish posts in the futur, you may want to use semi dynamic caching", ""
-  l.store "Choose caching methode", ""
-  l.store "Use static HTML page caching ", ""
-  l.store "Use semi static caching (default)", ""
-  l.store "If you experience trouble with caching, you can wipe the cache out manually", ""
-  l.store "General settings", ""
-
-  # app/views/admin/settings/read.html.erb
+  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
+  l.store "Items to display in admin lists", ""
+  l.store "Publishing options", ""
   l.store "Display", ""
   l.store "articles on my homepage by default", ""
   l.store "articles in my news feed by default", ""
   l.store "Show full article on feed", ""
-  l.store "Read", ""
+  l.store "Feedburner ID", ""
+  l.store "General settings", ""
+  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
@@ -291,17 +398,20 @@ Localization.define("nl_NL") do |l|
   l.store "At the beginning of page title", ""
   l.store "At the end of page title", ""
   l.store "Don't show blog name in page title", ""
+  l.store "Format of permalink", ""
   l.store "Google Analytics", ""
+  l.store "Google verification link", ""
   l.store "Meta description", ""
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
+  l.store "Index categories", ""
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Index tags", ""
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Robots.txt", ""
+  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
-  l.store "Original article writen by", ""
-  l.store "and published on", ""
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
   l.store "at the bottom of each of your post in the RSS feed", ""
 
   # app/views/admin/settings/update_database.html.erb
@@ -318,21 +428,13 @@ Localization.define("nl_NL") do |l|
   l.store "no", ""
 
   # app/views/admin/settings/write.html.erb
-  l.store "Write", "Schrijf"
-  l.store "Article filter", ""
-  l.store "Comments filter", ""
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", ""
   l.store "Send trackbacks", ""
+  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", ""
   l.store "URLs to ping automatically", ""
   l.store "Latitude, Longitude", ""
   l.store "your lattitude and longitude", ""
   l.store "exemple", ""
-  l.store "Podcasts", ""
-  l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", ""
-  l.store "Setting for channel", ""
-  l.store "Optional Name", ""
-  l.store "Not published by Apple", ""
-  l.store "Copyright Information", ""
+  l.store "Write", "Schrijf"
 
   # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", ""
@@ -351,8 +453,8 @@ Localization.define("nl_NL") do |l|
   l.store "Sidebar", ""
   l.store "Publish changes", ""
 
-  # app/views/admin/tags/_tags.html.erb
-  l.store "Display Name", ""
+  # app/views/admin/tags/_form.html.erb
+  l.store "Display name", "Schermnaam"
 
   # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", ""
@@ -363,6 +465,7 @@ Localization.define("nl_NL") do |l|
   l.store "Back to tags list", ""
 
   # app/views/admin/tags/index.html.erb
+  l.store "Display Name", ""
   l.store "Manage tags", ""
 
   # app/views/admin/themes/catalogue.html.erb
@@ -371,7 +474,6 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/themes/editor.html.erb
   l.store "Theme editor", ""
-  l.store "save", ""
 
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", ""
@@ -382,37 +484,57 @@ Localization.define("nl_NL") do |l|
   l.store "Choose a theme", ""
 
   # app/views/admin/users/_form.html.erb
-  l.store "Login", ""
+  l.store "Account settings", ""
+  l.store "Password confirmation", "Bevestig wachtwoord"
   l.store "Profile", "Profiel"
-  l.store "Blog publisher", ""
-  l.store "Contributor", ""
-  l.store "Typo administrator", ""
-  l.store "(this will be shown publically if supplied)", ""
-  l.store "Password", ""
-  l.store "Password confirmation", ""
+  l.store "User's status", ""
+  l.store "Active", ""
+  l.store "Inactive", ""
+  l.store "Profile Settings", ""
+  l.store "Firstname", ""
+  l.store "Lastname", ""
+  l.store "Nickname", ""
   l.store "Editor", ""
+  l.store "Use simple editor", ""
   l.store "Use visual rich editor", ""
-  l.store "Use simple editor without live preview", ""
   l.store "Send notification messages via email", ""
   l.store "Send notification messages when new articles are posted", ""
   l.store "Send notification messages when comments are posted", ""
+  l.store "Contact Options", ""
+  l.store "Your site", ""
+  l.store "display url on public profile", ""
+  l.store "Your MSN", ""
+  l.store "display MSN ID on public profile", ""
+  l.store "Your Yahoo ID", ""
+  l.store "display Yahoo! ID on public profile", ""
+  l.store "Your Jabber ID", ""
+  l.store "display Jabber ID on public profile", ""
+  l.store "Your AIM id", ""
+  l.store "display AIM ID on public profile", ""
+  l.store "Your Twitter username", ""
+  l.store "display twitter on public profile", ""
+  l.store "Tell us more about you", ""
 
   # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", ""
+  l.store "Yes", ""
   l.store "Users", ""
 
   # app/views/admin/users/edit.html.erb
   l.store "Edit User", ""
 
   # app/views/admin/users/index.html.erb
-  l.store "Username", ""
+  l.store "New User", ""
   l.store "Comments", "Reacties"
+  l.store "State", ""
+  l.store "%s user", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
 
   # app/views/articles/_article.html.erb
   l.store "Posted by", "Geplaatst door"
+  l.store "Continue reading", "Verder lezen"
 
   # app/views/articles/_comment.html.erb
   l.store "said", "zei"
@@ -420,11 +542,11 @@ Localization.define("nl_NL") do |l|
 
   # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Jouw naam"
-  l.store "(leave url/email &#187;)", "(plaats url/e-mail &#187;)"
   l.store "Your email", "Jouw e-mail"
   l.store "Your message", "Jouw bericht"
   l.store "Comment Markup Help", ""
   l.store "Preview comment", "Bekijk reactie"
+  l.store "leave url/email", "plaats url/e-mail"
 
   # app/views/articles/_comment_failed.html.erb
   l.store "Oops, something wrong happened, the comment could not be saved", "Er is iets mis gegaan en je reactie is niet bewaard"
@@ -442,9 +564,6 @@ Localization.define("nl_NL") do |l|
   # app/views/articles/groupings.html.erb
   l.store "There are", "Er zijn"
 
-  # app/views/articles/index.html.erb
-  l.store "Read more", "Lees meer"
-
   # app/views/articles/read.html.erb
   l.store "Leave a response", "Geef een reactie"
   l.store "Trackbacks", "Trackbacks"
@@ -453,18 +572,39 @@ Localization.define("nl_NL") do |l|
   l.store "trackback uri", "trackback uri"
   l.store "Comments are disabled", "Reacties zijn niet mogelijk"
 
+  # app/views/authors/show.html.erb
+  l.store "Web site:", ""
+  l.store "MSN:", ""
+  l.store "Yahoo:", ""
+  l.store "Jabber:", ""
+  l.store "AIM:", ""
+  l.store "Twitter:", ""
+  l.store "About %s", ""
+  l.store "This author has not published any article yet", ""
+
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
 
   # app/views/layouts/administration.html.erb
-  l.store "Localization.rtl", ""
-  l.store "log out", ""
-  l.store "your blog", ""
+  l.store "%s &raquo;", ""
+  l.store "is proudly powered by", ""
   l.store "Dashboard", "Dashboard"
 
-  # app/views/shared/_loginform.html.erb
-  l.store "Remember me", "Onthou me"
-  l.store "Back to ", "Terug naar"
+  # app/views/setup/index.html.erb
+  l.store "Welcome", ""
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
+
+  # app/views/shared/_confirm.html.erb
+  l.store "Congratulation!", ""
+  l.store "You have successfully signed up", ""
+  l.store "<strong>Login:</strong> %s", ""
+  l.store "<strong>Password:</strong> %s", ""
+  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
+  l.store "Proceed to %s", ""
+  l.store "admin", ""
+
+  # app/views/shared/_search.html.erb
+  l.store "Live Search", ""
 
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Powered by %s"
@@ -481,9 +621,6 @@ Localization.define("nl_NL") do |l|
   l.store "Read full article", "Lees volledige artikel"
   l.store "comment", "reactie"
   l.store "trackback", "trackback"
-  l.store "no comments", "geen reacties"
-  l.store "1 comment", "één reactie"
-  l.store "%d comments", "%d reacties"
 
   # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", "later"
@@ -497,8 +634,6 @@ Localization.define("nl_NL") do |l|
   l.store "Textile enabled", "Textile beschikbaar"
   l.store "Markdown enabled", "Markdown beschikbaar"
   l.store "required", "verplicht"
-  l.store "Preview", "Bekijk"
-  l.store "Submit", "Verstuur"
 
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", "Geen reacties"
@@ -518,140 +653,72 @@ Localization.define("nl_NL") do |l|
   l.store "Meta", ""
   l.store "permalink", ""
 
-  # themes/scribbish/views/articles/_comment_form.html.erb
-  l.store "leave url/email", "plaats url/e-mail"
+  # themes/true-blue-3/helpers/theme_helper.rb
+  l.store "You are here: ", ""
+  l.store "%d comment", ""
+
+  # themes/true-blue-3/views/articles/_article.html.erb
+  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
+
+  # themes/true-blue-3/views/articles/_comment.html.erb
+  l.store "By", ""
+  l.store "later:", ""
+
+  # themes/true-blue-3/views/articles/_comment_form.html.erb
+  l.store "Email address", ""
+  l.store "Your website", ""
+
+  # themes/true-blue-3/views/articles/read.html.erb
+  l.store "If you liked this article you can %s", ""
+  l.store "add me to Twitter", ""
+  l.store "Trackbacks for", ""
+
+  # themes/true-blue-3/views/articles/search.html.erb
+  l.store "Search results for:", ""
+
+  # themes/true-blue-3/views/categories/index.html.erb
+  l.store "Read all articles in %s", ""
+
+  # themes/true-blue-3/views/categories/show.html.erb
+  l.store "Previous", ""
+  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archieven"
 
+  # vendor/plugins/authors_sidebar/views/content.rhtml
+  l.store "Authors", ""
+
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", ""
+  l.store "Category %s", ""
+  l.store "Tag %s", ""
 
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "Signup successful", ""
-  l.store "Successfully logged out", ""
-  l.store "login", ""
-  l.store "signup", ""
+  # app/views/admin/dashboard/_sysinfo.html.erb
+  l.store "Choose password", "Kies wachtwoord"
 
-  # app/controllers/admin/blacklist_controller.rb
-  l.store "Blacklist Pattern was successfully created.", ""
-  l.store "Blacklist Pattern could not be created.", ""
-  l.store "BlacklistPattern was successfully updated.", ""
-  l.store "Blacklist Pattern could not be updated.", ""
+  # app/views/admin/base/_recent_comments.html.erb
+  l.store "Recent comments", "Recente reacties"
 
-  # app/controllers/admin/cache_controller.rb
-  l.store "Cache was cleared", ""
-  l.store "HTML was cleared", ""
+  # app/views/admin/base/_recent_trackbacks.html.erb
+  l.store "Recent trackbacks", "Recente trackbacks"
 
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
+  # app/views/admin/blacklist/_blacklist_patterns.html.erb
+  l.store "Pattern", "Patroon"
+  l.store "Type", "Type"
 
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Article was successfully saved at ", ""
-  l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
+  # app/views/admin/blacklist/destroy.html.erb
+  l.store "Blacklist Patterns", "Blacklist patronen"
 
-  # app/controllers/admin/feedback_controller.rb
-  l.store "Deleted", ""
-  l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
-  l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
-  l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
+  # app/views/admin/blacklist/edit.html.erb
+  l.store "Editing pattern", "Wijzig patroon"
 
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
+  # app/views/admin/blacklist/index.html.erb
+  l.store "add new", "voeg toe"
+  l.store "Content", "Inhoud"
+  l.store "Posts", "Berichten"
+  l.store "Confirm Classification of Checked Items", "Bevestig classificatie van aangevinkte reacties"
 
-  # app/controllers/admin/profiles_controller.rb
-  l.store "Profile was successfully created.", ""
-  l.store "Profile was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-  l.store "Metadata was successfully removed.", ""
-  l.store "Metadata was successfully updated.", ""
-  l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
-
-  # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/articles_controller.rb
-  l.store "No posts found...", "Geen berichten gevonden..."
-  l.store "Archives for", "Archieven voor"
-  l.store "Archives for ", "Archieven voor "
-  l.store ", Articles for ", ", Berichten voor "
-
-  # app/controllers/grouping_controller.rb
-  l.store "page", "pagina"
-  l.store "everything about", "alles over"
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Store", ""
-  l.store "show", ""
-  l.store "Show content", ""
-  l.store "Delete content", ""
-  l.store "There is no %s yet. Why don't you start and create one?", ""
-  l.store "published", ""
-  l.store "unpublished", ""
-  l.store "Show help on Typo macros", ""
-  l.store "Back to overview", ""
-  l.store "Tag", ""
-
-  # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
-
-  # app/helpers/admin/settings_helper.rb
-  l.store "Sweep cache", ""
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
-  l.store "%%d. %%b", "%%d. %%b"
-  l.store "Are you sure you want to delete this %s?", "Weet je zeker dat je deze %s wilt verwijderen?"
-  l.store "no trackbacks", "geen trackbacks"
-  l.store "1 trackback", "één trackback"
-  l.store "%d trackbacks", "%d trackbacks"
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", "Geplaatst in"
-  l.store "no posts", "geen berichten"
-  l.store "1 post", "één bericht"
-  l.store "%d posts", "%d berichten"
-
-  # app/models/feedback/states.rb
-  l.store "Unclassified", "Niet geclassificeerd"
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", "Ham?"
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", "Ham"
-  l.store "Spam?", "Spam?"
-  l.store "Just Marked As Spam", ""
-
-  # vendor/plugins/xml_sidebar/lib/xml_sidebar.rb
-  l.store "XML Syndication", ""
+  # app/views/articles/index.html.erb
+  l.store "Read more", "Lees meer"
 end
