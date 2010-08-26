@@ -21,7 +21,7 @@ class LangaugeFile
     executeStage "Generating #{filename}" do
       rc  = ""
       rc += "Localization.define(\"#{language}\") do |l|"
-      Dir.glob("**/*.{erb,rhtml,rb}").collect do |ff|
+      Dir.glob("**/*.{erb,rhtml,rb}").sort.collect do |ff|
         strings   = File.read(ff).scan(/_\([ ]*["](.*?)["]/)
         strings  += File.read(ff).scan(/_\([ ]*['](.*?)[']/)
         if strings.length > 0
