@@ -16,7 +16,6 @@ class LangaugeFile
       end
     end
 
-
     stringAll = []
     executeStage "Generating #{filename}" do
       rc  = ""
@@ -39,12 +38,19 @@ class LangaugeFile
               else
                 if stringMap.has_key?(key)
                   rc += "\n  l.store \"#{key}\",#{stringMap[key]}"
+                  stringMap.delete(key)
                 else
                   rc += "\n  l.store \"#{key}\", \"\""
                 end
               end
             end
           end
+        end
+      end
+      if stringMap.size > 0
+        rc += "\n\n  # Obsolete translations"
+        stringMap.keys.sort.each do |key|
+          rc += "\n  l.store \"#{key}\",#{stringMap[key]}"
         end
       end
       rc += "\nend"
