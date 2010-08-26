@@ -1,64 +1,269 @@
 # localization Marcin Gil <marcin.gil@gmail.com>
 # additional localization Szymon (jeznet) Jeż <szymon@jez.net.pl>
 
-Localization.define('pl_PL') do |l|
-  # General
-  l.store "your blog", "Twój blog"
-  l.store "Typo admin", "administracja Typo"
-  l.store "Publish", "Publikuj"
-  l.store "Dashboard", "Podsumowanie"
-  l.store "Manage", "Zarządzaj"
-  l.store "Customize", "Personalizuj"
-  l.store "Feedback", "Komentarze"
-  l.store "Design", "Wygląd"
-  l.store "%d users", "%d użytkownicy"
-  l.store "1 user", "użytkownik"
-  l.store "no users", "brak użytkowników"
-  l.store "Settings", "Ustawienia"
-  l.store "Things you can do", "Dostępne działania"
-  l.store "with %s Famfamfam iconset %s", "z %s ze zbioru ikon Famfamfam %s"
-  l.store "is proudly powered by", "dumnie działa na"
+Localization.define("pl_PL") do |l|
 
-  #admin/login.rhtml
-  l.store "Username", "Użytkownik"
-  l.store "Password", "Hasło"
+  # app/controllers/accounts_controller.rb
+  l.store "Login successful", ""
+  l.store "Login unsuccessful", ""
+  l.store "An email has been successfully sent to your address with your new password", ""
+  l.store "Oops, something wrong just happened", ""
+  l.store "Successfully logged out", ""
+  l.store "login", ""
+  l.store "signup", ""
+  l.store "Recover your password", ""
+
+  # app/controllers/admin/categories_controller.rb
+  l.store "Category was successfully saved.", ""
+  l.store "Category could not be saved.", ""
+
+  # app/controllers/admin/content_controller.rb
+  l.store "Error, you are not allowed to perform this action", ""
+  l.store "Preview", ""
+  l.store "Article was successfully created", ""
+  l.store "Article was successfully updated.", ""
+
+  # app/controllers/admin/feedback_controller.rb
+  l.store "Deleted", ""
+  l.store "Not found", ""
+  l.store "Deleted %d item(s)", ""
+  l.store "Marked %d item(s) as Ham", ""
+  l.store "Marked %d item(s) as Spam", ""
+  l.store "Confirmed classification of %s item(s)", ""
+  l.store "Not implemented", ""
+  l.store "All spam have been deleted", ""
+  l.store "Comment was successfully created.", ""
+  l.store "Comment was successfully updated.", ""
+
+  # app/controllers/admin/pages_controller.rb
+  l.store "Page was successfully created.", ""
+  l.store "Page was successfully updated.", ""
+
+  # app/controllers/admin/profiles_controller.rb
+  l.store "User was successfully updated.", ""
+
+  # app/controllers/admin/resources_controller.rb
+  l.store "Error occurred while updating Content Type.", "Wystąpił błąd w trakcie aktualizacji typu zawartości."
+  l.store "complete", "zakończony"
+  l.store "File uploaded: ", "Załadowany plik: "
+  l.store "Unable to upload", "Nie można załadować"
+  l.store "Metadata was successfully updated.", "Metadane zostały pomyślnie zaktualizowane."
+  l.store "Not all metadata was defined correctly.", "Nie wszystkie metadane zostały poprawnie zdefiniowane."
+  l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
+
+  # app/controllers/admin/settings_controller.rb
+  l.store "Please review and save the settings before continuing", ""
+  l.store "config updated.", "konfiguracja zaktualizowana."
+
+  # app/controllers/admin/sidebar_controller.rb
+  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
+
+  # app/controllers/admin/tags_controller.rb
+  l.store "Tag was successfully updated.", ""
+
+  # app/controllers/admin/themes_controller.rb
+  l.store "Theme changed successfully", ""
+  l.store "You are not authorized to open this file", ""
+  l.store "File saved successfully", ""
+  l.store "Unable to write file", ""
+
+  # app/controllers/admin/users_controller.rb
+  l.store "User was successfully created.", ""
+
+  # app/controllers/application_controller.rb
+  l.store "Localization.rtl", ""
+
+  # app/controllers/articles_controller.rb
+  l.store "No posts found...", ""
+  l.store "Archives for", ""
+  l.store "Archives for ", ""
+  l.store ", Articles for ", ""
+
+  # app/controllers/grouping_controller.rb
+  l.store "page", ""
+  l.store "everything about", ""
+
+  # app/helpers/admin/base_helper.rb
+  l.store "Cancel", "Anuluj"
+  l.store "Store", ""
+  l.store "Delete", "Usuń"
+  l.store "delete", ""
+  l.store "Delete content", ""
+  l.store "Are you sure?", ""
+  l.store "Please select", ""
+  l.store "There are no %s yet. Why don't you start and create one?", ""
+  l.store "or", "lub"
+  l.store "Save", "Zapisz"
+  l.store "Edit", "Zmień"
+  l.store "Show", ""
+  l.store "Published", "Opublikowane"
+  l.store "Unpublished", ""
+  l.store "Show help on Typo macros", ""
+  l.store "Back to overview", "Wróć do podglądu"
+  l.store "Name", "Nazwa"
+  l.store "Description", "Opis"
+  l.store "Tag", ""
+
+  # app/helpers/admin/categories_helper.rb
+  l.store "no articles", "brak artykułów"
+  l.store "1 article", "1 artykuł"
+  l.store "%d articles", "%d artykuły"
+
+  # app/helpers/admin/content_helper.rb
+  l.store "Destroy this draft", ""
+
+  # app/helpers/admin/feedback_helper.rb
+  l.store "Show conversation", ""
+  l.store "Flag as %s", ""
+
+  # app/helpers/application_helper.rb
+  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
+  l.store "%%d. %%b", ""
+  l.store "%d comments", "%d komentarze"
+  l.store "no comments", "brak komentarzy"
+  l.store "1 comment", "1 komentarz"
+  l.store "no trackbacks", "brak trackbacków"
+  l.store "1 trackback", "1 trackback"
+  l.store "%d trackbacks", "%d trackbacki"
+
+  # app/helpers/content_helper.rb
+  l.store "Posted in", ""
+  l.store "Tags", "Tagi"
+  l.store "no posts", ""
+  l.store "1 post", ""
+  l.store "%d posts", ""
+
+  # app/models/article.rb
+  l.store "Original article writen by", ""
+  l.store "and published on", ""
+  l.store "direct link to this article", ""
+  l.store "If you are reading this article elsewhere than", ""
+  l.store "it has been illegally reproduced and without proper authorization", ""
+
+  # app/models/blog.rb
+  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
+  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
+
+  # app/models/feedback/states.rb
+  l.store "Unclassified", ""
+  l.store "Just Presumed Ham", ""
+  l.store "Ham?", ""
+  l.store "Just Marked As Ham", ""
+  l.store "Ham", ""
+  l.store "Spam?", ""
+  l.store "Just Marked As Spam", ""
+  l.store "Spam", ""
+
+  # app/views/accounts/login.html.erb
+  l.store "I've lost my password", ""
   l.store "Login", "Login"
-  l.store "Back to the blog", "Wróć do bloga"
+  l.store "Password", "Hasło"
+  l.store "Remember me", ""
+  l.store "Submit", ""
+  l.store "Back to ", ""
 
-  # admin/logout.rhtml
-  l.store "You are now logged out of the system", "Wylogowano z systemu"
-  l.store "Do you want to go to your blog?", "Czy chcesz obejrzeć Twój blog?"
-  l.store "Logoff", "Wyloguj"
+  # app/views/accounts/recover_password.html.erb
+  l.store "Username or email", ""
 
-  # admin/signup.rhtml
-  l.store "Signup", "Zapisz się"
-  l.store "Desired login", "Proponowany login"
-  l.store "Display name", "Wyświetlana nazwa"
+  # app/views/accounts/signup.html.erb
+  l.store "Create an account", ""
+  l.store "Username", "Użytkownik"
   l.store "Email", "Email"
-  l.store "Choose password", "Wybierz hasło"
-  l.store "Confirm password", "Potwierdź hasło"
+  l.store "Signup", "Zapisz się"
 
-  # admin/dashboard/index.rhtml
-  l.store "What can you do ?", "Co możesz zrobić?"
-  l.store "Write Post", "Utworzyć wpis"
-  l.store "Write Page", "Utworzyć stronę"
-  l.store "Update your profile or change your password", "Zaktualizować profil lub zmienić hasło"
-  l.store "Change your blog presentation", "Zmienić wygląd swojego bloga"
-  l.store "Enable plugins", "Aktywować wtyczki"
-  l.store "Latest Posts", "Ostatnie Wpisy"
-  l.store "Typo documentation", "Oficjalna dokumentacja Typo"
+  # app/views/admin/categories/_categories.html.erb
+  l.store "Title", "Tytuł"
+  l.store "Reorder", "Zmień porządek"
+  l.store "Sort alphabetically", "Sortuj alfabetycznie"
+
+  # app/views/admin/categories/_form.html.erb
+  l.store "Keywords", ""
+
+  # app/views/admin/categories/destroy.html.erb
+  l.store "Are you sure you want to delete the category ", "Czy na pewno chcesz skasować kategorię "
+  l.store "Delete this category", "Usuń tą kategorię"
+  l.store "Categories", ""
+
+  # app/views/admin/categories/index.html.erb
+  l.store "New Category", "Utwórz nową kategorię"
+
+  # app/views/admin/categories/new.html.erb
+  l.store "%s Category", ""
+
+  # app/views/admin/categories/reorder.html.erb
+  l.store "(Done)", "(Zakończono)"
+
+  # app/views/admin/content/_attachment.html.erb
+  l.store "Remove", "Skasuj"
+  l.store "Currently this article has the following resources", "Artykuł ma dołączone następujące zasoby"
+  l.store "You can associate the following resources", "Możesz przypisać do artykułu następujące zasoby"
+  l.store "Really delete attachment", "Na pewno skasować?"
+  l.store "Add Another Attachment", "Dodaj kolejny załącznik"
+
+  # app/views/admin/content/_drafts.html.erb
+  l.store "Drafts", ""
+
+  # app/views/admin/content/_form.html.erb
+  l.store "Publish settings", ""
+  l.store "Allow comments", "Zezwól na dodawanie komentarzy"
+  l.store "Allow trackbacks", "Zezwól na podawanie trackbacków"
+  l.store "Password:", ""
+  l.store "Publish", "Publikuj"
+  l.store "Excerpt", ""
+  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Uploads", "Załadowane zasoby"
+  l.store "Post settings", ""
+  l.store "Publish at", "Opublikowane dnia"
+  l.store "Permalink", "Permalink"
+  l.store "Article filter", "Filtr artykułów"
+  l.store "Save as draft", ""
+
+  # app/views/admin/content/destroy.html.erb
+  l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
+  l.store "Delete this article", "Usuń artykuł"
+  l.store "Articles", ""
+
+  # app/views/admin/content/index.html.erb
+  l.store "New Article", ""
+  l.store "Search articles that contain ...", ""
+  l.store "Search", "Szukaj"
+  l.store "Author", "Autor"
+  l.store "Date", "Data"
+  l.store "Feedback", "Komentarze"
+  l.store "Filter", ""
+  l.store "Manage articles", ""
+
+  # app/views/admin/dashboard/_comments.html.erb
+  l.store "Latest Comments", "Ostatnie komentarze"
   l.store "No comments yet", "Brak komentarzy"
-  l.store "Latest news from the Typo development blog", "Najnowsze wieści z bloga developerskiego Typo"
+  l.store "By %s on %s", "Przez %s odnośnie %s"
+
+  # app/views/admin/dashboard/_inbound.html.erb
+  l.store "Inbound links", "Linki przychodzące"
+  l.store "No one made a link to you yet", "Nikt jeszcze nie stworzył do ciebie łącza"
+  l.store " made a link to you saying ", " wykonał do ciebie łącze o treści "
+  l.store "You have no internet connection", "Nie masz połączenia internetowego"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.",
-    "To miejsce daje ci szybki podgląd na to co dzieje się na twoim blogu i to co możesz zrobić. Może chcesz %s, %s or %s."
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", ""
   l.store "update your profile or change your password", "zaktualizować profil lub zmienić hasło"
   l.store "You can also do a bit of design, %s or %s.", "Możesz również trochę poprojektować wygląd, %s lub %s."
   l.store "change your blog presentation", "zmienić wygląd swojego bloga"
   l.store "enable plugins", "aktywować wtyczkę"
   l.store "write a post", "utworzyć wpis"
   l.store "write a page", "utworzyć stronę"
+
+  # app/views/admin/dashboard/_popular.html.erb
+  l.store "Most popular", "Najpopularniejsze"
+  l.store "Nothing to show yet", "Nie ma jeszcze nic do pokazania"
+
+  # app/views/admin/dashboard/_posts.html.erb
+  l.store "Latest Posts", "Ostatnie Wpisy"
+  l.store "No posts yet, why don't you start and write one", ""
+
+  # app/views/admin/dashboard/_typo_dev.html.erb
+  l.store "Latest news from the Typo development blog", "Najnowsze wieści z bloga developerskiego Typo"
+  l.store "Oh no, nothing new", ""
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Witamy spowrotem, %s!"
@@ -69,617 +274,632 @@ Localization.define('pl_PL') do |l|
   l.store "Total comments : %d", "Liczba wszystkich komentarzy: %d"
   l.store "Spam comments : %d", "Niechciane komentarze (spam): %d"
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", "Linki przychodzące"
-  l.store "No one made a link to you yet", "Nikt jeszcze nie stworzył do ciebie łącza"
-  l.store " made a link to you saying ", " wykonał do ciebie łącze o treści "
-  l.store "You have no internet connection", "Nie masz połączenia internetowego"
+  # app/views/admin/feedback/_button.html.erb
+  l.store "Select action", ""
+  l.store "Delete Checked Items", ""
+  l.store "Delete all spam", ""
+  l.store "Mark Checked Items as Spam", ""
+  l.store "Mark Checked Items as Ham", ""
+  l.store "All comments", ""
+  l.store "Limit to ham", ""
+  l.store "Unapproved comments", ""
+  l.store "Limit to spam", "Pokaż spam"
 
-  # app/views/admin/dashboard/_comments.html.erb
-  l.store "Latest Comments", "Ostatnie komentarze"
-  l.store "No comments yet", "Brak komentarzy"
-  l.store "By %s on %s", "Przez %s odnośnie %s"
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", "Najpopularniejsze"
-  l.store "Nothing to show yet", "Nie ma jeszcze nic do pokazania"
-
-  #admin/base/recent_comments.rhtml
-  l.store "Recent comments", "Ostatnie komentarze"
-
-  #admin/base/recent_trackbacks.rhtml
-  l.store "Recent trackbacks", "Ostatnie trackbacki"
-
-  #admin/blacklist/_blacklis_patterns.rhtml
-  l.store "Pattern", "Wzorzec"
-  l.store "Type", "Typ"
-  l.store "Edit", "Zmień"
-  l.store "Delete", "Usuń"
-
-  #admin/blacklist/_form.rhtml
-  l.store "String", "Ciąg znaków"
-  l.store "Regex", "Wyrażenie regularne"
-
-  #admin/blacklist/_quick_post.rhtml
-  l.store "Add pattern", "Dodaj wzorzec"
-  l.store "Cancel", "Anuluj"
-  l.store "or", "lub"
-
-  #admin/blacklist/destroy.rhtml
-  l.store "Blacklist Patterns", "Czarna lista"
-  l.store "Show this pattern", "Pokaż ten wzorzec"
-  l.store "Are you sure you want to delete this item?", "Czy na pewno chcesz usunąć tą pozycję?"
-
-  #admin/blacklist/edit.rhtml
-  l.store "Editing pattern", "Zmiana wzorca"
-
-  #admin/blacklist/list.rhtml
-  l.store "Create new Blacklist", "Utwórz nową czarną listę"
-
-  #admin/cache/list.rhtml
-  l.store "Cache", "Bufor"
-
-  #admin/categories/_categories.rhtml
-  l.store "Category title", "Tytuł kategorii"
-  l.store "%d articles", "%d artykuły"
-  l.store "1 article", "1 artykuł"
-  l.store "no articles", "brak artykułów"
-
-  #admin/categories/_form.rhtml
-  l.store "Name", "Nazwa"
-
-  #admin/categories/_quick_post.rhtml
-  l.store "Title", "Tytuł"
-  l.store "Add category", "Dodaj kategorię"
-
-  #admin/categorie/destroy.rhtml
-  l.store "%d categories", "%d kategorie"
-  l.store "1 category", "kategoria"
-  l.store "no categories", "brak kategori"
-  l.store "Show this category", "Pokaż tą kategorię"
-  l.store "Delete this category", "Usuń tą kategorię"
-  l.store "Are you sure you want to delete the category ", "Czy na pewno chcesz skasować kategorię "
-
-  #admin/category/list.html.erb
-  l.store "add new", "dodaj nową"
-
-  #admin/category/edit.rhtml
-  l.store "Editing category", "Edytuj kategorię"
-
-  #admin/category/list.rhtml
-  l.store "Manage Categories", "Zarządzaj kategoriami"
-  l.store "Create new category", "Utwórz nową kategorię"
-  l.store "New Category", "Utwórz nową kategorię"
-  l.store "Reorder", "Zmień porządek"
-  l.store "Sort alphabetically", "Sortuj alfabetycznie"
-  l.store "Manage Articles", "Zarządzaj artykułami"
-  l.store "Manage Pages", "Zarządzaj stronami"
-  l.store "Manage Resources", "Zarządzaj zasobami"
-
-  #admin/category/reorder.rhtml
-  l.store "(Done)", "(Zakończono)"
-
-  #admin/category/show
-  l.store "Edit this category", "Edytuj tą kategorię"
-  l.store "Articles in", "Artykuły w"
-
-  #admin/comments/_form.rhtml
-  l.store "Author", "Autor"
+  # app/views/admin/feedback/_form.html.erb
+  l.store "Add a comment", ""
   l.store "Url", "Strona web"
-  l.store "Body", "Treść"
 
-  #admin/comments/comments.rhtml
-  l.store "on", "na"
+  # app/views/admin/feedback/_spam.html.erb
+  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
-  #admin/comments/destroy.rhtml
+  # app/views/admin/feedback/article.html.erb
+  l.store "Comments for %s", ""
+  l.store "Status", "Stan"
+  l.store "Comment Author", ""
+  l.store "Comment", ""
+
+  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Komentarze do"
 
-  #admin/comments/edit.rhtml
-  l.store "Show this comment", "Pokaż komentarz"
-  l.store "View comment on your blog", "Obejrzyj komentarz na blogu"
-  l.store "Editing comment", "Edycja komentarza"
+  # app/views/admin/feedback/index.html.erb
+  l.store "Search Comments and Trackbacks that contain", ""
+  l.store "Article", ""
 
-  #admin/comments/list.rhtml
-  l.store "IP", "Adres IP"
-  l.store "Posted date", "Data publikacji"
-
-  #admin/comments/new.rhtml
-  l.store "Creating comment", "Tworzenie komentarza"
-
-  #admin/content/_articles.rhtml
-  l.store "Posts", "Wpisy"
-  l.store "Uploads", "Załadowane zasoby"
-  l.store "Post title", "Tytuł wpisu"
-  l.store "Posted at", "Data publikacji"
-  l.store "%d comments", "%d komentarze"
-  l.store "1 comment", "1 komentarz"
-  l.store "%d trackbacks", "%d trackbacki"
-  l.store "1 trackback", "1 trackback"
-  l.store "View", "Obejrzyj"
-  l.store "Status", "Stan"
-  l.store "Offline", "Offline"
+  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
-  l.store "no trackbacks", "brak trackbacków"
-  l.store "no comments", "brak komentarzy"
-  l.store "Continue reading", "Czytaj dalej"
-  l.store "Files", "Pliki"
-  l.store "Images", "Grafika"
+  l.store "Page settings", ""
+  l.store "Permanent link", ""
 
-  #admin/content/_attachment.rhtml
-  l.store "Remove", "Skasuj"
-  l.store "Really delete attachment", "Na pewno skasować?"
-  l.store "Add Another Attachment", "Dodaj kolejny załącznik"
+  # app/views/admin/pages/destroy.html.erb
+  l.store "Pages", "Strony"
+  l.store "Are you sure you want to delete the page", "Czy na pewno chcesz usunąć tą stronę"
+  l.store "Delete this page", "Usuń tą stronę"
 
-  #admin/content/_form.rhtml
-  l.store "Article Body", "Nagłówek artykułu"
-  l.store "Post", "Wpis"
-  l.store "Optional extended content", "Opcjonalna treść rozszerzona"
-  l.store "Optional Extended Content", "Opcjonalna treść rozszerzona"
-  l.store "Article Content", "Treść artykułu"
-  l.store "Extended Content", "Treść rozszerzona"
-  l.store "%d tags", "%d tagi"
-  l.store "1 tag", "1 tag"
-  l.store "no tags", "brak tagów"
-  l.store "Save", "Zapisz"
-  l.store "Article Attachments", "Załączniki artykułu"
-  l.store "Article Options", "Opcje artykułu"
-  l.store "Permalink", "Permalink"
-  l.store "Allow comments", "Zezwól na dodawanie komentarzy"
-  l.store "Allow trackbacks", "Zezwól na podawanie trackbacków"
-  l.store "Published", "Opublikowane"
-  l.store "Publish at", "Opublikowane dnia"
-  l.store "Textfilter", "Filtr tekstu"
-  l.store "Toggle Extended Content", "Przełącz treść rozszerzoną"
+  # app/views/admin/pages/index.html.erb
+  l.store "New Page", ""
+  l.store "Manage pages", ""
 
-  #admin/content/_pages.rhtml
+  # app/views/admin/profiles/index.html.erb
+  l.store "Your profile", ""
+
+  # app/views/admin/resources/_mime_edit.html.erb
+  l.store "Content Type", "Typ treści"
+
+  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Poprzednia strona"
   l.store "Next page", "Następna strona"
 
-  #admin/content/_show_categories.rhtml
-  l.store "Currently this article is listed in following categories", "Artykuł jest opublikowany w następujących kategoriach"
-  l.store "You can add it to the following categories", "Możesz dodać go do następujących kategorii"
+  # app/views/admin/resources/_upload.html.erb
+  l.store "Upload a File to your Site", "Wyślij plik na swój blog"
+  l.store "File", "Plik"
+  l.store "Upload", "Wyślij"
 
-  #admin/content/_show_ressources.rhtml
-  l.store "Currently this article has the following resources", "Artykuł ma dołączone następujące zasoby"
-  l.store "You can associate the following resources", "Możesz przypisać do artykułu następujące zasoby"
+  # app/views/admin/resources/destroy.html.erb
+  l.store "Are you sure you want to delete this file", "Czy na pewno chcesz skasować ten plik"
+  l.store "Delete this file from the webserver?", "Skasować ten plik z serwera?"
+  l.store "File Uploads", "Wysłane pliki"
 
-  #admin/content/destroy.rhtml
-  l.store "Show this article", "Pokaż artykuł"
-  l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
-  l.store "Delete this article", "Usuń artykuł"
+  # app/views/admin/resources/images.html.erb
+  l.store "Thumbnail", ""
+  l.store "File Size", "Rozmiar pliku"
+  l.store "Images", "Grafika"
+  l.store "right-click for link", "Kliknij PPM by uzyskać łącze"
 
-  #admin/content/edit.rhtml
-  l.store "Edit Article", "Edytuj artykuł"
-  l.store "View article on your blog", "Obejrzyj artykuł na blogu"
+  # app/views/admin/resources/index.html.erb
+  l.store "Filename", "Nazwa pliku"
 
-  #admin/content/new.rhtml
-  l.store "Write a Page", "Utwórz stronę"
-  l.store "Write an Article", "Utwórz artykuł"
+  # app/views/admin/settings/_submit.html.erb
+  l.store "Update settings", ""
 
-  #admin/content/preview.rhtml
-  l.store "Posted by", "Opublikowane przez"
+  # app/views/admin/settings/feedback.html.erb
+  l.store "Enable comments by default", "Komentarze domyślnie włączone"
+  l.store "Enable Trackbacks by default", "Trackbacki domyślnie włączone"
+  l.store "Enable feedback moderation", "Włącz moderację komentarzy"
+  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Możesz włączyć globalną moderację komentarzy. W takim przypadku żaden komentarz nie ukaże się na blogu aż do momentu jego akceptacji."
+  l.store "Comments filter", "Filtr komentarzy"
+  l.store "Enable gravatars", "Włącz gravatary"
+  l.store "Show your email address", "Pokaż swój adres email"
+  l.store "Notifications", ""
+  l.store "Typo can notify you when new articles or comments are posted", "Typo może wysyłać powiadomienia o nowych artykułach bądź komentarzach"
+  l.store "Source Email", "Źródłowy adres email"
+  l.store "Email address used by Typo to send notifications", "Adres email używany przez Typo do wysyłania powiadomień"
+  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Włączenie ochrony przed spamem sprawi, iż Typo będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami."
+  l.store "Enable spam protection", "Włącz ochronę przed spamem"
+  l.store "Akismet Key", "Klucz Akismet"
+  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo może (opcjonalnie) stosować usługę %s do filtrowania spamu. Musisz zarejestrować się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj"
+  l.store "Disable trackbacks site-wide", ""
+  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Ta opcja pozwala na wyłączenie trackbacków we wszystkich artykułach. Nie usunie jednak istniejących trackbacków, a jedynie zabroni dodawania nowych."
+  l.store "Disable comments after", "Wyłącz komentarze po "
+  l.store "days", "dni"
+  l.store "Set to 0 to never disable comments", "Ustaw 0 by komentarze były zawsze włączone"
+  l.store "Max Links", "Max. liczba łączy"
+  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo automatycznie odrzuca komentarze i trackbacki, które zawierają większą, niż podana, liczbę łączy"
+  l.store "Set to 0 to never reject comments", "Ustaw 0 by komentarze były zawsze akceptowane"
+  l.store "Feedback settings", ""
 
-  #admin/content/show.rhtml
-  l.store "Preview Article", "Podgląd artykułu"
-  l.store "Edit this article", "Edytuj ten artykuł"
-  l.store "Last updated", "Ostatnio zmieniany"
-  l.store "Attachments", "Załączniki"
-
-  #admin/feedback/list.rhtml
-  l.store "Limit to spam", "Pokaż spam"
-  l.store "Limit to unconfirmed", "Pokaż niepotwierdzone"
-  l.store "Limit to unconfirmed spam", "Pokaż niepotwierdzony spam"
-  l.store "Blacklist", "Czarna lista"
-  l.store "Feedback Search", "Przeszukaj komentarze"
-  l.store "Comments and Trackbacks for", "Komentarze i trackbacki do"
-
-  #admin/general/task
-  l.store "Basic settings", "Ustawienia podstawowe"
-  l.store "Advanced settings", "Ustawienia zaawansowane"
-  l.store "Blog advanced settings", "Ustawienia zaawansowane bloga"
-
-  #admin/general/index.rhtml
-  l.store "Blog settings", "Ustawienia bloga"
-  l.store "Which settings group would you like to edit", "Którą grupę ustawień chcesz zmodyfikować"
-  l.store "General settings", "Ustawienia ogólne"
-  l.store "General Settings", "Ustawienia ogólne"
-  l.store "Read", "Odczyt"
-  l.store "Write", "Pisanie"
-  l.store "Discuss", "Dyskusje"
-  l.store "Notification", "Powiadomienia"
-  l.store "Spam Protection", "Ochrona przed spamem"
-  l.store "Resource Settings", "Ustawienia zasobów"
-  l.store "Cache", "Bufor"
+  # app/views/admin/settings/index.html.erb
+  l.store "Your blog", "Twój blog"
   l.store "Blog name", "Nazwa bloga"
   l.store "Blog subtitle", "Podtytuł bloga"
-  l.store "Language", "Język"
-  l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!", "Ta opcja pozwala wybrać prosty lub pełny panel administracyjny. Pełny panel administracyjny zawiera więcej opcji przez co jest bardziej skomplikowany. Tylko dla zaawansowanych użytkowników!"
   l.store "Blog URL", "Adres URL bloga"
-  l.store "Latitude, Longitude", "Szerokość geogr., długość geogr."
+  l.store "Language", "Język"
+  l.store "Allow users to register", ""
+  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
+  l.store "Items to display in admin lists", ""
+  l.store "Publishing options", ""
   l.store "Display", "Wyświetl"
-  l.store "your lattitude and longitude", "Twoją szerokość i długość geograficzna"
-  l.store "exemple", "na przykład"
+  l.store "articles on my homepage by default", "domyślnie artykułów na stronie głównej"
+  l.store "articles in my news feed by default", "domyślnie artykułów w subskrypcji RSS"
+  l.store "Show full article on feed", "Pokaż pełną treść artykułu w subskrypcji RSS"
+  l.store "Feedburner ID", ""
+  l.store "General settings", "Ustawienia ogólne"
+  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
+
+  # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Optymalizacja silnika wyszukiwania"
   l.store "Show blog name", "Pokaż nazwę bloga"
   l.store "At the beginning of page title", "Na początku strony tytułowej"
   l.store "At the end of page title", "Na końcu strony tytułowej"
   l.store "Don't show blog name in page title", "W ogóle nie pokazuj na stronie tytułowej"
-  l.store "Save Settings", "Zapisz ustawienia"
-  l.store "articles on my homepage by default", "domyślnie artykułów na stronie głównej"
-  l.store "articles in my news feed by default", "domyślnie artykułów w subskrypcji RSS"
-  l.store "Show full article on feed", "Pokaż pełną treść artykułu w subskrypcji RSS"
-  l.store "Article filter", "Filtr artykułów"
-  l.store "Comments filter", "Filtr komentarzy"
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publikując artykuły, Typo może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu."
-  l.store "Send trackbacks", "Wyślij trackbacki"
-  l.store "URLs to ping automatically", "Automatycznie pingowane łącza"
-  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Ta opcja pozwala na wyłączenie trackbacków we wszystkich artykułach. Nie usunie jednak istniejących trackbacków, a jedynie zabroni dodawania nowych."
-  l.store "Disable trackbacks site-wide" ,"Wyłącz trackbacki w całym serwisie"
-  l.store "Enable Trackbacks by default", "Trackbacki domyślnie włączone"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Możesz włączyć globalną moderację komentarzy. W takim przypadku żaden komentarz nie ukaże się na blogu aż do momentu jego akceptacji."
-  l.store "Enable feedback moderation", "Włącz moderację komentarzy"
-  l.store "Enable comments by default", "Komentarze domyślnie włączone"
-  l.store "Show your email address", "Pokaż swój adres email"
-  l.store "Enable gravatars", "Włącz gravatary"
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Można opcjonalnie wyłączyć nie-Ajaxowe komentarze. Typo zawsze używa technologii Ajax do przesyłania komentarzy - o ile Javascript jest włączony. Przeważnie komentarze nie-Ajaxowe pochodzą od spamerów lub użytkowników bez Javascript."
-  l.store "Allow non-ajax comments", "Zezwól na nie-AJAXowe komentarze"
-  l.store "Disable comments after", "Wyłącz komentarze po "
-  l.store "Set to 0 to never disable comments", "Ustaw 0 by komentarze były zawsze włączone"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo automatycznie odrzuca komentarze i trackbacki, które zawierają większą, niż podana, liczbę łączy"
-  l.store "Max Links", "Max. liczba łączy"
-  l.store "Set to 0 to never reject comments", "Ustaw 0 by komentarze były zawsze akceptowane"
-  l.store "Typo can notify you when new articles or comments are posted", "Typo może wysyłać powiadomienia o nowych artykułach bądź komentarzach"
-  l.store "Source Email", "Źródłowy adres email"
-  l.store "Email address used by Typo to send notifications", "Adres email używany przez Typo do wysyłania powiadomień"
-  l.store "Jabber account", "Konto Jabber"
-  l.store "Jabber account to use when sending Jabber notifications", "Konto Jabber do wysyłania powiadomień"
-  l.store "Jabber password", "Hasło konta Jabber"
-  l.store "Spam protection", "Ochrona przed spamem"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Włączenie ochrony przed spamem sprawi, iż Typo będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami."
-  l.store "Enable spam protection", "Włącz ochronę przed spamem"
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo może (opcjonalnie) stosować usługę %s do filtrowania spamu. Musisz zarejestrować się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj"
-  l.store "Akismet Key", "Klucz Akismet"
-  l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", "Poniższe ustawienia podawane są jako domyślne jeśli publikacja będzie zawierać metadane iTunes"
-  l.store "Subtitle", "Podtytuł"
-  l.store "Summary", "Streszczenie"
-  l.store "Setting for channel", "Ustawienia kanału"
-  l.store "Optional Name", "Nazwa opcjonalna"
-  l.store "Not published by Apple", "Nie publikowane przez Apple"
-  l.store "Copyright Information", "Informacje o prawach (copyright)"
-  l.store "Explicit", "Tylko dla dorosłych"
-  l.store "Empty Fragment Cache", "Usuń bufor fragmentów"
-  l.store "Rebuild cached HTML", "Przebuduj bufor HTML"
-  l.store "days", "dni"
+  l.store "Format of permalink", ""
+  l.store "Google Analytics", ""
+  l.store "Google verification link", ""
+  l.store "Meta description", ""
+  l.store "Meta keywords", ""
+  l.store "Use RSS description", ""
+  l.store "Index categories", ""
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Index tags", ""
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Robots.txt", ""
+  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "Search Engine Optimization", ""
+  l.store "This will display", ""
+  l.store "at the bottom of each of your post in the RSS feed", ""
 
-  #admin/general/update_database
-  l.store "Database migration", "Migruj bazę danych"
+  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informacja"
   l.store "Current database version", "Aktualna wersja bazy danych"
   l.store "New database version", "Nowa wersja bazy danych"
   l.store "Your database supports migrations", "Twoja baza danych wspiera migracje"
-  l.store "yes", "tak"
-  l.store "no", "nie"
   l.store "Needed migrations", "Potrzebne migracje"
   l.store "You are up to date!", "Wszystko jest aktualne!"
   l.store "Update database now", "Aktualizuj bazę danych"
   l.store "may take a moment", "może zająć dłuższą chwilę"
-  l.store "config updated.", "konfiguracja zaktualizowana."
+  l.store "Database migration", "Migruj bazę danych"
+  l.store "yes", "tak"
+  l.store "no", "nie"
 
-  #admin/pages/_form.rhtml
-  l.store "Page Body", "Nagłówek strony"
-  l.store "Page Content", "Treść strony"
-  l.store "Location", "Lokacja"
-  l.store "Page Options", "Opcje strony"
+  # app/views/admin/settings/write.html.erb
+  l.store "Send trackbacks", "Wyślij trackbacki"
+  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publikując artykuły, Typo może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu."
+  l.store "URLs to ping automatically", "Automatycznie pingowane łącza"
+  l.store "Latitude, Longitude", "Szerokość geogr., długość geogr."
+  l.store "your lattitude and longitude", "Twoją szerokość i długość geograficzna"
+  l.store "exemple", "na przykład"
+  l.store "Write", "Pisanie"
 
-  #admin/pages/_pages.rhtml
-  l.store "Action", "Akcje"
-  l.store "Pages", "Strony"
-  l.store "Show this page", "Pokaż tą stronę"
-  l.store "Are you sure you want to delete the page", "Czy na pewno chcesz usunąć tą stronę"
-  l.store "Delete this page", "Usuń tą stronę"
-
-  #admin/pages/edit.rhtml
-  l.store "Create new page", "Utwórz nową stronę"
-  l.store "View page on your blog", "Zaprezentuj stronę na blogu"
-  l.store "Editing page", "Edytuj stronę"
-  l.store "Manage Text Filters", "Zarządzaj filtrami tekstu"
-
-  #admin/pages/show.rhtml
-  l.store "Edit this page", "Edytuj tą stronę"
-  l.store "by", "przez"
-
-  #admin/ressources/_metadata_add.rhtml
-  l.store "Resource MetaData", "Metadane zasobu"
-  l.store "Set iTunes metadata for this enclosure", "Ustaw metadane iTunes"
-  l.store "Duration", "Czas trwania"
-  l.store "Key Words", "Słowa kluczowe"
-  l.store "seperate with spaces", "rozdziel spacjami"
-  l.store "Category", "Kategoria"
-
-  #admin/resources/_metadata_edit.rhtml
-  l.store "Remove iTunes Metadata", "Usuń metadane iTunes"
-  l.store "Content Type", "Typ treści"
-
-  #admin/resources/_resources.rhtml
-  l.store "Filename", "Nazwa pliku"
-  l.store "right-click for link", "Kliknij PPM by uzyskać łącze"
-  l.store "MetaData", "Metadane"
-  l.store "File Size", "Rozmiar pliku"
-  l.store "Uploaded", "Załadowany"
-  l.store "Edit MetaData", "Zmień metadane"
-  l.store "Add MetaData", "Dodaj metadane"
-
-  #admin/resources/destroy.rhtml
-  l.store "File Uploads", "Wysłane pliki"
-  l.store "Upload a new File", "Wyślij nowy plik"
-  l.store "Are you sure you want to delete this file", "Czy na pewno chcesz skasować ten plik"
-  l.store "Delete this file from the webserver?", "Skasować ten plik z serwera?"
-
-  #admin/resources/new.rhtml
-  l.store "Upload a File to your Site", "Wyślij plik na swój blog"
-  l.store "Upload", "Wyślij"
-  l.store "Upload a new Resource", "Wyślij nowy zasób"
-  l.store "File", "Plik"
-
-  #admin/sidebar/_avaliables.rhtml
+  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "Brak zainstalowanych wtyczek"
 
-  #admin/sidebar/_publish.rhtml
+  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Opublikowane zmiany"
 
-  #admin/sidebar/_target.rhtml
+  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Przeciągnij i upuść wtyczki na pasek boczny"
 
-  #admin/sidebar/index.rhtml
-  l.store "Choose theme", "Wybierz temat"
+  # app/views/admin/sidebar/index.html.erb
   l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
-  l.store "Publish changes", "Publikuj zmiany"
   l.store "Available Items", "Dostępne elementy"
   l.store "Active Sidebar items", "Aktywne elementy paska"
+  l.store "Get more plugins", ""
+  l.store "Sidebar", ""
+  l.store "Publish changes", "Publikuj zmiany"
 
-  #admin/textfilters/_form.rhtml
-  l.store "Description", "Opis"
-  l.store "Markup type", "Typ znaczników"
-  l.store "Post-processing filters", "Filtr post-process"
-  l.store "Parameters", "Parametry"
+  # app/views/admin/tags/_form.html.erb
+  l.store "Display name", "Wyświetlana nazwa"
 
-  #admin/textfilters/_macros.rhtml
-  l.store "Show Help", "Pomoc"
+  # app/views/admin/tags/destroy.html.erb
+  l.store "Are you sure you want to delete the tag", ""
+  l.store "Delete this tag", ""
 
-  #admin/textfilters/_textfilters.rhtml
-  l.store "Markup", "Znaczniki"
-  l.store "Filters", "Filtry"
+  # app/views/admin/tags/edit.html.erb
+  l.store "Editing ", ""
+  l.store "Back to tags list", ""
 
-  #admin/textfilters/destroy.rhtml
-  l.store "Text Filters", "Filtry tekstu"
-  l.store "Are you sure you want to delete this filter", "Czy na pewno chcesz usunąć ten filtr tekstu"
-  l.store "Delete this filter", "Usuń filtr"
+  # app/views/admin/tags/index.html.erb
+  l.store "Display Name", ""
+  l.store "Manage tags", ""
 
-  #admin/textfilters/edit.rhtml
-  l.store "Editing textfilter", "Modyfikuj filtr"
+  # app/views/admin/themes/catalogue.html.erb
+  l.store "Sorry the theme catalogue is not available", ""
+  l.store "Theme catalogue", ""
 
-  #admin/textfilters/list.rhtml
-  l.store "Create new text filter", "Utwórz nowy filtr"
-  l.store "Customize Sidebar", "Personalizuj pasek boczny"
-  l.store "Macros", "Makra"
+  # app/views/admin/themes/editor.html.erb
+  l.store "Theme editor", ""
 
-  #admin/textfilters/macro_help.rhtml
-  l.store "Macro Filter Help", "Pomoc makr filtrów"
-  l.store "Creating text filter", "Tworzenie filtra tekstó"
-
-  #admin/textfilters/show.rhtml
-  l.store "Text Filter Details", "Szczegóły filtra tekstu"
-  l.store "Edit this filter", "Modyfikuj ten filtr"
-  l.store "See help text for this filter", "Zobacz pomoc dla tego filtra"
-
-  #admin/themes/index.rhtml
-  l.store "Choose theme", "Wybierz temat"
-  l.store "Activate", "Aktywuj"
+  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Temat aktywny"
+  l.store "Get more themes", ""
+  l.store "You can download third party themes from officially supported %s ", ""
+  l.store "Typogarden", ""
+  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", ""
+  l.store "Choose a theme", ""
 
-  #admin/trackbacks/edit.rhtml
-  l.store "Trackbacks for", "Trackbacki do"
-  l.store "Editing trackback", "Modyfikuj trackback"
-
-  #admin/trackbacks/new.rhtml
-  l.store "Creating trackback", "Tworzenie trackbacka"
-  l.store "Edit this trackback", "Modyfikuj ten trackback"
-
-  #admin/users/_form.rhtml
-  l.store "Jabber", "Jabber"
-  l.store "Password Confirmation", "Potwierdzenie hasła"
+  # app/views/admin/users/_form.html.erb
+  l.store "Account settings", ""
+  l.store "Password confirmation", ""
+  l.store "Profile", ""
+  l.store "User's status", ""
+  l.store "Active", ""
+  l.store "Inactive", ""
+  l.store "Profile Settings", ""
+  l.store "Firstname", ""
+  l.store "Lastname", ""
+  l.store "Nickname", ""
+  l.store "Editor", ""
+  l.store "Use simple editor", ""
+  l.store "Use visual rich editor", ""
   l.store "Send notification messages via email", "Wysyłaj powiadomienia emailem"
   l.store "Send notification messages when new articles are posted", "Wysyłaj powiadomienia o nowych artykułach"
   l.store "Send notification messages when comments are posted", "Wysyłaj powiadomienia o nowych komentarzach"
+  l.store "Contact Options", ""
+  l.store "Your site", ""
+  l.store "display url on public profile", ""
+  l.store "Your MSN", ""
+  l.store "display MSN ID on public profile", ""
+  l.store "Your Yahoo ID", ""
+  l.store "display Yahoo! ID on public profile", ""
+  l.store "Your Jabber ID", ""
+  l.store "display Jabber ID on public profile", ""
+  l.store "Your AIM id", ""
+  l.store "display AIM ID on public profile", ""
+  l.store "Your Twitter username", ""
+  l.store "display twitter on public profile", ""
+  l.store "Tell us more about you", ""
 
-  #admin/user/_user.rhtml
-  l.store "Number of Articles", "Liczba artykułów"
-  l.store "Number of Comments", "Liczba komentarzy"
-  l.store "Notified", "Powiadamiony"
-  l.store "via email", "emailem"
-
-  #admin/user/destroy.rhtml
-  l.store "Show this user", "Pokazuj tego użytkownika"
+  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Na pewno usunąć użytkownika"
+  l.store "Yes", ""
+  l.store "Users", ""
 
-  #admin/user/edit.rhtml
+  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Zmień dane użytkownika"
-  l.store "Editing User", "Zmiana danych użytkownika"
+
+  # app/views/admin/users/index.html.erb
   l.store "New User", "Nowy użytkownik"
-  l.store "Add new user", "Dodaj nowego użytkownika"
+  l.store "Comments", ""
+  l.store "State", ""
+  l.store "%s user", ""
 
-  #admin/user/new.rhtml
-  l.store "Creating user", "Tworzenie użytkownika"
+  # app/views/admin/users/new.html.erb
+  l.store "Add User", ""
 
-  #admin/user/show.rhtml
-  l.store "User's articles", "Artykuły użytkownika"
-  l.store "Notify via email", "Powiadamiaj emailem"
-  l.store "Notify on new articles", "Powiadamiaj o nowych artykułach"
-  l.store "Notify on new comments", "Powiadamiaj o nowych komentarzach"
+  # app/views/articles/_article.html.erb
+  l.store "Posted by", "Opublikowane przez"
+  l.store "Continue reading", "Czytaj dalej"
 
-  #articles/_comment.rhtml
+  # app/views/articles/_comment.html.erb
   l.store "said", "powiedział"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ten komentarz oczekuje na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora."
 
-  #articles/_comment_box.rhtml
+  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Twoja nazwa"
-  l.store "Your blog", "Twój blog"
   l.store "Your email", "Twój email"
   l.store "Your message", "Treść"
   l.store "Comment Markup Help", "Pomoc języka formatowania"
   l.store "Preview comment", "Obejrzyj komentarz"
-  l.store 'leave url/email', 'zostaw url/email'
+  l.store "leave url/email", ""
 
-  #articles/_trackback.rhtml
+  # app/views/articles/_comment_failed.html.erb
+  l.store "Oops, something wrong happened, the comment could not be saved", ""
+
+  # app/views/articles/_trackback.html.erb
   l.store "From", "Z"
 
-  #articles/archives.rhtml
+  # app/views/articles/archives.html.erb
   l.store "No articles found", "Brak artykułów"
+  l.store "posted in", ""
 
-  #articles/comment_preview.rhtml
+  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "zaraz powie"
 
-  #articles/groupings.rhtml
+  # app/views/articles/groupings.html.erb
   l.store "There are", "Istnieje"
 
-  #articles/index.rhtml
-  l.store "Read more", "Czytaj dalej"
-  l.store "Older posts", "Starsze wpisy"
-
-  #articles/read.rhtml
+  # app/views/articles/read.html.erb
   l.store "Leave a response", "Skomentuj"
+  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Użyj następującego trackbacka na swojej stronie"
   l.store "RSS feed for this post", "Subskrypcja RSS dla tego wpisu"
   l.store "trackback uri", "Adres trackback"
   l.store "Comments are disabled", "Komentarze wyłączone"
 
-  l.store "Pictures from", "Zdjęcia z"
+  # app/views/authors/show.html.erb
+  l.store "Web site:", ""
+  l.store "MSN:", ""
+  l.store "Yahoo:", ""
+  l.store "Jabber:", ""
+  l.store "AIM:", ""
+  l.store "Twitter:", ""
+  l.store "About %s", ""
+  l.store "This author has not published any article yet", ""
 
-  #views/shared/_search.rhtml
-  l.store 'Live Search', 'Wyszukiwarka'
+  # app/views/comments/show.html.erb
+  l.store "This comment has been flagged for moderator approval.", ""
 
-  #vendor/plugins/aimpresence_sidebar/aimpresence_sidebar.rb
-  l.store "AIM Presence", "Status AIM"
+  # app/views/layouts/administration.html.erb
+  l.store "%s &raquo;", ""
+  l.store "is proudly powered by", "dumnie działa na"
+  l.store "Dashboard", "Podsumowanie"
 
-  #vendor/plugins/aimpresence_sidebar/views/content.rb
-  l.store "AIM Status", "Status AIM"
+  # app/views/setup/index.html.erb
+  l.store "Welcome", ""
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
 
-  #vendor/plugins/xml_sidebar/xml_sidebar.rb
-  l.store "XML Syndication", "Subskrypcja XML"
+  # app/views/shared/_confirm.html.erb
+  l.store "Congratulation!", ""
+  l.store "You have successfully signed up", ""
+  l.store "<strong>Login:</strong> %s", ""
+  l.store "<strong>Password:</strong> %s", ""
+  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
+  l.store "Proceed to %s", ""
+  l.store "admin", ""
 
-  #vendor/plugins/xml_sidebar/xml_sidebar.rb
-  l.store "Syndicate", "Subskrypcje"
+  # app/views/shared/_search.html.erb
+  l.store "Live Search", ""
 
-  #vendor/plugins/archives_sidebar/views/content.rb
-  l.store "Archives", "Archiwa"
+  # test/mocks/themes/typographic/layouts/default.html.erb
+  l.store "Powered by %s", ""
+  l.store "Designed by %s ", ""
 
-  #vendor/plugins/tags_sidebar/views/content.rb
-  l.store "Tags", "Tagi"
+  # test/mocks/themes/typographic/views/articles/_article.html.erb
+  l.store "Continue reading...", ""
+  l.store "This entry was posted on %s", ""
+  l.store "and %s", ""
+  l.store "You can follow any any response to this entry through the %s", ""
+  l.store "Atom feed", ""
+  l.store "You can leave a %s", ""
+  l.store "or a %s from your own site", ""
+  l.store "Read full article", ""
+  l.store "comment", ""
+  l.store "trackback", ""
 
-  #app/helpers/admin/base_helper.rb
-  l.store "Back to overview", "Wróć do podglądu"
-  l.store "log out", "wyloguj"
+  # test/mocks/themes/typographic/views/articles/_comment.html.erb
+  l.store "later", ""
 
-  #app/controller/admin/cache_controller.rb
-  l.store "Cache was cleared", "Bufor opróżniono"
-  l.store "HTML was cleared", "HTML opróżniono"
+  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
+  l.store "Leave a comment", ""
+  l.store "Name %s", ""
+  l.store "enabled", ""
+  l.store "never displayed", ""
+  l.store "Website", ""
+  l.store "Textile enabled", ""
+  l.store "Markdown enabled", ""
+  l.store "required", ""
 
-  #app/controller/admin/categories_controller.rb
-  l.store "Category was successfully created.", "Kategoria została pomyślnie utworzona."
-  l.store "Category could not be created.", "Kategoria nie została utworzona."
-  l.store "Category was successfully updated.", "Kategoria została pomyślnie zaktualizowana."
+  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
+  l.store "No comments", ""
 
-  #app/models/article.rb
-  l.store "New post", "Nowy wpis"
-  l.store "A new message was posted to ", "Nowy wpis został dodany do "
+  # test/mocks/themes/typographic/views/shared/_search.html.erb
+  l.store "Searching", ""
 
-  #app/helper/application_helper.rb
-  l.store "no ", "brak "
+  # themes/dirtylicious/layouts/default.html.erb
+  l.store "Home", ""
+  l.store "About", ""
+  l.store "Designed by %s ported to typo by %s ", ""
 
-  #app/controller/admin/resource_controller.rb
-  l.store "File uploaded: ", "Załadowany plik: "
-  l.store "Unable to upload", "Nie można załadować"
-  l.store "Metadata was successfully removed.", "Metadane zostały pomyślnie usunięte."
-  l.store "Metadata was successfully updated.", "Metadane zostały pomyślnie zaktualizowane."
-  l.store "Not all metadata was defined correctly.", "Nie wszystkie metadane zostały poprawnie zdefiniowane."
-  l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
-  l.store "Error occurred while updating Content Type.", "Wystąpił błąd w trakcie aktualizacji typu zawartości."
-  l.store "complete", "zakończony"
+  # themes/scribbish/layouts/default.html.erb
+  l.store "styled with %s", ""
 
-  #vendor/plugins/xml_sidebar/views/content.rhtml
-  l.store 'Articles feed', 'Artykuły RSS'
-  l.store 'Comments feed', 'Komentarze RSS'
-  l.store 'Trackbacks feed', 'Trackbacki RSS' # FIXME This translation could be better?
-  l.store 'Articles', 'Artykuły'
-  l.store 'Comments', 'Komentarze'
-  l.store 'Trackbacks', 'Trackbacki' # FIXME
+  # themes/scribbish/views/articles/_article.html.erb
+  l.store "Meta", ""
+  l.store "permalink", ""
 
-  #vendor/plugins/category_sidebar/views/content.rhtml
-  l.store 'Categories', 'Kategorie'
+  # themes/true-blue-3/helpers/theme_helper.rb
+  l.store "You are here: ", ""
+  l.store "%d comment", ""
 
-  #app/helpers/articles_helper.rb
-  l.store 'Posted in', 'Opublikowano w'
-  l.store 'posted in', 'opublikowano w'
+  # themes/true-blue-3/views/articles/_article.html.erb
+  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  #articles/_comment_box.rhtml
-  l.store 'submit', 'Prześlij'
+  # themes/true-blue-3/views/articles/_comment.html.erb
+  l.store "By", ""
+  l.store "later:", ""
 
-  #vendor/plugins/will-paginate
+  # themes/true-blue-3/views/articles/_comment_form.html.erb
+  l.store "Email address", ""
+  l.store "Your website", ""
+
+  # themes/true-blue-3/views/articles/read.html.erb
+  l.store "If you liked this article you can %s", ""
+  l.store "add me to Twitter", ""
+  l.store "Trackbacks for", "Trackbacki do"
+
+  # themes/true-blue-3/views/articles/search.html.erb
+  l.store "Search results for:", ""
+
+  # themes/true-blue-3/views/categories/index.html.erb
+  l.store "Read all articles in %s", ""
+
+  # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", "Poprzednie"
   l.store "Next", "Następne"
 
-  # Other, Not sorted
-  l.store "Search", "Szukaj"
-  l.store "Date", "Data"
+  # vendor/plugins/archives_sidebar/views/content.rhtml
+  l.store "Archives", "Archiwa"
+
+  # vendor/plugins/authors_sidebar/views/content.rhtml
+  l.store "Authors", ""
+
+  # vendor/plugins/xml_sidebar/views/content.rhtml
+  l.store "Syndicate", "Subskrypcje"
+  l.store "Category %s", ""
+  l.store "Tag %s", ""
+
+  # Obsolete translations
+  l.store "%d categories", "%d kategorie"
+  l.store "%d tags", "%d tagi"
+  l.store "%d users", "%d użytkownicy"
+  l.store "1 category", "kategoria"
+  l.store "1 tag", "1 tag"
+  l.store "1 user", "użytkownik"
+  l.store "A new message was posted to ", "Nowy wpis został dodany do "
+  l.store "AIM Presence", "Status AIM"
+  l.store "AIM Status", "Status AIM"
+  l.store "Action", "Akcje"
+  l.store "Activate", "Aktywuj"
+  l.store "Add MetaData", "Dodaj metadane"
+  l.store "Add category", "Dodaj kategorię"
+  l.store "Add new user", "Dodaj nowego użytkownika"
+  l.store "Add pattern", "Dodaj wzorzec"
+  l.store "Advanced settings", "Ustawienia zaawansowane"
+  l.store "Allow non-ajax comments", "Zezwól na nie-AJAXowe komentarze"
+  l.store "Are you sure you want to delete this filter", "Czy na pewno chcesz usunąć ten filtr tekstu"
+  l.store "Are you sure you want to delete this item?", "Czy na pewno chcesz usunąć tą pozycję?"
+  l.store "Article Attachments", "Załączniki artykułu"
+  l.store "Article Body", "Nagłówek artykułu"
+  l.store "Article Content", "Treść artykułu"
+  l.store "Article Options", "Opcje artykułu"
+  l.store "Articles in", "Artykuły w"
+  l.store "Attachments", "Załączniki"
+  l.store "Back to the blog", "Wróć do bloga"
+  l.store "Basic settings", "Ustawienia podstawowe"
+  l.store "Blacklist", "Czarna lista"
+  l.store "Blacklist Patterns", "Czarna lista"
+  l.store "Blog advanced settings", "Ustawienia zaawansowane bloga"
+  l.store "Blog settings", "Ustawienia bloga"
+  l.store "Body", "Treść"
+  l.store "Cache", "Bufor"
+  l.store "Cache was cleared", "Bufor opróżniono"
+  l.store "Category", "Kategoria"
+  l.store "Category could not be created.", "Kategoria nie została utworzona."
+  l.store "Category title", "Tytuł kategorii"
+  l.store "Category was successfully created.", "Kategoria została pomyślnie utworzona."
+  l.store "Category was successfully updated.", "Kategoria została pomyślnie zaktualizowana."
+  l.store "Change your blog presentation", "Zmienić wygląd swojego bloga"
+  l.store "Choose password", "Wybierz hasło"
+  l.store "Choose theme", "Wybierz temat"
+  l.store "Comments and Trackbacks for", "Komentarze i trackbacki do"
+  l.store "Confirm password", "Potwierdź hasło"
+  l.store "Copyright Information", "Informacje o prawach (copyright)"
+  l.store "Create new Blacklist", "Utwórz nową czarną listę"
+  l.store "Create new category", "Utwórz nową kategorię"
+  l.store "Create new page", "Utwórz nową stronę"
+  l.store "Create new text filter", "Utwórz nowy filtr"
+  l.store "Creating comment", "Tworzenie komentarza"
+  l.store "Creating text filter", "Tworzenie filtra tekstó"
+  l.store "Creating trackback", "Tworzenie trackbacka"
+  l.store "Creating user", "Tworzenie użytkownika"
+  l.store "Currently this article is listed in following categories", "Artykuł jest opublikowany w następujących kategoriach"
+  l.store "Customize", "Personalizuj"
+  l.store "Customize Sidebar", "Personalizuj pasek boczny"
+  l.store "Delete this filter", "Usuń filtr"
+  l.store "Design", "Wygląd"
+  l.store "Desired login", "Proponowany login"
+  l.store "Discuss", "Dyskusje"
+  l.store "Do you want to go to your blog?", "Czy chcesz obejrzeć Twój blog?"
+  l.store "Duration", "Czas trwania"
+  l.store "Edit Article", "Edytuj artykuł"
+  l.store "Edit MetaData", "Zmień metadane"
+  l.store "Edit this article", "Edytuj ten artykuł"
+  l.store "Edit this category", "Edytuj tą kategorię"
+  l.store "Edit this filter", "Modyfikuj ten filtr"
+  l.store "Edit this page", "Edytuj tą stronę"
+  l.store "Edit this trackback", "Modyfikuj ten trackback"
+  l.store "Editing User", "Zmiana danych użytkownika"
+  l.store "Editing category", "Edytuj kategorię"
+  l.store "Editing comment", "Edycja komentarza"
+  l.store "Editing page", "Edytuj stronę"
+  l.store "Editing pattern", "Zmiana wzorca"
+  l.store "Editing textfilter", "Modyfikuj filtr"
+  l.store "Editing trackback", "Modyfikuj trackback"
+  l.store "Empty Fragment Cache", "Usuń bufor fragmentów"
+  l.store "Enable plugins", "Aktywować wtyczki"
+  l.store "Explicit", "Tylko dla dorosłych"
+  l.store "Extended Content", "Treść rozszerzona"
+  l.store "Feedback Search", "Przeszukaj komentarze"
+  l.store "Files", "Pliki"
+  l.store "Filters", "Filtry"
+  l.store "General Settings", "Ustawienia ogólne"
+  l.store "HTML was cleared", "HTML opróżniono"
+  l.store "IP", "Adres IP"
+  l.store "Jabber", "Jabber"
+  l.store "Jabber account", "Konto Jabber"
+  l.store "Jabber account to use when sending Jabber notifications", "Konto Jabber do wysyłania powiadomień"
+  l.store "Jabber password", "Hasło konta Jabber"
+  l.store "Key Words", "Słowa kluczowe"
+  l.store "Last updated", "Ostatnio zmieniany"
+  l.store "Limit to unconfirmed", "Pokaż niepotwierdzone"
+  l.store "Limit to unconfirmed spam", "Pokaż niepotwierdzony spam"
+  l.store "Location", "Lokacja"
   l.store "Log out", "Wyloguj"
-
-  # Taken from the es_MX translation.
-
-  #app/helpers/application_helper.rb
-  l.store 'no', 'nie'
-  l.store 'comment', 'komentarz'
-  l.store 'comments', 'komentarze'
-  l.store 'trackback', '' # FIXME
-  l.store 'trackbacki', ''
-  l.store 'less than', 'mniej niż'
-  l.store 'a minute', 'minuta'
-  l.store 'second', 'sekunda'
-  l.store 'seconds', 'sekundy'
-  l.store 'minute', 'minuta'
-  l.store 'minutes', 'minuty'
-  l.store 'hour', 'godzina'
-  l.store 'hours', 'godziny'
-  l.store '20 seconds', '20 sekund'
-  l.store 'half a minute', 'pół minuty'
-  l.store 'about', 'o' # FIXME
-  l.store '1 hour', 'jedna godzina'
-  l.store '1 minute', 'jedna minuta'
-  l.store '1 day', 'jeden dzień'
-  l.store '1 year', 'jeden rok'
-  l.store '1 month', 'jeden miesiąc'
-  l.store 'day', 'dzień'
-  l.store 'days', 'dni'
-  l.store 'month', 'miesiąc'
-  l.store 'months', 'miesiące'
-  l.store 'year', 'rok'
-  l.store 'years', 'lata'
-  l.store 'over', 'ponad'
-  l.store 'ago', 'temu'
-
-  # TODO: How to make this work? Why is it not working.
-  # All Javascript strings go here, with the js_ prefix (only needed in this file)
-  l.store 'js_hour', 'godzina'
-  l.store 'js_minute', 'minuta'
-  l.store 'js_hours', 'godziny'
-  l.store 'js_minutes', 'minuty'
-  l.store 'js_days', 'dni'
-  l.store 'js_in', 'w'
-  l.store 'js_since', 'od'
-  l.store 'js_from now', 'od teraz'
-  l.store 'js_ago', 'temu'
-  l.store 'js_on', ' '
-  l.store 'js_less than a minute', 'mniej niż minutę temu'
-  l.store 'js_about one hour', 'około godzinę temu'
-  l.store 'js_one day', 'jednen dzień'
-  l.store 'js_about one day', 'około jednego dnia'
+  l.store "Logoff", "Wyloguj"
+  l.store "Macro Filter Help", "Pomoc makr filtrów"
+  l.store "Macros", "Makra"
+  l.store "Manage", "Zarządzaj"
+  l.store "Manage Articles", "Zarządzaj artykułami"
+  l.store "Manage Categories", "Zarządzaj kategoriami"
+  l.store "Manage Pages", "Zarządzaj stronami"
+  l.store "Manage Resources", "Zarządzaj zasobami"
+  l.store "Manage Text Filters", "Zarządzaj filtrami tekstu"
+  l.store "Markup", "Znaczniki"
+  l.store "Markup type", "Typ znaczników"
+  l.store "MetaData", "Metadane"
+  l.store "Metadata was successfully removed.", "Metadane zostały pomyślnie usunięte."
+  l.store "New post", "Nowy wpis"
+  l.store "Not published by Apple", "Nie publikowane przez Apple"
+  l.store "Notification", "Powiadomienia"
+  l.store "Notified", "Powiadamiony"
+  l.store "Notify on new articles", "Powiadamiaj o nowych artykułach"
+  l.store "Notify on new comments", "Powiadamiaj o nowych komentarzach"
+  l.store "Notify via email", "Powiadamiaj emailem"
+  l.store "Number of Articles", "Liczba artykułów"
+  l.store "Number of Comments", "Liczba komentarzy"
+  l.store "Offline", "Offline"
+  l.store "Older posts", "Starsze wpisy"
+  l.store "Optional Extended Content", "Opcjonalna treść rozszerzona"
+  l.store "Optional Name", "Nazwa opcjonalna"
+  l.store "Optional extended content", "Opcjonalna treść rozszerzona"
+  l.store "Page Body", "Nagłówek strony"
+  l.store "Page Content", "Treść strony"
+  l.store "Page Options", "Opcje strony"
+  l.store "Parameters", "Parametry"
+  l.store "Password Confirmation", "Potwierdzenie hasła"
+  l.store "Pattern", "Wzorzec"
+  l.store "Pictures from", "Zdjęcia z"
+  l.store "Post", "Wpis"
+  l.store "Post title", "Tytuł wpisu"
+  l.store "Post-processing filters", "Filtr post-process"
+  l.store "Posted at", "Data publikacji"
+  l.store "Posted date", "Data publikacji"
+  l.store "Posts", "Wpisy"
+  l.store "Preview Article", "Podgląd artykułu"
+  l.store "Read", "Odczyt"
+  l.store "Read more", "Czytaj dalej"
+  l.store "Rebuild cached HTML", "Przebuduj bufor HTML"
+  l.store "Recent comments", "Ostatnie komentarze"
+  l.store "Recent trackbacks", "Ostatnie trackbacki"
+  l.store "Regex", "Wyrażenie regularne"
+  l.store "Remove iTunes Metadata", "Usuń metadane iTunes"
+  l.store "Resource MetaData", "Metadane zasobu"
+  l.store "Resource Settings", "Ustawienia zasobów"
+  l.store "Save Settings", "Zapisz ustawienia"
+  l.store "See help text for this filter", "Zobacz pomoc dla tego filtra"
+  l.store "Set iTunes metadata for this enclosure", "Ustaw metadane iTunes"
+  l.store "Setting for channel", "Ustawienia kanału"
+  l.store "Settings", "Ustawienia"
+  l.store "Show Help", "Pomoc"
+  l.store "Show this article", "Pokaż artykuł"
+  l.store "Show this category", "Pokaż tą kategorię"
+  l.store "Show this comment", "Pokaż komentarz"
+  l.store "Show this page", "Pokaż tą stronę"
+  l.store "Show this pattern", "Pokaż ten wzorzec"
+  l.store "Show this user", "Pokazuj tego użytkownika"
+  l.store "Spam Protection", "Ochrona przed spamem"
+  l.store "Spam protection", "Ochrona przed spamem"
+  l.store "String", "Ciąg znaków"
+  l.store "Subtitle", "Podtytuł"
+  l.store "Summary", "Streszczenie"
+  l.store "Text Filter Details", "Szczegóły filtra tekstu"
+  l.store "Text Filters", "Filtry tekstu"
+  l.store "Textfilter", "Filtr tekstu"
+  l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", "Poniższe ustawienia podawane są jako domyślne jeśli publikacja będzie zawierać metadane iTunes"
+  l.store "Things you can do", "Dostępne działania"
+  l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!", "Ta opcja pozwala wybrać prosty lub pełny panel administracyjny. Pełny panel administracyjny zawiera więcej opcji przez co jest bardziej skomplikowany. Tylko dla zaawansowanych użytkowników!"
+  l.store "Toggle Extended Content", "Przełącz treść rozszerzoną"
+  l.store "Type", "Typ"
+  l.store "Typo admin", "administracja Typo"
+  l.store "Typo documentation", "Oficjalna dokumentacja Typo"
+  l.store "Update your profile or change your password", "Zaktualizować profil lub zmienić hasło"
+  l.store "Upload a new File", "Wyślij nowy plik"
+  l.store "Upload a new Resource", "Wyślij nowy zasób"
+  l.store "Uploaded", "Załadowany"
+  l.store "User's articles", "Artykuły użytkownika"
+  l.store "View", "Obejrzyj"
+  l.store "View article on your blog", "Obejrzyj artykuł na blogu"
+  l.store "View comment on your blog", "Obejrzyj komentarz na blogu"
+  l.store "View page on your blog", "Zaprezentuj stronę na blogu"
+  l.store "What can you do ?", "Co możesz zrobić?"
+  l.store "Which settings group would you like to edit", "Którą grupę ustawień chcesz zmodyfikować"
+  l.store "Write Page", "Utworzyć stronę"
+  l.store "Write Post", "Utworzyć wpis"
+  l.store "Write a Page", "Utwórz stronę"
+  l.store "Write an Article", "Utwórz artykuł"
+  l.store "XML Syndication", "Subskrypcja XML"
+  l.store "You are now logged out of the system", "Wylogowano z systemu"
+  l.store "You can add it to the following categories", "Możesz dodać go do następujących kategorii"
+  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Można opcjonalnie wyłączyć nie-Ajaxowe komentarze. Typo zawsze używa technologii Ajax do przesyłania komentarzy - o ile Javascript jest włączony. Przeważnie komentarze nie-Ajaxowe pochodzą od spamerów lub użytkowników bez Javascript."
+  l.store "add new", "dodaj nową"
+  l.store "by", "przez"
+  l.store "log out", "wyloguj"
+  l.store "no ", "brak "
+  l.store "no categories", "brak kategori"
+  l.store "no tags", "brak tagów"
+  l.store "no users", "brak użytkowników"
+  l.store "on", "na"
+  l.store "seperate with spaces", "rozdziel spacjami"
+  l.store "via email", "emailem"
+  l.store "with %s Famfamfam iconset %s", "z %s ze zbioru ikon Famfamfam %s"
+  l.store "your blog", "Twój blog"
 end

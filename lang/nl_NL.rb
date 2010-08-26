@@ -694,31 +694,17 @@ Localization.define("nl_NL") do |l|
   l.store "Category %s", ""
   l.store "Tag %s", ""
 
-  # app/views/admin/dashboard/_sysinfo.html.erb
-  l.store "Choose password", "Kies wachtwoord"
-
-  # app/views/admin/base/_recent_comments.html.erb
-  l.store "Recent comments", "Recente reacties"
-
-  # app/views/admin/base/_recent_trackbacks.html.erb
-  l.store "Recent trackbacks", "Recente trackbacks"
-
-  # app/views/admin/blacklist/_blacklist_patterns.html.erb
-  l.store "Pattern", "Patroon"
-  l.store "Type", "Type"
-
-  # app/views/admin/blacklist/destroy.html.erb
+  # Obsolete translations
   l.store "Blacklist Patterns", "Blacklist patronen"
-
-  # app/views/admin/blacklist/edit.html.erb
-  l.store "Editing pattern", "Wijzig patroon"
-
-  # app/views/admin/blacklist/index.html.erb
-  l.store "add new", "voeg toe"
-  l.store "Content", "Inhoud"
-  l.store "Posts", "Berichten"
+  l.store "Choose password", "Kies wachtwoord"
   l.store "Confirm Classification of Checked Items", "Bevestig classificatie van aangevinkte reacties"
-
-  # app/views/articles/index.html.erb
+  l.store "Content", "Inhoud"
+  l.store "Editing pattern", "Wijzig patroon"
+  l.store "Pattern", "Patroon"
+  l.store "Posts", "Berichten"
   l.store "Read more", "Lees meer"
+  l.store "Recent comments", "Recente reacties"
+  l.store "Recent trackbacks", "Recente trackbacks"
+  l.store "Type", "Type"
+  l.store "add new", "voeg toe"
 end
