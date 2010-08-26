@@ -233,7 +233,7 @@ Localization.define("da_DK") do |l|
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
   l.store "No comments yet", "Der er ingen kommentarer endnu"
-  l.store "By %s on %s", ""
+  l.store "By %s on %s", "Fra %s på %s"
 
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", "Indkomne links"
@@ -627,7 +627,7 @@ Localization.define("da_DK") do |l|
 
   # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
   l.store "Leave a comment", "Skriv en kommentar"
-  l.store "Name %s", ""
+  l.store "Name %s", "Navn %s"
   l.store "enabled", "aktiveret"
   l.store "never displayed", ""
   l.store "Website", ""
@@ -869,7 +869,6 @@ Localization.define("da_DK") do |l|
   l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript." #Need translate
   l.store "add new", "tilføj ny"
   l.store "by", "af"
-  l.store "by %s on %s", "fra %s på %s"
   l.store "log out", "log ud"
   l.store "on", "på"
   l.store "published", "udgivet"
