@@ -319,12 +319,13 @@ describe Admin::ContentController do
 
       it 'should add resource' do
         art_id = contents(:article1).id
-        get :resource_add, :id => art_id, :resource_id => resources(:resource1).id
+        resource = Factory(:resource)
+        get :resource_add, :id => art_id, :resource_id => resource.id
 
         response.should render_template('_show_resources')
         assigns(:article).should be_valid
         assigns(:resource).should be_valid
-        assert Article.find(art_id).resources.include?(resources(:resource1))
+        assert Article.find(art_id).resources.include?(resource)
         assert_not_nil assigns(:article)
         assert_not_nil assigns(:resource)
         assert_not_nil assigns(:resources)
@@ -336,12 +337,13 @@ describe Admin::ContentController do
 
       it 'should remove resource' do
         art_id = contents(:article1).id
-        get :resource_remove, :id => art_id, :resource_id => resources(:resource1).id
+        resource = Factory(:resource)
+        get :resource_remove, :id => art_id, :resource_id => resource.id
 
         response.should render_template('_show_resources')
         assert assigns(:article).valid?
         assert assigns(:resource).valid?
-        assert !Article.find(art_id).resources.include?(resources(:resource1))
+        assert !Article.find(art_id).resources.include?(resource)
         assert_not_nil assigns(:article)
         assert_not_nil assigns(:resource)
         assert_not_nil assigns(:resources)

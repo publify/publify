@@ -22,7 +22,7 @@ describe Admin::ResourcesController do
   end
 
   it "test_destroy_image" do
-    res_id = resources(:resource1).id
+    res_id = Factory(:resource).id
     assert_not_nil Resource.find(res_id)
 
     get :destroy, :id => res_id
@@ -35,7 +35,7 @@ describe Admin::ResourcesController do
   end
 
   it "test_destroy_regular_file" do
-    res_id = resources(:resource3).id
+    res_id = Factory(:resource, :mime => 'text/plain').id
     assert_not_nil Resource.find(res_id)
 
     get :destroy, :id => res_id
@@ -44,6 +44,7 @@ describe Admin::ResourcesController do
     assert_not_nil assigns(:file)
 
     post :destroy, :id => res_id
+    assert_response :redirect
     response.should redirect_to(:action => 'index')
   end
 

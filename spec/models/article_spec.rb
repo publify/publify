@@ -303,8 +303,10 @@ describe Article do
 
   it "test_destroy_file_upload_associations" do
     a = contents(:article1)
+    Factory(:resource, :article => a)
+    Factory(:resource, :article => a)
     assert_equal 2, a.resources.size
-    a.resources << resources(:resource3)
+    a.resources << Factory(:resource)
     assert_equal 3, a.resources.size
     a.destroy
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
