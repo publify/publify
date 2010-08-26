@@ -53,7 +53,7 @@ class LangaugeFile
           rc += "\n  l.store \"#{key}\",#{stringMap[key]}"
         end
       end
-      rc += "\nend"
+      rc += "\nend\n"
       ff = File.new(filename,"w")
       ff.write(rc)
       ff.close()
