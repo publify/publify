@@ -5,8 +5,8 @@ Localization.define("nl_NL") do |l|
   l.store "Login unsuccessful", ""
   l.store "An email has been successfully sent to your address with your new password", ""
   l.store "Oops, something wrong just happened", "Oeps, er is net iets misgegaan"
-  l.store "Successfully logged out", ""
-  l.store "login", ""
+  l.store "Successfully logged out", "Succesvol uitgelogd"
+  l.store "login", "inloggen"
   l.store "signup", ""
   l.store "Recover your password", ""
 
@@ -21,9 +21,9 @@ Localization.define("nl_NL") do |l|
   l.store "Article was successfully updated.", ""
 
   # app/controllers/admin/feedback_controller.rb
-  l.store "Deleted", ""
-  l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
+  l.store "Deleted", "Verwijderd"
+  l.store "Not found", "Niet gevonden"
+  l.store "Deleted %d item(s)", "%d items verwijderd"
   l.store "Marked %d item(s) as Ham", ""
   l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", "Classificatie van %s item(s) bevestigd"
@@ -239,7 +239,7 @@ Localization.define("nl_NL") do |l|
   l.store "Inbound links", "Binnenkomende links"
   l.store "No one made a link to you yet", "Niemand maakte nog een link naar je"
   l.store " made a link to you saying ", " maakte een link naar je met als tekst "
-  l.store "You have no internet connection", "Je hebt geen internet verbinding"
+  l.store "You have no internet connection", "Je hebt geen internetverbinding"
 
   # app/views/admin/dashboard/_overview.html.erb
   l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", ""
