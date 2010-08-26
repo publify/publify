@@ -12,11 +12,11 @@ Localization.define("nl_NL") do |l|
   l.store "Recent comments", "Recente reacties"
 
   # app/views/admin/base/_recent_trackbacks.html.erb
-  l.store "Recent trackbacks", ""
+  l.store "Recent trackbacks", "Recente trackbacks"
 
   # app/views/admin/blacklist/_blacklist_patterns.html.erb
-  l.store "Pattern", ""
-  l.store "Type", ""
+  l.store "Pattern", "Patroon"
+  l.store "Type", "Type"
 
   # app/views/admin/blacklist/_form.html.erb
   l.store "String", ""
@@ -94,7 +94,7 @@ Localization.define("nl_NL") do |l|
   l.store "Articles", "Artikelen"
 
   # app/views/admin/content/index.html.erb
-  l.store "Search articles that contains...", "Zoek artikelen met ..."
+  l.store "Search articles that contain ...", "Zoek artikelen met ..."
   l.store "Search", "Zoek"
   l.store "Date", "Datum"
   l.store "Author", "Auteur"

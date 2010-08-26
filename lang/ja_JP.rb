@@ -141,7 +141,7 @@ Localization.define('ja_JP') do |l|
   l.store "View article on your blog", "ブログで記事を確認"
 
   # app/views/admin/content/index.html.erb
-  l.store "Search articles that contains...", "以下の語句を含む記事を検索"
+  l.store "Search articles that contain ...", "以下の語句を含む記事を検索"
   l.store "Search", "検索"
   l.store "Date", "日付"
   l.store "Author", "投稿者"

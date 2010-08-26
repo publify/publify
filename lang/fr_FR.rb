@@ -107,7 +107,7 @@ Localization.define("fr_FR") do |l|
   l.store "Articles", "Articles"
 
   # app/views/admin/content/index.html.erb
-  l.store "Search articles that contains...", "Chercher les articles contenant..."
+  l.store "Search articles that contain ...", "Chercher les articles contenant ..."
   l.store "Search", "Chercher"
   l.store "Date", "Date"
   l.store "Author", "Auteur"

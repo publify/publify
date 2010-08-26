@@ -169,7 +169,7 @@ Localization.define('da_DK') do |l|
 
   #admin/content/index.rhtml
   l.store "Manage articles", "Administrer artikler"
-  l.store "Search articles that contains...", "Søg efter artikler der indeholder..."
+  l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
 
   #admin/content/_articles.rhtml
   l.store "Post title", "Titel på artikel"
