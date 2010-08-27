@@ -84,3 +84,8 @@ Factory.define :resource do |r|
   r.mime 'image/jpeg'
   r.size 110
 end
+
+Factory.define :redirect do |r|
+  r.from_path 'foo/bar'
+  r.to_path '/someplace/else'
+end

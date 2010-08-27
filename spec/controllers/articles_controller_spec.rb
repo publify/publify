@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe ArticlesController do
   integrate_views
@@ -37,7 +37,6 @@ describe ArticlesController do
 
 
   describe '#search action' do
-
     describe 'a valid search' do
       before :each do
         get 'search', :q => 'a'
@@ -174,7 +173,6 @@ describe ArticlesController, "nousers" do
 end
 
 describe ArticlesController, "feeds" do
-
   integrate_views
 
   specify "/articles.atom => an atom feed" do
@@ -209,7 +207,6 @@ describe ArticlesController, "feeds" do
     article.body = '&eacute;coute!'
     article.save!
     get 'index', :format => 'atom'
-    #response.body.should =~ /écoute!/
     assert_feedvalidator response.body
   end
 
@@ -297,8 +294,8 @@ describe ArticlesController, "redirecting" do
       :controller => 'articles', :action => 'redirect'}
   end
 
-
   it 'should redirect' do
+    Factory(:redirect)
     get :redirect, :from => ["foo", "bar"]
     assert_response 301
     assert_redirected_to "http://test.host/someplace/else"
@@ -306,16 +303,19 @@ describe ArticlesController, "redirecting" do
 
   it 'should redirect with url_root' do
     ActionController::Base.relative_url_root = "/blog"
+    Factory(:redirect, :from_path => 'foo/bar')
     get :redirect, :from => ["foo", "bar"]
     assert_response 301
     assert_redirected_to "http://test.host/blog/someplace/else"
 
+    Factory(:redirect, :from_path => 'bar/foo')
     get :redirect, :from => ["bar", "foo"]
     assert_response 301
     assert_redirected_to "http://test.host/blog/someplace/else"
   end
 
   it 'should no redirect' do
+    Factory(:redirect)
     get :redirect, :from => ["something/that/isnt/there"]
     assert_response 404
   end
@@ -376,7 +376,7 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should assign article1 to @article' do
-	assigns(:article).should == contents(:article1)
+  assigns(:article).should == contents(:article1)
       end
 
       it 'should have good rss feed link' do
