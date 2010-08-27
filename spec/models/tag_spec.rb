@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe 'Given loaded fixtures' do
+describe Tag do
   it 'we can Tag.get by name' do
     foo = Factory(:tag, :name => 'foo')
     Tag.get('foo').should == foo
@@ -51,10 +51,17 @@ describe 'Given loaded fixtures' do
   it 'permalink_url should be of form /tag/<name>' do
     Tag.get('foo').permalink_url.should == 'http://myblog.net/tag/foo'
   end
+end
+
+describe 'with tags foo, bar and bazz' do
+  before do
+    @foo = Factory(:tag, :name => 'foo')
+    @bar = Factory(:tag, :name => 'bar')
+    @bazz = Factory(:tag, :name => 'bazz')
+  end
 
   it "find_with_char('f') should be return foo" do
-    foo = Factory(:tag, :name => 'foo')
-    Tag.find_with_char('f').should == [foo]
+    Tag.find_with_char('f').should == [@foo]
   end
 
   it "find_with_char('v') should return empty data" do
@@ -62,9 +69,6 @@ describe 'Given loaded fixtures' do
   end
 
   it "find_with_char('ba') should return tag bar and bazz" do
-    bar = Factory(:tag, :name => 'bar')
-    bazz = Factory(:tag, :name => 'bazz')
-    Tag.find_with_char('ba').sort_by(&:id).should == [bar, bazz].sort_by(&:id)
+    Tag.find_with_char('ba').sort_by(&:id).should == [@bar, @bazz].sort_by(&:id)
   end
-
 end
