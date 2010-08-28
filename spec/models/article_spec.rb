@@ -73,7 +73,7 @@ describe Article do
     a.title = "Zzz"
     assert a.save
 
-    a.categories << Category.find(categories(:software).id)
+    a.categories << Category.find(Factory(:category).id)
     assert_equal 1, a.categories.size
 
     b = Article.find(a.id)

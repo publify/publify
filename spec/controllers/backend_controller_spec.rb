@@ -67,24 +67,30 @@ describe BackendController do
   end
 
   it "test_blogger_new_post_with_categories" do
-    args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title><category>Software, Hardware</category>new post body', 1]
+    hard_cat = Factory(:category, :name => 'Hardware')
+    soft_cat = Factory(:category, :name => 'Software')
+    args = [ 'foo', '1', 'tobi', 'whatever',
+      '<title>new post title</title><category>Software,
+      Hardware</category>new post body', 1]
 
     result = invoke_layered :blogger, :newPost, *args
     assert_not_nil result
     new_post = Article.find(result)
     assert_equal "new post title", new_post.title
     assert_equal "new post body", new_post.body
-    assert_equal [categories(:software), categories(:hardware)].sort_by(&:id), new_post.categories.sort_by { |c| c.id }
+    assert_equal [soft_cat, hard_cat].sort_by(&:id), new_post.categories.sort_by { |c| c.id }
     assert new_post.published?
   end
 
   it "test_blogger_new_post_with_non_existing_categories" do
-    args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title><category>Idontexist, Hardware</category>new post body', 1]
-
+    hard_cat = Factory(:category, :name => 'Hardware')
+    args = [ 'foo', '1', 'tobi', 'whatever',
+      '<title>new post title</title><category>Idontexist,
+      Hardware</category>new post body', 1]
     result = invoke_layered :blogger, :newPost, *args
     assert_not_nil result
     new_post = Article.find(result)
-    assert_equal [categories(:hardware)], new_post.categories
+    assert_equal [hard_cat], new_post.categories
   end
 
   it "test_blogger_fail_authentication" do
@@ -95,8 +101,8 @@ describe BackendController do
 
   # Meta Weblog Tests
   it "test_meta_weblog_get_categories" do
+    Factory(:category, :name => 'Software')
     args = [ 1, 'tobi', 'whatever' ]
-
     result = invoke_layered :metaWeblog, :getCategories, *args
     assert_equal 'Software', result.first
   end
@@ -254,8 +260,8 @@ describe BackendController do
   # Movable Type Tests
 
   it "test_mt_get_category_list" do
+    Factory(:category, :name => 'Software')
     args = [ 1, 'tobi', 'whatever' ]
-
     result = invoke_layered :mt, :getCategoryList, *args
     assert result.map { |c| c['categoryName'] }.include?('Software')
   end
@@ -263,12 +269,13 @@ describe BackendController do
   it "test_mt_get_post_categories" do
     art_id = contents(:article1).id
     article = Article.find(art_id)
-    article.categories << categories(:software)
+    article.categories << Factory(:category)
 
     args = [ art_id, 'tobi', 'whatever' ]
 
     result = invoke_layered :mt, :getPostCategories, *args
-    assert_equal Set.new(result.collect {|v| v['categoryName']}), Set.new(article.categories.collect(&:name))
+    assert_equal Set.new(result.collect {|v| v['categoryName']}),
+      Set.new(article.categories.collect(&:name))
   end
 
   it "test_mt_get_recent_post_titles" do
@@ -280,20 +287,24 @@ describe BackendController do
 
   it "test_mt_set_post_categories" do
     art_id = contents(:article2).id
+    cat = Factory(:category)
     args = [ art_id, 'tobi', 'whatever',
-      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal', 'categoryId' => categories(:personal).id, 'isPrimary' => 1)] ]
+      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal',
+        'categoryId' => cat.id, 'isPrimary' => 1)] ]
 
     result = invoke_layered :mt, :setPostCategories, *args
-    assert_equal [categories(:personal)], contents(:article2).categories
+    assert_equal [cat], contents(:article2).categories
 
+    soft_cat = Factory(:category, :name => 'soft_cat')
+    hard_cat = Factory(:category, :name => 'hard_cat')
     args = [ art_id, 'tobi', 'whatever',
-      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software', 'categoryId' => categories(:software).id, 'isPrimary' => 1),
-       MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware', 'categoryId' => categories(:hardware).id, 'isPrimary' => 0) ]]
+      [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software',
+        'categoryId' => soft_cat.id, 'isPrimary' => 1),
+       MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware',
+        'categoryId' => hard_cat.id, 'isPrimary' => 0) ]]
 
      result = invoke_layered :mt, :setPostCategories, *args
-
-     assert contents(:article2).reload.categories.include?(categories(:hardware))
-
+     assert contents(:article2).reload.categories.include?(hard_cat)
   end
 
   it "test_mt_supported_text_filters" do

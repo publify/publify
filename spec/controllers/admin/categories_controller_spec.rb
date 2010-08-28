@@ -23,19 +23,19 @@ describe Admin::CategoriesController do
   end
 
   it "test_edit" do
-    get :edit, :id => categories(:software).id
+    get :edit, :id => Factory(:category).id
     assert_template 'new'
     assert_template_has 'category'
     assert assigns(:category).valid?
   end
 
   it "test_update" do
-    post :edit, :id => categories(:software).id
+    post :edit, :id => Factory(:category).id
     assert_response :redirect, :action => 'index'
   end
 
   it "test_destroy" do
-    test_id = categories(:software).id
+    test_id = Factory(:category).id
     assert_not_nil Category.find(test_id)
 
     get :destroy, :id => test_id
@@ -49,21 +49,28 @@ describe Admin::CategoriesController do
   end
 
   it "test_order" do
-    assert_equal categories(:software), Category.find(:first, :order => :position)
-    get :order, :category_list => [categories(:personal).id, categories(:hardware).id, categories(:software).id]
+    second_cat = Factory(:category, :name => 'b')
+    first_cat = Factory(:category, :name => 'a')
+    assert_equal second_cat, Category.find(:first, :order => :position)
+    #TODO Look strange ?
+    get :order, :category_list => [second_cat.id, first_cat.id, second_cat.id]
     assert_response :success
-    assert_equal categories(:personal), Category.find(:first, :order => :position)
+    assert_equal first_cat, Category.find(:first, :order => :position)
   end
 
-  it "test_asort" do
-    assert_equal categories(:software), Category.find(:first, :order => :position)
+  it "test_asort sort by alpha" do
+    second_cat = Factory(:category, :name => 'b')
+    first_cat = Factory(:category, :name => 'a')
+    assert_equal second_cat, Category.find(:first, :order => :position)
     get :asort
     assert_response :success
     assert_template "_categories"
-    assert_equal categories(:hardware), Category.find(:first, :order => :position)
+    assert_equal first_cat, Category.find(:first, :order => :position)
   end
 
   it "test_category_container" do
+    Factory(:category)
+    Factory(:category)
     get :category_container
     assert_response :success
     assert_template "_categories"

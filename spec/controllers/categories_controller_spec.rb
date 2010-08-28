@@ -74,17 +74,22 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should set the page title to "Category Personal"' do
-    do_get
-    assigns[:page_title].should == 'Category Personal, everything about Personal'
+    Factory(:category, :permalink => 'title', :name => 'Title')
+    get 'show', :id => 'title'
+    assigns[:page_title].should == 'Category Title, everything about Title'
   end
 
   it 'should render the atom feed for /articles/category/personal.atom' do
-    get 'show', :id => 'personal', :format => 'atom'
+    cat = Factory(:category, :permalink => 'for_atom')
+    Factory(:article, :categories => [cat])
+    get 'show', :id => 'for_atom', :format => 'atom'
     response.should render_template('articles/_atom_feed')
   end
 
   it 'should render the rss feed for /articles/category/personal.rss' do
-    get 'show', :id => 'personal', :format => 'rss'
+    cat = Factory(:category, :permalink => 'for_rss')
+    Factory(:article, :categories => [cat])
+    get 'show', :id => 'for_rss', :format => 'rss'
     response.should render_template('articles/_rss20_feed')
   end
 
@@ -92,8 +97,8 @@ end
 
 describe CategoriesController, 'empty category life-on-mars' do
   it 'should redirect to home when the category is empty' do
+    Factory(:category, :permalink => 'life-on-mars')
     get 'show', :id => 'life-on-mars'
-
     response.status.should == "301 Moved Permanently"
     response.should redirect_to(Blog.default.base_url)
   end
