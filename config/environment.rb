@@ -16,6 +16,7 @@ Rails::Initializer.run do |config|
   config.cache_store=:file_store, "#{RAILS_ROOT}/public/cache/"
 
   # Specify gems that this application depends on and have them installed with rake gems:install
+  config.gem 'i18n', :version => '~> 0.3.7'
   config.gem 'htmlentities'
   config.gem 'json'
   config.gem 'calendar_date_select'
