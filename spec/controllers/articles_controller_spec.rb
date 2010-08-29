@@ -240,6 +240,7 @@ describe ArticlesController, "previewing" do
       response.should redirect_to(:controller => "accounts/login", :action => :index)
     end
   end
+
   describe 'with logged user' do
     before :each do
       @request.session = {:user => users(:tobi).id}
@@ -264,7 +265,6 @@ describe ArticlesController, "previewing" do
       get :preview, :id => @article.id
       assigns[:article].should == draft
     end
-
   end
 end
 
@@ -294,68 +294,83 @@ describe ArticlesController, "redirecting" do
       :controller => 'articles', :action => 'redirect'}
   end
 
-  it 'should redirect' do
-    Factory(:redirect)
-    get :redirect, :from => ["foo", "bar"]
-    assert_response 301
-    assert_redirected_to "http://test.host/someplace/else"
+  describe "with explicit redirects" do
+    it 'should redirect from known URL' do
+      Factory(:redirect)
+      get :redirect, :from => ["foo", "bar"]
+      assert_response 301
+      assert_redirected_to "http://test.host/someplace/else"
+    end
+
+    it 'should not redirect from unknown URL' do
+      Factory(:redirect)
+      get :redirect, :from => ["something", "that", "isnt", "there"]
+      assert_response 404
+    end
+
+    describe 'and non-empty relative_url_root' do
+      before do
+	ActionController::Base.relative_url_root = "/blog"
+      end
+
+      it 'should redirect' do
+	Factory(:redirect, :from_path => 'foo/bar')
+	get :redirect, :from => ["foo", "bar"]
+	assert_response 301
+	assert_redirected_to "http://test.host/blog/someplace/else"
+      end
+
+      it 'should redirect if to_path includes relative_url_root' do
+	Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
+	get :redirect, :from => ["bar", "foo"]
+	assert_response 301
+	assert_redirected_to "http://test.host/blog/someplace/else"
+      end
+    end
   end
 
-  it 'should redirect with url_root' do
-    ActionController::Base.relative_url_root = "/blog"
-    Factory(:redirect, :from_path => 'foo/bar')
-    get :redirect, :from => ["foo", "bar"]
-    assert_response 301
-    assert_redirected_to "http://test.host/blog/someplace/else"
-
-    Factory(:redirect, :from_path => 'bar/foo')
-    get :redirect, :from => ["bar", "foo"]
-    assert_response 301
-    assert_redirected_to "http://test.host/blog/someplace/else"
+  it 'should get good article with utf8 slug' do
+    get :redirect, :from => ['2004', '06', '02', 'ルビー']
+    assigns(:article).should == contents(:utf8_article)
   end
 
-  it 'should no redirect' do
-    Factory(:redirect)
-    get :redirect, :from => ["something/that/isnt/there"]
-    assert_response 404
-  end
+  describe 'accessing old-style URL with "articles" as the first part' do
+    it 'should redirect to article' do
+      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      assert_response 301
+      assert_redirected_to "http://myblog.net/2004/04/01/second-blog-article"
+    end
 
-  it 'should redirect to article' do
-    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
-    assert_response 301
-    assert_redirected_to "http://myblog.net/2004/04/01/second-blog-article"
-  end
+    it 'should redirect to article with url_root' do
+      b = blogs(:default)
+      b.base_url = "http://test.host/blog"
+      b.save
+      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      assert_response 301
+      assert_redirected_to "http://test.host/blog/2004/04/01/second-blog-article"
+    end
 
-  it 'should redirect to article with url_root' do
-    b = blogs(:default)
-    b.base_url = "http://test.host/blog"
-    b.save
-    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
-    assert_response 301
-    assert_redirected_to "http://test.host/blog/2004/04/01/second-blog-article"
-  end
+    it 'should redirect to article when url_root is articles' do
+      b = blogs(:default)
+      b.base_url = "http://test.host/articles"
+      b.save
+      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      assert_response 301
+      assert_redirected_to "http://test.host/articles/2004/04/01/second-blog-article"
+    end
 
-  it 'should redirect to article when url_root is articles' do
-    b = blogs(:default)
-    b.base_url = "http://test.host/articles"
-    b.save
-    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
-    assert_response 301
-    assert_redirected_to "http://test.host/articles/2004/04/01/second-blog-article"
-  end
+    it 'should redirect to article with articles in url_root' do
+      b = blogs(:default)
+      b.base_url = "http://test.host/aaa/articles/bbb"
+      b.save
 
-  it 'should redirect to article with articles in url_root' do
-    b = blogs(:default)
-    b.base_url = "http://test.host/aaa/articles/bbb"
-    b.save
-
-    get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
-    assert_response 301
-    assert_redirected_to "http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article"
+      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      assert_response 301
+      assert_redirected_to "http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article"
+    end
   end
 
   describe 'with permalink_format like %title%.html' do
-
     integrate_views
 
     before(:each) do
@@ -363,91 +378,97 @@ describe ArticlesController, "redirecting" do
       b.permalink_format = '/%title%.html'
       b.save
     end
+
+    it 'should redirect from default URL format' do
+      get :redirect, :from => ["2004", "04", "01", "second-blog-article"]
+      assert_response 301
+      assert_redirected_to "http://myblog.net/second-blog-article.html"
+    end
+
+    it 'should redirect from old-style URL format with "articles" part' do
+      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      assert_response 301
+      assert_redirected_to "http://myblog.net/second-blog-article.html"
+    end
+
     describe 'render article' do
 
       integrate_views
 
       before(:each) do
-        get :redirect, :from => ["#{contents(:article1).permalink}.html"]
+	get :redirect, :from => ["#{contents(:article1).permalink}.html"]
       end
 
       it 'should render template read to article' do
-        response.should render_template('articles/read.html.erb')
+	response.should render_template('articles/read.html.erb')
       end
 
       it 'should assign article1 to @article' do
-  assigns(:article).should == contents(:article1)
+	assigns(:article).should == contents(:article1)
       end
 
       it 'should have good rss feed link' do
-        response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.rss")
+	response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.rss")
       end
 
       it 'should have good atom feed link' do
-        response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.atom")
+	response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.atom")
       end
 
-    end
-
-    it 'should get good article with utf8 slug' do
-      get :redirect, :from => ['2004', '06', '02', 'ルビー']
-      assigns(:article).should == contents(:utf8_article)
     end
 
     describe 'rendering as atom feed' do
       before(:each) do
-        get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+	get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
       end
 
       it 'should render atom partial' do
-        response.should render_template('articles/_atom_feed.atom.builder')
+	response.should render_template('articles/_atom_feed.atom.builder')
       end
 
       it 'should render a valid feed' do
-        assert_feedvalidator response.body
+	assert_feedvalidator response.body
       end
     end
 
     describe 'rendering as rss feed' do
       before(:each) do
-        get :redirect, :from => ["#{contents(:article1).permalink}.html.rss"]
+	get :redirect, :from => ["#{contents(:article1).permalink}.html.rss"]
       end
 
       it 'should render rss20 partial' do
-        response.should render_template('articles/_rss20_feed.rss.builder')
+	response.should render_template('articles/_rss20_feed.rss.builder')
       end
 
       it 'should render a valid feed' do
-        assert_feedvalidator response.body
+	assert_feedvalidator response.body
       end
     end
 
     describe 'rendering comment feed with problematic characters' do
       before(:each) do
-        @comment = contents(:article1).comments.first
-        @comment.body = "&eacute;coute! 4 < 2, non?"
-        @comment.save!
-        get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+	@comment = contents(:article1).comments.first
+	@comment.body = "&eacute;coute! 4 < 2, non?"
+	@comment.save!
+	get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
       end
 
       it 'should result in a valid atom feed' do
-        assigns(:article).should == contents(:article1)
-        assert_feedvalidator response.body
+	assigns(:article).should == contents(:article1)
+	assert_feedvalidator response.body
       end
     end
   end
-
-
 end
 
 describe ArticlesController, "password protected" do
+  integrate_views
+
   before(:each) do
     b = blogs(:default)
     b.permalink_format = '/%title%.html'
     b.save
   end
-
-  integrate_views
 
   it 'article alone should be password protected' do
     get :redirect, :from => ["#{contents(:article2).permalink}.html"]
@@ -455,5 +476,4 @@ describe ArticlesController, "password protected" do
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
   end
-
 end
