@@ -23,6 +23,7 @@ module TypoBlog
     config.autoload_paths += %W(
       vendor/akismet
       app/apis
+      lib
     ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
   
     # Disable use of the Accept header, since it causes bad results with our
