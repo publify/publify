@@ -1,8 +1,5 @@
 # Be sure to restart your server when you modify this file
 
-# Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
-
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -14,21 +11,6 @@ Rails::Initializer.run do |config|
   # Setup the cache path
   config.action_controller.page_cache_directory = "#{RAILS_ROOT}/public/cache/"
   config.cache_store=:file_store, "#{RAILS_ROOT}/public/cache/"
-
-  # Specify gems that this application depends on and have them installed with rake gems:install
-  config.gem 'htmlentities'
-  config.gem 'json'
-  config.gem 'calendar_date_select'
-  config.gem 'bluecloth', :version => '~> 2.0.5'
-  config.gem 'coderay', :version => '~> 0.8'
-  config.gem 'will_paginate', :version => '~> 2.3.11'
-  config.gem 'RedCloth', :version => '~> 4.2.2'
-  config.gem 'fdv-actionwebservice', :version => '2.3.8', :lib => 'actionwebservice'
-  config.gem 'addressable', :version => '~> 2.1.0', :lib => 'addressable/uri'
-  config.gem 'mini_magick', :version => '~> 1.3', :lib => 'mini_magick'
-  config.gem 'uuidtools', :version => '~>2.1.1'
-  config.gem 'flickr', :version => '~> 1.0.2'
-  config.gem 'rubypants', :version => '~> 0.2.0'
 
   # I need the localization plugin to load first
   # Otherwise, I can't localize plugins <= localization
