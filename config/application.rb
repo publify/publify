@@ -1,5 +1,10 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'rails/all'
+
+# Auto-require default libraries and those for the current Rails environment.
+Bundler.require :default, Rails.env
+
 module TypoBlog
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -15,14 +20,10 @@ module TypoBlog
     # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
     config.plugins = [ :localization, :all ]
   
-    config.load_paths += %W(
+    config.autoload_paths += %W(
       vendor/akismet
       app/apis
     ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
-  
-    # Skip frameworks you're not going to use. To use Rails without a database,
-    # you must remove the Active Record framework.
-    config.frameworks -= [ :active_resource ]
   
     # Disable use of the Accept header, since it causes bad results with our
     # static caching (e.g., caching an atom feed as index.html).
@@ -38,7 +39,7 @@ module TypoBlog
   require 'migrator'
   require 'rails_patch/active_record'
   require 'rails_patch/active_support'
-  require 'login_system'
+  require 'vendor/plugins/typo_login_system/lib/login_system'
   require 'typo_version'
   $KCODE = 'u'
   require 'jcode'
@@ -47,7 +48,7 @@ module TypoBlog
   $FM_OVERWRITE = true
   require 'filemanager'
   
-  ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+  Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
   )
   
