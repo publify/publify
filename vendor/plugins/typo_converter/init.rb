@@ -1,3 +1,5 @@
+require File.join(Rails.root, 'lib', 'typo_plugins.rb')
+
 TypoPlugins.module_eval do
   def self.convert_from(engine, options = {})
     require "converters/base"
