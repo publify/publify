@@ -3,8 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   # default
   map.root :controller  => 'articles', :action => 'index'
 
-  # for Filemanager
+  # for CK Editor
   map.connect 'fm/filemanager/:action/:id', :controller => 'Fm::Filemanager'
+  map.connect 'ckeditor/command', :controller => 'ckeditor', :action => 'command'
+  map.connect 'ckeditor/upload', :controller => 'ckeditor', :action => 'upload'
 
   # TODO: use only in archive sidebar. See how made other system
   map.articles_by_month ':year/:month', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/
