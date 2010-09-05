@@ -33,9 +33,12 @@
       </div>      
     </div>
     <div class='setting clear'>
-      <label class="float" for="setting_use_gravatar"><%= _("Enable gravatars")%></label>
+      <label class="float" for="setting_use_avatar"><%= _("Choose avatar representation")%></label>
       <div class='input_text'>
-        <%= check_box(:setting, :use_gravatar)%>
+        <select name="setting[comment_use_avatar]" id="comment_use_avatar">
+          
+          <%= options_for_select(avatar_options, @selected_avatar)%>
+        </select>      
       </div>      
     </div>
     <div class='setting clear'>

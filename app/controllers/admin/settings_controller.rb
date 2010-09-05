@@ -11,7 +11,12 @@ class Admin::SettingsController < Admin::BaseController
   
   def read; load_settings end
   def write; load_settings end
-  def feedback; load_settings end
+  def feedback
+    @selected_avatar = PluginEntry.find(:first, :conditions => ['kind = ? and id = ?', 'avatar', this_blog.comment_use_avatar])
+    @selected_avatar = @selected_avatar.nil? ? 0 : @selected_avatar.id
+    RAILS_DEFAULT_LOGGER.debug("======================= #{@selected_avatar}")
+    load_settings 
+  end
   
   def seo
     load_settings

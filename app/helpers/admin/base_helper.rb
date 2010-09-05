@@ -56,6 +56,13 @@ module Admin::BaseHelper
       end
   end
 
+  def avatar_options
+    options = PluginEntry.find(:all, :conditions => ["active = true and kind = 'avatar'"]).collect do |entry|
+      [ entry.name, entry.id ]
+    end
+    options.insert(0, ['None', 0])
+  end
+
   def text_filter_options
     TextFilter.find(:all).collect do |filter|
       [ filter.description, filter ]

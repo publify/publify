@@ -59,7 +59,7 @@ class Blog < ActiveRecord::Base
   setting :link_to_author,             :boolean, false
   setting :show_extended_on_rss,       :boolean, true
   setting :theme,                      :string, 'true-blue-3'
-  setting :use_gravatar,               :boolean, false
+  setting :comment_use_avatar,         :integer, 0
   setting :global_pings_disable,       :boolean, false
   setting :ping_urls,                  :string, "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
