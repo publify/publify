@@ -51,9 +51,9 @@ describe Admin::CategoriesController do
   it "test_order" do
     second_cat = Factory(:category, :name => 'b')
     first_cat = Factory(:category, :name => 'a')
+    third_cat = Factory(:category, :name => 'c')
     assert_equal second_cat, Category.find(:first, :order => :position)
-    #TODO Look strange ?
-    get :order, :category_list => [second_cat.id, first_cat.id, second_cat.id]
+    get :order, :category_list => [first_cat.id, second_cat.id, third_cat.id]
     assert_response :success
     assert_equal first_cat, Category.find(:first, :order => :position)
   end

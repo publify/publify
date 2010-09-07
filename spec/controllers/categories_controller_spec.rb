@@ -28,6 +28,14 @@ describe CategoriesController, "/index" do
 end
 
 describe CategoriesController, '/articles/category/personal' do
+  before do
+    cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
+    cat.articles << contents(:article1)
+    cat.articles << contents(:article2)
+    cat.articles << contents(:article3)
+    cat.articles << contents(:article4)
+  end
+
   def do_get
     get 'show', :id => 'personal'
   end
@@ -63,33 +71,28 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should show only published articles' do
-    c = categories(:personal)
+    c = Category.find_by_permalink("personal")
     c.articles.size.should == 4
     c.published_articles.size.should == 3
 
-    get 'show', :id => 'personal'
+    do_get
 
     response.should be_success
     assigns[:articles].size.should == 3
   end
 
   it 'should set the page title to "Category Personal"' do
-    Factory(:category, :permalink => 'title', :name => 'Title')
-    get 'show', :id => 'title'
-    assigns[:page_title].should == 'Category Title, everything about Title'
+    do_get
+    assigns[:page_title].should == 'Category Personal, everything about Personal'
   end
 
   it 'should render the atom feed for /articles/category/personal.atom' do
-    cat = Factory(:category, :permalink => 'for_atom')
-    Factory(:article, :categories => [cat])
-    get 'show', :id => 'for_atom', :format => 'atom'
+    get 'show', :id => 'personal', :format => 'atom'
     response.should render_template('articles/_atom_feed')
   end
 
   it 'should render the rss feed for /articles/category/personal.rss' do
-    cat = Factory(:category, :permalink => 'for_rss')
-    Factory(:article, :categories => [cat])
-    get 'show', :id => 'for_rss', :format => 'rss'
+    get 'show', :id => 'personal', :format => 'rss'
     response.should render_template('articles/_rss20_feed')
   end
 
@@ -107,7 +110,13 @@ end
 describe CategoriesController, "password protected article" do
   integrate_views
 
-  it 'article in category should be password protected' do
+  it 'should be password protected when shown in category' do
+    cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
+    cat.articles << contents(:article1)
+    cat.articles << contents(:article2)
+    cat.articles << contents(:article3)
+    cat.articles << contents(:article4)
+
     get 'show', :id => 'personal'
 
     assert_tag :tag => "input",

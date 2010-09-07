@@ -14,6 +14,10 @@ Factory.sequence :file_name do |f|
   "file_name_#{f}"
 end
 
+Factory.sequence :category do |n|
+  "category_#{n}"
+end
+
 Factory.define :user do |u|
   u.login { Factory.next(:user) }
   u.email { Factory.next(:user) }
@@ -69,8 +73,8 @@ Factory.define :profile_contributor, :class => :profile do |l|
 end
 
 Factory.define :category do |c|
-  c.name 'SoftwareFactory'
-  c.permalink 'softwarefactory'
+  c.name {Factory.next(:category)}
+  c.permalink {Factory.next(:category)}
   c.position 1
 end
 
