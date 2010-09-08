@@ -375,6 +375,8 @@ describe ArticlesController, 'redirecting', type: :controller do
       assert_response 301
       expect(response).to redirect_to('http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article')
     end
+
+    it 'should not redirect to an article from another blog'
   end
 
   describe 'with permalink_format like %title%.html' do
