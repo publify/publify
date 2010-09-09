@@ -21,17 +21,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-begin
-  require 'active_support'
-  require 'action_controller'
-  require 'active_record'
-rescue LoadError
-  require 'rubygems'
-  gem 'activesupport', '>= 2.3.0'
-  gem 'actionpack', '>= 2.3.0'
-  gem 'activerecord', '>= 2.3.0'
-end
-
 require 'action_web_service/support/class_inheritable_options'
 require 'action_web_service/support/signature_types'
 require 'action_web_service/base'
