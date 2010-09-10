@@ -1,5 +1,4 @@
 require 'xmlrpc/marshal'
-require 'action_web_service/client/xmlrpc_client'
 
 module XMLRPC # :nodoc:
   class FaultException # :nodoc:
@@ -18,14 +17,6 @@ module XMLRPC # :nodoc:
 end
 
 module ActionWebService # :nodoc:
-  module API # :nodoc: 
-    class Base # :nodoc:
-      def self.xmlrpc_client(endpoint_uri, options={})
-        ActionWebService::Client::XmlRpc.new self, endpoint_uri, options
-      end
-    end
-  end
-
   module Protocol # :nodoc:
     module XmlRpc # :nodoc:
       def self.included(base)
@@ -81,11 +72,6 @@ module ActionWebService # :nodoc:
           end
           raw_response = XMLRPC::Marshal.dump_response(result)
           Response.new(raw_response, 'text/xml', result)
-        end
-
-        def protocol_client(api, protocol_name, endpoint_uri, options={})
-          return nil unless protocol_name == :xmlrpc
-          ActionWebService::Client::XmlRpc.new(api, endpoint_uri, options)
         end
 
         def value_to_xmlrpc_wire_format(value, value_type)

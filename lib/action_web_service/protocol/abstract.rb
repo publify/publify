@@ -32,9 +32,6 @@ module ActionWebService # :nodoc:
       def encode_response(method_name, return_value, return_type, protocol_options={})
       end
 
-      def protocol_client(api, protocol_name, endpoint_uri, options)
-      end
-
       def register_api(api)
       end
     end

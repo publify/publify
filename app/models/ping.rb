@@ -1,4 +1,5 @@
 require 'rexml/document'
+require 'xmlrpc/client'
 
 class Ping < ActiveRecord::Base
   belongs_to :article

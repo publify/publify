@@ -22,15 +22,6 @@ module ActionWebService # :nodoc:
             end
             nil
           end
-
-          def create_web_service_client(api, protocol_name, endpoint_uri, options)
-            (self.class.read_inheritable_attribute("web_service_protocols") || []).each do |protocol|
-              protocol = protocol.create(self)
-              client = protocol.protocol_client(api, protocol_name, endpoint_uri, options)
-              return client unless client.nil?
-            end
-            nil
-          end
       end
     end
   end
