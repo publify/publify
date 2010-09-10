@@ -26,8 +26,8 @@ module ActiveRecord
         # Configuration options are:
         #
         # * +column+ - specifies the column name to use for keeping the position integer (default: +position+)
-        # * +scope+ - restricts what is to be considered a list. Given a symbol, it'll attach <tt>_id</tt> 
-        #   (if it hasn't already been added) and use that as the foreign key restriction. It's also possible 
+        # * +scope+ - restricts what is to be considered a list. Given a symbol, it'll attach <tt>_id</tt>
+        #   (if it hasn't already been added) and use that as the foreign key restriction. It's also possible
         #   to give it an entire string that is interpolated if you need a tighter scope than just a foreign key.
         #   Example: <tt>acts_as_list :scope => 'todo_list_id = #{todo_list_id} AND completed = 0'</tt>
         def acts_as_list(options = {})
@@ -250,7 +250,7 @@ module ActiveRecord
             increment_positions_on_lower_items(position)
             self.update_attribute(position_column, position)
           end
-      end 
+      end
     end
   end
 end

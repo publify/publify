@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /admin/
-Disallow: /page/
-Disallow: /cgi-bin 
-User-agent: Googlebot-Image
-Allow: /*

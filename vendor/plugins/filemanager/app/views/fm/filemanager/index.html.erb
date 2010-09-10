@@ -26,7 +26,7 @@ function showControl(file) {
 <link href="/filemanager/stylesheets/general.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/filemanager/stylesheets/filelist.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/filemanager/stylesheets/lightbox.css" media="screen" rel="stylesheet" type="text/css" />
-<style type="text/css">   
+<style type="text/css">
 body, select, textarea, div {
 	margin:0;
 	padding:0;
@@ -68,56 +68,56 @@ color:#FF0000
 	display:block;
 	visibility:visible;
 }
-.hideMenu {   
-position:absolute;   
-list-style:none;   
-margin:0;   
-padding:0;   
-display:none;   
-border:1px   solid   #DDDDDD;   
-background-color:#EEEEEE;   
-}   
-.hideMenu  li{   
-padding:1px;   
-}   
-.hideMenu   li   a{   
-padding:3px;   
-display:block;   
-text-decoration:none;   
-cursor:default;   
-}   
-.hideMenu   li   a:link, a:visited{   
+.hideMenu {
+position:absolute;
+list-style:none;
+margin:0;
+padding:0;
+display:none;
+border:1px   solid   #DDDDDD;
+background-color:#EEEEEE;
+}
+.hideMenu  li{
+padding:1px;
+}
+.hideMenu   li   a{
+padding:3px;
+display:block;
+text-decoration:none;
+cursor:default;
+}
+.hideMenu   li   a:link, a:visited{
 color:black;
 }
-.hideMenu   li   a:hover{   
-color:white;   
-background-color:#039;   
-}   
-</style> 
+.hideMenu   li   a:hover{
+color:white;
+background-color:#039;
+}
+</style>
 </head>
 <body >
   <div id="loading" style="display:none">Loading...</div>
-  <ul id='foldMenu' class="hideMenu">   
-  <li><a href="javascript:rename()"><span fmLang="rename">Rename</span></a></li>   
-  <li><a href="javascript:copyFile()"><span fmLang="copy">Copy</span></a></li>   
+  <ul id='foldMenu' class="hideMenu">
+  <li><a href="javascript:rename()"><span fmLang="rename">Rename</span></a></li>
+  <li><a href="javascript:copyFile()"><span fmLang="copy">Copy</span></a></li>
   <li><a href="javascript:cutFile()"><span fmLang="cut">Cut</span></a></li>
-  <li><a href="javascript:pasteFile()"><span fmLang="paste">Paste</span></a></li> 
-  <li><a href="javascript:removeFile()"><span fmLang="remove">Remove</span></a></li>   
+  <li><a href="javascript:pasteFile()"><span fmLang="paste">Paste</span></a></li>
+  <li><a href="javascript:removeFile()"><span fmLang="remove">Remove</span></a></li>
   <li><a href="javascript:zipDownload();"><span fmLang="download">Download</span></a></li>
   </ul>
-  <ul id='fileMenu' class="hideMenu">   
+  <ul id='fileMenu' class="hideMenu">
   <li><a href="javascript:selectFile()"><span fmLang="selectFile">Select File</span></a></li>
-  <li id="unzip"><a href="javascript:unzipFile()"><span fmLang="unzipFile">Unzip File</span></a></li>    
-  <li><a href="javascript:rename()"><span fmLang="rename">Rename</span></a></li>   
-  <li><a href="javascript:copyFile()"><span fmLang="copy">Copy</span></a></li>   
+  <li id="unzip"><a href="javascript:unzipFile()"><span fmLang="unzipFile">Unzip File</span></a></li>
+  <li><a href="javascript:rename()"><span fmLang="rename">Rename</span></a></li>
+  <li><a href="javascript:copyFile()"><span fmLang="copy">Copy</span></a></li>
   <li><a href="javascript:cutFile()"><span fmLang="cut">Cut</span></a></li>
-  <li><a href="javascript:removeFile()"><span fmLang="remove">Remove</span></a></li>   
+  <li><a href="javascript:removeFile()"><span fmLang="remove">Remove</span></a></li>
   <li><a href="javascript:zipDownload();"><span fmLang="download">Download</span></a></li>
-  </ul> 
+  </ul>
   <ul id='blankMenu' class="hideMenu">
   <li><a href="javascript:newFolder()"><span fmLang="new_folder">New Folder</span></a></li>
-  <li><a href="javascript:newFile()"><span fmLang="new_file">New File</span></a></li> 
-  <li><a href="javascript:pasteFile()"><span fmLang="paste">Paste</span></a></li> 
+  <li><a href="javascript:newFile()"><span fmLang="new_file">New File</span></a></li>
+  <li><a href="javascript:pasteFile()"><span fmLang="paste">Paste</span></a></li>
   <li><a href="javascript:;" onmouseover="setCssClass($('uploadForm'), 'showlayer');"><span fmLang="upload_file">Upload File</span></a>
   		<div id="uploadForm" align="right" class="hidelayer">
 		<form id="fileForm" method="post" enctype="multipart/form-data">
@@ -125,7 +125,7 @@ background-color:#039;
 		    <input type="button" fmLang="upload" value="Upload" onclick="uploadFile();"/>
 		</form>
 		</div>
-  </li> 
+  </li>
   </ul>
 <div id=filelist>
     <table cellspacing=0 cellpadding=3 width="100%" height="100%" border=0>
@@ -227,16 +227,16 @@ background-color:#039;
 			</div>
 			<br style="clear: both">
 		</fieldset>
-    
+
 		<div id="view" style="width:300px; height:300px;overflow:auto;border:1px solid #aaaaaa">
     <div  align="center">
 		<br><br>
 		<span fmLang="preview_area">Preview Area</span>
 		</div>
 		</div>
-    
+
 		<div id="viewControl" align="right" class="hidelayer">
-		
+
 		<div id="imageControl" class="hidelayer">
 		<!--
 		<form id="sizeForm" >
@@ -253,7 +253,7 @@ background-color:#039;
     -->
 		</div>
     <div>
-    
+
 		<input type="button" class="button" fmLang="view" value="View" onclick="window.open('<%= @lock_path %>'+currentFile,'','')"/>
 		</div>
 		</div>
@@ -261,7 +261,7 @@ background-color:#039;
     </tr>
   </table>
 </div>
-<script   language="javascript">   
+<script   language="javascript">
 
 var foldMenu = $("foldMenu");
 var fileMenu = $("fileMenu");
@@ -276,11 +276,11 @@ lastMenu.style.visibility = "hidden";
 lastMenu.style.display = "none";
 }
 setCssClass($('uploadForm'), 'hidelayer');
-} 
+}
 function showMenu(obj) {
 obj.style.visibility = "visible";
 obj.style.display = "block";
-}   
+}
 document.oncontextmenu   =   function(e){
   hideMenu();
   lastObject = false;
@@ -306,17 +306,17 @@ document.oncontextmenu   =   function(e){
       menu = blankMenu;
   }
   lastMenu = menu;
-  x   =   e.x   ||   e.layerX;   
-  y   =   e.y   ||   e.layerY;   
-  menu.style.left   =   x   +   "px";   
-  menu.style.top     =   y   +   "px";   
+  x   =   e.x   ||   e.layerX;
+  y   =   e.y   ||   e.layerY;
+  menu.style.left   =   x   +   "px";
+  menu.style.top     =   y   +   "px";
   showMenu(menu) ;
-  return false;   
+  return false;
 }
 document.onclick   =   function(e){
   e   =   window.event   ||   e;
   var target = (e.target) ? e.target : e.srcElement;
- 
+
   if (target) {
       try {
           if (target.type == 'undefined' || target.type == null) {
@@ -345,9 +345,9 @@ function gotoPage(link) {
 }
 function updateHtml(obj, content) {
 	obj.innerHTML = content;
-}     
+}
 function rename() {
-	var new_name = prompt(getText("prompt_input_new_name", "Please input new name"), old_name); 
+	var new_name = prompt(getText("prompt_input_new_name", "Please input new name"), old_name);
 	if (new_name != null && new_name != "" && new_name != old_name) {
 	    ajaxLink("/fm/filemanager/rename?path=<%= path %>&old_name=" + old_name + "&new_name=" + new_name, $("view"), null, refreshPage());
 	}
@@ -378,7 +378,7 @@ function copyFile() {
     if (selectedName.length == 0) {
     	ajaxLink("/fm/filemanager/copy?path=<%= path %>&source[]=" + old_name, $("view"), null);
     } else {
-        var nameArray=new Array();   
+        var nameArray=new Array();
     	nameArray = selectedName.split('*');
     	var parameter = "";
     	for (var i = 0; i < nameArray.length; i++) {
@@ -391,7 +391,7 @@ function cutFile() {
     if (selectedName.length == 0) {
     	  ajaxLink("/fm/filemanager/cut?path=<%= path %>&source[]=" + old_name, $("view"), null, markObject(lastObject));
     } else {
-        var nameArray=new Array();   
+        var nameArray=new Array();
       	nameArray = selectedName.split('*');
       	var parameter = "";
       	for (var i = 0; i < nameArray.length; i++) {
@@ -436,13 +436,13 @@ function pasteFile() {
     }
 }
 function newFile() {
-    var new_name = prompt(getText("prompt_input_name", "Please input name"), ""); 
+    var new_name = prompt(getText("prompt_input_name", "Please input name"), "");
     if (new_name != null && new_name.length > 0) {
       ajaxLink("/fm/filemanager/new_file?path=<%= path %>&new_name=" + new_name, $("view"), null, refreshPage());
     }
 }
 function newFolder() {
-    var new_name = prompt(getText("prompt_input_name", "Please input name"), ""); 
+    var new_name = prompt(getText("prompt_input_name", "Please input name"), "");
     if (new_name != null && new_name.length > 0) {
     	ajaxLink("/fm/filemanager/new_folder?path=<%= path %>&new_name=" + new_name, $("view"), null, refreshPage());
     }
@@ -452,7 +452,7 @@ function zipDownload(){
     if (selectedName.length == 0) {
     	  window.location.href = "/fm/filemanager/download?path=<%= path %>&source[]=" + old_name;
     } else {
-        var nameArray=new Array();   
+        var nameArray=new Array();
       	nameArray = selectedName.split('*');
       	var parameter = "";
       	for (var i = 0; i < nameArray.length; i++) {
@@ -498,7 +498,7 @@ function selectFile() {
 }
 function uploadFile() {
 $("fileForm").action = "/fm/filemanager/upload?path=<%= path %>";
-$("fileForm").submit(); 
+$("fileForm").submit();
 }
 function adjustSize(file) {
     ajaxPost("/fm/filemanager/adjust_size?path=" + file, $("sizeForm"), $("view"), null, refreshPage());

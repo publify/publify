@@ -1,7 +1,7 @@
 window._lang = "nl_NL" ;
 window._l10s = window._l10s || { } ;
 window._l10s["nl_NL"] = {
- 
+
   "#{0} from now": "#{0} vanaf nu",
   "#{0} ago": "#{0} geleden",
   "on #{0}": "op #{0}",

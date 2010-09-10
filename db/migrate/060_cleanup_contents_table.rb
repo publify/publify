@@ -11,7 +11,7 @@ class CleanupContentsTable < ActiveRecord::Migration
     end
 
     remove_column :contents, :article_id rescue nil
-    remove_column :contents, :email 
+    remove_column :contents, :email
     remove_column :contents, :url
     remove_column :contents, :ip
     remove_column :contents, :blog_name

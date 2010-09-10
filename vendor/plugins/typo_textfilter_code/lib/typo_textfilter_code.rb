@@ -7,12 +7,12 @@ class Typo
       plugin_display_name "Code"
       plugin_description "Apply coderay highlighting to a code block"
 
-      DEFAULT_OPTIONS = {:css => :class, 
-        :wrap => :span, 
-        :line_numbers => nil, 
-        :tab_width => 2, 
-        :bold_every => 5, 
-        :hint => false, 
+      DEFAULT_OPTIONS = {:css => :class,
+        :wrap => :span,
+        :line_numbers => nil,
+        :tab_width => 2,
+        :bold_every => 5,
+        :hint => false,
         :line_number_start => 1}
 
       def self.help_text
@@ -31,7 +31,7 @@ This uses the Ruby [Syntax](http://coderay.rubychan.de) module.  Options:
 
 * **lang**.  Sets the programming language.  Currently supported languages are
 *C, C++ (&#42;), CSS, Delphi, diff, Groovy (&#42;), HTML, Java, JavaScript, JSON,
-PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.  
+PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
 &#42; Only available in CodeRay >= 0.9.1
 * **linenumber**.  Turns on line numbering.  Use `linenumber="true"` to enable.
 * **title**.  Adds a title block to the top of the code block.

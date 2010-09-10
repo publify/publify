@@ -5,15 +5,15 @@
   $('s').className = 'inactive';
   $('f').className = 'active';
   $('text_filter').value = 'none';
-  html = $('page_body').value;  
+  html = $('page_body').value;
   $('simple_editor').innerHTML = '';
   $('carousel-wrapper').style.display = 'none';
-  
+
   if (CKEDITOR.instances.page__body_editor &&
     typeof(CKEDITOR.instances.page__body_editor) == 'object') {
       delete(CKEDITOR.instances.page__body_editor);
     }
-    
+
 </script>
 <%= ckeditor_textarea('page', 'body', {:height => '300', :class => 'large'}) %>
 <script type="text/javascript">

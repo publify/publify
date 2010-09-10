@@ -44,7 +44,7 @@ Carousel = Class.create(Abstract, {
             effect:             'scroll',
             transition:         'sinoidal'
         }, options || {});
-        
+
         if (this.options.effect == 'fade') {
             this.options.circular = true;
         }
@@ -56,8 +56,8 @@ Carousel = Class.create(Abstract, {
 		if (this.controls) {
             this.controls.invoke('observe', 'click', this.click.bind(this));
         }
-        
-        if (this.options.wheel) {            
+
+        if (this.options.wheel) {
             this.scroller.observe('mousewheel', this.wheel.bindAsEventListener(this)).observe('DOMMouseScroll', this.wheel.bindAsEventListener(this));;
         }
 
@@ -67,7 +67,7 @@ Carousel = Class.create(Abstract, {
 
 		if (this.options.initial) {
 			var initialIndex = this.slides.indexOf($(this.options.initial));
-			if (initialIndex > (this.options.visibleSlides - 1) && this.options.visibleSlides > 1) {               
+			if (initialIndex > (this.options.visibleSlides - 1) && this.options.visibleSlides > 1) {
 				if (initialIndex > this.slides.length - (this.options.visibleSlides + 1)) {
 					initialIndex = this.slides.length - this.options.visibleSlides;
 				}
@@ -113,7 +113,7 @@ Carousel = Class.create(Abstract, {
 		}
 
         switch (this.options.effect) {
-            case 'fade':               
+            case 'fade':
                 this.scrolling = new Effect.Opacity(this.scroller, {
                     from:   1.0,
                     to:     0,
@@ -162,7 +162,7 @@ Carousel = Class.create(Abstract, {
                         }
                         if (this.options.afterMove && (typeof this.options.afterMove == 'function')) {
                             this.options.afterMove();
-                        }                        
+                        }
                         this.scrolling = false;
                     }).bind(this)});
             break;
@@ -201,9 +201,9 @@ Carousel = Class.create(Abstract, {
 			this.scroller.scrollTop  = 0;
 			nextIndex = 1;
     }
-    
+
     var max = $('editor').getWidth() / 140 | 0;
-    
+
     if (nextIndex == this.slides.length - (max - 1)) {
       new Ajax.Request('/admin/resources/get_thumbnails?position=' + this.slides.length,
         {
@@ -211,14 +211,14 @@ Carousel = Class.create(Abstract, {
           onSuccess: function(transport){
             var response = transport.responseText || "no response text";
             $('carousel-content').innerHTML += response;
-            this.slides = $$('#carousel-content .slide'); 
+            this.slides = $$('#carousel-content .slide');
             $('carousel-content').style.width = 140 * this.slides.length;
           }
         });
     }
 		if (nextIndex > this.slides.length - (this.options.visibleSlides + 1)) {
 			nextIndex = this.slides.length - this.options.visibleSlides;
-		}		
+		}
 
 		this.moveTo(this.slides[nextIndex]);
 	},
@@ -245,7 +245,7 @@ Carousel = Class.create(Abstract, {
 		}
 	},
 
-	start: function () { 
+	start: function () {
         this.periodicallyUpdate();
     },
 
@@ -272,30 +272,30 @@ Carousel = Class.create(Abstract, {
         }
 		this.timer = setTimeout(this.periodicallyUpdate.bind(this), this.options.frequency * 1000);
     },
-    
+
     wheel: function (event) {
         event.cancelBubble = true;
         event.stop();
-        
+
 		var delta = 0;
 		if (!event) {
             event = window.event;
         }
 		if (event.wheelDelta) {
-			delta = event.wheelDelta / 120; 
-		} else if (event.detail) { 
-            delta = -event.detail / 3;	
-        }        
-       
+			delta = event.wheelDelta / 120;
+		} else if (event.detail) {
+            delta = -event.detail / 3;
+        }
+
         if (!this.scrolling) {
             this.deactivateControls();
             if (delta > 0) {
                 this.prev();
             } else {
                 this.next();
-            }            
+            }
         }
-        
+
 		return Math.round(delta); //Safari Round
     },
 

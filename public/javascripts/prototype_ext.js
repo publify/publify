@@ -4,14 +4,14 @@
 function setCssClass(obj, className) {
     if (Prototype.Browser.IE) {
 		obj.className = className;
-    } else { 
+    } else {
 		obj.setAttribute("class", className);
     }
 }
 function getCssClass(obj) {
     if (Prototype.Browser.IE) {
 		return obj.className;
-    } else { 
+    } else {
 		return obj.getAttribute("class");
     }
 }
@@ -33,7 +33,7 @@ function hideLoading(replace, backupHtml) {
 function restoreFromBackup(replace, backupHtml) {
 	replace.innerHTML = backupHtml;
 }
-function ajaxPost(link, formObj, viewObj, decorator, success, replace) { 
+function ajaxPost(link, formObj, viewObj, decorator, success, replace) {
 	if (link == "" || link == null) {
     	link = formObj.action;
     }
@@ -57,7 +57,7 @@ function ajaxPost(link, formObj, viewObj, decorator, success, replace) {
     	success();
     }
     if (typeof(viewObj)!='undefined' && viewObj != null) {
-		new Ajax.Updater(viewObj, link, { 
+		new Ajax.Updater(viewObj, link, {
                 parameters: Form.serialize(formObj) + decorator,
                 onComplete: realsuccess,
                 evalScripts: true,
@@ -65,7 +65,7 @@ function ajaxPost(link, formObj, viewObj, decorator, success, replace) {
                 encoding: "UTF-8"
             })
 	} else {
-		new Ajax.Request(link, { 
+		new Ajax.Request(link, {
                 parameters: Form.serialize(formObj),
                 onComplete: realsuccess,
                 evalScripts: true,
@@ -74,7 +74,7 @@ function ajaxPost(link, formObj, viewObj, decorator, success, replace) {
             })
 	}
 }
-function ajaxLink(link, viewObj, decorator, success, replace) { 
+function ajaxLink(link, viewObj, decorator, success, replace) {
     if (link == "" || link == null) {
     	link = formObj.action;
     }
@@ -99,7 +99,7 @@ function ajaxLink(link, viewObj, decorator, success, replace) {
     }
 	if (typeof(viewObj)!='undefined' && viewObj != null) {
 
-		new Ajax.Updater(viewObj, link, { 
+		new Ajax.Updater(viewObj, link, {
      			parameters: decorator,
                 onComplete: realsuccess,
                 evalScripts: true,
@@ -107,7 +107,7 @@ function ajaxLink(link, viewObj, decorator, success, replace) {
                 encoding: "UTF-8"
             })
 	} else {
-		new Ajax.Request(link, { 
+		new Ajax.Request(link, {
                 onComplete: realsuccess,
                 evalScripts: true,
                 method: "get",

@@ -12,5 +12,5 @@ none.type: rar zip
 resources.url: /filemanager/resources
 resources.path: <%= RAILS_ROOT %>/public/filemanager/resources
 encoding.to: UTF-8
-encoding.from: 
-temp.dir: 
+encoding.from:
+temp.dir:

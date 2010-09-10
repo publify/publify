@@ -75,7 +75,7 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   protected
-  
+
   def show_available
     render :partial => 'availables', :object => available
   end

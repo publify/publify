@@ -11,9 +11,9 @@ require 'fileutils'
 require 'filemanager/controller'
 
 class Fm::FilemanagerController < ApplicationController
-  
+
   include Filemanager::Controller
-  
+
   layout false
   before_filter :set_up
   after_filter :tear_off

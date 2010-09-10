@@ -1,6 +1,6 @@
 module Admin::SettingsHelper
   require 'find'
-  
+
   def fetch_langs
     options = content_tag(:option, "Select lang", :value => 'en_US')
 	Find.find(RAILS_ROOT + "/lang") do |lang|

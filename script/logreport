@@ -4,7 +4,7 @@ latest=[]
 
 class CallNode
   attr_accessor :name, :time, :children, :queries, :query_time
-  
+
   def initialize(name)
     @name = name
     @children = Array.new
@@ -12,11 +12,11 @@ class CallNode
     @query_time = 0
     @time = 0
   end
-  
+
   def to_s
     name
   end
-  
+
   def print_tree(depth)
     child_time=children.inject(0) {|total,c| c.time.to_f + total} || 0
     printf "%s %-40s    %f  q=%-3d (%f) o=%f\n",
@@ -26,13 +26,13 @@ class CallNode
       queries,
       query_time,
       time-child_time-query_time
-    
+
     #" " "*depth+"** #{name}              #{time}   #{time-child_time}  #{queries} queries (#{query_time})"
     children.each do |child|
       child.print_tree(depth+1)
     end
   end
-  
+
   def averages(average_hash = Hash.new)
     average_hash[name] ||= Array.new
     average_hash[name].push time

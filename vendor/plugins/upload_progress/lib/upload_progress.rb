@@ -20,12 +20,12 @@ module UploadProgress
   #
   # For help rendering the UploadProgress enabled form and supported elements, see
   # ActionView::Helpers::UploadProgressHelper.
-  # 
+  #
   # === Automatic updating on upload actions
   #
-  #   class DocumentController < ApplicationController   
+  #   class DocumentController < ApplicationController
   #     upload_status_for  :create
-  #     
+  #
   #     def create
   #       # ... Your document creation action
   #     end
@@ -39,9 +39,9 @@ module UploadProgress
   #
   # === Customized status rendering
   #
-  #   class DocumentController < ApplicationController   
+  #   class DocumentController < ApplicationController
   #     upload_status_for  :create, :status => :custom_status
-  #     
+  #
   #     def create
   #       # ... Your document creation action
   #     end
@@ -56,12 +56,12 @@ module UploadProgress
   # are added used to replace the contents of the HTML elements defined in
   # +upload_status_tag+.  Within +upload_status+, you can load the Progress
   # object from the session with the +upload_progress+ method and display your own
-  # results.  
+  # results.
   #
   # Completion of the upload status updating occurs automatically with an +after_filter+ call to
   # +finish_upload_status+.  Because the upload must be posted into a hidden IFRAME to enable
   # Ajax updates during the upload, +finish_upload_status+ overwrites the results of any previous
-  # +render+ or +redirect_to+ so it can render the necessary Javascript that will properly terminate 
+  # +render+ or +redirect_to+ so it can render the necessary Javascript that will properly terminate
   # the status updating loop, trigger the completion callback or redirect to the appropriate URL.
   #
   # ==== Basic Example (View):
@@ -126,30 +126,30 @@ module UploadProgress
   #
   # ==== Environment checklist
   #
-  # This is an experimental feature that requires a specific webserver environment.  Use the following checklist 
+  # This is an experimental feature that requires a specific webserver environment.  Use the following checklist
   # to confirm that you have an environment that supports upload progress.
   #
   # ===== Ruby:
-  # 
+  #
   # * Running the command `ruby -v` should print "ruby 1.8.2 (2004-12-25)" or older
-  # 
+  #
   # ===== Web server:
-  # 
+  #
   # * Apache 1.3, Apache 2.0 or Lighttpd *1.4* (need to build lighttpd from CVS)
-  # 
+  #
   # ===== FastCGI bindings:
-  # 
+  #
   # * > 0.8.6 and must be the compiled C version of the bindings
   # * The command `ruby -e "p require('fcgi.so')"` should print "true"
-  # 
+  #
   # ===== Apache/Lighttpd FastCGI directives:
-  # 
+  #
   # * You must allow more than one FCGI server process to allow concurrent requests.
   # * If there is only a single FCGI process you will not get the upload status updates.
   # * You can check this by taking a look for running FCGI servers in your process list during a progress upload.
   # * Apache directive: FastCGIConfig -minProcesses 2
   # * Lighttpd directives taken from config/lighttpd.conf (min-procs):
-  # 
+  #
   #     fastcgi.server = (
   #      ".fcgi" => (
   #       "APP_NAME" => (
@@ -159,14 +159,14 @@ module UploadProgress
   #       )
   #      )
   #     )
-  # 
+  #
   # ===== config/environment.rb:
-  # 
+  #
   # * Add the following line to your config/environment.rb and restart your web server.
   # * <tt>ActionController::Base.enable_upload_progress</tt>
-  # 
+  #
   # ===== Development log:
-  # 
+  #
   # * When the upload progress is enabled by you will find something the following lines:
   # * "Multipart upload with progress (id: 1, size: 85464)"
   # * "Finished processing multipart upload in 0.363729s"
@@ -183,7 +183,7 @@ module UploadProgress
     #
     def upload_status_for(*actions)
       after_filter :finish_upload_status, :only => actions
-      
+
       define_method(actions.last.is_a?(Hash) && actions.last[:status] || :upload_status) do
         render(:inline => '<%= upload_progress_status %>', :layout => false)
       end
@@ -208,8 +208,8 @@ module UploadProgress
   #
   # === Strings
   #
-  # Strings contain Javascript code that will be evaluated on the client. If you 
-  # wish to pass a string to the client finish callback, you will need to include 
+  # Strings contain Javascript code that will be evaluated on the client. If you
+  # wish to pass a string to the client finish callback, you will need to include
   # quotes in the +client_js_argument+ you pass to this method.
   #
   # ==== Example
@@ -221,7 +221,7 @@ module UploadProgress
   #
   # === Numbers / Booleans
   #
-  # Numbers and Booleans can either be passed as Number objects or string versions 
+  # Numbers and Booleans can either be passed as Number objects or string versions
   # of number objects as they are evaluated by Javascript the same way as in Ruby.
   #
   # ==== Example
@@ -289,12 +289,12 @@ module UploadProgress
   def current_upload_id
     params[:upload_id] or last_upload_id
   end
-  
+
   # Get the UploadProgress::Progress object for the supplied +upload_id+ from the
   # session. If no +upload_id+ is given, then use the +current_upload_id+
   #
   # If an UploadProgress::Progress object cannot be found, a new instance will be
-  # returned with <code>total_bytes == 0</code>, <code>started? == false</code>, 
+  # returned with <code>total_bytes == 0</code>, <code>started? == false</code>,
   # and <code>finished? == true</code>.
   def upload_progress(upload_id = nil)
     upload_id ||= current_upload_id

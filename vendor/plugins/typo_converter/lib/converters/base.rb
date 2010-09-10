@@ -1,6 +1,6 @@
 class EmailNotifier < ActiveRecord::Observer
   observe Article, Page, Comment
-  
+
   def after_save(content)
     true
   end
@@ -29,17 +29,17 @@ class BaseConverter
   #     # build Typo User object from other user
   #     ::User.new ...
   #   end
-  #   
+  #
   #   convert.import_pages do |other_page|
   #     # build Typo Page object from other page
   #     ::Page.new ...
   #   end
-  #   
+  #
   #   convert.import_articles do |other_article|
   #     # build Typo Article object from other article
   #     ::Article.new ...
   #   end
-  #   
+  #
   #   convert.import_comments do |other_comment|
   #     # build Typo Comment object from other comment
   #     ::Comment.new ...
@@ -64,12 +64,12 @@ class BaseConverter
 
   # override this to find all users from the source database
   # save them to @old_users, indexed by :login
-  # 
+  #
   #   @old_users ||= User.find(:all).index_by(&:login)
   def old_users
     raise NotImplementedError
   end
-  
+
   # override this to retrieve the login name from the source user model
   def get_login(other_user)
     other_user.login
@@ -94,12 +94,12 @@ class BaseConverter
   def handle_bad_comment_author_url(other_comment, url)
     other_comment.author_url = url
   end
-  
+
   # Resets the author name for a bad comment from the source site.
   def handle_bad_comment_author(other_comment, author)
     other_comment.author = author
   end
-  
+
   # Resets the content for a bad comment from the source site.
   def handle_bad_comment_content(other_comment, content)
     other_comment.content = content
@@ -146,7 +146,7 @@ class BaseConverter
     print "\n"
     puts "migrated #{@count[:users]} user(s)..."
   end
-  
+
   def import_user(other_user, &block)
     unless other_user && users[get_login(other_user)]
       ActiveRecord::Base.logger.info "Creating new user for #{get_login(other_user)}"
@@ -245,15 +245,15 @@ class BaseConverter
   end
 
   def create_categories(libelle)
-    @categories[libelle] = Category.find_or_create_by_name libelle 
+    @categories[libelle] = Category.find_or_create_by_name libelle
   end
 
   # Create a tag with a libelle
   # Add the tag in Hash value in attribute of tags
   def create_tag(libelle)
-    @tags[libelle] = Tag.get libelle 
+    @tags[libelle] = Tag.get libelle
   end
-  
+
   def import_articles(&block)
     puts "started articles migration..."
     @article_index = {}
@@ -263,7 +263,7 @@ class BaseConverter
     print "\n"
     puts "migrated #{@count[:articles]} article(s)..."
   end
-  
+
   def import_pages(&block)
     puts "started pages migration..."
     old_pages.each do |other_page|
@@ -272,7 +272,7 @@ class BaseConverter
     print "\n"
     puts "migrated #{@count[:pages]} page(s)..."
   end
-  
+
   def import_comments(&block)
     puts "started comment migration..."
     old_articles.each do |other_article|

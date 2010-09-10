@@ -10,7 +10,7 @@ CREATE TABLE sessions (
   data text,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
-);                                                                                                                                                                  
+);
 
 CREATE TABLE settings (
   id SERIAL PRIMARY KEY NOT NULL,

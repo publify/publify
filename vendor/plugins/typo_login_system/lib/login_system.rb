@@ -1,6 +1,6 @@
 module LoginSystem
   protected
-  
+
     def logged_in?
       current_user != :false
     end
@@ -13,16 +13,16 @@ module LoginSystem
       session[:user] = (new_user.nil? || new_user.is_a?(Symbol)) ? nil : new_user.id
       @current_user = new_user
     end
-    
+
     # If the current actions are in our access rule will be verifyed
     def allowed?
       return AccessControl.allowed_controllers(current_user.profile.label, current_user.profile.modules).include?(params[:controller])
     end
-    
+
     def authorized?
       logged_in? && allowed?
     end
-    
+
     def login_required
       authorized? || access_denied
     end
@@ -45,7 +45,7 @@ module LoginSystem
         end
       end
       false
-    end  
+    end
 
     def store_location
       session[:return_to] = request.request_uri
@@ -70,7 +70,7 @@ module LoginSystem
     end
 
     # Called from #current_user.  Finaly, attempt to login by an expiring token in the cookie.
-    def login_from_cookie      
+    def login_from_cookie
       user = cookies[:auth_token] && User.find_by_remember_token(cookies[:auth_token])
       if user && user.remember_token?
         user.remember_me
@@ -85,6 +85,6 @@ module LoginSystem
     def get_auth_data
       auth_key  = @@http_auth_headers.detect { |h| request.env.has_key?(h) }
       auth_data = request.env[auth_key].to_s.split unless auth_key.blank?
-      return auth_data && auth_data[0] == 'Basic' ? Base64.decode64(auth_data[1]).split(':')[0..1] : [nil, nil] 
+      return auth_data && auth_data[0] == 'Basic' ? Base64.decode64(auth_data[1]).split(':')[0..1] : [nil, nil]
     end
 end

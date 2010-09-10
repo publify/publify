@@ -7,10 +7,10 @@ def render_breadcrumb
     breadcrumb << link_to(this_blog.blog_name, this_blog.base_url)
   end
 
-  if controller.controller_name == "redirect" and @article 
+  if controller.controller_name == "redirect" and @article
     if @article.categories.first
       breadcrumb << " &gt; "
-      breadcrumb << link_to(@article.categories.first.name, @article.categories.first.permalink_url) 
+      breadcrumb << link_to(@article.categories.first.name, @article.categories.first.permalink_url)
     end
     breadcrumb << " &gt; "
     breadcrumb << @article.title
@@ -19,14 +19,14 @@ def render_breadcrumb
     if params[:id]
       breadcrumb << link_to(_("Tags"), :controller => 'tags')
       mytag = Tag.find_by_name(params[:id])
-      breadcrumb << " &gt #{mytag.display_name}" 
+      breadcrumb << " &gt #{mytag.display_name}"
     else
       breadcrumb << _("Tags")
     end
   elsif controller.controller_name == 'categories'
     breadcrumb << " &gt; "
     if params[:id]
-      breadcrumb << link_to(_("Categories"), :controller => "categories") 
+      breadcrumb << link_to(_("Categories"), :controller => "categories")
       mycategory = Category.find_by_permalink(params[:id])
       breadcrumb << " &gt; #{mycategory.display_name}"
     else
@@ -50,7 +50,7 @@ def render_active_home
   if controller.controller_name == 'articles' and controller.action_name != 'view_page'
     if controller.action_name = 'index'
       return if params[:page]
-      return 'active' 
+      return 'active'
     end
   end
 end
@@ -69,9 +69,9 @@ def category_name(id)
 end
 
 def display_comments_counter(article)
-  link_to pluralize(article.published_comments.size, 
+  link_to pluralize(article.published_comments.size,
           _('%d comments', article.published_comments.size),
-          _('%d comment', article.published_comments.size), 
+          _('%d comment', article.published_comments.size),
           _('%d comments', article.published_comments.size)), article.permalink_url
 end
 

@@ -7,11 +7,11 @@
  * Written by Kevin Armstrong <kevin@kevinandre.com>
  * Last updated: 2008.10.14
  *
- * Growler is a PrototypeJS based class that displays unobtrusive notices on a page. 
- * It functions much like the Growl (http://growl.info) available on the Mac OS X. 
+ * Growler is a PrototypeJS based class that displays unobtrusive notices on a page.
+ * It functions much like the Growl (http://growl.info) available on the Mac OS X.
  *
  * Changes in 1.0.1:
- * - 
+ * -
  *
  * @todo
  */
@@ -36,7 +36,7 @@ function removeNotice(n, o){
 	o = o || noticeOptions;
 	new Effect.Parallel([
 		new Effect.Move(n, Object.extend({ sync: true, mode: 'relative' }, o.outDirection)),
-		new Effect.Opacity(n, { sync: true, to: 0 }) 
+		new Effect.Opacity(n, { sync: true, to: 0 })
 	], {
 		duration: o.speedout
 		,afterFinish: function(){
@@ -146,7 +146,7 @@ k.Growler = Class.create({
 					break;
 			}
 		}
-		this.growler.wrap( document.body );		
+		this.growler.wrap( document.body );
 	}
 	,growl: function(msg, options) {
 		return createNotice(this.growler, msg, options);

@@ -10,8 +10,8 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
   end
 
   it 'Incomplete trackbacks should not be accepted' do
-    tb = Trackback.new(:blog_name => 'Blog name', 
-                       :title => 'Title', 
+    tb = Trackback.new(:blog_name => 'Blog name',
+                       :title => 'Title',
                        :excerpt => 'Excerpt',
                        :article_id => contents(:article1).id)
     tb.should_not be_valid

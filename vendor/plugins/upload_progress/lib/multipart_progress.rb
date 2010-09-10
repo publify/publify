@@ -26,7 +26,7 @@
 #
 # === Session options
 #
-# Upload progress uses the session options defined in 
+# Upload progress uses the session options defined in
 # ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.  If you are passing
 # custom session options to your dispatcher then please follow the
 # "recommended way to change session options":http://wiki.rubyonrails.com/rails/show/HowtoChangeSessionOptions
@@ -35,7 +35,7 @@
 #
 # During an upload, the progress will be written to the session every 2
 # seconds.  This prevents excessive writes yet maintains a decent picture of
-# the upload progress for larger files.  
+# the upload progress for larger files.
 #
 # User interfaces that update more often that every 2 seconds will display the same results.
 # Consider this update frequency when designing your progress polling.
@@ -52,11 +52,11 @@ class CGI #:nodoc:
     def initialize(orig_io, progress, session)
       @session = session
       @progress = progress
-      
+
       @start_time = Time.now
       @last_save_time = @start_time
       save_progress
-      
+
       super(orig_io)
     end
 
@@ -69,8 +69,8 @@ class CGI #:nodoc:
         progress.update!(data.size, elapsed)
 
         if now - @last_save_time > MIN_SAVE_INTERVAL
-          save_progress 
-          @last_save_time = now 
+          save_progress
+          @last_save_time = now
         end
       else
         ActionController::Base.logger.debug("CGI::ProgressIO#read returns nothing when it should return nil if IO is finished: [#{args.inspect}], a cancelled upload or old FCGI bindings.  Resetting the upload progress")
@@ -83,7 +83,7 @@ class CGI #:nodoc:
     end
 
     def save_progress
-      @session.update 
+      @session.update
     end
 
     def finish
@@ -94,14 +94,14 @@ class CGI #:nodoc:
 
   module QueryExtension #:nodoc:
     # Need to do lazy aliasing on the instance that we are extending because of the way QueryExtension
-    # gets included for each instance of the CGI object rather than on a module level.  This method is a 
-    # bit obtrusive because we are overriding CGI::QueryExtension::extended which could be used in the 
+    # gets included for each instance of the CGI object rather than on a module level.  This method is a
+    # bit obtrusive because we are overriding CGI::QueryExtension::extended which could be used in the
     # future.  Need to research a better method
     def self.extended(obj)
       obj.instance_eval do
         # unless defined? will prevent clobbering the progress IO on multiple extensions
         alias :stdinput_without_progress :stdinput unless defined? stdinput_without_progress
-        alias :stdinput :stdinput_with_progress 
+        alias :stdinput :stdinput_with_progress
       end
     end
 
@@ -119,7 +119,7 @@ class CGI #:nodoc:
           raise RuntimeError.new("Multipart upload progress disabled, no session options") unless options
 
           options = options.stringify_keys
-       
+
           # Pull in the application controller to satisfy any dependencies on class definitions
           # of instances stored in the session.
           # Be sure to stay compatible with Rails 1.0/const_load!
@@ -156,12 +156,12 @@ class CGI #:nodoc:
           session.close if session
         end
       end
-      params 
+      params
     end
 
     # Prevent redefinition of aliases on multiple includes
     unless private_instance_methods.include?("read_multipart_without_progress")
-      alias_method :read_multipart_without_progress, :read_multipart 
+      alias_method :read_multipart_without_progress, :read_multipart
       alias_method :read_multipart, :read_multipart_with_progress
     end
 

@@ -221,7 +221,7 @@ class Article < Content
     urls = Array.new
     html.gsub(/<a\s+[^>]*>/) do |tag|
       if(tag =~ /\bhref=(["']?)([^ >"]+)\1/)
-        urls.push($2)
+        urls.push($2.strip)
       end
     end
 
@@ -233,14 +233,16 @@ class Article < Content
 
     articleurl ||= permalink_url(nil)
 
-    weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/)
+    weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/).map(&:strip)
     pingback_or_trackback_urls = self.html_urls
 
     ping_urls = weblogupdatesping_urls + pingback_or_trackback_urls
 
+    existing_ping_urls = pings.collect { |p| p.url }
+
     ping_urls.uniq.each do |url|
       begin
-        unless pings.collect { |p| p.url }.include?(url.strip)
+        unless existing_ping_urls.include?(url)
           ping = pings.build("url" => url)
 
           if weblogupdatesping_urls.include?(url)
@@ -493,9 +495,9 @@ class Article < Content
       rss_desc = ""
     end
 
-    post = blog.show_extended_on_rss ? post = html(:all) : post = html(:body) 
-    post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless password.nil?
-    
+    post = blog.show_extended_on_rss ? post = html(:all) : post = html(:body)
+    post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless password.nil? or password.empty?
+
     content = blog.rss_description ? post + rss_desc : post
     entry.content(content, :type => "html")
   end

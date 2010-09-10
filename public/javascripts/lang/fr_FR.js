@@ -1,7 +1,7 @@
 window._lang = "fr_FR" ;
 window._l10s = window._l10s || { } ;
 window._l10s["fr_FR"] = {
- 
+
   "#{0} from now": "dans #{0}",
   "#{0} ago": "il y a #{0}",
   "on #{0}": "le #{0}",

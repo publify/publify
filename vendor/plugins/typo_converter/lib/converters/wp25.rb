@@ -9,7 +9,7 @@ require 'converters/wp25/user'
 class Wp25Converter < BaseConverter
   def self.convert(options = {})
     converter = new(options)
-    
+
     unless (options[:prefix].nil?)
       WP25::Option.prefix = options[:prefix]
       WP25::Post.prefix = options[:prefix]
@@ -37,12 +37,12 @@ class Wp25Converter < BaseConverter
     converter.import_articles do |wp_article|
       unless wp_article.post_content.blank? || wp_article.post_title.blank?
         user = wp_article.post_author.nil? ? nil : converter.users[WP25::User.find(wp_article.post_author.to_i).user_login]
-        
+
         excerpt, body = !wp_article.post_excerpt.blank? ?
           [wp_article.post_excerpt, wp_article.post_content] :
           [nil, wp_article.post_content]
 
-        
+
         a = ::Article.new \
           :title        => CGI::unescapeHTML(wp_article.post_title),
           :body_and_extended => body,
@@ -55,15 +55,15 @@ class Wp25Converter < BaseConverter
         [a, converter.find_or_create_categories(wp_article)]
       end
     end
-    
+
     converter.import_pages do |wp_page|
       unless wp_page.post_content.blank? || wp_page.post_title.blank?
         user = wp_page.post_author.nil? ? nil : converter.users[WP25::User.find(wp_page.post_author.to_i).user_login]
-        
+
         excerpt, body = !wp_page.post_excerpt.blank? ?
           [wp_page.post_excerpt, wp_page.post_content] :
           [nil, wp_page.post_content]
-        
+
         ::Page.new \
           :title        => CGI::unescapeHTML(wp_page.post_title),
           :name         => wp_page.post_name,
@@ -96,8 +96,8 @@ class Wp25Converter < BaseConverter
   def old_articles
     if @options.has_key?(:categories)
       #TODO: understand the categories configuration
-      @old_article ||= WP25::Post.find(:all, 
-                                           :include => :categorie, 
+      @old_article ||= WP25::Post.find(:all,
+                                           :include => :categorie,
                                            :conditions => ["post_pub = ? AND cat_libelle IN (?)", true, @options[:categories]])
     else
       @old_article ||= WP25::Post.find :all,
@@ -109,8 +109,8 @@ class Wp25Converter < BaseConverter
   def old_pages
     if @options.has_key?(:categories)
       #TODO: understand the categories configuration
-      @old_page ||= WP25::Post.find(:all, 
-                                           :include => :categorie, 
+      @old_page ||= WP25::Post.find(:all,
+                                           :include => :categorie,
                                            :conditions => ["post_pub = ? AND cat_libelle IN (?)", true, @options[:categories]])
     else
       @old_page ||= WP25::Post.find :all,
@@ -134,19 +134,19 @@ class Wp25Converter < BaseConverter
   def handle_bad_comment_author_email(wp_comment, email)
     wp_comment.comment_author_email = email
   end
-  
+
   def handle_bad_comment_author_url(wp_comment, url)
     wp_comment.comment_author_url = url
   end
-  
+
   def handle_bad_comment_author(wp_comment, author)
     wp_comment.comment_author = author
   end
-  
+
   def handle_bad_comment_content(wp_comment, content)
     wp_comment.comment_content = content
   end
- 
+
   def create_sections(libelle)
     @sections[libelle] = site.sections.create!(:name => libelle, :path => libelle)
     @sections[libelle]
@@ -172,7 +172,7 @@ class Wp25Converter < BaseConverter
     }
     tags_post
   end
-  
+
   def comment_state(wp_approved)
     case wp_approved
     when 'spam': :spam

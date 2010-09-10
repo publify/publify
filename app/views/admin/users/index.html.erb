@@ -21,7 +21,7 @@
     <td><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
     <td><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
     <td class='<%= user.state %>'><%= _("%s user", user.state)%></td>
-  </tr>  
+  </tr>
   <% end -%>
   <%= display_pagination(@users, 7)%>
 </table>

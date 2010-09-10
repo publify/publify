@@ -215,7 +215,7 @@ describe Comment do
         c.article_id = contents(:article1).id
       end
       assert comment.save!
-      
+
       assert ! comment.published?
       assert comment.spam?
       assert ! comment.status_confirmed?
@@ -229,11 +229,11 @@ describe Comment do
         c.user_id = users(:tobi).id
       end
       assert comment.save!
-      
+
       assert comment.published?
       assert comment.ham?
       assert comment.status_confirmed?
-      
+
     end
   end
 

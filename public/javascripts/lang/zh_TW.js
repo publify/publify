@@ -1,7 +1,7 @@
 window._lang = "zh_TW" ;
 window._l10s = window._l10s || { } ;
 window._l10s["zh_TW"] = {
- 
+
   "#{0} from now": "距離現在#{0}",
   "#{0} ago": "#{0} 之前",
   "on #{0}": "在 #{0}",

@@ -73,5 +73,5 @@ Factory.define 'WP25/term_taxonomy', :class => WP25::TermTaxonomy do |tt|
 end
 
 Factory.define 'WP25/term_relationship', :class => WP25::TermRelationship do |tr|
-  
+
 end

@@ -9,9 +9,9 @@ class RemoveBlogIds < ActiveRecord::Migration
     else
       remove_index :contents, :blog_id rescue nil
     end
-    remove_column :contents, :blog_id 
-    remove_column :sidebars, :blog_id 
-    remove_column :feedback, :blog_id 
+    remove_column :contents, :blog_id
+    remove_column :sidebars, :blog_id
+    remove_column :feedback, :blog_id
   end
 
   def self.down

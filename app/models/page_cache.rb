@@ -28,12 +28,12 @@ class PageCache
       o + Dir.glob(public_path + "/#{v}")
     }
     return true if srcs.empty?
-    trash = RAILS_ROOT + "/tmp/typodel.#{UUID.random_create}"
+    trash = RAILS_ROOT + "/tmp/typodel.#{UUIDTools::UUID.random_create}"
     FileUtils.makedirs(trash)
     FileUtils.mv(srcs, trash, :force => true)
     FileUtils.rm_rf(trash)
   end
-  
+
 
   # DEPRECATED
   #
@@ -58,5 +58,5 @@ class PageCache
       self.zap_pages([*1990..2020].collect { |y| "#{y}.*" })
     end
   end
-  
+
 end

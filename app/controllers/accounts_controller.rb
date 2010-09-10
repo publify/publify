@@ -4,17 +4,17 @@ class AccountsController < ApplicationController
   before_filter :verify_users, :only => [:login, :recover_password]
   filter_parameter_logging "password"
 
-  def login 
+  def login
     if session[:user_id] && session[:user_id] == self.current_user.id
       redirect_back_or_default :controller => "admin/dashboard", :action => "index"
       return
     end
-      
+
     @page_title = "#{this_blog.blog_name} - #{_('login')}"
     case request.method
       when :post
       self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
-            
+
       if logged_in?
         session[:user_id] = self.current_user.id
 
@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
       end
     end
   end
-  
+
   def signup
     @page_title = "#{this_blog.blog_name} - #{_('signup')}"
     unless User.count.zero? or this_blog.allow_signup == 1
@@ -47,25 +47,25 @@ class AccountsController < ApplicationController
 
     @user = User.new(params[:user])
 
-    if request.post? 
+    if request.post?
       @user.password = generate_password
       session[:tmppass] = @user.password
       @user.name = @user.login
       if @user.save
         self.current_user = @user
         session[:user_id] = @user.id
-      
+
         redirect_to :controller => "accounts", :action => "confirm"
         return
       end
     end
   end
-  
+
   def recover_password
     @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
     if request.post?
       @user = User.find(:first, :conditions => ["login = ? or email = ?", params[:user][:login], params[:user][:login]])
-      
+
       if @user
         @user.password = generate_password
         @user.save
@@ -99,7 +99,7 @@ class AccountsController < ApplicationController
     redirect_to(:controller => "accounts", :action => "signup") if User.count == 0
     true
   end
-  
+
   def verify_config
     redirect_to :controller => "setup", :action => "index" if  ! this_blog.configured?
   end

@@ -26,66 +26,66 @@ module Filemanager
 	      @file_total_size = @files.inject(0){|size, f| size + File.size(@current_path + File::SEPARATOR + f)}
 	    end
 	  end
-	  
+
 	  def tear_off
 	    @current_file.close unless @current_file.nil?
 	  end
-	  
+
 	  def index
-	    
+
 	  end
-	  
+
 	  def view
 	    #    respond_to do |wants|
 	    #      wants.js {  render :text => File.size(@current_path) > 1000000 ? 'File too big' : File.read(@current_path) }
 	    #    end
 	  end
-	  
+
 	  def file_content
 	      File.size(@current_path) > 1000000 ? 'File too big' : File.read(@current_path)
 	  end
-	  
+
 	#  def office
 	#    render :action=>'excel' if is_excel?
 	#    render :action=>'word' if is_word?
 	#    render :action=>'ppt' if is_ppt?
 	#    render :action=>'help' if is_help?
 	#  end
-	  
+
 	  def rename
 	    old_name = @current_path + File::SEPARATOR + decode(params[:old_name])
 	    new_name = @current_path + File::SEPARATOR + decode(params[:new_name])
 	    File.rename(old_name, new_name)
 	    success
 	  end
-	  
+
 	  def remove
 	    FileUtils.rm_rf(@source.map{|s| @current_path + File::SEPARATOR + s})
 	    success
 	  end
-	  
+
 	  def new_file
 	    File.new(@current_path + File::SEPARATOR + decode(params[:new_name]), 'w')
 	    success
 	  end
-	  
+
 	  def new_folder
 	    Dir.mkdir(@current_path + File::SEPARATOR + decode(params[:new_name]))
 	    success
 	  end
-	  
+
 	  def copy
 	    session[:source] = @source.map{|s| @current_path + File::SEPARATOR + s}
 	    session[:remove] = false
 	    success
 	  end
-	  
+
 	  def cut
 	    session[:source] = @source.map{|s| @current_path + File::SEPARATOR + s}
 	    session[:remove] = true
 	    success
 	  end
-	  
+
 	  def paste
 	    return error if session[:remove].nil? || session[:source].nil?
 	    begin
@@ -96,9 +96,9 @@ module Filemanager
 	    rescue => exception
 	      result(exception)
 	    end
-	    
+
 	  end
-	  
+
 	  def download
 	    now = Time.new
 	    now = "#{now.to_i}#{now.usec}"
@@ -108,29 +108,29 @@ module Filemanager
 	    end
 	    send_file(temp_file)
 	  end
-	  
-	  
+
+
 	  def upload
 	    file = params[:upload]
 	    filename = decode(file.original_filename)
-	    File.open(@current_path + File::SEPARATOR + filename, "wb") do |f|   
-	      f.write(file.read)  
+	    File.open(@current_path + File::SEPARATOR + filename, "wb") do |f|
+	      f.write(file.read)
 	    end
 	    to_index
 	  end
-	  
-	  
-	  
+
+
+
 	  #TODO
 	  def adjust_size
-	    
+
 	  end
-	  
+
 	  #TODO
 	  def rotate
-	    
+
 	  end
-	  
+
 	  #TODO
 	  def unzip
 	    filename = decode(params[:old_name])
@@ -139,25 +139,25 @@ module Filemanager
 	    end
 	    to_index
 	  end
-	  
+
 	  def to_index
 	    redirect_to :action => 'index', :path => encode(@path)
 	  end
-	  
+
 	  def success
 	    result("SUCCESS")
 	  end
-	  
+
 	  def error()
 	    result("ERROR")
 	  end
-	  
+
 	  def result(message)
 	    respond_to do |wants|
 	      wants.js { render :text => message }
 	    end
 	  end
-	  
+
 	  #methods for view
 	  def method_missing(method_id, *args)
 	    method_id_s = method_id.to_s
@@ -172,7 +172,7 @@ module Filemanager
 	      super
 	    end
 	  end
-	  
+
 	  def transfer(from, to, target)
 	    if FM_ENCODING_TO.nil?
 	      target
@@ -184,15 +184,15 @@ module Filemanager
 	      end
 	    end
 	  end
-	  
+
 	  def encode(target)
 	    transfer(FM_ENCODING_FROM, FM_ENCODING_TO, target);
 	  end
-	  
+
 	  def decode(target)
 	    transfer(FM_ENCODING_TO, FM_ENCODING_FROM, target);
 	  end
-	  
+
     def hsize(size)
       size = size/1024
       if size > 1024
@@ -202,10 +202,10 @@ module Filemanager
         size = format('%0.2f', size) + ' kb'
       end
     end
-    
+
     def get_file_type(file)
       type = File.extname(file)
-      
+
       unless type.blank?
         type = type.downcase[1..-1]
         return type if FM_SUPPORT_TYPES.include?(type)

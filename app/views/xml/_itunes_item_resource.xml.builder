@@ -14,7 +14,7 @@ xm.item do
   if item.itunes_explicit?
     xm.itunes :explicit,('yes')
   end
-  
+
   category_list = YAML::load(item.itunes_category)
   category_list.each do |parent_cat,sub_array|
     xm.itunes(:category, 'text' => parent_cat.gsub(/\&/,'&amp;')) do |xm|
@@ -22,7 +22,7 @@ xm.item do
         unless sub_cat.nil?
           xm.itunes :category, :text => sub_cat
         end
-      end 
+      end
     end
   end
 end

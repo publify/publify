@@ -1,9 +1,10 @@
-# The filters added to this controller will be run for all controllers in the application.
-# Likewise will all the methods added be available for all controllers.
+# Filters added to this controller apply to all controllers in the application.
+# Likewise, all the methods added will be available for all controllers.
+
 class ApplicationController < ActionController::Base
   include ::LoginSystem
   protect_from_forgery :only => [:edit, :update, :delete]
-  
+
   before_filter :reset_local_cache, :fire_triggers, :load_lang
   after_filter :reset_local_cache
 
@@ -47,7 +48,7 @@ class ApplicationController < ActionController::Base
     elsif I18n.available_locales.include?(this_blog.lang[0..1].to_sym)
       I18n.locale = this_blog.lang[0..1]
     end
-    # _("Localization.rtl") 
+    # _("Localization.rtl")
   end
 
   def reset_local_cache
@@ -74,5 +75,7 @@ class ApplicationController < ActionController::Base
     cookies[name] = { :value => value, :path => path || "/#{controller_name}",
                        :expires => 6.weeks.from_now }
   end
-end
 
+  # Scrub sensitive parameters from your log
+  filter_parameter_logging :password
+end

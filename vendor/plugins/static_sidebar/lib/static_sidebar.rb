@@ -3,8 +3,10 @@ class StaticSidebar < Sidebar
 <ul>
   <li><a href="http://www.typosphere.org" title="Typo">Typosphere</a></li>
   <li><a href="http://typogarden.org">Typogarden</a></li>
-  <li><a href="http://www.bofh.org.uk" title="Just a Summary">Just A Summary</a></li>
-  <li><a href="http://fredericdevillamil.com" title="Frédéric de Villamil">Ergonomie, Rails et Architecture de l'information web</a></li>
+  <li><a href="http://t37.net.com" title="Ergonomie Web">Frédéric</a></li>
+  <li><a href="http://www.matijs.net/" title="Matijs">Matijs</a></li>
+  <li><a href="http://blog.shingara.fr" title="Cyril">Cyril</a></li>
+  <li><a href="http://www.bofh.org.uk" title="Just a Summary">Piers</a></li>
   <li><a href="/admin">Admin</a></li>
 </ul>
 }

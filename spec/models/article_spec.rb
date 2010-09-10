@@ -73,7 +73,7 @@ describe Article do
     a.title = "Zzz"
     assert a.save
 
-    a.categories << Category.find(categories(:software).id)
+    a.categories << Category.find(Factory(:category).id)
     assert_equal 1, a.categories.size
 
     b = Article.find(a.id)
@@ -201,9 +201,9 @@ describe Article do
     c.keywords_to_tags
 
     assert_equal 3, c.tags.size
-    assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort    
+    assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort
   end
-  
+
   it "more than 255 chars of tags should be OK" do
     keywords = ""
     (1..42).each { |tag| keywords << "tag#{tag}, " }
@@ -211,11 +211,13 @@ describe Article do
     art = Article.create(:title => "Test article", :keywords => keywords)
     art.tags.size.should == 42
   end
-  
-  it "test_find_published_by_tag_name" do
-    @articles = Tag.find_by_name(tags(:foo).name).published_articles
 
-    assert_results_are(:article1, :article2, :publisher_article)
+  it "test_find_published_by_tag_name" do
+    art1 = Factory(:article)
+    art2 = Factory(:article)
+    Factory(:tag, :name => 'foo', :articles => [art1, art2])
+    articles = Tag.find_by_name('foo').published_articles
+    assert_equal 2, articles.size
   end
 
 
@@ -259,6 +261,7 @@ describe Article do
   end
 
   it "test_triggers_are_dependent" do
+    pending "Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI"
     art = Article.create!(:title => 'title', :body => 'body',
                           :published_at => Time.now + 1.hour)
     assert_equal 1, Trigger.count
@@ -280,6 +283,15 @@ describe Article do
   end
 
   it "test_find_published_by_category" do
+    cat = Factory(:category, :permalink => 'personal')
+    cat.articles << contents(:article1)
+    cat.articles << contents(:article2)
+    cat.articles << contents(:article3)
+    cat.articles << contents(:article4)
+
+    cat = Factory(:category, :permalink => 'software')
+    cat.articles << contents(:article1)
+
     Article.create!(:title      => "News from the future!",
                     :body       => "The future is cool!",
                     :keywords   => "future",
@@ -300,8 +312,10 @@ describe Article do
 
   it "test_destroy_file_upload_associations" do
     a = contents(:article1)
+    Factory(:resource, :article => a)
+    Factory(:resource, :article => a)
     assert_equal 2, a.resources.size
-    a.resources << resources(:resource3)
+    a.resources << Factory(:resource)
     assert_equal 3, a.resources.size
     a.destroy
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size

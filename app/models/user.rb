@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     find(:first,
          :conditions => ["login = ? AND password = ? AND state = ?", login, sha1(pass), 'active'])
   end
-  
+
   def update_connection_time
     self.last_venue = last_connection
     self.last_connection = Time.now
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
       :id => permalink
     )
   end
-  
+
   def self.authenticate?(login, pass)
     user = self.authenticate(login, pass)
     return false if user.nil?
@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
   def project_modules
     profile.modules.collect { |m| AccessControl.project_module(profile.label, m) }.uniq.compact rescue []
   end
-  
+
   # Generate Methods takes from AccessControl rules
   # Example:
   #

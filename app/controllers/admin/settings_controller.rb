@@ -8,9 +8,10 @@ class Admin::SettingsController < Admin::BaseController
     end
     load_settings
   end
-  
+
   def read; load_settings end
   def write; load_settings end
+
   def feedback
     @selected_avatar = PluginEntry.find(:first, :conditions => ['kind = ? and id = ?', 'avatar', this_blog.comment_use_avatar])
     @selected_avatar = @selected_avatar.nil? ? 0 : @selected_avatar.id
@@ -27,7 +28,7 @@ class Admin::SettingsController < Admin::BaseController
       end
     end
   end
-  
+
   def redirect
     flash[:notice] = _("Please review and save the settings before continuing")
     redirect_to :action => "index"
@@ -40,15 +41,15 @@ class Admin::SettingsController < Admin::BaseController
         this_blog.save
         flash[:notice] = _('config updated.')
       end
-      
+
       save_robots unless params[:setting][:robots].blank?
-      
+
       redirect_to :action => params[:from]
     end
   rescue ActiveRecord::RecordInvalid
     render :action => params[:from]
   end
-  
+
   def update_database
     @current_version = Migrator.current_schema_version
     @needed_version = Migrator.max_schema_version
@@ -64,12 +65,12 @@ class Admin::SettingsController < Admin::BaseController
       redirect_to :action => 'update_database'
     end
   end
-  
+
   private
   def load_settings
     @setting = this_blog
   end
-  
+
   def save_robots
     if File.writable? "#{RAILS_ROOT}/public/robots.txt"
       robots = File.new("#{RAILS_ROOT}/public/robots.txt", "r+")

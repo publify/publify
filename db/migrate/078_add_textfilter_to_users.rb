@@ -6,7 +6,7 @@ class AddTextfilterToUsers < ActiveRecord::Migration
     unless Blog.default.nil?
       t = TextFilter.find(:first, :conditions => "name= '#{Blog.default.text_filter}'")
       User.update_all("text_filter_id = #{t.id}")
-    end    
+    end
   end
 
   def self.down

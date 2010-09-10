@@ -15,11 +15,11 @@ CKEDITOR.editorConfig = function( config )
 	config.entities_processNumerical = false;
 	config.toolbar_Basic =
 	[
-	        ['Format', '-', 'Bold', 'Italic'], 
-	        ['NumberedList','BulletedList'], 
-	        ['Outdent', 'Indent'], 
-	        ['Image', 'Flash', '-', 'Link'], 
-	        ['Maximize'], 
+	        ['Format', '-', 'Bold', 'Italic'],
+	        ['NumberedList','BulletedList'],
+	        ['Outdent', 'Indent'],
+	        ['Image', 'Flash', '-', 'Link'],
+	        ['Maximize'],
 	        ['Table'],
 	        ['PageBreak'],
 	        ['Source']

@@ -36,7 +36,7 @@ article2:
   published: true
   state: published
   tags: foo
-
+  password: password
 
 article3:
   type: Article

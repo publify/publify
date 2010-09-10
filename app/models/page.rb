@@ -20,7 +20,7 @@ class Page < Content
     blog.url_for(
       :controller => '/articles',
       :action => 'view_page',
-      :name => name, 
+      :name => name,
       :anchor => anchor,
       :only_path => only_path
     )
@@ -34,7 +34,7 @@ class Page < Content
   def edit_url
     blog.url_for(:controller => "/admin/pages", :action =>"edit", :id => id)
   end
-  
+
   def delete_url
     blog.url_for(:controller => "/admin/pages", :action =>"destroy", :id => id)
   end

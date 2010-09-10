@@ -1,14 +1,14 @@
 class LangaugeFile
-  
-  def executeStage(message) 
+
+  def executeStage(message)
     puts message
     yield
   end
-  
+
   def generate_language_file(language,duplicate)
     filename = File.join("lang", "#{language}.rb");
-    
-    
+
+
     stringMap = {}
     executeStage "Loading last language file #{filename}" do
       File.read(filename).scan(/["](.*?)["],(.*)/u).each do |pp|
@@ -16,18 +16,17 @@ class LangaugeFile
       end
     end
 
-    
     stringAll = []
     executeStage "Generating #{filename}" do
       rc  = ""
       rc += "Localization.define(\"#{language}\") do |l|"
-      Dir.glob("**/*.{erb,rhtml,rb}").collect do |ff|
+      Dir.glob("**/*.{erb,rhtml,rb}").sort.collect do |ff|
         strings   = File.read(ff).scan(/_\([ ]*["](.*?)["]/)
         strings  += File.read(ff).scan(/_\([ ]*['](.*?)[']/)
         if strings.length > 0
           strings.uniq!
-          stringsRemove = strings          
-          strings -= stringAll           
+          stringsRemove = strings
+          strings -= stringAll
           stringAll += stringsRemove
           stringAll.uniq!
           if strings.length > 0
@@ -39,6 +38,7 @@ class LangaugeFile
               else
                 if stringMap.has_key?(key)
                   rc += "\n  l.store \"#{key}\",#{stringMap[key]}"
+                  stringMap.delete(key)
                 else
                   rc += "\n  l.store \"#{key}\", \"\""
                 end
@@ -47,7 +47,13 @@ class LangaugeFile
           end
         end
       end
-      rc += "\nend"
+      if stringMap.size > 0
+        rc += "\n\n  # Obsolete translations"
+        stringMap.keys.sort.each do |key|
+          rc += "\n  l.store \"#{key}\",#{stringMap[key]}"
+        end
+      end
+      rc += "\nend\n"
       ff = File.new(filename,"w")
       ff.write(rc)
       ff.close()
@@ -58,17 +64,17 @@ end
 class Tool
   def initialize
     @language  = 'en_US'
-    @duplicate = true  
-    
+    @duplicate = true
+
     if ( ARGV[0] )
       @language  = ARGV[0]
       @duplicate = false
-    end    
+    end
   end
- 
-  def run 
-    lang = LangaugeFile.new 
-    lang.generate_language_file(@language,@duplicate);  
+
+  def run
+    lang = LangaugeFile.new
+    lang.generate_language_file(@language,@duplicate);
   end
 end
 

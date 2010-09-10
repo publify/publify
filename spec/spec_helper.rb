@@ -58,7 +58,7 @@ def with_each_theme
   yield nil, ""
   Dir.new(File.join(RAILS_ROOT, "themes")).each do |theme|
     next if theme =~ /\.\.?/
-    view_path = "#{RAILS_ROOT}/themes/#{theme}/views" 
+    view_path = "#{RAILS_ROOT}/themes/#{theme}/views"
     if File.exists?("#{RAILS_ROOT}/themes/#{theme}/helpers/theme_helper.rb")
       require "#{RAILS_ROOT}/themes/#{theme}/helpers/theme_helper.rb"
     end

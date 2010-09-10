@@ -19,24 +19,24 @@ module UploadProgress #:nodoc:
 
       # Number of seconds between updates before giving up to try and calculate
       # bitrate anymore
-      MIN_STALL_TIME = 10.0   
+      MIN_STALL_TIME = 10.0
 
       # Number of samples used to calculate bitrate
-      MAX_SAMPLES = 20         
+      MAX_SAMPLES = 20
     end
 
     # Number bytes received from the multipart post
     attr_reader :received_bytes
-    
+
     # Total number of bytes expected from the mutlipart post
     attr_reader :total_bytes
-    
+
     # The last time the upload history was updated
     attr_reader :last_update_time
 
-    # A message you can set from your controller or view to be rendered in the 
+    # A message you can set from your controller or view to be rendered in the
     # +upload_status_text+ helper method.  If you set a messagein a controller
-    # then call <code>session.update</code> to make that message available to 
+    # then call <code>session.update</code> to make that message available to
     # your +upload_status+ action.
     attr_accessor :message
 
@@ -46,7 +46,7 @@ module UploadProgress #:nodoc:
       reset!
     end
 
-    # Resets the received_bytes, last_update_time, message and bitrate, but 
+    # Resets the received_bytes, last_update_time, message and bitrate, but
     # but maintains the total expected bytes
     def reset!
       @received_bytes, @last_update_time, @stalled, @message = 0, 0, false, ''
@@ -66,7 +66,7 @@ module UploadProgress #:nodoc:
     # Updates this UploadProgress object with the number of bytes received
     # since last update time and the absolute number of seconds since the
     # beginning of the upload.
-    # 
+    #
     # This method is used by the +MultipartProgress+ module and should
     # not be called directly.
     def update!(bytes, elapsed_seconds)#:nodoc:
@@ -93,20 +93,20 @@ module UploadProgress #:nodoc:
 
       if history_age > MIN_STALL_TIME
         @stalled = true
-        reset_history 
+        reset_history
       else
         @stalled = false
       end
 
       @last_update_time = elapsed_seconds
-      
+
       self
     end
 
     # Calculates the bitrate in bytes/second. If the transfer is stalled or
     # just started, the bitrate will be 0
     def bitrate
-      history_bytes, history_time = @history.transpose.map { |vals| vals.inject { |sum, v| sum + v } } 
+      history_bytes, history_time = @history.transpose.map { |vals| vals.inject { |sum, v| sum + v } }
       history_bytes / history_time rescue 0
     end
 

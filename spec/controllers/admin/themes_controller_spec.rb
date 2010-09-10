@@ -1,30 +1,32 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
-require 'admin/themes_controller'
 
-# Re-raise errors caught by the controller.
-class Admin::ThemesController; def rescue_action(e) raise e end; end
-
-describe Admin::ThemesController, 'ported from the tests' do
+describe Admin::ThemesController do
   integrate_views
 
   before do
     request.session = { :user => users(:tobi).id }
   end
 
-  # Replace this with your real tests.
-  it "test_index" do
+  it "assigns @themes for the :index action" do
     get :index
     assert_response :success
     assert_not_nil assigns(:themes)
   end
 
-  it "test_switchto" do
+  it "redirects to :index after the :switchto action" do
     get :switchto, :theme => 'typographic'
     assert_response :redirect, :action => 'index'
   end
 
-  it "test_preview" do
+  it "returns succes for the :preview action" do
     get :preview, :theme => 'typographic'
     assert_response :success
+  end
+
+  it "shows a list of css and erb files for the :editor action" do
+    get :editor
+    assert_response :success
+    response.should have_tag("a", :text => "colors.css")
+    response.should have_tag("a", :text => "default.html.erb")
   end
 end

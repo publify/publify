@@ -16,7 +16,7 @@ function translateTag(tag, propertyToSet, encode) {
 					s = htmlEncode(s);
 				}
 				tags[i][ propertyToSet ] = s ;
-			 	
+
 			}
 		}
 	}

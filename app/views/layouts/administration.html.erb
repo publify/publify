@@ -7,14 +7,17 @@
   <meta http-equiv="imagetoolbar" content="no" />
   <%= stylesheet_link_tag "growler", "administration", "lightbox" %>
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
-  <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "quicktags", "growler", "typo_carousel", "administration", :ckeditor %>
-  <%= calendar_date_select_includes %>  
+  <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "growler", "typo_carousel", "administration", "ckeditor/ckeditor" %>
+  <%= calendar_date_select_includes %>
 </head>
 <body>
   <div id='header'>
     <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
   </div>
-  <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"}, :id => 'logout' %>
+  <div id='logout'>
+    <%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %> |
+    <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"} %>
+  </div>
 
 
   <div id='container' class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
@@ -29,10 +32,10 @@
         <%= yield :tasks %>
       </ul>
     </div>
-    
+
     <div id='content' class='ui-tabs-panel'>
       <%= render_the_flash %>
-      
+
       <%= show_page_heading %>
       <%= yield  %>
     </div>

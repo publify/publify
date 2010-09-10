@@ -2,7 +2,7 @@ module Admin::UsersHelper
   def get_select(needle, haystack)
     return 'selected="selected"' if needle.to_s == haystack.to_s
   end
-  
+
   def render_options_for_display_name
     options = "<option value='#{@user.login}' #{get_select(@user.name, @user.login)}>#{@user.login}</option>"
     options << "<option value='#{@user.nickname}' #{get_select(@user.name, @user.nickname)}>#{@user.nickname}</option>" unless @user.nickname.nil?

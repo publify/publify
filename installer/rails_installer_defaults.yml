@@ -1,4 +1,4 @@
---- 
+---
 rails-environment: production
 database: mysql
 web-server: mongrel

@@ -24,7 +24,7 @@
   <td><%=h upload.size rescue 0 -%> bytes</td>
   <td><%= format_date upload.created_at -%></td>
   <td class="operation"><%= link_to _("delete"), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td>
-</tr>  
+</tr>
 <% end -%>
   <%= display_pagination(@resources, 6)%>
 </table>

@@ -97,7 +97,7 @@ class Admin::ThemesController < Admin::BaseController
   end
 
   private
-  
+
   class ThemeItem < Struct.new(:image, :name, :url, :author, :description)
     def to_s; name; end
   end

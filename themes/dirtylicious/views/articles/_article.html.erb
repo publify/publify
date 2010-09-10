@@ -7,9 +7,9 @@
     Posted by <cite><%= author_link(article) %></cite>
     <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
   </div>
-  
+
   <div class="content">
-    <% if article.password.nil? or session[:user_id]  %>
+    <% if article.password.nil? or article.password.empty? %>
       <% unless controller.action_name == 'redirect' %>
         <% if article.excerpt? %>
           <%= article.excerpt %>
@@ -28,12 +28,12 @@
         </div>
       <% end %>
     <% else %>
-      <%= render :partial => 'password_form', :locals => { :article => article } %>
+      <%= render :partial => 'articles/password_form', :locals => { :article => article } %>
     <% end %>
   </div>
 
 	<p class="info">
-		<%= content_tag(:span, category_links(article) << ' | ', :class => 'categories') unless article.categories.empty? %>  
+		<%= content_tag(:span, category_links(article) << ' | ', :class => 'categories') unless article.categories.empty? %>
 		<%= comments_link(article) << ' | ' if article.allow_comments? %>
 		<% if controller.controller_name == 'articles' and controller.action_name == 'show' %>
 			<%= content_tag(:span, tag_links(article) << ' | ', :class => 'tags') unless article.tags.empty? %>

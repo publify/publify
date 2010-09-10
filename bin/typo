@@ -8,7 +8,7 @@ require 'rails-installer'
       def self.db_file(installer)
         File.join(installer.install_directory,'db','database.sqlite')
       end
-      
+
       def self.yml(installer)
         %q{
         login: &login
@@ -24,16 +24,16 @@ require 'rails-installer'
         test:
           database: ":memory"
           <<: *login
-        }        
+        }
       end
     end
-    
+
     class Sqlite3 < RailsInstaller::Database
       # The name of the sqlite database file
       def self.db_file(installer)
         File.join(installer.install_directory,'db','database.sqlite')
       end
-      
+
       def self.yml(installer)
         %q{
         login: &login
@@ -49,24 +49,24 @@ require 'rails-installer'
         test:
           database: ":memory"
           <<: *login
-        }        
+        }
       end
     end
 
 class TypoInstaller < RailsInstaller
   application_name 'typo'
   support_location 'the Typo mailing list'
-  
+
   def pre_migrate_database
     old_schema_version = get_schema_version
     new_schema_version = File.read(File.join(source_directory,'db','schema_version')).to_i
-    
+
     return unless old_schema_version > 0
-     
+
     # Are we downgrading?
     if old_schema_version > new_schema_version
       message "Downgrading schema from #{old_schema_version} to #{new_schema_version}"
-      
+
       in_directory install_directory do
         unless system("rake -s db:migrate VERSION=#{new_schema_version}")
           raise InstallFailed, "Downgrade migrating from #{old_schema_version} to #{new_schema_version} failed."
@@ -78,19 +78,19 @@ class TypoInstaller < RailsInstaller
   # Migrate the database
   def migrate
     message "Migrating #{@@app_name.capitalize}'s database to newest release"
-    
+
     in_directory install_directory do
       unless system("rake -s gems:install")
         raise InstallFailed, "Missing dependencies"
       end
-      
+
       unless system("rake -s db:migrate")
         raise InstallFailed, "Migration failed"
       end
     end
   end
-  
-  
+
+
   def install_post_hook
     sweep_cache
   end
@@ -106,7 +106,7 @@ end
 
 class SweepCache < RailsInstaller::Command
   help "Sweep Typo's cache"
-  
+
   def self.command(installer, *args)
     installer.sweep_cache
   end

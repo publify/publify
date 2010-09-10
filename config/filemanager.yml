@@ -13,4 +13,4 @@ resources.url: /files
 resources.path: <%= RAILS_ROOT %>/public/files
 encoding.to: UTF-8
 encoding.from: UTF-8
-temp.dir: 
+temp.dir:

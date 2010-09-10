@@ -46,7 +46,7 @@ class InitialSchema < ActiveRecord::Migration
       category = Bare1Category.create(:name => 'General',
         :position => 1
       )
-      
+
       article = Bare1Article.create(:title=>'Hello World!',
         :author=>'Mr Typo',
         :body=>'Welcome to Typo. This is your first article. Edit or delete it, then start blogging!',

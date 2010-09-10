@@ -2,7 +2,7 @@ class Admin::ResourcesController < Admin::BaseController
   upload_status_for :file_upload, :status => :upload_status
 
   cache_sweeper :blog_sweeper
-  
+
   def upload
     begin
       case request.method
@@ -17,7 +17,7 @@ class Admin::ResourcesController < Admin::BaseController
 
           @up.write_to_disk(file)
           @up.create_thumbnail
-          
+
           @message = _('File uploaded: ')+ file.size.to_s
           finish_upload_status "'#{@message}'"
       end
@@ -62,20 +62,20 @@ class Admin::ResourcesController < Admin::BaseController
     @r = Resource.new
     @resources = Resource.paginate :page => params[:page], :conditions => "mime NOT LIKE '%image%'", :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
   end
-  
+
   def images
     @resources = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
   end
-  
+
   def get_thumbnails
     position = params[:position].to_i
-    
+
     @resources = Resource.find(:all, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :limit => "#{position}, 10")
-    
+
     render 'get_thumbnails', :layout => false
-    
+
   end
-  
+
   def destroy
     begin
       @file = Resource.find(params[:id])

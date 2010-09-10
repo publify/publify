@@ -28,6 +28,14 @@ describe CategoriesController, "/index" do
 end
 
 describe CategoriesController, '/articles/category/personal' do
+  before do
+    cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
+    cat.articles << contents(:article1)
+    cat.articles << contents(:article2)
+    cat.articles << contents(:article3)
+    cat.articles << contents(:article4)
+  end
+
   def do_get
     get 'show', :id => 'personal'
   end
@@ -63,11 +71,11 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should show only published articles' do
-    c = categories(:personal)
+    c = Category.find_by_permalink("personal")
     c.articles.size.should == 4
     c.published_articles.size.should == 3
 
-    get 'show', :id => 'personal'
+    do_get
 
     response.should be_success
     assigns[:articles].size.should == 3
@@ -92,10 +100,27 @@ end
 
 describe CategoriesController, 'empty category life-on-mars' do
   it 'should redirect to home when the category is empty' do
+    Factory(:category, :permalink => 'life-on-mars')
     get 'show', :id => 'life-on-mars'
-
     response.status.should == "301 Moved Permanently"
     response.should redirect_to(Blog.default.base_url)
+  end
+end
+
+describe CategoriesController, "password protected article" do
+  integrate_views
+
+  it 'should be password protected when shown in category' do
+    cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
+    cat.articles << contents(:article1)
+    cat.articles << contents(:article2)
+    cat.articles << contents(:article3)
+    cat.articles << contents(:article4)
+
+    get 'show', :id => 'personal'
+
+    assert_tag :tag => "input",
+      :attributes => { :id => "article_password" }
   end
 end
 
