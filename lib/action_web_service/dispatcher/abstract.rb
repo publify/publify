@@ -100,11 +100,6 @@ module ActionWebService # :nodoc:
           invocation.service_name = request.service_name
           if web_service_dispatching_mode == :layered
             case invocation.protocol
-            when Protocol::Soap::SoapProtocol
-              soap_action = request.protocol_options[:soap_action]
-              if soap_action && soap_action =~ /^\/\w+\/(\w+)\//
-                invocation.service_name = $1
-              end
             when Protocol::XmlRpc::XmlRpcProtocol
               if request.method_name =~ /^([^\.]+)\.(.*)$/
                 public_method_name = $2

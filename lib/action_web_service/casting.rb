@@ -42,7 +42,6 @@ module ActionWebService # :nodoc:
           return value if signature_type.nil? # signature.length != params.length
           return nil if value.nil?
           # XMLRPC protocol doesn't support nil values. It uses false instead.
-          # It should never happen for SOAP.
           if signature_type.structured? && value.equal?(false)
             return nil
           end

@@ -35,9 +35,6 @@ module Test # :nodoc:
           @request.env['HTTP_CONTENT_TYPE'] = 'text/xml'
           @request.env['RAW_POST_DATA'] = encode_rpc_call(service_name, api_method_name, *args)
           case protocol
-          when ActionWebService::Protocol::Soap::SoapProtocol
-            soap_action = "/#{@controller.controller_name}/#{service_name}/#{public_method_name(service_name, api_method_name)}" 
-            @request.env['HTTP_SOAPACTION'] = soap_action
           when ActionWebService::Protocol::XmlRpc::XmlRpcProtocol
             @request.env.delete('HTTP_SOAPACTION')
           end
@@ -83,13 +80,11 @@ module Test # :nodoc:
 
         def protocol
           if @protocol.nil?
-            @protocol ||= ActionWebService::Protocol::Soap::SoapProtocol.create(@controller)
+            @protocol ||= ActionWebService::Protocol::XmlRpc::XmlRpcProtocol.create(@controller)
           else
             case @protocol
             when :xmlrpc
               @protocol = ActionWebService::Protocol::XmlRpc::XmlRpcProtocol.create(@controller)
-            when :soap
-              @protocol = ActionWebService::Protocol::Soap::SoapProtocol.create(@controller)
             else
               @protocol
             end
@@ -98,9 +93,6 @@ module Test # :nodoc:
 
         def is_exception?(obj)
           case protocol
-          when :soap, ActionWebService::Protocol::Soap::SoapProtocol
-            (obj.respond_to?(:detail) && obj.detail.respond_to?(:cause) && \
-            obj.detail.cause.is_a?(Exception)) ? obj.detail.cause : nil
           when :xmlrpc, ActionWebService::Protocol::XmlRpc::XmlRpcProtocol
             obj.is_a?(XMLRPC::FaultException) ? obj : nil
           end
