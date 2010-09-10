@@ -28,10 +28,10 @@ class PluginEntry < ActiveRecord::Base
       true
     end
 
-    def get_class_for(pluggable)
-      entry = PluginEntry.find(:first, :conditions => ['kind = ? and id = ?', 'avatar', this_blog.comment_use_avatar])
+    def get_class_for(pluggable, avatar_mode)
+      entry = PluginEntry.find(:first, :conditions => ['kind = ? and id = ?', 'avatar', avatar_mode])
       begin
-        entry.klass.const_get
+        Module.const_get(entry.klass)
       rescue NameError => a
         nil
       end

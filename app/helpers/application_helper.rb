@@ -22,6 +22,13 @@ module ApplicationHelper
     "<a href=\"#{item.permalink_url}#{anchor}\" #{rel_attr} #{class_attr}>#{title}</a>"
   end
 
+  # wrapper for TypoPlugins::Avatar
+  # options is a hash which should contain :email and :url for the plugin
+  # (gravatar will use :email, pavatar will use :url, etc.)
+  def avatar_tag(options = {})
+    Avatar.get_class(this_blog.comment_use_avatar).try('get_avatar(options)')
+  end
+
   # The '5 comments' link from the bottom of articles
   def comments_link(article)
     comment_count = article.published_comments.size
@@ -87,16 +94,6 @@ module ApplicationHelper
     output.join("<br />\n")
   end
   
-  # Generate the image tag for a commenters gravatar based on their email address
-  # Valid options are described at http://www.gravatar.com/implement.php
-  def gravatar_tag(email, options={})
-    options.update(:gravatar_id => Digest::MD5.hexdigest(email.strip))
-    options[:default] = CGI::escape(options[:default]) if options.include?(:default)
-    options[:size] ||= 60
-
-    image_tag("http://www.gravatar.com/avatar.php?" <<
-      options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")
-  end
 
   def feed_title
     case

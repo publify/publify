@@ -14,7 +14,6 @@ class Admin::SettingsController < Admin::BaseController
   def feedback
     @selected_avatar = PluginEntry.find(:first, :conditions => ['kind = ? and id = ?', 'avatar', this_blog.comment_use_avatar])
     @selected_avatar = @selected_avatar.nil? ? 0 : @selected_avatar.id
-    RAILS_DEFAULT_LOGGER.debug("======================= #{@selected_avatar}")
     load_settings 
   end
   

@@ -9,8 +9,8 @@ class Avatar
     def get_avatar(options = {})
       raise NotImplementedError 
     end
-    def get_class
-      PluginEntry.get_class_for(:avatar)
+    def get_class(avatar_mode)
+      PluginEntry.get_class_for(:avatar, avatar_mode)
     end
   end
 end  
