@@ -26,7 +26,7 @@ module ApplicationHelper
   # options is a hash which should contain :email and :url for the plugin
   # (gravatar will use :email, pavatar will use :url, etc.)
   def avatar_tag(options = {})
-    Avatar.get_class(this_blog.comment_use_avatar).try('get_avatar(options)')
+    Avatar.get_class(this_blog.comment_use_avatar).try(:get_avatar, options)
   end
 
   # The '5 comments' link from the bottom of articles
