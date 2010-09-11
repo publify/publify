@@ -55,6 +55,7 @@ end
 # Load included libraries.
 #require 'uuidtools'
 
+require 'action_web_service'
 require 'migrator'
 require 'rails_patch/active_record'
 require 'rails_patch/active_support'

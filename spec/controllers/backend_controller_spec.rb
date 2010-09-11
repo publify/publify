@@ -1,17 +1,7 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 require 'action_web_service/test_invoke'
-require 'backend_controller'
-require 'blogger_service'
-require 'meta_weblog_service'
-require 'app/apis/movable_type_service.rb'
-require 'digest/sha1'
-require 'base64'
 
 User.salt = 'change-me'
-
-BackendController.class_eval do
-  include ActionWebService::Protocol::XmlRpc
-end
 
 describe BackendController do
   before do
