@@ -4,7 +4,7 @@ require 'digest/md5'
 class Typo
   class Avatar
     
-    class Gravatar
+    class Gravatar < Avatar
       class << self
         def get_avatar(options={})
           email = options.delete(:email) || ''

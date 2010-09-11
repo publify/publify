@@ -1,6 +1,7 @@
 # Abstract class handling avatar display, principally in comments
 class Avatar
   class << self
+    PLUGIN_KIND = 'avatar'
     ##
     # 
     # options are:
