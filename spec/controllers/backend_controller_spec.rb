@@ -122,25 +122,44 @@ describe BackendController do
       assert_raise(ActiveRecord::RecordNotFound) { Article.find(art_id) }
     end
 
-    it "test_meta_weblog_edit_post" do
-      art_id = contents(:article1).id
-      article = Article.find(art_id)
-      article.title = "Modified!"
-      article.body = "this is a *test*"
-      article.text_filter = TextFilter.find_by_name("textile")
-      article.published_at = Time.now.utc.midnight
+    describe "when editing a post" do
+      before do
+        @art_id = contents(:article1).id
+        @article = Article.find(@art_id)
+        @article.title = "Modified!"
+        @article.body = "this is a *test*"
+        @article.text_filter = TextFilter.find_by_name("textile")
+        @article.published_at = Time.now.utc.midnight
 
-      args = [ art_id, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
+        @dto = MetaWeblogService.new(@controller).article_dto_from(@article)
+      end
 
-      result = invoke_layered :metaWeblog, :editPost, *args
-      assert result
+      it "test_meta_weblog_edit_post" do
+        args = [ @art_id, 'tobi', 'whatever', @dto, 1 ]
 
-      new_article = Article.find(art_id)
+        result = invoke_layered :metaWeblog, :editPost, *args
+        assert result
 
-      assert_equal article.title, new_article.title
-      assert_equal article.body, new_article.body
-      assert_equal "<p>this is a <strong>test</strong></p>", new_article.html(:body)
-      assert_equal article.published_at, new_article.published_at.utc
+        new_article = Article.find(@art_id)
+
+        assert_equal @article.title, new_article.title
+        assert_equal @article.body, new_article.body
+        assert_equal "<p>this is a <strong>test</strong></p>", new_article.html(:body)
+        assert_equal @article.published_at, new_article.published_at.utc
+      end
+
+      it "should set categories if specified" do
+        Factory(:category, :name => 'foo')
+        Factory(:category, :name => 'bar')
+        Factory(:category, :name => 'baz')
+        @dto.categories = ['bar']
+
+        args = [ @art_id, 'tobi', 'whatever', @dto, 1 ]
+
+        invoke_layered :metaWeblog, :editPost, *args
+
+        Article.find(@art_id).categories.map(&:name).should == ['bar']
+      end
     end
 
     # TODO: Work out what the correct response is when a post can't be saved...
@@ -192,6 +211,24 @@ describe BackendController do
       assert result
       new_post = Article.find(result)
       assert !new_post.published?
+    end
+
+    it "should set categories if specified in new post" do
+      Factory(:category, :name => 'foo')
+      Factory(:category, :name => 'bar')
+      Factory(:category, :name => 'baz')
+
+      dto = MetaWeblogStructs::Article.new(
+        :description => "Some text",
+        :title => "A Title",
+        :categories => ["foo", "baz"]
+      )
+
+      args = [ 1, 'tobi', 'whatever', dto, 0 ]
+
+      result = invoke_layered :metaWeblog, :newPost, *args
+      new_post = Article.find(result)
+      new_post.categories.map(&:name).sort.should == ["baz", "foo"]
     end
 
     it "test_meta_weblog_edit_unpublished_post_with_old_creation_date" do
