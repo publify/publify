@@ -390,7 +390,7 @@ describe Article do
 
   describe '#search' do
 
-    describe 'is an array', :shared => true do
+    shared_examples_for 'is an array' do
       it 'should get an array' do
         @articles.should be_a(Array)
       end

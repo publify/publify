@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "All Requests", :shared => true do
+shared_examples_for "All Requests" do
   before do
     @comment  = mock_model(Comment,
                   :save                       => true,
@@ -12,7 +12,7 @@ describe "All Requests", :shared => true do
   end
 end
 
-describe "General Comment Creation", :shared => true do
+shared_examples_for "General Comment Creation" do
   it_should_behave_like "All Requests"
 
   it "should assign the new comment to @comment" do

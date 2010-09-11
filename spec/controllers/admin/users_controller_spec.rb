@@ -37,7 +37,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       end
 
       describe 'with GET request' do
-        describe 'edit admin render', :shared => true do
+        shared_examples_for 'edit admin render' do
           it 'should render template edit' do
             assert_template 'edit'
           end

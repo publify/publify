@@ -6,7 +6,7 @@ describe Admin::ContentController do
   render_views
 
   # Like it's a shared, need call everywhere
-  describe 'index action', :shared => true do
+  shared_examples_for 'index action' do
 
     it 'should render template index' do
       get 'index'
@@ -35,7 +35,7 @@ describe Admin::ContentController do
 
   end
 
-  describe 'autosave action', :shared => true do
+  shared_examples_for 'autosave action' do
     it 'should save new article with draft status and link to other article if first autosave' do
       lambda do
       lambda do
@@ -120,7 +120,7 @@ describe Admin::ContentController do
   end
 
 
-  describe 'new action', :shared => true do
+  shared_examples_for 'new action' do
 
     it 'should render new with get' do
       get :new
@@ -210,7 +210,7 @@ describe Admin::ContentController do
 
   end
 
-  describe 'destroy action', :shared => true do
+  shared_examples_for 'destroy action' do
 
     it 'should_not destroy article by get' do
       assert_no_difference 'Article.count' do

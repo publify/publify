@@ -33,7 +33,7 @@ class Hash
   end
 end
 
-describe "ValidPageHelper", :shared => true do
+shared_examples_for "ValidPageHelper" do
   def valid_attributes
     { :name => 'name', :title => 'title', :body => 'body'}
   end
