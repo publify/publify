@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe AuthorsController do
-  integrate_views
+  render_views
 
   describe 'show action' do
     before :each do

@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ArticlesController do
-  integrate_views
+  render_views
 
   it "should redirect category to /categories" do
     get 'category'
@@ -175,7 +175,7 @@ end
 
 describe ArticlesController, "feeds" do
 
-  integrate_views
+  render_views
 
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
@@ -231,7 +231,7 @@ describe ArticlesController, "the index" do
 end
 
 describe ArticlesController, "previewing" do
-  integrate_views
+  render_views
 
   describe 'with non logged user' do
     before :each do
@@ -356,7 +356,7 @@ describe ArticlesController, "redirecting" do
 
   describe 'with permalink_format like %title%.html' do
 
-    integrate_views
+    render_views
 
     before(:each) do
       b = blogs(:default)
@@ -365,7 +365,7 @@ describe ArticlesController, "redirecting" do
     end
     describe 'render article' do
 
-      integrate_views
+      render_views
 
       before(:each) do
         get :redirect, :from => ["#{contents(:article1).permalink}.html"]
@@ -447,7 +447,7 @@ describe ArticlesController, "password protected" do
     b.save
   end
 
-  integrate_views
+  render_views
 
   it 'article alone should be password protected' do
     get :redirect, :from => ["#{contents(:article2).permalink}.html"]

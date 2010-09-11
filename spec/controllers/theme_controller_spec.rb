@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ThemeController do
-  integrate_views
+  render_views
 
   it "test_stylesheets" do
     get :stylesheets, :filename => "style.css"

@@ -100,7 +100,7 @@ describe CategoriesController, 'empty category life-on-mars' do
 end
 
 describe CategoriesController, "password protected article" do
-  integrate_views
+  render_views
 
   it 'article in category should be password protected' do
     get 'show', :id => 'personal'

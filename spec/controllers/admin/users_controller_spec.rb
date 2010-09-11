@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Admin::UsersController, "rough port of the old functional test" do
-  integrate_views
+  render_views
   fixtures :users
 
   describe ' when you are admin' do

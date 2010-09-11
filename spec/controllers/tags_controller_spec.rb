@@ -113,7 +113,7 @@ describe TagsController, '/articles/tag/foo' do
 end
 
 describe TagsController, 'with integrate_view' do
-  integrate_views
+  render_views
 
   before(:each) do
     #TODO need to add default article into tag_factory build to remove this :articles =>...
@@ -131,7 +131,7 @@ describe TagsController, 'with integrate_view' do
 end
 
 describe TagsController, "password protected article" do
-  integrate_views
+  render_views
 
   it 'article in tag should be password protected' do
     #TODO need to add default article into tag_factory build to remove this :articles =>...

@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'http_mock'
 
 describe Admin::ContentController do
-  integrate_views
+  render_views
 
   # Like it's a shared, need call everywhere
   describe 'index action', :shared => true do

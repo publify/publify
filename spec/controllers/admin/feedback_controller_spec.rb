@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Admin::FeedbackController do
 
-  integrate_views
+  render_views
 
   describe "destroy feedback with feedback from own article", :shared => true  do
     it 'should destroy feedback' do
