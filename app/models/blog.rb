@@ -1,15 +1,11 @@
 # BlogRequest is a fake Request object, created so blog.url_for will work.
 class BlogRequest
 
-  attr_accessor :protocol, :host_with_port, :path, :symbolized_path_parameters, :relative_url_root
+  attr_accessor :protocol, :host_with_port, :path, :symbolized_path_parameters
 
-  def initialize(root)
-    unless root =~ /(https?):\/\/([^\/]*)(.*)/
-      raise "Invalid root argument: #{root}"
-    end
-    @protocol = $1
-    @host_with_port = $2
-    @relative_url_root = $3.gsub(%r{/$},'')
+  def initialize(prot, host)
+    @protocol = prot
+    @host_with_port = host
     @path = ''
     @symbolized_path_parameters = {}
   end
@@ -136,13 +132,13 @@ class Blog < ActiveRecord::Base
   # It also caches the result in the RouteCache, so repeated URL generation
   # requests should be fast, as they bypass all of Rails' route logic.
   def url_for(options = {}, extra_params = {})
-    @request ||= BlogRequest.new(self.base_url)
+    @request ||= BlogRequest.new(protocol, host_with_port)
     case options
     when String
       if extra_params[:only_path]
-        url_generated = @request.relative_url_root
+        url_generated = relative_url_root
       else
-        url_generated = self.base_url
+        url_generated = base_url
       end
       url_generated += "/#{options}" # They asked for 'url_for "/some/path"', so return it unedited.
       url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
@@ -157,7 +153,7 @@ class Blog < ActiveRecord::Base
         else
           old_relative_url = ActionController::Base.relative_url_root.dup
         end
-        ActionController::Base.relative_url_root = @request.relative_url_root
+        ActionController::Base.relative_url_root = relative_url_root
         RouteCache[options] = @url.rewrite(options)
         ActionController::Base.relative_url_root = old_relative_url
       end
@@ -170,7 +166,7 @@ class Blog < ActiveRecord::Base
 
   # The URL for a static file.
   def file_url(filename)
-    "#{base_url}/files/#{filename}"
+    url_for "files/#{filename}", :only_path => false
   end
 
   def requested_article(params)
@@ -197,6 +193,31 @@ class Blog < ActiveRecord::Base
     if permalink_format =~ /\.(atom|rss)$/
       errors.add(:permalink_format, _("Can't end in .rss or .atom. These are reserved to be used for feed URLs"))
     end
+  end
+
+  private
+
+  def relative_url_root
+    split_base_url[:relative_url_root]
+  end
+
+  def protocol
+    split_base_url[:protocol]
+  end
+
+  def host_with_port
+    split_base_url[:host_with_port]
+  end
+
+  def split_base_url
+    unless @split_base_url
+      unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
+        raise "Invalid base_url: #{self.base_url}"
+      end
+      @split_base_url = { :protocol => $1, :host_with_port => $2,
+        :relative_url_root => $3.gsub(%r{/$},'') }
+    end
+    @split_base_url
   end
 
 end

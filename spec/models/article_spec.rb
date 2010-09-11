@@ -73,7 +73,7 @@ describe Article do
     a.title = "Zzz"
     assert a.save
 
-    a.categories << Category.find(categories(:software).id)
+    a.categories << Category.find(Factory(:category).id)
     assert_equal 1, a.categories.size
 
     b = Article.find(a.id)
@@ -283,6 +283,15 @@ describe Article do
   end
 
   it "test_find_published_by_category" do
+    cat = Factory(:category, :permalink => 'personal')
+    cat.articles << contents(:article1)
+    cat.articles << contents(:article2)
+    cat.articles << contents(:article3)
+    cat.articles << contents(:article4)
+
+    cat = Factory(:category, :permalink => 'software')
+    cat.articles << contents(:article1)
+
     Article.create!(:title      => "News from the future!",
                     :body       => "The future is cool!",
                     :keywords   => "future",

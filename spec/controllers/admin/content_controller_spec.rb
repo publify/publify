@@ -138,7 +138,7 @@ describe Admin::ContentController do
 
     it 'should create article with no comments' do
       post(:new, 'article' => base_article({:allow_comments => '0'}),
-                 'categories' => [categories(:software).id])
+                 'categories' => [Factory(:category).id])
       assigns(:article).should_not be_allow_comments
       assigns(:article).should be_allow_pings
       assigns(:article).should be_published
@@ -146,7 +146,7 @@ describe Admin::ContentController do
 
     it 'should create article with no pings' do
       post(:new, 'article' => {:allow_pings => '0'},
-                 'categories' => [categories(:software).id])
+                 'categories' => [Factory(:category).id])
       assigns(:article).should be_allow_comments
       assigns(:article).should_not be_allow_pings
       assigns(:article).should be_published

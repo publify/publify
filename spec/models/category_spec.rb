@@ -23,20 +23,23 @@ describe 'Given the fixtures' do
   end
 
   it 'can still override order in find' do
+    3.times { Factory(:category) }
+    Factory(:category, :name => 'aaa')
     cats = Category.find(:all, :order => 'name ASC')
-
     cats.should == cats.sort_by {|c| c.name}
     Category.find(:all).should_not == cats
   end
 
   it '.reorder_alpha puts categories in alphabetical order' do
+    3.times { Factory(:category) }
+    Factory(:category, :name => 'aaa')
     Category.find(:all).should_not == Category.find(:all, :order => :name)
     Category.reorder_alpha
     Category.find(:all).should == Category.find(:all, :order => :name)
   end
 
   it 'A category knows its url' do
-    categories(:software).permalink_url.should ==
+    Factory(:category, :permalink => 'software').permalink_url.should ==
       'http://myblog.net/category/software'
   end
 end
