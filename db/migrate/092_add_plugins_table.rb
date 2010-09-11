@@ -7,7 +7,6 @@ class AddPluginsTable < ActiveRecord::Migration
       t.boolean :active,      :null => false, :default => true
       t.string  :description, :null => true
     end
-    PluginEntry.create! :kind => 'avatar', :name => 'Gravatar', :klass => 'Gravatar', :description => 'Avatars through http://gravatar.com service.' 
   end
 
   def self.down

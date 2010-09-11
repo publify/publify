@@ -18,14 +18,15 @@ class PluginEntry < ActiveRecord::Base
   # pluggable: a symbol existing in Plugin::PLUGGABLE
   # class_name: the class name as a string
   # common_name: the human readable plugin name
+  # description: a optionnal human readable description of the plugin
   class << self
-    def register(pluggable, class_name, common_name)
+    def register(pluggable, class_name, common_name, description = nil)
       return false unless PLUGGABLE.values.include?(pluggable)
       begin
         class_name.constantize.new
         existing = find(:first, :conditions => ['kind = ? and klass = ?', pluggable, class_name])
         return true if existing
-        new_entry = create!(:kind => pluggable, :klass => class_name, :name => common_name)
+        new_entry = create!(:kind => pluggable, :klass => class_name, :name => common_name, :description => description)
         return !new_entry.new_record?
       rescue NameError => e
         Rails.logger.error("[Typo Plugin.register] Can't register plugin for #{pluggable} because #{class_name} is not instantiable")
