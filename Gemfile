@@ -15,10 +15,10 @@ gem 'flickr', '~> 1.0.2'
 gem 'rubypants', '~> 0.2.0'
 gem 'rails-app-installer', '~> 0.2.0'
 
-group :test do
+group :development, :test do
   gem 'ruby-debug'
   gem 'factory_girl'
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'flexmock'
+  #gem 'rspec'
+  gem 'rspec-rails', '>= 2.0.0.beta.20'
+  #gem 'flexmock'
 end
