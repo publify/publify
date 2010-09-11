@@ -13,9 +13,7 @@ RSpec.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"
   config.global_fixtures =
-    %w{ blogs categories categorizations contents
-        feedback notifications page_caches profiles redirects resources sidebars
-        tags text_filters triggers users }
+    %w{ blogs contents feedback profiles text_filters users }
 
   config.before(:each) do
     Localization.lang = :default
