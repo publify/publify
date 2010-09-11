@@ -234,74 +234,49 @@ describe 'GET signup with 0 existing users' do
   end
 end
 
-describe 'GET signup with 0 existing users and unconfigured blog' do
-  controller_name :accounts
+describe AccountsController do
+  describe "with 0 existing users and unconfigured blog" do
+    before(:each) do
+      Blog.delete_all
+      @blog = Blog.new.save
+      User.delete_all
+    end
 
-  before(:each) do
-    Blog.delete_all
-    @blog = Blog.new.save
-    User.delete_all
-  end
+    describe 'when GET signup' do
+      before { get 'signup' }
+      it 'redirects to setup' do
+        response.should redirect_to(:controller => 'setup', :action => 'index')
+      end
+    end
 
-  it 'redirects to setup' do
-    get 'signup'
-    response.should redirect_to(:controller => 'setup', :action => 'index')
-  end
-end
+    describe 'when POST signup' do
+      before do
+        post 'signup', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
+          'password_confirmation' => 'newpassword'}}
+      end
+      it 'redirects to setup' do
+        response.should redirect_to(:controller => 'setup', :action => 'index')
+      end
+    end
 
-describe 'POST signup with 0 existing users and unconfigured blog' do
-  controller_name :accounts
+    describe 'when GET login' do
+      before { get 'login' }
+      it 'redirects to setup' do
+        response.should redirect_to(:controller => 'setup', :action => 'index')
+      end
+    end
 
-  before(:each) do
-    Blog.delete_all
-    @blog = Blog.new.save
-    User.delete_all
-  end
-
-  it 'redirects to setup' do
-    post 'signup', params
-    response.should redirect_to(:controller => 'setup', :action => 'index')
-  end
-
-  def params
-    {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-        'password_confirmation' => 'newpassword'}}
-  end
-end
-
-describe 'GET login with 0 existing users and unconfigured blog' do
-  controller_name :accounts
-
-  before(:each) do
-    Blog.delete_all
-    @blog = Blog.new.save
-    User.delete_all
-  end
-
-  it 'redirects to setup' do
-    get 'login'
-    response.should redirect_to(:controller => 'setup', :action => 'index')
+    describe 'when POST login' do
+      before do
+        post 'login', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}}
+      end
+      it 'redirects to setup' do
+        response.should redirect_to(:controller => 'setup', :action => 'index')
+      end
+    end
   end
 end
 
-describe 'POST login with 0 existing users and unconfigured blog' do
-  controller_name :accounts
-
-  before(:each) do
-    Blog.delete_all
-    @blog = Blog.new.save
-    User.delete_all
-  end
-
-  it 'redirects to setup' do
-    post 'login', params
-    response.should redirect_to(:controller => 'setup', :action => 'index')
-  end
-
-  def params
-    {'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}}
-  end
-end
 
 describe 'POST signup with 0 existing users' do
   controller_name :accounts
@@ -345,18 +320,13 @@ describe 'User is logged in' do
   controller_name :accounts
 
   before(:each) do
-    @user = mock_model(User)
+    @user = Factory(:user)
 
     # The AccountsController class uses session[:user_id], and the
     # Typo LoginSystem uses session[:user].  So we need to set both of
     # these up correctly.  I'm not sure why the duplication exists.
     session[:user_id] = @user.id
-    @controller.send(:current_user=, @user)
-
-    User.should_receive(:find) \
-      .with(:first, :conditions => { :id => @user.id }) \
-      .any_number_of_times \
-      .and_return(@user)
+    session[:user] = @user.id
 
     cookies[:typo_user_profile] = 'admin'
   end
@@ -366,49 +336,60 @@ describe 'User is logged in' do
     response.should redirect_to(:controller => 'admin')
   end
 
-  it 'logging out deletes the session[:user_id]' do
-    @user.should_receive(:forget_me)
-    get 'logout'
-    session[:user_id].should be_blank
-  end
+  describe "when logging out" do
+    before do
+      get 'logout'
+    end
 
-  it 'redirects to the login action' do
-    @user.should_receive(:forget_me)
-    get 'logout'
-    response.should redirect_to(:action => 'login')
-  end
+    it 'deletes the session[:user_id]' do
+      session[:user_id].should be_blank
+    end
 
-  it 'logging out deletes cookies containing credentials' do
-    @user.should_receive(:forget_me)
-    get 'logout'
-    cookies[:auth_token].should == nil
-    cookies[:typo_user_profile].should == nil
+    it 'deletes the session[:user]' do
+      session[:user].should be_blank
+    end
+
+    it 'redirects to the login action' do
+      response.should redirect_to(:action => 'login')
+    end
+
+    it 'deletes cookies containing credentials' do
+      cookies[:auth_token].should == nil
+      cookies[:typo_user_profile].should == nil
+    end
   end
 end
 
-describe 'User has lost his password and send a good email' do
-  controller_name :accounts
+describe AccountsController do
+  describe 'when user has lost their password' do
+    before(:each) do
+      @user = Factory(:user)
+      @user.profile = Profile.find_by_label('admin')
+    end
 
-  before(:each) do
-    @user = mock_model(User, :new_record? => false, :reload => @user)
-    @user.stub!(:profile).and_return(Profile.find_by_label('admin'))
-    User.stub!(:find_by_login).with('tobi').and_return(@user)
-    User.stub!(:count).and_return(1)
-  end
+    describe 'when GET' do
+      before { get 'recover_password' }
 
-  it 'should render recover_password' do
-    get 'recover_password'
+      specify { response.should render_template('recover_password') }
+    end
 
-    response.should render_template('recover_password')
-  end
+    describe 'when a known login or email is POSTed' do
+      before do
+        post 'recover_password', {:user => {:login => @user.login}}
+      end
 
-  it 'should render login' do
-    make_request
+      specify { response.should redirect_to(:action => 'login') }
+    end
 
-    response.should redirect_to(:action => 'login')
-  end
+    describe 'when an unknown login or email is POSTed' do
+      before do
+        post 'recover_password', {:user => {:login => 'foobar'}}
+      end
 
-  def make_request
-   post 'recover_password', {:user => {:login => 'tobi'}}
+      specify { response.should render_template('recover_password') }
+      it "should display an error" do
+        response.flash[:error].should_not be_empty
+      end
+    end
   end
 end

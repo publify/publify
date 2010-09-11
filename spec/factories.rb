@@ -61,6 +61,7 @@ Factory.define :profile_admin, :class => :profile do |l|
   l.nicename 'Typo administrator'
   l.modules [:dashboard, :write, :content, :feedback, :themes, :sidebar, :users, :settings, :profile]
 end
+
 Factory.define :profile_publisher, :class => :profile do |l|
   l.label 'published'
   l.nicename 'Blog publisher'
