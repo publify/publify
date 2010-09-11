@@ -1,5 +1,7 @@
 class PluginEntry < ActiveRecord::Base
-  PLUGGABLE = { :avatar => 'plugins.avatar' }
+  PLUGGABLE = { :avatar => 'avatar',
+                :textfilter => 'textfilter'
+              }
   
   # Register plugins
   #
@@ -15,23 +17,26 @@ class PluginEntry < ActiveRecord::Base
   #
   # pluggable: a symbol existing in Plugin::PLUGGABLE
   # class_name: the class name as a string
+  # common_name: the human readable plugin name
   class << self
-    def register(pluggable, class_name)
-      return false unless PLUGGABLE.include?(pluggable)
+    def register(pluggable, class_name, common_name)
+      return false unless PLUGGABLE.values.include?(pluggable)
       begin
-        class_name.new
-
+        class_name.constantize.new
+        existing = find(:first, :conditions => ['kind = ? and klass = ?', pluggable, class_name])
+        return true if existing
+        new_entry = create!(:kind => pluggable, :klass => class_name, :name => common_name)
+        return !new_entry.new_record?
       rescue NameError => e
-        Rails.logger.error("Plugin register: can't register plugin for #{pluggable} because #{class_name} is not instantiable")
+        Rails.logger.error("[Typo Plugin.register] Can't register plugin for #{pluggable} because #{class_name} is not instantiable")
         return false
       end
-      true
     end
 
     def get_class_for(pluggable, avatar_mode)
       entry = PluginEntry.find(:first, :conditions => ['kind = ? and id = ?', 'avatar', avatar_mode])
       begin
-        Module.const_get(entry.klass)
+        entry.klass.constantize
       rescue NameError => a
         nil
       end
