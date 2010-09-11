@@ -43,5 +43,5 @@ ActionController::Base.class_eval do
   include ActionWebService::Container::Direct
   include ActionWebService::Container::Delegated
   include ActionWebService::Dispatcher
-  include ActionWebService::Dispatcher::ActionController
+  include ActionWebService::Dispatcher::ActionControllerX
 end

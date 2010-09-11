@@ -3,7 +3,7 @@ require 'builder/xmlmarkup'
 
 module ActionWebService # :nodoc:
   module Dispatcher # :nodoc:
-    module ActionController # :nodoc:
+    module ActionControllerX # :nodoc:
       def self.included(base) # :nodoc:
         base.class_eval do
           alias_method :web_service_direct_invoke_without_controller, :web_service_direct_invoke
@@ -20,7 +20,7 @@ module ActionWebService # :nodoc:
             klass.class_eval 'def api; dispatch_web_service_request; end'
           end
         end
-        base.send(:include, ActionWebService::Dispatcher::ActionController::InstanceMethods)
+        base.send(:include, ActionWebService::Dispatcher::ActionControllerX::InstanceMethods)
       end
 
       module InstanceMethods # :nodoc:
