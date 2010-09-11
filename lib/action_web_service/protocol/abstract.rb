@@ -10,16 +10,6 @@ module ActionWebService # :nodoc:
       def decode_action_pack_request(action_pack_request)
       end
 
-      def encode_action_pack_request(service_name, public_method_name, raw_body, options={})
-        klass = options[:request_class] || SimpleActionPackRequest
-        request = klass.new({})
-        request.request_parameters['action'] = service_name.to_s
-        request.env['RAW_POST_DATA'] = raw_body
-        request.env['REQUEST_METHOD'] = 'POST'
-        request.env['HTTP_CONTENT_TYPE'] = 'text/xml'
-        request
-      end
-
       def decode_request(raw_request, service_name, protocol_options={})
       end
 
@@ -65,44 +55,6 @@ module ActionWebService # :nodoc:
         @body = body
         @content_type = content_type
         @return_value = return_value
-      end
-    end
-
-    class SimpleActionPackRequest < ActionController::Request # :nodoc:
-      def initialize(env = {})
-        @env = env
-        @qparams = {}
-        @rparams = {}
-        @cookies = {}
-        reset_session
-      end
-
-      def query_parameters
-        @qparams
-      end
-
-      def request_parameters
-        @rparams
-      end
-
-      def env
-        @env
-      end
-
-      def host
-        ''
-      end
-
-      def cookies
-        @cookies
-      end
-
-      def session
-        @session
-      end
-
-      def reset_session
-        @session = {}
       end
     end
   end
