@@ -10,7 +10,7 @@ This is my first foray into public Rails development, so please bear with me and
 I am going to leave Gaston's README intact for the most part, obvious changes excepted. The conversion process is done, now it's time to patch up the differences between
 FCK- and CKeditor.
 
-I've added basic support for a configuration YAML file (RAILS_ROOT/config/ckeditor.yml). It's very simple right now. This file is not entirely needed yet, but if
+I've added basic support for a configuration YAML file (::Rails.root.to_s/config/ckeditor.yml). It's very simple right now. This file is not entirely needed yet, but if
 you plan to use a file manager, you will need this to set file_manager_uri and _upload_uri. In all honesty, this won't work yet.
 
 ckeditor.yml example:

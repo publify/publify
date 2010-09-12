@@ -8,7 +8,7 @@ class Resource < ActiveRecord::Base
   belongs_to :article
 
   def fullpath(file = nil)
-    "#{RAILS_ROOT}/public/files/#{file.nil? ? filename : file}"
+    "#{::Rails.root.to_s}/public/files/#{file.nil? ? filename : file}"
   end
 
   def write_to_disk(up)

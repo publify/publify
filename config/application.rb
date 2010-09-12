@@ -12,8 +12,8 @@ module TypoBlog
     # -- all .rb files in that directory are automatically loaded.
 
     # Setup the cache path
-    config.action_controller.page_cache_directory = "#{RAILS_ROOT}/public/cache/"
-    config.cache_store=:file_store, "#{RAILS_ROOT}/public/cache/"
+    config.action_controller.page_cache_directory = "#{::Rails.root.to_s}/public/cache/"
+    config.cache_store=:file_store, "#{::Rails.root.to_s}/public/cache/"
 
     # I need the localization plugin to load first
     # Otherwise, I can't localize plugins <= localization
@@ -24,7 +24,7 @@ module TypoBlog
       vendor/akismet
       app/apis
       lib
-    ).map {|dir| "#{RAILS_ROOT}/#{dir}"}.select { |dir| File.directory?(dir) }
+    ).map {|dir| "#{::Rails.root.to_s}/#{dir}"}.select { |dir| File.directory?(dir) }
 
     # Disable use of the Accept header, since it causes bad results with our
     # static caching (e.g., caching an atom feed as index.html).
@@ -68,7 +68,7 @@ module TypoBlog
 
   if RAILS_ENV != 'test'
     begin
-      mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
+      mail_settings = YAML.load(File.read("#{::Rails.root.to_s}/config/mail.yml"))
 
       ActionMailer::Base.delivery_method = mail_settings['method']
       ActionMailer::Base.server_settings = mail_settings['settings']

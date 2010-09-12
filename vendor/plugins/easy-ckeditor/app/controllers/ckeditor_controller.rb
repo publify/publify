@@ -4,7 +4,7 @@ require 'tmpdir'
 class CkeditorController < ActionController::Base
 
   UPLOAD_FOLDER = "/files"
-  UPLOAD_ROOT = RAILS_ROOT + "/public" + UPLOAD_FOLDER
+  UPLOAD_ROOT = ::Rails.root.to_s + "/public" + UPLOAD_FOLDER
 
   MIME_TYPES = [
     "image/jpg",
@@ -173,7 +173,7 @@ class CkeditorController < ActionController::Base
   def log_upload
     log "CKEDITOR - #{params[:upload]}"
     log "CKEDITOR - UPLOAD_FOLDER: #{UPLOAD_FOLDER}"
-    log "CKEDITOR - #{File.expand_path(RAILS_ROOT)}/public#{UPLOAD_FOLDER}/" +
+    log "CKEDITOR - #{File.expand_path(::Rails.root.to_s)}/public#{UPLOAD_FOLDER}/" +
         "#{@new_file.original_filename}"
   end
 

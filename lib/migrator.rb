@@ -3,7 +3,7 @@ module Migrator
   @@offer_migration_when_available = true
 
   def self.migrations_path
-    "#{RAILS_ROOT}/db/migrate"
+    "#{::Rails.root.to_s}/db/migrate"
   end
 
   def self.available_migrations

@@ -1,5 +1,5 @@
 class Theme
   def self.themes_root
-    RAILS_ROOT + "/test/mocks/themes"
+    ::Rails.root.to_s + "/test/mocks/themes"
   end
 end

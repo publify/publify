@@ -154,7 +154,7 @@ module UploadProgress
   #      ".fcgi" => (
   #       "APP_NAME" => (
   #        "socket" => "/tmp/APP_NAME1.socket",
-  #        "bin-path" => "RAILS_ROOT/public/dispatch.fcgi",
+  #        "bin-path" => "::Rails.root.to_s/public/dispatch.fcgi",
   #        "min-procs" => 2
   #       )
   #      )

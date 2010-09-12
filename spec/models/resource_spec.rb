@@ -5,9 +5,9 @@ describe Resource, ' with its fixtures loaded' do
     File.stub!(:exist?).and_return(true)
   end
 
-  it 'fullpath should be RAILS_ROOT + "/public/files/" + resource.filename' do
+  it 'fullpath should be ::Rails.root.to_s + "/public/files/" + resource.filename' do
     res = Resource.new(:article_id => 1, :filename => 'a_new_file', :mime => 'image/jpeg', :size => 110)
-    res.fullpath.should == RAILS_ROOT + "/public/files/a_new_file"
+    res.fullpath.should == ::Rails.root.to_s + "/public/files/a_new_file"
   end
 
   it 'resources created with the same name as an existing resource don\'t overwrite the old resource' do

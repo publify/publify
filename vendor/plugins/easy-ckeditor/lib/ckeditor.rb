@@ -1,13 +1,13 @@
 # Ckeditor
 module Ckeditor
   begin
-    CONFIG = YAML.load_file("#{RAILS_ROOT}/config/ckeditor.yml")[RAILS_ENV]
+    CONFIG = YAML.load_file("#{::Rails.root.to_s}/config/ckeditor.yml")[RAILS_ENV]
   rescue => e
     CONFIG = nil
   end
   PLUGIN_NAME = 'easy-ckeditor'
-  PLUGIN_PATH = "#{RAILS_ROOT}/vendor/plugins/#{PLUGIN_NAME}"
-  PLUGIN_PUBLIC_PATH = "#{RAILS_ROOT}/public/files"
+  PLUGIN_PATH = "#{::Rails.root.to_s}/vendor/plugins/#{PLUGIN_NAME}"
+  PLUGIN_PUBLIC_PATH = "#{::Rails.root.to_s}/public/files"
   PLUGIN_PUBLIC_URI = "/files"
   PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app/controllers"
   PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app/views"

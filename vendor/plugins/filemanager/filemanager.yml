@@ -10,7 +10,7 @@ ppt.type: ppt pps ppz pot
 help.type: hlp chm
 none.type: rar zip
 resources.url: /filemanager/resources
-resources.path: <%= RAILS_ROOT %>/public/filemanager/resources
+resources.path: <%= ::Rails.root.to_s %>/public/filemanager/resources
 encoding.to: UTF-8
 encoding.from:
 temp.dir:

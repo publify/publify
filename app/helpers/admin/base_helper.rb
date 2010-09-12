@@ -238,7 +238,7 @@ module Admin::BaseHelper
   end
 
   def show_thumbnail_for_editor(image)
-    thumb = "#{RAILS_ROOT}/public/files/thumb_#{image.filename}"
+    thumb = "#{::Rails.root.to_s}/public/files/thumb_#{image.filename}"
     picture = "#{this_blog.base_url}/files/#{image.filename}"
 
     image.create_thumbnail unless File.exists? thumb

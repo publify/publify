@@ -42,8 +42,8 @@ module Localization
   end
 
   def self.load
-    Dir.glob("#{RAILS_ROOT}/lang/*.rb"){ |t| require t }
-    Dir.glob("#{RAILS_ROOT}/lang/custom/*.rb"){ |t| require t }
+    Dir.glob("#{::Rails.root.to_s}/lang/*.rb"){ |t| require t }
+    Dir.glob("#{::Rails.root.to_s}/lang/custom/*.rb"){ |t| require t }
   end
 
   # Generates a best-estimate l10n file from all views by
@@ -51,7 +51,7 @@ module Localization
   # as a start (this method is only guesstimating)
   def self.generate_l10n_file
     "Localization.define('en_US') do |l|\n" <<
-    Dir.glob("#{RAILS_ROOT}/app/views/**/*.rhtml").collect do |f|
+    Dir.glob("#{::Rails.root.to_s}/app/views/**/*.rhtml").collect do |f|
       ["# #{f}"] << File.read(f).scan(/<%.*[^\w]_\s*[\"\'](.*?)[\"\']/)
     end.uniq.flatten.collect do |g|
       g.starts_with?('#') ? "\n  #{g}" : "  l.store '#{g}', '#{g}'"

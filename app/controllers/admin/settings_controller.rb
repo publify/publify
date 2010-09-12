@@ -15,9 +15,9 @@ class Admin::SettingsController < Admin::BaseController
 
   def seo
     load_settings
-    if File.exists? "#{RAILS_ROOT}/public/robots.txt"
+    if File.exists? "#{::Rails.root.to_s}/public/robots.txt"
       @setting.robots = ""
-      file = File.readlines("#{RAILS_ROOT}/public/robots.txt")
+      file = File.readlines("#{::Rails.root.to_s}/public/robots.txt")
       file.each do |line|
         @setting.robots << line
       end
@@ -67,8 +67,8 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def save_robots
-    if File.writable? "#{RAILS_ROOT}/public/robots.txt"
-      robots = File.new("#{RAILS_ROOT}/public/robots.txt", "r+")
+    if File.writable? "#{::Rails.root.to_s}/public/robots.txt"
+      robots = File.new("#{::Rails.root.to_s}/public/robots.txt", "r+")
       robots.write(params[:setting][:robots])
       robots.close
     end

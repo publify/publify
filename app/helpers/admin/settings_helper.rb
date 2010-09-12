@@ -3,7 +3,7 @@ module Admin::SettingsHelper
 
   def fetch_langs
     options = content_tag(:option, "Select lang", :value => 'en_US')
-	Find.find(RAILS_ROOT + "/lang") do |lang|
+	Find.find(::Rails.root.to_s + "/lang") do |lang|
 	  if lang =~ /\.rb$/
         lang_pattern = File.basename(lang).gsub(".rb", '')
         if this_blog.lang == lang_pattern
@@ -17,7 +17,7 @@ module Admin::SettingsHelper
   end
 
   def robot_writable?
-    File.writable?"#{RAILS_ROOT}/public/robots.txt"
+    File.writable?"#{::Rails.root.to_s}/public/robots.txt"
   end
 
 end

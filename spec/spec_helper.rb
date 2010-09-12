@@ -59,11 +59,11 @@ end
 # test standard view and all themes
 def with_each_theme
   yield nil, ""
-  Dir.new(File.join(RAILS_ROOT, "themes")).each do |theme|
+  Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
     next if theme =~ /\.\.?/
-    view_path = "#{RAILS_ROOT}/themes/#{theme}/views"
-    if File.exists?("#{RAILS_ROOT}/themes/#{theme}/helpers/theme_helper.rb")
-      require "#{RAILS_ROOT}/themes/#{theme}/helpers/theme_helper.rb"
+    view_path = "#{::Rails.root.to_s}/themes/#{theme}/views"
+    if File.exists?("#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb")
+      require "#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb"
     end
     yield theme, view_path
   end

@@ -77,7 +77,7 @@ module AccessControl
     end
 
     def search_plugins_directory
-      plugins_root = File.join(RAILS_ROOT, 'vendor', 'plugins')
+      plugins_root = File.join(::Rails.root.to_s, 'vendor', 'plugins')
       Dir.glob("#{plugins_root}/typo_plugin_*").select do |file|
         File.readable?(File.join(plugin_admin_controller_path(file), file.split("#{plugins_root}/typo_plugin_").second + "_controller.rb"))
       end.compact
@@ -97,7 +97,7 @@ module AccessControl
     end
 
     def plugin_root
-      File.join(RAILS_ROOT, 'vendor', 'plugins')
+      File.join(::Rails.root.to_s, 'vendor', 'plugins')
     end
 
     def plugin_admin_controller_path(plugin)

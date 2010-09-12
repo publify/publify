@@ -251,14 +251,14 @@ describe BackendController do
       media_object = MetaWeblogStructs::MediaObject.new(
         "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".gif",
         "type" => "image/gif",
-          "bits" => Base64.encode64(File.open(File.expand_path(RAILS_ROOT) + "/public/images/powered.gif", "rb") { |f| f.read })
+          "bits" => Base64.encode64(File.open(File.expand_path(::Rails.root.to_s) + "/public/images/powered.gif", "rb") { |f| f.read })
       )
 
       args = [ 1, 'tobi', 'whatever', media_object ]
 
       result = invoke_layered :metaWeblog, :newMediaObject, *args
       assert result['url'] =~ /#{media_object['name']}/
-        assert File.unlink(File.expand_path(RAILS_ROOT) + "/public/files/#{media_object['name']}")
+        assert File.unlink(File.expand_path(::Rails.root.to_s) + "/public/files/#{media_object['name']}")
     end
 
     it "test_meta_weblog_fail_authentication" do

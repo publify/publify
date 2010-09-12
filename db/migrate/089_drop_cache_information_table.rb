@@ -11,7 +11,7 @@ class DropCacheInformationTable < ActiveRecord::Migration
     list = CacheInformation.find(:all)
 
     list.each do |file|
-      path = File.join(RAILS_ROOT, 'public', file.path)
+      path = File.join(::Rails.root.to_s, 'public', file.path)
       if File.exist?(path)
         FileUtils.rm(path)
       end

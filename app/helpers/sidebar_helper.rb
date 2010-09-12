@@ -16,7 +16,7 @@ module SidebarHelper
     if sidebar.view_root
       # Allow themes to override sidebar views
       view_root = File.expand_path(sidebar.view_root)
-      rails_root = File.expand_path(RAILS_ROOT)
+      rails_root = File.expand_path(::Rails.root.to_s)
       if view_root =~ /^#{Regexp.escape(rails_root)}/
         new_root = view_root[rails_root.size..-1]
         new_root.sub! %r{^/?vendor/}, ""

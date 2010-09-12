@@ -8,19 +8,19 @@
 require 'uri'
 require 'fileutils'
 FM_ID = 'filemanager'
-FM_ROOT = File.join(RAILS_ROOT, 'vendor', 'plugins', FM_ID)
+FM_ROOT = File.join(::Rails.root.to_s, 'vendor', 'plugins', FM_ID)
 FM_PATH_PUBLIC = File.join(FM_ROOT, 'public')
 
 =begin
 if $FM_OVERWRITE || ! File.exist?(FM_ROOT)
 fm_rails_path = File.dirname(File.dirname(__FILE__)) + "/#{FM_ID}"
-FileUtils.cp_r(fm_rails_path, File.join(RAILS_ROOT, 'vendor', 'plugins'))
-FileUtils.cp_r(FM_PATH_PUBLIC, RAILS_ROOT)
+FileUtils.cp_r(fm_rails_path, File.join(::Rails.root.to_s, 'vendor', 'plugins'))
+FileUtils.cp_r(FM_PATH_PUBLIC, ::Rails.root.to_s)
 FileUtils.rm_rf(FM_PATH_PUBLIC)
 end
 =end
 
-FM_CONFIG_FILE = File.join(RAILS_ROOT, 'config', 'filemanager.yml')
+FM_CONFIG_FILE = File.join(::Rails.root.to_s, 'config', 'filemanager.yml')
 unless File.exist?(FM_CONFIG_FILE)
   FileUtils.cp(File.join(FM_ROOT, 'filemanager.yml'))
 end

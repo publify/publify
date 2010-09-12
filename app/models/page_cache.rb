@@ -23,12 +23,12 @@ class PageCache
   def self.zap_pages(paths)
     # Ensure no one is going to wipe his own blog public directory
     # It happened once on a release and was no fun at all
-    return if public_path == "#{RAILS_ROOT}/public"
+    return if public_path == "#{::Rails.root.to_s}/public"
     srcs = paths.inject([]) { |o,v|
       o + Dir.glob(public_path + "/#{v}")
     }
     return true if srcs.empty?
-    trash = RAILS_ROOT + "/tmp/typodel.#{UUIDTools::UUID.random_create}"
+    trash = ::Rails.root.to_s + "/tmp/typodel.#{UUIDTools::UUID.random_create}"
     FileUtils.makedirs(trash)
     FileUtils.mv(srcs, trash, :force => true)
     FileUtils.rm_rf(trash)

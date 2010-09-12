@@ -140,7 +140,7 @@ module ApplicationHelper
   end
 
   def javascript_include_lang
-    javascript_include_tag "lang/#{Localization.lang.to_s}" if File.exists? File.join(RAILS_ROOT, 'public', 'lang', Localization.lang.to_s)
+    javascript_include_tag "lang/#{Localization.lang.to_s}" if File.exists? File.join(::Rails.root.to_s, 'public', 'lang', Localization.lang.to_s)
   end
 
   def page_header

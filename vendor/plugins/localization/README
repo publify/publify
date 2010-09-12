@@ -14,7 +14,7 @@ provide localizations.
 
 If the localization plugin is installed, it is used automatically.
 
-You need to create a /lang dir in your RAILS_ROOT.
+You need to create a /lang dir in your ::Rails.root.to_s.
 
 The recommended way to use it is to create files that are named
 like the languages you define in them (but you can put everything in

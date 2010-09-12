@@ -1,6 +1,6 @@
 module Sidebars
   class Sidebars::ComponentPlugin < Sidebars::Plugin
-    self.template_root = File.join RAILS_ROOT, "components"
+    self.template_root = File.join ::Rails.root.to_s, "components"
     class << self
       @abstract = true
     end
