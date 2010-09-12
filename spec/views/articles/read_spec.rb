@@ -18,7 +18,7 @@ with_each_theme do |theme, view_path|
       before(:each) do
         @controller.action_name = "redirect"
         assigns[:article] = contents('article1')
-        render "articles/read"
+        render :file => "articles/read"
       end
 
       it "should not have too many paragraph marks around body" do
@@ -37,7 +37,7 @@ with_each_theme do |theme, view_path|
         Blog.default.comment_text_filter = 'textile'
         @controller.action_name = "read"
         assigns[:article] = contents('article1')
-        render "articles/read"
+        render :file => "articles/read"
       end
 
       it "should not have too many paragraph marks around comment contents" do
@@ -52,7 +52,7 @@ with_each_theme do |theme, view_path|
         Blog.default.comment_text_filter = 'textile'
         @controller.action_name = "read"
         assigns[:article] = contents('article3')
-        render "articles/read"
+        render :file => "articles/read"
       end
 
       it "should automatically add links" do

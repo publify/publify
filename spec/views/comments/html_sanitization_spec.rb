@@ -26,7 +26,7 @@ shared_examples_for "CommentSanitization" do
     it "Should sanitize content rendered with the #{value} textfilter" do
       @blog.stub!(:comment_text_filter).and_return(value)
 
-      render 'comments/show'
+      render :file => 'comments/show'
       response.should have_tag('.content')
       response.should have_tag('.author')
 

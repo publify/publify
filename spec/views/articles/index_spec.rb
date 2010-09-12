@@ -18,7 +18,7 @@ with_each_theme do |theme, view_path|
       before(:each) do
         @controller.action_name = "index"
         assigns[:articles] = Article.paginate(:all, :page => 2, :per_page => 4)
-        render "articles/index"
+        render :file => "articles/index"
       end
 
       it "should not have pagination link to page 2 without q param" do
@@ -48,7 +48,7 @@ with_each_theme do |theme, view_path|
         params[:page]        = 2
         params[:action]      = 'search'
         assigns[:articles] = Blog.default.articles_matching(params[:q], :page => 2, :per_page => 4)
-        render "articles/index"
+        render :file => "articles/index"
       end
 
       it "should not have pagination link to page 2 with q param" do
