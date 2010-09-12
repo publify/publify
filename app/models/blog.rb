@@ -1,7 +1,3 @@
-class UrlHelper
-  include Rails.application.routes.url_helpers
-end
-
 # The Blog class represents the one and only blog.  It stores most
 # configuration settings and is linked to most of the assorted content
 # classes via has_many.
@@ -12,6 +8,7 @@ end
 class Blog < ActiveRecord::Base
   include ConfigManager
   extend ActiveSupport::Memoizable
+  include Rails.application.routes.url_helpers
 
   validate(:on => :create) { |blog|
     unless Blog.count.zero?
@@ -122,7 +119,7 @@ class Blog < ActiveRecord::Base
   #
   # It also caches the result in the RouteCache, so repeated URL generation
   # requests should be fast, as they bypass all of Rails' route logic.
-  def url_for(options = {}, extra_params = {})
+  def url_for_with_base_url(options = {}, extra_params = {})
     case options
     when String
       if extra_params[:only_path]
@@ -140,7 +137,7 @@ class Blog < ActiveRecord::Base
                                :host => host_with_port,
                                :script_name => relative_url_root)
 
-        RouteCache[options] = UrlHelper.new.url_for(options)
+        RouteCache[options] = url_for_without_base_url(options)
       end
 
       return RouteCache[options]
@@ -148,6 +145,8 @@ class Blog < ActiveRecord::Base
       raise "Invalid URL in url_for: #{options.inspect}"
     end
   end
+
+  alias_method_chain :url_for, :base_url
 
   # The URL for a static file.
   def file_url(filename)
