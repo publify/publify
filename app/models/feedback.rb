@@ -5,7 +5,7 @@ class Feedback < Content
 
   include TypoGuid
 
-  validate_on_create :feedback_not_closed
+  validate :feedback_not_closed, :on => :create
 
   before_create :create_guid, :article_allows_this_feedback
   before_save :correct_url

@@ -26,10 +26,6 @@ module TypoBlog
       lib
     ).map {|dir| "#{::Rails.root.to_s}/#{dir}"}.select { |dir| File.directory?(dir) }
 
-    # Disable use of the Accept header, since it causes bad results with our
-    # static caching (e.g., caching an atom feed as index.html).
-    config.action_controller.use_accept_header = false
-
     # Activate observers that should always be running
     config.active_record.observers = :email_notifier, :web_notifier
   end
@@ -54,7 +50,7 @@ module TypoBlog
     :long_weekday => '%a %B %e, %Y %H:%M'
   )
 
-  ActionMailer::Base.default_charset = 'utf-8'
+  ActionMailer::Base.default :charset => 'utf-8'
 
   # Work around interpolation deprecation problem: %d is replaced by
   # {{count}}, even when we don't want them to.

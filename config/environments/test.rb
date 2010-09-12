@@ -11,7 +11,7 @@ TypoBlog::Application.configure do
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.action_controller.consider_all_requests_local = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching             = false
 
   # Disable request forgery protection in test environment
@@ -29,4 +29,6 @@ TypoBlog::Application.configure do
 
   require 'ruby-debug'
   Migrator.offer_migration_when_available            = false
+
+  config.active_support.deprecation = :stderr
 end
