@@ -2,7 +2,7 @@
 
 <div id="flash"><%= render_the_flash %></div>
 
-<% form_tag :action=> "login" do %>
+<%= form_tag :action=> "login" do %>
   <h3><label for="user_login"><%= _('Login')%></label></h3>
   <p class='input_text_title'>
     <%= text_field(:user, :login, {:class => 'title large'})%>

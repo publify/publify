@@ -27,7 +27,7 @@
     </ul>
     <% end %>
 
-    <% form_tag :action => 'migrate' do %>
+    <%= form_tag :action => 'migrate' do %>
       <% if @current_version == @needed_version %>
       <div class='ui-widget ui-widget ui-helper-reset' >
         <div class='ui-state-highlight ui-corner-all' style='padding: 0pt 0.7em;'>
