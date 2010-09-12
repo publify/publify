@@ -253,7 +253,7 @@ class Content < ActiveRecord::Base
 
   # Set the text filter for this object.
   def text_filter=(filter)
-    returning(filter.to_text_filter) do |tf|
+    filter.to_text_filter.tap do |tf|
       if tf.id != text_filter_id
         changed if !new_record? && published?
       end
@@ -294,11 +294,10 @@ class Content < ActiveRecord::Base
   end
 
   def really_send_notifications
-    returning true do
-      interested_users.each do |value|
-        send_notification_to_user(value)
-      end
+    interested_users.each do |value|
+      send_notification_to_user(value)
     end
+    return true
   end
 
   def to_atom xml

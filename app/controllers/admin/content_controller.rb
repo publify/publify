@@ -226,7 +226,7 @@ class Admin::ContentController < Admin::BaseController
   def get_or_build_article
     @article = case params[:id]
              when nil
-               returning(Article.new) do |art|
+               Article.new.tap do |art|
                  art.allow_comments = this_blog.default_allow_comments
                  art.allow_pings    = this_blog.default_allow_pings
                  art.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
