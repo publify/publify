@@ -4,9 +4,8 @@ shared_examples_for "CommentSanitization" do
   before do
     @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
-    @blog = mock_model(Blog, :use_gravatar => false)
-    @blog.stub!(:lang).and_return('en_US')
-    @controller.template.stub!(:this_blog).and_return(@blog)
+    this_blog.use_gravatar = false
+    this_blog.lang = 'en_US'
 
     prepare_comment
 
@@ -24,7 +23,7 @@ shared_examples_for "CommentSanitization" do
 
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
-      @blog.stub!(:comment_text_filter).and_return(value)
+      this_blog.comment_text_filter = value
 
       render :file => 'comments/show'
       response.should have_tag('.content')
