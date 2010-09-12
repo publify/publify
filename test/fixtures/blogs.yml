@@ -1,27 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 default:
   base_url: http://myblog.net
-  settings:
-    show_extended_on_rss: true
-    blog_name: test blog
-    title_prefix: 1
-    limit_article_display: 2
-    sp_url_limit: 3
-    use_gravatar: false
-    blog_subtitle: test subtitle
-    limit_rss_display: 10
-    ping_urls: |-
-      http://ping.example.com/ping
-      http://alsoping.example.com/rpc/ping
-    geourl_location: ""
-    default_allow_pings: false
-    send_outbound_pings: false
-    sp_global: true
-    default_allow_comments: true
-    email_from: scott@sigkill.org
-    theme: typographic
-    text_filter: textile
-    sp_article_auto_close: 300
-    link_to_author: false
-    comment_text_filter: markdown
-    permalink_format: /%year%/%month%/%day%/%title%
+  settings: <%= {
+    "show_extended_on_rss" => true,
+    "blog_name" => "test blog",
+    "title_prefix" => 1,
+    "limit_article_display" => 2,
+    "sp_url_limit" => 3,
+    "use_gravatar" => false,
+    "blog_subtitle" => "test subtitle",
+    "limit_rss_display" => 10,
+    "ping_urls" => ["http://ping.example.com/ping" "http://alsoping.example.com/rpc/ping"],
+    "geourl_location" => "",
+    "default_allow_pings" => false,
+    "send_outbound_pings" => false,
+    "sp_global" => true,
+    "default_allow_comments" => true,
+    "email_from" => "scott@sigkill.org",
+    "theme" => "typographic",
+    "text_filter" => "textile",
+    "sp_article_auto_close" => 300,
+    "link_to_author" => false,
+    "comment_text_filter" => "markdown",
+    "permalink_format" => "/%year%/%month%/%day%/%title%"}.to_yaml.inspect %>
