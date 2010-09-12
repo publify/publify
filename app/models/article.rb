@@ -47,10 +47,10 @@ class Article < Content
 
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
 
-  named_scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
-  named_scope :drafts, :conditions => ['state = ?', 'draft']
-  named_scope :without_parent, {:conditions => {:parent_id => nil}}
-  named_scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
+  scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
+  scope :drafts, :conditions => ['state = ?', 'draft']
+  scope :without_parent, {:conditions => {:parent_id => nil}}
+  scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
 
   def has_child?
     Article.exists?({:parent_id => self.id})
