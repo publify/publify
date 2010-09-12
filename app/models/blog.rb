@@ -1,14 +1,5 @@
-# BlogRequest is a fake Request object, created so blog.url_for will work.
-class BlogRequest
-
-  attr_accessor :protocol, :host_with_port, :path, :symbolized_path_parameters
-
-  def initialize(prot, host)
-    @protocol = prot
-    @host_with_port = host
-    @path = ''
-    @symbolized_path_parameters = {}
-  end
+class UrlHelper
+  include Rails.application.routes.url_helpers
 end
 
 # The Blog class represents the one and only blog.  It stores most
@@ -132,7 +123,6 @@ class Blog < ActiveRecord::Base
   # It also caches the result in the RouteCache, so repeated URL generation
   # requests should be fast, as they bypass all of Rails' route logic.
   def url_for(options = {}, extra_params = {})
-    @request ||= BlogRequest.new(protocol, host_with_port)
     case options
     when String
       if extra_params[:only_path]
@@ -146,16 +136,11 @@ class Blog < ActiveRecord::Base
     when Hash
       unless RouteCache[options]
         options.reverse_merge!(:only_path => false, :controller => '',
-                               :action => 'permalink')
-        @url ||= ActionController::UrlRewriter.new(@request, {})
-        if ActionController::Base.relative_url_root.nil?
-          old_relative_url = nil
-        else
-          old_relative_url = ActionController::Base.relative_url_root.dup
-        end
-        ActionController::Base.relative_url_root = relative_url_root
-        RouteCache[options] = @url.rewrite(options)
-        ActionController::Base.relative_url_root = old_relative_url
+                               :action => 'permalink',
+                               :host => host_with_port,
+                               :script_name => relative_url_root)
+
+        RouteCache[options] = UrlHelper.new.url_for(options)
       end
 
       return RouteCache[options]
