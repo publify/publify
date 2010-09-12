@@ -7,5 +7,5 @@
   <% end -%>
 </ul>
 
-<%= link_to_remote _("(Done)"), :update => "category_container", :url => { :action => "category_container" } %>
+<%= link_to _("(Done)"), :update => "category_container", :url => { :action => "category_container" }, :remote => true %>
 <%= sortable_element "category_list", :url => { :action => "order" }, :complete => visual_effect(:highlight, "category_list") %>

@@ -1,4 +1,4 @@
 <td colspan='5'>
   <%= gravatar_tag(comment.email, {:size => 25}) unless comment.email.nil? %>
-  <%= _("This comment by <strong>%s</strong> was flagged as spam, %s?", comment.author, link_to_remote('Cancel', :url => {:action => 'change_state', :id => comment.id})) %>
+  <%= _("This comment by <strong>%s</strong> was flagged as spam, %s?", comment.author, link_to('Cancel', :url => {:action => 'change_state', :id => comment.id}, :remote => true)) %>
 </td>
