@@ -53,7 +53,7 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :whiteboard, :text
       end
 
-      if config[RAILS_ENV]['adapter'] == 'postgresql'
+      if config[::Rails.env]['adapter'] == 'postgresql'
         execute "select nextval('contents_id_seq')"
       end
 
@@ -85,7 +85,7 @@ class SuperclassArticles < ActiveRecord::Migration
           t.save!
         end
 
-        if config[RAILS_ENV]['adapter'] == 'postgresql'
+        if config[::Rails.env]['adapter'] == 'postgresql'
           STDERR.puts "Resetting PostgreSQL sequences"
           execute "select setval('contents_id_seq',max(id)) from contents"
           execute "select nextval('contents_id_seq')"
@@ -122,7 +122,7 @@ class SuperclassArticles < ActiveRecord::Migration
         t.column :whiteboard, :text
       end
 
-      if config[RAILS_ENV]['adapter'] == 'postgresql'
+      if config[::Rails.env]['adapter'] == 'postgresql'
         execute "select nextval('articles_id_seq')"
       end
 
@@ -154,7 +154,7 @@ class SuperclassArticles < ActiveRecord::Migration
            t.save!
         end
 
-        if config[RAILS_ENV]['adapter'] == 'postgres'
+        if config[::Rails.env]['adapter'] == 'postgres'
           STDERR.puts "Resetting PostgreSQL sequences"
           execute "select setval('articles_id_seq',max(id)+1) from articles"
         end

@@ -66,7 +66,7 @@ module TypoBlog
     end
   end
 
-  if RAILS_ENV != 'test'
+  if ::Rails.env != 'test'
     begin
       mail_settings = YAML.load(File.read("#{::Rails.root.to_s}/config/mail.yml"))
 

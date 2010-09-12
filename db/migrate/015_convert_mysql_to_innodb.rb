@@ -8,7 +8,7 @@ class ConvertMysqlToInnodb < ActiveRecord::Migration
         schema << "ALTER TABLE #{table.to_a.first.last} ENGINE=InnoDB"
       end
       schema.each { |line| execute line }
-    end if config[RAILS_ENV]['adapter'] == 'mysql' unless $schema_generator
+    end if config[::Rails.env]['adapter'] == 'mysql' unless $schema_generator
   end
 
   def self.down

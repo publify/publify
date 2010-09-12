@@ -1,7 +1,7 @@
 # Ckeditor
 module Ckeditor
   begin
-    CONFIG = YAML.load_file("#{::Rails.root.to_s}/config/ckeditor.yml")[RAILS_ENV]
+    CONFIG = YAML.load_file("#{::Rails.root.to_s}/config/ckeditor.yml")[::Rails.env]
   rescue => e
     CONFIG = nil
   end

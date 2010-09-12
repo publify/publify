@@ -119,7 +119,7 @@ ActionController::Routing::Routes.draw do |map|
 
       def generate_with_deprecation(options, hash, expire_on = {})
         RAILS_DEFAULT_LOGGER.info "generate(#{options.inspect}, #{hash.inspect}, #{expire_on.inspect}) reached the default route"
-        #         if RAILS_ENV == 'test'
+        #         if ::Rails.env == 'test'
         #           raise "Don't rely on default route generation"
         #         end
         generate_without_deprecation(options, hash, expire_on)
