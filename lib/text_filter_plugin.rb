@@ -63,7 +63,7 @@ class TextFilterPlugin
   end
 
   def self.logger
-    @logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDOUT)
+    @logger ||= ::Rails.logger || Logger.new(STDOUT)
   end
 end
 

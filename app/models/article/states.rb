@@ -7,11 +7,11 @@ module Article::States
     end
 
     def exit_hook(target)
-      RAILS_DEFAULT_LOGGER.debug("#{content} leaving state #{self.class}")
+      ::Rails.logger.debug("#{content} leaving state #{self.class}")
     end
 
     def enter_hook
-      RAILS_DEFAULT_LOGGER.debug("#{content} entering state #{self.class}")
+      ::Rails.logger.debug("#{content} entering state #{self.class}")
     end
 
     def before_save; true; end
