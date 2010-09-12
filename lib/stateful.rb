@@ -9,11 +9,11 @@ module Stateful
     end
 
     def exit_hook(target_state)
-      RAILS_DEFAULT_LOGGER.debug("#{model} leaving state #{self}")
+      ::Rails.logger.debug("#{model} leaving state #{self}")
     end
 
     def enter_hook
-      RAILS_DEFAULT_LOGGER.debug("#{model} entering state #{self}")
+      ::Rails.logger.debug("#{model} entering state #{self}")
     end
 
 

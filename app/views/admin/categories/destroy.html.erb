@@ -5,6 +5,6 @@
   <% end %>
 
   <p><%= _("Are you sure you want to delete the category ")%> '<%= @category.name %>'?</p>
-  <% form_tag :action => "destroy", :id => @category.id do %>
+  <%= form_tag :action => "destroy", :id => @category.id do %>
   <%= confirm_delete(_("Delete this category")) %>
   <% end %>

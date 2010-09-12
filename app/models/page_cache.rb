@@ -1,10 +1,10 @@
 class PageCache
   def self.logger
-    RAILS_DEFAULT_LOGGER
+    ::Rails.logger
   end
 
   def logger
-    RAILS_DEFAULT_LOGGER
+    ::Rails.logger
   end
 
   def self.public_path

@@ -90,7 +90,7 @@ class SpamProtection
   end
 
   def logger
-    @logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDOUT)
+    @logger ||= ::Rails.logger || Logger.new(STDOUT)
   end
 end
 

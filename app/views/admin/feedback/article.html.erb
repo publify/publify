@@ -2,7 +2,7 @@
 <% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'ui-state-default ui-corner-all noborder'}) %>
 
 <% subtabs_for(:content) %>
-<% form_tag({:action => 'bulkops'}, :method => :post) do %>
+<%= form_tag({:action => 'bulkops'}, :method => :post) do %>
 
 <%= hidden_field 'article_id', @article.id %>
 <%= render :partial => 'button', :locals => { :position => 'top' } %>
@@ -28,7 +28,7 @@
 </table>
 <%end%>
 
-<% form_tag :action => "create" do %>
+<%= form_tag :action => "create" do %>
   <%= render :partial => "form" %>
   <%= cancel_or_save %>
 <% end %>

@@ -75,7 +75,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def logger
-    @logger ||= RAILS_DEFAULT_LOGGER || Logger.new(STDERR)
+    @logger ||= ::Rails.logger || Logger.new(STDERR)
   end
 
   private

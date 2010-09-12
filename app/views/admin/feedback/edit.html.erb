@@ -1,6 +1,6 @@
 <% @page_heading = _("Comments for") + " #{ link_to h(@comment.article.title), :controller => '/admin/content', :action => 'new', :id => @comment.article.id }" %>
 
-<% form_tag :action => "update", :id => @comment.id do %>
+<%= form_tag :action => "update", :id => @comment.id do %>
 
   <div class="admin">
     <%= render :partial => "form" %>

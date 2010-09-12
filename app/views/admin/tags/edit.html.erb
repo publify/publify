@@ -4,7 +4,7 @@
   <%= subtab _("Back to tags list") + " &raquo;", {:controller=>"tags", :action=>"list"} %>
 <% end %>
 
-<% form_tag :action=>"edit", :id => @tag.id do %>
+<%= form_tag :action=>"edit", :id => @tag.id do %>
   <%= render :partial => "form" %>
 
   <%= cancel_or_save %>

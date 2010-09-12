@@ -1,7 +1,7 @@
 <% @page_heading =  _("Feedback") %>
 <% subtabs_for(:content) %>
 
-<% form_tag({:action => 'index'}, :method => :get) do %>
+<%= form_tag({:action => 'index'}, :method => :get) do %>
 <div class='settings'>
   <h4><label for="search"><%= _("Search Comments and Trackbacks that contain")%>...:</label></h4>
   <div class='input_text'>
@@ -11,7 +11,7 @@
 </div>
 <% end %>
 
-<% form_tag({:action => 'bulkops'}, :method => :post) do %>
+<%= form_tag({:action => 'bulkops'}, :method => :post) do %>
 <%= render :partial => 'button', :locals => { :position => 'top' } %>
 
 <%= hidden_field_tag "search", params[:search]%>

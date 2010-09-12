@@ -4,7 +4,10 @@ require 'mini_magick'
 class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
   after_destroy :delete_filename_on_disk
-  before_validation_on_create :uniq_filename_on_disk
+  before_validation(:on => :create) do 
+    :uniq_filename_on_disk
+  end
+  
   belongs_to :article
 
   def fullpath(file = nil)

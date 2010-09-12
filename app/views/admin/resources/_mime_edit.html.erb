@@ -1,4 +1,4 @@
-<% form_tag({ :action => "set_mime" }, :id => id, :enctype => "multipart/form-data") do %>
+<%= form_tag({ :action => "set_mime" }, :id => id, :enctype => "multipart/form-data") do %>
 <div class="form">
   <label for="resource_mime_<%= id %>"><%=_("Content Type")%>:</label><br/>
   <input name="resource[mime]" size="22" id="resource_mime_<%= id %>" type="text" value="<%=h mime %>" /><br />

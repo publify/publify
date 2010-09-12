@@ -164,7 +164,7 @@ class CkeditorController < ActionController::Base
   # Puts a messgae info in the current log, only if ::Rails.env is 'development'
   #
   def log(str)
-    RAILS_DEFAULT_LOGGER.info str if ::Rails.env == 'development'
+    ::Rails.logger.info str if ::Rails.env == 'development'
   end
 
   ##############################################################################
