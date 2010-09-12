@@ -31,7 +31,7 @@ module LoginSystem
       respond_to do |accepts|
         accepts.html do
           #store_location
-          session[:return_to] = request.request_uri
+          session[:return_to] = request.fullpath
           if User.find(:first)
             redirect_to :controller => "accounts/login", :action => :index
           else
@@ -48,7 +48,7 @@ module LoginSystem
     end
 
     def store_location
-      session[:return_to] = request.request_uri
+      session[:return_to] = request.fullpath
     end
 
     def redirect_back_or_default(default)
