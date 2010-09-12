@@ -18,6 +18,7 @@ gem 'rails-app-installer', '~> 0.2.0'
 group :development, :test do
   gem 'ruby-debug'
   gem 'factory_girl'
+  gem 'webrat'
   #gem 'rspec'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
   #gem 'flexmock'
