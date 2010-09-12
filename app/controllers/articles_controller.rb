@@ -264,30 +264,32 @@ class ArticlesController < ContentController
   end
 
   def index_title
-    returning('') do |page_title|
-      page_title << formatted_date_selector(_('Archives for '))
+    page_title = formatted_date_selector(_('Archives for '))
 
-      if params[:page]
-        page_title << 'Older posts' if page_title.blank?
-        page_title << ", page " << params[:page]
-      end
+    if params[:page]
+      page_title << 'Older posts' if page_title.blank?
+      page_title << ", page " << params[:page]
     end
+
+    page_title
   end
 
   def index_description
-    returning('') do |page_description|
-      if this_blog.meta_description.empty?
+    page_description = ''
+
+    if this_blog.meta_description.empty?
       page_description << "#{this_blog.blog_name} #{this_blog.blog_subtitle}"
-      else
-        page_description << this_blog.meta_description
-      end
-
-      page_description << formatted_date_selector(_(', Articles for '))
-
-      if params[:page]
-        page_description << ", page " << params[:page]
-      end
+    else
+      page_description << this_blog.meta_description
     end
+
+    page_description << formatted_date_selector(_(', Articles for '))
+
+    if params[:page]
+      page_description << ", page " << params[:page]
+    end
+
+    page_description
   end
 
   def time_delta(year, month = nil, day = nil)

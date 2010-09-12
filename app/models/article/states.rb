@@ -36,19 +36,18 @@ module Article::States
     end
 
     def published=(boolean)
-      returning(boolean) do
-        if boolean
-          content.state = :just_published
-        end
+      if boolean
+        content.state = :just_published
       end
+      return boolean
     end
 
     def published_at=(new_time)
       new_time = (new_time.to_time rescue nil)
-      returning(content[:published_at] = new_time) do
-        break if new_time.nil?
+      unless new_time.nil?
         content.state = (new_time <= Time.new) ? :just_published : :publication_pending
       end
+      content[:published_at] = new_time
     end
 
     def draft?

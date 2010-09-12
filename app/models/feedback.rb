@@ -55,7 +55,8 @@ class Feedback < Content
 
   def correct_url
     return if url.blank?
-    returning(url) do
+    # FIXME: This doesn't seem to do anything!
+    url.tap do
       url.to_s.gsub!(%r{^(?:http://)?(.+)},"http://\\1")
     end
   end

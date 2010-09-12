@@ -24,7 +24,8 @@ module Feedback::States
 
   class Unclassified < Base
     def after_initialize
-      returning(true) { enter_hook }
+      enter_hook
+      return true
     end
 
     def enter_hook
