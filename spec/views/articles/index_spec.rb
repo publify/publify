@@ -17,7 +17,7 @@ with_each_theme do |theme, view_path|
     context "normally" do
       before(:each) do
         @controller.action_name = "index"
-        assigns[:articles] = Article.paginate(:all, :page => 2, :per_page => 4)
+        assign(:articles, Article.paginate(:all, :page => 2, :per_page => 4))
         render :file => "articles/index"
       end
 
@@ -47,7 +47,7 @@ with_each_theme do |theme, view_path|
         params[:q]           = "body"
         params[:page]        = 2
         params[:action]      = 'search'
-        assigns[:articles] = Blog.default.articles_matching(params[:q], :page => 2, :per_page => 4)
+        assign(:articles, Blog.default.articles_matching(params[:q], :page => 2, :per_page => 4))
         render :file => "articles/index"
       end
 

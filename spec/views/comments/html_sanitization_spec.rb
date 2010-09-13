@@ -10,7 +10,7 @@ shared_examples_for "CommentSanitization" do
     prepare_comment
 
     @comment.stub!(:id).and_return(1)
-    assigns[:comment] = @comment
+    assign(:comment, @comment)
   end
 
   def prepare_comment

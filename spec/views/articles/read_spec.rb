@@ -17,7 +17,7 @@ with_each_theme do |theme, view_path|
     context "applying text filters" do
       before(:each) do
         @controller.action_name = "redirect"
-        assigns[:article] = contents('article1')
+        assign(:article, contents('article1'))
         render :file => "articles/read"
       end
 
@@ -36,7 +36,7 @@ with_each_theme do |theme, view_path|
       before(:each) do
         Blog.default.comment_text_filter = 'textile'
         @controller.action_name = "read"
-        assigns[:article] = contents('article1')
+        assign(:article, contents('article1'))
         render :file => "articles/read"
       end
 
@@ -51,7 +51,7 @@ with_each_theme do |theme, view_path|
       before(:each) do
         Blog.default.comment_text_filter = 'textile'
         @controller.action_name = "read"
-        assigns[:article] = contents('article3')
+        assign(:article, contents('article3'))
         render :file => "articles/read"
       end
 
