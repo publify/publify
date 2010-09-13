@@ -26,20 +26,20 @@ shared_examples_for "CommentSanitization" do
       this_blog.comment_text_filter = value
 
       render :file => 'comments/show'
-      response.should have_tag('.content')
-      response.should have_tag('.author')
+      response.should have_selector('.content')
+      response.should have_selector('.author')
 
-      response.should_not have_tag('.content script')
-      response.should_not have_tag(".content a:not([rel=nofollow])")
+      response.should_not have_selector('.content script')
+      response.should_not have_selector(".content a:not([rel=nofollow])")
       # No links with javascript
-      response.should_not have_tag(".content a[onclick]")
-      response.should_not have_tag(".content a[href^=javascript:]")
+      response.should_not have_selector(".content a[onclick]")
+      response.should_not have_selector(".content a[href^=\"javascript:\"]")
 
-      response.should_not have_tag('.author script')
-      response.should_not have_tag(".author a:not([rel=nofollow])")
+      response.should_not have_selector('.author script')
+      response.should_not have_selector(".author a:not([rel=nofollow])")
       # No links with javascript
-      response.should_not have_tag(".author a[onclick]")
-      response.should_not have_tag(".author a[href^=javascript:]")
+      response.should_not have_selector(".author a[onclick]")
+      response.should_not have_selector(".author a[href^=\"javascript:\"]")
     end
   end
 end
