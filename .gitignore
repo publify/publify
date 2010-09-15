@@ -19,4 +19,3 @@ tmp/*
 /coverage/
 nbproject
 public/cache/*
-Gemfile.lock
