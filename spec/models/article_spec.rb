@@ -390,19 +390,11 @@ describe Article do
 
   describe '#search' do
 
-    shared_examples_for 'is an array' do
-      it 'should get an array' do
-        @articles.should be_a(Array)
-      end
-    end
-
     describe 'with several words and no result' do
 
       before :each do
         @articles = Article.search('hello world')
       end
-
-      it_should_behave_like 'is an array'
 
       it 'should be empty' do
         @articles.should be_empty
@@ -415,9 +407,7 @@ describe Article do
         @articles = Article.search('extended')
       end
 
-      it_should_behave_like 'is an array'
-
-      it 'should have one item' do
+      it 'should have nine items' do
         assert_equal 9, @articles.size
       end
     end
