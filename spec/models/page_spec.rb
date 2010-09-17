@@ -33,14 +33,10 @@ class Hash
   end
 end
 
-shared_examples_for "ValidPageHelper" do
+describe 'Given no pages' do
   def valid_attributes
     { :name => 'name', :title => 'title', :body => 'body'}
   end
-end
-
-describe 'Given no pages' do
-  it_should_behave_like "ValidPageHelper"
 
   before(:each) do
     Page.delete_all
@@ -82,8 +78,6 @@ describe 'Given no pages' do
 end
 
 describe 'Given a valid page' do
-  it_should_behave_like "ValidPageHelper"
-
   it 'default filter should be fetched from the blog' do
     @page = Page.new()
     @page.default_text_filter.name.should == Blog.default.text_filter
