@@ -26,7 +26,7 @@ describe Admin::ThemesController do
   it "shows a list of css and erb files for the :editor action" do
     get :editor
     assert_response :success
-    response.should have_tag("a", :text => "colors.css")
-    response.should have_tag("a", :text => "default.html.erb")
+    response.should have_selector("a", :contents => "colors.css")
+    response.should have_selector("a", :contents => "default.html.erb")
   end
 end

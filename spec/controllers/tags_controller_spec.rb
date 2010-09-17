@@ -122,11 +122,11 @@ describe TagsController, 'with integrate_view' do
   end
 
   it 'should have good rss feed link in head' do
-    response.should have_tag('head>link[href=?][rel=alternate][type=application/rss+xml][title=RSS]','http://test.host/tag/foo.rss')
+    response.should have_selector('head>link[href="http://test.host/tag/foo.rss"][rel=alternate][type=application/rss+xml][title=RSS]')
   end
 
   it 'should have good atom feed link in head' do
-    response.should have_tag('head>link[href=?][rel=alternate][type=application/atom+xml][title=Atom]','http://test.host/tag/foo.atom')
+    response.should have_selector('head>link[href="http://test.host/tag/foo.atom"][rel=alternate][type=application/atom+xml][title=Atom]')
   end
 end
 

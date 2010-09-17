@@ -27,11 +27,11 @@ describe ArticlesController do
     end
 
     it 'should have good link feed rss' do
-      response.should have_tag('head>link[href=?]','http://test.host/articles.rss')
+      response.should have_selector('head>link[href="http://test.host/articles.rss"]')
     end
 
     it 'should have good link feed atom' do
-      response.should have_tag('head>link[href=?]','http://test.host/articles.atom')
+      response.should have_selector('head>link[href="http://test.host/articles.atom"]')
     end
   end
 
@@ -51,15 +51,15 @@ describe ArticlesController do
       end
 
       it 'should have good feed rss link' do
-        response.should have_tag('head>link[href=?]','http://test.host/search/a.rss')
+        response.should have_selector('head>link[href="http://test.host/search/a.rss"]')
       end
 
       it 'should have good feed atom link' do
-        response.should have_tag('head>link[href=?]','http://test.host/search/a.atom')
+        response.should have_selector('head>link[href="http://test.host/search/a.atom"]')
       end
 
       it 'should have content markdown interpret and without html tag' do
-        response.should have_tag('div', /in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
+        response.should have_selector('div', :contents => /in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
       end
 
     end
@@ -111,7 +111,7 @@ describe ArticlesController do
       end
 
       it 'should not have h3 tag' do
-        response.should have_tag("h3")
+        response.should have_selector("h3")
       end
 
       it "should assign @search the search string" do
@@ -186,7 +186,7 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("_rss20_feed")
-    response.should have_tag('link', 'http://myblog.net')
+    response.should have_selector('link', :contents => 'http://myblog.net')
     assert_feedvalidator response.body
   end
 
@@ -408,11 +408,11 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should have good rss feed link' do
-	response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.rss")
+	response.should have_selector("head>link[href=\"http://myblog.net/#{contents(:article1).permalink}.html.rss\"]")
       end
 
       it 'should have good atom feed link' do
-	response.should have_tag('head>link[href=?]', "http://myblog.net/#{contents(:article1).permalink}.html.atom")
+	response.should have_selector("head>link[href=\"http://myblog.net/#{contents(:article1).permalink}.html.atom\"]")
       end
 
     end

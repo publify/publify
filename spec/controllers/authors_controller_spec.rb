@@ -17,11 +17,11 @@ describe AuthorsController do
     end
 
     it 'should have good link feed rss' do
-      response.should have_tag('head>link[href=?]','http://test.host/author/tobi.rss')
+      response.should have_selector('head>link[href="http://test.host/author/tobi.rss"]')
     end
 
     it 'should have good link feed atom' do
-      response.should have_tag('head>link[href=?]','http://test.host/author/tobi.atom')
+      response.should have_selector('head>link[href="http://test.host/author/tobi.atom"]')
     end
   end
 
@@ -36,7 +36,7 @@ describe AuthorsController do
     get 'show', :id => 'tobi', :format => 'rss'
     response.should be_success
     response.should render_template("articles/_rss20_feed")
-    response.should have_tag('link', 'http://myblog.net')
+    response.should have_selector('link', :contents => 'http://myblog.net')
     assert_feedvalidator @response.body
   end
 end
