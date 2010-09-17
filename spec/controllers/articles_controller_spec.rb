@@ -269,10 +269,6 @@ describe ArticlesController, "previewing" do
 end
 
 describe ArticlesController, "redirecting" do
-  before do
-    ActionController::Base.relative_url_root = nil # avoid failures if environment.rb defines a relative URL root
-  end
-
   it 'should split routing path' do
     assert_routing "foo/bar/baz", {
       :from => ["foo", "bar", "baz"],
