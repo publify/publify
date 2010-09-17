@@ -4,9 +4,7 @@ require 'mini_magick'
 class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
   after_destroy :delete_filename_on_disk
-  before_validation(:on => :create) do 
-    :uniq_filename_on_disk
-  end
+  before_validation :uniq_filename_on_disk, :on => :create
   
   belongs_to :article
 
