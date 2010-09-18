@@ -199,8 +199,8 @@ class User < ActiveRecord::Base
   # Send a mail of creation user to the user create
   def send_create_notification
     begin
-      email_notification = NotificationMailer.create_notif_user(self)
-      EmailNotify.send_message(self,email_notification)
+      email_notification = NotificationMailer.notif_user(self)
+      EmailNotify.send_message(self, email_notification)
     rescue => err
       logger.error "Unable to send notification of create user email: #{err.inspect}"
     end
