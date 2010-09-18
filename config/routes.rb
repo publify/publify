@@ -1,8 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
 
-  # default
-  map.root :controller  => 'articles', :action => 'index'
-
   # for Filemanager
   map.connect 'fm/filemanager/:action/:id', :controller => 'Fm::Filemanager'
 
@@ -30,8 +27,8 @@ ActionController::Routing::Routes.draw do |map|
       action.xml 'rss', :type => 'feed', :format => 'rss'
       action.xml 'sitemap.xml', :format => 'googlesitemap', :type => 'sitemap', :path_prefix => nil
       action.xml ':format/feed.xml', :type => 'feed'
-      action.xml ':format/:type/feed.xml'
       action.xml ':format/:type/:id/feed.xml'
+      action.xml ':format/:type/feed.xml'
     end
   end
 
@@ -63,8 +60,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/tag/:id/page/:page', :controller => 'tags', :action => 'show'
   map.connect '/tags/page/:page', :controller => 'tags', :action => 'index'
 
-  map.connect '/author/:id', :controller => 'authors', :action => 'show'
   map.xml '/author/:id.:format', :controller => 'authors', :action => 'show', :format => /rss|atom/
+  map.connect '/author/:id', :controller => 'authors', :action => 'show'
 
   # allow neat perma urls
   map.connect 'page/:page',
@@ -104,6 +101,9 @@ ActionController::Routing::Routes.draw do |map|
     map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end
+
+  # default
+  map.root :controller  => 'articles', :action => 'index'
 
   map.connect '*from', :controller => 'articles', :action => 'redirect'
 
