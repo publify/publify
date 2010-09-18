@@ -79,10 +79,10 @@ class ArticlesController < ContentController
     part.delete('') # delete all par of / where no data. Avoid all // or / started
     params[:from].delete('')
     if params[:from].last =~ /\.atom$/
-      params[:format] = 'atom'
+      request.format = 'atom'
       params[:from].last.gsub!(/\.atom$/, '')
     elsif params[:from].last =~ /\.rss$/
-      params[:format] = 'rss'
+      request.format = 'rss'
       params[:from].last.gsub!(/\.rss$/, '')
     end
     zip_part = part.zip(params[:from])
