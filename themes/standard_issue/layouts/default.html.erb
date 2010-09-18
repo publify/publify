@@ -31,7 +31,7 @@
 
   <div id="page">
     <div id="content">
-      <%= @content_for_layout %>
+      <%= yield %>
       <%= javascript_tag 'show_dates_as_local_time()' %>
     </div>
 
