@@ -11,8 +11,8 @@ class AccountsController < ApplicationController
     end
 
     @page_title = "#{this_blog.blog_name} - #{_('login')}"
-    case request.method
-      when :post
+
+    if request.post?
       self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
 
       if logged_in?

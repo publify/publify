@@ -5,21 +5,20 @@ class Admin::ResourcesController < Admin::BaseController
 
   def upload
     begin
-      case request.method
-        when :post
-          file = params[:upload][:filename]
-          unless file.content_type
-            mime = 'text/plain'
-          else
-            mime = file.content_type.chomp
-          end
-          @up = Resource.create(:filename => file.original_filename, :mime => mime, :created_at => Time.now)
+      if request.post?
+        file = params[:upload][:filename]
+        unless file.content_type
+          mime = 'text/plain'
+        else
+          mime = file.content_type.chomp
+        end
+        @up = Resource.create(:filename => file.original_filename, :mime => mime, :created_at => Time.now)
 
-          @up.write_to_disk(file)
-          @up.create_thumbnail
+        @up.write_to_disk(file)
+        @up.create_thumbnail
 
-          @message = _('File uploaded: ')+ file.size.to_s
-          finish_upload_status "'#{@message}'"
+        @message = _('File uploaded: ')+ file.size.to_s
+        finish_upload_status "'#{@message}'"
       end
     rescue
       @message = "'" + _('Unable to upload') + " #{file.original_filename}'"
@@ -80,14 +79,13 @@ class Admin::ResourcesController < Admin::BaseController
     begin
       @file = Resource.find(params[:id])
       mime = @file.mime
-      case request.method
-        when :post
-          @file.destroy
-          if mime =~ /image/
-            redirect_to :action => 'images'
-          else
-            redirect_to :action => 'index'
-          end
+      if request.post?
+        @file.destroy
+        if mime =~ /image/
+          redirect_to :action => 'images'
+        else
+          redirect_to :action => 'index'
+        end
       end
     rescue
       raise
