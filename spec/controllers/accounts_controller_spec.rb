@@ -35,7 +35,7 @@ describe AccountsController do
 
     it 'sets typo_user_profile cookie' do
       make_request
-      cookies[:typo_user_profile].should == 'admin'
+      cookies["typo_user_profile"].should == 'admin'
     end
 
     it 'redirects to /bogus/location' do
@@ -84,7 +84,7 @@ describe AccountsController do
 
     it 'typo_user_profile cookie should be blank' do
       make_request
-      cookies[:typo_user_profile].should be_blank
+      cookies["typo_user_profile"].should be_blank
     end
 
     it 'should render login action' do
@@ -131,7 +131,7 @@ describe AccountsController do
 
     it 'typo_user_profile cookie should be blank' do
       make_request
-      cookies[:typo_user_profile].should be_blank
+      cookies["typo_user_profile"].should be_blank
     end
 
     it 'should render login action' do
@@ -296,7 +296,7 @@ describe AccountsController do
       session[:user_id] = @user.id
       session[:user] = @user.id
 
-      cookies[:typo_user_profile] = 'admin'
+      cookies["typo_user_profile"] = 'admin'
     end
 
     it 'trying to log in once again redirects to admin/dashboard/index' do
@@ -322,8 +322,8 @@ describe AccountsController do
       end
 
       it 'deletes cookies containing credentials' do
-	cookies[:auth_token].should == nil
-	cookies[:typo_user_profile].should == nil
+	cookies["auth_token"].should == nil
+	cookies["typo_user_profile"].should == nil
       end
     end
   end
