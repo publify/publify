@@ -12,7 +12,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
     xml.ttl "40"
     xml.description this_blog.blog_subtitle
 
-    rss20_feed.each do |value|
+    items.each do |value|
       value.to_rss(xml)
     end
   end

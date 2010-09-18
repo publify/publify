@@ -104,7 +104,7 @@ class GroupingController < ContentController
 
   def render_feed(template, collection)
     articles = collection[0,this_blog.limit_rss_display]
-    render :partial => template.sub(%r{^(?:articles/)?}, 'articles/'), :object => articles
+    render :partial => template.sub(%r{^(?:articles/)?}, 'articles/'), :locals => { :items => articles }
   end
 
   private
