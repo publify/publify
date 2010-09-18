@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe TagsController, "/index" do
   before(:each) do
     Tag.stub!(:find_all_with_article_counters) \
-      .and_return(mock('tags', :null_object => true))
+      .and_return(mock('tags').as_null_object)
 
     this_blog = Blog.default
     controller.stub!(:this_blog) \
@@ -39,7 +39,7 @@ end
 
 describe TagsController, '/articles/tag/foo' do
   before(:each) do
-    @tag = mock('tag', :null_object => true)
+    @tag = mock('tag').as_null_object
     @tag.stub!(:empty?) \
       .and_return(false)
     @tag.stub!(:name).and_return('foo')
