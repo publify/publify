@@ -355,7 +355,7 @@ describe AccountsController do
 
       specify { response.should render_template('recover_password') }
       it "should display an error" do
-        response.flash[:error].should_not be_empty
+        request.flash[:error].should_not be_empty
       end
     end
   end
