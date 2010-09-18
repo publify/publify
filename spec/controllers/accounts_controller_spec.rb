@@ -74,7 +74,7 @@ describe AccountsController do
 
     it 'no user id goes in the session' do
       make_request
-      response.session[:user_id].should be_nil
+      request.session[:user_id].should be_nil
     end
 
     it 'login should == "inactive"' do
@@ -121,7 +121,7 @@ describe AccountsController do
 
     it 'no user in goes in the session' do
       make_request
-      response.session[:user_id].should be_nil
+      request.session[:user_id].should be_nil
     end
 
     it 'login should == "bob"' do
