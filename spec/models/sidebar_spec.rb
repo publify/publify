@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require 'spec_helper'
 
 describe Sidebar do
   it "test_available_sidebars" do

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe 'Given the results of Category.find_all_with_article_counters' do
   before(:each) { @cats = Category.find_all_with_article_counters }

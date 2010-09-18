@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+require 'spec_helper'
 
 with_each_theme do |theme, view_path|
   describe "#{view_path}/articles/index" do

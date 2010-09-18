@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+require 'spec_helper'
 
 describe 'FeedbackStates from Test::Unit' do
   before(:each) do
