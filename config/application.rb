@@ -28,6 +28,9 @@ module TypoBlog
 
     # Activate observers that should always be running
     config.active_record.observers = :email_notifier, :web_notifier
+
+    # Filter sensitive parameters from the log file
+    config.filter_parameters << :password
   end
 
   # Load included libraries.

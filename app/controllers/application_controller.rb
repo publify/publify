@@ -75,7 +75,4 @@ class ApplicationController < ActionController::Base
     cookies[name] = { :value => value, :path => path || "/#{controller_name}",
                        :expires => 6.weeks.from_now }
   end
-
-  # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
 end
