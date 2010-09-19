@@ -22,20 +22,20 @@ with_each_theme do |theme, view_path|
       end
 
       it "should not have pagination link to page 2 without q param" do
-        response.should_not have_selector("a[href=\"/page/2\"]")
+        rendered.should_not have_selector("a[href=\"/page/2\"]")
       end
 
       it "should have pagination link to page 1 without q param if on page 2" do
-        response.should have_selector("a[href=\"/page/1\"]")
+        rendered.should have_selector("a[href=\"/page/1\"]")
       end
 
       it "should not have too many paragraph marks around body" do
-        response.should have_selector("p", :contents => "body")
-        response.should_not have_selector("p>p", :contents => "body")
+        rendered.should have_selector("p", :contents => "body")
+        rendered.should_not have_selector("p>p", :contents => "body")
       end
 
       it "should not have div nested inside p" do
-	response.should_not have_selector("p>div")
+	      rendered.should_not have_selector("p>div")
       end
     end
 
@@ -52,11 +52,11 @@ with_each_theme do |theme, view_path|
       end
 
       it "should not have pagination link to page 2 with q param" do
-        response.should_not have_selector("a[href=\"/search/body?page=2\"]") # *notice
+        rendered.should_not have_selector("a[href=\"/search/body?page=2\"]") # *notice
       end
 
       it "should have pagination link to page 1 with q param if on page 2" do
-        response.should have_selector("a[href=\"/search/body?page=1\"]") # *notice
+        rendered.should have_selector("a[href=\"/search/body?page=1\"]") # *notice
       end
     end
   end
