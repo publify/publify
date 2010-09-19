@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :trackbacks
 
   map.live_search_articles '/live_search/', :controller => "articles", :action => "live_search"
+  map.search '/search/:q.:format/page/:page', :controller => "articles", :action => "search"
   map.search '/search/:q.:format', :controller => "articles", :action => "search"
   map.search_base '/search/', :controller => "articles", :action => "search"
   map.connect '/archives/', :controller => "articles", :action => "archives"
