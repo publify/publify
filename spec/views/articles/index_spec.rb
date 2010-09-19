@@ -30,8 +30,8 @@ with_each_theme do |theme, view_path|
       end
 
       it "should not have too many paragraph marks around body" do
-        rendered.should have_selector("p", :contents => "body")
-        rendered.should_not have_selector("p>p", :contents => "body")
+        rendered.should have_selector("p", :content => "body")
+        rendered.should_not have_selector("p>p", :content => "body")
       end
 
       it "should not have div nested inside p" do

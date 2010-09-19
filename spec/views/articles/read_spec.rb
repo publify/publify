@@ -22,13 +22,13 @@ with_each_theme do |theme, view_path|
       end
 
       it "should not have too many paragraph marks around body" do
-        rendered.should have_selector("p", :contents => "body")
-        rendered.should_not have_selector("p>p", :contents => "body")
+        rendered.should have_selector("p", :content => "body")
+        rendered.should_not have_selector("p>p", :content => "body")
       end
 
       it "should not have too many paragraph marks around extended contents" do
-        rendered.should have_selector("p", :contents => "extended content")
-        rendered.should_not have_selector("p>p", :contents => "extended content")
+        rendered.should have_selector("p", :content => "extended content")
+        rendered.should_not have_selector("p>p", :content => "extended content")
       end
     end
 
@@ -41,9 +41,9 @@ with_each_theme do |theme, view_path|
       end
 
       it "should not have too many paragraph marks around comment contents" do
-        rendered.should have_selector("p>em", :contents => "italic")
-        rendered.should have_selector("p>strong", :contents => "bold")
-        rendered.should_not have_selector("p>p>em", :contents => "italic")
+        rendered.should have_selector("p>em", :content => "italic")
+        rendered.should have_selector("p>strong", :content => "bold")
+        rendered.should_not have_selector("p>p>em", :content => "italic")
       end
     end
 
@@ -57,9 +57,9 @@ with_each_theme do |theme, view_path|
 
       it "should automatically add links" do
 	rendered.should have_selector("a[href=mailto:foo@bar.com]",
-				 :contents => "foo@bar.com")
+				 :content => "foo@bar.com")
         rendered.should have_selector("a[href=http://www.bar.com]",
-				 :contents => "http://www.bar.com")
+				 :content => "http://www.bar.com")
       end
     end
   end
