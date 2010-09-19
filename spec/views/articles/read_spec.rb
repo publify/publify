@@ -56,9 +56,9 @@ with_each_theme do |theme, view_path|
       end
 
       it "should automatically add links" do
-	rendered.should have_selector("a[href=mailto:foo@bar.com]",
+	rendered.should have_selector("a", :href => "mailto:foo@bar.com",
 				 :content => "foo@bar.com")
-        rendered.should have_selector("a[href=http://www.bar.com]",
+        rendered.should have_selector("a", :href=>"http://www.bar.com",
 				 :content => "http://www.bar.com")
       end
     end
