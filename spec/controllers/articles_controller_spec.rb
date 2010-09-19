@@ -295,7 +295,7 @@ describe ArticlesController, "redirecting" do
       Factory(:redirect)
       get :redirect, :from => ["foo", "bar"]
       assert_response 301
-      assert_redirected_to "http://test.host/someplace/else"
+      response.should redirect_to("http://test.host/someplace/else")
     end
 
     it 'should not redirect from unknown URL' do
@@ -313,14 +313,14 @@ describe ArticlesController, "redirecting" do
 	Factory(:redirect, :from_path => 'foo/bar')
 	get :redirect, :from => ["foo", "bar"]
 	assert_response 301
-	assert_redirected_to "http://test.host/blog/someplace/else"
+	response.should redirect_to("http://test.host/blog/someplace/else")
       end
 
       it 'should redirect if to_path includes relative_url_root' do
 	Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
 	get :redirect, :from => ["bar", "foo"]
 	assert_response 301
-	assert_redirected_to "http://test.host/blog/someplace/else"
+	response.should redirect_to("http://test.host/blog/someplace/else")
       end
     end
   end
@@ -334,7 +334,7 @@ describe ArticlesController, "redirecting" do
     it 'should redirect to article' do
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
-      assert_redirected_to "http://myblog.net/2004/04/01/second-blog-article"
+      response.should redirect_to("http://myblog.net/2004/04/01/second-blog-article")
     end
 
     it 'should redirect to article with url_root' do
@@ -343,7 +343,7 @@ describe ArticlesController, "redirecting" do
       b.save
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
-      assert_redirected_to "http://test.host/blog/2004/04/01/second-blog-article"
+      response.should redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
     end
 
     it 'should redirect to article when url_root is articles' do
@@ -352,7 +352,7 @@ describe ArticlesController, "redirecting" do
       b.save
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
-      assert_redirected_to "http://test.host/articles/2004/04/01/second-blog-article"
+      response.should redirect_to("http://test.host/articles/2004/04/01/second-blog-article")
     end
 
     it 'should redirect to article with articles in url_root' do
@@ -362,7 +362,7 @@ describe ArticlesController, "redirecting" do
 
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
-      assert_redirected_to "http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article"
+      response.should redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
     end
   end
 
@@ -378,13 +378,13 @@ describe ArticlesController, "redirecting" do
     it 'should redirect from default URL format' do
       get :redirect, :from => ["2004", "04", "01", "second-blog-article"]
       assert_response 301
-      assert_redirected_to "http://myblog.net/second-blog-article.html"
+      response.should redirect_to("http://myblog.net/second-blog-article.html")
     end
 
     it 'should redirect from old-style URL format with "articles" part' do
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
-      assert_redirected_to "http://myblog.net/second-blog-article.html"
+      response.should redirect_to("http://myblog.net/second-blog-article.html")
     end
 
     describe 'render article' do
