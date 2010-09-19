@@ -123,7 +123,7 @@ class Blog < ActiveRecord::Base
     case options
     when String
       if extra_params[:only_path]
-        url_generated = relative_url_root
+        url_generated = root_path
       else
         url_generated = base_url
       end
@@ -135,7 +135,7 @@ class Blog < ActiveRecord::Base
         options.reverse_merge!(:only_path => false, :controller => '',
                                :action => 'permalink',
                                :host => host_with_port,
-                               :script_name => relative_url_root)
+                               :script_name => root_path)
 
         RouteCache[options] = url_for_without_base_url(options)
       end
@@ -179,11 +179,11 @@ class Blog < ActiveRecord::Base
     end
   end
 
-  private
-
-  def relative_url_root
-    split_base_url[:relative_url_root]
+  def root_path
+    split_base_url[:root_path]
   end
+
+  private
 
   def protocol
     split_base_url[:protocol]
@@ -199,7 +199,7 @@ class Blog < ActiveRecord::Base
         raise "Invalid base_url: #{self.base_url}"
       end
       @split_base_url = { :protocol => $1, :host_with_port => $2,
-        :relative_url_root => $3.gsub(%r{/$},'') }
+        :root_path => $3.gsub(%r{/$},'') }
     end
     @split_base_url
   end

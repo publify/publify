@@ -304,13 +304,22 @@ describe ArticlesController, "redirecting" do
       assert_response 404
     end
 
+    # FIXME: Due to the changes in Rails 3 (no relative_url_root), this
+    # does not work anymore when the accessed URL does not match the blog's
+    # base_url at least partly. Do we still want to allow acces to the blog
+    # through non-standard URLs? What was the original purpose of these
+    # redirects?
     describe 'and non-empty relative_url_root' do
       before do
-	ActionController::Base.relative_url_root = "/blog"
+	b = blogs(:default)
+	b.base_url = "http://test.host/blog"
+	b.save
+	# XXX: The following has no effect anymore.
+	# request.env["SCRIPT_NAME"] = "/blog"
       end
 
       it 'should redirect' do
-	Factory(:redirect, :from_path => 'foo/bar')
+	Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
 	get :redirect, :from => ["foo", "bar"]
 	assert_response 301
 	response.should redirect_to("http://test.host/blog/someplace/else")
