@@ -80,7 +80,7 @@ describe ArticlesController do
 
     it 'search with empty result' do
       get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
-      response.should render_template('articles/error.html.erb')
+      response.should render_template('articles/error')
       assigns[:articles].should be_empty
     end
   end
@@ -251,7 +251,7 @@ describe ArticlesController, "previewing" do
       it "should render template #{view_path}/articles/read" do
         this_blog.theme = theme if theme
         get :preview, :id => @article.id
-        response.should render_template('articles/read.html.erb')
+        response.should render_template('articles/read')
       end
     end
 
@@ -396,7 +396,7 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render template read to article' do
-	response.should render_template('articles/read.html.erb')
+	response.should render_template('articles/read')
       end
 
       it 'should assign article1 to @article' do
@@ -419,7 +419,7 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render atom partial' do
-	response.should render_template('articles/_atom_feed.atom.builder')
+	response.should render_template('articles/_atom_feed')
       end
 
       it 'should render a valid feed' do
@@ -433,7 +433,7 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render rss20 partial' do
-	response.should render_template('articles/_rss20_feed.rss.builder')
+	response.should render_template('articles/_rss20_feed')
       end
 
       it 'should render a valid feed' do
