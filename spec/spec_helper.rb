@@ -134,3 +134,8 @@ def parse_validator_messages(message)
   end
 end
 
+# Temporarily define #flunk until rspec-rails 2 beta 21 comes out.
+# TODO: Remove this once no longer needed!
+def flunk(*args, &block)
+  assertion_delegate.flunk(*args, &block)
+end
