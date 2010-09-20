@@ -2,7 +2,7 @@ source :gemcutter
 gem 'rails', '3.0.0'
 gem 'htmlentities'
 gem 'json'
-gem 'calendar_date_select'
+gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
 gem 'bluecloth', '~> 2.0.5'
 gem 'coderay', '~> 0.9'
 gem 'will_paginate', '~> 3.0.pre2'
@@ -14,6 +14,7 @@ gem 'uuidtools', '~>2.1.1'
 gem 'flickr', '~> 1.0.2'
 gem 'rubypants', '~> 0.2.0'
 gem 'rails-app-installer', '~> 0.2.0'
+#gem 'mysql'
 
 group :development, :test do
   gem 'ruby-debug'

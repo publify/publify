@@ -59,7 +59,7 @@ describe ArticlesController do
       end
 
       it 'should have content markdown interpret and without html tag' do
-        response.should have_selector('div', :contents => /in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
+        response.should have_selector('div', :content => /in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
       end
 
     end
@@ -186,7 +186,7 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("_rss20_feed")
-    response.should have_selector('link', :contents => 'http://myblog.net')
+    response.should have_selector('link', :content => 'http://myblog.net')
     assert_feedvalidator response.body
   end
 
