@@ -163,8 +163,8 @@ module ApplicationHelper
   <meta name="generator" content="Typo #{TYPO_VERSION}" />
   #{ meta_tag 'keywords', @keywords unless @keywords.blank? }
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ feed_atom }" />
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ feed_rss }" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ url_for :format => :atom, :only_path => false }" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ url_for :format => :rss, :only_path => false }" />
   #{ javascript_include_tag 'cookies', 'prototype', 'effects', 'builder', 'typo', :cache => true }
   #{ stylesheet_link_tag 'coderay', 'user-styles', :cache => true }
   #{ javascript_include_lang }
@@ -174,14 +174,6 @@ module ApplicationHelper
   #{ google_analytics }
     HTML
     ).chomp
-  end
-
-  def feed_atom
-    url_for(:format => :atom, :only_path => false)
-  end
-
-  def feed_rss
-    url_for(:format => :rss, :only_path => false)
   end
 
   def render_the_flash
