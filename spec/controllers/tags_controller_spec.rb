@@ -29,8 +29,7 @@ describe TagsController, "/index" do
   end
 
   it "should fall back to articles/groupings" do
-    controller.should_receive(:template_exists?) \
-      .with() \
+    controller.stub!(:template_exists?) \
       .and_return(false)
     do_get
     response.should render_template('articles/groupings')
@@ -79,8 +78,7 @@ describe TagsController, '/articles/tag/foo' do
   end
 
   it 'should fall back to rendering articles/index' do
-    controller.should_receive(:template_exists?) \
-      .with() \
+    controller.stub!(:template_exists?) \
       .and_return(false)
     do_get
     response.should render_template('articles/index')

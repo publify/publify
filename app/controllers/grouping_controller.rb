@@ -77,7 +77,7 @@ class GroupingController < ContentController
   def render_index(groupings)
     respond_to do |format|
       format.html do
-        unless template_exists?
+        unless template_exists? 'index'
           @grouping_class = self.class.grouping_class
           @groupings = groupings
           render :template => 'articles/groupings'
@@ -94,7 +94,7 @@ class GroupingController < ContentController
           return
         end
 
-        render :template => 'articles/index' unless template_exists?
+        render :template => 'articles/index' unless template_exists? 'show'
       end
 
       format.atom { render_feed 'atom_feed',  @articles }
@@ -113,11 +113,5 @@ class GroupingController < ContentController
     @noindex = 1 if (grouping_class.to_s.downcase == "tag" and this_blog.index_tags == false)
     @noindex = 1 if (grouping_class.to_s.downcase == "category" and this_blog.index_categories == false)
     @noindex = 1 unless params[:page].blank?
-  end
-
-  def template_exists?(path = default_template_name)
-    self.view_paths.find_template(path, response.template.template_format)
-  rescue ActionView::MissingTemplate
-    false
   end
 end

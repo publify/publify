@@ -19,8 +19,7 @@ describe CategoriesController, "/index" do
   end
 
   it "should fall back to articles/groupings" do
-    controller.should_receive(:template_exists?) \
-      .with() \
+    controller.stub!(:template_exists?) \
       .and_return(false)
     do_get
     response.should render_template('articles/groupings')
@@ -62,12 +61,10 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should fall back to rendering articles/index' do
-    controller.should_receive(:template_exists?) \
-      .with() \
-      .and_raise(ActiveRecord::RecordNotFound)
-    lambda do
-      do_get
-    end.should raise_error(ActiveRecord::RecordNotFound)
+    controller.stub!(:template_exists?) \
+      .and_return(false)
+    do_get
+    response.should render_template('articles/index')
   end
 
   it 'should show only published articles' do
