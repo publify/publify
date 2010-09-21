@@ -99,7 +99,7 @@ describe CategoriesController, 'empty category life-on-mars' do
   it 'should redirect to home when the category is empty' do
     Factory(:category, :permalink => 'life-on-mars')
     get 'show', :id => 'life-on-mars'
-    response.status.should == "301 Moved Permanently"
+    response.status.should == 301
     response.should redirect_to(Blog.default.base_url)
   end
 end

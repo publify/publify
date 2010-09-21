@@ -95,7 +95,7 @@ describe TagsController, '/articles/tag/foo' do
 
     do_get
 
-    response.status.should == "301 Moved Permanently"
+    response.status.should == 301
     response.should redirect_to(Blog.default.base_url)
   end
 
