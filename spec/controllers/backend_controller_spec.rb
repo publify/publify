@@ -169,7 +169,7 @@ describe BackendController do
       @article = Article.new(:title => 'test', :body => 'body', :extended => 'extended',
                              :text_filter => TextFilter.find_by_name('textile'),
                              :published_at => Time.now.utc.midnight)
-      @article.errors.add_to_base('test error')
+      @article.errors.add(:base, 'test error')
       @article.should_receive(:save).and_return(false)
       Article.stub!(:new).and_return(@article)
       args = [1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(@article), 1]

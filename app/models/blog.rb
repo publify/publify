@@ -12,7 +12,7 @@ class Blog < ActiveRecord::Base
 
   validate(:on => :create) { |blog|
     unless Blog.count.zero?
-      blog.errors.add_to_base("There can only be one...")
+      blog.errors.add(:base, "There can only be one...")
     end
   }
 
