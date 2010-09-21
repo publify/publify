@@ -51,18 +51,18 @@ module ActionWebService # :nodoc:
               end
               log_request(ws_request, request.raw_post)
               if exception
-                log_error(exception) unless logger.nil?
+                logger.error(exception) unless logger.nil?
                 send_web_service_error_response(ws_request, exception)
               else
                 send_web_service_response(ws_response, bm.real)
               end
             else
               exception ||= DispatcherError.new("Malformed XML-RPC protocol message")
-              log_error(exception) unless logger.nil?
+              logger.error(exception) unless logger.nil?
               send_web_service_error_response(ws_request, exception)
             end
           rescue Exception => e
-            log_error(e) unless logger.nil?
+            logger.error(e) unless logger.nil?
             send_web_service_error_response(ws_request, e)
           end
 
