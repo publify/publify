@@ -4,6 +4,8 @@ require 'action_web_service/test_invoke'
 User.salt = 'change-me'
 
 describe BackendController do
+  include ActionWebService::TestInvoke::InstanceMethods
+
   before do
     @protocol = :xmlrpc
   end

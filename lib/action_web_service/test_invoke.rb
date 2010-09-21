@@ -1,28 +1,28 @@
-require 'test/unit'
-
-module Test # :nodoc:
-  module Unit # :nodoc:
-    class TestCase # :nodoc:
+module ActionWebService # :nodoc:
+  module TestInvoke # :nodoc:
+    module InstanceMethods # :nodoc:
       private
         # invoke the specified API method
         def invoke_direct(method_name, *args)
-          prepare_request('api', 'api', method_name, *args)
-          @controller.process(@request, @response)
-          decode_rpc_response
+          invoke_detailed('api', 'api', method_name, *args)
         end
+
         alias_method :invoke, :invoke_direct
 
         # invoke the specified API method on the specified service
         def invoke_delegated(service_name, method_name, *args)
-          prepare_request(service_name.to_s, service_name, method_name, *args)
-          @controller.process(@request, @response)
-          decode_rpc_response
+          invoke_detailed(service_name.to_s, service_name, method_name, *args)
         end
 
         # invoke the specified layered API method on the correct service
         def invoke_layered(service_name, method_name, *args)
-          prepare_request('api', service_name, method_name, *args)
-          @controller.process(@request, @response)
+          invoke_detailed('api', service_name, method_name, *args)
+        end
+
+        def invoke_detailed(action, service_name, method_name, *args)
+          prepare_request(action, service_name, method_name, *args)
+          ActionController::Base.class_eval { include ActionController::Testing }
+          @controller.process_with_new_base_test(@request, @response)
           decode_rpc_response
         end
 
