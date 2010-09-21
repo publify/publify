@@ -22,7 +22,7 @@ shared_examples_for "General Comment Creation" do
 
   it "should assign the article to @article" do
     make_the_request
-    assigns[:article].should == @article
+    assigns[:article].should == contents(:article1)
   end
 
   it "should save the comment" do
@@ -90,7 +90,7 @@ describe CommentsController, 'scoped index' do
 
   it "GET 2007/10/11/slug/comments should redirect to /2007/10/11/slug#comments" do
     #content(:article1) => Time.now - 2 days
-    get 'index', :article_id => @article.id
+    get 'index', :article_id => contents(:article1).id
     response.should redirect_to("#{blogs(:default).base_url}/#{contents(:article1).created_at.year}/#{sprintf("%.2d", contents(:article1).created_at.month)}/#{sprintf("%.2d", contents(:article1).created_at.day)}/#{contents(:article1).permalink}#comments")
   end
 
