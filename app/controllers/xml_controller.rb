@@ -78,6 +78,7 @@ class XmlController < ApplicationController
     else
       params[:format] = 'rss'
     end
+    request.format = params[:format] if params[:format]
     return true
   end
 
