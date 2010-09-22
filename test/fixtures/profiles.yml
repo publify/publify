@@ -1,26 +1,26 @@
 admin:
   label: admin
   nicename: Typo administrator
-  modules:
-  - :dashboard
-  - :write
-  - :content
-  - :feedback
-  - :themes
-  - :sidebar
-  - :profile
-  - :users
-  - :settings
+  modules: <%= [
+    :dashboard,
+    :write,
+    :content,
+    :feedback,
+    :themes,
+    :sidebar,
+    :profile,
+    :users,
+    :settings].to_yaml.inspect %>
 
 publisher:
   label: publisher
   nicename: Blog publisher
-  modules:
-  - :users
-  - :dashboard
-  - :write
-  - :content
-  - :feedback
+  modules: <%= [
+    :users,
+    :dashboard,
+    :write,
+    :content,
+    :feedback].to_yaml.inspect %>
 
 contributor:
   label: contributor

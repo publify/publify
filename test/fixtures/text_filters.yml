@@ -10,16 +10,14 @@ smartypants_filter:
   name: "smartypants"
   description: "SmartyPants"
   markup: none
-  filters:
-    - :smartypants
+  filters: <%= [:smartypants].to_yaml.inspect %>
   params: --- {}
 
 markdownsmartypants_filter:
   name: "markdown smartypants"
   description: "Markdown with SmartyPants"
   markup: markdown
-  filters:
-    - :smartypants
+  filters: <%= [:smartypants].to_yaml.inspect %>
   params: --- {}
 
 textile_filter:
