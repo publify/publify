@@ -30,7 +30,8 @@ describe ThemeController do
     assert @response.body =~ /Static View Test from typographic/
   end
 
-  def disabled_test_javascript
+  it "disabled_test_javascript"
+  if false
     get :stylesheets, :filename => "typo.js"
     assert_response :success
     assert_equal "text/javascript", @response.content_type
