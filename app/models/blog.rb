@@ -50,7 +50,8 @@ class Blog < ActiveRecord::Base
   setting :email_from,                 :string, 'typo@example.com'
   setting :editor,                     :integer, 'visual'
   setting :allow_signup,               :integer, 0
-
+  setting :use_recaptcha,              :boolean, false
+  
   # SEO
   setting :meta_description,           :string, ''
   setting :meta_keywords,              :string, ''

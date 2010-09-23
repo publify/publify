@@ -44,6 +44,12 @@
         <%= check_box(:setting, :link_to_author)%>
       </div>
     </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_recaptcha"><%= _("Enable reCaptcha") %></label>
+      <div class='input_text'>
+        <%= check_box(:setting, :use_recaptcha)%>
+      </div>
+    </div>
   </div>
 </div>
 
