@@ -3,7 +3,7 @@ module Admin::FeedbackHelper
     (state.to_s.downcase =~ /spam/) ? 'unpublished' : 'published'
   end
 
-  def show_actions item
+  def show_feedback_actions item
     html = <<-HTML
       <div class='action'>
         #{published_or_not item} |
