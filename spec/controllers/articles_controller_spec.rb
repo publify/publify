@@ -115,7 +115,7 @@ describe ArticlesController do
       end
 
       it "should assign @search the search string" do
-        assigns[:search].should be_equal(params[:q])
+        assigns[:search].should be_equal(controller.params[:q])
       end
 
     end
