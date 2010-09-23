@@ -233,7 +233,7 @@ module Admin::BaseHelper
   end
 
   def display_pagination(collection, cols)
-    if WillPaginate::ViewHelpers.total_pages_for_collection(collection) > 1
+    if collection.total_pages > 1
       return "<tr><td colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
     end
   end
