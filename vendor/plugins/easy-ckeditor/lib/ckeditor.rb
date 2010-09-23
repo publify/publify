@@ -45,8 +45,6 @@ module Ckeditor
         inputs = "<textarea id='#{id}' style='width:#{width};height:#{height}' #{cols} #{rows} #{classy} name='#{object}[#{field}]'>#{h value}</textarea>\n"
       end
 
-      js_path = "#{controller.relative_url_root}/javascripts"
-      base_path = "#{js_path}/ckeditor/"
       return inputs <<
         javascript_tag("CKEDITOR.replace('#{object}[#{field}]', {
     filebrowserBrowseUrl : '#{PLUGIN_FILE_MANAGER_URI}',
