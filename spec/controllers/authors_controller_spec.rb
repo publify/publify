@@ -36,7 +36,7 @@ describe AuthorsController do
     get 'show', :id => 'tobi', :format => 'rss'
     response.should be_success
     response.should render_template("articles/_rss20_feed")
-    response.should have_selector('link', :contents => 'http://myblog.net')
+    response.should have_selector('link', :content => 'http://myblog.net')
     assert_feedvalidator @response.body
   end
 end
