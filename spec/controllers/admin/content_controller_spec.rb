@@ -257,8 +257,8 @@ describe Admin::ContentController do
         response.should render_template('new')
 	assigns(:article).should_not be_nil
         assigns(:article).should be_valid
-        response.should have_text(/body/)
-        response.should have_text(/extended content/)
+        response.should contain(/body/)
+        response.should contain(/extended content/)
       end
 
       it 'should update article by edit action' do
