@@ -40,12 +40,6 @@ def create_file_in_spec_public_cache_directory(file)
   file_path
 end
 
-# TODO: Rewrite to be more RSpec-like instead of Test::Unit-like.
-def assert_template_has(key=nil, message=nil)
-  msg = build_message(message, "<?> is not a template object", key)
-  assert_block(msg) { @response.has_template_object?(key) }
-end
-
 def assert_xml(xml)
   assert_nothing_raised do
     assert REXML::Document.new(xml)

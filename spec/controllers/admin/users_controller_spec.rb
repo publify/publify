@@ -12,7 +12,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
     it "test_index" do
       get :index
       assert_template 'index'
-      assert_template_has 'users'
+      assigns(:users).should_not be_nil
     end
 
     it "test_new" do

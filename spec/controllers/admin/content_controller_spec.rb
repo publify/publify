@@ -125,7 +125,7 @@ describe Admin::ContentController do
     it 'should render new with get' do
       get :new
       response.should render_template('new')
-      assert_template_has 'article'
+      assigns(:article).should_not be_nil
     end
 
     def base_article(options={})
@@ -255,7 +255,7 @@ describe Admin::ContentController do
       it 'should edit article' do
         get :edit, 'id' => contents(:article1).id
         response.should render_template('new')
-        assert_template_has 'article'
+	assigns(:article).should_not be_nil
         assigns(:article).should be_valid
         response.should have_text(/body/)
         response.should have_text(/extended content/)
@@ -400,7 +400,7 @@ describe Admin::ContentController do
       it 'should edit article' do
         get :edit, 'id' => contents(:publisher_article).id
         response.should render_template('new')
-        assert_template_has 'article'
+        assigns(:article).should_not be_nil
         assigns(:article).should be_valid
       end
 

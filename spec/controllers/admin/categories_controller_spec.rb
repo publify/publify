@@ -10,7 +10,7 @@ describe Admin::CategoriesController do
   it "test_index" do
     get :index
     assert_template 'index'
-    assert_template_has 'categories'
+    assigns(:categories).should_not be_nil
     assert_tag :tag => "div",
       :attributes => { :id => "category_container" }
   end
@@ -25,7 +25,7 @@ describe Admin::CategoriesController do
   it "test_edit" do
     get :edit, :id => Factory(:category).id
     assert_template 'new'
-    assert_template_has 'category'
+    assigns(:category).should_not be_nil
     assert assigns(:category).valid?
   end
 

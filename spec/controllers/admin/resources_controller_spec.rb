@@ -9,16 +9,14 @@ describe Admin::ResourcesController do
     get :index
     assert_response :success
     assert_template 'index'
-    assert_template_has 'resources'
-    assert_not_nil assigns(:resources)
+    assigns(:resources).should_not be_nil
   end
 
   it "test_images" do
     get :images
     assert_response :success
     assert_template 'images'
-    assert_template_has 'resources'
-    assert_not_nil assigns(:resources)
+    assigns(:resources).should_not be_nil
   end
 
   it "test_destroy_image" do
