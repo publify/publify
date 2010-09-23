@@ -16,10 +16,10 @@ describe Admin::CategoriesController do
   end
 
   it "test_create" do
-    assert_difference 'Category.count' do
+    lambda do
       post :edit, 'category' => { :name => "test category" }
       assert_response :redirect, :action => 'index'
-    end
+    end.should change(Category, :count)
   end
 
   it "test_edit" do

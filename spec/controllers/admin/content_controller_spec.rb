@@ -163,13 +163,13 @@ describe Admin::ContentController do
         category = Factory(:category)
         emails = ActionMailer::Base.deliveries
 
-        assert_difference 'Article.count_published_articles' do
+        lambda do
           tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
           post :new,
             'article' => base_article(:keywords => tags) ,
             'categories' => [category.id]
           assert_response :redirect, :action => 'show'
-        end
+        end.should change(Article, :count_published_articles)
 
         new_article = Article.last
         assert_equal @user, new_article.user
@@ -185,12 +185,12 @@ describe Admin::ContentController do
     end
 
     it 'should create article in future' do
-      assert_no_difference 'Article.count_published_articles' do
+      lambda do
         post(:new,
              :article =>  base_article(:published_at => Time.now + 1.hour) )
         assert_response :redirect, :action => 'show'
         assigns(:article).should_not be_published
-      end
+      end.should_not change(Article, :count_published_articles)
       assert_equal 1, Trigger.count
     end
 
@@ -213,17 +213,17 @@ describe Admin::ContentController do
   shared_examples_for 'destroy action' do
 
     it 'should_not destroy article by get' do
-      assert_no_difference 'Article.count' do
+      lambda do
         art_id = @article.id
         assert_not_nil Article.find(art_id)
 
         get :destroy, 'id' => art_id
         response.should be_success
-      end
+      end.should_not change(Article, :count)
     end
 
     it 'should destroy article by post' do
-      assert_difference 'Article.count', -1 do
+      lambda do
         art_id = @article.id
         post :destroy, 'id' => art_id
         response.should redirect_to(:action => 'index')
@@ -231,7 +231,7 @@ describe Admin::ContentController do
         lambda{
           article = Article.find(art_id)
         }.should raise_error(ActiveRecord::RecordNotFound)
-      end
+      end.should change(Article, :count).by(-1)
     end
 
   end
@@ -430,17 +430,17 @@ describe Admin::ContentController do
     describe 'destroy action can be access' do
 
       it 'should redirect when want destroy article' do
-        assert_no_difference 'Article.count' do
+        lambda do
           get :destroy, :id => contents(:article1)
           response.should redirect_to(:action => 'index')
-        end
+        end.should_not change(Article, :count)
       end
 
       it 'should redirect when want destroy article' do
-        assert_no_difference 'Article.count' do
+        lambda do
           post :destroy, :id => contents(:article1)
           response.should redirect_to(:action => 'index')
-        end
+        end.should_not change(Article, :count)
       end
     end
   end

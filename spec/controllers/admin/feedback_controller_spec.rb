@@ -150,10 +150,10 @@ describe Admin::FeedbackController do
         end
 
         it 'should not create comment' do
-          assert_no_difference 'Comment.count' do
+          lambda do
             get 'create', :article_id => contents(:article1).id, :comment => base_comment
             response.should redirect_to(:action => 'article', :id => contents(:article1).id)
-          end
+          end.should_not change(Comment, :count)
         end
 
       end
@@ -166,17 +166,17 @@ describe Admin::FeedbackController do
         end
 
         it 'should create comment' do
-          assert_difference 'Comment.count' do
+          lambda do
             post 'create', :article_id => contents(:article1).id, :comment => base_comment
             response.should redirect_to(:action => 'article', :id => contents(:article1).id)
-          end
+          end.should change(Comment, :count)
         end
 
         it 'should create comment mark as ham' do
-          assert_difference 'Comment.count(:conditions => {:state => "ham"})' do
+          lambda do
             post 'create', :article_id => contents(:article1).id, :comment => base_comment
             response.should redirect_to(:action => 'article', :id => contents(:article1).id)
-          end
+          end.should change { Comment.count(:conditions => {:state => "ham"}) }
         end
 
       end
