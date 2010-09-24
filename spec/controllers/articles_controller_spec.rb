@@ -223,6 +223,7 @@ end
 
 describe ArticlesController, "the index" do
   it "should ignore the HTTP Accept: header" do
+    pending "replacement needed for setting use_accept_header=false"
     request.env["HTTP_ACCEPT"] = "application/atom+xml"
     get "index"
     response.should_not render_template("_atom_feed")
