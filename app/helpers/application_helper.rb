@@ -163,8 +163,8 @@ module ApplicationHelper
   <meta name="generator" content="Typo #{TYPO_VERSION}" />
   #{ meta_tag 'keywords', @keywords unless @keywords.blank? }
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ url_for :format => 'atom', :only_path => false }" />
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ url_for :format => 'rss', :only_path => false }" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ feed_atom }" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ feed_rss }" />
   #{ javascript_include_tag 'cookies', 'prototype', 'effects', 'builder', 'typo', :cache => true }
   #{ stylesheet_link_tag 'coderay', 'user-styles', :cache => true }
   #{ javascript_include_lang }
@@ -174,6 +174,30 @@ module ApplicationHelper
   #{ google_analytics }
     HTML
     ).chomp
+  end
+
+  def feed_atom
+    if params[:action] == 'search'
+      url_for(:only_path => false, :format => 'atom', :q => params[:q])
+    elsif not @article.nil?
+      @article.feed_url(:atom)
+    elsif not @auto_discovery_url_atom.nil?
+      @auto_discovery_url_atom
+    else
+      url_for(:only_path => false, :format => 'atom')
+    end
+  end
+
+  def feed_rss
+    if params[:action] == 'search'
+      url_for(:only_path => false, :format => 'rss', :q => params[:q])
+    elsif not @article.nil?
+      @article.feed_url(:rss20)
+    elsif not @auto_discovery_url_rss.nil?
+      @auto_discovery_url_rss
+    else
+      url_for(:only_path => false, :format => 'rss')
+    end
   end
 
   def render_the_flash
