@@ -9,7 +9,6 @@ class Admin::SettingsController < Admin::BaseController
     load_settings
   end
 
-  def read; load_settings end
   def write; load_settings end
   def feedback; load_settings end
 

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Admin::SettingsController do
+  integrate_views
   before do
     request.session = { :user => users(:tobi).id }
   end
@@ -12,15 +13,7 @@ describe Admin::SettingsController do
     end
   end
 
-  describe 'read action' do
-    it 'should render read' do
-      get :read
-      assert_template 'read'
-    end
-  end
-
   describe 'write action' do
-
     it 'should be success' do
       get :write
       assert_template 'write'
