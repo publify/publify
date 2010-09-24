@@ -104,12 +104,12 @@ describe ArticlesController do
       end
 
       it 'should render without layout' do
-        controller.should_receive(:render).with(:layout =>false, :action => :live_search)
-        get :live_search, :q => 'hello world'
+        pending "Release of fix for Rails ticket #5247 (should be in Rails 3.0.1"
+        response.should render_template(:layout => nil)
       end
 
       it 'should render template live_search' do
-        response.should render_template(:live_search)
+        response.should render_template('live_search')
       end
 
       it 'should not have h3 tag' do
