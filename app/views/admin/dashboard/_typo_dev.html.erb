@@ -13,7 +13,7 @@
       <% else %>
         <% @typo_links.each do |link| -%>
           <li <%= alternate_class %>>
-            <h4><%= link_to("<strong>#{link.title}</strong><br />", link.link) %></h4>
+            <h4><%= link_to("<strong>#{link.title}</strong><br />".html_safe, link.link) %></h4>
             <small><%= "#{link.date}<br />" %></small>
             <%= link.description.strip_html.slice(0, 400) %>[...]
           </li>
