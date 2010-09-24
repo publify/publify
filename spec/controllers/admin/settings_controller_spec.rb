@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Admin::SettingsController do
-  integrate_views
+  render_views
+
   before do
     request.session = { :user => users(:tobi).id }
   end
