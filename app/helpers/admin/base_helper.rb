@@ -11,7 +11,7 @@ module Admin::BaseHelper
   end
 
   def subtab(label, options = {})
-    return content_tag :li, "<span class='subtabs'>#{label}</span>" if options.empty?
+    return content_tag :li, "<span class='subtabs'>#{label}</span>".html_safe if options.empty?
     content_tag :li, link_to(label, options)
   end
 
