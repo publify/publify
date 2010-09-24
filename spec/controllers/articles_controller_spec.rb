@@ -59,7 +59,9 @@ describe ArticlesController do
       end
 
       it 'should have content markdown interpret and without html tag' do
-        response.should have_selector('div', :content => /in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
+        response.should have_selector('div') do |div|
+          div.should contain(/in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
+        end
       end
 
     end
