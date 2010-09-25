@@ -2,7 +2,6 @@ source :gemcutter
 gem 'rails', '3.0.0'
 gem 'htmlentities'
 gem 'json'
-gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
 gem 'bluecloth', '~> 2.0.5'
 gem 'coderay', '~> 0.9'
 gem 'will_paginate', '~> 3.0.pre2'
