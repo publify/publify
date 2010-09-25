@@ -36,6 +36,7 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    acts_as_list (0.1.2)
     addressable (2.1.2)
     arel (1.0.1)
       activesupport (~> 3.0.0)
@@ -132,6 +133,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth (~> 4.2.2)
+  acts_as_list
   addressable (~> 2.1.0)
   bluecloth (~> 2.0.5)
   calendar_date_select!

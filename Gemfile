@@ -14,7 +14,7 @@ gem 'uuidtools', '~>2.1.1'
 gem 'flickr', '~> 1.0.2'
 gem 'rubypants', '~> 0.2.0'
 gem 'rails-app-installer', '~> 0.2.0'
-#gem 'mysql'
+gem 'acts_as_list'
 
 group :development, :test do
   gem 'ruby-debug'
