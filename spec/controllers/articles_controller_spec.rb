@@ -188,7 +188,7 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("_rss20_feed")
-    response.should have_selector('link', :content => 'http://myblog.net')
+    response.body.should have_selector('link', :content => 'http://myblog.net')
     assert_feedvalidator response.body
   end
 
