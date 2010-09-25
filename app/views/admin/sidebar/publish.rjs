@@ -1,4 +1,4 @@
-page.replace_html('available_box', :partial => 'availables',
+page.replace_html('available_box', :partial => 'available',
                   :object => @available)
-page.replace_html('active', :partial => 'actives', :object => @active)
+page.replace_html('active', :partial => 'active', :object => @active)
 page.hide('update_spinner')
