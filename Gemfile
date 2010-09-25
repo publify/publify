@@ -15,6 +15,7 @@ gem 'flickr', '~> 1.0.2'
 gem 'rubypants', '~> 0.2.0'
 gem 'rails-app-installer', '~> 0.2.0'
 gem 'acts_as_list'
+gem 'acts_as_tree_rails3'
 
 group :development, :test do
   gem 'ruby-debug'
