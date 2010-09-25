@@ -15,10 +15,8 @@
     typeof(CKEDITOR.instances.article__body_and_extended_editor) == 'object') {
       delete(CKEDITOR.instances.article__body_and_extended_editor);
     }
-    alert("test avant");
 </script>
 <%= ckeditor_textarea('article', 'body_and_extended', {:height => '300', :class => 'large'}) %>
 <script type="text/javascript">
-  alert("test après");
   content = CKEDITOR.instances.article__body_and_extended_editor.setData(html);
 </script>
