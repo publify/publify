@@ -133,3 +133,30 @@ end
 def flunk(*args, &block)
   assertion_delegate.flunk(*args, &block)
 end
+
+# Make webrat's matchers treat XML like XML.
+# See Webrat ticket #345.
+# Solution adapted from the following patch:
+# http://github.com/indirect/webrat/commit/46b8d91c962e802fbcb14ee0bcf03aab1afa180a
+module Webrat #:nodoc:
+  module XML #:nodoc:
+
+    def self.document(stringlike) #:nodoc:
+      return stringlike.dom if stringlike.respond_to?(:dom)
+
+      case stringlike
+      when Nokogiri::HTML::Document, Nokogiri::XML::NodeSet
+        stringlike
+      else
+        stringlike = stringlike.body if stringlike.respond_to?(:body)
+
+        if stringlike.to_s =~ /\<\?xml/
+          Nokogiri::XML(stringlike.to_s)
+        else
+          Nokogiri::HTML(stringlike.to_s)
+        end
+      end
+    end
+  end
+end
+
