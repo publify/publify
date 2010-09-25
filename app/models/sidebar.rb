@@ -183,7 +183,7 @@ class Sidebar < ActiveRecord::Base
     end
 
     def available_sidebars
-      Sidebar.subclasses.sort_by { |klass| klass.to_s }
+      Sidebar.descendants.sort_by { |klass| klass.to_s }
     end
   end
 
