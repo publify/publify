@@ -4,7 +4,7 @@
   <%= gravatar_tag(comment.email, {:size => 32}) unless comment.email.nil? %>
   <div class='comment_content'>
     <strong><%= mail_to h(comment.email), h(comment.author), {:class => 'noborder'} %></strong><br />
-    <%= link_to "#{h(comment.url)}<br />", comment.url, {:class => 'noborder'} unless comment.url.blank? %>
+    <%= link_to "#{h(comment.url)}<br />".html_safe, comment.url, {:class => 'noborder'} unless comment.url.blank? %>
     <%= format_date_time comment.created_at %>
   </div>
 </td>
