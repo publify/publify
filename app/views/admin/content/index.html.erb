@@ -41,7 +41,7 @@
     <td><input type="submit" value='<%= _("Filter") %>' class='ed_button' />
   </tr>
   <tbody id="articleList">
-    <%= render :partial => 'article_list', :object => @articles -%>
+    <%= render :partial => 'article_list', :locals => { :articles => @articles } -%>
   </tbody>
 </table>
 <%end%>

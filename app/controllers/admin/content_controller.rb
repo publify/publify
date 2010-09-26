@@ -16,7 +16,7 @@ class Admin::ContentController < Admin::BaseController
     @articles = Article.search_no_draft_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
 
     if request.xhr?
-      render :partial => 'article_list', :object => @articles
+      render :partial => 'article_list', :locals => { :articles => @articles }
     else
       @article = Article.new(params[:article])
     end
