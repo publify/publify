@@ -3,13 +3,12 @@
 
 <% subtabs_for(:content) %>
 
-<%= form_tag  :url      => {:action => 'index'},
+<%= form_remote_tag  :url      => {:action => 'index'},
   :method   => :get,
   :name     => 'article',
   :update   => {:success => 'articleList'},
   :before   => "Element.show('spinner')",
-  :complete => "Element.hide('spinner')",
-  :remote => true \
+  :complete => "Element.hide('spinner')" \
   do %>
 
 <%= render :partial => 'drafts' unless Article.drafts.empty? %>
