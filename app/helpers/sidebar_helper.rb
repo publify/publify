@@ -25,10 +25,12 @@ module SidebarHelper
         view_root = new_root if File.exists?(File.join(new_root, "content.rhtml"))
       end
       render_to_string(:file => "#{view_root}/content.rhtml",
-                       :locals => sidebar.to_locals_hash)
+                       :locals => sidebar.to_locals_hash,
+                       :layout => false)
     else
       render_to_string(:partial => sidebar.content_partial,
-                       :locals => sidebar.to_locals_hash)
+                       :locals => sidebar.to_locals_hash,
+                       :layout => false)
     end
   end
 
