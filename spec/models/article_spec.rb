@@ -42,12 +42,18 @@ describe Article do
     assert_equal [:body, :extended], a.content_fields
   end
 
-  it "test_permalink_url with hostname" do
-    assert_equal 'http://myblog.net/2004/06/01/article-3', contents(:article3).permalink_url(anchor=nil, only_path=false)
-  end
+  describe "#permalink_url" do
+    describe "with hostname" do
+      subject { contents(:article3).permalink_url(anchor=nil, only_path=false) }
+      it { should == 'http://myblog.net/2004/06/01/article-3' }
+      it { should be_html_safe }
+    end
 
-  it "test_permalink_url only path" do
-    assert_equal '/2004/06/01/article-3', contents(:article3).permalink_url(anchor=nil, only_path=true)
+    describe "without hostname" do
+      subject { contents(:article3).permalink_url(anchor=nil, only_path=true) }
+      it { should == '/2004/06/01/article-3' }
+      it { should be_html_safe }
+    end
   end
 
   it "test_edit_url" do

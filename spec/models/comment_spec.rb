@@ -12,10 +12,12 @@ describe Comment do
   end
 
   describe '#permalink_url' do
+    before { @c = feedback(:old_comment) }
+    subject { @c.permalink_url }
     it 'should render permalink to comment in public part' do
-      c = feedback(:old_comment)
-      assert_equal "http://myblog.net/2004/05/01/inactive-article#comment-#{c.id}", c.permalink_url
+      should == "http://myblog.net/2004/05/01/inactive-article#comment-#{@c.id}"
     end
+    it { should be_html_safe }
   end
 
   describe '#edit_url' do

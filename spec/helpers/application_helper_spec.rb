@@ -17,4 +17,9 @@ describe ApplicationHelper do
       render_flash.split("<br />\n").sort.should == ['<span class="error">it\'s not good</span>','<span class="notice">good update</span>']
     end
   end
+
+  describe "#link_to_permalink" do
+    subject { link_to_permalink(Factory(:article), "bla") }
+    it { should be_html_safe }
+  end
 end

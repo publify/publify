@@ -5,8 +5,10 @@ describe 'Given the fixture :first_page' do
     @page = contents(:first_page)
   end
 
-  it '#permalink_url should be: http://myblog.net/pages/page_one' do
-    @page.permalink_url.should == 'http://myblog.net/pages/page_one'
+  describe "#permalink_url" do
+    subject { @page.permalink_url }
+    it { should == 'http://myblog.net/pages/page_one' }
+    it { should be_html_safe }
   end
 
   it '#edit_url should be: http://myblog.net/admin/pages/edit/<page_id>' do

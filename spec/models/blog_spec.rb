@@ -21,22 +21,27 @@ describe "Given the first Blog fixture" do
   end
 
   describe "running in the host root" do
-    it ":base_url == 'http://myblog.net/'" do
-      @blog.base_url.should == 'http://myblog.net'
-    end
+    specify { @blog.base_url.should == 'http://myblog.net' }
 
     describe "blog.url_for" do
-      it "should return the correct URL for a hash argument" do
-        @blog.url_for(:controller => 'articles', :action => 'read', :id => 1).should == 'http://myblog.net/articles/read/1'
+      describe "with a hash argument" do
+        subject { @blog.url_for(:controller => 'articles', :action => 'read', :id => 1) }
+        it { should == 'http://myblog.net/articles/read/1' }
+        it { should be_html_safe }
       end
-      it "should return the correct URL for a hash argument with only_path" do
-        @blog.base_url.should == 'http://myblog.net'
-        @blog.url_for(:controller => 'articles', :action => 'read', :id => 1,
-                     :only_path => true).should == '/articles/read/1'
+
+      describe "with a hash argument with only_path" do
+        subject { @blog.url_for(:controller => 'articles', :action => 'read', :id => 1, :only_path => true) }
+        it { should == '/articles/read/1' }
+        it { should be_html_safe }
       end
-      it "should return the correct URL for a string argument" do
-        @blog.url_for('articles/read/1').should == 'http://myblog.net/articles/read/1'
+
+      describe "with a string argument" do
+        subject { @blog.url_for('articles/read/1') }
+        it { should == 'http://myblog.net/articles/read/1' }
+        it { should be_html_safe }
       end
+
       it "should return the correct URL for a hash argument with only_path" do
         @blog.url_for('articles/read/1', :only_path => true).should == '/articles/read/1'
       end
