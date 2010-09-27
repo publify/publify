@@ -1,11 +1,10 @@
-<%= form_tag :url => @article.comment_url,
+<%= form_remote_tag :url => @article.comment_url,
                     :position=> :bottom,
                     :update => {:success => 'commentList'},
                     :loading => "loading()",
                     :complete => "complete(request)",
                     :failure => "failure(request)",
-                    :html => {:id=>"commentform",:class=>"commentform"},
-                    :remote => true \
+                    :html => {:id=>"commentform",:class=>"commentform"} \
    do %>
 
 

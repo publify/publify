@@ -45,7 +45,7 @@
       <%= text_field 'article', 'title', :class => 'large' %>
     </p>
 
-    <%= render(:partial => 'images', :object => @images) unless @images.empty? %>
+    <%= render(:partial => 'images', :locals => { :images => @images}) unless @images.empty? %>
 
     <ul id='editor-menu'>
       <li id="f" class=" <%= 'active' if current_user.editor == 'visual' %>">
@@ -73,7 +73,7 @@
 
     <h3><label for="article_keywords"><%= _("Tags") %></label></h3>
     <p class='input_text'>
-      <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large small'} %>
+      <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large'} %>
     </p>
     <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
   </div>

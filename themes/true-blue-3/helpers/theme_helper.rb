@@ -79,7 +79,7 @@ def show_pages_links
   html = ''
   pages = Page.find(:all, :conditions => {:published => true})
   pages.each do |page|
-    html << content_tag(:li, link_to_permalink(page, page.title, nil, render_active_page(page.name)))
+    html << content_tag(:li, link_to_permalink(page, page.title, nil, render_active_page(page.name)).html_safe).html_safe
   end
-  html
+  html.html_safe
 end
