@@ -37,18 +37,9 @@ describe TagsController, "/index" do
 end
 
 describe TagsController, '/articles/tag/foo' do
-  before(:each) do
-    @tag = mock('tag').as_null_object
-    @tag.stub!(:empty?) \
-      .and_return(false)
-    @tag.stub!(:name).and_return('foo')
-
-    Tag.stub!(:find_by_permalink) \
-      .and_return(@tag)
-
-    this_blog = Blog.default
-    controller.stub!(:this_blog) \
-      .and_return(this_blog)
+  before do
+    @tag = Factory(:tag, :name => 'foo', :display_name => 'foo')
+    @tag.articles << Factory(:article)
   end
 
   def do_get
@@ -90,8 +81,7 @@ describe TagsController, '/articles/tag/foo' do
   end
 
   it 'should render an error when the tag is empty' do
-    @tag.should_receive(:articles) \
-      .and_return([])
+    @tag.articles = []
 
     do_get
 
