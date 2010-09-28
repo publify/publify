@@ -36,67 +36,69 @@ describe TagsController, "/index" do
   end
 end
 
-describe TagsController, '/articles/tag/foo' do
+describe TagsController, 'showing a single tag' do
   before do
-    @tag = Factory(:tag, :name => 'foo', :display_name => 'foo')
-    @tag.articles << Factory(:article)
+    @tag = Factory(:tag, :name => 'foo', :display_name => 'foo_display')
   end
 
   def do_get
     get 'show', :id => 'foo'
   end
 
-  it 'should be successful' do
-    do_get()
-    response.should be_success
-  end
+  describe "with some articles" do
+    before do
+      @tag.articles << Factory(:article)
+      @tag.articles << Factory(:article)
+    end
 
-  it 'should call Tag.find_by_permalink' do
-    Tag.should_receive(:find_by_permalink) \
-      .with('foo') \
-      .and_raise(ActiveRecord::RecordNotFound)
-    lambda do
+    it 'should be successful' do
+      do_get()
+      response.should be_success
+    end
+
+    it 'should retrieve the correct set of articles' do
       do_get
-    end.should raise_error(ActiveRecord::RecordNotFound)
+      assigns[:articles].should == @tag.articles
+    end
+
+    it 'should render :show by default' do
+      pending "Stubbing #template_exists is not enough to fool Rails"
+      controller.stub!(:template_exists?) \
+        .and_return(true)
+      do_get
+      response.should render_template(:show)
+    end
+
+    it 'should fall back to rendering articles/index' do
+      controller.stub!(:template_exists?) \
+        .and_return(false)
+      do_get
+      response.should render_template('articles/index')
+    end
+
+    it 'should set the page title to "Tag foo"' do
+      do_get
+      assigns[:page_title].should == 'Tag foo, everything about foo_display'
+    end
+
+    it 'should render the atom feed for /articles/tag/foo.atom' do
+      get 'show', :id => 'foo', :format => 'atom'
+      response.should render_template('articles/_atom_feed')
+    end
+
+    it 'should render the rss feed for /articles/tag/foo.rss' do
+      get 'show', :id => 'foo', :format => 'rss'
+      response.should render_template('articles/_rss20_feed')
+    end
   end
 
-  it 'should render :show by default'
-  if false
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-    do_get
-    response.should render_template(:show)
-  end
+  describe "without articles" do
+    it 'should render an error' do
+      do_get
 
-  it 'should fall back to rendering articles/index' do
-    controller.stub!(:template_exists?) \
-      .and_return(false)
-    do_get
-    response.should render_template('articles/index')
-  end
-
-  it 'should set the page title to "Tag foo"' do
-    do_get
-    assigns[:page_title].should == 'Tag foo, everything about foo'
-  end
-
-  it 'should render an error when the tag is empty' do
-    @tag.articles = []
-
-    do_get
-
-    response.status.should == 301
-    response.should redirect_to(Blog.default.base_url)
-  end
-
-  it 'should render the atom feed for /articles/tag/foo.atom' do
-    get 'show', :id => 'foo', :format => 'atom'
-    response.should render_template('articles/_atom_feed')
-  end
-
-  it 'should render the rss feed for /articles/tag/foo.rss' do
-    get 'show', :id => 'foo', :format => 'rss'
-    response.should render_template('articles/_rss20_feed')
+      response.status.should == 301
+      response.should redirect_to(Blog.default.base_url)
+    end
   end
 end
 
