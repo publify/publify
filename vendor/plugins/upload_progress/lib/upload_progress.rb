@@ -251,13 +251,13 @@ module UploadProgress
   #   redirect_to :action => 'show', :id => @document.id
   #   finish_upload_status("'Redirecting you to your new file'")
   #
-  #
+  #       
   def finish_upload_status(client_js_argument='')
     if not @rendered_finish_upload_status and params[:upload_id]
       @rendered_finish_upload_status = true
 
-      erase_render_results
-      location = erase_redirect_results || ''
+      #erase_render_results
+      #location = erase_redirect_results || ''
 
       ## TODO determine if #inspect is the appropriate way to marshall values
       ## in inline templates
