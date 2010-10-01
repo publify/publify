@@ -40,7 +40,6 @@ with_each_theme do |theme, view_path|
       end
     end
 
-    if false
     context "when on page 2 of search" do
       before(:each) do
         @controller.action_name = "search"
@@ -59,7 +58,6 @@ with_each_theme do |theme, view_path|
       it "should have pagination link to search page 1" do
         rendered.should have_selector("a", :href => "/search/body/page/1")
       end
-    end
     end
   end
 end
