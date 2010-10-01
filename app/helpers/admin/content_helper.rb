@@ -1,8 +1,4 @@
 module Admin::ContentHelper
-  def contents
-    [@article]
-  end
-
   def params_qsa
     { 'search[category]' => @search[:category],
       'search[user_id]' => @search[:user_id],

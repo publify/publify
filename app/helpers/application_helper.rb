@@ -212,4 +212,15 @@ module ApplicationHelper
     html << "</div>"
   end
 
+  def contents
+    if @articles
+      @articles
+    elsif @article
+      [@article]
+    elsif @page
+      [@page]
+    else
+      []
+    end
+  end
 end
