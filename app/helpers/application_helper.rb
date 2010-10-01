@@ -143,7 +143,7 @@ module ApplicationHelper
   end
 
   def page_header
-    page_header_includes = contents.collect { |c| c.whiteboard }.collect do |w|
+    page_header_includes = content_array.collect { |c| c.whiteboard }.collect do |w|
       w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
@@ -212,7 +212,7 @@ module ApplicationHelper
     html << "</div>"
   end
 
-  def contents
+  def content_array
     if @articles
       @articles
     elsif @article
