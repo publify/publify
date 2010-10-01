@@ -53,7 +53,6 @@ describe Tag do
     it 'should be of form /tag/<name>' do
       should == 'http://myblog.net/tag/foo'
     end
-    it { should be_html_safe }
   end
 end
 

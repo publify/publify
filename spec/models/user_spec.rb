@@ -199,6 +199,5 @@ describe User do
   describe '#permalink_url' do
     subject { users(:tobi).permalink_url }
     it { should == 'http://myblog.net/users/show/tobi' }
-    it { should be_html_safe }
   end
 end

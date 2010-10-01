@@ -27,19 +27,16 @@ describe "Given the first Blog fixture" do
       describe "with a hash argument" do
         subject { @blog.url_for(:controller => 'articles', :action => 'read', :id => 1) }
         it { should == 'http://myblog.net/articles/read/1' }
-        it { should be_html_safe }
       end
 
       describe "with a hash argument with only_path" do
         subject { @blog.url_for(:controller => 'articles', :action => 'read', :id => 1, :only_path => true) }
         it { should == '/articles/read/1' }
-        it { should be_html_safe }
       end
 
       describe "with a string argument" do
         subject { @blog.url_for('articles/read/1') }
         it { should == 'http://myblog.net/articles/read/1' }
-        it { should be_html_safe }
       end
 
       it "should return the correct URL for a hash argument with only_path" do

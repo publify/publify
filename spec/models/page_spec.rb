@@ -8,7 +8,6 @@ describe 'Given the fixture :first_page' do
   describe "#permalink_url" do
     subject { @page.permalink_url }
     it { should == 'http://myblog.net/pages/page_one' }
-    it { should be_html_safe }
   end
 
   it '#edit_url should be: http://myblog.net/admin/pages/edit/<page_id>' do

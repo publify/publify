@@ -17,7 +17,6 @@ describe Comment do
     it 'should render permalink to comment in public part' do
       should == "http://myblog.net/2004/05/01/inactive-article#comment-#{@c.id}"
     end
-    it { should be_html_safe }
   end
 
   describe '#edit_url' do

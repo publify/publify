@@ -46,13 +46,11 @@ describe Article do
     describe "with hostname" do
       subject { contents(:article3).permalink_url(anchor=nil, only_path=false) }
       it { should == 'http://myblog.net/2004/06/01/article-3' }
-      it { should be_html_safe }
     end
 
     describe "without hostname" do
       subject { contents(:article3).permalink_url(anchor=nil, only_path=true) }
       it { should == '/2004/06/01/article-3' }
-      it { should be_html_safe }
     end
   end
 

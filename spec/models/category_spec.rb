@@ -43,7 +43,6 @@ describe Category do
   describe "permalink" do
     subject { Factory(:category, :permalink => 'software').permalink_url }
     it { should == 'http://myblog.net/category/software' }
-    it { should be_html_safe }
   end
 end
 
