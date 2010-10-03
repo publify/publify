@@ -15,7 +15,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
                        :excerpt => 'Excerpt',
                        :article_id => contents(:article1).id)
     tb.should_not be_valid
-    tb.errors.should be_invalid('url')
+    tb.errors['url'].should be_any
 
     tb.url = 'http://foo.com'
     tb.should be_valid
