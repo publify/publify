@@ -16,7 +16,7 @@
   </div>
   <div id='logout'>
     <%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %> |
-    <%= link_to _("%s &raquo;", "Log out"), {:controller => "/accounts", :action=>"logout"} %>
+    <%= link_to _("%s &raquo;", "Log out").html_safe, {:controller => "/accounts", :action=>"logout"} %>
   </div>
 
 
