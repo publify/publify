@@ -21,14 +21,14 @@
 
 
   <div id='container' class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
-    <div id='menu' class='ui-widget-header ui-corner-all'>
-      <ul id='tabs' class='ui-tabs-nav ui-helper-reset ui-helper-clearfix '>
+    <div id='menu' class='ui-widget-header-nobg ui-corner-all'>
+      <ul id='tabs' class='ui-tabs-nav ui-helper-reset ui-helper-clearfix'>
         <%= content_tag :li, (link_to _('Dashboard'), :controller => '/admin'), :class => class_dashboard  %>
         <% for pm in current_user.project_modules %>
           <%= content_tag :li, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
         <% end %>
       </ul>
-      <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix submenu'>
+      <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-corner-all submenu'>
         <%= yield :tasks %>
       </ul>
     </div>
