@@ -10,7 +10,7 @@ describe Tag do
     lambda {Tag.create!(:name => 'test')}.should_not raise_error
     test_tag = Tag.new(:name => 'test')
     test_tag.should_not be_valid
-    test_tag.errors.on(:name).should == 'has already been taken'
+    test_tag.errors[:name].should == ['has already been taken']
   end
 
   it 'display names with spaces can be found by joinedupname' do

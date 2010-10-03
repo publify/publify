@@ -9,7 +9,7 @@
                       :success => "var g = new k.Growler({location : 'br'});
                 			g.info('Sidebar was successfully saved', {life: 3});",
                 			:failure => "var g = new k.Growler({location : 'br'});
-                			g.error('Oops, something wrong happened', {life: 3});,")  %>
+                			g.error('Oops, something wrong happened', {life: 3});,") do %>
   <div>
     <%= save(_('Publish changes'))%>
   </div>
@@ -52,6 +52,7 @@
 	  </div>
 
   </div>
+  <% end %>
 
 <h2><%= _("Get more plugins") %></h2>
   <p>You can download and install sidebar plugins from our official <a href="http://wiki.github.com/fdv/typo/typo-plugins-list">plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory. You can aso run</p>

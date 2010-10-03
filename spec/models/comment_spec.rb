@@ -51,7 +51,7 @@ describe Comment do
                         :article => contents(:inactive_article))
 
       assert ! c.save
-      assert c.errors.invalid?('article_id')
+      assert c.errors['article_id'].any?
 
       c.article = contents(:article1)
 

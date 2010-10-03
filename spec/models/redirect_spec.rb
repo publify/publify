@@ -11,7 +11,7 @@ describe 'Given an empty redirects table' do
     redirect = Redirect.new(:from_path => 'foo/bar', :to_path => '/')
 
     redirect.should_not be_valid
-    redirect.errors.on(:from_path).should == 'has already been taken'
+    redirect.errors[:from_path].should == ['has already been taken']
   end
 end
 

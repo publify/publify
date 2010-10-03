@@ -56,7 +56,7 @@ describe 'Given no pages' do
   it 'A page is invalid without a name' do
     @page.attributes = valid_attributes.except(:name)
     @page.should_not be_valid
-    @page.errors.on(:name).should == "can't be blank"
+    @page.errors[:name].should == ["can't be blank"]
     @page.name = 'somename'
     @page.should be_valid
   end
@@ -64,7 +64,7 @@ describe 'Given no pages' do
   it 'A page is invalid without a title' do
     @page.attributes = valid_attributes.except(:title)
     @page.should_not be_valid
-    @page.errors.on(:title).should == "can't be blank"
+    @page.errors[:title].should == ["can't be blank"]
     @page.title = 'sometitle'
     @page.should be_valid
   end
@@ -72,7 +72,7 @@ describe 'Given no pages' do
   it 'A page is invalid without a body' do
     @page.attributes = valid_attributes.except(:body)
     @page.should_not be_valid
-    @page.errors.on(:body).should == "can't be blank"
+    @page.errors[:body].should == ["can't be blank"]
     @page.body = 'somebody'
     @page.should be_valid
   end
