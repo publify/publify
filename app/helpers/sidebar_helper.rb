@@ -3,7 +3,7 @@ module SidebarHelper
     begin
       (sidebars.blank? ? Sidebar.find(:all, :order => 'active_position ASC') : sidebars).inject('') do |acc, sb|
         @sidebar = sb
-        sb.parse_request(contents, params)
+        sb.parse_request(content_array, params)
         acc + render_sidebar(sb)
       end
     rescue
