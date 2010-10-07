@@ -1,43 +1,43 @@
 Localization.define("nl_NL") do |l|
 
   # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "An email has been successfully sent to your address with your new password", ""
+  l.store "Login successful", "Login geslaagd"
+  l.store "Login unsuccessful", "Login mislukt"
+  l.store "An email has been successfully sent to your address with your new password", "Er is u met succes een e-mail gestuurd met uw nieuwe wachtwoord"
   l.store "Oops, something wrong just happened", "Oeps, er is net iets misgegaan"
   l.store "Successfully logged out", "Succesvol uitgelogd"
   l.store "login", "inloggen"
-  l.store "signup", ""
+  l.store "signup", "aanmelden"
   l.store "Recover your password", ""
 
   # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
+  l.store "Category was successfully saved.", "Categorie succesvol opgeslagen."
+  l.store "Category could not be saved.", "Categorie kon niet opgeslagen worden."
 
   # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
+  l.store "Error, you are not allowed to perform this action", "Fout, u mag dit niet doen"
   l.store "Preview", "Bekijk"
-  l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
+  l.store "Article was successfully created", "Artikel is succesvol gemaakt"
+  l.store "Article was successfully updated.", "Artikel is succesvol bijgewerkt."
 
   # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Verwijderd"
   l.store "Not found", "Niet gevonden"
   l.store "Deleted %d item(s)", "%d items verwijderd"
-  l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
+  l.store "Marked %d item(s) as Ham", "%d Item(s) gemarkeerd als Ham"
+  l.store "Marked %d item(s) as Spam", "%d Item(s) gemarkeerd als Spam"
   l.store "Confirmed classification of %s item(s)", "Classificatie van %s item(s) bevestigd"
-  l.store "Not implemented", ""
-  l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
+  l.store "Not implemented", "Niet geimplementeerd"
+  l.store "All spam have been deleted", "Alle spam is verwijderd"
+  l.store "Comment was successfully created.", "Commentaar is succesvol aangemaakt."
+  l.store "Comment was successfully updated.", "Commentaar is succesvol bijgewerkt."
 
   # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
+  l.store "Page was successfully created.", "Pagina is succesvol aangemaakt."
+  l.store "Page was successfully updated.", "Pagina is succesvol bijgewerkt."
 
   # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
+  l.store "User was successfully updated.", "Gebruiker is succesvol bijgewerkt."
 
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", ""
@@ -436,9 +436,6 @@ Localization.define("nl_NL") do |l|
   l.store "exemple", ""
   l.store "Write", "Schrijf"
 
-  # app/views/admin/sidebar/_availables.html.erb
-  l.store "You have no plugins installed", ""
-
   # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", ""
 
@@ -448,6 +445,7 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/sidebar/index.html.erb
   l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", ""
   l.store "Available Items", ""
+  l.store "You have no plugins installed", ""
   l.store "Active Sidebar items", ""
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
@@ -605,6 +603,12 @@ Localization.define("nl_NL") do |l|
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""
+
+  # lib/action_web_service/casting.rb
+  l.store "#{name}=", ""
+
+  # lib/action_web_service/struct.rb
+  l.store "%s=", ""
 
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Powered by %s"
