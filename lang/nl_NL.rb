@@ -3,19 +3,19 @@ Localization.define("nl_NL") do |l|
   # app/controllers/accounts_controller.rb
   l.store "Login successful", "Login geslaagd"
   l.store "Login unsuccessful", "Login mislukt"
-  l.store "An email has been successfully sent to your address with your new password", "Er is u met succes een e-mail gestuurd met uw nieuwe wachtwoord"
+  l.store "An email has been successfully sent to your address with your new password", "Er is je met succes een e-mail gestuurd met uw nieuwe wachtwoord"
   l.store "Oops, something wrong just happened", "Oeps, er is net iets misgegaan"
   l.store "Successfully logged out", "Succesvol uitgelogd"
   l.store "login", "inloggen"
   l.store "signup", "aanmelden"
-  l.store "Recover your password", ""
+  l.store "Recover your password", "Herstel uw wachtwoord"
 
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "Categorie succesvol opgeslagen."
   l.store "Category could not be saved.", "Categorie kon niet opgeslagen worden."
 
   # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", "Fout, u mag dit niet doen"
+  l.store "Error, you are not allowed to perform this action", "Fout, je mag dit niet doen"
   l.store "Preview", "Bekijk"
   l.store "Article was successfully created", "Artikel is succesvol gemaakt"
   l.store "Article was successfully updated.", "Artikel is succesvol bijgewerkt."
@@ -40,32 +40,32 @@ Localization.define("nl_NL") do |l|
   l.store "User was successfully updated.", "Gebruiker is succesvol bijgewerkt."
 
   # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-  l.store "Metadata was successfully updated.", ""
-  l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
+  l.store "Error occurred while updating Content Type.", "Er trad een fout op bij het bijwerken van het Content Type"
+  l.store "complete", "compleet"
+  l.store "File uploaded: ", "Bestand geupload"
+  l.store "Unable to upload", "Kon niet uploaden"
+  l.store "Metadata was successfully updated.", "Metadata werden succesvol bijgewerkt"
+  l.store "Not all metadata was defined correctly.", "Niet alle metadata waren correct gedefinieerd"
+  l.store "Content Type was successfully updated.", "Content Type was succesvol bijgewerkt"
 
   # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
+  l.store "Please review and save the settings before continuing", "Controleer de instellingen en sla ze op voor je verder gaat"
+  l.store "config updated.", "configuratie bijgewerkt"
 
   # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
+  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Het lijkt er op dat er iets fout ging. Misschien ontbreken sommige zijbalken en moet je ze opnieuw installeren of handmatig verwijderen"
 
   # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
+  l.store "Tag was successfully updated.", "Tag was succesvol bijgewerkt."
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
+  l.store "Theme changed successfully", "Thema succesvol aangepast"
+  l.store "You are not authorized to open this file", "U bent niet geautoriseerd om dit bestand te openen"
+  l.store "File saved successfully", "Bestand succesvol opgeslagen"
+  l.store "Unable to write file", "Kon het bestand niet schrijven"
 
   # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
+  l.store "User was successfully created.", "Gebruiker succesvol aangemaakt."
 
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
@@ -82,24 +82,24 @@ Localization.define("nl_NL") do |l|
 
   # app/helpers/admin/base_helper.rb
   l.store "Cancel", "Terug"
-  l.store "Store", ""
-  l.store "Delete", ""
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
+  l.store "Store", "Opslaan"
+  l.store "Delete", "Verwijderen"
+  l.store "delete", "verwijderen"
+  l.store "Delete content", "Verwijder inhoud"
+  l.store "Are you sure?", "Weet je het zeker?"
+  l.store "Please select", "Selecteren alstublieft"
   l.store "There are no %s yet. Why don't you start and create one?", "Er zijn nog geen %s. Waarom begin je er niet een te maken?"
   l.store "or", "of"
   l.store "Save", "Bewaar"
-  l.store "Edit", ""
-  l.store "Show", ""
+  l.store "Edit", "Bewerken"
+  l.store "Show", "Tonen"
   l.store "Published", "Gepubliceerd"
-  l.store "Unpublished", ""
-  l.store "Show help on Typo macros", ""
-  l.store "Back to overview", ""
+  l.store "Unpublished", "Niet gepubliceerd"
+  l.store "Show help on Typo macros", "Toon help voor Typo macro's"
+  l.store "Back to overview", "Terug naar overzicht"
   l.store "Name", "Naam"
   l.store "Description", "Omschrijving"
-  l.store "Tag", ""
+  l.store "Tag", "Tag"
 
   # app/helpers/admin/categories_helper.rb
   l.store "no articles", "geen artikelen"
@@ -107,11 +107,11 @@ Localization.define("nl_NL") do |l|
   l.store "%d articles", "%d artikelen"
 
   # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
+  l.store "Destroy this draft", "Verwijder dit concept"
 
   # app/helpers/admin/feedback_helper.rb
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
+  l.store "Show conversation", "Toon conversatie"
+  l.store "Flag as %s", "Markeer als %s"
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
@@ -131,41 +131,41 @@ Localization.define("nl_NL") do |l|
   l.store "%d posts", "%d berichten"
 
   # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "and published on", ""
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
+  l.store "Original article writen by", "Origineel artikel geschreven door"
+  l.store "and published on", "en gepubliceerd op"
+  l.store "direct link to this article", "directe link naar dit arikel"
+  l.store "If you are reading this article elsewhere than", "Als je dit artikel ergens anders leest dan"
+  l.store "it has been illegally reproduced and without proper authorization", "is het illegaal en zonder de juiste toestemming gekopieerd"
 
   # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
+  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Je hebt een permalink formaat nodig met een identifier: %%month%%, %%year%%, %%day%%, %%title%%"
+  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Mag niet eindigen met .rss of .atom. Die zijn gereserveerd voor feed URLs"
 
   # app/models/feedback/states.rb
   l.store "Unclassified", "Niet geclassificeerd"
   l.store "Just Presumed Ham", ""
   l.store "Ham?", "Ham?"
-  l.store "Just Marked As Ham", ""
+  l.store "Just Marked As Ham", "Zojuist gemarkeerd als Ham"
   l.store "Ham", "Ham"
   l.store "Spam?", "Spam?"
-  l.store "Just Marked As Spam", ""
+  l.store "Just Marked As Spam", "Zojuist gemarkeerd als Spam"
   l.store "Spam", "Spam"
 
   # app/views/accounts/login.html.erb
-  l.store "I've lost my password", ""
-  l.store "Login", ""
-  l.store "Password", ""
-  l.store "Remember me", "Onthou me"
+  l.store "I've lost my password", "Ik ben mijn wachtwoord kwijt"
+  l.store "Login", "Log in"
+  l.store "Password", "Wachtwoord"
+  l.store "Remember me", "Onthoud me"
   l.store "Submit", "Verstuur"
   l.store "Back to ", "Terug naar"
 
   # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
+  l.store "Username or email", "Gebruikersnaam of e-mail"
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", ""
-  l.store "Username", ""
-  l.store "Email", "Email"
+  l.store "Create an account", "Maak een account aan"
+  l.store "Username", "Gebruikersnaam"
+  l.store "Email", "E-mail"
   l.store "Signup", "Meld aan"
 
   # app/views/admin/categories/_categories.html.erb
@@ -182,7 +182,7 @@ Localization.define("nl_NL") do |l|
   l.store "Categories", "Categoriën"
 
   # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
+  l.store "New Category", "Nieuwe categorie"
 
   # app/views/admin/categories/new.html.erb
   l.store "%s Category", "%s Categorie"
@@ -191,29 +191,29 @@ Localization.define("nl_NL") do |l|
   l.store "(Done)", "(Gedaan)"
 
   # app/views/admin/content/_attachment.html.erb
-  l.store "Remove", ""
+  l.store "Remove", "Verwijder"
   l.store "Currently this article has the following resources", ""
   l.store "You can associate the following resources", ""
-  l.store "Really delete attachment", ""
-  l.store "Add Another Attachment", ""
+  l.store "Really delete attachment", "Bijlage echt verwijderen"
+  l.store "Add Another Attachment", "Voeg een andere bijlage toe"
 
   # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
+  l.store "Drafts", "Concepten"
 
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
+  l.store "Publish settings", "Publicatie instellingen"
   l.store "Allow comments", "Sta reacties toe"
-  l.store "Allow trackbacks", ""
-  l.store "Password:", ""
+  l.store "Allow trackbacks", "Sta trackbacks toe"
+  l.store "Password:", "Wachtwoord:"
   l.store "Publish", "Publiceer"
-  l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
-  l.store "Uploads", ""
-  l.store "Post settings", ""
-  l.store "Publish at", ""
-  l.store "Permalink", ""
-  l.store "Article filter", ""
-  l.store "Save as draft", ""
+  l.store "Excerpt", "Uittreksel"
+  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
+  l.store "Uploads", "Uploads"
+  l.store "Post settings", "Post instellingen"
+  l.store "Publish at", "Publiceren op"
+  l.store "Permalink", "Permalink"
+  l.store "Article filter", "Artikel filter"
+  l.store "Save as draft", "Opslaan als concept"
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Weet je zeker dat je dit artikel wilt verwijderen?"
@@ -221,7 +221,7 @@ Localization.define("nl_NL") do |l|
   l.store "Articles", "Artikelen"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
+  l.store "New Article", "Nieuw artikel"
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
   l.store "Search", "Zoek"
   l.store "Author", "Auteur"
@@ -242,13 +242,13 @@ Localization.define("nl_NL") do |l|
   l.store "You have no internet connection", "Je hebt geen internetverbinding"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "update your profile or change your password", ""
-  l.store "You can also do a bit of design, %s or %s.", ""
-  l.store "change your blog presentation", ""
-  l.store "enable plugins", ""
-  l.store "write a post", ""
-  l.store "write a page", ""
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Deze pagina geeft je een snel overzicht van wat er gebeurt op je Type blog en wat je doen kunt. Misschien wil je %s, %s of %s"
+  l.store "update your profile or change your password", "je profiel bijwerken of je wachtwoord wijzigen"
+  l.store "You can also do a bit of design, %s or %s.", "Je kunt ook wat design doen, %s of %s"
+  l.store "change your blog presentation", "je blog presentatie aanpassen"
+  l.store "enable plugins", "plugins instellen"
+  l.store "write a post", "een post schrijven"
+  l.store "write a page", "een pagina schrijven"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Meest populair"
@@ -259,12 +259,12 @@ Localization.define("nl_NL") do |l|
   l.store "No posts yet, why don't you start and write one", "Nog geen berichten, waarom begin je er niet een te schrijven"
 
   # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Latest news from the Typo development blog", ""
-  l.store "Oh no, nothing new", ""
+  l.store "Latest news from the Typo development blog", "Laatste neiuws van het Typo ontwikkel blog"
+  l.store "Oh no, nothing new", "Oh nee, geen nieuws"
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Welkom terug, %s!"
-  l.store "%d articles and %d comments were posted since your last connexion", ""
+  l.store "%d articles and %d comments were posted since your last connexion", "%d artikels en %d commentaren zijn geplaatst sinds je laatste bezoek"
   l.store "You're running Typo %s", "Je gebruikt Typo %s"
   l.store "Total posts : %d", "Aantal berichten : %d"
   l.store "Your posts : %d", "Jouw berichten : %d"
@@ -272,40 +272,40 @@ Localization.define("nl_NL") do |l|
   l.store "Spam comments : %d", "Spam reacties : %d"
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
+  l.store "Select action", "Kies actie"
   l.store "Delete Checked Items", "Verwijder aangevinkte reacties"
   l.store "Delete all spam", "Verwijder alle spam"
   l.store "Mark Checked Items as Spam", "Markeer aangevinkte reacties als Spam"
   l.store "Mark Checked Items as Ham", "Markeer aangevinkte reacties als Ham"
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
-  l.store "Limit to spam", ""
+  l.store "All comments", "Alle commentaren"
+  l.store "Limit to ham", "Alleen ham"
+  l.store "Unapproved comments", "Niet goedgekeurde"
+  l.store "Limit to spam", "Alleen spam"
 
   # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
-  l.store "Url", ""
+  l.store "Add a comment", "Voeg een commentaar toe"
+  l.store "Url", "Url"
 
   # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
+  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Dit commentaar van <strong>%s</strong> was gemarkeerd als spam, %s?"
 
   # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", ""
+  l.store "Comments for %s", "Commentaren voor %s"
   l.store "Status", "Status"
   l.store "Comment Author", ""
   l.store "Comment", "Reactie"
 
   # app/views/admin/feedback/edit.html.erb
-  l.store "Comments for", ""
+  l.store "Comments for", "Commentaren voor"
 
   # app/views/admin/feedback/index.html.erb
-  l.store "Search Comments and Trackbacks that contain", ""
-  l.store "Article", ""
+  l.store "Search Comments and Trackbacks that contain", "Zoek commentaren en trackbacks die bevatten"
+  l.store "Article", "Artikel"
 
   # app/views/admin/pages/_form.html.erb
-  l.store "Online", ""
-  l.store "Page settings", ""
-  l.store "Permanent link", ""
+  l.store "Online", "Online"
+  l.store "Page settings", "Pagina instellingen"
+  l.store "Permanent link", "Permanente link"
 
   # app/views/admin/pages/destroy.html.erb
   l.store "Pages", "Pagina's"
@@ -313,11 +313,11 @@ Localization.define("nl_NL") do |l|
   l.store "Delete this page", "Verwijder deze pagina"
 
   # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
-  l.store "Manage pages", ""
+  l.store "New Page", "Nieuwe pagina"
+  l.store "Manage pages", "Beheer pagina's"
 
   # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
+  l.store "Your profile", "Je profiel"
 
   # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Content Type"
@@ -327,39 +327,39 @@ Localization.define("nl_NL") do |l|
   l.store "Next page", "Volgende pagina"
 
   # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", ""
-  l.store "File", ""
-  l.store "Upload", ""
+  l.store "Upload a File to your Site", "Upload een bestand naar je site"
+  l.store "File", "Bestand"
+  l.store "Upload", "Upload"
 
   # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Weet je zeker dat je dit bestand wilt verwijderen?"
-  l.store "Delete this file from the webserver?", ""
-  l.store "File Uploads", ""
+  l.store "Delete this file from the webserver?", "Verwijder dit bestand van de webserver?"
+  l.store "File Uploads", "Bestand Uploads"
 
   # app/views/admin/resources/images.html.erb
-  l.store "Thumbnail", ""
-  l.store "File Size", ""
-  l.store "Images", ""
-  l.store "right-click for link", ""
+  l.store "Thumbnail", "Voorafbeelding"
+  l.store "File Size", "Bestandsgrootte"
+  l.store "Images", "Afbeeldingen"
+  l.store "right-click for link", "rechts-klikken voor link"
 
   # app/views/admin/resources/index.html.erb
-  l.store "Filename", ""
+  l.store "Filename", "Bestandsnaam"
 
   # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
+  l.store "Update settings", "Werk instellingen bij"
 
   # app/views/admin/settings/feedback.html.erb
-  l.store "Enable comments by default", ""
-  l.store "Enable Trackbacks by default", ""
-  l.store "Enable feedback moderation", ""
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
-  l.store "Comments filter", ""
-  l.store "Enable gravatars", ""
-  l.store "Show your email address", ""
-  l.store "Notifications", ""
-  l.store "Typo can notify you when new articles or comments are posted", ""
+  l.store "Enable comments by default", "Commentaren standaard toestaan"
+  l.store "Enable Trackbacks by default", "Trackbacks standaard toestaan"
+  l.store "Enable feedback moderation", "Feedback controle aanzetten"
+  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Je kunt voor de hele site feedback controle aanzetten. Als je dat doet zal geen enkel commentaar of trackback op je blog verschijnen totdat je het goedkeurt"
+  l.store "Comments filter", "Commentaren filter"
+  l.store "Enable gravatars", "Enable gravatars"
+  l.store "Show your email address", "Toon je e-mail adres"
+  l.store "Notifications", "Notificaties"
+  l.store "Typo can notify you when new articles or comments are posted", "Typo can je notificeren wanneer nieuwe artikelen of commentaren gepost worden"
   l.store "Source Email", ""
-  l.store "Email address used by Typo to send notifications", ""
+  l.store "Email address used by Typo to send notifications", "E-mail adres dat Typo gebruikt om notificaties te versturen"
   l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", ""
   l.store "Enable spam protection", ""
   l.store "Akismet Key", ""
