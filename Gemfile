@@ -20,4 +20,5 @@ group :development, :test do
   gem 'factory_girl'
   gem 'webrat'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
+  gem 'rcov'
 end
