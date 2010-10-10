@@ -3,39 +3,39 @@ class NotificationMailer < ActionMailer::Base
 
   def article(article, user)
     setup(user, article)
-    @subject        = "[#{article.blog.blog_name}] New article: #{article.title}"
-    @body[:article] = article
+    @subject = "[#{article.blog.blog_name}] New article: #{article.title}"
+    @article = article
   end
 
   def comment(comment, user)
     setup(user, comment)
-    @subject        = "[#{comment.blog.blog_name}] New comment on #{comment.article.title}"
-    @body[:article] = comment.article
-    @body[:comment] = comment
+    @subject = "[#{comment.blog.blog_name}] New comment on #{comment.article.title}"
+    @article = comment.article
+    @comment = comment
   end
 
   def trackback(sent_at = Time.now)
     setup(user, trackback)
-    @subject          = "[#{trackback.blog.blog_name}] New trackback on #{trackback.article.title}"
-    @body[:article]   = trackback.article
-    @body[:trackback] = trackback
+    @subject = "[#{trackback.blog.blog_name}] New trackback on #{trackback.article.title}"
+    @article = trackback.article
+    @trackback = trackback
   end
 
   def notif_user(user)
-    @body[:user] = user
-    @body[:blog] = Blog.default
-    @recipients  = user.email
-    @from        = Blog.default.email_from
-    @headers     = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
+    @user = user
+    @blog = Blog.default
+    @recipients = user.email
+    @from = Blog.default.email_from
+    @headers = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
   end
 
   private
   def setup(user, content)
-    @body[:user] = user
-    @body[:blog] = content.blog
-    @recipients  = user.email
-    @from        = content.blog.email_from
-    @headers     = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
+    @user = user
+    @blog = content.blog
+    @recipients = user.email
+    @from = content.blog.email_from
+    @headers = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
   end
 
 end

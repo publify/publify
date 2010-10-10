@@ -7,7 +7,7 @@ class EmailNotify
     return if user.email.blank?
 
     begin
-      email = NotificationMailer.create_comment(comment, user)
+      email = NotificationMailer.comment(comment, user)
       EmailNotify.send_message(user,email)
     rescue => err
       logger.error "Unable to send comment email: #{err.inspect}"
@@ -18,7 +18,7 @@ class EmailNotify
     return if user.email.blank?
 
     begin
-      email = NotificationMailer.create_article(article, user)
+      email = NotificationMailer.article(article, user)
       EmailNotify.send_message(user,email)
     rescue => err
       logger.error "Unable to send article email: #{err.inspect}"
