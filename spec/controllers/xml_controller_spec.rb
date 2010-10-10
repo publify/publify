@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'dns_mock'
 
 describe XmlController do
   render_views

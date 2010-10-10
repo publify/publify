@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require 'http_mock'
-
 describe Admin::ContentController do
   render_views
 

@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require 'flickr_mock'
-
 describe TextfilterController do
   before do
     reset_whiteboard

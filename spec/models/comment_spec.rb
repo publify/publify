@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require 'dns_mock'
-
 describe Comment do
 
   def valid_comment(options={})
