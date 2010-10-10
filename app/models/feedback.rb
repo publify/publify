@@ -18,8 +18,12 @@ class Feedback < Content
                               :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
             :handles => [:published?, :status_confirmed?, :just_published?,
                          :mark_as_ham, :mark_as_spam, :confirm_classification,
-                         :withdraw, :before_save, :after_initialize,
+                         :withdraw,
+                         :before_save_handler, :after_initialize_handler,
                          :send_notifications, :post_trigger, :report_classification])
+
+  before_save :before_save_handler
+  after_initialize :after_initialize_handler
 
   include States
 

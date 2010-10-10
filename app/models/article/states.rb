@@ -14,8 +14,6 @@ module Article::States
       ::Rails.logger.debug("#{content} entering state #{self.class}")
     end
 
-    def before_save; true; end
-    def after_save; true; end
     def post_trigger; true; end
     def send_notifications; true; end
     def send_pings; true; end
@@ -29,10 +27,6 @@ module Article::States
       super
       content[:published] = false
       content[:published_at] = nil
-    end
-
-    def before_save
-      content.state = :draft
     end
 
     def published=(boolean)

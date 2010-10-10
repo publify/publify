@@ -3,9 +3,10 @@ module Feedback::States
     # Give the default 'model' a more meaningful name
     alias_method :content, :model
 
-    def before_save;           true; end
-    def after_save;            true; end
-    def after_initialize;      true; end
+    # Callback handlers
+    def before_save_handler; true; end
+    def after_initialize_handler; true; end
+
     def post_trigger;          true; end
     def send_notifications;    true; end
     def report_classification; true; end
@@ -23,7 +24,7 @@ module Feedback::States
   end
 
   class Unclassified < Base
-    def after_initialize
+    def after_initialize_handler
       enter_hook
       return true
     end
@@ -57,7 +58,7 @@ module Feedback::States
                       end
     end
 
-    def before_save
+    def before_save_handler
       classify_content
     end
 
@@ -73,6 +74,7 @@ module Feedback::States
       content.state = :presumed_ham unless content.user_id
       content.state = :just_marked_as_ham if content.user_id
     end
+
     def to_s
       _("Just Presumed Ham")
     end
@@ -119,6 +121,7 @@ module Feedback::States
       content.just_changed_published_status = true
       content.state = :ham
     end
+
     def to_s
       _("Just Marked As Ham")
     end

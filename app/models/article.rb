@@ -70,9 +70,8 @@ class Article < Content
             :initial_state =>  :new,
             :handles       => [:withdraw,
                                :post_trigger,
-                               :after_save, :send_pings, :send_notifications,
+                               :send_pings, :send_notifications,
                                :published_at=, :just_published?])
-
 
   include Article::States
 
