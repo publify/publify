@@ -208,7 +208,7 @@ class CkeditorController < ActionController::Base
   def check_file(file)
     log "CKEDITOR ---- CLASS OF UPLOAD OBJECT: #{file.class}"
 
-    unless "#{file.class}" == "Tempfile" || "StringIO"
+    unless [Tempfile, StringIO].contains file.class
       @errorNumber = 403
       throw Exception.new
     end
