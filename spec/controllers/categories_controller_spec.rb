@@ -1,28 +1,35 @@
 require 'spec_helper'
 
 describe CategoriesController, "/index" do
-  def do_get
-    get 'index'
+  render_views
+
+  before do
+    3.times {
+      category = Factory(:category)
+      2.times { category.articles << Factory(:article) }
+    }
   end
 
-  it "should be successful" do
-    do_get
-    response.should be_success
+  describe "normally" do
+    before do
+      get 'index'
+    end
+
+    specify { response.should be_success }
+    specify { response.should render_template('articles/groupings') }
+    specify { assigns(:groupings).should_not be_empty }
+    specify { response.body.should have_selector('ul.categorylist') }
   end
 
-  it "should render :index"
-  if false
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-    do_get
-    response.should render_template(:index)
-  end
+  describe "if :index template exists" do
+    it "should render :index" do
+      pending "Stubbing #template_exists is not enough to fool Rails"
+      controller.stub!(:template_exists?) \
+        .and_return(true)
 
-  it "should fall back to articles/groupings" do
-    controller.stub!(:template_exists?) \
-      .and_return(false)
-    do_get
-    response.should render_template('articles/groupings')
+      do_get
+      response.should render_template(:index)
+    end
   end
 end
 

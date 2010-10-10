@@ -1,38 +1,35 @@
 require 'spec_helper'
 
 describe TagsController, "/index" do
-  before(:each) do
-    Tag.stub!(:find_all_with_article_counters) \
-      .and_return(mock('tags').as_null_object)
+  render_views
 
-    this_blog = Blog.default
-    controller.stub!(:this_blog) \
-      .and_return(this_blog)
+  before do
+    3.times {
+      tag = Factory(:tag)
+      2.times { tag.articles << Factory(:article) }
+    }
   end
 
-  def do_get
-    get 'index'
+  describe "normally" do
+    before do
+      get 'index'
+    end
+
+    specify { response.should be_success }
+    specify { response.should render_template('articles/groupings') }
+    specify { assigns(:groupings).should_not be_empty }
+    specify { response.body.should have_selector('ul.tags[id="taglist"]') }
   end
 
-  it "should be successful" do
-    do_get
-    response.should be_success
-  end
+  describe "if :index template exists" do
+    it "should render :index" do
+      pending "Stubbing #template_exists is not enough to fool Rails"
+      controller.stub!(:template_exists?) \
+        .and_return(true)
 
-  it "should render :index"
-  if false
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-
-    do_get
-    response.should render_template(:index)
-  end
-
-  it "should fall back to articles/groupings" do
-    controller.stub!(:template_exists?) \
-      .and_return(false)
-    do_get
-    response.should render_template('articles/groupings')
+      do_get
+      response.should render_template(:index)
+    end
   end
 end
 
@@ -102,7 +99,7 @@ describe TagsController, 'showing a single tag' do
   end
 end
 
-describe TagsController, 'with integrate_view' do
+describe TagsController, 'showing tag "foo"' do
   render_views
 
   before(:each) do

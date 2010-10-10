@@ -11,17 +11,6 @@ module ContentHelper
     "#{pluralize(grouping.article_counter, _('no posts') , _('1 post'), __('%d posts'))} with #{grouping.class.to_s.underscore} '#{grouping.display_name}'"
   end
 
-  def ul_tag_for(grouping_class)
-    case
-    when grouping_class == Tag
-      %{<ul id="taglist" class="tags">}
-    when grouping_class == Category
-      %{<ul class="categorylist">}
-    else
-      '<ul>'
-    end
-  end
-
   def page_title
     blog_name = this_blog.blog_name || "Typo"
     if !@page_title.blank?
