@@ -1,3 +1,18 @@
+env = ENV["RAILS_ENV"] ||= 'development'
+dbfile = File.join("config", "database.yml")
+
+unless File.exists?(dbfile)
+  puts "You need to configure config/database.yml first"
+  puts "Exiting"
+  exit
+else
+  conf = YAML.load(File.read(dbfile))
+  gem conf[env]['adapter']
+end
+
+require 'fileutils'
+require 'yaml'
+
 source :gemcutter
 gem 'rails', '3.0.0'
 gem 'htmlentities'
