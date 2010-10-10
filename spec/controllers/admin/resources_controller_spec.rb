@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Admin::ResourcesController do
+  render_views
+
   before do
     @request.session = { :user => users(:tobi).id }
   end
@@ -13,10 +15,12 @@ describe Admin::ResourcesController do
   end
 
   it "test_images" do
+    3.times { Factory(:resource) }
     get :images
     assert_response :success
     assert_template 'images'
     assigns(:resources).should_not be_nil
+    assigns(:resources).size.should == 3
   end
 
   it "test_destroy_image" do
