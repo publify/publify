@@ -4,7 +4,7 @@ xml.feed "xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom' do
   unless this_blog.blog_subtitle.blank?
     xml.subtitle this_blog.blog_subtitle, "type"=>"html"
   end
-  xml.id "tag:#{@controller.request.host},2005:Typo"
+  xml.id "tag:#{controller.request.host},2005:Typo"
   xml.generator "Typo", :uri => "http://www.typosphere.org", :version => '4.0'
   xml.link "rel" => "self", "type" => "application/atom+xml", "href" => url_for(:only_path => false)
   xml.link "rel" => "alternate", "type" => "text/html", "href" => @link
