@@ -481,7 +481,6 @@ describe ArticlesController, "password protected" do
   it 'article alone should be password protected' do
     get :redirect, :from => ["#{contents(:article2).permalink}.html"]
 
-    assert_tag :tag => "input",
-      :attributes => { :id => "article_password" }
+    response.should have_selector('input[id="article_password"]', :count => 1)
   end
 end
