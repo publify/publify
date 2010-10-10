@@ -70,7 +70,7 @@ class Admin::SidebarController < Admin::BaseController
       end
       Sidebar.delete_all('active_position is null')
     end
-    sweep_cache
+    PageCache.sweep_all
     index
   end
 

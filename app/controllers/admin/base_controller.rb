@@ -11,8 +11,4 @@ class Admin::BaseController < ApplicationController
       redirect_to :controller => '/admin/settings', :action => 'update_database' if Migrator.current_schema_version != Migrator.max_schema_version
     end
   end
-
-  def sweep_cache
-    PageCache.sweep_all
-  end
 end
