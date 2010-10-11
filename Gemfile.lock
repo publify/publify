@@ -67,8 +67,10 @@ GEM
     mongrel_cluster (1.0.5)
       gem_plugin (>= 0.2.3)
       mongrel (>= 1.0.2)
+    mysql (2.8.1)
     nokogiri (1.4.3.1)
     polyglot (0.3.1)
+    postgres (0.7.9.2008.01.28)
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
@@ -138,12 +140,15 @@ DEPENDENCIES
   htmlentities
   json
   mini_magick (~> 1.3)
+  mysql
+  postgres
   rails (= 3.0.0)
   rails-app-installer (~> 0.2.0)
   rcov
   rspec-rails (>= 2.0.0.beta.20)
   ruby-debug
   rubypants (~> 0.2.0)
+  sqlite3-ruby
   uuidtools (~> 2.1.1)
   webrat
   will_paginate (~> 3.0.pre2)

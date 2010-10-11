@@ -7,7 +7,17 @@ unless File.exists?(dbfile)
   exit
 else
   conf = YAML.load(File.read(dbfile))
-  gem conf[env]['adapter']
+  adapter = conf[env]['adapter']
+  case adapter
+  when 'sqlite3'
+    gem 'sqlite3-ruby'
+  when 'postgresql'
+    gem 'postgres'
+  when 'mysql'
+    gem 'mysql'
+  else
+    raise "Don't know what gem to use for adapter #{adapter}"
+  end
 end
 
 require 'fileutils'
@@ -36,4 +46,10 @@ group :development, :test do
   gem 'webrat'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
   gem 'rcov'
+end
+
+group :adapters do
+  gem 'sqlite3-ruby'
+  gem 'postgres'
+  gem 'mysql'
 end
