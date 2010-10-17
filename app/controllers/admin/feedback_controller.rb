@@ -30,7 +30,6 @@ class Admin::FeedbackController < Admin::BaseController
     if params[:page].blank? || params[:page] == "0"
       params.delete(:page)
     end
-
     @feedback = Feedback.paginate :page => params[:page], :order => 'feedback.created_at desc', :conditions => conditions, :per_page => this_blog.admin_display_elements
   end
 

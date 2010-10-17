@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Given the fixture :first_page' do
   before(:each) do
-    @page = contents(:first_page)
+    @page = Factory(:page)
   end
 
   describe "#permalink_url" do

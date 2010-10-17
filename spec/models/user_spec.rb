@@ -35,9 +35,13 @@ describe 'With the contents and users fixtures loaded' do
   end
 
   it 'The various article finders work appropriately' do
-    users(:tobi).articles.size.should == 8
-#    User.find(1).articles.find_published.size.should == Article.find(:all, :conditions => {:published => true}).size
-    users(:tobi).articles.published.size.should == 7
+    tobi = Factory(:user)
+    7.times do
+      Factory.create(:article, :user => tobi)
+    end
+    Factory.create(:article, :published => false, :published_at => nil, :user => tobi)
+    tobi.articles.size.should == 8
+    tobi.articles.published.size.should == 7
   end
 
   it 'authenticate? works as expected' do

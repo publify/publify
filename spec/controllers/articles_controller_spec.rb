@@ -205,7 +205,7 @@ describe ArticlesController, "feeds" do
   end
 
   it 'should create valid atom feed when article contains &eacute;' do
-    article = contents(:article2)
+    article = Factory(:article)
     article.body = '&eacute;coute!'
     article.save!
     get 'index', :format => 'atom'
@@ -213,7 +213,7 @@ describe ArticlesController, "feeds" do
   end
 
   it 'should create valid atom feed when article contains loose <' do
-    article = contents(:article2)
+    article = Factory(:article)
     article.body = 'is 4 < 2? no!'
     article.save!
     get 'index', :format => 'atom'
@@ -314,32 +314,32 @@ describe ArticlesController, "redirecting" do
     # redirects?
     describe 'and non-empty relative_url_root' do
       before do
-	b = blogs(:default)
-	b.base_url = "http://test.host/blog"
-	b.save
-	# XXX: The following has no effect anymore.
-	# request.env["SCRIPT_NAME"] = "/blog"
+  b = blogs(:default)
+  b.base_url = "http://test.host/blog"
+  b.save
+  # XXX: The following has no effect anymore.
+  # request.env["SCRIPT_NAME"] = "/blog"
       end
 
       it 'should redirect' do
-	Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
-	get :redirect, :from => ["foo", "bar"]
-	assert_response 301
-	response.should redirect_to("http://test.host/blog/someplace/else")
+  Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
+  get :redirect, :from => ["foo", "bar"]
+  assert_response 301
+  response.should redirect_to("http://test.host/blog/someplace/else")
       end
 
       it 'should redirect if to_path includes relative_url_root' do
-	Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
-	get :redirect, :from => ["bar", "foo"]
-	assert_response 301
-	response.should redirect_to("http://test.host/blog/someplace/else")
+  Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
+  get :redirect, :from => ["bar", "foo"]
+  assert_response 301
+  response.should redirect_to("http://test.host/blog/someplace/else")
       end
     end
   end
 
   it 'should get good article with utf8 slug' do
     get :redirect, :from => ['2004', '06', '02', 'ルビー']
-    assigns(:article).should == contents(:utf8_article)
+    assigns(:article).should == Factory(:utf8article)
   end
 
   describe 'accessing old-style URL with "articles" as the first part' do
@@ -404,66 +404,68 @@ describe ArticlesController, "redirecting" do
       render_views
 
       before(:each) do
-	get :redirect, :from => ["#{contents(:article1).permalink}.html"]
+        @article = Factory(:article)
+        get :redirect, :from => ["#{@article.permalink}.html"]
       end
 
       it 'should render template read to article' do
-	response.should render_template('articles/read')
+        response.should render_template('articles/read')
       end
 
       it 'should assign article1 to @article' do
-	assigns(:article).should == contents(:article1)
+        assigns(:article).should == @article
       end
 
       it 'should have good rss feed link' do
-	response.should have_selector("head>link[href=\"http://myblog.net/#{contents(:article1).permalink}.html.rss\"]")
+        response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.rss\"]")
       end
 
       it 'should have good atom feed link' do
-	response.should have_selector("head>link[href=\"http://myblog.net/#{contents(:article1).permalink}.html.atom\"]")
+        response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.atom\"]")
       end
 
     end
 
     describe 'rendering as atom feed' do
       before(:each) do
-	get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+        get :redirect, :from => ["#{Factory(:article).permalink}.html.atom"]
       end
 
       it 'should render atom partial' do
-	response.should render_template('articles/_atom_feed')
+        response.should render_template('articles/_atom_feed')
       end
 
       it 'should render a valid feed' do
-	assert_feedvalidator response.body
+        assert_feedvalidator response.body
       end
     end
 
     describe 'rendering as rss feed' do
       before(:each) do
-	get :redirect, :from => ["#{contents(:article1).permalink}.html.rss"]
+        get :redirect, :from => ["#{Factory(:article).permalink}.html.rss"]
       end
 
       it 'should render rss20 partial' do
-	response.should render_template('articles/_rss20_feed')
+        response.should render_template('articles/_rss20_feed')
       end
 
       it 'should render a valid feed' do
-	assert_feedvalidator response.body
+        assert_feedvalidator response.body
       end
     end
 
     describe 'rendering comment feed with problematic characters' do
       before(:each) do
-	@comment = contents(:article1).comments.first
-	@comment.body = "&eacute;coute! 4 < 2, non?"
-	@comment.save!
-	get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+        @article = Factory(:article)
+        @comment = @article.comments.first
+        @comment.body = "&eacute;coute! 4 < 2, non?"
+        @comment.save!
+        get :redirect, :from => ["#{@article.permalink}.html.atom"]
       end
 
       it 'should result in a valid atom feed' do
-	assigns(:article).should == contents(:article1)
-	assert_feedvalidator response.body
+        assigns(:article).should == @article
+        assert_feedvalidator response.body
       end
     end
   end
@@ -479,8 +481,7 @@ describe ArticlesController, "password protected" do
   end
 
   it 'article alone should be password protected' do
-    get :redirect, :from => ["#{contents(:article2).permalink}.html"]
-
+    get :redirect, :from => ["#{Factory(:article, :password => 'password').permalink}.html"]
     response.should have_selector('input[id="article_password"]', :count => 1)
   end
 end

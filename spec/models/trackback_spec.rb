@@ -13,7 +13,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
     tb = Trackback.new(:blog_name => 'Blog name',
                        :title => 'Title',
                        :excerpt => 'Excerpt',
-                       :article_id => contents(:article1).id)
+                       :article_id => Factory(:article).id)
     tb.should_not be_valid
     tb.errors['url'].should be_any
 

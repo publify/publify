@@ -2,45 +2,56 @@ require 'spec_helper'
 
 shared_examples_for "General Comment Creation" do
   it "should assign the new comment to @comment" do
-    make_the_request
-    assigns[:comment].should == Comment.find_by_author_and_body_and_article_id('bob', 'content', contents(:article1).id)
+    article = Factory(:article)
+    post :create, :comment => {:body => 'content', :author => 'bob'},
+      :article_id => article.id
+    assigns[:comment].should == Comment.find_by_author_and_body_and_article_id('bob', 'content', article.id)
   end
 
   it "should assign the article to @article" do
-    make_the_request
-    assigns[:article].should == contents(:article1)
+    article = Factory(:article)
+    post :create, :comment => {:body => 'content', :author => 'bob'},
+      :article_id => article.id
+    assigns[:article].should == article
   end
 
   it "should save the comment" do
     lambda do
-      make_the_request
+      post :create, :comment => {:body => 'content', :author => 'bob'},
+        :article_id => Factory(:article).id
     end.should change(Comment, :count).by(1)
   end
 
   it "should set the author" do
-    make_the_request
-    contents(:article1).comments.last.author.should == 'bob'
+    article = Factory(:article)
+    post :create, :comment => {:body => 'content', :author => 'bob'},
+      :article_id => article.id
+    article.comments.last.author.should == 'bob'
   end
 
   it "should set an author cookie" do
-    make_the_request
+    post :create, :comment => {:body => 'content', :author => 'bob'},
+      :article_id => Factory(:article).id
     cookies["author"].should == 'bob'
   end
 
   it "should set a gravatar_id cookie" do
-    make_the_request(:body => 'content', :author => 'bob',
-                     :email => 'bob@home', :url => 'http://bobs.home/')
+      post :create, :comment => {:body => 'content', :author => 'bob',
+        :email => 'bob@home', :url => 'http://bobs.home/'},
+        :article_id => Factory(:article).id
     cookies["gravatar_id"].should == Digest::MD5.hexdigest('bob@home')
   end
 
   it "should set a url cookie" do
-    make_the_request(:body => 'content', :author => 'bob',
-                     :email => 'bob@home', :url => 'http://bobs.home/')
+    post :create, :comment => {:body => 'content', :author => 'bob',
+     :email => 'bob@home', :url => 'http://bobs.home/'},
+     :article_id => Factory(:article).id
     cookies["url"].should == 'http://bobs.home/'
   end
 
   it "should create a comment" do
-    make_the_request
+    post :create, :comment => {:body => 'content', :author => 'bob'},
+      :article_id => Factory(:article).id
   end
 end
 
@@ -54,44 +65,39 @@ describe CommentsController do
   describe 'create' do
     it_should_behave_like "General Comment Creation"
 
-    def make_the_request(comment = {:body => 'content', :author => 'bob'})
-      post :create, :comment => comment, :article_id => contents(:article1).id
-    end
-
     it "should redirect to the article" do
-      make_the_request
-      response.should redirect_to("#{blogs(:default).base_url}/#{contents(:article1).created_at.year}/#{sprintf("%.2d", contents(:article1).created_at.month)}/#{sprintf("%.2d", contents(:article1).created_at.day)}/#{contents(:article1).permalink}")
+      article = Factory(:article)
+      post :create, :comment => {:body => 'content', :author => 'bob'},
+        :article_id => article.id
+      response.should redirect_to("#{blogs(:default).base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}")
     end
   end
 
   describe 'AJAX creation' do
     it_should_behave_like "General Comment Creation"
 
-    def make_the_request(comment = {:body => 'content', :author => 'bob'})
-      xhr :post, :create, :comment => comment, :article_id => contents(:article1).id
-    end
-
     it "should render the comment partial" do
-      make_the_request
+      xhr :post, :create, :comment => {:body => 'content', :author => 'bob'},
+        :article_id => Factory(:article).id
       response.should render_template("/articles/_comment")
     end
   end
 
   describe 'scoped index' do
     it "GET 2007/10/11/slug/comments should redirect to /2007/10/11/slug#comments" do
-      #content(:article1) => Time.now - 2 days
-      get 'index', :article_id => contents(:article1).id
-      response.should redirect_to("#{blogs(:default).base_url}/#{contents(:article1).created_at.year}/#{sprintf("%.2d", contents(:article1).created_at.month)}/#{sprintf("%.2d", contents(:article1).created_at.day)}/#{contents(:article1).permalink}#comments")
+      article = Factory(:article)
+      get 'index', :article_id => article.id
+      response.should redirect_to("#{blogs(:default).base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}#comments")
     end
 
     it "GET /2007/10/11/slug/comments.atom should return an atom feed" do
-      get :index, :format => 'atom', :article_id => contents(:article1).id
+      get :index, :format => 'atom', :article_id => Factory(:article).id
       response.should be_success
       response.should render_template("articles/_atom_feed")
     end
 
     it "GET /2007/10/11/slug/comments.rss should return an rss feed" do
-      get :index, :format => 'rss', :article_id => contents(:article1).id
+      get :index, :format => 'rss', :article_id => Factory(:article).id
       response.should be_success
       response.should render_template("articles/_rss20_feed")
     end

@@ -36,10 +36,10 @@ end
 describe CategoriesController, '/articles/category/personal' do
   before do
     cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
-    cat.articles << contents(:article1)
-    cat.articles << contents(:article2)
-    cat.articles << contents(:article3)
-    cat.articles << contents(:article4)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
   end
 
   def do_get
@@ -116,10 +116,10 @@ describe CategoriesController, "password protected article" do
 
   it 'should be password protected when shown in category' do
     cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
-    cat.articles << contents(:article1)
-    cat.articles << contents(:article2)
-    cat.articles << contents(:article3)
-    cat.articles << contents(:article4)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
 
     get 'show', :id => 'personal'
 
