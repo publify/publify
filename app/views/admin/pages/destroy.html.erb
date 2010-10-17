@@ -5,7 +5,6 @@
   <% end %>
 
   <p><%= _("Are you sure you want to delete the page")%> '<%= @page[:name] %>'?</p>
-  <%= form_tag :controller => '/admin/pages', :action => 'destroy' do %>
-  <%= hidden_field "page", "id" %>
+  <%= form_tag :controller => '/admin/pages', :action => 'destroy', :id => @page.id do %>
   <%= confirm_delete(_("Delete this page")) %>
   <% end %>
