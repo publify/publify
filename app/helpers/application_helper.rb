@@ -18,7 +18,7 @@ module ApplicationHelper
     class_attr = "class=\"#{h style}\"" if style
     rel_attr = "rel=\"nofollow\"" if nofollow
 
-    "<a href=\"#{h item.permalink_url(anchor)}\" #{rel_attr} #{class_attr}>#{h title}</a>".html_safe
+    "<a href=\"#{h item.permalink_url(anchor)}\" #{rel_attr} #{class_attr}>#{h title.html_safe}</a>".html_safe
   end
 
   # The '5 comments' link from the bottom of articles

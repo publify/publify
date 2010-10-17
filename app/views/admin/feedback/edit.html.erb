@@ -1,4 +1,4 @@
-<% @page_heading = _("Comments for") + " #{ link_to h(@comment.article.title), :controller => '/admin/content', :action => 'new', :id => @comment.article.id }" %>
+<% @page_heading = _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
 
 <%= form_tag :action => "update", :id => @comment.id do %>
 
