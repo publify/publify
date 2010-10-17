@@ -26,7 +26,7 @@ describe Admin::FeedbackController do
       lambda do
         Feedback.find(feedback_from_own_article.id)
       end.should_not raise_error(ActiveRecord::RecordNotFound)
-      response.should redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback_from_own_article.article.id)
+      response.should render_template 'destroy'
     end
   end
 

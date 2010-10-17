@@ -46,6 +46,8 @@ class Admin::FeedbackController < Admin::BaseController
   end
 
   def destroy
+    @feedback = Feedback.find params[:id]
+    
     if request.post?
       begin
         @feedback.destroy
@@ -53,8 +55,8 @@ class Admin::FeedbackController < Admin::BaseController
       rescue ActiveRecord::RecordNotFound
         flash[:notice] = _("Not found")
       end
+      redirect_to :action => 'article', :id => @feedback.article.id
     end
-    redirect_to :action => 'article', :id => @feedback.article.id
   end
 
   def create
