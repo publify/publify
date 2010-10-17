@@ -662,6 +662,8 @@ td.paginate {
 #editor-right .settings { margin-top: 0; width: 100%;}
 #editor-right .ui-accordion .ui-accordion-content { padding: 1em 0.7em; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; zoom: 1; }
 #editor-menu a, #editor-menu span { padding: 0.4em 1em; display: block; line-height: 1.4;}
+#editor-menu { margin-bottom: 10px;}
+
 
 #carousel-wrapper {
     width: 100%;

@@ -19,15 +19,16 @@
     <%= text_field 'page', 'title', :class => 'large'  %>
   </p>
   <%= render(:partial => 'images', :locals => {:images => @images}) unless @images.empty? %>
-  <div id="editor-menu">
-    <span id="f" class="<%= 'active' if current_user.editor == 'visual' %>">
-      <%= build_editor_link("Visual", 'insert_editor', 'fck', 'simple_editor', 'visual') %>
-    </span>
-    <span id="s" class="<%= 'active' if current_user.editor == 'simple' %>">
+  <div id='editor-menu' class='ui-buttonset'>
+    <label id="f" class='<%= "ui-state-active" if current_user.editor == 'visual' %> ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left'>
+      <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>        
+    </label>
+    <label id="s" class='<%= "ui-state-active" if current_user.editor == 'simple' %> ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right'>
       <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-    </span>
+    </label>
   </div>
-  <div id='editor' class='settings'>
+  
+  <div id='editor' class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
     <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
       <script type="text/javascript">edToolbar('page_body');</script>
     </div>
