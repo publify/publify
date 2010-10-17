@@ -47,6 +47,7 @@ class Admin::ContentController < Admin::BaseController
 
     if request.post?
       @article.destroy
+      flash[:notice] = _("This article was deleted successfully")
       redirect_to :action => 'index'
       return
     end
