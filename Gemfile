@@ -1,4 +1,4 @@
-env = ENV["RAILS_ENV"] ||= 'development'
+env = ENV["RAILS_ENV"] || 'development'
 dbfile = File.join("config", "database.yml")
 
 unless File.exists?(dbfile)
