@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   # this improves caches_page because now apache and webrick will send out the
   # cached feeds with the correct xml mime type.
 
-  match 'articles.rss', :to => 'articles#index', :format => 'rss', :as => 'rss'
-  match 'articles.atom', :to => 'articles#index', :format => 'atom', :as => 'atom'
+  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
+  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
 
   scope :controller => 'xml', :path => 'xml', :as => 'xml' do
     match 'articlerss/:id/feed.xml', :action => 'articlerss', :format => false
