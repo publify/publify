@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     match 'trackbackrss/feed.xml', :action => 'trackbackrss', :format => false
   end
 
-  match 'xml/rss', :to => 'xml#feed', :type => 'feed', :format => 'rss', :as => 'xml'
+  match 'xml/:format', :to => 'xml#feed', :type => 'feed', :constraints => {:format => 'rss'}, :as => 'xml'
   match 'sitemap.xml', :to => 'xml#feed', :format => 'googlesitemap', :type => 'sitemap', :as => 'xml'
 
   scope :controller => 'xml', :path => 'xml', :as => 'xml' do
