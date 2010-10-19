@@ -38,8 +38,9 @@ Factory.define :article do |a|
   a.extended 'extended content for fun'
   a.guid { Factory.next(:guid) }
   a.permalink 'a-big-article'
-  a.published_at Time.now
+  a.published_at '2005-01-01 02:00:00'
   a.user { |u| u.association(:user) }
+  a.allow_comments true
 end
 
 Factory.define :utf8article, :parent => :article do |u|
@@ -130,4 +131,16 @@ Factory.define :page do |p|
   p.user {|u| u.association(:user)}
   p.published true
   p.state 'published'
+end
+
+Factory.define :trackback do |t|
+  t.article {|a| a.association(:article)}
+  t.published true
+  t.state 'ham'
+  t.status_confirmed true
+  t.blog_name 'Trackback Blog'
+  t.title 'Trackback Entry'
+  t.url 'http://www.example.com'
+  t.excerpt 'This is an excerpt'
+  t.guid 'dsafsadffsdsf'
 end

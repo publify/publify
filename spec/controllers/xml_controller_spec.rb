@@ -103,7 +103,11 @@ describe XmlController do
 
   it "test_feed_atom10_trackbacks" do
     Feedback.delete_all
-    Factory(:comment)
+    article = Factory.create(:article, :created_at => Time.now - 1.day,
+      :allow_pings => true, :published => true)
+    Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+      :published => true)
+
     get :feed, :format => 'atom10', :type => 'trackbacks'
     assert_response :success
     assert_xml @response.body

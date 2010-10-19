@@ -111,8 +111,15 @@ describe BackendController do
     end
 
     it "test_meta_weblog_get_recent_posts" do
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+        :allow_pings => true, :published => true)
+      article_before = Factory.create(:article, :created_at => Time.now - 2.day,
+        :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+        :published => true)
+      Factory.create(:trackback, :article => article_before, :published_at => Time.now - 3.day,
+        :published => true)
       args = [ 1, 'tobi', 'whatever', 2 ]
-
       result = invoke_layered :metaWeblog, :getRecentPosts, *args
       assert_equal result.size, 2
       assert_equal result.last['title'], Article.find(:first, :offset => 1, :order => 'created_at desc').title
@@ -312,10 +319,13 @@ describe BackendController do
     end
 
     it "test_mt_get_recent_post_titles" do
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+        :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+        :published => true)
       args = [ 1, 'tobi', 'whatever', 2 ]
-
       result = invoke_layered :mt, :getRecentPostTitles, *args
-      assert_equal result.first['title'], Factory(:article).title
+      assert_equal result.first['title'], article.title
     end
 
     it "test_mt_set_post_categories" do
@@ -354,21 +364,27 @@ describe BackendController do
     end
 
     it "test_mt_get_trackback_pings" do
-      args = [ Factory(:article).id ]
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+        :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+        :published => true)
 
+      args = [ article.id ]
       result = invoke_layered :mt, :getTrackbackPings, *args
-
       assert_equal result.first['pingTitle'], 'Trackback Entry'
     end
 
     it "test_mt_publish_post" do
-      art_id = Factory(:article).id
+      art_id = Factory.create(:article,
+        :published => false,
+        :state => 'draft',
+        :created_at => '2004-06-01 20:00:01',
+        :updated_at => '2004-06-01 20:00:01',
+        :published_at => '2004-06-01 20:00:01').id
+
       args = [ art_id, 'tobi', 'whatever' ]
-
       assert (not Article.find(art_id).published?)
-
       result = invoke_layered :mt, :publishPost, *args
-
       assert result
       assert Article.find(art_id).published?
       assert Article.find(art_id)[:published_at]

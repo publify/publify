@@ -18,6 +18,8 @@ describe SetupController do
 
     describe 'POST setup' do
       before do
+        article = Factory.build(:article, :user => User.find_by_login("admin"))
+        Article.stub!(:find).and_return(article)
         post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
       end
 

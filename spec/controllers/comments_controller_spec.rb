@@ -66,7 +66,7 @@ describe CommentsController do
     it_should_behave_like "General Comment Creation"
 
     it "should redirect to the article" do
-      article = Factory(:article)
+      article = Factory(:article, :created_at => '2005-01-01 02:00:00')
       post :create, :comment => {:body => 'content', :author => 'bob'},
         :article_id => article.id
       response.should redirect_to("#{blogs(:default).base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}")
@@ -85,7 +85,7 @@ describe CommentsController do
 
   describe 'scoped index' do
     it "GET 2007/10/11/slug/comments should redirect to /2007/10/11/slug#comments" do
-      article = Factory(:article)
+      article = Factory(:article, :created_at => '2005-01-01 02:00:00')
       get 'index', :article_id => article.id
       response.should redirect_to("#{blogs(:default).base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}#comments")
     end
