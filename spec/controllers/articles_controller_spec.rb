@@ -15,6 +15,7 @@ describe ArticlesController do
 
   describe 'index action' do
     before :each do
+      Factory(:article)
       get 'index'
     end
 
@@ -39,6 +40,9 @@ describe ArticlesController do
   describe '#search action' do
     describe 'a valid search' do
       before :each do
+        Factory(:article,
+          :body => "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link",
+          :text_filter => Factory(:markdown))
         get 'search', :q => 'a'
       end
 
@@ -67,6 +71,7 @@ describe ArticlesController do
     end
 
     it 'should render feed rss by search' do
+      Factory(:article)
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
       response.should render_template('articles/_rss20_feed')
@@ -74,6 +79,7 @@ describe ArticlesController do
     end
 
     it 'should render feed atom by search' do
+      Factory(:article)
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
       response.should render_template('articles/_atom_feed')
@@ -133,6 +139,7 @@ describe ArticlesController do
   describe 'index for a month' do
 
     before :each do
+      Factory(:article, :published_at => Date.new(2004, 4, 23))
       get 'index', :year => 2004, :month => 4
     end
 
@@ -177,6 +184,13 @@ end
 describe ArticlesController, "feeds" do
   render_views
 
+  before(:each) do
+    @article = Factory.create(:article,
+      :created_at => Time.now - 1.day)
+    Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+      :published => true)
+  end
+
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
@@ -193,6 +207,11 @@ describe ArticlesController, "feeds" do
   end
 
   specify "atom feed for archive should be valid" do
+    article = Factory.create(:article,
+      :created_at => '2004-04-01 12:00:00',
+      :published_at => '2004-04-01 12:00:00',
+      :updated_at => '2004-04-01 12:00:00')
+
     get 'index', :year => 2004, :month => 4, :format => 'atom'
     response.should render_template("_atom_feed")
     assert_feedvalidator response.body
@@ -205,17 +224,15 @@ describe ArticlesController, "feeds" do
   end
 
   it 'should create valid atom feed when article contains &eacute;' do
-    article = contents(:article2)
-    article.body = '&eacute;coute!'
-    article.save!
+    @article.body = '&eacute;coute!'
+    @article.save!
     get 'index', :format => 'atom'
     assert_feedvalidator response.body
   end
 
   it 'should create valid atom feed when article contains loose <' do
-    article = contents(:article2)
-    article.body = 'is 4 < 2? no!'
-    article.save!
+    @article.body = 'is 4 < 2? no!'
+    @article.save!
     get 'index', :format => 'atom'
     assert_feedvalidator response.body
   end
@@ -314,35 +331,44 @@ describe ArticlesController, "redirecting" do
     # redirects?
     describe 'and non-empty relative_url_root' do
       before do
-	b = blogs(:default)
-	b.base_url = "http://test.host/blog"
-	b.save
-	# XXX: The following has no effect anymore.
-	# request.env["SCRIPT_NAME"] = "/blog"
+  b = blogs(:default)
+  b.base_url = "http://test.host/blog"
+  b.save
+  # XXX: The following has no effect anymore.
+  # request.env["SCRIPT_NAME"] = "/blog"
       end
 
       it 'should redirect' do
-	Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
-	get :redirect, :from => ["foo", "bar"]
-	assert_response 301
-	response.should redirect_to("http://test.host/blog/someplace/else")
+  Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
+  get :redirect, :from => ["foo", "bar"]
+  assert_response 301
+  response.should redirect_to("http://test.host/blog/someplace/else")
       end
 
       it 'should redirect if to_path includes relative_url_root' do
-	Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
-	get :redirect, :from => ["bar", "foo"]
-	assert_response 301
-	response.should redirect_to("http://test.host/blog/someplace/else")
+  Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
+  get :redirect, :from => ["bar", "foo"]
+  assert_response 301
+  response.should redirect_to("http://test.host/blog/someplace/else")
       end
     end
   end
 
   it 'should get good article with utf8 slug' do
+    utf8article = Factory.create(:utf8article, :permalink => 'ルビー',
+      :published_at => Date.new(2004, 6, 2))
     get :redirect, :from => ['2004', '06', '02', 'ルビー']
-    assigns(:article).should == contents(:utf8_article)
+    assigns(:article).should == utf8article
   end
 
   describe 'accessing old-style URL with "articles" as the first part' do
+    before(:each) do
+      article = Factory(:article, :permalink => 'second-blog-article',
+        :published_at => '2004-04-01 02:00:00',
+        :updated_at => '2004-04-01 02:00:00',
+        :created_at => '2004-04-01 02:00:00')
+    end
+
     it 'should redirect to article' do
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
@@ -385,6 +411,8 @@ describe ArticlesController, "redirecting" do
       b = blogs(:default)
       b.permalink_format = '/%title%.html'
       b.save
+      article = Factory(:article, :permalink => 'second-blog-article',
+        :published_at => Date.new(2004, 4, 1))
     end
 
     it 'should redirect from default URL format' do
@@ -404,66 +432,72 @@ describe ArticlesController, "redirecting" do
       render_views
 
       before(:each) do
-	get :redirect, :from => ["#{contents(:article1).permalink}.html"]
+        @article = Factory(:article)
+        get :redirect, :from => ["#{@article.permalink}.html"]
       end
 
       it 'should render template read to article' do
-	response.should render_template('articles/read')
+        response.should render_template('articles/read')
       end
 
       it 'should assign article1 to @article' do
-	assigns(:article).should == contents(:article1)
+        assigns(:article).should == @article
       end
 
       it 'should have good rss feed link' do
-	response.should have_selector("head>link[href=\"http://myblog.net/#{contents(:article1).permalink}.html.rss\"]")
+        response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.rss\"]")
       end
 
       it 'should have good atom feed link' do
-	response.should have_selector("head>link[href=\"http://myblog.net/#{contents(:article1).permalink}.html.atom\"]")
+        response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.atom\"]")
       end
 
     end
 
     describe 'rendering as atom feed' do
       before(:each) do
-	get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+        article = Factory.create(:article,
+          :created_at => Time.now - 1.day)
+        Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+          :published => true)
+        get :redirect, :from => ["#{article.permalink}.html.atom"]
       end
 
       it 'should render atom partial' do
-	response.should render_template('articles/_atom_feed')
+        response.should render_template('articles/_atom_feed')
       end
 
       it 'should render a valid feed' do
-	assert_feedvalidator response.body
+        assert_feedvalidator response.body
       end
     end
 
     describe 'rendering as rss feed' do
       before(:each) do
-	get :redirect, :from => ["#{contents(:article1).permalink}.html.rss"]
+        get :redirect, :from => ["#{Factory(:article).permalink}.html.rss"]
       end
 
       it 'should render rss20 partial' do
-	response.should render_template('articles/_rss20_feed')
+        response.should render_template('articles/_rss20_feed')
       end
 
       it 'should render a valid feed' do
-	assert_feedvalidator response.body
+        assert_feedvalidator response.body
       end
     end
 
     describe 'rendering comment feed with problematic characters' do
       before(:each) do
-	@comment = contents(:article1).comments.first
-	@comment.body = "&eacute;coute! 4 < 2, non?"
-	@comment.save!
-	get :redirect, :from => ["#{contents(:article1).permalink}.html.atom"]
+        @article = Factory(:article)
+        @comment = Factory(:comment, :article => @article)
+        @comment.body = "&eacute;coute! 4 < 2, non?"
+        @comment.save!
+        get :redirect, :from => ["#{@article.permalink}.html.atom"]
       end
 
       it 'should result in a valid atom feed' do
-	assigns(:article).should == contents(:article1)
-	assert_feedvalidator response.body
+        assigns(:article).should == @article
+        assert_feedvalidator response.body
       end
     end
   end
@@ -479,8 +513,7 @@ describe ArticlesController, "password protected" do
   end
 
   it 'article alone should be password protected' do
-    get :redirect, :from => ["#{contents(:article2).permalink}.html"]
-
+    get :redirect, :from => ["#{Factory(:article, :password => 'password').permalink}.html"]
     response.should have_selector('input[id="article_password"]', :count => 1)
   end
 end

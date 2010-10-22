@@ -26,7 +26,9 @@ describe AuthorsController do
   end
 
   specify "/author/tobi.atom => an atom feed" do
-    get 'show', :id => 'tobi', :format => 'atom'
+    user = Factory(:user, :name => 'tobi')
+    article = Factory(:article, :user => user)
+    get 'show', :id => user.login, :format => 'atom'
     response.should be_success
     response.should render_template("articles/_atom_feed")
     assert_feedvalidator @response.body

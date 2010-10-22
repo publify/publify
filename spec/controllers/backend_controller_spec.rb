@@ -12,10 +12,11 @@ describe BackendController do
 
   describe "when called through Blogger API" do
     it "test_blogger_delete_post" do
-      args = [ 'foo', contents(:article3).id, 'tobi', 'whatever', 1 ]
+      article = Factory(:article)
+      args = [ 'foo', article.id, 'tobi', 'whatever', 1 ]
 
       result = invoke_layered :blogger, :deletePost, *args
-      assert_raise(ActiveRecord::RecordNotFound) { Article.find(contents(:article3).id) }
+      assert_raise(ActiveRecord::RecordNotFound) { Article.find(article.id) }
     end
 
     it "test_blogger_get_users_blogs" do
@@ -102,22 +103,30 @@ describe BackendController do
     end
 
     it "test_meta_weblog_get_post" do
-      args = [ contents(:article1).id, 'tobi', 'whatever' ]
+      article = Factory(:article)
+      args = [ article.id, 'tobi', 'whatever' ]
 
       result = invoke_layered :metaWeblog, :getPost, *args
-      assert_equal result['title'], contents(:article1).title
+      assert_equal result['title'], article.title
     end
 
     it "test_meta_weblog_get_recent_posts" do
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+        :allow_pings => true, :published => true)
+      article_before = Factory.create(:article, :created_at => Time.now - 2.day,
+        :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+        :published => true)
+      Factory.create(:trackback, :article => article_before, :published_at => Time.now - 3.day,
+        :published => true)
       args = [ 1, 'tobi', 'whatever', 2 ]
-
       result = invoke_layered :metaWeblog, :getRecentPosts, *args
       assert_equal result.size, 2
       assert_equal result.last['title'], Article.find(:first, :offset => 1, :order => 'created_at desc').title
     end
 
     it "test_meta_weblog_delete_post" do
-      art_id = contents(:article2).id
+      art_id = Factory(:article).id
       args = [ 1, art_id, 'tobi', 'whatever', 1 ]
 
       result = invoke_layered :metaWeblog, :deletePost, *args
@@ -126,8 +135,8 @@ describe BackendController do
 
     describe "when editing a post" do
       before do
-        @art_id = contents(:article1).id
-        @article = Article.find(@art_id)
+        @article = Factory(:article)
+        @art_id = @article.id
         @article.title = "Modified!"
         @article.body = "this is a *test*"
         @article.text_filter = TextFilter.find_by_name("textile")
@@ -275,7 +284,7 @@ describe BackendController do
       # interpret it, we want to be able to fetch an article from the server,
       # edit it, and write it back to the server without changing its
       # dateCreated field.
-      article = contents(:article1)
+      article = Factory(:article)
       original_published_at = article.published_at
 
       args = [ article.id, 'tobi', 'whatever' ]
@@ -298,7 +307,7 @@ describe BackendController do
     end
 
     it "test_mt_get_post_categories" do
-      art_id = contents(:article1).id
+      art_id = Factory(:article).id
       article = Article.find(art_id)
       article.categories << Factory(:category)
 
@@ -310,21 +319,25 @@ describe BackendController do
     end
 
     it "test_mt_get_recent_post_titles" do
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+        :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+        :published => true)
       args = [ 1, 'tobi', 'whatever', 2 ]
-
       result = invoke_layered :mt, :getRecentPostTitles, *args
-      assert_equal result.first['title'], contents(:article2).title
+      assert_equal result.first['title'], article.title
     end
 
     it "test_mt_set_post_categories" do
-      art_id = contents(:article2).id
+      article = Factory(:article)
+      art_id = article.id
       cat = Factory(:category)
       args = [ art_id, 'tobi', 'whatever',
         [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal',
                                                  'categoryId' => cat.id, 'isPrimary' => 1)] ]
 
       result = invoke_layered :mt, :setPostCategories, *args
-      assert_equal [cat], contents(:article2).categories
+      assert_equal [cat], article.categories
 
       soft_cat = Factory(:category, :name => 'soft_cat')
       hard_cat = Factory(:category, :name => 'hard_cat')
@@ -335,7 +348,7 @@ describe BackendController do
                                                                                          'categoryId' => hard_cat.id, 'isPrimary' => 0) ]]
 
       result = invoke_layered :mt, :setPostCategories, *args
-      assert contents(:article2).reload.categories.include?(hard_cat)
+      assert article.reload.categories.include?(hard_cat)
     end
 
     it "test_mt_supported_text_filters" do
@@ -351,21 +364,27 @@ describe BackendController do
     end
 
     it "test_mt_get_trackback_pings" do
-      args = [ contents(:article1).id ]
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+        :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+        :published => true)
 
+      args = [ article.id ]
       result = invoke_layered :mt, :getTrackbackPings, *args
-
       assert_equal result.first['pingTitle'], 'Trackback Entry'
     end
 
     it "test_mt_publish_post" do
-      art_id = contents(:article4).id
+      art_id = Factory.create(:article,
+        :published => false,
+        :state => 'draft',
+        :created_at => '2004-06-01 20:00:01',
+        :updated_at => '2004-06-01 20:00:01',
+        :published_at => '2004-06-01 20:00:01').id
+
       args = [ art_id, 'tobi', 'whatever' ]
-
       assert (not Article.find(art_id).published?)
-
       result = invoke_layered :mt, :publishPost, *args
-
       assert result
       assert Article.find(art_id).published?
       assert Article.find(art_id)[:published_at]

@@ -66,7 +66,7 @@ describe 'Given a post which references a pingback enabled article' do
     Net::HTTP.should_receive(:get_response).and_return(@mock_response)
     XMLRPC::Client.should_receive(:new2).with(pingback_target).and_return(@mock_xmlrpc_response)
 
-    ping = contents(:article1).pings.build("url" => referenced_url)
+    ping = Factory(:article).pings.build("url" => referenced_url)
     ping.should be_instance_of(Ping)
     ping.url.should == referenced_url
     ping.send_pingback_or_trackback(referrer_url)
@@ -81,31 +81,36 @@ describe "An article links to another article, which contains a trackback URL" d
   it 'Trackback URL is detected and pinged' do
     referrer_url = 'http://myblog.net/referring-post'
     post = "title=Article+1%21&excerpt=body&url=http://myblog.net/referring-post&blog_name=test+blog"
-    make_and_send_ping(post, contents(:article1), referrer_url)
+    article = Factory(:article, :title => 'Article 1!', :body => 'body', :permalink => 'referring-post')
+    make_and_send_ping(post, article, referrer_url)
   end
 
   it 'sends a trackback without html tag in excerpt' do
     # TODO: Assert the following:
     # contents(:xmltest).body = originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
 
-    post = "title=#{CGI.escape("Associations aren't :dependent => true anymore")}"
-    post << "&excerpt=#{CGI.escape("originally seen on blog.rubyonrails.org")}" # not original text see if normal ?
-    post << "&url=#{contents(:xmltest).permalink_url}"
+    article = Factory(:article, :title => "Associations aren't :dependent => true anymore",
+      :excerpt => "A content with several data")
+    post = "title=#{CGI.escape(article.title)}"
+    post << "&excerpt=#{CGI.escape("A content with several data")}" # not original text see if normal ?
+    post << "&url=#{article.permalink_url}"
     post << "&blog_name=#{CGI.escape('test blog')}"
 
-    make_and_send_ping(post, contents(:xmltest), contents(:xmltest).permalink_url)
+    make_and_send_ping(post, article, article.permalink_url)
   end
 
   it 'sends a trackback without markdown tag in excerpt' do
     # TODO: Assert the following:
     # contents(:markdown_article) #in markdown format\n * we\n * use\n [ok](http://blog.ok.com) to define a link
 
-    post = "title=#{CGI.escape("How made link with markdown")}"
-    post << "&excerpt=#{CGI.escape("in markdown format we use ok to define a link")}" # not original text see if normal ?
-    post << "&url=#{contents(:markdown_article).permalink_url}"
+    article = Factory(:article, :title => "How made link with markdown",
+      :excerpt => "A content with several data" )
+    post = "title=#{CGI.escape(article.title)}"
+    post << "&excerpt=#{CGI.escape("A content with several data")}" # not original text see if normal ?
+    post << "&url=#{article.permalink_url}"
     post << "&blog_name=#{CGI.escape('test blog')}"
 
-    make_and_send_ping(post, contents(:markdown_article), contents(:markdown_article).permalink_url)
+    make_and_send_ping(post, article, article.permalink_url)
   end
 
   def make_and_send_ping(post, article, article_url)
@@ -149,7 +154,7 @@ describe 'Given a remote site to notify, eg technorati' do
     mock.should_receive(:call).with('weblogUpdates.ping', 'test blog',
                                     'http://myblog.net', 'http://myblog.net/new-post')
 
-    ping = contents(:article1).pings.build("url" => "http://rpc.technorati.com/rpc/ping")
+    ping = Factory(:article).pings.build("url" => "http://rpc.technorati.com/rpc/ping")
     ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post')
   end
 end

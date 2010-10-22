@@ -4,13 +4,15 @@ describe Comment do
 
   def valid_comment(options={})
     Comment.new({:author => 'Bob',
-                :article_id => contents(:article1).id,
+                :article_id => Factory(:article).id,
                 :body => 'nice post',
                 :ip => '1.2.3.4'}.merge(options))
   end
 
   describe '#permalink_url' do
-    before { @c = feedback(:old_comment) }
+    before { @c = Factory(:comment, :article => Factory(:article,
+      :permalink => 'inactive-article',
+      :published_at => Date.new(2004, 5, 1))) }
     subject { @c.permalink_url }
     it 'should render permalink to comment in public part' do
       should == "http://myblog.net/2004/05/01/inactive-article#comment-#{@c.id}"
@@ -46,19 +48,19 @@ describe Comment do
     it 'should not save in invalid article' do
       c = valid_comment(:author => "Old Spammer",
                         :body => "Old trackback body",
-                        :article => contents(:inactive_article))
+                        :article => Factory.build(:article, :state => 'draft'))
 
       assert ! c.save
       assert c.errors['article_id'].any?
 
-      c.article = contents(:article1)
+      c.article = Factory(:article)
 
       assert c.save
       assert c.errors.empty?
     end
 
     it 'should change old comment' do
-      c = contents(:inactive_article).comments.first
+      c = Factory(:comment)
       c.body = 'Comment body <em>italic</em> <strong>bold</strong>'
       assert c.save
       assert c.errors.empty?
@@ -75,7 +77,7 @@ describe Comment do
       b.sp_article_auto_close = 1
       b.save
 
-      c = valid_comment # article created 2 days ago
+      c = Factory.build(:comment, :article => Factory(:article, :allow_comments => false))
       c.save.should_not be_true
       c.errors.should_not be_empty
     end
@@ -123,8 +125,10 @@ describe Comment do
   end
 
   it 'should have good relation' do
-    assert feedback(:comment2).article
-    assert_equal contents(:article1), feedback(:comment2).article
+    article = Factory.build(:article)
+    comment = Factory.build(:comment, :article => article)
+    assert comment.article
+    assert_equal article, comment.article
   end
 
   describe 'reject xss' do
@@ -132,7 +136,7 @@ describe Comment do
       @comment = Comment.new do |c|
         c.body = "Test foo <script>do_evil();</script>"
         c.author = 'Bob'
-        c.article_id = contents(:article1).id
+        c.article_id = Factory(:article).id
       end
     end
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
@@ -179,7 +183,9 @@ describe Comment do
     end
 
     it 'should becomes not confirmed in article if withdraw' do
-      a = contents(:spammed_article)
+      a = Factory(:article)
+      Factory(:comment, :article => a, :state => 'presumed_ham')
+      Factory(:comment, :article => a, :state => 'ham')
       assert !a.comments[0].status_confirmed?
       assert  a.comments[1].status_confirmed?
 
@@ -211,7 +217,7 @@ describe Comment do
       comment = Comment.new do |c|
         c.body = "Test foo"
         c.author = 'Bob'
-        c.article_id = contents(:article1).id
+        c.article_id = Factory(:article).id
       end
       assert comment.save!
 
@@ -224,7 +230,7 @@ describe Comment do
       comment = Comment.new do |c|
         c.body = "Test foo"
         c.author = 'Bob'
-        c.article_id = contents(:article1).id
+        c.article_id = Factory(:article).id
         c.user_id = users(:tobi).id
       end
       assert comment.save!

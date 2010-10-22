@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe 'Given a published article' do
   before(:each) do
-    @article = contents(:article1)
+    Factory(:article)
+    @article = Article.first
   end
 
   it "An unchanged article does not invalidate the cache" do
@@ -32,7 +33,7 @@ describe 'Given a published article' do
 end
 
 describe "Given an unpublished article" do
-  before(:each) { @article = contents(:article4) }
+  before(:each) { @article = Factory(:article, :published => false, :state => 'draft') }
 
   it "publishing smashes the cache" do
     @article.publish!
