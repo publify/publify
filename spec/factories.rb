@@ -25,6 +25,7 @@ end
 Factory.define :user do |u|
   u.login { Factory.next(:user) }
   u.email { Factory.next(:user) }
+  u.name 'Bond'
   u.notify_via_email false
   u.notify_on_new_articles false
   u.notify_watch_my_articles false
@@ -41,6 +42,16 @@ Factory.define :article do |a|
   a.published_at '2005-01-01 02:00:00'
   a.user { |u| u.association(:user) }
   a.allow_comments true
+  a.published true
+  a.allow_pings true
+end
+
+Factory.define :markdown, :class => :text_filter do |m|
+  m.name "markdown"
+  m.description "Markdown"
+  m.markup 'markdown'
+  m.filters '--- []'
+  m.params '--- {}'
 end
 
 Factory.define :utf8article, :parent => :article do |u|

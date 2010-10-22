@@ -227,8 +227,8 @@ describe Article do
 
 
   it "test_find_published" do
-    article = Factory(:article, :title => 'Article 1!')
-    Factory(:article, :state => 'draft')
+    article = Factory(:article, :title => 'Article 1!', :state => 'published')
+    Factory(:article, :published => false, :state => 'draft')
     @articles = Article.find_published
     assert_equal 1, @articles.size
     @articles = Article.find_published(:all, :conditions => "title = 'Article 1!'")

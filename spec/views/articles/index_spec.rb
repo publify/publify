@@ -9,6 +9,7 @@ with_each_theme do |theme, view_path|
 
     context "normally" do
       before(:each) do
+        8.times {Factory(:article, :body => 'body')}
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
         assign(:articles, Article.paginate(:all, :page => 2, :per_page => 4))
@@ -47,6 +48,7 @@ with_each_theme do |theme, view_path|
 
     context "when on page 2 of search" do
       before(:each) do
+        10.times {Factory(:article, :body => 'body')}
         @controller.action_name = "search"
         @controller.request.path_parameters["controller"] = "articles"
         params[:q]           = "body"

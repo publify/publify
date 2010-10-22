@@ -15,6 +15,7 @@ describe ArticlesController do
 
   describe 'index action' do
     before :each do
+      Factory(:article)
       get 'index'
     end
 
@@ -39,7 +40,9 @@ describe ArticlesController do
   describe '#search action' do
     describe 'a valid search' do
       before :each do
-        Factory(:article, :body => 'a story about searching something like a...')
+        Factory(:article,
+          :body => "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link",
+          :text_filter => Factory(:markdown))
         get 'search', :q => 'a'
       end
 
@@ -68,6 +71,7 @@ describe ArticlesController do
     end
 
     it 'should render feed rss by search' do
+      Factory(:article)
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
       response.should render_template('articles/_rss20_feed')
@@ -75,6 +79,7 @@ describe ArticlesController do
     end
 
     it 'should render feed atom by search' do
+      Factory(:article)
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
       response.should render_template('articles/_atom_feed')
@@ -179,6 +184,13 @@ end
 describe ArticlesController, "feeds" do
   render_views
 
+  before(:each) do
+    @article = Factory.create(:article,
+      :created_at => Time.now - 1.day)
+    Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+      :published => true)
+  end
+
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
@@ -195,6 +207,11 @@ describe ArticlesController, "feeds" do
   end
 
   specify "atom feed for archive should be valid" do
+    article = Factory.create(:article,
+      :created_at => '2004-04-01 12:00:00',
+      :published_at => '2004-04-01 12:00:00',
+      :updated_at => '2004-04-01 12:00:00')
+
     get 'index', :year => 2004, :month => 4, :format => 'atom'
     response.should render_template("_atom_feed")
     assert_feedvalidator response.body
@@ -207,17 +224,15 @@ describe ArticlesController, "feeds" do
   end
 
   it 'should create valid atom feed when article contains &eacute;' do
-    article = Factory(:article)
-    article.body = '&eacute;coute!'
-    article.save!
+    @article.body = '&eacute;coute!'
+    @article.save!
     get 'index', :format => 'atom'
     assert_feedvalidator response.body
   end
 
   it 'should create valid atom feed when article contains loose <' do
-    article = Factory(:article)
-    article.body = 'is 4 < 2? no!'
-    article.save!
+    @article.body = 'is 4 < 2? no!'
+    @article.save!
     get 'index', :format => 'atom'
     assert_feedvalidator response.body
   end
@@ -441,8 +456,8 @@ describe ArticlesController, "redirecting" do
 
     describe 'rendering as atom feed' do
       before(:each) do
-        article = Factory.create(:article, :created_at => Time.now - 1.day,
-          :allow_pings => true, :published => true)
+        article = Factory.create(:article,
+          :created_at => Time.now - 1.day)
         Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
           :published => true)
         get :redirect, :from => ["#{article.permalink}.html.atom"]
