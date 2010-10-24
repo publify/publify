@@ -7,6 +7,7 @@ describe BackendController do
   include ActionWebService::TestInvoke::InstanceMethods
 
   before do
+    Factory(:blog)
     @protocol = :xmlrpc
   end
 

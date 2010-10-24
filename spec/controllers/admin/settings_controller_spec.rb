@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Admin::SettingsController do
   render_views
 
-  before do
+  before(:each) do
+    Factory(:blog)
     request.session = { :user => users(:tobi).id }
   end
 

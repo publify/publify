@@ -4,6 +4,7 @@ describe CategoriesController, "/index" do
   render_views
 
   before do
+    Factory(:blog)
     3.times {
       category = Factory(:category)
       2.times { category.articles << Factory(:article) }
@@ -35,6 +36,7 @@ end
 
 describe CategoriesController, '/articles/category/personal' do
   before do
+    Factory(:blog)
     cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
     cat.articles << Factory(:article)
     cat.articles << Factory(:article)
@@ -107,6 +109,7 @@ end
 
 describe CategoriesController, 'empty category life-on-mars' do
   it 'should redirect to home when the category is empty' do
+    Factory(:blog)
     Factory(:category, :permalink => 'life-on-mars')
     get 'show', :id => 'life-on-mars'
     response.status.should == 301
@@ -118,6 +121,7 @@ describe CategoriesController, "password protected article" do
   render_views
 
   it 'should be password protected when shown in category' do
+    Factory(:blog)
     cat = Factory(:category, :permalink => 'personal')
     cat.articles << Factory(:article, :password => 'my_super_pass')
     cat.save!

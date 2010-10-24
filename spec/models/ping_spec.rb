@@ -13,12 +13,14 @@ describe 'Given a post which references a pingback enabled article' do
   end
 
   it 'Pingback sent to url found in referenced header' do
+    Factory(:blog)
     @mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(pingback_target)
     @mock_xmlrpc_response.should_receive(:call).with('pingback.ping', referrer_url, referenced_url)
     make_and_send_ping
   end
 
   it 'Pingback sent to url found in referenced body' do
+    Factory(:blog)
     @mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(nil)
     @mock_response.should_receive(:body).at_least(:once)\
       .and_return(%{<link rel="pingback" href="http://anotherblog.org/xml-rpc" />})
@@ -30,13 +32,7 @@ describe 'Given a post which references a pingback enabled article' do
     ActiveRecord::Base.observers.should include(:email_notifier)
     ActiveRecord::Base.observers.should include(:web_notifier)
 
-    blog = Blog.default
-
-    blog.should_not be_send_outbound_pings
-    blog.send_outbound_pings = 1
-    blog.save!
-    blog.should be_send_outbound_pings
-
+    Factory(:blog, :send_outbound_pings => 1)
 
     a = Article.new \
       :body => '<a href="http://anotherblog.org/a-post">',
@@ -76,7 +72,9 @@ end
 describe "An article links to another article, which contains a trackback URL" do
   def referenced_url;  'http://anotherblog.org/a-post'; end
   def trackback_url;  "http://anotherblog.org/a-post/trackback"; end
-
+  before(:each) do
+    Factory(:blog)
+  end
 
   it 'Trackback URL is detected and pinged' do
     referrer_url = 'http://myblog.net/referring-post'
@@ -149,6 +147,7 @@ end
 
 describe 'Given a remote site to notify, eg technorati' do
   it 'we can ping them correctly' do
+    Factory(:blog)
     mock = mock('response')
     XMLRPC::Client.should_receive(:new2).with('http://rpc.technorati.com/rpc/ping').and_return(mock)
     mock.should_receive(:call).with('weblogUpdates.ping', 'test blog',

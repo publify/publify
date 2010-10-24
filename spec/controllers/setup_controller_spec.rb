@@ -3,7 +3,6 @@ require 'spec_helper'
 describe SetupController do
   describe 'when no blog is configured' do
     before do
-      Blog.delete_all
       User.delete_all
       Blog.new.save
     end
@@ -42,6 +41,7 @@ describe SetupController do
   describe 'when a blog is configured and has some users' do
     describe 'GET setup' do
       before do
+        Factory(:blog)
         get 'index'
       end
 
@@ -50,6 +50,7 @@ describe SetupController do
 
     describe 'POST setup' do
       before do
+        Factory(:blog)
         post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
       end
 

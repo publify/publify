@@ -10,10 +10,15 @@ describe Comment do
   end
 
   describe '#permalink_url' do
-    before { @c = Factory(:comment, :article => Factory(:article,
-      :permalink => 'inactive-article',
-      :published_at => Date.new(2004, 5, 1))) }
+    before(:each) do
+      Factory(:blog)
+      @c = Factory(:comment, :article => Factory(:article,
+        :permalink => 'inactive-article',
+        :published_at => Date.new(2004, 5, 1)))
+    end
+
     subject { @c.permalink_url }
+
     it 'should render permalink to comment in public part' do
       should == "http://myblog.net/2004/05/01/inactive-article#comment-#{@c.id}"
     end
@@ -21,6 +26,7 @@ describe Comment do
 
   describe '#edit_url' do
     it 'should get a url where edit comment in admin' do
+      Factory(:blog)
       c = feedback(:old_comment)
       assert_equal "http://myblog.net/admin/comments/edit/#{c.id}", c.edit_url
     end
@@ -28,13 +34,14 @@ describe Comment do
 
   describe '#delete_url' do
     it 'should get the delete url of comment in admin part' do
+      Factory(:blog)
       c = feedback(:old_comment)
       assert_equal "http://myblog.net/admin/comments/destroy/#{c.id}", c.delete_url
     end
   end
 
   describe '#save' do
-
+    before(:each) { Factory(:blog) }
     it 'should save good comment' do
       assert feedback(:comment2).save
       assert_equal "http://www.google.com", feedback(:comment2).url
@@ -85,8 +92,8 @@ describe Comment do
   end
 
   describe '#create' do
-
     it 'should create comment' do
+      Factory(:blog)
       c = valid_comment
       assert c.save
       assert c.guid.size > 15
@@ -95,6 +102,10 @@ describe Comment do
   end
 
   describe '#spam?' do
+    before(:each) do
+      Factory(:blog)
+    end
+
     it 'should reject spam rbl' do
       c = valid_comment(:author => "Spammer",
                         :body => %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.},
@@ -133,6 +144,7 @@ describe Comment do
 
   describe 'reject xss' do
     before(:each) do
+      Factory(:blog)
       @comment = Comment.new do |c|
         c.body = "Test foo <script>do_evil();</script>"
         c.author = 'Bob'
@@ -152,6 +164,10 @@ describe Comment do
   end
 
   describe 'change state' do
+    before(:each) do
+      Factory(:blog)
+    end
+
     it 'should becomes withdraw' do
       c = Comment.find(feedback(:comment2).id)
       assert c.withdraw!
@@ -201,16 +217,16 @@ describe Comment do
   end
 
   it 'should have good default filter' do
+    Factory(:blog)
     a = Comment.find(:first)
     assert_equal 'markdown', a.default_text_filter.name
   end
 
   describe 'with feedback moderation enabled' do
     before(:each) do
-      @blog = Blog.default
-      @blog.sp_global = false
-      @blog.default_moderate_comments = true
-      @blog.save!
+      @blog = Factory(:blog,
+        :sp_global => false,
+        :default_moderate_comments => true)
     end
 
     it 'should save comment as presumably spam' do

@@ -44,6 +44,7 @@ describe Admin::FeedbackController do
     end
 
     before do
+      Factory(:blog)
       request.session = { :user => users(:tobi).id }
     end
 
@@ -251,6 +252,7 @@ describe Admin::FeedbackController do
   describe 'publisher access' do
 
     before :each do
+      Factory(:blog)
       @publisher = users(:user_publisher)
       request.session = { :user => @publisher.id }
       @article = Factory(:article, :user => @publisher)
@@ -319,20 +321,13 @@ describe Admin::FeedbackController do
         feedback_from_not_own_article.reload
         feedback_from_not_own_article.body.should_not == 'updated comment'
       end
-
     end
 
     describe '#bulkops action' do
-
-      before :each do
-        post :bulkops, :bulkop_top => 'destroy all spam'
-      end
-
       it 'should redirect to action' do
+        post :bulkops, :bulkop_top => 'destroy all spam'
         @response.should redirect_to(:action => 'index')
       end
     end
-
   end
-
 end

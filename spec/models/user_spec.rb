@@ -35,6 +35,7 @@ describe 'With the contents and users fixtures loaded' do
   end
 
   it 'The various article finders work appropriately' do
+    Factory(:blog)
     tobi = Factory(:user)
     7.times do
       Factory.create(:article, :user => tobi)
@@ -189,7 +190,6 @@ end
 
 describe User do
   describe '#admin?' do
-
     it 'should return true if user is admin' do
       users(:tobi).should be_admin
     end
@@ -201,6 +201,7 @@ describe User do
   end
 
   describe '#permalink_url' do
+    before(:each) { Factory(:blog) }
     subject { users(:tobi).permalink_url }
     it { should == 'http://myblog.net/users/show/tobi' }
   end

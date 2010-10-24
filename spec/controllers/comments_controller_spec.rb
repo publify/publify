@@ -57,9 +57,7 @@ end
 
 describe CommentsController do
   before do
-    @blog = blogs(:default)
-    @blog.sp_global = false
-    @blog.save!
+    @blog = Factory(:blog, :sp_global => false)
   end
 
   describe 'create' do
@@ -69,7 +67,7 @@ describe CommentsController do
       article = Factory(:article, :created_at => '2005-01-01 02:00:00')
       post :create, :comment => {:body => 'content', :author => 'bob'},
         :article_id => article.id
-      response.should redirect_to("#{blogs(:default).base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}")
+      response.should redirect_to("#{@blog.base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}")
     end
   end
 
@@ -87,7 +85,7 @@ describe CommentsController do
     it "GET 2007/10/11/slug/comments should redirect to /2007/10/11/slug#comments" do
       article = Factory(:article, :created_at => '2005-01-01 02:00:00')
       get 'index', :article_id => article.id
-      response.should redirect_to("#{blogs(:default).base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}#comments")
+      response.should redirect_to("#{@blog.base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}#comments")
     end
 
     it "GET /2007/10/11/slug/comments.atom should return an atom feed" do
@@ -105,6 +103,8 @@ describe CommentsController do
 end
 
 describe CommentsController, 'GET /comments' do
+  before(:each) { Factory(:blog) }
+
   it "should be successful" do
     get 'index'
     response.should be_success
@@ -120,6 +120,8 @@ describe CommentsController, 'GET /comments' do
 end
 
 describe CommentsController, "GET /comments.:format" do
+  before(:each) { Factory(:blog) }
+
   it ":format => 'atom' should return an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success

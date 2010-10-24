@@ -2,13 +2,11 @@ require 'spec_helper'
 
 describe Admin::PagesController do
   before do
+    Factory(:blog)
     request.session = { :user => users(:tobi).id }
   end
 
-
   describe '#index' do
-
-
     it 'should response success' do
       get :index
       response.should be_success

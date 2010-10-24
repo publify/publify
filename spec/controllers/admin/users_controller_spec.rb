@@ -6,6 +6,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
   describe ' when you are admin' do
     before(:each) do
+      Factory(:blog)
       request.session = { :user => users(:tobi).id }
     end
 
@@ -80,6 +81,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
   describe 'when you are not admin' do
 
     before :each do
+      Factory(:blog)
       session[:user] = users(:user_publisher).id
     end
 

@@ -4,6 +4,7 @@ describe Admin::ResourcesController do
   render_views
 
   before do
+    Factory(:blog)
     @request.session = { :user => users(:tobi).id }
   end
 

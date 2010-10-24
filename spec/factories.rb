@@ -54,6 +54,12 @@ Factory.define :markdown, :class => :text_filter do |m|
   m.params '--- {}'
 end
 
+Factory.define :textile, :parent => :markdown do |m|
+  m.name "textile"
+  m.description "Textile"
+  m.markup 'textile'
+end
+
 Factory.define :utf8article, :parent => :article do |u|
   u.title 'ルビー'
   u.permalink 'ルビー'
@@ -73,8 +79,32 @@ end
 
 Factory.define :blog do |b|
   b.base_url 'http://myblog.net'
+  b.show_extended_on_rss true
   b.blog_name 'test blog'
+  b.title_prefix 1
+  b.limit_article_display 2
+  b.sp_url_limit 3
+  b.use_gravatar false
+  b.blog_subtitle "test subtitles"
+  b.limit_rss_display 10
+  b.ping_urls "http://ping.example.com/ping http://alsoping.example.com/rpc/ping"
+  b.geourl_location ""
+  b.default_allow_pings false
+  b.send_outbound_pings false
+  b.sp_global true
+  b.default_allow_comments true
+  b.email_from "scott@sigkill.org"
+  b.theme "typographic"
+  b.text_filter "textile"
+  b.sp_article_auto_close 300
+  b.link_to_author false
+  b.comment_text_filter "markdown"
+  b.permalink_format "/%year%/%month%/%day%/%title%"
 end
+
+
+
+
 
 Factory.define :profile_admin, :class => :profile do |l|
   l.label {Factory.next(:label)}

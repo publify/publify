@@ -3,6 +3,8 @@ require 'spec_helper'
 describe ArticlesController do
   render_views
 
+  before(:each) { Factory(:blog) }
+
   it "should redirect category to /categories" do
     get 'category'
     response.should redirect_to(categories_path)
@@ -169,6 +171,7 @@ end
 
 describe ArticlesController, "nousers" do
   before(:each) do
+    Factory(:blog)
     User.stub!(:count).and_return(0)
     @user = mock("user")
     @user.stub!(:reload).and_return(@user)
@@ -185,6 +188,7 @@ describe ArticlesController, "feeds" do
   render_views
 
   before(:each) do
+    Factory(:blog)
     @article = Factory.create(:article,
       :created_at => Time.now - 1.day)
     Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
@@ -239,6 +243,8 @@ describe ArticlesController, "feeds" do
 end
 
 describe ArticlesController, "the index" do
+  before(:each) { Factory(:blog) }
+
   it "should ignore the HTTP Accept: header" do
     pending "replacement needed for setting use_accept_header=false"
     request.env["HTTP_ACCEPT"] = "application/atom+xml"
@@ -249,6 +255,7 @@ end
 
 describe ArticlesController, "previewing" do
   render_views
+  before(:each) { Factory(:blog) }
 
   describe 'with non logged user' do
     before :each do
@@ -289,6 +296,7 @@ describe ArticlesController, "previewing" do
 end
 
 describe ArticlesController, "redirecting" do
+
   it 'should split routing path' do
     assert_routing "foo/bar/baz", {
       :from => ["foo", "bar", "baz"],
@@ -312,6 +320,7 @@ describe ArticlesController, "redirecting" do
 
   describe "with explicit redirects" do
     it 'should redirect from known URL' do
+      Factory(:blog)
       Factory(:redirect)
       get :redirect, :from => ["foo", "bar"]
       assert_response 301
@@ -319,6 +328,7 @@ describe ArticlesController, "redirecting" do
     end
 
     it 'should not redirect from unknown URL' do
+      Factory(:blog)
       Factory(:redirect)
       get :redirect, :from => ["something", "that", "isnt", "there"]
       assert_response 404
@@ -331,30 +341,29 @@ describe ArticlesController, "redirecting" do
     # redirects?
     describe 'and non-empty relative_url_root' do
       before do
-  b = blogs(:default)
-  b.base_url = "http://test.host/blog"
-  b.save
+        b = Factory(:blog, :base_url => "http://test.host/blog")
   # XXX: The following has no effect anymore.
   # request.env["SCRIPT_NAME"] = "/blog"
       end
 
       it 'should redirect' do
-  Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
-  get :redirect, :from => ["foo", "bar"]
-  assert_response 301
-  response.should redirect_to("http://test.host/blog/someplace/else")
+        Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
+        get :redirect, :from => ["foo", "bar"]
+        assert_response 301
+        response.should redirect_to("http://test.host/blog/someplace/else")
       end
 
       it 'should redirect if to_path includes relative_url_root' do
-  Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
-  get :redirect, :from => ["bar", "foo"]
-  assert_response 301
-  response.should redirect_to("http://test.host/blog/someplace/else")
+        Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
+        get :redirect, :from => ["bar", "foo"]
+        assert_response 301
+        response.should redirect_to("http://test.host/blog/someplace/else")
       end
     end
   end
 
   it 'should get good article with utf8 slug' do
+    Factory(:blog)
     utf8article = Factory.create(:utf8article, :permalink => 'ルビー',
       :published_at => Date.new(2004, 6, 2))
     get :redirect, :from => ['2004', '06', '02', 'ルビー']
@@ -362,42 +371,34 @@ describe ArticlesController, "redirecting" do
   end
 
   describe 'accessing old-style URL with "articles" as the first part' do
-    before(:each) do
+    it 'should redirect to article' do
+      Factory(:blog)
       article = Factory(:article, :permalink => 'second-blog-article',
         :published_at => '2004-04-01 02:00:00',
         :updated_at => '2004-04-01 02:00:00',
         :created_at => '2004-04-01 02:00:00')
-    end
-
-    it 'should redirect to article' do
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
       response.should redirect_to("http://myblog.net/2004/04/01/second-blog-article")
     end
 
     it 'should redirect to article with url_root' do
-      b = blogs(:default)
-      b.base_url = "http://test.host/blog"
-      b.save
+      b = Factory(:blog, :base_url => "http://test.host/blog")
+      article = Factory(:article, :permalink => 'second-blog-article',
+        :published_at => '2004-04-01 02:00:00',
+        :updated_at => '2004-04-01 02:00:00',
+        :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
       response.should redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
     end
 
-    it 'should redirect to article when url_root is articles' do
-      b = blogs(:default)
-      b.base_url = "http://test.host/articles"
-      b.save
-      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
-      assert_response 301
-      response.should redirect_to("http://test.host/articles/2004/04/01/second-blog-article")
-    end
-
     it 'should redirect to article with articles in url_root' do
-      b = blogs(:default)
-      b.base_url = "http://test.host/aaa/articles/bbb"
-      b.save
-
+      b = Factory(:blog, :base_url => "http://test.host/aaa/articles/bbb")
+      article = Factory(:article, :permalink => 'second-blog-article',
+        :published_at => '2004-04-01 02:00:00',
+        :updated_at => '2004-04-01 02:00:00',
+        :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
       assert_response 301
       response.should redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
@@ -408,9 +409,8 @@ describe ArticlesController, "redirecting" do
     render_views
 
     before(:each) do
-      b = blogs(:default)
-      b.permalink_format = '/%title%.html'
-      b.save
+      b = Factory(:blog, :permalink_format => '/%title%.html')
+
       article = Factory(:article, :permalink => 'second-blog-article',
         :published_at => Date.new(2004, 4, 1))
     end
@@ -506,13 +506,8 @@ end
 describe ArticlesController, "password protected" do
   render_views
 
-  before(:each) do
-    b = blogs(:default)
-    b.permalink_format = '/%title%.html'
-    b.save
-  end
-
   it 'article alone should be password protected' do
+    b = Factory(:blog, :permalink_format => '/%title%.html')
     get :redirect, :from => ["#{Factory(:article, :password => 'password').permalink}.html"]
     response.should have_selector('input[id="article_password"]', :count => 1)
   end

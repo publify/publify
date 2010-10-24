@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
+  before(:each) { Factory(:blog) }
   describe '#render_flash' do
     it 'should render empty string if no flash' do
       render_flash.should == ''

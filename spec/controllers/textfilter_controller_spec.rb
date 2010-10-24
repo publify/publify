@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe TextfilterController do
   before do
+    @blog = Factory(:blog)
     reset_whiteboard
-
     get :test_action # set up @url; In Rails 1.0, we can't do url_for without it.
   end
 
   def blog
-    blogs(:default)
+    @blog
   end
 
   def filter_text(text, filters, filterparams={})

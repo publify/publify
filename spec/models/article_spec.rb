@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Article do
 
   before do
+    Factory(:blog)
     @articles = []
   end
 

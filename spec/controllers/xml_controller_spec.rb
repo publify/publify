@@ -9,6 +9,7 @@ describe XmlController do
   end
 
   before do
+    Factory(:blog)
     @article = Factory.create(:article)
   end
 

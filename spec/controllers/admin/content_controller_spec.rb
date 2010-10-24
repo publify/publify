@@ -103,6 +103,7 @@ describe Admin::ContentController do
   describe 'insert_editor action' do
 
     before do
+      Factory(:blog)
       @user = users(:tobi)
       request.session = { :user => @user.id }
     end
@@ -240,6 +241,7 @@ describe Admin::ContentController do
   describe 'with admin connection' do
 
     before do
+      Factory(:blog)
       @user = users(:tobi)
       @article = Factory(:article)
       request.session = { :user => @user.id }
@@ -381,6 +383,7 @@ describe Admin::ContentController do
   describe 'with publisher connection' do
 
     before :each do
+      Factory(:blog)
       @user = users(:user_publisher)
       @article = Factory(:article, :user => @user)
       request.session = {:user => @user.id}

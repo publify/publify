@@ -3,6 +3,7 @@ require 'spec_helper'
 describe AccountsController do
   describe "A successful login with 'Remember me' checked" do
     before(:each) do
+      Factory(:blog)
       User.salt = 'change-me'
     end
 
@@ -21,6 +22,7 @@ describe AccountsController do
 
   describe 'A successfully authenticated login' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:salt).and_return('change-me')
     end
 
@@ -64,6 +66,7 @@ describe AccountsController do
 
   describe 'User is inactive' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:authenticate).and_return(nil)
       User.stub!(:count).and_return(1)
     end
@@ -96,6 +99,7 @@ describe AccountsController do
 
   describe 'Login with nil user and password' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:count).and_return(1)
     end
 
@@ -111,6 +115,7 @@ describe AccountsController do
 
   describe 'Login gets the wrong password' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:authenticate).and_return(nil)
       User.stub!(:count).and_return(1)
     end
@@ -141,11 +146,9 @@ describe AccountsController do
   end
 
   describe 'GET /login' do
-    before(:each) do
-      User.stub!(:count).and_return(1)
-    end
-
     it 'should render action :login' do
+      Factory(:blog)
+      User.stub!(:count).and_return(1)
       get 'login'
       response.should render_template(:login)
       assigns[:login].should be_nil
@@ -154,6 +157,7 @@ describe AccountsController do
 
   describe 'GET /login with 0 existing users' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:count).and_return(0)
     end
 
@@ -165,33 +169,34 @@ describe AccountsController do
 
     it 'should render :signup' do
       get 'recover_password'
-
       response.should redirect_to(:action => 'signup')
     end
   end
 
   describe 'with >0 existing user' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:count).and_return(1)
     end
 
     describe 'GET signup' do
       it 'should redirect to login' do
-	get 'signup'
-	response.should redirect_to(:action => 'login')
+        get 'signup'
+        response.should redirect_to(:action => 'login')
       end
     end
 
     describe 'POST signup' do
       it 'should redirect to login' do
-	post 'signup', {'user' =>  {'login' => 'newbob'}}
-	response.should redirect_to(:action => 'login')
+        post 'signup', {'user' =>  {'login' => 'newbob'}}
+        response.should redirect_to(:action => 'login')
       end
     end
   end
 
   describe 'GET signup with 0 existing users' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:count).and_return(0)
       @user = mock("user")
       @user.stub!(:reload).and_return(@user)
@@ -252,6 +257,7 @@ describe AccountsController do
 
   describe 'POST signup with 0 existing users' do
     before(:each) do
+      Factory(:blog)
       User.stub!(:count).and_return(0)
       @user = mock_model(User)
       @user.stub!(:login).and_return('newbob')
@@ -282,12 +288,13 @@ describe AccountsController do
 
     def params
       {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-	'password_confirmation' => 'newpassword'}}
+  'password_confirmation' => 'newpassword'}}
     end
   end
 
   describe 'User is logged in' do
     before(:each) do
+      Factory(:blog)
       @user = Factory(:user)
 
       # The AccountsController class uses session[:user_id], and the
@@ -306,30 +313,31 @@ describe AccountsController do
 
     describe "when logging out" do
       before do
-	get 'logout'
+        get 'logout'
       end
 
       it 'deletes the session[:user_id]' do
-	session[:user_id].should be_blank
+        session[:user_id].should be_blank
       end
 
       it 'deletes the session[:user]' do
-	session[:user].should be_blank
+        session[:user].should be_blank
       end
 
       it 'redirects to the login action' do
-	response.should redirect_to(:action => 'login')
+        response.should redirect_to(:action => 'login')
       end
 
       it 'deletes cookies containing credentials' do
-	cookies["auth_token"].should == nil
-	cookies["typo_user_profile"].should == nil
+        cookies["auth_token"].should == nil
+        cookies["typo_user_profile"].should == nil
       end
     end
   end
 
   describe 'when user has lost their password' do
     before(:each) do
+      Factory(:blog)
       @user = Factory(:user)
       @user.profile = Profile.find_by_label('admin')
     end
@@ -344,7 +352,6 @@ describe AccountsController do
       before do
         post 'recover_password', {:user => {:login => @user.login}}
       end
-
       specify { response.should redirect_to(:action => 'login') }
     end
 
