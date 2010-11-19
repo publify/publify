@@ -12,7 +12,7 @@ else
   when 'sqlite3'
     gem 'sqlite3-ruby'
   when 'postgresql'
-    gem 'postgres'
+    gem 'pg'
   when 'mysql'
     gem 'mysql'
   else
@@ -50,6 +50,6 @@ end
 
 group :adapters do
   gem 'sqlite3-ruby'
-  gem 'postgres'
+  gem 'pg'
   gem 'mysql'
 end
