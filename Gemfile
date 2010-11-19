@@ -8,6 +8,7 @@ unless File.exists?(dbfile)
 else
   conf = YAML.load(File.read(dbfile))
   adapter = conf[env]['adapter']
+  raise "You need define an adapter in your database.yml" if adapter.blank?
   case adapter
   when 'sqlite3'
     gem 'sqlite3-ruby'
