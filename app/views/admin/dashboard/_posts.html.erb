@@ -10,7 +10,7 @@
       <% else %>
         <% for post in @recent_posts -%>
           <li>
-            <%= link_to_permalink post, post.title %> (<%= link_to_permalink(post, post.published_comments.size) %>)
+            <%= link_to_permalink post, post.title %> (<%= link_to_permalink(post, post.published_comments.size.to_s) %>)
           </li>
         <% end %>
       <% end %>
