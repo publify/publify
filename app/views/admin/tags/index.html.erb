@@ -12,7 +12,7 @@
   <tr <%= alternate_class %>>
     <td> <%= link_to_edit tag.display_name, tag %></td>
     <td><%= tag.name %></td>
-    <td><%= link_to_permalink tag, tag.published_articles.count %></td>
+    <td><%= link_to_permalink tag, tag.published_articles.count.to_s %></td>
   </tr>
   <% end %>
   <%= display_pagination(@tags, 3)%>
