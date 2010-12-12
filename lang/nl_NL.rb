@@ -485,50 +485,50 @@ Localization.define("nl_NL") do |l|
   l.store "Account settings", ""
   l.store "Password confirmation", "Bevestig wachtwoord"
   l.store "Profile", "Profiel"
-  l.store "User's status", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile Settings", ""
-  l.store "Firstname", ""
-  l.store "Lastname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
-  l.store "Use simple editor", ""
-  l.store "Use visual rich editor", ""
-  l.store "Send notification messages via email", ""
-  l.store "Send notification messages when new articles are posted", ""
-  l.store "Send notification messages when comments are posted", ""
-  l.store "Contact Options", ""
-  l.store "Your site", ""
-  l.store "display url on public profile", ""
-  l.store "Your MSN", ""
-  l.store "display MSN ID on public profile", ""
-  l.store "Your Yahoo ID", ""
-  l.store "display Yahoo! ID on public profile", ""
-  l.store "Your Jabber ID", ""
-  l.store "display Jabber ID on public profile", ""
-  l.store "Your AIM id", ""
-  l.store "display AIM ID on public profile", ""
-  l.store "Your Twitter username", ""
-  l.store "display twitter on public profile", ""
-  l.store "Tell us more about you", ""
+  l.store "User's status", "Status van de gebruiker"
+  l.store "Active", "Actief"
+  l.store "Inactive", "Inactief"
+  l.store "Profile Settings", "Profiel instellingen"
+  l.store "Firstname", "Voornaam"
+  l.store "Lastname", "Achternaam"
+  l.store "Nickname", "Bijnaam"
+  l.store "Editor", "Editor"
+  l.store "Use simple editor", "Gebruik de simpele editor"
+  l.store "Use visual rich editor", "Gebruik de visuele editor"
+  l.store "Send notification messages via email", "Zend notificaties via e-mail"
+  l.store "Send notification messages when new articles are posted", "Zend notificaties wanneer nieuwe artikelen worden gepubliceerd"
+  l.store "Send notification messages when comments are posted", "Zend notificaties wanneer commentaren geplaatst worden"
+  l.store "Contact Options", "Contact opties"
+  l.store "Your site", "Je site"
+  l.store "display url on public profile", "toon URL op publiek profiel"
+  l.store "Your MSN", "Je msn"
+  l.store "display MSN ID on public profile", "toon MSN op publiek profiel"
+  l.store "Your Yahoo ID", "Je Yahoo ID"
+  l.store "display Yahoo! ID on public profile", "toon Yahoo! ID op publiek profiel"
+  l.store "Your Jabber ID", "Je Jabber ID"
+  l.store "display Jabber ID on public profile", "toon Jabber ID op publiek profiel"
+  l.store "Your AIM id", "Je AIM id"
+  l.store "display AIM ID on public profile", "toon AIM ID op publiek profiel"
+  l.store "Your Twitter username", "Je Twitter gebruikersnaam"
+  l.store "display twitter on public profile", "toon twitter op publiek profiel"
+  l.store "Tell us more about you", "Vertel ons meer over jezelf"
 
   # app/views/admin/users/destroy.html.erb
-  l.store "Really delete user", ""
-  l.store "Yes", ""
-  l.store "Users", ""
+  l.store "Really delete user", "Gebruiker echt verwijderen"
+  l.store "Yes", "Ja"
+  l.store "Users", "Gebruikers"
 
   # app/views/admin/users/edit.html.erb
-  l.store "Edit User", ""
+  l.store "Edit User", "Gebruiker wijzigen"
 
   # app/views/admin/users/index.html.erb
-  l.store "New User", ""
+  l.store "New User", "Nieuwe gebruikers"
   l.store "Comments", "Reacties"
-  l.store "State", ""
-  l.store "%s user", ""
+  l.store "State", "Status"
+  l.store "%s user", "%s gebruiker"
 
   # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
+  l.store "Add User", "Gebruiker toevoegen"
 
   # app/views/articles/_article.html.erb
   l.store "Posted by", "Geplaatst door"
@@ -571,14 +571,14 @@ Localization.define("nl_NL") do |l|
   l.store "Comments are disabled", "Reacties zijn niet mogelijk"
 
   # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
-  l.store "About %s", ""
-  l.store "This author has not published any article yet", ""
+  l.store "Web site:", "Website:"
+  l.store "MSN:", "MSN:"
+  l.store "Yahoo:", "Yahoo:"
+  l.store "Jabber:", "Jabber:"
+  l.store "AIM:", "AIM:"
+  l.store "Twitter:", "Twitter:"
+  l.store "About %s", "Over %s"
+  l.store "This author has not published any article yet", "Deze auteur heeft nog geen artikelen gepubliceerd"
 
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
@@ -589,16 +589,16 @@ Localization.define("nl_NL") do |l|
   l.store "Dashboard", "Dashboard"
 
   # app/views/setup/index.html.erb
-  l.store "Welcome", ""
+  l.store "Welcome", "Welkom"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-  l.store "Proceed to %s", ""
+  l.store "Congratulation!", "Gefeliciteerd!"
+  l.store "You have successfully signed up", "Je bent succesvol aangemeld"
+  l.store "<strong>Login:</strong> %s", "<strong>Inlognaam:</strong> %s"
+  l.store "<strong>Password:</strong> %s", "<strong>Wachtwoord:</strong> %s"
+  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Verlies de e-mail verzonden naar %s, want anders kun je niet meer inloggen"
+  l.store "Proceed to %s", "Ga door naar %s"
   l.store "admin", ""
 
   # app/views/shared/_search.html.erb
@@ -646,9 +646,9 @@ Localization.define("nl_NL") do |l|
   l.store "Searching", "Aan het zoeken"
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", ""
-  l.store "About", ""
-  l.store "Designed by %s ported to typo by %s ", ""
+  l.store "Home", "Begin"
+  l.store "About", "Over"
+  l.store "Designed by %s ported to typo by %s ", "Ontworpen door %s geport naar typo door %s "
 
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
@@ -658,19 +658,19 @@ Localization.define("nl_NL") do |l|
   l.store "permalink", ""
 
   # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
+  l.store "You are here: ", "Je bent hier: "
   l.store "%d comment", ""
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
   # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
-  l.store "later:", ""
+  l.store "By", "Door"
+  l.store "later:", "later:"
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Email address", ""
-  l.store "Your website", ""
+  l.store "Email address", "E-mailadres"
+  l.store "Your website", "Je website"
 
   # themes/true-blue-3/views/articles/read.html.erb
   l.store "If you liked this article you can %s", ""
@@ -684,14 +684,14 @@ Localization.define("nl_NL") do |l|
   l.store "Read all articles in %s", ""
 
   # themes/true-blue-3/views/categories/show.html.erb
-  l.store "Previous", ""
-  l.store "Next", ""
+  l.store "Previous", "Vorige"
+  l.store "Next", "Volgende"
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archieven"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
+  l.store "Authors", "Auteurs"
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", ""
