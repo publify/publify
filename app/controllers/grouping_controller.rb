@@ -77,7 +77,7 @@ class GroupingController < ContentController
   def render_index(groupings)
     respond_to do |format|
       format.html do
-        unless template_exists? 'index'
+        unless template_exists? "#{self.class.to_s.sub(/Controller$/,'')}/index"
           @grouping_class = self.class.grouping_class
           @groupings = groupings
           render :template => 'articles/groupings'
