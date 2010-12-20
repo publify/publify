@@ -1,5 +1,4 @@
 Localization.define("nl_NL") do |l|
-
   # app/controllers/accounts_controller.rb
   l.store "Login successful", "Login geslaagd"
   l.store "Login unsuccessful", "Login mislukt"
@@ -603,12 +602,6 @@ Localization.define("nl_NL") do |l|
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""
-
-  # lib/action_web_service/casting.rb
-  l.store "#{name}=", ""
-
-  # lib/action_web_service/struct.rb
-  l.store "%s=", ""
 
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Powered by %s"
