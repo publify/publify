@@ -30,6 +30,35 @@ $ typo install some/path</pre>
           <p>Typo daily use is made easier thanks to a great list of templates. Download one at <a href='http://typogarden.org' rel='nofollow'>Typogarden</a>, or start from an existing one to create your own.</p>
           <p>Typo also comes with a great plugins API. Visit our <a href='https://github.com/typoplugins' rel='nofollow'>official plugins repository</a></p>
         </div>
+        <div class="category-excerpt border"> 
+          <h2>More on installing Typo</h2>
+          <p>By default Typo will install itself using MySQL, but we support more database engines</p>
+          <h3>Installing Typo without root access</h3>
+          <p>If you don't have root access to your server, you can still install Typo using our great installer.</p>
+          <div class="CodeRay">
+            <pre>$ export GEM_PATH=~/gems
+$ gem install -i ~/gems typo
+$ ~/gems/bin/typo install /some/path</pre>
+          </div>
+          <p></p>
+          <h3>Installing Typo for MySQL</h3>
+          <p></p>
+          <div class="CodeRay">
+            <pre>$ typo install some/path db_user=my_app db_name=my_app db_host=localhost db_password=password</pre>
+          </div>
+          <p></p>
+          <h3>Installing Typo for PGSQL</h3>
+          <p></p>
+          <div class="CodeRay">
+            <pre>$ typo install some/path database=postgresql db_user=my_app db_name=my_app db_host=localhost db_password=password</pre>
+          </div>
+          <p></p>
+          <h3>Installing Typo for SQLLite</h3>
+          <p></p>
+          <div class="CodeRay">
+            <pre>$ typo install some/path database=sqlite</pre>
+          </div>
+        </div>
       </div>
       <div id='sidebar'>
         <h3>Typo maintainers</h3>
@@ -46,6 +75,7 @@ $ typo install some/path</pre>
     <li><a class='active' href='http://typosphere.org'>Home</a></li> 
     <li><a rel='nofollow' href='https://github.com/fdv/typo/wiki'>Documentation</a></li> 
     <li><a rel='nofollow'  href='http://blog.typosphere.org'>Blog</a></li> 
+    <li><a rel='nofollow' href='http://demo.typosphere.org'>Demo</a></li>
   </ul>
 </body>
 </html>
