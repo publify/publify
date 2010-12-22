@@ -12,6 +12,10 @@ module TypoPlugins
       def get_avatar(options = {})
         raise NotImplementedError
       end
+
+      def name
+        raise NotImplementedError
+      end
     end # << self
 
   end

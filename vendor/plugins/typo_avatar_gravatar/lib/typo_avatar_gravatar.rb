@@ -11,6 +11,10 @@ module TypoPlugins
         email = options.delete(:email) || ''
         gravatar_tag(email, options)
       end
+
+      def name
+        'Gravatar'
+      end
     
       private
        
