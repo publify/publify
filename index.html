@@ -1,102 +1,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>fdv/typo @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #132676;
-		  font-family: "helvetica"; 
-  		color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #ecd989; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #ecd989; }
-    h3 { text-align: center; color: #ecd989; }
-    a { color: #ecd989; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr"> 
+<head profile="http://gmpg.org/xfn/11"> 
+  <title>Typo: the missing weblog engine</title> 
+  <link href="style.css" media="all" rel="stylesheet" type="text/css" /> 
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />   
+  <meta content="Typo: modern weblog engine in Ruby on Rails" name="description" /> 
 </head>
-
 <body>
-  <a href="http://github.com/fdv/typo"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-  
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/fdv/typo/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/fdv/typo/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+  <div id='container'> 
+    <div id='logo'> 
+      <h1><a href="http://typosphere.org">Typo</a></h1> 
+      <p>The missing weblog engin on Rails</p> 
+    </div> 
+    <div id='page'> 
+      <div id='content'>
+        <div class="category-excerpt"> 
+          <h2>The missing Weblog Engine</h2> 
+          <p>Typo is the most powerful and used Weblog engine using the Ruby on Rails framework.</p>
+          <p>It is also the easiest to install and deploy:</p>
+          
+          <div class="CodeRay">
+            <pre>$ gem install typo
+$ typo install some/path</pre>
+          </div>
+        </div>
+        <div class="category-excerpt border"> 
+          <h2>Using Typo</h2>
+          <p>Typo daily use is made easier thanks to a great list of templates. Download one at <a href='http://typogarden.org' rel='nofollow'>Typogarden</a>, or start from an existing one to create your own.</p>
+          <p>Typo also comes with a great plugins API. Visit our <a href='https://github.com/typoplugins' rel='nofollow'>official plugins repository</a></p>
+        </div>
+      </div>
+      <div id='sidebar'>
+        <h3>Typo maintainers</h3>
+        <div class='sidebarelement'>
+          <ul>
+            <li><a href='http://t37.net'>Ergonomie Web, Expérience utilisateur et Ruby on Rails</li>
+            <li><a href='http://www.matijs.net/blog/'>Matijs</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-      
-    <h1><a href="http://github.com/fdv/typo">typo</a> 
-      <span class="small">by <a href="http://github.com/fdv">fdv</a></small></h1>
-
-    <div class="description">
-      The famous Ruby on Rails blog engine
-    </div>
-
-    <h2>License</h2>
-<p>Copyright (c) 2005 Tobias Luetke
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</p>
-<h2>Authors</h2>
-<p>Frédéric de Villamil (frederic@de-villamil.com)<br/>Cyril Mougel (cyril.mougel@gmail.com)<br/></p>
-<h2>Contact</h2>
-<p>Frédéric de Villamil (frederic@de-villamil.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/fdv/typo/zipball/master">zip</a> or
-      <a href="http://github.com/fdv/typo/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/fdv/typo</pre>
-    </p>
-      
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/fdv/typo">fdv/typo</a>
-    </div>
-    
   </div>
-
-  
+  <ul id='menu'> 
+    <li><a class='active' href='http://typosphere.org'>Home</a></li> 
+    <li><a rel='nofollow' href='https://github.com/fdv/typo/wiki'>Documentation</a></li> 
+    <li><a rel='nofollow'  href='http://blog.typosphere.org'>Blog</a></li> 
+  </ul>
 </body>
 </html>
