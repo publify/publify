@@ -94,12 +94,16 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   end
 
   map.project_module :settings, nil do |project|
-    project.menu    "Settings",              { :controller => "admin/settings", :action => "index" }
-    project.submenu "General settings",      { :controller => "admin/settings", :action => "index" }
-    project.submenu "Write",                 { :controller => "admin/settings", :action => "write" }
-    project.submenu "Feedback",              { :controller => "admin/settings", :action => "feedback" }
-    project.submenu "SEO",                   { :controller => "admin/settings", :action => "seo" }
-    project.submenu "Users",                 { :controller => "admin/users", :action => "index" }
+    project.menu    "Settings",         { :controller => "admin/settings", :action => "index" }
+    project.submenu "General settings", { :controller => "admin/settings", :action => "index" }
+    project.submenu "Write",            { :controller => "admin/settings", :action => "write" }
+    project.submenu "Feedback",         { :controller => "admin/settings", :action => "feedback" }
+    project.submenu "SEO",              { :controller => "admin/settings", :action => "seo" }
+    project.submenu "Users",            { :controller => "admin/users", :action => "index" }
+    project.submenu "Redirects",        { :controller => "admin/redirects", :action => "index"}
+    project.submenu "",                 { :controller => "admin/redirects", :action => "new"}
+    project.submenu "",                 { :controller => "admin/redirects", :action => "edit"}
+    project.submenu "",                 { :controller => "admin/redirects", :action => "destroy"}
     project.submenu "",                 { :controller => "admin/users", :action => "show" }
     project.submenu "",                 { :controller => "admin/users", :action => "new" }
     project.submenu "",                 { :controller => "admin/users", :action => "edit" }
