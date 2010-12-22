@@ -28,6 +28,16 @@ module ApplicationHelper
     link_to_permalink(article,pluralize(comment_count, _('no comments'), _('1 comment'), _('%d comments', comment_count)),'comments')
   end
 
+  # wrapper for TypoPlugins::Avatar
+  # options is a hash which should contain :email and :url for the plugin
+  # (gravatar will use :email, pavatar will use :url, etc.)
+  def avatar_tag(options = {})
+    avatar_class = this_blog.plugin_avatar.constantize
+    return '' unless avatar_class.respond_to?(:get_avatar)
+    avatar_class.get_avatar(options)
+  end
+
+
   def trackbacks_link(article)
     trackbacks_count = article.published_trackbacks.size
     link_to_permalink(article,pluralize(trackbacks_count, _('no trackbacks'), _('1 trackback'), _('%d trackbacks',trackbacks_count)),'trackbacks')
