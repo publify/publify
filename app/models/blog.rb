@@ -63,6 +63,7 @@ class Blog < ActiveRecord::Base
   setting :index_tags,                 :boolean, true
   setting :admin_display_elements,     :integer, 10
   setting :google_verification,        :string, ''
+  setting :nofollowify,                :boolean, true
 
   validate :permalink_has_identifier
 

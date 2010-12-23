@@ -22,4 +22,5 @@ default:
     "sp_article_auto_close" => 300,
     "link_to_author" => false,
     "comment_text_filter" => "markdown",
+    "nofollowify" => true,
     "permalink_format" => "/%year%/%month%/%day%/%title%"}.to_yaml.inspect %>

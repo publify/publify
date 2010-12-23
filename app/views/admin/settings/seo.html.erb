@@ -75,6 +75,14 @@
         <%= text_area(:setting, :robots, :rows => 10, :class => 'medium')%>
       </div>
     </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_nofollowify"><%= _("Use nofollow in comments")%></label>
+      <div class='input_text'>
+        <%= check_box(:setting, :nofollowify)%>
+        <span><%= _("Maybe you want to moderate feedbacks when turning this off") %></span>
+      </div>
+    </div>
+    
   </div>
 
   <% unless robot_writable? -%>
