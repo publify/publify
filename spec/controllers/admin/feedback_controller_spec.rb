@@ -93,6 +93,18 @@ describe Admin::FeedbackController do
         Feedback.count(:conditions => { :published => false, :status_confirmed => false }).should == assigns(:feedback).size
       end
 
+      it 'should view presumed_spam' do
+        get :index, :presumed_spam => 'f'
+        should_success_with_index(response)
+        Feedback.count(:conditions => { :state => 'presumed_spam' }).should == assigns(:feedback).size
+      end
+
+      it 'should view presumed_ham' do
+        get :index, :presumed_spam => 'f'
+        should_success_with_index(response)
+        Feedback.count(:conditions => { :state => 'presumed_ham' }).should == assigns(:feedback).size
+      end
+
       it 'should get page 1 if page params empty' do
         get :index, :page => ''
         should_success_with_index(response)

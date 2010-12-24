@@ -11,9 +11,12 @@
   <%= submit_tag _("Submit"), {:class => 'ed_button'} %>
 </div>
 <div class='settings left'>
+  <%= _("Display") %> 
   <select name='comment_type' id='comment_type'>
     <option value=''><%= _("All comments")%></option>
     <option value='?ham=f' <%= 'selected' if params[:ham] == 'f' %>><%= _("Limit to ham") %></option>
+    <option value='?presumed_ham=f' <%= 'selected' if params[:presumed_ham] == 'f' %>><%= _("Limit to presumed ham") %></option>
+    <option value='?presumed_spam=f' <%= 'selected' if params[:presumed_spam] == 'f' %>><%= _("Limit to presumed spam") %></option>
     <option value='?confirmed=f' <%= 'selected' if params[:confirmed] == 'f' %>><%= _("Unapproved comments") %></option>
     <option value='?published=f' <%= 'selected' if params[:published] == 'f' %>><%= _("Limit to spam")%></option>
   </select>

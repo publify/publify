@@ -16,9 +16,9 @@
 
 <%= hidden_field_tag "search", params[:search]%>
 <%= hidden_field_tag "page", params[:page]%>
-<table class='settings'>
+<table>
   <tr>
-    <th class='first'><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+    <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
     <th><%= _("Status")%></th>
     <th><%= _("Comment Author")%></th>
     <th><%= _("Comment")%></th>
@@ -38,7 +38,11 @@
   <% end %>
 
   <%= display_pagination(@feedback, 5) %>
+  <tr>
+    <th colspan='5'><%= _("Select all") %><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+  </tr>
 </table>
 
 <%= render :partial => 'button', :locals => { :position => 'bottom' } %>
 <% end %>
+<br class='clear' />

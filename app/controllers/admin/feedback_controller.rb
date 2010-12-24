@@ -26,6 +26,16 @@ class Admin::FeedbackController < Admin::BaseController
       conditions.last.merge!(:state => 'ham')
     end
 
+    if params[:presumed_ham] == 'f'
+      conditions.first << ' AND state = :state '
+      conditions.last.merge!(:state => 'presumed_ham')
+    end
+
+    if params[:presumed_spam] == 'f'
+      conditions.first << ' AND state = :state '
+      conditions.last.merge!(:state => 'presumed_spam')
+    end
+
     # no need params[:page] if empty of == 0, there are a crash otherwise
     if params[:page].blank? || params[:page] == "0"
       params.delete(:page)
