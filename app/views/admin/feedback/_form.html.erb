@@ -7,19 +7,19 @@
     <div class='setting'>
       <label for="comment_author" class='float'><%= _("Author")%></label>
       <p class='input_text'>
-        <%= text_field 'comment', 'author', :class => 'medium', :value => current_user.display_name %>
+        <%= text_field 'comment', 'author', :class => 'medium' %>
       </p>
     </div>
     <div class='setting clear'>
       <label for="comment_email" class='float'><%= _("Email")%></label>
       <p class='input_text'>
-        <%= text_field 'comment', 'email', :class => 'medium', :value => current_user.email %>
+        <%= text_field 'comment', 'email', :class => 'medium' %>
       </p>
     </div>
     <div class='setting clear'>
       <label for="comment_url" class='float'><%= _("Url") %></label>
       <p class='input_text'>
-        <%= text_field 'comment', 'url', :class => 'medium', :value => current_user.url %>
+        <%= text_field 'comment', 'url', :class => 'medium' %>
       </p>
     </div>
     <div id='simple_editor' class='setting clear'>
