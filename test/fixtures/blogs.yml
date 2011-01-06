@@ -7,7 +7,7 @@ default:
     "title_prefix" => 1,
     "limit_article_display" => 2,
     "sp_url_limit" => 3,
-    "use_gravatar" => false,
+    "plugin_avatar" => '',
     "blog_subtitle" => "test subtitle",
     "limit_rss_display" => 10,
     "ping_urls" => "http://ping.example.com/ping http://alsoping.example.com/rpc/ping",

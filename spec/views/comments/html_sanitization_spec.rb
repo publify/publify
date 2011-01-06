@@ -4,7 +4,7 @@ shared_examples_for "CommentSanitization" do
   before do
     @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
-    this_blog.use_gravatar = false
+    this_blog.plugin_avatar = ''
     this_blog.lang = 'en_US'
 
     prepare_comment
@@ -121,7 +121,7 @@ shared_examples_for "CommentSanitizationWithDofollow" do
   before do
     @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
-    this_blog.use_gravatar = false
+    this_blog.plugin_avatar = ''
     this_blog.lang = 'en_US'
     this_blog.nofollowify = false
 
