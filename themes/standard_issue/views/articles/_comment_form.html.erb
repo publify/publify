@@ -19,7 +19,7 @@
 
   <p>
 		<%= text_field "comment", "email" %>
-		<label for="comment_email"><%= _("Email")%> <%= content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} "+ _("enabled") + ")") if this_blog.use_gravatar %> <small>(<%= _("never displayed") %>)</small></label>
+		<label for="comment_email"><%= _("Email")%> <small>(<%= _("never displayed") %>)</small></label>
 	</p>
 	<p><%= text_field "comment", "url" %>
 		<label><%= _("Website")%></label>

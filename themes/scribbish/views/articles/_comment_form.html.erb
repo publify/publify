@@ -20,7 +20,7 @@
 
   <div id="extra_fields" style="display:none;">
       <p>
-        <label><%= _("Email") %>: <%= content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} "+ _("enabled") + ")") if this_blog.use_gravatar %><br />
+        <label><%= _("Email") %>:<br />
           <%= text_field "comment", "email" %>
         </label>
       </p>
