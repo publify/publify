@@ -358,7 +358,7 @@ Localization.define("fr_FR") do |l|
   l.store "Enable feedback moderation", "Activer la modération des commentaires"
   l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part"
   l.store "Comments filter", "Mise en forme des commentaires"
-  l.store "Enable gravatars", "Activer les gratavars"
+  l.store "Avatars provider", "Fournisseur d’avatars"
   l.store "Show your email address", "Afficher votre adresse courriel"
   l.store "Notifications", ""
   l.store "Typo can notify you when new articles or comments are posted", "Typo peut vous alerter quand de nouveaux articles et commentaires sont publiés"

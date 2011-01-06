@@ -68,6 +68,13 @@ module Admin::BaseHelper
     end
   end
 
+  def plugin_options(kind, blank = true)
+    r = TypoPlugins::Keeper.available_plugins(kind).collect do |plugin|
+      [ plugin.name, plugin.to_s ]
+    end
+    blank ? r << [_("none"),''] : r
+  end
+
   def alternate_class
     @class = @class != '' ? '' : 'class="shade"'
   end

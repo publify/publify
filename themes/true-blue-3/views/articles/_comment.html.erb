@@ -1,5 +1,5 @@
 <li class="comment <%= 'fdv' if comment.user_id? %>" id="comment-<%= comment.id %>">
-  <%= gravatar_tag(comment.email) if this_blog.use_gravatar and comment.email %>
+  <%= avatar_tag(:email => comment.email, :url => comment.url) %>
   <h4>
     <%= _("By") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
     <%= distance_of_time_in_words comment.article.published_at, comment.created_at %> <%= _("later:")%>
