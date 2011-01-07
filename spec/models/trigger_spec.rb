@@ -9,12 +9,6 @@ describe 'With the contents fixture' do
     @page.stub!(:class).and_return(Page)
     @page.stub!(:destroyed?).and_return(false)
     Content.stub!(:find).and_return(@page)
-    @current_utime = 1
-    Time.stub!(:now).and_return { Time.at(@current_utime) }
-  end
-
-  def sleep(time_delta)
-    @current_utime += time_delta
   end
 
   it '.post_action should not fire immediately for future triggers' do
@@ -26,7 +20,10 @@ describe 'With the contents fixture' do
     end.should_not raise_error
 
     @page.should_receive(:tickle)
-    sleep 2
+
+    # Stub Time.now to emulate sleep.
+    t = Time.now
+    Time.stub!(:now).and_return(t + 5.seconds)
     Trigger.fire
     Trigger.count.should == 0
   end
