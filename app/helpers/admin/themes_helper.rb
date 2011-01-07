@@ -12,7 +12,7 @@ module Admin::ThemesHelper
 
   def fetch_layouts
     list = ''
-    Find.find(this_blog.current_theme.path + "/layouts") do |path|
+    Find.find(this_blog.current_theme.path + "/views/layouts") do |path|
       if path =~ /rhtml$|erb$/
         list << content_tag(:p, link_to(File.basename(path), {:controller => 'themes', :action => 'editor', :type => 'layout', :file => File.basename(path)}))
       end
