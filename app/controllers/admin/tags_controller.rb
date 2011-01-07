@@ -1,4 +1,5 @@
 class Admin::TagsController < Admin::BaseController
+  layout 'administration'
 
   cache_sweeper :blog_sweeper
 

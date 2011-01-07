@@ -1,4 +1,5 @@
 class Admin::ProfilesController < Admin::BaseController
+  layout 'administration'
   helper Admin::UsersHelper
 
   def index

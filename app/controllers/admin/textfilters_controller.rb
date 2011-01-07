@@ -1,4 +1,5 @@
 class Admin::TextfiltersController < Admin::BaseController
+  layout 'administration'
 
   def macro_help
     @macro = TextFilter.available_filters.find { |filter| filter.short_name == params[:id] }

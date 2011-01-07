@@ -3,6 +3,7 @@ class Admin::ThemesController < Admin::BaseController
   require 'time'
   require 'rexml/document'
 
+  layout 'administration'
   cache_sweeper :blog_sweeper
 
   def index

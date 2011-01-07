@@ -1,4 +1,5 @@
 class Admin::SidebarController < Admin::BaseController
+  layout 'administration'
 
   def index
     @available = available

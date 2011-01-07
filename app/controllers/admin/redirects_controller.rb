@@ -1,4 +1,6 @@
 class Admin::RedirectsController < Admin::BaseController
+  layout 'administration'
+
   def index
     @redirects = Redirect.find(:all, :order => :from_path)
   end

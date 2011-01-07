@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::BaseController
+  layout 'administration'
 
   cache_sweeper :blog_sweeper
 

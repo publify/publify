@@ -1,4 +1,5 @@
 class Admin::FeedbackController < Admin::BaseController
+  layout 'administration'
 
   cache_sweeper :blog_sweeper
   before_filter :only_own_feedback, :only => [:destroy]
