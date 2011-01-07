@@ -23,7 +23,7 @@ module TypoPlugins
       def gravatar_tag(email, options={})
         options[:gravatar_id] = Digest::MD5.hexdigest(email.strip)
         options[:default] = CGI::escape(options[:default]) if options.include?(:default)
-        options[:size] ||= 60
+        options[:size] ||= 48
   
         url = "http://www.gravatar.com/avatar.php?" << options.map { |key,value| "#{key}=#{value}" }.sort.join("&")
         "<img src=\"#{url}\" class=\"avatar gravatar\" />"
