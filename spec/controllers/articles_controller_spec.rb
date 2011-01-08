@@ -17,7 +17,7 @@ describe ArticlesController do
 
   describe 'index action' do
     before :each do
-      Factory(:article)
+      Factory.create(:article)
       get 'index'
     end
 
@@ -25,8 +25,8 @@ describe ArticlesController do
       response.should render_template(:index)
     end
 
-    it 'should assigns articles' do
-      assigns[:articles].should_not be_nil
+    it 'should show some articles' do
+      assigns[:articles].should_not be_empty
     end
 
     it 'should have good link feed rss' do
