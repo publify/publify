@@ -1,5 +1,6 @@
 class NotificationMailer < ActionMailer::Base
   helper :mail
+  layout nil
 
   def article(article, user)
     setup(user, article)
