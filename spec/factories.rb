@@ -22,6 +22,12 @@ Factory.sequence :category do |n|
   "category_#{n}"
 end
 
+basetime = Time.now
+
+Factory.sequence :time do |n|
+  basetime - n
+end
+
 Factory.define :user do |u|
   u.login { Factory.next(:user) }
   u.email { Factory.next(:user) }
@@ -40,6 +46,7 @@ Factory.define :article do |a|
   a.guid { Factory.next(:guid) }
   a.permalink 'a-big-article'
   a.published_at '2005-01-01 02:00:00'
+  a.updated_at { Factory.next(:time) }
   a.user { |u| u.association(:user) }
   a.allow_comments true
   a.published true

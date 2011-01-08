@@ -40,11 +40,15 @@ describe ArticlesController do
 
 
   describe '#search action' do
+    before :each do
+      Factory(:article,
+              :body => "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link",
+              :text_filter => Factory(:markdown))
+      Factory(:article, :body => "xyz")
+    end
+
     describe 'a valid search' do
       before :each do
-        Factory(:article,
-          :body => "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link",
-          :text_filter => Factory(:markdown))
         get 'search', :q => 'a'
       end
 
@@ -73,7 +77,6 @@ describe ArticlesController do
     end
 
     it 'should render feed rss by search' do
-      Factory(:article)
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
       response.should render_template('articles/_rss20_feed')
@@ -81,7 +84,6 @@ describe ArticlesController do
     end
 
     it 'should render feed atom by search' do
-      Factory(:article)
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
       response.should render_template('articles/_atom_feed')
@@ -133,9 +135,11 @@ describe ArticlesController do
 
 
   it 'archives' do
+    3.times { Factory(:article) }
     get 'archives'
     response.should render_template(:archives)
     assigns[:articles].should_not be_nil
+    assigns[:articles].should_not be_empty
   end
 
   describe 'index for a month' do
@@ -151,6 +155,7 @@ describe ArticlesController do
 
     it 'should contain some articles' do
       assigns[:articles].should_not be_nil
+      assigns[:articles].should_not be_empty
     end
   end
 
@@ -193,6 +198,11 @@ describe ArticlesController, "feeds" do
       :created_at => Time.now - 1.day)
     Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
       :published => true)
+    Factory.create(:article,
+      :created_at => '2004-04-01 12:00:00',
+      :published_at => '2004-04-01 12:00:00',
+      :updated_at => '2004-04-01 12:00:00')
+
   end
 
   specify "/articles.atom => an atom feed" do
@@ -211,11 +221,6 @@ describe ArticlesController, "feeds" do
   end
 
   specify "atom feed for archive should be valid" do
-    article = Factory.create(:article,
-      :created_at => '2004-04-01 12:00:00',
-      :published_at => '2004-04-01 12:00:00',
-      :updated_at => '2004-04-01 12:00:00')
-
     get 'index', :year => 2004, :month => 4, :format => 'atom'
     response.should render_template("_atom_feed")
     assert_feedvalidator response.body
