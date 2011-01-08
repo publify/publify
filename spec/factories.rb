@@ -84,7 +84,7 @@ Factory.define :blog do |b|
   b.title_prefix 1
   b.limit_article_display 2
   b.sp_url_limit 3
-  b.use_gravatar false
+  b.plugin_avatar ''
   b.blog_subtitle "test subtitles"
   b.limit_rss_display 10
   b.ping_urls "http://ping.example.com/ping http://alsoping.example.com/rpc/ping"
