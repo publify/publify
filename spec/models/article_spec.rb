@@ -209,8 +209,7 @@ describe Article do
   end
 
   it "more than 255 chars of tags should be OK" do
-    keywords = ""
-    (1..42).each { |tag| keywords << "tag#{tag}, " }
+    keywords = (1..42).map { |tag| "tag#{tag}" }.join ", "
 
     art = Article.create(:title => "Test article", :keywords => keywords)
     art.tags.size.should == 42
