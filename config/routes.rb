@@ -84,16 +84,13 @@ ActionController::Routing::Routes.draw do |map|
 
     # For the tests
     get.connect 'theme/static_view_test', :controller => 'theme', :action => 'static_view_test'
-
-    map.connect 'plugins/filters/:filter/:public_action',
-      :controller => 'textfilter', :action => 'public_action'
   end
 
   map.connect 'previews/:id', :controller => 'articles', :action => 'preview'
   map.connect 'check_password', :controller => 'articles', :action => 'check_password'
 
   # Work around the Bad URI bug
-  %w{ accounts backend files sidebar textfilter xml }.each do |i|
+  %w{ accounts backend files sidebar xml }.each do |i|
     map.connect "#{i}", :controller => "#{i}", :action => 'index'
     map.connect "#{i}/:action", :controller => "#{i}"
     map.connect "#{i}/:action/:id", :controller => i, :id => nil

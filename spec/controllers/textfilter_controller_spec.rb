@@ -1,10 +1,9 @@
 require 'spec_helper'
 
+# TODO: Move elsewhere. TextfilterController is a dummy.
 describe TextfilterController do
   before do
-    reset_whiteboard
-
-    get :test_action # set up @url; In Rails 1.0, we can't do url_for without it.
+    @whiteboard = Hash.new
   end
 
   def blog
@@ -16,11 +15,7 @@ describe TextfilterController do
   end
 
   def whiteboard
-    @whiteboard ||= Hash.new
-  end
-
-  def reset_whiteboard
-    @whiteboard = nil
+    @whiteboard
   end
 
   it "test_unknown" do
