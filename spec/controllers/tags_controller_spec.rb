@@ -35,7 +35,7 @@ end
 
 describe TagsController, 'showing a single tag' do
   before do
-    @tag = Factory(:tag, :name => 'foo', :display_name => 'foo_display')
+    @tag = Factory(:tag, :name => 'Foo')
   end
 
   def do_get
@@ -76,7 +76,7 @@ describe TagsController, 'showing a single tag' do
 
     it 'should set the page title to "Tag foo"' do
       do_get
-      assigns[:page_title].should == 'Tag foo, everything about foo_display'
+      assigns[:page_title].should == 'Tag foo, everything about Foo'
     end
 
     it 'should render the atom feed for /articles/tag/foo.atom' do

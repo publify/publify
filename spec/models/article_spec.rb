@@ -164,7 +164,7 @@ describe Article do
 
     it "properly deals with dots and spaces" do
       c = Factory(:article, :keywords => 'test "tag test" web2.0')
-      assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort
+      assert_equal ['test', 'tag-test', 'web2-0'].sort, c.tags.collect(&:name).sort
     end
 
     # TODO: Get rid of using the keywords field.

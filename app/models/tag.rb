@@ -1,12 +1,13 @@
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :articles, :order => 'created_at DESC'
   validates_uniqueness_of :name
-  attr_reader :description
-  attr_reader :keywords
+
+  # Satisfy GroupingController needs.
+  attr_accessor :description, :keywords
 
   def self.get(name)
-    tagname = name.tr(' ', '').downcase
-    tag = find_by_name_or_display_name(tagname, name)
+    tagname = name.to_url
+    tag = find_by_name(tagname)
     if tag.nil?
       tag = Tag.create(:name => tagname, :display_name => name)
     end
@@ -16,11 +17,6 @@ class Tag < ActiveRecord::Base
 
   def self.find_by_name_or_display_name(tagname, name)
     self.find(:first, :conditions => [%{name = ? OR display_name = ? OR display_name = ?}, tagname, tagname, name])
-  end
-
-  def self.find_by_name(name, *args)
-    self.send(:method_missing, :find_by_name, name, *args) ||
-      self.new(:name => name)
   end
 
   def ensure_naming_conventions
@@ -51,8 +47,8 @@ class Tag < ActiveRecord::Base
     self.update_by_sql([%{UPDATE article_tags SET tag_id = #{to} WHERE tag_id = #{from} }])
   end
 
-  def self.find_by_permalink(*args)
-    self.find_by_name(*args) || new(:name => args.first)
+  def self.find_by_permalink(name)
+    self.find_by_name(name)
   end
 
   def self.to_prefix
