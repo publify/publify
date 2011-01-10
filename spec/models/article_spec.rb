@@ -130,28 +130,28 @@ describe Article do
     end
 
     it "should only match the href attribute" do
-      a = Factory.create :article
+      a = Factory.build :article
       a.body = '<a href="http://a/b">a</a> <a fhref="wrong">wrong</a>'
       urls = a.html_urls
       assert_equal ["http://a/b"], urls
     end
 
     it "should match across newlines" do
-      a = Factory.create :article
+      a = Factory.build :article
       a.body = "<a\nhref=\"http://foo/bar\">foo</a>"
       urls = a.html_urls
       assert_equal ["http://foo/bar"], urls
     end
 
     it "should match with single quotes" do
-      a = Factory.create :article
+      a = Factory.build :article
       a.body = "<a href='http://foo/bar'>foo</a>"
       urls = a.html_urls
       assert_equal ["http://foo/bar"], urls
     end
 
     it "should match with no quotes" do
-      a = Factory.create :article
+      a = Factory.build :article
       a.body = "<a href=http://foo/bar>foo</a>"
       urls = a.html_urls
       assert_equal ["http://foo/bar"], urls
