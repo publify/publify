@@ -5,7 +5,9 @@ describe SetupController do
     before do
       Blog.delete_all
       User.delete_all
+      Article.delete_all
       Blog.new.save
+      Article.create(:title => "First post").save!
     end
 
     describe 'GET setup' do
