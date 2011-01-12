@@ -166,53 +166,34 @@ describe Article do
   it "test_send_multiple_pings" do
   end
 
-  it "test_tags" do
-    a = Article.new(:title => 'Test tag article',
-                    :keywords => 'test tag tag stuff');
+  describe "with tags" do
+    it "recieves tags from the keywords property" do
+      a = Factory(:article, :keywords => 'foo bar')
+      assert_equal ['foo', 'bar'].sort, a.tags.collect {|t| t.name}.sort
+    end
 
-    assert_kind_of Article, a
-    assert_equal 0, a.tags.size
+    it "changes tags when changing keywords" do
+      a = Factory(:article, :keywords => 'foo bar')
+      a.keywords = 'foo baz'
+      a.save
+      assert_equal ['foo', 'baz'].sort, a.tags.collect {|t| t.name}.sort
+    end
 
-    a.keywords_to_tags
+    it "empties tags when keywords is set to ''" do
+      a = Factory(:article, :keywords => 'foo bar')
+      a.keywords = ''
+      a.save
+      assert_equal [], a.tags.collect {|t| t.name}.sort
+    end
 
-    assert_equal 3, a.tags.size
-    assert_equal ["test", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
-    assert a.save
+    it "properly deals with dots and spaces" do
+      c = Factory(:article, :keywords => 'test "tag test" web2.0')
+      assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort
+    end
 
-    a.keywords = 'tag bar stuff foo'
-    a.keywords_to_tags
-
-    assert_equal 4, a.tags.size
-    assert_equal ["foo", "bar", "tag", "stuff"].sort , a.tags.collect {|t| t.name}.sort
-
-    a.keywords='tag bar'
-    a.keywords_to_tags
-
-    assert_equal 2, a.tags.size
-
-    a.keywords=''
-    a.keywords_to_tags
-
-    assert_equal 0, a.tags.size
-
-    b = Article.new(:title => 'Tag Test 2',
-                    :keywords => 'tag test article one two three')
-
-    assert_kind_of Article,b
-    assert_equal 0, b.tags.size
-
-    c = Article.new(:title => 'Foo', :keywords => 'test "tag test" web2.0')
-    c.keywords_to_tags
-
-    assert_equal 3, c.tags.size
-    assert_equal ['test', 'tagtest', 'web2-0'].sort, c.tags.collect(&:name).sort
-  end
-
-  it "more than 255 chars of tags should be OK" do
-    keywords = (1..42).map { |tag| "tag#{tag}" }.join ", "
-
-    art = Article.create(:title => "Test article", :keywords => keywords)
-    art.tags.size.should == 42
+    # TODO: Get rid of using the keywords field.
+    # TODO: Add functions to Tag to convert collection from and to string.
+    it "lets the tag collection survive a load-save cycle"
   end
 
   it "test_find_published_by_tag_name" do
@@ -222,7 +203,6 @@ describe Article do
     articles = Tag.find_by_name('foo').published_articles
     assert_equal 2, articles.size
   end
-
 
   it "test_find_published" do
     @articles = Article.find_published
