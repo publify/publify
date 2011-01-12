@@ -50,11 +50,6 @@ describe Comment do
 
       assert ! c.save
       assert c.errors['article_id'].any?
-
-      c.article = contents(:article1)
-
-      assert c.save
-      assert c.errors.empty?
     end
 
     it 'should change old comment' do

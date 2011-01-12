@@ -6,30 +6,6 @@ describe Article do
     @articles = []
   end
 
-  describe 'Factory Girl' do
-    it 'should article factory valid' do
-      Factory(:article).should be_valid
-      Factory.build(:article).should be_valid
-    end
-    it 'should second_article factory valid' do
-      Factory(:second_article).should be_valid
-      Factory.build(:second_article).should be_valid
-    end
-    it 'should article_with_accent_in_html' do
-      Factory(:article_with_accent_in_html).should be_valid
-      Factory.build(:article_with_accent_in_html).should be_valid
-    end
-    it 'should store user too' do
-      a = Factory(:article)
-      a.user.should be_valid
-      Article.find(a.id).user.should_not be_nil
-    end
-    it 'should create multiple valid articles' do
-      Factory(:article).should be_valid
-      Factory(:article).should be_valid
-    end
-  end
-
   def assert_results_are(*expected)
     assert_equal expected.size, @articles.size
     expected.each do |i|
@@ -313,12 +289,6 @@ describe Article do
 
     assert_equal 2, a.notify_users.size
     assert_equal ['bob', 'randomuser'], a.notify_users.collect {|u| u.login }.sort
-  end
-
-  it "test_tags_on_update" do
-    contents(:article3).update_attribute :keywords, "my new tags"
-    assert_equal 3, contents(:article3).reload.tags.size
-    assert contents(:article3).tags.include?(Tag.find_by_name("new"))
   end
 
   it "test_withdrawal" do
