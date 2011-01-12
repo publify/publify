@@ -7,12 +7,7 @@ class Tag < ActiveRecord::Base
 
   def self.get(name)
     tagname = name.to_url
-    tag = find_by_name(tagname)
-    if tag.nil?
-      tag = Tag.create(:name => tagname, :display_name => name)
-    end
-
-    tag
+    find_or_create_by_name(tagname, :display_name => name)
   end
 
   def self.find_by_name_or_display_name(tagname, name)
