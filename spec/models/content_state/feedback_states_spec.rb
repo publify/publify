@@ -7,6 +7,11 @@ describe 'FeedbackStates from Test::Unit' do
   end
 
   it "test_ham_all_the_way" do
+    class << @comment
+      def classify
+        :ham
+      end
+    end
     assert @comment.unclassified?
     assert   @comment.published?
     assert   @comment.just_published?
