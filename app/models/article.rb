@@ -6,7 +6,18 @@ class Article < Content
 
   content_fields :body, :extended
 
+  validates_uniqueness_of :guid
+  validates_presence_of :title
+
+  belongs_to :user
+
   has_many :pings,      :dependent => :destroy, :order => "created_at ASC"
+  has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
+  has_many :feedback, :order => "created_at DESC"
+  has_many :resources, :order => "created_at DESC", :dependent => :nullify
+  has_many :categorizations
+  has_many :categories, :through => :categorizations
+  has_many :triggers, :as => :pending_item
 
   has_many :comments,   :dependent => :destroy, :order => "created_at ASC" do
 
@@ -28,20 +39,13 @@ class Article < Content
     this.has_many :published_feedback,   :class_name => "Feedback", :order => "created_at ASC"
   end
 
-  has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
+  has_and_belongs_to_many :tags
 
-  #TODO: change it because more logical with s in end : feedbacks
-  has_many :feedback, :order => "created_at DESC"
-
-  has_many :resources, :order => "created_at DESC",
-           :class_name => "Resource", :foreign_key => 'article_id'
-  after_destroy :fix_resources
-
-  has_many :categorizations
-  has_many :categories, \
-    :through => :categorizations
-
-  has_and_belongs_to_many :tags, :foreign_key => 'article_id'
+  before_create :set_defaults, :create_guid
+  after_create :add_notifications
+  before_save :set_published_at
+  after_save :post_trigger
+  after_save :keywords_to_tags
 
   scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
   scope :drafts, :conditions => ['state = ?', 'draft']
@@ -51,11 +55,6 @@ class Article < Content
   def has_child?
     Article.exists?({:parent_id => self.id})
   end
-
-  belongs_to :user
-
-  has_many :triggers, :as => :pending_item
-  after_save :post_trigger
 
   attr_accessor :draft, :keywords
 
@@ -512,11 +511,6 @@ class Article < Content
 
   protected
 
-  before_create :set_defaults, :create_guid
-  before_save :set_published_at
-  after_save :keywords_to_tags
-  after_create :add_notifications
-
   def set_published_at
     if self.published and self[:published_at].nil?
       self[:published_at] = self.created_at || Time.now
@@ -557,17 +551,5 @@ class Article < Content
     to = from + 1.day unless day.blank?
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
-  end
-
-  validates_uniqueness_of :guid
-  validates_presence_of :title
-
-  private
-
-  def fix_resources
-    Resource.find(:all, :conditions => "article_id = #{id}").each do |fu|
-      fu.article_id = nil
-      fu.save
-    end
   end
 end
