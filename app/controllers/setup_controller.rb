@@ -2,8 +2,25 @@ class SetupController < ApplicationController
   before_filter :check_config, :only => 'index'
   layout 'setup'
 
-  def index
+  def index    
     if request.post?
+      # This is not a model and I can't handle errors in the models so I just do
+      # crappy old school params checking here
+      errmsg = ""
+      if params[:setting] and params[:setting][:blog_name].to_s.empty?
+        errmsg << _("Blog name is mandatory")
+      end
+      if params[:setting] and params[:setting][:email].to_s.empty?
+        errmsg << _("Email is mandatory")
+        error = 1
+      end
+
+      unless errmsg.empty?
+        flash[:error] = errmsg
+        redirect_to :action => 'index'
+        return
+      end
+      
       Blog.transaction do
         this_blog.blog_name = params[:setting][:blog_name]
         this_blog.base_url = blog_base_url
