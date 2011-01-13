@@ -2,7 +2,6 @@
 
 setup:
 - reduce setup width
-✓ errors handling
 
 general admin:
 - make info and confirmation message blocks a different color (yellow and green)
@@ -20,3 +19,6 @@ settings:
   - item
   
 bugs:
+- Publishing bug with Rails3 handling timezone on date field. TODO: convert what's displayed according to the timezone. I think this will need a bunch of specs.
+- Tags randomly lost when editing a post
+- Autosave on edit breaks the post chain (article[:id] VS article_id). Saving will create a new article instead of overwrite the old one. Needs spec too.
