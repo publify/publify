@@ -2,6 +2,7 @@
 
 setup:
 - reduce setup width
+- add some margin above the error block
 
 general admin:
 - make info and confirmation message blocks a different color (yellow and green)
@@ -15,7 +16,6 @@ settings:
   - Make the url to ping box bigger
   - Update URLS (no one use technorati anymore huh)
   feedback:
-  - Move source email to general settings
   - item
   
 bugs:
