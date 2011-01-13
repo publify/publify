@@ -40,6 +40,14 @@
       </div>
     </div>
     <div class='setting clear'>
+      <p><%= _("Typo can notify you when new articles or comments are posted")%></p>
+      <label class="float" for="setting_email_from"><%= _("Source Email")%></label>
+      <div class='input_text'>
+        <%= text_field(:setting, :email_from, { :class => 'medium'}) %>
+        <span><%= _("Email address used by Typo to send notifications")%></span>
+      </div>
+    </div>
+    <div class='setting clear'>
       <label class="float" for="setting_admin_display_elements"><%= _("Items to display in admin lists")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'small'})%>

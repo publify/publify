@@ -50,20 +50,6 @@
 </div>
 
 <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Notifications")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
-    <div class='setting'>
-      <p><%= _("Typo can notify you when new articles or comments are posted")%></p>
-      <label class="float" for="setting_email_from"><%= _("Source Email")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :email_from, { :class => 'medium'}) %>
-        <span><%= _("Email address used by Typo to send notifications")%></span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
   <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Spam")%></h3>
   <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
     <div class='setting'>
