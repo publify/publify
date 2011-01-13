@@ -1,0 +1,22 @@
+# This file is better viewed with Textmate tasks plugin
+
+setup:
+- reduce setup width
+✓ errors handling
+
+general admin:
+- make info and confirmation message blocks a different color (yellow and green)
+- Move helps under text fields 
+- chose a different typo for labels and helps
+
+settings:
+  general settings:
+  - make all fields the same width
+  write:
+  - Make the url to ping box bigger
+  - Update URLS (no one use technorati anymore huh)
+  feedback:
+  - Move source email to general settings
+  - item
+  
+bugs:
