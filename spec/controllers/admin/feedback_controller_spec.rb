@@ -38,10 +38,10 @@ describe Admin::FeedbackController do
       Factory(:blog)
       @admin = users(:tobi)
       request.session = { :user => @admin.id }
-      @article = Factory(:article, :user => @admin)
     end
 
     def feedback_from_own_article
+      @article ||= Factory(:article, :user => @admin)
       @comment_own ||= Factory.create(:comment, :article => @article)
     end
 
@@ -78,7 +78,8 @@ describe Admin::FeedbackController do
       end
 
       it 'should success' do
-        3.times { Factory(:comment) }
+        a = Factory(:article)
+        3.times { Factory(:comment, :article => a) }
         get :index
         should_success_with_index(response)
         assert_equal 3, assigns(:feedback).size
@@ -275,11 +276,11 @@ describe Admin::FeedbackController do
       Factory(:blog)
       @publisher = users(:user_publisher)
       request.session = { :user => @publisher.id }
-      @article = Factory(:article, :user => @publisher)
     end
 
 
     def feedback_from_own_article
+      @article ||= Factory(:article, :user => @publisher)
       @feedback_own_article ||= Factory(:comment, :article => @article)
     end
 
