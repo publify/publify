@@ -18,10 +18,10 @@ with_each_theme do |theme, view_path|
     context "normally" do
       before(:each) do
         Factory(:blog)
-        8.times {Factory(:article, :body => 'body')}
+        2.times {Factory(:article, :body => 'body')}
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
-        assign(:articles, Article.paginate(:all, :page => 2, :per_page => 4))
+        assign(:articles, Article.paginate(:all, :page => 1, :per_page => 4))
         if @layout
           render :file => "articles/index", :layout => @layout
         else
@@ -30,14 +30,6 @@ with_each_theme do |theme, view_path|
       end
 
       subject { rendered }
-
-      it "should not have pagination link to page 2 without q param" do
-        should_not have_selector("a", :href => "/page/2")
-      end
-
-      it "should have pagination link to page 1 without q param if on page 2" do
-        should have_selector("a", :href=> "/page/1")
-      end
 
       it "should not have too many paragraph marks around body" do
         should have_selector("p", :content => "body")
@@ -55,16 +47,41 @@ with_each_theme do |theme, view_path|
       end
     end
 
+    context "without search, on page 2" do
+      before(:each) do
+        Factory(:blog)
+        3.times { Factory(:article) }
+        @controller.action_name = "index"
+        @controller.request.path_parameters["controller"] = "articles"
+        assign(:articles, Article.paginate(:all, :page => 2, :per_page => 2))
+        if @layout
+          render :file => "articles/index", :layout => @layout
+        else
+          render :file => "articles/index"
+        end
+      end
+
+      subject { rendered }
+
+      it "should not have pagination link to page 2" do
+        should_not have_selector("a", :href => "/page/2")
+      end
+
+      it "should have pagination link to page 1" do
+        should have_selector("a", :href=> "/page/1")
+      end
+    end
+
     context "when on page 2 of search" do
       before(:each) do
         Factory(:blog)
-        10.times {Factory(:article, :body => 'body')}
+        3.times {Factory(:article, :body => 'body')}
         @controller.action_name = "search"
         @controller.request.path_parameters["controller"] = "articles"
         params[:q]           = "body"
         params[:page]        = 2
         params[:action]      = 'search'
-        assign(:articles, Blog.default.articles_matching(params[:q], :page => 2, :per_page => 4))
+        assign(:articles, Blog.default.articles_matching(params[:q], :page => 2, :per_page => 2))
         if @layout
           render :file => "articles/index", :layout => @layout
         else
