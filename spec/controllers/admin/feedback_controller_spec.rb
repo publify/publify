@@ -34,18 +34,19 @@ describe Admin::FeedbackController do
 
   describe 'logged in admin user' do
 
+    before :each do
+      Factory(:blog)
+      @admin = users(:tobi)
+      request.session = { :user => @admin.id }
+      @article = Factory(:article, :user => @admin)
+    end
+
     def feedback_from_own_article
-      admin = Factory.create(:user, :profile => Factory.create(:profile_admin))
-      @comment_own ||= Factory.create(:comment, :article => Factory(:article, :user => admin))
+      @comment_own ||= Factory.create(:comment, :article => @article)
     end
 
     def feedback_from_not_own_article
       @spam_comment_not_own ||= Factory(:spam_comment)
-    end
-
-    before do
-      Factory(:blog)
-      request.session = { :user => users(:tobi).id }
     end
 
     describe 'destroy action' do
@@ -77,50 +78,57 @@ describe Admin::FeedbackController do
       end
 
       it 'should success' do
-        11.times { Factory(:comment) }
+        3.times { Factory(:comment) }
         get :index
         should_success_with_index(response)
-        #FIXME : Test is useless because the pagination is on 10. Now there are 11
-        #feedback, so there are several feedback :(
-        assert_equal 10, assigns(:feedback).size #Feedback.count, assigns(:feedback).size
+        assert_equal 3, assigns(:feedback).size
       end
 
-      it 'should view only confirmed feedback' do
+      it 'should view only unconfirmed feedback' do
+        c = Factory(:comment, :state => 'presumed_ham')
         Factory(:comment)
         get :index, :confirmed => 'f'
         should_success_with_index(response)
-        Feedback.count(:conditions => { :status_confirmed => false }).should == assigns(:feedback).size
+        assigns(:feedback).should == [c]
       end
 
       it 'should view only spam feedback' do
-        Factory(:spam_comment)
+        Factory(:comment)
+        c = Factory(:spam_comment)
         get :index, :published => 'f'
         should_success_with_index(response)
-        Feedback.count(:conditions => { :published => false }).should == assigns(:feedback).size
+        assigns(:feedback).should == [c]
       end
 
       it 'should view unconfirmed_spam' do
         Factory(:comment)
+        Factory(:spam_comment)
+        c = Factory(:spam_comment, :state => 'presumed_spam')
         get :index, :published => 'f', :confirmed => 'f'
         should_success_with_index(response)
-        Feedback.count(:conditions => { :published => false, :status_confirmed => false }).should == assigns(:feedback).size
+        assigns(:feedback).should == [c]
       end
 
+      # TODO: Functionality is counter-intuitive: param presumed_spam is
+      # set to f(alse), but shows presumed_spam.
       it 'should view presumed_spam' do
+        c = Factory(:comment, :state => :presumed_spam)
+        Factory(:comment, :state => :presumed_ham)
         get :index, :presumed_spam => 'f'
         should_success_with_index(response)
-        Feedback.count(:conditions => { :state => 'presumed_spam' }).should == assigns(:feedback).size
+        assigns(:feedback).should == [c]
       end
 
       it 'should view presumed_ham' do
-        get :index, :presumed_spam => 'f'
+        Factory(:comment)
+        Factory(:comment, :state => :presumed_spam)
+        c = Factory(:comment, :state => :presumed_ham)
+        get :index, :presumed_ham => 'f'
         should_success_with_index(response)
-        Feedback.count(:conditions => { :state => 'presumed_ham' }).should == assigns(:feedback).size
+	assigns(:feedback).should == [c]
       end
 
       it 'should get page 1 if page params empty' do
-        Factory(:comment)
-        assert_equal 1, Feedback.count
         get :index, :page => ''
         should_success_with_index(response)
       end

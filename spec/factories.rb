@@ -166,6 +166,7 @@ end
 
 Factory.define :spam_comment, :parent => :comment do |c|
   c.state 'spam'
+  c.published false
 end
 
 Factory.define :page do |p|
