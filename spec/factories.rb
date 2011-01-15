@@ -39,6 +39,10 @@ Factory.define :user do |u|
   u.password 'top-secret'
 end
 
+def some_user
+  User.find(:first) || Factory(:user)
+end
+
 Factory.define :article do |a|
   a.title 'A big article'
   a.body 'A content with several data'
@@ -47,10 +51,14 @@ Factory.define :article do |a|
   a.permalink 'a-big-article'
   a.published_at '2005-01-01 02:00:00'
   a.updated_at { Factory.next(:time) }
-  a.user { |u| u.association(:user) }
+  a.user { some_user }
   a.allow_comments true
   a.published true
   a.allow_pings true
+end
+
+def some_article
+  Article.find(:first) || Factory(:article)
 end
 
 Factory.define :markdown, :class => :text_filter do |m|
@@ -153,7 +161,7 @@ end
 
 Factory.define :comment do |c|
   c.published true
-  c.article {|a| a.association(:article)}
+  c.article { some_article }
   c.author 'Bob Foo'
   c.url 'http://fakeurl.com'
   c.body 'Test <a href="http://fakeurl.co.uk">body</a>'
@@ -176,13 +184,13 @@ Factory.define :page do |p|
   p.created_at '2005-05-05 01:00:01'
   p.published_at '2005-05-05 01:00:01'
   p.updated_at '2005-05-05 01:00:01'
-  p.user {|u| u.association(:user)}
+  p.user { some_user }
   p.published true
   p.state 'published'
 end
 
 Factory.define :trackback do |t|
-  t.article {|a| a.association(:article)}
+  t.article { some_article }
   t.published true
   t.state 'ham'
   t.status_confirmed true
