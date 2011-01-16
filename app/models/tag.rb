@@ -66,6 +66,10 @@ class Tag < ActiveRecord::Base
     find :all, :conditions => ['name LIKE ? ', "%#{char}%"], :order => 'name ASC'
   end
 
+  def self.collection_to_string tags
+    tags.map(&:display_name).sort.map { |name| name =~ / / ? "\"#{name}\"" : name }.join ", "
+  end
+
   def published_articles
     articles.already_published
   end

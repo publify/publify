@@ -153,7 +153,7 @@ class Admin::ContentController < Admin::BaseController
 
     @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
     @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
-    @article.keywords = @article.tags.map { |tag| tag.display_name }.sort.join(", ")
+    @article.keywords = Tag.collection_to_string @article.tags
     @article.attributes = params[:article]
 
     params[:article] ||= {}
