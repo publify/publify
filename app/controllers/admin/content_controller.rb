@@ -86,8 +86,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
-    params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
-    
     get_or_build_article
 
     # This is ugly, but I have to check whether or not the article is
@@ -140,8 +138,6 @@ class Admin::ContentController < Admin::BaseController
   def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
-    params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
-    
     get_or_build_article
 
     if request.post?
@@ -155,13 +151,12 @@ class Admin::ContentController < Admin::BaseController
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @article.published = true
 
-    # TODO Test if we can delete the next line. It's delete on nice_permalinks branch
-    params[:article] ||= {}
-
     @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
     @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.keywords = @article.tags.map { |tag| tag.display_name }.sort.join(", ")
     @article.attributes = params[:article]
+
+    params[:article] ||= {}
 
     if request.post?
       set_article_author
@@ -237,6 +232,8 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def get_or_build_article
+    params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
+
     @article = case params[:id]
              when nil
                Article.new.tap do |art|
