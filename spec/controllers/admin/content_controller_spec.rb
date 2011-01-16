@@ -34,24 +34,40 @@ describe Admin::ContentController do
   end
 
   shared_examples_for 'autosave action' do
-    it 'should save new article with draft status and link to other article if first autosave' do
-      lambda do
-      lambda do
-        post :autosave, :article => {:allow_comments => '1',
-          :body_and_extended => 'my draft in autosave',
-          :keywords => 'mientag',
-          :permalink => 'big-post',
-          :title => 'big post',
-          :text_filter => 'none',
-          :published => '1',
-          :published_at => 'December 23, 2009 03:20 PM'}
-      end.should change(Article, :count)
-      end.should change(Tag, :count)
-      result = Article.last
-      result.body.should == 'my draft in autosave'
-      result.title.should == 'big post'
-      result.permalink.should == 'big-post'
-      result.parent_id.should be_nil
+    describe "first time for a new article" do
+      it 'should save new article with draft status and no parent article' do
+        lambda do
+        lambda do
+          post :autosave, :article => {:allow_comments => '1',
+            :body_and_extended => 'my draft in autosave',
+            :keywords => 'mientag',
+            :permalink => 'big-post',
+            :title => 'big post',
+            :text_filter => 'none',
+            :published => '1',
+            :published_at => 'December 23, 2009 03:20 PM'}
+        end.should change(Article, :count)
+        end.should change(Tag, :count)
+        result = Article.last
+        result.body.should == 'my draft in autosave'
+        result.title.should == 'big post'
+        result.permalink.should == 'big-post'
+        result.parent_id.should be_nil
+      end
+    end
+
+    describe "second time for a new article" do
+      it 'should save the same article with draft status and no parent article' do
+        draft = Factory(:article, :published => false, :state => 'draft')
+        lambda do
+          post :autosave, :article => {
+            :id => draft.id,
+            :body_and_extended => 'new body' }
+        end.should_not change(Article, :count)
+        result = Article.find(draft.id)
+        result.body.should == 'new body'
+        result.parent_id.should be_nil
+      end
     end
 
     describe "for a published article" do
@@ -204,6 +220,46 @@ describe Admin::ContentController do
       assert_equal "markdown", new_article.text_filter.name
       assert_equal "<p>body via <em>markdown</em></p>", new_article.html(:body)
       assert_equal "<p><em>foo</em></p>", new_article.html(:extended)
+    end
+
+    describe "editing a published article with an autosaved draft" do
+      before do
+        @orig = Factory(:article)
+        @draft = Factory(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+        post(:new,
+             :id => @orig.id,
+             :article => {:id => @draft.id, :body => 'update'})
+      end
+
+      it "updates the original" do
+        assert_raises ActiveRecord::RecordNotFound do
+          Article.find(@draft.id)
+        end
+      end
+
+      it "delete the draft" do
+        Article.find(@orig.id).body.should == 'update'
+      end
+    end
+
+    describe "editing a draft copy of a published article" do
+      before do
+        @orig = Factory(:article)
+        @draft = Factory(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+        post(:new,
+             :id => @draft.id,
+             :article => {:id => @draft.id, :body => 'update'})
+      end
+
+      it "updates the original" do
+        assert_raises ActiveRecord::RecordNotFound do
+          Article.find(@draft.id)
+        end
+      end
+
+      it "delete the draft" do
+        Article.find(@orig.id).body.should == 'update'
+      end
     end
 
   end

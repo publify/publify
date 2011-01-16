@@ -86,6 +86,8 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
+    params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
+    
     get_or_build_article
 
     # This is ugly, but I have to check whether or not the article is
@@ -138,7 +140,17 @@ class Admin::ContentController < Admin::BaseController
   def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
+    params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
+    
     get_or_build_article
+
+    if request.post?
+      unless params[:article][:draft]
+        if not @article.parent_id.nil?
+          @article = Article.find(@article.parent_id)
+        end
+      end
+    end
 
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @article.published = true
@@ -225,8 +237,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def get_or_build_article
-    params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
-    
     @article = case params[:id]
              when nil
                Article.new.tap do |art|
