@@ -37,7 +37,6 @@ gem 'mini_magick', '~> 1.3', :require => 'mini_magick'
 gem 'uuidtools', '~>2.1.1'
 gem 'flickr', '~> 1.0.2'
 gem 'rubypants', '~> 0.2.0'
-gem 'rails-app-installer', '~> 0.2.0'
 gem 'acts_as_list'
 gem 'acts_as_tree_rails3'
 
@@ -47,10 +46,4 @@ group :development, :test do
   gem 'webrat'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
   gem 'rcov'
-end
-
-group :adapters do
-  gem 'sqlite3-ruby'
-  gem 'pg'
-  gem 'mysql'
 end
