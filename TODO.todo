@@ -3,14 +3,13 @@
 Before release:
 - change wiki documentation
 - select 20 themes to be kept and added to typogarden github account. Other themes will just be discontinued
-- rewrite the readme
+✓ rewrite the readme
 - generate release note
 - update website
-- change version
+✓ change version
 - generate typo archive
-- create stable.zip and stable.tar.gz redirects
+✓ create stable.zip and stable.tar.gz redirects
 - improve French translation (maybe)
-
 
 setup:
 - reduce setup width

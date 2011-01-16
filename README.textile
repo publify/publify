@@ -8,7 +8,7 @@ Current version is Typo 5.5 for Ruby on Rails 2.3.8.
 
 h2. Useful Links:
 
-* "Download Typo 5.5 source code:":http://rubyforge.org/frs/?group_id=555&release_id=42715
+* "Download Typo source code:":http://typosphere.org/stable.tgz
 * "*Report a bug*":http://fdv.lighthouseapp.com/projects/11171-typo-blog/overview
 * "*Frequently Asked Questions*":http://wiki.github.com/fdv/typo/frequently-asked-questions
 * "Official Typo blog":http://blog.typosphere.org
@@ -54,65 +54,36 @@ h2. 1. Prerequisites
 
 To install Typo you need the following:
 
-* Ruby 1.8.7 or Ruby Enterprise Edition
-* Ruby On Rails 2.3.8
+* Ruby 1.8.7 or Ruby Enterprise Edition, Typo is not Ruby 1.9 compliant
+* Ruby On Rails 3.0.0
 * A database engine, MySQL, PgSQL or SQLite3
 * The Ruby connector to your favourite database engine
+* A FTP client or even better SSH access to your hosting provider
 
-h2. 2. Install the gem
+h2. 2. Get Typo
 
-If you have root access, just run:
-
-<pre>
-  $ sudo gem install typo
-</pre>
-
-Otherwise:
-
-<pre>
-  $ export GEM_PATH=~/gems
-  $ gem install -i ~/gems typo
-</pre>
+Download Typo stable version at http://typosphere.org/stable.tar.gz or http://typosphere.org/stable.zip.
 
 h2. 3. Install Typo
 
-Typo comes as a highly configurable binary installer. By default, it runs with Mongrel on a random port between 4000 and 5000 and SQLite3. However we recommend using a more production ready database engine and a faster, more scalable web server. MySQL and Passenger running either on Apache or Nginx are our favourite options.
+Unpack Typo archive into your Web hosting space.
 
-To install Typo with the default options, just run:
+Rename database.yml.example to database.yml and fill in your database credentials for production mode. 
 
-<pre>
-  typo install /some/path
-</pre>
+Then run:
 
-This will install typo with SQLite3 and will spawn it to some random port.
-
-To chose your database engine and web server, run the following:
-
-<pre>
-  typo install /some/path web-server=my_server database=my_db db_password=password db_user=my_app db_name=my_app some/path
-</pre>
-
-Options for _web-server_ are:
-
-* mongrel
-* mongrel_cluster
-* external: Apache, Nginx, Lighttpd... with Fastcgi, mod_rails, Thin...
-
-For more information about installing Typo from the gem, please read "our installer documentation":http://github.com/fdv/typo/raw/master/doc/Installer.txt
+$ bundle install
+$ rake RAILS_ENV=production db:migrate
 
 h2. 4. Start / stop Typo
 
-If you're using _mongrel_ or _mongrel_cluster_ you'll be able to start / stop your Typo engine using Typo binary:
+To use / test typo, run:
 
-<pre>
-  $ typo start some/path
-</pre>
-
-<pre>
-  $ typo stop some/path
-</pre>
+./script/rails server
 
 h1. Daily use
+
+For a daily use, we reccomend to use Passenger (mod_rails) or Thin / Unicorn with Apache or Nginx.
 
 Typo's administrative interface is available at http://your.domain.com/admin. You can use this to post articles and change Typo's configuration settings. For posting new content, you can either use this administrative web interface or a desktop blog editor like MarsEdit or Ecto. For a short list of clients which are confirmed to work please visit http://typosphere.org/wiki/DesktopClients.
 
