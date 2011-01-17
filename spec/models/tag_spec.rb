@@ -13,13 +13,13 @@ describe Tag do
     test_tag.errors[:name].should == ['has already been taken']
   end
 
-  it 'display names with spaces can be found by joinedupname' do
+  it 'display names with spaces can be found by dash joined name' do
     Tag.find(:first, :conditions => {:name => 'Monty Python'}).should be_nil
     tag = Tag.create(:name => 'Monty Python')
     tag.should be_valid
-    tag.name.should == 'montypython'
+    tag.name.should == 'monty-python'
     tag.display_name.should == 'Monty Python'
-    tag.should == Tag.get('montypython')
+    tag.should == Tag.get('monty-python')
     tag.should == Tag.get('Monty Python')
   end
 

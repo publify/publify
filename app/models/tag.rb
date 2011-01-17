@@ -28,7 +28,7 @@ class Tag < ActiveRecord::Base
       self.display_name = self.name
     end
     self.name = self.name.gsub('.', '-')
-    self.name = self.name.gsub(' ', '').downcase
+    self.name = self.name.gsub(' ', '-').downcase
   end
 
   before_save :ensure_naming_conventions
