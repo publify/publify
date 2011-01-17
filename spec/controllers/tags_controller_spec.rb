@@ -91,7 +91,8 @@ describe TagsController, 'showing a single tag' do
   end
 
   describe "without articles" do
-    it 'should render an error' do
+    # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
+    it 'should redirect to main page' do
       do_get
 
       response.status.should == 301
@@ -115,6 +116,16 @@ describe TagsController, 'showing tag "foo"' do
 
   it 'should have good atom feed link in head' do
     response.should have_selector('head>link[href="http://test.host/tag/foo.atom"][rel=alternate][type="application/atom+xml"][title=Atom]')
+  end
+end
+
+describe TagsController, "showing a non-existant tag" do
+  # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
+  it 'should redirect to main page' do
+    get 'show', :id => 'thistagdoesnotexist'
+
+    response.status.should == 301
+    response.should redirect_to(Blog.default.base_url)
   end
 end
 

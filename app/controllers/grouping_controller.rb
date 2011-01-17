@@ -37,6 +37,8 @@ class GroupingController < ContentController
     set_noindex
     @grouping = grouping_class.find_by_permalink(params[:id])
 
+    return render_empty if @grouping.nil?
+
     @page_title = "#{_(self.class.to_s.sub(/Controller$/,'').singularize)} #{@grouping.name}, "
 
     if @grouping.respond_to? :description and
@@ -105,6 +107,11 @@ class GroupingController < ContentController
   def render_feed(template, collection)
     articles = collection[0,this_blog.limit_rss_display]
     render :partial => template.sub(%r{^(?:articles/)?}, 'articles/'), :locals => { :items => articles }
+  end
+
+  def render_empty
+    @articles = []
+    render_articles
   end
 
   private
