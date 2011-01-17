@@ -100,7 +100,6 @@ class Admin::ContentController < Admin::BaseController
       @article.parent_id      = parent_id
     end
 
-    params[:article] ||= {}
     @article.attributes = params[:article]
     @article.published = false
     set_article_author
@@ -155,8 +154,6 @@ class Admin::ContentController < Admin::BaseController
     @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.keywords = Tag.collection_to_string @article.tags
     @article.attributes = params[:article]
-
-    params[:article] ||= {}
 
     if request.post?
       set_article_author
