@@ -41,22 +41,29 @@ describe Admin::TagsController do
   end
 
   describe 'update action' do
+    before do
+      @tag = Factory(:tag)
+      post :edit, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
+    end
 
     it 'should redirect to index' do
-      tag = Factory(:tag)
-      post :edit, 'id' => tag.id, 'tag' => {:name => 'z'}
       response.should redirect_to(:action => 'index')
     end
 
     it 'should update tag' do
-      tag = Factory(:tag)
-      post :edit, 'id' => tag.id,
-        'tag' => {:display_name => 'Foo Bar'}
-      tag.reload
-      tag.name.should == 'foo-bar'
-      tag.display_name == "Foo Bar"
+      @tag.reload
+      @tag.name.should == 'foo-bar'
+      @tag.display_name.should == "Foo Bar"
     end
 
+    it 'should create a redirect from the old to the new' do
+      old_name = @tag.name
+      @tag.reload
+      new_name = @tag.name
+
+      r = Redirect.find_by_from_path "/tag/#{old_name}"
+      r.to_path.should == "/tag/#{new_name}"
+    end
   end
 
 end
