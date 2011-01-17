@@ -19,7 +19,6 @@ module Admin::BaseHelper
     heading = ""
     heading << content_tag(:div, @link_to_new, :class => 'page_new') unless @link_to_new.blank?
     heading << content_tag(:h2, @page_heading, :class => 'page_heading') unless @page_heading.blank?
-
   end
 
   def cancel(url = {:action => 'index'})

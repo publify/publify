@@ -21,9 +21,19 @@ class Admin::TagsController < Admin::BaseController
     @tag = Tag.find(params[:id])
     @tag.attributes = params[:tag]
 
-    if request.post? and @tag.save
-      flash[:notice] = _('Tag was successfully updated.')
-      redirect_to :action => 'index'
+    if request.post?
+      old_name = @tag.name
+      
+      # This is necessary to trick ensure_naming_conventions
+      @tag.name = @tag.display_name
+
+      if  @tag.save
+        # Create a redirection to ensure nothing nasty happens in the future
+        Redirect.create(:from_path => "/tag/#{@old_name}", :to_path => @tag.permalink_url)
+        
+        flash[:notice] = _('Tag was successfully updated.')
+        redirect_to :action => 'index'
+      end
     end
   end
 
