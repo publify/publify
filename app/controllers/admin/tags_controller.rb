@@ -24,10 +24,7 @@ class Admin::TagsController < Admin::BaseController
     if request.post?
       old_name = @tag.name
       
-      # This is necessary to trick ensure_naming_conventions
-      @tag.name = @tag.display_name
-
-      if  @tag.save
+      if @tag.save
         # Create a redirection to ensure nothing nasty happens in the future
         Redirect.create(:from_path => "/tag/#{@old_name}", :to_path => @tag.permalink_url)
         

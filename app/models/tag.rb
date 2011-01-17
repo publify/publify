@@ -18,7 +18,7 @@ class Tag < ActiveRecord::Base
     if self.display_name.blank?
       self.display_name = self.name
     end
-    self.name = self.name.to_url
+    self.name = self.display_name.to_url
   end
 
   before_save :ensure_naming_conventions
