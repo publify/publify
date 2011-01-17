@@ -51,9 +51,9 @@ describe Admin::TagsController do
     it 'should update tag' do
       tag = Factory(:tag)
       post :edit, 'id' => tag.id,
-        'tag' => {:name => 'foobar', :display_name => 'Foo Bar'}
+        'tag' => {:display_name => 'Foo Bar'}
       tag.reload
-      tag.name.should == 'foobar'
+      tag.name.should == 'foo-bar'
       tag.display_name == "Foo Bar"
     end
 
