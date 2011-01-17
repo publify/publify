@@ -136,10 +136,19 @@ describe Admin::ContentController do
 
   shared_examples_for 'new action' do
 
-    it 'should render new with get' do
-      get :new
-      response.should render_template('new')
-      assigns(:article).should_not be_nil
+    describe 'GET' do
+      it "renders the 'new' template" do
+        get :new
+        response.should render_template('new')
+        assigns(:article).should_not be_nil
+      end
+
+      it "correctly converts multi-word tags" do
+        a = Factory(:article, :keywords => '"foo bar", baz')
+        get :new, :id => a.id
+        response.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
+      end
+
     end
 
     def base_article(options={})
