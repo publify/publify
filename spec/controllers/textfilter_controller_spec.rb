@@ -3,11 +3,12 @@ require 'spec_helper'
 # TODO: Move elsewhere. TextfilterController is a dummy.
 describe TextfilterController do
   before do
+    @blog = Factory(:blog)
     @whiteboard = Hash.new
   end
 
   def blog
-    blogs(:default)
+    @blog
   end
 
   def filter_text(text, filters, filterparams={})

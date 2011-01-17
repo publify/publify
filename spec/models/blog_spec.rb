@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe "Given the first Blog fixture" do
   before(:each) {
-    Blog.destroy_all
     RouteCache.clear
     @blog = Factory.create :blog
   }
@@ -76,8 +75,8 @@ end
 
 describe "The default blog" do
   it "should pick up updates after a cache clear" do
-    a = Blog.default
-    b = blogs(:default)
+    Factory(:blog)
+    b = Blog.default
     b.blog_name = "some other name"
     c = Blog.default
     c.blog_name.should == "some other name"
@@ -86,8 +85,6 @@ end
 
 
 describe "Given no blogs" do
-  before(:each)  { Blog.destroy_all }
-
   it "should allow the creation of a valid default blog" do
     Blog.new.should be_valid
   end
@@ -96,7 +93,7 @@ end
 describe "Valid permalink in blog" do
 
   before :each do
-    @blog = blogs(:default)
+    @blog = Factory(:blog)
   end
 
   ['foo', 'year', 'day', 'month', 'title', '%title', 'title%', '/year/month/day/title', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|

@@ -41,6 +41,7 @@ end
 
 describe Category do
   describe "permalink" do
+    before(:each) { Factory(:blog) }
     subject { Factory(:category, :permalink => 'software').permalink_url }
     it { should == 'http://myblog.net/category/software' }
   end

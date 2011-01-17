@@ -4,6 +4,7 @@ describe CategoriesController, "/index" do
   render_views
 
   before do
+    Factory(:blog)
     3.times {
       category = Factory(:category)
       2.times { category.articles << Factory(:article) }
@@ -35,11 +36,12 @@ end
 
 describe CategoriesController, '/articles/category/personal' do
   before do
+    Factory(:blog)
     cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
-    cat.articles << contents(:article1)
-    cat.articles << contents(:article2)
-    cat.articles << contents(:article3)
-    cat.articles << contents(:article4)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
   end
 
   def do_get
@@ -75,12 +77,15 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should show only published articles' do
+    Category.delete_all
+    c = Factory(:category, :permalink => 'personal')
+    3.times {Factory(:article, :categories => [c])}
+    Factory(:article, :categories => [c], :published_at => nil,
+      :published => false, :state => 'draft')
     c = Category.find_by_permalink("personal")
     c.articles.size.should == 4
     c.published_articles.size.should == 3
-
     do_get
-
     response.should be_success
     assigns[:articles].size.should == 3
   end
@@ -104,6 +109,7 @@ end
 
 describe CategoriesController, 'empty category life-on-mars' do
   it 'should redirect to home when the category is empty' do
+    Factory(:blog)
     Factory(:category, :permalink => 'life-on-mars')
     get 'show', :id => 'life-on-mars'
     response.status.should == 301
@@ -115,11 +121,10 @@ describe CategoriesController, "password protected article" do
   render_views
 
   it 'should be password protected when shown in category' do
-    cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
-    cat.articles << contents(:article1)
-    cat.articles << contents(:article2)
-    cat.articles << contents(:article3)
-    cat.articles << contents(:article4)
+    Factory(:blog)
+    cat = Factory(:category, :permalink => 'personal')
+    cat.articles << Factory(:article, :password => 'my_super_pass')
+    cat.save!
 
     get 'show', :id => 'personal'
 
@@ -127,20 +132,3 @@ describe CategoriesController, "password protected article" do
       :attributes => { :id => "article_password" }
   end
 end
-
-## Old tests that still need conversion
-
-#   it "test_autodiscovery_category" do
-#     get :category, :id => 'hardware'
-#     assert_response :success
-#     assert_select 'link[title=RSS]' do
-#       assert_select '[rel=alternate]'
-#       assert_select '[type=application/rss+xml]'
-#       assert_select '[href=http://test.host/articles/category/hardware.rss]'
-#     end
-#     assert_select 'link[title=Atom]' do
-#       assert_select '[rel=alternate]'
-#       assert_select '[type=application/atom+xml]'
-#       assert_select '[href=http://test.host/articles/category/hardware.atom]'
-#     end
-#   end

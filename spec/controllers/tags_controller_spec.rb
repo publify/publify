@@ -4,6 +4,7 @@ describe TagsController, "/index" do
   render_views
 
   before do
+    Factory(:blog)
     3.times {
       tag = Factory(:tag)
       2.times { tag.articles << Factory(:article) }
@@ -35,6 +36,7 @@ end
 
 describe TagsController, 'showing a single tag' do
   before do
+    Factory(:blog)
     @tag = Factory(:tag, :name => 'Foo')
   end
 
@@ -105,6 +107,7 @@ describe TagsController, 'showing tag "foo"' do
   render_views
 
   before(:each) do
+    Factory(:blog)
     #TODO need to add default article into tag_factory build to remove this :articles =>...
     foo = Factory(:tag, :name => 'foo', :articles => [Factory(:article)])
     get 'show', :id => 'foo'
@@ -133,6 +136,7 @@ describe TagsController, "password protected article" do
   render_views
 
   it 'article in tag should be password protected' do
+    Factory(:blog)
     #TODO need to add default article into tag_factory build to remove this :articles =>...
     a = Factory(:article, :password => 'password')
     foo = Factory(:tag, :name => 'foo', :articles => [a])

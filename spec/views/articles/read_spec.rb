@@ -16,8 +16,10 @@ with_each_theme do |theme, view_path|
 
     context "applying text filters" do
       before(:each) do
+        Factory(:blog)
+        article = Factory(:article, :body => 'body', :excerpt => 'extended content')
         @controller.action_name = "redirect"
-        assign(:article, contents('article1'))
+        assign(:article, article)
         render :file => "articles/read"
       end
 
@@ -34,9 +36,11 @@ with_each_theme do |theme, view_path|
 
     context "formatting comments" do
       before(:each) do
-        Blog.default.comment_text_filter = 'textile'
+        Factory(:blog, :comment_text_filter => 'textile')
         @controller.action_name = "read"
-        assign(:article, contents('article1'))
+        article = Factory(:article)
+        Factory(:comment, :article => article, :body => 'Comment body _italic_ *bold*')
+        assign(:article, article)
         render :file => "articles/read"
       end
 
@@ -49,17 +53,33 @@ with_each_theme do |theme, view_path|
 
     context "formatting comments with bare links" do
       before(:each) do
-        Blog.default.comment_text_filter = 'textile'
+        Factory(:blog, :comment_text_filter => 'textile')
+
+        article = Factory(:article,
+          :allow_comments => true,
+          :allow_pings => true,
+          :permalink => 'article-3',
+          :author => 'Tobi',
+          :published => true,
+          :state => 'published' )
+        Factory(:comment,
+          :published => true,
+          :state => 'ham',
+          :status_confirmed => true,
+          :article => article,
+          :author => 'Foo Bar',
+          :body => 'Hello foo@bar.com http://www.bar.com')
+
         @controller.action_name = "read"
-        assign(:article, contents('article3'))
+        assign(:article, article)
         render :file => "articles/read"
       end
 
       it "should automatically add links" do
-	rendered.should have_selector("a", :href => "mailto:foo@bar.com",
-				 :content => "foo@bar.com")
+        rendered.should have_selector("a", :href => "mailto:foo@bar.com",
+          :content => "foo@bar.com")
         rendered.should have_selector("a", :href=>"http://www.bar.com",
-				 :content => "http://www.bar.com")
+          :content => "http://www.bar.com")
       end
     end
   end

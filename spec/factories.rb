@@ -10,6 +10,10 @@ Factory.sequence :guid do |n|
   "deadbeef#{n}"
 end
 
+Factory.sequence :label do |n|
+  "lab_#{n}"
+end
+
 Factory.sequence :file_name do |f|
   "file_name_#{f}"
 end
@@ -21,6 +25,7 @@ end
 Factory.define :user do |u|
   u.login { Factory.next(:user) }
   u.email { Factory.next(:user) }
+  u.name 'Bond'
   u.notify_via_email false
   u.notify_on_new_articles false
   u.notify_watch_my_articles false
@@ -31,12 +36,33 @@ end
 Factory.define :article do |a|
   a.title 'A big article'
   a.body 'A content with several data'
+  a.extended 'extended content for fun'
   a.guid { Factory.next(:guid) }
   a.permalink 'a-big-article'
-  a.published_at Time.now
-  # Using an existing user avoids the password reminder mail overhead
-  a.user { User.find(:first) }
-  #a.association :user, :factory => :user
+  a.published_at '2005-01-01 02:00:00'
+  a.user { |u| u.association(:user) }
+  a.allow_comments true
+  a.published true
+  a.allow_pings true
+end
+
+Factory.define :markdown, :class => :text_filter do |m|
+  m.name "markdown"
+  m.description "Markdown"
+  m.markup 'markdown'
+  m.filters '--- []'
+  m.params '--- {}'
+end
+
+Factory.define :textile, :parent => :markdown do |m|
+  m.name "textile"
+  m.description "Textile"
+  m.markup 'textile'
+end
+
+Factory.define :utf8article, :parent => :article do |u|
+  u.title 'ルビー'
+  u.permalink 'ルビー'
 end
 
 Factory.define :second_article, :parent => :article do |a|
@@ -53,11 +79,35 @@ end
 
 Factory.define :blog do |b|
   b.base_url 'http://myblog.net'
+  b.show_extended_on_rss true
   b.blog_name 'test blog'
+  b.title_prefix 1
+  b.limit_article_display 2
+  b.sp_url_limit 3
+  b.use_gravatar false
+  b.blog_subtitle "test subtitles"
+  b.limit_rss_display 10
+  b.ping_urls "http://ping.example.com/ping http://alsoping.example.com/rpc/ping"
+  b.geourl_location ""
+  b.default_allow_pings false
+  b.send_outbound_pings false
+  b.sp_global true
+  b.default_allow_comments true
+  b.email_from "scott@sigkill.org"
+  b.theme "typographic"
+  b.text_filter "textile"
+  b.sp_article_auto_close 300
+  b.link_to_author false
+  b.comment_text_filter "markdown"
+  b.permalink_format "/%year%/%month%/%day%/%title%"
 end
 
+
+
+
+
 Factory.define :profile_admin, :class => :profile do |l|
-  l.label 'admin'
+  l.label {Factory.next(:label)}
   l.nicename 'Typo administrator'
   l.modules [:dashboard, :write, :content, :feedback, :themes, :sidebar, :users, :settings, :profile]
 end
@@ -92,4 +142,45 @@ end
 Factory.define :redirect do |r|
   r.from_path 'foo/bar'
   r.to_path '/someplace/else'
+end
+
+Factory.define :comment do |c|
+  c.published true
+  c.article {|a| a.association(:article)}
+  c.author 'Bob Foo'
+  c.url 'http://fakeurl.com'
+  c.body 'Test <a href="http://fakeurl.co.uk">body</a>'
+  c.created_at '2005-01-01 02:00:00'
+  c.updated_at '2005-01-01 02:00:00'
+  c.published_at '2005-01-01 02:00:00'
+  c.guid '12313123123123123'
+  c.state 'ham'
+end
+
+Factory.define :spam_comment, :parent => :comment do |c|
+  c.state 'spam'
+end
+
+Factory.define :page do |p|
+  p.name 'page_one'
+  p.title 'Page One Title'
+  p.body 'ho ho ho'
+  p.created_at '2005-05-05 01:00:01'
+  p.published_at '2005-05-05 01:00:01'
+  p.updated_at '2005-05-05 01:00:01'
+  p.user {|u| u.association(:user)}
+  p.published true
+  p.state 'published'
+end
+
+Factory.define :trackback do |t|
+  t.article {|a| a.association(:article)}
+  t.published true
+  t.state 'ham'
+  t.status_confirmed true
+  t.blog_name 'Trackback Blog'
+  t.title 'Trackback Entry'
+  t.url 'http://www.example.com'
+  t.excerpt 'This is an excerpt'
+  t.guid 'dsafsadffsdsf'
 end

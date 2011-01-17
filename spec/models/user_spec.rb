@@ -35,9 +35,14 @@ describe 'With the contents and users fixtures loaded' do
   end
 
   it 'The various article finders work appropriately' do
-    users(:tobi).articles.size.should == 8
-#    User.find(1).articles.find_published.size.should == Article.find(:all, :conditions => {:published => true}).size
-    users(:tobi).articles.published.size.should == 7
+    Factory(:blog)
+    tobi = Factory(:user)
+    7.times do
+      Factory.create(:article, :user => tobi)
+    end
+    Factory.create(:article, :published => false, :published_at => nil, :user => tobi)
+    tobi.articles.size.should == 8
+    tobi.articles.published.size.should == 7
   end
 
   it 'authenticate? works as expected' do
@@ -185,7 +190,6 @@ end
 
 describe User do
   describe '#admin?' do
-
     it 'should return true if user is admin' do
       users(:tobi).should be_admin
     end
@@ -197,6 +201,7 @@ describe User do
   end
 
   describe '#permalink_url' do
+    before(:each) { Factory(:blog) }
     subject { users(:tobi).permalink_url }
     it { should == 'http://myblog.net/users/show/tobi' }
   end

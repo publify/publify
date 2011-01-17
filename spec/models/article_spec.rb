@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Article do
 
   before do
+    Factory(:blog)
     @articles = []
   end
 
@@ -20,28 +21,28 @@ describe Article do
 
   describe "#permalink_url" do
     describe "with hostname" do
-      subject { contents(:article3).permalink_url(anchor=nil, only_path=false) }
+      subject { Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
       it { should == 'http://myblog.net/2004/06/01/article-3' }
     end
 
     describe "without hostname" do
-      subject { contents(:article3).permalink_url(anchor=nil, only_path=true) }
+      subject { Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
       it { should == '/2004/06/01/article-3' }
     end
   end
 
   it "test_edit_url" do
-    a = contents(:article3)
+    a = Factory(:article)
     assert_equal "http://myblog.net/admin/content/edit/#{a.id}", a.edit_url
   end
 
   it "test_delete_url" do
-    a = contents(:article3)
+    a = Factory(:article)
     assert_equal "http://myblog.net/admin/content/destroy/#{a.id}", a.delete_url
   end
 
   it "test_feed_url" do
-    a = contents(:article3)
+    a = Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1))
     assert_equal "http://myblog.net/2004/06/01/article-3.atom", a.feed_url(:atom10)
     assert_equal "http://myblog.net/2004/06/01/article-3.rss", a.feed_url(:rss20)
   end
@@ -61,8 +62,9 @@ describe Article do
   end
 
   it "test_permalink_with_title" do
-    assert_equal( contents(:article3),
-                  Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
+    article = Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1))
+    assert_equal(article,
+                Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink :year => 2005, :month => "06", :day => "01", :title => "article-5"
     end
@@ -78,9 +80,9 @@ describe Article do
   end
 
   it "test_perma_title" do
-    assert_equal "article-1", contents(:article1).stripped_title
-    assert_equal "article-2", contents(:article2).stripped_title
-    assert_equal "article-3", contents(:article3).stripped_title
+    assert_equal "article-1", Factory(:article, :title => 'Article 1!').stripped_title
+    assert_equal "article-2", Factory(:article, :title => 'Article 2!').stripped_title
+    assert_equal "article-3", Factory(:article, :title => 'Article 3!').stripped_title
   end
 
   it "test_html_title" do
@@ -101,7 +103,7 @@ describe Article do
 
   describe "the html_urls method" do
     it "test_urls" do
-      urls = contents(:article4).html_urls
+      urls = Factory(:article, :body => 'happy halloween "with":http://www.example.com/public').html_urls
       assert_equal ["http://www.example.com/public"], urls
     end
 
@@ -181,37 +183,32 @@ describe Article do
   end
 
   it "test_find_published" do
+    article = Factory(:article, :title => 'Article 1!', :state => 'published')
+    Factory(:article, :published => false, :state => 'draft')
     @articles = Article.find_published
-    assert_results_are(:search_target, :article1, :article2,
-                       :article3, :inactive_article,:xmltest,
-                       :spammed_article, :publisher_article, :markdown_article, :utf8_article)
-
-    @articles = Article.find_published(:all,
-                                                  :conditions => "title = 'Article 1!'")
-    assert_results_are :article1
+    assert_equal 1, @articles.size
+    @articles = Article.find_published(:all, :conditions => "title = 'Article 1!'")
+    assert_equal [article], @articles
   end
 
   it "test_just_published_flag" do
-    art = Article.new(:title => 'title',
-                                   :body => 'body',
-                                   :published => true)
+
+    art = Article.new(:title => 'title', :body => 'body', :published => true)
+
     assert art.just_changed_published_status?
     assert art.save
 
     art = Article.find(art.id)
     assert !art.just_changed_published_status?
 
-    art = Article.create!(:title => 'title2',
-                          :body => 'body',
-                          :published => false)
+    art = Article.create!(:title => 'title2', :body => 'body', :published => false)
 
     assert ! art.just_changed_published_status?
   end
 
   it "test_future_publishing" do
     assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
-                                        :published => true,
-                                        :published_at => Time.now + 4.seconds))
+      :published => true, :published_at => Time.now + 4.seconds))
   end
 
   it "test_future_publishing_without_published_flag" do
@@ -243,24 +240,23 @@ describe Article do
 
   it "test_find_published_by_category" do
     cat = Factory(:category, :permalink => 'personal')
-    cat.articles << contents(:article1)
-    cat.articles << contents(:article2)
-    cat.articles << contents(:article3)
-    cat.articles << contents(:article4)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
+    cat.articles << Factory(:article)
 
     cat = Factory(:category, :permalink => 'software')
-    cat.articles << contents(:article1)
+    cat.articles << Factory(:article)
 
     Article.create!(:title      => "News from the future!",
                     :body       => "The future is cool!",
                     :keywords   => "future",
                     :published_at => Time.now + 12.minutes)
 
-    @articles = Category.find_by_permalink('personal').published_articles
-    assert_results_are :article1, :article2, :article3
+    articles = Category.find_by_permalink('personal').published_articles
+    assert_equal 3, articles.size
 
-    @articles = Category.find_by_permalink('software').published_articles
-    assert_results_are :article1
+    articles = Category.find_by_permalink('software').published_articles
+    assert_equal 1, articles.size
   end
 
   it "test_find_published_by_nonexistent_category_raises_exception" do
@@ -270,7 +266,7 @@ describe Article do
   end
 
   it "test_destroy_file_upload_associations" do
-    a = contents(:article1)
+    a = Factory(:article)
     Factory(:resource, :article => a)
     Factory(:resource, :article => a)
     assert_equal 2, a.resources.size
@@ -292,7 +288,7 @@ describe Article do
   end
 
   it "test_withdrawal" do
-    art = Article.find(contents(:article1).id)
+    art = Factory(:article)
     assert   art.published?
     assert ! art.withdrawn?
     art.withdraw!
@@ -304,30 +300,35 @@ describe Article do
   end
 
   it "test_default_filter" do
-    a = Article.find(contents(:article1).id)
+    a = Factory(:article)
     assert_equal 'textile', a.default_text_filter.name
   end
 
   it 'should get only ham not spam comment' do
-    contents(:article2).comments.ham.should == [feedback(:spam_comment)]
-    contents(:article2).comments.count.should == 2
+    article = Factory(:article)
+    ham_comment = Factory(:comment, :article => article)
+    spam_comment = Factory(:spam_comment, :article => article)
+    article.comments.ham.should == [ham_comment]
+    article.comments.count.should == 2
   end
 
   describe '#access_by?' do
 
     it 'admin should be access to an article write by another' do
-      contents(:article2).should be_access_by(users(:tobi))
+      Factory(:article).should be_access_by(users(:tobi))
     end
 
     it 'admin should be access to an article write by himself' do
-      contents(:article1).should be_access_by(users(:tobi))
+      article = Factory(:article, :author => users(:tobi))
+      article.should be_access_by(users(:tobi))
     end
 
   end
 
   describe 'body_and_extended' do
     before :each do
-      @article = contents(:article1)
+      @article = Factory(:article,
+        :extended => 'extended text to explain more and more how Typo is wonderful')
     end
 
     it 'should combine body and extended content' do
@@ -355,20 +356,17 @@ describe Article do
     end
 
     describe 'with one word and result' do
-
-      before :each do
-        @articles = Article.search('extended')
-      end
-
       it 'should have nine items' do
-        assert_equal 9, @articles.size
+        Factory(:article, :extended => "extended talk")
+        Factory(:article, :extended => "Once uppon a time, an extended story")
+        assert_equal 2, Article.search('extended').size
       end
     end
   end
 
   describe 'body_and_extended=' do
     before :each do
-      @article = contents(:article1)
+      @article = Factory(:article)
     end
 
     it 'should split apart values at <!--more-->' do
@@ -404,25 +402,27 @@ describe Article do
 
   describe '#comment_url' do
     it 'should render complete url of comment' do
-      contents(:article1).comment_url.should == "http://myblog.net/comments?article_id=#{contents(:article1).id}"
+      article = Factory(:article)
+      article.comment_url.should == "http://myblog.net/comments?article_id=#{article.id}"
     end
   end
 
   describe '#preview_comment_url' do
     it 'should render complete url of comment' do
-      contents(:article1).preview_comment_url.should == "http://myblog.net/comments/preview?article_id=#{contents(:article1).id}"
+      article = Factory(:article)
+      article.preview_comment_url.should == "http://myblog.net/comments/preview?article_id=#{article.id}"
     end
   end
 
   it "test_can_ping_fresh_article_iff_it_allows_pings" do
-    a = Article.find(contents(:article1).id)
+    a = Factory(:article, :allow_pings => true)
     assert_equal(false, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
   end
 
   it "test_cannot_ping_old_article" do
-    a = Article.find(contents(:article3).id)
+    a = Factory(:article, :allow_pings => false)
     assert_equal(true, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
@@ -460,21 +460,24 @@ describe Article do
 
   describe '#has_child?' do
     it 'should be true if article has one to link it by parent_id' do
-      Factory(:article, :parent_id => contents(:article1).id)
-      contents(:article1).should be_has_child
+      parent = Factory(:article)
+      Factory(:article, :parent_id => parent.id)
+      parent.should be_has_child
     end
     it 'should be false if article has no article to link it by parent_id' do
-      contents(:article1).should_not be_has_child
+      Factory(:article, :parent_id => nil).should_not be_has_child
     end
   end
 
   describe 'self#last_draft(id)' do
     it 'should return article if no draft associated' do
-      Article.last_draft(contents(:article1).id).should == contents(:article1)
+      draft = Factory(:article, :state => 'draft')
+      Article.last_draft(draft.id).should == draft
     end
     it 'should return draft associated to this article if there are one' do
-      draft = Factory(:article, :parent_id => contents(:article1).id, :state => 'draft')
-      Article.last_draft(contents(:article1).id).should == draft
+      parent = Factory(:article)
+      draft = Factory(:article, :parent_id => parent.id, :state => 'draft')
+      Article.last_draft(draft.id).should == draft
     end
   end
 end

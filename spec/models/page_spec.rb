@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe 'Given the fixture :first_page' do
   before(:each) do
-    @page = contents(:first_page)
+    Factory(:blog)
+    @page = Factory(:page)
   end
 
   describe "#permalink_url" do
@@ -80,6 +81,7 @@ end
 
 describe 'Given a valid page' do
   it 'default filter should be fetched from the blog' do
+    Factory(:blog)
     @page = Page.new()
     @page.default_text_filter.name.should == Blog.default.text_filter
   end

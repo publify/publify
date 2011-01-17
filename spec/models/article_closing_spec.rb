@@ -6,10 +6,9 @@ describe "CommentClosing from Test::Unit; no I don't know why it's in article_cl
   end
 
   before(:each) do
-    @blog = blogs(:default)
-    @blog.sp_article_auto_close = 0
-    @blog.default_allow_comments = true
-
+    @blog = Factory(:blog,
+      :sp_article_auto_close => 0,
+      :default_allow_comments => true)
     # Blog.default may have already cached a copy of the default blog, and
     # it won't see our changes.  So override the caching.
     Blog.stub!(:default).and_return(@blog)

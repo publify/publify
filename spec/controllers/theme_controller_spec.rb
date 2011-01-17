@@ -3,6 +3,8 @@ require 'spec_helper'
 describe ThemeController do
   render_views
 
+  before(:each) { Factory(:blog) }
+
   it "test_stylesheets" do
     get :stylesheets, :filename => "style.css"
     assert_response :success

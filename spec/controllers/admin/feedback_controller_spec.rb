@@ -6,8 +6,9 @@ describe Admin::FeedbackController do
 
   shared_examples_for "destroy feedback with feedback from own article" do
     it 'should destroy feedback' do
+      id = feedback_from_own_article.id
       lambda do
-        post 'destroy', :id => feedback_from_own_article.id
+        post 'destroy', :id => id
       end.should change(Feedback, :count)
       lambda do
         Feedback.find(feedback_from_own_article.id)
@@ -20,8 +21,9 @@ describe Admin::FeedbackController do
     end
 
     it 'should not destroy feedback in get request' do
+      id = feedback_from_own_article.id
       lambda do
-        get 'destroy', :id => feedback_from_own_article.id
+        get 'destroy', :id => id
       end.should_not change(Feedback, :count)
       lambda do
         Feedback.find(feedback_from_own_article.id)
@@ -30,18 +32,19 @@ describe Admin::FeedbackController do
     end
   end
 
-
   describe 'logged in admin user' do
 
     def feedback_from_own_article
-      feedback(:spam_comment)
+      admin = Factory.create(:user, :profile => Factory.create(:profile_admin))
+      @comment_own ||= Factory.create(:comment, :article => Factory(:article, :user => admin))
     end
 
     def feedback_from_not_own_article
-      feedback(:spam_comment)
+      @spam_comment_not_own ||= Factory(:spam_comment)
     end
 
     before do
+      Factory(:blog)
       request.session = { :user => users(:tobi).id }
     end
 
@@ -50,8 +53,9 @@ describe Admin::FeedbackController do
       it_should_behave_like "destroy feedback with feedback from own article"
 
       it "should destroy feedback from article doesn't own" do
+        id = feedback_from_not_own_article.id
         lambda do
-          post 'destroy', :id => feedback_from_not_own_article.id
+          post 'destroy', :id => id
         end.should change(Feedback, :count)
         lambda do
           Feedback.find(feedback_from_not_own_article.id)
@@ -62,12 +66,18 @@ describe Admin::FeedbackController do
 
     describe 'index action' do
 
+      before(:each) do
+        #Remove feedback due to some fixtures
+        Feedback.delete_all
+      end
+
       def should_success_with_index(response)
         response.should be_success
         response.should render_template('index')
       end
 
       it 'should success' do
+        11.times { Factory(:comment) }
         get :index
         should_success_with_index(response)
         #FIXME : Test is useless because the pagination is on 10. Now there are 11
@@ -76,18 +86,21 @@ describe Admin::FeedbackController do
       end
 
       it 'should view only confirmed feedback' do
+        Factory(:comment)
         get :index, :confirmed => 'f'
         should_success_with_index(response)
         Feedback.count(:conditions => { :status_confirmed => false }).should == assigns(:feedback).size
       end
 
       it 'should view only spam feedback' do
+        Factory(:spam_comment)
         get :index, :published => 'f'
         should_success_with_index(response)
         Feedback.count(:conditions => { :published => false }).should == assigns(:feedback).size
       end
 
       it 'should view unconfirmed_spam' do
+        Factory(:comment)
         get :index, :published => 'f', :confirmed => 'f'
         should_success_with_index(response)
         Feedback.count(:conditions => { :published => false, :status_confirmed => false }).should == assigns(:feedback).size
@@ -106,6 +119,8 @@ describe Admin::FeedbackController do
       end
 
       it 'should get page 1 if page params empty' do
+        Factory(:comment)
+        assert_equal 1, Feedback.count
         get :index, :page => ''
         should_success_with_index(response)
       end
@@ -120,23 +135,30 @@ describe Admin::FeedbackController do
       end
 
       it 'should see all feedback on one article' do
-        get :article, :id => contents(:article1).id
+        article = Factory(:article)
+        Factory(:comment, :article => article)
+        Factory(:comment, :article => article)
+        get :article, :id => article.id
         should_success_with_article_view(response)
-        assigns(:article).should == contents(:article1)
+        assigns(:article).should == article
         assigns(:feedback).size.should == 2
       end
 
       it 'should see only spam feedback on one article' do
-        get :article, :id => contents(:article1).id, :spam => 'y'
+        article = Factory(:article)
+        Factory(:comment, :state => 'spam', :article => article)
+        get :article, :id => article.id, :spam => 'y'
         should_success_with_article_view(response)
-        assigns(:article).should == contents(:article1)
+        assigns(:article).should == article
         assigns(:feedback).size.should == 1
       end
 
       it 'should see only ham feedback on one article' do
-        get :article, :id => contents(:article1).id, :ham => 'y'
+        article = Factory(:article)
+        comment = Factory(:comment, :article => article)
+        get :article, :id => article.id, :ham => 'y'
         should_success_with_article_view(response)
-        assigns(:article).should == contents(:article1)
+        assigns(:article).should == article
         assigns(:feedback).size.should == 1
       end
 
@@ -162,9 +184,10 @@ describe Admin::FeedbackController do
         end
 
         it 'should not create comment' do
+          article = Factory(:article)
           lambda do
-            get 'create', :article_id => contents(:article1).id, :comment => base_comment
-            response.should redirect_to(:action => 'article', :id => contents(:article1).id)
+            get 'create', :article_id => article.id, :comment => base_comment
+            response.should redirect_to(:action => 'article', :id => article.id)
           end.should_not change(Comment, :count)
         end
 
@@ -178,16 +201,18 @@ describe Admin::FeedbackController do
         end
 
         it 'should create comment' do
+          article = Factory(:article)
           lambda do
-            post 'create', :article_id => contents(:article1).id, :comment => base_comment
-            response.should redirect_to(:action => 'article', :id => contents(:article1).id)
+            post 'create', :article_id => article.id, :comment => base_comment
+            response.should redirect_to(:action => 'article', :id => article.id)
           end.should change(Comment, :count)
         end
 
         it 'should create comment mark as ham' do
+          article = Factory(:article)
           lambda do
-            post 'create', :article_id => contents(:article1).id, :comment => base_comment
-            response.should redirect_to(:action => 'article', :id => contents(:article1).id)
+            post 'create', :article_id => article.id, :comment => base_comment
+            response.should redirect_to(:action => 'article', :id => article.id)
           end.should change { Comment.count(:conditions => {:state => "ham"}) }
         end
 
@@ -196,37 +221,40 @@ describe Admin::FeedbackController do
     end
 
     describe 'edit action' do
-
       it 'should render edit form' do
-        get 'edit', :id => feedback(:comment2).id
-        assigns(:comment).should == feedback(:comment2)
-        assigns(:article).should == contents(:article1)
+        article = Factory(:article)
+        comment = Factory(:comment, :article => article)
+        get 'edit', :id => comment.id
+        assigns(:comment).should == comment
+        assigns(:article).should == article
         response.should be_success
         response.should render_template('edit')
       end
-
     end
 
     describe 'update action' do
 
       it 'should update comment if post request' do
-        post 'update', :id => feedback(:comment2).id,
+        article = Factory(:article)
+        comment = Factory(:comment, :article => article)
+        post 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
-        response.should redirect_to(:action => 'article', :id => contents(:article1).id)
-        feedback(:comment2).reload
-        feedback(:comment2).body.should == 'updated comment'
+        response.should redirect_to(:action => 'article', :id => article.id)
+        comment.reload
+        comment.body.should == 'updated comment'
       end
 
       it 'should not  update comment if get request' do
-        get 'update', :id => feedback(:comment2).id,
+        comment = Factory(:comment)
+        get 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
-        response.should redirect_to(:action => 'edit', :id => feedback(:comment2).id)
-        feedback(:comment2).reload
-        feedback(:comment2).body.should_not == 'updated comment'
+        response.should redirect_to(:action => 'edit', :id => comment.id)
+        comment.reload
+        comment.body.should_not == 'updated comment'
       end
 
 
@@ -236,16 +264,19 @@ describe Admin::FeedbackController do
   describe 'publisher access' do
 
     before :each do
-      request.session = { :user => users(:user_publisher).id }
+      Factory(:blog)
+      @publisher = users(:user_publisher)
+      request.session = { :user => @publisher.id }
+      @article = Factory(:article, :user => @publisher)
     end
 
 
     def feedback_from_own_article
-      feedback(:comment_on_publisher_article)
+      @feedback_own_article ||= Factory(:comment, :article => @article)
     end
 
     def feedback_from_not_own_article
-      feedback(:comment2)
+      @feedback_not_own_article ||= Factory(:comment)
     end
 
     describe 'destroy action' do
@@ -253,9 +284,10 @@ describe Admin::FeedbackController do
       it_should_behave_like "destroy feedback with feedback from own article"
 
       it "should not destroy feedback doesn't own" do
+        id = feedback_from_not_own_article.id
         lambda do
-          post 'destroy', :id => feedback_from_not_own_article.id
-        end.should_not change(Feedback, :count)
+          post 'destroy', :id => id
+          end.should_not change(Feedback, :count)
         lambda do
           Feedback.find(feedbackfrom_not_own_article.id)
         end.should_not raise_error(ActiveRecord::RecordNotFound)
@@ -301,20 +333,13 @@ describe Admin::FeedbackController do
         feedback_from_not_own_article.reload
         feedback_from_not_own_article.body.should_not == 'updated comment'
       end
-
     end
 
     describe '#bulkops action' do
-
-      before :each do
-        post :bulkops, :bulkop_top => 'destroy all spam'
-      end
-
       it 'should redirect to action' do
+        post :bulkops, :bulkop_top => 'destroy all spam'
         @response.should redirect_to(:action => 'index')
       end
     end
-
   end
-
 end

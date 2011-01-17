@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Tag do
+  before(:each) do
+    Factory(:blog)
+  end
   it 'we can Tag.get by name' do
     foo = Factory(:tag, :name => 'foo')
     Tag.get('foo').should == foo

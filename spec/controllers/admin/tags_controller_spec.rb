@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Admin::TagsController do
 
   before do
+    Factory(:blog)
     request.session = { :user => users(:tobi).id }
   end
 

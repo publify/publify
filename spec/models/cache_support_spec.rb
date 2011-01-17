@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe 'Given a published article' do
   before(:each) do
-    @article = contents(:article1)
+    Factory(:blog)
+    Factory(:article)
+    @article = Article.first
   end
 
   it "An unchanged article does not invalidate the cache" do
@@ -32,7 +34,10 @@ describe 'Given a published article' do
 end
 
 describe "Given an unpublished article" do
-  before(:each) { @article = contents(:article4) }
+  before(:each) do
+    Factory(:blog)
+    @article = Factory(:article, :published => false, :state => 'draft')
+  end
 
   it "publishing smashes the cache" do
     @article.publish!
@@ -73,7 +78,10 @@ describe "Given an unpublished spammy comment" do
 end
 
 describe "Given a published comment" do
-  before(:each) { @comment = feedback(:comment2) }
+  before(:each) do
+    Factory(:blog)
+    @comment = feedback(:comment2)
+  end
 
   it 'changing it destroys the cache' do
     @comment.body = "Lorem ipsum dolor"
@@ -115,7 +123,10 @@ describe "Given an unpublished spammy trackback" do
 end
 
 describe "Given a published trackback" do
-  before(:each) { @trackback = feedback(:trackback2) }
+  before(:each) do
+    Factory(:blog)
+    @trackback = feedback(:trackback2)
+  end
 
   it 'changing it destroys the cache' do
     @trackback.body = "Lorem ipsum dolor"

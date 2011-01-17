@@ -3,7 +3,6 @@ require 'spec_helper'
 describe SetupController do
   describe 'when no blog is configured' do
     before do
-      Blog.delete_all
       User.delete_all
       Article.delete_all
       Blog.new.save
@@ -34,7 +33,7 @@ describe SetupController do
       end
 
       it "should log in admin user" do
-	      session[:user_id].should == User.find_by_login("admin").id
+        session[:user_id].should == User.find_by_login("admin").id
       end
     end
   end
@@ -60,7 +59,8 @@ describe SetupController do
   describe 'when a blog is configured and has some users' do
     describe 'GET setup' do
       before do
-	get 'index'
+        Factory(:blog)
+        get 'index'
       end
 
       specify { response.should redirect_to(:controller => 'articles', :action => 'index') }
@@ -68,15 +68,16 @@ describe SetupController do
 
     describe 'POST setup' do
       before do
-	post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
+        Factory(:blog)
+        post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
       end
 
       specify { response.should redirect_to(:controller => 'articles', :action => 'index') }
 
       it "should not initialize blog and users" do
-	this_blog.blog_name.should_not == 'Foo'
-	admin = User.find_by_login("admin")
-	admin.should be_nil
+        this_blog.blog_name.should_not == 'Foo'
+        admin = User.find_by_login("admin")
+        admin.should be_nil
       end
     end
   end

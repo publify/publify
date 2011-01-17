@@ -4,6 +4,7 @@ describe Admin::CategoriesController do
   render_views
 
   before do
+    Factory(:blog)
     request.session = { :user => users(:tobi).id }
   end
 

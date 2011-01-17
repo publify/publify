@@ -5,6 +5,7 @@ describe AuthorsController do
 
   describe 'show action' do
     before :each do
+      Factory(:blog)
       get 'show', :id => 'tobi'
     end
 
@@ -26,13 +27,17 @@ describe AuthorsController do
   end
 
   specify "/author/tobi.atom => an atom feed" do
-    get 'show', :id => 'tobi', :format => 'atom'
+    Factory(:blog)
+    user = Factory(:user, :name => 'tobi')
+    article = Factory(:article, :user => user)
+    get 'show', :id => user.login, :format => 'atom'
     response.should be_success
     response.should render_template("articles/_atom_feed")
     assert_feedvalidator @response.body
   end
 
   specify "/author/tobi.rss => a rss feed" do
+    Factory(:blog)
     get 'show', :id => 'tobi', :format => 'rss'
     response.should be_success
     response.should render_template("articles/_rss20_feed")

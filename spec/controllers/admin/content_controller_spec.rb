@@ -18,13 +18,15 @@ describe Admin::ContentController do
     end
 
     it 'should restrict only by searchstring' do
+      article = Factory(:article, :body => 'once uppon an originally time')
       get :index, :search => {:searchstring => 'originally'}
-      assigns(:articles).should == [contents(:xmltest)]
+      assigns(:articles).should == [article]
       response.should render_template('index')
       response.should be_success
     end
 
     it 'should restrict by searchstring and published_at' do
+      Factory(:article)
       get :index, :search => {:searchstring => 'originally', :published_at => '2008-08'}
       assigns(:articles).should be_empty
       response.should render_template('index')
@@ -72,7 +74,7 @@ describe Admin::ContentController do
 
     describe "for a published article" do
       before :each do
-        @article = contents(:article1)
+        @article = Factory(:article)
         @data = {:allow_comments => @article.allow_comments,
           :body_and_extended => 'my draft in autosave',
           :keywords => '',
@@ -117,6 +119,7 @@ describe Admin::ContentController do
   describe 'insert_editor action' do
 
     before do
+      Factory(:blog)
       @user = users(:tobi)
       request.session = { :user => @user.id }
     end
@@ -303,8 +306,9 @@ describe Admin::ContentController do
   describe 'with admin connection' do
 
     before do
+      Factory(:blog)
       @user = users(:tobi)
-      @article = contents(:article1)
+      @article = Factory(:article)
       request.session = { :user => @user.id }
     end
 
@@ -316,9 +320,9 @@ describe Admin::ContentController do
     describe 'edit action' do
 
       it 'should edit article' do
-        get :edit, 'id' => contents(:article1).id
+        get :edit, 'id' => @article.id
         response.should render_template('new')
-	assigns(:article).should_not be_nil
+        assigns(:article).should_not be_nil
         assigns(:article).should be_valid
         response.should contain(/body/)
         response.should contain(/extended content/)
@@ -330,13 +334,13 @@ describe Admin::ContentController do
           emails = ActionMailer::Base.deliveries
           emails.clear
 
-          art_id = contents(:article1).id
+          art_id = @article.id
 
           body = "another *textile* test"
           post :edit, 'id' => art_id, 'article' => {:body => body, :text_filter => 'textile'}
           assert_response :redirect, :action => 'show', :id => art_id
 
-          article = contents(:article1).reload
+          article = @article.reload
           article.text_filter.name.should == "textile"
           body.should == article.body
 
@@ -347,7 +351,7 @@ describe Admin::ContentController do
       end
 
       it 'should allow updating body_and_extended' do
-        article = contents(:article1)
+        article = @article
         post :edit, 'id' => article.id, 'article' => {
           'body_and_extended' => 'foo<!--more-->bar<!--more-->baz'
         }
@@ -358,7 +362,7 @@ describe Admin::ContentController do
       end
 
       it 'should delete draft about this article if update' do
-        article = contents(:article1)
+        article = @article
         draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
         lambda do
           post :edit, 'id' => article.id, 'article' => { 'title' => 'new'}
@@ -367,7 +371,7 @@ describe Admin::ContentController do
       end
 
       it 'should delete all draft about this article if update not happen but why not' do
-        article = contents(:article1)
+        article = @article
         draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
         draft_2 = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
         lambda do
@@ -381,7 +385,7 @@ describe Admin::ContentController do
     describe 'resource_add action' do
 
       it 'should add resource' do
-        art_id = contents(:article1).id
+        art_id = @article.id
         resource = Factory(:resource)
         get :resource_add, :id => art_id, :resource_id => resource.id
 
@@ -399,7 +403,7 @@ describe Admin::ContentController do
     describe 'resource_remove action' do
 
       it 'should remove resource' do
-        art_id = contents(:article1).id
+        art_id = @article.id
         resource = Factory(:resource)
         get :resource_remove, :id => art_id, :resource_id => resource.id
 
@@ -444,8 +448,9 @@ describe Admin::ContentController do
   describe 'with publisher connection' do
 
     before :each do
+      Factory(:blog)
       @user = users(:user_publisher)
-      @article = contents(:publisher_article)
+      @article = Factory(:article, :user => @user)
       request.session = {:user => @user.id}
     end
 
@@ -456,12 +461,12 @@ describe Admin::ContentController do
     describe 'edit action' do
 
       it "should redirect if edit article doesn't his" do
-        get :edit, :id => contents(:article1).id
+        get :edit, :id => Factory(:article).id
         response.should redirect_to(:action => 'index')
       end
 
       it 'should edit article' do
-        get :edit, 'id' => contents(:publisher_article).id
+        get :edit, 'id' => @article.id
         response.should render_template('new')
         assigns(:article).should_not be_nil
         assigns(:article).should be_valid
@@ -473,13 +478,13 @@ describe Admin::ContentController do
           emails = ActionMailer::Base.deliveries
           emails.clear
 
-          art_id = contents(:publisher_article).id
+          art_id = @article.id
 
           body = "another *textile* test"
           post :edit, 'id' => art_id, 'article' => {:body => body, :text_filter => 'textile'}
           response.should redirect_to(:action => 'index')
 
-          article = contents(:publisher_article).reload
+          article = @article.reload
           article.text_filter.name.should == "textile"
           body.should == article.body
 
@@ -493,18 +498,13 @@ describe Admin::ContentController do
     describe 'destroy action can be access' do
 
       it 'should redirect when want destroy article' do
+        article = Factory(:article)
         lambda do
-          get :destroy, :id => contents(:article1)
+          get :destroy, :id => article.id
           response.should redirect_to(:action => 'index')
         end.should_not change(Article, :count)
       end
 
-      it 'should redirect when want destroy article' do
-        lambda do
-          post :destroy, :id => contents(:article1)
-          response.should redirect_to(:action => 'index')
-        end.should_not change(Article, :count)
-      end
     end
   end
 end
