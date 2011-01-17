@@ -68,7 +68,7 @@ class Tag < ActiveRecord::Base
     self.name
   end
 
-  def permalink_url(anchor=nil, only_path=true)
+  def permalink_url(anchor=nil, only_path=false)
     blog = Blog.default # remove me...
 
     blog.url_for(
