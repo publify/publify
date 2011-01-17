@@ -125,6 +125,7 @@ end
 describe TagsController, "showing a non-existant tag" do
   # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should redirect to main page' do
+    Factory(:blog)
     get 'show', :id => 'thistagdoesnotexist'
 
     response.status.should == 301
