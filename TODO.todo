@@ -1,21 +1,18 @@
 # This file is better viewed with Textmate tasks plugin
 
-Before release:
-- change wiki documentation
-- select 20 themes to be kept and added to typogarden github account. Other themes will just be discontinued
-- generate release note
-- update website
-- generate typo archive
-- improve French translation (maybe)
+neuro for 6.0.1:
+- fix static sidebar
+- improve French translation
+- refresh the doc
+- admin: make info and confirmation message blocks a different color (yellow and green)
+- admin: Move helps under text fields 
+- admin: chose a different typo for labels and helps
 
 setup:
 - reduce setup width
 - add some margin above the error block
 
 general admin:
-- make info and confirmation message blocks a different color (yellow and green)
-- Move helps under text fields 
-- chose a different typo for labels and helps
 
 settings:
   general settings:
@@ -31,4 +28,3 @@ Admin/tags:
   
 bugs:
 - Publishing bug with Rails3 handling timezone on date field. TODO: convert what's displayed according to the timezone. I think this will need a bunch of specs.
-- Tags randomly lost when editing a post
