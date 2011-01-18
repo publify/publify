@@ -8,6 +8,12 @@ neuro for 6.0.1:
 - admin: Move helps under text fields 
 - admin: chose a different typo for labels and helps
 
+mvz for 6.0.1:
+- fix bug 136: Clicking Save as draft in published article unpublishes it
+- fix bug 192: Non-latin letters in permalink cause problems (but check bug 149)
+- fix bug 193: Provide documentation on how to set up Typo on Debian and Ubuntu.
+- plain editor: Image tag is inserted even if cancel is clicked.
+
 setup:
 - reduce setup width
 - add some margin above the error block
@@ -28,3 +34,6 @@ Admin/tags:
   
 bugs:
 - Publishing bug with Rails3 handling timezone on date field. TODO: convert what's displayed according to the timezone. I think this will need a bunch of specs.
+
+under the hood:
+- Use standard rails localization
