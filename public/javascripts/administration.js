@@ -461,7 +461,7 @@ function edInsertTypoCode(which, i, defaultValue) {
 function edInsertImage(which) {
     myField = document.getElementById(which);
 	var myValue = prompt('Enter the URL of the image', 'http://');
-	if (myValue) {
+	if (myValue && myValue.length > 0) {
 		myValue = '<img src="'
 				+ myValue
 				+ '" alt="' + prompt('Enter a description of the image', '')
