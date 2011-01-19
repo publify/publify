@@ -1,23 +1,20 @@
 # This file is better viewed with Textmate tasks plugin
 
 neuro for 6.0.1:
-✓ fix static sidebar
 - improve French translation
-- refresh the doc
 - admin: make info and confirmation message blocks a different color (yellow and green)
 - admin: Move helps under text fields
 - admin: chose a different typo for labels and helps
 - admin : make all fields the same width
 - admin : make the colors a little less shiny (again)?
+- admin : refactor files / pictures, making them back as 1
 
 mvz for 6.0.1:
 - fix bug 136: Clicking Save as draft in published article unpublishes it
 - fix bug 192: Non-latin letters in permalink cause problems (but check bug 149) ==> neuro: please leave me an option to keep my full ascii permalink in some way, maybe we can discuss it before you work on that?
 - fix bug 193: Provide documentation on how to set up Typo on Debian and Ubuntu.
-✓ plain editor: Image tag is inserted even if cancel is clicked.
 - continued clean-ups and spec improvements.
 - enable Rails multi-treading support.
-✓ fix autosave ... again.
 
 setup:
 - reduce setup width
