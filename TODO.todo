@@ -2,12 +2,11 @@
 
 neuro for 6.0.1:
 - improve French translation
-- admin: make info and confirmation message blocks a different color (yellow and green)
+- admin: make info and confirmation message blocks a different color (yellow and green maybe?)
 - admin: Move helps under text fields
 - admin: chose a different typo for labels and helps
 - admin : make all fields the same width
 - admin : make the colors a little less shiny (again)?
-- admin : refactor files / pictures, making them back as 1
 
 mvz for 6.0.1:
 - fix bug 136: Clicking Save as draft in published article unpublishes it
@@ -39,3 +38,4 @@ bugs:
 
 under the hood:
 - Use standard rails localization
+- Split CSS between colors and structure so we can create 2 admin themes

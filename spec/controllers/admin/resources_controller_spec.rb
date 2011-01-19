@@ -15,15 +15,6 @@ describe Admin::ResourcesController do
     assigns(:resources).should_not be_nil
   end
 
-  it "test_images" do
-    3.times { Factory(:resource) }
-    get :images
-    assert_response :success
-    assert_template 'images'
-    assigns(:resources).should_not be_nil
-    assigns(:resources).size.should == 3
-  end
-
   it "test_destroy_image" do
     res_id = Factory(:resource).id
     assert_not_nil Resource.find(res_id)
@@ -34,7 +25,7 @@ describe Admin::ResourcesController do
     assert_not_nil assigns(:file)
 
     post :destroy, :id => res_id
-    response.should redirect_to(:action => 'images')
+    response.should redirect_to(:action => 'index')
   end
 
   it "test_destroy_regular_file" do

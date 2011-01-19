@@ -61,20 +61,13 @@ class Admin::ResourcesController < Admin::BaseController
 
   def index
     @r = Resource.new
-    @resources = Resource.paginate :page => params[:page], :conditions => "mime NOT LIKE '%image%'", :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
-  end
-
-  def images
-    @resources = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
+    @resources = Resource.paginate :page => params[:page], :order => 'created_at DESC', :per_page => this_blog.admin_display_elements
   end
 
   def get_thumbnails
     position = params[:position].to_i
-
     @resources = Resource.find(:all, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :limit => "#{position}, 10")
-
     render 'get_thumbnails', :layout => false
-
   end
 
   def destroy
@@ -83,11 +76,7 @@ class Admin::ResourcesController < Admin::BaseController
       mime = @file.mime
       if request.post?
         @file.destroy
-        if mime =~ /image/
-          redirect_to :action => 'images'
-        else
-          redirect_to :action => 'index'
-        end
+        redirect_to :action => 'index'
       end
     rescue
       raise
