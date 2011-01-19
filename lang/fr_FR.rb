@@ -8,7 +8,7 @@ Localization.define("fr_FR") do |l|
   l.store "Successfully logged out", "Vous êtes maintenant déconnecté"
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
-  l.store "Recover your password", ""
+  l.store "Recover your password", "Je n'arrive pas à me connecter"
 
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "La catégorie a été enregistrée avec succès"
@@ -232,7 +232,8 @@ Localization.define("fr_FR") do |l|
   l.store "Date", "Date"
   l.store "Feedback", "Commentaires"
   l.store "Filter", "Filtrer"
-  l.store "Manage articles", "Gérer les articles"
+  l.store "Manage articles", "Articles"
+  l.store "New Article", "Nouvel Article"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
@@ -246,21 +247,25 @@ Localization.define("fr_FR") do |l|
   l.store "You have no internet connection", "Vous n'avez pas de connection à internet"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Voici un rapide aperçu de ce que peux faire votre blog Typo. Peux-être voulez vous %s, %s ou %s"
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Voici un rapide aperçu de ce que peut faire votre blog Typo. Peux-être voulez vous %s, %s ou %s"
   l.store "update your profile or change your password", "mettre votre profil à jour ou changer votre mot de passe"
   l.store "You can also do a bit of design, %s or %s.", "Vous pouvez également faire un peu de personnalisation, %s, %s"
   l.store "change your blog presentation", "changer l'apparence de votre blog"
   l.store "enable plugins", "activer des plugins"
   l.store "write a post", "écrire un article"
   l.store "write a page", "publier une page statique"
+  l.store "If you need help, %s. You can also browse our %s or %s to customize your Typo blog.", "Si vous avez besoin d'aide, n'hésitez pas à %s. Vous pouvez aussi visiter notre %s ou %s afin de personnaliser votre blog sous Typo"
+  l.store "read our documentation", "consulter notre documentation"
+  l.store "theme catalogue", "catalogue de thèmes"
+  l.store "download some plugins", "installer des plugins"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Billets les plus populaires"
   l.store "Nothing to show yet", "Rien à déclarer"
 
   # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
-  l.store "No posts yet, why don't you start and write one", "Vous n'avez encore écrit aucun billet, pourquoi ne pas commencer par là"
+  l.store "Latest Posts", "Derniers articles"
+  l.store "No posts yet, why don't you start and write one", "Vous n'avez encore écrit aucun article, pourquoi ne pas commencer par là"
 
   # app/views/admin/dashboard/_typo_dev.html.erb
   l.store "Latest news from the Typo development blog", "Dernières nouvelles du blog officiel de Typo"
@@ -268,12 +273,13 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Bienvenue, %s !"
-  l.store "%d articles and %d comments were posted since your last connexion", ""
+  l.store "%d articles and %d comments were posted since your last connexion", "Depuis votre dernière connexion, %d articles et %d commentaires ont été publiés"
   l.store "You're running Typo %s", "Vous utilisez Typo %s"
   l.store "Total posts : %d", "Nombre total d'articles : %d"
   l.store "Your posts : %d", "Vous avez publié : %d articles "
   l.store "Total comments : %d", "Nombre total de commentaires : %d"
   l.store "Spam comments : %d", "Nombre total de spam : %d"
+  l.store "In your spam queue : %d", "En attente de modération : %d"
 
   # app/views/admin/feedback/_button.html.erb
   l.store "Select action", ""
@@ -312,7 +318,7 @@ Localization.define("fr_FR") do |l|
   l.store "Permanent link", ""
 
   # app/views/admin/pages/destroy.html.erb
-  l.store "Pages","Gérer les pages"
+  l.store "Pages","Pages"
   l.store "Are you sure you want to delete the page", "Voulez-vous vraiment effacer cette page"
   l.store "Delete this page", "Supprimer cette page"
 
@@ -348,6 +354,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "Fichier"
+  l.store "Files", "Fichiers"
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
@@ -591,8 +598,8 @@ Localization.define("fr_FR") do |l|
 
   # app/views/layouts/administration.html.erb
   l.store "%s &raquo;", ""
-  l.store "is proudly powered by", ""
-  l.store "Dashboard", "Tableau de bord"
+  l.store "is proudly powered by", "tourne fièrement sous"
+  l.store "Dashboard", "Accueil"
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
@@ -782,7 +789,7 @@ Localization.define("fr_FR") do |l|
   l.store "September", "septembre"
   l.store "Set iTunes metadata for this enclosure", "Ajouter des méta données iTunes pour cette pièce jointe"
   l.store "Setting for channel", "Options des canaux"
-  l.store "Settings", "Configurations"
+  l.store "Settings", "Configuration"
   l.store "Show content", "Afficher le contenu"
   l.store "Statistics", "Statistiques"
   l.store "String", "Chaîne de caractères"
