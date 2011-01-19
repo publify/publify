@@ -14,6 +14,9 @@ mvz for 6.0.1:
 - fix bug 192: Non-latin letters in permalink cause problems (but check bug 149) ==> neuro: please leave me an option to keep my full ascii permalink in some way, maybe we can discuss it before you work on that?
 - fix bug 193: Provide documentation on how to set up Typo on Debian and Ubuntu.
 - plain editor: Image tag is inserted even if cancel is clicked.
+- continued clean-ups and spec improvements.
+- enable Rails multi-treading support.
+- fix autosave ... again.
 
 setup:
 - reduce setup width
