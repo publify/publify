@@ -642,7 +642,7 @@ th.last { border-right: 1px solid #aed0ea; }
 td.comment_list { padding-right: 20px;}
 
 td {
-	background:url("../../images/admin/ui-bg_highlight-hard_100_f2f5f7_1x100.png") repeat-x scroll 50% top #F2F5F7;
+	background: #F2F5F7;
 	border-bottom: 1px solid #ddd;
 	color:#362B36;
 }
