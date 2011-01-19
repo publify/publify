@@ -88,6 +88,8 @@ a { color: #2779AA;}
 /* Interaction Cues
 ----------------------------------*/
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #bbd451; background: #bbd451 url(../../images/admin/ui-bg_flat_100_bbd451_40x100.png) 50% 50% repeat-x; color: #333333; }
+.ui-state-info  {border: 1px solid #F9DD34; background: #FFEF8F; color: #333333; }
+
 .ui-state-highlight a, .ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a { color: #333333; }
 .ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a; background: #cd0a0a url(../../images/admin/ui-bg_flat_15_cd0a0a_40x100.png) 50% 50% repeat-x; color: #ffffff; }
 .ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a { color: #ffffff; }
