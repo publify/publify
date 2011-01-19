@@ -8,6 +8,7 @@ neuro for 6.0.1:
 - admin: Move helps under text fields
 - admin: chose a different typo for labels and helps
 - admin : make all fields the same width
+- admin : make the colors a little less shiny (again)?
 
 mvz for 6.0.1:
 - fix bug 136: Clicking Save as draft in published article unpublishes it
@@ -16,7 +17,7 @@ mvz for 6.0.1:
 ✓ plain editor: Image tag is inserted even if cancel is clicked.
 - continued clean-ups and spec improvements.
 - enable Rails multi-treading support.
-- fix autosave ... again.
+✓ fix autosave ... again.
 
 setup:
 - reduce setup width
