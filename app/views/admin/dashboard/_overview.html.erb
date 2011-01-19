@@ -1,5 +1,5 @@
 <div class='ui-widget ui-widget ui-helper-reset' >
-  <div class='ui-state-highlight ui-corner-all' style='padding: 0pt 0.7em;'>
+  <div class='ui-state-info ui-corner-all' style='padding: 0pt 0.7em;'>
     <p>
       <span class='ui-icon ui-icon-info' style='float: left; margin-right: 0.3em;'></span>
        <%= _("This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s." ,
@@ -11,9 +11,10 @@
               link_to(_("enable plugins"), :controller => 'sidebar') ) -%></p>
 
     <p>
-      If you need help, <a href="http://typosphere.org">read our documentation</a>. You can also browse our
-      <a href="http://typogarden.org">theme catalogue</a>
-      or <a href='http://plugins.typosphere.org'>download some plugins</a> to customize your Typo blog.
+      <%= _("If you need help, %s. You can also browse our %s or %s to customize your Typo blog.",
+        link_to(_('read our documentation'), 'http://typosphere.org'),
+        link_to(_('theme catalogue'), 'http://typogarden.org'),
+        link_to(_('download some plugins'), 'http://plugins.typosphere.org')) %>
     </p>
   </div>
 </div>
