@@ -63,7 +63,7 @@
       <label class="float" for="setting_sp_akismet_key"><%= _("Akismet Key")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :sp_akismet_key, {:class => 'medium'}) %>
-        <span><%= _("Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%>.</span>
+        <span class='help'><%= _("Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%>.</span>
       </div>
     </div>
     <div class='setting clear'>
@@ -78,14 +78,14 @@
       <div class='input_text'>
         <%= text_field(:setting, :sp_article_auto_close, {:size => 4, :class => 'small'})%>
         <%= _("days") %>.
-        <%= _("Set to 0 to never disable comments")%>
+        <span class='help'><%= _("Set to 0 to never disable comments")%></span>
       </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_sp_url_limit"><%= _("Max Links")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'small'})%>
-        <span><%= _("Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.
+        <span class='help'><%= _("Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.
         <%= _("Set to 0 to never reject comments")%></span>
       </div>
     </div>

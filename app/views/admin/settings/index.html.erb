@@ -44,7 +44,7 @@
       <label class="float" for="setting_email_from"><%= _("Source Email")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :email_from, { :class => 'medium'}) %>
-        <span><%= _("Email address used by Typo to send notifications")%></span>
+        <span class='help'><%= _("Email address used by Typo to send notifications")%></span>
       </div>
     </div>
     <div class='setting clear'>
@@ -83,7 +83,7 @@
       <label class="float" for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :feedburner_url, :class => 'medium')%>
-        <span><%= _('You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
+        <span class='help'><%= _('You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
       </div>
     </div>
   </div>

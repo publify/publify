@@ -609,7 +609,7 @@ div.setting { float: left; margin-bottom: 12px;}
 /* Form */
 .float { display: block; float: left; width: 200px; line-height: 20px; }
 .large { width: 99%; }
-.medium { width: 300px; }
+.medium { width: 350px; }
 .small { width: 200px; }
 input.large, input.medium, input.small, textarea.large { border: 1px solid #ddd; padding: 5px; -moz-border-radius: 3px}
 p.settings { width: 530px; text-align: right; }
@@ -798,3 +798,6 @@ h3.ui-accordion-header, h4.ui-accordion-header { padding: .5em 2.2em;}
 .comment_content { margin-left: 45px; padding-right: 40px; }
 a.noborder { border: none; text-decoration: none;}
 h1 a { border: none; text-decoration: none;}
+
+.help { font-style: italic; color: #999; font-size: 10.5px;}
+span.help { display: block; }
