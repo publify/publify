@@ -186,7 +186,7 @@ Localization.define("fr_FR") do |l|
   l.store "Categories", "Catégories"
 
   # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
+  l.store "New Category", "Nouvelle Catégorie"
 
   # app/views/admin/categories/new.html.erb
   l.store "%s Category", "%s catégories"
@@ -205,19 +205,20 @@ Localization.define("fr_FR") do |l|
   l.store "Drafts", ""
 
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
+  l.store "Publish settings", "Paramètres"
   l.store "Allow comments", "Autoriser les commentaires"
   l.store "Allow trackbacks", "Autoriser les rétroliens"
-  l.store "Password:", ""
+  l.store "Password:", "Mot de passe"
   l.store "Publish", "Publier"
-  l.store "Excerpt", "Extraît"
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpt", "Extrait"
+  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
   l.store "Uploads", "Pièces jointes"
   l.store "Post settings", "Paramètres de l'article"
   l.store "Publish at", "Publié le"
   l.store "Permalink", "Lien permanent"
   l.store "Article filter", "Mise en forme des billets"
   l.store "Save as draft", "Sauver comme brouillon"
+  l.store "Visual", "Visuel"
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Êtes-vous certain de vouloir supprimer cet article"
@@ -282,7 +283,7 @@ Localization.define("fr_FR") do |l|
   l.store "In your spam queue : %d", "En attente de modération : %d"
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
+  l.store "Select action", "Choisir de..."
   l.store "Delete Checked Items", "Supprimer les commentaires sélectionnés"
   l.store "Delete all spam", "Supprimer tout le spam"
   l.store "Mark Checked Items as Spam", "Marquer ces commentaires comme du spam"
@@ -300,10 +301,10 @@ Localization.define("fr_FR") do |l|
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
   # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", ""
+  l.store "Comments for %s", "Commentaire sur %s"
   l.store "Status", "État"
-  l.store "Comment Author", ""
-  l.store "Comment", ""
+  l.store "Comment Author", "Auteur"
+  l.store "Comment", "Commentaire"
 
   # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Commentaires pour"
@@ -315,7 +316,7 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/pages/_form.html.erb
   l.store "Online", "En ligne"
   l.store "Page settings", "Paramètres de la page"
-  l.store "Permanent link", ""
+  l.store "Permanent link", "Lien permanent"
 
   # app/views/admin/pages/destroy.html.erb
   l.store "Pages","Pages"
@@ -323,7 +324,7 @@ Localization.define("fr_FR") do |l|
   l.store "Delete this page", "Supprimer cette page"
 
   # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
+  l.store "New Page", "Nouvelle page"
   l.store "Manage pages", "Administrer les pages"
 
   # app/views/admin/profiles/index.html.erb
@@ -477,7 +478,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/tags/index.html.erb
   l.store "Display Name", "Nom affiché"
-  l.store "Manage tags", "Gérer les tags"
+  l.store "Manage tags", "Mots clés"
 
   # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", "Désolé le catalogue de thèmes n'est pas disponible"
@@ -732,7 +733,7 @@ Localization.define("fr_FR") do |l|
   l.store "Copyright Information", "Informations sur le copyright"
   l.store "Dec", "Déc"
   l.store "December", "décembre"
-  l.store "Drafts:", "Brouillons"
+  l.store "Drafts", "Brouillons"
   l.store "Duration", "Durée"
   l.store "Edit MetaData", "Modifier les méta données"
   l.store "Editing pattern", "Éditer un motif"
