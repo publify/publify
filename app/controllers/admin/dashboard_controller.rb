@@ -23,6 +23,8 @@ class Admin::DashboardController < Admin::BaseController
     @statuserposts =  Article.count(:conditions => {:user_id => current_user.id, :state => 'published'})
     @statcomments = Comment.count(:all, :conditions => "state != 'spam'")
     @statspam = Comment.count(:all, :conditions => { :state => 'spam' })
+    @presumedspam = Comment.count(:all, :conditions => { :state => 'presumed_spam' })
+    @categories = Category.count(:all)
   end
 
   def comments

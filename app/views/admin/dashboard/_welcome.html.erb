@@ -6,12 +6,19 @@
   <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
     <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts, @newcomments) %></p>
     <p><%= _("You're running Typo %s", TYPO_VERSION) %></p>
+    
+    <p><strong><%= _("Content") %></strong></p>
     <ul>
       <li> <%= _("Total posts : %d", @statposts) %></li>
       <li> <%= _("Your posts : %d" , @statuserposts) %></li>
-      <li> <%= _("Total comments : %d" , @statcomments) %></li>
-      <li> <%= _("Spam comments : %d" , @statspam) %></li>
+      <li> <%= _("Categories: %d", @categories) %></li>
     </ul>
 
+    <p><strong><%= _("Feedback") %></strong></p>
+    <ul>
+      <li> <%= _("Total comments : %d" , @statcomments) %></li>
+      <li> <%= _("Spam comments : %d" , @statspam) %></li>
+      <li> <%= _("In your spam queue : %d", @presumedspam) %></li>
+    </ul>
   </div>
 </div>
