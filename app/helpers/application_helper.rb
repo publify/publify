@@ -43,11 +43,6 @@ module ApplicationHelper
     link_to_permalink(article,pluralize(trackbacks_count, _('no trackbacks'), _('1 trackback'), _('%d trackbacks',trackbacks_count)),'trackbacks')
   end
 
-  def check_cache(aggregator, *args)
-    hash = "#{aggregator.to_s}_#{args.collect { |arg| Digest::SHA1.hexdigest(arg) }.join('_') }".to_sym
-    controller.cache[hash] ||= aggregator.new(*args)
-  end
-
   def js_distance_of_time_in_words_to_now(date)
     time = _(date.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M:%%S GMT", date.utc)))
     timestamp = date.utc.to_i ;
@@ -96,17 +91,6 @@ module ApplicationHelper
     output.join("<br />\n")
   end
 
-  # Generate the image tag for a commenters gravatar based on their email address
-  # Valid options are described at http://www.gravatar.com/implement.php
-  def gravatar_tag(email, options={})
-    options.update(:gravatar_id => Digest::MD5.hexdigest(email.strip))
-    options[:default] = CGI::escape(options[:default]) if options.include?(:default)
-    options[:size] ||= 48
-
-    image_tag("http://www.gravatar.com/avatar.php?" <<
-      options.map { |key,value| "#{key}=#{value}" }.sort.join("&"), :class => "gravatar")
-  end
-
   def feed_title
     case
     when @feed_title
@@ -121,7 +105,6 @@ module ApplicationHelper
   def html(content, what = :all, deprecated = false)
     content.html(what)
   end
-
 
   def author_link(article)
     if this_blog.link_to_author and article.user and article.user.email.to_s.size>0

@@ -7,10 +7,6 @@ module ContentHelper
          (min_class + ((max_class-min_class) * articles.to_f / max_articles).to_i).to_s)
   end
 
-  def title_for_grouping(grouping)
-    "#{pluralize(grouping.article_counter, _('no posts') , _('1 post'), __('%d posts'))} with #{grouping.class.to_s.underscore} '#{grouping.display_name}'"
-  end
-
   def page_title
     blog_name = this_blog.blog_name || "Typo"
     if !@page_title.blank?

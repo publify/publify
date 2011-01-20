@@ -78,13 +78,13 @@ module Admin::BaseHelper
     @class = @class != '' ? '' : 'class="shade"'
   end
 
-  def reset_alternation
-    @class = nil
-  end
+#  def reset_alternation
+#    @class = nil
+#  end
 
-  def task_quickpost(title)
-    link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
-  end
+#  def task_quickpost(title)
+#    link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
+#  end
 
   def task_overview
     content_tag :li, link_to(_('Back to overview'), :action => 'index')
@@ -134,11 +134,6 @@ module Admin::BaseHelper
   def class_profile
     return class_selected_tab if controller.controller_name  =~ /profiles/
     class_tab
-  end
-
-  def alternate_editor
-    return 'visual' if current_user.editor == 'simple'
-    return 'simple'
   end
 
   def collection_select_with_current(object, method, collection, value_method, text_method, current_value, prompt=false)
