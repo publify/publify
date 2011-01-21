@@ -75,82 +75,22 @@ class ArticlesController < ContentController
   end
 
   def redirect
-    part = this_blog.permalink_format.split('/')
-    part.delete('') # delete all par of / where no data. Avoid all // or / started
-    params[:from].delete('')
-    if params[:from].last =~ /\.atom$/
-      request.format = 'atom'
-      params[:from].last.gsub!(/\.atom$/, '')
-    elsif params[:from].last =~ /\.rss$/
-      request.format = 'rss'
-      params[:from].last.gsub!(/\.rss$/, '')
-    end
-    zip_part = part.zip(params[:from])
-    article_params = {}
-    zip_part.each do |asso|
-      ['%year%', '%month%', '%day%', '%title%'].each do |format_string|
-        if asso[0] =~ /(.*)#{format_string}(.*)/
-          before_format = $1
-          after_format = $2
-          next if asso[1].nil?
-          result =  asso[1].gsub(before_format, '')
-          result.gsub!(after_format, '')
-          article_params[format_string.gsub('%', '').to_sym] = result
-        end
-      end
-    end
-    begin
-      @article = this_blog.requested_article(article_params)
-    rescue
-      #Not really good.
-      # TODO :Check in request_article type of DATA made in next step
-    end
+    clean_from_parameter
+
+    match_permalink_format this_blog.permalink_format
     return show_article if @article
 
-    # Redirect old version with /:year/:month/:day/:title to new format.
-    # because it's change
-    ["%year%/%month%/%day%/%title%".split('/'), "articles/%year%/%month%/%day%/%title%".split('/')].each do |part|
-      part.delete('') # delete all par of / where no data. Avoid all // or / started
-      params[:from].delete('')
-      zip_part = part.zip(params[:from])
-      article_params = {}
-      zip_part.each do |asso|
-        ['%year%', '%month%', '%day%', '%title%'].each do |format_string|
-          if asso[0] =~ /(.*)#{format_string}(.*)/
-            before_format = $1
-            after_format = $2
-            next if asso[1].nil?
-            result =  asso[1].gsub(before_format, '')
-            result.gsub!(after_format, '')
-            article_params[format_string.gsub('%', '').to_sym] = result
-          end
-        end
-      end
-      begin
-        @article = this_blog.requested_article(article_params)
-      rescue
-        #Not really good.
-        # TODO :Check in request_article type of DATA made in next step
-      end
-      if @article
-        redirect_to @article.permalink_url, :status => 301
-        return
-      end
+    # Redirect old version with /:year/:month/:day/:title to new format,
+    # because it's changed
+    ["%year%/%month%/%day%/%title%", "articles/%year%/%month%/%day%/%title%"].each do |part|
+      match_permalink_format part
+      return redirect_to @article.permalink_url, :status => 301 if @article
     end
 
-
-    # see how manage all by this redirect to redirect in different possible
-    # way maybe define in a controller in admin part in insert in this table
     r = Redirect.find_by_from_path(params[:from].join("/"))
+    return redirect_to r.full_to_path, :status => 301 if r
 
-    if(r)
-      path = r.to_path
-      url_root = this_blog.root_path
-      path = url_root + path unless url_root.nil? or path[0,url_root.length] == url_root
-      redirect_to path, :status => 301
-    else
-      render :text => "Page not found", :status => 404
-    end
+    render :text => "Page not found", :status => 404
   end
 
 
@@ -300,6 +240,43 @@ class ArticlesController < ContentController
     to = from + 1.day unless day.blank?
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
+  end
+
+  def clean_from_parameter
+    params[:from].delete('')
+    if params[:from].last =~ /\.atom$/
+      request.format = 'atom'
+      params[:from].last.gsub!(/\.atom$/, '')
+    elsif params[:from].last =~ /\.rss$/
+      request.format = 'rss'
+      params[:from].last.gsub!(/\.rss$/, '')
+    end
+  end
+
+  def match_permalink_format part
+    part = part.split('/')
+    part.delete('') # delete all par of / where no data. Avoid all // or / started
+
+    zip_part = part.zip(params[:from])
+    article_params = {}
+    zip_part.each do |asso|
+      ['%year%', '%month%', '%day%', '%title%'].each do |format_string|
+        if asso[0] =~ /(.*)#{format_string}(.*)/
+          before_format = $1
+          after_format = $2
+          next if asso[1].nil?
+          result =  asso[1].gsub(before_format, '')
+          result.gsub!(after_format, '')
+          article_params[format_string.gsub('%', '').to_sym] = result
+        end
+      end
+    end
+    begin
+      @article = this_blog.requested_article(article_params)
+    rescue
+      #Not really good.
+      # TODO :Check in request_article type of DATA made in next step
+    end
   end
 
   def formatted_date_selector(prefix = '')
