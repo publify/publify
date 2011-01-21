@@ -5,10 +5,7 @@ describe TagsController, "/index" do
 
   before do
     Factory(:blog)
-    3.times {
-      tag = Factory(:tag)
-      2.times { tag.articles << Factory(:article) }
-    }
+    Factory(:tag).articles << Factory(:article)
   end
 
   describe "normally" do
@@ -28,7 +25,7 @@ describe TagsController, "/index" do
       controller.stub!(:template_exists?) \
         .and_return(true)
 
-      do_get
+      get 'index'
       response.should render_template(:index)
     end
   end
@@ -46,8 +43,8 @@ describe TagsController, 'showing a single tag' do
 
   describe "with some articles" do
     before do
-      @tag.articles << Factory(:article)
-      @tag.articles << Factory(:article)
+      @articles = 2.times.map { Factory(:article) }
+      @tag.articles << @articles
     end
 
     it 'should be successful' do
@@ -56,9 +53,8 @@ describe TagsController, 'showing a single tag' do
     end
 
     it 'should retrieve the correct set of articles' do
-      pending "Doesn't seem to work"
       do_get
-      assigns[:articles].should == @tag.articles
+      assigns[:articles].map(&:id).sort.should == @articles.map(&:id).sort
     end
 
     it 'should render :show by default' do
