@@ -118,7 +118,7 @@ class Article < Content
   }
 
   def stripped_title
-    CGI.escape(self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
+    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
   end
 
   def year_url
@@ -134,7 +134,7 @@ class Article < Content
   end
 
   def title_url
-    permalink.to_s
+    CGI.escape(permalink.to_s)
   end
 
   def permalink_url_options(nesting = false)
@@ -281,17 +281,23 @@ class Article < Content
   # params is a Hash
   def self.find_by_permalink(params)
     date_range = self.time_delta(params[:year], params[:month], params[:day])
-    req_params = {}
-    if params[:title]
-      req_params[:permalink] = params[:title]
-    end
 
-    if date_range
-      req_params[:published_at] = date_range
-    end
+    req_params = {}
+    req_params[:permalink] = params[:title] if params[:title]
+    req_params[:published_at] = date_range if date_range
+
     return nil if req_params.empty? # no search if no params send
 
-    find_published(:first, :conditions => req_params) or raise ActiveRecord::RecordNotFound
+    article = find_published(:first, :conditions => req_params)
+    return article if article
+
+    if params[:title]
+      req_params[:permalink] = CGI.escape(params[:title])
+      article = find_published(:first, :conditions => req_params)
+      return article if article
+    end
+
+    raise ActiveRecord::RecordNotFound
   end
 
   def self.find_by_params_hash(params = {})

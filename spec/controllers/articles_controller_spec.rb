@@ -375,6 +375,15 @@ describe ArticlesController, "redirecting" do
     assigns(:article).should == utf8article
   end
 
+  # NOTE: This is needed because Rails over-unescapes glob parameters.
+  it 'should get good article with pre-escaped utf8 slug using unescaped slug' do
+    Factory(:blog)
+    utf8article = Factory.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC',
+      :published_at => Date.new(2004, 6, 2))
+    get :redirect, :from => ['2004', '06', '02', 'ルビー']
+    assigns(:article).should == utf8article
+  end
+
   describe 'accessing old-style URL with "articles" as the first part' do
     it 'should redirect to article' do
       Factory(:blog)

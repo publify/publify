@@ -20,7 +20,17 @@ describe ApplicationHelper do
   end
 
   describe "#link_to_permalink" do
-    subject { link_to_permalink(Factory(:article), "bla") }
-    it { should be_html_safe }
+    describe "for a simple ascii-only permalink" do
+      subject { link_to_permalink(Factory(:article, :published_at => Date.new(2004, 6, 1)), "title") }
+      it { should be_html_safe }
+      it { should == '<a href="http://myblog.net/2004/06/01/a-big-article">title</a>' }
+    end
+
+    describe "for a multibyte permalink" do
+      subject { Factory(:article, :permalink => 'ルビー') }
+      it "escapes the multibyte characters" do
+        link_to_permalink(subject, "title").should =~ /%E3%83%AB%E3%83%93%E3%83%BC/
+      end
+    end
   end
 end

@@ -15,10 +15,11 @@ module ApplicationHelper
 
   # Produce a link to the permalink_url of 'item'.
   def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil)
-    class_attr = "class=\"#{h style}\"" if style
-    rel_attr = "rel=\"nofollow\"" if nofollow
+    options = {}
+    options[:class] = style if style
+    options[:rel] = "nofollow" if nofollow
 
-    "<a href=\"#{h item.permalink_url(anchor)}\" #{rel_attr} #{class_attr}>#{h title.html_safe}</a>".html_safe
+    link_to title, item.permalink_url(anchor), options
   end
 
   # The '5 comments' link from the bottom of articles
