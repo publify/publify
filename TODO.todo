@@ -3,6 +3,21 @@
 neuro for 6.0.2:
 - finish French translation
 - add a check on current version to alert users about new releases 
+- Port : http://typogarden.org/techblue.html
+- Port : http://typogarden.org/lush.html
+- Port : http://typogarden.org/lucid.html
+- Port : http://typogarden.org/lillies.html
+- Port : http://typogarden.org/iwtap.html
+- Port : http://typogarden.org/iowa-storm.html
+- Port : http://typogarden.org/hemingway.html
+- Port : http://typogarden.org/fish-market.html
+- Port : http://typogarden.org/feathers-and-flowers.html
+- Port : http://typogarden.org/elegant_grunge.html
+- Port : http://typogarden.org/clear-pixels.html
+- Port : http://typogarden.org/blocks.html
+- Backort : http://www.lightword-design.com/
+- Backport : http://www.pagelines.com/themes/platformpro
+- Update typogarden with new featured themes
 
 mvz for 6.0.2
 - fix bug 136: Clicking Save as draft in published article unpublishes it
