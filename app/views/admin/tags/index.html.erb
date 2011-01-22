@@ -12,7 +12,7 @@
   <tr <%= alternate_class %>>
     <td>
       <%= link_to_edit tag.display_name, tag %>
-      <%= show_actions tag %>
+      <%= show_tag_actions tag %>
     </td>
     <td><%= tag.name %></td>
     <td><%= tag.published_articles.count.to_s %></td>

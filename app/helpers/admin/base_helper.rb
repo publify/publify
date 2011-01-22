@@ -189,7 +189,7 @@ module Admin::BaseHelper
   end
 
   def link_to_published(item)
-    return link_to_permalink(item,  _("Show"), '', 'published') if item.published
+    return link_to_permalink(item,  _("Show"), nil, 'published') if item.published
     link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => item.id}, {:class => 'unpublished', :target => '_new'})
   end
 
