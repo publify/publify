@@ -44,6 +44,7 @@ module TypoBlog
   $KCODE = 'u'
   require 'jcode'
   require 'transforms'
+  require 'route_cache'
 
   $FM_OVERWRITE = true
   require 'filemanager'
