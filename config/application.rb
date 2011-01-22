@@ -18,7 +18,7 @@ module TypoBlog
     # I need the localization plugin to load first
     # Otherwise, I can't localize plugins <= localization
     # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
-    config.plugins = [ :localization, :all ]
+    config.plugins = [ :localization, :prototype_legacy_helper, :all ]
 
     config.autoload_paths += %W(
       vendor/akismet
