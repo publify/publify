@@ -18,7 +18,8 @@ class Comment < Feedback
   end
 
   def interested_users
-    users = User.find_boolean(:all, :notify_on_comments)
+    users = User.find_all_by_notify_on_comments(true)
+    # XXX: What's this doing here?
     self.notify_users = users
     users
   end

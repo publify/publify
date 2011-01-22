@@ -38,7 +38,6 @@ module TypoBlog
 
   require 'action_web_service'
   require 'migrator'
-  require 'rails_patch/active_record'
   require 'rails_patch/active_support'
   require 'vendor/plugins/typo_login_system/lib/login_system'
   require 'typo_version'
