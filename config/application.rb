@@ -23,7 +23,6 @@ module TypoBlog
     config.autoload_paths += %W(
       vendor/akismet
       app/apis
-      lib
     ).map {|dir| "#{::Rails.root.to_s}/#{dir}"}.select { |dir| File.directory?(dir) }
 
     # Activate observers that should always be running
@@ -33,21 +32,34 @@ module TypoBlog
     config.filter_parameters << :password
   end
 
-  # Load included libraries.
-  #require 'uuidtools'
-
-  require 'action_web_service'
-  require 'migrator'
-  require 'rails_patch/active_support'
-  require 'vendor/plugins/typo_login_system/lib/login_system'
-  require 'typo_version'
   $KCODE = 'u'
   require 'jcode'
-  require 'transforms'
-  require 'route_cache'
+
+  # Load included libraries.
+
+  require 'action_web_service'
+  ## Required by the plugins themselves.
+  # require 'avatar_plugin'
+  require 'email_notify'
 
   $FM_OVERWRITE = true
   require 'filemanager'
+
+  require 'format'
+  require 'i18n_interpolation_deprecation'
+  require 'migrator'
+  require 'route_cache'
+  ## Required by the models themselves.
+  # require 'spam_protection'
+  require 'stateful'
+  require 'transforms'
+  require 'typo_guid'
+  ## Required by the plugins themselves.
+  # require 'typo_plugins'
+  require 'typo_version'
+  require 'rails_patch/active_support'
+
+  require 'vendor/plugins/typo_login_system/lib/login_system'
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
@@ -58,7 +70,6 @@ module TypoBlog
   # Work around interpolation deprecation problem: %d is replaced by
   # {{count}}, even when we don't want them to.
   # FIXME: We should probably fully convert to standard Rails I18n.
-  require 'i18n_interpolation_deprecation'
   class I18n::Backend::Simple
     def interpolate(locale, string, values = {})
       interpolate_without_deprecated_syntax(locale, string, values)
