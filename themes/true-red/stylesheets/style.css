@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  color: #000;
-  background: url('../../images/theme/background.gif') #fff top left repeat-x;
+  color: #f0f0f0;
+  background: url('../../images/theme/background.gif') #191715 top left repeat-x;
   font: 13px/20px "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
 }
 
@@ -24,7 +24,7 @@ h1 a, p#title a {
 }
 
 a {
-  color: #00131E;
+  color: #c2c2c2;
 }
 
 #content h1,
@@ -40,7 +40,7 @@ a {
 #sidebar ul,
 #sidebar div {
   margin-bottom: 20px;
-  border-bottom: #356aa0 2px solid;
+  border-bottom: #820300 2px solid;
   padding-bottom: 10px;
 }
 
@@ -53,13 +53,13 @@ a {
 
 #content h1 a,
 #content h2 a {
-  color: #00131e;
+  color: #ccc;
   text-decoration: none;
 }
 
 #content h1 a:hover,
 #content h2 a:hover {
-  color: #00131e;
+  color: #920400;
   text-decoration: underline;
 }
 
@@ -74,7 +74,6 @@ a {
   top: 0;
   left: 50%;
   width: 990px;
-  background: #8ae3f9;
   margin: 0 0 0 -495px;
   padding: 0;
 }
@@ -85,7 +84,7 @@ a {
 }
 
 #menu a {
-  color: #00131e;
+  color: #fff;
   padding: 5px 10px 0 10px;
   height: 25px;
   display: inline-block;
@@ -93,7 +92,7 @@ a {
 }
 
 #menu a:hover, #menu a.active {
-  background: #023;
+  background: #920400;
   color: #fff;
 }
 
@@ -149,7 +148,7 @@ a {
 }
 
 #content .border {
-  border-top: #356aa0 3px solid;
+  border-top: #820300 3px solid;
   margin-top: 15px;
   padding-top: 18px;
 }
@@ -192,13 +191,13 @@ a {
 .excerpt .comments {
   width: 110px;
   margin-left: 200px;
-  color: #fb7c00;
+  color: #c2c2c2;
 }
 
 .category-excerpt .comments {
   width: 110px;
   margin-left: 540px;
-  color: #fb7c00;
+  color: #c2c2c2;
 }
 
 .excerpt .author,
@@ -211,7 +210,7 @@ a {
 }
 
 .comments a {
-	color: #fb7c00;
+	color: #c2c2c2;
 }
 
 #external {
@@ -244,7 +243,8 @@ a {
   padding: 2px;
   width: 210px;
   font: 13px/20px "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
-  border: none;
+  -moz-border-radius:3px 3px 3px 3px;
+  border:1px solid #000000;
   margin: 2px;
   float: left;
 }
@@ -266,7 +266,7 @@ img.alignleft {
 
 #paginate {
   clear: both;
-  border-top: #356AA0 3px solid;
+  border-top: #820300 3px solid;
   width: 650px;
   text-align: right;
   margin-top: 20px;
@@ -276,7 +276,7 @@ img.alignleft {
 #legal {
   margin-top: 20px;
   padding-top: 10px;
-  border-top: #8ae3f9 5px solid;
+  border-top: #363534 5px solid;
 }
 
 #legal ul {
@@ -335,12 +335,12 @@ h2#twitter a:hover {
 }
 
 #meta a {
-  color: #00131e;
+  color: #c2c2c2;
   text-decoration: underline;
 }
 
 #meta a:hover {
-  color: #00131e;
+  color: #c2c2c2;
   text-decoration: none;
 }
 
@@ -396,7 +396,7 @@ ol#commentList li.comment {
   padding-left: 0;
   list-style: none;
   margin-bottom: 20px;
-  background: url('../../images/theme/comment.gif') #dbf8ff top left no-repeat;
+  background: url('../../images/theme/comment.gif') #24211D top left no-repeat;
 }
 
 
@@ -421,7 +421,7 @@ img.gravatar {
 
 .thecomment {
   padding: 3px 7px 5px 7px;
-  background: url('../../images/theme/comment_bottom.gif') #dbf8ff bottom left no-repeat;
+  background: #24211D;
 }
 
 #commentform h3 {
@@ -435,7 +435,7 @@ img.gravatar {
 }
 
 #commentform label {
-  color: #000;
+  color: #ccc;
 }
 
 p.comment {
@@ -565,9 +565,9 @@ a#carousel-previous {
 }
 
 #form-submit-button {
-	border: #d46900 1px solid;
-	background: url("../../images/theme/submit_form.jpg") bottom left repeat-x #fe9e3f;
-	color: #fff;
+	border: #ddd 1px solid;
+	background: url("../../images/theme/submit_form.jpg") bottom left repeat-x #fff;
+	color: #222;
 	-moz-border-radius: 4px;
 	moz-border-radius: 4px;
 	border-radius: 4px;
