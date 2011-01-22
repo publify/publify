@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head profile="http://gmpg.org/xfn/11">
+  <title><%= h(page_title) %></title>
+  <%= stylesheet_link_tag "/stylesheets/theme/style", :media => 'all' %>
+  <%= page_header %>
+</head>
+<body>
+  <div id='container'>
+    <div id='logo'>
+    <% if controller.controller_name == 'articles' and controller.action_name.include? 'index' %>
+      <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
+    <% else %>
+      <p id='title'><%= link_to(this_blog.blog_name, this_blog.base_url) %></p>
+    <% end %>
+      <p><%= this_blog.blog_subtitle %></p>
+    </div>
+    <div id='page'>
+      <div id='content'>
+        <%= yield %>
+      </div>
+      <div id='sidebar'>
+        <%= render_sidebars %>
+      </div>
+      <br class='clear' />
+      <div id='legal'>
+        <ul>
+          <%= content_tag(:li, link_to(_('Home'), this_blog.base_url, {:class => render_active_home}))%>
+          <%= content_tag(:li, link_to(_('Articles'), {:controller => 'categories'}, {:class => render_active_articles}))%>
+          <%= show_pages_links %>
+          <li><a href="http://t37.net/">Thème Frédéric de Villamil</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <!-- Absolutely positionned -->
+  <ul id='menu'>
+    <%= content_tag(:li, link_to(_('Home'), this_blog.base_url, {:class => render_active_home}))%>
+    <%= content_tag(:li, link_to(_('Articles'), {:controller => 'categories'}, {:class => render_active_articles}))%>
+    <%= show_pages_links %>
+  </ul>
+  <div id='external'>
+    <a href='<%= @auto_discover_rss %>'>
+      <%= image_tag "theme/rss.png", :alt => "RSS" %>
+    </a>
+  </div>
+  <div id="breadcrumb">
+    <%= render_breadcrumb %>
+  </div>
+</body>
+</html>
