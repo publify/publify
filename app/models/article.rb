@@ -330,7 +330,7 @@ class Article < Content
   end
 
   def interested_users
-    User.find_boolean(:all, :notify_on_new_articles)
+    User.find_all_by_notify_on_new_articles(true)
   end
 
   def notify_user_via_email(user)
@@ -543,9 +543,9 @@ class Article < Content
   end
 
   def add_notifications
-    self.notify_users = User.find_boolean(:all, :notify_on_new_articles)
-    self.notify_users << self.user if (self.user.notify_watch_my_articles? rescue false)
-    self.notify_users.uniq!
+    users = interested_users
+    users << self.user if (self.user.notify_watch_my_articles? rescue false)
+    self.notify_users = users.uniq
   end
 
   def self.time_delta(year = nil, month = nil, day = nil)

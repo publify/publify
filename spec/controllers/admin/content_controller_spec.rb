@@ -157,7 +157,6 @@ describe Admin::ContentController do
     def base_article(options={})
       { :title => "posted via tests!",
         :body => "A good body",
-        :keywords => "tagged",
         :allow_comments => '1',
         :allow_pings => '1' }.merge(options)
     end
@@ -178,7 +177,24 @@ describe Admin::ContentController do
       assigns(:article).should be_published
     end
 
-    it 'should create' do
+    it 'should create an article linked to the current user' do
+      post :new, 'article' => base_article
+      new_article = Article.last
+      assert_equal @user, new_article.user
+    end
+
+    it 'should create new published article' do
+      lambda do
+        post :new, 'article' => base_article
+      end.should change(Article, :count_published_articles)
+    end
+
+    it 'should redirect to show' do
+      post :new, 'article' => base_article
+      assert_response :redirect, :action => 'show'
+    end
+
+    it 'should send notifications on create' do
       begin
         u = users(:randomuser)
         u.notify_via_email = true
@@ -186,28 +202,28 @@ describe Admin::ContentController do
         u.save!
         ActionMailer::Base.perform_deliveries = true
         ActionMailer::Base.deliveries = []
-        category = Factory(:category)
         emails = ActionMailer::Base.deliveries
 
-        lambda do
-          tags = ['foo', 'bar', 'baz bliz', 'gorp gack gar']
-          post :new,
-            'article' => base_article(:keywords => tags) ,
-            'categories' => [category.id]
-          assert_response :redirect, :action => 'show'
-        end.should change(Article, :count_published_articles)
-
-        new_article = Article.last
-        assert_equal @user, new_article.user
-        assert_equal 1, new_article.categories.size
-        assert_equal [category], new_article.categories
-        assert_equal 4, new_article.tags.size
+        post :new, 'article' => base_article
 
         assert_equal(1, emails.size)
         assert_equal('randomuser@example.com', emails.first.to[0])
       ensure
         ActionMailer::Base.perform_deliveries = false
       end
+    end
+
+    it 'should create an article in a category' do
+      category = Factory(:category)
+      post :new, 'article' => base_article, 'categories' => [category.id]
+      new_article = Article.last
+      assert_equal [category], new_article.categories
+    end
+
+    it 'should create an article with tags' do
+      post :new, 'article' => base_article(:keywords => "foo bar")
+      new_article = Article.last
+      assert_equal 2, new_article.tags.size
     end
 
     it 'should create article in future' do

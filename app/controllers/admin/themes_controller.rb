@@ -31,43 +31,36 @@ class Admin::ThemesController < Admin::BaseController
   def editor
     case params[:type].to_s
     when "stylesheet"
-      path = this_blog.current_theme.path + "/stylesheets/"
-      if params[:file] =~ /css$/
-        filename = params[:file]
-      else
-        flash[:error] = _("You are not authorized to open this file")
-        return
-      end
+      subpath = "/stylesheets/"
+      filetype = /css$/
     when "layout"
-      path = this_blog.current_theme.path + "/views/layouts/"
-      if params[:file] =~ /rhtml$|erb$/
-        filename = params[:file]
-      else
-        flash[:error] = _("You are not authorized to open this file")
-        return
-      end
+      subpath = "/views/layouts/"
+      filetype = /rhtml$|erb$/
+    else
+      return
     end
 
-    if path and filename
-      if File.exists? path + filename
-        if File.writable? path + filename
-          if request.post?
-            theme = File.new(path + filename, "r+")
-            theme.write(params[:theme_body])
-            theme.close
-            flash[:notice] = _("File saved successfully")
-            zap_theme_caches
-          end
-        else
-          flash[:notice] = _("Unable to write file")
-        end
-        @file = ""
-        file = File.readlines(path + filename, "r")
-        file.each do |line|
-          @file << line
-        end
-      end
+    if params[:file] =~ filetype
+      path = this_blog.current_theme.path + subpath
+      filename = path + params[:file]
+    else
+      flash[:error] = _("You are not authorized to open this file")
+      return
     end
+
+    return unless File.exists? filename
+
+    if File.writable? filename
+      if request.post?
+        File.open(filename, "r+") { |theme| theme.write(params[:theme_body]) }
+        flash[:notice] = _("File saved successfully")
+        zap_theme_caches
+      end
+    else
+      flash[:notice] = _("Unable to write file")
+    end
+
+    @file = File.read(filename, "r")
   end
 
   def catalogue
