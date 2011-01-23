@@ -302,27 +302,6 @@ end
 
 describe ArticlesController, "redirecting" do
 
-  it 'should split routing path' do
-    assert_routing "foo/bar/baz", {
-      :from => ["foo", "bar", "baz"],
-      :controller => 'articles', :action => 'redirect'}
-  end
-
-  it 'should redirect from articles_routing' do
-    assert_routing "articles", {
-      :from => ["articles"],
-      :controller => 'articles', :action => 'redirect'}
-    assert_routing "articles/foo", {
-      :from => ["articles", "foo"],
-      :controller => 'articles', :action => 'redirect'}
-    assert_routing "articles/foo/bar", {
-      :from => ["articles", "foo", "bar"],
-      :controller => 'articles', :action => 'redirect'}
-    assert_routing "articles/foo/bar/baz", {
-      :from => ["articles", "foo", "bar", "baz"],
-      :controller => 'articles', :action => 'redirect'}
-  end
-
   describe "with explicit redirects" do
     it 'should redirect from known URL' do
       Factory(:blog)
