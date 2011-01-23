@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Comment do
-
   def valid_comment(options={})
     Comment.new({:author => 'Bob',
                 :article_id => Factory(:article).id,
@@ -41,7 +40,7 @@ describe Comment do
   end
 
   describe '#save' do
-    before(:each) { Factory(:blog) }
+    before(:each) { Factory(:blog, :sp_article_auto_close => 300) }
     it 'should save good comment' do
       assert feedback(:comment2).save
       assert_equal "http://www.google.com", feedback(:comment2).url
