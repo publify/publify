@@ -257,16 +257,16 @@ class ArticlesController < ContentController
     specs = format.split('/')
     specs.delete('')
 
+    return if params[:from].length != specs.length
+
     article_params = {}
 
     specs.zip(params[:from]).each do |spec, item|
-      next if item.nil?
       if spec =~ /(.*)%(.*)%(.*)/
         before_format = $1
         format_string = $2
         after_format = $3
-        result =  item.gsub(before_format, '')
-        result.gsub!(after_format, '')
+        result = item.gsub(/^#{before_format}(.*)#{after_format}$/, '\1')
         article_params[format_string.to_sym] = result
       end
     end

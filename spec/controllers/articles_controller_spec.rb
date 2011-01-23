@@ -430,6 +430,23 @@ describe ArticlesController, "redirecting" do
         :created_at => '2004-04-01 02:00:00')
     end
 
+    describe "accessing various non-matching URLs" do
+      it "should not find '.htmlsecond-blog-article'" do
+        get :redirect, :from => [".html#{@article.permalink}"]
+        assert_response 404
+      end
+
+      it "should not find 'second-blog-article.html.html'" do
+        get :redirect, :from => ["#{@article.permalink}.html.html"]
+        assert_response 404
+      end
+
+      it "should not find 'second-blog-article.html/foo'" do
+        get :redirect, :from => ["#{@article.permalink}.html", "foo"]
+        assert_response 404
+      end
+    end
+
     describe "accessing legacy URLs" do
       it 'should redirect from default URL format' do
         get :redirect, :from => ["2004", "04", "01", "second-blog-article"]
