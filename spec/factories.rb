@@ -111,7 +111,7 @@ Factory.define :blog do |b|
   b.email_from "scott@sigkill.org"
   b.theme "typographic"
   b.text_filter "textile"
-  b.sp_article_auto_close 300
+  b.sp_article_auto_close 0
   b.link_to_author false
   b.comment_text_filter "markdown"
   b.permalink_format "/%year%/%month%/%day%/%title%"

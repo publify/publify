@@ -268,7 +268,7 @@ describe ArticlesController, "previewing" do
       get :preview, :id => Factory(:article).id
     end
 
-    it 'should be redirect to login' do
+    it 'should redirect to login' do
       response.should redirect_to(:controller => "accounts/login", :action => :index)
     end
   end
@@ -347,8 +347,8 @@ describe ArticlesController, "redirecting" do
     describe 'and non-empty relative_url_root' do
       before do
         b = Factory(:blog, :base_url => "http://test.host/blog")
-  # XXX: The following has no effect anymore.
-  # request.env["SCRIPT_NAME"] = "/blog"
+        # XXX: The following has no effect anymore.
+        # request.env["SCRIPT_NAME"] = "/blog"
       end
 
       it 'should redirect' do
@@ -420,33 +420,33 @@ describe ArticlesController, "redirecting" do
   end
 
   describe 'with permalink_format like %title%.html' do
-    render_views
 
     before(:each) do
       b = Factory(:blog, :permalink_format => '/%title%.html')
 
-      article = Factory(:article, :permalink => 'second-blog-article',
-        :published_at => Date.new(2004, 4, 1))
+      @article = Factory(:article, :permalink => 'second-blog-article',
+        :published_at => '2004-04-01 02:00:00',
+        :updated_at => '2004-04-01 02:00:00',
+        :created_at => '2004-04-01 02:00:00')
     end
 
-    it 'should redirect from default URL format' do
-      get :redirect, :from => ["2004", "04", "01", "second-blog-article"]
-      assert_response 301
-      response.should redirect_to("http://myblog.net/second-blog-article.html")
+    describe "accessing legacy URLs" do
+      it 'should redirect from default URL format' do
+        get :redirect, :from => ["2004", "04", "01", "second-blog-article"]
+        assert_response 301
+        response.should redirect_to("http://myblog.net/second-blog-article.html")
+      end
+
+      it 'should redirect from old-style URL format with "articles" part' do
+        get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+        assert_response 301
+        response.should redirect_to("http://myblog.net/second-blog-article.html")
+      end
     end
 
-    it 'should redirect from old-style URL format with "articles" part' do
-      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
-      assert_response 301
-      response.should redirect_to("http://myblog.net/second-blog-article.html")
-    end
-
-    describe 'render article' do
-
-      render_views
+    describe 'accessing an article' do
 
       before(:each) do
-        @article = Factory(:article)
         get :redirect, :from => ["#{@article.permalink}.html"]
       end
 
@@ -458,23 +458,27 @@ describe ArticlesController, "redirecting" do
         assigns(:article).should == @article
       end
 
-      it 'should have good rss feed link' do
-        response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.rss\"]")
-      end
+      describe "the resulting page" do
+        render_views
 
-      it 'should have good atom feed link' do
-        response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.atom\"]")
+        it 'should have good rss feed link' do
+          response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.rss\"]")
+        end
+
+        it 'should have good atom feed link' do
+          response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.atom\"]")
+        end
       end
 
     end
 
     describe 'rendering as atom feed' do
+      render_views
+
       before(:each) do
-        article = Factory.create(:article,
-          :created_at => Time.now - 1.day)
-        Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+        Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
           :published => true)
-        get :redirect, :from => ["#{article.permalink}.html.atom"]
+        get :redirect, :from => ["#{@article.permalink}.html.atom"]
       end
 
       it 'should render atom partial' do
@@ -487,8 +491,10 @@ describe ArticlesController, "redirecting" do
     end
 
     describe 'rendering as rss feed' do
+      render_views
+
       before(:each) do
-        get :redirect, :from => ["#{Factory(:article).permalink}.html.rss"]
+        get :redirect, :from => ["#{@article.permalink}.html.rss"]
       end
 
       it 'should render rss20 partial' do
@@ -501,8 +507,9 @@ describe ArticlesController, "redirecting" do
     end
 
     describe 'rendering comment feed with problematic characters' do
+      render_views
+
       before(:each) do
-        @article = Factory(:article)
         @comment = Factory(:comment, :article => @article)
         @comment.body = "&eacute;coute! 4 < 2, non?"
         @comment.save!
