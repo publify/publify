@@ -268,6 +268,8 @@ class ArticlesController < ContentController
         after_format = $3
         result = item.gsub(/^#{before_format}(.*)#{after_format}$/, '\1')
         article_params[format_string.to_sym] = result
+      else
+        return unless spec == item
       end
     end
     begin

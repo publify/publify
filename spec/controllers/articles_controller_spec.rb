@@ -518,6 +518,24 @@ describe ArticlesController, "redirecting" do
       end
     end
   end
+
+  describe "with a format containing a fixed component" do
+    before(:each) do
+      b = Factory(:blog, :permalink_format => '/foo/%title%')
+
+      @article = Factory(:article)
+    end
+
+    it "should find the article if the url matches all components" do
+      get :redirect, :from => ["foo", @article.permalink]
+      response.should be_success
+    end
+
+    it "should not find the article if the url does not match the fixed component" do
+      get :redirect, :from => ["bar", @article.permalink]
+      assert_response 404
+    end
+  end
 end
 
 describe ArticlesController, "password protected" do
