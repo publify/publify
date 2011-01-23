@@ -253,22 +253,21 @@ class ArticlesController < ContentController
     end
   end
 
-  def match_permalink_format part
-    part = part.split('/')
-    part.delete('') # delete all par of / where no data. Avoid all // or / started
+  def match_permalink_format format
+    specs = format.split('/')
+    specs.delete('')
 
-    zip_part = part.zip(params[:from])
     article_params = {}
-    zip_part.each do |asso|
-      ['%year%', '%month%', '%day%', '%title%'].each do |format_string|
-        if asso[0] =~ /(.*)#{format_string}(.*)/
-          before_format = $1
-          after_format = $2
-          next if asso[1].nil?
-          result =  asso[1].gsub(before_format, '')
-          result.gsub!(after_format, '')
-          article_params[format_string.gsub('%', '').to_sym] = result
-        end
+
+    specs.zip(params[:from]).each do |spec, item|
+      next if item.nil?
+      if spec =~ /(.*)%(.*)%(.*)/
+        before_format = $1
+        format_string = $2
+        after_format = $3
+        result =  item.gsub(before_format, '')
+        result.gsub!(after_format, '')
+        article_params[format_string.to_sym] = result
       end
     end
     begin
