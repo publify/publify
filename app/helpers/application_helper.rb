@@ -217,4 +217,12 @@ module ApplicationHelper
       []
     end
   end
+  
+  def display_date(date)
+    date.strftime(this_blog.date_format)
+  end
+  
+  def display_time(time)
+    date.strftime(this_blog.time_format)
+  end  
 end

@@ -53,6 +53,31 @@
         <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'small'})%>
       </div>
     </div>
+    <div class='setting clear'>
+      <label class="float"><%= _("Date format")%></label>
+      <div class='input_text'>
+        <%= radio_button(:setting, :date_format, '%d/%m/%Y')%>
+        <label for="setting_date_format_1"><%= Time.now.strftime('%d/%m/%Y') %></label><br />
+        <%= radio_button(:setting, :date_format, '%m/%d/%Y') %>
+        <label for="setting_date_format_2"><%= Time.now.strftime('%m/%d/%Y') %></label><br />
+        <%= radio_button(:setting, :date_format, "%d %b %Y" )%>
+        <label for="setting_date_format_3"><%= Time.now.strftime('%d %b %Y') %></label><br />
+        <%= radio_button(:setting, :date_format, '%d %B %Y' )%>
+        <label for="setting_date_format_4"><%= Time.now.strftime('%d %B %Y') %></label>
+      </div>
+    </div>
+    <div class='setting clear'>
+      <label class="float"><%= _("Time format")%></label>
+      <div class='input_text'>
+        <%= radio_button(:setting, :time_format, '%Hh%M')%>
+        <label for="setting_time_format_1"><%= Time.now.strftime('%Hh%M') %></label><br />
+        <%= radio_button(:setting, :time_format, '%H:%M')%>
+        <label for="setting_time_format_2"><%= Time.now.strftime('%H:%M') %></label><br />
+        <%= radio_button(:setting, :time_format, '%I:%M%p')%>
+        <label for="setting_time_format_3"><%= Time.now.strftime('%I:%M%p') %></label>
+      </div>
+    </div>
+    
   </div>
 </div>
 

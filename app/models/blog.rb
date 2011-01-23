@@ -50,6 +50,8 @@ class Blog < ActiveRecord::Base
   setting :email_from,                 :string, 'typo@example.com'
   setting :editor,                     :integer, 'visual'
   setting :allow_signup,               :integer, 0
+  setting :date_format,                :string, '%d/%m/%Y'
+  setting :time_format,                :string, '%Hh%M'
 
   # SEO
   setting :meta_description,           :string, ''
