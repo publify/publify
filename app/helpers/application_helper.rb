@@ -223,6 +223,6 @@ module ApplicationHelper
   end
   
   def display_time(time)
-    date.strftime(this_blog.time_format)
+    time.strftime(this_blog.time_format)
   end  
 end
