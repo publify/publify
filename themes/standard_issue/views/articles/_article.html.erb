@@ -26,7 +26,7 @@
 	<div class="meta">
 		<% if controller.controller_name == "articles" and controller.action_name == 'show' %>
 		<p><small>
-		  <%= _("This entry was posted on %s", content_tag(:abbr, js_distance_of_time_in_words_to_now(article.published_at), {:class => 'published', :title => article.published_at.xmlschema})) %>
+		  <%= _("This entry was posted on %s", content_tag(:abbr, display_date_and_time(article.published_at), {:class => 'published', :title => article.published_at.xmlschema})) %>
 		    <%= _("and %s", category_links(@article)) unless @article.categories.empty? %>.
 		    <%= _("You can follow any any response to this entry through the %s", link_to(_("Atom feed"), @auto_discovery_url_atom)) %>.
 		    <%= _("You can leave a %s", link_to_permalink(article, _('comment'), 'comments')) if article.allow_comments? %>
@@ -35,7 +35,7 @@
 		<% else %>
   	<p class="author">
     	<%= _("Posted by") %> <cite><%= author_link(article) %></cite>
-    	<abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
+    	<abbr class="published" title="<%= article.published_at.xmlschema %>"><%= display_date_and_time article.published_at %></abbr>
   	</p>
 		<p class="links">
 			<%= link_to_permalink(article, _("Read full article"), nil, 'more') if controller.action_name != 'permalink' %>

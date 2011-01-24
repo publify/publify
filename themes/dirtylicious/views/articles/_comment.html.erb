@@ -2,7 +2,7 @@
   <div class="author">
     <%= avatar_tag(:email => comment.email, :url => comment.url) %>
     <strong><cite><%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %></cite></strong><br />
-    <abbr title="<%= comment.created_at.xmlschema %>"><%= distance_of_time_in_words comment.article.published_at, comment.created_at %> later:</abbr>
+    <abbr title="<%= comment.created_at.xmlschema %>"><%= display_date_and_time comment.created_at %></abbr>
   </div>
   <div class="content">
     <%= comment.html %>

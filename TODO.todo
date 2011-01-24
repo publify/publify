@@ -19,8 +19,6 @@ neuro for 6.0.2:
 - Backport : http://www.pagelines.com/themes/platformpro
 - Update typogarden with new featured themes
 - New time display internationalization
-- move the xxx days ago thing as a plugin
-- add specs to date and time display helpers
 
 mvz for 6.0.2
 - fix bug 136: Clicking Save as draft in published article unpublishes it

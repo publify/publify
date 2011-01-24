@@ -63,7 +63,9 @@
         <%= radio_button(:setting, :date_format, "%d %b %Y" )%>
         <label for="setting_date_format_3"><%= Time.now.strftime('%d %b %Y') %></label><br />
         <%= radio_button(:setting, :date_format, '%d %B %Y' )%>
-        <label for="setting_date_format_4"><%= Time.now.strftime('%d %B %Y') %></label>
+        <label for="setting_date_format_4"><%= Time.now.strftime('%d %B %Y') %></label><br />
+        <%= radio_button(:setting, :date_format, 'distance_of_time_in_words' )%>
+        <label for="setting_date_format_4"><%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= _("ago") %></label>
       </div>
     </div>
     <div class='setting clear'>

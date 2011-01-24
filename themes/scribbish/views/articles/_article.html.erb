@@ -6,7 +6,7 @@
 
   <p class="author">
     <%= _("Posted by")%> <cite><%= author_link(article) %></cite>
-    <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
+    <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= display_date_and_time article.published_at %></abbr>
   </p>
 
   <div class="content">

@@ -52,11 +52,7 @@ describe ApplicationHelper do
         this_blog.time_format = spec
         display_time(@article.published_at).should == @article.published_at.strftime(spec)
       end
-    end
-
- 
-    
-    
+    end    
   end
   
 end

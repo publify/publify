@@ -6,6 +6,6 @@
 <h2><%=h @comment.title %></h2>
 <cite><strong><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></strong> </cite>
  <%= link_to('said', @comment.permalink_url) %>
- <%= distance_of_time_in_words @article.published_at, @comment.created_at %> later:<br />
+ <%= display_date_and_time @comment.created_at %> <br />
 <%= html @comment %>
 <%= render :partial => 'mail_footer' %>

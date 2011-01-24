@@ -2,7 +2,7 @@
   <div class="title">
     <h2 class="title"><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h2>
     <div class="meta">
-      <%= _("Posted by") %> <cite><%= author_link(article) %></cite> <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
+      <%= _("Posted by") %> <cite><%= author_link(article) %></cite> <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= display_date_and_time article.published_at %></abbr>
     </div>
   </div>
   <div class="content">
@@ -31,7 +31,7 @@
   <% if controller.controller_name == "articles" and controller.action_name == "redirect" %>
   <div class="meta">
     <p class="infos"><small>
-      <%= _("This entry was posted on %s", content_tag(:abbr, js_distance_of_time_in_words_to_now(@article.published_at).html_safe, {:class => 'published', :title => @article.published_at.xmlschema})) %>
+      <%= _("This entry was posted on %s", content_tag(:abbr, display_date_and_time(@article.published_at).html_safe, {:class => 'published', :title => @article.published_at.xmlschema})) %>
       <%= _("and %s", category_links(@article)) unless @article.categories.empty? %>.
       <%= _("You can follow any any response to this entry through the %s", link_to(_("Atom feed"), @auto_discovery_url_atom)) %>.
       <%= _("You can leave a %s", link_to_permalink(article, _('comment'), 'comments')) unless @article.comments_closed? %>

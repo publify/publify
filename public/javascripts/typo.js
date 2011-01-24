@@ -24,55 +24,6 @@ function register_onload(func) {
   Event.observe(window, 'load', func, false);
 }
 
-function show_dates_as_local_time() {
-    $$('span.typo_date').each(function(e){
-        var classname = e.className ;
-        var gmtdate = '' ;
-        res = classname.match( /gmttimestamp-(\d+)/ ) ;
-        if (!res) {
-          gmtdate = e.title ;
-        } else {
-          gmtdate = new Date() ;
-          gmtdate.setTime( parseInt(res[1]) * 1000 )  ;
-        }
-        e.update(get_local_time_for_date(gmtdate))
-    })
-}
-
-function get_local_time_for_date(time) {
-  if (typeof(time)=='date') {
-    system_date = time ;
-  } else {
-    system_date = new Date(time);
-  }
-  user_date = new Date();
-  delta_minutes = Math.floor((user_date - system_date) / (60 * 1000));
-  if (Math.abs(delta_minutes) <= (8*7*24*60)) { // eight weeks... I'm lazy to count days for longer than that
-    distance = distance_of_time_in_words(delta_minutes);
-    if (delta_minutes < 0) {
-      return _("#{0} from now", distance) ;
-    } else {
-      return _("#{0} ago", distance) ;
-    }
-  } else {
-    return _('on #{0}', system_date.toLocaleDateString());
-  }
-}
-
-// a vague copy of rails' inbuilt function,
-// but a bit more friendly with the hours.
-function distance_of_time_in_words(minutes) {
-  if (minutes.isNaN) return "";
-  minutes = Math.abs(minutes);
-  if (minutes < 1) return (_('less than a minute'));
-  if (minutes < 50) return (_( '#{0} minute' + (minutes == 1 ? '' : 's'), minutes));
-  if (minutes < 90) return (_('about one hour'));
-  if (minutes < 1080) return (_("#{0} hours", Math.round(minutes / 60)));
-  if (minutes < 1440) return (_('one day'));
-  if (minutes < 2880) return (_('about one day'));
-  else return (_("#{0} days", Math.round(minutes / 1440))) ;
-}
-
 function commentAdded(request) {
   Element.cleanWhitespace('commentList');
   new Effect.BlindDown($('commentList').lastChild);

@@ -44,12 +44,6 @@ module ApplicationHelper
     link_to_permalink(article,pluralize(trackbacks_count, _('no trackbacks'), _('1 trackback'), _('%d trackbacks',trackbacks_count)),'trackbacks')
   end
 
-  def js_distance_of_time_in_words_to_now(date)
-    time = _(date.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M:%%S GMT", date.utc)))
-    timestamp = date.utc.to_i ;
-    "<span class=\"typo_date date gmttimestamp-#{timestamp}\" title=\"#{time}\" >#{time}</span>"
-  end
-
   def meta_tag(name, value)
     tag :meta, :name => name, :content => value unless value.blank?
   end
@@ -225,4 +219,13 @@ module ApplicationHelper
   def display_time(time)
     time.strftime(this_blog.time_format)
   end  
+  
+  def display_date_and_time(timestamp)
+    return "#{distance_of_time_in_words Time.now, timestamp} #{_('ago')}" if this_blog.date_format == 'distance_of_time_in_words'
+    "#{display_date(timestamp)} #{_('at')} #{display_time(timestamp)}"
+  end
+  
+  def js_distance_of_time_in_words_to_now(date)
+    display_date_and_time date
+  end
 end
