@@ -536,6 +536,38 @@ describe ArticlesController, "redirecting" do
       assert_response 404
     end
   end
+
+  describe "with a custom format with several fixed parts and several variables" do
+    before(:each) do
+      b = Factory(:blog, :permalink_format => '/foo/bar/%year%/%month%/%title%')
+
+      @article = Factory(:article)
+    end
+
+    it "should find the article if the url matches all components" do
+      get :redirect, :from => ["foo", "bar", @article.year_url, @article.month_url, @article.permalink]
+      response.should be_success
+    end
+
+    # FIXME: Documents current behavior; Blog URL format is only meant for one article shown
+    it "should not find the article if the url only matches some components" do
+      get :redirect, :from => ["foo", "bar", @article.year_url, @article.month_url]
+      assert_response 404
+    end
+
+    # TODO: Think about allowing this, and changing find_by_params_hash to match.
+    if false
+    it "should find the article if the url matches all fixed parts and no variable components" do
+      get :redirect, :from => ["foo", "bar"]
+      response.should be_success
+    end
+
+    it "should not find the article if the url does not match all fixed component" do
+      get :redirect, :from => ["foo"]
+      assert_response 404
+    end
+    end
+  end
 end
 
 describe ArticlesController, "password protected" do
