@@ -14,7 +14,7 @@
   <p>
     <label><%= _("Name")%>:<br />
       <%= text_field "comment", "author" %>
-      <small>(<%= link_to_function(_("leave url/email") + " &#187;", "Effect.toggle('extra_fields', 'blind', {duration: .3})") %>)</small>
+      <small>(<%= link_to_function((_("leave url/email") + " &#187;").html_safe, "Effect.toggle('extra_fields', 'blind', {duration: .3})") %>)</small>
     </label>
   </p>
 
