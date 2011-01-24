@@ -3,12 +3,12 @@ Localization.define("fr_FR") do |l|
   # app/controllers/accounts_controller.rb
   l.store "Login successful", "Connexion réussie"
   l.store "Login unsuccessful", "Échec de la connexion"
-  l.store "An email has been successfully sent to your address with your new password", ""
+  l.store "An email has been successfully sent to your address with your new password", "Un courrier vous a été envoyé avec votre nouveau mot de passe"
   l.store "Oops, something wrong just happened", ""
   l.store "Successfully logged out", "Vous êtes maintenant déconnecté"
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
-  l.store "Recover your password", "Je n'arrive pas à me connecter"
+  l.store "Recover your password", "Récupération d'un mot de passe perdu"
 
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "La catégorie a été enregistrée avec succès"
@@ -29,7 +29,7 @@ Localization.define("fr_FR") do |l|
   l.store "Confirmed classification of %s item(s)", "La classification de %d commentaires a été validée"
   l.store "Not implemented", "Non implémenté"
   l.store "All spam have been deleted", "Tout le spam a été supprimé"
-  l.store "Comment was successfully created.", "Commentaire crée avec succès."
+  l.store "Comment was successfully created.", "Commentaire créé avec succès."
   l.store "Comment was successfully updated.", "Commentaire mis à jour avec succès."
 
   # app/controllers/admin/pages_controller.rb
@@ -88,11 +88,11 @@ Localization.define("fr_FR") do |l|
   l.store "Delete content", "Supprimer le contenu"
   l.store "Are you sure?", "Êtes-vous certain ?"
   l.store "Please select", "Sélectionnez"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
+  l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
   l.store "or", "ou"
   l.store "Save", "Sauver"
   l.store "Edit", "Éditer"
-  l.store "Show", ""
+  l.store "Show", "Affichage"
   l.store "Published", "Publié"
   l.store "Unpublished", "Hors ligne"
   l.store "Show help on Typo macros", "Afficher l'aide sur les macros Typo"
@@ -110,7 +110,7 @@ Localization.define("fr_FR") do |l|
   l.store "Destroy this draft", "Supprimer ce brouillon"
 
   # app/helpers/admin/feedback_helper.rb
-  l.store "Show conversation", ""
+  l.store "Show conversation", "Afficher le fil"
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
@@ -129,7 +129,7 @@ Localization.define("fr_FR") do |l|
 
   # app/helpers/content_helper.rb
   l.store "Posted in", "Publié sous"
-  l.store "Tags", "Mots clés"
+  l.store "Tags", "Labels"
   l.store "no posts", "aucun article"
   l.store "1 post", "1 article"
   l.store "%d posts", "%d articles"
@@ -164,7 +164,7 @@ Localization.define("fr_FR") do |l|
   l.store "Back to ", "Revenir à "
 
   # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
+  l.store "Username or email", "Identifiant ou email"
 
   # app/views/accounts/signup.html.erb
   l.store "Create an account", ""
@@ -205,7 +205,7 @@ Localization.define("fr_FR") do |l|
   l.store "Drafts", ""
 
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", "Paramètres"
+  l.store "Publish settings", "Paramètres de publication"
   l.store "Allow comments", "Autoriser les commentaires"
   l.store "Allow trackbacks", "Autoriser les rétroliens"
   l.store "Password:", "Mot de passe"
@@ -226,14 +226,14 @@ Localization.define("fr_FR") do |l|
   l.store "Articles", "Articles"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
+  l.store "New Article", "Nouvel article"
   l.store "Search articles that contain ...", "Chercher les articles contenant ..."
   l.store "Search", "Chercher"
   l.store "Author", "Auteur"
   l.store "Date", "Date"
   l.store "Feedback", "Commentaires"
   l.store "Filter", "Filtrer"
-  l.store "Manage articles", "Articles"
+  l.store "Manage articles", "Gestion des articles"
   l.store "New Article", "Nouvel Article"
 
   # app/views/admin/dashboard/_comments.html.erb
@@ -262,7 +262,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Billets les plus populaires"
-  l.store "Nothing to show yet", "Rien à déclarer"
+  l.store "Nothing to show yet", "Rien à afficher pour l'instant"
 
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", "Derniers articles"
@@ -270,7 +270,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/dashboard/_typo_dev.html.erb
   l.store "Latest news from the Typo development blog", "Dernières nouvelles du blog officiel de Typo"
-  l.store "Oh no, nothing new", "Rien à déclarer"
+  l.store "Oh no, nothing new", "Rien à afficher"
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Bienvenue, %s !"
@@ -291,7 +291,7 @@ Localization.define("fr_FR") do |l|
   l.store "All comments", "Tous les commentaires"
   l.store "Limit to ham", "Uniquement les commentaires validés"
   l.store "Unapproved comments", "Commentaires non validés"
-  l.store "Limit to spam", "Afficher le spam"
+  l.store "Limit to spam", "N'afficher que le spam"
 
   # app/views/admin/feedback/_form.html.erb
   l.store "Add a comment", ""
@@ -310,7 +310,7 @@ Localization.define("fr_FR") do |l|
   l.store "Comments for", "Commentaires pour"
 
   # app/views/admin/feedback/index.html.erb
-  l.store "Search Comments and Trackbacks that contain", "Chercher les commentaires et les trackbacks contenant"
+  l.store "Search Comments and Trackbacks that contain", "Chercher les commentaires et les rétroliens contenant"
   l.store "Article", "Article"
 
   # app/views/admin/pages/_form.html.erb
