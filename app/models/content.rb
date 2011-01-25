@@ -38,7 +38,6 @@ class Content < ActiveRecord::Base
   }
   scope :user_id, lambda {|user_id| {:conditions => ['user_id = ?', user_id]}}
   scope :published, {:conditions => ['published = ?', true]}
-  scope :order, lambda {|order_by| {:order => order_by}}
   scope :not_published, {:conditions => ['published = ?', false]}
   scope :draft, {:conditions => ['state = ?', 'draft']}
   scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'created_at DESC'}
