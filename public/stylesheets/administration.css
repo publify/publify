@@ -599,7 +599,7 @@ div.setting { float: left; margin-bottom: 12px;}
 .settings { margin-bottom: 20px; }
 .settings.left { float: left; padding-right: 40px; }
 .right { text-align: right;}
-.save { background: #FB7C00; border: #FB7C00 1px solid; color: #fff; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px; font-weight: bold;}
+.save { background: #FB7C00; border: #FB7C00 1px solid; color: #fff; -moz-border-radius:3px 3px 3px 3px; -webkit-border-radius:3px 3px 3px 3px; font-weight: bold; cursor: pointer; }
 .unpublished, a.unpublished { color: #c00;}
 .published, a.published { color: #6eac2c;}
 
