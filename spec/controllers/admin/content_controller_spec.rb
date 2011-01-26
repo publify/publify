@@ -250,7 +250,7 @@ describe Admin::ContentController do
       assert_equal "<p><em>foo</em></p>", new_article.html(:extended)
     end
 
-    describe "editing a published article with an autosaved draft" do
+    describe "publishing a published article with an autosaved draft" do
       before do
         @orig = Factory(:article)
         @draft = Factory(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
@@ -265,12 +265,12 @@ describe Admin::ContentController do
         end
       end
 
-      it "delete the draft" do
+      it "deletes the draft" do
         Article.find(@orig.id).body.should == 'update'
       end
     end
 
-    describe "editing a draft copy of a published article" do
+    describe "publishing a draft copy of a published article" do
       before do
         @orig = Factory(:article)
         @draft = Factory(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
@@ -285,11 +285,40 @@ describe Admin::ContentController do
         end
       end
 
-      it "delete the draft" do
+      it "deletes the draft" do
         Article.find(@orig.id).body.should == 'update'
       end
     end
 
+    describe "saving a published article as draft" do
+      before do
+        @orig = Factory(:article)
+        post(:new,
+             :id => @orig.id,
+             :article => {:title => @orig.title, :draft => 'draft',
+               :body => 'update' })
+      end
+
+      it "leaves the original published" do
+        @orig.reload
+        @orig.published.should == true
+      end
+
+      it "leaves the original as is" do
+        @orig.reload
+        @orig.body.should_not == 'update'
+      end
+
+      it "redirects to the index" do
+        response.should redirect_to(:action => 'index')
+      end
+
+      it "creates a draft" do
+        draft = Article.child_of(@orig.id).first
+        draft.parent_id.should == @orig.id
+        draft.should_not be_published
+      end
+    end
   end
 
   shared_examples_for 'destroy action' do

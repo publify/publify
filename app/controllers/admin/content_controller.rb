@@ -140,7 +140,17 @@ class Admin::ContentController < Admin::BaseController
     get_or_build_article
 
     if request.post?
-      unless params[:article][:draft]
+      if params[:article][:draft]
+        # XXX: Straight copy from autosave. Refactor!
+        if @article.published
+          parent_id = @article.id
+          @article = Article.drafts.child_of(parent_id).first || Article.new
+          @article.allow_comments = this_blog.default_allow_comments
+          @article.allow_pings    = this_blog.default_allow_pings
+          @article.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
+          @article.parent_id      = parent_id
+        end
+      else
         if not @article.parent_id.nil?
           @article = Article.find(@article.parent_id)
         end
