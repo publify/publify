@@ -21,7 +21,6 @@ module TypoBlog
     config.plugins = [ :localization, :prototype_legacy_helper, :all ]
 
     config.autoload_paths += %W(
-      vendor/akismet
       app/apis
     ).map {|dir| "#{::Rails.root.to_s}/#{dir}"}.select { |dir| File.directory?(dir) }
 
@@ -60,6 +59,7 @@ module TypoBlog
   require 'rails_patch/active_support'
 
   require 'vendor/plugins/typo_login_system/lib/login_system'
+  require 'vendor/akismet/akismet'
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
