@@ -27,6 +27,20 @@ mvz for 6.0.2
 - continued clean-ups and spec improvements.
 - Evaluate http://typogarden.org/brown-type.html
 - Evaluate http://typogarden.org/lindholmen.html
+- fix typo:xxx macros (flickr at minima)
+- fix Akismet support. Stack trace at 
+NameError (uninitialized constant Feedback::Akismet):
+  app/models/feedback.rb:123:in `const_missing'
+  app/models/feedback.rb:123:in `akismet'
+  app/models/feedback.rb:130:in `akismet_is_spam?'
+  app/models/feedback.rb:129:in `akismet_is_spam?'
+  app/models/feedback.rb:104:in `classify'
+  app/models/feedback/states.rb:54:in `classify_content'
+  app/models/feedback/states.rb:62:in `before_save_handler'
+  lib/stateful.rb:65:in `__send__'
+  lib/stateful.rb:65:in `before_save_handler'
+  app/controllers/comments_controller.rb:18:in `create'
+
 
 ook for 6.0.2
 - enable category creation on the fly, in "write" tab (http://fdv.lighthouseapp.com/projects/11171/tickets/141-enable-category-creation-in-the-write-page)
