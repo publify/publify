@@ -26,7 +26,6 @@ mvz for 6.0.2
 - Evaluate http://typogarden.org/brown-type.html
 - Evaluate http://typogarden.org/lindholmen.html
 - fix typo:xxx macros (flickr at minima)
-- Fix redirect model.
 
 ook for 6.0.2
 - enable category creation on the fly, in "write" tab (http://fdv.lighthouseapp.com/projects/11171/tickets/141-enable-category-creation-in-the-write-page)
