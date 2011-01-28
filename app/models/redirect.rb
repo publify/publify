@@ -5,7 +5,7 @@ class Redirect < ActiveRecord::Base
 
   def full_to_path
     path = self.to_path
-    url_root = this_blog.root_path
+    url_root = Blog.default.root_path
     path = url_root + path unless url_root.nil? or path[0,url_root.length] == url_root
     path
   end

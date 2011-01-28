@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Admin::PagesController do
   before do
-    Factory(:blog)
+    @blog = Factory(:blog)
     request.session = { :user => users(:tobi).id }
   end
 
@@ -39,7 +39,7 @@ describe Admin::PagesController do
     assert_not_nil assigns(:page)
 
     assert_equal users(:tobi), assigns(:page).user
-    assert_equal TextFilter.find_by_name(this_blog.text_filter), assigns(:page).text_filter
+    assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
 
     post :new, :page => { :name => "new_page", :title => "New Page Title",
       :body => "Emphasis _mine_, arguments *strong*" }

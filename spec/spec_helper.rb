@@ -52,10 +52,6 @@ def assert_xml(xml)
   end
 end
 
-def this_blog
-  Blog.default || Blog.create!
-end
-
 # test standard view and all themes
 def with_each_theme
   yield nil, ""
