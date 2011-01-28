@@ -178,6 +178,7 @@ describe XmlController do
 
   # TODO(laird): make this more robust
   it "test_sitemap" do
+    Factory(:category)
     get :feed, :format => 'googlesitemap', :type => 'sitemap'
 
     assert_response :success
