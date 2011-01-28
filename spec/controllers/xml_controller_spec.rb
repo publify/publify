@@ -31,7 +31,13 @@ describe XmlController do
 
     it "returns valid RSS feed for trackbacks feed type" do
       Feedback.delete_all
-      Factory(:article)
+
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+                               :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article,
+                     :published_at => Time.now - 1.day,
+                     :published => true)
+
       get :feed, :type => 'trackbacks'
       assert_response :success
       assert_xml @response.body
@@ -67,7 +73,13 @@ describe XmlController do
 
   it "test_feed_rss20_trackbacks" do
     Feedback.delete_all
-    Factory(:comment)
+
+    article = Factory.create(:article, :created_at => Time.now - 1.day,
+                             :allow_pings => true, :published => true)
+    Factory.create(:trackback, :article => article,
+                   :published_at => Time.now - 1.day,
+                   :published => true)
+
     get :feed, :format => 'rss20', :type => 'trackbacks'
     assert_response :success
     assert_xml @response.body
