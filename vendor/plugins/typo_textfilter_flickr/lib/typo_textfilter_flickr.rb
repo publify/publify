@@ -46,15 +46,15 @@ This macro takes a number of parameters:
         alt     = attrib['alt']
 
         begin
-          flickr      = ::Flickr.new(FLICKR_KEY)
-          flickrimage = ::Flickr::Photo.new(img)
-          sizes       = flickrimage.sizes
+          FlickRaw.api_key = FLICKR_KEY
+          flickrimage = flickr.photos.getInfo(:photo_id => img)
+          sizes = flickr.photos.getSizes(:photo_id => img)
 
           details     = sizes.find {|s| s['label'].downcase == size.downcase } || sizes.first
           width       = details['width']
           height      = details['height']
           imageurl    = details['source']
-          imagelink   = flickrimage.url
+          imagelink = flickrimage.urls.find {|u| u.type == "photopage"}.to_s
 
           caption   ||= sanitize(CGI.unescapeHTML(flickrimage.description)) unless flickrimage.description.blank?
           title     ||= flickrimage.title
@@ -69,8 +69,8 @@ This macro takes a number of parameters:
           "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
 
         rescue Exception => e
-          logger.info e
-          %{<div class='broken_flickr_link'>`#{img}' could not be displayed because: <br />#{e}</div>}
+          logger.info e.message
+          %{<div class='broken_flickr_link'>`#{img}' could not be displayed because: <br />#{CGI.escapeHTML(e.message)}</div>}
         end
       end
     end
