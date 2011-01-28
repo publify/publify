@@ -234,4 +234,8 @@ module ApplicationHelper
   def js_distance_of_time_in_words_to_now(date)
     display_date_and_time date
   end
+
+  def this_blog
+    @blog ||= Blog.default
+  end
 end

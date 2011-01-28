@@ -260,7 +260,7 @@ end
 
 describe ArticlesController, "previewing" do
   render_views
-  before(:each) { Factory(:blog) }
+  before(:each) { @blog = Factory(:blog) }
 
   describe 'with non logged user' do
     before :each do
@@ -281,7 +281,7 @@ describe ArticlesController, "previewing" do
 
     with_each_theme do |theme, view_path|
       it "should render template #{view_path}/articles/read" do
-        this_blog.theme = theme if theme
+        @blog.theme = theme if theme
         get :preview, :id => @article.id
         response.should render_template('articles/read')
       end

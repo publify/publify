@@ -2,10 +2,11 @@ require 'spec_helper'
 
 shared_examples_for "CommentSanitization" do
   before do
+    @blog = Factory(:blog)
     @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
-    this_blog.plugin_avatar = ''
-    this_blog.lang = 'en_US'
+    @blog.plugin_avatar = ''
+    @blog.lang = 'en_US'
 
     prepare_comment
 
@@ -23,7 +24,7 @@ shared_examples_for "CommentSanitization" do
 
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
-      this_blog.comment_text_filter = value
+      @blog.comment_text_filter = value
 
       render :file => 'comments/show'
       rendered.should have_selector('.content')
@@ -119,11 +120,12 @@ end
 
 shared_examples_for "CommentSanitizationWithDofollow" do
   before do
+    @blog = Factory(:blog)
     @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
-    this_blog.plugin_avatar = ''
-    this_blog.lang = 'en_US'
-    this_blog.nofollowify = false
+    @blog.plugin_avatar = ''
+    @blog.lang = 'en_US'
+    @blog.nofollowify = false
 
     prepare_comment
 
@@ -141,7 +143,7 @@ shared_examples_for "CommentSanitizationWithDofollow" do
 
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
-      this_blog.comment_text_filter = value
+      @blog.comment_text_filter = value
 
       render :file => 'comments/show'
       rendered.should have_selector('.content')

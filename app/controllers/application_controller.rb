@@ -62,13 +62,6 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
-  # Helper method to get the blog object.
-  def this_blog
-    @blog ||= Blog.default
-  end
-
-  helper_method :this_blog
-
   # The base URL for this request, calculated by looking up the URL for the main
   # blog index page.
   def blog_base_url
@@ -78,5 +71,9 @@ class ApplicationController < ActionController::Base
   def add_to_cookies(name, value, path=nil, expires=nil)
     cookies[name] = { :value => value, :path => path || "/#{controller_name}",
                        :expires => 6.weeks.from_now }
+  end
+
+  def this_blog
+    @blog ||= Blog.default
   end
 end

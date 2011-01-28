@@ -25,7 +25,7 @@ describe SetupController do
       specify { response.should redirect_to(:action => 'confirm') }
 
       it "should correctly initialize blog and users" do
-        this_blog.blog_name.should == 'Foo'
+        Blog.default.blog_name.should == 'Foo'
         admin = User.find_by_login("admin")
         admin.should_not be_nil
         admin.email.should == 'foo@bar.net'
@@ -75,7 +75,7 @@ describe SetupController do
       specify { response.should redirect_to(:controller => 'articles', :action => 'index') }
 
       it "should not initialize blog and users" do
-        this_blog.blog_name.should_not == 'Foo'
+        Blog.default.blog_name.should_not == 'Foo'
         admin = User.find_by_login("admin")
         admin.should be_nil
       end
