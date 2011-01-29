@@ -65,7 +65,7 @@ describe 'Given a post which references a pingback enabled article' do
     ping = Factory(:article).pings.build("url" => referenced_url)
     ping.should be_instance_of(Ping)
     ping.url.should == referenced_url
-    ping.send_pingback_or_trackback(referrer_url)
+    ping.send_pingback_or_trackback(referrer_url).join
   end
 end
 
@@ -124,7 +124,7 @@ describe "An article links to another article, which contains a trackback URL" d
       .and_return(@mock)
 
     ping = article.pings.build(:url => referenced_url)
-    ping.send_pingback_or_trackback(article_url)
+    ping.send_pingback_or_trackback(article_url).join
   end
 
   def referenced_body
@@ -154,6 +154,6 @@ describe 'Given a remote site to notify, eg technorati' do
                                     'http://myblog.net', 'http://myblog.net/new-post')
 
     ping = Factory(:article).pings.build("url" => "http://rpc.technorati.com/rpc/ping")
-    ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post')
+    ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post').join
   end
 end

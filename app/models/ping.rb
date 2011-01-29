@@ -13,10 +13,10 @@ class Ping < ActiveRecord::Base
         @response = Net::HTTP.get_response(URI.parse(ping.url))
         send_pingback or send_trackback
       rescue Timeout::Error => err
+        logger.info "Sending pingback or trackback timed out"
         return
       rescue => err
-        raise err
-        # Ignore
+        logger.info "Sending pingback or trackback failed with error: #{err}"
       end
     end
 
@@ -68,7 +68,23 @@ class Ping < ActiveRecord::Base
     end
 
     def send_trackback
-      ping.send_trackback(trackback_url, origin_url)
+      do_send_trackback(trackback_url, origin_url)
+    end
+
+    def do_send_trackback(trackback_url, origin_url)
+      trackback_uri = URI.parse(trackback_url)
+
+      post = "title=#{CGI.escape(article.title)}"
+      post << "&excerpt=#{CGI.escape(article.html(:body).strip_html[0..254])}"
+      post << "&url=#{origin_url}"
+      post << "&blog_name=#{CGI.escape(blog.blog_name)}"
+
+      path = trackback_uri.path
+      path += "?#{trackback_uri.query}" if trackback_uri.query
+
+      net_request = Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
+        http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
+      end
     end
 
     private
@@ -83,28 +99,18 @@ class Ping < ActiveRecord::Base
   end
 
   def send_pingback_or_trackback(origin_url)
-    Pinger.new(origin_url, self).send_pingback_or_trackback
-  end
-
-  def send_trackback(trackback_url, origin_url)
-    trackback_uri = URI.parse(trackback_url)
-
-    post = "title=#{CGI.escape(article.title)}"
-    post << "&excerpt=#{CGI.escape(article.html(:body).strip_html[0..254])}"
-    post << "&url=#{origin_url}"
-    post << "&blog_name=#{CGI.escape(article.blog.blog_name)}"
-
-    path = trackback_uri.path
-    path += "?#{trackback_uri.query}" if trackback_uri.query
-
-    net_request = Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
-      http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
+    t = Thread.start(Pinger.new(origin_url, self)) do |pinger|
+      pinger.send_pingback_or_trackback
     end
+    t
   end
 
   def send_weblogupdatesping(server_url, origin_url)
-    send_xml_rpc(self.url, "weblogUpdates.ping", article.blog.blog_name,
-                 server_url, origin_url)
+    t = Thread.start(article.blog.blog_name) do |blog_name|
+      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name,
+                   server_url, origin_url)
+    end
+    t
   end
 
   protected
