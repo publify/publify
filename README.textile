@@ -3,7 +3,7 @@ h1. About Typo
 Being around since March 2005, Typo is (probably) the oldest blogging platform in Rails. It has a full set of feature you would expect from such an engine, powerful SEO capabilities and full themes and plugin
 extension. It is available as a gem or source tarball.
 
-Current version is Typo 6.0.1 for Ruby on Rails 3.0
+Current version is Typo 6.0.2 for Ruby on Rails 3.0
 
 
 h2. Useful Links:
