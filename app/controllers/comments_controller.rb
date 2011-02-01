@@ -44,7 +44,7 @@ class CommentsController < FeedbackController
     @comment = Comment.new(params[:comment])
 
     unless @article.comments_closed?
-      render :template => 'articles/comment_preview'
+      render :template => 'articles/comment_preview', :locals => { :comment => @comment }
     else
       render :text => 'Comment are closed'
     end
