@@ -1,6 +1,6 @@
 require 'rake/gempackagetask'
 
-PKG_VERSION = "6.0.2"
+PKG_VERSION = "6.0.3"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
