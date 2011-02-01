@@ -1,1 +1,1 @@
-ActionController::Base.helper PrototypeHelper
+require 'prototype_legacy_helper'
