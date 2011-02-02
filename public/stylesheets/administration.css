@@ -823,3 +823,7 @@ ol.dashboardList li h4 {
 ol.dashboardList img.avatar {
   margin: 0 10px 5px 0;
 }
+
+.action {
+  margin-top: 10px;
+}
