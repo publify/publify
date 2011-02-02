@@ -1,4 +1,18 @@
 Localization.define("fr_FR") do |l|
+  # Available languages
+  l.store "da_DK", "Danois"
+  l.store "de_DE", "Allemand"
+  l.store "en_US", "Anglais (Américain)"
+  l.store "es_MX", "Espagnol (Mexicain)"
+  l.store "fr_FR", "Français"
+  l.store "he_IL", "Hébreux"
+  l.store "it_IT", "Italien"
+  l.store "ja_JP", "Japonais"
+  l.store "lt_LT", "Lituanien"
+  l.store "nl_NL", "Hollandais"
+  l.store "pl_PL", "Polonais"
+  l.store "ro_RO", "Roumain"
+  l.store "zh_TW", "Chinois"
 
   # app/controllers/accounts_controller.rb
   l.store "Login successful", "Connexion réussie"
@@ -276,11 +290,11 @@ Localization.define("fr_FR") do |l|
   l.store "Welcome back, %s!", "Bienvenue, %s !"
   l.store "%d articles and %d comments were posted since your last connexion", "Depuis votre dernière connexion, %d articles et %d commentaires ont été publiés"
   l.store "You're running Typo %s", "Vous utilisez Typo %s"
-  l.store "Total posts : %d", "Nombre total d'articles : %d"
-  l.store "Your posts : %d", "Vous avez publié : %d articles "
-  l.store "Total comments : %d", "Nombre total de commentaires : %d"
-  l.store "Spam comments : %d", "Nombre total de spam : %d"
-  l.store "In your spam queue : %d", "En attente de modération : %d"
+  l.store "Total posts:", "Nombre total d'articles :"
+  l.store "Your posts:", "Vos articles :"
+  l.store "Total comments:", "Nombre total de commentaires :"
+  l.store "Spam comments:", "Nombre total de spam :"
+  l.store "In your spam queue:", "En attente de modération :"
 
   # app/views/admin/feedback/_button.html.erb
   l.store "Select action", "Choisir de..."

@@ -7,9 +7,9 @@ module Admin::SettingsHelper
 	  if lang =~ /\.rb$/
         lang_pattern = File.basename(lang).gsub(".rb", '')
         if this_blog.lang == lang_pattern
-          options << content_tag(:option, lang_pattern, :value => lang_pattern, :selected => 'selected')
+          options << content_tag(:option, _(lang_pattern.to_s), :value => lang_pattern, :selected => 'selected')
         else
-          options << content_tag(:option, lang_pattern, :value => lang_pattern)
+          options << content_tag(:option, _(lang_pattern.to_s), :value => lang_pattern)
         end
 	  end
 	end
