@@ -55,6 +55,7 @@ module TypoBlog
   require 'typo_guid'
   ## Required by the plugins themselves.
   # require 'typo_plugins'
+  require 'bare_migration'
   require 'typo_version'
   require 'rails_patch/active_support'
 
