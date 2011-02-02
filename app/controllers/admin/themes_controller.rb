@@ -60,7 +60,7 @@ class Admin::ThemesController < Admin::BaseController
       flash[:notice] = _("Unable to write file")
     end
 
-    @file = File.read(filename, "r")
+    @file = File.read(filename)
   end
 
   def catalogue
