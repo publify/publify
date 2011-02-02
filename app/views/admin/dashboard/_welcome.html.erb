@@ -5,7 +5,7 @@
   </h3>
   <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
     <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts, @newcomments) %></p>
-    <p><%= _("You're running Typo %s", TYPO_VERSION) %></p>
+    <p><%= _("You're running Typo %s", TYPO_VERSION) %> <%= @version_message %></p>
     
     <p><strong><%= _("Content") %></strong></p>
     <ul>

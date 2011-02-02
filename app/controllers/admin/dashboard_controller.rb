@@ -14,26 +14,7 @@ class Admin::DashboardController < Admin::BaseController
     statistics
     inbound_links
     typo_dev
-  end
-
-  def change_state
-    return unless request.xhr?
-
-    feedback = Feedback.find(params[:id])
-    if (feedback.state.to_s.downcase == 'spam')
-      feedback.mark_as_ham!
-    else
-      feedback.mark_as_spam!
-    end
-
-    template = (feedback.state.to_s.downcase == 'spam') ? 'spam' : 'ham'
-    render(:update) do |page|
-      if params[:context] != 'listing'
-        page.visual_effect :hide, "feedback_#{feedback.id}"
-      else
-        page.replace("feedback_#{feedback.id}", :partial => template, :locals => {:comment => feedback})
-      end
-    end
+    typo_version
   end
   
   private
@@ -78,6 +59,28 @@ class Admin::DashboardController < Admin::BaseController
     end
   rescue
     @inbound_links = nil
+  end
+
+  def typo_version
+    get_typo_version
+    version =  @typo_version ? @typo_version.split('.') : TYPO_VERSION.to_s.split('.')
+    
+    if version[0].to_i < TYPO_MAJOR.to_i
+      flash.now[:error] = _("You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
+    elsif version[1].to_i < TYPO_SUB.to_i
+      flash.now[:warning] = _("There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
+    elsif version[2].to_i < TYPO_MINOR.to_i
+      flash.now[:notice] = _("There's a new version of Typo available. Why don't you upgrade to %s ?", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
+    end
+  end
+
+  def get_typo_version
+    url = "http://typogarden.org/version.txt"
+    open(url) do |http|
+      @typo_version = http.read[0..5]
+    end
+  rescue 
+    @typo_version = nil
   end
 
   def typo_dev

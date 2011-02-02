@@ -188,7 +188,7 @@ module ApplicationHelper
   end
 
   def render_the_flash
-    return unless flash[:notice] or flash[:error]
+    return unless flash[:notice] or flash[:error] or flash[:warning]
     the_class = flash[:error] ? 'ui-state-error' : 'ui-state-highlight'
     the_icon = flash[:error] ? 'ui-icon-alert' : 'ui-icon-info'
 
