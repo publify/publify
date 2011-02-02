@@ -118,7 +118,11 @@ class Admin::FeedbackController < Admin::BaseController
 
     template = (feedback.state.to_s.downcase == 'spam') ? 'spam' : 'ham'
     render(:update) do |page|
-      page.replace("feedback_#{feedback.id}", :partial => template, :locals => {:comment => feedback})
+      if params[:context] != 'listing'
+        page.visual_effect :fade, "feedback_#{feedback.id}"
+      else
+        page.replace("feedback_#{feedback.id}", :partial => template, :locals => {:comment => feedback})
+      end
     end
   end
 

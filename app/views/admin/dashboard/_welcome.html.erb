@@ -9,16 +9,16 @@
     
     <p><strong><%= _("Content") %></strong></p>
     <ul>
-      <li> <%= _("Total posts : %d", @statposts) %></li>
-      <li> <%= _("Your posts : %d" , @statuserposts) %></li>
-      <li> <%= _("Categories: %d", @categories) %></li>
+      <li> <%= sprintf("%s %d", link_to(_("Total posts:"), :controller => 'admin/content'), @statposts) %></li>
+      <li> <%= sprintf("%s %d", link_to(_("Your posts:"), :controller => 'admin/content', :search => "[user_id]=#{current_user.id}"), @statuserposts) %></li>
+      <li> <%= sprintf("%s %d", link_to(_("Categories:"), :controller => 'admin/categories'), @categories) %></li>
     </ul>
 
     <p><strong><%= _("Feedback") %></strong></p>
     <ul>
-      <li> <%= _("Total comments : %d" , @statcomments) %></li>
-      <li> <%= _("Spam comments : %d" , @statspam) %></li>
-      <li> <%= _("In your spam queue : %d", @presumedspam) %></li>
+      <li> <%= sprintf("%s %d", link_to(_("Total comments:"), :controller => 'admin/feedback') , @statcomments) %></li>
+      <li> <%= sprintf("%s %d", link_to(_("Spam comments:"), :controller => 'admin/feedback', :published => 'f'), @statspam) %></li>
+      <li> <%= sprintf("%s %d", link_to(_("In your spam queue:"), :controller => 'admin/feedback', :presumed_spam => 'f'), @presumedspam) %></li>
     </ul>
   </div>
 </div>

@@ -16,6 +16,26 @@ class Admin::DashboardController < Admin::BaseController
     typo_dev
   end
 
+  def change_state
+    return unless request.xhr?
+
+    feedback = Feedback.find(params[:id])
+    if (feedback.state.to_s.downcase == 'spam')
+      feedback.mark_as_ham!
+    else
+      feedback.mark_as_spam!
+    end
+
+    template = (feedback.state.to_s.downcase == 'spam') ? 'spam' : 'ham'
+    render(:update) do |page|
+      if params[:context] != 'listing'
+        page.visual_effect :hide, "feedback_#{feedback.id}"
+      else
+        page.replace("feedback_#{feedback.id}", :partial => template, :locals => {:comment => feedback})
+      end
+    end
+  end
+  
   private
 
   def statistics
@@ -52,9 +72,9 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def inbound_links
-    url = "http://blogsearch.google.com/blogsearch_feeds?q=link:#{this_blog.base_url}&num=5&output=rss"
+    url = "http://blogsearch.google.com/blogsearch_feeds?q=link:#{this_blog.base_url}&num=3&output=rss"
     open(url) do |http|
-      @inbound_links = parse_rss(http.read)
+      @inbound_links = parse_rss(http.read).reverse
     end
   rescue
     @inbound_links = nil
@@ -63,7 +83,7 @@ class Admin::DashboardController < Admin::BaseController
   def typo_dev
     url = "http://blog.typosphere.org/articles.rss"
     open(url) do |http|
-      @typo_links = parse_rss(http.read)[0..1]
+      @typo_links = parse_rss(http.read)[0..4]
     end
   rescue
     @typo_links = nil
@@ -87,8 +107,8 @@ class Admin::DashboardController < Admin::BaseController
       item.title       = REXML::XPath.match(elem, "title/text()").first.value rescue ""
       item.link        = REXML::XPath.match(elem, "link/text()").first.value rescue ""
       item.description = REXML::XPath.match(elem, "description/text()").first.value rescue ""
-      item.author = REXML::XPath.match(elem, "dc:publisher/text()").first.value rescue ""
-      item.date        = Time.mktime(*ParseDate.parsedate(XPath.match(elem, "dc:date/text()").first.value)) rescue Time.now
+      item.author      = REXML::XPath.match(elem, "dc:publisher/text()").first.value rescue ""
+      item.date        = Time.mktime(*ParseDate.parsedate(REXML::XPath.match(elem, "dc:date/text()").first.value)) rescue Time.now
 
       item.description_link = item.description
       item.description.gsub!(/<\/?a\b.*?>/, "") # remove all <a> tags

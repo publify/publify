@@ -4,16 +4,20 @@
     <%= _("Latest Posts") %>
   </h3>
   <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
-    <ul>
+    <ol class='dashboardList'>
 	    <% if @recent_posts.size == 0 %>
         <li> <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
       <% else %>
         <% for post in @recent_posts -%>
           <li>
-            <%= link_to_permalink post, post.title %> (<%= link_to_permalink(post, post.published_comments.size.to_s) %>)
+            <h4><%= sprintf("%s on %s at %s", 
+                    link_to_permalink(post, post.title), 
+                    post.published_at.strftime(this_blog.date_format),
+                    post.published_at.strftime(this_blog.time_format)) %></h4>
+            <p><%= post.body.strip_html.slice(0,300) %></p>            
           </li>
         <% end %>
       <% end %>
-    </ul>
+    </ol>
   </div>
 </div>

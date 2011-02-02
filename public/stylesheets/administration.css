@@ -801,3 +801,25 @@ h1 a { border: none; text-decoration: none;}
 
 .help { font-style: italic; color: #999; font-size: 10.5px;}
 span.help { display: block; }
+
+/* Dashboard comments */
+ol.dashboardList {  
+  padding: 0;
+  margin: 0;
+}
+
+ol.dashboardList li {
+  list-style: none;
+  border-bottom: 1px solid #DDDDDD;
+  font-size: 90%;
+  padding-bottom: 5px;
+}
+
+ol.dashboardList li h4 {
+  margin-bottom: 3px;
+  margin-top: 8px;
+}
+
+ol.dashboardList img.avatar {
+  margin: 0 10px 5px 0;
+}

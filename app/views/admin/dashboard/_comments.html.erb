@@ -1,19 +1,28 @@
 <div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top nobullet'>
     <span class='ui-icon ui-icon-comment'> </span>
     <%= _("Latest Comments") %>
   </h3>
   <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
-    <ul>
+    <ol class='dashboardList' id="commentList">
       <% if @comments.size == 0 %>
         <li><%= _("No comments yet") %></li>
       <% else %>
         <% for comment in @comments -%>
-          <li>
-            <%= link_to_permalink comment, h(_("By %s on %s", comment.author, comment.article.title)) %>
-          </li>
+        <li id='feedback_<%= comment.id %>' class='clear'>
+          <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+          <h4>
+            <%= _("By") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
+            <%= display_date_and_time comment.created_at %>
+          </h4>
+          <p>
+            <%= comment.html.strip_html.slice(0..300) %>
+          </p>
+          <%= show_feedback_actions(comment, 'dashboard') %>
+        </li>
         <% end %>
       <% end %>
-    </ul>
+    </ol>
   </div>
 </div>
+
