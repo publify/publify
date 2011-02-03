@@ -3,16 +3,23 @@
 
 <%= form_tag do %>
 <div id='editor-right'>
-	<h3>Stylesheets</h3>
-	<div class="theme-filer">
-		<%= fetch_stylesheets %>
-	</div>
+  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Stylesheets")%></h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>  
+	    <div class="theme-filer">
+		    <%= fetch_stylesheets %>
+	    </div>
+    </div>
+  </div>
 
-	<h3>Layout</h3>
-	<div class="theme-filer">
-		<%= fetch_layouts %>
-	</div>
-
+  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
+    <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Layout")%></h3>
+    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>  
+	    <div class="theme-filer">
+		    <%= fetch_layouts %>
+	    </div>
+    </div>
+  </div>
 </div>
 
 <div id="editor-left">

@@ -48,7 +48,10 @@ class Admin::ThemesController < Admin::BaseController
       return
     end
 
-    return unless File.exists? filename
+    unless File.exists? filename
+      flash[:error] = _("File does not exist")
+      return
+    end
 
     if File.writable? filename
       if request.post?
@@ -59,7 +62,7 @@ class Admin::ThemesController < Admin::BaseController
     else
       flash[:notice] = _("Unable to write file")
     end
-
+    
     @file = File.read(filename)
   end
 

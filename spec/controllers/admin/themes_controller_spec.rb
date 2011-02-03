@@ -30,4 +30,44 @@ describe Admin::ThemesController do
     response.should have_selector("a", :content => "colors.css")
     response.should have_selector("a", :content => "default.html.erb")
   end
+  
+  it "trying to edit a stylesheet as a layout should raise an error" do
+    get :editor, :type => 'layout', :file => 'toto.css'
+    assert_response :success
+    response.should have_selector('span', :content => "You are not authorized to open this file")
+  end
+  
+  it "trying to edit a layout as a stylesheet should raise an error" do
+    get :editor, :type => 'stylesheet', :file => 'toto.html.erb'
+    assert_response :success
+    response.should have_selector('span', :content => "You are not authorized to open this file")
+  end
+
+  it "trying to edit a nonexisting stylesheet should raise an error" do
+    get :editor, :type => 'stylesheet', :file => 'toto.css'
+    assert_response :success
+    response.should have_selector('span', :content => "File does not exist")
+  end
+
+  it "trying to edit a nonexisting layout should raise an error" do
+    get :editor, :type => 'layout', :file => 'toto.html.erb'
+    assert_response :success
+    response.should have_selector('span', :content => "File does not exist")
+  end
+  
+  it "Trying to open a valid layout should fill the textarea with the layout file content" do
+    @blog = Blog.default
+    path = File.join(@blog.current_theme.path, 'views', 'layouts', 'default.html.erb')
+    get :editor, :type => 'layout', :file => 'default.html.erb'
+    assert_response :success
+    response.should have_selector('textarea', :content => File.read(path))
+  end
+  
+  it "Trying to open a valid stylesheet should fill the textarea with the stylesheet file content" do
+    @blog = Blog.default
+    path = File.join(@blog.current_theme.path, 'stylesheets', 'colors.css')
+    get :editor, :type => 'stylesheet', :file => 'colors.css'
+    assert_response :success
+    response.should have_selector('textarea', :content => File.read(path))
+  end
 end

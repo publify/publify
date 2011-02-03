@@ -1,23 +1,26 @@
 module Admin::ThemesHelper
   require('find')
+
   def fetch_stylesheets
-    list = ''
+    list = '<ul>'
     Find.find(this_blog.current_theme.path + "/stylesheets") do |path|
       if path =~ /css$/
-        list << content_tag(:p, link_to(File.basename(path), {:controller => 'themes', :action => 'editor', :type => 'stylesheet', :file => File.basename(path)}))
+        list << content_tag(:li, link_to(File.basename(path), {:controller => 'themes', :action => 'editor', :type => 'stylesheet', :file => File.basename(path)}))
       end
     end
-    list
+    list << '</ul>'
   end
 
   def fetch_layouts
-    list = ''
+    list = '<ul>'
     Find.find(this_blog.current_theme.path + "/views/layouts") do |path|
       if path =~ /rhtml$|erb$/
-        list << content_tag(:p, link_to(File.basename(path), {:controller => 'themes', :action => 'editor', :type => 'layout', :file => File.basename(path)}))
+        list << content_tag(:li, link_to(File.basename(path), {:controller => 'themes', :action => 'editor', :type => 'layout', :file => File.basename(path)}))
       end
     end
-    list
+    list << '</ul>'
   end
+  
+
 
 end

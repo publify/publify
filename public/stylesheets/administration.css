@@ -827,3 +827,9 @@ ol.dashboardList img.avatar {
 .action {
   margin-top: 10px;
 }
+
+/* Theme editor */
+.theme-filer ul { margin: 0; padding: 0;}
+.theme-filer ul li { list-style: none;  }
+
+
