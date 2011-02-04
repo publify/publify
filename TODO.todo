@@ -1,5 +1,8 @@
 # This file is better viewed with Textmate tasks plugin
 
+before each release:
+- test db:migrate on an empty database
+
 neuro for 6.0.2:
 - finish French translation
 - add a check on current version to alert users about new releases 
