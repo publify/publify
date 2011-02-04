@@ -31,8 +31,10 @@ module TypoBlog
     config.filter_parameters << :password
   end
 
-  $KCODE = 'u'
-  require 'jcode'
+  if RUBY_VERSION < "1.9"
+    $KCODE = 'u'
+    require 'jcode'
+  end
 
   # Load included libraries.
 
