@@ -58,16 +58,28 @@ describe Admin::ThemesController do
   it "Trying to open a valid layout should fill the textarea with the layout file content" do
     @blog = Blog.default
     path = File.join(@blog.current_theme.path, 'views', 'layouts', 'default.html.erb')
+    file_contents = File.read(path)
+
     get :editor, :type => 'layout', :file => 'default.html.erb'
+
     assert_response :success
-    response.should have_selector('textarea', :content => File.read(path))
+    assigns(:file).should == file_contents
+    response.should have_selector('textarea') do |contents|
+      contents.text.should == file_contents
+    end
   end
   
   it "Trying to open a valid stylesheet should fill the textarea with the stylesheet file content" do
     @blog = Blog.default
     path = File.join(@blog.current_theme.path, 'stylesheets', 'colors.css')
+    file_contents = File.read(path)
+
     get :editor, :type => 'stylesheet', :file => 'colors.css'
+
     assert_response :success
-    response.should have_selector('textarea', :content => File.read(path))
+    assigns(:file).should == file_contents
+    response.should have_selector('textarea') do |contents|
+      contents.text.should == file_contents
+    end
   end
 end

@@ -23,9 +23,7 @@
 </div>
 
 <div id="editor-left">
-  <textarea id="theme_body" name="theme_body" class='large' rows='25'>
-  <%= @file %>
-  </textarea>
+  <textarea id="theme_body" name="theme_body" class='large' rows='25'><%=h @file %></textarea>
   <%= hidden_field_tag 'type', params[:type] %>
   <%= hidden_field_tag 'file', params[:file] %>
 </div>
