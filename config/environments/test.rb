@@ -27,7 +27,6 @@ TypoBlog::Application.configure do
   # like if you have constraints or database-specific column types
   # config.active_record.schema_format = :sql
 
-  require 'ruby-debug'
   Migrator.offer_migration_when_available            = false
 
   config.active_support.deprecation = :stderr

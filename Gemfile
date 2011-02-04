@@ -41,7 +41,11 @@ gem 'acts_as_list'
 gem 'acts_as_tree_rails3'
 
 group :development, :test do
-  gem 'ruby-debug'
+  if RUBY_VERSION.include?('1.9')
+    gem 'ruby-debug19'
+  else
+    gem 'ruby-debug'
+  end
   gem 'factory_girl'
   gem 'webrat'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
