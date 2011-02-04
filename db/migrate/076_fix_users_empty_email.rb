@@ -1,4 +1,7 @@
 class FixUsersEmptyEmail < ActiveRecord::Migration
+  class User < ActiveRecord::Base
+  end
+
   def self.up
       users = User.find(:all)
       users.each do |user|

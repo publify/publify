@@ -6,6 +6,9 @@ class FixProfiles < ActiveRecord::Migration
     include BareMigration
   end
 
+  class Profile < ActiveRecord::Base
+  end
+
   def self.up
     remove_column :users, :profile_id
     add_column :users, :profile_id, :integer

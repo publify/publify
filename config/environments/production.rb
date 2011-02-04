@@ -26,7 +26,6 @@ TypoBlog::Application.configure do
 
   # Enable threaded mode
   config.threadsafe!
-  config.dependency_loading = true if $rails_rake_task
-  
+
   Migrator.offer_migration_when_available            = true
 end

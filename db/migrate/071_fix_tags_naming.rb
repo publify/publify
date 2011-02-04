@@ -1,4 +1,7 @@
 class FixTagsNaming < ActiveRecord::Migration
+  class Tag < ActiveRecord::Base
+  end
+
   def self.up
     tags = Tag.find(:all)
     tags.each do |tag|
