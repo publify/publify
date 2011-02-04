@@ -7,6 +7,15 @@ class AddCategorizationModel < ActiveRecord::Migration
     include BareMigration
   end
 
+  class User < ActiveRecord::Base
+  end
+  class Content < ActiveRecord::Base
+  end
+  class Article < Content
+  end
+  class Category < ActiveRecord::Base
+  end
+
   def self.up
     create_table :categorizations do |t|
       t.column :article_id, :integer
@@ -29,12 +38,14 @@ class AddCategorizationModel < ActiveRecord::Migration
     end
     # Adds the article category to the first post if and only if generating the schema
     if User.count.zero?
-      puts "Adding category to default article"
       article = Article.find(:first)
       category = Category.find(:first)
-      Categorization.create!(:article_id => article.id,
-                             :category_id => category.id,
-                             :is_primary => 1)
+      STDERR.puts "Adding category to default article"
+      unless article.nil? or category.nil?
+        Categorization.create!(:article_id => article.id,
+                               :category_id => category.id,
+                               :is_primary => 1)
+      end
     end
   end
 

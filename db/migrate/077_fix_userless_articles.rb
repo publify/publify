@@ -1,4 +1,11 @@
 class FixUserlessArticles < ActiveRecord::Migration
+  class User < ActiveRecord::Base
+  end
+  class Content < ActiveRecord::Base
+  end
+  class Article < Content
+  end
+
   def self.up
     unless $schema_generator
       articles = Article.find(:all)

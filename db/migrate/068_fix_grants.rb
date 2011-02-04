@@ -17,6 +17,9 @@ class FixGrants < ActiveRecord::Migration
     serialize :staged_config
   end
 
+  class Profile < ActiveRecord::Base
+  end
+
   def self.up
     STDERR.puts "Creating users rights"
     drop_table :profiles_to_rights
