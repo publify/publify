@@ -3,7 +3,7 @@
 before each release:
 - test db:migrate on an empty database
 
-neuro for 6.0.2:
+neuro for 6.0.4:
 - finish French translation
 - add a check on current version to alert users about new releases 
 - Port : http://typogarden.org/techblue.html
@@ -23,13 +23,13 @@ neuro for 6.0.2:
 - Update typogarden with new featured themes
 - New time display internationalization
 
-mvz for 6.0.2
+mvz for 6.0.4
 - avoid accidentally creating published articles with a permalink like draft-article-123
 - continued clean-ups and spec improvements.
 - Evaluate http://typogarden.org/brown-type.html
 - Evaluate http://typogarden.org/lindholmen.html
 
-ook for 6.0.2
+ook for 6.0.4
 - enable category creation on the fly, in "write" tab (http://fdv.lighthouseapp.com/projects/11171/tickets/141-enable-category-creation-in-the-write-page)
 - display permalink for comments
 - port textfilter to the new plugin system
@@ -59,3 +59,4 @@ bugs:
 under the hood:
 - Use standard rails localization
 - Split CSS between colors and structure so we can create 2 admin themes
+- Simplify BlogSweeper: (Allmost) all sweeps are really sweep_all.

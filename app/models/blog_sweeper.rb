@@ -40,6 +40,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     expire_for(record, true)
   end
 
+  # TODO: Simplify this. Almost every sweep amounts to a sweep_all.
   def expire_for(record, destroying = false)
     case record
     when Page
