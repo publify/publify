@@ -1,57 +1,39 @@
 require 'spec_helper'
 
 shared_examples_for "General Comment Creation" do
+  before do
+    @article = Factory(:article)
+    post :create, :comment => {:body => 'content', :author => 'bob',
+      :email => 'bob@home', :url => 'http://bobs.home/'},
+      :article_id => @article.id
+  end
+
   it "should assign the new comment to @comment" do
-    article = Factory(:article)
-    post :create, :comment => {:body => 'content', :author => 'bob'},
-      :article_id => article.id
-    assigns[:comment].should == Comment.find_by_author_and_body_and_article_id('bob', 'content', article.id)
+    assigns[:comment].should == Comment.find_by_author_and_body_and_article_id('bob', 'content', @article.id)
   end
 
   it "should assign the article to @article" do
-    article = Factory(:article)
-    post :create, :comment => {:body => 'content', :author => 'bob'},
-      :article_id => article.id
-    assigns[:article].should == article
+    assigns[:article].should == @article
   end
 
   it "should save the comment" do
-    lambda do
-      post :create, :comment => {:body => 'content', :author => 'bob'},
-        :article_id => Factory(:article).id
-    end.should change(Comment, :count).by(1)
+    @article.comments.size.should == 1
   end
 
   it "should set the author" do
-    article = Factory(:article)
-    post :create, :comment => {:body => 'content', :author => 'bob'},
-      :article_id => article.id
-    article.comments.last.author.should == 'bob'
+    @article.comments.last.author.should == 'bob'
   end
 
   it "should set an author cookie" do
-    post :create, :comment => {:body => 'content', :author => 'bob'},
-      :article_id => Factory(:article).id
     cookies["author"].should == 'bob'
   end
 
   it "should set a gravatar_id cookie" do
-      post :create, :comment => {:body => 'content', :author => 'bob',
-        :email => 'bob@home', :url => 'http://bobs.home/'},
-        :article_id => Factory(:article).id
     cookies["gravatar_id"].should == Digest::MD5.hexdigest('bob@home')
   end
 
   it "should set a url cookie" do
-    post :create, :comment => {:body => 'content', :author => 'bob',
-     :email => 'bob@home', :url => 'http://bobs.home/'},
-     :article_id => Factory(:article).id
     cookies["url"].should == 'http://bobs.home/'
-  end
-
-  it "should create a comment" do
-    post :create, :comment => {:body => 'content', :author => 'bob'},
-      :article_id => Factory(:article).id
   end
 end
 
