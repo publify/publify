@@ -38,6 +38,20 @@ describe Article do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC'
       end
     end
+
+    describe "with a permalink containing a space" do
+      subject { Factory(:article, :permalink => 'hello there', :published_at => Date.new(2004, 6, 1)) }
+      it "escapes the space as '%20', not as '+'" do
+        subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/hello%20there'
+      end
+    end
+
+    describe "with a permalink containing a plus" do
+      subject { Factory(:article, :permalink => 'one+two', :published_at => Date.new(2004, 6, 1)) }
+      it "does not escape the plus" do
+        subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/one+two'
+      end
+    end
   end
 
   it "test_edit_url" do

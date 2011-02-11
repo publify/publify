@@ -134,7 +134,7 @@ class Article < Content
   end
 
   def title_url
-    CGI.escape(permalink.to_s)
+    URI.encode(permalink.to_s)
   end
 
   def permalink_url_options(nesting = false)
