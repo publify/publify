@@ -86,13 +86,33 @@ describe Comment do
   end
 
   describe '#create' do
-    it 'should create comment' do
+    before do
       Factory(:blog)
+    end
+
+    it 'should create comment' do
       c = valid_comment
       assert c.save
       assert c.guid.size > 15
     end
 
+    it 'preserves urls starting with https://' do
+      c = valid_comment(:url => 'https://example.com/')
+      c.save
+      c.url.should == 'https://example.com/'
+    end
+
+    it 'preserves urls starting with http://' do
+      c = valid_comment(:url => 'http://example.com/')
+      c.save
+      c.url.should == 'http://example.com/'
+    end
+
+    it 'prepends http:// to urls without protocol' do
+      c = valid_comment(:url => 'example.com')
+      c.save
+      c.url.should == 'http://example.com'
+    end
   end
 
   describe '#spam?' do

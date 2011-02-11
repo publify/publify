@@ -59,10 +59,7 @@ class Feedback < Content
 
   def correct_url
     return if url.blank?
-    # FIXME: This doesn't seem to do anything!
-    url.tap do
-      url.to_s.gsub!(%r{^(?:http://)?(.+)},"http://\\1")
-    end
+    self.url = "http://" + url.to_s unless url =~ %r{^https?://}
   end
 
   def article_allows_this_feedback
