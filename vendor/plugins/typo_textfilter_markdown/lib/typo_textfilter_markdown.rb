@@ -29,7 +29,11 @@ is available from the author's site, but here's a short summary:
       end
 
       def self.filtertext(blog,content,text,params)
-        BlueCloth.new(text.gsub(%r{</?notextile>}, '')).to_html
+        # FIXME: Workaround for BlueCloth not interpreting <typo:foo> as an
+        # HTML tag. See <http://deveiate.org/projects/BlueCloth/ticket/70>.
+        escaped_macros = text.gsub(%r{(</?typo):}, '\1X')
+        html = BlueCloth.new(escaped_macros).to_html.gsub(%r{</?notextile>}, '')
+        html.gsub(%r{(</?typo)X}, '\1:')
       end
     end
   end

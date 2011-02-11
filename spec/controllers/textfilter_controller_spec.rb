@@ -183,4 +183,22 @@ EOF
         [:macropre,:macropost],
         {})
   end
+
+  describe "combining a post-macro" do
+    describe "with markdown" do
+      it "correctly interprets the macro" do
+        result = filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',
+                             [:macropre, :markdown, :macropost])
+        result.should =~ %r{<div style="float:left" class="flickrplugin"><a href="http://www.flickr.com/users/scottlaird/31366117"><img src="http://photos23.flickr.com/31366117_b1a791d68e_s.jpg" width="75" height="75" alt="Matz" title="Matz"/></a><p class="caption" style="width:75px">This is Matz, Ruby's creator</p></div>}
+      end
+    end
+
+    describe "with markdown" do
+      it "correctly interprets the macro" do
+        result = filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',
+                             [:macropre, :textile, :macropost])
+        result.should == "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>"
+      end
+    end
+  end
 end
