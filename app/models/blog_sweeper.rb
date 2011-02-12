@@ -72,7 +72,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def sweep_pages
-    PageCache.zap_pages('pages') unless Blog.default.nil?
+    PageCache.zap_pages(%w{pages}) unless Blog.default.nil?
   end
 
   def logger
