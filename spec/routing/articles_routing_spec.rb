@@ -7,11 +7,11 @@ describe ArticlesController do
     end
 
     it "recognizes and generates #index with rss format" do
-      { :get, "/articles.rss" }.should route_to(:controller => "articles", :action => "index", :format => "rss")
+      { :get => "/articles.rss" }.should route_to(:controller => "articles", :action => "index", :format => "rss")
     end
 
     it "recognizes and generates #index with atom format" do
-      { :get, "/articles.atom" }.should route_to(:controller => "articles", :action => "index", :format => "atom")
+      { :get => "/articles.atom" }.should route_to(:controller => "articles", :action => "index", :format => "atom")
     end
   end
 
