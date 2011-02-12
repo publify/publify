@@ -1,5 +1,3 @@
-require 'md5'
-
 module TypoGuid
   def create_guid
     self.guid rescue return true
