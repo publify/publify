@@ -94,7 +94,7 @@ module ActionWebService # :nodoc:
         :base64
       elsif klass == TrueClass || klass == FalseClass
         :bool
-      elsif derived_from?(Float, klass) || derived_from?(Precision, klass) || derived_from?(Numeric, klass)
+      elsif derived_from?(Float, klass) || derived_from?(Numeric, klass)
         :float
       elsif klass == Time
         :time
