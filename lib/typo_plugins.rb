@@ -66,7 +66,7 @@ module TypoPlugins
       kind = h.delete(:kind)
       raise ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
       @kind = kind
-      raise ArgumentError.new "Two many keys in TypoPlugins::Base hash: I don’t know what to do with your remainder : #{h.inspect}" unless h.empty?
+      raise ArgumentError.new "Too many keys in TypoPlugins::Base hash: I don't know what to do with your remainder: #{h.inspect}" unless h.empty?
     end
 
   end
