@@ -1,3 +1,4 @@
+# coding: utf-8
 Localization.define("fr_FR") do |l|
   # Available languages
   l.store "da_DK", "Danois"

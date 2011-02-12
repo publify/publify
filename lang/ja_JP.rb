@@ -1,3 +1,4 @@
+# coding: utf-8
 Localization.define("ja_JP") do |l|
 
   # app/controllers/accounts_controller.rb

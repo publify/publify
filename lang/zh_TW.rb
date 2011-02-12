@@ -1,3 +1,4 @@
+# coding: utf-8
 Localization.define("zh_TW") do |l|
 
   # app/controllers/accounts_controller.rb

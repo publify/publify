@@ -1,3 +1,4 @@
+# coding: utf-8
 Localization.define("da_DK") do |l|
 
   # app/controllers/accounts_controller.rb

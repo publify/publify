@@ -1,3 +1,4 @@
+# coding: utf-8
 Factory.sequence :name do |n|
   "name_#{n}"
 end

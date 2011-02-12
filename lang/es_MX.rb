@@ -1,3 +1,4 @@
+# coding: utf-8
 # Translation by Edgar J. Suarez
 
 Localization.define("es_MX") do |l|

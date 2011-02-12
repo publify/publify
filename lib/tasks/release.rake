@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rake/gempackagetask'
 
 PKG_VERSION = "6.0.3"

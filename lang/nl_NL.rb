@@ -1,3 +1,4 @@
+# coding: utf-8
 Localization.define("nl_NL") do |l|
   # app/controllers/accounts_controller.rb
   l.store "Login successful", "Login geslaagd"
