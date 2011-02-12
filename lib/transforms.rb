@@ -1,10 +1,15 @@
+# coding: utf-8
 class String
   # Returns a-string-with-dashes when passed 'a string with dashes'.
   # All special chars are stripped in the process
   def to_url
     return if self.nil?
 
-    self.downcase.tr("\"'", '').gsub(/\W/, ' ').strip.tr_s(' ', '-').tr(' ', '-').sub(/^$/, "-")
+    s = self.downcase.tr("\"'", '')
+    # Inject correct version-dependent regex using string interpolations
+    # since the 1.9 version is invalid for 1.8.
+    s = s.gsub(/#{RUBY_VERSION < "1.9" ? '\W' : '\P{Word}'}/, ' ')
+    s.strip.tr_s(' ', '-').tr(' ', '-').sub(/^$/, "-")
   end
 
   # A quick and dirty fix to add 'nofollow' to any urls in a string.
