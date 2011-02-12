@@ -175,8 +175,8 @@ class Wp25Converter < BaseConverter
 
   def comment_state(wp_approved)
     case wp_approved
-    when 'spam': :spam
-    when '1': :ham
+    when 'spam' then :spam
+    when '1' then :ham
     else :unclassified
     end
   end

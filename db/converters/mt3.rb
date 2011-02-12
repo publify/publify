@@ -162,8 +162,8 @@ class MTMigrate
 
   def translate_filter(input)
     return case input
-      when /textile/: 'textile'
-      when /markdown/ : 'markdown'
+      when /textile/ then 'textile'
+      when /markdown/ then 'markdown'
       else  nil
     end
   end
