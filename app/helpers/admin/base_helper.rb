@@ -78,20 +78,8 @@ module Admin::BaseHelper
     @class = @class != '' ? '' : 'class="shade"'
   end
 
-#  def reset_alternation
-#    @class = nil
-#  end
-
-#  def task_quickpost(title)
-#    link_to_function(title, toggle_effect('quick-post', 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
-#  end
-
   def task_overview
     content_tag :li, link_to(_('Back to overview'), :action => 'index')
-  end
-
-  def task_edit_resource_mime(title,id)
-    link_to_function(title, toggle_effect('edit-resource-mime-' + id.to_s, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))
   end
 
   def class_tab

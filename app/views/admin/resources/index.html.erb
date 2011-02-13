@@ -24,10 +24,7 @@
   <% end %>  
   </td>
   <td>
-    <%= task_edit_resource_mime(upload.mime, upload.id) %>
-    <div id="edit-resource-mime-<%= upload.id %>" style="display:none;position:absolute;">
-      <%= render :partial => "mime_edit", :locals => {:id => upload.id, :mime => upload.mime} %>
-    </div>
+    <%= upload.mime %>
   </td>
   <td><%=h upload.size rescue 0 -%> bytes</td>
   <td><%= format_date upload.created_at -%></td>

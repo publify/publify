@@ -44,17 +44,6 @@ class Admin::ResourcesController < Admin::BaseController
     redirect_to :action => 'index'
   end
 
-  def set_mime
-    @resource = Resource.find(params[:resource][:id])
-    @resource.mime = params[:resource][:mime] unless params[:resource][:mime].empty?
-    if request.post? and @resource.save
-      flash[:notice] = _('Content Type was successfully updated.')
-    else
-      flash[:error] = _("Error occurred while updating Content Type.")
-    end
-    redirect_to :action => "index"
-  end
-
   def upload_status
     render :inline => "<%= upload_progress.completed_percent rescue 0 %> % " + _("complete"), :layout => false
   end
