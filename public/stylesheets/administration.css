@@ -719,7 +719,25 @@ h3.ui-accordion-header, h4.ui-accordion-header { padding: .5em 2.2em;}
 	padding-top: 17px;
 }
 
+.page_new {
+	float: right;
+	width: 300px;
+	text-align: right;
+	padding-top: 17px;
+}
+
 .page_new a {
+	padding: 0.4em 1em 0.4em 1em;
+
+}
+
+.theme_select  {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 17px;
+}
+
+.theme_select a {
 	padding: 0.4em 1em 0.4em 1em;
 
 }
