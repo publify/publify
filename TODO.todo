@@ -5,27 +5,14 @@ before each release:
 
 neuro for 6.0.4:
 - finish French translation
-- Ticket #71: Adds a utility widget with Login page, RSS, Typo. Enable it by default at schema creation.
 - Ticket #165: Right now the RSS description is hardcoded into the model and cannot be changed even as a preference, it would be much better to be able to change it. Even better would be to have it render a partial view.
 - Ticket #185: Change feedback bulk ops to something clearer: mark as spam / confirm classification / validates. Global operations: delete all spam / mark all unconfirmed spam as spam
 - New time display internationalization
   Typogarden:
-  - Port : http://typogarden.org/techblue.html
-  - Port : http://typogarden.org/lush.html
-  - Port : http://typogarden.org/lucid.html
-  - Port : http://typogarden.org/lillies.html
-  - Port : http://typogarden.org/iwtap.html
-  - Port : http://typogarden.org/iowa-storm.html
   - Port : http://typogarden.org/hemingway.html
-  - Port : http://typogarden.org/fish-market.html
-  - Port : http://typogarden.org/feathers-and-flowers.html
-  - Port : http://typogarden.org/elegant_grunge.html
-  - Port : http://typogarden.org/clear-pixels.html
-  - Port : http://typogarden.org/blocks.html
   - Backport : http://www.lightword-design.com/
   - Backport : http://www.pagelines.com/themes/platformpro
   - Update typogarden with new featured themes
-
 
 mvz for 6.0.4
 - avoid accidentally creating published articles with a permalink like draft-article-123
@@ -46,13 +33,8 @@ setup:
 general admin:
 
 settings:
-  general settings:
-  
   write:
-  - Make the url to ping box bigger
   - Update URLS (no one use technorati anymore huh)
-  feedback:
-  - item
   
 Admin/tags:
 - Allow merge of taggings. IIRC there's a ticket with a patch waiting for us as a good start
