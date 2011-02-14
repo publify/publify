@@ -52,8 +52,15 @@
       <label class="float" for="setting_rss_description"><%= _("Use RSS description")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :rss_description)%>
-        <span><%= "#{_('This will display')} <em>#{_('Original article writen by')} ... #{_('and published on')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a> | <a href='#{this_blog.base_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{this_blog.base_url}'>#{this_blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}</em> #{_('at the bottom of each of your post in the RSS feed')}"%></span>
+        <span><%= "#{_('This will display')} #{show_rss_description} #{_('at the bottom of each of your post in the RSS feed')}"%></span>
       </div>
+    </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_rss_description"><%= _("RSS description message")%></label>
+      <div class='input_text'>
+          <%= text_area(:setting, :rss_description_text, :rows => 10, :class => 'medium')%>
+      </div>
+      <div class='input_text'><span class='help'>You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)</span></div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_index_categories"><%= _("Index categories")%></label>

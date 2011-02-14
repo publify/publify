@@ -489,18 +489,12 @@ class Article < Content
       end
     end
   end
-
+  
   def atom_content(entry)
-    if self.user && self.user.name
-      rss_desc = "<hr /><p><small>#{_('Original article writen by')} #{self.user.name} #{_('and published on')} <a href='#{blog.base_url}'>#{blog.blog_name}</a> | <a href='#{self.permalink_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{blog.base_url}'>#{blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}.</small></p>"
-    else
-      rss_desc = ""
-    end
-
     post = blog.show_extended_on_rss ? post = html(:all) : post = html(:body)
     post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless password.nil? or password.empty?
 
-    content = blog.rss_description ? post + rss_desc : post
+    content = blog.rss_description ? post + get_rss_description : post
     entry.content(content, :type => "html")
   end
 

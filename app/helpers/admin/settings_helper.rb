@@ -19,5 +19,8 @@ module Admin::SettingsHelper
   def robot_writable?
     File.writable?"#{::Rails.root.to_s}/public/robots.txt"
   end
-
+  
+  def show_rss_description
+    Article.first.get_rss_description rescue ""
+  end
 end
