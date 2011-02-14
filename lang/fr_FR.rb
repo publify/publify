@@ -19,7 +19,7 @@ Localization.define("fr_FR") do |l|
   l.store "Login successful", "Connexion réussie"
   l.store "Login unsuccessful", "Échec de la connexion"
   l.store "An email has been successfully sent to your address with your new password", "Un courrier vous a été envoyé avec votre nouveau mot de passe"
-  l.store "Oops, something wrong just happened", ""
+  l.store "Oops, something wrong just happened", "Désolé, une erreur vient de se produire"
   l.store "Successfully logged out", "Vous êtes maintenant déconnecté"
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
@@ -56,22 +56,22 @@ Localization.define("fr_FR") do |l|
 
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Une erreur est survenue lors de la mise à jour du type du contenu."
-  l.store "complete", "complet"
-  l.store "File uploaded: ", "Fichier uploader: "
-  l.store "Unable to upload", "impossible d'uploader"
-  l.store "Metadata was successfully updated.", "Les Metadata ont été mis à jour avec succès."
-  l.store "Not all metadata was defined correctly.", "Aucun metada n'a été défini correctement."
+  l.store "complete", "fini"
+  l.store "File uploaded: ", "Fichier envoyé: "
+  l.store "Unable to upload", "impossible d'envoyer"
+  l.store "Metadata was successfully updated.", "Les métadonnées ont été mises à jour avec succès."
+  l.store "Not all metadata was defined correctly.", "Quelques métadonnées n'ont pas été définies correctement."
   l.store "Content Type was successfully updated.", "Le type du contenu a été mis à jour avec succès."
 
   # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", "S'il vérifiez et enregistrer votre configuration avant de continuer"
-  l.store "config updated.", "Configuration mis à jour."
+  l.store "Please review and save the settings before continuing", "SVP vérifiez et enregistrez votre configuration avant de continuer"
+  l.store "config updated.", "Configuration mise à jour."
 
   # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
 
   # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", "Le tag a été mis à jour avec succès"
+  l.store "Tag was successfully updated.", "Le label a été mis à jour avec succès"
 
   # app/controllers/admin/themes_controller.rb
   l.store "Theme changed successfully", "Le thème a été changé avec succès"
@@ -102,19 +102,19 @@ Localization.define("fr_FR") do |l|
   l.store "delete", "supprimer"
   l.store "Delete content", "Supprimer le contenu"
   l.store "Are you sure?", "Êtes-vous certain ?"
-  l.store "Please select", "Sélectionnez"
+  l.store "Please select", "Veuillez sélectionner"
   l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
   l.store "or", "ou"
   l.store "Save", "Sauver"
   l.store "Edit", "Éditer"
   l.store "Show", "Affichage"
   l.store "Published", "Publié"
-  l.store "Unpublished", "Hors ligne"
+  l.store "Unpublished", "Non publié"
   l.store "Show help on Typo macros", "Afficher l'aide sur les macros Typo"
   l.store "Back to overview", "Revenir à la liste"
   l.store "Name", "Titre"
-  l.store "Description", "Déscription"
-  l.store "Tag", "Tag"
+  l.store "Description", "Description"
+  l.store "Tag", "Label"
 
   # app/helpers/admin/categories_helper.rb
   l.store "no articles", "aucun article"
@@ -126,7 +126,7 @@ Localization.define("fr_FR") do |l|
 
   # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", "Afficher le fil"
-  l.store "Flag as %s", ""
+  l.store "Flag as %s", "Marquer comme %s"
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new {|date|
@@ -171,7 +171,7 @@ Localization.define("fr_FR") do |l|
   l.store "Spam", "Spam"
 
   # app/views/accounts/login.html.erb
-  l.store "I've lost my password", ""
+  l.store "I've lost my password", "J'ai perdu mon mot de passe"
   l.store "Login", "Identifiant"
   l.store "Password", "Mot de passe"
   l.store "Remember me", "Rester connecté"
@@ -182,7 +182,7 @@ Localization.define("fr_FR") do |l|
   l.store "Username or email", "Identifiant ou email"
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", ""
+  l.store "Create an account", "Créer un compte"
   l.store "Username", "Identifiant"
   l.store "Email", "Email"
   l.store "Signup", "S'inscrire"
@@ -201,7 +201,7 @@ Localization.define("fr_FR") do |l|
   l.store "Categories", "Catégories"
 
   # app/views/admin/categories/index.html.erb
-  l.store "New Category", "Nouvelle Catégorie"
+  l.store "New Category", "Nouvelle catégorie"
 
   # app/views/admin/categories/new.html.erb
   l.store "%s Category", "%s catégories"
@@ -217,7 +217,7 @@ Localization.define("fr_FR") do |l|
   l.store "Add Another Attachment", "Ajouter une autre pièce jointe"
 
   # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
+  l.store "Drafts", "Brouillons"
 
   # app/views/admin/content/_form.html.erb
   l.store "Publish settings", "Paramètres de publication"
@@ -249,18 +249,18 @@ Localization.define("fr_FR") do |l|
   l.store "Feedback", "Commentaires"
   l.store "Filter", "Filtrer"
   l.store "Manage articles", "Gestion des articles"
-  l.store "New Article", "Nouvel Article"
+  l.store "New Article", "Nouvel article"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
   l.store "No comments yet", "Aucun commentaire"
-  l.store "By %s on %s", ""
+  l.store "By %s on %s", "Par %s le %s"
 
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", "Liens entrants"
   l.store "No one made a link to you yet", "Personne n'a fait de lien vers votre blog"
   l.store " made a link to you saying ", " a fait un lien vers vous disant "
-  l.store "You have no internet connection", "Vous n'avez pas de connection à internet"
+  l.store "You have no internet connection", "Vous n'avez pas de connexion à internet"
 
   # app/views/admin/dashboard/_overview.html.erb
   l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Voici un rapide aperçu de ce que peut faire votre blog Typo. Peux-être voulez vous %s, %s ou %s"
@@ -285,7 +285,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/dashboard/_typo_dev.html.erb
   l.store "Latest news from the Typo development blog", "Dernières nouvelles du blog officiel de Typo"
-  l.store "Oh no, nothing new", "Rien à afficher"
+  l.store "Oh no, nothing new", "Non, rien de nouveau"
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Bienvenue, %s !"
@@ -309,16 +309,16 @@ Localization.define("fr_FR") do |l|
   l.store "Limit to spam", "N'afficher que le spam"
 
   # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
+  l.store "Add a comment", "Ajouter un commentaire"
   l.store "Url", "Site"
 
   # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
+  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Ce commentaire de <strong>%s</strong> a été marqué comme spam, %s ?"
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "Commentaire sur %s"
   l.store "Status", "État"
-  l.store "Comment Author", "Auteur"
+  l.store "Comment Author", "Auteur du commentaire"
   l.store "Comment", "Commentaire"
 
   # app/views/admin/feedback/edit.html.erb
@@ -363,9 +363,9 @@ Localization.define("fr_FR") do |l|
   l.store "File Uploads", "Ajout de fichiers"
 
   # app/views/admin/resources/images.html.erb
-  l.store "Thumbnail", ""
+  l.store "Thumbnail", "Miniatures"
   l.store "File Size", "Taille du fichier"
-  l.store "Images", ""
+  l.store "Images", "Images"
   l.store "right-click for link", "clic droit pour le lien"
 
   # app/views/admin/resources/index.html.erb
@@ -373,7 +373,7 @@ Localization.define("fr_FR") do |l|
   l.store "Files", "Fichiers"
 
   # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
+  l.store "Update settings", "Paramètres de mise à jour"
 
   # app/views/admin/settings/feedback.html.erb
   l.store "Enable comments by default", "Activer les commentaires par défaut"
@@ -383,7 +383,7 @@ Localization.define("fr_FR") do |l|
   l.store "Comments filter", "Mise en forme des commentaires"
   l.store "Avatars provider", "Fournisseur d’avatars"
   l.store "Show your email address", "Afficher votre adresse courriel"
-  l.store "Notifications", ""
+  l.store "Notifications", "Notifications"
   l.store "Typo can notify you when new articles or comments are posted", "Typo peut vous alerter quand de nouveaux articles et commentaires sont publiés"
   l.store "Source Email", "Adresse courriel source"
   l.store "Email address used by Typo to send notifications", "Adresse courriel utilisée par Typo pour l'envoi d'alertes"
@@ -399,7 +399,7 @@ Localization.define("fr_FR") do |l|
   l.store "Max Links", "Nombre de liens maximum"
   l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo rejettera automatiquement les commentaires et les rétroliens contenant un certain nombre de liens"
   l.store "Set to 0 to never reject comments", "Mettez cette option à 0 pour ne jamais rejeter les commentaires"
-  l.store "Feedback settings", ""
+  l.store "Feedback settings", "Paramètres des commentaires"
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Votre blog "
@@ -410,14 +410,14 @@ Localization.define("fr_FR") do |l|
   l.store "Allow users to register", "Autoriser les utilisateurs à s'enregistrer"
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "Vous pouvez permettre aux utilisateur de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
   l.store "Items to display in admin lists", "Nombre d'éléments à afficher dans les listes"
-  l.store "Publishing options", ""
+  l.store "Publishing options", "Options de publication"
   l.store "Display", "Afficher"
-  l.store "articles on my homepage by default", "billet sur ma page d'accueil"
-  l.store "articles in my news feed by default", "billets dans mon flux RSS"
+  l.store "articles on my homepage by default", "billet sur ma page d'accueil params par défaut"
+  l.store "articles in my news feed by default", "billets dans mon flux RSS par défaut"
   l.store "Show full article on feed", "Afficher la totalité du billet dans le flux RSS"
   l.store "Feedburner ID", "Identifiant Feedburner"
   l.store "General settings", "Options générales"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
+  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Typo. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Optimisation pour les moteurs de recherche"
@@ -427,17 +427,17 @@ Localization.define("fr_FR") do |l|
   l.store "Don't show blog name in page title", "Ne pas afficher le nom du blog dans le titre de la page"
   l.store "Format of permalink", "Format des liens permanents"
   l.store "Google Analytics", "Google Analytics"
-  l.store "Google verification link", ""
+  l.store "Google verification link", "Lien Google pour vérification"
   l.store "Meta description", "Meta description"
-  l.store "Meta keywords", "Meta keywords"
+  l.store "Meta keywords", "Meta mots-clés"
   l.store "Use RSS description", "Utilisation de la description RSS"
-  l.store "Index categories", "Index de catégories"
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", "Détiquer cette options ajoutera le meta tags <code>noindex, follow</code> dans toutes les pages de chaque categorie. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
-  l.store "Index tags", "Index des tags"
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", "Détiquer cette options ajoutera le meta tags <code>noindex, follow</code> dans toutes les pages de chaque tag. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
+  l.store "Index categories", "Index des catégories"
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", "Désélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque categorie. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
+  l.store "Index tags", "Index des labels"
+  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", "Désélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
   l.store "Robots.txt", "Robots.txt"
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Votre fichier Robots.txt n'est pas écrivable. Typo ne peux donc pas l'écrire."
-  l.store "Search Engine Optimization", "Optimisation pour les moteurs de recherches"
+  l.store "Your robots.txt file is not writeable. Typo won't be able to write it", "Votre fichier Robots.txt n'est pas écrivable. Typo ne peux donc pas y écrire."
+  l.store "Search Engine Optimization", "Optimisation pour les moteurs de recherche"
   l.store "This will display", "Cela affichera"
   l.store "at the bottom of each of your post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
 
@@ -459,18 +459,18 @@ Localization.define("fr_FR") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Quand vous publiez un billet sur Typo, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public."
   l.store "URLs to ping automatically", "Sites à alerter automatiquement"
   l.store "Latitude, Longitude", "Latitude, Longitude"
-  l.store "your lattitude and longitude", "votre lattitude et votre longitude"
-  l.store "exemple", "par exemple"
+  l.store "your latitude and longitude", "votre latitude et votre longitude"
+  l.store "example", "par exemple"
   l.store "Write", "Écrire"
 
   # app/views/admin/sidebar/_availables.html.erb
-  l.store "You have no plugins installed", "Aucun greffon n'est disponible"
+  l.store "You have no plugins installed", "Aucun plugin n'est disponible"
 
   # app/views/admin/sidebar/_publish.html.erb
-  l.store "Changes published", "Modifications effectuées"
+  l.store "Changes published", "Modifications publiées"
 
   # app/views/admin/sidebar/_target.html.erb
-  l.store "Drag some plugins here to fill your sidebar", "Déplacez des greffons dans cet espace afin de remplir votre sidebar"
+  l.store "Drag some plugins here to fill your sidebar", "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
 
   # app/views/admin/sidebar/index.html.erb
   l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."
@@ -484,16 +484,16 @@ Localization.define("fr_FR") do |l|
   l.store "Display name", "Nom affiché sur le site"
 
   # app/views/admin/tags/destroy.html.erb
-  l.store "Are you sure you want to delete the tag", "Êtes-vous certain de vouloir supprimer le tag"
-  l.store "Delete this tag", "Supprimer ce tag"
+  l.store "Are you sure you want to delete the tag", "Êtes-vous certain de vouloir supprimer le label"
+  l.store "Delete this tag", "Supprimer ce label"
 
   # app/views/admin/tags/edit.html.erb
   l.store "Editing ", "Vous éditez"
-  l.store "Back to tags list", "Revenir à la liste des tags"
+  l.store "Back to tags list", "Revenir à la liste des labels"
 
   # app/views/admin/tags/index.html.erb
   l.store "Display Name", "Nom affiché"
-  l.store "Manage tags", "Mots clés"
+  l.store "Manage tags", "Labels"
 
   # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", "Désolé le catalogue de thèmes n'est pas disponible"
@@ -511,13 +511,13 @@ Localization.define("fr_FR") do |l|
   l.store "Choose a theme", "Sélectionnez un thème"
 
   # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
+  l.store "Account settings", "Paramètres du compte"
   l.store "Password confirmation", "Confirmation du mot de passe"
   l.store "Profile", "Profil"
-  l.store "User's status", ""
+  l.store "User's status", "Statut de l'utilisateur"
   l.store "Active", "Actif"
   l.store "Inactive", "Inactif"
-  l.store "Profile Settings", ""
+  l.store "Profile Settings", "Paramètres du profil"
   l.store "Firstname", "Prénom"
   l.store "Lastname", "Nom"
   l.store "Nickname", "Surnom"
@@ -527,7 +527,7 @@ Localization.define("fr_FR") do |l|
   l.store "Send notification messages via email", "Envoi de notification des messages par email"
   l.store "Send notification messages when new articles are posted", "Envoi de notification de messages quand de nouveaux articles sont postés"
   l.store "Send notification messages when comments are posted", "Envoi de notification de messages quand des commentaires sont postés"
-  l.store "Contact Options", ""
+  l.store "Contact Options", "Paramètres de contact"
   l.store "Your site", "Votre site"
   l.store "display url on public profile", "Afficher votre site sur votre profil public"
   l.store "Your MSN", "Adresse MSN"
@@ -551,17 +551,17 @@ Localization.define("fr_FR") do |l|
   l.store "Edit User", "Modifier un utilisateur"
 
   # app/views/admin/users/index.html.erb
-  l.store "New User", ""
+  l.store "New User", "Nouvel utilisateur"
   l.store "Comments", "Commentaires"
   l.store "State", "État"
-  l.store "%s user", "%s"
+  l.store "%s user", "utilisateur %s"
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Ajouter un utilisateur"
 
   # app/views/articles/_article.html.erb
   l.store "Posted by", "Publié par"
-  l.store "Continue reading", ""
+  l.store "Continue reading", "Lire plus"
 
   # app/views/articles/_comment.html.erb
   l.store "said", "a dit"
@@ -593,8 +593,8 @@ Localization.define("fr_FR") do |l|
 
   # app/views/articles/read.html.erb
   l.store "Leave a response", "Réagir à ce billet"
-  l.store "Trackbacks", "Trackbacks"
-  l.store "Use the following link to trackback from your own site", "Utilisez le lien ci-dessous pour envoyer un trackback depuis votre site"
+  l.store "Trackbacks", "Rétroliens"
+  l.store "Use the following link to trackback from your own site", "Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site"
   l.store "RSS feed for this post", "Flux RSS de ce billet"
   l.store "trackback uri", "URL de rétrolien"
   l.store "Comments are disabled", "Les commentaires sont désactivés"
@@ -613,25 +613,25 @@ Localization.define("fr_FR") do |l|
   l.store "This comment has been flagged for moderator approval.", "Ce commentaire est en attente de modération"
 
   # app/views/layouts/administration.html.erb
-  l.store "%s &raquo;", ""
+  l.store "%s &raquo;", "%s &raquo;"
   l.store "is proudly powered by", "tourne fièrement sous"
   l.store "Dashboard", "Accueil"
 
   # app/views/setup/index.html.erb
-  l.store "Welcome", ""
+  l.store "Welcome", "Bienvenue"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", ""
+  l.store "Congratulation!", "Félicitations !"
   l.store "You have successfully signed up", "Vous vous %etes inscrit avec succès"
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
+  l.store "<strong>Login:</strong> %s", "<strong>Identifiant&nbsp;:</strong> %s"
+  l.store "<strong>Password:</strong> %s", "<strong>Mot de passe&nbsp;:</strong> %s"
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %s ou vous ne pourrez plus vous connecter à l'application"
-  l.store "Proceed to %s", ""
+  l.store "Proceed to %s", "Allez sur %s"
   l.store "admin", "l'administration"
 
   # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
+  l.store "Live Search", "Recherche instantanée"
 
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Propulsé par %s"
@@ -645,9 +645,9 @@ Localization.define("fr_FR") do |l|
   l.store "Atom feed", "flux Atom"
   l.store "You can leave a %s", "Vous pouvez déposer un %s"
   l.store "or a %s from your own site", "ou un %s depuis votre site"
-  l.store "Read full article", "Lien permanent"
+  l.store "Read full article", "Lire l'article complet"
   l.store "comment", "commentaire"
-  l.store "trackback", "trackback"
+  l.store "trackback", "rétrolien"
 
   # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", "plus tard"
@@ -670,7 +670,7 @@ Localization.define("fr_FR") do |l|
 
   # themes/dirtylicious/layouts/default.html.erb
   l.store "Home", "Accueil"
-  l.store "About", "À propos"
+  l.store "About", "À propos de"
   l.store "Designed by %s ported to typo by %s ", "Design par %s porté sous Typo par %s"
 
   # themes/scribbish/layouts/default.html.erb
@@ -681,8 +681,8 @@ Localization.define("fr_FR") do |l|
   l.store "permalink", "lien permanent"
 
   # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-  l.store "%d comment", ""
+  l.store "You are here: ", "Vous êtes ici&nbsp;: "
+  l.store "%d comment", "%d commentaires"
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", Proc.new {|date|
@@ -690,27 +690,27 @@ Localization.define("fr_FR") do |l|
   }
 
   # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
-  l.store "later:", ""
+  l.store "By", "Par"
+  l.store "later:", "plus tard"
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Email address", ""
-  l.store "Your website", ""
+  l.store "Email address", "Adresse mail"
+  l.store "Your website", "Votre site"
 
   # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
-  l.store "Trackbacks for", ""
+  l.store "If you liked this article you can %s", "Si vous avez aimé cet article, vous pouvez %s"
+  l.store "add me to Twitter", "me suivre sur Twitter"
+  l.store "Trackbacks for", "Rétroliens pour"
 
   # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
+  l.store "Search results for:", "Résultats de la recherche sur&nbsp;:"
 
   # themes/true-blue-3/views/categories/index.html.erb
-  l.store "Read all articles in %s", ""
+  l.store "Read all articles in %s", "Tous les articles dans %s sont lus"
 
   # themes/true-blue-3/views/categories/show.html.erb
-  l.store "Previous", ""
-  l.store "Next", ""
+  l.store "Previous", "Précédent"
+  l.store "Next", "Suivant"
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archives"
@@ -720,17 +720,17 @@ Localization.define("fr_FR") do |l|
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Suivre ce blog"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
+  l.store "Category %s", "Catégorie %s"
+  l.store "Tag %s", "Label %s"
 
   # Obsolete translations
   l.store "(leave url/email &#187;)", "(laissez votre url/email &#187;)"
-  l.store "Add MetaData", "Ajouter des méta données"
+  l.store "Add MetaData", "Ajouter des métadonnées"
   l.store "Allow non-ajax comments", "Autoriser l'envoi de commentaires sans AJAX"
-  l.store "Apr", "Avr"
+  l.store "Apr", "avr"
   l.store "April", "avril"
   l.store "Are you sure you want to delete this item?", "Êtes vous certain de vouloir supprimer cette entrée ?"
-  l.store "Aug", "Août"
+  l.store "Aug", "août"
   l.store "August", "août"
   l.store "Blacklist Pattern could not be created.", "Cette entrée n'a pas pu être créée"
   l.store "Blacklist Pattern could not be updated.", "Cette entrée n'a pas pu être mise à jour"
@@ -746,43 +746,43 @@ Localization.define("fr_FR") do |l|
   l.store "Contact options", "Options de contact"
   l.store "Content", "Contenu"
   l.store "Copyright Information", "Informations sur le copyright"
-  l.store "Dec", "Déc"
+  l.store "Dec", "déc"
   l.store "December", "décembre"
   l.store "Drafts", "Brouillons"
   l.store "Duration", "Durée"
-  l.store "Edit MetaData", "Modifier les méta données"
+  l.store "Edit Metadata", "Modifier les métadonnées"
   l.store "Editing pattern", "Éditer un motif"
   l.store "Explicit", "Contenu explicite"
-  l.store "Feb", "Fév"
+  l.store "Feb", "fév"
   l.store "February", "février"
-  l.store "Feedback for", "Feedbacks sur"
+  l.store "Feedback for", "Commentaires sur"
   l.store "Fri", "Ven"
   l.store "Friday", "Vendredi"
   l.store "HTML was cleared", "le cache a est vidé"
   l.store "IP", "Adresse IP"
-  l.store "Jan", "Jan"
+  l.store "Jan", "jan"
   l.store "January", "janvier"
-  l.store "Jul", "Juil"
+  l.store "Jul", "juil"
   l.store "July", "juillet"
-  l.store "Jun", "Juin"
+  l.store "Jun", "juin"
   l.store "June", "juin"
   l.store "Key Words", "Mots clé"
   l.store "Latest posts", "Derniers articles"
   l.store "Login %s", "Identifiant %s"
   l.store "Mandatory", "Obligatoire"
-  l.store "Mar", "Mars"
+  l.store "Mar", "mars"
   l.store "March", "mars"
   l.store "May", "mai"
-  l.store "MetaData", "Méta données"
-  l.store "Metadata was successfully removed.", "Les Metadata ont été supprimé avec succès."
+  l.store "Metadata", "Métadonnées"
+  l.store "Metadata was successfully removed.", "Les métadonnées ont été supprimées avec succès."
   l.store "Mon", "Lun"
   l.store "Monday", "Lundi"
   l.store "No", "Non"
   l.store "Not published by Apple", "Donnée non publiée par Apple"
   l.store "Notification", "Notifications"
-  l.store "Nov", "Nov"
+  l.store "Nov", "nov"
   l.store "November", "novembre"
-  l.store "Oct", "Oct"
+  l.store "Oct", "oct"
   l.store "October", "octobre"
   l.store "Optional Name", "Nom facultatif"
   l.store "Options", "Options"
@@ -791,7 +791,7 @@ Localization.define("fr_FR") do |l|
   l.store "Personal information", "Informations personnelles"
   l.store "Podcasts", "Podcasts"
   l.store "Posts", "Articles"
-  l.store "Proceed to", "Connectez-vous à"
+  l.store "Proceed to", "Aller sur"
   l.store "Read", "Lire"
   l.store "Read more", "Lire la suite"
   l.store "Recent comments", "Derniers commentaires"
@@ -801,9 +801,9 @@ Localization.define("fr_FR") do |l|
   l.store "Resource MetaData", "Méta données des pièces jointes"
   l.store "Sat", "Sam"
   l.store "Saturday", "Samedi"
-  l.store "Sep", "Sept"
+  l.store "Sep", "sep"
   l.store "September", "septembre"
-  l.store "Set iTunes metadata for this enclosure", "Ajouter des méta données iTunes pour cette pièce jointe"
+  l.store "Set iTunes metadata for this enclosure", "Ajouter des métadonnées iTunes pour cette pièce jointe"
   l.store "Setting for channel", "Options des canaux"
   l.store "Settings", "Configuration"
   l.store "Show content", "Afficher le contenu"
