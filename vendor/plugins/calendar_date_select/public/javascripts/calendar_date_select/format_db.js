@@ -19,7 +19,7 @@ Date.parseFormattedString = function (string) {
   if (d[3]) { date.setMonth(d[3] - 1); }
   if (d[5]) { date.setDate(d[5]); }
   if (d[7]) {
-    date.setHours(parseInt(d[7], 10));    
+    date.setHours(parseInt(d[7], 10));
   }
   if (d[8]) { date.setMinutes(d[8]); }
   if (d[10]) { date.setSeconds(d[10]); }
