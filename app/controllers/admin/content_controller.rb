@@ -163,7 +163,9 @@ class Admin::ContentController < Admin::BaseController
     @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
     @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.keywords = Tag.collection_to_string @article.tags
+
     @article.attributes = params[:article]
+    @article.published_at = Time.parse(params[:article][:published_at]).utc rescue nil
 
     if request.post?
       set_article_author

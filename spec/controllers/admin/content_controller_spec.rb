@@ -229,12 +229,19 @@ describe Admin::ContentController do
     it 'should create article in future' do
       lambda do
         post(:new,
-             :article =>  base_article(:published_at => Time.now + 1.hour) )
+             :article =>  base_article(:published_at => (Time.now + 1.hour).to_s) )
         assert_response :redirect, :action => 'show'
         assigns(:article).should_not be_published
       end.should_not change(Article, :count_published_articles)
       assert_equal 1, Trigger.count
     end
+
+    it "should correctly interpret time zone in :published_at" do
+      post :new, 'article' => base_article(:published_at => "February 17, 2011 08:47 PM GMT+0100 (CET)")
+      new_article = Article.last
+      assert_equal Time.utc(2011, 2, 17, 19, 47), new_article.published_at
+    end
+
 
     it 'should create a filtered article' do
       body = "body via *markdown*"
