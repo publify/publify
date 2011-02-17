@@ -29,13 +29,14 @@ Date.padded2 = function(hour) { var padded2 = parseInt(hour, 10); if (hour < 10)
 Date.prototype.getPaddedMinutes = function() { return Date.padded2(this.getMinutes()); }
 Date.prototype.getAMPMHour = function() { var hour = this.getHours(); return (hour == 0) ? 12 : (hour > 12 ? hour - 12 : hour ) }
 Date.prototype.getAMPM = function() { return (this.getHours() < 12) ? "AM" : "PM"; }
+Date.prototype.getTimezone = function() { return "GMT" + this.toString().split("GMT")[1]; }
 Date.prototype.stripTime = function() { return new Date(this.getFullYear(), this.getMonth(), this.getDate());};
 Date.prototype.daysDistance = function(compare_date) { return Math.round((compare_date - this) / Date.one_day); };
 Date.prototype.toFormattedString = function(include_time){
   var hour, str;
   str = Date.months[this.getMonth()] + " " + this.getDate() + ", " + this.getFullYear();
 
-  if (include_time) { hour = this.getHours(); str += " " + this.getAMPMHour() + ":" + this.getPaddedMinutes() + " " + this.getAMPM() }
+  if (include_time) { str += " " + this.getAMPMHour() + ":" + this.getPaddedMinutes() + " " + this.getAMPM() + " " + this.getTimezone() }
   return str;
 }
 Date.parseFormattedString = function(string) { return new Date(string);}

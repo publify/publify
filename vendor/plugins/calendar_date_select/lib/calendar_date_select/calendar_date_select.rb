@@ -90,7 +90,7 @@ module CalendarDateSelect
   end
 
   def self.date_format_string(time = false)
-    format[:date] + (time ? format[:time] : "")
+    format[:date] + (time ? (format[:time] + " GMT%z (%Z)" ) : "")
   end
 
   def self.format_date(date)
