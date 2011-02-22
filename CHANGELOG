@@ -1,11 +1,284 @@
-commit 700849a520ba50a87d8fb415bca1b788fc4d5b27
+commit 2c545a1a6c7d7d6ecb5bd5e22fe44daa3ad678d9
 Author: Frédéric de Villamil <frederic@de-villamil.com>
-Date:   Tue Feb 1 20:38:32 2011 +0100
 
-    Fixes themes AJAX posting, sidebar config, categories reorder, posts filtering, themes form design
+    Adding lang menu translation
 
-commit 71e9cca8745936d1953a19357b261841a63f2365
+commit e28202570fd577a809ecdf264ccc989c185ebd98
 Author: Frédéric de Villamil <frederic@de-villamil.com>
-Date:   Tue Feb 1 21:17:10 2011 +0100
 
-    Fixes comment preview
+    Improves the dashboard usability and lisibility.
+
+commit 5cba9a5e2ec8f9e9593b0d87dacb164640deacbe
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removes inline style from show_<something>_actions helpers.
+
+commit fdf6bc64734ff292c790ca973142e745d4a6ead0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding a version checking.
+    When displaying dashboard, typo will check for the latest release and will display a message accordingly:
+    * A notice if Typo's just a minor version behind.
+    * A warning if Typo's a sub version behind.
+    * An error message if Typo's a major version behind
+
+commit a57a915ea994e1c0e3a4b523dd5d12453e4d012c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes rake tasks in production mode.
+
+commit 9831f0a55a679e43c861b741c0e651091333aa44
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing theme editor.
+
+commit 5b38d13a8ae221e3ebf7c089fcc639f5ed6112ae
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Improving theme editor both visually and functionnaly.
+    Fixes a bad behavior not raising an error when trying to edit a nonexisting file.
+    Makes the editor look alike the rest of the application.
+    Adds specs to avoid bugs report because of File.read changes between 2 Ruby versions. With Ruby 1.8.6, you should use File.read(filename, r) while Ruby 1.8.7 only need File.read(filename).
+
+commit 914fc68a5a9bd8b5e2c58a137a1aa6f56ee95572
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make ping threading.
+
+commit cd1aa24750cd6d99fe503603b34100aa402a1d48
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add some specs for sidebar helper. Not pretty.
+
+commit ee688628f6d0b5733b6e992a9c92daa28d1710ba
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make migrations work without loading the actual models.
+
+commit 77839c0237aa7b43f59c3024a9025bfe86c2b59e
+Merge: cd1aa24... ee68862...
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit c8907283719c8ccf5f761d9e8cd9dfdf6106ae39
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add prerelease todo task: Test migrations.
+
+commit d13a6bff2be810dc0316bc6b08687418ecc52f32
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Theme editor should escape file contents. Also, fix specs.
+
+commit b66e58a48cb1f5a9837e8691304e57bfc34129b1
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Require 'page_cache' for sweep task.
+
+commit 4d31a09c28370515d79ea821218251afe33533fa
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix sidebar publish button.
+
+commit 06524b83713c1354b7eea9833336dc6e3116f92d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix links to images in administration style sheets.
+
+commit 0478ddf526cb5f64e95928ac84d35d7c5c1644b9
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove cache_page override that has no effect.
+
+commit 0bedd4ca0229aad5de6716a981bbf4c77a6a6d9a
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Simplify zap_pages implementation to avoid stale file descriptors.
+
+commit ef8fda0f39ca7103ac15431d22e05105fe2e5469
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Cache theme items in the same way as other items.
+
+commit 0cf638df0511e5db0650b0dc1cbf914c6c330f7b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Document use of cache for sub-URL installations.
+
+commit 5d6d4bb2191a92b3ee1c23519301237c82e173dd
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Update TODOs.
+
+commit f39e7cddaef8d81e2dead193ea3c42fce3b4878a
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use correct path component escape mechanism for article permalinks.
+
+commit 569779b6c8db1b3f11905566c54b008a4cee3d2f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes feedback actions when called from the dashboard.
+
+commit fc74d39766b66a5d1627f15c07cfd94ef1c93d4c
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Expect web URLs to start with http or https, not just http.
+
+commit fb5faa0661936ba87c3723e25ec4849b3b74ec28
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Move duplicated spec setup code to a before block in CommentsController spec.
+
+commit 839761e1d6056ac0de2fa687cd896c06ba0fbbbf
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Prevent BlueCloth from escaping typo macro tags. Workaround for bug [#189].
+
+commit 1f3ad0a2b695f4431e4172bc9107ce570ed1f1a9
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix error message: spelling and irregular apostrophe.
+
+commit 8760fbde06b51eb5ff5cc9f743e16c14972d7a4c
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove useless require of 'md5'.
+
+commit e853dedd5ba72c0735f827ffe830fa7c7a42736c
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Load correct version of ruby-debug depending on Ruby version.
+
+commit 1af45c9ac3ad39357461e6079ca69edc88b64763
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Only require jcode for ruby 1.8.
+
+commit afb6d4e3f3e79eb05519eaed5013f8c3c46bd4a4
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Provide full path for requires relative to Rails.root.
+
+commit 7b8f085b0c961c917d1e5f5f9bd94ae86fbfb4a6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add coding comment for non-ascii files.
+
+commit 53675e1020fb01e5d17006577f3ce0b3eeb92fa6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use Ruby 1.9 compatible case syntax.
+
+commit def42d32a55fc629540fca0aaec8f776cb0f0425
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Replace comma with hash rocket in hash literals for Ruby 1.9 compatibility.
+
+commit 901203b9d5df726d3e9aa4bb622e4e58395a1ac9
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Pass array in to zap_pages since string does not respond to each in Ruby 1.9.
+
+commit 020d6f72cd7b6d75dfc378bcd6a5d08f386322b5
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove Precision as a possible type in the AWS signature definition.
+
+commit 31a99fb48a4b3181d4cafe474571d093aaccc6e5
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use version-specific regex in String.to_url.
+
+commit 46e9101fe179195022a19284c5af5ef971c91794
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix call to scan_uris to pass in an array instead of a string.
+
+commit aede138f6559d8e45b7484c49009d422fc4bb757
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding some things on my TODO before we release
+
+commit ac196ee8388a26d73b8d04b89b610b543312ee3d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the theme selection a bit more straightforward
+
+commit 2601e60307d33cdac683a328a4edd7c6e0899293
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a missing html_safe
+
+commit 0e49b3574bbbc696209056151bceecf5e671bcd5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds a utility widget with Login page, RSS, Typo. Enabled by default at schema creation.
+
+commit 8c882c1c2739bea854a2848f2347358026b84606
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing the ability for end users to edit uploaded files mime type.
+
+commit 6b12610d5325acc9bc1642753c325dc5c98cfae0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the ping URLS box a little bigger and take the style of other settings text boxes
+
+commit 8e4013c6d455a2b98438e2617053fcff5ddcb580
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating TODO to keep other commiters up to date
+
+commit 4c64a6e5e3a60082343a9b3c3642a7eb07c1d097
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the RSS description editable from the admin.
+
+commit 457556b49801c91af3f32ba5d93de51728fefc89
+Author: Ollivier Robert <roberto@keltia.net>
+
+    2nd pass for the French translation. Should be almost complete now.
+
+commit 74c8b5f70b474a1889b43169ae8acc0d05ff400d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Clean up trailing white space.
+
+commit 5461af158695042b1e5bc94a73e6c6f7a98e800f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Update calender_date_select resources to version 1.16.1.
+
+commit a31d9287006e07d5ef7888cc908213709af4640e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes themes helpers utf-8 aware for ruby 1.9.2
+
+commit a88442d485effd428b96a8a78c8533fc54b3d0cc
+Merge: a31d928... 457556b...
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 0207a699eb11a99b79e6bc041995d306e14e1337
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add timezone to calendar_date_select format.
+
+commit 01deae011ef3c237bbee046e472c4fdb188b25de
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Properly use passed time zone information to set publication time.
+
+commit 0846c99a745dc3ccb662691506b7d5aa659f85d6
+Merge: 01deae0... a88442d...
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 975676ced47bfd23b040d93ce67bf6ac27660df7
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    When finding articles by permalink, use UTC date.
