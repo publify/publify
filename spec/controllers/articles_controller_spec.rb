@@ -146,7 +146,7 @@ describe ArticlesController do
   describe 'index for a month' do
 
     before :each do
-      Factory(:article, :published_at => Date.new(2004, 4, 23))
+      Factory(:article, :published_at => Time.utc(2004, 4, 23))
       get 'index', :year => 2004, :month => 4
     end
 
@@ -350,7 +350,7 @@ describe ArticlesController, "redirecting" do
   it 'should get good article with utf8 slug' do
     Factory(:blog)
     utf8article = Factory.create(:utf8article, :permalink => 'ルビー',
-      :published_at => Date.new(2004, 6, 2))
+      :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => ['2004', '06', '02', 'ルビー']
     assigns(:article).should == utf8article
   end
@@ -359,7 +359,7 @@ describe ArticlesController, "redirecting" do
   it 'should get good article with pre-escaped utf8 slug using unescaped slug' do
     Factory(:blog)
     utf8article = Factory.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC',
-      :published_at => Date.new(2004, 6, 2))
+      :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => ['2004', '06', '02', 'ルビー']
     assigns(:article).should == utf8article
   end

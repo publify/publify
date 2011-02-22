@@ -545,7 +545,7 @@ class Article < Content
 
   def self.time_delta(year = nil, month = nil, day = nil)
     return nil if year.nil? && month.nil? && day.nil?
-    from = Time.mktime(year, month || 1, day || 1)
+    from = Time.utc(year, month || 1, day || 1)
 
     to = from.next_year
     to = from.next_month unless month.blank?

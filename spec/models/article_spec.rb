@@ -22,33 +22,33 @@ describe Article do
 
   describe "#permalink_url" do
     describe "with hostname" do
-      subject { Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
+      subject { Factory(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
       it { should == 'http://myblog.net/2004/06/01/article-3' }
     end
 
     describe "without hostname" do
-      subject { Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
+      subject { Factory(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
       it { should == '/2004/06/01/article-3' }
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
     # browser may display them differently, though.
     describe "with a multibyte permalink" do
-      subject { Factory(:article, :permalink => 'ルビー', :published_at => Date.new(2004, 6, 1)) }
+      subject { Factory(:article, :permalink => 'ルビー', :published_at => Time.utc(2004, 6, 1)) }
       it "escapes the multibyte characters" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC'
       end
     end
 
     describe "with a permalink containing a space" do
-      subject { Factory(:article, :permalink => 'hello there', :published_at => Date.new(2004, 6, 1)) }
+      subject { Factory(:article, :permalink => 'hello there', :published_at => Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/hello%20there'
       end
     end
 
     describe "with a permalink containing a plus" do
-      subject { Factory(:article, :permalink => 'one+two', :published_at => Date.new(2004, 6, 1)) }
+      subject { Factory(:article, :permalink => 'one+two', :published_at => Time.utc(2004, 6, 1)) }
       it "does not escape the plus" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/one+two'
       end
@@ -66,7 +66,7 @@ describe Article do
   end
 
   it "test_feed_url" do
-    a = Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1))
+    a = Factory(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
     assert_equal "http://myblog.net/2004/06/01/article-3.atom", a.feed_url(:atom10)
     assert_equal "http://myblog.net/2004/06/01/article-3.rss", a.feed_url(:rss20)
   end
@@ -86,7 +86,7 @@ describe Article do
   end
 
   it "test_permalink_with_title" do
-    article = Factory(:article, :permalink => 'article-3', :published_at => Date.new(2004, 6, 1))
+    article = Factory(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
     assert_equal(article,
                 Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
@@ -502,6 +502,50 @@ describe Article do
       parent = Factory(:article)
       draft = Factory(:article, :parent_id => parent.id, :state => 'draft')
       Article.last_draft(draft.id).should == draft
+    end
+  end
+
+  describe "an article published just before midnight UTC" do
+    before do
+      @a = Factory(:article)
+      @a.published_at = "21 Feb 2011 23:30 UTC"
+      @a.save
+      @a.reload
+    end
+
+    describe "#permalink_url" do
+      it "uses UTC to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2011/02/21/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses UTC to determine correct day" do
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article' 
+        a.should == @a
+      end
+    end
+  end
+
+  describe "an article published just after midnight UTC" do
+    before do
+      @a = Factory(:article)
+      @a.published_at = "22 Feb 2011 00:30 UTC"
+      @a.save
+      @a.reload
+    end
+
+    describe "#permalink_url" do
+      it "uses UTC to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2011/02/22/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses UTC to determine correct day" do
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article' 
+        a.should == @a
+      end
     end
   end
 end
