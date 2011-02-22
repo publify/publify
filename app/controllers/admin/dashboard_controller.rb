@@ -65,11 +65,11 @@ class Admin::DashboardController < Admin::BaseController
     get_typo_version
     version =  @typo_version ? @typo_version.split('.') : TYPO_VERSION.to_s.split('.')
     
-    if version[0].to_i < TYPO_MAJOR.to_i
+    if version[0].to_i > TYPO_MAJOR.to_i
       flash.now[:error] = _("You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
-    elsif version[1].to_i < TYPO_SUB.to_i
+    elsif version[1].to_i > TYPO_SUB.to_i
       flash.now[:warning] = _("There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
-    elsif version[2].to_i < TYPO_MINOR.to_i
+    elsif version[2].to_i > TYPO_MINOR.to_i
       flash.now[:notice] = _("There's a new version of Typo available. Why don't you upgrade to %s ?", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
     end
   end
