@@ -193,7 +193,7 @@ module ApplicationHelper
     the_icon = flash[:error] ? 'ui-icon-alert' : 'ui-icon-info'
 
     html = "<div class='ui-widget settings'>"
-    html << "<div class='#{the_class} ui-corner-all' style='padding: 0 .7em;'>"
+    html << "<div class='#{the_class} ui-corner-all' style='padding: 0 .7em; margin: 0.7em'>"
     html << "<p><span class='ui-icon #{the_icon}' style='float: left; margin-right: .3em;'></span>"
     html << render_flash rescue nil
     html << "</div>"

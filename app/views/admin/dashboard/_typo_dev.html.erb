@@ -1,9 +1,9 @@
-<div class='dashboard ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+<div class='dashboard widget-container'>
+  <h3 class='dark'>
     <span class='ui-icon ui-icon-signal-diag'> </span>
     <%= _("Latest news from the Typo development blog") %>
   </h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-content'>
     <% if @typo_links.nil? %>
       <%= _('You have no internet connection') %>
     <% else %>

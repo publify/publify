@@ -1,9 +1,9 @@
-<div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top nobullet'>
+<div class='dashboard-left widget-container'>
+  <h3 class='dark'>
     <span class='ui-icon ui-icon-comment'> </span>
     <%= _("Latest Comments") %>
   </h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-content'>
     <ol class='dashboardList' id="commentList">
       <% if @comments.size == 0 %>
         <li><%= _("No comments yet") %></li>

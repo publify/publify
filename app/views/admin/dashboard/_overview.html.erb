@@ -1,7 +1,5 @@
-<div class='ui-widget ui-widget ui-helper-reset' >
-  <div class='ui-state-info ui-corner-all' style='padding: 0pt 0.7em;'>
+<div class='info' >
     <p>
-      <span class='ui-icon ui-icon-info' style='float: left; margin-right: 0.3em;'></span>
        <%= _("This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s." ,
               link_to(_('write a post'), :controller => 'content', :action => 'new'),
               link_to(_('write a page'), :controller => 'pages', :action => 'new') ,
@@ -16,5 +14,4 @@
         link_to(_('theme catalogue'), 'http://typogarden.org'),
         link_to(_('download some plugins'), 'http://plugins.typosphere.org')) %>
     </p>
-  </div>
 </div>
