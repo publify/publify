@@ -1,0 +1,5 @@
+Since version 6.0, Typo is no longer available as a gem. 
+Please download Typo source at http://typosphere.org/stable.tgz 
+
+To install Typo from scratch: https://github.com/fdv/typo/wiki/Installing-Typo
+Upgrading Typo from an older version: https://github.com/fdv/typo/wiki/Upgrading-to-typo-6.0

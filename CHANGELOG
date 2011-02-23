@@ -56,7 +56,7 @@ Author: Matijs van Zuijlen <matijs@matijs.net>
     Make migrations work without loading the actual models.
 
 commit 77839c0237aa7b43f59c3024a9025bfe86c2b59e
-Merge: cd1aa24... ee68862...
+Merge: cd1aa24 ee68862
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
     Merge branch 'master' of github.com:fdv/typo
@@ -257,7 +257,7 @@ Author: Frédéric de Villamil <frederic@de-villamil.com>
     Makes themes helpers utf-8 aware for ruby 1.9.2
 
 commit a88442d485effd428b96a8a78c8533fc54b3d0cc
-Merge: a31d928... 457556b...
+Merge: a31d928 457556b
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
     Merge branch 'master' of github.com:fdv/typo
@@ -273,7 +273,7 @@ Author: Matijs van Zuijlen <matijs@matijs.net>
     Properly use passed time zone information to set publication time.
 
 commit 0846c99a745dc3ccb662691506b7d5aa659f85d6
-Merge: 01deae0... a88442d...
+Merge: 01deae0 a88442d
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
     Merge branch 'master' of github.com:fdv/typo
@@ -282,3 +282,18 @@ commit 975676ced47bfd23b040d93ce67bf6ac27660df7
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
     When finding articles by permalink, use UTC date.
+
+commit 31be789b9b9cf9a82a47b62b63bfada2e478e841
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Setup 6.0.4 release
+
+commit 010a4467545f7dce8191fc08618c13da9835a4df
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes Typo versio checker. How could this have ever worked provided it was checking if available was less than installed version?
+
+commit 3615752e9706006a1376d9f44086860f4028c413
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Cosmetic update on categories edition form
