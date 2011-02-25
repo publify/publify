@@ -98,7 +98,32 @@ a.button:hover {
   margin: 0;
 }
 
-h3 span.ui-icon {
+.ui-state-highlight {
+  border: 1px solid #f9dd34; background: #ffef8f url(../images/admin/ui-bg_highlight-soft_25_ffef8f_1x100.png) 50% top repeat-x; color: #363636; 
+  -moz-border-radius: 3px; 
+  -webkit-border-radius: 3px; 
+  border-radius: 3px;
+  
+  }
+  
+.ui-state-error, .errorExplanation {
+  -moz-border-radius: 3px; 
+  -webkit-border-radius: 3px; 
+  border-radius: 3px;
+  padding: 0.7em; 
+  margin: 0.7em
+  border: 1px solid #cd0a0a; background: #cd0a0a url(../images/admin/ui-bg_flat_15_cd0a0a_40x100.png) 50% 50% repeat-x; color: #ffffff; }
+
+.ui-state-highlight span.ui-icon {
+  background-image: url("../images/admin/ui-icons_ffffff_256x240.png") ;
+}
+
+.ui-state-error span.ui-icon {
+  background-image: url("../images/admin/ui-icons_3d80b3_256x240.png") ;
+}
+
+
+span.ui-icon {
   position: absolute; 
   left: .5em; 
   top: 50%; 
@@ -110,6 +135,7 @@ h3 span.ui-icon {
   height: 16px;
   width: 16px;
 }
+
 
 h3.dark span.ui-icon {
   background-image: url("../images/admin/ui-icons_ffffff_256x240.png") ;
@@ -645,3 +671,4 @@ ol.dashboardList img.avatar {
 /* Theme editor */
 .theme-filer ul { margin: 0; padding: 0;}
 .theme-filer ul li { list-style: none;  }
+
