@@ -83,11 +83,11 @@ module Admin::BaseHelper
   end
 
   def class_tab
-    'ui-state-default ui-corner-top'
+    ''
   end
 
   def class_selected_tab
-    'ui-state-default ui-corner-top ui-tabs-selected ui-state-active'
+    'active'
   end
 
   def class_write
