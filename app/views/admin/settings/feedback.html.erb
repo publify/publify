@@ -2,9 +2,11 @@
 <% subtabs_for(:settings) %>
 
 <%= form_tag :action => 'update' do %>
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Feedback")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'>
+    <span class='ui-icon ui-icon-gear'></span> <%= _("Feedback")%>
+  </h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label class="float" for="setting_default_allow_comments"><%= _("Enable comments by default")%></label>
       <div class='input_text'>
@@ -49,9 +51,9 @@
   </div>
 </div>
 
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Spam")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-gear'></span> <%= _("Spam")%></h3>
+  <div class='widget-content'>
     <div class='setting'>
       <p><%= _("Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</p>
       <label for="setting_sp_global" class="float"><%= _("Enable spam protection")%></label>

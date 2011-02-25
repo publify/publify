@@ -2,12 +2,12 @@
 <% subtabs_for(:themes) %>
 <% i = 0 %>
 <% for theme in @themes %>
-  <div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons theme settings'>
-    <h3 class='ui-accordion-header ui-helper-reset <%= theme.path == @active.path ? 'ui-state-active' : 'ui-state-default' %> ui-corner-top'>
+  <div class='widget-container theme'>
+    <h3 class='<%= theme.path == @active.path ? 'dark' : 'light' %>'>
       <span class='ui-icon <%= theme.path == @active.path ? 'ui-icon-star' : 'ui-icon-image'  %>'> </span>
       <%= theme.name %>
     </h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <div class='widget-content'>
       <% if theme.path == @active.path -%>
         <%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>
       <% else %>

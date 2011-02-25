@@ -1,6 +1,8 @@
 <% @page_heading = _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
-
 <%= form_tag :action => "update", :id => @comment.id do %>
+<% content_for(:tasks) do %>
+  <%= task_overview %>
+<% end %>
 
   <div class="admin">
     <%= render :partial => "form" %>

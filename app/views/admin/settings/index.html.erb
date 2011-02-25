@@ -3,9 +3,12 @@
 
 <%= form_tag :action => 'update' do %>
 
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Your blog")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'>
+    <span class='ui-icon ui-icon-gear'></span> 
+    <%= _("Your blog")%>
+  </h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label for="setting_blog_name" class="float"><%= _("Blog name")%></label>
       <div class='input_text'>
@@ -83,9 +86,12 @@
   </div>
 </div>
 
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Publishing options")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'>
+    <span class='ui-icon ui-icon-gear'></span> 
+    <%= _("Publishing options")%>
+  </h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label for="setting_limit_article_display" class="float"><%= _("Display")%> </label>
       <div class='input_text'>

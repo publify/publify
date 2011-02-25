@@ -1,8 +1,8 @@
 <%= error_messages_for 'user' %>
 
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-person'> </span><%= _("Account settings")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Account settings")%></h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label class="float" for="user_login"><%= _("Login")%></label>
       <p class='input_text'>
@@ -48,9 +48,9 @@
   </div>
 </div>
 
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-person'> </span><%= _("Profile Settings")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Profile Settings")%></h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label class="float" for="user_firstname"><%= _("Firstname") %></label>
       <p class='input_text'>
@@ -99,9 +99,9 @@
   </div>
 </div>
 
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-person'> </span><%= _("Notifications")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Notifications")%></h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label class="float" for="user_notify_via_email"><%= _("Send notification messages via email")%>?</label>
       <p class='input_text'>
@@ -124,9 +124,9 @@
 </div>
 
 <% unless controller.controller_name == 'users'%>
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-person'> </span><%= _("Contact Options")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Contact Options")%></h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label class="float" for="user_url"><%= _("Your site")%></label>
       <p class='input_text'>

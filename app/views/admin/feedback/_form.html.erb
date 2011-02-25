@@ -1,9 +1,9 @@
 <%= error_messages_for 'comment' %>
 <%= hidden_field_tag 'article_id', @article.id %>
 
-<div id='comment' class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Add a comment")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div id='comment' class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-gear'></span> <%= _("Add a comment")%></h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label for="comment_author" class='float'><%= _("Author")%></label>
       <p class='input_text'>

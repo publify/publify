@@ -79,7 +79,7 @@ module Admin::BaseHelper
   end
 
   def task_overview
-    content_tag :li, link_to(_('Back to overview'), :action => 'index')
+    content_tag :li, link_to(_('Back to list'), :action => 'index')
   end
 
   def class_tab
@@ -99,7 +99,7 @@ module Admin::BaseHelper
 
   def class_content
     if controller.controller_name  =~ /content|pages|categories|resources|feedback/
-      return class_selected_tab if controller.action_name =~ /list|index|show|article/
+      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy/
     end
     class_tab
   end

@@ -4,9 +4,11 @@
 <%= error_messages_for 'blog' %>
 
 <%= form_tag :action => 'update' do %>
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><span class='ui-icon ui-icon-gear'></span> <%= _("Search Engine Optimisation")%></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'>
+    <span class='ui-icon ui-icon-gear'></span> <%= _("Search Engine Optimisation")%>
+  </h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label class="float"><%= _("Show blog name")%></label>
       <div class='input_text'>

@@ -7,12 +7,12 @@
 
 <% i = 0 %>
 <% for theme in @themes %>
-<div class='dashboard-left ui-accordion ui-widget ui-helper-reset ui-accordion-icons theme settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'>
+<div class='dashboard-left widget-container'>
+  <h3 class='light'>
     <span class='ui-icon ui-icon-image'> </span>
     <%= theme.name %>
   </h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-content'>
 
       <%= link_to(image_tag(theme.image), theme.url) %>
       <p>Created by <%= theme.author %></p>

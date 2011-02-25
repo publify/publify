@@ -20,9 +20,9 @@
   <div id="messages">&nbsp;</div>
 
   <div id="sidebar-config">
-    <div id="available" class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
-      <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><%= _("Available Items")%></h3>
-      <div id="available_box" class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <div id="available" class='widget-container'>
+      <h3 class='dark'><%= _("Available Items")%></h3>
+      <div id="available_box" class='widget-content'>
         <% if @available.blank? %>
           <p>  <%= _("You have no plugins installed")%>...  </p>
         <% else %>
@@ -31,13 +31,13 @@
       </div>
     </div>
 
-    <div id="cnt-active" class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons'>
-      <h3 id="hdr-active" class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'>
+    <div id="cnt-active" class='widget-container'>
+      <h3 id="hdr-active" class='dark'>
         <%= _("Active Sidebar items")%>
         <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
                       :style => 'display:none;' -%>
       </h3>
-      <div id="active" class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+      <div id="active" class='widget-content'>
         <% if @active.blank? %>
           <%= render :partial => 'target' %>
         <% else %>
@@ -51,7 +51,7 @@
     </div>
     <br class='clear' />
 
-	  <div>
+	  <div style='margin-top: 20px'>
 	    <%= save(_('Publish changes'))%>
 	  </div>
 

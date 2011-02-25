@@ -1,6 +1,6 @@
 <ul class='ui-sortable' id="category_list">
   <% for category in @categories -%>
-  <li class='ui-state-default' id="category_<%= category.id -%>">
+  <li id="category_<%= category.id -%>">
     <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
     <%= category.name -%>
   </li>

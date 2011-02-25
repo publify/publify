@@ -1,6 +1,6 @@
-<div id="active_<%= active.html_id %>" class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings target'>
-  <h4 class='ui-accordion-header ui-helper-reset ui-state-default ui-corner-top'><%= active.display_name %></h4>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div id="active_<%= active.html_id %>" class='widget-container'>
+  <h3 class='light'><%= active.display_name %></h4>
+  <div class='widget-content'>
     <p><%= active.description %></p>
       <div><% active.class.fields.each do |row| -%>
         <%= row.line_html(active) %>

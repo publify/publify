@@ -1,7 +1,7 @@
 <% @page_heading = _("Tags") %>
 
-<% content_for('tasks') do %>
-
+<% content_for(:tasks) do %>
+  <%= task_overview %>
 <% end %>
 
 <p><%= _("Are you sure you want to delete the tag")%> '<%= @tag[:display_name] %>'?</p>

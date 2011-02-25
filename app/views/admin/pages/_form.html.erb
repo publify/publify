@@ -3,9 +3,9 @@
 <%= error_messages_for 'page' %>
 
 <div id='editor-right'>
-  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings")%></h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-container'>
+    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings")%></h3>
+    <div class='widget-content'>
       <%= check_box 'page', 'published'  %>
       <label for="page_published"><%= _("Online")%></label><br />
       <%= save( _("Publish") + " &raquo;") %>
@@ -19,16 +19,16 @@
     <%= text_field 'page', 'title', :class => 'large'  %>
   </p>
   <%= render(:partial => 'images', :locals => {:images => @images}) unless @images.empty? %>
-  <div id='editor-menu' class='ui-buttonset'>
-    <label id="f" class='<%= "ui-state-active" if current_user.editor == 'visual' %> ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left'>
+  <div id='editor-menu'>
+    <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
       <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>        
     </label>
-    <label id="s" class='<%= "ui-state-active" if current_user.editor == 'simple' %> ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right'>
+    <label id="s" class='<%= "active" if current_user.editor == 'simple' %>'>
       <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
     </label>
   </div>
   
-  <div id='editor' class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div id='editor'>
     <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
       <script type="text/javascript">edToolbar('page_body');</script>
     </div>
@@ -42,19 +42,19 @@
     <%= hidden_field_tag 'text_filter', this_blog.text_filter %>
   </div>
 
-  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Page settings")%></h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-container'>
+    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Page settings")%></h3>
+    <div class='widget-content'>
       <div class='setting'>
         <label for="page_name" class='float'><%= _("Permanent link")%></label>
         <div class='input_text'>
-          <%= text_field 'page', 'name', :class => 'small medium' %>
+          <%= text_field 'page', 'name', :class => 'medium' %>
         </div>
       </div>
       <div class='setting clear'>
         <label class="float" for="text_filter"><%= _("Article filter")%></label>
         <div class='input_text'>
-          <select class='small medium' name="page[text_filter]" id="text_filter">
+          <select name="page[text_filter]" id="text_filter">
             <%= options_for_select text_filter_options, @page.text_filter %>
           </select>
         </div>

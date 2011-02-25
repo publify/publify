@@ -6,9 +6,9 @@
 <%= error_messages_for 'article' %>
 
 <div id='editor-right'>
-  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings") %></h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-container'>
+    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings") %></h3>
+    <div class='widget-content'>
       <%= check_box 'article', 'allow_comments' %>
       <label for="article_allow_comments"><%= _("Allow comments") %></label><br />
       <%= check_box 'article', 'allow_pings' %>
@@ -27,9 +27,9 @@
     </div>
   </div>
 
-  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Categories") %></h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-container'>
+    <h3 class='dark'> </span><%= _("Categories") %></h3>
+    <div class='widget-content'>
       <%- Category.all.each do |cat| %>
         <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
         <%= label_tag "category_#{h(cat.id)}", h(cat.name) %><br />
@@ -47,16 +47,16 @@
 
     <%= render(:partial => 'images', :locals => { :images => @images}) unless @images.empty? %>
 
-    <div id='editor-menu' class='ui-buttonset'>
-      <label id="f" class='<%= "ui-state-active" if current_user.editor == 'visual' %> ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left'>
+    <div id='editor-menu'>
+      <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
         <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>        
       </label>
-      <label id="s" class='<%= "ui-state-active" if current_user.editor == 'simple' %> ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right'>
+      <label id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
         <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
       </label>
     </div>
 
-    <div id="editor" class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+    <div id="editor">
       <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
         <script type="text/javascript">edToolbar('article_body_and_extended');</script>
       </div>
@@ -78,17 +78,17 @@
     <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
   </div>
 
-  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Excerpt") %></h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-container'>
+    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Excerpt") %></h3>
+    <div class='widget-content'>
       <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself") %></p>
       <%= text_area 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '5'} %>
     </div>
   </div>
 
-  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Uploads") %></h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-container'>
+    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Uploads") %></h3>
+    <div class='widget-content'>
       <p>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
 
       <ul id='attachments'>
@@ -97,9 +97,9 @@
     </div>
   </div>
 
-  <div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-    <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-pencil'> </span><%= _("Post settings") %></h3>
-    <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+  <div class='widget-container'>
+    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Post settings") %></h3>
+    <div class='widget-content'>
       <div class='setting'>
         <label class='float'><%= _("Publish at") %></label>
         <div class='input_text'>

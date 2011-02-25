@@ -3,16 +3,15 @@
 before each release:
 - test db:migrate on an empty database
 
-neuro for 6.0.4:
-- finish French translation
-- Ticket #165: Right now the RSS description is hardcoded into the model and cannot be changed even as a preference, it would be much better to be able to change it. Even better would be to have it render a partial view.
+neuro for 6.0.5:
 - Ticket #185: Change feedback bulk ops to something clearer: mark as spam / confirm classification / validates. Global operations: delete all spam / mark all unconfirmed spam as spam
-- New time display internationalization
+- Make the robot_writeable use flash.now with error
+- Check tsk_overview on category.destroy
+
   Typogarden:
   - Port : http://typogarden.org/hemingway.html
   - Backport : http://www.lightword-design.com/
   - Backport : http://www.pagelines.com/themes/platformpro
-  - Update typogarden with new featured themes
 
 mvz for 6.0.4
 - avoid accidentally creating published articles with a permalink like draft-article-123

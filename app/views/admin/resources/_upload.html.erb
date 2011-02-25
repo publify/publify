@@ -1,8 +1,8 @@
 <%= form_tag_with_upload_progress({:action => 'upload'}, { :begin => "new Effect.Appear('status')", :finish => "$('message').innertHTML = arguments[0]" }) %>
 
-<div class='ui-accordion ui-widget ui-helper-reset ui-accordion-icons settings'>
-  <h3 class='ui-accordion-header ui-helper-reset ui-state-active ui-corner-top'><span class='ui-icon ui-icon-disk'> </span><%= _('Upload a File to your Site') %></h3>
-  <div class='ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active'>
+<div class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-disk'> </span><%= _('Upload a File to your Site') %></h3>
+  <div class='widget-content'>
     <div class='setting'>
       <label for="upload_filename" class='float'><%= _('File') %>:</label>
       <div class='input_text'>
