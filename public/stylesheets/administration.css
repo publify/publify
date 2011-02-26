@@ -372,27 +372,37 @@ input.large, input.medium, input.small, textarea.large, textarea.medium { border
 .setting .input_text { margin: 0 0 0 200px; }
 .clear { clear: both;}
 
-/* table */
-
-
-
 
 #carousel-wrapper {
     width: 100%;
     height: 150px;
     overflow: hidden;
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+    border-radius: 3px;
+    background: url("../images/admin/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50% #D7EBF9;
+    border: 1px solid #AED0EA;
 }
 #carousel-content {
     width: 1400px;
 }
+
 #carousel-content .slide {
     float: left;
     width: 140px;
     height: 125px;
     padding: 10px 0;
-    background: #8AE3F9;
     text-align: center;
 }
+
+#carousel-content .slide img {
+  -moz-border-radius: 3px; 
+  -webkit-border-radius: 3px; 
+  border-radius: 3px;
+  border: 1px solid #AED0EA;
+  
+}
+
 
 #article_keywords_auto_complete {
   margin-top: 2px;
