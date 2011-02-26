@@ -1,5 +1,5 @@
 <% @page_heading = _("Comments for %s", @article.title) %>
-<% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'ui-state-default ui-corner-all noborder'}) %>
+<% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'button'}) %>
 
 <% subtabs_for(:content) %>
 <%= form_tag({:action => 'bulkops'}, :method => :post) do %>
@@ -7,6 +7,7 @@
 <%= hidden_field 'article_id', @article.id %>
 <%= render :partial => 'button', :locals => { :position => 'top' } %>
 
+<br class='clear' />
 <table class='settings'>
   <tr>
     <th class='first'><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>

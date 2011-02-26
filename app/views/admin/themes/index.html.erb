@@ -18,7 +18,7 @@
         <em>(<%= _("Active theme")%>)</em>
       <% else -%>
         <p class='theme_select'>
-          <%= link_to(_("Chose this theme"), {:action => 'switchto', :theme => theme.name}, :class => 'ui-state-default ui-corner-all') %>
+          <%= link_to(_("Chose this theme"), {:action => 'switchto', :theme => theme.name}, :class => 'button') %>
         </p>
       <% end -%>
     </div>

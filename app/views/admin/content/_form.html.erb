@@ -18,7 +18,7 @@
       <label for="article_password"><%= _("Password:") %></label><br />
       <%= password_field :article, :password, :class => 'small' %>
       <p class='right'>
-        <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ui-state-default ui-corner-all' />
+        <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ed_button' />
         <%= save( _("Publish") + " &raquo;") %><br />
         <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
         <%= link_to_destroy_draft @article %>
