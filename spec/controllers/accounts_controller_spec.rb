@@ -173,9 +173,9 @@ describe AccountsController do
     end
   end
 
-  describe 'with >0 existing user' do
+  describe 'with >0 existing user and allow_signup = 0' do
     before(:each) do
-      Factory(:blog)
+      @blog = Factory(:blog)
       User.stub!(:count).and_return(1)
     end
 
@@ -185,15 +185,36 @@ describe AccountsController do
         response.should redirect_to(:action => 'login')
       end
     end
-
-    describe 'POST signup' do
+    
+    describe 'POST signup without allow_signup' do
       it 'should redirect to login' do
         post 'signup', {'user' =>  {'login' => 'newbob'}}
         response.should redirect_to(:action => 'login')
       end
-    end
+    end    
   end
 
+  describe 'with > 0 existing user and allow_signup = 1' do
+    before(:each) do
+      @blog = Factory(:blog, :allow_signup => 1)
+      User.stub!(:count).and_return(1)
+    end
+    
+    describe 'GET signup with allow_signup' do
+      it 'should redirect to login' do
+        get 'signup'
+        response.should render_template('signup')
+      end
+    end    
+
+    describe 'POST signup with allow_signup' do    
+      it 'should redirect to login' do
+        post 'signup', {'user' =>  {'login' => 'newbob', 'email' => 'newbob@mail.com'}}
+        response.should redirect_to(:action => 'confirm')
+      end
+    end
+    
+  end
   describe 'GET signup with 0 existing users' do
     before(:each) do
       Factory(:blog)
