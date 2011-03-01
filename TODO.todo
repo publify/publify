@@ -1,12 +1,12 @@
 # This file is better viewed with Textmate tasks plugin
 
-before each release:
-- test db:migrate on an empty database
-
 neuro for 6.0.5:
 - Ticket #185: Change feedback bulk ops to something clearer: mark as spam / confirm classification / validates. Global operations: delete all spam / mark all unconfirmed spam as spam
 - Make the robot_writeable use flash.now with error
-- Check tsk_overview on category.destroy
+- Fix account creation link if users are allowed to do so
+- Polish account creation
+- Adds default account type for user registration
+- Adds a user creation workflow
 
   Typogarden:
   - Port : http://typogarden.org/hemingway.html
@@ -25,11 +25,8 @@ ook for 6.0.4
 - port textfilter to the new plugin system
 - evaluate neuro request, about persistancing plugin system into table, instead of Blog.settings
 
-setup:
-- reduce setup width
-- add some margin above the error block
-
-general admin:
+before each release:
+- test db:migrate on an empty database
 
 settings:
   write:
