@@ -3,22 +3,25 @@
 neuro for 6.0.5:
 - Ticket #185: Change feedback bulk ops to something clearer: mark as spam / confirm classification / validates. Global operations: delete all spam / mark all unconfirmed spam as spam
 - Make the robot_writeable use flash.now with error
-- Polish account creation
-- Adds default account type for user registration
-- Adds a user creation workflow
+  Polish account creation: 
+  - send the admin an email with the new account creation. 
+  - send the user a link validating his account. Allow account validation. 
+  - within the dashboard make the comment block display only an unpriviledged user comments.
+  - adds specs
 
   Typogarden:
   - Port : http://typogarden.org/hemingway.html
   - Backport : http://www.lightword-design.com/
   - Backport : http://www.pagelines.com/themes/platformpro
 
-mvz for 6.0.4
+mvz for 6.0.5
 - avoid accidentally creating published articles with a permalink like draft-article-123
 - continued clean-ups and spec improvements.
+- fix original migration with ruby 1.9.2
 - Evaluate http://typogarden.org/brown-type.html
 - Evaluate http://typogarden.org/lindholmen.html
 
-ook for 6.0.4
+ook for 6.0.5
 - enable category creation on the fly, in "write" tab (http://fdv.lighthouseapp.com/projects/11171/tickets/141-enable-category-creation-in-the-write-page)
 - display permalink for comments
 - port textfilter to the new plugin system
@@ -34,9 +37,6 @@ settings:
 Admin/tags:
 - Allow merge of taggings. IIRC there's a ticket with a patch waiting for us as a good start
   
-bugs:
-- Publishing bug with Rails3 handling timezone on date field. TODO: convert what's displayed according to the timezone. I think this will need a bunch of specs.
-
 under the hood:
 - Use standard rails localization
 - Split CSS between colors and structure so we can create 2 admin themes
