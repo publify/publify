@@ -56,13 +56,13 @@ p {
 }
 
 input.title {
-	padding: 3px 5px;
-	margin: 0;
-	border: #023 1px solid;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	font: 16px/20px "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+  padding: 3px 5px;
+  margin: 0;
+  border: #023 1px solid;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font: 16px/20px "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 }
 
 input.save {
@@ -70,22 +70,21 @@ input.save {
   background: #fb7c00;
   border: #fb7c00 1px solid;
   -moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 12px;
-	padding: 5px;
-	width: 100%;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px 0;
 }
 
 #logincontainer, #setupcontainer {
   background: #fff;
   margin: 80px auto 0 auto;
   border: #00131e 1px solid;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #logincontainer {
@@ -93,7 +92,7 @@ input.save {
 }
 
 #setupcontainer {
-	width: 600px;
+	width: 500px;
 }
 
 .inner {
