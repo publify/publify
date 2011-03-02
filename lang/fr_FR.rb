@@ -623,7 +623,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulation!", "Félicitations !"
-  l.store "You have successfully signed up", "Vous vous %etes inscrit avec succès"
+  l.store "You have successfully signed up", "Vous vous êtes inscrit avec succès"
   l.store "<strong>Login:</strong> %s", "<strong>Identifiant&nbsp;:</strong> %s"
   l.store "<strong>Password:</strong> %s", "<strong>Mot de passe&nbsp;:</strong> %s"
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %s ou vous ne pourrez plus vous connecter à l'application"

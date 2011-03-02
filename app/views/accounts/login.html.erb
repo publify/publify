@@ -17,9 +17,5 @@
   <p>
     <input type="submit" name="login" value= "<%= _('Submit') %>" class="save large" id="submit" />
   </p>
-
-  <p>
-    <small><%= link_to "&laquo; #{_('Back to ')} #{this_blog.blog_name}".html_safe, this_blog.base_url %></small><br />
-    <small><%= link_to "#{_("I've lost my password")} &raquo;".html_safe, :action => 'recover_password' %></small>
-  </p>
+  <%= display_accounts_link %>
 <% end %>

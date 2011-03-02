@@ -194,7 +194,7 @@ module ApplicationHelper
 
     html = "<div class='ui-widget settings'>"
     html << "<div class='#{the_class}' style='padding: 0 .7em; margin: 0.7em'>"
-    html << "<p><span class='ui-icon #{the_icon}' style='float: left; margin-right: .3em;'></span>"
+    html << "<p><span class='ui-icon #{the_icon}' style='float: left;'></span>"
     html << render_flash rescue nil
     html << "</div>"
     html << "</div>"
