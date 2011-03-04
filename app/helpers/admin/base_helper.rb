@@ -158,16 +158,22 @@ module Admin::BaseHelper
     return result
   end
 
+    def get_short_url(item)
+      return "" if item.short_url.nil?
+      sprintf("<small>%s %s</small>", _("Short url:"), link_to(item.short_url, item.short_url))
+    end
+
   def show_actions item
     html = <<-HTML
       <div class='action'>
         <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
         <small>#{link_to_published item}</small> |
         <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small>
+        #{get_short_url item}
     </div>
     HTML
   end
-
+  
   def format_date(date)
     date.strftime('%d/%m/%Y')
   end

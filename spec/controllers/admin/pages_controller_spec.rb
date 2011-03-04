@@ -78,4 +78,28 @@ describe Admin::PagesController do
     assert_response :redirect, :action => "list"
     assert_raise(ActiveRecord::RecordNotFound) { Page.find(page.id) }
   end
+  
+  def base_page(options={})
+    { :title => "posted via tests!",
+      :body => "A good body",
+      :name => "posted-via-tests",
+      :published => true }
+  end
+  
+  it 'should create a published page with a redirect' do
+    post(:new, 'page' => base_page)
+    assigns(:page).redirects.count.should == 1
+  end
+
+  it 'should create an unpublished page without a redirect' do
+    post(:new, 'page' => base_page({:published => false}))
+    assigns(:page).redirects.count.should == 0
+  end
+
+  it 'should create a page published in the future without a redirect' do
+    post(:new, 'page' => base_page({:published_at => (Time.now + 1.hour).to_s}))
+    assigns(:page).redirects.count.should == 0
+  end
+  
+  
 end

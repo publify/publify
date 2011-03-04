@@ -55,6 +55,7 @@ describe Admin::ContentController do
         result.title.should == 'big post'
         result.permalink.should == 'big-post'
         result.parent_id.should be_nil
+        result.redirects.count.should == 0
       end
     end
 
@@ -69,6 +70,7 @@ describe Admin::ContentController do
         result = Article.find(draft.id)
         result.body.should == 'new body'
         result.parent_id.should be_nil
+        result.redirects.count.should == 0
       end
     end
 
@@ -94,6 +96,7 @@ describe Admin::ContentController do
         result.title.should == @article.title
         result.permalink.should == @article.permalink
         result.parent_id.should == @article.id
+        result.redirects.count.should == 0
       end
 
       it 'should not create another draft article with parent_id if article has already a draft associated' do
@@ -112,6 +115,7 @@ describe Admin::ContentController do
         result = Article.last
         result.parent_id.should == @article.id
         result.permalink.should == @article.permalink
+        result.redirects.count.should == 0
       end
     end
   end
@@ -144,6 +148,7 @@ describe Admin::ContentController do
         get :new
         response.should render_template('new')
         assigns(:article).should_not be_nil
+        assigns(:article).redirects.count.should == 0
       end
 
       it "correctly converts multi-word tags" do
@@ -167,6 +172,26 @@ describe Admin::ContentController do
       assigns(:article).should_not be_allow_comments
       assigns(:article).should be_allow_pings
       assigns(:article).should be_published
+    end
+
+    it 'should create a published article with a redirect' do
+      post(:new, 'article' => base_article)
+      assigns(:article).redirects.count.should == 1
+    end
+
+    it 'should create a draft article without a redirect' do
+      post(:new, 'article' => base_article({:state => 'draft'}))
+      assigns(:article).redirects.count.should == 0
+    end
+
+    it 'should create an unpublished article without a redirect' do
+      post(:new, 'article' => base_article({:published => false}))
+      assigns(:article).redirects.count.should == 0
+    end
+
+    it 'should create an article published in the future without a redirect' do
+      post(:new, 'article' => base_article({:published_at => (Time.now + 1.hour).to_s}))
+      assigns(:article).redirects.count.should == 0
     end
 
     it 'should create article with no pings' do
@@ -234,6 +259,7 @@ describe Admin::ContentController do
         assigns(:article).should_not be_published
       end.should_not change(Article, :count_published_articles)
       assert_equal 1, Trigger.count
+      assigns(:article).redirects.count.should == 0
     end
 
     it "should correctly interpret time zone in :published_at" do

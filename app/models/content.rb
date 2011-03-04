@@ -1,4 +1,5 @@
 require 'set'
+require 'uri'
 
 class Content < ActiveRecord::Base
   belongs_to :text_filter
@@ -7,7 +8,8 @@ class Content < ActiveRecord::Base
   has_many :notify_users, :through => :notifications,
     :source => 'notify_user',
     :uniq => true
-
+  has_many :redirections
+  has_many :redirects, :through => :redirections, :dependent => :destroy
 
   def notify_users=(collection)
     return notify_users.clear if collection.empty?
@@ -371,6 +373,13 @@ class Content < ActiveRecord::Base
   def normalized_permalink_url
     @normalized_permalink_url ||= Addressable::URI.parse(permalink_url).normalize
   end
+  
+  def short_url
+    # Double check because of crappy data in my own old database
+    return unless self.published and self.redirects.count > 0
+    URI.join(blog.base_url, self.redirects.first.from_path).to_s
+  end
+  
 end
 
 class Object

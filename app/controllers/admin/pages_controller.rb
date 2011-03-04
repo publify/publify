@@ -42,6 +42,7 @@ class Admin::PagesController < Admin::BaseController
       end
       @page.published_at = Time.now
       if @page.save
+        set_shortened_url if @page.published
         flash[:notice] = _('Page was successfully created.')
         redirect_to :action => 'index'
       end
@@ -54,6 +55,7 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.find(params[:id])
     @page.attributes = params[:page]
     if request.post? and @page.save
+      set_shortened_url if @page.published
       flash[:notice] = _('Page was successfully updated.')
       redirect_to :action => 'index'
     end
@@ -65,6 +67,19 @@ class Admin::PagesController < Admin::BaseController
       @page.destroy
       redirect_to :action => 'index'
     end
+  end
+  
+  def set_shortened_url
+    # In a very short time, I'd like to have permalink modification generate a 301 redirect as well to
+    # So I set this up the big way now
+    
+    return unless Redirect.find_by_to_path(@page.permalink_url).nil?
+    
+    red = Redirect.new
+    red.from_path = red.shorten
+    red.to_path = @page.permalink_url
+    red.save
+    @page.redirects << red
   end
 
   def insert_editor
