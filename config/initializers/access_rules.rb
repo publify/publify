@@ -98,8 +98,9 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Write",            { :controller => "admin/settings", :action => "write" }
     project.submenu "Feedback",         { :controller => "admin/settings", :action => "feedback" }
     project.submenu "SEO",              { :controller => "admin/settings", :action => "seo" }
+    project.submenu "Cache",            { :controller => "admin/cache", :action => "index" }
     project.submenu "Users",            { :controller => "admin/users", :action => "index" }
-    project.submenu "Redirects",        { :controller => "admin/redirects", :action => "index"}
+    project.submenu "Redirects",        { :controller => "admin/redirects", :action => "index" }
     project.submenu "",                 { :controller => "admin/redirects", :action => "new"}
     project.submenu "",                 { :controller => "admin/redirects", :action => "edit"}
     project.submenu "",                 { :controller => "admin/redirects", :action => "destroy"}
