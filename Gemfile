@@ -15,7 +15,11 @@ else
   when 'postgresql'
     gem 'pg'
   when 'mysql'
-    gem 'mysql'
+    if RUBY_VERSION.include?('1.9')
+      gem 'sam-mysql-ruby'
+    else
+      gem 'mysql'
+    end
   else
     raise "Don't know what gem to use for adapter #{adapter}"
   end
