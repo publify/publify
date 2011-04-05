@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'action_web_service/test_invoke'
+require 'set'
 
 User.salt = 'change-me'
 

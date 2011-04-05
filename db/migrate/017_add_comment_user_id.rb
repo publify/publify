@@ -8,9 +8,9 @@ class AddCommentUserId < ActiveRecord::Migration
   end
 
   def self.up
-    id_for_address = BareUser.find(:all).inject({}) do |h, u|
-      h.merge({ u.email => u.id })
-    end
+    id_for_address = Hash[
+      BareUser.find(:all).map {|u| [u.email, u.id] }
+    ]
 
     modify_tables_and_update(:add_column, BareComment, :user_id, :integer) do |c|
       c.user_id = id_for_address[c.email]

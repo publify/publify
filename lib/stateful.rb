@@ -46,6 +46,8 @@ module Stateful
   end
 
   module ClassMethods
+    require 'set'
+
     def has_state(field, options = {})
       options.assert_valid_keys(:valid_states, :handles, :initial_state)
 

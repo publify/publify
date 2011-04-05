@@ -13,7 +13,7 @@ class MoveTextFilterToTextFilterId < ActiveRecord::Migration
 
   def self.up
     STDERR.puts "Converting Article and Page to use text_filter_id instead of text_filter"
-    id_of = BareTextFilter.find(:all).inject({}) {|h, f| h.merge({ h[f.name] => f.id }) }
+    id_of = Hash[ BareTextFilter.find(:all).map {|f| [f.name, f.id] } ]
 
     modify_tables_and_update([:add_column, BareArticle, :text_filter_id, :integer],
                              [:add_column, BarePage,    :text_filter_id, :integer]) do
@@ -28,7 +28,7 @@ class MoveTextFilterToTextFilterId < ActiveRecord::Migration
 
   def self.down
     STDERR.puts "Dropping text_filter_id in favor of text_filter"
-    name_of = BareTextFilter.find(:all).inject({}) {|h, f| h.merge({ h[f.id] => f.name })}
+    name_of = Hash[ BareTextFilter.find(:all).map {|f| [f.id, f.name] } ]
 
     modify_tables_and_update([:add_column, BareArticle, :text_filter, :string],
                              [:add_column, BarePage,    :text_filter, :string]) do

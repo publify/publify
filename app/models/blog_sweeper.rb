@@ -1,3 +1,5 @@
+require 'set'
+
 class BlogSweeper < ActionController::Caching::Sweeper
   observe Category, Blog, User, Article, Page, Categorization, Comment, Trackback
 
