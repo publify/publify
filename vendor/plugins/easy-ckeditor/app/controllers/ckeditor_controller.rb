@@ -190,7 +190,7 @@ class CkeditorController < ActionController::Base
   # Returns the upload url folder with the current folder
   #
   def upload_directory_path
-    url_root = ::ActionController::Base.relative_url_root.to_s
+    url_root = env["RAILS_RELATIVE_URL_ROOT"].to_s
     uploaded = url_root + "#{UPLOAD_FOLDER}/#{params[:Type]}"
     "#{uploaded}#{params[:currentFolder]}"
   end
@@ -207,8 +207,7 @@ class CkeditorController < ActionController::Base
   #
   def check_file(file)
     log "CKEDITOR ---- CLASS OF UPLOAD OBJECT: #{file.class}"
-
-    unless [Tempfile, StringIO].contains file.class
+    unless [Tempfile, StringIO].include? file.class
       @errorNumber = 403
       throw Exception.new
     end
