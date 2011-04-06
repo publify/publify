@@ -67,6 +67,7 @@ Common attributes:
         caption       = attrib['caption']
         title         = attrib['title']
         alt           = attrib['alt']
+        theclass      = attrib['class']
         thumburl      = ''
         displayurl    = ''
 
@@ -112,7 +113,7 @@ Common attributes:
 
         set_whiteboard blog, content unless content.nil?
 
-        %{<div style="#{style}" class="lightboxplugin"><a href="#{displayurl}" rel="lightbox" title="#{title}"><img src="#{thumburl}" #{%{width="#{width}" } unless width.nil?}#{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}</div>}
+        %{<div style="#{style}" class="lightboxplugin"><a href="#{displayurl}" rel="lightbox" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?} #{%{width="#{width}" } unless width.nil?} #{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}</div>}
       end
 
       def self.set_whiteboard(blog, content)
