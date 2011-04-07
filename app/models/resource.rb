@@ -38,12 +38,13 @@ class Resource < ActiveRecord::Base
 
   def create_thumbnail
     blog = Blog.default
-    return unless self.mime =~ /image/ or File.exists?(fullpath("thumb_#{self.filename}"))
+    return unless self.mime =~ /image/
     return unless File.exists?(fullpath("#{self.filename}"))
     begin
       img_orig = MiniMagick::Image.from_file(fullpath(self.filename))
       
       ['medium', 'thumb'].each do |size|
+        next if File.exists?(fullpath("#{size}_#{self.filename}"))
         resize = blog.send("image_#{size.to_s}_size").to_s
         img_orig = img_orig.resize("#{resize}x#{resize}")
         img_orig.write(fullpath("#{size}_#{self.filename}"))        
