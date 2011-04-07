@@ -19,6 +19,14 @@
     <a href='<%= "#{this_blog.base_url}/files/#{upload.filename}" %>' rel='lightbox'>
       <%= show_thumbnail(upload) %>
     </a>
+		<p>
+			<small>
+			<%= link_to(_("Thumbnail"), "#{this_blog.base_url}/files/thumb_#{upload.filename}" ) %>
+				<%= link_to(_("Medium size"), "#{this_blog.base_url}/files/medium_#{upload.filename}" ) %> |
+				<%= link_to(_("Original size"), "#{this_blog.base_url}/files/medium_#{upload.filename}" ) %>
+				
+			</small>
+		</p>
   <% else %>
     <%= link_to("#{upload.filename}", "#{this_blog.base_url}/files/#{upload.filename}", {:rel => 'lightbox'}) -%>
   <% end %>  
