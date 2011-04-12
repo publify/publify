@@ -91,6 +91,13 @@
         <%= _("Set to 0 to never reject comments")%></span>
       </div>
     </div>
+	<div class='setting clear'>
+		<label class="float" for="setting_recaptcha"><%= _("Enable reCaptcha") %></label>
+		<div class='input_text'>
+		<%= check_box(:setting, :use_recaptcha)%>
+		<span class='help'><%= _("Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb")%></span>
+		</div>
+	</div>
   </div>
 </div>
 

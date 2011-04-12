@@ -31,6 +31,7 @@ class Blog < ActiveRecord::Base
   setting :sp_article_auto_close,      :integer, 0
   setting :sp_url_limit,               :integer, 0
   setting :sp_akismet_key,             :string, ''
+  setting :use_recaptcha,              :boolean, false
 
   # Mostly Behaviour
   setting :text_filter,                :string, 'markdown smartypants'
