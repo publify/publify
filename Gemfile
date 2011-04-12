@@ -43,7 +43,7 @@ gem 'flickraw', '~> 0.8.3'
 gem 'rubypants', '~> 0.2.0'
 gem 'acts_as_list'
 gem 'acts_as_tree_rails3'
-gem 'recaptcha', '~> 0.3.1'
+gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 
 group :development, :test do
   if RUBY_VERSION.include?('1.9')
