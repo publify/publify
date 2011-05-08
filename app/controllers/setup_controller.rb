@@ -1,6 +1,6 @@
 class SetupController < ApplicationController
   before_filter :check_config, :only => 'index'
-  layout 'setup'
+  layout 'accounts'
 
   def index    
     if request.post?

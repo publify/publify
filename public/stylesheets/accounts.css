@@ -1,7 +1,51 @@
+/*------------------------------------*\
+  STRUCTURE
+\*------------------------------------*/
+#accountscontainer, #setupcontainer {
+  margin: 5em auto 0 auto;
+}
+
+#accountscontainer {
+	width: 300px;
+}
+
+#setupcontainer {
+	width: 360px;
+}
+
+.inner {
+	margin: 1.5em 10px 0 10px;
+}
+
+input.title {
+  padding: 3px;
+	width: 272px;
+}
+
+#setupcontainer input.title {
+	width: 332px;
+}
+
+#submit {
+  padding: 5px;
+}
+
+#remember {
+	width: 160px;
+	padding: 5px 0;
+	float: left;
+	margin-bottom: 1.5em;
+}
+
+#accountscontainer #submit {
+	float: right;
+	margin-left: 20px;
+}
+
+/*------------------------------------*\
+  COLORS AND FONTS
+\*------------------------------------*/
 body {
-  margin: 0;
-  padding: 0;
-	font: 12px/18px 'Lucida Grande', 'Lucida Sans',Arial,sans-serif;
   color: #000;
 	background: #023;
 }
@@ -9,63 +53,36 @@ body {
 a {
 	color: #2779AA;
 	text-decoration: none;
-	font-weight: bold;
 }
 
 a:hover {
 	color: #116088;
 }
 
-h1, h2, h3 {
-	margin: 0;
-	padding: 0;
+h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 	color: #116088;
 }
 
 h1 {
-	font-size: 18px;
-	padding: 10px 0 0 0;
-}
-
-h2 {
-	font-size: 16px;
-}
-
-h3 {
 	text-align: center;
 }
 
-h3 label {
+label {
+	color: #116088;
 	display: block;
-	text-align: left;
-	font-weight: bold;
-}
-
-p {
-	margin-top: 0;
-	padding-top: 10px;
-}
-
-.large {
-	width: 99%;
-}
-
-.medium {
-  width: 50%;
 }
 
 input.title {
-  padding: 3px 5px;
-  margin: 0;
   border: #023 1px solid;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  font: 16px/20px "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+  font: 1.5em/1.5em Helvetica, Arial, sans-serif;
 }
 
-input.save {
+#submit {
+	font: 1em/1.5em Helvetica, Arial, sans-serif;
   color: #fff;
   background: #fb7c00;
   border: #fb7c00 1px solid;
@@ -74,37 +91,14 @@ input.save {
   border-radius: 3px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 12px;
-  padding: 5px 0;
 }
 
-#logincontainer, #setupcontainer {
-  background: #fff;
-  margin: 80px auto 0 auto;
+#accountscontainer, #setupcontainer {
+	background: #fff;
   border: #00131e 1px solid;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
-
-#logincontainer {
-	width: 300px;
-}
-
-#setupcontainer {
-	width: 500px;
-}
-
-.inner {
-  padding: 20px;
-}
-
-h3 a img {
-  border: none;
-}
-
-.mt20 {
-  margin-top: 20px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
 }
 
 /* Import for flash, maybe this should go into a common.css? */
