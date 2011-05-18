@@ -6,24 +6,24 @@
 }
 
 #accountscontainer {
-	width: 300px;
+  width: 300px;
 }
 
 #setupcontainer {
-	width: 360px;
+  width: 360px;
 }
 
 .inner {
-	margin: 1.5em 10px 0 10px;
+  margin: 1.5em 10px 0 10px;
 }
 
 input.title {
   padding: 3px;
-	width: 272px;
+  width: 272px;
 }
 
 #setupcontainer input.title {
-	width: 332px;
+  width: 332px;
 }
 
 #submit {
@@ -31,15 +31,21 @@ input.title {
 }
 
 #remember {
-	width: 160px;
-	padding: 5px 0;
-	float: left;
-	margin-bottom: 1.5em;
+  width: 160px;
+  padding: 5px 0;
+  float: left;
+  margin-bottom: 1.5em;
 }
 
 #accountscontainer #submit {
-	float: right;
-	margin-left: 20px;
+  float: right;
+  margin-left: 20px;
+}
+
+.notice, .error {
+  padding: 0.7em; 
+  margin: 0.7em 0; 
+  display :block;
 }
 
 /*------------------------------------*\
@@ -47,34 +53,34 @@ input.title {
 \*------------------------------------*/
 body {
   color: #000;
-	background: #023;
+  background: #023;
 }
 
 a {
-	color: #2779AA;
-	text-decoration: none;
+  color: #2779AA;
+  text-decoration: none;
 }
 
 a:hover {
-	color: #116088;
+  color: #116088;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-	color: #116088;
+  font-weight: bold;
+  color: #116088;
 }
 
 h1 {
-	text-align: center;
+  text-align: center;
 }
 
 label {
-	color: #116088;
-	display: block;
+  color: #116088;
+  display: block;
 }
 
 input.title {
-  border: #023 1px solid;
+  border: #ddd 1px solid;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -82,7 +88,7 @@ input.title {
 }
 
 #submit {
-	font: 1em/1.5em Helvetica, Arial, sans-serif;
+  font: 1em/1.5em Helvetica, Arial, sans-serif;
   color: #fff;
   background: #fb7c00;
   border: #fb7c00 1px solid;
@@ -94,11 +100,11 @@ input.title {
 }
 
 #accountscontainer, #setupcontainer {
-	background: url("../images/admin/ui-bg_flat_100_f9f9f9_40x100.png") repeat-x #F9F9F9;
+  background: url("../images/admin/ui-bg_flat_100_f9f9f9_40x100.png") repeat-x #F9F9F9;
   border: #ddd 1px solid;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
 }
 
 /* Import for flash, maybe this should go into a common.css? */
@@ -106,16 +112,14 @@ input.title {
   -moz-border-radius: 3px; 
   -webkit-border-radius: 3px; 
   border-radius: 3px;
-  padding: 0.7em; 
-  margin: 0.7em 0;
   border: 1px solid #cd0a0a; 
-  display :block;
   background: #cd0a0a url(../images/admin/ui-bg_flat_15_cd0a0a_40x100.png) 50% 50% repeat-x; color: #ffffff; 
 }
 
 .notice {
-  border: 1px solid #f9dd34; background: #ffef8f url(../images/admin/ui-bg_highlight-soft_25_ffef8f_1x100.png) 50% top repeat-x; color: #363636; -moz-border-radius: 3px; 
--webkit-border-radius: 3px;   padding: 0.7em; 
-  margin: 0.7em 0; display :block;
-
+  border: 1px solid #f9dd34; 
+  background: #ffef8f url(../images/admin/ui-bg_highlight-soft_25_ffef8f_1x100.png) 50% top repeat-x; 
+  color: #363636; 
+  -moz-border-radius: 3px; 
+  -webkit-border-radius: 3px;   
  }
