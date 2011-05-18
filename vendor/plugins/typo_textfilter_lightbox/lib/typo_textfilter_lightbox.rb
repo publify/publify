@@ -59,6 +59,8 @@ Common attributes:
   to disable, use `caption=""`.
 * **title** The tooltip title associated with the image.  Defaults to Flickr's image title.
 * **alt** The alt text associated with the image.  By default, this is the same as the title.
+* **set** Add image to a set
+* **class** adds an existing CSS class
 }
       end
 
@@ -68,6 +70,7 @@ Common attributes:
         title         = attrib['title']
         alt           = attrib['alt']
         theclass      = attrib['class']
+        set           = attrib['set']
         thumburl      = ''
         displayurl    = ''
 
@@ -105,6 +108,8 @@ Common attributes:
           end
         end
 
+        rel = (set.blank?) ? "lightbox" : "lightbox[#{set}]"
+
         if(caption.blank?)
           captioncode=""
         else
@@ -112,8 +117,8 @@ Common attributes:
         end
 
         set_whiteboard blog, content unless content.nil?
-
-        %{<div style="#{style}" class="lightboxplugin"><a href="#{displayurl}" rel="lightbox" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?} #{%{width="#{width}" } unless width.nil?} #{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}</div>}
+        %{<a href="#{displayurl}" rel="lightbox" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?} #{%{width="#{width}" } unless width.nil?} #{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}}
+        %{<a href="#{displayurl}" rel="#{rel}" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?} #{%{width="#{width}" } unless width.nil?} #{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}}
       end
 
       def self.set_whiteboard(blog, content)
