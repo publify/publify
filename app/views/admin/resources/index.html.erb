@@ -23,7 +23,7 @@
 			<small>
 			<%= link_to(_("Thumbnail"), "#{this_blog.base_url}/files/thumb_#{upload.filename}" ) %>
 				<%= link_to(_("Medium size"), "#{this_blog.base_url}/files/medium_#{upload.filename}" ) %> |
-				<%= link_to(_("Original size"), "#{this_blog.base_url}/files/medium_#{upload.filename}" ) %>
+				<%= link_to(_("Original size"), "#{this_blog.base_url}/files/#{upload.filename}" ) %>
 				
 			</small>
 		</p>
