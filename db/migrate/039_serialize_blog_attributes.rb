@@ -106,13 +106,11 @@ class SerializeBlogAttributes < ActiveRecord::Migration
         BareSetting.transaction do
           BareBlog.find(:all).each do |blog|
             blog.settings = { }
-            BareSetting.with_scope(:find => { :conditions => "blog_id = #{blog.id}"}) do
-              BareBlog.fields.each do |key, spec|
-                next unless setting = BareSetting.find_by_name(key.to_s, :limit => 1)
-                blog.settings[key.to_s] =
-                  spec.normalize_value(setting)
-                BareSetting.delete(setting.id)
-              end
+            BareBlog.fields.each do |key, spec|
+              next unless setting = BareSetting.find_by_name_and_blog_id(key.to_s, blog.id, :limit => 1)
+              blog.settings[key.to_s] =
+                spec.normalize_value(setting)
+              BareSetting.delete(setting.id)
             end
             blog.save
           end

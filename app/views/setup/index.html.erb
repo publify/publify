@@ -1,16 +1,20 @@
-<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
+<%= content_tag :h1, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
 
 <div id="flash"><%= render_the_flash %></div>
 <%= form_tag :action=> 'index' do %>
-  <h1><%= _("Welcome")%></h1>
+  <h2><%= _("Welcome")%></h2>
   <p><%= _("Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", link_to("Typo", 'http://typosphere.org'))%></p>
-  <h3><label for="user_login"><%= _("Blog name") %>:</label></h3>
-  <p class='input_text_title'>
-    <%= text_field(:setting, :blog_name, {:class => 'title large'})%>
+  
+  <p>
+    <label for="user_login"><%= _("Blog name") %>:</label>
+    <%= text_field(:setting, :blog_name, {:class => 'title'})%>
   </p>
-  <h3><label for="user_email"><%= _("Your email")%>:</label></h3>
-  <p class='input_text_title'>
+
+  <p>
+    <label for="user_email"><%= _("Your email")%>:</label>
     <%= text_field(:setting, :email, {:class => 'title large'})%>
   </p>
-<p><input type="submit" id="submit" class='save large' value="<%= _('Save')%>" /></p>
+  <p>
+    <input type="submit" id="submit" class='save large' value="<%= _('Save')%>" />
+  </p>
 <% end %>

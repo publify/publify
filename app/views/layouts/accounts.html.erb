@@ -5,10 +5,10 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title><%= @page_title %></title>
 		<meta http-equiv="imagetoolbar" content="no" />
-		<%= stylesheet_link_tag "accounts" %>
+		<%= stylesheet_link_tag "reset", "accounts" %>
 	</head>
   <body>
-    <div id='logincontainer'>
+    <div id='<%= controller.controller_name.to_s.downcase %>container'>
       <div class='inner'>
         <%= yield %>
       </div>
