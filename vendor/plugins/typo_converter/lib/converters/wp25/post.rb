@@ -9,21 +9,23 @@ module WP25
              :class_name => 'WP25::TermTaxonomy'
 
     def categories
-      term_taxonomies.inject([]) do |list, taxonomy|
+      list = []
+      term_taxonomies.each do |taxonomy|
         if taxonomy.taxonomy.eql?('category')
           list << taxonomy.term.name
         end
-        list
       end
+      list
     end
 
     def tags
-      term_taxonomies.inject([]) do |list, taxonomy|
+      list = []
+      term_taxonomies.map do |taxonomy|
         if taxonomy.taxonomy.eql?('post_tag')
           list << taxonomy.term.name
         end
-        list
       end
+      list
     end
 
     def comments

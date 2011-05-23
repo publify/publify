@@ -1,4 +1,3 @@
-require 'set'
 require 'uri'
 
 class Content < ActiveRecord::Base
@@ -180,7 +179,7 @@ class Content < ActiveRecord::Base
         list_function << 'published_at_like(search_hash[:published_at])'
       end
 
-      if search_hash[:user_id] && search_hash[:user_id].to_i > 0
+      if search_hash[:user_id].to_i.nonzero?
         list_function << 'user_id(search_hash[:user_id])'
       end
 
@@ -245,7 +244,7 @@ class Content < ActiveRecord::Base
   # Grab the text filter for this object.  It's either the filter specified by
   # self.text_filter_id, or the default specified in the default blog object.
   def text_filter
-    if self[:text_filter_id] && !self[:text_filter_id].zero?
+    if self[:text_filter_id] && self[:text_filter_id].nonzero?
       TextFilter.find(self[:text_filter_id])
     else
       default_text_filter
@@ -345,7 +344,7 @@ class Content < ActiveRecord::Base
     post = html(blog.show_extended_on_rss ? :all : :body)
     post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless self.class.name == 'Article' and (self.password.nil?  or self.password.empty?)
 
-    post = post + get_rss_description
+    post << get_rss_description
 
     xml.description(post)
   end

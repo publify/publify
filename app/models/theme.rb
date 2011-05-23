@@ -47,8 +47,8 @@ class Theme
   end
 
   def self.find_all
-    installed_themes.inject([]) do |array, path|
-      array << theme_from_path(path)
+    installed_themes.map do |path|
+      theme_from_path(path)
     end
   end
 

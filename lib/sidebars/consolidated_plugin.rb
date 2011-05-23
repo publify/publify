@@ -7,9 +7,9 @@ class Sidebars::ConsolidatedPlugin < Sidebars::Plugin
     end
 
     def default_config
-      fields.inject({ }) do |acc, item|
-        acc.merge(item.key => item.default)
-      end
+      Hash[ 
+        fields.map { |item| [item.key, item.default] }
+      ]
     end
 
     def description

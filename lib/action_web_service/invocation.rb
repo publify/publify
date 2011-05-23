@@ -119,7 +119,8 @@ module ActionWebService # :nodoc:
         end
 
         def condition_hash(interceptors, *methods)
-          interceptors.inject({}) {|hash, interceptor| hash.merge(interceptor => methods.flatten.map {|method| method.to_s})}
+          cached_method_names = methods.flatten.map {|method| method.to_s}
+          Hash[ interceptors.map { |interceptor| [interceptor, cached_method_names.dup] } ]
         end
     end
 

@@ -253,9 +253,9 @@ class Sidebar < ActiveRecord::Base
   end
 
   def to_locals_hash
-    fields.inject({ :sidebar => self }) do |hash, field|
-      hash.merge(field.key => config[field.key])
-    end
+    acc = [[:sidebar, self]]
+    fields.each {|field| acc << [field.key, config[field.key]] }
+    Hash[acc]
   end
 
   def lifetime
