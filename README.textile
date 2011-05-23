@@ -51,7 +51,7 @@ irc:  xal
 
 h1. Installing Typo
 
-There are various way of installing Typo, but the easiest way is certainly using our gem.
+There are various way of installing Typo, but the easiest way is certainly using the gem.
 
 h2. 1. Prerequisites
 
@@ -60,7 +60,7 @@ To install Typo you need the following:
 * Ruby 1.8.7 or Ruby Enterprise Edition, Typo is not Ruby 1.9 compliant
 * Ruby On Rails 3.0.0
 * A database engine, MySQL, PgSQL or SQLite3
-* The Ruby connector to your favourite database engine
+* The Ruby connector to your favorite database engine
 * A FTP client or even better SSH access to your hosting provider
 
 h2. 2. Get Typo
@@ -86,10 +86,10 @@ To use / test typo, run:
 
 h1. Daily use
 
-For a daily use, we reccomend to use Passenger (mod_rails) or Thin / Unicorn with Apache or Nginx.
+For daily use, we recommend using Passenger (mod_rails) or Thin / Unicorn with Apache or Nginx.
 
-Typo's administrative interface is available at http://your.domain.com/admin. You can use this to post articles and change Typo's configuration settings. For posting new content, you can either use this administrative web interface or a desktop blog editor like MarsEdit or Ecto. For a short list of clients which are confirmed to work please visit http://typosphere.org/wiki/DesktopClients.
+The admin interface for Typo allows you to post articles and change configuration settings. It can be found at http://yourdomain.com/admin. New content can be posting using the admin interface or a desktop blog editor such as MarsEdit or Ecto. For a list of working clients, please visit http://typosphere.org/wiki/DesktopClients
 
 Enjoy,
-Your typo team
+The Typo team
 
