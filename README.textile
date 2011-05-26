@@ -1,9 +1,8 @@
 h1. About Typo
 
-Being around since March 2005, Typo is (probably) the oldest blogging platform in Rails. It has a full set of feature you would expect from such an engine, powerful SEO capabilities and full themes and plugin
-extension. It is available as a gem or source tarball.
+Typo has been around since March of 2005 making it one of the oldest blogging platforms in Rails. With powerful SEO capabilities, full themes, and plug-ins, this platform has all the features needed for a great user experience for both web developers and site visitors. Typo is available as a gem or source tarball.
 
-Current version is Typo 6.0.5 for Ruby on Rails 3.0.7
+The current version is Typo 6.0.5 for Ruby on Rails 3.0.7
 
 h2. Enhance your Typo blog
 
@@ -25,7 +24,7 @@ h2. Get some help
 * "Mailing list":http://rubyforge.org/mailman/listinfo/typo-list
 
 h2. Maintainers
-This is a list of Typo maintainers. If you have a commit bit, please add your name and contact details to the list.
+This is a list of Typo maintainers. If you have committed, please add your name and contact details to the list.
 
 h3. The Cool Kids
 
@@ -54,7 +53,7 @@ irc:  xal
 
 h1. Installing Typo
 
-There are various way of installing Typo, but the easiest way is certainly using the gem.
+There are various way of installing Typo, but the easiest way is the install using the gem.
 
 h2. 1. Prerequisites
 
@@ -81,7 +80,7 @@ Then run:
 $ bundle install
 $ rake RAILS_ENV=production db:migrate
 
-h2. 4. Start / stop Typo
+h2. 4. Start/Stop Typo
 
 To use / test typo, run:
 
@@ -89,10 +88,9 @@ To use / test typo, run:
 
 h1. Daily use
 
-For daily use, we recommend using Passenger (mod_rails) or Thin / Unicorn with Apache or Nginx.
+We recommend using Passenger (mod_rails) or Thin / Unicorn with Apache or Nginx.
 
 The admin interface for Typo allows you to post articles and change configuration settings. It can be found at http://yourdomain.com/admin. New content can be posting using the admin interface or a desktop blog editor such as MarsEdit or Ecto. For a list of working clients, please visit http://typosphere.org/wiki/DesktopClients
 
 Enjoy,
 The Typo team
-
