@@ -389,10 +389,10 @@ input.large, input.medium, input.small, textarea.large, textarea.medium { border
 
 #carousel-content .slide {
     float: left;
-    width: 140px;
     height: 125px;
     padding: 10px 0;
     text-align: center;
+    margin-right: 20px;
 }
 
 #carousel-content .slide img {

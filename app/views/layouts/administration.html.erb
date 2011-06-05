@@ -9,6 +9,9 @@
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
   <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "growler", "typo_carousel", "administration", "ckeditor/ckeditor" %>
   <%= calendar_date_select_includes %>
+  <style type="text/css">
+    #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
+  </style>
 </head>
 <body>
   <div id='header'>
