@@ -1,6 +1,6 @@
-// script.aculo.us builder.js v1.8.1, Thu Jan 03 22:07:12 -0500 2008
+// script.aculo.us builder.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
 
-// Copyright (c) 2005-2007 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
+// Copyright (c) 2005-2010 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //
 // script.aculo.us is freely distributable under the terms of an MIT-style license.
 // For details, see the script.aculo.us web site: http://script.aculo.us/
@@ -74,7 +74,7 @@ var Builder = {
     if(arguments[2])
       this._children(element, arguments[2]);
 
-     return element;
+     return $(element);
   },
   _text: function(text) {
      return document.createTextNode(text);
@@ -100,7 +100,7 @@ var Builder = {
     if(typeof children=='object') { // array can hold nodes and text
       children.flatten().each( function(e) {
         if(typeof e=='object')
-          element.appendChild(e)
+          element.appendChild(e);
         else
           if(Builder._isStringOrNumber(e))
             element.appendChild(Builder._text(e));
@@ -130,7 +130,7 @@ var Builder = {
     tags.each( function(tag){
       scope[tag] = function() {
         return Builder.node.apply(Builder, [tag].concat($A(arguments)));
-      }
+      };
     });
   }
-}
+};
