@@ -116,6 +116,7 @@ Factory.define :blog do |b|
   b.link_to_author false
   b.comment_text_filter "markdown"
   b.permalink_format "/%year%/%month%/%day%/%title%"
+  b.use_canonical_url true
 end
 
 

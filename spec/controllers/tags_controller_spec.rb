@@ -116,6 +116,10 @@ describe TagsController, 'showing tag "foo"' do
   it 'should have good atom feed link in head' do
     response.should have_selector('head>link[href="http://test.host/tag/foo.atom"][rel=alternate][type="application/atom+xml"][title=Atom]')
   end
+  
+  it 'should have a canonical URL' do
+    response.should have_selector('head>link[href="http://myblog.net/tag/foo/"]')
+  end
 end
 
 describe TagsController, "showing a non-existant tag" do

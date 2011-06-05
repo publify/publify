@@ -39,6 +39,10 @@ class GroupingController < ContentController
 
     return render_empty if @grouping.nil?
 
+    # For some reasons, the permalink_url does not take the pagination. 
+    suffix = params[:page].nil? ? "/" : "/page/#{params[:page]}/" 
+
+    @canonical_url = @grouping.permalink_url + suffix
     @page_title = "#{_(self.class.to_s.sub(/Controller$/,'').singularize)} #{@grouping.name}, "
 
     if @grouping.respond_to? :description and

@@ -91,6 +91,13 @@
         <span><%= _("Maybe you want to moderate feedbacks when turning this off") %></span>
       </div>
     </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_use_canonical_url"><%= _("Use canonical URL")%></label>
+      <div class='input_text'>
+        <%= check_box(:setting, :use_canonical_url)%>
+        <span><%= _("Read more about %s", link_to("rel='canonical'", "http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
+      </div>
+    </div>
     
   </div>
 

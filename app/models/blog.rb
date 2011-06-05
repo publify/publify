@@ -69,6 +69,7 @@ class Blog < ActiveRecord::Base
   setting :admin_display_elements,     :integer, 10
   setting :google_verification,        :string, ''
   setting :nofollowify,                :boolean, true
+  setting :use_canonical_url,          :boolean, false
 
   validate :permalink_has_identifier
 

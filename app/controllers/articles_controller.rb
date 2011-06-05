@@ -31,6 +31,9 @@ class ArticlesController < ContentController
     @description = index_description
     @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
 
+    suffix = (params[:page].nil? and params[:year].nil?) ? "" : "/"
+      
+    @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'index', :page => params[:page], :year => params[:year], :month => params[:month], :day => params[:day]) + suffix
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
@@ -44,6 +47,7 @@ class ArticlesController < ContentController
   end
 
   def search
+    @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'search', :page => params[:page], :q => params[:q])
     @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
     return error(_("No posts found..."), :status => 200) if @articles.empty?
     respond_to do |format|
@@ -61,6 +65,7 @@ class ArticlesController < ContentController
 
   def preview
     @article = Article.last_draft(params[:id])
+    @canonical_url = ""
     render :action => 'read'
   end
 
@@ -101,6 +106,7 @@ class ArticlesController < ContentController
     @page_title = "#{_('Archives for')} #{this_blog.blog_name}"
     @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
     @description = "#{_('Archives for')} #{this_blog.blog_name} - #{this_blog.blog_subtitle}"
+    @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'archives')
   end
 
   def comment_preview
@@ -127,6 +133,7 @@ class ArticlesController < ContentController
       @page_title = @page.title
       @description = (this_blog.meta_description.empty?) ? "" : this_blog.meta_description
       @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
+      @canonical_url = @page.permalink_url
     else
       render :nothing => true, :status => 404
     end
@@ -164,6 +171,7 @@ class ArticlesController < ContentController
   rescue ActiveRecord::RecordNotFound
     error("Post not found...")
   end
+  
 
   def article_meta
     @keywords = ""
@@ -173,6 +181,7 @@ class ArticlesController < ContentController
     @description << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
     @description << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?
     @description << " #{this_blog.blog_name}"
+    @canonical_url = @article.permalink_url
   end
 
   def send_feed(format)

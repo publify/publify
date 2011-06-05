@@ -35,6 +35,8 @@ describe CategoriesController, "/index" do
 end
 
 describe CategoriesController, '/articles/category/personal' do
+  render_views
+  
   before do
     Factory(:blog)
     cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
@@ -93,6 +95,12 @@ describe CategoriesController, '/articles/category/personal' do
   it 'should set the page title to "Category Personal"' do
     do_get
     assigns[:page_title].should == 'Category Personal, everything about Personal'
+    response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
+  end
+
+  it 'should have a canonical URL' do
+    do_get
+    response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
   end
 
   it 'should render the atom feed for /articles/category/personal.atom' do

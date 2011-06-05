@@ -130,6 +130,11 @@ module ApplicationHelper
     javascript_include_tag "lang/#{Localization.lang.to_s}" if File.exists? File.join(::Rails.root.to_s, 'public', 'lang', Localization.lang.to_s)
   end
 
+  def use_canonical
+
+    "<link rel='canonical' href='#{@canonical_url}' />".html_safe unless @canonical_url.nil?
+  end
+
   def page_header
     page_header_includes = content_array.collect { |c| c.whiteboard }.collect do |w|
       w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
@@ -157,6 +162,7 @@ module ApplicationHelper
   #{ javascript_include_lang }
   #{ javascript_tag "window._token = '#{form_authenticity_token}'"}
   #{ page_header_includes.join("\n") }
+  #{ use_canonical  if this_blog.use_canonical_url }
   <script type="text/javascript">#{ @content_for_script }</script>
   #{ google_analytics }
     HTML
