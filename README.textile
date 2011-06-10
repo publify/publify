@@ -57,7 +57,7 @@ h2. 1. Prerequisites
 
 To install Typo you need the following:
 
-* Ruby 1.8.7 or Ruby Enterprise Edition, Typo is not Ruby 1.9 compliant
+* Ruby 1.8.7 or Ruby Enterprise Edition. You can use an existing Typo blog to Ruby 1.9 but not start one, initial migration currently failing.
 * Ruby On Rails 3.0.0
 * A database engine, MySQL, PgSQL or SQLite3
 * The Ruby connector to your favorite database engine
