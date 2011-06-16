@@ -117,8 +117,7 @@ Common attributes:
         end
 
         set_whiteboard blog, content unless content.nil?
-        %{<a href="#{displayurl}" rel="lightbox" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?} #{%{width="#{width}" } unless width.nil?} #{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}}
-        %{<a href="#{displayurl}" rel="#{rel}" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?} #{%{width="#{width}" } unless width.nil?} #{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}}
+        %{<a href="#{displayurl}" rel="#{rel}" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?}#{%{width="#{width}" } unless width.nil?}#{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}}
       end
 
       def self.set_whiteboard(blog, content)
