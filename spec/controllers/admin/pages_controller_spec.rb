@@ -83,7 +83,7 @@ describe Admin::PagesController do
     { :title => "posted via tests!",
       :body => "A good body",
       :name => "posted-via-tests",
-      :published => true }
+      :published => true }.merge(options)
   end
   
   it 'should create a published page with a redirect' do
@@ -97,6 +97,7 @@ describe Admin::PagesController do
   end
 
   it 'should create a page published in the future without a redirect' do
+    pending ":published_at parameter is currently ignored"
     post(:new, 'page' => base_page({:published_at => (Time.now + 1.hour).to_s}))
     assigns(:page).redirects.count.should == 0
   end
