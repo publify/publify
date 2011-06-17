@@ -80,19 +80,19 @@ class ArticlesController < ContentController
   end
 
   def redirect
-    clean_from_parameter
+    from = split_from_path params[:from]
 
-    match_permalink_format this_blog.permalink_format
+    match_permalink_format from, this_blog.permalink_format
     return show_article if @article
 
     # Redirect old version with /:year/:month/:day/:title to new format,
     # because it's changed
     ["%year%/%month%/%day%/%title%", "articles/%year%/%month%/%day%/%title%"].each do |part|
-      match_permalink_format part
+      match_permalink_format from, part
       return redirect_to @article.permalink_url, :status => 301 if @article
     end
 
-    r = Redirect.find_by_from_path(params[:from].join("/"))
+    r = Redirect.find_by_from_path(from.join("/"))
     return redirect_to r.full_to_path, :status => 301 if r
 
     render :text => "Page not found", :status => 404
@@ -251,26 +251,28 @@ class ArticlesController < ContentController
     return from..to
   end
 
-  def clean_from_parameter
-    params[:from].delete('')
-    if params[:from].last =~ /\.atom$/
+  def split_from_path path
+    parts = path.split '/'
+    parts.delete('')
+    if parts.last =~ /\.atom$/
       request.format = 'atom'
-      params[:from].last.gsub!(/\.atom$/, '')
-    elsif params[:from].last =~ /\.rss$/
+      parts.last.gsub!(/\.atom$/, '')
+    elsif parts.last =~ /\.rss$/
       request.format = 'rss'
-      params[:from].last.gsub!(/\.rss$/, '')
+      parts.last.gsub!(/\.rss$/, '')
     end
+    parts
   end
 
-  def match_permalink_format format
+  def match_permalink_format parts, format
     specs = format.split('/')
     specs.delete('')
 
-    return if params[:from].length != specs.length
+    return if parts.length != specs.length
 
     article_params = {}
 
-    specs.zip(params[:from]).each do |spec, item|
+    specs.zip(parts).each do |spec, item|
       if spec =~ /(.*)%(.*)%(.*)/
         before_format = $1
         format_string = $2
