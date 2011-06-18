@@ -53,8 +53,8 @@ describe 'Given a new blog' do
     @blog.should_not be_link_to_author
   end
 
-  it 'Should show extended on rss' do
-    @blog.should be_hide_extended_on_rss
+  it 'Should not hide extended on rss' do
+    @blog.should_not be_hide_extended_on_rss
   end
 
   it '#theme should be "typographic"' do
