@@ -491,7 +491,7 @@ class Article < Content
   end
   
   def atom_content(entry)
-    post = blog.show_extended_on_rss ? post = html(:all) : post = html(:body)
+    post = blog.hide_extended_on_rss ? post = html(:body) : post = html(:all)
     post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless password.nil? or password.empty?
 
     content = blog.rss_description ? post + get_rss_description : post

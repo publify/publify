@@ -1,6 +1,6 @@
 xm.item do
   xm.title post_title(item)
-  xm.description html(item, this_blog.show_extended_on_rss ? :all : :body)
+  xm.description html(item, this_blog.hide_extended_on_rss ? :body : :all)
   xm.pubDate pub_date(item.published_at)
   xm.guid "urn:uuid:#{item.guid}", "isPermaLink" => "false"
   author = item.user.name rescue item.author

@@ -34,6 +34,6 @@ xm.entry do
               :href => this_blog.file_url(resource.filename)
     end
   end
-  xm.summary html(item, :body), "type"=>"html"
-  xm.content html(item, :all), "type"=>"html" if this_blog.show_extended_on_rss
+  xm.content html(item, :all), "type"=>"html" 
+  xm.summary html(item, :body), "type"=>"html" if this_blog.hide_extended_on_rss
 end

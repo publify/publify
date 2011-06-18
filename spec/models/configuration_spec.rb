@@ -54,7 +54,7 @@ describe 'Given a new blog' do
   end
 
   it 'Should show extended on rss' do
-    @blog.should be_show_extended_on_rss
+    @blog.should be_hide_extended_on_rss
   end
 
   it '#theme should be "typographic"' do

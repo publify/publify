@@ -414,7 +414,7 @@ Localization.define("fr_FR") do |l|
   l.store "Display", "Afficher"
   l.store "articles on my homepage by default", "billet sur ma page d'accueil params par défaut"
   l.store "articles in my news feed by default", "billets dans mon flux RSS par défaut"
-  l.store "Show full article on feed", "Afficher la totalité du billet dans le flux RSS"
+  l.store "Show only article excerpt on feed", "Tronquer les articles dans le flux RSS"
   l.store "Feedburner ID", "Identifiant Feedburner"
   l.store "General settings", "Options générales"
   l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Typo. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
