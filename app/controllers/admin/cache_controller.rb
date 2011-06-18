@@ -7,7 +7,7 @@ class Admin::CacheController < Admin::BaseController
     @cache_size = 0
     @cache_number = 0 
 
-    FileUtils.mkdir_p(Rails::Application.config.action_controller.page_cache_directory) unless File.exists?(Rails::Application.config.action_controller.page_cache_directory)
+    FileUtils.mkdir_p(TypoBlog::Application.config.action_controller.page_cache_directory) unless File.exists?(TypoBlog::Application.config.action_controller.page_cache_directory)
         
     if request.post?
       begin
