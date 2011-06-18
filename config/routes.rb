@@ -1,4 +1,4 @@
-ActionController::Routing::Routes.draw do |map|
+Rails.application.routes.draw do
   # Load plugin routes first. A little bit ugly, but I didn't find any better way to do it
   # We consider that only typo_* plugins are concerned
   Dir.glob(File.join("vendor", "plugins", "typo_*")).each do |dir|
@@ -8,113 +8,114 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   # for CK Editor
-  map.connect 'fm/filemanager/:action/:id', :controller => 'Fm::Filemanager'
-  map.connect 'ckeditor/command', :controller => 'ckeditor', :action => 'command'
-  map.connect 'ckeditor/upload', :controller => 'ckeditor', :action => 'upload'
+  match 'fm/filemanager(/:action(/:id))', :to => 'Fm::Filemanager', :format => false
+  match 'ckeditor/command', :to => 'ckeditor#command', :format => false
+  match 'ckeditor/upload', :to => 'ckeditor#upload', :format => false
 
   # TODO: use only in archive sidebar. See how made other system
-  map.articles_by_month ':year/:month', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/
-  map.articles_by_month_page ':year/:month/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/
-  map.articles_by_year ':year', :controller => 'articles', :action => 'index', :year => /\d{4}/
-  map.articles_by_year_page ':year/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/
+  match ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
+  match ':year/:month/page/:page', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month_page', :format => false
+  match ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
+  match ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
 
-  map.admin 'admin', :controller  => 'admin/dashboard', :action => 'index'
+  match 'admin', :to  => 'admin/dashboard#index', :format => false
 
   # make rss feed urls pretty and let them end in .xml
   # this improves caches_page because now apache and webrick will send out the
   # cached feeds with the correct xml mime type.
 
-  map.rss 'articles.rss', :controller => 'articles', :action => 'index', :format => 'rss'
-  map.atom 'articles.atom', :controller => 'articles', :action => 'index', :format => 'atom'
+  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
+  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
 
-  map.with_options :controller => 'xml', :path_prefix => 'xml' do |controller|
-    controller.xml 'articlerss/:id/feed.xml', :action => 'articlerss'
-    controller.xml 'commentrss/feed.xml', :action => 'commentrss'
-    controller.xml 'trackbackrss/feed.xml', :action => 'trackbackrss'
+  scope :controller => 'xml', :path => 'xml', :as => 'xml' do
+    match 'articlerss/:id/feed.xml', :action => 'articlerss', :format => false
+    match 'commentrss/feed.xml', :action => 'commentrss', :format => false
+    match 'trackbackrss/feed.xml', :action => 'trackbackrss', :format => false
+  end
 
-    controller.with_options :action => 'feed' do |action|
-      action.xml 'rss', :type => 'feed', :format => 'rss'
-      action.xml 'sitemap.xml', :format => 'googlesitemap', :type => 'sitemap', :path_prefix => nil
-      action.xml ':format/feed.xml', :type => 'feed'
-      action.xml ':format/:type/:id/feed.xml'
-      action.xml ':format/:type/feed.xml'
+  match 'xml/:format', :to => 'xml#feed', :type => 'feed', :constraints => {:format => 'rss'}, :as => 'xml'
+  match 'sitemap.xml', :to => 'xml#feed', :format => 'googlesitemap', :type => 'sitemap', :as => 'xml'
+
+  scope :controller => 'xml', :path => 'xml', :as => 'xml' do
+    scope :action => 'feed' do
+      match ':format/feed.xml', :type => 'feed'
+      match ':format/:type/:id/feed.xml'
+      match ':format/:type/feed.xml'
     end
   end
 
+  resources :comments, :as => 'admin_comments' do
+    collection do
+      match :preview
+    end
+  end
+  resources :trackbacks
 
-  map.resources :comments, :name_prefix => 'admin_', :collection => [:preview]
-  map.resources :trackbacks
-
-  map.live_search_articles '/live_search/', :controller => "articles", :action => "live_search"
-  map.search '/search/:q.:format/page/:page', :controller => "articles", :action => "search"
-  map.search '/search/:q.:format', :controller => "articles", :action => "search"
-  map.search_base '/search/', :controller => "articles", :action => "search"
-  map.connect '/archives/', :controller => "articles", :action => "archives"
-  map.connect '/setup', :controller => 'setup', :action => 'index'
-  map.connect '/setup/confirm', :controller => 'setup', :action => 'confirm'
+  match '/live_search/', :to => 'articles#live_search', :as => :live_search_articles, :format => false
+  match '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search'
+  match '/search(/:q(.:format))', :to => 'articles#search', :as => 'search'
+  match '/search/', :to => 'articles#search', :as => 'search_base', :format => false
+  match '/archives/', :to => 'articles#archives', :format => false
+  match '/setup', :to => 'setup#index', :format => false
+  match '/setup/confirm', :to => 'setup#confirm', :format => false
 
   # I thinks it's useless. More investigating
-  map.connect "trackbacks/:id/:day/:month/:year",
-    :controller => 'trackbacks', :action => 'create', :conditions => {:method => :post}
+  post "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
 
   # Before use inflected_resource
-  map.resources :categories, :except => [:show, :update, :destroy, :edit]
-  map.resources :categories, :as => 'category', :only => [:show, :edit, :update, :destroy]
+  resources :categories, :except => [:show, :update, :destroy, :edit]
+  resources :categories, :path => 'category', :only => [:show, :edit, :update, :destroy]
 
-  map.connect '/category/:id/page/:page', :controller => 'categories', :action => 'show'
+  match '/category/:id/page/:page', :to => 'categories#show', :format => false
 
   # Before use inflected_resource
-  map.resources :tags, :except => [:show, :update, :destroy, :edit]
-  map.resources :tags, :as => 'tag', :only => [:show, :edit, :update, :destroy]
+  resources :tags, :except => [:show, :update, :destroy, :edit]
+  resources :tags, :path => 'tag', :only => [:show, :edit, :update, :destroy]
 
-  map.connect '/tag/:id/page/:page', :controller => 'tags', :action => 'show'
-  map.connect '/tags/page/:page', :controller => 'tags', :action => 'index'
+  match '/tag/:id/page/:page', :to => 'tags#show', :format => false
+  match '/tags/page/:page', :to => 'tags#index', :format => false
 
-  map.xml '/author/:id.:format', :controller => 'authors', :action => 'show', :format => /rss|atom/
-  map.connect '/author/:id', :controller => 'authors', :action => 'show'
+  match '/author/:id(.:format)', :to => 'authors#show', :format => /rss|atom/, :as => 'xml'
+  match '/author(/:id)', :to => 'authors#show', :format => false
 
   # allow neat perma urls
-  map.connect 'page/:page',
-    :controller => 'articles', :action => 'index',
-    :page => /\d+/
+  match 'page/:page', :to => 'articles#index', :page => /\d+/, :format => false
 
   date_options = { :year => /\d{4}/, :month => /(?:0?[1-9]|1[012])/, :day => /(?:0[1-9]|[12]\d|3[01])/ }
 
-  map.with_options(:conditions => {:method => :get}) do |get|
-    get.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
+  get 'pages/*name', :to => 'articles#view_page', :format => false
 
-    get.with_options(:controller => 'theme', :filename => /.*/, :conditions => {:method => :get}) do |theme|
-      theme.connect 'stylesheets/theme/:filename', :action => 'stylesheets'
-      theme.connect 'javascripts/theme/:filename', :action => 'javascript'
-      theme.connect 'images/theme/:filename',      :action => 'images'
-    end
-
-    # For the tests
-    get.connect 'theme/static_view_test', :controller => 'theme', :action => 'static_view_test'
+  scope :controller => 'theme', :filename => /.*/ do
+    get 'stylesheets/theme/:filename', :action => 'stylesheets', :format => false
+    get 'javascripts/theme/:filename', :action => 'javascript', :format => false
+    get 'images/theme/:filename', :action => 'images', :format => false
   end
 
-  map.connect 'previews/:id', :controller => 'articles', :action => 'preview'
-  map.connect 'check_password', :controller => 'articles', :action => 'check_password'
+  # For the tests
+  get 'theme/static_view_test', :format => false
+
+  match 'previews(/:id)', :to => 'articles#preview', :format => false
+  match 'check_password', :to => 'articles#check_password', :format => false
 
   # Work around the Bad URI bug
   %w{ accounts backend files sidebar xml }.each do |i|
-    map.connect "#{i}", :controller => "#{i}", :action => 'index'
-    map.connect "#{i}/:action", :controller => "#{i}"
-    map.connect "#{i}/:action/:id", :controller => i, :id => nil
+    match "#{i}", :to => "#{i}#index", :format => false
+    match "#{i}(/:action)", :to => i, :format => false
+    match "#{i}(/:action(/:id))", :to => i, :id => nil, :format => false
   end
 
   %w{advanced cache categories comments content profiles feedback general pages
      resources sidebar textfilters themes trackbacks users settings tags redirects }.each do |i|
-    map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
-    map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
+    match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
+    match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
   end
 
   # default
-  map.root :controller  => 'articles', :action => 'index'
+  root :to  => 'articles#index', :format => false
 
-  map.connect '*from', :controller => 'articles', :action => 'redirect'
+  match '*from', :to => 'articles#redirect', :format => false
 
-  map.connect(':controller/:action/:id') do |default_route|
+  match ':controller(/:action(/:id))', :format => false do |default_route|
     class << default_route
       def recognize_with_deprecation(path, environment = {})
         ::Rails.logger.info "#{path} hit the default_route buffer"

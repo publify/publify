@@ -322,7 +322,7 @@ describe ArticlesController, "redirecting" do
     it 'should redirect from known URL' do
       Factory(:blog)
       Factory(:redirect)
-      get :redirect, :from => ["foo", "bar"]
+      get :redirect, :from => "foo/bar"
       assert_response 301
       response.should redirect_to("http://test.host/someplace/else")
     end
@@ -330,7 +330,7 @@ describe ArticlesController, "redirecting" do
     it 'should not redirect from unknown URL' do
       Factory(:blog)
       Factory(:redirect)
-      get :redirect, :from => ["something", "that", "isnt", "there"]
+      get :redirect, :from => "something/that/isnt/there"
       assert_response 404
     end
 
@@ -348,14 +348,14 @@ describe ArticlesController, "redirecting" do
 
       it 'should redirect' do
         Factory(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
-        get :redirect, :from => ["foo", "bar"]
+        get :redirect, :from => "foo/bar"
         assert_response 301
         response.should redirect_to("http://test.host/blog/someplace/else")
       end
 
       it 'should redirect if to_path includes relative_url_root' do
         Factory(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
-        get :redirect, :from => ["bar", "foo"]
+        get :redirect, :from => "bar/foo"
         assert_response 301
         response.should redirect_to("http://test.host/blog/someplace/else")
       end
@@ -366,7 +366,7 @@ describe ArticlesController, "redirecting" do
     Factory(:blog)
     utf8article = Factory.create(:utf8article, :permalink => 'ルビー',
       :published_at => Time.utc(2004, 6, 2))
-    get :redirect, :from => ['2004', '06', '02', 'ルビー']
+    get :redirect, :from => '2004/06/02/ルビー'
     assigns(:article).should == utf8article
   end
 
@@ -375,7 +375,7 @@ describe ArticlesController, "redirecting" do
     Factory(:blog)
     utf8article = Factory.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC',
       :published_at => Time.utc(2004, 6, 2))
-    get :redirect, :from => ['2004', '06', '02', 'ルビー']
+    get :redirect, :from => '2004/06/02/ルビー'
     assigns(:article).should == utf8article
   end
 
@@ -386,7 +386,7 @@ describe ArticlesController, "redirecting" do
         :published_at => '2004-04-01 02:00:00',
         :updated_at => '2004-04-01 02:00:00',
         :created_at => '2004-04-01 02:00:00')
-      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       response.should redirect_to("http://myblog.net/2004/04/01/second-blog-article")
     end
@@ -397,7 +397,7 @@ describe ArticlesController, "redirecting" do
         :published_at => '2004-04-01 02:00:00',
         :updated_at => '2004-04-01 02:00:00',
         :created_at => '2004-04-01 02:00:00')
-      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       response.should redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
     end
@@ -408,7 +408,7 @@ describe ArticlesController, "redirecting" do
         :published_at => '2004-04-01 02:00:00',
         :updated_at => '2004-04-01 02:00:00',
         :created_at => '2004-04-01 02:00:00')
-      get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+      get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       response.should redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
     end
@@ -427,30 +427,30 @@ describe ArticlesController, "redirecting" do
 
     describe "accessing various non-matching URLs" do
       it "should not find '.htmlsecond-blog-article'" do
-        get :redirect, :from => [".html#{@article.permalink}"]
+        get :redirect, :from => ".html#{@article.permalink}"
         assert_response 404
       end
 
       it "should not find 'second-blog-article.html.html'" do
-        get :redirect, :from => ["#{@article.permalink}.html.html"]
+        get :redirect, :from => "#{@article.permalink}.html.html"
         assert_response 404
       end
 
       it "should not find 'second-blog-article.html/foo'" do
-        get :redirect, :from => ["#{@article.permalink}.html", "foo"]
+        get :redirect, :from => "#{@article.permalink}.html/foo"
         assert_response 404
       end
     end
 
     describe "accessing legacy URLs" do
       it 'should redirect from default URL format' do
-        get :redirect, :from => ["2004", "04", "01", "second-blog-article"]
+        get :redirect, :from => "2004/04/01/second-blog-article"
         assert_response 301
         response.should redirect_to("http://myblog.net/second-blog-article.html")
       end
 
       it 'should redirect from old-style URL format with "articles" part' do
-        get :redirect, :from => ["articles", "2004", "04", "01", "second-blog-article"]
+        get :redirect, :from => "articles/2004/04/01/second-blog-article"
         assert_response 301
         response.should redirect_to("http://myblog.net/second-blog-article.html")
       end
@@ -459,7 +459,7 @@ describe ArticlesController, "redirecting" do
     describe 'accessing an article' do
 
       before(:each) do
-        get :redirect, :from => ["#{@article.permalink}.html"]
+        get :redirect, :from => "#{@article.permalink}.html"
       end
 
       it 'should render template read to article' do
@@ -495,7 +495,7 @@ describe ArticlesController, "redirecting" do
       before(:each) do
         Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
           :published => true)
-        get :redirect, :from => ["#{@article.permalink}.html.atom"]
+        get :redirect, :from => "#{@article.permalink}.html.atom"
       end
 
       it 'should render atom partial' do
@@ -511,7 +511,7 @@ describe ArticlesController, "redirecting" do
       render_views
 
       before(:each) do
-        get :redirect, :from => ["#{@article.permalink}.html.rss"]
+        get :redirect, :from => "#{@article.permalink}.html.rss"
       end
 
       it 'should render rss20 partial' do
@@ -530,7 +530,7 @@ describe ArticlesController, "redirecting" do
         @comment = Factory(:comment, :article => @article)
         @comment.body = "&eacute;coute! 4 < 2, non?"
         @comment.save!
-        get :redirect, :from => ["#{@article.permalink}.html.atom"]
+        get :redirect, :from => "#{@article.permalink}.html.atom"
       end
 
       it 'should result in a valid atom feed' do
@@ -548,12 +548,12 @@ describe ArticlesController, "redirecting" do
     end
 
     it "should find the article if the url matches all components" do
-      get :redirect, :from => ["foo", @article.permalink]
+      get :redirect, :from => "foo/#{@article.permalink}"
       response.should be_success
     end
 
     it "should not find the article if the url does not match the fixed component" do
-      get :redirect, :from => ["bar", @article.permalink]
+      get :redirect, :from => "bar/#{@article.permalink}"
       assert_response 404
     end
   end
@@ -566,25 +566,25 @@ describe ArticlesController, "redirecting" do
     end
 
     it "should find the article if the url matches all components" do
-      get :redirect, :from => ["foo", "bar", @article.year_url, @article.month_url, @article.permalink]
+      get :redirect, :from => "foo/bar/#{@article.year_url}/#{@article.month_url}/#{@article.permalink}"
       response.should be_success
     end
 
     # FIXME: Documents current behavior; Blog URL format is only meant for one article shown
     it "should not find the article if the url only matches some components" do
-      get :redirect, :from => ["foo", "bar", @article.year_url, @article.month_url]
+      get :redirect, :from => "foo/bar/#{@article.year_url}/#{@article.month_url}"
       assert_response 404
     end
 
     # TODO: Think about allowing this, and changing find_by_params_hash to match.
     if false
     it "should find the article if the url matches all fixed parts and no variable components" do
-      get :redirect, :from => ["foo", "bar"]
+      get :redirect, :from => "foo/bar"
       response.should be_success
     end
 
     it "should not find the article if the url does not match all fixed component" do
-      get :redirect, :from => ["foo"]
+      get :redirect, :from => "foo"
       assert_response 404
     end
     end
@@ -596,7 +596,7 @@ describe ArticlesController, "password protected" do
 
   it 'article alone should be password protected' do
     b = Factory(:blog, :permalink_format => '/%title%.html')
-    get :redirect, :from => ["#{Factory(:article, :password => 'password').permalink}.html"]
+    get :redirect, :from => "#{Factory(:article, :password => 'password').permalink}.html"
     response.should have_selector('input[id="article_password"]', :count => 1)
   end
 end

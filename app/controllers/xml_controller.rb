@@ -20,6 +20,7 @@ class XmlController < ApplicationController
       return render(:text => 'Unsupported format', :status => 404)
     end
 
+    # TODO: Move redirects into config/routes.rb, if possible
     case params[:type]
     when 'feed'
       redirect_to :controller => 'articles', :action => 'index', :format => @format, :status => 301
@@ -55,6 +56,7 @@ class XmlController < ApplicationController
     end
   end
 
+  # TODO: Move redirects into config/routes.rb, if possible
   def articlerss
     redirect_to :action => 'feed', :format => 'rss', :type => 'article', :id => params[:id]
   end
@@ -62,6 +64,7 @@ class XmlController < ApplicationController
   def commentrss
     redirect_to :action => 'feed', :format => 'rss', :type => 'comments'
   end
+
   def trackbackrss
     redirect_to :action => 'feed', :format => 'rss', :type => 'trackbacks'
   end
