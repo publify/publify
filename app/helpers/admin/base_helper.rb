@@ -7,7 +7,7 @@ module Admin::BaseHelper
       current =
       output << subtab(_(m.name), (m.url[:controller] == params[:controller] && m.url[:action] == params[:action]) ? '' : m.url)
     end
-    content_for(:tasks) { output.join("\n") }
+    content_for(:tasks) { output.join("\n").html_safe }
   end
 
   def subtab(label, options = {})
