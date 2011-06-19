@@ -10,10 +10,7 @@ describe Admin::CategoriesController do
 
   it "test_index" do
     get :index
-    assert_template 'index'
-    assigns(:categories).should_not be_nil
-    assert_tag :tag => "div",
-      :attributes => { :id => "category_container" }
+    assert_response :redirect, :action => 'index'
   end
 
   it "test_create" do
@@ -23,11 +20,21 @@ describe Admin::CategoriesController do
     end.should change(Category, :count)
   end
 
+  it "test_new" do
+    get :new
+    assert_template 'new'
+    assert_tag :tag => "div",
+    :attributes => { :id => "category_container" }
+  end
+
   it "test_edit" do
     get :edit, :id => Factory(:category).id
     assert_template 'new'
     assigns(:category).should_not be_nil
     assert assigns(:category).valid?
+    assigns(:categories).should_not be_nil
+    assert_tag :tag => "div",
+    :attributes => { :id => "category_container" }
   end
 
   it "test_update" do

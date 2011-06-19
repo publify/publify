@@ -3,10 +3,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   cache_sweeper :blog_sweeper
 
-  def index
-    @categories = Category.find(:all)
-  end
-
+  def index; redirect_to :action => 'new' ; end
   def new; new_or_edit ; end
   def edit; new_or_edit;  end
 
@@ -41,6 +38,7 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
   def new_or_edit
+    @categories = Category.find(:all)
     @category = case params[:id]
     when nil
       Category.new

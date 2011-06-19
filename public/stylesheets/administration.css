@@ -682,3 +682,12 @@ ol.dashboardList img.avatar {
 .theme-filer ul { margin: 0; padding: 0;}
 .theme-filer ul li { list-style: none;  }
 
+/* Category Editor */
+.category_editor {
+	float: left;
+	width: 362px;
+}
+#category_container {
+	margin-left: 402px;
+}
+

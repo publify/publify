@@ -1,8 +1,0 @@
-<% @page_heading = _('Categories') %>
-<% @link_to_new = link_to(_("New Category"), {:controller => 'categories', :action => 'new'}, :id => 'dialog-link', :class => 'button') %>
-<% subtabs_for(:content) %>
-
-<div id="category_container" class="list">
-  <%= render :partial => 'categories' %>
-</div>
-
