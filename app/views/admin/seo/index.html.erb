@@ -6,36 +6,23 @@
 <%= form_tag :action => 'index' do %>
 <div class='widget-container'>
   <h3 class='light'>
-    <span class='ui-icon ui-icon-gear'></span> <%= _("Search Engine Optimisation")%>
+    <span class='ui-icon ui-icon-gear'></span> <%= _("Global meta data")%>
   </h3>
   <div class='widget-content'>
     <div class='setting'>
-      <label class="float"><%= _("Show blog name")%></label>
+      <label for="setting_title_prefix" class="float"><%= _("Show blog name")%></label>
       <div class='input_text'>
-        <%= radio_button(:setting, :title_prefix, 1)%>
-        <label for="setting_title_prefix_1"><%= _("At the beginning of page title")%></label><br />
-        <%= radio_button(:setting, :title_prefix, 2)%>
-        <label for="setting_title_prefix_2"><%= _("At the end of page title")%></label><br />
-        <%= radio_button(:setting, :title_prefix, 0)%>
-        <label for="setting_title_prefix_0"><%= _("Don't show blog name in page title")%></label>
+        <select name="setting[title_prefix]" id="setting_title_prefix">
+          <option value="1" <%= "selected" if this_blog.title_prefix == 1 %>><%= _("At the beginning of page title")%></option>
+          <option value="2" <%= "selected" if this_blog.title_prefix == 2 %>><%= _("At the end of page title")%></option>
+          <option value="0" <%= "selected" if this_blog.title_prefix == 0 %>><%= _("Don't show blog name in page title")%></option>
+        </select>
       </div>
     </div>
     <div class='setting clear'>
       <label class="float" for="setting_permalink_format"><%= _("Format of permalink")%></label>
       <div class='input_text'>
         <%= text_field(:setting, :permalink_format, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_google_analytics"><%= _("Google Analytics")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :google_analytics, :class => 'medium')%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_google_verification"><%= _("Google verification link")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :google_verification, :class => 'medium')%>
       </div>
     </div>
     <div class='setting clear'>
@@ -64,7 +51,15 @@
       </div>
       <div class='input_text'><span class='help'>You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)</span></div>
     </div>
-    <div class='setting clear'>
+  </div>
+</div>
+
+<div class='widget-container'>
+  <h3 class='light'>
+    <span class='ui-icon ui-icon-gear'></span> <%= _("Indexing")%>
+  </h3>
+  <div class='widget-content'>
+    <div class='setting'>
       <label class="float" for="setting_index_categories"><%= _("Index categories")%></label>
       <div class='input_text'>
         <%= check_box(:setting, :index_categories)%>
@@ -82,6 +77,10 @@
       <label class="float" for="setting_robots"><%= _("Robots.txt")%></label>
       <div class='input_text'>
         <%= text_area(:setting, :robots, :rows => 10, :class => 'medium')%>
+        <% unless robot_writable? -%>
+          <span class=' help mandatory'><%= _("You robots.txt file is not writeable. Typo won't be able to write it")%></span>
+        <% end -%>
+        
       </div>
     </div>
     <div class='setting clear'>
@@ -98,13 +97,28 @@
         <span><%= _("Read more about %s", link_to("rel='canonical'", "http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
       </div>
     </div>
-    
-  </div>
 
-  <% unless robot_writable? -%>
-    <div class='mandatory'><small><%= _("You robots.txt file is not writeable. Typo won't be able to write it")%></small></div>
-  <% end -%>
+  </div>
 </div>
-<%= hidden_field_tag 'from', 'seo' %>
+
+<div class='widget-container'>
+  <h3 class='light'>
+    <span class='ui-icon ui-icon-gear'></span> <%= _("Google")%>
+  </h3>
+  <div class='widget-content'>
+    <div class='setting'>
+      <label class="float" for="setting_google_analytics"><%= _("Google Analytics")%></label>
+      <div class='input_text'>
+        <%= text_field(:setting, :google_analytics, :class => 'medium')%>
+      </div>
+    </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_google_verification"><%= _("Google Webmaster Tools validation link")%></label>
+      <div class='input_text'>
+        <%= text_field(:setting, :google_verification, :class => 'medium')%>
+      </div>
+    </div>
+  </div>
+</div>
 <%= save_settings %>
 <% end %>

@@ -691,3 +691,7 @@ ol.dashboardList img.avatar {
 	margin-left: 402px;
 }
 
+.mandatory { 
+  color: #f00;
+  font-weight: bolder;
+}
