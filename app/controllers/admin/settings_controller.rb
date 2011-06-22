@@ -13,17 +13,6 @@ class Admin::SettingsController < Admin::BaseController
   def write; load_settings end
   def feedback; load_settings end
 
-  def seo
-    load_settings
-    if File.exists? "#{::Rails.root.to_s}/public/robots.txt"
-      @setting.robots = ""
-      file = File.readlines("#{::Rails.root.to_s}/public/robots.txt")
-      file.each do |line|
-        @setting.robots << line
-      end
-    end
-  end
-
   def redirect
     flash[:notice] = _("Please review and save the settings before continuing")
     redirect_to :action => "index"
@@ -64,13 +53,5 @@ class Admin::SettingsController < Admin::BaseController
   private
   def load_settings
     @setting = this_blog
-  end
-
-  def save_robots
-    if File.writable? "#{::Rails.root.to_s}/public/robots.txt"
-      robots = File.new("#{::Rails.root.to_s}/public/robots.txt", "r+")
-      robots.write(params[:setting][:robots])
-      robots.close
-    end
   end
 end

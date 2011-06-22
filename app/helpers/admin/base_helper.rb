@@ -123,6 +123,11 @@ module Admin::BaseHelper
     return class_selected_tab if controller.controller_name  =~ /profiles/
     class_tab
   end
+  
+  def class_seo
+    return class_selected_tab if controller.controller_name  =~ /seo/
+    class_tab
+  end
 
   def collection_select_with_current(object, method, collection, value_method, text_method, current_value, prompt=false)
     result = "<select name='#{object}[#{method}]'>\n"
@@ -247,5 +252,8 @@ module Admin::BaseHelper
     picture << " onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{this_blog.base_url}/files/#{image.filename}');\" />"
     return picture
   end
-
+  
+  def save_settings
+    "<p class='settings'>#{save(_("Update settings"))}</p>".html_safe
+  end
 end

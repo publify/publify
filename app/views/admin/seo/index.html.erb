@@ -1,9 +1,9 @@
-<% @page_heading = _('Search Engine Optimization') %>
-<% subtabs_for(:settings) %>
+<% @page_heading = _('Global settings') %>
+<% subtabs_for(:seo) %>
 
 <%= error_messages_for 'blog' %>
 
-<%= form_tag :action => 'update' do %>
+<%= form_tag :action => 'index' do %>
 <div class='widget-container'>
   <h3 class='light'>
     <span class='ui-icon ui-icon-gear'></span> <%= _("Search Engine Optimisation")%>
@@ -106,5 +106,5 @@
   <% end -%>
 </div>
 <%= hidden_field_tag 'from', 'seo' %>
-<%= render :partial => 'submit' %>
+<%= save_settings %>
 <% end %>

@@ -105,7 +105,7 @@ Rails.application.routes.draw do
   end
 
   %w{advanced cache categories comments content profiles feedback general pages
-     resources sidebar textfilters themes trackbacks users settings tags redirects }.each do |i|
+     resources sidebar textfilters themes trackbacks users settings tags redirects seo }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
   end

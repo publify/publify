@@ -29,13 +29,6 @@ describe Admin::SettingsController do
     end
   end
 
-  describe 'seo action' do
-    it 'should be success' do
-      get :seo
-      assert_template 'seo'
-    end
-  end
-
   describe 'redirect action' do
     it 'should be success' do
       get :redirect
