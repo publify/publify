@@ -7,7 +7,7 @@
     <th><%= _("From") %></th>
     <th><%= _("To") %></th>
   </tr>
-  <%= render_void_table(@redirects.size, 7)  %>
+  <%= render_void_table(@redirects.size, 2)  %>
   <% for redirect in @redirects %>
   <tr <%= alternate_class %>>
     <td>
@@ -17,5 +17,5 @@
     <td><%= redirect.to_path %></td>
   </tr>
   <% end %>
-  
+  <%= display_pagination(@redirects, 2)%>
 </table>

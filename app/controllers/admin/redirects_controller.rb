@@ -2,7 +2,7 @@ class Admin::RedirectsController < Admin::BaseController
   layout 'administration'
 
   def index
-    @redirects = Redirect.find(:all, :order => :from_path)
+    @redirects = Redirect.paginate :page => params[:page], :conditions => "origin is null", :order => :from_path, :per_page => this_blog.admin_display_elements
   end
   
   def new
