@@ -146,3 +146,31 @@ describe TagsController, "password protected article" do
       :attributes => { :id => "article_password" }
   end
 end
+
+describe TagsController, "nofollow and dofollow tag" do
+  render_views
+  
+  before(:each) { @blog = Factory(:blog) }
+  
+  it 'should have rel nofollow' do
+    @blog.unindex_tags = true
+    @blog.save
+    
+    a = Factory(:article)
+    foo = Factory(:tag, :name => 'foo', :articles => [a])
+
+    get 'show', :id => 'foo'
+    response.should have_selector('head>meta[content="noindex, follow"]')
+  end
+
+  it 'should not have rel nofollow' do
+    @blog.unindex_tags = false
+    @blog.save
+    
+    a = Factory(:article)
+    foo = Factory(:tag, :name => 'foo', :articles => [a])
+    get 'show', :id => 'foo'
+    response.should_not have_selector('head>meta[content="noindex, follow"]')
+  end
+
+end

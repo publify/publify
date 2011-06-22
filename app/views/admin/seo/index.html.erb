@@ -60,17 +60,17 @@
   </h3>
   <div class='widget-content'>
     <div class='setting'>
-      <label class="float" for="setting_index_categories"><%= _("Index categories")%></label>
+      <label class="float" for="setting_unindex_categories"><%= _("Do not index categories")%></label>
       <div class='input_text'>
-        <%= check_box(:setting, :index_categories)%>
-        <span><%= _("Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues") %></span>
+        <%= check_box(:setting, :unindex_categories)%>
+        <span><%= _("Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues") %></span>
       </div>
     </div>
     <div class='setting clear'>
-      <label class="float" for="setting_index_tags"><%= _("Index tags")%></label>
+      <label class="float" for="setting_unindex_tags"><%= _("Do not index tags")%></label>
       <div class='input_text'>
-        <%= check_box(:setting, :index_tags)%>
-        <span><%= _("Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues") %></span>
+        <%= check_box(:setting, :unindex_tags)%>
+        <span><%= _("Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues") %></span>
       </div>
     </div>
     <div class='setting clear'>
@@ -80,14 +80,13 @@
         <% unless robot_writable? -%>
           <span class=' help mandatory'><%= _("You robots.txt file is not writeable. Typo won't be able to write it")%></span>
         <% end -%>
-        
       </div>
     </div>
     <div class='setting clear'>
-      <label class="float" for="setting_nofollowify"><%= _("Use nofollow in comments")%></label>
+      <label class="float" for="setting_dofollowify"><%= _("Use dofollow in comments")%></label>
       <div class='input_text'>
-        <%= check_box(:setting, :nofollowify)%>
-        <span><%= _("Maybe you want to moderate feedbacks when turning this off") %></span>
+        <%= check_box(:setting, :dofollowify)%>
+        <span><%= _("Maybe you want to moderate feedbacks when turning this on") %></span>
       </div>
     </div>
     <div class='setting clear'>
@@ -97,7 +96,6 @@
         <span><%= _("Read more about %s", link_to("rel='canonical'", "http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
       </div>
     </div>
-
   </div>
 </div>
 

@@ -125,7 +125,7 @@ shared_examples_for "CommentSanitizationWithDofollow" do
     Article.stub!(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
-    @blog.nofollowify = false
+    @blog.dofollowify = true
 
     prepare_comment
 

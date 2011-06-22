@@ -15,8 +15,8 @@ class String
   # A quick and dirty fix to add 'nofollow' to any urls in a string.
   # Decidedly unsafe, but will have to do for now.
   def nofollowify
-    return self.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">') if Blog.default.nofollowify
-    self
+    return self if Blog.default.dofollowify
+    self.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">') 
   end
 
   # Strips any html markup from a string

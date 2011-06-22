@@ -121,8 +121,8 @@ class GroupingController < ContentController
   private
   def set_noindex
     # irk there must be a better way to do this
-    @noindex = 1 if (grouping_class.to_s.downcase == "tag" and this_blog.index_tags == false)
-    @noindex = 1 if (grouping_class.to_s.downcase == "category" and this_blog.index_categories == false)
+    @noindex = 1 if (grouping_class.to_s.downcase == "tag" and this_blog.unindex_tags)
+    @noindex = 1 if (grouping_class.to_s.downcase == "category" and this_blog.unindex_categories)
     @noindex = 1 unless params[:page].blank?
   end
 end

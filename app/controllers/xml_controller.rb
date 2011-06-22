@@ -132,7 +132,7 @@ class XmlController < ApplicationController
   def prep_sitemap
     fetch_items(:articles, 'created_at DESC', 1000)
     fetch_items(:pages, 'created_at DESC', 1000)
-    @items += Category.find_all_with_article_counters(1000) unless this_blog.index_categories == false
-    @items += Tag.find_all_with_article_counters(1000) unless this_blog.index_tags == false
+    @items += Category.find_all_with_article_counters(1000) unless this_blog.unindex_categories
+    @items += Tag.find_all_with_article_counters(1000) unless this_blog.unindex_tags
   end
 end

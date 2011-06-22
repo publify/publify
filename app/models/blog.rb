@@ -65,11 +65,14 @@ class Blog < ActiveRecord::Base
   setting :rss_description_text,       :string, "<hr /><p><small>Original article writen by %author% and published on <a href='%blog_url%'>%blog_name%</a> | <a href='%permalink_url%'>direct link to this article</a> | If you are reading this article elsewhere than <a href='%blog_url%'>%blog_name%</a>, it has been illegally reproduced and without proper authorization.</small></p>"
   setting :permalink_format,           :string, '/%year%/%month%/%day%/%title%'
   setting :robots,                     :string, ''
-  setting :index_categories,           :boolean, true
-  setting :index_tags,                 :boolean, true
+  setting :index_categories,           :boolean, true # deprecated but still needed for backward compatibility
+  setting :unindex_categories,         :boolean, false
+  setting :index_tags,                 :boolean, true # deprecated but still needed for backward compatibility
+  setting :unindex_tags,               :boolean, true
   setting :admin_display_elements,     :integer, 10
   setting :google_verification,        :string, ''
-  setting :nofollowify,                :boolean, true
+  setting :nofollowify,                :boolean, true # deprecated but still needed for backward compatibility
+  setting :dofollowify,                :boolean, false
   setting :use_canonical_url,          :boolean, false
 
   validate :permalink_has_identifier

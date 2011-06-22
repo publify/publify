@@ -138,5 +138,36 @@ describe CategoriesController, "password protected article" do
 
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
+  end  
+end
+
+describe CategoriesController, "nofollow and dofollow category" do
+  render_views
+
+  before(:each) { @blog = Factory(:blog) }
+
+  it 'should have rel nofollow' do
+    @blog.unindex_categories = true
+    @blog.save
+    
+    cat = Factory(:category, :permalink => 'personal')
+    cat.articles << Factory(:article)
+    cat.save!
+    
+    get 'show', :id => 'personal'
+    response.should have_selector('head>meta[content="noindex, follow"]')
   end
+
+    it 'should not have rel nofollow' do
+      @blog.unindex_categories = false
+      @blog.save
+
+      cat = Factory(:category, :permalink => 'personal')
+      cat.articles << Factory(:article)
+      cat.save!
+
+      get 'show', :id => 'personal'
+      response.should_not have_selector('head>meta[content="noindex, follow"]')
+    end
+  
 end
