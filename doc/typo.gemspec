@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name        = "typo"
-  s.version     = "6.0.4"
+  s.version     = "6.0.5"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Frédéric de Villamil", "Matijs van Zuijlen", "Thomas Lecavellier", "Cyril Mougel"]
   s.email       = ["frederic@de-villamil.com"]

@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rake/gempackagetask'
 
-PKG_VERSION = "6.0.4"
+PKG_VERSION = "6.0.5"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
@@ -35,5 +35,4 @@ Rake::GemPackageTask.new(spec) do |p|
   p.need_zip = true
 end
 
-desc "Upload the package to leetsoft, rubyforge and tag the release in svn"
 task :release => [:sweep_cache, :package ]

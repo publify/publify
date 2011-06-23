@@ -30,10 +30,6 @@ ook for 6.0.5
 before each release:
 - test db:migrate on an empty database
 
-settings:
-  write:
-  - Update URLS (no one use technorati anymore huh)
-  
 Admin/tags:
 - Allow merge of taggings. IIRC there's a ticket with a patch waiting for us as a good start
   

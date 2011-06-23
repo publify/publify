@@ -1,299 +1,364 @@
-commit 2c545a1a6c7d7d6ecb5bd5e22fe44daa3ad678d9
+commit 6ea74e22113a7040ee56b551974c2d9a91e5da08
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Adding lang menu translation
+    Cleaning Dashboard CSS.
 
-commit e28202570fd577a809ecdf264ccc989c185ebd98
+commit f74cde55c4b36eb4b675ff3405063984e1e47e68
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Improves the dashboard usability and lisibility.
+    Cleans most of the generated CSS needs.
 
-commit 5cba9a5e2ec8f9e9593b0d87dacb164640deacbe
+commit cf44f1ebc24045d9d2cd3c66168b15e43cf077e6
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Removes inline style from show_<something>_actions helpers.
+    Here we are, shouldn't have anything left from the old CSS. Time to clean the CSS itself now
 
-commit fdf6bc64734ff292c790ca973142e745d4a6ead0
+commit 8bf89dc1a561844c91c3c7b0c35ebd8d0e8a6dd2
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Adding a version checking.
-    When displaying dashboard, typo will check for the latest release and will display a message accordingly:
-    * A notice if Typo's just a minor version behind.
-    * A warning if Typo's a sub version behind.
-    * An error message if Typo's a major version behind
+    Removing the biggest part. Now is time to really clean
 
-commit a57a915ea994e1c0e3a4b523dd5d12453e4d012c
+commit 8b90e7e97fe5532898c82d7d56349d3504427d53
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes rake tasks in production mode.
+    Cleaning the remaining JQuery UI parts. CSS is much lighter now
 
-commit 9831f0a55a679e43c861b741c0e651091333aa44
+commit 8ea9a18e4e56fc60b7732f14ef719c82dbd4f8ab
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixing theme editor.
+    Ooops I've been a little bit hard on the latest commit
 
-commit 5b38d13a8ae221e3ebf7c089fcc639f5ed6112ae
+commit 52b586370145d9db275c630fcbc3e8d8c81fddc7
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Improving theme editor both visually and functionnaly.
-    Fixes a bad behavior not raising an error when trying to edit a nonexisting file.
-    Makes the editor look alike the rest of the application.
-    Adds specs to avoid bugs report because of File.read changes between 2 Ruby versions. With Ruby 1.8.6, you should use File.read(filename, r) while Ruby 1.8.7 only need File.read(filename).
+    Makes the image carousel look a little better, it was really damn too ugly. Still needs to make it load previous pictures using some AJAX
 
-commit 914fc68a5a9bd8b5e2c58a137a1aa6f56ee95572
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Make ping threading.
-
-commit cd1aa24750cd6d99fe503603b34100aa402a1d48
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Add some specs for sidebar helper. Not pretty.
-
-commit ee688628f6d0b5733b6e992a9c92daa28d1710ba
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Make migrations work without loading the actual models.
-
-commit 77839c0237aa7b43f59c3024a9025bfe86c2b59e
-Merge: cd1aa24 ee68862
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Merge branch 'master' of github.com:fdv/typo
-
-commit c8907283719c8ccf5f761d9e8cd9dfdf6106ae39
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Add prerelease todo task: Test migrations.
-
-commit d13a6bff2be810dc0316bc6b08687418ecc52f32
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Theme editor should escape file contents. Also, fix specs.
-
-commit b66e58a48cb1f5a9837e8691304e57bfc34129b1
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Require 'page_cache' for sweep task.
-
-commit 4d31a09c28370515d79ea821218251afe33533fa
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Fix sidebar publish button.
-
-commit 06524b83713c1354b7eea9833336dc6e3116f92d
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Fix links to images in administration style sheets.
-
-commit 0478ddf526cb5f64e95928ac84d35d7c5c1644b9
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Remove cache_page override that has no effect.
-
-commit 0bedd4ca0229aad5de6716a981bbf4c77a6a6d9a
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Simplify zap_pages implementation to avoid stale file descriptors.
-
-commit ef8fda0f39ca7103ac15431d22e05105fe2e5469
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Cache theme items in the same way as other items.
-
-commit 0cf638df0511e5db0650b0dc1cbf914c6c330f7b
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Document use of cache for sub-URL installations.
-
-commit 5d6d4bb2191a92b3ee1c23519301237c82e173dd
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Update TODOs.
-
-commit f39e7cddaef8d81e2dead193ea3c42fce3b4878a
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Use correct path component escape mechanism for article permalinks.
-
-commit 569779b6c8db1b3f11905566c54b008a4cee3d2f
+commit d981dc12c03da48b6e6e0fbea314b11972d22321
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes feedback actions when called from the dashboard.
+    Includes article counter in the link.
 
-commit fc74d39766b66a5d1627f15c07cfd94ef1c93d4c
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Expect web URLs to start with http or https, not just http.
-
-commit fb5faa0661936ba87c3723e25ec4849b3b74ec28
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Move duplicated spec setup code to a before block in CommentsController spec.
-
-commit 839761e1d6056ac0de2fa687cd896c06ba0fbbbf
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Prevent BlueCloth from escaping typo macro tags. Workaround for bug [#189].
-
-commit 1f3ad0a2b695f4431e4172bc9107ce570ed1f1a9
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Fix error message: spelling and irregular apostrophe.
-
-commit 8760fbde06b51eb5ff5cc9f743e16c14972d7a4c
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Remove useless require of 'md5'.
-
-commit e853dedd5ba72c0735f827ffe830fa7c7a42736c
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Load correct version of ruby-debug depending on Ruby version.
-
-commit 1af45c9ac3ad39357461e6079ca69edc88b64763
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Only require jcode for ruby 1.8.
-
-commit afb6d4e3f3e79eb05519eaed5013f8c3c46bd4a4
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Provide full path for requires relative to Rails.root.
-
-commit 7b8f085b0c961c917d1e5f5f9bd94ae86fbfb4a6
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Add coding comment for non-ascii files.
-
-commit 53675e1020fb01e5d17006577f3ce0b3eeb92fa6
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Use Ruby 1.9 compatible case syntax.
-
-commit def42d32a55fc629540fca0aaec8f776cb0f0425
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Replace comma with hash rocket in hash literals for Ruby 1.9 compatibility.
-
-commit 901203b9d5df726d3e9aa4bb622e4e58395a1ac9
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Pass array in to zap_pages since string does not respond to each in Ruby 1.9.
-
-commit 020d6f72cd7b6d75dfc378bcd6a5d08f386322b5
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Remove Precision as a possible type in the AWS signature definition.
-
-commit 31a99fb48a4b3181d4cafe474571d093aaccc6e5
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Use version-specific regex in String.to_url.
-
-commit 46e9101fe179195022a19284c5af5ef971c91794
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Fix call to scan_uris to pass in an array instead of a string.
-
-commit aede138f6559d8e45b7484c49009d422fc4bb757
+commit d2ec3d339c7f4b589af6ded0a8fccfd1ff773888
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Adding some things on my TODO before we release
+    Fixes articles counter display in themes having a display: block in their sidebar.
 
-commit ac196ee8388a26d73b8d04b89b610b543312ee3d
+commit 3e6bddba629169da418cd4ee580bb1d00ba1d1ae
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Makes the theme selection a bit more straightforward
+    Removing some more Jquery UI bits
 
-commit 2601e60307d33cdac683a328a4edd7c6e0899293
+commit ed74b09dec17539ff31653c79e9c9885f97dcf87
+Author: Yule <doctoryule@aol.com>
+
+    typo in filemanager include, what if post has no body?
+
+commit 1c12fbedd4b332ab881afb536a9350fe9195b159
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes a missing html_safe
+    Adds some tasks on my TODO regarding user creation
 
-commit 0e49b3574bbbc696209056151bceecf5e671bcd5
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adds a utility widget with Login page, RSS, Typo. Enabled by default at schema creation.
-
-commit 8c882c1c2739bea854a2848f2347358026b84606
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Removing the ability for end users to edit uploaded files mime type.
-
-commit 6b12610d5325acc9bc1642753c325dc5c98cfae0
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Makes the ping URLS box a little bigger and take the style of other settings text boxes
-
-commit 8e4013c6d455a2b98438e2617053fcff5ddcb580
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Updating TODO to keep other commiters up to date
-
-commit 4c64a6e5e3a60082343a9b3c3642a7eb07c1d097
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Makes the RSS description editable from the admin.
-
-commit 457556b49801c91af3f32ba5d93de51728fefc89
-Author: Ollivier Robert <roberto@keltia.net>
-
-    2nd pass for the French translation. Should be almost complete now.
-
-commit 74c8b5f70b474a1889b43169ae8acc0d05ff400d
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Clean up trailing white space.
-
-commit 5461af158695042b1e5bc94a73e6c6f7a98e800f
-Author: Matijs van Zuijlen <matijs@matijs.net>
-
-    Update calender_date_select resources to version 1.16.1.
-
-commit a31d9287006e07d5ef7888cc908213709af4640e
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Makes themes helpers utf-8 aware for ruby 1.9.2
-
-commit a88442d485effd428b96a8a78c8533fc54b3d0cc
-Merge: a31d928 457556b
+commit 31fae2776c98d065c57f655405ef7ee6930b1b66
+Merge: 1c12fbe ed74b09
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
     Merge branch 'master' of github.com:fdv/typo
 
-commit 0207a699eb11a99b79e6bc041995d306e14e1337
-Author: Matijs van Zuijlen <matijs@matijs.net>
+commit 68a7533b575c80631c1702739d4fefb36144eb17
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Add timezone to calendar_date_select format.
+    Adding specs testing signup with allow_signup option activated
 
-commit 01deae011ef3c237bbee046e472c4fdb188b25de
-Author: Matijs van Zuijlen <matijs@matijs.net>
+commit f34070a137d6ca42a41ad5ca48bd227395d215ab
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Properly use passed time zone information to set publication time.
+    Adds missing create account link on login page.
+    Fixes a typo in French translation making account confirmation crash.
+    Fixes some style in error and information message on account creation / confirmation and login page.
 
-commit 0846c99a745dc3ccb662691506b7d5aa659f85d6
-Merge: 01deae0 a88442d
-Author: Matijs van Zuijlen <matijs@matijs.net>
+commit a6afa8af1cf2f7278b81813e17c97ad96f52cd73
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes setup a little bit less wide. Updates TODO.
+
+commit de84ab4ff12f149be9d9712de58a677ab55a039e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes account creation for unpriviledged users.
+
+commit 6128294677142e536eaea4efdfb6428b95301b78
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updates TODO with bugs and improvement
+
+commit 3c1120ac8549023771989f4ad8fa34413a454ee4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding an embedded URL shortener. Every page and article gets its shortened URL with a 301 (permanent) redirect. Shortened URL is available to published_content only and is displayed within the administration.
+    Initial migration adds shortened URL for existing content.
+
+commit ae15151a67e38744df55ea9ebe5230fa5c632520
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Log to debug level, not to stdout...
+
+commit cb2fb1d645cb4b9f62a26e490e2fda1c1ffa1b62
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding an interface to control cache sweeping
+
+commit 2ad81603b63e0a8aca852106836887998220ac46
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding an UTF-8 compliant MySQL driver when using Ruby 1.9.2.
+
+commit 2bd47ba824b007029e3eedfbeb670e4c6c1fb4ac
+Merge: 2ad8160 ae15151
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
     Merge branch 'master' of github.com:fdv/typo
 
-commit 975676ced47bfd23b040d93ce67bf6ac27660df7
+commit 6eaf3dd2c9cf809a33396b7dfe1f6070837563f1
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Adding the lightbox plugin a class attribute to handle user defined CSS
+
+commit 9bab3d75c8864c085d54ff54e712fd133ab6eb44
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Fixes file upload in the visual editor
+
+commit ca7c149c813bb6fdc68f55b66713f2d09250da66
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Adding a medium sized picture when uploading image.
+    Adding a setting for both thumbnail and medium size.
+
+commit f40d6d23800d599bb481a33aa7ba51aa8f3cba2e
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Fixes a bug introduced by previous commit.
+
+commit 01b444a5e972f1bdf150f89e2554025facf1560c
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Loading typo_* plugins custom routes first as a way to have enhanced plugins without adding routes to the original rouging file.
+
+commit 681944f716bd7bbfa9c9a9684f5e7be56c54b4a7
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    When finding articles by permalink, use UTC date.
+    Don't call protected with_scope outside of model.
 
-commit 31be789b9b9cf9a82a47b62b63bfada2e478e841
+commit f5a97ed664ca154c9d26a823f8ac9641c270a907
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Setup 6.0.4 release
+    Moving login, password recovery and setup to a vertical and horizontal grid system
 
-commit 010a4467545f7dce8191fc08618c13da9835a4df
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit 8fe283d15b070478be7d2161e5461d3b7974b8da
+Author: Frederic de Villamil <frederic@t37.net>
 
-    Fixes Typo versio checker. How could this have ever worked provided it was checking if available was less than installed version?
+    Until we do something better, macro pop ups should now open a lightbox
 
-commit 3615752e9706006a1376d9f44086860f4028c413
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit 2454ad18f294780669c696e94846d20d64fee194
+Merge: 8fe283d f5a97ed
+Author: Frederic de Villamil <frederic@t37.net>
 
-    Cosmetic update on categories edition form
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 1a87f0f9d95b128cc5e17e1ca6f95a9bcb30dae5
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Fixing the link to original size image
+
+commit af64875703d3df7d2e29cb0d4939369b5a2099f8
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Fixing file manager
+
+commit e3d041bd9a1042a816597eeccdab6391e046716f
+Author: Frederic de Villamil <frederic@t37.net>
+
+    Adding set support in the lightbox plugin so we can handle albums. Thanks fish for this patch
+
+commit c3cbbb2a9e1d12fc98898627c4ee7c4d8c99bb81
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Fixing some remaining style bugs on the login / setup / account forms after setting up the grid
+
+commit cd5dab12b150214f7ee155b9c77c775203fe4f85
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Some more fix + better indent
+
+commit 2212f805a6b66ca485ae494bc67eec2042e543fe
+Author: Melanie Shebel <warchildbosnia@gmail.com>
+
+    Edited README.textile via GitHub
+
+commit e265a788bf08d707bd71a9b5d8d76c58782a86e5
+Merge: c3cbbb2 2212f80
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #23 from MelanieS/patch-2
+
+commit dddc47bbdaed27de36fe975a724506926c1e9fdb
+Merge: cd5dab1 e265a78
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 203b1790da27f2f89c4d99227ebb9de14db8cbee
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Adding support for rel='canonical' in pages header to avoid duplicate content.
+
+commit 5ac79429489e89cede441969492f51e633d81545
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Upgrading lightbox, prototype and scriptaculous to support IE9
+
+commit 61f04d0db018f1349317195e185731ab7eac17b7
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Fixing a bug in editor when using custom thumbnail size.
+
+commit 5eab7ecd4a6da24ace2ea9d4b2893dae4af61a0a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating README
+
+commit 6a883e65dc7f7e5791939f1bcc39244ab879c2db
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Allow newer gem versions, fix rake version to 0.8.7.
+
+commit 597e706fdffdaaaefcd4adbdead10a297fc2b71a
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make lightbox filter specs pass again.
+
+commit 3e021370a7203b3c1875887cd1d7f1cddb1c8404
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make page redirect specs not fail.
+
+commit b70e001231dfe3293f0ef7cbbb401e4451ba34ec
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use new router DSL.
+
+commit 86e31eadd48db16b236bb32ea5b85a5a14511b3e
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix routing for article.
+
+commit 48926f48185f26f514e3d9b7702024370631def3
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix xml/rss route.
+
+commit 7b87438aab31c5880ce701ff93110c306277f25b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add some TODOs.
+
+commit 7b07127f07f507d77d25dfadc08d630f84204819
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Adjust article routing specs to match new glob handling.
+
+commit 9e436ef0b17bae1723aac5aaee0bab3ffdd516f0
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Update article redirect specs to match new *from glob behavior.
+
+commit f1790f81bc30ea7995adb9de7c664fc875177e45
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Turns "Show extended on RSS" into "Hide extended on RSS".
+
+commit 488d7626ca5e3bed742cd63e1f4b3f458aa88bdc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating README to consider new plugins catalogues.
+
+commit 1beed17e8140c89caac51d27ea4068562670c22d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove Gemfile line pinning rake to version 0.8.7.
+
+commit 5b92c7cc52daf30d1cb1526be1dad0fbc14f0b0f
+Merge: 1beed17 9e436ef
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge branch 'new-router-dsl'
+
+commit 2b5ab5b395aebe273a84b00c80473479555f86a6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix spec for new blog's hide_extended_on_rss setting.
+
+commit 34fd235814ccf1d0dbfa2b9561d7f3533214cb4f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing misclosed html tag in the sidebars setting views
+
+commit 55da8dfb669647c10c5166fc3260d4be70445727
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing a deprecation warning when running rake tasks.
+
+commit 19e6d492f8e1ff3e8b70abf0b7610829db18390e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a deprecation warning.
+
+commit c3ae479d8384d67452683a6c16fa471db675cf27
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Upgrading to Rails 3.0.7.
+
+commit 0a1f4785816e3a5f0d595b188df9a63d1d31bb17
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Fixes a regression introduced by Rails 3.0.7 on a missing html_safe in menu display
+
+commit 3f02d68056691f9449275bec7393b637ecb2158a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merging categories listing and creation form.
+
+commit df09ebc7245469b446d9d8fc86f05ae5df45c010
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Moving admin/settings/seo to the new admin/seo controller.
+
+commit c8e1dab70a566c720653097f80cd9061d2b82795
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Removing the submit partial now replaced by a helper introduced by the necessity to duplicate code for SEO controller.
+
+commit a713715a982496745fcff5b68c1f4469cbc21ed2
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Removes URL shortener generated redirects form listing. Adds pagination in redirects listing.
+
+commit cb9709888c7144cd1c2d62c844ae0876908f37a1
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Reorganizes the seo#index page into 3 separate blocks. Next: adding some help
+
+commit 10e751fcafda3916364eb4b9cf6af2d652520ed1
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Changes the settings behavior for nofollowify, index categories and index tags. Comes with migration. Adds missing specs.
+
+commit f10b504e8f926e4b750544ef825632d6dc8945c6
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Adding a "use meta tags option", enabled by default. Changing the grouping controller behavior to add the blog meta keywords to the categories and tags when their keywords are empty (always for tags). Adding specs.
+
+commit 9cea55c5afedc6c58c83e432dd847329d7504976
+Author: Frederic de Villamil <neuro@asocial.org>
+
+    Admin style update
