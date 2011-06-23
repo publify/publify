@@ -6,10 +6,17 @@
 <%= form_tag :action => 'index' do %>
 <div class='widget-container'>
   <h3 class='light'>
-    <span class='ui-icon ui-icon-gear'></span> <%= _("Global meta data")%>
+    <span class='ui-icon ui-icon-gear'></span> <%= _("General settings")%>
   </h3>
   <div class='widget-content'>
-    <div class='setting'>
+    <div class='setting clear'>
+      <label class="float" for="setting_use_meta_keyword"><%= _("Use meta keywords")%></label>
+      <div class='input_text'>
+        <%= check_box(:setting, :use_meta_keyword)%>
+      </div>
+    </div>
+    
+    <div class='setting clear'>
       <label for="setting_title_prefix" class="float"><%= _("Show blog name")%></label>
       <div class='input_text'>
         <select name="setting[title_prefix]" id="setting_title_prefix">

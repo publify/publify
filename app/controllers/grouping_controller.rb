@@ -61,7 +61,10 @@ class GroupingController < ContentController
 
     @page_title << " page " << params[:page] if params[:page]
     @description = (@grouping.description.blank?) ? "" : @grouping.description
-    @keywords = (@grouping.keywords.blank?) ? "" : @grouping.keywords
+    @keywords = "" 
+    @keywords << @grouping.keywords unless @grouping.keywords.blank?
+    @keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
+    
     @articles = @grouping.articles.paginate(:page => params[:page], :conditions => { :published => true}, :per_page => 10)
     render_articles
   end

@@ -600,3 +600,91 @@ describe ArticlesController, "password protected" do
     response.should have_selector('input[id="article_password"]', :count => 1)
   end
 end
+
+describe ArticlesController, "SEO Options" do
+  render_views
+
+  before(:each) do
+    @blog = Factory(:blog, :permalink_format => '/%title%.html')
+    @article = Factory(:article)
+  end
+
+  it 'article with categories and activated option should have meta keywords' do
+    @blog.use_meta_keyword = true
+    @blog.save
+    @article.categories << Factory(:category)
+    @article.save
+    get :redirect, :from => "#{@article.permalink}.html"
+    response.should have_selector('head>meta[name="keywords"]')
+  end
+
+  it 'article with categories and activated option should have meta keywords' do
+    @blog.use_meta_keyword = true
+    @blog.save
+    @article.categories << Factory(:category)
+    @article.save
+    get :redirect, :from => "#{@article.permalink}.html"
+    response.should have_selector('head>meta[name="keywords"]')
+  end
+
+  it 'article with neither categories nor tags and activated option should not have meta keywords' do
+    @blog.use_meta_keyword = true
+    @blog.save
+
+    get :redirect, :from => "#{@article.permalink}.html"
+    response.should_not have_selector('head>meta[name="keywords"]')
+  end
+  
+  it 'article without categories only and activated option should have meta keywords' do
+    @blog.use_meta_keyword = true
+    @blog.save
+    @article.categories << Factory(:category)
+    @article.save
+    
+    get :redirect, :from => "#{@article.permalink}.html"
+    response.should have_selector('head>meta[name="keywords"]')
+  end
+  
+  it 'article without categories and deactivated option should not have meta keywords' do
+    @blog.use_meta_keyword = false
+    @blog.save
+
+    get :redirect, :from => "#{@article.permalink}.html"
+    response.should_not have_selector('head>meta[name="keywords"]')
+  end
+  
+  it 'index without option and blog keywords should not have meta keywords' do
+    @blog.use_meta_keyword = false
+    @blog.save
+    
+    get 'index'
+    response.should_not have_selector('head>meta[name="keywords"]')
+  end
+
+  it 'index without option and blog keywords should not have meta keywords' do
+    @blog.use_meta_keyword = false
+    @blog.meta_keywords = "typo, is, amazing"
+    @blog.save
+    
+    get 'index'
+    response.should_not have_selector('head>meta[name="keywords"]')
+  end
+
+  it 'index without option and blog keywords should not have meta keywords' do
+    @blog.use_meta_keyword = true
+    @blog.save
+    
+    get 'index'
+    response.should_not have_selector('head>meta[name="keywords"]')
+  end
+
+  it 'index without option and blog keywords should not have meta keywords' do
+    @blog.use_meta_keyword = true
+    @blog.meta_keywords = "typo, is, amazing"
+    @blog.save
+    
+    get 'index'
+    response.should have_selector('head>meta[name="keywords"]')
+  end
+
+end

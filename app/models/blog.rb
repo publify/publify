@@ -74,6 +74,8 @@ class Blog < ActiveRecord::Base
   setting :nofollowify,                :boolean, true # deprecated but still needed for backward compatibility
   setting :dofollowify,                :boolean, false
   setting :use_canonical_url,          :boolean, false
+  setting :use_meta_keyword,           :boolean, true
+  
 
   validate :permalink_has_identifier
 
