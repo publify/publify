@@ -364,12 +364,12 @@ div.setting { float: left; margin-bottom: 12px;}
 
 /* Form */
 .float { display: block; float: left; width: 200px; line-height: 20px; }
-.large { width: 99%; }
-.medium { width: 350px; }
 .small { width: 200px; }
-input.large, input.medium, input.small, textarea.large, textarea.medium { border: 1px solid #ddd; padding: 5px; -moz-border-radius: 3px}
-.input_text input, .input_text  { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+.medium { width: 400px; }
+.large { width: 99%; }
+input.large, input.medium, input.small, textarea { border: 1px solid #ddd; padding: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; line-height: 12px }
 .setting .input_text { margin: 0 0 0 200px; }
+
 .clear { clear: both;}
 
 
