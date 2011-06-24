@@ -1,14 +1,10 @@
 require 'spec_helper'
 
-describe "Given the first Blog fixture" do
+describe "A blog" do
   before(:each) {
     RouteCache.clear
-    @blog = Factory.create :blog
+    @blog = Blog.new
   }
-
-  it ":blog_name == 'test blog'" do
-    @blog.blog_name.should == 'test blog'
-  end
 
   it "values boolify like Perl" do
     {"0 but true" => true, "" => false,
@@ -20,7 +16,9 @@ describe "Given the first Blog fixture" do
   end
 
   describe "running in the host root" do
-    specify { @blog.base_url.should == 'http://myblog.net' }
+    before :each do
+      @blog.base_url = 'http://myblog.net'
+    end
 
     describe "blog.url_for" do
       describe "with a hash argument" do
@@ -68,6 +66,13 @@ describe "Given the first Blog fixture" do
       end
     end
   end
+end
+
+describe "The first blog" do
+  before(:each) {
+    @blog = Factory.create :blog
+  }
+
   it "should be the only blog allowed" do
     Blog.new.should_not be_valid
   end
@@ -108,7 +113,7 @@ end
 describe "Valid permalink in blog" do
 
   before :each do
-    @blog = Factory(:blog)
+    @blog = Blog.new
   end
 
   ['foo', 'year', 'day', 'month', 'title', '%title', 'title%', '/year/month/day/title', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|
