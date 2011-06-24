@@ -2,49 +2,37 @@ class SetupController < ApplicationController
   before_filter :check_config, :only => 'index'
   layout 'accounts'
 
-  def index    
-    if request.post?
-      # This is not a model and I can't handle errors in the models so I just do
-      # crappy old school params checking here
-      errmsg = ""
-      if params[:setting] and params[:setting][:blog_name].to_s.empty?
-        errmsg << _("Blog name is mandatory")
-      end
-      if params[:setting] and params[:setting][:email].to_s.empty?
-        errmsg << _("Email is mandatory")
-        error = 1
-      end
+  def index
+    return if not request.post?
 
-      unless errmsg.empty?
-        flash[:error] = errmsg
-        redirect_to :action => 'index'
-        return
-      end
-      
-      Blog.transaction do
-        this_blog.blog_name = params[:setting][:blog_name]
-        this_blog.base_url = blog_base_url
-        this_blog.save
-      end
+    this_blog.blog_name = params[:setting][:blog_name]
+    this_blog.base_url = blog_base_url
 
-      @user = User.new(:login => 'admin', :email => params[:setting][:email])
+    @user = User.new(:login => 'admin', :email => params[:setting][:email])
+    @user.password = generate_password
+    @user.name = @user.login
 
-      @user.password = generate_password
-      session[:tmppass] = @user.password
-      @user.name = @user.login
-      if @user.save
-        self.current_user = @user
-        session[:user_id] = @user.id
-
-        # FIXME: Crappy hack : by default, the auto generated post is user_id less and it makes Typo crash
-        if User.count == 1
-          art = Article.find(:first)
-          art.user_id = @user.id
-          art.save
-        end
-        redirect_to :action => 'confirm'
-      end
+    unless this_blog.valid? and @user.valid?
+      redirect_to :action => 'index'
+      return
     end
+
+    return unless this_blog.save
+
+    session[:tmppass] = @user.password
+
+    return unless @user.save
+
+    self.current_user = @user
+    session[:user_id] = @user.id
+
+    # FIXME: Crappy hack : by default, the auto generated post is user_id less and it makes Typo crash
+    if User.count == 1
+      art = Article.find(:first)
+      art.user_id = @user.id
+      art.save
+    end
+    redirect_to :action => 'confirm'
   end
 
   private
