@@ -37,7 +37,7 @@ class Admin::RedirectsController < Admin::BaseController
       save_redirect
       return
     end
-    render :action => 'new'
+    render 'new'
   end
 
   def save_redirect

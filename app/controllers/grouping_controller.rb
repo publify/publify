@@ -89,7 +89,7 @@ class GroupingController < ContentController
         unless template_exists? "#{self.class.to_s.sub(/Controller$/,'').downcase}/index"
           @grouping_class = self.class.grouping_class
           @groupings = groupings
-          render :template => 'articles/groupings'
+          render 'articles/groupings'
         end
       end
     end
@@ -103,7 +103,7 @@ class GroupingController < ContentController
           return
         end
 
-        render :template => 'articles/index' unless template_exists? 'show'
+        render 'articles/index' unless template_exists? 'show'
       end
 
       format.atom { render_feed 'atom_feed',  @articles }

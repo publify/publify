@@ -181,7 +181,7 @@ class Admin::ContentController < Admin::BaseController
         return
       end
     end
-    render :action => 'new'
+    render 'new'
   end
 
   def set_the_flash

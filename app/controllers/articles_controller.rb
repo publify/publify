@@ -51,7 +51,7 @@ class ArticlesController < ContentController
     @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
     return error(_("No posts found..."), :status => 200) if @articles.empty?
     respond_to do |format|
-      format.html { render :action => 'search' }
+      format.html { render 'search' }
       format.rss { render :partial => "articles/rss20_feed", :locals => { :items => @articles } }
       format.atom { render :partial => "articles/atom_feed", :locals => { :items => @articles } }
     end
@@ -60,13 +60,13 @@ class ArticlesController < ContentController
   def live_search
     @search = params[:q]
     @articles = Article.search(@search)
-    render :layout => false, :action => :live_search
+    render :live_search, :layout => false
   end
 
   def preview
     @article = Article.last_draft(params[:id])
     @canonical_url = ""
-    render :action => 'read'
+    render 'read'
   end
 
   def check_password
@@ -163,7 +163,7 @@ class ArticlesController < ContentController
 
     auto_discovery_feed
     respond_to do |format|
-      format.html { render :template => '/articles/read' }
+      format.html { render '/articles/read' }
       format.atom { render_feed('atom') }
       format.rss  { render_feed('rss20') }
       format.xml  { render_feed('atom') }
@@ -209,7 +209,7 @@ class ArticlesController < ContentController
       @auto_discovery_url_rss = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
       @auto_discovery_url_atom = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
-    render :action => 'index'
+    render 'index'
   end
 
   def index_title

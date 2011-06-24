@@ -31,7 +31,7 @@ class Admin::SettingsController < Admin::BaseController
       redirect_to :action => params[:from]
     end
   rescue ActiveRecord::RecordInvalid
-    render :action => params[:from]
+    render params[:from]
   end
 
   def update_database

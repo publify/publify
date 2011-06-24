@@ -50,7 +50,7 @@ class Admin::CategoriesController < Admin::BaseController
       save_category
       return
     end
-    render :action => 'new'
+    render 'new'
   end
 
   def save_category
