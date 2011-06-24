@@ -83,10 +83,24 @@ describe "The default blog" do
   end
 end
 
+describe "Given no blogs, a new default blog" do
+  before :each do
+    @blog = Blog.new
+  end
 
-describe "Given no blogs" do
-  it "should allow the creation of a valid default blog" do
-    Blog.new.should be_valid
+  it "should be valid after filling the title" do
+    @blog.blog_name = "something not empty"
+    @blog.should be_valid
+  end
+
+  it "should be valid without filling the title" do
+    @blog.blog_name.should == "My Shiny Weblog!"
+    @blog.should be_valid
+  end
+
+  it "should not be valid after setting an empty title" do
+    @blog.blog_name = ""
+    @blog.should_not be_valid
   end
 end
 

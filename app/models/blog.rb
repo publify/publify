@@ -16,6 +16,8 @@ class Blog < ActiveRecord::Base
     end
   }
 
+  validates :blog_name, :presence => true
+
   serialize :settings, Hash
 
   # Description
