@@ -43,7 +43,6 @@ module ConfigManager
     def add_setting_writer(item)
       self.send(:define_method, "#{item.name}=") do |newvalue|
         retval = settings[item.name] = canonicalize(item.name, newvalue)
-        self.save! unless new_record?
         retval
       end
     end

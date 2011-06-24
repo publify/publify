@@ -144,6 +144,7 @@ shared_examples_for "CommentSanitizationWithDofollow" do
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
       @blog.comment_text_filter = value
+      @blog.save
 
       render :file => 'comments/show'
       rendered.should have_selector('.content')

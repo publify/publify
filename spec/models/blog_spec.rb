@@ -78,6 +78,7 @@ describe "The default blog" do
     Factory(:blog)
     b = Blog.default
     b.blog_name = "some other name"
+    b.save
     c = Blog.default
     c.blog_name.should == "some other name"
   end
@@ -112,17 +113,15 @@ describe "Valid permalink in blog" do
 
   ['foo', 'year', 'day', 'month', 'title', '%title', 'title%', '/year/month/day/title', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|
     it "not valid with #{permalink_type}" do
-      assert_raise  ActiveRecord::RecordInvalid do
-        @blog.permalink_format = permalink_type
-      end
+      @blog.permalink_format = permalink_type
+      @blog.should_not be_valid
     end
   end
 
   ['%year%', '%day%', '%month%', '%title%', '%title%.html', '/hello/all/%year%/%title%', 'atom/%title%.html', 'ok/rss/%title%.html'].each do |permalink_type|
     it "should be valid with only #{permalink_type}" do
-      assert_nothing_raised  ActiveRecord::RecordInvalid do
-        @blog.permalink_format = permalink_type
-      end
+      @blog.permalink_format = permalink_type
+      @blog.should be_valid
     end
   end
 
