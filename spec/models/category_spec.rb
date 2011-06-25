@@ -21,7 +21,7 @@ describe 'Given the fixtures' do
             Factory.create(:category, :id => 1, :position => 3)]
     cats.should == cats.sort_by { |c| c.position }
     Category.reorder(cats.reverse.collect { |c| c.id })
-    Category.find(:all).should == cats.reverse
+    Category.all.should == cats.reverse
   end
 
   it 'can still override order in find' do
@@ -29,22 +29,22 @@ describe 'Given the fixtures' do
             Factory.create(:category, :id => 3, :name => 'a', :position => 2),
             Factory.create(:category, :id => 1, :name => 'b', :position => 3)]
     cats = Category.send(:with_exclusive_scope) do
-      Category.find(:all, :order => 'name ASC')
+      Category.all(:order => 'name ASC')
     end
     cats.should == cats.sort_by {|c| c.name}
-    Category.find(:all).should_not == cats
+    Category.all.should_not == cats
   end
 
   it '.reorder_alpha puts categories in alphabetical order' do
     cats = [Factory.create(:category, :id => 2, :name => 'c', :position => 1),
             Factory.create(:category, :id => 3, :name => 'a', :position => 2),
             Factory.create(:category, :id => 1, :name => 'b', :position => 3)]
-    Category.find(:all).should_not == Category.send(:with_exclusive_scope) do
-      Category.find(:all, :order => :name)
+    Category.all.should_not == Category.send(:with_exclusive_scope) do
+      Category.all(:order => :name)
     end
     Category.reorder_alpha
-    Category.find(:all).should == Category.send(:with_exclusive_scope) do
-      Category.find(:all, :order => :name)
+    Category.all.should == Category.send(:with_exclusive_scope) do
+      Category.all(:order => :name)
     end
   end
 end
