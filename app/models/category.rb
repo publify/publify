@@ -47,7 +47,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.reorder_alpha
-    reorder find(:all, :order => 'UPPER(name)').collect { |c| c.id }
+    reorder send(:with_exclusive_scope){find(:all, :order => 'UPPER(name)').collect { |c| c.id }}
   end
 
   def stripped_name
