@@ -32,7 +32,7 @@ class ArticlesController < ContentController
     @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
 
     suffix = (params[:page].nil? and params[:year].nil?) ? "" : "/"
-      
+
     @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'index', :page => params[:page], :year => params[:year], :month => params[:month], :day => params[:day]) + suffix
     respond_to do |format|
       format.html { render_paginated_index }
@@ -171,7 +171,7 @@ class ArticlesController < ContentController
   rescue ActiveRecord::RecordNotFound
     error("Post not found...")
   end
-  
+
 
   def article_meta
     @keywords = ""

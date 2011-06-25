@@ -7,8 +7,8 @@ class AddRedirectionsModel < ActiveRecord::Migration
 
     puts "Creating shortened URL for existing contents, this may take a moment"
     Content.find_already_published.each do |art|
-      
-      # Begin / rescue statement is mandatory here because I have something 
+
+      # Begin / rescue statement is mandatory here because I have something
       # fishy in my database coming from a very old Wordpress import
       # This can happen you too
       begin
@@ -18,7 +18,7 @@ class AddRedirectionsModel < ActiveRecord::Migration
         red.to_path = art.permalink_url
         art.redirects << red
         art.save
-      rescue 
+      rescue
         nil
       end
     end
@@ -30,7 +30,7 @@ class AddRedirectionsModel < ActiveRecord::Migration
         red.destroy
       end
     end
-    
+
     drop_table :redirections
   end
 end

@@ -49,7 +49,7 @@
 
     <div id='editor-menu'>
       <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>        
+        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
       </label>
       <label id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
         <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>

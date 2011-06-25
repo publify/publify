@@ -7,7 +7,7 @@ module ActionWebService # :nodoc:
       def self.included(base) # :nodoc:
         base.extend(ClassMethods)
       end
-  
+
       module ClassMethods
         # Attaches ActionWebService API +definition+ to the calling class.
         #
@@ -52,11 +52,11 @@ module ActionWebService # :nodoc:
             call_web_service_api_callbacks(self, definition)
           end
         end
-  
+
         def add_web_service_api_callback(&block) # :nodoc:
           write_inheritable_array("web_service_api_callbacks", [block])
         end
-  
+
         private
           def call_web_service_api_callbacks(container_class, definition)
             (read_inheritable_attribute("web_service_api_callbacks") || []).each do |block|

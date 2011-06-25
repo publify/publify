@@ -109,9 +109,9 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "",                 { :controller => "admin/users", :action => "destroy" }
   end
 
-  map.project_module :seo, nil do |project| 
+  map.project_module :seo, nil do |project|
     project.menu    "SEO",              { :controller => "admin/seo", :action => "index" }
     project.submenu "Global settings",  { :controller => "admin/seo", :action => "index" }
-      
+
   end
 end

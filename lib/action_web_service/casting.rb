@@ -66,7 +66,7 @@ module ActionWebService # :nodoc:
           # This is a work-around for the fact that XML-RPC special-cases DateTime values into its own DateTime type
           # in order to support iso8601 dates. This doesn't work too well for us, so we'll convert it into a Time,
           # with the caveat that we won't be able to handle pre-1970 dates that are sent to us.
-          # 
+          #
           # See http://dev.rubyonrails.com/ticket/2516
           value = value.to_time if value.is_a?(XMLRPC::DateTime)
 
@@ -98,7 +98,7 @@ module ActionWebService # :nodoc:
             BigDecimal(value.to_s)
           when :time
             value = "%s/%s/%s %s:%s:%s" % value.values_at(*%w[2 3 1 4 5 6]) if value.kind_of?(Hash)
-            if value.kind_of?(Time) 
+            if value.kind_of?(Time)
               value
             elsif value.kind_of?(DateTime)
               value.to_time
@@ -116,11 +116,11 @@ module ActionWebService # :nodoc:
 
         def cast_to_structured_type(value, signature_type) # :nodoc:
           obj = nil
-          # if the canonical classes are the same or if the given value is of 
-          # a type that is derived from the signature_type do not attempt to 
+          # if the canonical classes are the same or if the given value is of
+          # a type that is derived from the signature_type do not attempt to
           # "cast" the value into the signature_type as it's already good to go
           obj = (
-            canonical_type(value.class) == canonical_type(signature_type.type) or 
+            canonical_type(value.class) == canonical_type(signature_type.type) or
             derived_from?(signature_type.type, value.class)
           ) ? value : signature_type.type_class.new
           if value.respond_to?(:each_pair)

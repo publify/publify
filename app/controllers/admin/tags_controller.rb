@@ -13,11 +13,11 @@ class Admin::TagsController < Admin::BaseController
 
     if request.post?
       old_name = @tag.name
-      
+
       if @tag.save
         # Create a redirection to ensure nothing nasty happens in the future
         Redirect.create(:from_path => "/tag/#{old_name}", :to_path => @tag.permalink_url(nil, true))
-        
+
         flash[:notice] = _('Tag was successfully updated.')
         redirect_to :action => 'index'
       end

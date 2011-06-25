@@ -51,7 +51,7 @@ module ActionWebService
           def #{name}=(value); @#{name} = value; end
         END
       end
-  
+
       def members # :nodoc:
         read_inheritable_attribute("struct_members") || {}
       end

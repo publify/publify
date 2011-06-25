@@ -57,7 +57,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def destroy
     @feedback = Feedback.find params[:id]
-    
+
     if request.post?
       begin
         @feedback.destroy

@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   include ::LoginSystem
   protect_from_forgery :only => [:edit, :update, :delete]
- 
+
   before_filter :reset_local_cache, :fire_triggers, :load_lang, :set_paths
   after_filter :reset_local_cache
 
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def set_paths
    prepend_view_path "#{::Rails.root.to_s}/themes/#{this_blog.theme}/views"
-  end 
+  end
 
   def setup_themer
     # Ick!

@@ -7,5 +7,5 @@ module Admin::RedirectsHelper
     </div>
     HTML
   end
-  
+
 end

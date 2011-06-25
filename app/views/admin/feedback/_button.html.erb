@@ -11,7 +11,7 @@
   <%= submit_tag _("Submit"), {:class => 'ed_button'} %>
 </div>
 <div class='settings left'>
-  <%= _("Display") %> 
+  <%= _("Display") %>
   <select name='comment_type' id='comment_type'>
     <option value=''><%= _("All comments")%></option>
     <option value='?ham=f' <%= 'selected' if params[:ham] == 'f' %>><%= _("Limit to ham") %></option>

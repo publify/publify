@@ -16,7 +16,7 @@ class Admin::DashboardController < Admin::BaseController
     typo_dev
     typo_version
   end
-  
+
   private
 
   def statistics
@@ -64,7 +64,7 @@ class Admin::DashboardController < Admin::BaseController
   def typo_version
     get_typo_version
     version =  @typo_version ? @typo_version.split('.') : TYPO_VERSION.to_s.split('.')
-    
+
     if version[0].to_i > TYPO_MAJOR.to_i
       flash.now[:error] = _("You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
     elsif version[1].to_i > TYPO_SUB.to_i
@@ -79,7 +79,7 @@ class Admin::DashboardController < Admin::BaseController
     open(url) do |http|
       @typo_version = http.read[0..5]
     end
-  rescue 
+  rescue
     @typo_version = nil
   end
 

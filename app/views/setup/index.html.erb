@@ -4,7 +4,7 @@
 <%= form_tag :action=> 'index' do %>
   <h2><%= _("Welcome")%></h2>
   <p><%= _("Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", link_to("Typo", 'http://typosphere.org'))%></p>
-  
+
   <p>
     <label for="user_login"><%= _("Blog name") %>:</label>
     <%= text_field(:setting, :blog_name, {:class => 'title'})%>

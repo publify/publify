@@ -123,7 +123,7 @@ module Admin::BaseHelper
     return class_selected_tab if controller.controller_name  =~ /profiles/
     class_tab
   end
-  
+
   def class_seo
     return class_selected_tab if controller.controller_name  =~ /seo/
     class_tab
@@ -178,7 +178,7 @@ module Admin::BaseHelper
     </div>
     HTML
   end
-  
+
   def format_date(date)
     date.strftime('%d/%m/%Y')
   end
@@ -228,7 +228,7 @@ module Admin::BaseHelper
             :class => 'ui-button-text',
             :loading => "new Element.show('update_spinner_#{id}')",
             :success => "new Element.toggle('update_spinner_#{id}')",
-            :update => "#{update}")      
+            :update => "#{update}")
     link << image_tag("spinner-blue.gif", :id => "update_spinner_#{id}", :style => 'display:none;')
   end
 
@@ -252,7 +252,7 @@ module Admin::BaseHelper
     picture << " onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{this_blog.base_url}/files/#{image.filename}');\" />"
     return picture
   end
-  
+
   def save_settings
     "<p class='settings'>#{save(_("Update settings"))}</p>".html_safe
   end

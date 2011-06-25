@@ -25,7 +25,7 @@ module ActionWebService # :nodoc:
             web_service_invoke(invocation)
           end
         end
-      
+
         def web_service_direct_invoke(invocation)
           @method_params = invocation.method_ordered_params
           arity = method(invocation.api_method.name).arity rescue 0
@@ -51,7 +51,7 @@ module ActionWebService # :nodoc:
           end
           return_value
         end
-        
+
         def web_service_invoke(invocation)
           case web_service_dispatching_mode
           when :direct
@@ -61,7 +61,7 @@ module ActionWebService # :nodoc:
           end
           web_service_create_response(invocation.protocol, invocation.protocol_options, invocation.api, invocation.api_method, return_value)
         end
-        
+
         def xmlrpc_multicall_invoke(invocations)
           responses = []
           invocations.each do |invocation|

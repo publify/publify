@@ -6,7 +6,7 @@
   <div class='widget-content'>
     <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts, @newcomments) %></p>
     <p><%= _("You're running Typo %s", TYPO_VERSION) %> <%= @version_message %></p>
-    
+
     <p><strong><%= _("Content") %></strong></p>
     <ul>
       <li> <%= sprintf("%s %d", link_to(_("Total posts:"), :controller => 'admin/content'), @statposts) %></li>

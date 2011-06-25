@@ -62,7 +62,7 @@ class Admin::ThemesController < Admin::BaseController
     else
       flash[:notice] = _("Unable to write file")
     end
-    
+
     @file = File.read(filename)
   end
 

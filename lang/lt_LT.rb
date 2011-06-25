@@ -380,7 +380,7 @@ Localization.define("lt_LT") do |l|
   l.store "Blog name", "Dienoraščio pavadinimas"
   l.store "Blog subtitle", "Dienoraščio subpavadinimas" #
   l.store "Blog URL", "Dienoraščio adresas"
-  l.store "Language", "Kalba" 
+  l.store "Language", "Kalba"
   l.store "Allow users to register", ""
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""

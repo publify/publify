@@ -7,7 +7,7 @@ module ActionWebService # :nodoc:
   # Used by controllers operating in _Delegated_ dispatching mode.
   #
   # ==== Example
-  # 
+  #
   #   class PersonService < ActionWebService::Base
   #     web_service_api PersonAPI
   #

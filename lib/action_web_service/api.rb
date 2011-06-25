@@ -14,12 +14,12 @@ module ActionWebService # :nodoc:
     # See ActionWebService::Container::Direct::ClassMethods for an example
     # of use.
     class Base
-      # Whether to transform the public API method names into camel-cased names 
+      # Whether to transform the public API method names into camel-cased names
       class_inheritable_option :inflect_names, true
 
       # By default only HTTP POST requests are processed
       class_inheritable_option :allowed_http_methods, [ :post ]
-       
+
       # Whether to allow ActiveRecord::Base models in <tt>:expects</tt>.
       # The default is +false+; you should be aware of the security implications
       # of allowing this, and ensure that you don't allow remote callers to
@@ -33,7 +33,7 @@ module ActionWebService # :nodoc:
 
       # Disallow instantiation
       private_class_method :new, :allocate
-      
+
       class << self
         include ActionWebService::SignatureTypes
 
@@ -43,7 +43,7 @@ module ActionWebService # :nodoc:
         # The signatures for the method input parameters and return value can
         # by specified in +options+.
         #
-        # A signature is an array of one or more parameter specifiers. 
+        # A signature is an array of one or more parameter specifiers.
         # A parameter specifier can be one of the following:
         #
         # * A symbol or string representing one of the Action Web Service base types.
@@ -54,7 +54,7 @@ module ActionWebService # :nodoc:
         #   as an array containing only values of the given type.
         # * A Hash containing as key the name of the parameter, and as value
         #   one of the three preceding items
-        # 
+        #
         # If no method input parameter or method return value signatures are given,
         # the method is assumed to take no parameters and/or return no values of
         # interest, and any values that are received by the server will be
@@ -104,7 +104,7 @@ module ActionWebService # :nodoc:
         def has_api_method?(name)
           api_methods.has_key?(name)
         end
-  
+
         # Whether the given public method name has a corresponding service method
         # on this API
         #
@@ -117,7 +117,7 @@ module ActionWebService # :nodoc:
         def has_public_api_method?(public_name)
           api_public_method_names.has_key?(public_name)
         end
-  
+
         # The corresponding public method name for the given service method name
         #
         #   ProjectsApi.public_api_method_name('GetCount')  #=> "GetCount"
@@ -129,18 +129,18 @@ module ActionWebService # :nodoc:
             name.to_s
           end
         end
-  
+
         # The corresponding service method name for the given public method name
         #
         #   class ProjectsApi < ActionWebService::API::Base
         #     api_method :getCount, :returns => [:int]
         #   end
-        #        
+        #
         #   ProjectsApi.api_method_name('GetCount') #=> :getCount
         def api_method_name(public_name)
           api_public_method_names[public_name]
         end
-  
+
         # A Hash containing all service methods on this API, and their
         # associated metadata.
         #
@@ -149,7 +149,7 @@ module ActionWebService # :nodoc:
         #     api_method :getCompletedCount, :returns => [:int]
         #   end
         #
-        #   ProjectsApi.api_methods #=> 
+        #   ProjectsApi.api_methods #=>
         #     {:getCount=>#<ActionWebService::API::Method:0x24379d8 ...>,
         #      :getCompletedCount=>#<ActionWebService::API::Method:0x2437794 ...>}
         #   ProjectsApi.api_methods[:getCount].public_name #=> "GetCount"
@@ -199,7 +199,7 @@ module ActionWebService # :nodoc:
           def api_public_method_names
             read_inheritable_attribute("api_public_method_names") || {}
           end
-  
+
           def validate_options(valid_option_keys, supplied_option_keys)
             unknown_option_keys = supplied_option_keys - valid_option_keys
             unless unknown_option_keys.empty?
@@ -224,7 +224,7 @@ module ActionWebService # :nodoc:
         @returns = returns
         @caster = ActionWebService::Casting::BaseCaster.new(self)
       end
-      
+
       # The list of parameter names for this method
       def param_names
         return [] unless @expects

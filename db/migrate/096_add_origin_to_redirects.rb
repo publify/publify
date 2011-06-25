@@ -4,8 +4,8 @@ class AddOriginToRedirects < ActiveRecord::Migration
 
     puts "Adding origin to redirects made by URL shortener"
     Content.find_already_published.each do |art|
-      
-      # Begin / rescue statement is mandatory here because I have something 
+
+      # Begin / rescue statement is mandatory here because I have something
       # fishy in my database coming from a very old Wordpress import
       # This can happen you too
       begin
@@ -14,7 +14,7 @@ class AddOriginToRedirects < ActiveRecord::Migration
           r.origin = "shortener"
           r.save!
         end
-      rescue 
+      rescue
         nil
       end
     end

@@ -20,7 +20,7 @@ module Admin::ThemesHelper
     end
     list << '</ul>'
   end
-  
+
 
 
 end

@@ -6,5 +6,5 @@ module AccountsHelper
     html << link_to("<small>&raquo; #{_("I've lost my password")}</small>".html_safe, :action => 'recover_password')
     html.html_safe
   end
-  
+
 end

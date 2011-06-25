@@ -6,10 +6,10 @@
   <%= form_remote_tag(:url => {:action=>'publish',
                       :method => :post },
                       :loading => "new Element.show('update_spinner')",
-                      :success => "var g = new k.Growler({location : 'br'}); 
+                      :success => "var g = new k.Growler({location : 'br'});
                                     g.info('Sidebar was successfully saved', {life: 3});
                                     new Element.hide('update_spinner')",
-                      :failure => "var g = new k.Growler({location : 'br'}); 
+                      :failure => "var g = new k.Growler({location : 'br'});
                                     g.error('Oops, something wrong happened', {life: 3});
                                     new Element.hide('update_spinner')") \
       do %>

@@ -31,11 +31,11 @@ module TypoPlugins
           raise ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
           @@registered ? @@registered[kind] : nil
         end
-        
+
         def register(klass)
           raise ArgumentError.new "#{klass.kind.to_s} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
           @@registered[klass.kind] ||= []
-          @@registered[klass.kind] << klass 
+          @@registered[klass.kind] << klass
           Rails.logger.debug("TypoPlugins: just registered plugin #{@@registered[klass.kind]} for #{klass.kind.inspect} target.")
           @@registered[klass.kind]
         end

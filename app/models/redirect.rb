@@ -14,7 +14,7 @@ class Redirect < ActiveRecord::Base
     path = url_root + path unless url_root.nil? or path[0,url_root.length] == url_root
     path
   end
-  
+
   def shorten
     if (temp_token = random_token) and self.class.find_by_from_path(temp_token).nil?
       return temp_token

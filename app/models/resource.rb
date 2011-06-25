@@ -5,7 +5,7 @@ class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
   after_destroy :delete_filename_on_disk
   before_validation :uniq_filename_on_disk, :on => :create
-  
+
   belongs_to :article
 
   def fullpath(file = nil)
@@ -42,12 +42,12 @@ class Resource < ActiveRecord::Base
     return unless File.exists?(fullpath("#{self.filename}"))
     begin
       img_orig = MiniMagick::Image.from_file(fullpath(self.filename))
-      
+
       ['medium', 'thumb'].each do |size|
         next if File.exists?(fullpath("#{size}_#{self.filename}"))
         resize = blog.send("image_#{size.to_s}_size").to_s
         img_orig = img_orig.resize("#{resize}x#{resize}")
-        img_orig.write(fullpath("#{size}_#{self.filename}"))        
+        img_orig.write(fullpath("#{size}_#{self.filename}"))
       end
    rescue
       nil

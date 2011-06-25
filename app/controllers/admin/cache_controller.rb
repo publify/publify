@@ -2,13 +2,13 @@ require 'find'
 
 class Admin::CacheController < Admin::BaseController
   layout 'administration'
-  
+
   def index
     @cache_size = 0
-    @cache_number = 0 
+    @cache_number = 0
 
     FileUtils.mkdir_p(TypoBlog::Application.config.action_controller.page_cache_directory) unless File.exists?(TypoBlog::Application.config.action_controller.page_cache_directory)
-        
+
     if request.post?
       begin
         PageCache.sweep_all
@@ -17,7 +17,7 @@ class Admin::CacheController < Admin::BaseController
         flash.now[:error] = _("Oops, something wrong happened. Cache could not be cleaned")
       end
     end
-    
+
     Find.find(TypoBlog::Application.config.action_controller.page_cache_directory) do |path|
       if FileTest.directory?(path)
         if File.basename(path)[0] == ?.
@@ -31,5 +31,5 @@ class Admin::CacheController < Admin::BaseController
       end
     end
   end
-  
+
 end
