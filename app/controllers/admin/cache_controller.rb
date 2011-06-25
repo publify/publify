@@ -18,7 +18,7 @@ class Admin::CacheController < Admin::BaseController
       end
     end
     
-    Find.find(Rails::Application.config.action_controller.page_cache_directory) do |path|
+    Find.find(TypoBlog::Application.config.action_controller.page_cache_directory) do |path|
       if FileTest.directory?(path)
         if File.basename(path)[0] == ?.
           Find.prune
