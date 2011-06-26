@@ -2,6 +2,13 @@ class SerializeBlogAttributes < ActiveRecord::Migration
   class BareSetting < ActiveRecord::Base
     include BareMigration
     belongs_to :blog, :class_name => "SerializeBlogAttributes::BareBlog"
+    
+    def self.with_blog_scope(id, &block)
+      options = {}
+      options[:conditions] = ["blog_id = ?", id]
+      with_scope(:find => options, &block)
+    end
+    
   end
 
   class BareBlog < ActiveRecord::Base
@@ -106,11 +113,13 @@ class SerializeBlogAttributes < ActiveRecord::Migration
         BareSetting.transaction do
           BareBlog.find(:all).each do |blog|
             blog.settings = { }
-            BareBlog.fields.each do |key, spec|
-              next unless setting = BareSetting.find_by_name_and_blog_id(key.to_s, blog.id, :limit => 1)
-              blog.settings[key.to_s] =
-                spec.normalize_value(setting)
-              BareSetting.delete(setting.id)
+            BareSetting.with_blog_scope(blog.id) do
+              BareBlog.fields.each do |key, spec|
+                next unless setting = BareSetting.find_by_name(key.to_s, :limit => 1)
+                blog.settings[key.to_s] =
+                  spec.normalize_value(setting)
+                BareSetting.delete(setting.id)
+              end
             end
             blog.save
           end
