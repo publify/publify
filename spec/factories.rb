@@ -120,9 +120,6 @@ Factory.define :blog do |b|
 end
 
 
-
-
-
 Factory.define :profile_admin, :class => :profile do |l|
   l.label {Factory.next(:label)}
   l.nicename 'Typo administrator'

@@ -19,12 +19,4 @@ class Admin::SeoController < Admin::BaseController
     @setting = this_blog
   end
   
-  def save_robots
-    if File.writable? "#{::Rails.root.to_s}/public/robots.txt"
-      robots = File.new("#{::Rails.root.to_s}/public/robots.txt", "r+")
-      robots.write(params[:setting][:robots])
-      robots.close
-    end
-  end
-  
 end
