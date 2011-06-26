@@ -59,9 +59,8 @@ describe Admin::SettingsController do
 
     it 'should not save blog with bad permalink format' do
       @blog = Blog.default
-      good_update "setting" => {"permalink_format" => "title"}
-      response.should be_success
-      response.should render_template(:seo)
+      good_update "setting" => {"permalink_format" => "/%month%"}
+      response.should redirect_to(:action => 'seo')
       @blog.should == Blog.default
     end
   end
