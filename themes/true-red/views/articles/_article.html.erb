@@ -18,7 +18,7 @@
     <% end %>
 
   <div class='author'>
-    Published <%= display_date_and_time article.published_at %>
+    <%= _("Published") %> <%= display_date_and_time article.published_at %>
   </div>
   <div class='comments'>
     <%= display_comments_counter(article) %>

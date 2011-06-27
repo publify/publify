@@ -4,7 +4,7 @@
   </h2>
 
   <div class="author">
-    Posted by <cite><%= author_link(article) %></cite>
+    <%= _("Posted by")%> <cite><%= author_link(article) %></cite>
     <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= display_date_and_time article.published_at %></abbr>
   </div>
 

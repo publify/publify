@@ -253,7 +253,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
-  l.store "No comments yet", "Aucun commentaire"
+  l.store "No comments yet", "Aucun commentaire pour l'instant"
   l.store "By %s on %s", "Par %s le %s"
 
   # app/views/admin/dashboard/_inbound.html.erb

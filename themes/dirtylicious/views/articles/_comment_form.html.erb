@@ -9,29 +9,29 @@
 
 <div id="preview" style="display:none"></div>
 
-  <h2 id="respond">Leave a comment</h2>
+  <h2 id="respond"><%= _("Leave a comment") %></h2>
   <p>
 	 <%= text_field "comment", "author", :class => 'styled', :size => 22 %>
-    <label>Name</label>
+    <label><%= _("Name")%></label>
   </p>
 	<p>
 		<%= text_field "comment", "email", :class => 'styled', :size => 22 %>
-		<label>Email</label>
+		<label><%= _("Email") %></label>
 	</p>
 	<p>
 		<%= text_field "comment", "url", :class => 'styled', :size => 22 %>
-		<label>Url</label>
+		<label><%= _("Url")%></label>
 	</p>
   <p>
       <%= text_area 'comment', 'body', :class => 'styled', :rows => 10, :cols => 100 %>
   </p>
 
   <p>
-    <%= submit_to_remote('preview', 'Preview!',
+    <%= submit_to_remote('preview', _('Preview') + '!',
                          :update => 'preview',
                          :complete => "Element.show('preview')",
                          :url    => @article.preview_comment_url) %>
-    <%= submit_tag 'Submit', :id => 'form-submit-button',  :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
+    <%= submit_tag _('Submit'), :id => 'form-submit-button',  :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
     <%= image_tag 'theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
   </p>
 <% end %>
