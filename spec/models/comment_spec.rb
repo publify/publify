@@ -166,7 +166,7 @@ describe Comment do
       end
     end
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
-      it "should reject with filter #{filter}" do
+      it "should reject with filter '#{filter}'" do
         Blog.default.comment_text_filter = filter
 
         assert @comment.save
@@ -212,21 +212,12 @@ describe Comment do
       assert_equal 0, a.published_comments.size
     end
 
-    it 'should becomes not confirmed in article if withdraw' do
+    it 'should becomes confirmed if withdrawn' do
       a = Factory(:article)
-      Factory(:comment, :article => a, :state => 'presumed_ham')
-      Factory(:comment, :article => a, :state => 'ham')
-      assert !a.comments[0].status_confirmed?
-      assert  a.comments[1].status_confirmed?
-
-      a.reload
-      assert_equal 1,
-        a.comments.find_all_by_status_confirmed(true).size
-      assert_equal 1,
-        a.comments.find_all_by_status_confirmed(true).size
-      a.comments[0].withdraw!
-      assert_equal 2,
-        a.comments.find_all_by_status_confirmed(true).size
+      unconfirmed = Factory(:comment, :article => a, :state => 'presumed_ham')
+      unconfirmed.should_not be_status_confirmed
+      unconfirmed.withdraw!
+      unconfirmed.should be_status_confirmed
     end
   end
 
