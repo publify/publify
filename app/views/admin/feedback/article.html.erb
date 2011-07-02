@@ -5,7 +5,7 @@
 <%= form_tag({:action => 'bulkops'}, :method => :post) do %>
 
 <%= hidden_field 'article_id', @article.id %>
-<%= render :partial => 'button', :locals => { :position => 'top' } %>
+<%= render 'button', { :position => 'top' } %>
 
 <br class='clear' />
 <table class='settings'>
@@ -20,9 +20,9 @@
   <% @feedback.each do |comment| %>
   <tr <%= alternate_class %> id='<%= "feedback_#{comment.id}" %>'>
     <% if comment.state.to_s.downcase == 'spam'  %>
-      <%= render :partial => 'spam', :locals => {:comment => comment} %>
+      <%= render 'spam', {:comment => comment} %>
     <% else %>
-      <%= render :partial => 'ham', :locals => {:comment => comment} %>
+      <%= render 'ham', {:comment => comment} %>
     <% end %>
   </tr>
   <% end %>
@@ -30,6 +30,6 @@
 <%end%>
 
 <%= form_tag :action => "create" do %>
-  <%= render :partial => "form" %>
+  <%= render "form" %>
   <%= cancel_or_save %>
 <% end %>

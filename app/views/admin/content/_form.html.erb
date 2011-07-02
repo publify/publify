@@ -45,7 +45,7 @@
       <%= text_field 'article', 'title', :class => 'large' %>
     </p>
 
-    <%= render(:partial => 'images', :locals => { :images => @images}) unless @images.empty? %>
+    <%= render(@images) unless @images.empty? %>
 
     <div id='editor-menu'>
       <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
@@ -92,7 +92,7 @@
       <p>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
 
       <ul id='attachments'>
-        <%= render :partial => 'admin/content/attachment', :locals => { :attachment_num => 1, :hidden => false } -%>
+        <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
       </ul>
     </div>
   </div>

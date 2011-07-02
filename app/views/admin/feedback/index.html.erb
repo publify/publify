@@ -12,7 +12,7 @@
 <% end %>
 
 <%= form_tag({:action => 'bulkops'}, :method => :post) do %>
-<%= render :partial => 'button', :locals => { :position => 'top' } %>
+<%= render 'button', { :position => 'top' } %>
 
 <%= hidden_field_tag "search", params[:search]%>
 <%= hidden_field_tag "page", params[:page]%>
@@ -33,9 +33,9 @@
   <% @feedback.each do |comment| %>
   <tr <%= alternate_class %> id='<%= "feedback_#{comment.id}" %>'>
     <% if comment.state.to_s.downcase == 'spam'  %>
-      <%= render :partial => 'spam', :locals => {:comment => comment} %>
+      <%= render 'spam', {:comment => comment} %>
     <% else %>
-      <%= render :partial => 'ham', :locals => {:comment => comment} %>
+      <%= render 'ham', {:comment => comment} %>
     <% end %>
   </tr>
   <% end %>
@@ -46,6 +46,6 @@
   </tr>
 </table>
 
-<%= render :partial => 'button', :locals => { :position => 'bottom' } %>
+<%= render 'button', { :position => 'bottom' } %>
 <% end %>
 <br class='clear' />

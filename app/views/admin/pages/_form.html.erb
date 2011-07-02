@@ -18,7 +18,7 @@
   <p class='input_text'>
     <%= text_field 'page', 'title', :class => 'large'  %>
   </p>
-  <%= render(:partial => 'images', :locals => {:images => @images}) unless @images.empty? %>
+  <%= render(@images) unless @images.empty? %>
   <div id='editor-menu'>
     <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
       <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>

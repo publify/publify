@@ -11,7 +11,7 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
-<%= render :partial => 'drafts' unless Article.drafts.empty? %>
+<%= render 'drafts' unless Article.drafts.empty? %>
 
 <div class='settings'>
   <h4><label for="search"><%= _("Search articles that contain ...")%></label></h4>
@@ -41,7 +41,7 @@
     <td><input type="submit" value='<%= _("Filter") %>' class='ed_button' />
   </tr>
   <tbody id="articleList">
-    <%= render :partial => 'article_list', :locals => { :articles => @articles } -%>
+    <%= render 'article_list', { :articles => @articles } -%>
   </tbody>
 </table>
 <%end%>
