@@ -14,12 +14,13 @@ neuro for 6.0.5:
   - Backport : http://www.lightword-design.com/
   - Backport : http://www.pagelines.com/themes/platformpro
 
-mvz for 6.0.5
+mvz for 6.0.6
 - avoid accidentally creating published articles with a permalink like draft-article-123
 - continued clean-ups and spec improvements.
 - fix original migration with ruby 1.9.2
 - Evaluate http://typogarden.org/brown-type.html
 - Evaluate http://typogarden.org/lindholmen.html
+- Clean up themes
 
 ook for 6.0.5
 - enable category creation on the fly, in "write" tab (http://fdv.lighthouseapp.com/projects/11171/tickets/141-enable-category-creation-in-the-write-page)
