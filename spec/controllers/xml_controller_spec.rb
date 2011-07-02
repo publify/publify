@@ -1,16 +1,14 @@
 require 'spec_helper'
 
 describe XmlController do
-  render_views
-
   def assert_select(*args, &block)
     @html_document ||= HTML::Document.new(@response.body, false, true)
     super(*args,&block)
   end
 
   before do
-    Factory(:blog)
-    @article = Factory.create(:article)
+    blog = Factory.build(:blog)
+    Blog.stub!(:default).and_return(blog)
   end
 
   def assert_moved_permanently_to(location)
@@ -18,16 +16,8 @@ describe XmlController do
     assert_equal location, @response.headers["Location"]
   end
 
-  describe "without format parameter" do
-    it "redirects main feed to articles RSS feed" do
-      get :feed, :type => 'feed'
-      assert_moved_permanently_to 'http://test.host/articles.rss'
-    end
-
-    it "redirects comments feed to Comments RSS feed" do
-      get :feed, :type => 'comments'
-      assert_moved_permanently_to admin_comments_url(:format=>:rss)
-    end
+  describe "rendering" do
+    render_views
 
     it "returns valid RSS feed for trackbacks feed type" do
       Feedback.delete_all
@@ -45,9 +35,53 @@ describe XmlController do
       assert_rss20
     end
 
-    it "redirects article feed to Article RSS feed" do
-      get :feed, :type => 'article', :id => @article.id
-      assert_moved_permanently_to @article.permalink_by_format(:rss)
+    it "test_feed_rss20_trackbacks" do
+      Feedback.delete_all
+
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+                               :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article,
+                     :published_at => Time.now - 1.day,
+                     :published => true)
+
+      get :feed, :format => 'rss20', :type => 'trackbacks'
+      assert_response :success
+      assert_xml @response.body
+      assert_feedvalidator @response.body
+      assert_rss20
+    end
+
+    it "test_feed_atom10_trackbacks" do
+      Feedback.delete_all
+      article = Factory.create(:article, :created_at => Time.now - 1.day,
+                               :allow_pings => true, :published => true)
+      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+                     :published => true)
+
+      get :feed, :format => 'atom10', :type => 'trackbacks'
+      assert_response :success
+      assert_xml @response.body
+      assert_feedvalidator @response.body
+      assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
+                   assigns(:items))
+
+      assert_atom10
+
+      assert_select 'title[type=html]'
+      assert_select 'summary'
+    end
+
+  end
+
+  describe "without format parameter" do
+    it "redirects main feed to articles RSS feed" do
+      get :feed, :type => 'feed'
+      assert_moved_permanently_to 'http://test.host/articles.rss'
+    end
+
+    it "redirects comments feed to Comments RSS feed" do
+      get :feed, :type => 'comments'
+      assert_moved_permanently_to admin_comments_url(:format=>:rss)
     end
 
     it "redirects category feed to Category RSS feed" do
@@ -71,27 +105,6 @@ describe XmlController do
     assert_moved_permanently_to admin_comments_url(:format=>:rss)
   end
 
-  it "test_feed_rss20_trackbacks" do
-    Feedback.delete_all
-
-    article = Factory.create(:article, :created_at => Time.now - 1.day,
-                             :allow_pings => true, :published => true)
-    Factory.create(:trackback, :article => article,
-                   :published_at => Time.now - 1.day,
-                   :published => true)
-
-    get :feed, :format => 'rss20', :type => 'trackbacks'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-    assert_rss20
-  end
-
-  it "test_feed_rss20_article" do
-    get :feed, :format => 'rss20', :type => 'article', :id => @article.id
-    assert_moved_permanently_to @article.permalink_by_format(:rss)
-  end
-
   it "test_feed_rss20_category" do
     get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
     assert_moved_permanently_to(category_url('personal', :format => 'rss'))
@@ -104,39 +117,40 @@ describe XmlController do
 
   it "test_feed_atom10_feed" do
     get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :moved_permanently
     assert_moved_permanently_to "http://test.host/articles.atom"
   end
 
   it "test_feed_atom10_comments" do
     get :feed, :format => 'atom10', :type => 'comments'
-    assert_response :moved_permanently
     assert_moved_permanently_to admin_comments_url(:format=>'atom')
   end
 
-  it "test_feed_atom10_trackbacks" do
-    Feedback.delete_all
-    article = Factory.create(:article, :created_at => Time.now - 1.day,
-      :allow_pings => true, :published => true)
-    Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
-      :published => true)
+  describe "for an article" do
+    before do
+      @article = Factory.create(:article)
+    end
 
-    get :feed, :format => 'atom10', :type => 'trackbacks'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                 assigns(:items))
+    describe "without format parameter" do
+      it "redirects article feed to Article RSS feed" do
+        get :feed, :type => 'article', :id => @article.id
+        assert_moved_permanently_to @article.permalink_by_format(:rss)
+      end
+    end
 
-    assert_atom10
+    it "test_feed_rss20_article" do
+      get :feed, :format => 'rss20', :type => 'article', :id => @article.id
+      assert_moved_permanently_to @article.permalink_by_format(:rss)
+    end
 
-    assert_select 'title[type=html]'
-    assert_select 'summary'
-  end
+    it "test_feed_atom10_article" do
+      get :feed, :format => 'atom10', :type => 'article', :id => @article.id
+      assert_moved_permanently_to @article.permalink_by_format('atom')
+    end
 
-  it "test_feed_atom10_article" do
-    get :feed, :format => 'atom10', :type => 'article', :id => @article.id
-    assert_moved_permanently_to @article.permalink_by_format('atom')
+    it "test_articlerss" do
+      get :articlerss, :id => @article.id
+      assert_response :redirect
+    end
   end
 
   it "test_feed_atom10_category" do
@@ -147,11 +161,6 @@ describe XmlController do
   it "test_feed_atom10_tag" do
     get :feed, :format => 'atom10', :type => 'tag', :id => 'foo'
     assert_moved_permanently_to(tag_url('foo',:format => 'atom'))
-  end
-
-  it "test_articlerss" do
-    get :articlerss, :id => @article.id
-    assert_response :redirect
   end
 
   it "test_commentrss" do
