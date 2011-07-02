@@ -1,21 +1,6 @@
 <div class='category-excerpt <%= "border" if @article_counter >= 0 %>' id="article-<%= article.id %>">
   <h2><%= (controller.controller_name == 'redirect') ? article.title : link_to_permalink(article,article.title) %></h2>
-  <% if article.password.nil? or article.password.empty? %>
-    <% unless controller.action_name == 'redirect' %>
-      <% if article.excerpt? %>
-        <%= article.excerpt %>
-      <% else %>
-        <%= article.html(:body) %>
-      <% end %>
-    <% else %>
-      <%= article.html(:body) %>
-      <% if article.extended? %>
-        <%= article.html(:extended) %>
-      <% end %>
-    <% end %>
-    <% else %>
-      <%= render 'articles/password_form', { :article => article } %>
-    <% end %>
+  <%= render 'articles/protected_article_content', { :article => article } %>
 
   <div class='author'>
     <%= _("Published on") %> <%= _(article.published_at.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M", article.published_at.utc))) %>

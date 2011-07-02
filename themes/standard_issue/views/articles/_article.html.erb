@@ -1,27 +1,7 @@
 <div class="atomentry" id="article-<%= article.id %>">
   <h2 class="title"><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h2>
   <div class="content">
-    <% if article.password.nil? or article.password.empty? %>
-      <% unless controller.action_name == 'redirect' %>
-        <% if article.excerpt? %>
-          <%= article.excerpt %>
-        <% else %>
-          <%= article.html(:body) %>
-          <% if article.extended? %>
-            <div class="extended">
-              <p><%= link_to_permalink article, _("Continue reading") + "..." %></p>
-            </div>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= article.html(:body) %>
-        <div class="extended">
-          <%= article.html(:extended) %>
-        </div>
-      <% end %>
-    <% else %>
-      <%= render 'articles/password_form', { :article => article } %>
-    <% end %>
+    <%= render 'articles/protected_article_content', { :article => article } %>
   </div>
 	<div class="meta">
 		<% if controller.controller_name == "articles" and controller.action_name == 'show' %>

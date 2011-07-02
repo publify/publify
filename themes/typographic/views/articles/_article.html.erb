@@ -6,27 +6,7 @@
     </div>
   </div>
   <div class="content">
-    <% if article.password.nil? or article.password.empty? %>
-      <% unless controller.action_name == 'redirect' %>
-        <% if article.excerpt? %>
-          <%= article.excerpt %>
-        <% else %>
-          <%= article.html(:body) %>
-          <% if article.extended? %>
-            <div class="extended">
-              <p><%= link_to_permalink article, _("Continue reading") + "..." %></p>
-            </div>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= article.html(:body) %>
-        <div class="extended">
-          <%= article.html(:extended) %>
-        </div>
-      <% end %>
-    <% else %>
-      <%= render 'articles/password_form', { :article => article } %>
-    <% end %>
+    <%= render 'articles/protected_article_content', { :article => article } %>
   </div>
   <% if controller.controller_name == "articles" and controller.action_name == "redirect" %>
   <div class="meta">
