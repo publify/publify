@@ -2,10 +2,10 @@
     <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>, responding to
     <a href="<%= @comment.article.permalink_url %>"><%=h(@comment.article.title) %></a>.</p>
 
-<%= render :partial => 'mail_header' %>
+<%= render 'mail_header' %>
 <h2><%=h @comment.title %></h2>
 <cite><strong><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></strong> </cite>
  <%= link_to('said', @comment.permalink_url) %>
  <%= display_date_and_time @comment.created_at %> <br />
 <%= html @comment %>
-<%= render :partial => 'mail_footer' %>
+<%= render 'mail_footer' %>
