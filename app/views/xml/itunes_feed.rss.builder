@@ -22,8 +22,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
     xml.copyright(this_blog.itunes_copyright)
 
     @items.each do |item|
-      render :partial => "itunes_item_resource",
-        :locals => {:item => item, :xm => xml}
+      render "itunes_item_resource",
+        {:item => item, :xm => xml}
     end
   end
 end

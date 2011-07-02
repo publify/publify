@@ -12,7 +12,7 @@ xml.feed "xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom' do
   xml.updated @items.first.updated_at.xmlschema unless @items.empty?
 
   @items.each do |item|
-    render :partial => "atom10_item_#{item.class.name.to_s.downcase}",
-      :locals => {:item => item, :xm => xml}
+    render "atom10_item_#{item.class.name.to_s.downcase}",
+      {:item => item, :xm => xml}
   end
 end

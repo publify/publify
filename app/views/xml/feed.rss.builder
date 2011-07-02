@@ -14,8 +14,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
       :type => "application/rss+xml"
 
     @items.each do |item|
-      render :partial => "rss20_item_#{item.class.name.to_s.downcase}",
-        :locals => {:item => item, :xm => xml}
+      render "rss20_item_#{item.class.name.to_s.downcase}",
+        {:item => item, :xm => xml}
     end
   end
 end
