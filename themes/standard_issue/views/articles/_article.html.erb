@@ -20,7 +20,7 @@
         </div>
       <% end %>
     <% else %>
-      <%= render :partial => 'articles/password_form', :locals => { :article => article } %>
+      <%= render 'articles/password_form', { :article => article } %>
     <% end %>
   </div>
 	<div class="meta">

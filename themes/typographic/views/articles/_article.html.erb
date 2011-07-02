@@ -25,7 +25,7 @@
         </div>
       <% end %>
     <% else %>
-      <%= render :partial => 'articles/password_form', :locals => { :article => article } %>
+      <%= render 'articles/password_form', { :article => article } %>
     <% end %>
   </div>
   <% if controller.controller_name == "articles" and controller.action_name == "redirect" %>

@@ -28,9 +28,9 @@
           <%= article.html(:extended) %>
         </div>
       <% end %>
-      <% else %>
-        <%= render :partial => 'articles/password_form', :locals => { :article => article } %>
-      <% end %>
+    <% else %>
+      <%= render 'articles/password_form', { :article => article } %>
+    <% end %>
   </div>
 
   <ul class="meta">

@@ -14,8 +14,7 @@
 </rdf:RDF>
 -->
 
-<%= render :partial => 'articles/article', :object => @article %>
-
+<%= render @article %>
 
 <% if @article.allow_pings? -%>
   <h2 id="trackbacks-title"><a id="trackbacks"><%= _("Trackbacks")%></a></h2>
@@ -26,7 +25,7 @@
 
   <% unless @article.published_trackbacks.blank? -%>
   <ol id="trackbacks" class="comments">
-    <%= render(:partial => "articles/trackback", :collection => @article.published_trackbacks) %>
+    <%= render "trackback", :collection => @article.published_trackbacks %>
   </ol>
   <% end -%>
 <% end -%>
@@ -39,8 +38,8 @@
   <% end -%>
 
   <div id="comments_div">
-    <%= render :partial => "articles/comment_list" %>
+    <%= render "articles/comment_list" %>
   </div>
 <% end -%>
 
-<%= render :partial => 'articles/comment_form' unless @article.comments_closed? %>
+<%= render 'articles/comment_form' unless @article.comments_closed? %>
