@@ -1,0 +1,11 @@
+<% if article.excerpt? %>
+  <%= article.excerpt %>
+<% else %>
+  <%= article.html(:body) %>
+  <% if article.extended? %>
+    <div class="extended">
+      <p><%= link_to_permalink article, _("Continue reading") + "..." %></p>
+    </div>
+  <% end %>
+<% end %>
+

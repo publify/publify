@@ -1,24 +1,4 @@
 <h2><%= link_to_permalink article,article.title %></h2>
 <p class="auth"><%= _("Posted by")%> <%= author_link(article) %>
 <%= display_date_and_time article.published_at %></p>
-<% if article.password.nil? or article.password.empty? %>
-  <% unless controller.action_name == 'redirect' %>
-    <% if article.excerpt? %>
-      <%= article.excerpt %>
-    <% else %>
-      <%= article.html(:body) %>
-      <% if article.extended? %>
-        <div class="extended">
-          <p><%= link_to_permalink article, _("Continue reading") + "..." %></p>
-        </div>
-      <% end %>
-    <% end %>
-  <% else %>
-    <%= article.html(:body) %>
-    <div class="extended">
-      <%= article.html(:extended) %>
-    </div>
-  <% end %>
-<% else %>
-  <%= render 'articles/password_form', { :article => article } %>
-<% end %>
+<%= render 'protected_article_content', { :article => article } %>

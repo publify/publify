@@ -1,1 +1,5 @@
-<%= @article.html(:all) %>
+<% unless controller.action_name == 'redirect' %>
+  <%= render 'articles/article_excerpt', { :article => article } %>
+<% else %>
+  <%= render 'articles/full_article_content', { :article => article } %>
+<% end %>
