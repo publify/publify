@@ -31,7 +31,7 @@ class AddRedirectionsModel < ActiveRecord::Migration
         # fishy in my database coming from a very old Wordpress import
         # This can happen you too
         begin
-          puts "Processing #{art.type} #{art.id}"
+          say "Processing #{art.type} #{art.id}", true
           red = Redirect.new
           red.from_path = red.shorten
           red.to_path = art.permalink_url
