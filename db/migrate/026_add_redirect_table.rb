@@ -1,6 +1,6 @@
 class AddRedirectTable < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Adding Redirect Table"
+    say "Adding Redirect Table"
     create_table :redirects do |t|
       t.column :from_path, :string
       t.column :to_path, :string

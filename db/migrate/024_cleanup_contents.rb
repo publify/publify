@@ -36,7 +36,7 @@ end
 
 class CleanupContents < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Updating all articles"
+    say "Updating all articles"
     # This is needed when migrating from 2.5.x, because we skip GUID
     # generation and tagging during earlier migrations.
     Bare24Article.transaction do

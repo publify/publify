@@ -1,6 +1,6 @@
 class AddGuids < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Adding GUIDs to Comments and Trackbacks"
+    say "Adding GUIDs to Comments and Trackbacks"
 
     modify_tables_and_update([:add_column, :comments,   :guid, :string],
                              [:add_column, :trackbacks, :guid, :string])

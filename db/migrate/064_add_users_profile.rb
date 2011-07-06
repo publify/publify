@@ -9,7 +9,7 @@ class AddUsersProfile < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts "Creating users profiles"
+    say "Creating users profiles"
     create_table :profiles do |t|
       t.column :label, :string
       t.column :nicename, :string

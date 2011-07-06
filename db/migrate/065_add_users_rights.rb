@@ -21,7 +21,7 @@ class AddUsersRights < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts "Creating users rights"
+    say "Creating users rights"
     create_table :rights, :force => true do |t|
       t.column :name, :string
       t.column :description, :string

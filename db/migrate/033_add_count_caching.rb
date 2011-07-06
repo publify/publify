@@ -16,7 +16,7 @@ end
 
 class AddCountCaching < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Adding comments_count, trackbacks_count"
+    say "Adding comments_count, trackbacks_count"
     modify_tables_and_update([:add_column, Bare33Content, :comments_count, :integer],
                              [:add_column, Bare33Content, :trackbacks_count, :integer]) do |a|
       if not $schema_generator
@@ -26,7 +26,7 @@ class AddCountCaching < ActiveRecord::Migration
   end
 
   def self.down
-    STDERR.puts "Removing counts columns"
+    say "Removing counts columns"
     remove_column :contents, :comments_count
     remove_column :contents, :trackbacks_count
   end

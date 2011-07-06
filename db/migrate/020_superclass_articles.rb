@@ -23,7 +23,7 @@ class SuperclassArticles < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts "Merging Articles into Contents table"
+    say "Merging Articles into Contents table"
 
     # Make sure our index is in a known state
     # Comment because in migration 001, there are already a creation of this index
@@ -86,7 +86,7 @@ class SuperclassArticles < ActiveRecord::Migration
         end
 
         if config[::Rails.env]['adapter'] == 'postgresql'
-          STDERR.puts "Resetting PostgreSQL sequences"
+          say "Resetting PostgreSQL sequences", true
           execute "select setval('contents_id_seq',max(id)) from contents"
           execute "select nextval('contents_id_seq')"
         end
@@ -99,7 +99,7 @@ class SuperclassArticles < ActiveRecord::Migration
 
   def self.down
     Bare20Content.transaction do
-      STDERR.puts "Recreating Articles from Contents table."
+      say "Recreating Articles from Contents table."
 
       create_table :articles do |t|
         t.column :title, :string
@@ -155,7 +155,7 @@ class SuperclassArticles < ActiveRecord::Migration
         end
 
         if config[::Rails.env]['adapter'] == 'postgres'
-          STDERR.puts "Resetting PostgreSQL sequences"
+          say "Resetting PostgreSQL sequences", true
           execute "select setval('articles_id_seq',max(id)+1) from articles"
         end
 

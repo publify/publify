@@ -9,7 +9,7 @@ class SuperclassTrackbacks < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts "Merging Trackbacks into Content table"
+    say "Merging Trackbacks into Content table"
     # Ensure that the index we're going to remove in the transaction
     # is actually there (otherwise Postgres breaks)
     # Comment because already in migration 001
@@ -50,7 +50,7 @@ class SuperclassTrackbacks < ActiveRecord::Migration
   end
 
   def self.down
-    STDOUT.puts "Recreating Trackbacks from Contents table"
+    say "Recreating Trackbacks from Contents table"
     modify_tables_and_update([:create_table, :trackbacks, lambda {|t| transactions_init(t)}],
                              [:add_index,    :trackbacks, :article_id]) do
       BareContent.transaction do

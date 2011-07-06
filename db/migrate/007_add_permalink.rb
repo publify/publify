@@ -19,7 +19,7 @@ class AddPermalink < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts "Adding categories permalink"
+    say "Adding categories permalink"
     modify_tables_and_update([:add_column, BareCategory, :permalink, :string],
                              [:add_index,  BareCategory, :permalink]) do
       BareCategory.find_and_update {|c| c.permalink ||= c.stripped_name }
@@ -29,7 +29,7 @@ class AddPermalink < ActiveRecord::Migration
 
 
   def self.down
-    STDERR.puts "Removing categories permalink"
+    say "Removing categories permalink"
     remove_index :categories, :permalink
     remove_column :categories, :permalink
   end

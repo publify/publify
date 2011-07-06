@@ -5,7 +5,7 @@ end
 
 class SetCommentPublishedFlag < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Setting published flag on each comment"
+    say "Setting published flag on each comment"
     Bare27Content.transaction do
       Bare27Content.find(:all, :conditions => "type = 'Comment'").each do |c|
         c.published = true

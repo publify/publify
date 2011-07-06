@@ -4,7 +4,7 @@ end
 
 class AddTextfilters < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Adding TextFilters table"
+    say "Adding TextFilters table"
     Bare13TextFilter.transaction do
       create_table :text_filters do |t|
         t.column :name, :string

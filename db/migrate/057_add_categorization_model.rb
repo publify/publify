@@ -40,7 +40,7 @@ class AddCategorizationModel < ActiveRecord::Migration
     if User.count.zero?
       article = Article.find(:first)
       category = Category.find(:first)
-      STDERR.puts "Adding category to default article"
+      say "Adding category to default article"
       unless article.nil? or category.nil?
         Categorization.create!(:article_id => article.id,
                                :category_id => category.id,

@@ -4,7 +4,7 @@ end
 
 class BoolifyContentAllowFoo < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Boolifying contents.allow_(comments|pings)"
+    say "Boolifying contents.allow_(comments|pings)"
 
     modify_tables_and_update([:rename_column, Bare35Content, :allow_pings,    :old_ap],
                              [:add_column,    Bare35Content, :allow_pings,    :boolean],
@@ -20,7 +20,7 @@ class BoolifyContentAllowFoo < ActiveRecord::Migration
   end
 
   def self.down
-    STDERR.puts "Un-Boolifying contents.allow_(comments|pings)"
+    say "Un-Boolifying contents.allow_(comments|pings)"
     modify_tables_and_update([:rename_column, Bare35Content, :allow_pings,    :old_ap],
                              [:add_column,    Bare35Content, :allow_pings,    :integer],
                              [:rename_column, Bare35Content, :allow_comments, :old_ac],

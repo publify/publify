@@ -4,7 +4,7 @@ end
 
 class BoolifyPublished < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Boolifying contents.published"
+    say "Boolifying contents.published"
     modify_tables_and_update([:rename_column, Bare34Content, :published, :old_pub],
                              [:add_column,    Bare34Content, :published, :boolean, { :default => true }]) do |c|
       unless $schema_generator
@@ -19,7 +19,7 @@ class BoolifyPublished < ActiveRecord::Migration
   end
 
   def self.down
-    STDERR.puts "Un-Boolifying contents.published"
+    say "Un-Boolifying contents.published"
     modify_tables_and_update([:rename_column, Bare34Content, :published, :old_pub],
                              [:add_column,    Bare34Content, :published, :integer]) do |c|
       unless $schema_generator

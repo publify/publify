@@ -9,7 +9,7 @@ end
 
 class AddSidebars < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Creating sidebars"
+    say "Creating sidebars"
     Bare4Sidebar.transaction do
       create_table :sidebars do |t|
         t.column :controller, :string

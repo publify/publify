@@ -9,7 +9,7 @@ end
 
 class SuperclassPages < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Merging Pages into Content table"
+    say "Merging Pages into Content table"
     modify_tables_and_update(:add_column, Bare23Content, :name, :string) do
       Bare23Content.transaction do
         if not $schema_generator
@@ -43,7 +43,7 @@ class SuperclassPages < ActiveRecord::Migration
   end
 
   def self.down
-    STDERR.puts "Recreating pages table"
+    say "Recreating pages table"
     modify_tables_and_update(:create_table, :pages, lambda {|t| init_pages(t)}) do
       Bare23Content.transaction do
         Bare23Content.find(:all, :conditions => "type = 'Page'").each do |p|

@@ -9,7 +9,7 @@ end
 class AddBlogObject < ActiveRecord::Migration
   def self.up
     begin
-      STDERR.puts "Adding a blogs table"
+      say "Adding a blogs table"
       create_table :blogs do |t|
         t.column :dummy, :string unless $schema_generator
       end
@@ -20,13 +20,13 @@ class AddBlogObject < ActiveRecord::Migration
         Bare38Setting.reset_column_information
 
         Bare38Setting.transaction do
-          STDERR.puts "Creating default blog"
+          say "Creating default blog", true
           default_blog = Bare38Blog.create!
 
-          STDERR.puts "Connecting settings to the default blog"
+          say "Connecting settings to the default blog", true
 
-          STDERR.puts "New Default blog has id: " + default_blog.id.to_s
-          STDERR.puts "Migrating #{Bare38Setting.find(:all).size} settings to the new Blog"
+          say "New Default blog has id: " + default_blog.id.to_s, true
+          say "Migrating #{Bare38Setting.find(:all).size} settings to the new Blog", true
 
           Bare38Setting.find(:all).each do |setting|
             setting.blog_id = default_blog.id
@@ -36,7 +36,7 @@ class AddBlogObject < ActiveRecord::Migration
         remove_column :blogs, :dummy
       end
     rescue Exception => e
-      STDERR.puts("Rolling back the changes")
+      say("Rolling back the changes")
       drop_table(:blogs) rescue nil
       remove_column(:settings, :blog_id) rescue nil
       raise e
@@ -44,7 +44,7 @@ class AddBlogObject < ActiveRecord::Migration
   end
 
   def self.down
-    STDERR.puts "Unlinking settings and removing the blogs table"
+    say "Unlinking settings and removing the blogs table"
     Bare38Setting.delete_all(["blog_id != ?", Bare38Blog.find(:first)])
     remove_column :settings, :blog_id
     drop_table :blogs

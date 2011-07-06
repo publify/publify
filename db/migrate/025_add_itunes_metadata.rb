@@ -4,7 +4,7 @@ end
 
 class AddItunesMetadata < ActiveRecord::Migration
   def self.up
-    STDERR.puts "Adding podcast metadata fields"
+    say "Adding podcast metadata fields"
     modify_tables_and_update([:add_column, :resources, :itunes_metadata, :boolean],
                              [:add_column, :resources, :itunes_author, :string],
                              [:add_column, :resources, :itunes_subtitle, :string],
@@ -16,7 +16,7 @@ class AddItunesMetadata < ActiveRecord::Migration
   end
 
   def self.down
-    STDERR.puts "Removing podcast metadata fields"
+    say "Removing podcast metadata fields"
     modify_tables_and_update([:remove_column, :resources, :itunes_metadata, :boolean],
                              [:remove_column, :resources, :itunes_author, :string],
                              [:remove_column, :resources, :itunes_subtitle, :string],

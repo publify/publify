@@ -11,7 +11,7 @@ class AddTagDisplayName < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts 'Adding display name to tags'
+    say 'Adding display name to tags'
     modify_tables_and_update(:add_column, Tag, :display_name, :string) do
       unless $schema_generator
         Tag.find(:all).each do |tag|
@@ -42,7 +42,7 @@ class AddTagDisplayName < ActiveRecord::Migration
   end
 
   def self.down
-    STDERR.puts 'Removing display name from tags'
+    say 'Removing display name from tags'
     unless $schema_generator
       Tag.update_all('name = display_name')
     end

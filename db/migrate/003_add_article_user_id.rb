@@ -8,7 +8,7 @@ class AddArticleUserId < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts "Linking article authors to users"
+    say "Linking article authors to users"
     modify_tables_and_update(:add_column, BareArticle, :user_id, :integer) do |art|
       art.user_id = (BareUser.find_by_name(art.author).id rescue nil)
     end

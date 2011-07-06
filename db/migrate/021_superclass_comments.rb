@@ -9,7 +9,7 @@ class SuperclassComments < ActiveRecord::Migration
   end
 
   def self.up
-    STDERR.puts "Merging Comments into Contents table"
+    say "Merging Comments into Contents table"
     # Get our indices into a known good state.
     # Mutter dark imprecations at having to do this.
     #add_index(:comments, :article_id) rescue nil
@@ -61,7 +61,7 @@ class SuperclassComments < ActiveRecord::Migration
 
 
   def self.down
-    STDERR.puts "Recreating Comments from Contents table"
+    say "Recreating Comments from Contents table"
     modify_tables_and_update([:create_table, BareComment, lambda {|t| self.init_comments_table(t)}],
                              [:add_index,    BareComment, :article_id           ]) do
       BareContent.transaction do
