@@ -10,5 +10,7 @@ class DropSessionTable < ActiveRecord::Migration
       t.column :created_at, :datetime
       t.column :updated_at, :datetime
     end
+
+    add_index :sessions, :sessid
   end
 end

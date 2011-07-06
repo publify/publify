@@ -3,6 +3,7 @@ class SeparateEntriesAndFeedback < ActiveRecord::Migration
   end
 
   class Feedback < ActiveRecord::Base
+    set_table_name "feedback"
   end
 
   def self.up

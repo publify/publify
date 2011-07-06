@@ -108,8 +108,7 @@ class FixGrants < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :rights
-    drop_table :profiles_rights
+    rename_table :profiles_rights, :profiles_to_rights
   end
 end
 

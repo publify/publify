@@ -26,5 +26,7 @@ class RemoveBlogIds < ActiveRecord::Migration
     Sidebar.update_all("blog_id = #{default_blog_id}")
 
     change_column :sidebars, :blog_id, :integer, :null => false
+
+    add_index :contents, :blog_id
   end
 end

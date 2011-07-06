@@ -15,6 +15,6 @@ class AddTextfilterToUsers < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :text_filter_id, :integer
+    remove_column :users, :text_filter_id, :integer
   end
 end
