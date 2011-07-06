@@ -143,7 +143,7 @@ Localization.define("nl_NL") do |l|
 
   # app/models/feedback/states.rb
   l.store "Unclassified", "Niet geclassificeerd"
-  l.store "Just Presumed Ham", ""
+  l.store "Just Presumed Ham", "Zojuist aangenomen dat dit Ham is"
   l.store "Ham?", "Ham?"
   l.store "Just Marked As Ham", "Zojuist gemarkeerd als Ham"
   l.store "Ham", "Ham"
@@ -192,8 +192,8 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Verwijder"
-  l.store "Currently this article has the following resources", ""
-  l.store "You can associate the following resources", ""
+  l.store "Currently this article has the following resources", "Momenteel heeft dit artikel de volgende bronnen"
+  l.store "You can associate the following resources", "Je kunt de volgende bronnen koppelen"
   l.store "Really delete attachment", "Bijlage echt verwijderen"
   l.store "Add Another Attachment", "Voeg een andere bijlage toe"
 
@@ -292,7 +292,7 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "Commentaren voor %s"
   l.store "Status", "Status"
-  l.store "Comment Author", ""
+  l.store "Comment Author", "Auteur commentaar"
   l.store "Comment", "Reactie"
 
   # app/views/admin/feedback/edit.html.erb
@@ -358,20 +358,20 @@ Localization.define("nl_NL") do |l|
   l.store "Show your email address", "Toon je e-mail adres"
   l.store "Notifications", "Notificaties"
   l.store "Typo can notify you when new articles or comments are posted", "Typo can je notificeren wanneer nieuwe artikelen of commentaren gepost worden"
-  l.store "Source Email", ""
+  l.store "Source Email", "Bron e-mail"
   l.store "Email address used by Typo to send notifications", "E-mail adres dat Typo gebruikt om notificaties te versturen"
   l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", ""
-  l.store "Enable spam protection", ""
-  l.store "Akismet Key", ""
+  l.store "Enable spam protection", "Gebruik spam-bescherming"
+  l.store "Akismet Key", "Akismet sleutel"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", ""
-  l.store "Disable trackbacks site-wide", ""
-  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", ""
+  l.store "Disable trackbacks site-wide", "Gebruik nergens trackbacks"
+  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Deze instelling zorgt er voor dat bij geen enkel artikel in je blog trackbacks gebruikt kunnen worden. Het zal bestaande trackbacks niet verwijderen, maar het zal voorkomen dat nieuwe trackbacks worden toegevoegd."
   l.store "Disable comments after", "Sta commentaren niet toe na"
   l.store "days", "dagen"
   l.store "Set to 0 to never disable comments", "Zet op 0 om commentaren altijd toe te staan"
   l.store "Max Links", "Max links"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", ""
-  l.store "Set to 0 to never reject comments", ""
+  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo zal automatisch commentaren en trackbacks verwijderen die meer dan een bepaald aantal links bevatten"
+  l.store "Set to 0 to never reject comments", "Zet op 0 om commentaren nooit te weigeren"
   l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
@@ -385,12 +385,12 @@ Localization.define("nl_NL") do |l|
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", "Publicatie opties"
   l.store "Display", "Toon"
-  l.store "articles on my homepage by default", ""
-  l.store "articles in my news feed by default", ""
-  l.store "Show full article on feed", ""
-  l.store "Feedburner ID", ""
+  l.store "articles on my homepage by default", "artikelen op mijn startpagina"
+  l.store "articles in my news feed by default", "artikelen in mijn news feed"
+  l.store "Show full article on feed", "Toon volledig artikel in feed"
+  l.store "Feedburner ID", "Feedburner ID"
   l.store "General settings", "Algemene instellingen"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
+  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", "Je kunt je Google Feedburner account gebruiken in plaats van de Typo feed URL. Vul daartoe in dit formulier je Feedburner ID in."
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Zoekmachine optimalisatie"
