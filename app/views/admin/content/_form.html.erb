@@ -45,7 +45,7 @@
       <%= text_field 'article', 'title', :class => 'large' %>
     </p>
 
-    <%= render(@images) unless @images.empty? %>
+    <%= render('images', { :images => @images}) unless @images.empty? %>
 
     <div id='editor-menu'>
       <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>

@@ -1,6 +1,6 @@
 <div id="carousel-wrapper" <%= 'style="display: none;"' if current_user.editor == 'visual' %>>
     <div id="carousel-content">
-      <% @images.each do |image| %>
+      <% images.each do |image| %>
         <div class="slide">
           <%= show_thumbnail_for_editor(image) %>
         </div>
