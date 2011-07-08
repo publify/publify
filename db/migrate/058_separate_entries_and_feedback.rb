@@ -1,5 +1,6 @@
 class SeparateEntriesAndFeedback < ActiveRecord::Migration
   class Content < ActiveRecord::Base
+    set_inheritance_column :bogustype
   end
 
   class Feedback < ActiveRecord::Base
