@@ -25,7 +25,7 @@ class AccountsController < ApplicationController
             :httponly => true # Help prevent auth_token theft.
           }
         end
-        add_to_cookies(:typo_user_profile, self.current_user.profile.label, '/')
+        add_to_cookies(:typo_user_profile, self.current_user.profile_label, '/')
 
         self.current_user.update_connection_time
         flash[:notice]  = _("Login successful")

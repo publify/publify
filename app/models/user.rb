@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   belongs_to :text_filter
 
   delegate :name, :to => :text_filter, :prefix => true
+  delegate :label, :to => :profile, :prefix => true
 
   has_many :notifications, :foreign_key => 'notify_user_id'
   has_many :notify_contents, :through => :notifications,

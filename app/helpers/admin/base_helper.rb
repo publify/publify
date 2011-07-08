@@ -3,7 +3,7 @@ module Admin::BaseHelper
 
   def subtabs_for(current_module)
     output = []
-    AccessControl.project_module(current_user.profile.label, current_module).submenus.each_with_index do |m,i|
+    AccessControl.project_module(current_user.profile_label, current_module).submenus.each_with_index do |m,i|
       current =
       output << subtab(_(m.name), (m.url[:controller] == params[:controller] && m.url[:action] == params[:action]) ? '' : m.url)
     end
