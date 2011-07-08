@@ -14,9 +14,10 @@ class AddRedirectionsModel < ActiveRecord::Migration
     has_many :redirects, :through => :redirections
     scope :already_published, {
       :conditions => ['published = ? AND published_at < ?', true, Time.now] }
-  end
 
-  class Article < Content; end
+    # Avoid STI errors
+    set_inheritance_column :bogustype
+  end
 
   def self.up
     create_table :redirections do |t|
