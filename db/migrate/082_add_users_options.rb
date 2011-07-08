@@ -31,6 +31,7 @@ class AddUsersOptions < ActiveRecord::Migration
     remove_column :users, :msn
     remove_column :users, :aim
     remove_column :users, :jabber
+    remove_column :users, :twitter
     remove_column :users, :yahoo
     remove_column :users, :description
     add_column :users, :notify_via_jabber, :tinyint
