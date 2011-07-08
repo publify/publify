@@ -7,7 +7,8 @@ describe "admin/content/new.html.erb" do
     view.stub(:current_user) { admin }
 
     text_filter = "markdown smartypants".to_text_filter
-    assign(:article, stub_model(Article, :text_filter => text_filter))
+    assign :article,
+      stub_model(Article, :text_filter => text_filter).as_new_record
     assign(:images, [])
     assign(:macros, [])
     assign(:resources, [])
