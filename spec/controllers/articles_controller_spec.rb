@@ -359,6 +359,13 @@ describe ArticlesController, "redirecting" do
         assert_response 301
         response.should redirect_to("http://test.host/blog/someplace/else")
       end
+
+      it "should ignore the blog base_url if the to_path is a full uri" do
+        Factory(:redirect, :from_path => 'foo', :to_path => 'http://some.where/else')
+        get :redirect, :from => "foo"
+        assert_response 301
+        response.should redirect_to("http://some.where/else")
+      end
     end
   end
 
