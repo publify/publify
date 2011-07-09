@@ -62,14 +62,14 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   end
 
   map.project_module :content, nil do |project|
-    project.menu    "Content",           { :controller => "admin/content",    :action => "index" }
+    project.menu    "Content",          { :controller => "admin/content",    :action => "index" }
     project.submenu "Articles",         { :controller => "admin/content",    :action => "index" }
-    project.submenu "Comments",         { :controller => "admin/feedback" }
-	  project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
-	  project.submenu "Categories",       { :controller => "admin/categories", :action => "new" }
-	  project.submenu "Files",            { :controller => "admin/resources",  :action => "index" }
-	  project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
-	  project.submenu "",                      { :controller => "admin/comments", :action => "show" }
+    project.submenu "Comments",         { :controller => "admin/feedback",   :action => "index" }
+    project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
+    project.submenu "Categories",       { :controller => "admin/categories", :action => "new" }
+    project.submenu "Files",            { :controller => "admin/resources",  :action => "index" }
+    project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
+    project.submenu "",                      { :controller => "admin/comments", :action => "show" }
     project.submenu "",                      { :controller => "admin/comments", :action => "new" }
     project.submenu "",                      { :controller => "admin/comments", :action => "edit" }
     project.submenu "",                      { :controller => "admin/comments", :action => "destroy" }
