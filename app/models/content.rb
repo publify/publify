@@ -377,7 +377,7 @@ class Content < ActiveRecord::Base
   def short_url
     # Double check because of crappy data in my own old database
     return unless self.published and self.redirects.count > 0
-    URI.join(blog.base_url, self.redirects.first.from_path).to_s
+    blog.url_for(redirects.first.from_path, :only_path => false)
   end
 
 end
