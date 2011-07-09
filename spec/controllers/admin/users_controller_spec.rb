@@ -94,16 +94,19 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
       describe 'try update another user' do
         before do
+          @admin_profile = Factory.create(:profile_admin)
+          @administrator = Factory.create(:user, :profile => @admin_profile)
+          contributor = Factory.create(:profile_contributor)
           post :edit,
-            :id => users(:tobi).id,
-            :profile_id => profiles(:contributor).id
+            :id => @administrator.id,
+            :profile_id => contributor.id
         end
         it 'should redirect to login' do
           response.should redirect_to('/accounts/login')
         end
         it 'should not change user profile' do
-          u = users(:tobi).reload
-          u.profile_id.should == profiles(:admin).id
+          u = @administrator.reload
+          u.profile_id.should == @admin_profile.id
         end
       end
     end

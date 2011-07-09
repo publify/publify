@@ -22,6 +22,3 @@ publisher:
     :content,
     :feedback].to_yaml.inspect %>
 
-contributor:
-  label: contributor
-  nicename: Contributor
