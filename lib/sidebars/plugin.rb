@@ -115,7 +115,7 @@ module Sidebars
       def subclasses
         @@subclasses[self] ||= []
         @@subclasses[self] + extra =
-          @@subclasses[self].inject([]) {|list, subclass| list | subclass.subclasses }
+          @@subclasses[self].map {|subclass| subclass.subclasses }.uniq
       end
 
       def available_sidebars

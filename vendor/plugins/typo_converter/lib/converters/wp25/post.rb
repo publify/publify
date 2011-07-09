@@ -9,21 +9,11 @@ module WP25
              :class_name => 'WP25::TermTaxonomy'
 
     def categories
-      term_taxonomies.inject([]) do |list, taxonomy|
-        if taxonomy.taxonomy.eql?('category')
-          list << taxonomy.term.name
-        end
-        list
-      end
+      terms_for_taxonomy 'category'
     end
 
     def tags
-      term_taxonomies.inject([]) do |list, taxonomy|
-        if taxonomy.taxonomy.eql?('post_tag')
-          list << taxonomy.term.name
-        end
-        list
-      end
+      terms_for_taxonomy 'post_tag'
     end
 
     def comments
@@ -32,6 +22,16 @@ module WP25
 
     def self.prefix=(prefix)
       set_table_name "#{prefix}_posts"
+    end
+
+    private
+
+    def terms_for_taxonomy tax
+      term_taxonomies.map do |ttx|
+        if ttx.taxonomy.eql?(tax)
+          ttx.term.name
+        end
+      end.compact
     end
   end
 end

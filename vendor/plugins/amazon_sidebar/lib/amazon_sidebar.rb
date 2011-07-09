@@ -8,9 +8,9 @@ class AmazonSidebar < Sidebar
   attr_accessor :asins
 
   def parse_request(contents, request_params)
-    asin_list = contents.to_a.inject([]) do |acc, item|
-      acc + item.whiteboard[:asins].to_a
-    end
+    asin_list = contents.to_a.map do |item|
+      item.whiteboard[:asins].to_a
+    end.flatten
     self.asins = asin_list.uniq.compact[0,maxlinks.to_i]
   end
 end

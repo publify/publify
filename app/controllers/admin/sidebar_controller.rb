@@ -30,17 +30,15 @@ class Admin::SidebarController < Admin::BaseController
 
     # Figure out which plugins are referenced by the params[:active] array and
     # lay them out in a easy accessible sequential array
-    flash[:sidebars] = params[:active].inject([]) do |array, name|
+    flash[:sidebars] = params[:active].map do |name|
       if klass_for.has_key?(name)
         new_sidebar_id = klass_for[name].create.id
         @new_item = Sidebar.find(new_sidebar_id)
-        array << new_sidebar_id
+        new_sidebar_id
       elsif activemap.has_key?(name)
-        array << activemap[name]
-      else
-        array
+        activemap[name]
       end
-    end
+    end.compact
   end
 
   def remove
