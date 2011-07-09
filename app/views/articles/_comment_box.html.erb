@@ -32,7 +32,7 @@
         <%= text_area "comment", "body" %>
       </td>
     </tr>
-	<% if @blog.settings["use_recaptcha"] %>
+	<% if this_blog.use_recaptcha %>
 	<tr>
 		<td><p>reCaptcha</p></td>
 	    <td><p><%= recaptcha_tags :ajax => true %></p></td>

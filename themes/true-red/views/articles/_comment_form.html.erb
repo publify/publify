@@ -16,7 +16,7 @@
   <p class='body'>
     <%= text_area 'comment', 'body' %>
   </p>
-  <% if @blog.settings["use_recaptcha"] %>
+  <% if this_blog.use_recaptcha %>
   <p><%= raw recaptcha_tags :ajax => true %></p>
   <% end %>
   <p class='comment_submit'>
