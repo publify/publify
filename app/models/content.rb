@@ -239,7 +239,7 @@ class Content < ActiveRecord::Base
   # The default text filter.  Generally, this is the filter specified by blog.text_filter,
   # but comments may use a different default.
   def default_text_filter
-    blog.text_filter.to_text_filter
+    blog.text_filter_object
   end
 
   # Grab the text filter for this object.  It's either the filter specified by

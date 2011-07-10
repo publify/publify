@@ -199,6 +199,10 @@ class Blog < ActiveRecord::Base
     split_base_url[:root_path]
   end
 
+  def text_filter_object
+    text_filter.to_text_filter
+  end
+
   private
 
   def protocol
