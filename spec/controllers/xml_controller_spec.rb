@@ -146,11 +146,6 @@ describe XmlController do
       get :feed, :format => 'atom10', :type => 'article', :id => @article.id
       assert_moved_permanently_to @article.permalink_by_format('atom')
     end
-
-    it "test_articlerss" do
-      get :articlerss, :id => @article.id
-      assert_response :redirect
-    end
   end
 
   it "test_feed_atom10_category" do
@@ -161,6 +156,11 @@ describe XmlController do
   it "test_feed_atom10_tag" do
     get :feed, :format => 'atom10', :type => 'tag', :id => 'foo'
     assert_moved_permanently_to(tag_url('foo',:format => 'atom'))
+  end
+
+  it "test_articlerss" do
+    get :articlerss, :id => 123
+    assert_response :redirect
   end
 
   it "test_commentrss" do
