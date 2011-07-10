@@ -11,6 +11,9 @@ class XmlController < ApplicationController
     'atom' => 'application/atom+xml',
     'googlesitemap' => 'application/xml' }
 
+  AVAILABLE_TYPES = ['feed', 'comments', 'article', 'category', 'tag', 'author',
+    'trackbacks', 'sitemap']
+
   before_filter :adjust_format
 
   def feed
@@ -18,6 +21,10 @@ class XmlController < ApplicationController
 
     unless @format
       return render(:text => 'Unsupported format', :status => 404)
+    end
+
+    unless AVAILABLE_TYPES.include? params[:type]
+      return render(:text => 'Unsupported action', :status => 404)
     end
 
     # TODO: Move redirects into config/routes.rb, if possible
@@ -40,12 +47,7 @@ class XmlController < ApplicationController
       @link = this_blog.base_url
       @self_url = url_for(params)
 
-      if respond_to?("prep_#{params[:type]}")
-        self.send("prep_#{params[:type]}")
-      else
-        render :text => 'Unsupported action', :status => 404
-        return
-      end
+      self.send("prep_#{params[:type]}")
 
       # TODO: Use templates from articles controller.
       respond_to do |format|
