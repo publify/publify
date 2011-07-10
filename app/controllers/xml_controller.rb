@@ -93,40 +93,9 @@ class XmlController < ApplicationController
     @items += association.find_already_published(:all, :limit => limit, :order => order)
   end
 
-  def prep_feed
-    fetch_items(:articles)
-  end
-
-  def prep_comments
-    fetch_items(:comments)
-    @feed_title << " comments"
-  end
-
   def prep_trackbacks
     fetch_items(:trackbacks)
     @feed_title << " trackbacks"
-  end
-
-  def prep_article
-    article = this_blog.articles.find(params[:id])
-    fetch_items(article.comments, 'published_at DESC', 25)
-    @items.unshift(article)
-    @feed_title << ": #{article.title}"
-    @link = article.permalink_url
-  end
-
-  def prep_category
-    category = Category.find_by_permalink(params[:id])
-    fetch_items(category.articles)
-    @feed_title << ": Category #{category.name}"
-    @link = category.permalink_url
-  end
-
-  def prep_tag
-    tag = Tag.find_by_name(params[:id])
-    fetch_items(tag.articles)
-    @feed_title << ": Tag #{tag.display_name}"
-    @link = tag.permalink_url
   end
 
   def prep_sitemap
