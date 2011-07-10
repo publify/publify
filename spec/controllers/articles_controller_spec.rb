@@ -247,20 +247,6 @@ describe ArticlesController, "feeds" do
     response.should render_template("_rss20_feed")
     assert_feedvalidator response.body
   end
-
-  it 'should create valid atom feed when article contains &eacute;' do
-    @article.body = '&eacute;coute!'
-    @article.save!
-    get 'index', :format => 'atom'
-    assert_feedvalidator response.body
-  end
-
-  it 'should create valid atom feed when article contains loose <' do
-    @article.body = 'is 4 < 2? no!'
-    @article.save!
-    get 'index', :format => 'atom'
-    assert_feedvalidator response.body
-  end
 end
 
 describe ArticlesController, "the index" do
