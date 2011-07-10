@@ -7,8 +7,9 @@ describe XmlController do
   end
 
   before do
-    blog = Factory.build(:blog)
-    Blog.stub!(:default).and_return(blog)
+    blog = stub_model(Blog, :base_url => "http://myblog.net")
+    Blog.stub(:default) { blog }
+    Trigger.stub(:fire) { }
   end
 
   def assert_moved_permanently_to(location)
@@ -127,7 +128,8 @@ describe XmlController do
 
   describe "for an article" do
     before do
-      @article = Factory.create(:article)
+      @article = stub_model(Article, :published_at => Time.now, :permalink => "foo")
+      Article.stub(:find) { @article }
     end
 
     describe "without format parameter" do
