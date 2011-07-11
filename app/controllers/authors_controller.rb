@@ -8,14 +8,19 @@ class AuthorsController < ContentController
     respond_to do |format|
       format.html
       format.rss do
-        @limit = this_blog.limit_rss_display
         auto_discovery_feed(:only_path => false)
-        render :partial => "shared/rss20_feed", :locals => { :items => @author.articles }
+        render_feed "shared/rss20_feed"
       end
       format.atom do
-        @limit = this_blog.limit_rss_display
-        render :partial => "shared/atom_feed", :locals => { :items => @author.articles }
+        render_feed "shared/atom_feed"
       end
     end
+  end
+
+  private
+
+  def render_feed(template)
+    @limit = this_blog.limit_rss_display
+    render :partial => template, :locals => { :items => @author.articles, :feed_url => url_for(params) }
   end
 end

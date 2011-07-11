@@ -33,8 +33,8 @@ class FeedbackController < ApplicationController
           render :text => 'this space left blank'
         end
       end
-      format.atom { render :partial => 'shared/atom_feed', :locals => { :items => get_feedback } }
-      format.rss { render :partial => 'shared/rss20_feed', :locals => { :items => get_feedback } }
+      format.atom { render_feed 'shared/atom_feed', get_feedback }
+      format.rss { render_feed 'shared/rss20_feed', get_feedback }
     end
   end
 
@@ -46,5 +46,9 @@ class FeedbackController < ApplicationController
     else
       this_blog.published_feedback.find(:all, this_blog.rss_limit_params.merge(:order => 'created_at DESC'))
     end
+  end
+
+  def render_feed(template, collection)
+    render :partial => template, :locals => { :items => collection, :feed_url => url_for(params) }
   end
 end

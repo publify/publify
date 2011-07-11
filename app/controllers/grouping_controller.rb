@@ -113,7 +113,7 @@ class GroupingController < ContentController
 
   def render_feed(template, collection)
     articles = collection[0,this_blog.limit_rss_display]
-    render :partial => template, :locals => { :items => articles }
+    render :partial => template, :locals => { :items => articles, :feed_url => url_for(params) }
   end
 
   def render_empty
