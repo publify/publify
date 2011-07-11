@@ -52,8 +52,8 @@ class ArticlesController < ContentController
     return error(_("No posts found..."), :status => 200) if @articles.empty?
     respond_to do |format|
       format.html { render 'search' }
-      format.rss { render :partial => "articles/rss20_feed", :locals => { :items => @articles } }
-      format.atom { render :partial => "articles/atom_feed", :locals => { :items => @articles } }
+      format.rss { render :partial => "shared/rss20_feed", :locals => { :items => @articles } }
+      format.atom { render :partial => "shared/atom_feed", :locals => { :items => @articles } }
     end
   end
 
@@ -186,7 +186,7 @@ class ArticlesController < ContentController
 
   def send_feed(format)
     if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
-      render :partial => "articles/#{format}_feed", :locals => { :items => @articles }
+      render :partial => "shared/#{format}_feed", :locals => { :items => @articles }
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
@@ -194,7 +194,7 @@ class ArticlesController < ContentController
 
   # TODO: Merge with send_feed?
   def render_feed(type)
-    render :partial => "/articles/#{type}_feed", :locals => { :items => @article.published_feedback }
+    render :partial => "/shared/#{type}_feed", :locals => { :items => @article.published_feedback }
   end
 
   def set_headers

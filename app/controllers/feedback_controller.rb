@@ -33,8 +33,8 @@ class FeedbackController < ApplicationController
           render :text => 'this space left blank'
         end
       end
-      format.atom { render :partial => 'articles/atom_feed', :locals => { :items => get_feedback } }
-      format.rss { render :partial => 'articles/rss20_feed', :locals => { :items => get_feedback } }
+      format.atom { render :partial => 'shared/atom_feed', :locals => { :items => get_feedback } }
+      format.rss { render :partial => 'shared/rss20_feed', :locals => { :items => get_feedback } }
     end
   end
 

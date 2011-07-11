@@ -88,14 +88,14 @@ describe ArticlesController do
     it 'should render feed rss by search' do
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
-      response.should render_template('articles/_rss20_feed')
+      response.should render_template('shared/_rss20_feed')
       assert_feedvalidator response.body
     end
 
     it 'should render feed atom by search' do
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
-      response.should render_template('articles/_atom_feed')
+      response.should render_template('shared/_atom_feed')
       assert_feedvalidator response.body
     end
 
@@ -224,27 +224,27 @@ describe ArticlesController, "feeds" do
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
-    response.should render_template("_atom_feed")
+    response.should render_template("shared/_atom_feed")
     assert_feedvalidator response.body
   end
 
   specify "/articles.rss => an RSS 2.0 feed" do
     get 'index', :format => 'rss'
     response.should be_success
-    response.should render_template("_rss20_feed")
+    response.should render_template("shared/_rss20_feed")
     response.body.should have_selector('link', :content => 'http://myblog.net')
     assert_feedvalidator response.body
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
-    response.should render_template("_atom_feed")
+    response.should render_template("shared/_atom_feed")
     assert_feedvalidator response.body
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
-    response.should render_template("_rss20_feed")
+    response.should render_template("shared/_rss20_feed")
     assert_feedvalidator response.body
   end
 end
@@ -256,7 +256,7 @@ describe ArticlesController, "the index" do
     pending "replacement needed for setting use_accept_header=false"
     request.env["HTTP_ACCEPT"] = "application/atom+xml"
     get "index"
-    response.should_not render_template("_atom_feed")
+    response.should_not render_template("shared/_atom_feed")
   end
 end
 
@@ -492,7 +492,7 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render atom partial' do
-        response.should render_template('articles/_atom_feed')
+        response.should render_template('shared/_atom_feed')
       end
 
       it 'should render a valid feed' do
@@ -508,7 +508,7 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render rss20 partial' do
-        response.should render_template('articles/_rss20_feed')
+        response.should render_template('shared/_rss20_feed')
       end
 
       it 'should render a valid feed' do

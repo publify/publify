@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "articles/atom_feed.atom.builder" do
+describe "shared/atom_feed.atom.builder" do
   before do
     blog = stub_model(Blog, :base_url => "http://myblog.net")
     view.stub(:this_blog) { blog }
@@ -27,7 +27,7 @@ describe "articles/atom_feed.atom.builder" do
     article1.body = '&eacute;coute!'
     article2 = base_article(2.minutes.ago)
     article2.body = 'is 4 < 2? no!'
-    render "articles/atom_feed", :items => [article1, article2]
+    render "shared/atom_feed", :items => [article1, article2]
     assert_feedvalidator rendered
   end
 end
