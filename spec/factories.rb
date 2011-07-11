@@ -189,7 +189,6 @@ Factory.define :page do |p|
 end
 
 Factory.define :trackback do |t|
-  t.article { some_article }
   t.published true
   t.state 'ham'
   t.status_confirmed true
@@ -198,4 +197,6 @@ Factory.define :trackback do |t|
   t.url 'http://www.example.com'
   t.excerpt 'This is an excerpt'
   t.guid 'dsafsadffsdsf'
+  t.created_at Time.now
+  t.updated_at Time.now
 end
