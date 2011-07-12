@@ -4,6 +4,7 @@ class RemoveBlogIds < ActiveRecord::Migration
   end
 
   class Feedback < ActiveRecord::Base
+    set_table_name "feedback"
   end
 
   class Sidebar < ActiveRecord::Base
