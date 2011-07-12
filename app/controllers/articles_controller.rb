@@ -37,11 +37,11 @@ class ArticlesController < ContentController
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
-        send_feed('atom')
+        render_articles_feed('atom')
       end
       format.rss do
         auto_discovery_feed(:only_path => false)
-        send_feed('rss20')
+        render_articles_feed('rss20')
       end
     end
   end
@@ -52,8 +52,8 @@ class ArticlesController < ContentController
     return error(_("No posts found..."), :status => 200) if @articles.empty?
     respond_to do |format|
       format.html { render 'search' }
-      format.rss { render :partial => "articles/rss20_feed", :locals => { :items => @articles } }
-      format.atom { render :partial => "articles/atom_feed", :locals => { :items => @articles } }
+      format.rss { render_feed "rss20", @articles }
+      format.atom { render_feed "atom", @articles }
     end
   end
 
@@ -164,9 +164,9 @@ class ArticlesController < ContentController
     auto_discovery_feed
     respond_to do |format|
       format.html { render '/articles/read' }
-      format.atom { render_feed('atom') }
-      format.rss  { render_feed('rss20') }
-      format.xml  { render_feed('atom') }
+      format.atom { render_feedback_feed('atom') }
+      format.rss  { render_feedback_feed('rss20') }
+      format.xml  { render_feedback_feed('atom') }
     end
   rescue ActiveRecord::RecordNotFound
     error("Post not found...")
@@ -184,17 +184,20 @@ class ArticlesController < ContentController
     @canonical_url = @article.permalink_url
   end
 
-  def send_feed(format)
+  def render_articles_feed(format)
     if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
-      render :partial => "articles/#{format}_feed", :locals => { :items => @articles }
+      render_feed format, @articles
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
   end
 
-  # TODO: Merge with send_feed?
-  def render_feed(type)
-    render :partial => "/articles/#{type}_feed", :locals => { :items => @article.published_feedback }
+  def render_feedback_feed type
+    render_feed type, @article.published_feedback
+  end
+
+  def render_feed type, items
+    render :partial => "shared/#{type}_feed", :locals => { :items => items, :feed_url => url_for(params) }
   end
 
   def set_headers

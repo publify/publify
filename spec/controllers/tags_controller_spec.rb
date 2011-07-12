@@ -79,12 +79,12 @@ describe TagsController, 'showing a single tag' do
 
     it 'should render the atom feed for /articles/tag/foo.atom' do
       get 'show', :id => 'foo', :format => 'atom'
-      response.should render_template('articles/_atom_feed')
+      response.should render_template('shared/_atom_feed')
     end
 
     it 'should render the rss feed for /articles/tag/foo.rss' do
       get 'show', :id => 'foo', :format => 'rss'
-      response.should render_template('articles/_rss20_feed')
+      response.should render_template('shared/_rss20_feed')
     end
   end
 

@@ -19,7 +19,7 @@ describe TrackbacksController do
 
       it "returns an atom feed" do
         response.should be_success
-        response.should render_template("articles/_atom_feed")
+        response.should render_template("shared/_atom_feed")
       end
     end
 
@@ -30,7 +30,7 @@ describe TrackbacksController do
 
       it "returns an rss feed" do
         response.should be_success
-        response.should render_template("articles/_rss20_feed")
+        response.should render_template("shared/_rss20_feed")
       end
     end
   end

@@ -105,12 +105,12 @@ describe CategoriesController, '/articles/category/personal' do
 
   it 'should render the atom feed for /articles/category/personal.atom' do
     get 'show', :id => 'personal', :format => 'atom'
-    response.should render_template('articles/_atom_feed')
+    response.should render_template('shared/_atom_feed')
   end
 
   it 'should render the rss feed for /articles/category/personal.rss' do
     get 'show', :id => 'personal', :format => 'rss'
-    response.should render_template('articles/_rss20_feed')
+    response.should render_template('shared/_rss20_feed')
   end
 
 end

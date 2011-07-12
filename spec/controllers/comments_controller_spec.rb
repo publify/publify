@@ -73,13 +73,13 @@ describe CommentsController do
     it "GET /2007/10/11/slug/comments.atom should return an atom feed" do
       get :index, :format => 'atom', :article_id => Factory(:article).id
       response.should be_success
-      response.should render_template("articles/_atom_feed")
+      response.should render_template("shared/_atom_feed")
     end
 
     it "GET /2007/10/11/slug/comments.rss should return an rss feed" do
       get :index, :format => 'rss', :article_id => Factory(:article).id
       response.should be_success
-      response.should render_template("articles/_rss20_feed")
+      response.should render_template("shared/_rss20_feed")
     end
   end
 end
@@ -107,12 +107,12 @@ describe CommentsController, "GET /comments.:format" do
   it ":format => 'atom' should return an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
-    response.should render_template("articles/_atom_feed")
+    response.should render_template("shared/_atom_feed")
   end
 
   it ":format => 'rss' should return an rss feed"do
     get 'index', :format => 'rss'
     response.should be_success
-    response.should render_template("articles/_rss20_feed")
+    response.should render_template("shared/_rss20_feed")
   end
 end
