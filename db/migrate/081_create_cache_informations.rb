@@ -11,8 +11,8 @@ class CreateCacheInformations < ActiveRecord::Migration
       return if public_path == "#{::Rails.root.to_s}/public"
       srcs = paths.map { |v|
         Dir.glob(public_path + "/#{v}")
-      }
-      return true if srcs.flatten.empty?
+      }.flatten
+      return true if srcs.empty?
       trash = ::Rails.root.to_s + "/tmp/typodel.#{UUIDTools::UUID.random_create}"
       FileUtils.makedirs(trash)
       FileUtils.mv(srcs, trash, :force => true)
