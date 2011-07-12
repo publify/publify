@@ -51,7 +51,7 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should be successful' do
-    do_get()
+    do_get
     response.should be_success
   end
 
@@ -79,15 +79,15 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should show only published articles' do
-    Category.delete_all
-    c = Factory(:category, :permalink => 'personal')
-    3.times {Factory(:article, :categories => [c])}
-    Factory(:article, :categories => [c], :published_at => nil,
-      :published => false, :state => 'draft')
-    c = Category.find_by_permalink("personal")
-    c.articles.size.should == 4
-    c.published_articles.size.should == 3
-    do_get
+    c = Factory.build(:category, :permalink => 'Social')
+    articles = []
+    3.times {articles << Factory(:article, :categories => [c])}
+    articles << Factory(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
+    #c.should_receive(:articles).and_return(articles)
+    controller.should_receive(:show_page_title_for)
+    controller.should_receive(:permalink_with_page)
+    Category.should_receive(:find_by_permalink).with('Social').and_return(c)
+    get 'show', :id => 'Social'
     response.should be_success
     assigns[:articles].size.should == 3
   end
@@ -202,6 +202,4 @@ describe CategoriesController, "SEO Options" do
     get 'show', :id => 'personal'
     response.should_not have_selector('head>meta[name="keywords"]')
   end
-  
-  
 end

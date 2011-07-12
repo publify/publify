@@ -14,6 +14,18 @@ describe 'Given the results of Category.find_all_with_article_counters' do
   end
 end
 
+describe "Category" do
+  it "should know published_articles" do
+    Factory(:blog)
+    c = Factory(:category, :permalink => 'Ubbercool')
+    3.times {Factory(:article, :categories => [c])}
+    Factory(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
+    c = Category.find_by_permalink("Ubbercool")
+    c.articles.size.should == 4
+    c.published_articles.size.should == 3
+  end
+end
+
 describe 'Given the fixtures' do
   it 'find gets the order right' do
     cats = [Factory.create(:category, :id => 2, :position => 1),

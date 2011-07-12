@@ -36,36 +36,14 @@ class GroupingController < ContentController
   def show
     set_noindex
     @grouping = grouping_class.find_by_permalink(params[:id])
-
     return render_empty if @grouping.nil?
 
-    # For some reasons, the permalink_url does not take the pagination.
-    suffix = params[:page].nil? ? "/" : "/page/#{params[:page]}/"
-
-    @canonical_url = @grouping.permalink_url + suffix
-    @page_title = "#{_(self.class.to_s.sub(/Controller$/,'').singularize)} #{@grouping.name}, "
-
-    if @grouping.respond_to? :description and
-        not @grouping.description.nil?
-      @page_title += @grouping.description
-    else
-      @page_title += "#{_('everything about')} "
-
-      if @grouping.respond_to? :display_name and
-          not @grouping.display_name.nil?
-        @page_title += @grouping.display_name
-      else
-        @page_title += @grouping.name
-      end
-    end
-
-    @page_title << " page " << params[:page] if params[:page]
-    @description = (@grouping.description.blank?) ? "" : @grouping.description
-    @keywords = "" 
-    @keywords << @grouping.keywords unless @grouping.keywords.blank?
-    @keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
-    
+    @canonical_url = permalink_with_page @grouping, params[:page]
+    @page_title = show_page_title_for @grouping, params[:page]
+    @description = @grouping.description.to_s
+    @keywords = keyword_from @grouping
     @articles = @grouping.articles.paginate(:page => params[:page], :conditions => { :published => true}, :per_page => 10)
+
     render_articles
   end
 
@@ -81,6 +59,38 @@ class GroupingController < ContentController
 
   def groupings
     instance_variable_get(self.class.ivar_name)
+  end
+
+  def keyword_from grouping
+    keywords = "" 
+    keywords << grouping.keywords unless grouping.keywords.blank?
+    keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
+    keywords 
+  end
+
+  def show_page_title_for grouping, page
+    title = "#{_(self.class.to_s.sub(/Controller$/,'').singularize)} #{grouping.name}, "
+
+    if grouping.respond_to? :description and
+        not grouping.description.nil?
+      title += grouping.description
+    else
+      title += "#{_('everything about')} "
+      if grouping.respond_to? :display_name and
+          not grouping.display_name.nil?
+        title += grouping.display_name
+      else
+        title += grouping.name
+      end
+    end
+    title << " page " << page if page
+    title
+  end
+
+  # For some reasons, the permalink_url does not take the pagination.
+  def permalink_with_page grouping, page
+    suffix = page.nil? ? "/" : "/page/#{page}/"
+    grouping.permalink_url + suffix
   end
 
   def render_index(groupings)
