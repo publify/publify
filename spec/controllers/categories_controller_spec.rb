@@ -13,6 +13,8 @@ describe CategoriesController, "/index" do
 
   describe "normally" do
     before do
+      cat = Factory.build(:category) 
+      Category.stub!(:find_by_permalink).with('Social').and_return(cat)
       get 'index'
     end
 
