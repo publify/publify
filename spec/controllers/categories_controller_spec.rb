@@ -80,12 +80,11 @@ describe CategoriesController, '/articles/category/personal' do
 
   it 'should show only published articles' do
     c = Factory.build(:category, :permalink => 'Social')
-    articles = []
-    articles << Factory(:article, :categories => [c])
-    articles << Factory(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
+    articles = [Factory.build(:article, :categories => [c])]
     controller.should_receive(:show_page_title_for)
     controller.should_receive(:permalink_with_page)
     Category.should_receive(:find_by_permalink).with('Social').and_return(c)
+    c.should_receive(:published_articles).and_return(articles)
     get 'show', :id => 'Social'
     response.should be_success
     assigns[:articles].should_not be_empty
