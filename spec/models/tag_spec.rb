@@ -57,6 +57,15 @@ describe Tag do
       should == 'http://myblog.net/tag/foo'
     end
   end
+
+  describe '#published_articles' do
+    it "should return only published articles" do
+      published_art = Factory(:article)
+      draft_art = Factory(:article, :published_at => nil, :published => false, :state => 'draft')
+      art_tag = Factory(:tag, :name => 'art', :articles => [published_art, draft_art])
+      art_tag.published_articles.size.should == 1
+    end
+  end
 end
 
 describe 'with tags foo, bar and bazz' do
