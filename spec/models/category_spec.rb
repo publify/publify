@@ -18,11 +18,10 @@ describe "Category" do
   it "should know published_articles" do
     Factory(:blog)
     c = Factory(:category, :permalink => 'Ubbercool')
-    3.times {Factory(:article, :categories => [c])}
+    Factory(:article, :categories => [c])
     Factory(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
-    c = Category.find_by_permalink("Ubbercool")
-    c.articles.size.should == 4
-    c.published_articles.size.should == 3
+    c.articles.size.should == 2
+    c.published_articles.size.should == 1
   end
 end
 

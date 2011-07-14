@@ -42,7 +42,7 @@ class GroupingController < ContentController
     @page_title = show_page_title_for @grouping, params[:page]
     @description = @grouping.description.to_s
     @keywords = keyword_from @grouping
-    @articles = @grouping.articles.paginate(:page => params[:page], :conditions => { :published => true}, :per_page => 10)
+    @articles = @grouping.published_articles.paginate(:page => params[:page], :per_page => 10)
 
     render_articles
   end
