@@ -7,5 +7,5 @@ if @new_item
 end
 
 page.replace_html('available_box', :partial => 'available',
-                  :object => @new_item)
+                  :collection => available)
 page.hide('update_spinner')

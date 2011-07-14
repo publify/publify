@@ -585,6 +585,11 @@ span.help {
   width: 48%;
 }
 
+#active {
+  border: 1px dashed #A2A1A2;
+  padding: 1em 2.2em;
+}
+
 #cnt-active {
   float: left;
   width: 48%;
