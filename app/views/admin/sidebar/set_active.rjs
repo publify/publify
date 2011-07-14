@@ -5,6 +5,10 @@ if @new_item
   page.replace("available_#{@new_item.short_name}", :partial => 'active',
                :object => @new_item)
 end
+
+puts "HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+puts available.inspect
+
 page.replace_html('available_box', :partial => 'available',
-                  :object => available)
+                  :object => @new_item)
 page.hide('update_spinner')
