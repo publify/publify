@@ -6,9 +6,6 @@ if @new_item
                :object => @new_item)
 end
 
-puts "HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-puts available.inspect
-
 page.replace_html('available_box', :partial => 'available',
                   :object => @new_item)
 page.hide('update_spinner')
