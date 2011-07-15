@@ -254,10 +254,9 @@ describe ArticlesController, "the index" do
   before(:each) { Factory(:blog) }
 
   it "should ignore the HTTP Accept: header" do
-    pending "replacement needed for setting use_accept_header=false"
     request.env["HTTP_ACCEPT"] = "application/atom+xml"
     get "index"
-    response.should_not render_template("shared/_atom_feed")
+    response.should render_template("index")
   end
 end
 
