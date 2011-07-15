@@ -83,8 +83,8 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def insert_editor
-    return unless params[:editor].to_s =~ /simple|visual/
-    current_user.editor = params[:editor].to_s
+    editor = (params[:editor].to_s =~ /simple|visual/) ? params[:editor].to_s : "visual"
+    current_user.editor = editor
     current_user.save!
 
     render :partial => "#{params[:editor].to_s}_editor"
