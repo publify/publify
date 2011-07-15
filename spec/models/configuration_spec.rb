@@ -5,12 +5,7 @@ describe 'Given a new blog' do
     Blog.delete_all
     @blog = Blog.new
   end
-
-  # Must find a better name for this key!
-  it 'Global spam protection is not enabled' do
-    @blog.should_not be_sp_global
-  end
-
+  
   it '#blog_name should be My Shiny Weblog!' do
     @blog.blog_name.should == 'My Shiny Weblog!'
   end
@@ -18,6 +13,28 @@ describe 'Given a new blog' do
   it '#blog_subtitle should be ""' do
     @blog.blog_subtitle.should == ''
   end
+
+  it '#title_prefix should be 0' do
+    @blog.title_prefix.should == 0
+  end
+
+  it '#geourl_location should be ""' do
+    @blog.geourl_location.should == ''
+  end
+
+  it '#canonical_server_url should be ""' do
+    @blog.geourl_location.should == ''
+  end
+
+  it '#lang should be en_US' do
+    @blog.lang.should == 'en_US'
+  end
+
+  # Must find a better name for this key!
+  it 'Global spam protection is not enabled' do
+    @blog.should_not be_sp_global
+  end
+
 
   it "#sp_article_auto_close should be 0" do
     @blog.sp_article_auto_close.should == 0
@@ -29,6 +46,10 @@ describe 'Given a new blog' do
 
   it "#sp_akismet_key should be blank" do
     @blog.sp_akismet_key.should == ''
+  end
+
+  it "#use_recaptcha should be false" do
+    @blog.should_not be_use_recaptcha
   end
 
   it '#text_filter and #comment_text_filter should be markdown smartypants' do
@@ -45,8 +66,9 @@ describe 'Given a new blog' do
     @blog.should_not be_default_allow_pings
   end
 
-  it 'Comments should be allowed by default' do
+  it 'Comments should be allowed unmoderated by default' do
     @blog.should be_default_allow_comments
+    @blog.should_not be_default_moderate_comments
   end
 
   it 'Should not link to author' do
@@ -57,7 +79,7 @@ describe 'Given a new blog' do
     @blog.should_not be_hide_extended_on_rss
   end
 
-  it '#theme should be "typographic"' do
+  it '#theme should be "True Blue 3"' do
     @blog.theme.should == 'true-blue-3'
   end
 
@@ -81,6 +103,72 @@ describe 'Given a new blog' do
 
   it '#email_from should be typo@example.com' do
     @blog.email_from.should == 'typo@example.com'
+  end
+
+  it '#editor should be visual' do
+    @blog.editor.should == 'visual'
+  end
+
+  it '#date format should be day/month/year hour:minute' do
+    @blog.date_format.should == '%d/%m/%Y'
+    @blog.time_format.should == '%Hh%M'
+  end
+
+  it 'Thumb and medium image size' do
+    @blog.image_thumb_size.should == 125
+    @blog.image_medium_size.should == 600
+  end
+  
+  it 'Default meta keyword and description should be empty' do
+    @blog.meta_description.should == ''
+    @blog.meta_keywords.should == ''
+  end
+
+  it 'Google analytics and Webmaster toold should be empty' do
+    @blog.google_verification.should == ''
+    @blog.google_analytics.should == ''
+  end
+
+  it '#feedburner should be empty' do
+    @blog.feedburner_url.should == ''
+  end
+  
+  it 'RSS description should be disable but not empty' do
+    @blog.should_not be_rss_description
+    @blog.rss_description_text.should == "<hr /><p><small>Original article writen by %author% and published on <a href='%blog_url%'>%blog_name%</a> | <a href='%permalink_url%'>direct link to this article</a> | If you are reading this article elsewhere than <a href='%blog_url%'>%blog_name%</a>, it has been illegally reproduced and without proper authorization.</small></p>"
+  end
+  
+  it 'Permalink format should be /year/month/day/title' do
+    @blog.permalink_format.should == '/%year%/%month%/%day%/%title%'
+  end
+
+  # really?!
+  it 'Robots.txt should be empty' do
+    @blog.robots.should == ''
+  end
+
+  it 'Categories and tags should be indexed' do
+    @blog.should be_index_categories
+    @blog.should_not be_unindex_categories
+    @blog.should be_index_tags
+    @blog.should_not be_unindex_tags    
+  end
+  
+  it 'Displays 10 elements in admin' do
+    @blog.admin_display_elements.should == 10
+  end
+  
+  it 'Links are nofollow by default' do
+    @blog.should be_nofollowify
+    @blog.should_not be_dofollowify
+  end
+
+  it 'Use of canonical URL is disabled by default' do
+    @blog.should_not be_use_canonical_url
+  end
+
+  it 'Use of meta keywords is enabled by default' do
+    @blog.should be_use_meta_keyword
   end
 
   it '#is_okay should be false until #blog_name is explicitly set' do
