@@ -61,10 +61,33 @@ def assert_atom10 feed, count
   root.css('entry').count.should == count
 end
 
+def assert_rss20 feed, count
+  doc = Nokogiri::XML.parse(feed)
+  root = doc.css(':root').first
+  root.name.should == "rss"
+  root['version'].should == "2.0"
+  root.css('channel item').count.should == count
+end
+
 def stub_default_blog
   blog = stub_model(Blog, :base_url => "http://myblog.net")
   view.stub(:this_blog) { blog }
   Blog.stub(:default) { blog }
+end
+
+def stub_full_article(time=Time.now)
+  author = stub_model(User, :name => "User Name")
+  text_filter = stub_model(TextFilter)
+
+  a = stub_model(Article, :published_at => time, :user => author,
+                 :created_at => time, :updated_at => time,
+                 :title => "Foo Bar", :permalink => 'foo-bar',
+                 :guid => time.hash)
+  a.stub(:tags) { [] }
+  a.stub(:categories) { [] }
+  a.stub(:resources) { [] }
+  a.stub(:text_filter) { text_filter }
+  a
 end
 
 # test standard view and all themes

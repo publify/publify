@@ -41,7 +41,7 @@ class ArticlesController < ContentController
       end
       format.rss do
         auto_discovery_feed(:only_path => false)
-        render_articles_feed('rss20')
+        render_articles_feed('rss')
       end
     end
   end
@@ -186,11 +186,7 @@ class ArticlesController < ContentController
 
   def render_articles_feed(format)
     if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
-      if format == "atom"
-        render "index_atom_feed", :layout => false
-      else
-        render_feed format, @articles
-      end
+      render "index_#{format}_feed", :layout => false
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
