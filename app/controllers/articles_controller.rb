@@ -184,7 +184,7 @@ class ArticlesController < ContentController
     @canonical_url = @article.permalink_url
   end
 
-  def render_articles_feed(format)
+  def render_articles_feed format
     if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
       render "index_#{format}_feed", :layout => false
     else
@@ -195,10 +195,6 @@ class ArticlesController < ContentController
   def render_feedback_feed format
     @feedback = @article.published_feedback
     render "feedback_#{format}_feed", :layout => false
-  end
-
-  def render_feed type, items
-    render :partial => "shared/#{type}_feed", :locals => { :items => items, :feed_url => url_for(params) }
   end
 
   def set_headers
