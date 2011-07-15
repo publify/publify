@@ -22,6 +22,24 @@ describe "shared/atom_feed.atom.builder" do
     a
   end
 
+  describe "with no items" do
+    before do
+      render "shared/atom_feed", :items => []
+    end
+
+    it "should render a valid feed" do
+      pending "think of what the updated value should be"
+      assert_feedvalidator rendered
+    end
+
+    it "shows typo with the current version as the generator" do
+      xml = Nokogiri::XML.parse(rendered)
+      generator = xml.css("generator").first
+      generator.content.should == "Typo"
+      generator["version"].should == TYPO_VERSION
+    end
+  end
+
   describe "rendering articles" do
     it 'should create valid atom feed when articles contains funny bits' do
       article1 = base_article(1.minute.ago)
