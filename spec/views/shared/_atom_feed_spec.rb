@@ -34,13 +34,19 @@ describe "shared/atom_feed.atom.builder" do
     end
   end
 
-  describe "rendering trackbacks" do
+  describe "rendering trackbacks with one trackback" do
     let(:article) { base_article }
     let(:trackback) { Factory.build(:trackback, :article => article) }
 
-    it "should render a valid atom feed" do
+    before do
       render "shared/atom_feed", :items => [trackback]
+    end
+
+    it "should render a valid feed" do
       assert_feedvalidator rendered
+    end
+
+    it "should render an Atom feed with one item" do
       assert_atom10 rendered, 1
     end
   end
