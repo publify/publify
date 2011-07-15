@@ -206,11 +206,11 @@ end
 describe ArticlesController, "feeds" do
   before(:each) do
     Factory(:blog)
-    @article = Factory.create(:article,
+    @article1 = Factory.create(:article,
       :created_at => Time.now - 1.day)
-    Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+    Factory.create(:trackback, :article => @article1, :published_at => Time.now - 1.day,
       :published => true)
-    Factory.create(:article,
+    @article2 = Factory.create(:article,
       :created_at => '2004-04-01 12:00:00',
       :published_at => '2004-04-01 12:00:00',
       :updated_at => '2004-04-01 12:00:00')
@@ -221,6 +221,7 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'atom'
     response.should be_success
     response.should render_template("index_atom_feed")
+    assigns(:articles).should == [@article1, @article2]
     @layouts.keys.compact.should be_empty
   end
 
@@ -228,18 +229,21 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("shared/_rss20_feed")
+    assigns(:articles).should == [@article1, @article2]
     @layouts.keys.compact.should be_empty
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
     response.should render_template("index_atom_feed")
+    assigns(:articles).should == [@article2]
     @layouts.keys.compact.should be_empty
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
     response.should render_template("shared/_rss20_feed")
+    assigns(:articles).should == [@article2]
     @layouts.keys.compact.should be_empty
   end
 end
