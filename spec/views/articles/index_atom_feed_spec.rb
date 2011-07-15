@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "shared/atom_feed.atom.builder" do
+describe "articles/index_atom_feed.atom.builder" do
   before do
     stub_default_blog
   end
@@ -22,12 +22,8 @@ describe "shared/atom_feed.atom.builder" do
 
   describe "with no items" do
     before do
-      render "shared/atom_feed", :items => []
-    end
-
-    it "should render a valid feed" do
-      pending "think of what the updated value should be"
-      assert_feedvalidator rendered
+      assign(:articles, [])
+      render
     end
 
     it "shows typo with the current version as the generator" do
@@ -44,26 +40,13 @@ describe "shared/atom_feed.atom.builder" do
       article1.body = '&eacute;coute!'
       article2 = base_article(2.minutes.ago)
       article2.body = 'is 4 < 2? no!'
-      render "shared/atom_feed", :items => [article1, article2]
+      assign(:articles, [article1, article2])
+
+      render
+
       assert_feedvalidator rendered
       assert_atom10 rendered, 2
     end
   end
-
-  describe "rendering trackbacks with one trackback" do
-    let(:article) { base_article }
-    let(:trackback) { Factory.build(:trackback, :article => article) }
-
-    before do
-      render "shared/atom_feed", :items => [trackback]
-    end
-
-    it "should render a valid feed" do
-      assert_feedvalidator rendered
-    end
-
-    it "should render an Atom feed with one item" do
-      assert_atom10 rendered, 1
-    end
-  end
 end
+

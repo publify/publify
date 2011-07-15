@@ -53,6 +53,20 @@ def assert_xml(xml)
   end
 end
 
+def assert_atom10 feed, count
+  doc = Nokogiri::XML.parse(feed)
+  root = doc.css(':root').first
+  root.name.should == "feed"
+  root.namespace.href.should == "http://www.w3.org/2005/Atom"
+  root.css('entry').count.should == count
+end
+
+def stub_default_blog
+  blog = stub_model(Blog, :base_url => "http://myblog.net")
+  view.stub(:this_blog) { blog }
+  Blog.stub(:default) { blog }
+end
+
 # test standard view and all themes
 def with_each_theme
   yield nil, ""

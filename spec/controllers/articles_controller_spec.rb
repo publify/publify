@@ -220,23 +220,27 @@ describe ArticlesController, "feeds" do
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
-    response.should render_template("shared/_atom_feed")
+    response.should render_template("index_atom_feed")
+    @layouts.keys.compact.should be_empty
   end
 
   specify "/articles.rss => an RSS 2.0 feed" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("shared/_rss20_feed")
+    @layouts.keys.compact.should be_empty
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
-    response.should render_template("shared/_atom_feed")
+    response.should render_template("index_atom_feed")
+    @layouts.keys.compact.should be_empty
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
     response.should render_template("shared/_rss20_feed")
+    @layouts.keys.compact.should be_empty
   end
 end
 

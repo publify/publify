@@ -186,7 +186,11 @@ class ArticlesController < ContentController
 
   def render_articles_feed(format)
     if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
-      render_feed format, @articles
+      if format == "atom"
+        render "index_atom_feed", :layout => false
+      else
+        render_feed format, @articles
+      end
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
