@@ -53,7 +53,7 @@ class ArticlesController < ContentController
     respond_to do |format|
       format.html { render 'search' }
       format.rss { render_feed "rss20", @articles }
-      format.atom { render_feed "atom", @articles }
+      format.atom { render "index_atom_feed", :layout => false }
     end
   end
 

@@ -94,7 +94,8 @@ describe ArticlesController do
     it 'should render feed atom by search' do
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
-      response.should render_template('shared/_atom_feed')
+      response.should render_template('index_atom_feed')
+      @layouts.keys.compact.should be_empty
     end
 
     it 'search with empty result' do
