@@ -52,7 +52,7 @@ class ArticlesController < ContentController
     return error(_("No posts found..."), :status => 200) if @articles.empty?
     respond_to do |format|
       format.html { render 'search' }
-      format.rss { render_feed "rss20", @articles }
+      format.rss { render "index_rss_feed", :layout => false }
       format.atom { render "index_atom_feed", :layout => false }
     end
   end

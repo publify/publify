@@ -88,7 +88,8 @@ describe ArticlesController do
     it 'should render feed rss by search' do
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
-      response.should render_template('shared/_rss20_feed')
+      response.should render_template('index_rss_feed')
+      @layouts.keys.compact.should be_empty
     end
 
     it 'should render feed atom by search' do
