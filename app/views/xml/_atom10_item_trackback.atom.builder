@@ -7,7 +7,7 @@ xm.entry do
   end
   xm.published item.created_at.xmlschema
   xm.updated item.updated_at.xmlschema
-  xm.title "Trackback from #{item.blog_name}: #{item.title} on #{item.article.title}", "type"=>"html"
+  xm.title item.feed_title, "type"=>"html"
 
   xm.link "rel" => "alternate", "type" => "text/html", "href" => item.permalink_url
 
