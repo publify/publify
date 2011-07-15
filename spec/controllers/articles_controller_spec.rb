@@ -89,14 +89,12 @@ describe ArticlesController do
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
       response.should render_template('shared/_rss20_feed')
-      assert_feedvalidator response.body
     end
 
     it 'should render feed atom by search' do
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
       response.should render_template('shared/_atom_feed')
-      assert_feedvalidator response.body
     end
 
     it 'search with empty result' do
@@ -206,8 +204,6 @@ describe ArticlesController, "nousers" do
 end
 
 describe ArticlesController, "feeds" do
-  render_views
-
   before(:each) do
     Factory(:blog)
     @article = Factory.create(:article,
@@ -225,27 +221,22 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'atom'
     response.should be_success
     response.should render_template("shared/_atom_feed")
-    assert_feedvalidator response.body
   end
 
   specify "/articles.rss => an RSS 2.0 feed" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("shared/_rss20_feed")
-    response.body.should have_selector('link', :content => 'http://myblog.net')
-    assert_feedvalidator response.body
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
     response.should render_template("shared/_atom_feed")
-    assert_feedvalidator response.body
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
     response.should render_template("shared/_rss20_feed")
-    assert_feedvalidator response.body
   end
 end
 
@@ -483,8 +474,6 @@ describe ArticlesController, "redirecting" do
     end
 
     describe 'rendering as atom feed' do
-      render_views
-
       before(:each) do
         Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
           :published => true)
@@ -494,25 +483,15 @@ describe ArticlesController, "redirecting" do
       it 'should render atom partial' do
         response.should render_template('shared/_atom_feed')
       end
-
-      it 'should render a valid feed' do
-        assert_feedvalidator response.body
-      end
     end
 
     describe 'rendering as rss feed' do
-      render_views
-
       before(:each) do
         get :redirect, :from => "#{@article.permalink}.html.rss"
       end
 
       it 'should render rss20 partial' do
         response.should render_template('shared/_rss20_feed')
-      end
-
-      it 'should render a valid feed' do
-        assert_feedvalidator response.body
       end
     end
 
