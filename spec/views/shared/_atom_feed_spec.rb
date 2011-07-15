@@ -30,6 +30,7 @@ describe "shared/atom_feed.atom.builder" do
       article2.body = 'is 4 < 2? no!'
       render "shared/atom_feed", :items => [article1, article2]
       assert_feedvalidator rendered
+      assert_atom10 rendered, 2
     end
   end
 
@@ -40,6 +41,15 @@ describe "shared/atom_feed.atom.builder" do
     it "should render a valid atom feed" do
       render "shared/atom_feed", :items => [trackback]
       assert_feedvalidator rendered
+      assert_atom10 rendered, 1
     end
+  end
+
+  def assert_atom10 feed, count
+    doc = Nokogiri::XML.parse(feed)
+    root = doc.css(':root').first
+    root.name.should == "feed"
+    root.namespace.href.should == "http://www.w3.org/2005/Atom"
+    root.css('entry').count.should == count
   end
 end
