@@ -20,7 +20,7 @@ describe "articles/feedback_atom_feed.atom.builder" do
     a
   end
 
-  describe "rendering feedback with one trackback" do
+  describe "with one trackback" do
     let(:article) { base_article }
     let(:trackback) { Factory.build(:trackback, :article => article) }
 
@@ -45,6 +45,25 @@ describe "articles/feedback_atom_feed.atom.builder" do
         entry_xml.css("title").first.content.should ==
           "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
       end
+    end
+  end
+
+  describe 'with a comment with problematic characters' do
+    let(:article) { base_article }
+    let(:comment) { Factory.build(:comment, :article => article,
+                                 :body => "&eacute;coute! 4 < 2, non?") }
+
+    before(:each) do
+      assign(:feedback, [comment])
+      render
+    end
+
+    it "should render a valid feed" do
+      assert_feedvalidator rendered
+    end
+
+    it "should render an Atom feed with one item" do
+      assert_atom10 rendered, 1
     end
   end
 end

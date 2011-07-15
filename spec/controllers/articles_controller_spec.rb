@@ -505,23 +505,6 @@ describe ArticlesController, "redirecting" do
         response.should render_template('shared/_rss20_feed')
       end
     end
-
-    describe 'rendering comment feed with problematic characters' do
-      render_views
-
-      before(:each) do
-        @comment = Factory(:comment, :article => @article)
-        @comment.body = "&eacute;coute! 4 < 2, non?"
-        @comment.save!
-        get :redirect, :from => "#{@article.permalink}.html.atom"
-      end
-
-      it 'should result in a valid atom feed' do
-        assigns(:article).should == @article
-        @layouts.keys.compact.should be_empty
-        assert_feedvalidator response.body
-      end
-    end
   end
 
   describe "with a format containing a fixed component" do
