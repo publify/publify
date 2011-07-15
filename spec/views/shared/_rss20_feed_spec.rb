@@ -49,6 +49,10 @@ describe "shared/rss20_feed.rss.builder" do
   end
 
   def assert_rss20 feed, count
-    feed.should have_selector 'rss:root[version="2.0"] > channel item', :count => count
+    doc = Nokogiri::XML.parse(feed)
+    root = doc.css(':root').first
+    root.name.should == "rss"
+    root['version'].should == "2.0"
+    root.css('channel item').count.should == count
   end
 end
