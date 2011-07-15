@@ -89,3 +89,82 @@ describe 'Given a new blog' do
     @blog.should be_configured
   end
 end
+
+describe 'Given a new user' do
+  before(:each) do
+    User.delete_all
+    @user = User.new
+  end
+
+  it 'New comments on self articles should be notified' do
+    @user.should be_notify_watch_my_articles
+  end
+
+  it 'Default editor is visual' do
+    @user.editor.should == 'visual'
+  end
+  
+  it 'Firstname is empty' do
+    @user.firstname.should == ''
+  end
+
+  it 'Lastname is empty' do
+    @user.lastname.should == ''
+  end
+
+  it 'Nickname is empty' do
+    @user.nickname.should == ''
+  end
+
+  it 'Description is empty' do
+    @user.description.should == ''
+  end
+
+  it 'URL is empty' do
+    @user.url.should == ''
+  end
+
+  it 'MSN is empty' do
+    @user.msn.should == ''
+  end
+
+  it 'aim is empty' do
+    @user.aim.should == ''
+  end
+
+  it 'Yahoo ID is empty' do
+    @user.yahoo.should == ''
+  end
+
+  it 'Twitter is empty' do
+    @user.description.should == ''
+  end
+
+  it 'Jabber is empty' do
+    @user.jabber.should == ''
+  end
+
+  it 'URL display in user profile is not enabled' do
+    @user.should_not be_show_url
+  end
+
+  it 'MSN display in user profile is not enabled' do
+    @user.should_not be_show_msn
+  end
+
+  it 'AIM display in user profile is not enabled' do
+    @user.should_not be_show_aim
+  end
+
+  it 'Yahoo ID display in user profile is not enabled' do
+    @user.should_not be_show_yahoo
+  end
+  
+  it 'Twitter display in user profile is not enabled' do
+    @user.should_not be_show_twitter
+  end
+  
+  it 'Jabber display in user profile is not enabled' do
+    @user.should_not be_show_jabber
+  end
+end
