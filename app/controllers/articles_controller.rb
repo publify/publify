@@ -196,8 +196,13 @@ class ArticlesController < ContentController
     end
   end
 
-  def render_feedback_feed type
-    render_feed type, @article.published_feedback
+  def render_feedback_feed format
+    if format == "atom"
+      @feedback = @article.published_feedback
+      render "feedback_atom_feed", :layout => false
+    else
+      render_feed format, @article.published_feedback
+    end
   end
 
   def render_feed type, items

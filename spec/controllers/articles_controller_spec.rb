@@ -483,13 +483,15 @@ describe ArticlesController, "redirecting" do
 
     describe 'rendering as atom feed' do
       before(:each) do
-        Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+        @trackback1 = Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
           :published => true)
         get :redirect, :from => "#{@article.permalink}.html.atom"
       end
 
-      it 'should render atom partial' do
-        response.should render_template('shared/_atom_feed')
+      it 'should render feedback atom feed' do
+        assigns(:feedback).should == [@trackback1]
+        response.should render_template('feedback_atom_feed')
+        @layouts.keys.compact.should be_empty
       end
     end
 
@@ -515,6 +517,7 @@ describe ArticlesController, "redirecting" do
 
       it 'should result in a valid atom feed' do
         assigns(:article).should == @article
+        @layouts.keys.compact.should be_empty
         assert_feedvalidator response.body
       end
     end
