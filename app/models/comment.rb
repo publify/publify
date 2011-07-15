@@ -36,11 +36,15 @@ class Comment < Feedback
   end
 
   def atom_title(xml)
-    xml.title "Comment on #{article.title} by #{author}", :type => 'html'
+    xml.title feed_title, :type => 'html'
   end
 
   def rss_title(xml)
-    xml.title "Comment on #{article.title} by #{author}"
+    xml.title feed_title
+  end
+
+  def feed_title
+    "Comment on #{article.title} by #{author}"
   end
 
   protected
