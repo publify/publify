@@ -165,7 +165,7 @@ class ArticlesController < ContentController
     respond_to do |format|
       format.html { render '/articles/read' }
       format.atom { render_feedback_feed('atom') }
-      format.rss  { render_feedback_feed('rss20') }
+      format.rss  { render_feedback_feed('rss') }
       format.xml  { render_feedback_feed('atom') }
     end
   rescue ActiveRecord::RecordNotFound
@@ -193,12 +193,8 @@ class ArticlesController < ContentController
   end
 
   def render_feedback_feed format
-    if format == "atom"
-      @feedback = @article.published_feedback
-      render "feedback_atom_feed", :layout => false
-    else
-      render_feed format, @article.published_feedback
-    end
+    @feedback = @article.published_feedback
+    render "feedback_#{format}_feed", :layout => false
   end
 
   def render_feed type, items

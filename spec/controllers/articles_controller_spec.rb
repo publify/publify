@@ -498,11 +498,15 @@ describe ArticlesController, "redirecting" do
 
     describe 'rendering as rss feed' do
       before(:each) do
+        @trackback1 = Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+          :published => true)
         get :redirect, :from => "#{@article.permalink}.html.rss"
       end
 
       it 'should render rss20 partial' do
-        response.should render_template('shared/_rss20_feed')
+        assigns(:feedback).should == [@trackback1]
+        response.should render_template('feedback_rss_feed')
+        @layouts.keys.compact.should be_empty
       end
     end
   end
