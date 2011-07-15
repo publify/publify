@@ -34,12 +34,12 @@ module Admin::BaseHelper
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
-    link_to label, :controller => controller, :action => 'edit', :id => record.id
+    link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
   end
 
   def link_to_edit_with_profiles(label, record, controller = controller.controller_name)
     if current_user.admin? || current_user.id == record.user_id
-      link_to label, :controller => controller, :action => 'edit', :id => record.id
+      link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
     end
   end
 

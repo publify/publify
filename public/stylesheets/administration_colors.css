@@ -32,6 +32,12 @@ a.button:hover {
   color: #FFFFFF;
 }
 
+a.edit {
+  font-weight: bold;
+  text-decoration: none;
+  color: #2779aa;
+}
+
 /*------------------------------------------------------------------
 1.2. Tables
 */
