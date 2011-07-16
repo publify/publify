@@ -6,8 +6,8 @@ atom_feed do |feed|
   feed.updated @feedback.first.updated_at if @feedback.first
   feed.generator "Typo", :uri => "http://www.typosphere.org", :version => TYPO_VERSION
 
-  @feedback.each do |value|
-    value.to_atom(feed)
+  @feedback.each do |item|
+    render "shared/atom_item_#{item.type.downcase}", {:feed => feed, :item => item}
   end
 end
 
