@@ -109,5 +109,21 @@ describe Admin::ThemesController do
       end
     end
   end
+  
+  describe 'catalogue' do
+    before(:each) do
+      get :catalogue
+    end
+    
+    it 'should have design tab selected' do
+      test_tabs "Design"
+    end
+
+    it 'should have Choose theme, Customize sidebar, Theme editor, View theme catalogue' do
+      subtabs = ["Choose theme", "Customize sidebar", "Theme editor", "View theme catalogue"]
+      test_subtabs(subtabs, "View theme catalogue")
+    end        
+    
+  end
 
 end

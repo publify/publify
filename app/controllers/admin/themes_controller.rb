@@ -81,7 +81,10 @@ class Admin::ThemesController < Admin::BaseController
     open(url) do |http|
       @themes = parse_catalogue_by_json(http.read)
     end
-  rescue OpenURI::HTTPError
+  rescue => e
+    logger.info(e.message)
+    nil
+  
     @themes = []
     @error = true
   end
