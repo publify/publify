@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Admin::PagesController do
+  render_views
+  
   before do
     @blog = Factory(:blog)
     request.session = { :user => users(:tobi).id }
@@ -21,6 +23,17 @@ describe Admin::PagesController do
       assert_not_nil assigns(:pages)
     end
 
+    it 'should have Pages tab selected' do
+      get :index
+      test_tabs "Pages"
+    end
+
+    it 'should have Pages and Add new subtabs with Pages selected' do
+      get :index
+      subtabs = ["Pages", "Add new"]
+      test_subtabs(subtabs, "Pages")
+    end        
+    
   end
 
   it "test_show" do
@@ -32,15 +45,37 @@ describe Admin::PagesController do
     assert_equal page, assigns(:page)
   end
 
-  it "test_new" do
-    get :new
-    assert_response :success
-    assert_template "new"
-    assert_not_nil assigns(:page)
-
-    assert_equal users(:tobi), assigns(:page).user
-    assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
-
+  describe "test_new" do
+    before(:each) do
+      get :new
+    end
+    
+    it "should render template new and has a page object" do
+      assert_response :success
+      assert_template "new"
+      assert_not_nil assigns(:page)
+    end
+    
+    it "should assign to current user" do
+      assert_equal users(:tobi), assigns(:page).user
+    end
+    
+    it "should have a text filter" do
+      assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
+    end
+    
+    it 'should have Pages tab selected' do
+      test_tabs "Pages"
+    end
+    
+    it 'should have Pages and Add new with no tab selected' do
+      subtabs = ["Pages", "Add new"]
+      test_subtabs(subtabs, "Add new")
+    end
+    
+  end
+    
+  it "test_create" do
     post :new, :page => { :name => "new_page", :title => "New Page Title",
       :body => "Emphasis _mine_, arguments *strong*" }
 
@@ -51,18 +86,34 @@ describe Admin::PagesController do
     assert_response :redirect, :action => "show", :id => new_page.id
 
     # XXX: The flash is currently being made available improperly to tests (scoop)
-    #assert_equal "Page was successfully created.", flash[:notice]
+    assert_equal "Page was successfully created.", flash[:notice]
   end
 
-  it "test_edit" do
+  describe "test_edit" do
+    before(:each) do
+      @page = Factory(:page)
+      get :edit, :id => @page.id
+    end
+    
+    it 'should render edit template' do
+      assert_response :success
+      assert_template "edit"
+      assert_not_nil assigns(:page)
+      assert_equal @page, assigns(:page)
+    end
+
+    it 'should have Pages tab selected' do
+      test_tabs "Pages"
+    end
+    
+    it 'should have Pages and Add new with no tab selected' do
+      subtabs = ["Pages", "Add new"]
+      test_subtabs(subtabs, "")
+    end
+  end
+
+  it 'test_update' do
     page = Factory(:page)
-    get :edit, :id => page.id
-    assert_response :success
-    assert_template "edit"
-    assert_not_nil assigns(:page)
-
-    assert_equal page, assigns(:page)
-
     post :edit, :id => page.id, :page => { :name => "markdown-page", :title => "Markdown Page",
         :body => "Adding a [link](http://www.typosphere.org/) here" }
 

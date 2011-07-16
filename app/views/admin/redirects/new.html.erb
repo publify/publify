@@ -1,5 +1,8 @@
 <% @page_heading = _("%s Redirect", controller.action_name.capitalize) %>
-<% subtabs_for(:settings) %>
+<% content_for(:tasks) do %>
+  <%= task_overview %>
+<% end %>
+
 <%= form_tag :action=>"edit", :id => @redirect.id do %>
   <%= error_messages_for 'redirect' %>
   <div>

@@ -90,16 +90,9 @@ module Admin::BaseHelper
     'active'
   end
 
-  def class_write
-    if controller.controller_name == "content" or controller.controller_name == "pages"
-      return class_selected_tab if controller.action_name == 'new' || controller.action_name == 'edit'
-    end
-    class_tab
-  end
-
   def class_articles
     if controller.controller_name  =~ /content|tags|categories|feedback/
-      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy/
+      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy|new|edit/
     end
     class_tab
   end
@@ -113,7 +106,7 @@ module Admin::BaseHelper
 
   def class_pages
     if controller.controller_name  =~ /pages/
-      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy/
+      return class_selected_tab if controller.action_name =~ /index|destroy|new|edit/
     end
     class_tab
   end
@@ -129,7 +122,7 @@ module Admin::BaseHelper
   end
 
   def class_settings
-    return class_selected_tab if controller.controller_name  =~ /settings|users/
+    return class_selected_tab if controller.controller_name  =~ /settings|users|cache|redirects/
     class_tab
   end
 
