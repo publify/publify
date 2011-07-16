@@ -38,9 +38,17 @@ describe AuthorsController do
         get 'show', :id => user.login, :format => 'atom'
       end
 
+      it 'assigns articles' do
+        assigns(:articles).should == [article]
+      end
+
       it "renders the atom template" do
         response.should be_success
-        response.should render_template("shared/_atom_feed")
+        response.should render_template("show_atom_feed")
+      end
+
+      it "does not render layout" do
+        @layouts.keys.compact.should be_empty
       end
     end
 
@@ -49,9 +57,17 @@ describe AuthorsController do
         get 'show', :id => user.login, :format => 'rss'
       end
 
+      it 'assigns articles' do
+        assigns(:articles).should == [article]
+      end
+
       it "renders the rss template" do
         response.should be_success
-        response.should render_template("shared/_rss20_feed")
+        response.should render_template("show_rss_feed")
+      end
+
+      it "does not render layout" do
+        @layouts.keys.compact.should be_empty
       end
     end
   end
