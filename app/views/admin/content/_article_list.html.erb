@@ -1,7 +1,7 @@
 <%= render_void_table(@articles.size, 7)  %>
 <% for article in @articles %>
 <tr <%= alternate_class %>>
-  <td>
+  <td class='first'>
     <%= link_to_edit h(article.title), article %>
     <%= show_actions article %>
   </td>
@@ -11,7 +11,7 @@
     <%= format_date article.published_at %><br />
     <%= published_or_not article %>
   </td>
-  <td><%= (article.allow_comments?) ? link_to(article.comments.ham.size.to_s, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %></td>
+  <td class='last'><%= (article.allow_comments?) ? link_to(article.comments.ham.size.to_s, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %></td>
 </tr>
 <% end %>
-<%= display_pagination(@articles, 7)%>
+<%= display_pagination(@articles, 7, 'first', 'last')%>

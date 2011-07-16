@@ -171,9 +171,9 @@ module Admin::BaseHelper
   def show_actions item
     html = <<-HTML
       <div class='action'>
-        <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
         <small>#{link_to_published item}</small> |
-        <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small>
+        <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
+        <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small> |
         #{get_short_url item}
     </div>
     HTML
@@ -232,9 +232,9 @@ module Admin::BaseHelper
     link << image_tag("spinner-blue.gif", :id => "update_spinner_#{id}", :style => 'display:none;')
   end
 
-  def display_pagination(collection, cols)
+  def display_pagination(collection, cols, first='', last='')
     if collection.total_pages > 1
-      return "<tr><td colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
+      return "<tr><td class='#{first} #{last}' colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
     end
   end
 

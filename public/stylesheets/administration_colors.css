@@ -75,6 +75,27 @@ tr.shade td {
   background: #F0F0F6;
 }
 
+tr.searchbar td {
+  background: #f9f9f9;
+  border: none;
+} 
+
+table.noborder {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #ddd;
+}
+
+table.noborder td.first, table.noborder th.first {
+  border-left: 1px solid #ddd;
+}
+
+table.noborder td.last, table.noborder th.last {
+  border-right: 1px solid #ddd;
+}
+
+
 
 /*------------------------------------------------------------------
 2. Wrappers
