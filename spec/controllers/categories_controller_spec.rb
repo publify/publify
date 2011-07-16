@@ -3,16 +3,13 @@ require 'spec_helper'
 describe CategoriesController, "/index" do
   render_views
 
-  before do
-    Factory(:blog)
-    3.times {
-      category = Factory(:category)
-      2.times { category.articles << Factory(:article) }
-    }
-  end
-
   describe "normally" do
     before do
+      Factory(:blog)
+      cat = Factory.build(:category) 
+      cat_p = [cat]
+      cat_p.stub!(:total_pages).and_return(1)
+      Category.should_receive(:paginate).and_return(cat_p)
       get 'index'
     end
 
@@ -23,7 +20,13 @@ describe CategoriesController, "/index" do
   end
 
   describe "if :index template exists" do
+    
     it "should render :index" do
+      Factory(:blog)
+      3.times {
+        category = Factory(:category)
+        2.times { category.articles << Factory(:article) }
+      }
       pending "Stubbing #template_exists is not enough to fool Rails"
       controller.stub!(:template_exists?) \
         .and_return(true)
@@ -36,81 +39,91 @@ end
 
 describe CategoriesController, '/articles/category/personal' do
   render_views
-  
+ 
   before do
     Factory(:blog)
-    cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
   end
 
-  def do_get
-    get 'show', :id => 'personal'
+  context "with mock and stub in db" do
+    before do
+      c = Factory.build(:category, :permalink => 'personal')
+      articles = [Factory.build(:article, :categories => [c])]
+      controller.should_receive(:show_page_title_for).and_return('Category Personal, everything about Personal')
+      controller.should_receive(:permalink_with_page).and_return('http://myblog.net/category/personal/')
+      Category.should_receive(:find_by_permalink).with('personal').and_return(c)
+      c.should_receive(:published_articles).and_return(articles)
+    end
+
+    it 'should show only published articles' do
+      get 'show', :id => 'personal'
+      response.should be_success
+      assigns[:articles].should_not be_empty
+    end
+
+    it 'should be successful' do
+      get 'show', :id => 'personal'
+      response.should be_success
+    end
+
+    it 'should have a canonical URL' do
+      get 'show', :id => 'personal'
+      response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
+    end
+
+    it 'should fall back to rendering articles/index' do
+      controller.stub!(:template_exists?) \
+        .and_return(false)
+      get 'show', :id => 'personal'
+      response.should render_template('articles/index')
+    end
+
+    it 'should set the page title to "Category Personal"' do
+      get 'show', :id => 'personal'
+      assigns[:page_title].should == 'Category Personal, everything about Personal'
+    end
+
   end
 
-  it 'should be successful' do
-    do_get
-    response.should be_success
-  end
+  context "with data in db" do
+    before do
+      cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
+      cat.articles << Factory(:article)
+      cat.articles << Factory(:article)
+      cat.articles << Factory(:article)
+      cat.articles << Factory(:article)
+    end
 
-  it 'should raise ActiveRecord::RecordNotFound' do
-    Category.should_receive(:find_by_permalink) \
-      .with('personal').and_raise(ActiveRecord::RecordNotFound)
-    lambda do
+    def do_get
+      get 'show', :id => 'personal'
+    end
+
+    it 'should raise ActiveRecord::RecordNotFound' do
+      Category.should_receive(:find_by_permalink) \
+        .with('personal').and_raise(ActiveRecord::RecordNotFound)
+      lambda do
+        do_get
+      end.should raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it 'should render :show by default'
+    if false
+      controller.stub!(:template_exists?) \
+        .and_return(true)
       do_get
-    end.should raise_error(ActiveRecord::RecordNotFound)
-  end
+      response.should render_template(:show)
+    end
 
-  it 'should render :show by default'
-  if false
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-    do_get
-    response.should render_template(:show)
-  end
+    it 'should render the atom feed for /articles/category/personal.atom' do
+      get 'show', :id => 'personal', :format => 'atom'
+      response.should render_template('shared/_atom_feed')
+    end
 
-  it 'should fall back to rendering articles/index' do
-    controller.stub!(:template_exists?) \
-      .and_return(false)
-    do_get
-    response.should render_template('articles/index')
-  end
+    it 'should render the rss feed for /articles/category/personal.rss' do
+      get 'show', :id => 'personal', :format => 'rss'
+      response.should render_template('shared/_rss20_feed')
+    end
 
-  it 'should show only published articles' do
-    c = Factory.build(:category, :permalink => 'Social')
-    articles = [Factory.build(:article, :categories => [c])]
-    controller.should_receive(:show_page_title_for)
-    controller.should_receive(:permalink_with_page)
-    Category.should_receive(:find_by_permalink).with('Social').and_return(c)
-    c.should_receive(:published_articles).and_return(articles)
-    get 'show', :id => 'Social'
-    response.should be_success
-    assigns[:articles].should_not be_empty
-  end
-
-  it 'should set the page title to "Category Personal"' do
-    do_get
-    assigns[:page_title].should == 'Category Personal, everything about Personal'
-    response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
-  end
-
-  it 'should have a canonical URL' do
-    do_get
-    response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
-  end
-
-  it 'should render the atom feed for /articles/category/personal.atom' do
-    get 'show', :id => 'personal', :format => 'atom'
-    response.should render_template('shared/_atom_feed')
-  end
-
-  it 'should render the rss feed for /articles/category/personal.rss' do
-    get 'show', :id => 'personal', :format => 'rss'
-    response.should render_template('shared/_rss20_feed')
-  end
-
+  end 
 end
 
 describe CategoriesController, 'empty category life-on-mars' do
@@ -164,40 +177,42 @@ describe CategoriesController, "SEO Options" do
     get 'show', :id => 'personal'
     response.should_not have_selector('head>meta[content="noindex, follow"]')
   end
-    
-  it 'category with keywords and activated option should have meta keywords' do
-    @blog.use_meta_keyword = true
-    @blog.save
-    @cat.keywords = "some, keywords"
-    @cat.save
-    
-    get 'show', :id => 'personal'
-    response.should have_selector('head>meta[name="keywords"]')
-  end
   
-  it 'category without meta keywords and activated should not have meta keywords' do
-    @blog.use_meta_keyword = true
-    @blog.save
+  describe "with meta_keyword usage" do
+    before do
+      @blog.use_meta_keyword = true
+      @blog.save
+    end
+
+    it 'category with keywords and activated option should have meta keywords' do
+      cat = Factory.build(:category, :permalink => 'personal', :keywords => "some, keywords")
+      art = Factory.build(:article, :categories => [cat])
+      Category.should_receive(:find_by_permalink).with('personal').and_return(cat)
+      cat.should_receive(:published_articles).and_return([art])
     
-    get 'show', :id => 'personal'
-    response.should_not have_selector('head>meta[name="keywords"]')
-  end
+      get 'show', :id => 'personal'
+      response.should have_selector('head>meta[name="keywords"]')
+    end
+ 
+    it 'category without meta keywords and activated should not have meta keywords' do
+      get 'show', :id => 'personal'
+      response.should_not have_selector('head>meta[name="keywords"]')
+    end
     
-  it 'category without meta keywords and activated options should not have meta keywords' do
-    @blog.use_meta_keyword = true
-    @blog.save
-    
-    get 'show', :id => 'personal'
-    response.should_not have_selector('head>meta[name="keywords"]')
+    it 'category without meta keywords and activated options should not have meta keywords' do
+      get 'show', :id => 'personal'
+      response.should_not have_selector('head>meta[name="keywords"]')
+    end
+
   end
 
-  it 'category with meta keywords and deactivated options should not have meta keywords' do
-    @blog.use_meta_keyword = false
-    @blog.save
-    @cat.keywords = "some, keywords"
-    @cat.save
+    it 'category with meta keywords and deactivated options should not have meta keywords' do
+      @blog.use_meta_keyword = false
+      @blog.save
+      @cat.keywords = "some, keywords"
+      @cat.save
     
-    get 'show', :id => 'personal'
-    response.should_not have_selector('head>meta[name="keywords"]')
-  end
+      get 'show', :id => 'personal'
+      response.should_not have_selector('head>meta[name="keywords"]')
+    end
 end
