@@ -116,14 +116,14 @@ class GroupingController < ContentController
         render 'articles/index' unless template_exists? 'show'
       end
 
-      format.atom { render_feed 'shared/atom_feed',  @articles }
-      format.rss  { render_feed 'shared/rss20_feed', @articles }
+      format.atom { render_feed 'atom', @articles }
+      format.rss  { render_feed 'rss', @articles }
     end
   end
 
-  def render_feed(template, collection)
-    articles = collection[0,this_blog.limit_rss_display]
-    render :partial => template, :locals => { :items => articles, :feed_url => url_for(params) }
+  def render_feed(format, collection)
+    @articles = collection[0,this_blog.limit_rss_display]
+    render "articles/index_#{format}_feed", :layout => false
   end
 
   def render_empty

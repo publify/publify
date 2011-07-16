@@ -103,14 +103,15 @@ describe CategoriesController, '/articles/category/personal' do
 
   it 'should render the atom feed for /articles/category/personal.atom' do
     get 'show', :id => 'personal', :format => 'atom'
-    response.should render_template('shared/_atom_feed')
+    response.should render_template('articles/index_atom_feed')
+    @layouts.keys.compact.should be_empty
   end
 
   it 'should render the rss feed for /articles/category/personal.rss' do
     get 'show', :id => 'personal', :format => 'rss'
-    response.should render_template('shared/_rss20_feed')
+    response.should render_template('articles/index_rss_feed')
+    @layouts.keys.compact.should be_empty
   end
-
 end
 
 describe CategoriesController, 'empty category life-on-mars' do
