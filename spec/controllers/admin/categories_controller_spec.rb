@@ -85,8 +85,7 @@ describe Admin::CategoriesController do
     assert_template "_categories"
     assert_tag :tag => "table",
       :children => { :count => Category.count + 2,
-        :only => { :tag => "tr",
-          :children => { :count => 1 } } }
+        :only => { :tag => "tr" } }
   end
 
   it "test_reorder" do
