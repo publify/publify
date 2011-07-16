@@ -13,14 +13,14 @@
   <%= @author.description%>
 </div>
 
-<% if @author.articles.to_a.empty? -%>
+<% if @articles.empty? -%>
 <div class="post">
 <p><%= _("This author has not published any article yet")%>...</p>
 </div>
 <% else
      currentmonth = 0
      currentyear = 0
-     for article in @author.articles
+     for article in @articles
        if (article.published_at.month != currentmonth || article.published_at.year != currentyear)
          currentmonth = article.published_at.month
          currentyear = article.published_at.year -%>

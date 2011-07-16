@@ -15,8 +15,9 @@ describe AuthorsController do
         response.should render_template(:show)
       end
 
-      it 'assigns author' do
+      it 'assigns author and articles' do
         assigns(:author).should == user
+        assigns(:articles).should == [article]
       end
 
       describe "when rendered" do

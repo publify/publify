@@ -6,7 +6,10 @@ class AuthorsController < ContentController
     raise ActiveRecord::RecordNotFound unless @author
 
     respond_to do |format|
-      format.html
+      format.html do
+        @articles = @author.articles
+        render
+      end
       format.rss do
         auto_discovery_feed(:only_path => false)
         render_feed "shared/rss20_feed"
