@@ -85,6 +85,7 @@ def stub_full_article(time=Time.now)
                  :guid => time.hash)
   a.stub(:tags) { [] }
   a.stub(:categories) { [] }
+  a.stub(:published_comments) { [] }
   a.stub(:resources) { [] }
   a.stub(:text_filter) { text_filter }
   a

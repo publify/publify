@@ -1,14 +1,19 @@
 require 'spec_helper'
 
 describe CategoriesController, "/index" do
-  render_views
-
   before do
-    Factory(:blog)
-    3.times {
-      category = Factory(:category)
-      2.times { category.articles << Factory(:article) }
-    }
+    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic")
+    Blog.stub(:default) { blog }
+    Trigger.stub(:fire) { }
+
+    categories = 3.times.map do
+      stub_model(Category).tap do |category|
+        articles = 2.times.map { stub_model(Article) }
+        category.stub(:published_articles) { articles }
+        category.stub(:display_name) { category.id.to_s }
+      end
+    end
+    Category.stub(:find) { categories }
   end
 
   describe "normally" do
@@ -19,7 +24,12 @@ describe CategoriesController, "/index" do
     specify { response.should be_success }
     specify { response.should render_template('articles/groupings') }
     specify { assigns(:groupings).should_not be_empty }
-    specify { response.body.should have_selector('ul.categorylist') }
+
+    describe "when rendered" do
+      render_views
+
+      specify { response.body.should have_selector('ul.categorylist') }
+    end
   end
 
   describe "if :index template exists" do
@@ -35,15 +45,17 @@ describe CategoriesController, "/index" do
 end
 
 describe CategoriesController, '/articles/category/personal' do
-  render_views
-  
   before do
-    Factory(:blog)
-    cat = Factory(:category, :permalink => 'personal', :name => 'Personal')
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
+    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic",
+                      :use_canonical_url => true)
+    Blog.stub(:default) { blog }
+    Trigger.stub(:fire) { }
+
+    category = stub_model(Category, :permalink => 'personal', :name => 'Personal')
+    articles = 2.times.map { stub_full_article }
+    category.stub(:published_articles) { articles }
+
+    Category.stub(:find_by_permalink) { category }
   end
 
   def do_get
@@ -93,12 +105,15 @@ describe CategoriesController, '/articles/category/personal' do
   it 'should set the page title to "Category Personal"' do
     do_get
     assigns[:page_title].should == 'Category Personal, everything about Personal'
-    response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
   end
 
-  it 'should have a canonical URL' do
-    do_get
-    response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
+  describe "when rendered" do
+    render_views
+  
+    it 'should have a canonical URL' do
+      do_get
+      response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
+    end
   end
 
   it 'should render the atom feed for /articles/category/personal.atom' do
