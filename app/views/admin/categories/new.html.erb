@@ -1,5 +1,5 @@
 <% @page_heading = _("%s Category", controller.action_name.capitalize) %>
-<% subtabs_for(:content) %>
+<% subtabs_for(:articles) %>
 
 <div class='category_editor'>
   <%= form_tag :action=>"edit", :id => @category.id do %>

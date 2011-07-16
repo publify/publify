@@ -97,8 +97,22 @@ module Admin::BaseHelper
     class_tab
   end
 
-  def class_content
-    if controller.controller_name  =~ /content|pages|categories|resources|feedback/
+  def class_articles
+    if controller.controller_name  =~ /content|tags|categories|feedback/
+      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy/
+    end
+    class_tab
+  end
+
+  def class_media
+    if controller.controller_name  =~ /resources/
+      return class_selected_tab
+    end
+    class_tab
+  end  
+
+  def class_pages
+    if controller.controller_name  =~ /pages/
       return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy/
     end
     class_tab

@@ -55,36 +55,40 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "previews"
   map.permission "articles"
 
-  map.project_module :write, nil do |project|
-    project.menu    "Write",            { :controller => "admin/content",    :action => "new" }
-    project.submenu "Article",          { :controller => "admin/content",    :action => "new" }
-	  project.submenu "Page",             { :controller => "admin/pages",      :action => "new" }
+  map.project_module :articles, nil do |project|
+    project.menu    "Articles",         { :controller => "admin/content",    :action => "index" }
+    project.submenu "Articles",         { :controller => "admin/content",    :action => "index" }
+    project.submenu "Add new",          { :controller => "admin/content",    :action => "new" }
+    project.submenu "Comments",         { :controller => "admin/feedback",   :action => "index" }
+    project.submenu "Categories",       { :controller => "admin/categories", :action => "new" }
+    project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
+    project.submenu "",                 { :controller => "admin/comments",   :action => "show" }
+    project.submenu "",                 { :controller => "admin/comments",   :action => "new" }
+    project.submenu "",                 { :controller => "admin/comments",   :action => "edit" }
+    project.submenu "",                 { :controller => "admin/comments",   :action => "destroy" }
+    project.submenu "",                 { :controller => "admin/trackbacks", :action => "show" }
+    project.submenu "",                 { :controller => "admin/trackbacks", :action => "new" }
+    project.submenu "",                 { :controller => "admin/trackbacks", :action => "edit" }
+    project.submenu "",                 { :controller => "admin/trackbacks", :action => "destroy" }
   end
 
-  map.project_module :content, nil do |project|
-    project.menu    "Content",          { :controller => "admin/content",    :action => "index" }
-    project.submenu "Articles",         { :controller => "admin/content",    :action => "index" }
-    project.submenu "Comments",         { :controller => "admin/feedback",   :action => "index" }
+  map.project_module :pages, nil do |project|
+    project.menu "Pages",               { :controller => "admin/pages",      :action => "index" }
     project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
-    project.submenu "Categories",       { :controller => "admin/categories", :action => "new" }
-    project.submenu "Files",            { :controller => "admin/resources",  :action => "index" }
-    project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
-    project.submenu "",                      { :controller => "admin/comments", :action => "show" }
-    project.submenu "",                      { :controller => "admin/comments", :action => "new" }
-    project.submenu "",                      { :controller => "admin/comments", :action => "edit" }
-    project.submenu "",                      { :controller => "admin/comments", :action => "destroy" }
-    project.submenu "",                      { :controller => "admin/trackbacks", :action => "show" }
-    project.submenu "",                      { :controller => "admin/trackbacks", :action => "new" }
-    project.submenu "",                      { :controller => "admin/trackbacks", :action => "edit" }
-    project.submenu "",                      { :controller => "admin/trackbacks", :action => "destroy" }
+    project.submenu "Add new",          { :controller => "admin/pages", :action => "new" }
+  end
+
+  map.project_module :media, nil do |project|
+    project.menu    "Media",            { :controller => "admin/resources",  :action => "index" }
+    project.submenu "Library",          { :controller => "admin/resources",   :action => "index" }
   end
 
   map.project_module :themes, nil do |project|
-    project.menu    "Design",             { :controller => "admin/themes", :action => "index"  }
-    project.submenu "Choose theme",          { :controller => "admin/themes", :action => "index" }
-    project.submenu "Customize sidebar",     { :controller => "admin/sidebar", :action => "index" }
-    project.submenu "Theme editor",          { :controller => "admin/themes", :action => "editor" }
-    project.submenu "View theme catalogue",       { :controller => "admin/themes", :action => "catalogue" }
+    project.menu    "Design",               { :controller => "admin/themes", :action => "index"  }
+    project.submenu "Choose theme",         { :controller => "admin/themes", :action => "index" }
+    project.submenu "Customize sidebar",    { :controller => "admin/sidebar", :action => "index" }
+    project.submenu "Theme editor",         { :controller => "admin/themes", :action => "editor" }
+    project.submenu "View theme catalogue", { :controller => "admin/themes", :action => "catalogue" }
 
     AccessControl.search_plugins_directory.each do |plugin|
       project.submenu AccessControl.get_plugin_litteral_name(plugin),
