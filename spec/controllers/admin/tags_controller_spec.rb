@@ -26,6 +26,7 @@ describe Admin::TagsController do
     end
     
     it 'should have article, new article, comments, categories subtab links' do
+      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags"]
       test_subtabs(subtabs, "Tags")
     end  
   end
