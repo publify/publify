@@ -115,7 +115,7 @@ class ArticlesController < ContentController
       return
     end
 
-    set_headers
+    headers["Content-Type"] = "text/html; charset=utf-8"
     @comment = Comment.new(params[:comment])
     @controller = self
   end
@@ -195,10 +195,6 @@ class ArticlesController < ContentController
   def render_feedback_feed format
     @feedback = @article.published_feedback
     render "feedback_#{format}_feed", :layout => false
-  end
-
-  def set_headers
-    headers["Content-Type"] = "text/html; charset=utf-8"
   end
 
   def render_paginated_index(on_empty = _("No posts found..."))

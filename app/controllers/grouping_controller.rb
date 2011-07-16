@@ -61,6 +61,7 @@ class GroupingController < ContentController
     instance_variable_get(self.class.ivar_name)
   end
 
+  # TODO Put this in grouping model (tag and category ?) instead of passing grouping in params
   def keyword_from grouping
     keywords = "" 
     keywords << grouping.keywords unless grouping.keywords.blank?
@@ -68,6 +69,7 @@ class GroupingController < ContentController
     keywords 
   end
 
+  # TODO Put this in grouping model (tag and category ?) instead of passing grouping in params
   def show_page_title_for grouping, page
     title = "#{_(self.class.to_s.sub(/Controller$/,'').singularize)} #{grouping.name}, "
 
