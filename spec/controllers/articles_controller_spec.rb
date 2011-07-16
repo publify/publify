@@ -277,7 +277,7 @@ describe ArticlesController, "previewing" do
 
   describe 'with logged user' do
     before :each do
-      @request.session = {:user => users(:tobi).id}
+      @request.session = {:user => Factory(:user, :profile => profiles(:admin)).id}
       @article = Factory(:article)
     end
 

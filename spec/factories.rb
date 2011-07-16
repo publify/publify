@@ -38,6 +38,9 @@ Factory.define :user do |u|
   u.notify_watch_my_articles false
   u.notify_on_comments false
   u.password 'top-secret'
+  u.state 'active'
+  u.text_filter {Factory(:markdown)}
+  u.profile {Factory(:profile_publisher)}
 end
 
 def some_user
@@ -127,7 +130,7 @@ Factory.define :profile_admin, :class => :profile do |l|
 end
 
 Factory.define :profile_publisher, :class => :profile do |l|
-  l.label 'published'
+  l.label  {Factory.next(:label)}
   l.nicename 'Blog publisher'
   l.modules [:dashboard, :write, :content, :feedback, :profile]
 end
