@@ -33,8 +33,8 @@ class FeedbackController < ApplicationController
           render :text => 'this space left blank'
         end
       end
-      format.atom { render_feed 'shared/atom_feed', get_feedback }
-      format.rss { render_feed 'shared/rss20_feed', get_feedback }
+      format.atom { render_feed 'atom', get_feedback }
+      format.rss { render_feed 'rss', get_feedback }
     end
   end
 
@@ -48,7 +48,9 @@ class FeedbackController < ApplicationController
     end
   end
 
-  def render_feed(template, collection)
-    render :partial => template, :locals => { :items => collection, :feed_url => url_for(params) }
+  def render_feed(format, collection)
+    ivar_name = "@#{self.class.to_s.sub(/Controller$/, '').underscore}"
+    instance_variable_set(ivar_name, collection)
+    render "index_#{format}_feed"
   end
 end

@@ -17,9 +17,16 @@ describe TrackbacksController do
         get :index, :format => :atom
       end
 
-      it "returns an atom feed" do
+      it "is succesful" do
         response.should be_success
-        response.should render_template("shared/_atom_feed")
+      end
+
+      it "passes the trackbacks to the template" do
+        assigns(:trackbacks).should == ["some", "items"]
+      end
+
+      it "renders the atom template" do
+        response.should render_template("index_atom_feed")
       end
     end
 
@@ -28,9 +35,16 @@ describe TrackbacksController do
         get :index, :format => :rss
       end
 
-      it "returns an rss feed" do
+      it "is succesful" do
         response.should be_success
-        response.should render_template("shared/_rss20_feed")
+      end
+
+      it "passes the trackbacks to the template" do
+        assigns(:trackbacks).should == ["some", "items"]
+      end
+
+      it "renders the atom template" do
+        response.should render_template("index_rss_feed")
       end
     end
   end

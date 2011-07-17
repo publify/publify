@@ -73,46 +73,75 @@ describe CommentsController do
     it "GET /2007/10/11/slug/comments.atom should return an atom feed" do
       get :index, :format => 'atom', :article_id => Factory(:article).id
       response.should be_success
-      response.should render_template("shared/_atom_feed")
+      response.should render_template("index_atom_feed")
     end
 
     it "GET /2007/10/11/slug/comments.rss should return an rss feed" do
       get :index, :format => 'rss', :article_id => Factory(:article).id
       response.should be_success
-      response.should render_template("shared/_rss20_feed")
+      response.should render_template("index_rss_feed")
     end
   end
 end
 
-describe CommentsController, 'GET /comments' do
-  before(:each) { Factory(:blog) }
-
-  it "should be successful" do
-    get 'index'
-    response.should be_success
+describe CommentsController do
+  before do
+    blog = stub_model(Blog, :base_url => "http://myblog.net")
+    Blog.stub(:default) { blog }
+    Comment.stub(:find) { [ "some", "items" ] }
   end
 
-  it "should not bother fetching any comments " do
-    mock_comment = mock(Comment)
-    mock_comment.should_not_receive(:published_comments)
-    mock_comment.should_not_receive(:rss_limit_params)
+  describe "#index" do
 
-    get 'index'
-  end
-end
+    describe "without format" do
+      it "should be successful" do
+        get 'index'
+        response.should be_success
+      end
 
-describe CommentsController, "GET /comments.:format" do
-  before(:each) { Factory(:blog) }
+      it "should not bother fetching any comments " do
+        mock_comment = mock(Comment)
+        mock_comment.should_not_receive(:published_comments)
+        mock_comment.should_not_receive(:rss_limit_params)
 
-  it ":format => 'atom' should return an atom feed" do
-    get 'index', :format => 'atom'
-    response.should be_success
-    response.should render_template("shared/_atom_feed")
-  end
+        get 'index'
+      end
+    end
 
-  it ":format => 'rss' should return an rss feed"do
-    get 'index', :format => 'rss'
-    response.should be_success
-    response.should render_template("shared/_rss20_feed")
+    describe "with :format => 'atom'" do
+      before do
+        get 'index', :format => 'atom'
+      end
+
+      it "is succesful" do
+        response.should be_success
+      end
+
+      it "passes the comments to the template" do
+        assigns(:comments).should == ["some", "items"]
+      end
+
+      it "should return an atom feed" do
+        response.should render_template("index_atom_feed")
+      end
+    end
+
+    describe "with :format => 'rss'" do
+      before do
+        get 'index', :format => 'rss'
+      end
+
+      it "is succesful" do
+        response.should be_success
+      end
+
+      it "passes the comments to the template" do
+        assigns(:comments).should == ["some", "items"]
+      end
+
+      it "should return an rss feed" do
+        response.should render_template("index_rss_feed")
+      end
+    end
   end
 end
