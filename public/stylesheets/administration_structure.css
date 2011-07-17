@@ -64,7 +64,13 @@ td.paginate {
 
 #header {
   float: left;
-  width: 70%;
+  width: 60%;
+}
+
+#new_article {
+  float: left;
+  width: 10%;
+  padding-top: 15px;
 }
 
 #logout {
@@ -72,7 +78,7 @@ td.paginate {
   width: 28%;
   margin-left: 70%;
   text-align: right;
-  padding-top: 10px;
+  padding-top: 15px;
   font-size: 13px;
 }
 
