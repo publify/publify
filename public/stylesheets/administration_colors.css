@@ -24,12 +24,14 @@ a.button {
   background: url("../images/admin/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50% #D7EBF9;
   border: 1px solid #AED0EA;
   color: #2779AA;
+  text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
 }
 
 a.button:hover {
   background: url("../images/admin/ui-bg_glass_50_4b7f9e_1x400.png") repeat-x scroll 50% 50% #4B7F9E;
   border: 1px solid #4B7F9E;
   color: #FFFFFF;
+  text-shadow: rgba(0, 0, 0, 0.8) 0 1px 0;
 }
 
 a.edit {
@@ -51,6 +53,7 @@ th {
   border-top: 1px solid #aed0ea;
   border-bottom: 1px solid #aed0ea;
   color:#2779AA;
+  text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
 }
 
 th.first { 
@@ -121,12 +124,14 @@ table.noborder td.last, table.noborder th.last {
   background: url("../images/admin/ui-bg_glass_50_4b7f9e_1x400.png") repeat-x scroll 50% 50% #4B7F9E;
   border: 1px solid #4B7F9E;
   color: #FFFFFF;
+  text-shadow: rgba(0, 0, 0, 0.8) 0 1px 0;
 }
 
 .widget-container h3.light {
   background: url("../images/admin/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50% #D7EBF9;
   border: 1px solid #AED0EA;
   color: #2779AA;
+  text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
 }
 
 .widget-content {
@@ -159,6 +164,7 @@ h3.light span.ui-icon {
 
 #menu ul#tabs li a {
   color: #4B7F9E;
+  text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
 }
 
 #menu ul#tabs li.active {
@@ -167,6 +173,7 @@ h3.light span.ui-icon {
 
 #menu ul#tabs li.active a {
   color: #fff;  
+  text-shadow: rgba(0, 0, 0, 0.8) 0 1px 0;
 }
 
 #menu ul#subtabs {
@@ -206,6 +213,7 @@ input.large, input.medium, input.small, textarea {
   background: #FB7C00; 
   border: #d36800 1px solid; 
   color: #fff; 
+  text-shadow: rgba(211, 104, 0, 0.8) 0 1px 0;
 }
 
 /*------------------------------------------------------------------
@@ -320,6 +328,7 @@ input.large, input.medium, input.small, textarea {
   background: url("../images/admin/ui-bg_glass_50_4b7f9e_1x400.png") repeat-x scroll 50% 50% #4B7F9E;
   border: 1px solid #4B7F9E;
   color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.8) 0 1px 0;
 }
 
 #article_keywords_auto_complete ul li {
