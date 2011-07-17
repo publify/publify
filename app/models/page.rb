@@ -3,6 +3,22 @@ class Page < Content
   validates_presence_of :name, :title, :body
   validates_uniqueness_of :name
 
+  include ConfigManager
+  extend ActiveSupport::Memoizable
+  serialize :settings, Hash
+
+  setting :password,                   :string, ''
+
+  def initialize(*args)
+    super
+    # Yes, this is weird - PDC
+    begin
+      self.settings ||= {}
+    rescue Exception => e
+      self.settings = {}
+    end
+  end
+
   content_fields :body
 
   def self.default_order

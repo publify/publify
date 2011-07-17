@@ -256,3 +256,25 @@ describe 'Given a new user' do
     @user.should_not be_show_jabber
   end
 end
+
+describe 'Given a new article' do
+  before(:each) do
+    Article.delete_all
+    @article = Article.new
+  end
+
+  it 'A new article should get an empty password' do
+    @article.password.should == ''
+  end
+end
+
+describe 'Given a new page' do
+  before(:each) do
+    Page.delete_all
+    @page = Page.new
+  end
+
+  it 'A new page should get an empty password' do
+    @page.password.should == ''
+  end
+end
