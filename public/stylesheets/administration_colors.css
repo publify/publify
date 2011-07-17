@@ -331,6 +331,10 @@ input.large, input.medium, input.small, textarea {
   text-shadow: rgba(0, 0, 0, 0.8) 0 1px 0;
 }
 
+#ed_toolbar_article_body_and_extended, #ed_toolbar_page_body {
+  border: #fff 1px solid;
+}
+
 #article_keywords_auto_complete ul li {
   background: #DCF6FE;
   border-bottom: #a7eafe 1px solid;
@@ -340,6 +344,58 @@ input.large, input.medium, input.small, textarea {
   background: #a7eafe;
 }
 
+.ed_span {
+  background: url("../../../../images/admin/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50% #D7EBF9;
+  border: 1px solid #AED0EA;
+}
+
+.ed_bold {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -304px no-repeat;
+}
+
+.ed_italic {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -320px no-repeat;
+}
+
+.ed_link {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -528px no-repeat;
+}
+
+.ed_ul {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -416px no-repeat;
+}
+
+.ed_ol {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -400px no-repeat;
+}
+
+.ed_li {
+  background: none;
+}
+
+.ed_block {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -1151px no-repeat;
+}
+
+.ed_del {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -352px no-repeat;
+}
+
+.ed_code {
+  background: none;  
+}
+
+.ed_more {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -672px no-repeat;
+}
+
+.ed_typocode, .ed_large {
+  background: none;
+}
+
+.ed_img {
+  background: url("../../javascripts/ckeditor/skins/kama/icons.png") 0 -576px no-repeat;
+}
 
 /*------------------------------------------------------------------
 4.3. Categories

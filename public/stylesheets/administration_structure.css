@@ -574,7 +574,51 @@ span.help {
 }
 
 #ed_toolbar_article_body_and_extended, #ed_toolbar_page_body { 
-  margin: 5px 0; 
+  margin: 5px 0;
+  float: left; 
+  background: #fff;
+  padding: 1px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  
+}
+
+.ed_span {
+  display: block;
+  float: left;
+  padding: 3px 4px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.ed_style {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  text-indent: -1000px;
+  padding: 0;
+  border: none;
+}
+
+.ed_li {
+  text-indent: 0;
+  color: #000;
+  font: 16px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;
+}
+
+.ed_code, .ed_typocode {
+  width: auto;
+  text-indent: 0;
+  font-family: "courier new", courier, serif;
+  font-size: 14px;
+}
+
+.ed_large {
+  width: auto;
+  text-indent: 0;
+  font: 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;
 }
 
 
