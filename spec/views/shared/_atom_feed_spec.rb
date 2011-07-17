@@ -13,9 +13,9 @@ describe "shared/atom_feed.atom.builder" do
     a = stub_model(Article, :published_at => time, :user => author,
                    :created_at => time, :updated_at => time,
                    :title => "not empty either", :permalink => 'foo-bar')
-    a.stub(:tags) { [] }
-    a.stub(:categories) { [] }
-    a.stub(:resources) { [] }
+    a.stub(:tags) { [Factory.build(:tag)] }
+    a.stub(:categories) { [Factory.build(:category)] }
+    a.stub(:resources) { [Factory.build(:resource)] }
     a.stub(:text_filter) { text_filter }
     a
   end
@@ -39,7 +39,7 @@ describe "shared/atom_feed.atom.builder" do
   end
 
   describe "rendering articles" do
-    it 'should create valid atom feed when articles contains funny bits' do
+    it 'should create valid atom feed when articles contain funny bits' do
       article1 = base_article(1.minute.ago)
       article1.body = '&eacute;coute!'
       article2 = base_article(2.minutes.ago)
