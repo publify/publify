@@ -1,13 +1,8 @@
 # This file is better viewed with Textmate tasks plugin
 
-neuro for 6.0.5:
+neuro for 6.0.6:
 - Ticket #185: Change feedback bulk ops to something clearer: mark as spam / confirm classification / validates. Global operations: delete all spam / mark all unconfirmed spam as spam
-- Make the robot_writeable use flash.now with error
-  Polish account creation: 
-  - send the admin an email with the new account creation. 
-  - send the user a link validating his account. Allow account validation. 
-  - within the dashboard make the comment block display only an unpriviledged user comments.
-  - adds specs
+- Remove Page#show + specs (useless)  
 
   Typogarden:
   - Port : http://typogarden.org/hemingway.html
@@ -36,5 +31,4 @@ Admin/tags:
   
 under the hood:
 - Use standard rails localization
-- Split CSS between colors and structure so we can create 2 admin themes
 - Simplify BlogSweeper: (Allmost) all sweeps are really sweep_all.

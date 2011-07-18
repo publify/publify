@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "admin/pages/new.html.erb" do
   before do
-    admin = stub_model(User, :editor => "simple", :admin? => true,
+    admin = stub_model(User, :settings => { :editor => 'simple' }, :admin? => true,
                        :text_filter_name => "", :profile_label => "admin")
     blog = mock_model(Blog, :base_url => "http://myblog.net/")
     page = stub_model(Page).as_new_record

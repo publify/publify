@@ -1,147 +1,147 @@
- HTML BODY {
-	HEIGHT: 100%
+html body {
+  height: 100%
 }
- HTML BODY {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 40px 0px 0px; OVERFLOW: hidden; PADDING-TOP: 0px
+ html body {
+	padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 40px 0px 0px; overflow: hidden; padding-top: 0px
 }
- HTML #toolbar {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 40px;
+ html #toolbar {
+	padding-right: 0px; padding-left: 0px; padding-bottom: 0px; padding-top: 0px; position: absolute; top: 0px; height: 40px;
 }
- HTML #filelist {
-	PADDING-RIGHT: 0px; OVERFLOW-Y: scroll; OVERFLOW-X: hidden; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; HEIGHT: 600px;
+ html #filelist {
+	padding-right: 0px; overflow-y: scroll; overflow-x: hidden; padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: 600px;
 }
 #top {
-	WIDTH: 100%
+	width: 100%
 }
 #filelist {
-	WIDTH: 100%;
+	width: 100%;
 }
-BODY {
-	BACKGROUND-COLOR: #f0f0ee
+body {
+background: #fff;
 }
-A:link {
-	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+a:link {
+	font-size: 12px; color: #000000; text-decoration: none
 }
-A:active {
-	TEXT-DECORATION: underline
+a:active {
+	text-decoration: underline
 }
-A:visited {
-	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+a:visited {
+	font-size: 12px; color: #000000; text-decoration: none
 }
-A:hover {
-	TEXT-DECORATION: underline
+a:hover {
+	text-decoration: underline
 }
-.filelistPath {
-	BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FONT-SIZE: 9pt; VERTICAL-ALIGN: middle; OVERFLOW: hidden; COLOR: #000000; LINE-HEIGHT: 15px; FONT-FAMILY: Sans-serif, Verdana, Arial; HEIGHT: 15px
+.filelistpath {
+	border-top: #cccccc 1px solid; padding-left: 3px; font-weight: bold; font-size: 9pt; vertical-align: middle; overflow: hidden; color: #000000; line-height: 15px; font-family: sans-serif, verdana, arial; height: 15px
 }
-.mceSeparatorLine {
-	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN-LEFT: 4px; BORDER-LEFT: 0px; MARGIN-RIGHT: 2px; PADDING-TOP: 0px; BORDER-BOTTOM: 0px
+.mceseparatorline {
+	border-right: 0px; padding-right: 0px; border-top: 0px; padding-left: 0px; padding-bottom: 0px; margin-left: 4px; border-left: 0px; margin-right: 2px; padding-top: 0px; border-bottom: 0px
 }
-A.mceButtonDisabled IMG {
-	MARGIN-TOP: 1px; MARGIN-LEFT: 1px; WIDTH: 20px; CURSOR: default; HEIGHT: 20px
+a.mcebuttondisabled img {
+	margin-top: 1px; margin-left: 1px; width: 20px; cursor: default; height: 20px
 }
-A.mceButtonNormal IMG {
-	MARGIN-TOP: 1px; MARGIN-LEFT: 1px; WIDTH: 20px; CURSOR: default; HEIGHT: 20px
+a.mcebuttonnormal img {
+	margin-top: 1px; margin-left: 1px; width: 20px; cursor: default; height: 20px
 }
-A.mceButtonSelected IMG {
-	MARGIN-TOP: 1px; MARGIN-LEFT: 1px; WIDTH: 20px; CURSOR: default; HEIGHT: 20px
+a.mcebuttonselected img {
+	margin-top: 1px; margin-left: 1px; width: 20px; cursor: default; height: 20px
 }
-A.mceButtonDisabled IMG {
-	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+a.mcebuttondisabled img {
+	border-right: 0px; border-top: 0px; border-left: 0px; border-bottom: 0px
 }
-A.mceButtonNormal IMG {
-	BORDER-RIGHT: #f0f0ee 1px solid; BORDER-TOP: #f0f0ee 1px solid; BORDER-LEFT: #f0f0ee 1px solid; BORDER-BOTTOM: #f0f0ee 1px solid
+a.mcebuttonnormal img {
+	border-right: #f0f0ee 1px solid; border-top: #f0f0ee 1px solid; border-left: #f0f0ee 1px solid; border-bottom: #f0f0ee 1px solid
 }
-A.mceButtonSelected IMG {
-	BORDER-RIGHT: #f0f0ee 1px solid; BORDER-TOP: #f0f0ee 1px solid; BORDER-LEFT: #f0f0ee 1px solid; BORDER-BOTTOM: #f0f0ee 1px solid
+a.mcebuttonselected img {
+	border-right: #f0f0ee 1px solid; border-top: #f0f0ee 1px solid; border-left: #f0f0ee 1px solid; border-bottom: #f0f0ee 1px solid
 }
-A.mceButtonSelected IMG {
-	BORDER-RIGHT: #c0c0bb 1px solid; BORDER-TOP: #c0c0bb 1px solid; BORDER-LEFT: #c0c0bb 1px solid; BORDER-BOTTOM: #c0c0bb 1px solid
+a.mcebuttonselected img {
+	border-right: #c0c0bb 1px solid; border-top: #c0c0bb 1px solid; border-left: #c0c0bb 1px solid; border-bottom: #c0c0bb 1px solid
 }
-A.mceButtonNormal IMG:hover {
-	BORDER-RIGHT: #0a246a 1px solid; BORDER-TOP: #0a246a 1px solid; BORDER-LEFT: #0a246a 1px solid; CURSOR: default; BORDER-BOTTOM: #0a246a 1px solid; BACKGROUND-COLOR: #b6bdd2
+a.mcebuttonnormal img:hover {
+	border-right: #0a246a 1px solid; border-top: #0a246a 1px solid; border-left: #0a246a 1px solid; cursor: default; border-bottom: #0a246a 1px solid; background-color: #b6bdd2
 }
-A.mceButtonSelected IMG:hover {
-	BORDER-RIGHT: #0a246a 1px solid; BORDER-TOP: #0a246a 1px solid; BORDER-LEFT: #0a246a 1px solid; CURSOR: default; BORDER-BOTTOM: #0a246a 1px solid; BACKGROUND-COLOR: #b6bdd2
+a.mcebuttonselected img:hover {
+	border-right: #0a246a 1px solid; border-top: #0a246a 1px solid; border-left: #0a246a 1px solid; cursor: default; border-bottom: #0a246a 1px solid; background-color: #b6bdd2
 }
-A.mceButtonDisabled IMG {
-	BORDER-RIGHT: #f0f0ee 1px solid; BORDER-TOP: #f0f0ee 1px solid; BORDER-LEFT: #f0f0ee 1px solid; CURSOR: default; BORDER-BOTTOM: #f0f0ee 1px solid; moz-opacity: 0.3; opacity: 0.3
+a.mcebuttondisabled img {
+	border-right: #f0f0ee 1px solid; border-top: #f0f0ee 1px solid; border-left: #f0f0ee 1px solid; cursor: default; border-bottom: #f0f0ee 1px solid; moz-opacity: 0.3; opacity: 0.3
 }
- HTML A.mceButtonNormal IMG {
-	BORDER-RIGHT: 0px; BORDER-TOP: 0px; MARGIN-TOP: 2px; MARGIN-BOTTOM: 1px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+ html a.mcebuttonnormal img {
+	border-right: 0px; border-top: 0px; margin-top: 2px; margin-bottom: 1px; border-left: 0px; border-bottom: 0px
 }
- HTML A.mceButtonSelected IMG {
-	BORDER-RIGHT: 0px; BORDER-TOP: 0px; MARGIN-TOP: 2px; MARGIN-BOTTOM: 1px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+ html a.mcebuttonselected img {
+	border-right: 0px; border-top: 0px; margin-top: 2px; margin-bottom: 1px; border-left: 0px; border-bottom: 0px
 }
- HTML A.mceButtonDisabled IMG {
-	BORDER-RIGHT: 0px; BORDER-TOP: 0px; MARGIN-TOP: 2px; MARGIN-BOTTOM: 1px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+ html a.mcebuttondisabled img {
+	border-right: 0px; border-top: 0px; margin-top: 2px; margin-bottom: 1px; border-left: 0px; border-bottom: 0px
 }
- HTML A.mceButtonDisabled IMG {
-	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FILTER: progid:DXImageTransform.Microsoft.Alpha(opacity=30); BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+ html a.mcebuttondisabled img {
+	border-right: 0px; border-top: 0px; filter: progid:dximagetransform.microsoft.alpha(opacity=30); border-left: 0px; border-bottom: 0px
 }
- HTML A.mceButtonDisabled {
-	BORDER-RIGHT: #f0f0ee 1px solid; BORDER-TOP: #f0f0ee 1px solid; BORDER-LEFT: #f0f0ee 1px solid; BORDER-BOTTOM: #f0f0ee 1px solid
+ html a.mcebuttondisabled {
+	border-right: #f0f0ee 1px solid; border-top: #f0f0ee 1px solid; border-left: #f0f0ee 1px solid; border-bottom: #f0f0ee 1px solid
 }
- HTML A.mceButtonNormal {
-	BORDER-RIGHT: #f0f0ee 1px solid; BORDER-TOP: #f0f0ee 1px solid; BORDER-LEFT: #f0f0ee 1px solid; CURSOR: default; BORDER-BOTTOM: #f0f0ee 1px solid
+ html a.mcebuttonnormal {
+	border-right: #f0f0ee 1px solid; border-top: #f0f0ee 1px solid; border-left: #f0f0ee 1px solid; cursor: default; border-bottom: #f0f0ee 1px solid
 }
- HTML A.mceButtonSelected {
-	BORDER-RIGHT: #f0f0ee 1px solid; BORDER-TOP: #f0f0ee 1px solid; BORDER-LEFT: #f0f0ee 1px solid; CURSOR: default; BORDER-BOTTOM: #f0f0ee 1px solid
+ html a.mcebuttonselected {
+	border-right: #f0f0ee 1px solid; border-top: #f0f0ee 1px solid; border-left: #f0f0ee 1px solid; cursor: default; border-bottom: #f0f0ee 1px solid
 }
- HTML A.mceButtonSelected {
-	BORDER-RIGHT: #c0c0bb 1px solid; BORDER-TOP: #c0c0bb 1px solid; BORDER-LEFT: #c0c0bb 1px solid; BORDER-BOTTOM: #c0c0bb 1px solid
+ html a.mcebuttonselected {
+	border-right: #c0c0bb 1px solid; border-top: #c0c0bb 1px solid; border-left: #c0c0bb 1px solid; border-bottom: #c0c0bb 1px solid
 }
- HTML A.mceButtonNormal:hover {
-	BORDER-RIGHT: #0a246a 1px solid; BORDER-TOP: #0a246a 1px solid; BORDER-LEFT: #0a246a 1px solid; CURSOR: default; BORDER-BOTTOM: #0a246a 1px solid; BACKGROUND-COLOR: #b6bdd2
+ html a.mcebuttonnormal:hover {
+	border-right: #0a246a 1px solid; border-top: #0a246a 1px solid; border-left: #0a246a 1px solid; cursor: default; border-bottom: #0a246a 1px solid; background-color: #b6bdd2
 }
- HTML A.mceButtonSelected:hover {
-	BORDER-RIGHT: #0a246a 1px solid; BORDER-TOP: #0a246a 1px solid; BORDER-LEFT: #0a246a 1px solid; CURSOR: default; BORDER-BOTTOM: #0a246a 1px solid; BACKGROUND-COLOR: #b6bdd2
+ html a.mcebuttonselected:hover {
+	border-right: #0a246a 1px solid; border-top: #0a246a 1px solid; border-left: #0a246a 1px solid; cursor: default; border-bottom: #0a246a 1px solid; background-color: #b6bdd2
 }
- HTML .mceSelectList {
-	MARGIN-TOP: 2px
+ html .mceselectlist {
+	margin-top: 2px
 }
 .status {
-	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: 0px; FONT-WEIGHT: bold; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #cccccc 1px solid; FONT-FAMILY: "MS Sans Serif", Verdana, Arial; BACKGROUND-COLOR: #f0f0ee
+	border-right: #cccccc 1px solid; border-top: 0px; font-weight: bold; font-size: 9pt; padding-bottom: 2px; border-left: #cccccc 1px solid; padding-top: 2px; border-bottom: #cccccc 1px solid; font-family: "ms sans serif", verdana, arial; background-color: #f0f0ee
 }
-.statusError {
-	COLOR: #880000
+.statuserror {
+	color: #880000
 }
-.statusMsg {
-	COLOR: #000000
+.statusmsg {
+	color: #000000
 }
 .toolbaritems {
 
 }
-FORM {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+form {
+	padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; padding-top: 0px
 }
-TD {
-	FONT-SIZE: 9pt; FONT-FAMILY: "MS Sans Serif", Verdana, Arial
+td {
+  font: 11px/17px 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
 }
-.filelistHeadRow TD {
-	BORDER-RIGHT: buttonshadow 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: buttonhighlight 1px solid; PADDING-LEFT: 3px; FONT-WEIGHT: bold; PADDING-BOTTOM: 1px; BORDER-LEFT: buttonhighlight 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: buttonshadow 1px solid; BACKGROUND-COLOR: #d4d0c8
+.filelistheadrow td {
+	border-right: buttonshadow 1px solid; padding-right: 3px; border-top: buttonhighlight 1px solid; padding-left: 3px; font-weight: bold; padding-bottom: 1px; border-left: buttonhighlight 1px solid; padding-top: 1px; border-bottom: buttonshadow 1px solid; background-color: #d4d0c8
 }
-.filelistHeadCol A {
-	COLOR: #000000
+.filelistheadcol a {
+	color: #000000
 }
-.filelistHeadCol A:visited {
-	COLOR: #000000
+.filelistheadcol a:visited {
+	color: #000000
 }
-.filelistFileName {
-	PADDING-LEFT: 4px
+.filelistfilename {
+	padding-left: 4px
 }
-.filelistCutFileName {
-	PADDING-LEFT: 4px
+.filelistcutfilename {
+	padding-left: 4px
 }
-.filelistRowOdd {
-	BACKGROUND-COLOR: #ffffff
+.filelistrowodd {
+	background-color: #ffffff
 }
-.filelistRowEven {
-	BACKGROUND-COLOR: #f7f7f7
+.filelistroweven {
+	background-color: #f7f7f7
 }
 .sortarrow {
-	MARGIN-BOTTOM: 2px; MARGIN-LEFT: 7px
+	margin-bottom: 2px; margin-left: 7px
 }
-.cutFile {
-	FILTER: progid:DXImageTransform.Microsoft.Alpha(opacity=40); moz-opacity: 0.4; opacity: 0.4
+.cutfile {
+	filter: progid:dximagetransform.microsoft.alpha(opacity=40); moz-opacity: 0.4; opacity: 0.4
 }

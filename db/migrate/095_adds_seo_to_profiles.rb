@@ -12,6 +12,6 @@ class AddsSeoToProfiles < ActiveRecord::Migration
 
   def self.down
     say "Removing the seo module to admin profile"
-    Profile.find_by_label("admin").update_attributes(:modules => [:dashboard, :write, :content, :feedback, :themes, :sidebar, :users, :settings, :seo ])
+    Profile.find_by_label("admin").update_attributes(:modules => [:dashboard, :write, :content, :feedback, :themes, :sidebar, :users, :settings, :profile ])
   end
 end

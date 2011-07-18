@@ -35,9 +35,9 @@ Factory.define :user do |u|
   u.name 'Bond'
   u.notify_via_email false
   u.notify_on_new_articles false
-  u.notify_watch_my_articles false
   u.notify_on_comments false
   u.password 'top-secret'
+  u.settings {}
 end
 
 def some_user
@@ -118,7 +118,6 @@ Factory.define :blog do |b|
   b.permalink_format "/%year%/%month%/%day%/%title%"
   b.use_canonical_url true
 end
-
 
 Factory.define :profile_admin, :class => :profile do |l|
   l.label {Factory.next(:label)}

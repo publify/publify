@@ -71,7 +71,7 @@ class Blog < ActiveRecord::Base
   setting :index_categories,           :boolean, true # deprecated but still needed for backward compatibility
   setting :unindex_categories,         :boolean, false
   setting :index_tags,                 :boolean, true # deprecated but still needed for backward compatibility
-  setting :unindex_tags,               :boolean, true
+  setting :unindex_tags,               :boolean, false
   setting :admin_display_elements,     :integer, 10
   setting :google_verification,        :string, ''
   setting :nofollowify,                :boolean, true # deprecated but still needed for backward compatibility

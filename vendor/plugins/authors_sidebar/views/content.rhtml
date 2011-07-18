@@ -3,8 +3,8 @@
 <ul id="categories">
 <% for user in sidebar.authors -%>
   <li>
-    <%= link_to h(user.name), :controller => 'authors', :action => 'show', :id => user.login  %>
-    <%= "(#{user.articles.count})" if sidebar.count %>
+    <% count = "(#{user.articles.count})" %>
+    <%= link_to "#{h(user.name)} #{count if sidebar.count}", :controller => 'authors', :action => 'show', :id => user.login  %>
   </li>
   <% end %>
 </ul>

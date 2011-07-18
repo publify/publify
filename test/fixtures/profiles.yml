@@ -4,13 +4,16 @@ admin:
   modules: <%= [
     :dashboard,
     :write,
-    :content,
+    :articles,
+    :pages,
     :feedback,
     :themes,
     :sidebar,
     :profile,
     :users,
-    :settings].to_yaml.inspect %>
+    :settings,
+    :seo,
+    :media].to_yaml.inspect %>
 
 publisher:
   label: publisher
@@ -19,6 +22,7 @@ publisher:
     :users,
     :dashboard,
     :write,
-    :content,
-    :feedback].to_yaml.inspect %>
-
+    :articles,
+    :pages,
+    :feedback,
+    :media].to_yaml.inspect %>

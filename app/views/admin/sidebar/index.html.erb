@@ -37,7 +37,7 @@
         <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
                       :style => 'display:none;' -%>
       </h3>
-      <div id="active" class='widget-content'>
+      <div id="active">
         <% if @active.blank? %>
           <%= render :partial => 'target' %>
         <% else %>

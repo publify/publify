@@ -9,24 +9,56 @@ describe Admin::SettingsController do
   end
 
   describe "#index" do
-    it 'should render index' do
+    before(:each) do
       get :index
+    end
+    
+    it 'should render index' do  
       response.should render_template('index')
     end
+    
+    it 'should have settings tab selected' do
+      test_tabs "Settings"
+    end
+    
+    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with General settings selected' do
+      subtabs = ["General settings", "Write", "Feedback", "Cache", "Users", "Redirects"]
+      test_subtabs(subtabs, "General settings")
+    end        
   end
 
   describe 'write action' do
-    it 'should be success' do
+    before(:each) do
       get :write
+    end
+    
+    it 'should be success' do
       assert_template 'write'
     end
+    
+    it 'should have settings tab selected' do
+      test_tabs "Settings"
+    end    
   end
 
   describe 'feedback action' do
-    it 'should be sucess' do
+    before(:each) do
       get :feedback
+    end
+    
+    it 'should be sucess' do
       assert_template 'feedback'
     end
+    
+    it 'should have settings tab selected' do
+      test_tabs "Settings"
+    end
+    
+    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with Feedback selected' do
+      subtabs = ["General settings", "Write", "Feedback", "Cache", "Users", "Redirects"]
+      test_subtabs(subtabs, "Feedback")
+    end
+    
   end
 
   describe 'redirect action' do

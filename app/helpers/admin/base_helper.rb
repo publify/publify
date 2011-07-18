@@ -34,12 +34,12 @@ module Admin::BaseHelper
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
-    link_to label, :controller => controller, :action => 'edit', :id => record.id
+    link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
   end
 
   def link_to_edit_with_profiles(label, record, controller = controller.controller_name)
     if current_user.admin? || current_user.id == record.user_id
-      link_to label, :controller => controller, :action => 'edit', :id => record.id
+      link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
     end
   end
 
@@ -90,16 +90,23 @@ module Admin::BaseHelper
     'active'
   end
 
-  def class_write
-    if controller.controller_name == "content" or controller.controller_name == "pages"
-      return class_selected_tab if controller.action_name == 'new' || controller.action_name == 'edit'
+  def class_articles
+    if controller.controller_name  =~ /content|tags|categories|feedback/
+      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy|new|edit/
     end
     class_tab
   end
 
-  def class_content
-    if controller.controller_name  =~ /content|pages|categories|resources|feedback/
-      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy/
+  def class_media
+    if controller.controller_name  =~ /resources/
+      return class_selected_tab
+    end
+    class_tab
+  end  
+
+  def class_pages
+    if controller.controller_name  =~ /pages/
+      return class_selected_tab if controller.action_name =~ /index|destroy|new|edit/
     end
     class_tab
   end
@@ -115,7 +122,7 @@ module Admin::BaseHelper
   end
 
   def class_settings
-    return class_selected_tab if controller.controller_name  =~ /settings|users/
+    return class_selected_tab if controller.controller_name  =~ /settings|users|cache|redirects/
     class_tab
   end
 
@@ -171,9 +178,9 @@ module Admin::BaseHelper
   def show_actions item
     html = <<-HTML
       <div class='action'>
-        <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
         <small>#{link_to_published item}</small> |
-        <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small>
+        <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
+        <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small> |
         #{get_short_url item}
     </div>
     HTML
@@ -232,9 +239,9 @@ module Admin::BaseHelper
     link << image_tag("spinner-blue.gif", :id => "update_spinner_#{id}", :style => 'display:none;')
   end
 
-  def display_pagination(collection, cols)
+  def display_pagination(collection, cols, first='', last='')
     if collection.total_pages > 1
-      return "<tr><td colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
+      return "<tr><td class='#{first} #{last}' colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
     end
   end
 

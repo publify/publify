@@ -1,6 +1,9 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  include ConfigManager
+  extend ActiveSupport::Memoizable
+  
   belongs_to :profile
   belongs_to :text_filter
 
@@ -22,10 +25,42 @@ class User < ActiveRecord::Base
     :conditions => { :published => true },
     :order      => "published_at DESC"
 
+  serialize :settings, Hash
+
+  # Settings
+  setting :notify_watch_my_articles,   :boolean, true
+  setting :editor,                     :string, 'visual'
+  setting :firstname,                  :string, ''
+  setting :lastname,                   :string, ''
+  setting :nickname,                   :string, ''
+  setting :description,                :string, ''
+  setting :url,                        :string, ''
+  setting :msn,                        :string, ''
+  setting :aim,                        :string, ''
+  setting :yahoo,                      :string, ''
+  setting :twitter,                    :string, ''
+  setting :jabber,                     :string, ''
+  setting :show_url,                   :boolean, false
+  setting :show_msn,                   :boolean, false
+  setting :show_aim,                   :boolean, false
+  setting :show_yahoo,                 :boolean, false
+  setting :show_twitter,               :boolean, false
+  setting :show_jabber,                :boolean, false
+
   # echo "typo" | sha1sum -
   @@salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
   cattr_accessor :salt
   attr_accessor :last_venue
+
+  def initialize(*args)
+    super
+    # Yes, this is weird - PDC
+    begin
+      self.settings ||= {}
+    rescue Exception => e
+      self.settings = {}
+    end
+  end
 
   def self.authenticate(login, pass)
     find(:first,

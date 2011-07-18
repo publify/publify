@@ -4,6 +4,9 @@ require 'net/http'
 
 class Article < Content
   include TypoGuid
+  include ConfigManager
+  extend ActiveSupport::Memoizable
+  serialize :settings, Hash
 
   content_fields :body, :extended
 
@@ -52,6 +55,18 @@ class Article < Content
   scope :drafts, :conditions => ['state = ?', 'draft']
   scope :without_parent, {:conditions => {:parent_id => nil}}
   scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
+
+  setting :password,                   :string, ''
+
+  def initialize(*args)
+    super
+    # Yes, this is weird - PDC
+    begin
+      self.settings ||= {}
+    rescue Exception => e
+      self.settings = {}
+    end
+  end
 
   def has_child?
     Article.exists?({:parent_id => self.id})
