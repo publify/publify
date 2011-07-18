@@ -145,7 +145,7 @@ end
 
 Factory.define :tag do |tag|
   tag.name {Factory.next(:name)}
-  tag.display_name {Factory.next(:name)}
+  tag.display_name { |a| a.name }
 end
 
 Factory.define :resource do |r|
