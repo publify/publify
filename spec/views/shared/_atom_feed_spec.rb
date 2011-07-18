@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe "shared/atom_feed.atom.builder" do
   before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net")
-    view.stub(:this_blog) { blog }
-    Blog.stub(:default) { blog }
+    stub_default_blog
   end
 
   let(:author) { stub_model(User, :name => "not empty") }
@@ -22,6 +20,24 @@ describe "shared/atom_feed.atom.builder" do
     a
   end
 
+  describe "with no items" do
+    before do
+      render "shared/atom_feed", :items => []
+    end
+
+    it "should render a valid feed" do
+      pending "think of what the updated value should be"
+      assert_feedvalidator rendered
+    end
+
+    it "shows typo with the current version as the generator" do
+      xml = Nokogiri::XML.parse(rendered)
+      generator = xml.css("generator").first
+      generator.content.should == "Typo"
+      generator["version"].should == TYPO_VERSION
+    end
+  end
+
   describe "rendering articles" do
     it 'should create valid atom feed when articles contains funny bits' do
       article1 = base_article(1.minute.ago)
@@ -30,16 +46,24 @@ describe "shared/atom_feed.atom.builder" do
       article2.body = 'is 4 < 2? no!'
       render "shared/atom_feed", :items => [article1, article2]
       assert_feedvalidator rendered
+      assert_atom10 rendered, 2
     end
   end
 
-  describe "rendering trackbacks" do
+  describe "rendering trackbacks with one trackback" do
     let(:article) { base_article }
     let(:trackback) { Factory.build(:trackback, :article => article) }
 
-    it "should render a valid atom feed" do
+    before do
       render "shared/atom_feed", :items => [trackback]
+    end
+
+    it "should render a valid feed" do
       assert_feedvalidator rendered
+    end
+
+    it "should render an Atom feed with one item" do
+      assert_atom10 rendered, 1
     end
   end
 end

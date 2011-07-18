@@ -32,6 +32,7 @@ describe "shared/rss20_feed.rss.builder" do
       render "shared/rss20_feed", :items => [article1, article2],
         :feed_url => "http://full-feedurl.com/feed"
       assert_feedvalidator rendered
+      assert_rss20 rendered, 2
     end
   end
 
@@ -43,6 +44,15 @@ describe "shared/rss20_feed.rss.builder" do
       render "shared/rss20_feed", :items => [trackback],
         :feed_url => "http://full-feedurl.com/feed"
       assert_feedvalidator rendered
+      assert_rss20 rendered, 1
     end
+  end
+
+  def assert_rss20 feed, count
+    doc = Nokogiri::XML.parse(feed)
+    root = doc.css(':root').first
+    root.name.should == "rss"
+    root['version'].should == "2.0"
+    root.css('channel item').count.should == count
   end
 end

@@ -1,48 +1,75 @@
 require 'spec_helper'
 
 describe AuthorsController do
-  render_views
+  describe '#show' do
+    let!(:blog) { Factory(:blog) }
+    let!(:user) { Factory(:user) }
+    let!(:article) { Factory(:article, :user => user) }
 
-  describe 'show action' do
-    before :each do
-      Factory(:blog)
-      get 'show', :id => 'tobi'
+    describe "as html" do
+      before do
+        get 'show', :id => user.login
+      end
+
+      it 'renders the :show template' do
+        response.should render_template(:show)
+      end
+
+      it 'assigns author and articles' do
+        assigns(:author).should == user
+        assigns(:articles).should == [article]
+      end
+
+      describe "when rendered" do
+        render_views
+
+        it 'has a link to the rss feed' do
+          response.should have_selector("head>link[href=\"http://test.host/author/#{user.login}.rss\"]")
+        end
+
+        it 'has a link to the atom feed' do
+          response.should have_selector("head>link[href=\"http://test.host/author/#{user.login}.atom\"]")
+        end
+      end
     end
 
-    it 'should be render template index' do
-      response.should render_template(:show)
+    describe "as an atom feed" do
+      before do
+        get 'show', :id => user.login, :format => 'atom'
+      end
+
+      it 'assigns articles' do
+        assigns(:articles).should == [article]
+      end
+
+      it "renders the atom template" do
+        response.should be_success
+        response.should render_template("show_atom_feed")
+      end
+
+      it "does not render layout" do
+        @layouts.keys.compact.should be_empty
+      end
     end
 
-    it 'should assigns articles' do
-      assigns[:author].should_not be_nil
+    describe "as an rss feed" do
+      before do
+        get 'show', :id => user.login, :format => 'rss'
+      end
+
+      it 'assigns articles' do
+        assigns(:articles).should == [article]
+      end
+
+      it "renders the rss template" do
+        response.should be_success
+        response.should render_template("show_rss_feed")
+      end
+
+      it "does not render layout" do
+        @layouts.keys.compact.should be_empty
+      end
     end
-
-    it 'should have good link feed rss' do
-      response.should have_selector('head>link[href="http://test.host/author/tobi.rss"]')
-    end
-
-    it 'should have good link feed atom' do
-      response.should have_selector('head>link[href="http://test.host/author/tobi.atom"]')
-    end
-  end
-
-  specify "/author/tobi.atom => an atom feed" do
-    Factory(:blog)
-    user = Factory(:user, :name => 'tobi')
-    article = Factory(:article, :user => user)
-    get 'show', :id => user.login, :format => 'atom'
-    response.should be_success
-    response.should render_template("shared/_atom_feed")
-    assert_feedvalidator @response.body
-  end
-
-  specify "/author/tobi.rss => a rss feed" do
-    Factory(:blog)
-    get 'show', :id => 'tobi', :format => 'rss'
-    response.should be_success
-    response.should render_template("shared/_rss20_feed")
-    response.should have_selector('link', :content => 'http://myblog.net')
-    assert_feedvalidator @response.body
   end
 end
 

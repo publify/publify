@@ -17,8 +17,14 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
                        :article_id => Factory(:article).id)
     tb.should_not be_valid
     tb.errors['url'].should be_any
+  end
 
-    tb.url = 'http://foo.com'
+  it "A valid trackback should be accepted" do
+    tb = Trackback.new(:blog_name => 'Blog name',
+                       :title => 'Title',
+                       :url => 'http://foo.com',
+                       :excerpt => 'Excerpt',
+                       :article_id => Factory(:article).id)
     tb.should be_valid
     tb.save
     tb.guid.size.should be > 15

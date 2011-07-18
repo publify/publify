@@ -80,16 +80,14 @@ describe CategoriesController, '/articles/category/personal' do
 
   it 'should show only published articles' do
     c = Factory.build(:category, :permalink => 'Social')
-    articles = []
-    3.times {articles << Factory(:article, :categories => [c])}
-    articles << Factory(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
-    #c.should_receive(:articles).and_return(articles)
+    articles = [Factory.build(:article, :categories => [c])]
     controller.should_receive(:show_page_title_for)
     controller.should_receive(:permalink_with_page)
     Category.should_receive(:find_by_permalink).with('Social').and_return(c)
+    c.should_receive(:published_articles).and_return(articles)
     get 'show', :id => 'Social'
     response.should be_success
-    assigns[:articles].size.should == 3
+    assigns[:articles].should_not be_empty
   end
 
   it 'should set the page title to "Category Personal"' do
@@ -105,14 +103,15 @@ describe CategoriesController, '/articles/category/personal' do
 
   it 'should render the atom feed for /articles/category/personal.atom' do
     get 'show', :id => 'personal', :format => 'atom'
-    response.should render_template('shared/_atom_feed')
+    response.should render_template('articles/index_atom_feed')
+    @layouts.keys.compact.should be_empty
   end
 
   it 'should render the rss feed for /articles/category/personal.rss' do
     get 'show', :id => 'personal', :format => 'rss'
-    response.should render_template('shared/_rss20_feed')
+    response.should render_template('articles/index_rss_feed')
+    @layouts.keys.compact.should be_empty
   end
-
 end
 
 describe CategoriesController, 'empty category life-on-mars' do

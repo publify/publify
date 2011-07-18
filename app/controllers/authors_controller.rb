@@ -4,23 +4,25 @@ class AuthorsController < ContentController
   def show
     @author = User.find_by_login(params[:id])
     raise ActiveRecord::RecordNotFound unless @author
+    @articles = @author.articles
 
     respond_to do |format|
-      format.html
+      format.html do
+        render
+      end
       format.rss do
         auto_discovery_feed(:only_path => false)
-        render_feed "shared/rss20_feed"
+        render_feed "rss"
       end
       format.atom do
-        render_feed "shared/atom_feed"
+        render_feed "atom"
       end
     end
   end
 
   private
 
-  def render_feed(template)
-    @limit = this_blog.limit_rss_display
-    render :partial => template, :locals => { :items => @author.articles, :feed_url => url_for(params) }
+  def render_feed format
+    render "show_#{format}_feed", :layout => false
   end
 end

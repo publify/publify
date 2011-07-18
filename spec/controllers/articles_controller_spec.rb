@@ -88,15 +88,15 @@ describe ArticlesController do
     it 'should render feed rss by search' do
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
-      response.should render_template('shared/_rss20_feed')
-      assert_feedvalidator response.body
+      response.should render_template('index_rss_feed')
+      @layouts.keys.compact.should be_empty
     end
 
     it 'should render feed atom by search' do
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
-      response.should render_template('shared/_atom_feed')
-      assert_feedvalidator response.body
+      response.should render_template('index_atom_feed')
+      @layouts.keys.compact.should be_empty
     end
 
     it 'search with empty result' do
@@ -206,15 +206,13 @@ describe ArticlesController, "nousers" do
 end
 
 describe ArticlesController, "feeds" do
-  render_views
-
   before(:each) do
     Factory(:blog)
-    @article = Factory.create(:article,
+    @article1 = Factory.create(:article,
       :created_at => Time.now - 1.day)
-    Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+    Factory.create(:trackback, :article => @article1, :published_at => Time.now - 1.day,
       :published => true)
-    Factory.create(:article,
+    @article2 = Factory.create(:article,
       :created_at => '2004-04-01 12:00:00',
       :published_at => '2004-04-01 12:00:00',
       :updated_at => '2004-04-01 12:00:00')
@@ -224,28 +222,31 @@ describe ArticlesController, "feeds" do
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
-    response.should render_template("shared/_atom_feed")
-    assert_feedvalidator response.body
+    response.should render_template("index_atom_feed")
+    assigns(:articles).should == [@article1, @article2]
+    @layouts.keys.compact.should be_empty
   end
 
   specify "/articles.rss => an RSS 2.0 feed" do
     get 'index', :format => 'rss'
     response.should be_success
-    response.should render_template("shared/_rss20_feed")
-    response.body.should have_selector('link', :content => 'http://myblog.net')
-    assert_feedvalidator response.body
+    response.should render_template("index_rss_feed")
+    assigns(:articles).should == [@article1, @article2]
+    @layouts.keys.compact.should be_empty
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
-    response.should render_template("shared/_atom_feed")
-    assert_feedvalidator response.body
+    response.should render_template("index_atom_feed")
+    assigns(:articles).should == [@article2]
+    @layouts.keys.compact.should be_empty
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
-    response.should render_template("shared/_rss20_feed")
-    assert_feedvalidator response.body
+    response.should render_template("index_rss_feed")
+    assigns(:articles).should == [@article2]
+    @layouts.keys.compact.should be_empty
   end
 end
 
@@ -253,10 +254,9 @@ describe ArticlesController, "the index" do
   before(:each) { Factory(:blog) }
 
   it "should ignore the HTTP Accept: header" do
-    pending "replacement needed for setting use_accept_header=false"
     request.env["HTTP_ACCEPT"] = "application/atom+xml"
     get "index"
-    response.should_not render_template("shared/_atom_feed")
+    response.should render_template("index")
   end
 end
 
@@ -483,52 +483,30 @@ describe ArticlesController, "redirecting" do
     end
 
     describe 'rendering as atom feed' do
-      render_views
-
       before(:each) do
-        Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+        @trackback1 = Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
           :published => true)
         get :redirect, :from => "#{@article.permalink}.html.atom"
       end
 
-      it 'should render atom partial' do
-        response.should render_template('shared/_atom_feed')
-      end
-
-      it 'should render a valid feed' do
-        assert_feedvalidator response.body
+      it 'should render feedback atom feed' do
+        assigns(:feedback).should == [@trackback1]
+        response.should render_template('feedback_atom_feed')
+        @layouts.keys.compact.should be_empty
       end
     end
 
     describe 'rendering as rss feed' do
-      render_views
-
       before(:each) do
+        @trackback1 = Factory.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
+          :published => true)
         get :redirect, :from => "#{@article.permalink}.html.rss"
       end
 
       it 'should render rss20 partial' do
-        response.should render_template('shared/_rss20_feed')
-      end
-
-      it 'should render a valid feed' do
-        assert_feedvalidator response.body
-      end
-    end
-
-    describe 'rendering comment feed with problematic characters' do
-      render_views
-
-      before(:each) do
-        @comment = Factory(:comment, :article => @article)
-        @comment.body = "&eacute;coute! 4 < 2, non?"
-        @comment.save!
-        get :redirect, :from => "#{@article.permalink}.html.atom"
-      end
-
-      it 'should result in a valid atom feed' do
-        assigns(:article).should == @article
-        assert_feedvalidator response.body
+        assigns(:feedback).should == [@trackback1]
+        response.should render_template('feedback_rss_feed')
+        @layouts.keys.compact.should be_empty
       end
     end
   end
