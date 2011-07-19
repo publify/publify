@@ -85,6 +85,23 @@ describe "articles/index_atom_feed.atom.builder" do
         rendered_entry.css("summary").should be_empty
       end
     end
+
+    describe "on a blog that has an RSS description set" do
+      before do
+        Blog.default.rss_description = true
+        Blog.default.rss_description_text = "rss description"
+        render
+      end
+
+      it "shows the body and extended content in the feed" do
+        rendered_entry.css("content").first.content.should =~ /public info\s*and more/
+      end
+
+      it "shows the RSS description in the feed" do
+        rendered_entry.css("content").first.content.should =~ /rss description/
+      end
+    end
+
   end
 
   describe "rendering a password protected article" do

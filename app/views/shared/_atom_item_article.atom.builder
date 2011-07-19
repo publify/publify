@@ -38,6 +38,6 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
       html(item, :all)
     end
 
-  entry.content content_html, "type"=>"html"
+  entry.content content_html + item.get_rss_description, "type"=>"html"
 end
 
