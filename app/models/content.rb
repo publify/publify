@@ -301,16 +301,6 @@ class Content < ActiveRecord::Base
     return true
   end
 
-  def to_atom xml
-    xml.entry self, :url => permalink_url do |entry|
-      atom_author(entry)
-      atom_title(entry)
-      atom_groupings(entry)
-      atom_enclosures(entry)
-      atom_content(entry)
-    end
-  end
-
   def to_rss(xml)
     xml.item do
       rss_title(xml)
@@ -357,16 +347,6 @@ class Content < ActiveRecord::Base
   end
 
   def rss_trackback(xml)
-  end
-
-  def atom_groupings(xml)
-  end
-
-  def atom_enclosures(xml)
-  end
-
-  def atom_content(entry)
-    entry.content(html(:all), :type => 'html')
   end
 
   # TODO: Perhaps permalink_url should produce valid URI's instead of IRI's

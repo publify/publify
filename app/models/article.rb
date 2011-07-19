@@ -481,38 +481,6 @@ class Article < Content
     xml.title title
   end
 
-  def atom_author(xml)
-    xml.author { xml.name user.name }
-  end
-
-  def atom_title(xml)
-    xml.title title, "type" => "html"
-  end
-
-  def atom_groupings(xml)
-    categories.each {|v| v.to_atom(xml) }
-    tags.each { |v| v.to_atom(xml) }
-  end
-
-  def atom_enclosures(xml)
-    resources.each do |value|
-      xml.with_options(value.size > 0 ? { :length => value.size } : { }) do |xm|
-        xm.tag! :link, "rel" => "enclosure",
-          :type => value.mime,
-          :title => title,
-          :href => blog.file_url(value.filename)
-      end
-    end
-  end
-
-  def atom_content(entry)
-    post = blog.hide_extended_on_rss ? post = html(:body) : post = html(:all)
-    post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless password.nil? or password.empty?
-
-    content = blog.rss_description ? post + get_rss_description : post
-    entry.content(content, :type => "html")
-  end
-
   def password_protected?
     not password.blank?
   end

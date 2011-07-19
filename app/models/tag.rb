@@ -80,10 +80,6 @@ class Tag < ActiveRecord::Base
     )
   end
 
-  def to_atom(xml)
-    xml.category :term => display_name, :scheme => permalink_url
-  end
-
   def to_rss(xml)
     xml.category display_name
   end
