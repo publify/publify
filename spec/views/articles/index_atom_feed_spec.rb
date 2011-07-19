@@ -11,16 +11,13 @@ describe "articles/index_atom_feed.atom.builder" do
       render
     end
 
-    it "shows typo with the current version as the generator" do
-      xml = Nokogiri::XML.parse(rendered)
-      generator = xml.css("generator").first
-      generator.content.should == "Typo"
-      generator["version"].should == TYPO_VERSION
+    it "renders the atom header partial" do
+      view.should render_template(:partial => "shared/_atom_header")
     end
   end
 
-  describe "rendering articles" do
-    it 'should create valid atom feed when articles contains funny bits' do
+  describe "rendering articles (with some funny characters)" do
+    before do
       article1 = stub_full_article(1.minute.ago)
       article1.body = '&eacute;coute!'
       article2 = stub_full_article(2.minutes.ago)
@@ -28,9 +25,33 @@ describe "articles/index_atom_feed.atom.builder" do
       assign(:articles, [article1, article2])
 
       render
+    end
 
+    it "creates a valid feed" do
       assert_feedvalidator rendered
+    end
+
+    it "creates an atom feed with two items" do
       assert_atom10 rendered, 2
+    end
+
+    it "renders the article atom partial twice" do
+      view.should render_template(:partial => "shared/_atom_item_article",
+                                  :count => 2)
+    end
+  end
+
+  describe "rendering a single article" do
+    before do
+      @article = stub_full_article
+      assign(:articles, [@article])
+      render
+      parsed = Nokogiri::XML.parse(rendered)
+      @entry_xml = parsed.css("entry").first
+    end
+
+    it "has the correct id" do
+      @entry_xml.css("id").first.content.should == "urn:uuid:#{@article.guid}"
     end
   end
 end
