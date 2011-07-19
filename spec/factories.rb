@@ -37,7 +37,7 @@ Factory.define :user do |u|
   u.notify_on_new_articles false
   u.notify_on_comments false
   u.password 'top-secret'
-  u.settings {}
+  u.settings({})
 end
 
 def some_user

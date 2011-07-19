@@ -8,6 +8,7 @@ tobi:
   email: tobi@example.com
   settings: 
     notify_watch_my_articles: false
+    editor: simple
   text_filter: markdown_filter
   profile: admin
   notify_via_email: false
@@ -83,6 +84,7 @@ user_publisher:
   email: shingara@example.com
   settings: 
     notify_watch_my_articles: false
+    editor: simple
   profile: publisher
   notify_via_email: false
   notify_on_new_articles: false
