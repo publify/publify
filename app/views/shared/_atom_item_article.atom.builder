@@ -17,13 +17,13 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
 
   item.resources.each do |resource|
     if resource.size > 0  # The Atom spec disallows files with size=0
-      entry.link "rel" => "enclosure",
+      entry.tag! :link, "rel" => "enclosure",
               :type => resource.mime,
               :title => item.title,
               :href => this_blog.file_url(resource.filename),
               :length => resource.size
     else
-      entry.link "rel" => "enclosure",
+      entry.tag! :link, "rel" => "enclosure",
               :type => resource.mime,
               :title => item.title,
               :href => this_blog.file_url(resource.filename)

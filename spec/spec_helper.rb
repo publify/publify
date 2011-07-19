@@ -83,10 +83,10 @@ def stub_full_article(time=Time.now)
                  :created_at => time, :updated_at => time,
                  :title => "Foo Bar", :permalink => 'foo-bar',
                  :guid => time.hash)
-  a.stub(:tags) { [] }
-  a.stub(:categories) { [] }
+  a.stub(:categories) { [Factory.build(:category)] }
   a.stub(:published_comments) { [] }
-  a.stub(:resources) { [] }
+  a.stub(:resources) { [Factory.build(:resource)] }
+  a.stub(:tags) { [Factory.build(:tag)] }
   a.stub(:text_filter) { text_filter }
   a
 end
