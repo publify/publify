@@ -32,6 +32,8 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
   content_html =
     if item.password_protected?
       "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
+    elsif this_blog.hide_extended_on_rss
+      html(item, :body)
     else
       html(item, :all)
     end

@@ -45,18 +45,36 @@ describe "articles/index_atom_feed.atom.builder" do
     before do
       @article = stub_full_article
       @article.body = "public info"
+      @article.extended = "and more"
       assign(:articles, [@article])
-      render
-      parsed = Nokogiri::XML.parse(rendered)
-      @entry_xml = parsed.css("entry").first
     end
 
     it "has the correct id" do
-      @entry_xml.css("id").first.content.should == "urn:uuid:#{@article.guid}"
+      entry = render_and_parse_entry
+      entry.css("id").first.content.should == "urn:uuid:#{@article.guid}"
     end
 
-    it "shows the body in the feed" do
-      @entry_xml.css("content").first.content.should =~ /^\s*public info\s*$/
+    describe "on a blog that shows extended content in feeds" do
+      before do
+        Blog.default.hide_extended_on_rss = false
+      end
+
+      it "shows the body and extended content in the feed" do
+        entry = render_and_parse_entry
+        entry.css("content").first.content.should =~ /^\s*public info\s*and more\s*$/
+      end
+    end
+
+    describe "on a blog that hides extended content in feeds" do
+      before do
+        Blog.default.hide_extended_on_rss = true
+      end
+
+      it "shows only the body content in the feed" do
+        entry = render_and_parse_entry
+        entry.css("content").first.content.should =~ /^\s*public info\s*$/
+        entry.css("content").first.content.should_not =~ /^\s*public info\s*and more\s*$/
+      end
     end
   end
 
@@ -66,15 +84,19 @@ describe "articles/index_atom_feed.atom.builder" do
       @article.body = "shh .. it's a secret!"
       @article.stub(:password) { "password" }
       assign(:articles, [@article])
-      render
-      parsed = Nokogiri::XML.parse(rendered)
-      @entry_xml = parsed.css("entry").first
     end
 
     it "shows only a link to the article" do
-      @entry_xml.css("content").first.content.should ==
+      entry = render_and_parse_entry
+      entry.css("content").first.content.should ==
         "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
     end
+  end
+
+  def render_and_parse_entry
+    render
+    parsed = Nokogiri::XML.parse(rendered)
+    parsed.css("entry").first
   end
 end
 
