@@ -39,6 +39,5 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
     end
 
   entry.content content_html, "type"=>"html"
-  entry.summary html(item, :body), "type"=>"html" if this_blog.hide_extended_on_rss
 end
 

@@ -50,30 +50,39 @@ describe "articles/index_atom_feed.atom.builder" do
     end
 
     it "has the correct id" do
-      entry = render_and_parse_entry
-      entry.css("id").first.content.should == "urn:uuid:#{@article.guid}"
+      render
+      rendered_entry.css("id").first.content.should == "urn:uuid:#{@article.guid}"
     end
 
     describe "on a blog that shows extended content in feeds" do
       before do
         Blog.default.hide_extended_on_rss = false
+        render
       end
 
       it "shows the body and extended content in the feed" do
-        entry = render_and_parse_entry
-        entry.css("content").first.content.should =~ /^\s*public info\s*and more\s*$/
+        rendered_entry.css("content").first.content.should =~ /^\s*public info\s*and more\s*$/
+      end
+
+      it "does not have a summary element in addition to the content element" do
+        rendered_entry.css("summary").should be_empty
       end
     end
 
     describe "on a blog that hides extended content in feeds" do
       before do
         Blog.default.hide_extended_on_rss = true
+        render
       end
 
       it "shows only the body content in the feed" do
-        entry = render_and_parse_entry
+        entry = rendered_entry
         entry.css("content").first.content.should =~ /^\s*public info\s*$/
         entry.css("content").first.content.should_not =~ /^\s*public info\s*and more\s*$/
+      end
+
+      it "does not have a summary element in addition to the content element" do
+        rendered_entry.css("summary").should be_empty
       end
     end
   end
@@ -82,19 +91,53 @@ describe "articles/index_atom_feed.atom.builder" do
     before do
       @article = stub_full_article
       @article.body = "shh .. it's a secret!"
+      @article.extended = "even more secret!"
       @article.stub(:password) { "password" }
       assign(:articles, [@article])
     end
 
-    it "shows only a link to the article" do
-      entry = render_and_parse_entry
-      entry.css("content").first.content.should ==
-        "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
+    describe "on a blog that shows extended content in feeds" do
+      before do
+        Blog.default.hide_extended_on_rss = false
+        render
+      end
+
+      it "shows only a link to the article" do
+        rendered_entry.css("content").first.content.should ==
+          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
+      end
+
+      it "does not have a summary element in addition to the content element" do
+        rendered_entry.css("summary").should be_empty
+      end
+
+      it "does not show any secret bits anywhere" do
+        rendered.should_not =~ /secret/
+      end
+    end
+
+    describe "on a blog that hides extended content in feeds" do
+      before do
+        Blog.default.hide_extended_on_rss = true
+        render
+      end
+
+      it "shows only a link to the article" do
+        rendered_entry.css("content").first.content.should ==
+          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
+      end
+
+      it "does not have a summary element in addition to the content element" do
+        rendered_entry.css("summary").should be_empty
+      end
+
+      it "does not show any secret bits anywhere" do
+        rendered.should_not =~ /secret/
+      end
     end
   end
 
-  def render_and_parse_entry
-    render
+  def rendered_entry
     parsed = Nokogiri::XML.parse(rendered)
     parsed.css("entry").first
   end
