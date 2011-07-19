@@ -29,7 +29,14 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
               :href => this_blog.file_url(resource.filename)
     end
   end
-  entry.content html(item, :all), "type"=>"html"
+  content_html =
+    if item.password_protected?
+      "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
+    else
+      html(item, :all)
+    end
+
+  entry.content content_html, "type"=>"html"
   entry.summary html(item, :body), "type"=>"html" if this_blog.hide_extended_on_rss
 end
 

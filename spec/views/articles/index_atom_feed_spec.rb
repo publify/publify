@@ -44,6 +44,7 @@ describe "articles/index_atom_feed.atom.builder" do
   describe "rendering a single article" do
     before do
       @article = stub_full_article
+      @article.body = "public info"
       assign(:articles, [@article])
       render
       parsed = Nokogiri::XML.parse(rendered)
@@ -52,6 +53,27 @@ describe "articles/index_atom_feed.atom.builder" do
 
     it "has the correct id" do
       @entry_xml.css("id").first.content.should == "urn:uuid:#{@article.guid}"
+    end
+
+    it "shows the body in the feed" do
+      @entry_xml.css("content").first.content.should =~ /^\s*public info\s*$/
+    end
+  end
+
+  describe "rendering a password protected article" do
+    before do
+      @article = stub_full_article
+      @article.body = "shh .. it's a secret!"
+      @article.stub(:password) { "password" }
+      assign(:articles, [@article])
+      render
+      parsed = Nokogiri::XML.parse(rendered)
+      @entry_xml = parsed.css("entry").first
+    end
+
+    it "shows only a link to the article" do
+      @entry_xml.css("content").first.content.should ==
+        "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
     end
   end
 end

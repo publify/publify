@@ -513,6 +513,10 @@ class Article < Content
     entry.content(content, :type => "html")
   end
 
+  def password_protected?
+    not password.blank?
+  end
+
   def add_comment(params)
     comments.build(params)
   end
