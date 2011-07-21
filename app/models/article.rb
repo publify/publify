@@ -444,41 +444,8 @@ class Article < Content
     self.extended = parts[1] || ''
   end
 
-  ## Feed Stuff
-  def rss_trackback(xml)
-    return unless allow_pings?
-    xml.trackback :ping, trackback_url
-  end
-
-  def rss_enclosure(xml)
-    return if resources.empty?
-    res = resources.first
-    xml.enclosure(:url    => blog.file_url(res.filename),
-                  :length => res.size,
-                  :type   => res.mime)
-  end
-
-  def rss_groupings(xml)
-    categories.each { |v| v.to_rss(xml) }
-    tags.each       { |v| v.to_rss(xml) }
-  end
-
-  def rss_author(xml)
-    if link_to_author?
-      xml.author("#{user.email} (#{user.name})")
-    end
-  end
-
-  def rss_comments(xml)
-    xml.comments(normalized_permalink_url + "#comments")
-  end
-
   def link_to_author?
     !user.email.blank? && blog.link_to_author
-  end
-
-  def rss_title(xml)
-    xml.title title
   end
 
   def password_protected?

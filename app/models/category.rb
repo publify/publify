@@ -73,10 +73,6 @@ class Category < ActiveRecord::Base
     )
   end
 
-  def to_rss(xml)
-    xml.category name
-  end
-
   def to_param
     permalink
   end
