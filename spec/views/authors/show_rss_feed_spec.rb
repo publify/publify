@@ -5,8 +5,8 @@ describe "authors/show_rss_feed.rss.builder" do
     stub_default_blog
   end
 
-  describe "rendering articles" do
-    it 'should create valid rss feed when articles contains funny bits' do
+  describe "rendering articles (with some funny characters)" do
+    before do
       article1 = stub_full_article(1.minute.ago)
       article1.body = '&eacute;coute!'
       article2 = stub_full_article(2.minutes.ago)
@@ -14,9 +14,19 @@ describe "authors/show_rss_feed.rss.builder" do
       assign(:articles, [article1, article2])
 
       render
+    end
 
-      assert_rss20 rendered, 2
+    it "creates a valid feed" do
       assert_feedvalidator rendered
+    end
+
+    it "creates an RSS feed with two items" do
+      assert_rss20 rendered, 2
+    end
+
+    it "renders the article RSS partial twice" do
+      view.should render_template(:partial => "shared/_rss_item_article",
+                                  :count => 2)
     end
   end
 end
