@@ -158,62 +158,45 @@ end
 describe CategoriesController, "SEO Options" do
   render_views
 
-  before(:each) do 
-    @blog = Factory(:blog)
-    @cat = Factory(:category, :permalink => 'personal')
-    @cat.articles << Factory(:article)
-    @cat.save!
-  end
-
-  it 'should have rel nofollow' do
-    @blog.unindex_categories = true
-    @blog.save
-    
-    get 'show', :id => 'personal'
-    response.should have_selector('head>meta[content="noindex, follow"]')
-  end
-
-  it 'should not have rel nofollow' do
-    @blog.unindex_categories = false
-    @blog.save
-
-    get 'show', :id => 'personal'
-    response.should_not have_selector('head>meta[content="noindex, follow"]')
-  end
-    
-  it 'category with keywords and activated option should have meta keywords' do
-    @blog.use_meta_keyword = true
-    @blog.save
-    @cat.keywords = "some, keywords"
-    @cat.save
-    
-    get 'show', :id => 'personal'
-    response.should have_selector('head>meta[name="keywords"]')
-  end
-  
-  it 'category without meta keywords and activated should not have meta keywords' do
-    @blog.use_meta_keyword = true
-    @blog.save
-    
-    get 'show', :id => 'personal'
-    response.should_not have_selector('head>meta[name="keywords"]')
-  end
-    
-  it 'category without meta keywords and activated options should not have meta keywords' do
-    @blog.use_meta_keyword = true
-    @blog.save
-    
+  it 'category without meta keywords and activated options (use_meta_keyword ON) should not have meta keywords' do
+    Factory(:blog, :use_meta_keyword => true)
+    cat = Factory(:category, :permalink => 'personal')
+    Factory(:article, :categories => [cat])
     get 'show', :id => 'personal'
     response.should_not have_selector('head>meta[name="keywords"]')
   end
 
-  it 'category with meta keywords and deactivated options should not have meta keywords' do
-    @blog.use_meta_keyword = false
-    @blog.save
-    @cat.keywords = "some, keywords"
-    @cat.save
-    
+  it 'category with keywords and activated option (use_meta_keyword ON) should have meta keywords' do
+    Factory(:blog, :use_meta_keyword => true)
+    after_build_category_should_have_selector('head>meta[name="keywords"]')
+  end
+
+  it 'category with meta keywords and deactivated options (use_meta_keyword off) should not have meta keywords' do
+    Factory(:blog, :use_meta_keyword => false)
+    after_build_category_should_not_have_selector('head>meta[name="keywords"]')
+  end
+
+  it 'with unindex_categories (set ON), should have rel nofollow' do
+    Factory(:blog, :unindex_categories => true)
+    after_build_category_should_have_selector('head>meta[content="noindex, follow"]')
+  end
+
+  it 'without unindex_categories (set OFF), should not have rel nofollow' do
+    Factory(:blog, :unindex_categories => false)
+    after_build_category_should_not_have_selector('head>meta[content="noindex, follow"]')
+  end
+
+  def after_build_category_should_have_selector expected
+    cat = Factory(:category, :permalink => 'personal', :keywords => "some, keywords")
+    Factory(:article, :categories => [cat])
     get 'show', :id => 'personal'
-    response.should_not have_selector('head>meta[name="keywords"]')
+    response.should have_selector(expected)
+  end
+
+  def after_build_category_should_not_have_selector expected
+    cat = Factory(:category, :permalink => 'personal', :keywords => "some, keywords")
+    Factory(:article, :categories => [cat])
+    get 'show', :id => 'personal'
+    response.should_not have_selector(expected)
   end
 end
