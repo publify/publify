@@ -24,7 +24,7 @@ class GroupingController < ContentController
   end
 
   def index
-    set_noindex
+    @noindex = set_noindex params[:page]
     self.groupings = grouping_class.paginate(:page => params[:page], :per_page => 100)
     @page_title = "#{self.class.to_s.sub(/Controller$/,'')}"
     @keywords = ""
@@ -34,7 +34,7 @@ class GroupingController < ContentController
   end
 
   def show
-    set_noindex
+    @noindex = set_noindex params[:page]
     @grouping = grouping_class.find_by_permalink(params[:id])
     return render_empty if @grouping.nil?
 
@@ -132,10 +132,10 @@ class GroupingController < ContentController
   end
 
   private
-  def set_noindex
+  def set_noindex page = nil
     # irk there must be a better way to do this
-    @noindex = 1 if (grouping_class.to_s.downcase == "tag" and this_blog.unindex_tags)
-    @noindex = 1 if (grouping_class.to_s.downcase == "category" and this_blog.unindex_categories)
-    @noindex = 1 unless params[:page].blank?
+    return 1 if (grouping_class.to_s.downcase == "tag" and this_blog.unindex_tags)
+    return 1 if (grouping_class.to_s.downcase == "category" and this_blog.unindex_categories)
+    return 1 unless page.blank?
   end
 end
