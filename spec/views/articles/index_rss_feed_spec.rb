@@ -175,6 +175,20 @@ describe "articles/index_rss_feed.rss.builder" do
     end
   end
 
+  describe "rendering an article with a UTF-8 permalink" do
+    before do
+      @article = stub_full_article
+      @article.permalink = 'ルビー'
+      assign(:articles, [@article])
+
+      render
+    end
+
+    it "creates a valid feed" do
+      assert_feedvalidator rendered
+    end
+  end
+
   def rendered_entry
     parsed = Nokogiri::XML.parse(rendered)
     parsed.css("item").first
