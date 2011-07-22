@@ -169,7 +169,7 @@ describe XmlController do
   # TODO: make this more robust
   describe "#rsd" do
     before do
-      get :rsd, :format => 'rsd', :id => 1
+      get :rsd
     end
 
     it "is succesful" do
