@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   match ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
   match ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
 
-  match 'admin', :to  => 'admin/dashboard#index', :format => false
+  match 'admin', :to  => 'admin/dashboard#index', :format => false, :as => :admin_dashboard
 
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
@@ -42,47 +42,49 @@ Rails.application.routes.draw do
 
   match 'xml/rsd', :to => 'xml#rsd', :format => false
 
+  # CommentsController
   resources :comments, :as => 'admin_comments' do
     collection do
       match :preview
     end
   end
-  resources :trackbacks
 
+  # TrackbacksController
+  resources :trackbacks
+  # I thinks it's useless. More investigating
+  post "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
+
+  # ArticlesController
   match '/live_search/', :to => 'articles#live_search', :as => :live_search_articles, :format => false
   match '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search'
   match '/search(/:q(.:format))', :to => 'articles#search', :as => 'search'
   match '/search/', :to => 'articles#search', :as => 'search_base', :format => false
   match '/archives/', :to => 'articles#archives', :format => false
+  match '/page/:page', :to => 'articles#index', :page => /\d+/, :format => false
+  get '/pages/*name', :to => 'articles#view_page', :format => false
+  match 'previews(/:id)', :to => 'articles#preview', :format => false
+  match 'check_password', :to => 'articles#check_password', :format => false
+
+  # SetupController
   match '/setup', :to => 'setup#index', :format => false
   match '/setup/confirm', :to => 'setup#confirm', :format => false
 
-  # I thinks it's useless. More investigating
-  post "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
-
-  # Before use inflected_resource
+  # CategoriesController (imitate inflected_resource)
   resources :categories, :except => [:show, :update, :destroy, :edit]
   resources :categories, :path => 'category', :only => [:show, :edit, :update, :destroy]
-
   match '/category/:id/page/:page', :to => 'categories#show', :format => false
 
-  # Before use inflected_resource
+  # TagsController (imitate inflected_resource)
   resources :tags, :except => [:show, :update, :destroy, :edit]
   resources :tags, :path => 'tag', :only => [:show, :edit, :update, :destroy]
-
   match '/tag/:id/page/:page', :to => 'tags#show', :format => false
   match '/tags/page/:page', :to => 'tags#index', :format => false
 
+  # AuthorsController
   match '/author/:id(.:format)', :to => 'authors#show', :format => /rss|atom/, :as => 'xml'
   match '/author(/:id)', :to => 'authors#show', :format => false
 
-  # allow neat perma urls
-  match 'page/:page', :to => 'articles#index', :page => /\d+/, :format => false
-
-  date_options = { :year => /\d{4}/, :month => /(?:0?[1-9]|1[012])/, :day => /(?:0[1-9]|[12]\d|3[01])/ }
-
-  get 'pages/*name', :to => 'articles#view_page', :format => false
-
+  # ThemesController
   scope :controller => 'theme', :filename => /.*/ do
     get 'stylesheets/theme/:filename', :action => 'stylesheets', :format => false
     get 'javascripts/theme/:filename', :action => 'javascript', :format => false
@@ -92,9 +94,6 @@ Rails.application.routes.draw do
   # For the tests
   get 'theme/static_view_test', :format => false
 
-  match 'previews(/:id)', :to => 'articles#preview', :format => false
-  match 'check_password', :to => 'articles#check_password', :format => false
-
   # Work around the Bad URI bug
   %w{ accounts backend files sidebar }.each do |i|
     match "#{i}", :to => "#{i}#index", :format => false
@@ -102,6 +101,7 @@ Rails.application.routes.draw do
     match "#{i}(/:action(/:id))", :to => i, :id => nil, :format => false
   end
 
+  # Admin/XController
   %w{advanced cache categories comments content profiles feedback general pages
      resources sidebar textfilters themes trackbacks users settings tags redirects seo }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
