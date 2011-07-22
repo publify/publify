@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   resources :tags, :path => 'tag', :only => [:show, :edit, :update, :destroy]
   match '/tag/:id/page/:page', :to => 'tags#show', :format => false
   match '/tags/page/:page', :to => 'tags#index', :format => false
+  match 'tags/check_password', :to => 'tags#check_password', :format => false
 
   # AuthorsController
   match '/author/:id(.:format)', :to => 'authors#show', :format => /rss|atom/, :as => 'xml'
