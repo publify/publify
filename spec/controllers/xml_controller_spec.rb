@@ -12,63 +12,6 @@ describe XmlController do
     assert_redirected_to location
   end
 
-  describe "rendering" do
-    render_views
-
-    it "returns valid RSS feed for trackbacks feed type" do
-      Feedback.delete_all
-
-      article = Factory.create(:article, :created_at => Time.now - 1.day,
-                               :allow_pings => true, :published => true)
-      Factory.create(:trackback, :article => article,
-                     :published_at => Time.now - 1.day,
-                     :published => true)
-
-      get :feed, :type => 'trackbacks'
-      assert_response :success
-      assert_xml @response.body
-      assert_feedvalidator @response.body
-      assert_rss20 @response.body, 1
-    end
-
-    it "returns valid RSS feed for trackbacks feed type with format rss20" do
-      Feedback.delete_all
-
-      article = Factory.create(:article, :created_at => Time.now - 1.day,
-                               :allow_pings => true, :published => true)
-      Factory.create(:trackback, :article => article,
-                     :published_at => Time.now - 1.day,
-                     :published => true)
-
-      get :feed, :format => 'rss20', :type => 'trackbacks'
-      assert_response :success
-      assert_xml @response.body
-      assert_feedvalidator @response.body
-      assert_rss20 @response.body, 1
-    end
-
-    it "returns valid Atom feed for trackbacks feed type with format atom10" do
-      Feedback.delete_all
-      article = Factory.create(:article, :created_at => Time.now - 1.day,
-                               :allow_pings => true, :published => true)
-      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
-                     :published => true)
-
-      get :feed, :format => 'atom10', :type => 'trackbacks'
-      assert_response :success
-      assert_xml @response.body
-      assert_feedvalidator @response.body
-      assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                   assigns(:items))
-
-      assert_atom10 @response.body, 1
-
-      assert_select 'title[type=html]'
-      assert_select 'summary'
-    end
-
-  end
-
   describe "without format parameter" do
     it "redirects main feed to articles RSS feed" do
       get :feed, :type => 'feed'
@@ -78,6 +21,11 @@ describe XmlController do
     it "redirects comments feed to Comments RSS feed" do
       get :feed, :type => 'comments'
       assert_moved_permanently_to admin_comments_url(:format=>:rss)
+    end
+
+    it "redirects trackbacks feed to TrackbacksController RSS feed" do
+      get :feed, :type => 'trackbacks'
+      assert_moved_permanently_to trackbacks_url(:format => :rss)
     end
 
     it "redirects category feed to Category RSS feed" do
@@ -102,6 +50,11 @@ describe XmlController do
       assert_moved_permanently_to admin_comments_url(:format=>:rss)
     end
 
+    it "redirects trackbacks feed to TrackbacksController RSS feed" do
+      get :feed, :format => 'rss20', :type => 'trackbacks'
+      assert_moved_permanently_to trackbacks_url(:format => :rss)
+    end
+
     it "redirects category feed to category RSS feed" do
       get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
       assert_moved_permanently_to(category_url('personal', :format => 'rss'))
@@ -122,6 +75,11 @@ describe XmlController do
     it "redirects comments feed to comments Atom feed" do
       get :feed, :format => 'atom10', :type => 'comments'
       assert_moved_permanently_to admin_comments_url(:format=>'atom')
+    end
+
+    it "redirects trackbacks feed to TrackbacksController Atom feed" do
+      get :feed, :format => 'atom10', :type => 'trackbacks'
+      assert_moved_permanently_to trackbacks_url(:format => :atom)
     end
 
     it "redirects category feed to category Atom feed" do
