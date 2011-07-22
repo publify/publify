@@ -11,9 +11,8 @@ class XmlController < ApplicationController
     'atom' => 'application/atom+xml',
     'googlesitemap' => 'application/xml' }
 
-  before_filter :adjust_format
-
   def feed
+    adjust_format
     @format = params[:format]
 
     unless @format

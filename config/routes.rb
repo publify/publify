@@ -20,10 +20,6 @@ Rails.application.routes.draw do
 
   match 'admin', :to  => 'admin/dashboard#index', :format => false
 
-  # make rss feed urls pretty and let them end in .xml
-  # this improves caches_page because now apache and webrick will send out the
-  # cached feeds with the correct xml mime type.
-
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
 
