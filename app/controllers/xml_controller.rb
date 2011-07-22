@@ -30,14 +30,13 @@ class XmlController < ApplicationController
     # TODO: Move redirects into config/routes.rb, if possible
     case params[:type]
     when 'feed'
-      redirect_to :controller => 'articles', :action => 'index', :format => @format, :status => 301
+      redirect_to :controller => 'articles', :action => 'index', :format => @format, :status => :moved_permanently
     when 'comments'
-      head :moved_permanently, :location => admin_comments_url(:format => @format)
+      redirect_to admin_comments_url(:format => @format), :status => :moved_permanently
     when 'article'
-      head :moved_permanently, :location => Article.find(params[:id]).permalink_by_format(@format)
+      redirect_to Article.find(params[:id]).permalink_by_format(@format), :status => :moved_permanently
     when 'category', 'tag', 'author'
-      head :moved_permanently, \
-        :location => self.send("#{params[:type]}_url", params[:id], :format => @format)
+      redirect_to self.send("#{params[:type]}_url", params[:id], :format => @format), :status => :moved_permanently
     else
       @items = Array.new
       @blog = this_blog
@@ -60,15 +59,15 @@ class XmlController < ApplicationController
 
   # TODO: Move redirects into config/routes.rb, if possible
   def articlerss
-    redirect_to :action => 'feed', :format => 'rss', :type => 'article', :id => params[:id]
+    redirect_to Article.find(params[:id]).permalink_by_format('rss'), :status => :moved_permanently
   end
 
   def commentrss
-    redirect_to :action => 'feed', :format => 'rss', :type => 'comments'
+    redirect_to admin_comments_url(:format => 'rss'), :status => :moved_permanently
   end
 
   def trackbackrss
-    redirect_to :action => 'feed', :format => 'rss', :type => 'trackbacks'
+    redirect_to trackbacks_url(:format => 'rss'), :status => :moved_permanently
   end
 
   def rsd

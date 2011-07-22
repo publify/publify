@@ -170,19 +170,30 @@ describe XmlController do
     end
   end
 
-  it "redirects #articlerss" do
-    get :articlerss, :id => 123
-    assert_response :redirect
+  describe "#articlerss" do
+    before do
+      @article = stub_model(Article, :published_at => Time.now, :permalink => "foo")
+      Article.stub(:find) { @article }
+    end
+
+    it "redirects permanently to the article RSS feed" do
+      get :articlerss, :id => @article.id
+      assert_moved_permanently_to @article.permalink_by_format(:rss)
+    end
   end
 
-  it "redirects #commentrss" do
-    get :commentrss, :id => 1
-    assert_response :redirect
+  describe "#commentrss" do
+    it "redirects permanently to the comment RSS feed" do
+      get :commentrss, :id => 1
+      assert_moved_permanently_to admin_comments_url(:format=>'rss')
+    end
   end
 
-  it "redirects #trackbackrss" do
-    get :trackbackrss, :id => 1
-    assert_response :redirect
+  describe "#trackbackrss" do
+    it "redirects permanently to the trackback RSS feed" do
+      get :trackbackrss, :id => 1
+      assert_moved_permanently_to trackbacks_url(:format=>'rss')
+    end
   end
 
   it "responds :missing when given a bad format" do
