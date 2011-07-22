@@ -301,24 +301,6 @@ class Content < ActiveRecord::Base
     return true
   end
 
-  def to_rss(xml)
-    xml.item do
-      rss_title(xml)
-      rss_description(xml)
-      xml.pubDate published_at.rfc822
-      xml.guid "urn:uuid:#{guid}", :isPermaLink => "false"
-      rss_author(xml)
-      rss_comments(xml)
-      rss_groupings(xml)
-      rss_enclosure(xml)
-      rss_trackback(xml)
-      xml.link normalized_permalink_url
-    end
-  end
-
-  def rss_comments(xml)
-  end
-
   def get_rss_description
     return "" unless blog.rss_description
     return "" unless respond_to?(:user) && self.user && self.user.name
@@ -329,24 +311,6 @@ class Content < ActiveRecord::Base
     rss_desc.gsub!('%blog_name%', blog.blog_name)
     rss_desc.gsub!('%permalink_url%', self.permalink_url)
     return rss_desc
-  end
-
-  def rss_description(xml)
-    post = html(blog.hide_extended_on_rss ? :body : :all)
-    post = "<p>This article is password protected. Please <a href='#{permalink_url}'>fill in your password</a> to read it</p>" unless self.class.name == 'Article' and (self.password.nil?  or self.password.empty?)
-
-    post = post + get_rss_description
-
-    xml.description(post)
-  end
-
-  def rss_groupings(xml)
-  end
-
-  def rss_enclosure(xml)
-  end
-
-  def rss_trackback(xml)
   end
 
   # TODO: Perhaps permalink_url should produce valid URI's instead of IRI's

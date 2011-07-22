@@ -80,10 +80,6 @@ class Tag < ActiveRecord::Base
     )
   end
 
-  def to_rss(xml)
-    xml.category display_name
-  end
-
   def to_param
     permalink
   end

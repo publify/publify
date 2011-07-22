@@ -12,8 +12,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
     xml.ttl "40"
     xml.description this_blog.blog_subtitle
 
-    @articles.each do |value|
-      value.to_rss(xml)
+    @articles.each do |item|
+      render "shared/rss_item_article", {:xm => xml, :item => item}
     end
   end
 end
