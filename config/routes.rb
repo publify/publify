@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   match 'xml/rsd', :to => 'xml#rsd', :format => false
+  match 'xml/feed', :to => 'xml#feed'
 
   # CommentsController
   resources :comments, :as => 'admin_comments' do
