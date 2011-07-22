@@ -11,7 +11,7 @@ else
   raise "You need define an adapter in your database.yml" if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
-    gem 'sqlite3-ruby'
+    gem 'sqlite3'
   when 'postgresql'
     gem 'pg'
   when 'mysql'
