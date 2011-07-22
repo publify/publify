@@ -22,22 +22,22 @@ describe "A blog" do
 
     describe "blog.url_for" do
       describe "with a hash argument" do
-        subject { @blog.url_for(:controller => 'articles', :action => 'read', :id => 1) }
-        it { should == 'http://myblog.net/articles/read/1' }
+        subject { @blog.url_for(:controller => 'categories', :action => 'show', :id => 1) }
+        it { should == 'http://myblog.net/category/1' }
       end
 
       describe "with a hash argument with only_path" do
-        subject { @blog.url_for(:controller => 'articles', :action => 'read', :id => 1, :only_path => true) }
-        it { should == '/articles/read/1' }
+        subject { @blog.url_for(:controller => 'categories', :action => 'show', :id => 1, :only_path => true) }
+        it { should == '/category/1' }
       end
 
       describe "with a string argument" do
-        subject { @blog.url_for('articles/read/1') }
-        it { should == 'http://myblog.net/articles/read/1' }
+        subject { @blog.url_for('category/1') }
+        it { should == 'http://myblog.net/category/1' }
       end
 
-      it "should return the correct URL for a hash argument with only_path" do
-        @blog.url_for('articles/read/1', :only_path => true).should == '/articles/read/1'
+      it "should return the correct URL for a string argument with only_path" do
+        @blog.url_for('category/1', :only_path => true).should == '/category/1'
       end
     end
   end
@@ -49,20 +49,20 @@ describe "A blog" do
 
     describe "blog.url_for" do
       it "should return the correct URL for a hash argument" do
-        @blog.url_for(:controller => 'articles', :action => 'read',
-                      :id => 1).should == 'http://myblog.net/sub-uri/articles/read/1'
+        @blog.url_for(:controller => 'categories', :action => 'show',
+                      :id => 1).should == 'http://myblog.net/sub-uri/category/1'
       end
       it "should return the correct URL for a hash argument with only_path" do
-        @blog.url_for(:controller => 'articles', :action => 'read', :id => 1,
-                     :only_path => true).should == '/sub-uri/articles/read/1'
+        @blog.url_for(:controller => 'categories', :action => 'show', :id => 1,
+                     :only_path => true).should == '/sub-uri/category/1'
       end
       it "should return the correct URL for a string argument" do
-        @blog.url_for('articles/read/1'
-                     ).should == 'http://myblog.net/sub-uri/articles/read/1'
+        @blog.url_for('category/1'
+                     ).should == 'http://myblog.net/sub-uri/category/1'
       end
-      it "should return the correct URL for a hash argument with only_path" do
-        @blog.url_for('articles/read/1',
-                      :only_path => true).should == '/sub-uri/articles/read/1'
+      it "should return the correct URL for a string argument with only_path" do
+        @blog.url_for('category/1',
+                      :only_path => true).should == '/sub-uri/category/1'
       end
     end
   end
