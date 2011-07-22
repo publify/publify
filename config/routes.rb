@@ -66,6 +66,8 @@ Rails.application.routes.draw do
   match 'previews(/:id)', :to => 'articles#preview', :format => false
   match 'check_password', :to => 'articles#check_password', :format => false
   match 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
+  match 'articles/tag', :to => 'articles#tag', :format => false
+  match 'articles/category', :to => 'articles#category', :format => false
 
   # SetupController
   match '/setup', :to => 'setup#index', :format => false
@@ -81,7 +83,6 @@ Rails.application.routes.draw do
   resources :tags, :path => 'tag', :only => [:show, :edit, :update, :destroy]
   match '/tag/:id/page/:page', :to => 'tags#show', :format => false
   match '/tags/page/:page', :to => 'tags#index', :format => false
-  match 'tags/check_password', :to => 'tags#check_password', :format => false
 
   # AuthorsController
   match '/author/:id(.:format)', :to => 'authors#show', :format => /rss|atom/, :as => 'xml'

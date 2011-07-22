@@ -271,7 +271,7 @@ describe ArticlesController, "previewing" do
     end
 
     it 'should redirect to login' do
-      response.should redirect_to(:controller => "accounts/login", :action => :index)
+      response.should redirect_to(:controller => "accounts", :action => "login")
     end
   end
 

@@ -7,7 +7,7 @@ describe CategoriesController, "/index" do
     Trigger.stub(:fire) { }
 
     categories = 3.times.map do
-      stub_model(Category).tap do |category|
+      Factory.build(:category).tap do |category|
         articles = 2.times.map { stub_model(Article) }
         category.stub(:published_articles) { articles }
         category.stub(:display_name) { category.id.to_s }
