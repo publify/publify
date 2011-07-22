@@ -112,23 +112,4 @@ Rails.application.routes.draw do
   root :to  => 'articles#index', :format => false
 
   match '*from', :to => 'articles#redirect', :format => false
-
-  match ':controller(/:action(/:id))', :format => false do |default_route|
-    class << default_route
-      def recognize_with_deprecation(path, environment = {})
-        ::Rails.logger.info "#{path} hit the default_route buffer"
-        recognize_without_deprecation(path, environment)
-      end
-      alias_method_chain :recognize, :deprecation
-
-      def generate_with_deprecation(options, hash, expire_on = {})
-        ::Rails.logger.info "generate(#{options.inspect}, #{hash.inspect}, #{expire_on.inspect}) reached the default route"
-        #         if ::Rails.env == 'test'
-        #           raise "Don't rely on default route generation"
-        #         end
-        generate_without_deprecation(options, hash, expire_on)
-      end
-      alias_method_chain :generate, :deprecation
-    end
-  end
 end
