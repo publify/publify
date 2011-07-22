@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   get '/pages/*name', :to => 'articles#view_page', :format => false
   match 'previews(/:id)', :to => 'articles#preview', :format => false
   match 'check_password', :to => 'articles#check_password', :format => false
+  match 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
 
   # SetupController
   match '/setup', :to => 'setup#index', :format => false
