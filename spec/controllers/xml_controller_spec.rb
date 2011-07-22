@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe XmlController do
-  def assert_select(*args, &block)
-    @html_document ||= HTML::Document.new(@response.body, false, true)
-    super(*args,&block)
-  end
-
   before do
     blog = stub_model(Blog, :base_url => "http://myblog.net")
     Blog.stub(:default) { blog }
@@ -14,7 +9,7 @@ describe XmlController do
 
   def assert_moved_permanently_to(location)
     assert_response :moved_permanently
-    assert_equal location, @response.headers["Location"]
+    assert_redirected_to location
   end
 
   describe "rendering" do
@@ -33,7 +28,7 @@ describe XmlController do
       assert_response :success
       assert_xml @response.body
       assert_feedvalidator @response.body
-      assert_rss20
+      assert_rss20 @response.body, 1
     end
 
     it "returns valid RSS feed for trackbacks feed type with format rss20" do
@@ -49,7 +44,7 @@ describe XmlController do
       assert_response :success
       assert_xml @response.body
       assert_feedvalidator @response.body
-      assert_rss20
+      assert_rss20 @response.body, 1
     end
 
     it "returns valid Atom feed for trackbacks feed type with format atom10" do
@@ -66,7 +61,7 @@ describe XmlController do
       assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
                    assigns(:items))
 
-      assert_atom10
+      assert_atom10 @response.body, 1
 
       assert_select 'title[type=html]'
       assert_select 'summary'
@@ -229,13 +224,5 @@ describe XmlController do
     it "returns a valid XML response" do
       assert_xml @response.body
     end
-  end
-
-  def assert_rss20
-    assert_select 'rss:root[version=2.0] > channel item', :count => assigns(:items).size
-  end
-
-  def assert_atom10
-    assert_select 'feed:root[xmlns="http://www.w3.org/2005/Atom"] > entry', :count => assigns(:items).size
   end
 end
