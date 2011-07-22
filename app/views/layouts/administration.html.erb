@@ -29,7 +29,7 @@
   <div id='container'>
     <div id='menu'>
       <ul id='tabs'>
-        <%= content_tag :li, (link_to _('Dashboard'), :controller => '/admin'), :class => class_dashboard  %>
+        <%= content_tag :li, (link_to _('Dashboard'), :controller => 'admin/dashboard'), :class => class_dashboard  %>
         <% for pm in current_user.project_modules %>
           <%= content_tag :li, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
         <% end %>
