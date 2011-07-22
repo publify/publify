@@ -36,7 +36,7 @@ describe XmlController do
       assert_rss20
     end
 
-    it "test_feed_rss20_trackbacks" do
+    it "returns valid RSS feed for trackbacks feed type with format rss20" do
       Feedback.delete_all
 
       article = Factory.create(:article, :created_at => Time.now - 1.day,
@@ -52,7 +52,7 @@ describe XmlController do
       assert_rss20
     end
 
-    it "test_feed_atom10_trackbacks" do
+    it "returns valid Atom feed for trackbacks feed type with format atom10" do
       Feedback.delete_all
       article = Factory.create(:article, :created_at => Time.now - 1.day,
                                :allow_pings => true, :published => true)
@@ -96,34 +96,55 @@ describe XmlController do
     end
   end
 
-  it "test_feed_rss20" do
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_moved_permanently_to 'http://test.host/articles.rss'
+  describe "with format rss20" do
+    it "redirects main feed to articles RSS feed" do
+      get :feed, :format => 'rss20', :type => 'feed'
+      assert_moved_permanently_to 'http://test.host/articles.rss'
+    end
+
+    it "redirects comments feed to comments RSS feed" do
+      get :feed, :format => 'rss20', :type => 'comments'
+      assert_moved_permanently_to admin_comments_url(:format=>:rss)
+    end
+
+    it "redirects category feed to category RSS feed" do
+      get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
+      assert_moved_permanently_to(category_url('personal', :format => 'rss'))
+    end
+
+    it "redirects tag feed to tag RSS feed" do
+      get :feed, :format => 'rss20', :type => 'tag', :id => 'foo'
+      assert_moved_permanently_to(tag_url('foo', :format=>'rss'))
+    end
   end
 
-  it "test_feed_rss20_comments" do
-    get :feed, :format => 'rss20', :type => 'comments'
-    assert_moved_permanently_to admin_comments_url(:format=>:rss)
+  describe "with format atom10" do
+    it "redirects main feed to articles Atom feed" do
+      get :feed, :format => 'atom10', :type => 'feed'
+      assert_moved_permanently_to "http://test.host/articles.atom"
+    end
+
+    it "redirects comments feed to comments Atom feed" do
+      get :feed, :format => 'atom10', :type => 'comments'
+      assert_moved_permanently_to admin_comments_url(:format=>'atom')
+    end
+
+    it "redirects category feed to category Atom feed" do
+      get :feed, :format => 'atom10', :type => 'category', :id => 'personal'
+      assert_moved_permanently_to category_url('personal', :format => 'atom')
+    end
+
+    it "redirects tag feed to tag Atom feed" do
+      get :feed, :format => 'atom10', :type => 'tag', :id => 'foo'
+      assert_moved_permanently_to tag_url('foo',:format => 'atom')
+    end
   end
 
-  it "test_feed_rss20_category" do
-    get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
-    assert_moved_permanently_to(category_url('personal', :format => 'rss'))
-  end
-
-  it "test_feed_rss20_tag" do
-    get :feed, :format => 'rss20', :type => 'tag', :id => 'foo'
-    assert_moved_permanently_to(tag_url('foo', :format=>'rss'))
-  end
-
-  it "test_feed_atom10_feed" do
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_moved_permanently_to "http://test.host/articles.atom"
-  end
-
-  it "test_feed_atom10_comments" do
-    get :feed, :format => 'atom10', :type => 'comments'
-    assert_moved_permanently_to admin_comments_url(:format=>'atom')
+  describe "with format atom03" do
+    it "redirects main feed to articles Atom feed" do
+      get :feed, :format => 'atom03', :type => 'feed'
+      assert_moved_permanently_to 'http://test.host/articles.atom'
+    end
   end
 
   describe "for an article" do
@@ -139,73 +160,75 @@ describe XmlController do
       end
     end
 
-    it "test_feed_rss20_article" do
-      get :feed, :format => 'rss20', :type => 'article', :id => @article.id
-      assert_moved_permanently_to @article.permalink_by_format(:rss)
+    describe "with format rss20" do
+      it "redirects the article feed to the article RSS feed" do
+        get :feed, :format => 'rss20', :type => 'article', :id => @article.id
+        assert_moved_permanently_to @article.permalink_by_format(:rss)
+      end
     end
 
-    it "test_feed_atom10_article" do
-      get :feed, :format => 'atom10', :type => 'article', :id => @article.id
-      assert_moved_permanently_to @article.permalink_by_format('atom')
+    describe "with format atom10" do
+      it "redirects the article feed to the article Atom feed" do
+        get :feed, :format => 'atom10', :type => 'article', :id => @article.id
+        assert_moved_permanently_to @article.permalink_by_format('atom')
+      end
     end
   end
 
-  it "test_feed_atom10_category" do
-    get :feed, :format => 'atom10', :type => 'category', :id => 'personal'
-    assert_moved_permanently_to(category_url('personal', :format => 'atom'))
-  end
-
-  it "test_feed_atom10_tag" do
-    get :feed, :format => 'atom10', :type => 'tag', :id => 'foo'
-    assert_moved_permanently_to(tag_url('foo',:format => 'atom'))
-  end
-
-  it "test_articlerss" do
+  it "redirects #articlerss" do
     get :articlerss, :id => 123
     assert_response :redirect
   end
 
-  it "test_commentrss" do
+  it "redirects #commentrss" do
     get :commentrss, :id => 1
     assert_response :redirect
   end
 
-  it "test_trackbackrss" do
+  it "redirects #trackbackrss" do
     get :trackbackrss, :id => 1
     assert_response :redirect
   end
 
-  it "test_bad_format" do
+  it "responds :missing when given a bad format" do
     get :feed, :format => 'atom04', :type => 'feed'
     assert_response :missing
   end
 
-  it "test_bad_type" do
+  it "responds :missing when given a bad type" do
     get :feed, :format => 'rss20', :type => 'foobar'
     assert_response :missing
   end
 
-  it "test_rsd" do
-    get :rsd, :id => 1
-    assert_response :success
-    assert_nothing_raised do
-      assert REXML::Document.new(@response.body)
+  # TODO: make this more robust
+  describe "#rsd" do
+    before do
+      get :rsd, :id => 1
+    end
+
+    it "is succesful" do
+      assert_response :success
+    end
+
+    it "returns a valid XML response" do
+      assert_xml @response.body
     end
   end
 
-  it "test_atom03" do
-    get :feed, :format => 'atom03', :type => 'feed'
-    assert_response :moved_permanently
-    assert_moved_permanently_to 'http://test.host/articles.atom'
-  end
+  # TODO: make this more robust
+  describe "#feed with googlesitemap format" do
+    before do
+      Factory(:category)
+      get :feed, :format => 'googlesitemap', :type => 'sitemap'
+    end
 
-  # TODO(laird): make this more robust
-  it "test_sitemap" do
-    Factory(:category)
-    get :feed, :format => 'googlesitemap', :type => 'sitemap'
+    it "is succesful" do
+      assert_response :success
+    end
 
-    assert_response :success
-    assert_xml @response.body
+    it "returns a valid XML response" do
+      assert_xml @response.body
+    end
   end
 
   def assert_rss20
