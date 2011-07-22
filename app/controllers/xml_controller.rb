@@ -11,9 +11,6 @@ class XmlController < ApplicationController
     'atom' => 'application/atom+xml',
     'googlesitemap' => 'application/xml' }
 
-  AVAILABLE_TYPES = ['feed', 'comments', 'article', 'category', 'tag', 'author',
-    'trackbacks', 'sitemap']
-
   before_filter :adjust_format
 
   def feed
@@ -21,10 +18,6 @@ class XmlController < ApplicationController
 
     unless @format
       return render(:text => 'Unsupported format', :status => 404)
-    end
-
-    unless AVAILABLE_TYPES.include? params[:type]
-      return render(:text => 'Unsupported action', :status => 404)
     end
 
     # TODO: Move redirects into config/routes.rb, if possible
@@ -39,23 +32,14 @@ class XmlController < ApplicationController
       redirect_to self.send("#{params[:type]}_url", params[:id], :format => @format), :status => :moved_permanently
     when 'trackbacks'
       redirect_to trackbacks_url(:format => @format), :status => :moved_permanently
-    else
-      @items = Array.new
-      @blog = this_blog
-      # We use @feed_title.<< to destructively modify @feed_title, below, so
-      # make sure we have our own copy to modify.
-      @feed_title = this_blog.blog_name.dup
-      @link = this_blog.base_url
-      @self_url = url_for(params)
+    when 'sitemap'
+      prep_sitemap
 
-      self.send("prep_#{params[:type]}")
-
-      # TODO: Use templates from articles controller.
       respond_to do |format|
         format.googlesitemap
-        format.atom
-        format.rss
       end
+    else
+      return render(:text => 'Unsupported feed type', :status => 404)
     end
   end
 
@@ -96,14 +80,17 @@ class XmlController < ApplicationController
     @items += association.find_already_published(:all, :limit => limit, :order => order)
   end
 
-  def prep_trackbacks
-    fetch_items(:trackbacks)
-    @feed_title << " trackbacks"
-  end
-
   def prep_sitemap
+    @items = Array.new
+    @blog = this_blog
+
+    @feed_title = this_blog.blog_name
+    @link = this_blog.base_url
+    @self_url = url_for(params)
+
     fetch_items(:articles, 'created_at DESC', 1000)
     fetch_items(:pages, 'created_at DESC', 1000)
+
     @items += Category.find_all_with_article_counters(1000) unless this_blog.unindex_categories
     @items += Tag.find_all_with_article_counters(1000) unless this_blog.unindex_tags
   end
