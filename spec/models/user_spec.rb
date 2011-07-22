@@ -203,6 +203,6 @@ describe User do
   describe '#permalink_url' do
     before(:each) { Factory(:blog) }
     subject { users(:tobi).permalink_url }
-    it { should == 'http://myblog.net/users/show/tobi' }
+    it { should == 'http://myblog.net/author/tobi' }
   end
 end
