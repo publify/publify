@@ -17,6 +17,14 @@ class Admin::SeoController < Admin::BaseController
   end
 
   def permalinks 
+    if request.post?
+      if params[:setting]['permalink_format'] and params[:setting]['permalink_format'] == 'custom'
+        params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
+      end
+      update
+      return
+    end
+
     load_settings
     if @setting.permalink_format != '/%year%/%month%/%day%/%title%' and
       @setting.permalink_format != '/%year%/%month%/%title%' and
@@ -29,9 +37,6 @@ class Admin::SeoController < Admin::BaseController
 
   def update
     if request.post?
-      if params[:setting]['permalink_format'] and params[:setting]['permalink_format'] == 'custom'
-        params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
-      end
       Blog.transaction do
         params[:setting].each { |k,v| this_blog.send("#{k.to_s}=", v) }
         this_blog.save
