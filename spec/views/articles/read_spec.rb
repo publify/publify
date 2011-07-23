@@ -5,19 +5,17 @@ with_each_theme do |theme, view_path|
   describe theme ? "with theme #{theme}" : "without a theme" do
     before(:each) do
       @controller.view_paths.unshift(view_path) if theme
+
       # we do not want to test article links and such
-      ActionView::Base.class_eval do
-        def article_links(article)
-          ""
-        end
-        alias :category_links :article_links
-        alias :tag_links :article_links
-      end
+      view.stub(:article_links) { "" }
+      view.stub(:category_links) { "" }
+      view.stub(:tag_links) { "" }
+
+      Factory(:blog, :comment_text_filter => 'textile')
     end
 
     context "applying text filters" do
       before(:each) do
-        Factory(:blog)
         article = Factory(:article, :body => 'body', :excerpt => 'extended content')
         @controller.action_name = "redirect"
         assign(:article, article)
@@ -37,7 +35,6 @@ with_each_theme do |theme, view_path|
 
     context "formatting comments" do
       before(:each) do
-        Factory(:blog, :comment_text_filter => 'textile')
         @controller.action_name = "read"
         article = Factory(:article)
         Factory(:comment, :article => article, :body => 'Comment body _italic_ *bold*')
@@ -54,8 +51,6 @@ with_each_theme do |theme, view_path|
 
     context "formatting comments with bare links" do
       before(:each) do
-        Factory(:blog, :comment_text_filter => 'textile')
-
         article = Factory(:article,
           :allow_comments => true,
           :allow_pings => true,
