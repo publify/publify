@@ -14,9 +14,10 @@ with_each_theme do |theme, view_path|
       Factory(:blog, :comment_text_filter => 'textile')
     end
 
+    let(:article) { Factory(:article, :body => 'body', :extended => 'extended content') }
+
     context "applying text filters" do
       before(:each) do
-        article = Factory(:article, :body => 'body', :excerpt => 'extended content')
         @controller.action_name = "redirect"
         assign(:article, article)
         render
@@ -36,7 +37,6 @@ with_each_theme do |theme, view_path|
     context "formatting comments" do
       before(:each) do
         @controller.action_name = "read"
-        article = Factory(:article)
         Factory(:comment, :article => article, :body => 'Comment body _italic_ *bold*')
         assign(:article, article)
         render
@@ -51,13 +51,6 @@ with_each_theme do |theme, view_path|
 
     context "formatting comments with bare links" do
       before(:each) do
-        article = Factory(:article,
-          :allow_comments => true,
-          :allow_pings => true,
-          :permalink => 'article-3',
-          :author => 'Tobi',
-          :published => true,
-          :state => 'published' )
         Factory(:comment,
           :published => true,
           :state => 'ham',
