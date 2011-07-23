@@ -19,18 +19,22 @@ describe 'With the contents and users fixtures loaded' do
   end
 
   it 'Calling User.authenticate with a valid user/password combo returns a user' do
-    User.authenticate('bob', 'test').should == users(:bob)
+    alice = Factory(:user, :login => 'alice', :password => 'greatest')
+    User.authenticate('alice', 'greatest').should == alice
   end
 
   it 'User.authenticate(user,invalid) returns nil' do
-    User.authenticate('bob', 'wrong password').should be_nil
+    Factory(:user, :login => 'alice', :password => 'greatest')
+    User.authenticate('alice', 'wrong password').should be_nil
   end
 
   it 'User.authenticate(inactive,valid) returns nil' do
+    Factory(:user, :login => 'alice', :state => 'inactive')
     User.authenticate('inactive', 'longtest').should be_nil
   end
 
   it 'User.authenticate(invalid,whatever) returns nil' do
+    Factory(:user, :login => 'alice')
     User.authenticate('userwhodoesnotexist', 'what ever').should be_nil
   end
 
@@ -191,18 +195,20 @@ end
 describe User do
   describe '#admin?' do
     it 'should return true if user is admin' do
-      users(:tobi).should be_admin
+      admin = Factory.build(:user, :profile => Factory.build(:profile_admin, :label => Profile::ADMIN))
+      admin.should be_admin
     end
 
     it 'should return false if user is not admin' do
-      users(:user_publisher).should_not be_admin
+      publisher = Factory.build(:user, :profile => Factory.build(:profile_publisher))
+      publisher.should_not be_admin
     end
 
   end
 
   describe '#permalink_url' do
-    before(:each) { Factory(:blog) }
-    subject { users(:tobi).permalink_url }
-    it { should == 'http://myblog.net/author/tobi' }
+    before(:each) { Factory(:blog, :base_url => 'http://myblog.net/') }
+    subject { Factory.build(:user, :login => 'alice').permalink_url }
+    it { should == 'http://myblog.net/author/alice' }
   end
 end
