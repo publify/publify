@@ -3,7 +3,7 @@
 
 <%= error_messages_for 'blog' %>
 
-<%= form_tag :action => 'index' do %>
+<%= form_tag :action => 'update' do %>
 <div class='widget-container'>
   <h3 class='light'>
     <span class='ui-icon ui-icon-gear'></span> <%= _("General settings")%>
@@ -24,12 +24,6 @@
           <option value="2" <%= "selected" if this_blog.title_prefix == 2 %>><%= _("At the end of page title")%></option>
           <option value="0" <%= "selected" if this_blog.title_prefix == 0 %>><%= _("Don't show blog name in page title")%></option>
         </select>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_permalink_format"><%= _("Format of permalink")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :permalink_format, { :class => 'medium'})%>
       </div>
     </div>
     <div class='setting clear'>

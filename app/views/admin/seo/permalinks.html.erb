@@ -9,6 +9,8 @@
     <span class='ui-icon ui-icon-gear'></span> <%= _("Format of permalink")%>
   </h3>
   <div class='widget-content'>
+    <p><%= _("Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.") %></p>
+    <p>Here are some examples to get you started.</p>
     <div class='setting clear'>
       <label class="float" for="setting_permalink_format">
         <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %> Date and title
@@ -41,7 +43,14 @@
         <%= text_field(:setting, :custom_permalink, { :class => 'medium'})%>
       </div>
     </div>
-
+    <p class='clear'><%= _("You can custom your URL structure using the following tags:") %></p>
+    <ul>
+      <li><code>%title%</code>: <%= _("your article slug. <strong>Using this slug is mandatory</strong>.") %></li>
+      <li><code>%year%</code>: <%= _("your article year of publication.") %></li>
+      <li><code>%month%</code>: <%= _("your article month of publication.") %></li>
+      <li><code>%day%</code>: <%= _("your article day of publication.") %></li>
+    </ul>
+    
   </div>
 </div>
 <%= save_settings %>
