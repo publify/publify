@@ -192,6 +192,8 @@ class AddUsersSettings < ActiveRecord::Migration
   end
 
   def self.down
+    # FIXME: The code below does not reverse this migration!
+    raise ActiveRecord::IrreversibleMigration
     begin
       create_settings
       unless $schema_generator
