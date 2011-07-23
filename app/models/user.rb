@@ -98,9 +98,9 @@ class User < ActiveRecord::Base
     blog = Blog.default # remove me...
 
     blog.url_for(
-      :controller => 'users',
+      :controller => 'authors',
       :action => 'show',
-      :id => permalink,
+      :id => login,
       :only_path => only_path
     )
   end

@@ -48,13 +48,13 @@ describe AccountsController do
 
     it 'redirects to /admin if no return' do
       make_request
-      response.should redirect_to(:controller => 'admin')
+      response.should redirect_to(:controller => 'admin/dashboard')
     end
 
-    it 'redirects to /admin if no return and your are logged' do
+    it 'redirects to /admin if no return and you are logged in' do
       session[:user_id] = session[:user] = users(:bob).id
       make_request
-      response.should redirect_to(:controller => 'admin')
+      response.should redirect_to(:controller => 'admin/dashboard')
     end
 
     it "should redirect to signup if no users" do
@@ -329,7 +329,7 @@ describe AccountsController do
 
     it 'trying to log in once again redirects to admin/dashboard/index' do
       get 'login'
-      response.should redirect_to(:controller => 'admin')
+      response.should redirect_to(:controller => 'admin/dashboard')
     end
 
     describe "when logging out" do

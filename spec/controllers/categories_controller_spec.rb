@@ -7,7 +7,7 @@ describe CategoriesController, "/index" do
     Trigger.stub(:fire) { }
 
     categories = 3.times.map do
-      stub_model(Category).tap do |category|
+      Factory.build(:category).tap do |category|
         articles = 2.times.map { stub_model(Article) }
         category.stub(:published_articles) { articles }
         category.stub(:display_name) { category.id.to_s }
@@ -44,7 +44,7 @@ describe CategoriesController, "/index" do
   end
 end
 
-describe CategoriesController, '/articles/category/personal' do
+describe CategoriesController, '#show' do
   before do
     blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic",
                       :use_canonical_url => true)
@@ -52,8 +52,10 @@ describe CategoriesController, '/articles/category/personal' do
     Trigger.stub(:fire) { }
 
     category = stub_model(Category, :permalink => 'personal', :name => 'Personal')
-    articles = 2.times.map { stub_full_article }
-    category.stub(:published_articles) { articles }
+    published_articles = 2.times.map { stub_full_article }
+    category.stub(:published_articles) { published_articles }
+    articles = published_articles + [ stub_full_article ]
+    category.stub(:articles) { articles }
 
     Category.stub(:find_by_permalink) { category }
   end
@@ -67,16 +69,8 @@ describe CategoriesController, '/articles/category/personal' do
     response.should be_success
   end
 
-  it 'should raise ActiveRecord::RecordNotFound' do
-    Category.should_receive(:find_by_permalink) \
-      .with('personal').and_raise(ActiveRecord::RecordNotFound)
-    lambda do
-      do_get
-    end.should raise_error(ActiveRecord::RecordNotFound)
-  end
-
-  it 'should render :show by default'
-  if false
+  it 'should render :show by default' do
+    pending "should use views to implement this"
     controller.stub!(:template_exists?) \
       .and_return(true)
     do_get
@@ -91,15 +85,8 @@ describe CategoriesController, '/articles/category/personal' do
   end
 
   it 'should show only published articles' do
-    c = Factory.build(:category, :permalink => 'Social')
-    articles = [Factory.build(:article, :categories => [c])]
-    controller.should_receive(:show_page_title_for)
-    controller.should_receive(:permalink_with_page)
-    Category.should_receive(:find_by_permalink).with('Social').and_return(c)
-    c.should_receive(:published_articles).and_return(articles)
-    get 'show', :id => 'Social'
-    response.should be_success
-    assigns[:articles].should_not be_empty
+    do_get
+    assigns(:articles).size.should == 2
   end
 
   it 'should set the page title to "Category Personal"' do
@@ -126,6 +113,23 @@ describe CategoriesController, '/articles/category/personal' do
     get 'show', :id => 'personal', :format => 'rss'
     response.should render_template('articles/index_rss_feed')
     @layouts.keys.compact.should be_empty
+  end
+end
+
+describe CategoriesController, "#show with a non-existent category" do
+  before do
+    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic",
+                      :use_canonical_url => true)
+    Blog.stub(:default) { blog }
+    Trigger.stub(:fire) { }
+  end
+
+  it 'should raise ActiveRecord::RecordNotFound' do
+    Category.should_receive(:find_by_permalink) \
+      .with('foo').and_raise(ActiveRecord::RecordNotFound)
+    lambda do
+      get 'show', :id => 'foo'
+    end.should raise_error(ActiveRecord::RecordNotFound)
   end
 end
 

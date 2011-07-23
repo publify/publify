@@ -33,9 +33,9 @@ module LoginSystem
           #store_location
           session[:return_to] = request.fullpath
           if User.find(:first)
-            redirect_to :controller => "accounts/login", :action => :index
+            redirect_to :controller => "/accounts", :action => "login"
           else
-            redirect_to :controller => "accounts/login", :action => :new
+            redirect_to :controller => "/accounts", :action => "signup"
           end
         end
         accepts.xml do

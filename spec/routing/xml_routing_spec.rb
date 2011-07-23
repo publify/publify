@@ -14,6 +14,10 @@ describe XmlController do
       { :get => "/xml/trackbackrss/feed.xml"}.should route_to(:controller => "xml", :action => "trackbackrss")
     end
 
+    it "recognizes and generates #rsd" do
+      { :get => "/xml/rsd"}.should route_to(:controller => "xml", :action => "rsd")
+    end
+
     it "recognizes and generates #feed" do
       { :get => "/xml/atom/feed.xml"}.should route_to(:controller => "xml", :action => "feed", :type => "feed", :format => "atom")
     end
@@ -28,6 +32,10 @@ describe XmlController do
 
     it "recognizes and generates #feed with rss type" do
       { :get => "/xml/rss"}.should route_to(:controller => "xml", :action => "feed", :type => "feed", :format => "rss")
+    end
+
+    it "recognizes and generates #feed without format" do
+      { :get => "/xml/feed"}.should route_to(:controller => "xml", :action => "feed")
     end
 
     it "recognizes and generates #feed with sitemap type" do

@@ -87,7 +87,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
     it "don't see the list of user" do
       get :index
-      response.should redirect_to('/accounts/login')
+      response.should redirect_to(:controller => "/accounts", :action => "login")
     end
 
     describe 'EDIT Action' do
@@ -101,9 +101,11 @@ describe Admin::UsersController, "rough port of the old functional test" do
             :id => @administrator.id,
             :profile_id => contributor.id
         end
+
         it 'should redirect to login' do
-          response.should redirect_to('/accounts/login')
+          response.should redirect_to(:controller => "/accounts", :action => "login")
         end
+
         it 'should not change user profile' do
           u = @administrator.reload
           u.profile_id.should == @admin_profile.id
