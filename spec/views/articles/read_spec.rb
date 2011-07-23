@@ -1,7 +1,8 @@
 require 'spec_helper'
 
+describe "articles/read.html.erb" do
 with_each_theme do |theme, view_path|
-  describe "#{view_path}/articles/read" do
+  describe theme ? "with theme #{theme}" : "without a theme" do
     before(:each) do
       @controller.view_paths.unshift(view_path) if theme
       # we do not want to test article links and such
@@ -20,7 +21,7 @@ with_each_theme do |theme, view_path|
         article = Factory(:article, :body => 'body', :excerpt => 'extended content')
         @controller.action_name = "redirect"
         assign(:article, article)
-        render :file => "articles/read"
+        render
       end
 
       it "should not have too many paragraph marks around body" do
@@ -41,7 +42,7 @@ with_each_theme do |theme, view_path|
         article = Factory(:article)
         Factory(:comment, :article => article, :body => 'Comment body _italic_ *bold*')
         assign(:article, article)
-        render :file => "articles/read"
+        render
       end
 
       it "should not have too many paragraph marks around comment contents" do
@@ -72,7 +73,7 @@ with_each_theme do |theme, view_path|
 
         @controller.action_name = "read"
         assign(:article, article)
-        render :file => "articles/read"
+        render
       end
 
       it "should automatically add links" do
@@ -83,5 +84,6 @@ with_each_theme do |theme, view_path|
       end
     end
   end
+end
 end
 

@@ -77,7 +77,7 @@ end
 
 def stub_full_article(time=Time.now)
   author = stub_model(User, :name => "User Name")
-  text_filter = stub_model(TextFilter)
+  text_filter = Factory.build(:textile)
 
   a = stub_model(Article, :published_at => time, :user => author,
                  :created_at => time, :updated_at => time,
