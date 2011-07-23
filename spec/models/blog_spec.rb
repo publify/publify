@@ -116,7 +116,8 @@ describe "Valid permalink in blog" do
     @blog = Blog.new
   end
 
-  ['foo', 'year', 'day', 'month', 'title', '%title', 'title%', '/year/month/day/title', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|
+  ['foo', 'year', 'day', 'month', 'title', '%title', 'title%', '/year/month/day/title',
+    '%year%', '%day%', '%month%', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|
     it "not valid with #{permalink_type}" do
       @blog.permalink_format = permalink_type
       @blog.should_not be_valid
