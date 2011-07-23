@@ -12,17 +12,18 @@ with_each_theme do |theme, view_path|
       view.stub(:tag_links) { "" }
 
       Factory(:blog, :comment_text_filter => 'textile')
+      @controller.action_name = "redirect"
+
+      Factory(:comment, :article => article, :body => 'Comment body _italic_ *bold*')
+      Factory(:comment, :article => article, :body => 'Hello foo@bar.com http://www.bar.com')
+
+      assign(:article, article)
+      render
     end
 
     let(:article) { Factory(:article, :body => 'body', :extended => 'extended content') }
 
     context "applying text filters" do
-      before(:each) do
-        @controller.action_name = "redirect"
-        assign(:article, article)
-        render
-      end
-
       it "should not have too many paragraph marks around body" do
         rendered.should have_selector("p", :content => "body")
         rendered.should_not have_selector("p>p", :content => "body")
@@ -35,13 +36,6 @@ with_each_theme do |theme, view_path|
     end
 
     context "formatting comments" do
-      before(:each) do
-        @controller.action_name = "read"
-        Factory(:comment, :article => article, :body => 'Comment body _italic_ *bold*')
-        assign(:article, article)
-        render
-      end
-
       it "should not have too many paragraph marks around comment contents" do
         rendered.should have_selector("p>em", :content => "italic")
         rendered.should have_selector("p>strong", :content => "bold")
@@ -50,19 +44,6 @@ with_each_theme do |theme, view_path|
     end
 
     context "formatting comments with bare links" do
-      before(:each) do
-        Factory(:comment,
-          :published => true,
-          :state => 'ham',
-          :status_confirmed => true,
-          :article => article,
-          :author => 'Foo Bar',
-          :body => 'Hello foo@bar.com http://www.bar.com')
-
-        @controller.action_name = "read"
-        assign(:article, article)
-        render
-      end
 
       it "should automatically add links" do
         rendered.should have_selector("a", :href => "mailto:foo@bar.com",
