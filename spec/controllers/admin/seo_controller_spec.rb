@@ -9,8 +9,11 @@ describe Admin::SeoController do
   end
 
   describe "#index" do
-    it 'should render index' do
+    before do
       get :index
+    end
+
+    it 'should render index' do
       response.should render_template('index')
     end
     
@@ -26,8 +29,11 @@ describe Admin::SeoController do
   end
 
   describe "#permalinks" do
-    it 'should render permalinks' do
+    before do
       get :permalinks
+    end
+
+    it 'should render permalinks' do
       response.should render_template('permalinks')
     end
     
