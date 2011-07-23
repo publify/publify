@@ -10,6 +10,8 @@ class Blog < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   include Rails.application.routes.url_helpers
 
+  attr_accessor :custom_permalink
+
   validate(:on => :create) { |blog|
     unless Blog.count.zero?
       blog.errors.add(:base, "There can only be one...")
@@ -185,8 +187,8 @@ class Blog < ActiveRecord::Base
   end
 
   def permalink_has_identifier
-    unless permalink_format =~ /(%year%|%month%|%day%|%title%)/
-      errors.add(:permalink_format, _("You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%"))
+    unless permalink_format =~ /(%title%)/
+      errors.add(:permalink_format, _("You need a permalink format with an identifier : %%title%%"))
     end
 
     # A permalink cannot end in .atom or .rss. it's reserved for the feeds
