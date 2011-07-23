@@ -73,6 +73,7 @@ def stub_default_blog
   blog = stub_model(Blog, :base_url => "http://myblog.net")
   view.stub(:this_blog) { blog }
   Blog.stub(:default) { blog }
+  blog
 end
 
 def stub_full_article(time=Time.now)

@@ -11,17 +11,25 @@ describe "articles/read.html.erb" do
         view.stub(:category_links) { "" }
         view.stub(:tag_links) { "" }
 
-        Factory(:blog, :comment_text_filter => 'textile')
+        blog = stub_default_blog
+        blog.comment_text_filter = "textile"
         @controller.action_name = "redirect"
 
-        Factory(:comment, :article => article, :body => 'Comment body _italic_ *bold*')
-        Factory(:comment, :article => article, :body => 'Hello foo@bar.com http://www.bar.com')
+        article = stub_full_article
+        article.body = 'body'
+        article.extended = 'extended content'
+
+        c1 = stub_model(Comment, :created_at => Time.now, :body => 'Comment body _italic_ *bold*')
+        c2 = stub_model(Comment, :created_at => Time.now, :body => 'Hello foo@bar.com http://www.bar.com')
+
+        article.stub(:published_comments) { [c1, c2] }
+
+        text_filter = Factory.build(:textile)
+        TextFilter.stub(:find_by_name) { text_filter }
 
         assign(:article, article)
         render
       end
-
-      let(:article) { Factory(:article, :body => 'body', :extended => 'extended content') }
 
       it "should not have too many paragraph marks around body" do
         rendered.should have_selector("p", :content => "body")
