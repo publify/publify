@@ -1,8 +1,0 @@
-<% @comid = 0%>
-<ol id="commentList">
-<% if @article.published_comments.any? -%>
-  <%= render @article.published_comments %>
-<% else -%>
-  <li class="dummy_comment" style="display:none"><%= _("No comments yet")%></li>
-<% end -%>
-</ol>

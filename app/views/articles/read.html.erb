@@ -30,13 +30,7 @@
       <small><a href="#respond"><%= _("Leave a response")%></a></small>
     </p>
   <% end -%>
-  <ol class="comment-list" id="commentList">
-  <% if @article.published_comments.blank? %>
-    <li id="dummy_comment" style="display: none"></li>
-  <% else %>
-    <%= render @article.published_comments %>
-  <% end %>
-  </ol>
+  <%= render "articles/comment_list" %>
 <% end -%>
 
 <% if @article.allow_pings? -%>

@@ -22,6 +22,7 @@
     <%= display_comments_counter(@article) %>
     <a href="#commentform" ref="nofollow"> &raquo;</a>
   </h3>
+  <% @comid = 0%>
   <%= render "articles/comment_list" %>
   <% end -%>
 
