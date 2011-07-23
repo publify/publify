@@ -123,11 +123,16 @@ describe "Valid permalink in blog" do
     end
   end
 
-  ['%year%', '%day%', '%month%', '%title%', '%title%.html', '/hello/all/%year%/%title%', 'atom/%title%.html', 'ok/rss/%title%.html'].each do |permalink_type|
+  ['%title%', '%title%.html', '/hello/all/%year%/%title%', 'atom/%title%.html', 'ok/rss/%title%.html'].each do |permalink_type|
     it "should be valid with only #{permalink_type}" do
       @blog.permalink_format = permalink_type
       @blog.should be_valid
     end
+  end
+
+  it "should not be valid without %title% in" do
+    @blog.permalink_format = '/toto/%year%/%month/%day%'
+    @blog.should_not be_valid
   end
 
 end

@@ -10,10 +10,6 @@ class Admin::PagesController < Admin::BaseController
     @pages = Page.search_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
   end
 
-  def show
-    @page = Page.find(params[:id])
-  end
-
   accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
     ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
     ['í','ì','î','ï','I','Î','Ì'] => 'i',

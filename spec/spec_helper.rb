@@ -203,7 +203,7 @@ module Webrat #:nodoc:
 end
 
 def test_tabs(active)
-  ["Dashboard", "Articles", "Pages", "Media", "Design", "Settings"].each do |l|
+  ["Dashboard", "Articles", "Pages", "Media", "Design", "Settings", "SEO"].each do |l|
     next if l == active
     response.should_not have_selector(".active", :content => "#{l}")
   end

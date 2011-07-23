@@ -248,11 +248,12 @@ describe Comment do
     end
 
     it 'should save comment as confirmed ham' do
+      henri = Factory(:user, :login => 'henri')
       comment = Comment.new do |c|
         c.body = "Test foo"
-        c.author = 'Bob'
+        c.author = 'Henri'
         c.article_id = Factory(:article).id
-        c.user_id = users(:tobi).id
+        c.user_id = henri.id
       end
       assert comment.save!
 

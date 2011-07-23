@@ -38,6 +38,8 @@ Factory.define :user do |u|
   u.notify_on_comments false
   u.password 'top-secret'
   u.settings({})
+  u.state 'active'
+  u.profile {Factory(:profile_contributor)}
 end
 
 def some_user
@@ -131,7 +133,7 @@ Factory.define :profile_publisher, :class => :profile do |l|
   l.modules [:dashboard, :write, :content, :feedback, :profile]
 end
 Factory.define :profile_contributor, :class => :profile do |l|
-  l.label 'contributor'
+  l.label {Factory.next(:label)}
   l.nicename 'Contributor'
   l.modules [:dashboard, :profile]
 end

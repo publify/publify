@@ -312,14 +312,13 @@ describe Article do
   end
 
   it 'should notify' do
-    [:randomuser, :bob].each do |tag|
-      u = users(tag); u.notify_on_new_articles = true; u.save!
-    end
-    a = Article.new(:title => 'New Article', :body => 'Foo', :author => 'Tobi', :user => users(:tobi))
-    assert a.save
+    henri = Factory(:user, :login => 'henri', :notify_on_new_articles => true)
+    alice = Factory(:user, :login => 'alice', :notify_on_new_articles => true)
 
+    a = Factory.build(:article)
+    assert a.save
     assert_equal 2, a.notify_users.size
-    assert_equal ['bob', 'randomuser'], a.notify_users.collect {|u| u.login }.sort
+    assert_equal ['alice', 'henri'], a.notify_users.collect {|u| u.login }.sort
   end
 
   it "test_withdrawal" do
@@ -350,14 +349,17 @@ describe Article do
   end
 
   describe '#access_by?' do
+    before do
+      @alice = Factory.build(:user, :profile => Factory.build(:profile_admin, :label => Profile::ADMIN))
+    end
 
     it 'admin should have access to an article written by another' do
-      Factory(:article).should be_access_by(users(:tobi))
+      Factory.build(:article).should be_access_by(@alice)
     end
 
     it 'admin should have access to an article written by himself' do
-      article = Factory(:article, :author => users(:tobi))
-      article.should be_access_by(users(:tobi))
+      article = Factory.build(:article, :author => @alice)
+      article.should be_access_by(@alice)
     end
 
   end

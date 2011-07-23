@@ -36,15 +36,6 @@ describe Admin::PagesController do
     
   end
 
-  it "test_show" do
-    page = Factory(:page)
-    get :show, :id => page.id
-    assert_response :success
-    assert_template "show"
-    assert_not_nil assigns(:page)
-    assert_equal page, assigns(:page)
-  end
-
   describe "test_new" do
     before(:each) do
       get :new

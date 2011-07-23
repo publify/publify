@@ -409,7 +409,7 @@ input.large, input.medium, input.small, textarea {
   margin-top: 0.7em;
 }
 
-.help { 
+.help, .help-inline { 
   font-style: italic; 
   font-size: 10.5px;
 }

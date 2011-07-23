@@ -2,42 +2,34 @@ require 'spec_helper'
 
 describe AccountsController do
   describe "A successful login with 'Remember me' checked" do
-    before(:each) do
-      Factory(:blog)
-      User.salt = 'change-me'
-    end
-
-    def make_request
-      post 'login', {:user => {:login => 'bob', :password => 'test'},
-        :remember_me => '1'}
-    end
-
     it 'should not cause password to change' do
-      User.authenticate('bob', 'test').should == users(:bob)
-      make_request
-      request.session[:user_id].should == users(:bob).id
-      User.authenticate('bob', 'test').should == users(:bob)
+      Factory(:blog)
+      henri = Factory(:user, :login => 'henri', :password => 'testagain')
+      User.salt = 'change-me'
+      post 'login', {:user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'}
+      request.session[:user_id].should == henri.id
     end
   end
 
   describe 'A successfully authenticated login' do
     before(:each) do
       Factory(:blog)
+      @henri = Factory(:user, :login => 'henri', :password => 'testagain', :profile => Factory(:profile_admin, :label => 'admin_henri'))
       User.stub!(:salt).and_return('change-me')
     end
 
     def make_request
-      post 'login', {:user => {:login => 'bob', :password => 'test'}}
+      post 'login', {:user => {:login => 'henri', :password => 'testagain'}}
     end
 
     it 'session gets a user' do
       make_request
-      request.session[:user_id].should == users(:bob).id
+      request.session[:user_id].should == @henri.id
     end
 
     it 'sets typo_user_profile cookie' do
       make_request
-      cookies["typo_user_profile"].should == 'admin'
+      cookies["typo_user_profile"].should == 'admin_henri'
     end
 
     it 'redirects to /bogus/location' do
@@ -52,7 +44,7 @@ describe AccountsController do
     end
 
     it 'redirects to /admin if no return and you are logged in' do
-      session[:user_id] = session[:user] = users(:bob).id
+      session[:user_id] = session[:user] = @henri.id
       make_request
       response.should redirect_to(:controller => 'admin/dashboard')
     end
