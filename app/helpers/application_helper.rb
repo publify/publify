@@ -241,7 +241,7 @@ module ApplicationHelper
   end
 
   def show_meta_keyword
-    return unless this_blog.use_meta_keyword 
+    return unless this_blog.use_meta_keyword
     meta_tag 'keywords', @keywords unless @keywords.blank?
   end
 

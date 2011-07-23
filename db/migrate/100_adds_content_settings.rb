@@ -1,7 +1,7 @@
 class AddsContentSettings < ActiveRecord::Migration
   class BareSetting < ActiveRecord::Base
     include BareMigration
-    belongs_to :user, :class_name => "AddsContentSettings::BareContent"    
+    belongs_to :user, :class_name => "AddsContentSettings::BareContent"
   end
 
   class BareContent < ActiveRecord::Base
@@ -63,7 +63,7 @@ class AddsContentSettings < ActiveRecord::Migration
   def self.up
     # There must be a better way to do it but...
     # 1. I didn't find it.
-    # 2. I'm lost in the countryside where I need to go to the back of the 
+    # 2. I'm lost in the countryside where I need to go to the back of the
     # garden to have a phone connection and in the middle of a field to have
     # a chance to get my emails.
     #
@@ -72,7 +72,7 @@ class AddsContentSettings < ActiveRecord::Migration
     #
     # At least it works
     #
-    
+
     rename_column :contents, :password, :s_password
     add_column :contents, :settings, :text
 
@@ -91,7 +91,7 @@ class AddsContentSettings < ActiveRecord::Migration
         raise e
       end
     end
-    
+
     remove_column :contents, :s_password
   end
 

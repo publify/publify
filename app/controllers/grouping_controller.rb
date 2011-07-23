@@ -62,10 +62,10 @@ class GroupingController < ContentController
   end
 
   def keyword_from grouping
-    keywords = "" 
+    keywords = ""
     keywords << grouping.keywords unless grouping.keywords.blank?
     keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
-    keywords 
+    keywords
   end
 
   def show_page_title_for grouping, page

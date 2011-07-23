@@ -102,7 +102,7 @@ module Admin::BaseHelper
       return class_selected_tab
     end
     class_tab
-  end  
+  end
 
   def class_pages
     if controller.controller_name  =~ /pages/

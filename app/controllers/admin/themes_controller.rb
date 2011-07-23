@@ -84,7 +84,7 @@ class Admin::ThemesController < Admin::BaseController
   rescue => e
     logger.info(e.message)
     nil
-  
+
     @themes = []
     @error = true
   end
