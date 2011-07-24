@@ -4,7 +4,7 @@ class AuthorsController < ContentController
   def show
     @author = User.find_by_login(params[:id])
     raise ActiveRecord::RecordNotFound unless @author
-    @articles = @author.articles
+    @articles = @author.published_articles
 
     respond_to do |format|
       format.html do
