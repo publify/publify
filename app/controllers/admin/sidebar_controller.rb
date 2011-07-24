@@ -17,7 +17,6 @@ class Admin::SidebarController < Admin::BaseController
 
   def set_active
     # Get all available plugins
-
     klass_for = available.inject({}) do |hash, klass|
       hash.merge({ klass.short_name => klass })
     end
