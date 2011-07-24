@@ -34,4 +34,10 @@ describe Sidebar do
       sidebars.first.class.should == AmazonSidebar
     end
   end
+
+  describe "#content_partial" do
+    it "bases the partial name on the class name" do
+      AmazonSidebar.new.content_partial.should == "/amazon_sidebar/content"
+    end
+  end
 end

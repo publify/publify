@@ -193,6 +193,10 @@ class Sidebar < ActiveRecord::Base
       self.to_s.underscore.split(%r{_}).first
     end
 
+    def path_name
+      self.to_s.underscore
+    end
+
     def display_name(new_dn = nil)
       @display_name = new_dn if new_dn
       @display_name || short_name.humanize
@@ -265,7 +269,7 @@ class Sidebar < ActiveRecord::Base
   end
 
   def content_partial
-    "/sidebars/#{short_name}/content"
+    "/#{self.class.path_name}/content"
   end
 
   def to_locals_hash
