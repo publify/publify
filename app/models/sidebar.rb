@@ -121,6 +121,22 @@ class Sidebar < ActiveRecord::Base
   class << self
     attr_accessor :view_root
 
+    def find *args
+      begin
+        super
+      rescue ActiveRecord::SubclassNotFound => e
+        available = available_sidebars.map {|klass| klass.to_s}
+        set_inheritance_column :bogus
+        super.each do |record|
+          unless available.include? record.type
+            record.delete
+          end
+        end
+        set_inheritance_column :type
+        super
+      end
+    end
+
     def find_all_visible
       find :all, :conditions => 'active_position is not null', :order => 'active_position'
     end
