@@ -54,7 +54,7 @@
 </p>
 
 <% unless @article.comments_closed? -%>
-  <%= render 'comment_box' %>
+  <%= render 'comment_form' %>
 <% else -%>
   <p><%= _("Comments are disabled")%></p>
 <% end -%>
