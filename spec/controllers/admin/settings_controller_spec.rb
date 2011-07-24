@@ -5,7 +5,10 @@ describe Admin::SettingsController do
 
   before(:each) do
     Factory(:blog)
-    request.session = { :user => users(:tobi).id }
+    #TODO Remove this line after remove FIXTURE
+    Profile.delete_all
+    alice = Factory(:user, :login => 'alice', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    request.session = { :user => alice.id }
   end
 
   describe "#index" do
