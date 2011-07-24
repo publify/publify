@@ -25,11 +25,11 @@ class Blog < ActiveRecord::Base
   # Description
   setting :blog_name,                  :string, 'My Shiny Weblog!'
   setting :blog_subtitle,              :string, ''
-  setting :title_prefix,               :integer, 0
   setting :geourl_location,            :string, ''
   setting :canonical_server_url,       :string, ''  # Deprecated
   setting :lang,                       :string, 'en_US'
-
+  setting :title_prefix,               :integer, 0 # Deprecated but needed for a migration
+  
   # Spam
   setting :sp_global,                  :boolean, false
   setting :sp_article_auto_close,      :integer, 0
@@ -80,8 +80,49 @@ class Blog < ActiveRecord::Base
   setting :dofollowify,                :boolean, false
   setting :use_canonical_url,          :boolean, false
   setting :use_meta_keyword,           :boolean, true
-  
+  setting :home_title_template,        :string, "%blog_name% | %blog_subtitle%" # OK
+  setting :home_desc_template,         :string, "%blog_name% | %blog_subtitle% | %meta_keywords%" # OK
+  setting :article_title_template,     :string, "%title% | %blog_name%" # OK
+  setting :article_desc_template,      :string, "%excerpt%" #OK
+  setting :page_title_template,        :string, "%title% | %blog_name%" # OK
+  setting :page_desc_template,         :string, "%excerpt%" # OK
+  setting :paginated_title_template,   :string, "%blog_name% | %blog_subtitle% %page%" # OK
+  setting :paginated_desc_template,    :string, "%blog_name% | %blog_subtitle% | %meta_keywords% %page%" # OK
+  setting :category_title_template,    :string, "Category: %name% | %blog_name% %page%" # Spec
+  setting :category_desc_template,     :string, "%name% | %description% | %blog_subtitle% %page%" # Spec
+  setting :tag_title_template,        :string, "Tag: %name% | %blog_name% %page%"
+  setting :tag_desc_template,         :string, "%name% | %blog_name% | %blog_subtitle% %page%"
+  setting :author_title_template,      :string, "%author% | %blog_name%" # OK
+  setting :author_desc_template,       :string, "%author% | %blog_name% | %blog_subtitle%" # OK
+  setting :archives_title_template,    :string, "Archives for %blog_name% %date% %page%" # OK
+  setting :archives_desc_template,     :string, "Archives for %blog_name% %date% %page% %blog_subtitle%" # OK
+  setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%" # OK
+  setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%" # OK
+#  setting :meta_author_template,       :string, "%blog_name% | %nickname%"
+=begin
+  %date% 	Replaced with the date of the post/page
+  %title% 	Replaced with the title of the post/page
+  %blog_name% 	The site's name
+  %blog_description% 	The site's tagline / description
 
+  %excerpt% 	Replaced with the post/page excerpt (or auto-generated if it does not exist)
+  %excerpt_only% 	Replaced with the post/page excerpt (without auto-generation)
+  %tags% 	Replaced with the current tag/tags
+  %categories% 	Replaced with the post categories (comma separated)
+  %category_description% 	Replaced with the category description
+
+
+  %name% 	Replaced with the post/page author's 'nicename'
+  %search% 	Replaced with the current search phrase
+  %currenttime% 	Replaced with the current time
+  %currentdate% 	Replaced with the current date
+  %currentmonth% 	Replaced with the current month
+  %currentyear% 	Replaced with the current year
+  %page% 	Replaced with the current page number (i.e. page 2 of 4)
+  %pagetotal% 	Replaced with the current page total
+  %pagenumber% 	Replaced with the current page number
+=end
+  
   validate :permalink_has_identifier
 
   def initialize(*args)

@@ -33,7 +33,10 @@ class Admin::SeoController < Admin::BaseController
       @setting.permalink_format = 'custom'
     end
   end
-    
+  
+  def titles
+    load_settings
+  end
 
   def update
     if request.post?

@@ -69,22 +69,13 @@ class GroupingController < ContentController
   end
 
   def show_page_title_for grouping, page
-    title = "#{_(self.class.to_s.sub(/Controller$/,'').singularize)} #{grouping.name}, "
-
-    if grouping.respond_to? :description and
-        not grouping.description.nil?
-      title += grouping.description
-    else
-      title += "#{_('everything about')} "
-      if grouping.respond_to? :display_name and
-          not grouping.display_name.nil?
-        title += grouping.display_name
-      else
-        title += grouping.name
-      end
+    if self.class.to_s.sub(/Controller$/,'').singularize == 'Category'
+      @page_title   = this_blog.category_title_template.to_title(@grouping, this_blog, params)
+      @description = this_blog.category_title_template.to_title(@grouping, this_blog, params)
+    elsif self.class.to_s.sub(/Controller$/,'').singularize == 'Tag'
+      @page_title   = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
+      @description = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
     end
-    title << " page " << page if page
-    title
   end
 
   # For some reasons, the permalink_url does not take the pagination.

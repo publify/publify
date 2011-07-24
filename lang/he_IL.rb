@@ -395,10 +395,6 @@ Localization.define("he_IL") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "אופטימיזצית מנוע חיפוש"
-  l.store "Show blog name", "הצג את שם הבלוג"
-  l.store "At the beginning of page title", "בתחילת כותרת הדף"
-  l.store "At the end of page title", "בסוף כותרת הדף"
-  l.store "Don't show blog name in page title", "אל תציג את שם הבלוג בכותרת הדף"
   l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""

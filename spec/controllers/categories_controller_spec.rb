@@ -91,7 +91,7 @@ describe CategoriesController, '#show' do
 
   it 'should set the page title to "Category Personal"' do
     do_get
-    assigns[:page_title].should == 'Category Personal, everything about Personal'
+    assigns[:page_title].should == 'Category: Personal | My Shiny Weblog! '
   end
 
   describe "when rendered" do

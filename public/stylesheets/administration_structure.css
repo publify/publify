@@ -362,7 +362,6 @@ input.large, input.medium, input.small, textarea {
 }
 
 select {
-  width: 400px; 
   padding: 2px;
 }
 

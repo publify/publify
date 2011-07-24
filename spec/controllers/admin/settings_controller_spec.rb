@@ -78,7 +78,6 @@ describe Admin::SettingsController do
           "google_analytics"=>"",
           "meta_keywords"=>"my keywords",
           "meta_description"=>"",
-          "title_prefix"=>"1",
           "rss_description"=>"1",
           "robots"=>"User-agent: *\r\nDisallow: /admin/\r\nDisallow: /page/\r\nDisallow: /cgi-bin \r\nUser-agent: Googlebot-Image\r\nAllow: /*",
           "index_tags"=>"1"}}.merge(options)

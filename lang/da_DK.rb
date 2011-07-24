@@ -395,10 +395,6 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
-  l.store "Show blog name", "Vis blogens navn"
-  l.store "At the beginning of page title", "Ved begyndelsen af sidens titel"
-  l.store "At the end of page title", "Ved slutningen af sidens titel"
-  l.store "Don't show blog name in page title", "Vis ikke bloggens navn i sidens titel"
   l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""

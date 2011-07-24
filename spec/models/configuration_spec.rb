@@ -14,10 +14,6 @@ describe 'Given a new blog' do
     @blog.blog_subtitle.should == ''
   end
 
-  it '#title_prefix should be 0' do
-    @blog.title_prefix.should == 0
-  end
-
   it '#geourl_location should be ""' do
     @blog.geourl_location.should == ''
   end
@@ -176,6 +172,67 @@ describe 'Given a new blog' do
     @blog.blog_name = 'Specific blog name'
     @blog.should be_configured
   end
+  
+  it 'home display template is blog name | blog description | meta keywords' do
+    @blog.home_title_template.should == "%blog_name% | %blog_subtitle%"
+    @blog.home_desc_template.should == "%blog_name% | %blog_subtitle% | %meta_keywords%"
+  end
+  
+  it 'article template is title | blog name with excerpt in the description' do
+    @blog.article_title_template.should == "%title% | %blog_name%"
+    @blog.article_desc_template.should == "%excerpt%"
+  end
+  
+  it 'page template is title | blog name with excerpt in the description' do
+    @blog.page_title_template.should == "%title% | %blog_name%"
+    @blog.page_desc_template.should == "%excerpt%"
+  end
+
+  it 'paginated template is title | blog name | page with keywords in the description' do
+    @blog.paginated_title_template.should == "%blog_name% | %blog_subtitle% %page%"
+    @blog.paginated_desc_template.should == "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
+  end
+
+  it 'category title template is Category: name | blog_name | page' do
+    @blog.category_title_template.should == "Category: %name% | %blog_name% %page%"
+  end
+  
+  it 'category description template is name | description | blog description page' do
+    @blog.category_desc_template.should == "%name% | %description% | %blog_subtitle% %page%"
+  end
+
+  it 'tags title template is Tag: name | blog_name | page' do
+    @blog.tag_title_template.should == "Tag: %name% | %blog_name% %page%"
+  end
+  
+  it 'tags description template is name | description | blog description page' do
+    @blog.tag_desc_template.should == "%name% | %blog_name% | %blog_subtitle% %page%"
+  end
+
+  it 'author title template is name | blog_name' do
+    @blog.author_title_template.should == "%author% | %blog_name%"
+  end
+  
+  it 'author description template is name | blog name | blog description page' do
+    @blog.author_desc_template.should == "%author% | %blog_name% | %blog_subtitle%"
+  end
+
+  it 'archives title template is Archives for blog name date page' do
+    @blog.archives_title_template.should == "Archives for %blog_name% %date% %page%"
+  end
+  
+  it 'archives description template is Archives for blog name date page blog description' do
+    @blog.archives_desc_template.should == "Archives for %blog_name% %date% %page% %blog_subtitle%"
+  end
+
+  it 'search title template is Archives for blog name date page' do
+    @blog.search_title_template.should == "Results for %search% | %blog_name% %page%"
+  end
+  
+  it 'search description template is Archives for blog name date page blog description' do
+    @blog.search_desc_template.should == "Results for %search% | %blog_name% | %blog_subtitle% %page%"
+  end
+
 end
 
 describe 'Given a new user' do
