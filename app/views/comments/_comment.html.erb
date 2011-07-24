@@ -1,4 +1,6 @@
 <li id="comment-<%= comment.id %>" <%= 'class="author_comment"' if comment.user %> <%= 'style="display:none"' if controller.request.xhr? %><%= onhover_show_admin_tools(:comment, comment.id) %>>
+  <%= admin_tools_for comment %>
+  <p>
   <a name="comment-<%= comment.id %>"></a>
   <%= avatar_tag(:email => comment.email, :url => comment.url) %>
   <cite><strong><%= link_to_unless(comment.url.blank?, h(comment.author), comment.url) %></strong> </cite> <%= _("said")%> <%= display_date_and_time comment.created_at %> later:<br />
