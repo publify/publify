@@ -3,6 +3,7 @@
 neuro for 6.0.6:
 - Ticket #185: Change feedback bulk ops to something clearer: mark as spam / confirm classification / validates. Global operations: delete all spam / mark all unconfirmed spam as spam
 - Remove Page#show + specs (useless)  
+- Have xxx_links in content_helper accept a text argument.
 
   Typogarden:
   - Port : http://typogarden.org/hemingway.html

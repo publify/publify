@@ -394,10 +394,6 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Zoekmachine optimalisatie"
-  l.store "Show blog name", "Toon blog naam"
-  l.store "At the beginning of page title", "Aan het begin van de paginatitel"
-  l.store "At the end of page title", "Aan het einde van de paginatitel"
-  l.store "Don't show blog name in page title", "Toon de blog naam niet in de paginatitel"
   l.store "Format of permalink", "Formaat van permalink"
   l.store "Google Analytics", "Google Analytics"
   l.store "Google verification link", "Google verification link"

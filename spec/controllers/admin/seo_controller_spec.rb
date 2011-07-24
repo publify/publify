@@ -21,8 +21,8 @@ describe Admin::SeoController do
       test_tabs "SEO"
     end
     
-    it 'should have Global settings, Permalinks with Global settings selected' do
-      subtabs = ["Global settings", "Permalinks"]
+    it 'should have Global settings, Permalinks and Titles with Global settings selected' do
+      subtabs = ["Global settings", "Permalinks", "Titles"]
       test_subtabs(subtabs, "Global settings")
     end        
     
@@ -41,9 +41,29 @@ describe Admin::SeoController do
       test_tabs "SEO"
     end
     
-    it 'should have Global settings, Permalinks with Permalinks selected' do
-      subtabs = ["Global settings", "Permalinks"]
+    it 'should have Global settings, Permalinks and Titles with Permalinks selected' do
+      subtabs = ["Global settings", "Permalinks", "Titles"]
       test_subtabs(subtabs, "Permalinks")
+    end        
+    
+  end
+
+  describe "#titles" do
+    before(:each) do
+      get :titles
+    end
+    
+    it 'should render titles' do
+      response.should render_template('titles')
+    end
+    
+    it 'should have Titles tab selected' do
+      test_tabs "SEO"
+    end
+    
+    it 'should have Global settings, Permalinks and Titles with Permalinks selected' do
+      subtabs = ["Global settings", "Permalinks", "Titles"]
+      test_subtabs(subtabs, "Titles")
     end        
     
   end

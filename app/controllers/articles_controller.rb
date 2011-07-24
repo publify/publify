@@ -50,6 +50,8 @@ class ArticlesController < ContentController
     @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'search', :page => params[:page], :q => params[:q])
     @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
     return error(_("No posts found..."), :status => 200) if @articles.empty?
+    @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
+    @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
       format.html { render 'search' }
       format.rss { render "index_rss_feed", :layout => false }
@@ -103,9 +105,9 @@ class ArticlesController < ContentController
 
   def archives
     @articles = Article.find_published
-    @page_title = "#{_('Archives for')} #{this_blog.blog_name}"
+    @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
     @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
-    @description = "#{_('Archives for')} #{this_blog.blog_name} - #{this_blog.blog_subtitle}"
+    @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)
     @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'archives')
   end
 
@@ -159,7 +161,8 @@ class ArticlesController < ContentController
   # See an article We need define @article before
   def show_article
     @comment      = Comment.new
-    @page_title   = @article.title
+    @page_title   = this_blog.article_title_template.to_title(@article, this_blog, params)
+    @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
     article_meta
 
     auto_discovery_feed
@@ -178,10 +181,6 @@ class ArticlesController < ContentController
     @keywords = ""
     @keywords << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
     @keywords << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?
-    @description = "#{@article.title}, "
-    @description << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
-    @description << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?
-    @description << " #{this_blog.blog_name}"
     @canonical_url = @article.permalink_url
   end
 
@@ -214,32 +213,23 @@ class ArticlesController < ContentController
   end
 
   def index_title
-    page_title = formatted_date_selector(_('Archives for '))
-
-    if params[:page]
-      page_title << 'Older posts' if page_title.blank?
-      page_title << ", page " << params[:page]
+    if params[:year]
+      return this_blog.archives_title_template.to_title(@articles, this_blog, params)
+    elsif params[:page]
+      return this_blog.paginated_title_template.to_title(@articles, this_blog, params)
+    else
+      this_blog.home_title_template.to_title(@articles, this_blog, params)
     end
-
-    page_title
   end
 
   def index_description
-    page_description = ''
-
-    if this_blog.meta_description.empty?
-      page_description << "#{this_blog.blog_name} #{this_blog.blog_subtitle}"
+    if params[:year]
+      return this_blog.archives_desc_template.to_title(@articles, this_blog, params)
+    elsif params[:page]
+      return this_blog.paginated_desc_template.to_title(@articles, this_blog, params)
     else
-      page_description << this_blog.meta_description
+      this_blog.home_desc_template.to_title(@articles, this_blog, params)
     end
-
-    page_description << formatted_date_selector(_(', Articles for '))
-
-    if params[:page]
-      page_description << ", page " << params[:page]
-    end
-
-    page_description
   end
 
   def time_delta(year, month = nil, day = nil)
@@ -290,15 +280,5 @@ class ArticlesController < ContentController
       #Not really good.
       # TODO :Check in request_article type of DATA made in next step
     end
-  end
-
-  def formatted_date_selector(prefix = '')
-    return '' unless params[:year]
-    format = prefix
-    format << '%A %d ' if params[:day]
-    format << '%B ' if params[:month]
-    format << '%Y' if params[:year]
-
-    return(Time.mktime(*params.values_at(:year, :month, :day)).strftime(format))
   end
 end

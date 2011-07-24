@@ -104,7 +104,6 @@ Factory.define :blog do |b|
   b.base_url 'http://myblog.net'
   b.hide_extended_on_rss true
   b.blog_name 'test blog'
-  b.title_prefix 1
   b.limit_article_display 2
   b.sp_url_limit 3
   b.plugin_avatar ''

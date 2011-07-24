@@ -395,10 +395,6 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
-  l.store "Show blog name", "Afișează numele blogului"
-  l.store "At the beginning of page title", "Înaintea titlului paginii"
-  l.store "At the end of page title", "După titlul paginii"
-  l.store "Don't show blog name in page title", "Nu afișa numele blogului în titlul paginii"
   l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""

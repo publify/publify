@@ -204,6 +204,9 @@ input.large, input.medium, input.small, textarea {
   border: 1px solid #ddd; 
 }
 
+select {
+  border: 1px solid #ddd;  
+}
 
 /*------------------------------------------------------------------
 3.2. Utility classes
@@ -253,7 +256,6 @@ input.large, input.medium, input.small, textarea {
 .mandatory { 
   color: #f00;
 }
-
 
 /*------------------------------------------------------------------
 3.4. Carousel

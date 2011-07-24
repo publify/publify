@@ -74,7 +74,7 @@ describe TagsController, 'showing a single tag' do
 
     it 'should set the page title to "Tag foo"' do
       do_get
-      assigns[:page_title].should == 'Tag foo, everything about Foo'
+      assigns[:page_title].should == 'Tag: foo | test blog '
     end
 
     it 'should render the atom feed for /articles/tag/foo.atom' do

@@ -395,10 +395,6 @@ Localization.define("lt_LT") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
-  l.store "Show blog name", "Rodyti dienoraščio pavadinimą"
-  l.store "At the beginning of page title", "Puslapio antraštės pradžioje"
-  l.store "At the end of page title", "Puslapio antraštės pabaigoje"
-  l.store "Don't show blog name in page title", "Nerodyti dienoraščio pavadinimo antraštėje"
   l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""

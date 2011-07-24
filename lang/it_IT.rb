@@ -395,10 +395,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Ottimizzazione motori di ricerca"
-  l.store "Show blog name", "Mostra nome blog"
-  l.store "At the beginning of page title", "All'inizio della titolo pagina"
-  l.store "At the end of page title", "Alla fine del titolo pagina"
-  l.store "Don't show blog name in page title", "Non mostrare il nome del blog nel titolo pagina"
   l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""

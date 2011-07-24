@@ -395,10 +395,6 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
-  l.store "Show blog name", "ブログ名表示"
-  l.store "At the beginning of page title", "ページタイトルの最初"
-  l.store "At the end of page title", "ページタイトルの最後"
-  l.store "Don't show blog name in page title", "ページタイトルにブログ名を表示しない"
   l.store "Format of permalink", "パーマリンクの書式"
   l.store "Google Analytics", ""
   l.store "Google verification link", ""

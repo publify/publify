@@ -395,10 +395,6 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "SEO"
-  l.store "Show blog name", "顯示部落格名稱"
-  l.store "At the beginning of page title", "頁首標題"
-  l.store "At the end of page title", "頁末標題"
-  l.store "Don't show blog name in page title", "頁面標題不要秀出部落格名稱"
   l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
