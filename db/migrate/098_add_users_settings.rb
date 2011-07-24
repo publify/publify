@@ -1,7 +1,7 @@
 class AddUsersSettings < ActiveRecord::Migration
   class BareSetting < ActiveRecord::Base
     include BareMigration
-    belongs_to :user, :class_name => "AddUsersSettings::BareUser"    
+    belongs_to :user, :class_name => "AddUsersSettings::BareUser"
   end
 
   class BareUser < ActiveRecord::Base
@@ -75,13 +75,13 @@ class AddUsersSettings < ActiveRecord::Migration
     setting :show_yahoo,                 :boolean, false
     setting :show_twitter,               :boolean, false
     setting :show_jabber,                :boolean, false
-    
+
   end
 
   def self.up
     # There must be a better way to do it but...
     # 1. I didn't find it.
-    # 2. I'm lost in the countryside where I need to go to the back of the 
+    # 2. I'm lost in the countryside where I need to go to the back of the
     # garden to have a phone connection and in the middle of a field to have
     # a chance to get my emails.
     #
@@ -95,7 +95,7 @@ class AddUsersSettings < ActiveRecord::Migration
     # – notify_on_new_articles
     # – notify_on_comments
     #
-    
+
     rename_column :users, :notify_watch_my_articles, :s_notify_watch_my_articles
     rename_column :users, :editor,                   :s_editor
     rename_column :users, :firstname,                :s_firstname
@@ -169,7 +169,7 @@ class AddUsersSettings < ActiveRecord::Migration
         raise e
       end
     end
-    
+
     remove_column :users, :s_notify_watch_my_articles
     remove_column :users, :s_editor
     remove_column :users, :s_firstname
@@ -188,10 +188,12 @@ class AddUsersSettings < ActiveRecord::Migration
     remove_column :users, :s_show_yahoo
     remove_column :users, :s_show_twitter
     remove_column :users, :s_show_jabber
-    
+
   end
 
   def self.down
+    # FIXME: The code below does not reverse this migration!
+    raise ActiveRecord::IrreversibleMigration
     begin
       create_settings
       unless $schema_generator

@@ -5,6 +5,7 @@ describe AuthorsController do
     let!(:blog) { Factory(:blog) }
     let!(:user) { Factory(:user) }
     let!(:article) { Factory(:article, :user => user) }
+    let!(:unpublished_article) { Factory(:unpublished_article, :user => user) }
 
     describe "as html" do
       before do
@@ -15,8 +16,11 @@ describe AuthorsController do
         response.should render_template(:show)
       end
 
-      it 'assigns author and articles' do
+      it 'assigns author' do
         assigns(:author).should == user
+      end
+
+      it 'assigns articles as published articles' do
         assigns(:articles).should == [article]
       end
 
@@ -38,7 +42,7 @@ describe AuthorsController do
         get 'show', :id => user.login, :format => 'atom'
       end
 
-      it 'assigns articles' do
+      it 'assigns articles as published articles' do
         assigns(:articles).should == [article]
       end
 
@@ -57,7 +61,7 @@ describe AuthorsController do
         get 'show', :id => user.login, :format => 'rss'
       end
 
-      it 'assigns articles' do
+      it 'assigns articles as published articles' do
         assigns(:articles).should == [article]
       end
 

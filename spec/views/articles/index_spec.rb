@@ -1,18 +1,10 @@
 require 'spec_helper'
 
+describe "articles/index.html.erb" do
 with_each_theme do |theme, view_path|
-  describe "#{view_path}/articles/index" do
+  describe theme ? "with theme #{theme}" : "without a theme" do
     before(:each) do
       @controller.view_paths.unshift(view_path) if theme
-      layout = if theme
-                 if File.exists? "#{view_path}/layouts/default"
-                   'layouts/default'
-                 else
-                   "#{view_path}/../layouts/default"
-                 end
-               else
-                 false
-               end
     end
 
     context "normally" do
@@ -22,11 +14,8 @@ with_each_theme do |theme, view_path|
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
         assign(:articles, Article.paginate(:all, :page => 1, :per_page => 4))
-        if @layout
-          render :file => "articles/index", :layout => @layout
-        else
-          render :file => "articles/index"
-        end
+
+        render
       end
 
       subject { rendered }
@@ -54,11 +43,8 @@ with_each_theme do |theme, view_path|
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
         assign(:articles, Article.paginate(:all, :page => 2, :per_page => 2))
-        if @layout
-          render :file => "articles/index", :layout => @layout
-        else
-          render :file => "articles/index"
-        end
+
+        render
       end
 
       subject { rendered }
@@ -82,11 +68,8 @@ with_each_theme do |theme, view_path|
         params[:page]        = 2
         params[:action]      = 'search'
         assign(:articles, Blog.default.articles_matching(params[:q], :page => 2, :per_page => 2))
-        if @layout
-          render :file => "articles/index", :layout => @layout
-        else
-          render :file => "articles/index"
-        end
+
+        render
       end
 
       it "should not have pagination link to search page 2" do
@@ -98,4 +81,5 @@ with_each_theme do |theme, view_path|
       end
     end
   end
+end
 end

@@ -99,30 +99,7 @@ class Blog < ActiveRecord::Base
   setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%" # OK
   setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%" # OK
 #  setting :meta_author_template,       :string, "%blog_name% | %nickname%"
-=begin
-  %date% 	Replaced with the date of the post/page
-  %title% 	Replaced with the title of the post/page
-  %blog_name% 	The site's name
-  %blog_description% 	The site's tagline / description
 
-  %excerpt% 	Replaced with the post/page excerpt (or auto-generated if it does not exist)
-  %excerpt_only% 	Replaced with the post/page excerpt (without auto-generation)
-  %tags% 	Replaced with the current tag/tags
-  %categories% 	Replaced with the post categories (comma separated)
-  %category_description% 	Replaced with the category description
-
-
-  %name% 	Replaced with the post/page author's 'nicename'
-  %search% 	Replaced with the current search phrase
-  %currenttime% 	Replaced with the current time
-  %currentdate% 	Replaced with the current date
-  %currentmonth% 	Replaced with the current month
-  %currentyear% 	Replaced with the current year
-  %page% 	Replaced with the current page number (i.e. page 2 of 4)
-  %pagetotal% 	Replaced with the current page total
-  %pagenumber% 	Replaced with the current page number
-=end
-  
   validate :permalink_has_identifier
 
   def initialize(*args)

@@ -61,7 +61,7 @@ describe "articles/index_atom_feed.atom.builder" do
       end
 
       it "shows the body and extended content in the feed" do
-        rendered_entry.css("content").first.content.should =~ /^\s*public info\s*and more\s*$/
+        rendered_entry.css("content").first.content.should =~ /public info.*and more/m
       end
 
       it "does not have a summary element in addition to the content element" do
@@ -77,8 +77,8 @@ describe "articles/index_atom_feed.atom.builder" do
 
       it "shows only the body content in the feed" do
         entry = rendered_entry
-        entry.css("content").first.content.should =~ /^\s*public info\s*$/
-        entry.css("content").first.content.should_not =~ /^\s*public info\s*and more\s*$/
+        entry.css("content").first.content.should =~ /public info/
+        entry.css("content").first.content.should_not =~ /public info.*and more/m
       end
 
       it "does not have a summary element in addition to the content element" do
@@ -94,7 +94,7 @@ describe "articles/index_atom_feed.atom.builder" do
       end
 
       it "shows the body and extended content in the feed" do
-        rendered_entry.css("content").first.content.should =~ /public info\s*and more/
+        rendered_entry.css("content").first.content.should =~ /public info.*and more/m
       end
 
       it "shows the RSS description in the feed" do

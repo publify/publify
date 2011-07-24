@@ -60,6 +60,11 @@ Factory.define :article do |a|
   a.allow_pings true
 end
 
+Factory.define :unpublished_article, :parent => :article do |a|
+  a.published_at nil
+  a.published false
+end
+
 def some_article
   Article.find(:first) || Factory(:article)
 end

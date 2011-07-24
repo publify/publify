@@ -4,10 +4,11 @@ class AuthorsController < ContentController
   def show
     @author = User.find_by_login(params[:id])
     raise ActiveRecord::RecordNotFound unless @author
-    @articles = @author.articles
+    @articles = @author.published_articles
     @page_title = this_blog.author_title_template.to_title(@author, this_blog, params)
     @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
     @description = this_blog.author_desc_template.to_title(@author, this_blog, params)
+
     respond_to do |format|
       format.html do
         render

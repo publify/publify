@@ -2,13 +2,13 @@ class SerializeBlogAttributes < ActiveRecord::Migration
   class BareSetting < ActiveRecord::Base
     include BareMigration
     belongs_to :blog, :class_name => "SerializeBlogAttributes::BareBlog"
-    
+
     def self.with_blog_scope(id, &block)
       options = {}
       options[:conditions] = ["blog_id = ?", id]
       with_scope(:find => options, &block)
     end
-    
+
   end
 
   class BareBlog < ActiveRecord::Base

@@ -3,7 +3,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   include ConfigManager
   extend ActiveSupport::Memoizable
-  
+
   belongs_to :profile
   belongs_to :text_filter
 

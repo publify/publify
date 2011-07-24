@@ -1,7 +1,7 @@
 require 'set'
 require 'uri'
 
-class Content < ActiveRecord::Base  
+class Content < ActiveRecord::Base
   belongs_to :text_filter
 
   has_many :notifications, :foreign_key => 'content_id'
