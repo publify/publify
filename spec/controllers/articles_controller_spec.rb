@@ -123,7 +123,6 @@ describe ArticlesController do
       end
 
       it 'should render without layout' do
-        pending "Release of fix for Rails ticket #5247 (should be in Rails 3.0.1"
         response.should render_template(:layout => nil)
       end
 
