@@ -40,6 +40,7 @@ Factory.define :user do |u|
   u.settings({})
   u.state 'active'
   u.profile {Factory(:profile_contributor)}
+  u.text_filter {Factory(:textile)}
 end
 
 def some_user

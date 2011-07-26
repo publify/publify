@@ -5,7 +5,10 @@ describe Admin::PagesController do
   
   before do
     @blog = Factory(:blog)
-    request.session = { :user => users(:tobi).id }
+    #TODO Delete after removing fixtures
+    Profile.delete_all
+    @henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    request.session = { :user => @henri.id }
   end
 
   describe '#index' do
@@ -48,7 +51,7 @@ describe Admin::PagesController do
     end
     
     it "should assign to current user" do
-      assert_equal users(:tobi), assigns(:page).user
+      assert_equal @henri, assigns(:page).user
     end
     
     it "should have a text filter" do
