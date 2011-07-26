@@ -20,7 +20,7 @@ Factory.sequence :file_name do |f|
 end
 
 Factory.sequence :category do |n|
-  "category_#{n}"
+  "c_#{n}"
 end
 
 basetime = Time.now
@@ -128,7 +128,7 @@ end
 Factory.define :profile_admin, :class => :profile do |l|
   l.label {Factory.next(:label)}
   l.nicename 'Typo administrator'
-  l.modules [:dashboard, :write, :content, :feedback, :themes, :sidebar, :users, :settings, :profile]
+  l.modules [:dashboard, :write, :articles, :pages, :feedback, :themes, :sidebar, :users, :seo, :media, :settings, :profile]
 end
 
 Factory.define :profile_publisher, :class => :profile do |l|

@@ -40,11 +40,11 @@ class Admin::CategoriesController < Admin::BaseController
   def new_or_edit
     @categories = Category.find(:all)
     @category = case params[:id]
-    when nil
-      Category.new
-    else
-      Category.find(params[:id])
-    end
+                when nil
+                  Category.new
+                else
+                  Category.find(params[:id])
+                end
     @category.attributes = params[:category]
     if request.post?
       save_category
@@ -59,7 +59,7 @@ class Admin::CategoriesController < Admin::BaseController
     else
       flash[:error] = _('Category could not be saved.')
     end
-      redirect_to :action => 'index'
+    redirect_to :action => 'index'
   end
 
 end
