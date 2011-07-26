@@ -26,7 +26,7 @@ describe Comment do
   describe '#edit_url' do
     it 'should get a url where edit comment in admin' do
       Factory(:blog)
-      c = feedback(:old_comment)
+      c = Factory(:comment)
       assert_equal "http://myblog.net/admin/comments/edit/#{c.id}", c.edit_url
     end
   end
@@ -34,7 +34,7 @@ describe Comment do
   describe '#delete_url' do
     it 'should get the delete url of comment in admin part' do
       Factory(:blog)
-      c = feedback(:old_comment)
+      c = Factory(:comment)
       assert_equal "http://myblog.net/admin/comments/destroy/#{c.id}", c.delete_url
     end
   end
@@ -42,13 +42,15 @@ describe Comment do
   describe '#save' do
     before(:each) { Factory(:blog, :sp_article_auto_close => 300) }
     it 'should save good comment' do
-      assert feedback(:comment2).save
-      assert_equal "http://www.google.com", feedback(:comment2).url
+      c = Factory.build(:comment, :url => "http://www.google.de")
+      assert c.save
+      assert_equal "http://www.google.de", c.url
     end
 
     it 'should save spam comment' do
-      assert feedback(:spam_comment).save
-      assert_equal "http://fakeurl.com", feedback(:spam_comment).url
+      c = Factory.build(:comment, :body => 'test <a href="http://fakeurl.com">body</a>')
+      assert c.save
+      assert_equal "http://fakeurl.com", c.url
     end
 
     it 'should not save in invalid article' do
@@ -61,8 +63,7 @@ describe Comment do
     end
 
     it 'should change old comment' do
-      c = Factory(:comment)
-      c.body = 'Comment body <em>italic</em> <strong>bold</strong>'
+      c = Factory.build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>')
       assert c.save
       assert c.errors.empty?
     end
@@ -183,7 +184,7 @@ describe Comment do
     end
 
     it 'should becomes withdraw' do
-      c = Comment.find(feedback(:comment2).id)
+      c = Factory(:comment)
       assert c.withdraw!
       assert ! c.published?
       assert c.spam?

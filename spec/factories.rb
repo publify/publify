@@ -197,6 +197,7 @@ end
 Factory.define :trackback do |t|
   t.published true
   t.state 'ham'
+  t.article { some_article }
   t.status_confirmed true
   t.blog_name 'Trackback Blog'
   t.title 'Trackback Entry'
