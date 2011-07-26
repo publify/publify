@@ -133,9 +133,9 @@ Factory.define :profile_admin, :class => :profile do |l|
 end
 
 Factory.define :profile_publisher, :class => :profile do |l|
-  l.label 'published'
+  l.label 'publisher'
   l.nicename 'Blog publisher'
-  l.modules [:dashboard, :write, :content, :feedback, :profile]
+  l.modules [:users, :dashboard, :write, :articles, :pages, :feedback, :media]
 end
 Factory.define :profile_contributor, :class => :profile do |l|
   l.label {Factory.next(:label)}
