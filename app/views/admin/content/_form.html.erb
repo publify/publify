@@ -28,7 +28,7 @@
   </div>
 
   <div class='widget-container'>
-    <h3 class='dark'> </span><%= _("Categories") %></h3>
+    <h3 class='dark'><%= _("Categories") %></h3>
     <div class='widget-content'>
       <%- Category.all.each do |cat| %>
         <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
