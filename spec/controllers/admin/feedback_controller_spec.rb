@@ -36,7 +36,9 @@ describe Admin::FeedbackController do
 
     before :each do
       Factory(:blog)
-      @admin = users(:tobi)
+      #TODO Delete after removing fixtures
+      Profile.delete_all
+      @admin = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @admin.id }
     end
 
@@ -126,7 +128,7 @@ describe Admin::FeedbackController do
         c = Factory(:comment, :state => :presumed_ham)
         get :index, :presumed_ham => 'f'
         should_success_with_index(response)
-	assigns(:feedback).should == [c]
+        assigns(:feedback).should == [c]
       end
 
       it 'should get page 1 if page params empty' do
@@ -248,8 +250,8 @@ describe Admin::FeedbackController do
         comment = Factory(:comment, :article => article)
         post 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
-                       :url => 'http://fakeurl.com',
-                       :body => 'updated comment'}
+            :url => 'http://fakeurl.com',
+            :body => 'updated comment'}
         response.should redirect_to(:action => 'article', :id => article.id)
         comment.reload
         comment.body.should == 'updated comment'
@@ -259,8 +261,8 @@ describe Admin::FeedbackController do
         comment = Factory(:comment)
         get 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
-                       :url => 'http://fakeurl.com',
-                       :body => 'updated comment'}
+            :url => 'http://fakeurl.com',
+            :body => 'updated comment'}
         response.should redirect_to(:action => 'edit', :id => comment.id)
         comment.reload
         comment.body.should_not == 'updated comment'
@@ -274,7 +276,9 @@ describe Admin::FeedbackController do
 
     before :each do
       Factory(:blog)
-      @publisher = users(:user_publisher)
+      #TODO remove this delete_all after removing all fixture
+      Profile.delete_all
+      @publisher = Factory(:user, :profile => Factory(:profile_publisher))
       request.session = { :user => @publisher.id }
     end
 
@@ -296,7 +300,7 @@ describe Admin::FeedbackController do
         id = feedback_from_not_own_article.id
         lambda do
           post 'destroy', :id => id
-          end.should_not change(Feedback, :count)
+        end.should_not change(Feedback, :count)
         lambda do
           Feedback.find(feedbackfrom_not_own_article.id)
         end.should_not raise_error(ActiveRecord::RecordNotFound)
@@ -326,8 +330,8 @@ describe Admin::FeedbackController do
       it 'should update comment if own article' do
         post 'update', :id => feedback_from_own_article.id,
           :comment => {:author => 'Bob Foo2',
-                       :url => 'http://fakeurl.com',
-                       :body => 'updated comment'}
+            :url => 'http://fakeurl.com',
+            :body => 'updated comment'}
         response.should redirect_to(:action => 'article', :id => feedback_from_own_article.article.id)
         feedback_from_own_article.reload
         feedback_from_own_article.body.should == 'updated comment'
@@ -336,8 +340,8 @@ describe Admin::FeedbackController do
       it 'should not update comment if not own article' do
         post 'update', :id => feedback_from_not_own_article.id,
           :comment => {:author => 'Bob Foo2',
-                       :url => 'http://fakeurl.com',
-                       :body => 'updated comment'}
+            :url => 'http://fakeurl.com',
+            :body => 'updated comment'}
         response.should redirect_to(:action => 'index')
         feedback_from_not_own_article.reload
         feedback_from_not_own_article.body.should_not == 'updated comment'

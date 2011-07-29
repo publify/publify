@@ -20,7 +20,7 @@ Factory.sequence :file_name do |f|
 end
 
 Factory.sequence :category do |n|
-  "category_#{n}"
+  "c_#{n}"
 end
 
 basetime = Time.now
@@ -40,6 +40,7 @@ Factory.define :user do |u|
   u.settings({})
   u.state 'active'
   u.profile {Factory(:profile_contributor)}
+  u.text_filter {Factory(:textile)}
 end
 
 def some_user
@@ -128,13 +129,13 @@ end
 Factory.define :profile_admin, :class => :profile do |l|
   l.label {Factory.next(:label)}
   l.nicename 'Typo administrator'
-  l.modules [:dashboard, :write, :content, :feedback, :themes, :sidebar, :users, :settings, :profile]
+  l.modules [:dashboard, :write, :articles, :pages, :feedback, :themes, :sidebar, :users, :seo, :media, :settings, :profile]
 end
 
 Factory.define :profile_publisher, :class => :profile do |l|
-  l.label 'published'
+  l.label 'publisher'
   l.nicename 'Blog publisher'
-  l.modules [:dashboard, :write, :content, :feedback, :profile]
+  l.modules [:users, :dashboard, :write, :articles, :pages, :feedback, :media]
 end
 Factory.define :profile_contributor, :class => :profile do |l|
   l.label {Factory.next(:label)}
@@ -197,6 +198,7 @@ end
 Factory.define :trackback do |t|
   t.published true
   t.state 'ham'
+  t.article { some_article }
   t.status_confirmed true
   t.blog_name 'Trackback Blog'
   t.title 'Trackback Entry'

@@ -35,7 +35,8 @@ describe BackendController do
     end
 
     it "test_blogger_new_post" do
-      args = [ 'foo', '1', 'tobi', 'whatever', '<title>new post title</title>new post *body*', 1]
+      alice = Factory(:user, :login => 'alice', :password => 'whatever')
+      args = [ 'foo', '1', 'alice', 'whatever', '<title>new post title</title>new post *body*', 1]
 
       result = invoke_layered :blogger, :newPost, *args
       assert_not_nil result
@@ -44,7 +45,7 @@ describe BackendController do
       assert_equal "new post *body*", new_post.body
       assert_equal "<p>new post <strong>body</strong></p>", new_post.html(:body)
       assert_equal "textile", new_post.text_filter.name
-      assert_equal users(:tobi), new_post.user
+      assert_equal alice, new_post.user
       assert new_post.published?
       assert new_post[:published_at]
     end

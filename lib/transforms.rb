@@ -19,40 +19,29 @@ class String
     self.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
   end
 
+  # I pass settings as a parametre to avoid calling Blog.default (and another
+  #  database call) everytime I want to use to_title
+  # Not sure on this one though.
   def to_title(item, settings, params)
     s = self
     
-    # Items acting on params    
-    if s =~ /(%date%)/
-      unless params[:year]
-        s = s.gsub('%date%', '') 
-      else
-        format = ''
-        format << '%A %d ' if params[:day]
-        format << '%B ' if params[:month]
-        format << '%Y' if params[:year]
-
-        s = s.gsub('%date%', Time.mktime(*params.values_at(:year, :month, :day)).strftime(format))
-      end
-    end
-  
+    # Tags for params
+    s = s.gsub('%date%', parse_date(s, params)) if s =~ /(%date%)/
     s = s.gsub('%search%', params[:q]) if params[:q]
-    if s =~ /(%page%)/
-      replace = params[:page] ? "#{_('page')} #{params[:page]}" : ''
-      s = s.gsub('%page%', replace)
-    end
+    s = s.gsub('%page%', parse_page(s, params)) if s=~ /(%page%)/
     
-    # Items acting on settings
+    # Tags for settings
     s = s.gsub('%blog_name%', settings.blog_name) 
     s = s.gsub('%blog_subtitle%', settings.blog_subtitle)
     s = s.gsub('%meta_keywords%', settings.meta_keywords)
     
-    # Items acting on item
+    # Tags for item
     s = s.gsub('%title%', item.title) if s =~ /(%title)/ and item.respond_to? :title
     s = s.gsub('%excerpt%', item.body.strip_html.slice(0, 160)) if s =~ /(%body%)/ and item.respond_to? :body
     s = s.gsub('%description%', item.description) if s =~ /(%title%)/ and item.respond_to? :description
     s = s.gsub('%name%', item.name) if s =~ /(%name%)/ and item.respond_to? :name
     s = s.gsub('%author%', item.name) if s =~ /(%author%)/ and item.respond_to? :name
+    
     if s =~ /(%categories%)/ and item.respond_to? :categories
       s = s.gsub('%categories%', article.categories.map { |c| c.name }.join(", "))
     end
@@ -79,4 +68,21 @@ class String
     self.gsub(TAG, '').gsub(/\s+/, ' ').strip
   end
 
+  private
+  def parse_date(string, params)
+    return '' unless params[:year]
+    
+    format = ''
+    format << '%A %d ' if params[:day]
+    format << '%B ' if params[:month]
+    format << '%Y' if params[:year]
+    
+    string.gsub('%date%', Time.mktime(*params.values_at(:year, :month, :day)).strftime(format))
+  end
+  
+  def parse_page(string, params)
+    return '' unless params[:page]
+    "#{_('page')} #{params[:page]}"
+  end
+  
 end

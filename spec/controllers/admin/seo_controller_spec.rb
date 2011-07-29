@@ -5,7 +5,10 @@ describe Admin::SeoController do
 
   before(:each) do
     Factory(:blog)
-    request.session = { :user => users(:tobi).id }
+    #TODO Delete after removing fixtures
+    Profile.delete_all
+    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    request.session = { :user => henri.id }
   end
 
   describe "#index" do

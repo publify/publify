@@ -56,7 +56,13 @@ describe "Given an unpublished article" do
 end
 
 describe "Given an unpublished spammy comment" do
-  before(:each) { @comment = feedback(:comment3) }
+  before(:each) do
+    Factory(:blog)
+    @comment = Factory(:comment, 
+        :published => false,
+        :state => 'presumed_spam',
+        :status_confirmed => false)
+  end
 
   it 'changing it does not alter the cache' do
     @comment.body = "Lorem ipsum dolor"
@@ -80,7 +86,7 @@ end
 describe "Given a published comment" do
   before(:each) do
     Factory(:blog)
-    @comment = feedback(:comment2)
+    @comment = Factory(:comment)
   end
 
   it 'changing it destroys the cache' do
@@ -101,7 +107,11 @@ describe "Given a published comment" do
 end
 
 describe "Given an unpublished spammy trackback" do
-  before(:each) { @trackback = feedback(:trackback1) }
+  before(:each) do
+    Factory(:blog)
+    @trackback = Factory(:trackback, :published => false,
+      :state => 'presumed_spam', :status_confirmed => false)
+  end
 
   it 'changing it does not alter the cache' do
     @trackback.body = "Lorem ipsum dolor"
@@ -125,7 +135,7 @@ end
 describe "Given a published trackback" do
   before(:each) do
     Factory(:blog)
-    @trackback = feedback(:trackback2)
+    @trackback = Factory(:comment)
   end
 
   it 'changing it destroys the cache' do
