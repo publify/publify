@@ -7,7 +7,11 @@ describe Admin::UsersController, "rough port of the old functional test" do
   describe ' when you are admin' do
     before(:each) do
       Factory(:blog)
-      request.session = { :user => users(:tobi).id }
+      #TODO delete this after remove fixtures...
+      Profile.delete_all
+      User.delete_all
+      @admin = Factory(:user, :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      request.session = { :user => @admin.id }
     end
 
     it "test_index" do
@@ -27,12 +31,10 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
     describe '#EDIT action' do
       describe 'with POST request' do
-        before do
-          post :edit, :id => users(:tobi).id, :user => { :login => 'errand',
+        it 'should redirect to index' do
+          post :edit, :id => @admin.id, :user => { :login => 'errand',
             :email => 'corey@test.com', :password => 'testpass',
             :password_confirmation => 'testpass' }
-        end
-        it 'should redirect to index' do
           response.should redirect_to(:action => 'index')
         end
       end
@@ -45,7 +47,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
           it 'should assigns tobi user' do
             assert assigns(:user).valid?
-            assigns(:user).should == users(:tobi)
+            assigns(:user).should == @admin 
           end
         end
         describe 'with no id params' do
@@ -57,24 +59,26 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
         describe 'with id params' do
           before do
-            get :edit, :id => users(:tobi).id
+            get :edit, :id => @admin.id
           end
           it_should_behave_like 'edit admin render'
         end
 
       end
-    end
+  end
 
     it "test_destroy" do
       user_count = User.count
-      get :destroy, :id => users(:bob).id
+      get :destroy, :id => @admin.id
       assert_template 'destroy'
       assert assigns(:user).valid?
 
-      assert_equal user_count, User.count
-      post :destroy, :id => users(:bob).id
+      user = Factory.build(:user)
+      user.should_receive(:destroy)
+      User.should_receive(:count).and_return(2)
+      User.should_receive(:find).with(@admin.id).and_return(user)
+      post :destroy, :id => @admin.id
       response.should redirect_to(:action => 'index')
-      assert_equal user_count - 1, User.count
     end
   end
 
@@ -82,7 +86,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
     before :each do
       Factory(:blog)
-      session[:user] = users(:user_publisher).id
+      user = Factory(:user)
+      session[:user] = user.id
     end
 
     it "don't see the list of user" do

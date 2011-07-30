@@ -256,7 +256,6 @@ class Admin::ContentController < Admin::BaseController
 
   def get_or_build_article
     params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
-
     @article = case params[:id]
              when nil
                Article.new.tap do |art|

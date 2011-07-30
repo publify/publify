@@ -124,7 +124,9 @@ describe Admin::ContentController do
 
     before do
       Factory(:blog)
-      @user = users(:tobi)
+      #TODO delete this after remove fixture
+      Profile.delete_all
+      @user = Factory(:user, :profile => Factory(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @user.id }
     end
 
@@ -221,9 +223,7 @@ describe Admin::ContentController do
 
     it 'should send notifications on create' do
       begin
-        u = users(:randomuser)
-        u.notify_via_email = true
-        u.notify_on_new_articles = true
+        u = Factory(:user, :notify_via_email => true, :notify_on_new_articles => true)
         u.save!
         ActionMailer::Base.perform_deliveries = true
         ActionMailer::Base.deliveries = []
@@ -232,7 +232,7 @@ describe Admin::ContentController do
         post :new, 'article' => base_article
 
         assert_equal(1, emails.size)
-        assert_equal('randomuser@example.com', emails.first.to[0])
+        assert_equal(u.email, emails.first.to[0])
       ensure
         ActionMailer::Base.perform_deliveries = false
       end
@@ -385,7 +385,11 @@ describe Admin::ContentController do
 
     before do
       Factory(:blog)
-      @user = users(:tobi)
+      #TODO delete this after remove fixture
+      Profile.delete_all
+      @user = Factory(:user, :text_filter => Factory(:markdown), :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      @user.editor = 'simple'
+      @user.save
       @article = Factory(:article)
       request.session = { :user => @user.id }
     end
@@ -527,7 +531,9 @@ describe Admin::ContentController do
 
     before :each do
       Factory(:blog)
-      @user = users(:user_publisher)
+      #TODO remove this after remove fixtures
+      Profile.delete_all
+      @user = Factory(:user, :text_filter => Factory(:markdown), :profile => Factory(:profile_publisher))
       @article = Factory(:article, :user => @user)
       request.session = {:user => @user.id}
     end
