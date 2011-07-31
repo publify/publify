@@ -178,9 +178,8 @@ class ArticlesController < ContentController
 
 
   def article_meta
-    @keywords = ""
-    @keywords << @article.categories.map { |c| c.name }.join(", ") << ", " unless @article.categories.empty?
-    @keywords << @article.tags.map { |t| t.name }.join(", ") unless @article.tags.empty?
+    groupings = @article.categories + @article.tags
+    @keywords = groupings.map { |g| g.name }.join(", ")
     @canonical_url = @article.permalink_url
   end
 
