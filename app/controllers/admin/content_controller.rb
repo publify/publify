@@ -138,7 +138,7 @@ class Admin::ContentController < Admin::BaseController
 
   def new_or_edit
     get_or_build_article
-
+    @post_types = PostType.find(:all)
     if request.post?
       if params[:article][:draft]
         # XXX: Straight copy from autosave. Refactor!

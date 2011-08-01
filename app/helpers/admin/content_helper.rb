@@ -37,4 +37,20 @@ module Admin::ContentHelper
 
     javascript_tag(function)
   end
+  
+  def get_post_types
+    if @post_types.size.zero?
+      return hidden_field_tag "article[post_type]", "read"
+    end
+    
+    html = "<select name=article[post_type]>"
+        
+    @post_types.each do |pt|
+      html << "<option value='read' #{'selected' if @article.post_type == 'read'} >#{_('Default')}</option>"
+      html << "<option #{'selected' if @article.post_type == pt.permalink} value='#{pt.permalink}'>#{pt.name}</option>"
+    end
+    
+    html << "</select>"
+    return html
+  end
 end

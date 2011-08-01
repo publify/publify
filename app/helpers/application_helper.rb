@@ -183,6 +183,7 @@ module ApplicationHelper
   #{ page_header_includes.join("\n") }
   #{ use_canonical  if this_blog.use_canonical_url }
   <script type="text/javascript">#{ @content_for_script }</script>
+  #{ custom_tracking_field unless this_blog.custom_tracking_field.blank? }
   #{ google_analytics }
     HTML
     ).chomp
@@ -264,6 +265,20 @@ module ApplicationHelper
   def show_meta_keyword
     return unless this_blog.use_meta_keyword
     meta_tag 'keywords', @keywords unless @keywords.blank?
+  end
+
+  def show_menu_for_post_type(posttype, before='<li>', after='</li>')
+    list = Article.find(:all, :conditions => ['post_type = ?', post_type])
+    html = ''
+    
+    return if list.size.zero?
+    list.each do |item|
+      html << before
+      html << link_to_permalink(item, item.title)
+      html << after
+    end
+    
+    html
   end
 
   def this_blog

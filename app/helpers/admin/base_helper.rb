@@ -91,7 +91,7 @@ module Admin::BaseHelper
   end
 
   def class_articles
-    if controller.controller_name  =~ /content|tags|categories|feedback/
+    if controller.controller_name  =~ /content|tags|categories|feedback|post_type/
       return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy|new|edit/
     end
     class_tab

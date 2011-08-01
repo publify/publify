@@ -70,6 +70,11 @@ def some_article
   Article.find(:first) || Factory(:article)
 end
 
+Factory.define :post_type do |p|
+  p.name 'foobar'
+  p.description "Some description"
+end
+
 Factory.define :markdown, :class => :text_filter do |m|
   m.name "markdown"
   m.description "Markdown"

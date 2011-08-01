@@ -232,6 +232,10 @@ describe 'Given a new blog' do
   it 'search description template is Archives for blog name date page blog description' do
     @blog.search_desc_template.should == "Results for %search% | %blog_name% | %blog_subtitle% %page%"
   end
+  
+  it 'custom tracking fiels is empty' do
+    @blog.custom_tracking_field.should == ''
+  end
 
 end
 
