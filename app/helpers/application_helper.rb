@@ -266,6 +266,20 @@ module ApplicationHelper
     meta_tag 'keywords', @keywords unless @keywords.blank?
   end
 
+  def show_menu_for_post_type(posttype, before='<li>', after='</li>')
+    list = Article.find(:all, :conditions => ['post_type = ?', post_type])
+    html = ''
+    
+    return if list.size.zero?
+    list.each do |item|
+      html << before
+      html << link_to_permalink(item, item.title)
+      html << after
+    end
+    
+    html
+  end
+
   def this_blog
     @blog ||= Blog.default
   end

@@ -167,7 +167,7 @@ class ArticlesController < ContentController
 
     auto_discovery_feed
     respond_to do |format|
-      format.html { render '/articles/read' }
+      format.html { render "articles/#{@article.post_type}" }
       format.atom { render_feedback_feed('atom') }
       format.rss  { render_feedback_feed('rss') }
       format.xml  { render_feedback_feed('atom') }

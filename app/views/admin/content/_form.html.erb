@@ -16,6 +16,7 @@
       <%= check_box 'article', 'published'  %>
       <label for="article_published"><%= _("Published") %></label><br />
       <label for="article_password"><%= _("Password:") %></label><br />
+      <%= get_post_types %><br />
       <%= password_field :article, :password, :class => 'small' %>
       <p class='right'>
         <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ed_button' />
