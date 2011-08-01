@@ -98,6 +98,7 @@ class Blog < ActiveRecord::Base
   setting :archives_desc_template,     :string, "Archives for %blog_name% %date% %page% %blog_subtitle%" # OK
   setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%" # OK
   setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%" # OK
+  setting :custom_tracking_field,      :string, ''
 #  setting :meta_author_template,       :string, "%blog_name% | %nickname%"
 
   validate :permalink_has_identifier

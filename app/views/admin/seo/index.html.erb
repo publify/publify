@@ -107,6 +107,13 @@
         <%= text_field(:setting, :google_verification, :class => 'medium')%>
       </div>
     </div>
+    <div class='setting clear'>
+      <label class="float" for="setting_custom_tracking_field"><%= _("Custom tracking code")%></label>
+      <div class='input_text'>
+        <%= text_area(:setting, :custom_tracking_field, :rows => 3, :class => 'medium')%>
+      <p class='help'>Here you can add anything you want to appear in your application header, such as an anaytics service tracking code.</p>      </div>
+
+    </div>
   </div>
 </div>
 <%= hidden_field_tag 'from', 'index' %>
