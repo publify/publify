@@ -223,8 +223,8 @@ describe Comment do
   end
 
   it 'should have good default filter' do
-    Factory(:blog)
-    a = Comment.find(:first)
+    Factory(:blog, :comment_text_filter => Factory(:markdown))
+    a = Factory.build(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end
 
