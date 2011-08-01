@@ -4,6 +4,8 @@ Typo has been around since March of 2005 making it one of the oldest blogging pl
 
 The current version is Typo 6.0.6 for Ruby on Rails 3.0.9
 
+!http://blog.typosphere.org/download-typo.png(Download Typo)!:http://typosphere.org/stable.tgz
+
 h2. Enhance your Typo blog
 
 * "Themes Catalogue":http://typogarden.org/
