@@ -47,11 +47,8 @@ describe Admin::PostTypesController do
   end
 
   describe "test_edit" do
-    before(:each) do
-      get :edit, :id => Factory(:post_type).id
-    end
-
     it 'should render template new' do
+      get :edit, :id => Factory.build(:post_type).id
       assert_template 'new'
       assert_tag :tag => "div",
         :attributes => { :id => "category_container" }
