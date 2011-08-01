@@ -4,10 +4,11 @@ class StaticSidebar < Sidebar
 <ul>
   <li><a href="http://www.typosphere.org" title="Typo">Typosphere</a></li>
   <li><a href="http://typogarden.org">Typogarden</a></li>
-  <li><a href="http://t37.net.com" title="Ergonomie Web">Frédéric</a></li>
+  <li><a href="http://t37.net" title="Ergonomie Web">Frédéric</a></li>
   <li><a href="http://www.matijs.net/" title="Matijs">Matijs</a></li>
+  <li><a href="http://elsif.fr" title="Yannick">Yannick</a></li>
   <li><a href="http://blog.shingara.fr" title="Cyril">Cyril</a></li>
-  <li><a href="http://www.bofh.org.uk" title="Just a Summary">Piers</a></li>
+  <li><a href="http://blog.ookook.fr" title="Thomas">Thomas</a></li>
   <li><a href="/admin">Admin</a></li>
 </ul>
 }
