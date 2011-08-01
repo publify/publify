@@ -197,6 +197,7 @@ module ApplicationHelper
     elsif not @auto_discovery_url_atom.nil?
       @auto_discovery_url_atom
     else
+      # FIXME: When is this invoked?
       url_for(:only_path => false, :format => 'atom')
     end
   end

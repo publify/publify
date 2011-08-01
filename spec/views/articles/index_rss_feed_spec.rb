@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'spec_helper'
 
 describe "articles/index_rss_feed.rss.builder" do

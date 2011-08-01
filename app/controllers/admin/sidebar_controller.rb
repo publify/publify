@@ -8,7 +8,8 @@ class Admin::SidebarController < Admin::BaseController
     flash_sidebars
     begin
       @active = Sidebar.find(:all, :order => 'active_position ASC') unless @active
-    rescue
+    rescue => e
+      logger.error e
       # Avoiding the view to crash
       @active = []
       flash[:error] = _("It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually")
@@ -87,7 +88,8 @@ class Admin::SidebarController < Admin::BaseController
       begin
         active = Sidebar.find(:all, :order => 'active_position ASC')
         flash[:sidebars] = active.map {|sb| sb.id }
-      rescue
+      rescue => e
+        logger.error e
         # Avoiding the view to crash
         @active = []
         flash[:error] = _("It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually")

@@ -22,7 +22,7 @@ RSpec.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"
   config.global_fixtures =
-    %w{ feedback profiles text_filters users }
+    %w{ profiles text_filters users }
 
   config.before(:each) do
     Localization.lang = :default

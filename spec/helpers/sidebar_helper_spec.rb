@@ -36,7 +36,15 @@ describe SidebarHelper do
         TestBrokenSidebar.new.save
       end
 
+      def logger
+        fake_logger = mock('fake logger')
+        fake_logger.should_receive(:error)
+        fake_logger
+      end
       it "should return a friendly error message" do
+        #logger = mock('logger')
+        #SidebarHelper.logger = logger
+        #logger.should_receive(:error)
         render_sidebars.should =~ /It seems something went wrong/
       end
     end
