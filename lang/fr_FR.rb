@@ -637,7 +637,7 @@ Localization.define("fr_FR") do |l|
   l.store "Continue reading...", "Lire la suite..."
   l.store "This entry was posted on %s", "Ce billet a été posté le %s"
   l.store "and %s", "et %s"
-  l.store "You can follow any any response to this entry through the %s", "Vous pouvez suivre la discussion autour de cet article via le %s"
+  l.store "You can follow any response to this entry through the %s", "Vous pouvez suivre la discussion autour de cet article via le %s"
   l.store "Atom feed", "flux Atom"
   l.store "You can leave a %s", "Vous pouvez déposer un %s"
   l.store "or a %s from your own site", "ou un %s depuis votre site"

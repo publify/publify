@@ -611,7 +611,7 @@ Localization.define("da_DK") do |l|
   l.store "Continue reading...", ""
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
-  l.store "You can follow any any response to this entry through the %s", ""
+  l.store "You can follow any response to this entry through the %s", ""
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""

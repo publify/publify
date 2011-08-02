@@ -608,7 +608,7 @@ Localization.define("nl_NL") do |l|
   l.store "Continue reading...", "Lees meer..."
   l.store "This entry was posted on %s", "Dit bericht was geplaatst op %s"
   l.store "and %s", "en %s"
-  l.store "You can follow any any response to this entry through the %s", "Je kunt reacties op dit bericht volgen via de %s"
+  l.store "You can follow any response to this entry through the %s", "Je kunt reacties op dit bericht volgen via de %s"
   l.store "Atom feed", "Atom feed"
   l.store "You can leave a %s", "Je kunt een %s achterlaten"
   l.store "or a %s from your own site", "of een %s vanaf je eigen site"
