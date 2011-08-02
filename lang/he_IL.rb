@@ -611,7 +611,7 @@ Localization.define("he_IL") do |l|
   l.store "Continue reading...", "המשך לקרוא..."
   l.store "This entry was posted on %s", "כתבה זו פורסמה בתאריך %s"
   l.store "and %s", "ו-%s"
-  l.store "You can follow any any response to this entry through the %s", "תוכל לעקוב אחרי התגובות במאמר זו דרך %s"
+  l.store "You can follow any response to this entry through the %s", "תוכל לעקוב אחרי התגובות במאמר זו דרך %s"
   l.store "Atom feed", "מזין Atom"
   l.store "You can leave a %s", "תוכל להשאיר %s"
   l.store "or a %s from your own site", "או %s מהאתר שלך"
