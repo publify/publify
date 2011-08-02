@@ -141,9 +141,7 @@ Localization.define("fr_FR") do |l|
   l.store "Flag as %s", "Marquer comme %s"
 
   # app/helpers/application_helper.rb
-  l.store "%%d. %%b", Proc.new {|date|
   l.store "Are you sure you want to delete this %s?", ""
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new {|date|
   l.store "%d comments", "%d commentaires"
   l.store "no comments", "aucun commentaire"
   l.store "1 comment", "1 commentaire"
@@ -698,12 +696,6 @@ Localization.define("fr_FR") do |l|
   # app/views/shared/_search.html.erb
   l.store "Live Search", "Recherche instantanée"
 
-  # lib/action_web_service/casting.rb
-  l.store "#{name}=", ""
-
-  # lib/action_web_service/struct.rb
-  l.store "%s=", ""
-
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Propulsé par %s"
   l.store "Designed by %s ", "Design par %s"
@@ -751,7 +743,6 @@ Localization.define("fr_FR") do |l|
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "Published on", ""
-  l.store "%%a, %%d %%b %%Y %%H:%%M", Proc.new {|date|
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", "Adresse mail"
