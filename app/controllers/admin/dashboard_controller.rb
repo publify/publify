@@ -53,7 +53,7 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def inbound_links
-    url = "http://blogsearch.google.com/blogsearch_feeds?q=link:#{this_blog.base_url}&num=3&output=rss"
+    url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
     open(url) do |http|
       @inbound_links = parse_rss(http.read).reverse
     end
@@ -75,7 +75,7 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def get_typo_version
-    url = "http://typogarden.org/version.txt"
+    url = "http://blog.typosphere.org/version.txt"
     open(url) do |http|
       @typo_version = http.read[0..5]
     end
