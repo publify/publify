@@ -50,7 +50,8 @@ describe 'With the contents and users fixtures loaded' do
   end
 
   it 'authenticate? works as expected' do
-    User.should be_authenticate('bob', 'test')
+    bob = Factory.create(:user, :login => 'bob', :password => 'testtest')
+    User.should be_authenticate('bob', 'testtest')
     User.should_not be_authenticate('bob', 'duff password')
   end
 end

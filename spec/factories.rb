@@ -123,10 +123,10 @@ Factory.define :blog do |b|
   b.default_allow_comments true
   b.email_from "scott@sigkill.org"
   b.theme "typographic"
-  b.text_filter "textile"
+  b.text_filter {Factory(:textile)}
   b.sp_article_auto_close 0
   b.link_to_author false
-  b.comment_text_filter "markdown"
+  b.comment_text_filter {Factory(:markdown)}
   b.permalink_format "/%year%/%month%/%day%/%title%"
   b.use_canonical_url true
 end

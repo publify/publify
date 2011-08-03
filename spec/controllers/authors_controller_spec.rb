@@ -80,21 +80,17 @@ end
 describe AuthorsController, "SEO options" do
   render_views
 
-  before :each do
-    @blog = Factory(:blog, :use_meta_keyword => false)
-  end
-
   it 'should never have meta keywords with deactivated option' do
+    Factory(:blog, :use_meta_keyword => false)
+    Factory(:user, :login => 'tobi')
     get 'show', :id => 'tobi'
-    
     response.should_not have_selector('head>meta[name="keywords"]')
   end
 
   it 'should never have meta keywords with deactivated option' do
-    @blog.use_meta_keyword = true
-    @blog.save
+    Factory(:blog, :use_meta_keyword => true)
+    Factory(:user, :login => 'tobi')
     get 'show', :id => 'tobi'
-    
     response.should_not have_selector('head>meta[name="keywords"]')
   end
 
