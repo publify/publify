@@ -35,6 +35,10 @@
     <%= text_area 'comment', 'body', :rows => 10 %>
   </p>
 
+  <% if this_blog.use_recaptcha %>
+  <p><%= raw recaptcha_tags :ajax => true %></p>
+  <% end %>
+
   <p class="buttons">
     <%= submit_to_remote('preview', _('Preview') + '!',
                          :update => 'preview',

@@ -41,6 +41,10 @@
     </label>
   </p>
 
+  <% if this_blog.use_recaptcha %>
+  <p><%= raw recaptcha_tags :ajax => true %></p>
+  <% end %>
+
   <p>
     <%= submit_to_remote('preview', _('Preview') + '!',
                          :update => 'preview',
