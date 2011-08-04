@@ -7,6 +7,21 @@ describe BackendController do
   include ActionWebService::TestInvoke::InstanceMethods
 
   before do
+    #TODO Need to reduce user, but allow to remove user fixture...
+    Factory(:user,
+            :login => 'henri',
+            :password => 'whatever',
+            :name => 'Henri',
+            :email => 'henri@example.com',
+            :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
+            :text_filter => Factory(:markdown),
+            :profile => Factory(:profile_admin, :label => Profile::ADMIN),
+            :notify_via_email => false,
+            :notify_on_new_articles => false,
+            :notify_on_comments => false,
+            :state => 'active')
+
+
     Factory(:blog)
     @protocol = :xmlrpc
   end
@@ -14,24 +29,24 @@ describe BackendController do
   describe "when called through Blogger API" do
     it "test_blogger_delete_post" do
       article = Factory(:article)
-      args = [ 'foo', article.id, 'tobi', 'whatever', 1 ]
+      args = [ 'foo', article.id, 'henri', 'whatever', 1 ]
 
       result = invoke_layered :blogger, :deletePost, *args
       assert_raise(ActiveRecord::RecordNotFound) { Article.find(article.id) }
     end
 
     it "test_blogger_get_users_blogs" do
-      args = [ 'foo', 'tobi', 'whatever' ]
+      args = [ 'foo', 'henri', 'whatever' ]
 
       result = invoke_layered :blogger, :getUsersBlogs, *args
       assert_equal 'test blog', result.first['blogName']
     end
 
     it "test_blogger_get_user_info" do
-      args = [ 'foo', 'tobi', 'whatever' ]
+      args = [ 'foo', 'henri', 'whatever' ]
 
       result = invoke_layered :blogger, :getUserInfo, *args
-      assert_equal 'tobi', result['userid']
+      assert_equal 'henri', result['userid']
     end
 
     it "test_blogger_new_post" do
@@ -51,7 +66,7 @@ describe BackendController do
     end
 
     it "test_blogger_new_post_no_title" do
-      args = [ 'foo', '1', 'tobi', 'whatever', 'new post body for post without title but with a lenghty body', 1]
+      args = [ 'foo', '1', 'henri', 'whatever', 'new post body for post without title but with a lenghty body', 1]
 
       result = invoke_layered :blogger, :newPost, *args
       assert_not_nil result
@@ -64,7 +79,7 @@ describe BackendController do
     it "test_blogger_new_post_with_categories" do
       hard_cat = Factory(:category, :name => 'Hardware')
       soft_cat = Factory(:category, :name => 'Software')
-      args = [ 'foo', '1', 'tobi', 'whatever',
+      args = [ 'foo', '1', 'henri', 'whatever',
         '<title>new post title</title><category>Software,
         Hardware</category>new post body', 1]
 
@@ -79,7 +94,7 @@ describe BackendController do
 
     it "test_blogger_new_post_with_non_existing_categories" do
       hard_cat = Factory(:category, :name => 'Hardware')
-      args = [ 'foo', '1', 'tobi', 'whatever',
+      args = [ 'foo', '1', 'henri', 'whatever',
         '<title>new post title</title><category>Idontexist,
         Hardware</category>new post body', 1]
       result = invoke_layered :blogger, :newPost, *args
@@ -89,7 +104,7 @@ describe BackendController do
     end
 
     it "test_blogger_fail_authentication" do
-      args = [ 'foo', 'tobi', 'using a wrong password' ]
+      args = [ 'foo', 'henri', 'using a wrong password' ]
       # This will be a little more useful with the upstream changes in [1093]
       assert_raise(XMLRPC::FaultException) { invoke_layered :blogger, :getUsersBlogs, *args }
     end
@@ -99,14 +114,14 @@ describe BackendController do
 
     it "test_meta_weblog_get_categories" do
       Factory(:category, :name => 'Software')
-      args = [ 1, 'tobi', 'whatever' ]
+      args = [ 1, 'henri', 'whatever' ]
       result = invoke_layered :metaWeblog, :getCategories, *args
       assert_equal 'Software', result.first
     end
 
     it "test_meta_weblog_get_post" do
       article = Factory(:article)
-      args = [ article.id, 'tobi', 'whatever' ]
+      args = [ article.id, 'henri', 'whatever' ]
 
       result = invoke_layered :metaWeblog, :getPost, *args
       assert_equal result['title'], article.title
@@ -121,7 +136,7 @@ describe BackendController do
         :published => true)
       Factory.create(:trackback, :article => article_before, :published_at => Time.now - 3.day,
         :published => true)
-      args = [ 1, 'tobi', 'whatever', 2 ]
+      args = [ 1, 'henri', 'whatever', 2 ]
       result = invoke_layered :metaWeblog, :getRecentPosts, *args
       assert_equal result.size, 2
       assert_equal result.last['title'], Article.find(:first, :offset => 1, :order => 'created_at desc').title
@@ -129,7 +144,7 @@ describe BackendController do
 
     it "test_meta_weblog_delete_post" do
       art_id = Factory(:article).id
-      args = [ 1, art_id, 'tobi', 'whatever', 1 ]
+      args = [ 1, art_id, 'henri', 'whatever', 1 ]
 
       result = invoke_layered :metaWeblog, :deletePost, *args
       assert_raise(ActiveRecord::RecordNotFound) { Article.find(art_id) }
@@ -148,7 +163,7 @@ describe BackendController do
       end
 
       it "test_meta_weblog_edit_post" do
-        args = [ @art_id, 'tobi', 'whatever', @dto, 1 ]
+        args = [ @art_id, 'henri', 'whatever', @dto, 1 ]
 
         result = invoke_layered :metaWeblog, :editPost, *args
         assert result
@@ -167,7 +182,7 @@ describe BackendController do
         Factory(:category, :name => 'baz')
         @dto.categories = ['bar']
 
-        args = [ @art_id, 'tobi', 'whatever', @dto, 1 ]
+        args = [ @art_id, 'henri', 'whatever', @dto, 1 ]
 
         invoke_layered :metaWeblog, :editPost, *args
 
@@ -183,7 +198,7 @@ describe BackendController do
       @article.errors.add(:base, 'test error')
       @article.should_receive(:save).and_return(false)
       Article.stub!(:new).and_return(@article)
-      args = [1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(@article), 1]
+      args = [1, 'henri', 'whatever', MetaWeblogService.new(@controller).article_dto_from(@article), 1]
       lambda { invoke_layered :metaWeblog , :newPost, *args }.should \
         raise_error(XMLRPC::FaultException,
                     'Internal server error (exception raised)')
@@ -197,7 +212,7 @@ describe BackendController do
       article.text_filter = TextFilter.find_by_name("textile")
       article.published_at = Time.now.utc.midnight
 
-      args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
+      args = [ 1, 'henri', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
 
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
@@ -218,7 +233,7 @@ describe BackendController do
         :title             => "A Title"
       )
 
-      args = [ 1, 'tobi', 'whatever', dto, 0 ]
+      args = [ 1, 'henri', 'whatever', dto, 0 ]
 
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
@@ -237,7 +252,7 @@ describe BackendController do
         :categories => ["foo", "baz"]
       )
 
-      args = [ 1, 'tobi', 'whatever', dto, 0 ]
+      args = [ 1, 'henri', 'whatever', dto, 0 ]
 
       result = invoke_layered :metaWeblog, :newPost, *args
       new_post = Article.find(result)
@@ -252,7 +267,7 @@ describe BackendController do
       article.text_filter = TextFilter.find_by_name("textile")
       article.published_at = Time.now - 1.days
 
-      args = [ 1, 'tobi', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 0 ]
+      args = [ 1, 'henri', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 0 ]
 
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
@@ -267,7 +282,7 @@ describe BackendController do
           "bits" => Base64.encode64(File.open(File.expand_path(::Rails.root.to_s) + "/public/images/powered.gif", "rb") { |f| f.read })
       )
 
-      args = [ 1, 'tobi', 'whatever', media_object ]
+      args = [ 1, 'henri', 'whatever', media_object ]
 
       result = invoke_layered :metaWeblog, :newMediaObject, *args
       assert result['url'] =~ /#{media_object['name']}/
@@ -275,7 +290,7 @@ describe BackendController do
     end
 
     it "test_meta_weblog_fail_authentication" do
-      args = [ 1, 'tobi', 'using a wrong password', 2 ]
+      args = [ 1, 'henri', 'using a wrong password', 2 ]
       # This will be a little more useful with the upstream changes in [1093]
       assert_raise(XMLRPC::FaultException) { invoke_layered :metaWeblog, :getRecentPosts, *args }
     end
@@ -289,11 +304,11 @@ describe BackendController do
       article = Factory(:article)
       original_published_at = article.published_at
 
-      args = [ article.id, 'tobi', 'whatever' ]
+      args = [ article.id, 'henri', 'whatever' ]
       result = invoke_layered :metaWeblog, :getPost, *args
       assert_equal original_published_at, result['dateCreated'].to_time
 
-      args = [ article.id, 'tobi', 'whatever', result, 1 ]
+      args = [ article.id, 'henri', 'whatever', result, 1 ]
       result = invoke_layered :metaWeblog, :editPost, *args
       article.reload
       assert_equal original_published_at, article.published_at
@@ -303,7 +318,7 @@ describe BackendController do
   describe "when called through the Movable Type API" do
     it "test_mt_get_category_list" do
       Factory(:category, :name => 'Software')
-      args = [ 1, 'tobi', 'whatever' ]
+      args = [ 1, 'henri', 'whatever' ]
       result = invoke_layered :mt, :getCategoryList, *args
       assert result.map { |c| c['categoryName'] }.include?('Software')
     end
@@ -313,7 +328,7 @@ describe BackendController do
       article = Article.find(art_id)
       article.categories << Factory(:category)
 
-      args = [ art_id, 'tobi', 'whatever' ]
+      args = [ art_id, 'henri', 'whatever' ]
 
       result = invoke_layered :mt, :getPostCategories, *args
       assert_equal Set.new(result.collect {|v| v['categoryName']}),
@@ -325,7 +340,7 @@ describe BackendController do
         :allow_pings => true, :published => true)
       Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
         :published => true)
-      args = [ 1, 'tobi', 'whatever', 2 ]
+      args = [ 1, 'henri', 'whatever', 2 ]
       result = invoke_layered :mt, :getRecentPostTitles, *args
       assert_equal result.first['title'], article.title
     end
@@ -334,7 +349,7 @@ describe BackendController do
       article = Factory(:article)
       art_id = article.id
       cat = Factory(:category)
-      args = [ art_id, 'tobi', 'whatever',
+      args = [ art_id, 'henri', 'whatever',
         [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal',
                                                  'categoryId' => cat.id, 'isPrimary' => 1)] ]
 
@@ -343,7 +358,7 @@ describe BackendController do
 
       soft_cat = Factory(:category, :name => 'soft_cat')
       hard_cat = Factory(:category, :name => 'hard_cat')
-      args = [ art_id, 'tobi', 'whatever',
+      args = [ art_id, 'henri', 'whatever',
         [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software',
                                                  'categoryId' => soft_cat.id, 'isPrimary' => 1),
                                                  MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware',
@@ -376,24 +391,24 @@ describe BackendController do
       assert_equal result.first['pingTitle'], 'Trackback Entry'
     end
 
-    it "test_mt_publish_post" do
-      art_id = Factory.create(:article,
+    it "should publish post" do
+      art = Factory.create(:article,
         :published => false,
         :state => 'draft',
         :created_at => '2004-06-01 20:00:01',
         :updated_at => '2004-06-01 20:00:01',
-        :published_at => '2004-06-01 20:00:01').id
+        :published_at => '2004-06-01 20:00:01')
 
-      args = [ art_id, 'tobi', 'whatever' ]
-      assert (not Article.find(art_id).published?)
+      args = [ art.id, 'henri', 'whatever' ]
+      assert (not Article.find(art.id).published?)
       result = invoke_layered :mt, :publishPost, *args
       assert result
-      assert Article.find(art_id).published?
-      assert Article.find(art_id)[:published_at]
+      assert Article.find(art.id).published?
+      assert Article.find(art.id)[:published_at]
     end
 
     it "test_mt_fail_authentication" do
-      args = [ 1, 'tobi', 'using a wrong password', 2 ]
+      args = [ 1, 'henri', 'using a wrong password', 2 ]
       # This will be a little more useful with the upstream changes in [1093]
       assert_raise(XMLRPC::FaultException) { invoke_layered :mt, :getRecentPostTitles, *args }
     end
