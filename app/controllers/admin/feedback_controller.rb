@@ -93,7 +93,9 @@ class Admin::FeedbackController < Admin::BaseController
 
   def update
     comment = Comment.find(params[:id])
+    puts "YAF DEBUG ... start"
     unless comment.article.access_by? current_user
+    puts "YAF DEBUG ... IN ?"
       redirect_to :action => 'index'
       return
     end
