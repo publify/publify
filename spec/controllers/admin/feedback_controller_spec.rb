@@ -282,28 +282,24 @@ describe Admin::FeedbackController do
       request.session = { :user => @publisher.id }
     end
 
-
     def feedback_from_own_article
       @article ||= Factory(:article, :user => @publisher)
       @feedback_own_article ||= Factory(:comment, :article => @article)
     end
 
     def feedback_from_not_own_article
-      @feedback_not_own_article ||= Factory(:comment)
+      @article ||= Factory(:article, :user => Factory(:user, :login => 'other_user'))
+      @feedback_not_own_article ||= Factory(:comment, :article => @article)
     end
 
     describe 'destroy action' do
-
       it_should_behave_like "destroy feedback with feedback from own article"
 
       it "should not destroy feedback doesn't own" do
         id = feedback_from_not_own_article.id
-        lambda do
-          post 'destroy', :id => id
-        end.should_not change(Feedback, :count)
-        lambda do
-          Feedback.find(feedbackfrom_not_own_article.id)
-        end.should_not raise_error(ActiveRecord::RecordNotFound)
+        Feedback.should_receive(:find).with(id).and_return(feedback_from_not_own_article)
+        art = feedback_from_not_own_article.article
+        post 'destroy', :id => id
         response.should redirect_to(:controller => 'admin/feedback', :action => 'index')
       end
     end

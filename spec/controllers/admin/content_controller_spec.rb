@@ -531,8 +531,6 @@ describe Admin::ContentController do
 
     before :each do
       Factory(:blog)
-      #TODO remove this after remove fixtures
-      Profile.delete_all
       @user = Factory(:user, :text_filter => Factory(:markdown), :profile => Factory(:profile_publisher))
       @article = Factory(:article, :user => @user)
       request.session = {:user => @user.id}
@@ -545,7 +543,7 @@ describe Admin::ContentController do
     describe 'edit action' do
 
       it "should redirect if edit article doesn't his" do
-        get :edit, :id => Factory(:article).id
+        get :edit, :id => Factory(:article, :user => Factory(:user, :login => 'another_user')).id
         response.should redirect_to(:action => 'index')
       end
 
@@ -582,7 +580,7 @@ describe Admin::ContentController do
     describe 'destroy action can be access' do
 
       it 'should redirect when want destroy article' do
-        article = Factory(:article)
+        article = Factory(:article, :user => Factory(:user, :login => Factory(:user, :login => 'other_user')))
         lambda do
           get :destroy, :id => article.id
           response.should redirect_to(:action => 'index')

@@ -4,7 +4,23 @@ require 'spec_helper'
 describe ArticlesController do
   render_views
 
-  before(:each) { Factory(:blog) }
+  before(:each) do
+    #TODO Need to reduce user, but allow to remove user fixture...
+    Factory(:user,
+            :login => 'henri',
+            :password => 'whatever',
+            :name => 'Henri',
+            :email => 'henri@example.com',
+            :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
+            :text_filter => Factory(:markdown),
+            :profile => Factory(:profile_admin, :label => Profile::ADMIN),
+            :notify_via_email => false,
+            :notify_on_new_articles => false,
+            :notify_on_comments => false,
+            :state => 'active')
+    Factory(:blog) 
+  end
+
 
   it "should redirect category to /categories" do
     get 'category'
@@ -37,7 +53,7 @@ describe ArticlesController do
     it 'should have good link feed atom' do
       response.should have_selector('head>link[href="http://test.host/articles.atom"]')
     end
-    
+
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/"]')
     end    
@@ -148,9 +164,9 @@ describe ArticlesController do
     response.should render_template(:archives)
     assigns[:articles].should_not be_nil
     assigns[:articles].should_not be_empty
-    
+
     response.should have_selector('head>link[href="http://test.host/archives"]')
-    
+
   end
 
   describe 'index for a month' do
@@ -168,7 +184,7 @@ describe ArticlesController do
       assigns[:articles].should_not be_nil
       assigns[:articles].should_not be_empty
     end
-    
+
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/2004/4/"]')
     end    
@@ -208,13 +224,13 @@ describe ArticlesController, "feeds" do
   before(:each) do
     Factory(:blog)
     @article1 = Factory.create(:article,
-      :created_at => Time.now - 1.day)
+                               :created_at => Time.now - 1.day)
     Factory.create(:trackback, :article => @article1, :published_at => Time.now - 1.day,
-      :published => true)
+                   :published => true)
     @article2 = Factory.create(:article,
-      :created_at => '2004-04-01 12:00:00',
-      :published_at => '2004-04-01 12:00:00',
-      :updated_at => '2004-04-01 12:00:00')
+                               :created_at => '2004-04-01 12:00:00',
+                               :published_at => '2004-04-01 12:00:00',
+                               :updated_at => '2004-04-01 12:00:00')
 
   end
 
@@ -250,7 +266,10 @@ describe ArticlesController, "feeds" do
 end
 
 describe ArticlesController, "the index" do
-  before(:each) { Factory(:blog) }
+  before(:each) do
+    Factory(:blog) 
+    Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+  end
 
   it "should ignore the HTTP Accept: header" do
     request.env["HTTP_ACCEPT"] = "application/atom+xml"
@@ -308,6 +327,19 @@ describe ArticlesController, "redirecting" do
 
   describe "with explicit redirects" do
     it 'should redirect from known URL' do
+      #TODO Need to reduce user, but allow to remove user fixture...
+      Factory(:user,
+              :login => 'henri',
+              :password => 'whatever',
+              :name => 'Henri',
+              :email => 'henri@example.com',
+              :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
+              :text_filter => Factory(:markdown),
+              :profile => Factory(:profile_admin, :label => Profile::ADMIN),
+              :notify_via_email => false,
+              :notify_on_new_articles => false,
+              :notify_on_comments => false,
+              :state => 'active')
       Factory(:blog)
       Factory(:redirect)
       get :redirect, :from => "foo/bar"
@@ -316,6 +348,19 @@ describe ArticlesController, "redirecting" do
     end
 
     it 'should not redirect from unknown URL' do
+      #TODO Need to reduce user, but allow to remove user fixture...
+      Factory(:user,
+              :login => 'henri',
+              :password => 'whatever',
+              :name => 'Henri',
+              :email => 'henri@example.com',
+              :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
+              :text_filter => Factory(:markdown),
+              :profile => Factory(:profile_admin, :label => Profile::ADMIN),
+              :notify_via_email => false,
+              :notify_on_new_articles => false,
+              :notify_on_comments => false,
+              :state => 'active')
       Factory(:blog)
       Factory(:redirect)
       get :redirect, :from => "something/that/isnt/there"
@@ -330,6 +375,20 @@ describe ArticlesController, "redirecting" do
     describe 'and non-empty relative_url_root' do
       before do
         b = Factory(:blog, :base_url => "http://test.host/blog")
+        #TODO Need to reduce user, but allow to remove user fixture...
+        Factory(:user,
+                :login => 'henri',
+                :password => 'whatever',
+                :name => 'Henri',
+                :email => 'henri@example.com',
+                :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
+                :text_filter => Factory(:markdown),
+                :profile => Factory(:profile_admin, :label => Profile::ADMIN),
+                :notify_via_email => false,
+                :notify_on_new_articles => false,
+                :notify_on_comments => false,
+                :state => 'active')
+
         # XXX: The following has no effect anymore.
         # request.env["SCRIPT_NAME"] = "/blog"
       end
@@ -577,6 +636,20 @@ end
 describe ArticlesController, "assigned keywords" do
   before do
     @blog = Factory(:blog)
+    #TODO Need to reduce user, but allow to remove user fixture...
+    Factory(:user,
+            :login => 'henri',
+            :password => 'whatever',
+            :name => 'Henri',
+            :email => 'henri@example.com',
+            :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
+            :text_filter => Factory(:markdown),
+            :profile => Factory(:profile_admin, :label => Profile::ADMIN),
+            :notify_via_email => false,
+            :notify_on_new_articles => false,
+            :notify_on_comments => false,
+            :state => 'active')
+
   end
 
   it 'article with categories should have meta keywords' do
