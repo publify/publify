@@ -31,3 +31,6 @@ Admin/tags:
 under the hood:
 - Use standard rails localization
 - Simplify BlogSweeper: (Allmost) all sweeps are really sweep_all.
+- Add mobile support (user agent detection with dedicated theme). Will need specific rewrite rules from the server.
+- Add email publication (pop3 + imap(???))
+
