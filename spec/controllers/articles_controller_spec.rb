@@ -56,7 +56,11 @@ describe ArticlesController do
 
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/"]')
-    end    
+    end
+    
+    it 'should have googd title' do 
+      response.should have_selector('title', :content => "test blog | test subtitles")
+    end
   end
 
 
@@ -91,6 +95,10 @@ describe ArticlesController do
 
       it 'should have a canonical url' do
         response.should have_selector('head>link[href="http://test.host/search/a"]')
+      end
+      
+      it 'should have a good title' do
+        response.should have_selector('title', :content => "Results for a | test blog")
       end
 
       it 'should have content markdown interpret and without html tag' do
@@ -166,7 +174,7 @@ describe ArticlesController do
     assigns[:articles].should_not be_empty
 
     response.should have_selector('head>link[href="http://test.host/archives"]')
-
+    response.should have_selector('title', :content => "Archives for test blog")
   end
 
   describe 'index for a month' do
@@ -187,7 +195,11 @@ describe ArticlesController do
 
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/2004/4/"]')
-    end    
+    end
+    
+    it 'should have a good title' do
+      response.should have_selector('title', :content => "Archives for test blog")
+    end
   end
 
 end
@@ -539,6 +551,9 @@ describe ArticlesController, "redirecting" do
           response.should have_selector("head>link[href='http://myblog.net/#{@article.permalink}.html']")
         end
 
+        it 'should have a good title' do
+          response.should have_selector('title', :content => "A big article | test blog")
+        end
       end
 
     end
