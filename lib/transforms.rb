@@ -37,8 +37,8 @@ class String
     
     # Tags for item
     s = s.gsub('%title%', item.title) if s =~ /(%title)/ and item.respond_to? :title
-    s = s.gsub('%excerpt%', item.body.strip_html.slice(0, 160)) if s =~ /(%body%)/ and item.respond_to? :body
-    s = s.gsub('%description%', item.description) if s =~ /(%title%)/ and item.respond_to? :description
+    s = s.gsub('%excerpt%', item.body.strip_html.slice(0, 160)) if s =~ /(%excerpt%)/ and item.respond_to? :body
+    s = s.gsub('%description%', item.description) if s =~ /(%description%)/ and item.respond_to? :description
     s = s.gsub('%name%', item.name) if s =~ /(%name%)/ and item.respond_to? :name
     s = s.gsub('%author%', item.name) if s =~ /(%author%)/ and item.respond_to? :name
     
