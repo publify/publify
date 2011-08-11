@@ -38,6 +38,7 @@ describe Admin::ContentController do
   shared_examples_for 'autosave action' do
     describe "first time for a new article" do
       it 'should save new article with draft status and no parent article' do
+        Factory(:none)
         lambda do
         lambda do
           post :autosave, :article => {:allow_comments => '1',
