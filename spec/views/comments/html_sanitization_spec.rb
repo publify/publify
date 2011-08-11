@@ -8,19 +8,16 @@ shared_examples_for "CommentSanitization" do
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
 
-    prepare_comment
-
-    @comment.stub!(:id).and_return(1)
-    assign(:comment, @comment)
-  end
-
-  def prepare_comment
     Comment.with_options(:body => 'test foo <script>do_evil();</script>',
                          :author => 'Bob', :article => @article,
                          :created_at => Time.now) do |klass|
       @comment = klass.new(comment_options)
     end
+
+    @comment.stub!(:id).and_return(1)
+    assign(:comment, @comment)
   end
+
 
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
@@ -121,28 +118,25 @@ end
 shared_examples_for "CommentSanitizationWithDofollow" do
   before do
     @blog = Factory(:blog)
-    @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
+    @article = Factory(:article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
     @blog.dofollowify = true
 
-    prepare_comment
-
-    @comment.stub!(:id).and_return(1)
-    assign(:comment, @comment)
-  end
-
-  def prepare_comment
     Comment.with_options(:body => 'test foo <script>do_evil();</script>',
                          :author => 'Bob', :article => @article,
                          :created_at => Time.now) do |klass|
       @comment = klass.new(comment_options)
     end
+      
+    @comment.stub!(:id).and_return(1)
+    assign(:comment, @comment)
   end
 
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
+      value = '' ? Factory(:none) : Factory(value)
       @blog.comment_text_filter = value
       @blog.save
 
