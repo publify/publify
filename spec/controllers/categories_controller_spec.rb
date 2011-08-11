@@ -70,7 +70,7 @@ describe CategoriesController, '#show' do
   end
 
   it 'should render :show by default' do
-    pending "should use views to implement this"
+    pending "Stubbing #template_exists is not enough to fool Rails"
     controller.stub!(:template_exists?) \
       .and_return(true)
     do_get
@@ -83,6 +83,14 @@ describe CategoriesController, '#show' do
     do_get
     response.should render_template('articles/index')
   end
+  
+  it 'should render personal when template exists' do
+    pending "Stubbing #template_exists is not enough to fool Rails"
+    controller.stub!(:template_exists?) \
+      .and_return(true)
+    do_get
+    response.should render_template('personal')
+  end  
 
   it 'should show only published articles' do
     do_get
