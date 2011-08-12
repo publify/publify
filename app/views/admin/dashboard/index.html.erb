@@ -1,5 +1,9 @@
 <% content_for(:tasks) do %>
-    <li><a href='#'>&nbsp;</a></li>
+  <li><%= link_to _("Documentation"), "https://github.com/fdv/typo/wiki" %></li>
+  <li><%= link_to _("Report a bug"), "https://github.com/fdv/typo/issues" %></li>
+  <li><%= link_to _("Download themes"), "http://typogarden.org" %></li>
+  <li><%= link_to _("In page plugins"), "https://github.com/fdv/typo/wiki/In-Page-Plugins" %></li>
+  <li><%= link_to _("Sidebar plugins"), "https://github.com/fdv/typo/wiki/Sidebar-plugins" %></li>
 <% end %>
 
 <%= render "overview" %>
