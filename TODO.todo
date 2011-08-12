@@ -34,3 +34,25 @@ under the hood:
 - Add mobile support (user agent detection with dedicated theme). Will need specific rewrite rules from the server.
 - Add email publication (pop3 + imap(???))
 
+Things we planned to add and cerated Lighthouse tickets for:
+
+Cyril:
+- Move the theme engine to Rails::Metal
+- Define a choice of redirections article by article
+- Define rules of redirection
+- Add a role that can only create and edit drafts
+- Add users avatar
+- Add daily digests for unmoderated comments
+
+Fred:
+- Select categories that should not appear in timeline
+- Make spam filter engine agnostic and add defensio support
+- Version save drafts
+- Add subscribtion for comments
+- Enhance comment moderation bulk operations
+
+Matijs:
+- Add APP backend
+- LDAP authentication
+- Tag rename in admin
+- Updating / Saving an already published blog post
