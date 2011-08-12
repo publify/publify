@@ -15,7 +15,7 @@ h2. Enhance your Typo blog
 h2. Useful Links:
 
 * "Download Typo source code:":http://typosphere.org/stable.tgz
-* "*Report a bug*":http://fdv.lighthouseapp.com/projects/11171-typo-blog/overview
+* "*Report a bug*":https://github.com/fdv/typo/issues
 * "*Frequently Asked Questions*":http://wiki.github.com/fdv/typo/frequently-asked-questions
 * "Official Typo blog":http://blog.typosphere.org
 * "Follow us on Twitter":httpL//twitter.com/typosphere
