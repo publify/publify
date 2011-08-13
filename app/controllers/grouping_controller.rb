@@ -104,7 +104,8 @@ class GroupingController < ContentController
           return
         end
 
-        render 'articles/index' unless template_exists? 'show'
+        render active_template
+        
       end
 
       format.atom { render_feed 'atom', @articles }
@@ -128,5 +129,11 @@ class GroupingController < ContentController
     return 1 if (grouping_class.to_s.downcase == "tag" and this_blog.unindex_tags)
     return 1 if (grouping_class.to_s.downcase == "category" and this_blog.unindex_categories)
     return 1 unless page.blank?
+  end
+  
+  def active_template
+    return params[:id] if template_exists? "#{self.class.to_s.sub(/Controller$/,'').downcase}/#{params[:id]}"
+    return 'show' if template_exists? "#{self.class.to_s.sub(/Controller$/,'').downcase}/show"
+    'articles/index'
   end
 end

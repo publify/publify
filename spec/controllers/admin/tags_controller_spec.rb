@@ -63,12 +63,16 @@ describe Admin::TagsController do
   
   describe 'destroy action with GET' do
     before(:each) do
-      tag_id = Factory(:tag).id
-      get :destroy, :id => tag_id
+      @tag_id = Factory(:tag).id
+      get :destroy, :id => @tag_id
     end
     
     it 'should be success' do
       response.should be_success
+    end
+    
+    it 'should have an id in the form destination' do
+      response.should have_selector("form[action='/admin/tags/destroy/#{@tag_id}'][method='post']") 
     end
 
     it 'should render template edit' do

@@ -83,10 +83,30 @@ Factory.define :markdown, :class => :text_filter do |m|
   m.params '--- {}'
 end
 
+Factory.define :smartypants, :parent => :markdown do |m|
+  m.name "smartypants"
+  m.description "SmartyPants"
+  m.markup 'none'
+  m.filters %q{ [:smartypants].to_yaml.inspect }
+end
+
+Factory.define :markdownsmartypants, :parent => :smartypants do |m|
+  m.name "markdown smartypants"
+  m.description "Markdown with SmartyPants"
+  m.markup 'markdown'
+  m.filters [:smartypants]
+end
+
 Factory.define :textile, :parent => :markdown do |m|
   m.name "textile"
   m.description "Textile"
   m.markup 'textile'
+end
+
+Factory.define :none, :parent => :markdown do |m|
+  m.name "none"
+  m.description "None"
+  m.markup 'none'
 end
 
 Factory.define :utf8article, :parent => :article do |u|
@@ -123,10 +143,10 @@ Factory.define :blog do |b|
   b.default_allow_comments true
   b.email_from "scott@sigkill.org"
   b.theme "typographic"
-  b.text_filter {Factory(:textile)}
+  b.text_filter Factory(:textile).name
   b.sp_article_auto_close 0
   b.link_to_author false
-  b.comment_text_filter {Factory(:markdown)}
+  b.comment_text_filter Factory(:markdown).name
   b.permalink_format "/%year%/%month%/%day%/%title%"
   b.use_canonical_url true
 end
@@ -177,6 +197,7 @@ end
 Factory.define :comment do |c|
   c.published true
   c.article { some_article }
+  c.text_filter {Factory(:textile)}
   c.author 'Bob Foo'
   c.url 'http://fakeurl.com'
   c.body 'Test <a href="http://fakeurl.co.uk">body</a>'

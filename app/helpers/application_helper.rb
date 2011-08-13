@@ -183,7 +183,7 @@ module ApplicationHelper
   #{ page_header_includes.join("\n") }
   #{ use_canonical  if this_blog.use_canonical_url }
   <script type="text/javascript">#{ @content_for_script }</script>
-  #{ custom_tracking_field unless this_blog.custom_tracking_field.blank? }
+  #{ this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? }
   #{ google_analytics }
     HTML
     ).chomp

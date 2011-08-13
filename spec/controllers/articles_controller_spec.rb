@@ -18,7 +18,7 @@ describe ArticlesController do
             :notify_on_new_articles => false,
             :notify_on_comments => false,
             :state => 'active')
-    Factory(:blog) 
+    Factory(:blog, :custom_tracking_field => '<script src="foo.js" type="text/javascript"></script>') 
   end
 
 
@@ -56,7 +56,15 @@ describe ArticlesController do
 
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/"]')
-    end    
+    end
+    
+    it 'should have googd title' do 
+      response.should have_selector('title', :content => "test blog | test subtitles")
+    end
+    
+    it 'should have a custom tracking field' do      
+      response.should have_selector('head>script[src="foo.js"]')
+    end
   end
 
 
@@ -92,6 +100,10 @@ describe ArticlesController do
       it 'should have a canonical url' do
         response.should have_selector('head>link[href="http://test.host/search/a"]')
       end
+      
+      it 'should have a good title' do
+        response.should have_selector('title', :content => "Results for a | test blog")
+      end
 
       it 'should have content markdown interpret and without html tag' do
         response.should have_selector('div') do |div|
@@ -99,6 +111,9 @@ describe ArticlesController do
         end
       end
 
+      it 'should have a custom tracking field' do      
+        response.should have_selector('head>script[src="foo.js"]')
+      end
     end
 
     it 'should render feed rss by search' do
@@ -106,6 +121,7 @@ describe ArticlesController do
       response.should be_success
       response.should render_template('index_rss_feed')
       @layouts.keys.compact.should be_empty
+      response.should_not have_selector('head>script[src="foo.js"]')    
     end
 
     it 'should render feed atom by search' do
@@ -113,6 +129,7 @@ describe ArticlesController do
       response.should be_success
       response.should render_template('index_atom_feed')
       @layouts.keys.compact.should be_empty
+      response.should_not have_selector('head>script[src="foo.js"]')      
     end
 
     it 'search with empty result' do
@@ -120,6 +137,7 @@ describe ArticlesController do
       response.should render_template('articles/error')
       assigns[:articles].should be_empty
     end
+    
   end
 
   describe '#livesearch action' do
@@ -166,7 +184,8 @@ describe ArticlesController do
     assigns[:articles].should_not be_empty
 
     response.should have_selector('head>link[href="http://test.host/archives"]')
-
+    response.should have_selector('title', :content => "Archives for test blog")
+    response.should have_selector('head>script[src="foo.js"]')
   end
 
   describe 'index for a month' do
@@ -187,7 +206,15 @@ describe ArticlesController do
 
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/2004/4/"]')
-    end    
+    end
+    
+    it 'should have a good title' do
+      response.should have_selector('title', :content => "Archives for test blog")
+    end
+    
+    it 'should have a custom tracking field' do      
+      response.should have_selector('head>script[src="foo.js"]')
+    end
   end
 
 end
@@ -539,6 +566,9 @@ describe ArticlesController, "redirecting" do
           response.should have_selector("head>link[href='http://myblog.net/#{@article.permalink}.html']")
         end
 
+        it 'should have a good title' do
+          response.should have_selector('title', :content => "A big article | test blog")
+        end
       end
 
     end
