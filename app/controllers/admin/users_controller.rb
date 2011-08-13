@@ -8,7 +8,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def new
-    @user = User.new(params[:user])
+    @user = User.new
+    @user.attributes = params[:user]
     @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
     setup_profiles
     @user.name = @user.login

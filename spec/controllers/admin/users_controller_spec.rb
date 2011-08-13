@@ -21,7 +21,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
       assert_template 'new'
 
       post :new, :user => { :login => 'errand', :email => 'corey@test.com',
-        :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1 }
+        :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1, 
+        :nickname => 'fooo', :firstname => 'bar' }
       response.should redirect_to(:action => 'index')
     end
 
