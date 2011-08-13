@@ -1,70 +1,61 @@
-commit 21a9a2e83a14a28818294fd2669178e3dc5a8432
+commit 664be667568b65e7ce557f9f3f86b8bd0878f59b
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Fixes a utf-8 thing with ruby 1.9.2
+    Fixes a bug in the meta title generation.
 
-commit fb6e69add004184d96b3d55d7ea7656d00a08f2c
+commit 79ec63f1549ebe33e838dec7714dbe4ce471e369
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Forcing will paginate to be 3.0pre2, pre4 is broken
+    Adding per tag and category templating.
 
-commit a32fdebb1184bb5ec3908f8abf7d5d5f493eaac9
+commit b861b8dccbc9a9b815e74db39d8d8d53866969d8
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Fixes dashboard taking ages to load.
+    Fixes custom_tracking fields making a blog exploding when filled. Added some specs to prevent any other bug like this
 
-commit 91157849f399c537dc0b269a0f498c8f8e9cfedf
+commit 963220dbe1ffb93b406f0aee718a961ec8ba0b1f
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Fixes pages views with Ruby 1.9.2.
+    Fixes a (tested) bug on tag destruction. Adds a stupid test for this
 
-commit 0b05285f7f7eee65247c777ef4e5d9e829fd2949
-Author: Frédéric de Villamil <neuro@asocial.org>
-
-    Fixes articles with an empty post_type.
-
-commit ef4714c889b332243b490a86be21eb965ae59439
-Author: Mathieu Poussin <poussin.mathieu@gmail.com>
-
-    Added the recaptcha tag to non standards templates
-
-commit 04b26a2e533242d5465b708e1b2d165ff91b1ce2
+commit f83deb6f631c4581503a1c78b86517a8ed951856
 Author: Yannick Francois <yannick.francois@free.fr>
 
-    remove user fixture usage. Still some tobi usage to replace
+    Remove text_filter fixture. That was the last fixture to remove...
 
-commit 01bcb3904cd10d067063292b14fb70fe27d721bb
-Author: Yaf <yannick.francois@free.fr>
-
-    fix spec errors about fixtures...
-
-commit ac617dce0f47da779c8c1461e3b1f2bdd65a088f
-Merge: 01bcb39 ef4714c
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #37 from mathieupoussin/master
-
-commit 534e4135f138ff5cb7c072d8d79f5e6770b56fa5
+commit 34323eac4a1d826da0f4907045938affaf1705c9
+Merge: 963220d f83deb6
 Author: Yannick Francois <yannick.francois@free.fr>
 
-    in the way to removing user spec...
+    Merge branch 'remove_last_fixture_text_filter'
 
-commit a7638e9ef39e49b243ce5328777531708c6c9bc4
+commit 9978695e56378fb4523955280aadc01b2f6032b1
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Fixes file upload, at least until we change our model uploader.
+    Updating readme with new bug tracker.
 
-commit d569e41ac430a05d00dd8bb6d76e06bd0b541abe
+commit 46b8b07e68541c6e33c12a667f874303ff321fea
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Adds useful links in the dashboard:
+    - Documentation
+    - Bug report
+    - Theme catalogue
+    - Sidebar plugins
+    - In page plugins
+
+commit 0b995b693acc5c060b5cfea35e95c32fc7895777
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Backporting our TODO list from Lighthouse
+
+commit 874aacb70a3499ee9f1aff9f740e74eba922bd41
 Author: Yannick Francois <yannick.francois@free.fr>
 
-    remove user fixture usage
+    Remove unused files in test/fixtures dir
 
-commit 97d65d985985b13875f96f9383d99a894cffd3fa
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit 869646e11723711306903d1359860f28f3a15c38
+Merge: 874aacb 0b995b6
+Author: Yannick Francois <yannick.francois@free.fr>
 
-    Updating TODO
-
-commit acad340c0743dfab5fb0ed64ec9cfb9cb3b5c9fd
-Author: Frédéric de Villamil <neuro@asocial.org>
-
-    Forcing mini magick 1.3.3 as mini magick 2.0 and above crash when trying to resize images (WTF?)
+    Merge branch 'master' of github.com:fdv/typo
