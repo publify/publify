@@ -90,7 +90,7 @@ Factory.define :smartypants, :parent => :markdown do |m|
   m.filters %q{ [:smartypants].to_yaml.inspect }
 end
 
-Factory.define :markdownsmartypants, :parent => :smartypants do |m|
+Factory.define 'markdown smartypants', :parent => :smartypants do |m|
   m.name "markdown smartypants"
   m.description "Markdown with SmartyPants"
   m.markup 'markdown'
