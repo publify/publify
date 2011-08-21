@@ -239,7 +239,7 @@ _footer text here_
   end # #filter_text
 
   it "#filter text by name" do
-    t = Factory(:markdownsmartypants)
+    t = Factory('markdown smartypants')
     result = TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
     result.should == '<p><em>&#8220;foo&#8221;</em></p>'
   end
