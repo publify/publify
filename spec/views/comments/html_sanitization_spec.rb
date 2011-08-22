@@ -136,7 +136,7 @@ shared_examples_for "CommentSanitizationWithDofollow" do
 
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
-      value = '' ? Factory(:none) : Factory(value)
+      value == '' ? Factory(:none) : Factory(value)
       @blog.comment_text_filter = value
       @blog.save
 
