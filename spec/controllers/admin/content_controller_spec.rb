@@ -269,6 +269,11 @@ describe Admin::ContentController do
       assert_equal Time.utc(2011, 2, 17, 19, 47), new_article.published_at
     end
 
+    it 'should respect "GMT+0000 (UTC)" in :published_at' do
+      post :new, 'article' => base_article(:published_at => 'August 23, 2011 08:40 PM GMT+0000 (UTC)')
+      new_article = Article.last
+      assert_equal Time.utc(2011, 8, 23, 20, 40), new_article.published_at
+    end
 
     it 'should create a filtered article' do
       body = "body via *markdown*"
