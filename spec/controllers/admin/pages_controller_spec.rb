@@ -39,36 +39,39 @@ describe Admin::PagesController do
     
   end
 
-  describe "test_new" do
-    before(:each) do
-      get :new
-    end
+  describe "new" do
     
-    it "should render template new and has a page object" do
-      assert_response :success
-      assert_template "new"
-      assert_not_nil assigns(:page)
+    context "without page params" do
+      before(:each) do
+        get :new
+      end
+
+      it "should render template new and has a page object" do
+        assert_response :success
+        assert_template "new"
+        assert_not_nil assigns(:page)
+      end
+
+      it "should assign to current user" do
+        assert_equal @henri, assigns(:page).user
+      end
+
+      it "should have a text filter" do
+        assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
+      end
+
+      it 'should have Pages tab selected' do
+        test_tabs "Pages"
+      end
+
+      it 'should have Pages and Add new with no tab selected' do
+        subtabs = ["Pages", "Add new"]
+        test_subtabs(subtabs, "Add new")
+      end
     end
-    
-    it "should assign to current user" do
-      assert_equal @henri, assigns(:page).user
-    end
-    
-    it "should have a text filter" do
-      assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
-    end
-    
-    it 'should have Pages tab selected' do
-      test_tabs "Pages"
-    end
-    
-    it 'should have Pages and Add new with no tab selected' do
-      subtabs = ["Pages", "Add new"]
-      test_subtabs(subtabs, "Add new")
-    end
-    
+
   end
-    
+
   it "test_create" do
     post :new, :page => { :name => "new_page", :title => "New Page Title",
       :body => "Emphasis _mine_, arguments *strong*" }
@@ -88,7 +91,7 @@ describe Admin::PagesController do
       @page = Factory(:page)
       get :edit, :id => @page.id
     end
-    
+
     it 'should render edit template' do
       assert_response :success
       assert_template "edit"
@@ -99,7 +102,7 @@ describe Admin::PagesController do
     it 'should have Pages tab selected' do
       test_tabs "Pages"
     end
-    
+
     it 'should have Pages and Add new with no tab selected' do
       subtabs = ["Pages", "Add new"]
       test_subtabs(subtabs, "")
@@ -109,7 +112,7 @@ describe Admin::PagesController do
   it 'test_update' do
     page = Factory(:page)
     post :edit, :id => page.id, :page => { :name => "markdown-page", :title => "Markdown Page",
-        :body => "Adding a [link](http://www.typosphere.org/) here" }
+      :body => "Adding a [link](http://www.typosphere.org/) here" }
 
     assert_response :redirect, :action => "show", :id => page.id
 
@@ -123,14 +126,22 @@ describe Admin::PagesController do
     assert_response :redirect, :action => "list"
     assert_raise(ActiveRecord::RecordNotFound) { Page.find(page.id) }
   end
-  
+
   def base_page(options={})
     { :title => "posted via tests!",
       :body => "A good body",
       :name => "posted-via-tests",
       :published => true }.merge(options)
   end
-  
+
+  #TODO but this kind of action must move to model !
+  it "should use satanize title to set page name" do
+    page = Factory.build(:page, :name => '')
+    page.should_receive(:satanized_title).and_return('title-with-accents-eea') 
+    Page.should_receive(:new).and_return(page)
+    post :new, :page => {:title => 'title with accents éèà'}
+  end
+
   it 'should create a published page with a redirect' do
     post(:new, 'page' => base_page)
     assigns(:page).redirects.count.should == 1
@@ -146,6 +157,6 @@ describe Admin::PagesController do
     post(:new, 'page' => base_page({:published_at => (Time.now + 1.hour).to_s}))
     assigns(:page).redirects.count.should == 0
   end
-  
-  
+
+
 end

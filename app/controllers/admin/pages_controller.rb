@@ -10,22 +10,6 @@ class Admin::PagesController < Admin::BaseController
     @pages = Page.search_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
   end
 
-  accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
-    ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
-    ['í','ì','î','ï','I','Î','Ì'] => 'i',
-    ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò'] => 'o',
-    ['œ'] => 'oe',
-    ['ß'] => 'ss',
-    ['ú','ù','û','ü','U','Û','Ù'] => 'u',
-    ['ç','Ç'] => 'c'
-  }
-
-  FROM, TO = accents.inject(['','']) { |o,(k,v)|
-    o[0] << k * '';
-    o[1] << v * k.size
-    o
-  }
-
   def new
     @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @page = Page.new(params[:page])
@@ -34,7 +18,7 @@ class Admin::PagesController < Admin::BaseController
     @images = Resource.paginate :page => 1, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     if request.post?
       if @page.name.blank?
-        @page.name = @page.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
+        @page.name = @page.satanized_title
       end
       @page.published_at = Time.now
       if @page.save
