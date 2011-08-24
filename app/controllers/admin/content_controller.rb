@@ -165,7 +165,9 @@ class Admin::ContentController < Admin::BaseController
     @article.keywords = Tag.collection_to_string @article.tags
 
     @article.attributes = params[:article]
-    @article.published_at = Time.parse(params[:article][:published_at]).utc rescue nil
+    # TODO: Consider refactoring, because double rescue looks... weird.
+    @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue
+                            Time.parse(params[:article][:published_at]).utc rescue nil
 
     if request.post?
       set_article_author
