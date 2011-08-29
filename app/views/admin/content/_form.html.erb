@@ -30,13 +30,7 @@
 
   <div class='widget-container'>
     <h3 class='dark'><%= _("Categories") %></h3>
-    <div class='widget-content'>
-      <%- Category.all.each do |cat| %>
-        <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
-        <%= label_tag "category_#{h(cat.id)}", h(cat.name) %><br />
-      <% end -%>
-      <%= link_to _("New Category"), {:controller => 'admin/categories', :action => 'new' } %>
-    </div>
+    <%= render 'categories' %>
   </div>
 </div>
 

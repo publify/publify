@@ -16,9 +16,24 @@ function autosave_request(e) {
 }
 
 Event.observe(window, 'load', function() {
-  $$('.autosave').each(function(e){autosave_request(e)})
+  $$('.autosave').each(function(e){autosave_request(e)});
+  $$('#article_form .new_category').each(function(cat_link){ cat_link.observe('click', bind_new_category_overlay); });
 })
 
+// UJS for new category link in admin#new_article
+function bind_new_category_overlay(event) {
+  new Ajax.Request(event.element().readAttribute('href'),
+  {
+    method:'get',
+    onSuccess: function(transport){
+      var response = transport.responseText;
+      $('content').insert({bottom: response });
+    },
+    onFailure: function(){ alert('Something went wrong...') }
+  });
+  window.scrollTo(window.pageXOffset, 0); 
+  event.stop();
+}
 // JS QuickTags version 1.3.1
 //
 // Copyright (c) 2002-2008 Alex King

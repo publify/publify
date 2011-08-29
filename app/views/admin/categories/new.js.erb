@@ -1,0 +1,33 @@
+<div class="top-layer">
+  <div class="concrete">
+    <h1><%= _("%s Category", controller.action_name.capitalize) %></h1>
+    <%= render 'form' %>
+  </div>
+  <script type="text/javascript">
+    <!-- Rewrite cancel link to close that form -->
+    $$('.concrete a').each(function(cancel_link) {
+      cancel_link.observe('click', function(event) {
+        $$('.top-layer').each(function(layer) { layer.remove(); });
+        event.stop();
+      });
+      <!-- Ok, it's just for Mister Perfect -->
+      cancel_link.writeAttribute('href', '#close_form');
+      <!-- Intercepts form submission -->
+      $$('.concrete form').each(function(cat_form) {
+        cat_form.observe('submit', function(event) {
+          cat_form.request({
+            method: 'post',
+            onSuccess: function(transport) {
+              $$('.top-layer').each(function(layer) { layer.remove(); });
+              var response = transport.responseText;
+              var categories = $('categories');
+              categories.replace(response);
+              $$('#article_form .new_category').each(function(cat_link){ cat_link.observe('click', bind_new_category_overlay); });
+            }
+          });
+          event.stop();
+        });
+      });
+    });
+  </script>
+</div>
