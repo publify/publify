@@ -16,8 +16,8 @@ mvz for 6.0.6
 - Evaluate http://typogarden.org/lindholmen.html
 - Clean up themes
 
-ook for 6.0.5
-- enable category creation on the fly, in "write" tab (http://fdv.lighthouseapp.com/projects/11171/tickets/141-enable-category-creation-in-the-write-page)
+ook for 6.0.6
+- Allow merge of taggings. IIRC there's a ticket with a patch waiting for us as a good start
 - display permalink for comments
 - port textfilter to the new plugin system
 - evaluate neuro request, about persistancing plugin system into table, instead of Blog.settings
@@ -25,9 +25,6 @@ ook for 6.0.5
 before each release:
 - test db:migrate on an empty database
 
-Admin/tags:
-- Allow merge of taggings. IIRC there's a ticket with a patch waiting for us as a good start
-  
 under the hood:
 - Use standard rails localization
 - Simplify BlogSweeper: (Allmost) all sweeps are really sweep_all.
