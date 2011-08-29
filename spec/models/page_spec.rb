@@ -11,17 +11,28 @@ describe 'Given the fixture :first_page' do
     it { should == 'http://myblog.net/pages/page_one' }
   end
 
-  it '#edit_url should be: http://myblog.net/admin/pages/edit/<page_id>' do
-    @page.edit_url.should == "http://myblog.net/admin/pages/edit/#{@page.id}"
-  end
+  describe "url" do
+    before do
+      @base_url = 'http://myblog.net/admin/pages/'
+    end
 
-  it '#delete_url should work too' do
-    @page.delete_url.should == "http://myblog.net/admin/pages/destroy/#{@page.id}"
+    it '#edit_url should be: http://myblog.net/admin/pages/edit/<page_id>' do
+      @page.edit_url.should == "#{@base_url}edit/#{@page.id}"
+    end
+
+    it '#delete_url should work too' do
+      @page.delete_url.should == "#{@base_url}destroy/#{@page.id}"
+    end
   end
 
   it 'Pages cannot have the same name' do
     Page.new(:name => @page.name, :body => @page.body, :title => @page.title).should_not be_valid
     Page.new(:name => @page.name, :body => 'body', :title => 'title').should_not be_valid
+  end
+  
+  it "should give a satanized title" do
+    page = Factory.build(:page, :title => 'title with accents éèà')
+    page.satanized_title.should == 'title-with-accents-eea'
   end
 end
 

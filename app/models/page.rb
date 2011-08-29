@@ -4,6 +4,7 @@ class Page < Content
   validates_uniqueness_of :name
 
   include ConfigManager
+  include Satanizable
   extend ActiveSupport::Memoizable
   serialize :settings, Hash
 
@@ -53,5 +54,9 @@ class Page < Content
 
   def delete_url
     blog.url_for(:controller => "/admin/pages", :action =>"destroy", :id => id)
+  end
+
+  def satanized_title
+    remove_accents(self.title).gsub(/<[^>]*>/, '').to_url
   end
 end

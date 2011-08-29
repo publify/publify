@@ -15,54 +15,26 @@ describe "A blog" do
     end
   end
 
-  describe "running in the host root" do
-    before :each do
-      @blog.base_url = 'http://myblog.net'
-    end
+  ['','/sub-uri'].each do |sub_url|
+    describe "when running in with http://myblog.net#{sub_url}" do
 
-    describe "blog.url_for" do
-      describe "with a hash argument" do
-        subject { @blog.url_for(:controller => 'categories', :action => 'show', :id => 1) }
-        it { should == 'http://myblog.net/category/1' }
+      before :each do
+        @base_url = "http://myblog.net#{sub_url}"
+        @blog.base_url = @base_url 
       end
 
-      describe "with a hash argument with only_path" do
-        subject { @blog.url_for(:controller => 'categories', :action => 'show', :id => 1, :only_path => true) }
-        it { should == '/category/1' }
-      end
+      [true, false].each do |only_path|
+        describe "blog.url_for" do
+          describe "with a hash argument and only_path = #{only_path}" do
+            subject { @blog.url_for(:controller => 'categories', :action => 'show', :id => 1, :only_path => only_path) }
+            it { should == "#{only_path ? sub_url : @base_url}/category/1" }
+          end
 
-      describe "with a string argument" do
-        subject { @blog.url_for('category/1') }
-        it { should == 'http://myblog.net/category/1' }
-      end
-
-      it "should return the correct URL for a string argument with only_path" do
-        @blog.url_for('category/1', :only_path => true).should == '/category/1'
-      end
-    end
-  end
-
-  describe "running in a sub-URI" do
-    before :each do
-      @blog.base_url = 'http://myblog.net/sub-uri'
-    end
-
-    describe "blog.url_for" do
-      it "should return the correct URL for a hash argument" do
-        @blog.url_for(:controller => 'categories', :action => 'show',
-                      :id => 1).should == 'http://myblog.net/sub-uri/category/1'
-      end
-      it "should return the correct URL for a hash argument with only_path" do
-        @blog.url_for(:controller => 'categories', :action => 'show', :id => 1,
-                     :only_path => true).should == '/sub-uri/category/1'
-      end
-      it "should return the correct URL for a string argument" do
-        @blog.url_for('category/1'
-                     ).should == 'http://myblog.net/sub-uri/category/1'
-      end
-      it "should return the correct URL for a string argument with only_path" do
-        @blog.url_for('category/1',
-                      :only_path => true).should == '/sub-uri/category/1'
+          describe "with a string argument and only_path = #{only_path}" do
+            subject { @blog.url_for('category/1', :only_path => only_path) }
+            it { should == "#{only_path ? sub_url : @base_url}/category/1" }
+          end
+        end
       end
     end
   end
@@ -116,17 +88,21 @@ describe "Valid permalink in blog" do
     @blog = Blog.new
   end
 
+  def set_permalink permalink
+    @blog.permalink_format = permalink
+  end
+
   ['foo', 'year', 'day', 'month', 'title', '%title', 'title%', '/year/month/day/title',
     '%year%', '%day%', '%month%', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|
     it "not valid with #{permalink_type}" do
-      @blog.permalink_format = permalink_type
+      set_permalink permalink_type
       @blog.should_not be_valid
     end
-  end
+    end
 
   ['%title%', '%title%.html', '/hello/all/%year%/%title%', 'atom/%title%.html', 'ok/rss/%title%.html'].each do |permalink_type|
     it "should be valid with only #{permalink_type}" do
-      @blog.permalink_format = permalink_type
+      set_permalink permalink_type
       @blog.should be_valid
     end
   end
