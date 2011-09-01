@@ -1,61 +1,114 @@
-commit 664be667568b65e7ce557f9f3f86b8bd0878f59b
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit 07cd1095848e66d7c847eebbe244890c6ce0e92d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes a bug in the meta title generation.
+    Fixes live search. I'll have to check why we didn't find that one before
 
-commit 79ec63f1549ebe33e838dec7714dbe4ce471e369
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit 48468deb27cecbf5dd50c1a520bb45b443f26691
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Adding per tag and category templating.
+    Fixes a bug when displaying a protected article within a category
 
-commit b861b8dccbc9a9b815e74db39d8d8d53866969d8
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit 69ca931d642a4d3db9eae2d1556874df532b8407
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes custom_tracking fields making a blog exploding when filled. Added some specs to prevent any other bug like this
+    Fixing issue 42: user creation not working.
 
-commit 963220dbe1ffb93b406f0aee718a961ec8ba0b1f
-Author: Frédéric de Villamil <neuro@asocial.org>
-
-    Fixes a (tested) bug on tag destruction. Adds a stupid test for this
-
-commit f83deb6f631c4581503a1c78b86517a8ed951856
+commit 717dd9d888b3928154d55d7b4f690ebad5ab0100
 Author: Yannick Francois <yannick.francois@free.fr>
 
-    Remove text_filter fixture. That was the last fixture to remove...
+    remove unused files amd directory in test dir
 
-commit 34323eac4a1d826da0f4907045938affaf1705c9
-Merge: 963220d f83deb6
+commit b07892e5a728e0e4179da301496e47474b551211
 Author: Yannick Francois <yannick.francois@free.fr>
 
-    Merge branch 'remove_last_fixture_text_filter'
+    remove test dir
 
-commit 9978695e56378fb4523955280aadc01b2f6032b1
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit 163e574de1408d5f1fbc66f60ce509b7946c0ec4
+Author: Huy Dinh <mail@huydinh.eu>
 
-    Updating readme with new bug tracker.
+    Fixing an obvious "blunder".
 
-commit 46b8b07e68541c6e33c12a667f874303ff321fea
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit 8f2f4ecb0d612f4d3b5dd042797cb48420f51b11
+Author: Huy Dinh <mail@huydinh.eu>
 
-    Adds useful links in the dashboard:
-    - Documentation
-    - Bug report
-    - Theme catalogue
-    - Sidebar plugins
-    - In page plugins
+    Follow up, missed fixing another example.
 
-commit 0b995b693acc5c060b5cfea35e95c32fc7895777
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit 5c0c8bd07502b5c3a507f785a47383b8fc44d874
+Author: Thomas Lecavelier <thomas@lecavelier.name>
 
-    Backporting our TODO list from Lighthouse
+    First, the simple link for non-js admin (UJS)
 
-commit 874aacb70a3499ee9f1aff9f740e74eba922bd41
+commit 260e760f50f4dafcf1598a73e664ad3f73f84f60
+Merge: b07892e 8f2f4ec
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge pull request #43 from Skudo/hotfix
+
+commit 0423a97bd490b1eea600bc4dc7b42d61697934e3
+Author: Huy Dinh <mail@huydinh.eu>
+
+    Fixing issue with RedCloth 4.2.7 (see comments in http://blog.typosphere.org/release-of-typo-6-0-6-a-major-one.html).
+
+commit dee03029faec5bf2611e4e67220d87d1b3ab720b
 Author: Yannick Francois <yannick.francois@free.fr>
 
-    Remove unused files in test/fixtures dir
+    create a Satanizable module, remove duplication about clean accents (by move method in satanizable)...
 
-commit 869646e11723711306903d1359860f28f3a15c38
-Merge: 874aacb 0b995b6
+commit 84ccca3fbaba63b0da6af6a1e8b9c935fd39eeb4
+Merge: 260e760 dee0302
 Author: Yannick Francois <yannick.francois@free.fr>
+
+    Merge branch 'remove_accents'
+
+commit 31027227254a252b8b1add4d9311a7ca495982a5
+Author: Huy Dinh <mail@huydinh.eu>
+
+    This fix addresses issue #39: Time.parse apparently hiccups when the timestamp string contains "GMT+0000 (UTC)". Worked around this using fdv's suggestion to use DateTime.strptime.
+
+commit 28623a8d65d8eeecacd5c1daa11e348920ac9e10
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    refactorimg spec to remove duplications (my new job here ? :-p)
+
+commit 508cfd6e5d860f6512adb1881d0037f7d6622f2c
+Merge: 28623a8 0423a97
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #44 from Skudo/fix/RedCloth
+
+commit cb22ad8c192ad1a509483b309361c35c8d0fa13c
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Upgrades to Rails 3.0.10.
+
+commit 6298fcef8ed8909fe4829071fe7df016eeb2a9ea
+Merge: cb22ad8 3102722
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge pull request #45 from Skudo/fix/issue_39
+
+commit f56980f25db474d2ea9a6363dfc62a28d4c42615
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Add Category creation on Content creation page (UJS way). Induced some refactorisation in Categories views and model
+
+commit b8c0ff329f35e537e2ea25b70127a07fb1a3c821
+Merge: f56980f 6298fce
+Author: Thomas Lecavelier <thomas@lecavelier.name>
 
     Merge branch 'master' of github.com:fdv/typo
+
+commit ae1ae6f35aecb9fc24c3ea8800e37d13f5173a3c
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Update todo: category creation in Content creation page: Ok, take Tag merging for me
+
+commit 4501658d08c9b2ee74f1c2a085193799742b2084
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Fixes a bug where attachment thumbnails would not be created at upload from the editor and API.
+
+commit f587ab8a39c8a723d70ca78bbc8fdf0c177f21b3
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Fixing in Ruby 1.9.2
