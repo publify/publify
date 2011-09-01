@@ -1,3 +1,4 @@
+# coding: utf-8
 # not sure about best place to put this class... 
 
 module Satanizable
