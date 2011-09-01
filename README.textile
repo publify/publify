@@ -2,7 +2,7 @@ h1. About Typo
 
 Typo has been around since March of 2005 making it one of the oldest blogging platforms in Rails. With powerful SEO capabilities, full themes, and plug-ins, this platform has all the features needed for a great user experience for both web developers and site visitors. Typo is available as a gem or source tarball.
 
-The current version is Typo 6.0.8 for Ruby on Rails 3.0.9
+The current version is Typo 6.0.9 for Ruby on Rails 3.0.10
 
 !http://blog.typosphere.org/download-typo.png(Download Typo)!:http://typosphere.org/stable.tgz
 
@@ -66,7 +66,7 @@ h2. 1. Prerequisites
 To install Typo you need the following:
 
 * Ruby 1.8.7 or Ruby Enterprise Edition or Ruby 1.9.2. 
-* Ruby On Rails 3.0.9
+* Ruby On Rails 3.0.10
 * A database engine, MySQL, PgSQL or SQLite3
 * The Ruby connector to your favorite database engine
 * A FTP client or even better SSH access to your hosting provider
