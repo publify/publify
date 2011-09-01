@@ -32,6 +32,7 @@ class Resource < ActiveRecord::Base
       end
       File.chmod(0644, fullpath)
       self.size = File.stat(fullpath).size rescue 0
+      create_thumbnail
       update
       self
     rescue

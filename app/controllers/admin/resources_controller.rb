@@ -17,7 +17,6 @@ class Admin::ResourcesController < Admin::BaseController
         @up = Resource.create(:filename => file.original_filename, :mime => mime, :created_at => Time.now)
 
         @up.write_to_disk(file)
-        @up.create_thumbnail
 
         @message = _('File uploaded: ')+ file.size.to_s
         finish_upload_status "'#{@message}'"
