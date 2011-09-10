@@ -56,9 +56,9 @@ Localization.define("fr_FR") do |l|
   l.store "User was successfully updated.", "L'utilisateur a été mis à jour avec succès."
 
   # app/controllers/admin/redirects_controller.rb
-  l.store "Redirection was successfully deleted.", ""
-  l.store "Redirection was successfully saved.", ""
-  l.store "Redirection could not be saved.", ""
+  l.store "Redirection was successfully deleted.", "La redirection a été supprimée avec succès."
+  l.store "Redirection was successfully saved.", "La redirection a été enregistrée avec succès."
+  l.store "Redirection could not be saved.", "La redirection n'a pas pu être enregistrée."
 
   # app/controllers/admin/resources_controller.rb
   l.store "complete", "fini"
