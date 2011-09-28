@@ -1,6 +1,6 @@
 # coding: utf-8
 class PostType < ActiveRecord::Base
-  include Satanizable
+  include Sanitizable
   validates_uniqueness_of :name
   validates_presence_of :name
   validate :name_is_not_read

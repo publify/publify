@@ -1,7 +1,7 @@
 # coding: utf-8
 # not sure about best place to put this class... 
 
-module Satanizable
+module Sanitizable
 
   Accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
     ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
