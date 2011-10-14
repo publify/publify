@@ -57,11 +57,11 @@ describe ArticlesController do
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/"]')
     end
-    
+
     it 'should have googd title' do 
       response.should have_selector('title', :content => "test blog | test subtitles")
     end
-    
+
     it 'should have a custom tracking field' do      
       response.should have_selector('head>script[src="foo.js"]')
     end
@@ -100,7 +100,7 @@ describe ArticlesController do
       it 'should have a canonical url' do
         response.should have_selector('head>link[href="http://test.host/search/a"]')
       end
-      
+
       it 'should have a good title' do
         response.should have_selector('title', :content => "Results for a | test blog")
       end
@@ -137,7 +137,7 @@ describe ArticlesController do
       response.should render_template('articles/error')
       assigns[:articles].should be_empty
     end
-    
+
   end
 
   describe '#livesearch action' do
@@ -207,11 +207,11 @@ describe ArticlesController do
     it 'should have a canonical url' do
       response.should have_selector('head>link[href="http://test.host/2004/4/"]')
     end
-    
+
     it 'should have a good title' do
       response.should have_selector('title', :content => "Archives for test blog")
     end
-    
+
     it 'should have a custom tracking field' do      
       response.should have_selector('head>script[src="foo.js"]')
     end
@@ -329,11 +329,19 @@ describe ArticlesController, "previewing" do
       @article = Factory(:article)
     end
 
-    with_each_theme do |theme, view_path|
-      it "should render template #{view_path}/articles/read" do
-        @blog.theme = theme if theme
-        get :preview, :id => @article.id
-        response.should render_template('articles/read')
+    [nil, 'theme', 'view_path'].each do |theme|
+      describe theme ? "with theme #{theme}" : "without a theme" do
+        view_path = ''
+        Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
+          next if theme =~ /\.\.?/
+          view_path = "#{::Rails.root.to_s}/themes/#{theme}/views"
+
+          it "should render template #{view_path}/articles/read" do
+            @blog.theme = theme if theme
+            get :preview, :id => @article.id
+            response.should render_template('articles/read')
+          end
+        end
       end
     end
 
