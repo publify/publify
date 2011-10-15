@@ -53,7 +53,7 @@ group :development, :test do
   else
     gem 'ruby-debug'
   end
-  gem 'factory_girl'
+  gem 'factory_girl', '2.2.0'
   gem 'webrat'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
   gem 'rcov'
