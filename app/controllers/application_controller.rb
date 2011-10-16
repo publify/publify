@@ -61,8 +61,7 @@ class ApplicationController < ActionController::Base
   end
 
   def add_to_cookies(name, value, path=nil, expires=nil)
-    cookies[name] = { :value => value, :path => path || "/#{controller_name}",
-                       :expires => 6.weeks.from_now }
+    cookies[name] = { :value => value, :path => path || "/#{controller_name}", :expires => 6.weeks.from_now }
   end
 
   def this_blog

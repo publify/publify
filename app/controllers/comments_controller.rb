@@ -13,21 +13,16 @@ class CommentsController < FeedbackController
       end
     end
 
-    set_comment_cookies
-    use_recaptcha = Blog.default.settings["use_recaptcha"]
+    set_cookies_for @comment
 
-    if ((use_recaptcha && verify_recaptcha(:model => @comment)) || !use_recaptcha)  && @comment.save
-      if request.xhr?
-        render :partial => '/articles/comment', :object => @comment
-      else
-        redirect_to @article.permalink_url
-      end
+    partial = '/articles/comment_failed'
+    if recaptcha_ok_for?(@comment)  && @comment.save
+      partial = '/articles/comment'
+    end
+    if request.xhr?
+      render :partial => partial, :object => @comment 
     else
-      if request.xhr?
-        render :partial => '/articles/comment_failed', :object => @comment
-      else
-        redirect_to @article.permalink_url
-      end
+      redirect_to @article.permalink_url
     end
   end
 
@@ -36,13 +31,14 @@ class CommentsController < FeedbackController
       session :session => new
     end
 
-    if (params[:comment][:body].blank? rescue true)
+    comment_params = params[:comment]
+    if (params_comment[:body].blank? rescue true)
       render :nothing => true
       return
     end
 
     set_headers
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(params_comment)
 
     unless @article.comments_closed?
       render 'articles/comment_preview', :locals => { :comment => @comment }
@@ -52,6 +48,11 @@ class CommentsController < FeedbackController
   end
 
   protected
+
+  def recaptcha_ok_for? comment
+    use_recaptcha = Blog.default.settings["use_recaptcha"]
+    ((use_recaptcha && verify_recaptcha(:model => comment)) || !use_recaptcha)
+  end
 
   def get_feedback
     @comments = \
@@ -63,7 +64,7 @@ class CommentsController < FeedbackController
   end
 
   def new_comment_defaults
-    return { :ip  => request.remote_ip,
+    { :ip  => request.remote_ip,
       :author     => 'Anonymous',
       :published  => true,
       :user       => @current_user,
@@ -76,12 +77,12 @@ class CommentsController < FeedbackController
     headers["Content-Type"] = "text/html; charset=utf-8"
   end
 
-  def set_comment_cookies
-    add_to_cookies(:author, @comment.author)
-    if ! @comment.email.blank?
-      add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(@comment.email.strip))
+  def set_cookies_for comment
+    add_to_cookies(:author, comment.author)
+    add_to_cookies(:url, comment.url)
+    if ! comment.email.blank?
+      add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip))
     end
-    add_to_cookies(:url, @comment.url)
   end
 
   def get_article
