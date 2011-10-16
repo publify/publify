@@ -43,13 +43,12 @@ class Feedback < Content
     article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
   end
 
-  def edit_url(anchor=:ignored, only_path=true)
+  def edit_url(anchor=:ignored)
     blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"edit", :id => id)
   end
 
-  def delete_url(anchor=:ignored, only_path=true)
-    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s",
-                 :action =>"destroy", :id => id)
+  def delete_url(anchor=:ignored)
+    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"destroy", :id => id)
   end
 
   def html_postprocess(field, html)
@@ -63,9 +62,7 @@ class Feedback < Content
   end
 
   def article_allows_this_feedback
-    article &&
-      blog_allows_feedback? &&
-      article_allows_feedback?
+    article && blog_allows_feedback? && article_allows_feedback?
   end
 
   def blog_allows_feedback?
@@ -78,11 +75,7 @@ class Feedback < Content
       :comment_author => originator,
       :comment_author_email => email,
       :comment_author_url => url,
-      :comment_content => body}.merge(additional_akismet_options)
-  end
-
-  def additional_akismet_options
-    { }
+      :comment_content => body}
   end
 
   def spam_fields
@@ -105,6 +98,10 @@ class Feedback < Content
     end
   end
 
+  def akismet
+    Akismet.new(blog.sp_akismet_key, blog.base_url)
+  end
+
   def sp_is_spam?(options={})
     sp = SpamProtection.new(blog)
     Timeout.timeout(defined?($TESTING) ? 10 : 30) do
@@ -114,10 +111,6 @@ class Feedback < Content
     end
   rescue Timeout::Error => e
     nil
-  end
-
-  def akismet
-    Akismet.new(blog.sp_akismet_key, blog.base_url)
   end
 
   def akismet_is_spam?(options={})
@@ -142,18 +135,17 @@ class Feedback < Content
   end
 
   def report_as_spam
-    return if blog.sp_akismet_key.blank?
-    begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitSpam(akismet_options) }
-    rescue Timeout::Error => e
-      nil
-    end
+    report_as('spam')
   end
 
   def report_as_ham
+    report_as('ham')
+  end
+
+  def report_as spam_or_ham
     return if blog.sp_akismet_key.blank?
     begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.submitHam(akismet_options) }
+      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.send("submit#{spam_or_ham}", akismet_options) }
     rescue Timeout::Error => e
       nil
     end
