@@ -159,7 +159,6 @@ class Admin::ContentController < Admin::BaseController
 
     @article.published = true
 
-    @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
     @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.keywords = Tag.collection_to_string @article.tags
 
@@ -183,6 +182,7 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
+    @resources = Resource.without_images
     @macros = TextFilter.macro_filters
     render 'new'
   end
@@ -271,6 +271,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def setup_resources
-    @resources = Resource.find(:all, :order => 'created_at DESC')
+    @resources = Resource.by_created_at
   end
 end

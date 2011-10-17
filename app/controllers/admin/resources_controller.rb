@@ -54,7 +54,7 @@ class Admin::ResourcesController < Admin::BaseController
 
   def get_thumbnails
     position = params[:position].to_i
-    @resources = Resource.find(:all, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :limit => "#{position}, 10")
+    @resources = Resource.without_images.by_created_at.limit("#{position}, 10")
     render 'get_thumbnails', :layout => false
   end
 
