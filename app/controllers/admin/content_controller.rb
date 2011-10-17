@@ -158,10 +158,7 @@ class Admin::ContentController < Admin::BaseController
     end
 
     @article.published = true
-
-    @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.keywords = Tag.collection_to_string @article.tags
-
     @article.attributes = params[:article]
     # TODO: Consider refactoring, because double rescue looks... weird.
     @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue
@@ -182,7 +179,8 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
-    @resources = Resource.without_images
+    @images = Resource.images_by_created_at.paginate(:page => params[:page], :per_page => 10)
+    @resources = Resource.without_images_by_filename
     @macros = TextFilter.macro_filters
     render 'new'
   end

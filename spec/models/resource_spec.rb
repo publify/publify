@@ -17,6 +17,15 @@ describe Resource do
       end
     end
 
+    describe "#images" do
+      it "should list only images (based on mime type)" do
+        other_resource = Factory(:resource, :mime => 'text/css')
+        image_resource = Factory(:resource, :mime => 'image/jpeg')
+        Resource.images.should == [image_resource]
+      end
+
+    end
+
     describe "#by_filename" do
       it "should sort resource by filename" do
         b_resource = Factory(:resource, :filename => 'b')
@@ -32,6 +41,17 @@ describe Resource do
         Resource.by_created_at.should == [b_resource, a_resource]
       end
     end
+
+     describe "#without_images_by_filename" do
+      it "should combine 2 scopes" do
+        image_resource = Factory(:resource, :mime => 'image/jpeg')
+        b_resource = Factory(:resource, :mime => 'text/html', :filename => 'b')
+        a_resource = Factory(:resource, :mime => 'text/html', :filename => 'a')
+        Resource.without_images_by_filename.should == [a_resource, b_resource]
+      end
+    end
+
+
   end
 
   it 'resources created with the same name as an existing resource don\'t overwrite the old resource' do

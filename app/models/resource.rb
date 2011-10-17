@@ -9,8 +9,12 @@ class Resource < ActiveRecord::Base
   belongs_to :article
 
   scope :without_images, where("mime NOT LIKE '%image%'")
+  scope :images, where("mime LIKE '%image%'")
   scope :by_filename, order("filename")
   scope :by_created_at, order("created_at DESC")
+
+  scope :without_images_by_filename, without_images.by_filename
+  scope :images_by_created_at, images.by_created_at
 
   def fullpath(file = nil)
     "#{::Rails.root.to_s}/public/files/#{file.nil? ? filename : file}"
