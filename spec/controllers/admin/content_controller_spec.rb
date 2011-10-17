@@ -198,8 +198,7 @@ describe Admin::ContentController do
     end
 
     it 'should create article with no pings' do
-      post(:new, 'article' => {:allow_pings => '0'},
-                 'categories' => [Factory(:category).id])
+      post(:new, 'article' => {:allow_pings => '0'}, 'categories' => [Factory(:category).id])
       assigns(:article).should be_allow_comments
       assigns(:article).should_not be_allow_pings
       assigns(:article).should be_published

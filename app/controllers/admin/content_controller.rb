@@ -157,7 +157,6 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
-    @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @article.published = true
 
     @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
@@ -183,6 +182,8 @@ class Admin::ContentController < Admin::BaseController
         return
       end
     end
+
+    @macros = TextFilter.macro_filters
     render 'new'
   end
 
@@ -258,16 +259,15 @@ class Admin::ContentController < Admin::BaseController
 
   def get_or_build_article
     params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
-    @article = case params[:id]
-             when nil
-               Article.new.tap do |art|
-                 art.allow_comments = this_blog.default_allow_comments
-                 art.allow_pings    = this_blog.default_allow_pings
-                 art.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
-               end
-            else
-              Article.find(params[:id])
-            end
+    if params[:id]
+      @article = Article.find(params[:id])
+    else
+      @article = Article.new.tap do |art|
+        art.allow_comments = this_blog.default_allow_comments
+        art.allow_pings = this_blog.default_allow_pings
+        art.text_filter = (current_user.editor == 'simple') ? current_user.text_filter : 1
+      end
+    end
   end
 
   def setup_resources
