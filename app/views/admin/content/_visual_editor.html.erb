@@ -10,13 +10,11 @@
   if ($('carousel-wrapper')) {
     $('carousel-wrapper').style.display = 'none';
   }
+  $('article__body_and_extended_editor').value = html;
 
-  if (CKEDITOR.instances.article__body_and_extended_editor &&
-    typeof(CKEDITOR.instances.article__body_and_extended_editor) == 'object') {
-      delete(CKEDITOR.instances.article__body_and_extended_editor);
-    }
 </script>
 <%= ckeditor_textarea('article', 'body_and_extended', {:height => '300', :class => 'large'}) %>
 <script type="text/javascript">
-  content = CKEDITOR.instances.article__body_and_extended_editor.setData(html);
+  CKEDITOR.instances.article__body_and_extended_editor.setData(html);
+
 </script>
