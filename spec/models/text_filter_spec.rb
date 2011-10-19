@@ -9,32 +9,31 @@ describe "With the list of available filters" do
     @whiteboard = Hash.new
   end
 
-  it 'Markdown is an available filter' do
-    @filters.should include(Typo::Textfilter::Markdown)
+
+  describe "#available_filters" do
+    subject { @filters }
+    it { should include(Typo::Textfilter::Markdown) }
+    it { should include(Typo::Textfilter::Smartypants) }
+    it { should include(Typo::Textfilter::Htmlfilter) }
+    it { should include(Typo::Textfilter::Textile) }
+    it { should include(Typo::Textfilter::Flickr) }
+    it { should include(Typo::Textfilter::Code) }
+    it { should include(Typo::Textfilter::Lightbox) }
+    it { should_not include(TextFilterPlugin::Markup) }
+    it { should_not include(TextFilterPlugin::Macro) }
   end
 
-  it 'Smartypants is available' do
-    @filters.should include(Typo::Textfilter::Smartypants)
-  end
-
-  it 'Htmlfilter is available' do
-    @filters.should include(Typo::Textfilter::Htmlfilter)
-  end
-
-  it 'Textile is available' do
-    @filters.should include(Typo::Textfilter::Textile)
-  end
-
-  it 'Flickr is available' do
-    @filters.should include(Typo::Textfilter::Flickr)
-  end
-
-  it 'TextFilterPlugin::Markup should be unavailable' do
-    @filters.should_not include(TextFilterPlugin::Markup)
-  end
-
-  it 'TextFilterPlugin::Macro should be unavailable' do
-    @filters.should_not include(TextFilterPlugin::Macro)
+  describe "#macro_filters" do
+    subject { TextFilter.macro_filters }
+    it { should_not include(Typo::Textfilter::Markdown) }
+    it { should_not include(Typo::Textfilter::Smartypants) }
+    it { should_not include(Typo::Textfilter::Htmlfilter) }
+    it { should_not include(Typo::Textfilter::Textile) }
+    it { should include(Typo::Textfilter::Flickr) }
+    it { should include(Typo::Textfilter::Code) }
+    it { should include(Typo::Textfilter::Lightbox) }
+    it { should_not include(TextFilterPlugin::Markup) }
+    it { should_not include(TextFilterPlugin::Macro) }
   end
 
   describe "#filter_text" do

@@ -14,6 +14,10 @@ class TextFilter < ActiveRecord::Base
     TextFilterPlugin.filter_map.values
   end
 
+  def self.macro_filters
+    available_filters.select { |filter| TextFilterPlugin::Macro > filter }
+  end
+
   TYPEMAP={TextFilterPlugin::Markup => "markup",
            TextFilterPlugin::MacroPre => "macropre",
            TextFilterPlugin::MacroPost => "macropost",
@@ -35,9 +39,10 @@ class TextFilter < ActiveRecord::Base
 
       @cached_filter_types[filters] = types
     end
-
     @cached_filter_types[filters]
   end
+
+
 
   def self.filters_map
     TextFilterPlugin.filter_map
@@ -102,5 +107,7 @@ class TextFilter < ActiveRecord::Base
 
   def to_s; self.name; end
 
-  def to_text_filter; self; end
+  def to_text_filter
+     self
+  end
 end
