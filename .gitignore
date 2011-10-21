@@ -5,7 +5,9 @@ config/mail.yml
 db/*.sqlite*
 db/schema.rb
 .*.swp
+.*.swo
 .DS_Store
+.rspec
 installer/rails_installer.yml
 /public/files
 /public/images/theme

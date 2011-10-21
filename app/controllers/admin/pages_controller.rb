@@ -11,7 +11,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def new
-    @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
+    @macros = TextFilter.macro_filters
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
     @page.text_filter ||= current_user.text_filter
@@ -30,7 +30,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def edit
-    @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
+    @macros = TextFilter.macro_filters
     @images = Resource.paginate :page => 1, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @page = Page.find(params[:id])
     @page.attributes = params[:page]

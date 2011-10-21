@@ -5,6 +5,10 @@
   $('f').className = 'inactive';
   $('text_filter').value = $('user_textfilter').value;
   content = CKEDITOR.instances.page__body_editor.getData();
+  if (CKEDITOR.instances.page__body_editor &&
+    typeof(CKEDITOR.instances.page__body_editor) == 'object') {
+      delete(CKEDITOR.instances.page__body_editor);
+    }
 </script>
 <%= text_area('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) %>
 <script type="text/javascript">

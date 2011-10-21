@@ -4,7 +4,7 @@ class Page < Content
   validates_uniqueness_of :name
 
   include ConfigManager
-  include Satanizable
+  include Sanitizable
   extend ActiveSupport::Memoizable
   serialize :settings, Hash
 

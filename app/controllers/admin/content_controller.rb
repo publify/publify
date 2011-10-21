@@ -157,13 +157,8 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
-    @macros = TextFilter.available_filters.select { |filter| TextFilterPlugin::Macro > filter }
     @article.published = true
-
-    @resources = Resource.find(:all, :conditions => "mime NOT LIKE '%image%'", :order => 'filename')
-    @images = Resource.paginate :page => params[:page], :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
     @article.keywords = Tag.collection_to_string @article.tags
-
     @article.attributes = params[:article]
     # TODO: Consider refactoring, because double rescue looks... weird.
     @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue
@@ -183,6 +178,10 @@ class Admin::ContentController < Admin::BaseController
         return
       end
     end
+
+    @images = Resource.images_by_created_at.paginate(:page => params[:page], :per_page => 10)
+    @resources = Resource.without_images_by_filename
+    @macros = TextFilter.macro_filters
     render 'new'
   end
 
@@ -258,19 +257,18 @@ class Admin::ContentController < Admin::BaseController
 
   def get_or_build_article
     params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
-    @article = case params[:id]
-             when nil
-               Article.new.tap do |art|
-                 art.allow_comments = this_blog.default_allow_comments
-                 art.allow_pings    = this_blog.default_allow_pings
-                 art.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
-               end
-            else
-              Article.find(params[:id])
-            end
+    if params[:id]
+      @article = Article.find(params[:id])
+    else
+      @article = Article.new.tap do |art|
+        art.allow_comments = this_blog.default_allow_comments
+        art.allow_pings = this_blog.default_allow_pings
+        art.text_filter = (current_user.editor == 'simple') ? current_user.text_filter : 1
+      end
+    end
   end
 
   def setup_resources
-    @resources = Resource.find(:all, :order => 'created_at DESC')
+    @resources = Resource.by_created_at
   end
 end

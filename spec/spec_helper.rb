@@ -90,19 +90,6 @@ def stub_full_article(time=Time.now)
   a
 end
 
-# test standard view and all themes
-def with_each_theme
-  yield nil, ""
-  Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
-    next if theme =~ /\.\.?/
-    view_path = "#{::Rails.root.to_s}/themes/#{theme}/views"
-    if File.exists?("#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb")
-      require "#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb"
-    end
-    yield theme, view_path
-  end
-end
-
 # This test now has optional support for validating the generated RSS feeds.
 # Since Ruby doesn't have a RSS/Atom validator, I'm using the Python source
 # for http://feedvalidator.org and calling it via 'system'.

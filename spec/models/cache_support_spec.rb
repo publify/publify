@@ -36,14 +36,14 @@ end
 describe "Given an unpublished article" do
   before(:each) do
     Factory(:blog)
-    @article = Factory(:article, :published => false, :state => 'draft')
+    Factory(:article, :published => false, :state => 'draft')
+    @article = Article.first
   end
 
   it "publishing smashes the cache" do
     @article.publish!
     @article.should be_invalidates_cache
   end
-
   it "changing it keeps the cache" do
     @article.body = 'New body'
     @article.should_not be_invalidates_cache
