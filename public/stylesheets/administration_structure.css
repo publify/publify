@@ -6,6 +6,7 @@ body {
   margin: 0 0 50px 0;
   padding: 0 20px;
   font: 11px/17px 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
+  height: 100%;
 }
 
 
@@ -389,11 +390,19 @@ select {
 
 .top-layer {
   position: absolute;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.5);
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  padding-top: 50px;
+  z-index: 1;
+}
+
+.top-layer .close-button {
+  float: right;
+  width: 15px;
+  height: 15px;
 }
 
 .concrete {

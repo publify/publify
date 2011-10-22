@@ -1,11 +1,12 @@
 <div class="top-layer">
   <div class="concrete">
+    <div class="close-button"><%= link_to 'X', '#close', :title => _('close') %></div>
     <h1><%= _("%s Category", controller.action_name.capitalize) %></h1>
     <%= render 'form' %>
   </div>
   <script type="text/javascript">
     <!-- Rewrite cancel link to close that form -->
-    $$('.concrete a').each(function(cancel_link) {
+    $$('.concrete a, .top-layer').each(function(cancel_link) {
       cancel_link.observe('click', function(event) {
         $$('.top-layer').each(function(layer) { layer.remove(); });
         event.stop();
