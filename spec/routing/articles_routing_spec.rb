@@ -17,7 +17,7 @@ describe ArticlesController do
 
   describe "routing for #redirect action" do
     it 'picks up any previously undefined path' do
-      get("/foobar").should route_to(:controller => 'articles',
+      { :get => "/foobar" }.should route_to(:controller => 'articles',
                                      :action => 'redirect',
                                      :from => 'foobar')
     end
