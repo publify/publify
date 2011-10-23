@@ -335,7 +335,6 @@ describe Article do
 
   describe "#default_text_filter" do
     it "returns the blog's text filter" do
-      Blog.any_instance.stub!(:text_filter_object).and_return(Factory(:textile))
       a = Article.new
       assert_equal @blog.text_filter, a.default_text_filter.name
     end
