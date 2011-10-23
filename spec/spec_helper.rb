@@ -16,6 +16,18 @@ end
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+module RSpec
+  module Core
+    module Hooks
+      class HookCollection
+        def find_hooks_for(group)
+          self.class.new(select {|hook| hook.options_apply?(group)})
+        end
+      end
+    end
+  end
+end
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
