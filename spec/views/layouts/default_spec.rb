@@ -7,19 +7,12 @@ describe "layouts/default.html.erb" do
     assign(:auto_discovery_url_rss, "")
   end
 
-  [nil, 'theme', 'view_path'].each do |theme|
+  with_each_theme do |theme, view_path|
     # FIXME: Add default.html.erb in base view dir.
     next unless theme
+
     describe theme ? "with theme #{theme}" : "without a theme" do
-      before(:each) do
-        view_path = ''
-        Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
-          next if theme =~ /\.\.?/
-            view_path = "#{::Rails.root.to_s}/themes/#{theme}/views"
-          if File.exists?("#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb")
-            require "#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb"
-          end
-        end
+      before do
         @controller.view_paths.unshift(view_path) if theme
       end
 
