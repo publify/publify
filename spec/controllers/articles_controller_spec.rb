@@ -664,10 +664,26 @@ end
 describe ArticlesController, "password protected" do
   render_views
 
-  it 'article alone should be password protected' do
+  before do
     b = Factory(:blog, :permalink_format => '/%title%.html')
-    get :redirect, :from => "#{Factory(:article, :password => 'password').permalink}.html"
+    @article = Factory(:article, :password => 'password')
+  end
+
+  it 'article alone should be password protected' do
+    get :redirect, :from => "#{@article.permalink}.html"
     response.should have_selector('input[id="article_password"]', :count => 1)
+  end
+
+  describe "#check_password" do
+    it "shows article when given correct password" do
+      xhr :get, :check_password, :article => {:id => @article.id, :password => @article.password}
+      response.should_not have_selector('input[id="article_password"]')
+    end
+
+    it "shows password form when given incorrect password" do
+      xhr :get, :check_password, :article => {:id => @article.id, :password => "wrong password"}
+      response.should have_selector('input[id="article_password"]')
+    end
   end
 end
 
