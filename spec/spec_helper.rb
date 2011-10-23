@@ -4,7 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'rexml/document'
-Factory.find_definitions
+FactoryGirl.find_definitions
 
 User
 class User
