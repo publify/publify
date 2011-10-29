@@ -11,8 +11,8 @@
 
     <% unless @needed_migrations.blank? %>
     <p>
-      <strong><%= _("New database version")%>:</strong>
-      <%= @needed_version %>
+      <strong><%= _("Migrations")%>:</strong>
+      There are <%= @pending %> migration(s) pending.
     </p>
     <p>
       <label><%= _("Your database supports migrations")%>:</label>
@@ -21,13 +21,13 @@
     <h3><%= _("Needed migrations")%></h3>
     <ul>
       <% for migration in @needed_migrations %>
-      <li><%= migration.humanize %></li>
+      <li><%= migration.name %></li>
       <% end %>
     </ul>
     <% end %>
 
     <%= form_tag :action => 'migrate' do %>
-      <% if @current_version == @needed_version %>
+      <% if @pending.nil? %>
       <div class='info'>
         <p><span class='ui-icon ui-icon-info' style='float: left; margin-right: 0.3em;'></span><strong><%= _("You are up to date!")%></strong></p>
       </div>
