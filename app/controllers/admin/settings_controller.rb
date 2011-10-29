@@ -34,11 +34,13 @@ class Admin::SettingsController < Admin::BaseController
 
   def update_database
     @current_version = Migrator.current_schema_version
-    @needed_version = Migrator.max_schema_version
-    @support = Migrator.db_supports_migrations?
-    @needed_migrations = Migrator.available_migrations[@current_version..@needed_version].collect do |mig|
-      mig.scan(/\d+\_([\w_]+)\.rb$/).flatten.first.humanize
-    end
+  	
+  	path = File.expand_path("db/migrate")
+  	migrator = ActiveRecord::Migrator.new(:up, path)
+  	if migrator.pending_migrations.size > 0
+  	  @pending = migrator.pending_migrations.count
+  	  @needed_migrations = migrator.pending_migrations
+  	end
   end
 
   def migrate
