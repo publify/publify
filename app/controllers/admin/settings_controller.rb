@@ -40,7 +40,10 @@ class Admin::SettingsController < Admin::BaseController
   	if migrator.pending_migrations.size > 0
   	  @pending = migrator.pending_migrations.count
   	  @needed_migrations = migrator.pending_migrations
-  	end
+  	else
+  	  @needed_version = @current_version 
+  	  @needed_migrations = nil
+  	end	
   end
 
   def migrate
