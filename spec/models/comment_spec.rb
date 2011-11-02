@@ -1,9 +1,13 @@
 require 'spec_helper'
 
 describe Comment do
+  def published_article
+    Factory(:article, :published_at => Time.now - 1.hour)
+  end
+
   def valid_comment(options={})
     Comment.new({:author => 'Bob',
-                :article_id => Factory(:article).id,
+                :article => published_article,
                 :body => 'nice post',
                 :ip => '1.2.3.4'}.merge(options))
   end
@@ -42,13 +46,13 @@ describe Comment do
   describe '#save' do
     before(:each) { Factory(:blog, :sp_article_auto_close => 300) }
     it 'should save good comment' do
-      c = Factory.build(:comment, :url => "http://www.google.de")
+      c = Factory.build(:comment, :url => "http://www.google.de", :article => published_article)
       assert c.save
       assert_equal "http://www.google.de", c.url
     end
 
     it 'should save spam comment' do
-      c = Factory.build(:comment, :body => 'test <a href="http://fakeurl.com">body</a>')
+      c = Factory.build(:comment, :body => 'test <a href="http://fakeurl.com">body</a>', :article => published_article)
       assert c.save
       assert_equal "http://fakeurl.com", c.url
     end
@@ -63,7 +67,7 @@ describe Comment do
     end
 
     it 'should change old comment' do
-      c = Factory.build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>')
+      c = Factory.build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>', :article => published_article)
       assert c.save
       assert c.errors.empty?
     end
