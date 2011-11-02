@@ -46,18 +46,14 @@ end
 
 describe CategoriesController, '#show' do
   before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic",
-                      :use_canonical_url => true)
+    blog = Factory(:blog, :base_url => "http://myblog.net", :theme => "typographic",
+                      :use_canonical_url => true, :blog_name => "My Shiny Weblog!")
     Blog.stub(:default) { blog }
     Trigger.stub(:fire) { }
 
-    category = stub_model(Category, :permalink => 'personal', :name => 'Personal')
-    published_articles = 2.times.map { stub_full_article }
-    category.stub(:published_articles) { published_articles }
-    articles = published_articles + [ stub_full_article ]
-    category.stub(:articles) { articles }
-
-    Category.stub(:find_by_permalink) { category }
+    category = Factory(:category, :permalink => 'personal', :name => 'Personal')
+    2.times {|i| Factory(:article, :published_at => Time.now, :categories => [category]) }
+    Factory(:article, :published_at => nil)
   end
 
   def do_get

@@ -55,6 +55,8 @@ class Article < Content
   scope :drafts, :conditions => ['state = ?', 'draft']
   scope :without_parent, {:conditions => {:parent_id => nil}}
   scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
+  scope :published, lambda { { :conditions => { :published => true, :published_at => Time.at(0)..Time.now }, :order => 'published_at DESC' } }
+  scope :published_at, lambda {|time_params| { :conditions => { :published => true, :published_at => Article.time_delta(*time_params) }, :order => 'published_at DESC' } }
 
   setting :password,                   :string, ''
 
@@ -93,14 +95,6 @@ class Article < Content
         article = Article.child_of(article.id).first
       end
       article
-    end
-
-    def published_articles
-      find(:conditions => { :published => true }, :order => 'published_at DESC')
-    end
-
-    def count_published_articles
-      count(:conditions => { :published => true })
     end
 
     def search_no_draft_paginate(search_hash, paginate_hash)
