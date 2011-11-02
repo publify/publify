@@ -360,7 +360,7 @@ class Article < Content
   # check if time to comment is open or not
   def in_feedback_window?
     self.blog.sp_article_auto_close.zero? ||
-      self.created_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
+      self.published_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
   end
 
   def cast_to_boolean(value)
