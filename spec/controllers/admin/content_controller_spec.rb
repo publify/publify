@@ -213,7 +213,7 @@ describe Admin::ContentController do
     it 'should create new published article' do
       lambda do
         post :new, 'article' => base_article
-      end.should change(Article, :count_published_articles)
+      end.should change(Article.published, :count)
     end
 
     it 'should redirect to show' do
@@ -257,7 +257,7 @@ describe Admin::ContentController do
              :article =>  base_article(:published_at => (Time.now + 1.hour).to_s) )
         assert_response :redirect, :action => 'show'
         assigns(:article).should_not be_published
-      end.should_not change(Article, :count_published_articles)
+      end.should_not change(Article.published, :count)
       assert_equal 1, Trigger.count
       assigns(:article).redirects.count.should == 0
     end

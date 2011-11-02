@@ -20,8 +20,8 @@ class Admin::DashboardController < Admin::BaseController
   private
 
   def statistics
-    @statposts = Article.count_published_articles
-    @statuserposts =  Article.count(:conditions => {:user_id => current_user.id, :state => 'published'})
+    @statposts = Article.published.count
+    @statuserposts = Article.published.count(:conditions => {:user_id => current_user.id})
     @statcomments = Comment.count(:all, :conditions => "state != 'spam'")
     @statspam = Comment.count(:all, :conditions => { :state => 'spam' })
     @presumedspam = Comment.count(:all, :conditions => { :state => 'presumed_spam' })
