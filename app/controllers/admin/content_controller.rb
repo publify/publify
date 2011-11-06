@@ -86,7 +86,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
-    get_or_build_article
+    @article = get_or_build_article
 
     # This is ugly, but I have to check whether or not the article is
     # published to create the dummy draft I'll replace later so that the
@@ -137,7 +137,7 @@ class Admin::ContentController < Admin::BaseController
   def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
-    get_or_build_article
+    @article = get_or_build_article
     @post_types = PostType.find(:all)
     if request.post?
       if params[:article][:draft]
@@ -258,14 +258,15 @@ class Admin::ContentController < Admin::BaseController
   def get_or_build_article
     params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
     if params[:id]
-      @article = Article.find(params[:id])
+      article = Article.find(params[:id])
     else
-      @article = Article.new.tap do |art|
+      article = Article.new.tap do |art|
         art.allow_comments = this_blog.default_allow_comments
         art.allow_pings = this_blog.default_allow_pings
         art.text_filter = (current_user.editor == 'simple') ? current_user.text_filter : 1
       end
     end
+    article
   end
 
   def setup_resources

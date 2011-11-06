@@ -198,7 +198,7 @@ describe Admin::ContentController do
     end
 
     it 'should create article with no pings' do
-      post(:new, 'article' => {:allow_pings => '0'}, 'categories' => [Factory(:category).id])
+      post(:new, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'categories' => [Factory(:category).id])
       assigns(:article).should be_allow_comments
       assigns(:article).should_not be_allow_pings
       assigns(:article).should be_published
@@ -211,9 +211,9 @@ describe Admin::ContentController do
     end
 
     it 'should create new published article' do
-      lambda do
-        post :new, 'article' => base_article
-      end.should change(Article.published, :count)
+      Article.count.should be == 1
+      post :new, 'article' => base_article
+      Article.count.should be == 2
     end
 
     it 'should redirect to show' do
