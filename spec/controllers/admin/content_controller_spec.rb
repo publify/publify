@@ -125,8 +125,6 @@ describe Admin::ContentController do
 
     before do
       Factory(:blog)
-      #TODO delete this after remove fixture
-      Profile.delete_all
       @user = Factory(:user, :profile => Factory(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @user.id }
     end

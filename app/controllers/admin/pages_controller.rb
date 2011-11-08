@@ -62,12 +62,14 @@ class Admin::PagesController < Admin::BaseController
     @page.redirects << red
   end
 
+  # TODO Duplicate with Admin::ContentController
   def insert_editor
-    editor = (params[:editor].to_s =~ /simple|visual/) ? params[:editor].to_s : "visual"
+    editor = 'visual'
+    editor = 'simple' if params[:editor].to_s == 'simple'
     current_user.editor = editor
     current_user.save!
 
-    render :partial => "#{params[:editor].to_s}_editor"
+    render :partial => "#{editor}_editor"
   end
 
 end
