@@ -287,6 +287,15 @@ class Article < Content
     super(:published_at)
   end
 
+  def self.get_or_build_article id = nil
+    return Article.find(id) if id
+    article = Article.new.tap do |art|
+      art.allow_comments = art.blog.default_allow_comments
+      art.allow_pings = art.blog.default_allow_pings
+      art.text_filter = art.blog.text_filter
+    end
+  end
+
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   # params is a Hash
   def self.find_by_permalink(params)
@@ -468,10 +477,10 @@ class Article < Content
 
   def set_defaults
     if self.attributes.include?("permalink") and
-          (self.permalink.blank? or
-          self.permalink.to_s =~ /article-draft/ or
-          self.state == "draft"
-    )
+      (self.permalink.blank? or
+       self.permalink.to_s =~ /article-draft/ or
+       self.state == "draft"
+      )
       self.permalink = self.stripped_title
     end
     if blog && self.allow_comments.nil?

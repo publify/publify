@@ -86,7 +86,9 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
-    @article = get_or_build_article
+    id = params[:id]
+    id = params[:article][:id] if params[:article] && params[:article][:id]
+    @article = Article.get_or_build_article id
 
     # This is ugly, but I have to check whether or not the article is
     # published to create the dummy draft I'll replace later so that the
@@ -137,7 +139,11 @@ class Admin::ContentController < Admin::BaseController
   def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
-    @article = get_or_build_article
+    id = params[:id]
+    id = params[:article][:id] if params[:article] && params[:article][:id]
+    @article = Article.get_or_build_article id
+    @article.text_filter = current_user.text_filter if current_user.editor == 'simple'
+
     @post_types = PostType.find(:all)
     if request.post?
       if params[:article][:draft]
@@ -161,8 +167,7 @@ class Admin::ContentController < Admin::BaseController
     @article.keywords = Tag.collection_to_string @article.tags
     @article.attributes = params[:article]
     # TODO: Consider refactoring, because double rescue looks... weird.
-    @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue
-                            Time.parse(params[:article][:published_at]).utc rescue nil
+    @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue Time.parse(params[:article][:published_at]).utc rescue nil
 
     if request.post?
       set_article_author
@@ -253,20 +258,6 @@ class Admin::ContentController < Admin::BaseController
       @article.extended = body[1]
     end
 
-  end
-
-  def get_or_build_article
-    params[:id] = params[:article][:id] if params[:article] and params[:article][:id]
-    if params[:id]
-      article = Article.find(params[:id])
-    else
-      article = Article.new.tap do |art|
-        art.allow_comments = this_blog.default_allow_comments
-        art.allow_pings = this_blog.default_allow_pings
-        art.text_filter = (current_user.editor == 'simple') ? current_user.text_filter : 1
-      end
-    end
-    article
   end
 
   def setup_resources
