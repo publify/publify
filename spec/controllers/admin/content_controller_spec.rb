@@ -141,6 +141,10 @@ describe Admin::ContentController do
       response.should render_template('_visual_editor')
     end
 
+    it 'should render _visual_editor even if editor param is set to unknow editor' do
+      get(:insert_editor, :editor => 'unknow')
+      response.should render_template('_visual_editor')
+    end
   end
 
 

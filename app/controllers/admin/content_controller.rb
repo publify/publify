@@ -54,11 +54,12 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def insert_editor
-    editor = (params[:editor].to_s =~ /simple|visual/) ? params[:editor].to_s : "visual"
+    editor = 'visual'
+    editor = 'simple' if params[:editor].to_s == 'simple'
     current_user.editor = editor
     current_user.save!
 
-    render :partial => "#{params[:editor].to_s}_editor"
+    render :partial => "#{editor}_editor"
   end
 
   def category_add; do_add_or_remove_fu; end
@@ -77,8 +78,8 @@ class Admin::ContentController < Admin::BaseController
 
   def attachment_save(attachment)
     begin
-      Resource.create(:filename => attachment.original_filename,
-                      :mime => attachment.content_type.chomp, :created_at => Time.now).write_to_disk(attachment)
+      Resource.create(:filename => attachment.original_filename, :mime => attachment.content_type.chomp, 
+                      :created_at => Time.now).write_to_disk(attachment)
     rescue => e
       logger.info(e.message)
       nil
@@ -88,7 +89,8 @@ class Admin::ContentController < Admin::BaseController
   def autosave
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
-    @article = Article.get_or_build_article id
+    @article = Article.get_or_build_article(id)
+    @article.text_filter = current_user.text_filter if current_user.simple_editor?
 
     # This is ugly, but I have to check whether or not the article is
     # published to create the dummy draft I'll replace later so that the
@@ -98,7 +100,6 @@ class Admin::ContentController < Admin::BaseController
       @article = Article.drafts.child_of(parent_id).first || Article.new
       @article.allow_comments = this_blog.default_allow_comments
       @article.allow_pings    = this_blog.default_allow_pings
-      @article.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
       @article.parent_id      = parent_id
     end
 
@@ -141,7 +142,7 @@ class Admin::ContentController < Admin::BaseController
   def new_or_edit
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
-    @article = Article.get_or_build_article id
+    @article = Article.get_or_build_article(id)
     @article.text_filter = current_user.text_filter if current_user.simple_editor?
 
     @post_types = PostType.find(:all)
@@ -153,7 +154,6 @@ class Admin::ContentController < Admin::BaseController
           @article = Article.drafts.child_of(parent_id).first || Article.new
           @article.allow_comments = this_blog.default_allow_comments
           @article.allow_pings    = this_blog.default_allow_pings
-          @article.text_filter    = (current_user.editor == 'simple') ? current_user.text_filter : 1
           @article.parent_id      = parent_id
         end
       else
