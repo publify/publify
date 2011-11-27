@@ -84,7 +84,7 @@ function edButton(id, display, tagStart, tagEnd, access, open) {
 edButtons.push(
 	new edButton(
 		'ed_bold'
-		,'strong'
+		,'b'
 		,'<strong>'
 		,'</strong>'
 		,'b'
@@ -94,7 +94,7 @@ edButtons.push(
 edButtons.push(
 	new edButton(
 		'ed_italic'
-		,'italic'
+		,'i'
 		,'<em>'
 		,'</em>'
 		,'i'
