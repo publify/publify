@@ -244,8 +244,8 @@ select {
 }
 
 .info {
-  background: none repeat scroll 0 0 #FFEF8F;
-  border: 1px solid #F9DD34;
+  background: #FBF9EE;
+  border: 1px solid #FCEFA1;
   color: #333333;
 }
 

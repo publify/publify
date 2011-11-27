@@ -729,10 +729,11 @@ span.help {
 4.4. Dashboard
 */
 .dashboard-left { 
-  width: 48%; 
+  width: 49%; 
   float: left; 
-  margin-right: 4%; 
+  margin-right: 5px; 
   margin-top: 20px;
+  padding-right: 0.5%;
 }
 
 .dashboard { 

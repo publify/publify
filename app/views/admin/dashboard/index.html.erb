@@ -7,11 +7,18 @@
 <% end %>
 
 <%= render "overview" %>
-<%= render "welcome" %>
-<%= render "inbound" %>
-<%= render "comments" %>
-<%= render "posts" %>
-<%= render "popular" %>
-<%= render "typo_dev" %>
+
+<div class='dashboard-left'>
+  <%= render "welcome" %>
+  <%= render "comments" %>
+  <%= render "posts" %>
+  <%= render "popular" %>
+</div>
+
+<div class='dashboard-left'>
+  <%= render "inbound" %>
+  <%= render "typo_dev" %>  
+</div>
+
 
 <br class='clear' />
