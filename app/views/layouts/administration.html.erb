@@ -5,7 +5,7 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Typo Administration:  <%= controller.controller_name %></title>
   <meta http-equiv="imagetoolbar" content="no" />
-  <%= stylesheet_link_tag "growler", "administration", "lightbox" %>
+  <%= stylesheet_link_tag "growler", "administration_structure", "administration_color_#{current_user.admin_theme}", "lightbox" %>
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
   <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "growler", "typo_carousel", "administration", "ckeditor/ckeditor" %>
   <%= calendar_date_select_includes %>

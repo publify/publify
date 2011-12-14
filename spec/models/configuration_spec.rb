@@ -316,6 +316,10 @@ describe 'Given a new user' do
   it 'Jabber display in user profile is not enabled' do
     @user.should_not be_show_jabber
   end
+  
+  it 'Admin theme color should be blue' do
+    @user.theme_color.should == 'blue'
+  end
 end
 
 describe 'Given a new article' do
