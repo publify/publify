@@ -5,7 +5,6 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
   <meta http-equiv="imagetoolbar" content="no" />
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
   <%= stylesheet_link_tag "growler", "bootstrap", "administration_structure", "administration_color_#{current_user.admin_theme}", "lightbox" %>
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
   <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "growler", "typo_carousel", "administration", "ckeditor/ckeditor" %>
@@ -45,38 +44,30 @@
 			</div>
 		</div>
 	</div>
-	
-
   <div class='container-fluid'>
     <div class='sidebar'>
       <div class='well'>
         <%= content_tag :h5, (link_to _('Dashboard'), :controller => 'admin/dashboard')  %>
         <% for pm in current_user.project_modules %>
           <%= content_tag :h5, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
-      <ul id='subtabs'>
-          <%= subtabs_for(pm.name.to_sym)%>
-          
-      </ul>
-
+          <ul id='subtabs'>
+            <%= subtabs_for(pm.name.to_sym)%>
+          </ul>
         <% end %>
-        
       </div>
-    
-      </div>
+    </div>
     <div class='content'>
       <div class='hero-unit'>
         <%= render_the_flash %>
-
         <%= show_page_heading %>
         <%= yield  %>
-        
       </div>
     </div>
   </div>
 
-    <footer>
-      <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Typo <%=h TYPO_VERSION %>
-    </footer>
-    </div>
+  <footer>
+    <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Typo <%=h TYPO_VERSION %>
+  </footer>
+</div>
 </body>
 </html>
