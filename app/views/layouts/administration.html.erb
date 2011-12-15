@@ -3,9 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Typo Administration:  <%= controller.controller_name %></title>
+  <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
   <meta http-equiv="imagetoolbar" content="no" />
-  <%= stylesheet_link_tag "growler", "administration_structure", "administration_color_#{current_user.admin_theme}", "lightbox" %>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+  <%= stylesheet_link_tag "growler", "bootstrap", "administration_structure", "administration_color_#{current_user.admin_theme}", "lightbox" %>
   <%= stylesheet_link_tag "administration_rtl" if ( _("Localization.rtl") == "1") %>
   <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "growler", "typo_carousel", "administration", "ckeditor/ckeditor" %>
   <%= calendar_date_select_includes %>
@@ -14,41 +15,68 @@
   </style>
 </head>
 <body>
-  <div id='header'>
-    <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
-  </div>
-  <div id='new_article'>
-    <%= link_to(_("New Article"), {:controller => 'content', :action => 'new'}, :id => 'dialog-link', :class => 'button') %>
-  </div>
-  <div id='logout'>
-    <%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %> |
-    <%= link_to _("%s &raquo;", "Log out").html_safe, {:controller => "/accounts", :action=>"logout"} %>
-  </div>
+	<div class='topbar'>
+		<div class='topbar-inner'>
+			<div class='container-fluid'>
+				<%= link_to this_blog.blog_name, this_blog.base_url, { :class => 'brand' } %>
+				<ul class="nav secondary-nav">
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#"><%= _("Logged in as %s", current_user.nickname)%></a>
+						<ul class="dropdown-menu">
+              <li><%= link_to(_("New Article"), {:controller => 'content', :action => 'new'}) %></li>
+              <li><%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
+              <li><%= link_to _("%s &raquo;", "Log out").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
+						</ul>
+				</li>
+				</ul>
+				<ul class="nav secondary-nav">
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#"><%= _("Help")%></a>
+						<ul class="dropdown-menu">
+              <li><%= link_to _("Documentation"), "https://github.com/fdv/typo/wiki" %></li>
+              <li><%= link_to _("Report a bug"), "https://github.com/fdv/typo/issues" %></li>
+              <li><%= link_to _("Download themes"), "http://typogarden.org" %></li>
+              <li><%= link_to _("In page plugins"), "https://github.com/fdv/typo/wiki/In-Page-Plugins" %></li>
+              <li><%= link_to _("Sidebar plugins"), "https://github.com/fdv/typo/wiki/Sidebar-plugins" %></li>
+						</ul>
+				</li>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+	
 
-
-  <div id='container'>
-    <div id='menu'>
-      <ul id='tabs'>
-        <%= content_tag :li, (link_to _('Dashboard'), :controller => 'admin/dashboard'), :class => class_dashboard  %>
+  <div class='container-fluid'>
+    <div class='sidebar'>
+      <div class='well'>
+        <%= content_tag :h5, (link_to _('Dashboard'), :controller => 'admin/dashboard')  %>
         <% for pm in current_user.project_modules %>
-          <%= content_tag :li, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
-        <% end %>
-      </ul>
+          <%= content_tag :h5, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
       <ul id='subtabs'>
-        <%= yield :tasks %>
+          <%= subtabs_for(pm.name.to_sym)%>
+          
       </ul>
-    </div>
 
-    <div id='content'>
-      <%= render_the_flash %>
+        <% end %>
+        
+      </div>
+    
+      </div>
+    <div class='content'>
+      <div class='hero-unit'>
+        <%= render_the_flash %>
 
-      <%= show_page_heading %>
-      <%= yield  %>
+        <%= show_page_heading %>
+        <%= yield  %>
+        
+      </div>
     </div>
   </div>
 
-    <div id="footer">
+    <footer>
       <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Typo <%=h TYPO_VERSION %>
+    </footer>
     </div>
 </body>
 </html>
