@@ -22,3 +22,4 @@ tmp/*
 nbproject
 public/cache/*
 Gemfile.lock
+.rbenv-version
