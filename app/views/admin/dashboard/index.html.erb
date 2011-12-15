@@ -1,24 +1,13 @@
-<% content_for(:tasks) do %>
-  <li><%= link_to _("Documentation"), "https://github.com/fdv/typo/wiki" %></li>
-  <li><%= link_to _("Report a bug"), "https://github.com/fdv/typo/issues" %></li>
-  <li><%= link_to _("Download themes"), "http://typogarden.org" %></li>
-  <li><%= link_to _("In page plugins"), "https://github.com/fdv/typo/wiki/In-Page-Plugins" %></li>
-  <li><%= link_to _("Sidebar plugins"), "https://github.com/fdv/typo/wiki/Sidebar-plugins" %></li>
-<% end %>
-
 <%= render "overview" %>
 
 <div class='dashboard-left'>
   <%= render "welcome" %>
   <%= render "comments" %>
-  <%= render "posts" %>
   <%= render "popular" %>
 </div>
 
-<div class='dashboard-left'>
+<div class='dashboard'>
   <%= render "inbound" %>
+  <%= render "posts" %>
   <%= render "typo_dev" %>  
 </div>
-
-
-<br class='clear' />

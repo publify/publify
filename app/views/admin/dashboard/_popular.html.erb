@@ -1,19 +1,14 @@
-<div class='widget-container'>
-  <h3 class='dark'>
-    <span class='ui-icon ui-icon-star'> </span>
-    <%= _("Most popular") %>
-  </h3>
-  <div class='widget-content'>
-    <ol class='dashboardList'>
-      <% if @bestof.size == 0 %>
-        <li><%= _("Nothing to show yet") %> !</li>
-      <% else %>
-        <% for article in @bestof -%>
-          <li>
-            <h4><%= sprintf("%s (%s)", link_to_permalink(article, article.title), _("%d comments", article.comment_count)) %></h4>
-            <%= article.body.strip_html.slice(0,300) %>
-        <% end %>
-      <% end -%>
-    </ul>
-  </div>
+<div class='well'>
+  <h3 class='dark'><%= _("Most popular") %></h3>
+  <ol class='dashboardList'>
+  <% if @bestof.size == 0 %>
+    <li><%= _("Nothing to show yet") %> !</li>
+  <% else %>
+    <% for article in @bestof -%>
+    <li>
+      <h4><%= sprintf("%s (%s)", link_to_permalink(article, article.title), _("%d comments", article.comment_count)) %></h4>
+      <%= article.body.strip_html.slice(0,300) %>
+    <% end %>
+  <% end -%>
+  </ol>
 </div>

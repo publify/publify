@@ -46,3 +46,14 @@ body {
 /*------------------------------------------------------------------
 1.1. Links
 */
+
+.dashboard-left { 
+  width: 49%; 
+  float: left; 
+}
+
+.dashboard {
+    width: 49%; 
+    margin-left: 51%; 
+
+}

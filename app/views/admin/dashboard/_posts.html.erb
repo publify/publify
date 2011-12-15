@@ -1,23 +1,18 @@
-<div class='widget-container'>
-  <h3 class='dark'>
-    <span class='ui-icon ui-icon-note'> </span>
-    <%= _("Latest Posts") %>
-  </h3>
-  <div class='widget-content'>
-    <ol class='dashboardList'>
-	    <% if @recent_posts.size == 0 %>
-        <li> <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
-      <% else %>
-        <% for post in @recent_posts -%>
-          <li>
-            <h4><%= sprintf("%s on %s at %s",
-                    link_to_permalink(post, post.title),
-                    post.published_at.strftime(this_blog.date_format),
-                    post.published_at.strftime(this_blog.time_format)) %></h4>
-            <p><%= post.body.strip_html.slice(0,300) if post.body %></p>
-          </li>
-        <% end %>
-      <% end %>
-    </ol>
-  </div>
+<div class='well'>
+  <h3><%= _("Latest Posts") %></h3>
+  <ol class='dashboardList'>
+  <% if @recent_posts.size == 0 %>
+    <li><%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
+  <% else %>
+    <% for post in @recent_posts -%>
+    <li>
+      <h4><%= sprintf("%s on %s at %s",
+        link_to_permalink(post, post.title),
+        post.published_at.strftime(this_blog.date_format),
+        post.published_at.strftime(this_blog.time_format)) %></h4>
+      <p><%= post.body.strip_html.slice(0,300) if post.body %></p>
+    </li>
+    <% end %>
+  <% end %>
+  </ol>
 </div>

@@ -1,28 +1,22 @@
-<div class='widget-container'>
-  <h3 class='dark'>
-    <span class='ui-icon ui-icon-comment'> </span>
-    <%= _("Latest Comments") %>
-  </h3>
-  <div class='widget-content'>
-    <ol class='dashboardList' id="commentList">
-      <% if @comments.size == 0 %>
-        <li><%= _("No comments yet") %></li>
-      <% else %>
-        <% for comment in @comments -%>
-        <li id='feedback_<%= comment.id %>' class='clear'>
-          <%= avatar_tag(:email => comment.email, :url => comment.url) %>
-          <h4>
-            <%= _("By") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
-            <%= display_date_and_time comment.created_at %>
-          </h4>
-          <p>
-            <%= comment.html.strip_html.slice(0..300) %>
-          </p>
-          <%= show_feedback_actions(comment, 'dashboard') %>
-        </li>
-        <% end %>
-      <% end %>
-    </ol>
-  </div>
+<div class='well'>
+  <h3><%= _("Latest Comments") %></h3>
+  <ol class='dashboardList' id="commentList">
+  <% if @comments.size == 0 %>
+    <li><%= _("No comments yet") %></li>
+  <% else %>
+    <% for comment in @comments -%>
+    <li id='feedback_<%= comment.id %>' class='clear'>
+      <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+      <h4>
+        <%= _("By") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
+        <%= display_date_and_time comment.created_at %>
+      </h4>
+      <p>
+        <%= comment.html.strip_html.slice(0..300) %>
+      </p>
+      <%= show_feedback_actions(comment, 'dashboard') %>
+    </li>
+    <% end %>
+  <% end %>
+  </ol>
 </div>
-
