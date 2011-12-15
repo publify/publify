@@ -18,8 +18,7 @@ module Admin::BaseHelper
 
   def show_page_heading
     heading = ""
-    heading << content_tag(:div, @link_to_new, :class => 'page_new') unless @link_to_new.blank?
-    heading << content_tag(:h2, @page_heading, :class => 'page_heading') unless @page_heading.blank?
+    heading << content_tag(:h2, @page_heading.html_safe) unless @page_heading.blank?
   end
 
   def cancel(url = {:action => 'index'})
@@ -242,7 +241,7 @@ module Admin::BaseHelper
 
   def display_pagination(collection, cols, first='', last='')
     if collection.total_pages > 1
-      return "<tr><td class='#{first} #{last}' colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
+      return "<tr><td colspan=#{cols}>#{will_paginate(collection)}</td></tr>"
     end
   end
 

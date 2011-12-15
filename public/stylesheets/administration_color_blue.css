@@ -35,3 +35,10 @@ Assigned to:  Frédéric de Villamil (neuro)
 
 -------------------------------------------------------------------*/
 
+th {
+  background: none;
+}
+
+tr.noborder td {
+  border-top: none;
+}
