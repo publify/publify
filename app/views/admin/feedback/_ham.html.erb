@@ -1,5 +1,5 @@
 <td><input class= "feedback_check" type="checkbox" name="feedback_check[<%= comment.id %>]"/></td>
-<td class='<%= comment_class comment.state.to_s.downcase %>'><%= comment.state %></td>
+<td><span class='label <%= comment_class comment.state.to_s.downcase %>'><%= comment.state %></span></td>
 <td>
   <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 32) %>
   <div class='comment_content'>

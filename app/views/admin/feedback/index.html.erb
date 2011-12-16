@@ -2,11 +2,30 @@
 <% subtabs_for(:articles) %>
 
 <%= form_tag({:action => 'index'}, :method => :get) do %>
-<div class='settings'>
-  <h4><label for="search"><%= _("Search Comments and Trackbacks that contain")%>...:</label></h4>
-  <div class='input_text'>
+<div class='row'>
+  <div class='span8'>
+    <span class='label'>
+      <%= link_to(_("All"), :controller => 'admin/feedback', :action => 'index') %>
+    </span>&nbsp; 
+    <span class='label'>
+      <%= link_to(_("Unapproved comments"), :controller => 'admin/feedback', :action => 'index', :confirmed => 'f') %>
+    </span>&nbsp;
+    <span class='label success'>
+      <%= link_to(_("Ham"), :controller => 'admin/feedback', :action => 'index', :ham => 'f') %>
+    </span>&nbsp;
+    <span class='label important'>
+      <%= link_to(_("Spam"), :controller => 'admin/feedback', :action => 'index', :spam => 'f') %>
+    </span>&nbsp;
+    <span class='label notice'>
+      <%= link_to(_("Presumed ham"), :controller => 'admin/feedback', :action => 'index', :presumed_ham => 'f') %>
+    </span>&nbsp;
+    <span class='label warning'>
+      <%= link_to(_("Presumed spam"), :controller => 'admin/feedback', :action => 'index', :published => 'f') %>
+    </span>&nbsp;
+  </div>
+  <div class='pull-right'>
     <input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" class='medium' />
-    <%= submit_tag(_("Search"), {:class => 'ed_button'}) %>
+    <%= submit_tag(_("Search"), {:class => 'btn'}) %>
   </div>
 </div>
 <% end %>
@@ -17,21 +36,21 @@
 <%= hidden_field_tag "search", params[:search]%>
 <%= hidden_field_tag "page", params[:page]%>
 
-<br class='clear' />
-
-<table>
-  <tr>
+<table class='zebra-striped'>
+<thead>
+  <tr class='noborder'>
     <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
     <th><%= _("Status")%></th>
     <th><%= _("Comment Author")%></th>
     <th><%= _("Comment")%></th>
     <th><%= _("Article")%></th>
   </tr>
-
+  
+</thead>
   <%= render_void_table(@feedback.size, 5) %>
 
   <% @feedback.each do |comment| %>
-  <tr <%= alternate_class %> id='<%= "feedback_#{comment.id}" %>'>
+  <tr id='<%= "feedback_#{comment.id}" %>'>
     <% if comment.state.to_s.downcase == 'spam'  %>
       <%= render 'spam', {:comment => comment} %>
     <% else %>
@@ -42,7 +61,8 @@
 
   <%= display_pagination(@feedback, 5) %>
   <tr>
-    <th colspan='5'><%= _("Select all") %><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+    <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+    <th colspan='4'><%= _("Select all") %></th>
   </tr>
 </table>
 

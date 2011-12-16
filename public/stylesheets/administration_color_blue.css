@@ -42,3 +42,7 @@ th {
 tr.noborder td {
   border-top: none;
 }
+
+.label a {
+  color: #fff;
+}

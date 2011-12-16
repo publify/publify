@@ -27,6 +27,11 @@ class Admin::FeedbackController < Admin::BaseController
       conditions.last.merge!(:state => 'ham')
     end
 
+    if params[:spam] == 'f'
+      conditions.first << ' AND state = :state '
+      conditions.last.merge!(:state => 'spam')
+    end
+
     if params[:presumed_ham] == 'f'
       conditions.first << ' AND state = :state '
       conditions.last.merge!(:state => 'presumed_ham')

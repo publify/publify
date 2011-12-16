@@ -1,24 +1,14 @@
-<div class='settings left'>
-  <%= hidden_field_tag "confirmed", params[:confirmed] %>
-  <%= hidden_field_tag "published", params[:published] %>
-  <select name='<%= "bulkop_#{position}" %>' id="<%= "bulkop_#{position}" %>">
-    <option><%= _("Select action") %></option>
-    <option value='Delete Checked Items'><%= _("Delete Checked Items") %></option>
-    <option value='Delete all spam'><%= _("Delete all spam") %></option>
-    <option value='Mark Checked Items as Spam'><%= _("Mark Checked Items as Spam") %></option>
-    <option value='Mark Checked Items as Ham'><%= _("Mark Checked Items as Ham") %></option>
-  </select>
-  <%= submit_tag _("Submit"), {:class => 'ed_button'} %>
-</div>
-<div class='settings left'>
-  <%= _("Display") %>
-  <select name='comment_type' id='comment_type'>
-    <option value=''><%= _("All comments")%></option>
-    <option value='?ham=f' <%= 'selected' if params[:ham] == 'f' %>><%= _("Limit to ham") %></option>
-    <option value='?presumed_ham=f' <%= 'selected' if params[:presumed_ham] == 'f' %>><%= _("Limit to presumed ham") %></option>
-    <option value='?presumed_spam=f' <%= 'selected' if params[:presumed_spam] == 'f' %>><%= _("Limit to presumed spam") %></option>
-    <option value='?confirmed=f' <%= 'selected' if params[:confirmed] == 'f' %>><%= _("Unapproved comments") %></option>
-    <option value='?published=f' <%= 'selected' if params[:published] == 'f' %>><%= _("Limit to spam")%></option>
-  </select>
-  <%= submit_tag _("Submit"), {:class => 'ed_button', :onclick => 'window.location=document.getElementById("comment_type").options[document.getElementById("comment_type").selectedIndex].value; return(false)'} %>
+<div class='row'>
+  <div class='span8'>
+    <%= hidden_field_tag "confirmed", params[:confirmed] %>
+    <%= hidden_field_tag "published", params[:published] %>
+    <select name='<%= "bulkop_#{position}" %>' id="<%= "bulkop_#{position}" %>">
+      <option><%= _("Select action") %></option>
+      <option value='Delete Checked Items'><%= _("Delete Checked Items") %></option>
+      <option value='Delete all spam'><%= _("Delete all spam") %></option>
+      <option value='Mark Checked Items as Spam'><%= _("Mark Checked Items as Spam") %></option>
+      <option value='Mark Checked Items as Ham'><%= _("Mark Checked Items as Ham") %></option>
+    </select>
+    <%= submit_tag _("Submit"), {:class => 'btn'} %>
+  </div>
 </div>

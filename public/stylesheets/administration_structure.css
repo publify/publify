@@ -58,6 +58,11 @@ body {
 
 }
 
-table {
-  margin-top: 20px;
+table.clearfix {
+  clear: both;
+  margin-top: 18px;
+}
+
+footer {
+  clear: both;
 }

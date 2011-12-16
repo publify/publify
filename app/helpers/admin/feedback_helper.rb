@@ -1,6 +1,9 @@
 module Admin::FeedbackHelper
   def comment_class state
-    (state.to_s.downcase =~ /spam/) ? 'unpublished' : 'published'
+    return 'notice' if state.to_s.downcase == 'ham?'
+    return 'warning' if state.to_s.downcase == 'spam?'
+    return 'success' if state.to_s.downcase == 'ham'
+    return 'important'
   end
 
   def show_feedback_actions(item, context='listing')
@@ -13,6 +16,11 @@ module Admin::FeedbackHelper
         #{link_to _("Show conversation"), :controller => 'admin/feedback', :action => 'article', :id => item.article_id}
     </div>
     HTML
+  end
+
+  def filter_link(text, filter='', style='')
+    
+    return content_tag(:span, text, {:class => 'label'}) unless [params[:published], params[:confirmed], params[:ham], params[:spam], params[:presumed_ham], params[:presumed_spam]].include?('f')
   end
 
   def change_status(item, context='listing')
