@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe 'Given a new blog' do
   before(:each) do
-    Blog.delete_all
     @blog = Blog.new
   end
   
@@ -241,7 +240,6 @@ end
 
 describe 'Given a new user' do
   before(:each) do
-    User.delete_all
     @user = User.new
   end
 
@@ -324,7 +322,6 @@ end
 
 describe 'Given a new article' do
   before(:each) do
-    Article.delete_all
     @article = Article.new
   end
 
@@ -335,7 +332,6 @@ end
 
 describe 'Given a new page' do
   before(:each) do
-    Page.delete_all
     @page = Page.new
   end
 
