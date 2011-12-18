@@ -317,8 +317,8 @@ describe 'Given a new user' do
     @user.should_not be_show_jabber
   end
   
-  it 'Admin theme color should be blue' do
-    @user.theme_color.should == 'blue'
+  it 'Admin theme should be blue' do
+    @user.admin_theme.should == 'blue'
   end
 end
 
