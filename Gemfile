@@ -25,6 +25,8 @@ else
   end
 end
 
+source :rubygems
+
 gem 'rails', '3.0.10'
 gem 'require_relative'
 gem 'htmlentities'
