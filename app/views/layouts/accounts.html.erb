@@ -5,14 +5,18 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title><%= @page_title %></title>
 		<meta http-equiv="imagetoolbar" content="no" />
-		<%= stylesheet_link_tag "reset", "accounts" %>
+		<%= stylesheet_link_tag "growler", "bootstrap", "accounts", "lightbox" %>
 	</head>
   <body>
-    <div id='<%= controller.controller_name.to_s.downcase %>container'>
-      <div class='inner'>
-        <%= yield %>
+    <div class='topbar'>
+      <div class='topbar-inner'>
+        <div class='container'>
+          <%= link_to this_blog.blog_name, this_blog.base_url, { :class => 'brand' } %>
+        </div>
       </div>
     </div>
+		<div class='container'>
+      <%= yield %>
+		</div>
   </body>
 </html>
-

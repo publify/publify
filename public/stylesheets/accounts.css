@@ -1,125 +1,15 @@
-/*------------------------------------*\
-  STRUCTURE
-\*------------------------------------*/
-#accountscontainer, #setupcontainer {
-  margin: 5em auto 0 auto;
-}
-
-#accountscontainer {
-  width: 300px;
-}
-
-#setupcontainer {
-  width: 360px;
-}
-
-.inner {
-  margin: 1.5em 10px 0 10px;
-}
-
-input.title {
-  padding: 3px;
-  width: 272px;
-}
-
-#setupcontainer input.title {
-  width: 332px;
-}
-
-#submit {
-  padding: 5px;
-}
-
-#remember {
-  width: 160px;
-  padding: 5px 0;
-  float: left;
-  margin-bottom: 1.5em;
-}
-
-#accountscontainer #submit {
-  float: right;
-  margin-left: 20px;
-}
-
-.notice, .error {
-  padding: 0.7em; 
-  margin: 0.7em 0; 
-  display :block;
-}
-
-/*------------------------------------*\
-  COLORS AND FONTS
-\*------------------------------------*/
 body {
-  color: #000;
-  background: #023;
+	padding-top: 60px;
 }
 
-a {
-  color: #2779AA;
-  text-decoration: none;
+.login {
+	width: 290px;
 }
 
-a:hover {
-  color: #116088;
+form .clearfix {
+	margin-bottom: 8px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
-  color: #116088;
+form {
+    margin-bottom: 0;
 }
-
-h1 {
-  text-align: center;
-}
-
-label {
-  color: #116088;
-  display: block;
-}
-
-input.title {
-  border: #ddd 1px solid;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  font: 1.5em/1.5em Helvetica, Arial, sans-serif;
-}
-
-#submit {
-  font: 1em/1.5em Helvetica, Arial, sans-serif;
-  color: #fff;
-  background: #fb7c00;
-  border: #fb7c00 1px solid;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#accountscontainer, #setupcontainer {
-  background: url("../images/admin/ui-bg_flat_100_f9f9f9_40x100.png") repeat-x #F9F9F9;
-  border: #ddd 1px solid;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-}
-
-/* Import for flash, maybe this should go into a common.css? */
-.error {
-  -moz-border-radius: 3px; 
-  -webkit-border-radius: 3px; 
-  border-radius: 3px;
-  border: 1px solid #cd0a0a; 
-  background: #cd0a0a url(../images/admin/ui-bg_flat_15_cd0a0a_40x100.png) 50% 50% repeat-x; color: #ffffff; 
-}
-
-.notice {
-  border: 1px solid #f9dd34; 
-  background: #ffef8f url(../images/admin/ui-bg_highlight-soft_25_ffef8f_1x100.png) 50% top repeat-x; 
-  color: #363636; 
-  -moz-border-radius: 3px; 
-  -webkit-border-radius: 3px;   
- }

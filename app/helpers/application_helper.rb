@@ -216,14 +216,11 @@ module ApplicationHelper
 
   def render_the_flash
     return unless flash[:notice] or flash[:error] or flash[:warning]
-    the_class = flash[:error] ? 'ui-state-error' : 'ui-state-highlight'
-    the_icon = flash[:error] ? 'ui-icon-alert' : 'ui-icon-info'
+    the_class = flash[:error] ? 'error' : 'success'
 
-    html = "<div class='ui-widget settings'>"
-    html << "<div class='#{the_class}'>"
-    html << "<p><span class='ui-icon #{the_icon}' style='float: left;'></span>"
+    html = "<div class='alert-message #{the_class}'>"
+    html << "<a class='close' href='#'>×</a>"
     html << render_flash rescue nil
-    html << "</div>"
     html << "</div>"
   end
 

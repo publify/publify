@@ -1,25 +1,22 @@
-<%= content_tag :h1, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
-
-<div id="flash"><%= render_the_flash %></div>
-<%= form_tag :action=> "login" do %>
-  <p>
-    <label for="user_login"><%= _('Login')%></label>
-    <%= text_field(:user, :login, {:class => 'title'})%>
-  </p>
-  <p>
-    <label for="user_password"><%= _('Password')%></label>
-    <%= password_field(:user, :password, {:class => 'title'})%>
-  </p>
-  <p>
-    <label for="remember_me">
-      <div id='remember'>
-        <%= check_box_tag 'remember_me' %>
-        <%= _('Remember me')%>
+<div class='row'>
+  <div class='span6 offset5'>
+    <div class='well'>
+      <div id="flash"><%= render_the_flash %></div>
+      <%= form_tag :action=> "login" do %>
+      <div class='clearfix'>
+        <%= text_field(:user, :login, {:class => 'login', :placeholder => _("login")})%>  
       </div>
-      <input type="submit" name="login" value= "<%= _('Submit') %>" class="save" id="submit" />
-    </label>
-  </p>
-  <p class='clear'>
-    <%= display_accounts_link %>
-  </p>
-<% end %>
+      <div class='clearfix'>
+        <%= password_field(:user, :password, {:class => 'title', :placeholder => _("password")})%>
+        <input type="submit" name="login" class="btn info" value= "<%= _('Login') %>" />
+      </div>
+      <div class='clearfix'>
+        <p>
+          <%= check_box_tag 'remember_me' %> <small><%= _('Remember me')%> .</small> 
+          <%= display_accounts_link %>
+        </p>        
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
