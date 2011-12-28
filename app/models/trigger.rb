@@ -9,8 +9,20 @@ class Trigger < ActiveRecord::Base
     end
 
     def fire
-      destroy_all ['due_at <= ?', Time.now]
-      true
+      begin
+        destroy_all ['due_at <= ?', Time.now]
+        true
+      rescue
+        @current_version = Migrator.current_schema_version
+        @needed_version = Migrator.max_schema_version
+        @support = Migrator.db_supports_migrations?
+        @needed_migrations = Migrator.available_migrations[@current_version..@needed_version].collect do |mig|
+          mig.scan(/\d+\_([\w_]+)\.rb$/).flatten.first.humanize
+        end
+        if @needed_migrations
+          Migrator.migrate
+        end
+      end
     end
 
     def remove(pending_item, conditions = { })
