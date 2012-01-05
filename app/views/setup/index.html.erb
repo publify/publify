@@ -1,20 +1,18 @@
-<%= content_tag :h1, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
-
-<div id="flash"><%= render_the_flash %></div>
-<%= form_tag :action=> 'index' do %>
-  <h2><%= _("Welcome")%></h2>
-  <p><%= _("Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", link_to("Typo", 'http://typosphere.org'))%></p>
-
-  <p>
-    <label for="user_login"><%= _("Blog name") %>:</label>
-    <%= text_field(:setting, :blog_name, {:class => 'title'})%>
-  </p>
-
-  <p>
-    <label for="user_email"><%= _("Your email")%>:</label>
-    <%= text_field(:setting, :email, {:class => 'title large'})%>
-  </p>
-  <p>
-    <input type="submit" id="submit" class='save large' value="<%= _('Save')%>" />
-  </p>
-<% end %>
+<div class='row'>
+  <div class='span6 offset5'>
+    <div class='well'>
+      <div id="flash"><%= render_the_flash %></div>
+      <%= form_tag :action=> 'index' do %>
+      <h2><%= _("Welcome")%></h2>
+      <p><%= _("Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", link_to("Typo", 'http://typosphere.org'))%></p>
+      <div class='clearfix'>
+        <%= text_field(:setting, :blog_name, { :class=> 'login', :placeholder => _("Blog name")})%>
+      </div>
+      <div class='clearfix'>
+        <%= text_field(:setting, :email, {:placeholder => _("Your email")})%>
+        <input type="submit" id="submit" class='btn info' value="<%= _('Save')%>" />
+      </div>
+      <% end %>				
+    </div>
+  </div>
+</div>
