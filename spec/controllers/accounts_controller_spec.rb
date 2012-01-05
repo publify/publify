@@ -137,6 +137,22 @@ describe AccountsController do
     end
   end
 
+  describe 'GET /index' do
+    it 'should redirect to login' do
+      Factory(:blog)
+      User.stub!(:count).and_return(1)
+      get 'index'
+      response.should redirect_to(:action => 'login')
+    end
+    
+    it 'should redirect to signup' do
+      Factory(:blog)
+      User.stub!(:count).and_return(0)
+      get 'index'
+      response.should redirect_to(:action => 'signup')
+    end    
+  end
+
   describe 'GET /login' do
     it 'should render action :login' do
       Factory(:blog)

@@ -3,6 +3,14 @@ class AccountsController < ApplicationController
   before_filter :verify_config
   before_filter :verify_users, :only => [:login, :recover_password]
 
+  def index
+    if User.count.zero?
+      redirect_to :action => 'signup'
+    else
+      redirect_to :action => 'login'
+    end
+  end
+
   def login
     if session[:user_id] && session[:user_id] == self.current_user.id
       redirect_back_or_default :controller => "admin/dashboard", :action => "index"
