@@ -1,22 +1,19 @@
-<%= content_tag :h3, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
-
-<div id="flash"><%= error_messages_for 'user' %></div>
-
-<%= form_tag :action=> "signup" do %>
-<div>
-  <h1><%= _("Create an account")%></h1>
-  <h2><label for="user_login"><%= _("Username") %>:</label></h2>
-  <p class='input_text_title'>
-    <%= text_field(:user, :login, {:class => 'title large'})%>
-  </p>
+<div class='row'>
+  <div class='span6 offset5'>
+    <div class='well'>
+      <div id="flash"><%= render_the_flash %></div>
+      <%= form_tag :action=> "signup" do %>
+      <div class='clearfix'>
+        <h2><%= _("Create an account") %></h2>
+      </div>
+      <div class='clearfix'>
+        <%= text_field(:user, :login, {:class => 'login', :placeholder => _("Username") })%>
+      </div>
+      <div class='clearfix'>
+        <%= text_field(:user, :email, {:class => 'title', :placeholder => _("Email") })%>
+        <input type="submit" id="submit" class='btn info' value="<%= _('Signup')%>" />
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<div>
-  <h2><label for="user_email"><%= _("Email")%>:</label></h2>
-  <p class='input_text_title'>
-    <%= text_field(:user, :email, {:class => 'title large'})%>
-  </p>
-</div>
-<p><input type="submit" id="submit" class='save large' value="<%= _('Signup')%>" /></p>
-
-<% end %>
-
