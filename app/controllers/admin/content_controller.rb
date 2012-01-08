@@ -13,7 +13,7 @@ class Admin::ContentController < Admin::BaseController
 
   def index
     @search = params[:search] ? params[:search] : {}
-    @articles = Article.search_no_draft_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
+    @articles = Article.search_no_draft_paginate(@search, {:page => params[:page], :per_page => this_blog.admin_display_elements})
 
     if request.xhr?
       render :partial => 'article_list', :locals => { :articles => @articles }
@@ -184,7 +184,7 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
-    @images = Resource.images_by_created_at.paginate(:page => params[:page], :per_page => 10)
+    @images = Resource.images_by_created_at.page(params[:page]).per(10)
     @resources = Resource.without_images_by_filename
     @macros = TextFilter.macro_filters
     render 'new'

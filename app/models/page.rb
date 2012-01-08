@@ -29,7 +29,9 @@ class Page < Content
   def self.search_paginate(search_hash, paginate_hash)
     list_function = ["Page"] + function_search_no_draft(search_hash)
     paginate_hash[:order] = 'title ASC'
-    list_function << "paginate(paginate_hash)"
+    list_function << "page(paginate_hash[:page])"
+    list_function << "per(paginate_hash[:per])"
+    
     eval(list_function.join('.'))
   end
 

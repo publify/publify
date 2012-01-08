@@ -25,7 +25,7 @@ class GroupingController < ContentController
 
   def index
     @noindex = set_noindex params[:page]
-    self.groupings = grouping_class.paginate(:page => params[:page], :per_page => 100)
+    self.groupings = grouping_class.page(params[:page]).per(100)
     @page_title = "#{self.class.to_s.sub(/Controller$/,'')}"
     @keywords = ""
     @description = "#{_(self.class.to_s.sub(/Controller$/,''))} #{'for'} #{this_blog.blog_name}"
@@ -42,7 +42,7 @@ class GroupingController < ContentController
     @page_title = show_page_title_for @grouping, params[:page]
     @description = @grouping.description.to_s
     @keywords = keyword_from @grouping
-    @articles = @grouping.articles.published.paginate(:page => params[:page], :per_page => 10)
+    @articles = @grouping.articles.published.page(params[:page]).per(10)
 
     render_articles
   end

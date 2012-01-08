@@ -5,4 +5,4 @@
   </div>
 <% end -%>
 
-<%= will_paginate @articles, :next_label => "#{_("Next page")} &raquo;", :previous_label => "&laquo; #{_('Previous page')}" %>
+<%= paginate @articles, :next_label => "#{_("Next page")} &raquo;", :previous_label => "&laquo; #{_('Previous page')}" %>
