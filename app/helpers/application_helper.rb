@@ -284,4 +284,8 @@ module ApplicationHelper
   def this_blog
     @blog ||= Blog.default
   end
+
+  def will_paginate(items, params = {})
+    paginate(items, params)
+  end
 end

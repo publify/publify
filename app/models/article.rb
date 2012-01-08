@@ -105,7 +105,8 @@ class Article < Content
       end
 
       paginate_hash[:order] = 'published_at DESC'
-      list_function << "paginate(paginate_hash)"
+      list_function << "page(paginate_hash[:page])"
+      list_function << "per(paginate_hash[:per])"
       eval(list_function.join('.'))
     end
 
@@ -330,7 +331,7 @@ class Article < Content
     if !query_s.empty? && args.empty?
       Article.searchstring(query)
     elsif !query_s.empty? && !args.empty?
-      Article.searchstring(query).paginate(args)
+      Article.searchstring(query).page(args[:page]).per(args[:per])
     else
       []
     end

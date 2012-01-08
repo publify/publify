@@ -15,7 +15,7 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
     @page.text_filter ||= current_user.text_filter
-    @images = Resource.paginate :page => 1, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
+    @images = Resource.where("mime LIKE '%image%'").order('created_at DESC').page(1).per(10)
     if request.post?
       if @page.name.blank?
         @page.name = @page.satanized_title
@@ -31,7 +31,7 @@ class Admin::PagesController < Admin::BaseController
 
   def edit
     @macros = TextFilter.macro_filters
-    @images = Resource.paginate :page => 1, :conditions => "mime LIKE '%image%'", :order => 'created_at DESC', :per_page => 10
+    @images = Resource.where("mime LIKE '%image%'").page(1).order('created_at DESC').per(10)
     @page = Page.find(params[:id])
     @page.attributes = params[:page]
     if request.post? and @page.save

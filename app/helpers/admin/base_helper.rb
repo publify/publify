@@ -240,9 +240,7 @@ module Admin::BaseHelper
   end
 
   def display_pagination(collection, cols, first='', last='')
-    if collection.total_pages > 1
-      return "<tr><td class='#{first} #{last}' colspan=#{cols} class='paginate'>#{will_paginate(collection)}</td></tr>"
-    end
+    return "<tr><td class='#{first} #{last}' colspan=#{cols} class='paginate'>#{paginate(collection)}</td></tr>"
   end
 
   def show_thumbnail_for_editor(image)

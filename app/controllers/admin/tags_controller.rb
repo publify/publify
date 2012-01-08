@@ -4,7 +4,7 @@ class Admin::TagsController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    @tags = Tag.paginate(:page => params[:page], :order => :display_name, :per_page => this_blog.admin_display_elements)
+    @tags = Tag.order('display_name').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def edit

@@ -2,5 +2,5 @@
 
 <%= render :partial => 'article', :collection => @articles %>
 <div id='paginate'>
-<%= will_paginate @articles, { :previous_label => _('Previous'), :next_label => _('Next')  } %>
+<%= paginate @articles, { :previous_label => _('Previous'), :next_label => _('Next')  } %>
 </div>

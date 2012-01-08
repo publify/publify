@@ -12,4 +12,4 @@
 <p><%= _("There are")%> <%= @grouping_class.to_s.underscore.pluralize %>.</p>
 <% end -%>
 </div>
-<p><%= will_paginate :next_label => "#{_("Next page")} &raquo;", :previous_label => "&laquo; #{_('Previous page')}" %></p>
+<p><%= paginate @groupings, :right => "#{_("Next page")} &raquo;", :left => "&laquo; #{_('Previous page')}" %></p>

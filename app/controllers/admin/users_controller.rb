@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => this_blog.admin_display_elements
+    @users = User.order('login asc').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def new
