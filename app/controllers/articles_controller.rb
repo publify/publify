@@ -97,7 +97,7 @@ class ArticlesController < ContentController
     r = Redirect.find_by_from_path(from.join("/"))
     return redirect_to r.full_to_path, :status => 301 if r
 
-    render :text => "Page not found", :status => 404
+    render "errors/404", :status => 404
   end
 
 
@@ -137,7 +137,7 @@ class ArticlesController < ContentController
       @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
       @canonical_url = @page.permalink_url
     else
-      render :nothing => true, :status => 404
+      render "errors/404", :status => 404
     end
   end
 
