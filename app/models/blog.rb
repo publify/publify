@@ -90,8 +90,8 @@ class Blog < ActiveRecord::Base
   setting :paginated_desc_template,    :string, "%blog_name% | %blog_subtitle% | %meta_keywords% %page%" # OK
   setting :category_title_template,    :string, "Category: %name% | %blog_name% %page%" # Spec
   setting :category_desc_template,     :string, "%name% | %description% | %blog_subtitle% %page%" # Spec
-  setting :tag_title_template,        :string, "Tag: %name% | %blog_name% %page%"
-  setting :tag_desc_template,         :string, "%name% | %blog_name% | %blog_subtitle% %page%"
+  setting :tag_title_template,         :string, "Tag: %name% | %blog_name% %page%"
+  setting :tag_desc_template,          :string, "%name% | %blog_name% | %blog_subtitle% %page%"
   setting :author_title_template,      :string, "%author% | %blog_name%" # OK
   setting :author_desc_template,       :string, "%author% | %blog_name% | %blog_subtitle%" # OK
   setting :archives_title_template,    :string, "Archives for %blog_name% %date% %page%" # specs OK
@@ -101,6 +101,10 @@ class Blog < ActiveRecord::Base
   setting :custom_tracking_field,      :string, ''
 #  setting :meta_author_template,       :string, "%blog_name% | %nickname%"
 
+# Error handling
+  setting :title_error_404,            :string, "Page not found"
+  setting :msg_error_404,              :string, "<p>The page you are looking for has moved or does not exist.</p>"
+  
   validate :permalink_has_identifier
 
   def initialize(*args)
