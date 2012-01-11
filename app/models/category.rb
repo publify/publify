@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
     :order   => "published_at DESC, created_at DESC"
 
 
-  default_scope :order => 'position ASC'
+  default_scope :order => 'name ASC'
 
   module Finders
     def find_all_with_article_counters(maxcount=nil)
