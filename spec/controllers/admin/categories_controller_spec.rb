@@ -23,7 +23,7 @@ describe Admin::CategoriesController do
     cat.should_receive(:save!).and_return(true)
     post :edit, 'category' => { :name => "test category" }
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'new'
   end
 
   describe "test_new" do
@@ -110,44 +110,5 @@ describe Admin::CategoriesController do
 
     assert_raise(ActiveRecord::RecordNotFound) { Category.find(test_id) }
   end
-
-  it "test_order" do
-    second_cat = Factory(:category, :name => 'b', :position => 1)
-    first_cat = Factory(:category, :name => 'a', :position => 3)
-    third_cat = Factory(:category, :name => 'c', :position => 2)
-
-    assert_equal second_cat, Category.first
-    get :order, :category_list => [first_cat.id, second_cat.id, third_cat.id]
-    assert_response :success
-    assert_equal first_cat, Category.first
-  end
-
-  it "test_asort sort by alpha" do
-    second_cat = Factory(:category, :name => 'b', :position => 1)
-    first_cat = Factory(:category, :name => 'a', :position => 2)
-    assert_equal second_cat, Category.first
-    get :asort
-    assert_response :success
-    assert_template "_categories"
-    assert_equal first_cat, Category.first
-  end
-
-  it "test_category_container" do
-    Factory(:category)
-    Factory(:category)
-    get :category_container
-    assert_response :success
-    assert_template "_categories"
-    assert_tag :tag => "table",
-      :children => { :count => Category.count + 2,
-        :only => { :tag => "tr" } }
-  end
-
-  it "test_reorder" do
-    get :reorder
-    assert_response :success
-    assert_template "reorder"
-    assert_select 'ul#category_list > li', Category.count
-    assert_select 'a', '(Done)'
-  end
+  
 end

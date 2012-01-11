@@ -17,10 +17,4 @@
     <td><%= h category.keywords %></td>
   </tr>
   <% end -%>
-  <tr>
-    <td class='paginate' colspan='4'>
-      <%= link_to_remote(_('Reorder'), :update => 'category_container', :url => { :action => 'reorder' }) %> |
-      <%= link_to_remote(_('Sort alphabetically'), :update => 'category_container', :url => { :action => 'asort' }) %>
-    </td>
-  </tr>
 </table>
