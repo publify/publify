@@ -39,7 +39,15 @@ describe Admin::RedirectsController do
       assert_response :redirect, :action => 'index'
     end.should change(Redirect, :count)
   end
-
+  
+  it "test_create with empty from path" do
+    lambda do
+      post :edit, 'redirect' => { :from_path => "", 
+        :to_path => "somewhere/else/else" }
+      assert_response :redirect, :action => 'index'
+    end.should change(Redirect, :count)
+  end
+  
   describe "#edit" do
     before(:each) do
       get :edit, :id => Factory(:redirect).id

@@ -9,6 +9,7 @@
     <h3><label for="redirect_from_path"><%= _("From")%></label> </h3>
     <p class='input_text_title'>
       <%= this_blog.base_url %>/<%= text_field :redirect, :from_path, :class => 'medium'  %>
+	  <span clsas='help'><%= _("Leave empty to shorten a link") %></span>
     </p>
   </div>
   <div>

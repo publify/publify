@@ -2,7 +2,7 @@ class Admin::RedirectsController < Admin::BaseController
   layout 'administration'
 
   def index
-    @redirects = Redirect.where("origin is null").order('from_path').page(params[:page]).per(this_blog.admin_display_elements)
+    @redirects = Redirect.where("origin is null").order('created_at desc').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def new
@@ -34,6 +34,9 @@ class Admin::RedirectsController < Admin::BaseController
 
     @redirect.attributes = params[:redirect]
     if request.post?
+      if @redirect.from_path.empty? || @redirect.from_path.nil?
+        @redirect.from_path = @redirect.shorten
+      end
       save_redirect
       return
     end
