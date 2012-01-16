@@ -6,9 +6,7 @@ class String
     return if self.nil?
 
     s = self.downcase.tr("\"'", '')
-    # Inject correct version-dependent regex using string interpolations
-    # since the 1.9 version is invalid for 1.8.
-    s = s.gsub(/#{RUBY_VERSION < "1.9" ? '\W' : '\P{Word}'}/, ' ')
+    s = s.gsub(/\P{Word}/, ' ')
     s.strip.tr_s(' ', '-').tr(' ', '-').sub(/^$/, "-")
   end
 
