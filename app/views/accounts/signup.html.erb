@@ -1,11 +1,11 @@
 <div class='row'>
   <div class='span6 offset5'>
     <div class='well'>
-      <div id="flash"><%= render_the_flash %></div>
       <%= form_tag :action=> "signup" do %>
       <div class='clearfix'>
         <h2><%= _("Create an account") %></h2>
       </div>
+      <div id="flash"><%= render_the_flash %></div>
       <div class='clearfix'>
         <%= text_field(:user, :login, {:class => 'login', :placeholder => _("Username") })%>
       </div>
