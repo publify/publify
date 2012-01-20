@@ -200,8 +200,8 @@ module Admin::BaseHelper
   end
 
   def published_or_not(item)
-    return "<span class='published'>#{_("Published")}</span>" if item.published
-    "<span class='unpublished'>#{_("Unpublished")}</span>"
+    return "<span class='label success'>#{_("Published")}</span>" if item.published
+    "<span class='label important'>#{_("Unpublished")}</span>"
   end
 
   def macro_help_popup(macro, text)

@@ -46,3 +46,8 @@ tr.noborder td {
 .label a {
   color: #fff;
 }
+
+td small {
+    color: #BFBFBF;
+    font-size: 11px;
+}

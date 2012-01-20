@@ -8,13 +8,14 @@ module Admin::FeedbackHelper
 
   def show_feedback_actions(item, context='listing')
     html = <<-HTML
-      <div class='action'>
+      <small>
+        
         #{published_or_not item} |
         #{change_status(item, context)} |
         #{link_to _("Edit"), :controller => 'admin/feedback', :action => 'edit', :id => item.id} |
         #{link_to _("Delete"), :controller => 'admin/feedback', :action => 'destroy', :id => item.id }|
         #{link_to _("Show conversation"), :controller => 'admin/feedback', :action => 'article', :id => item.article_id}
-    </div>
+    </small>
     HTML
   end
 
