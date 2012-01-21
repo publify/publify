@@ -1,12 +1,14 @@
 <% @page_heading = _('Manage tags') %>
 <% subtabs_for(:articles) %>
 
-<table cellspacing="1" cellpadding="0">
-  <tr>
+<table class="zebra-stripe">
+  <thead>
+    <tr class='noborder'>
     <th><%= _("Display Name") %></th>
     <th><%= _("Name") %></th>
     <th><%= _("Articles") %></th>
   </tr>
+  </thead>
   <%= render_void_table(@tags.size, 3)  %>
   <% for tag in @tags %>
   <tr <%= alternate_class %>>
