@@ -1,22 +1,25 @@
 <%= form_tag :action=>"edit", :id => @category.id do %>
   <%= error_messages_for 'category' %>
-  <div>
-    <h2><label for="category_name"><%= _("Name")%></label> </h2>
-    <p class='input_text_title'>
-      <%= text_field :category, :name, :class => 'medium'  %>
-    </p>
+  <div class='clearfix'>
+  	<label for="category_name"><%= _("Name")%></label>
+    <div class='input'>
+	    <%= text_field :category, :name, :class => 'large'  %>
+    </div>
   </div>
-  <div>
-    <h3><label for="category_keywords" class="content block"><%= _("Keywords") %></label></h3>
-    <p class='input_text_title'>
-      <%= text_field :category, :keywords, :class => 'medium' %>
-    </p>
+  <div class='clearfix'>
+    <label for="category_keywords"><%= _("Keywords") %></label>
+    <div class='input'>
+      <%= text_field :category, :keywords, :class => 'large' %>
+    </div>
   </div>
-  <div>
-    <h3><label for="category_description" class="content block"><%= _("Description") %></label></h3>
-    <p class='input_text_title'>
-      <%= text_area :category, :description, :rows => 5, :class => 'medium' %>
-    </p>
+  <div class='clearfix'>
+    <label for="category_description"><%= _("Description") %></label>
+    <div class='input'>
+      <%= text_area :category, :description, :rows => 5, :class => 'large' %>
+    </div>
   </div>
-  <%= cancel_or_save %>
+  <div class='actions'>
+    <%= cancel_or_save %>  
+  </div>
+  
 <% end %>

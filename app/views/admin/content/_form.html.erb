@@ -83,6 +83,19 @@
   </div>
 
   <div class='widget-container'>
+    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("SEO") %></h3>
+    <div class='widget-content'>
+      <div class='setting clear'>
+        <label class='float' for="article_meta_title"><%= _("Meta title") %></label>
+        <div class='input_text' id='meta_title'>
+          <%= text_field 'article', 'meta_title', {:class => 'medium'} %>
+		  <span class='help'>Fill in if you want the meta title to be different from the actual post title</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='widget-container'>
     <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Uploads") %></h3>
     <div class='widget-content'>
       <p>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>

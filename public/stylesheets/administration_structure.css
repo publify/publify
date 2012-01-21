@@ -66,3 +66,22 @@ table.clearfix {
 footer {
   clear: both;
 }
+
+.left_form {
+	float: left; 
+	width: 380px; 
+	padding-top: 18px;
+}
+
+.right_table {
+	margin-left: 400px;
+	padding-top: 18px:
+}
+
+.container-fluid .sidebar {
+	width: 180px;
+}
+
+.container-fluid .content {
+	margin-left: 200px;
+}

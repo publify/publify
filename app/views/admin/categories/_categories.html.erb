@@ -1,10 +1,12 @@
-<table>
-  <tr>
+<table class="zebra-stripe">
+  <thead>
+    <tr class='noborder'>
     <th><%= _("Title") %></th>
     <th><%= _("Description") %></th>
     <th><%= _("Permalink") %></th>
     <th><%= _("Keywords") %></th>
   </tr>
+</thead>
   <%= render_void_table(@categories.size, 4)  %>
   <% for category in @categories -%>
   <tr <%= alternate_class -%> id="category_<%= category.id -%>">

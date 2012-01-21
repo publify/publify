@@ -22,15 +22,21 @@ module Admin::BaseHelper
   end
 
   def cancel(url = {:action => 'index'})
-    link_to _("Cancel"), url
+    link_to _("Cancel"), url, :class => 'btn'
   end
 
   def save(val = _("Store"))
-    '<input type="submit" value="' + val + '" class="save" />'
+    '<input type="submit" value="' + val + '" class="btn primary" />'
   end
 
   def confirm_delete(val = _("Delete"))
-   '<input type="submit" value="' + val + '" />'
+    <<-HTML
+   <div class="actions">
+     #{cancel} #{_("or")}
+     <input type="submit" value="#{val}" class="btn danger" />
+   </div>
+   
+   HTML
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
@@ -160,8 +166,7 @@ module Admin::BaseHelper
   end
 
   def cancel_or_save
-    result = '<p>'
-    result << cancel
+    result = cancel
     result << " "
     result << _("or")
     result << " "
