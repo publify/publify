@@ -1,16 +1,21 @@
-<% @page_heading = _('Uploads') %>
-<% subtabs_for(:media) %>
+<% @page_heading = _('Files') %>
 
-<%= render 'upload' -%>
 
-<table>
-<tr>
-  <th><%= _("Filename")%> <small>(<%= _('right-click for link')%>)</small></th>
-  <th><%= _("Content Type")%></th>
-  <th><%= _("File Size")%></th>
-  <th><%= _("Date")%></th>
-  <th><%= _("Delete")%></th>
-</tr>
+
+<table class="zebra-striped clearfix">
+  <thead>
+    <tr class='norborder'>
+      <th colspan='5'>
+          <%= render 'upload' -%>
+      </td>
+    </tr>
+    <tr class='noborder'>
+      <th><%= _("Filename")%> <small>(<%= _('right-click for link')%>)</small></th>
+      <th><%= _("Content Type")%></th>
+      <th><%= _("File Size")%></th>
+      <th><%= _("Date")%></th>
+    </tr>
+  </thead>
 <%= render_void_table(@resources.size, 6) %>
 <% for upload in @resources -%>
 <tr <%= alternate_class -%>>
@@ -23,8 +28,8 @@
 			<small>
 			<%= link_to(_("Thumbnail"), "#{this_blog.base_url}/files/thumb_#{upload.filename}" ) %>
 				<%= link_to(_("Medium size"), "#{this_blog.base_url}/files/medium_#{upload.filename}" ) %> |
-				<%= link_to(_("Original size"), "#{this_blog.base_url}/files/#{upload.filename}" ) %>
-
+				<%= link_to(_("Original size"), "#{this_blog.base_url}/files/#{upload.filename}" ) %> |
+        <%= link_to _("delete"), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %>
 			</small>
 		</p>
   <% else %>
@@ -36,7 +41,6 @@
   </td>
   <td><%=h upload.size rescue 0 -%> bytes</td>
   <td><%= format_date upload.created_at -%></td>
-  <td class="operation"><%= link_to _("delete"), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %></td>
 </tr>
 <% end -%>
   <%= display_pagination(@resources, 6)%>
