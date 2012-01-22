@@ -1,188 +1,234 @@
 <%= error_messages_for 'user' %>
 
-<div class='widget-container'>
-  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Account settings")%></h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label class="float" for="user_login"><%= _("Login")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'login', {:class => 'medium'}) %>
-      </p>
+<fieldset>
+	<legend><%= _("Account settings")%></legend>
+    <div class='clearfix'>
+      <label for="user_login"><%= _("Login")%></label>
+      <div class='input'>
+        <%= text_field('user', 'login', {:class => 'span5'}) %>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_password"><%= _("Password")%></label>
-      <p class='input_text'>
-        <%= password_field('user', 'password', {:class => 'medium'}) %>
-      </p>
+    <div class='clearfix'>
+      <label for="user_password"><%= _("Password")%></label>
+      <div class='input'>
+        <%= password_field('user', 'password', {:class => 'span5'}) %>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_password"><%= _("Password confirmation")%></label>
-      <p class='input_text'>
-        <%= password_field('user', 'password_confirmation', {:class => 'medium'})  %>
-      </p>
+    <div class='clearfix'>
+      <label for="user_password"><%= _("Password confirmation")%></label>
+      <div class='input'>
+        <%= password_field('user', 'password_confirmation', {:class => 'span5'})  %>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_email"><%= _("Email")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'email', {:class => 'medium'})  %>
-      </p>
+    <div class='clearfix'>
+      <label for="user_email"><%= _("Email")%></label>
+      <div class='input'>
+        <%= text_field('user', 'email', {:class => 'span5'})  %>
+      </div>
     </div>
-
     <% if controller.controller_name == 'users' %>
-    <div class='setting clear'>
-      <label class="float" for="user_profile"><%= _("Profile")%></label>
-      <p class='input_text'>
+    <div class='clearfix'>
+      <label for="user_profile"><%= _("Profile")%></label>
+      <div class='input'>
         <%=  select("user", "profile_id", @profiles.collect {|p| [ _(p.nicename), p.id ] }, { :include_blank => false }) %>
-      </p>
+      </div>
     </div>
-    <div class='setting clear'>
+    <div class='clearfix'>
       <label class='float' for="user_state"><%= _("User's status")%></label>
-      <p class='input_text'>
+      <div class='input'>
         <select name="user[state]">
           <option value="active" <%= 'selected' if @user.state == 'active' %>><%= _("Active")%></option>
           <option value="inactive" <%= 'selected' if @user.state == 'inactive'%>><%= _("Inactive")%></option>
         </select>
-      </p>
+      </div>
     </div>
     <% end %>
-  </div>
-</div>
+</fieldset>
 
-<div class='widget-container'>
-  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Profile Settings")%></h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label class="float" for="user_firstname"><%= _("Firstname") %></label>
-      <p class='input_text'>
-        <%= text_field('user', 'firstname', {:class => 'medium'}) %>
-      </p>
+<fieldset>
+	<legend><%= _("Profile Settings")%></legend>
+    <div class='clearfix'>
+      <label for="user_firstname"><%= _("Firstname") %></label>
+      <div class='input'>
+        <%= text_field('user', 'firstname', {:class => 'span5'}) %>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_lastname"><%= _("Lastname") %></label>
-      <p class='input_text'>
-        <%= text_field('user', 'lastname', {:class => 'medium'}) %>
-      </p>
+    <div class='clearfix'>
+      <label for="user_lastname"><%= _("Lastname") %></label>
+      <div class='input'>
+        <%= text_field('user', 'lastname', {:class => 'span5'}) %>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_nickname"><%= _("Nickname") %></label>
-      <p class='input_text'>
-        <%= text_field('user', 'nickname', {:class => 'medium'}) %>
-      </p>
+    <div class='clearfix'>
+      <label for="user_nickname"><%= _("Nickname") %></label>
+      <div class='input'>
+        <%= text_field('user', 'nickname', {:class => 'span5'}) %>
+      </div>
     </div>
     <% unless @user.login.nil? %>
-    <div class='setting clear'>
-      <label class="float" for="user_login"><%= _("Display Name")%></label>
-      <p class='input_text'>
+    <div class='clearfix'>
+      <label for="user_login"><%= _("Display Name")%></label>
+      <div class='input'>
         <select name="user[name]">
           <%= render_options_for_display_name %>
         </select>
-      </p>
+      </div>
     </div>
     <% end %>
-    <div class='setting clear'>
-      <label class="float"><%= _("Editor")%></label>
-      <p class='input_text'>
-        <input type="radio" name="user[editor]" value="simple" id="editor_0" <%= 'checked="checked"' if @user.editor == 'simple' %>/>
-        <label for="editor_0"><%= _("Use simple editor")%></label><br />
-        <input type="radio" name="user[editor]" value="visual" id="editor_2" <%= 'checked="checked"' if @user.editor == 'visual' %>/>
-        <label for="editor_2"><%= _("Use visual rich editor")%></label>
-      </p>
+    <div class='clearfix'>
+      <label><%= _("Editor")%></label>
+      <div class='input'>
+		  <ul class='inputs-list'>
+		    <li>
+          <label for="editor_0">
+            <input type="radio" name="user[editor]" value="simple" id="editor_0" <%= 'checked="checked"' if @user.editor == 'simple' %>/>
+            <%= _("Use simple editor")%>
+          </label>
+		    </li>
+        <li>
+          <label for="editor_2">
+            <input type="radio" name="user[editor]" value="visual" id="editor_2" <%= 'checked="checked"' if @user.editor == 'visual' %>/>
+            <%= _("Use visual rich editor")%>
+          </label>
+        </li>
+		  </ul>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="text_filter"><%= _("Article filter")%></label>
-      <p class='input_text'>
+    <div class='clearfix'>
+      <label for="text_filter"><%= _("Article filter")%></label>
+      <div class='input'>
         <select name="user[text_filter_id]" id="text_filter">
           <%= options_for_select text_filter_options_with_id, @user.text_filter.id %>
         </select>
-      </p>
+      </div>
     </div>
-  </div>
-</div>
+</fieldset>
 
-<div class='widget-container'>
-  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Notifications")%></h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label class="float" for="user_notify_via_email"><%= _("Send notification messages via email")%>?</label>
-      <p class='input_text'>
-        <%= check_box 'user', 'notify_via_email'  %>
-      </p>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="user_notify_on_new_articles"><%= _("Send notification messages when new articles are posted")%>?</label>
-      <p class='input_text'>
-        <%= check_box 'user', 'notify_on_new_articles'  %>
-      </p>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="user_notify_on_comments"><%= _("Send notification messages when comments are posted")%>?</label>
-      <p class='input_text'>
-        <%= check_box 'user', 'notify_on_comments'  %>
-      </p>
+<fieldset>
+  <legend><%= _("Notifications")%></legend>
+  <div class='clearfix'>
+    <label for="user_notify_via_email"><%= _("Send notification messages via email")%>?</label>
+    <div class='input'>
+      <%= check_box 'user', 'notify_via_email'  %>
     </div>
   </div>
-</div>
+  <div class='clearfix'>
+    <label for="user_notify_on_new_articles"><%= _("Send notification messages when new articles are posted")%>?</label>
+    <div class='input'>
+      <%= check_box 'user', 'notify_on_new_articles'  %>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="user_notify_on_comments"><%= _("Send notification messages when comments are posted")%>?</label>
+    <div class='input'>
+      <%= check_box 'user', 'notify_on_comments'  %>
+    </div>
+  </div>
+  
+</fieldset>
+
 
 <% unless controller.controller_name == 'users'%>
-<div class='widget-container'>
-  <h3 class='light'><span class='ui-icon ui-icon-person'> </span><%= _("Contact Options")%></h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label class="float" for="user_url"><%= _("Your site")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'url', {:class => 'medium'}) %>
-        <%= check_box 'user', 'show_url' %>
-        <label for='user_show_url'><%= _("display url on public profile") %></label>
-      </p>
+<fieldset>
+  <legend><%= _("Contact Options")%></legend>
+    <div class='clearfix'>
+      <label for="user_url"><%= _("Your site")%></label>
+      <div class='input'>
+        <%= text_field('user', 'url', {:class => 'span5'}) %>
+        <ul class='inputs-list'>
+          <li>
+            <label for='user_show_url'>
+              <%= check_box 'user', 'show_url' %>
+              <%= _("display url on public profile") %></label>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_msn"><%= _("Your MSN")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'msn', {:class => 'medium'}) %>
-        <%= check_box 'user', 'show_msn' %>
-        <label for='user_show_msn'><%= _("display MSN ID on public profile") %></label>
-      </p>
+    <div class='clearfix'>
+      <label for="user_msn"><%= _("Your MSN")%></label>
+      <div class='input'>
+        <%= text_field('user', 'msn', {:class => 'span5'}) %>
+        <ul class='inputs-list'>
+          <li>
+            <label for='user_show_msn'>
+              <%= check_box 'user', 'show_msn' %>
+              <%= _("display MSN ID on public profile") %>
+            </label>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_yahoo"><%= _("Your Yahoo ID")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'yahoo', {:class => 'medium'}) %>
-        <%= check_box 'user', 'show_yahoo' %>
-        <label for='user_show_yahoo'><%= _("display Yahoo! ID on public profile") %></label>
-      </p>
+    <div class='clearfix'>
+      <label for="user_yahoo"><%= _("Your Yahoo ID")%></label>
+      <div class='input'>
+        <%= text_field('user', 'yahoo', {:class => 'span5'}) %>
+        <ul class='inputs-list'>
+            <li>
+              <label for='user_show_yahoo'>
+                <%= _("display Yahoo! ID on public profile") %>
+                <%= check_box 'user', 'show_yahoo' %>
+              </label>
+            </li>
+        </ul>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_jabber"><%= _("Your Jabber ID")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'jabber', {:class => 'medium'}) %>
-        <%= check_box 'user', 'show_jabber' %>
-        <label for='user_show_jabber'><%= _("display Jabber ID on public profile") %></label>
-      </p>
+    <div class='clearfix'>
+      <label for="user_jabber"><%= _("Your Jabber ID")%></label>
+      <div class='input'>
+        <%= text_field('user', 'jabber', {:class => 'span5'}) %>
+        <ul class='inputs-list'>
+          <li>
+            <label for='user_show_jabber'>
+              <%= check_box 'user', 'show_jabber' %>
+              <%= _("display Jabber ID on public profile") %>
+            </label>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_aim"><%= _("Your AIM id")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'aim', {:class => 'medium'}) %>
-        <%= check_box 'user', 'show_aim' %>
-        <label for='user_show_aim'><%= _("display AIM ID on public profile") %></label>
-      </p>
+    <div class='clearfix'>
+      <label for="user_aim"><%= _("Your AIM id")%></label>
+      <div class='input'>
+        <%= text_field('user', 'aim', {:class => 'span5'}) %>
+        <ul class='inputs-list'>
+          <li>
+            <label for='user_show_aim'>
+              <%= check_box 'user', 'show_aim' %>
+              <%= _("display AIM ID on public profile") %>
+            </label>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="user_twitter"><%= _("Your Twitter username")%></label>
-      <p class='input_text'>
-        <%= text_field('user', 'twitter', {:class => 'medium'}) %>
-        <%= check_box 'user', 'show_twitter' %>
-        <label for='user_show_twitter'><%= _("display twitter on public profile") %></label>
-      </p>
+    <div class='clearfix'>
+      <label for="user_twitter"><%= _("Your Twitter username")%></label>
+      <div class='input'>
+        <%= text_field('user', 'twitter', {:class => 'span5'}) %>
+        <ul class='inputs-list'>
+          <li>
+            <label for='user_show_twitter'>
+              <%= check_box 'user', 'show_twitter' %>
+              <%= _("display twitter on public profile") %>
+            </label>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class='setting clear'>
+    <div class='clearfix'>
       <label class='float' for="user_description"><%= _("Tell us more about you")%></label>
-      <p class='input_text'>
-        <%= text_area('user', 'description', {:class => 'medium', :rows => 5}) %>
-      </p>
-    </div>
+      <div class='input'>
+        <%= text_area('user', 'description', {:class => 'span5', :rows => 5}) %>
+      </div>
+    </div>  
+</fieldset>
+
+<div class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-person'> </span></h3>
+  <div class='widget-content'>
   </div>
 </div>
 <% end %>
 
-<%= cancel_or_save %>
+<div class='actions'>
+    <%= cancel_or_save %>
+</div>

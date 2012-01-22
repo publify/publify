@@ -17,8 +17,10 @@ module Admin::BaseHelper
   end
 
   def show_page_heading
-    heading = ""
-    heading << content_tag(:h2, @page_heading.html_safe) unless @page_heading.blank?
+    return if @page_heading.nil? or @page_heading.blank? 
+    heading = "<div class='page-header'>"
+    heading << content_tag(:h2, @page_heading.html_safe)
+    heading << "</div>"
   end
 
   def cancel(url = {:action => 'index'})
@@ -264,6 +266,6 @@ module Admin::BaseHelper
   end
 
   def save_settings
-    "<p class='settings'>#{save(_("Update settings"))}</p>".html_safe
+    "<div class='actions'>#{cancel} #{_("or")} #{save(_("Update settings"))}</div>".html_safe
   end
 end

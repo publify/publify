@@ -26,15 +26,13 @@
       </td>
       <td><input type="submit" value='<%= _("Filter") %>' class='btn' />
     </tr>
-
     <tr>
       <th class='first'><%= _("Title") %></th>
       <th><%= _("Categories") %></th>
       <th><%= _("Author")%></th>
       <th><%= _("Date") %></th>
       <th class='last'><%= _("Feedback")%></th>
-    </tr>
-    
+    </tr>    
   </thead>
   <tbody id="articleList">
     <%= render 'article_list', { :articles => @articles } -%>

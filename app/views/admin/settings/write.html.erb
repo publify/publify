@@ -1,55 +1,54 @@
 <% @page_heading = _('Write') %>
-<% subtabs_for(:settings) %>
 
 <%= form_tag :action => 'update' do %>
 
-<div class='widget-container'>
-  <h3 class='light'>
-    <span class='ui-icon ui-icon-gear'></span> <%= _("Publish")%>
-  </h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label class="float" for="setting_send_outbound_pings"><%= _("Send trackbacks")%></label>
-      <div class='input_text'>
-        <%= check_box(:setting, :send_outbound_pings) %>
-        <span><%= _("When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%></span>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_ping_urls"><%= _("URLs to ping automatically")%></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :ping_urls, :rows => 4, :class => 'large') %>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_geourl_location"><%= _("Latitude, Longitude")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :geourl_location, { :class => 'medium'})%>
-        <span class='help'><%= _("Display")%> <a href="http://geourl.org"><%= _("your lattitude and longitude")%></a> (<%= _("exemple")%> <tt>47.774,-122.201</tt>)</span>
-      </div>
+<fieldset>
+	<legend><%= _("Publish")%></legend>
+  <div class='clearfix'>
+    <label for="setting_send_outbound_pings"><%= _("Send trackbacks")%></label>
+    <div class='input'>
+      <ul class='inputs-list'>
+        <li>
+          <label>
+          <%= check_box(:setting, :send_outbound_pings) %>
+          <span class='help-block'><%= _("When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%></span>
+            
+          </label>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
+  <div class='clearfix'>
+    <label for="setting_ping_urls"><%= _("URLs to ping automatically")%></label>
+    <div class='input'>
+      <%= text_area(:setting, :ping_urls, :rows => 4, :class => 'span8') %>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="setting_geourl_location"><%= _("Latitude, Longitude")%></label>
+    <div class='input'>
+      <%= text_field(:setting, :geourl_location, { :class => 'span8'})%>
+      <span class='help-block'><%= _("Display")%> <a href="http://geourl.org"><%= _("your lattitude and longitude")%></a> (<%= _("exemple")%> <tt>47.774,-122.201</tt>)</span>
+    </div>
+  </div>
+</fieldset>
 
-<div class='widget-container'>
-  <h3 class='light'>
-    <span class='ui-icon ui-icon-gear'></span> <%= _("Media")%>
-  </h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label class="float" for="image_thumb_size"><%= _("Image thumbnail size")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :image_thumb_size, { :class => 'small'})%> px
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="image_medium_size"><%= _("Image medium size")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :image_medium_size, { :class => 'small'})%> px
-      </div>
+<fieldset>
+  <legend><%= _("Media")%></legend>
+  <div class='clearfix'>
+    <label for="image_thumb_size"><%= _("Image thumbnail size")%></label>
+    <div class='input'>
+      <%= text_field(:setting, :image_thumb_size, { :class => 'span1'})%> px
     </div>
   </div>
-</div>
+  <div class='clearfix'>
+    <label for="image_medium_size"><%= _("Image medium size")%></label>
+    <div class='input'>
+      <%= text_field(:setting, :image_medium_size, { :class => 'span1'})%> px
+    </div>
+  </div>
+</fieldset>
+
 <%= hidden_field_tag 'from', 'write' %>
 <%= save_settings %>
 <% end %>

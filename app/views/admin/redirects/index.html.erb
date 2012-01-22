@@ -1,12 +1,12 @@
-<% @page_heading = _('Redirects') %>
-<% @link_to_new = link_to(_("New Redirect"), {:controller => 'redirects', :action => 'new'}, :id => 'dialog-link', :class => 'button') %>
-<% subtabs_for(:settings) %>
+<% @page_heading = _('Redirects') + content_tag(:div, link_to(_("New Link"), {:controller => 'redirects', :action => 'new'}, :id => 'dialog-link', :class => 'btn info'), :class => 'pull-right') %>
 
-<table>
-  <tr>
+<table class="zebra-striped clearfix">
+  <thead>
+    <tr class='noborder'>
     <th><%= _("From") %></th>
     <th><%= _("To") %></th>
   </tr>
+  </thead>
   <%= render_void_table(@redirects.size, 2)  %>
   <% for redirect in @redirects %>
   <tr <%= alternate_class %>>

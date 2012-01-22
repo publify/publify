@@ -3,25 +3,21 @@
 
 <%= form_tag :action => 'update' do %>
 
-<div class='widget-container'>
-  <h3 class='light'>
-    <span class='ui-icon ui-icon-gear'></span> <%= _("Error 404")%>
-  </h3>
-  <div class='widget-content'>
-    <div class='setting clear'>
-      <label class="float" for="setting_title_error_404"><%= _("Title")%></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :title_error_404, { :class => 'medium'})%>
+<fieldset>
+  <legend><%= _("Error 404")%></legend>
+    <div class='clearfix'>
+      <label for="setting_title_error_404"><%= _("Title")%></label>
+      <div class='input'>
+        <%= text_field(:setting, :title_error_404, { :class => 'span5'})%>
       </div>
     </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_msg_error_404"><%= _("Message")%></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :msg_error_404, :rows => 4, :class => 'large') %>
+    <div class='clearfix'>
+      <label for="setting_msg_error_404"><%= _("Message")%></label>
+      <div class='input'>
+        <%= text_area(:setting, :msg_error_404, :rows => 4, :class => 'span5') %>
       </div>
     </div>
-  </div>
-</div>
+</fieldset>
 
 <%= hidden_field_tag 'from', 'errors' %>
 <%= save_settings %>
