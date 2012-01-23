@@ -3,6 +3,8 @@
 neuro for 6.0.10:
   Editor:
   - Add the media back into the editor.
+  – Fix the publishing state bug.
+  – Change the permalink behavior, that one is definitely stupid. RLY.
   
   Typogarden:
   - Port : http://typogarden.org/hemingway.html
