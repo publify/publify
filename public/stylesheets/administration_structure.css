@@ -112,7 +112,21 @@ footer {
 }
 
 #editor-menu ul {
+	width: 100%;
+	margin-bottom: 0;
+}
+
+#editor-menu ul li {
 	float: right;
+}
+
+#editor-menu ul li.active a {
+	color: #808080;
+	background: #F5F5F5;
+}
+
+#ed_toolbar_article_body_and_extended {
+	background: #f5f5f5;
 }
 
 #article_body_and_extended,
@@ -128,4 +142,19 @@ footer {
 	margin-top: 18px;
      margin-bottom: 18px;
      padding: 17px 0 18px 0;
+}
+
+#visual_editor {
+	width: 100%; 
+	float: left; 
+	display: block;
+}
+
+span.cke_skin_kama {
+	border: none;
+	padding: 0;
+}
+
+#editor {
+	float: left; width: 100%;
 }
