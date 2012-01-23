@@ -2,32 +2,39 @@
 <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
 <%= error_messages_for 'page' %>
 
-<div id='editor-right'>
-  <div class='widget-container'>
-    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings")%></h3>
-    <div class='widget-content'>
-      <%= check_box 'page', 'published'  %>
-      <label for="page_published"><%= _("Online")%></label><br />
-      <%= save( _("Publish") + " &raquo;") %>
+<div class='editor-right'>
+	<div class='well'>
+	  <h4><%= _("Publish settings")%></h4>
+    <ul class='inputs-list'>
+      <li>
+        <label for="page_published">
+          <%= check_box 'page', 'published'  %>
+          <%= _("Online")%>
+        </label>
+      </li>
+    </ul>
+    <div class='actions'>
+      <%= save( _("Publish")) %>
     </div>
-  </div>
+	</div>
 </div>
 
-<div id='editor-left'>
-  <h2><label for="page_title" class="block title"><%= _("Title")%></label></h2>
+<div class='editor-left'>
   <p class='input_text'>
-    <%= text_field 'page', 'title', :class => 'large'  %>
+    <%= text_field 'page', 'title', :class => 'span1', :style => ' width: 99%', :placeholder => _('Title')  %>
   </p>
 
-  <%= render('images', { :images => @images}) unless @images.empty? %>
+  <%#= render('images', { :images => @images}) unless @images.empty? %>
 
   <div id='editor-menu'>
-    <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-      <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-    </label>
-    <label id="s" class='<%= "active" if current_user.editor == 'simple' %>'>
-      <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-    </label>
+		<ul class="pills">
+			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
+				<%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+			</li>
+			<li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
+				<%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+			</li>
+		</ul>
   </div>
 
   <div id='editor'>
@@ -42,23 +49,22 @@
       <%= render_macros(@macros) if current_user.editor == 'simple' %>
     </div>
   </div>
-
-  <div class='widget-container'>
-    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Page settings")%></h3>
-    <div class='widget-content'>
-      <div class='setting'>
-        <label for="page_name" class='float'><%= _("Permanent link")%></label>
-        <div class='input_text'>
-          <%= text_field 'page', 'name', :class => 'medium' %>
+  
+  <div class='separator'>
+    <h4><%= _("Page settings") %></h4>
+      <div class='clearfix'>
+        <label for="page_name"><%= _("Permanent link")%></label>
+        <div class='input'>
+          <%= text_field 'page', 'name', :class => 'span5' %>
         </div>
       </div>
-      <div class='setting clear'>
-        <label class="float" for="text_filter"><%= _("Article filter")%></label>
-        <div class='input_text'>
+      <div class='clearfix'>
+        <label for="text_filter"><%= _("Article filter")%></label>
+        <div class='input'>
           <select name="page[text_filter]" id="text_filter">
             <%= options_for_select text_filter_options, @page.text_filter %>
           </select>
         </div>
+      </div>
     </div>
-  </div>
 </div>

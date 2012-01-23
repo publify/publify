@@ -115,7 +115,8 @@ footer {
 	float: right;
 }
 
-#article_body_and_extended {
+#article_body_and_extended,
+#page_body {
 	width: 99%;
 }
 

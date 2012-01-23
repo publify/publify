@@ -1,14 +1,15 @@
 # This file is better viewed with Textmate tasks plugin
 
-neuro for 6.0.6:
-- Ticket #185: Change feedback bulk ops to something clearer: mark as spam / confirm classification / validates. Global operations: delete all spam / mark all unconfirmed spam as spam
-
+neuro for 6.0.10:
+  Editor:
+  - Add the media back into the editor.
+  
   Typogarden:
   - Port : http://typogarden.org/hemingway.html
   - Backport : http://www.lightword-design.com/
   - Backport : http://www.pagelines.com/themes/platformpro
 
-mvz for 6.0.6
+mvz for 6.0.10
 - avoid accidentally creating published articles with a permalink like draft-article-123
 - continued clean-ups and spec improvements.
 - fix original migration with ruby 1.9.2
@@ -16,7 +17,7 @@ mvz for 6.0.6
 - Evaluate http://typogarden.org/lindholmen.html
 - Clean up themes
 
-ook for 6.0.6
+ook for 6.0.10
 - Allow merge of taggings. IIRC there's a ticket with a patch waiting for us as a good start
 - display permalink for comments
 - port textfilter to the new plugin system
