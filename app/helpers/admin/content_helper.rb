@@ -3,7 +3,7 @@ module Admin::ContentHelper
     if record.state.to_s == "Draft"
       link_to(_("Destroy this draft"),
         { :controller => controller, :action => 'destroy', :id => record.id },
-          :confirm => _("Are you sure?"), :method => :post )
+          :confirm => _("Are you sure?"), :method => :post, :class => 'btn danger' )
     end
   end
 
@@ -53,5 +53,5 @@ module Admin::ContentHelper
     end
     
     html << "</select>"
-  end
+  end  
 end

@@ -8,21 +8,15 @@
 <div class='editor-right'>
   <div class='well'>
     <h4><%= _("Publish settings") %></h4>
+    <div class='actions'>
+      <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
+      <%= link_to_destroy_draft @article %>
+      <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span>
+    </div>
     <div class='clearfix'>
+        <%= _("Status:") %> <strong><%= @article.state.to_s.downcase %></strong> <a href="#" onclick="Element.toggle('status'); return false">Change</a>
       <ul class='inputs-list'>
-        <li>        
-          <label for="article_allow_comments">
-            <%= check_box 'article', 'allow_comments' %>
-            <%= _("Allow comments") %>
-          </label>
-        </li>
-        <li>
-          <label for="article_allow_pings">
-            <%= check_box 'article', 'allow_pings' %>
-            <%= _("Allow trackbacks") %>
-          </label>
-        </li>
-        <li>
+        <li id='status' style='display: none;'>        
           <label for="article_published">
             <%= check_box 'article', 'published'  %>
             <%= _("Published") %>
@@ -31,7 +25,33 @@
       </ul>
     </div>
     <div class='clearfix'>
+      Comments are <strong>enabled</strong> and trackbacks are <strong>disabled</strong> <a href="#" onclick="Element.toggle('conversation'); return false">Change</a>
+      <ul class='inputs-list' id='conversation' style='display: none'>
+        <li>
+          <label for="article_allow_pings">
+            <%= check_box 'article', 'allow_pings' %>
+            <%= _("Allow trackbacks") %>
+          </label>
+        </li>
+        <li>
+          <label for="article_allow_comments">
+            <%= check_box 'article', 'allow_comments' %>
+            <%= _("Allow comments") %>
+          </label>
+        </li>
+      </ul>
+    </div>
+	  <div class='clearfix'>
+      <%= _("Publish <strong>now</strong>") %> <a href="#" onclick="Element.toggle('publish'); return false">Change</a>
       <ul class='inputs-list'>
+        <li id='publish' style='display: none;'>
+          <%= calendar_date_select 'article', 'published_at', {:class => 'span3'} %>
+        </li>
+      </ul>
+    </div>
+    <div class='clearfix'>
+      <%= _("Visibility:") %> <strong>public</strong> <a href="#" onclick="Element.toggle('visibility'); return false">Change</a>
+      <ul class='inputs-list' id='visibility' style='display: none'>
         <li>
           <label for="article_password"><%= _("Password:") %>
             <%= password_field :article, :password, :class => 'span3' %>
@@ -39,13 +59,29 @@
         </li>
       </ul>
     </div>
+    <div class='clearfix'>
+      <%= _("Permalink:") %> <a href="#" onclick="Element.toggle('permalink'); return false">Change</a>
+      <ul class='inputs-list' id='permalink' style='display: none'>
+        <li>
+            <%= text_field 'article', 'permalink', {:class => 'span4'} %>
+        </li>
+      </ul>
+    </div>
+    <div class='clearfix'>
+      <%= _("Article filter") %>: <strong><%= @article.text_filter.description %></strong> <a href="#" onclick="Element.toggle('text_filter'); return false">Change</a>
+      <ul id='text_filter' class='inputs-list' style='display: none'>
+        <li>
+          <select name="article[text_filter]" id="text_filter">
+            <%= options_for_select text_filter_options, @article.text_filter %>
+          </select>
+        </li>
+      </ul>
+    </div>
+
     <div class='actions'>
-      <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ed_button' />
-      <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
-      <%= link_to_destroy_draft @article %>
+      <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn info' />
       <%= save( _("Publish")) %>
     </div>
-    <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
   </div>
 
   <div class='well'>
@@ -112,31 +148,7 @@
     <ul id='attachments' class='inputs-list'>
       <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
     </ul>
-  </div>
-
-  <div class='separator'>
-    <h4><%= _("Post settings") %></h4>
-      <div class='clearfix'>
-        <label><%= _("Publish at") %></label>
-        <div class='input'>
-          <%= calendar_date_select 'article', 'published_at', {:class => 'span5'} %>
-        </div>
-      </div>
-      <div class='clearfix'>
-        <label for="article_permalink"><%= _("Permalink") %></label>
-        <div class='input' id='permalink'>
-          <%= text_field 'article', 'permalink', {:class => 'span5'} %>
-        </div>
-      </div>
-    <div class='clearfix'>
-      <label for="text_filter"><%= _("Article filter") %></label>
-      <div class='input'>
-        <select name="article[text_filter]" id="text_filter">
-          <%= options_for_select text_filter_options, @article.text_filter %>
-        </select>
-      </div>
-    </div>
-    
+  </div>    
   </div>
 
 </div>

@@ -28,6 +28,7 @@ class Admin::ContentController < Admin::BaseController
 
   def edit
     @article = Article.find(params[:id])
+    puts @article.inspect
     unless @article.access_by? current_user
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
@@ -115,7 +116,7 @@ class Admin::ContentController < Admin::BaseController
       render(:update) do |page|
         page.replace_html('autosave', hidden_field_tag('article[id]', @article.id))
         page.replace_html('permalink', text_field('article', 'permalink', {:class => 'small medium'}))
-        page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}))
+        page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}))
       end
 
       return true
@@ -163,10 +164,11 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
-    @article.published = true
+    @article.published = true 
     @article.keywords = Tag.collection_to_string @article.tags
     @article.attributes = params[:article]
     # TODO: Consider refactoring, because double rescue looks... weird.
+        
     @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue Time.parse(params[:article][:published_at]).utc rescue nil
 
     if request.post?
