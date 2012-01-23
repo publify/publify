@@ -1,8 +1,9 @@
-    <div class='widget-content' id="categories">
-      <%- article_categories = @article ? @article.categories.map(&:id) : [] -%>
-      <%- Category.all.each do |cat| %>
-        <%= check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}") %>
-        <%= label_tag "category_#{h(cat.id)}", h(cat.name) %><br />
-      <% end -%>
-      <%= link_to _("New Category"), {:controller => 'admin/categories', :action => 'new' }, :class => 'new_category' %>
-    </div>
+<%- article_categories = @article ? @article.categories.map(&:id) : [] -%>
+<%- Category.all.each do |cat| %>
+<ul class='inputs-list'>
+	<li>
+	    <%= label_tag "category_#{h(cat.id)}", check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}")  + h(cat.name) %>
+	</li>
+</ul>
+<% end -%>
+<%= link_to _("New Category"), {:controller => 'admin/categories', :action => 'new' }, :class => 'btn info' %>

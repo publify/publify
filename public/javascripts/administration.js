@@ -226,16 +226,16 @@ function edShowButton(which, button, i) {
 	}
 	switch (button.id) {
 		case 'ed_img':
-			document.write('<span class="ed_span"><input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="ed_style ' + button.id + '" onclick="edInsertImage(\'' + which + '\');" value="' + button.display + '" /></span>');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn  ' + button.id + '" onclick="edInsertImage(\'' + which + '\');" value="' + button.display + '" />');
 			break;
 		case 'ed_link':
-			document.write('<span class="ed_span"><input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="ed_style ' + button.id + '" onclick="edInsertLink(\'' + which + '\', ' + i + ');" value="' + button.display + '" /></span>');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn ' + button.id + '" onclick="edInsertLink(\'' + which + '\', ' + i + ');" value="' + button.display + '" />');
 			break;
 		case 'ed_typocode':
-			document.write('<span class="ed_span"><input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="ed_style ' + button.id + '" onclick="edInsertTypoCode(\'' + which + '\', ' + i + ');" value="' + button.display + '" /></span>');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn ' + button.id + '" onclick="edInsertTypoCode(\'' + which + '\', ' + i + ');" value="' + button.display + '" />');
 			break;
 		default:
-			document.write('<span class="ed_span"><input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="ed_style ' + button.id + '" onclick="edInsertTag(\'' + which + '\', ' + i + ');" value="' + button.display + '"  /></span>');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn ' + button.id + '" onclick="edInsertTag(\'' + which + '\', ' + i + ');" value="' + button.display + '"  />');
 			break;
 	}
 }
@@ -330,26 +330,25 @@ function edSpell(which) {
 }
 
 function edToolbar(which) {
-	document.write('<div id="ed_toolbar_' + which + '"><span>');
+	document.write('<div id="ed_toolbar_' + which + '">');
 	for (i = 0; i < extendedStart; i++) {
 		edShowButton(which, edButtons[i], i);
 	}
 	if (edShowExtraCookie()) {
 		document.write(
-			'<span class="ed_span"><input type="button" id="ed_close_' + which + '" class="ed_style ed_large" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" /></span>'
-			+ '<span class="ed_span"><input type="button" id="ed_spell_' + which + '" class="ed_style ed_large" onclick="edSpell(\'' + which + '\');" value="Dict" /></span>'
+			'<input type="button" id="ed_close_' + which + '" class="btn" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" />'
+			+ '<input type="button" id="ed_spell_' + which + '" class="btn" onclick="edSpell(\'' + which + '\');" value="Dict" />'
 		);
 	}
 	else {
 		document.write(
-			'<span class="ed_span"><input type="button" id="ed_close_' + which + '" class="ed_style ed_large" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" /></span>'
-			+ '<span class="ed_span"><input type="button" id="ed_spell_' + which + '" class="ed_style ed_large" onclick="edSpell(\'' + which + '\');" value="Dict" /></span>'
+			'<input type="button" id="ed_close_' + which + '" class="btn" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" />'
+			+ '<input type="button" id="ed_spell_' + which + '" class="btn" onclick="edSpell(\'' + which + '\');" value="Dict" />'
 		);
 	}
 	for (i = extendedStart; i < edButtons.length; i++) {
 		edShowButton(which, edButtons[i], i);
 	}
-	document.write('</span>');
 //	edShowLinks();
 	document.write('</div>');
     edOpenTags[which] = new Array();

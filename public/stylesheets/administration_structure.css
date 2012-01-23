@@ -85,3 +85,46 @@ footer {
 .container-fluid .content {
 	margin-left: 200px;
 }
+
+.editor-left {
+	margin-right: 340px;
+}
+
+.editor-right {
+	float: right;
+	width: 280px;
+}
+
+.editor-right .actions {
+	padding-left: 0;
+	padding-right: 0;
+	text-align: right;
+}
+
+.pills:after {
+	clear: none;
+}
+
+#editor-menu {
+	width: 100%;
+	float: left;
+	margin-top: 18px;
+}
+
+#editor-menu ul {
+	float: right;
+}
+
+#article_body_and_extended {
+	width: 99%;
+}
+
+#article_title {
+	font-size: 19px;
+}
+
+.separator {
+	margin-top: 18px;
+     margin-bottom: 18px;
+     padding: 17px 0 18px 0;
+}

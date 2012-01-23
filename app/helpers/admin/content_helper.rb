@@ -44,7 +44,8 @@ module Admin::ContentHelper
       return hidden_field_tag "article[post_type]", "read"
     end
     
-    html = "<select name=article[post_type]>"
+    html = content_tag(:h4, _("Article type"))
+    html << "<select name=article[post_type]>"
         
     post_types.each do |pt|
       html << "<option value='read' #{'selected' if @article.post_type == 'read'} >#{_('Default')}</option>"

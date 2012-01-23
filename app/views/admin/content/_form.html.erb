@@ -5,51 +5,75 @@
 
 <%= error_messages_for 'article' %>
 
-<div id='editor-right'>
-  <div class='widget-container'>
-    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Publish settings") %></h3>
-    <div class='widget-content'>
-      <%= check_box 'article', 'allow_comments' %>
-      <label for="article_allow_comments"><%= _("Allow comments") %></label><br />
-      <%= check_box 'article', 'allow_pings' %>
-      <label for="article_allow_pings"><%= _("Allow trackbacks") %></label><br />
-      <%= check_box 'article', 'published'  %>
-      <label for="article_published"><%= _("Published") %></label><br />
-      <label for="article_password"><%= _("Password:") %></label><br />
-      <%= get_post_types %><br />
-      <%= password_field :article, :password, :class => 'small' %>
-      <p class='right'>
-        <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ed_button' />
-        <%= save( _("Publish") + " &raquo;") %><br />
-        <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
-        <%= link_to_destroy_draft @article %>
-      </p>
-      <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
+<div class='editor-right'>
+  <div class='well'>
+    <h4><%= _("Publish settings") %></h4>
+    <div class='clearfix'>
+      <ul class='inputs-list'>
+        <li>        
+          <label for="article_allow_comments">
+            <%= check_box 'article', 'allow_comments' %>
+            <%= _("Allow comments") %>
+          </label>
+        </li>
+        <li>
+          <label for="article_allow_pings">
+            <%= check_box 'article', 'allow_pings' %>
+            <%= _("Allow trackbacks") %>
+          </label>
+        </li>
+        <li>
+          <label for="article_published">
+            <%= check_box 'article', 'published'  %>
+            <%= _("Published") %>
+          </label>
+        </li>
+      </ul>
     </div>
+    <div class='clearfix'>
+      <ul class='inputs-list'>
+        <li>
+          <label for="article_password"><%= _("Password:") %>
+            <%= password_field :article, :password, :class => 'span3' %>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div class='actions'>
+      <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='ed_button' />
+      <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
+      <%= link_to_destroy_draft @article %>
+      <%= save( _("Publish")) %>
+    </div>
+    <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new'}) if @article.id %></span>
   </div>
 
-  <div class='widget-container'>
-    <h3 class='dark'><%= _("Categories") %></h3>
+  <div class='well'>
+    <h4><%= _("Categories") %></h4>
     <%= render 'categories' %>
+  </div>
+  <div class='well'>
+    <%= get_post_types %>
   </div>
 </div>
 
-<div id='editor-left'>
-  <div class='settings'>
-    <h2><label for="article_title"><%= _("Title") %></label></h2>
-    <p class='input_text'>
-      <%= text_field 'article', 'title', :class => 'large' %>
-    </p>
+<div class='editor-left'>
+  <div>
+    <div>
+      <%= text_field 'article', 'title', :class => 'span1', :style => ' width: 99%', :placeholder => _('Title') %>
+    </div>
 
-    <%= render('images', { :images => @images}) unless @images.empty? %>
+    <%#= render('images', { :images => @images}) unless @images.empty? %>
 
     <div id='editor-menu'>
-      <label id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-      </label>
-      <label id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
-        <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-      </label>
+		<ul class="pills">
+			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
+				<%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+			</li>
+			<li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
+				<%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+			</li>
+		</ul>
     </div>
 
     <div id="editor">
@@ -67,67 +91,53 @@
       </div>
     </div>
 
-    <h3><label for="article_keywords"><%= _("Tags") %></label></h3>
-    <p class='input_text'>
-      <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'large'} %>
-    </p>
-    <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>
+		<h4><%= _("Tags") %></h4>
+    <div class='class'>
+      <%= text_field 'article', 'keywords', {:autocomplete => 'off', :style => 'width: 100%'} %>
+    </div>
+    <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>		
   </div>
 
-  <div class='widget-container'>
-    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Excerpt") %></h3>
-    <div class='widget-content'>
-      <p><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself") %></p>
-      <%= text_area 'article', 'excerpt', {:height => '150', :class => 'large', :rows => '5'} %>
+  <div class='separator'>
+    <h4><%= _("Excerpt") %></h4>
+    <div class=''>
+      <%= text_area 'article', 'excerpt', {:height => '150', :style => 'width: 100%', :rows => '5'} %>
+      <span class='help-block'><%=_("Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself") %></span>
     </div>
   </div>
 
-  <div class='widget-container'>
-    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("SEO") %></h3>
-    <div class='widget-content'>
-      <div class='setting clear'>
-        <label class='float' for="article_meta_title"><%= _("Meta title") %></label>
-        <div class='input_text' id='meta_title'>
-          <%= text_field 'article', 'meta_title', {:class => 'medium'} %>
-		  <span class='help'>Fill in if you want the meta title to be different from the actual post title</span>
-        </div>
-      </div>
-    </div>
+  <div class=''>
+    <h4><%= _("Uploads") %></h4>
+    <p class='help-block'>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
+    <ul id='attachments' class='inputs-list'>
+      <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
+    </ul>
   </div>
 
-  <div class='widget-container'>
-    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Uploads") %></h3>
-    <div class='widget-content'>
-      <p>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
-
-      <ul id='attachments'>
-        <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
-      </ul>
-    </div>
-  </div>
-
-  <div class='widget-container'>
-    <h3 class='dark'><span class='ui-icon ui-icon-pencil'> </span><%= _("Post settings") %></h3>
-    <div class='widget-content'>
-      <div class='setting'>
-        <label class='float'><%= _("Publish at") %></label>
-        <div class='input_text'>
-          <%= calendar_date_select 'article', 'published_at', {:class => 'medium'} %>
+  <div class='separator'>
+    <h4><%= _("Post settings") %></h4>
+      <div class='clearfix'>
+        <label><%= _("Publish at") %></label>
+        <div class='input'>
+          <%= calendar_date_select 'article', 'published_at', {:class => 'span5'} %>
         </div>
       </div>
-      <div class='setting clear'>
-        <label class='float' for="article_permalink"><%= _("Permalink") %></label>
-        <div class='input_text' id='permalink'>
-          <%= text_field 'article', 'permalink', {:class => 'medium'} %>
+      <div class='clearfix'>
+        <label for="article_permalink"><%= _("Permalink") %></label>
+        <div class='input' id='permalink'>
+          <%= text_field 'article', 'permalink', {:class => 'span5'} %>
         </div>
       </div>
-    <div class='setting clear'>
-      <label class='float' for="text_filter"><%= _("Article filter") %></label>
-      <div class='input_text'>
+    <div class='clearfix'>
+      <label for="text_filter"><%= _("Article filter") %></label>
+      <div class='input'>
         <select name="article[text_filter]" id="text_filter">
           <%= options_for_select text_filter_options, @article.text_filter %>
         </select>
       </div>
     </div>
+    
   </div>
+
 </div>
+
