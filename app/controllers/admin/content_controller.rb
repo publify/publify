@@ -163,7 +163,6 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
-    @article.published = true 
     @article.keywords = Tag.collection_to_string @article.tags
     @article.attributes = params[:article]
     # TODO: Consider refactoring, because double rescue looks... weird.

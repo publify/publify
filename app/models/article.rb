@@ -294,6 +294,7 @@ class Article < Content
       art.allow_comments = art.blog.default_allow_comments
       art.allow_pings = art.blog.default_allow_pings
       art.text_filter = art.blog.text_filter
+      art.published = true
     end
   end
 
