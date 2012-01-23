@@ -18,17 +18,7 @@ describe Admin::SeoController do
 
     it 'should render index' do
       response.should render_template('index')
-    end
-    
-    it 'should have SEO tab selected' do
-      test_tabs "SEO"
-    end
-    
-    it 'should have Global settings, Permalinks and Titles with Global settings selected' do
-      subtabs = ["Global settings", "Permalinks", "Titles"]
-      test_subtabs(subtabs, "Global settings")
-    end        
-    
+    end    
   end
 
   describe "#permalinks" do
@@ -39,16 +29,6 @@ describe Admin::SeoController do
     it 'should render permalinks' do
       response.should render_template('permalinks')
     end
-    
-    it 'should have SEO tab selected' do
-      test_tabs "SEO"
-    end
-    
-    it 'should have Global settings, Permalinks and Titles with Permalinks selected' do
-      subtabs = ["Global settings", "Permalinks", "Titles"]
-      test_subtabs(subtabs, "Permalinks")
-    end        
-    
   end
 
   describe "#titles" do
@@ -58,17 +38,7 @@ describe Admin::SeoController do
     
     it 'should render titles' do
       response.should render_template('titles')
-    end
-    
-    it 'should have Titles tab selected' do
-      test_tabs "SEO"
-    end
-    
-    it 'should have Global settings, Permalinks and Titles with Permalinks selected' do
-      subtabs = ["Global settings", "Permalinks", "Titles"]
-      test_subtabs(subtabs, "Titles")
-    end        
-    
+    end    
   end
 
   describe 'update action' do

@@ -20,15 +20,6 @@ describe Admin::ThemesController do
       assert_response :success
       assert_not_nil assigns(:themes)
     end
-
-    it 'should have design tab selected' do
-      test_tabs "Design"
-    end
-
-    it 'should have Choose theme, Customize sidebar, Theme editor, View theme catalogue' do
-      subtabs = ["Choose theme", "Customize sidebar", "Theme editor", "View theme catalogue"]
-      test_subtabs(subtabs, "Choose theme")
-    end            
   end
 
   it "redirects to :index after the :switchto action" do
@@ -87,17 +78,6 @@ describe Admin::ThemesController do
       end
     end
     
-    it 'should have design tab selected' do
-      get :editor
-      test_tabs "Design"
-    end
-
-    it 'should have Choose theme, Customize sidebar, Theme editor, View theme catalogue' do
-      get :editor
-      subtabs = ["Choose theme", "Customize sidebar", "Theme editor", "View theme catalogue"]
-      test_subtabs(subtabs, "Theme editor")
-    end        
-
     it "Trying to open a valid stylesheet should fill the textarea with the stylesheet file content" do
       @blog = Blog.default
       path = File.join(@blog.current_theme.path, 'stylesheets', 'colors.css')
@@ -112,21 +92,4 @@ describe Admin::ThemesController do
       end
     end
   end
-  
-  describe 'catalogue' do
-    before(:each) do
-      get :catalogue
-    end
-    
-    it 'should have design tab selected' do
-      test_tabs "Design"
-    end
-
-    it 'should have Choose theme, Customize sidebar, Theme editor, View theme catalogue' do
-      subtabs = ["Choose theme", "Customize sidebar", "Theme editor", "View theme catalogue"]
-      test_subtabs(subtabs, "View theme catalogue")
-    end        
-    
-  end
-
 end

@@ -33,17 +33,8 @@ describe Admin::CategoriesController do
 
     it 'should render template view' do
       assert_template 'new'
-      assert_tag :tag => "div",
+      assert_tag :tag => "table",
         :attributes => { :id => "category_container" }
-    end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with General settings selected' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags"]
-      test_subtabs(subtabs, "Categories")
     end
   end
 
@@ -54,7 +45,7 @@ describe Admin::CategoriesController do
 
     it 'should render template new' do
       assert_template 'new'
-      assert_tag :tag => "div",
+      assert_tag :tag => "table",
         :attributes => { :id => "category_container" }
     end
 
@@ -63,15 +54,6 @@ describe Admin::CategoriesController do
       assert assigns(:category).valid?
       assigns(:categories).should_not be_nil
     end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with no tab selected' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags"]
-      test_subtabs(subtabs, "")
-    end    
   end
 
   it "test_update" do
@@ -89,14 +71,6 @@ describe Admin::CategoriesController do
     it 'should render destroy template' do
       assert_response :success
       assert_template 'destroy'      
-    end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have a back to list link' do
-      test_back_to_list
     end
   end
 

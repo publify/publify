@@ -20,17 +20,7 @@ describe Admin::ResourcesController do
       assert_response :success
       assert_template 'index'
       assigns(:resources).should_not be_nil
-    end
-    
-    it 'should have Media tab selected' do
-      test_tabs "Media"
-    end
-    
-    it 'should have Library with Library selected' do
-      subtabs = ["Library"]
-      test_subtabs(subtabs, "Library")
-    end
-    
+    end    
   end
 
   describe "test_destroy_image with get" do
@@ -47,15 +37,7 @@ describe Admin::ResourcesController do
     it 'should have a valid file' do
       assert_not_nil Resource.find(@res_id)
       assert_not_nil assigns(:file)      
-    end
-    
-    it 'should have Media tab selected' do
-      test_tabs "Media"
-    end
-    
-    it 'should have a back to list subtab' do
-      test_back_to_list
-    end
+    end    
   end
     
   it 'test_destroy_image with POST' do

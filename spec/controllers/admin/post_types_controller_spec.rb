@@ -36,14 +36,6 @@ describe Admin::PostTypesController do
         :attributes => { :id => "category_container" }
     end
 
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have Articles, Add new, Comments, Categories and Article Types with Article Types selected' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags", "Article Types"]
-      test_subtabs(subtabs, "Article Types")
-    end
   end
 
   describe "test_edit" do
@@ -70,14 +62,6 @@ describe Admin::PostTypesController do
     it 'should render destroy template' do
       assert_response :success
       assert_template 'destroy'      
-    end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have a back to list link' do
-      test_back_to_list
     end
   end
 

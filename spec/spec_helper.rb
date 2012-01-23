@@ -212,25 +212,3 @@ module Webrat #:nodoc:
   end
 end
 
-def test_tabs(active)
-  ["Dashboard", "Articles", "Pages", "Media", "Design", "Settings", "SEO"].each do |l|
-    next if l == active
-    response.should_not have_selector(".active", :content => "#{l}")
-  end
-  response.should have_selector(".active", :content => "#{active}")
-end
-
-def test_subtabs(tabs, active)
-  tabs.each do |t|
-    if t == active
-      response.should_not have_selector("ul#subtabs>li>a", :content => active)
-      response.should have_selector("ul#subtabs>li", :content => active)      
-    else
-      response.should have_selector("ul#subtabs>li>a", :content => "#{t}")
-    end
-  end
-end
-
-def test_back_to_list
-  response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
-end

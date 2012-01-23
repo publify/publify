@@ -22,16 +22,7 @@ describe Admin::TagsController do
 
     it 'should render template index' do
       response.should render_template('index')
-    end
-    
-    it 'should have Articles as selected tab only' do
-      test_tabs "Articles"
-    end
-    
-    it 'should have article, new article, comments, categories subtab links' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags"]
-      test_subtabs(subtabs, "Tags")
-    end  
+    end    
   end
 
   describe 'edit action' do
@@ -50,15 +41,7 @@ describe Admin::TagsController do
 
     it 'should assigns value :tag' do
       assert assigns(:tag).valid?
-    end
-    
-    it 'should have a link back to list' do
-      response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
-    end
-    
-    it 'should have Articles as selected tab only' do
-      test_tabs "Articles"
-    end
+    end    
   end
   
   describe 'destroy action with GET' do
@@ -81,15 +64,7 @@ describe Admin::TagsController do
 
     it 'should assigns value :tag' do
       assert assigns(:tag).valid?
-    end
-    
-    it 'should have a link back to list' do
-      response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
-    end
-    
-    it 'should have Articles as selected tab only' do
-      test_tabs "Articles"
-    end
+    end    
   end
 
   describe 'destroy action with POST' do

@@ -20,16 +20,6 @@ describe Admin::RedirectsController do
       assert_template 'index'
       assigns(:redirects).should_not be_nil
     end
-
-    it 'should have Settings as selected tab' do
-      test_tabs "Settings"
-    end
-
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with Redirects selected' do
-      subtabs = ["General settings", "Write", "Feedback", "Cache", "Users", "Redirects"]
-      test_subtabs(subtabs, "Redirects")
-    end        
-
   end
 
   it "test_create" do
@@ -58,14 +48,6 @@ describe Admin::RedirectsController do
       assigns(:redirect).should_not be_nil
       assert assigns(:redirect).valid?
     end
-
-    it 'should have Settings as selected tab' do
-      test_tabs "Settings"
-    end
-
-    it 'should have a link back to list' do
-      test_back_to_list
-    end
   end
 
   it "test_update" do
@@ -87,14 +69,6 @@ describe Admin::RedirectsController do
       it 'should render destroy template' do
         assert_response :success
         assert_template 'destroy'
-      end
-
-      it 'should have Settings as selected tab' do
-        test_tabs "Settings"
-      end
-
-      it 'should have a link back to list' do
-        response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
       end
     end
 

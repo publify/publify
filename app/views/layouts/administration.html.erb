@@ -47,7 +47,11 @@
   <div class='container-fluid'>
     <div class='sidebar'>
       <div class='well'>
-        <%= content_tag :h5, (link_to _('Dashboard'), :controller => 'admin/dashboard')  %>
+        <% if controller.controller_name == 'dashboard' %>
+          <%= content_tag :h5, _('Dashboard')  %>
+        <% else %>
+          <%= content_tag :h5, (link_to _('Dashboard'), :controller => 'admin/dashboard')  %>
+        <% end %>
         <% for pm in current_user.project_modules %>
           <%= content_tag :h5, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
           <ul id='subtabs'>
@@ -68,6 +72,5 @@
   <footer>
     <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Typo <%=h TYPO_VERSION %>
   </footer>
-</div>
 </body>
 </html>

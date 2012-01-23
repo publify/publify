@@ -19,15 +19,6 @@ describe Admin::SettingsController do
     it 'should render index' do  
       response.should render_template('index')
     end
-    
-    it 'should have settings tab selected' do
-      test_tabs "Settings"
-    end
-    
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with General settings selected' do
-      subtabs = ["General settings", "Write", "Feedback", "Cache", "Users", "Redirects"]
-      test_subtabs(subtabs, "General settings")
-    end        
   end
 
   describe 'write action' do
@@ -37,10 +28,6 @@ describe Admin::SettingsController do
     
     it 'should be success' do
       assert_template 'write'
-    end
-    
-    it 'should have settings tab selected' do
-      test_tabs "Settings"
     end    
   end
 
@@ -51,17 +38,7 @@ describe Admin::SettingsController do
     
     it 'should be sucess' do
       assert_template 'feedback'
-    end
-    
-    it 'should have settings tab selected' do
-      test_tabs "Settings"
-    end
-    
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with Feedback selected' do
-      subtabs = ["General settings", "Write", "Feedback", "Cache", "Users", "Redirects"]
-      test_subtabs(subtabs, "Feedback")
-    end
-    
+    end    
   end
 
   describe 'redirect action' do

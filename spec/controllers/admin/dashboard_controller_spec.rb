@@ -16,10 +16,5 @@ describe Admin::DashboardController do
     it "should render the index template" do
       response.should render_template('index')
     end
-
-    it 'should have Dashboard tab selected' do
-      test_tabs "Dashboard"
-    end
   end
-
 end
