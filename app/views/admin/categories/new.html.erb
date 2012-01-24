@@ -1,10 +1,9 @@
 <% @page_heading = _("%s Category", controller.action_name.capitalize) %>
-<% subtabs_for(:articles) %>
 
-  <div class='left_form'>
-    <%= render :partial => "form" %>
-  </div>
+<div class='left_form'>
+  <%= render :partial => "form" %>
+</div>
 
-  <div class="right_table">
-    <%= render :partial => 'categories' %>
-  </div>
+<div class="right_table">
+  <%= render :partial => 'categories' %>
+</div>
