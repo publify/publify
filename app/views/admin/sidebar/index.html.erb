@@ -1,6 +1,4 @@
 <% @page_heading = _('Sidebar') %>
-<% subtabs_for(:themes) %>
-
 
   <p><%= _("Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button")%>.</p>
   <%= form_remote_tag(:url => {:action=>'publish',

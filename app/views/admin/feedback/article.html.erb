@@ -1,7 +1,6 @@
 <% @page_heading = _("Comments for %s", @article.title) %>
 <% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'button'}) %>
 
-<% subtabs_for(:articles) %>
 <%= form_tag({:action => 'bulkops'}, :method => :post) do %>
 
 <%= hidden_field 'article_id', @article.id %>

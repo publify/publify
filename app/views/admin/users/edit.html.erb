@@ -1,5 +1,4 @@
 <% @page_heading = _('Edit User') %>
-<% subtabs_for(:settings) %>
 
 <%= form_tag :action=>"edit", :id => @user.id do %>
   <%= render :partial => "form" %>
