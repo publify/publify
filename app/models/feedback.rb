@@ -145,7 +145,7 @@ class Feedback < Content
   def report_as spam_or_ham
     return if blog.sp_akismet_key.blank?
     begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.send("submit#{spam_or_ham}", akismet_options) }
+      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.send("submit#{spam_or_ham.capitalize}", akismet_options) }
     rescue Timeout::Error => e
       nil
     end
