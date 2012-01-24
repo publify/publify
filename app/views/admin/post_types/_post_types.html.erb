@@ -1,9 +1,11 @@
-<table>
-  <tr>
+<table class='zebra-striped'>
+  <thead>
+  <tr class='noborder'>
     <th><%= _("Name") %></th>
     <th><%= _("Description") %></th>
     <th><%= _("Template name") %></th>
-  </tr>
+  </tr>    
+  </thead>
   <tr class='shade'>
     <td><%= _("Default") %></td>
     <td><%= _("Typo default post type") %></td>
@@ -20,4 +22,4 @@
   </tr>
   <% end -%>
 </table>
-<p class="help"><%= _("The template name is the filename Typo will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb") %></p>
+<p class="help-block"><%= _("The template name is the filename Typo will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb") %></p>
