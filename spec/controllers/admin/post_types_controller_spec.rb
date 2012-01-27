@@ -30,10 +30,8 @@ describe Admin::PostTypesController do
       get :new
     end
 
-    it 'should render template view' do
+    it 'should render template new' do
       assert_template 'new'
-      assert_tag :tag => "div",
-        :attributes => { :id => "category_container" }
     end
 
   end
@@ -42,8 +40,6 @@ describe Admin::PostTypesController do
     it 'should render template new' do
       get :edit, :id => Factory.build(:post_type).id
       assert_template 'new'
-      assert_tag :tag => "div",
-        :attributes => { :id => "category_container" }
     end
       
     it "test_update" do

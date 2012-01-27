@@ -173,7 +173,6 @@ module Admin::BaseHelper
     result << _("or")
     result << " "
     result << save( _("Save") + " &raquo")
-    result << '</p>'
     return result
   end
 
