@@ -52,7 +52,7 @@ class Article < Content
   after_save :keywords_to_tags
 
   scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
-  scope :drafts, :conditions => ['state = ?', 'draft']
+  scope :drafts, :conditions => ['state = ?', 'draft', :order => 'created_at DESC']
   scope :without_parent, {:conditions => {:parent_id => nil}}
   scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
   scope :published, lambda { { :conditions => { :published => true, :published_at => Time.at(0)..Time.now }, :order => 'published_at DESC' } }
