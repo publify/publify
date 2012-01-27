@@ -63,7 +63,7 @@ module Feedback::States
     end
 
     def to_s
-      _("Unclassified")
+      "Unclassified"
     end
   end
 
@@ -76,7 +76,7 @@ module Feedback::States
     end
 
     def to_s
-      _("Just Presumed Ham")
+      "Just Presumed Ham"
     end
   end
 
@@ -106,7 +106,7 @@ module Feedback::States
     end
 
     def to_s
-      _("Ham?")
+      "Ham?"
     end
 
     def send_notifications
@@ -123,7 +123,7 @@ module Feedback::States
     end
 
     def to_s
-      _("Just Marked As Ham")
+      "Just Marked As Ham"
     end
   end
 
@@ -157,7 +157,7 @@ module Feedback::States
       true
     end
     def to_s
-      _("Ham")
+      "Ham"
     end
   end
 
@@ -187,7 +187,7 @@ module Feedback::States
     end
 
     def to_s
-      _("Spam?")
+      "Spam?"
     end
   end
 
@@ -198,7 +198,7 @@ module Feedback::States
       content.state = :spam
     end
     def to_s
-      _("Just Marked As Spam")
+      "Just Marked As Spam"
     end
   end
 
@@ -219,7 +219,7 @@ module Feedback::States
       true
     end
     def to_s
-      _("Spam")
+      "Spam"
     end
   end
 end
