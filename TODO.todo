@@ -3,8 +3,10 @@
 neuro for 6.0.10:
   Editor:
   - Add the media back into the editor.
-  – Fix the publishing state bug.
   – Change the permalink behavior, that one is definitely stupid. RLY.
+  - Add per state filter in post listing.
+  - Fix pagination display
+  – Fix comments display in foreign languages, translation has nothing to do in the state machine!!!
   
   Typogarden:
   - Port : http://typogarden.org/hemingway.html
