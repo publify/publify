@@ -42,7 +42,7 @@ class Content < ActiveRecord::Base
   scope :published, {:conditions => ['published = ?', true]}
   scope :not_published, {:conditions => ['published = ?', false]}
   scope :draft, {:conditions => ['state = ?', 'draft']}
-  scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'created_at DESC'}
+  scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'published_at DESC'}
   scope :searchstring, lambda {|search_string|
     tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
     {:conditions => ['state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),

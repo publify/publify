@@ -30,7 +30,7 @@ class Page < Content
     list_function = ["Page"] + function_search_no_draft(search_hash)
     paginate_hash[:order] = 'title ASC'
     list_function << "page(paginate_hash[:page])"
-    list_function << "per(paginate_hash[:per])"
+    list_function << "per(paginate_hash[:per_page])"
     
     eval(list_function.join('.'))
   end
