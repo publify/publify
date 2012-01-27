@@ -13,7 +13,8 @@ class Admin::ContentController < Admin::BaseController
 
   def index
     @search = params[:search] ? params[:search] : {}
-    @articles = Article.search_no_draft_paginate(@search, {:page => params[:page], :per_page => this_blog.admin_display_elements})
+    
+    @articles = Article.search_with_pagination(@search, {:page => params[:page], :per_page => this_blog.admin_display_elements})
 
     if request.xhr?
       render :partial => 'article_list', :locals => { :articles => @articles }

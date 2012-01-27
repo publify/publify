@@ -56,6 +56,8 @@ class Article < Content
   scope :without_parent, {:conditions => {:parent_id => nil}}
   scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
   scope :published, lambda { { :conditions => { :published => true, :published_at => Time.at(0)..Time.now }, :order => 'published_at DESC' } }
+  scope :pending, lambda { { :conditions => ['state = ? and published_at > ?', 'publication_pending', Time.now], :order => 'published_at DESC' } }
+  scope :withdrawn, lambda { { :conditions => { :state => 'withdrawn' }, :order => 'published_at DESC' } }
   scope :published_at, lambda {|time_params| { :conditions => { :published => true, :published_at => Article.time_delta(*time_params) }, :order => 'published_at DESC' } }
 
   setting :password,                   :string, ''
@@ -97,8 +99,12 @@ class Article < Content
       article
     end
 
-    def search_no_draft_paginate(search_hash, paginate_hash)
-      list_function  = ["Article.no_draft"] + function_search_no_draft(search_hash)
+    def search_with_pagination(search_hash, paginate_hash)
+      
+      state = (search_hash[:state] and ["no_draft", "drafts", "published", "withdrawn", "pending"].include? search_hash[:state]) ? search_hash[:state] : 'no_draft'
+      
+      
+      list_function  = ["Article.#{state}"] + function_search_no_draft(search_hash)
 
       if search_hash[:category] and search_hash[:category].to_i > 0
         list_function << 'category(search_hash[:category])'

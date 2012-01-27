@@ -4,7 +4,6 @@ neuro for 6.0.10:
   Editor:
   - Add the media back into the editor.
   – Change the permalink behavior, that one is definitely stupid. RLY.
-  - Add per state filter in post listing.
   - Fix pagination display
   
   Typogarden:

@@ -33,6 +33,53 @@ describe Admin::ContentController do
       response.should be_success
     end
 
+    it 'should restrict to drafts' do
+      article = Factory(:article, :state => 'draft')
+      get :index, :search => {:state => 'drafts'}
+      assigns(:articles).should == [article]
+      response.should render_template('index')
+      response.should be_success
+    end
+
+    it 'should restrict to publication pending articles' do
+      article = Factory(:article, :state => 'publication_pending', :published_at => '2020-01-01')
+      get :index, :search => {:state => 'pending'}
+      assigns(:articles).should == [article]
+      response.should render_template('index')
+      response.should be_success
+    end
+    
+    it 'should restrict to withdrawn articles' do
+      article = Factory(:article, :state => 'withdrawn', :published_at => '2010-01-01')
+      get :index, :search => {:state => 'withdrawn'}
+      assigns(:articles).should == [article]
+      response.should render_template('index')
+      response.should be_success
+    end
+  
+    it 'should restrict to withdrawn articles' do
+      article = Factory(:article, :state => 'withdrawn', :published_at => '2010-01-01')
+      get :index, :search => {:state => 'withdrawn'}
+      assigns(:articles).should == [article]
+      response.should render_template('index')
+      response.should be_success
+    end
+
+    it 'should restrict to published articles' do
+      article = Factory(:article, :state => 'published', :published_at => '2010-01-01')
+      get :index, :search => {:state => 'published'}
+      response.should render_template('index')
+      response.should be_success
+    end
+
+    it 'should fallback to default behavior' do
+      article = Factory(:article, :state => 'draft')
+      get :index, :search => {:state => '3vI1 1337 h4x0r'}
+      response.should render_template('index')
+      assigns(:articles).should_not == [article]
+      response.should be_success
+    end
+
   end
 
   shared_examples_for 'autosave action' do

@@ -8,15 +8,24 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
-<%#= render 'drafts' unless Article.drafts.empty? %>
-
 <table class="zebra-striped clearfix">
   <thead>
     <tr class='noborder'>
-      <td>
+      <td colspan=5>
         <input id="search" type="text" name="search[searchstring]" class='large' />
         <%= submit_tag(_("Search"), {:class => 'btn'}) %>
         <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
+      </td>
+	 </tr>
+   <tr class='noborder'>
+      <td>
+        <select name="search[state]">
+          <option value='no_draft'><%= _("All articles") %></option>
+          <option value='published'><%= _("Published") %></option>
+          <option value='pending'><%= _("Publication pending") %></option>
+          <option value='drafts'><%= _("Drafts") %></option>
+          <option value='withdrawn'><%= _("Withdrawn") %></option>
+        </select>
       </td>
       <td><%= collection_select_with_current('search', 'category', Category.all, "id", "name", @search[:category].to_i, true)
       %></td>
