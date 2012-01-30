@@ -115,7 +115,6 @@ class Admin::ContentController < Admin::BaseController
     if @article.save
       render(:update) do |page|
         page.replace_html('autosave', hidden_field_tag('article[id]', @article.id))
-        page.replace_html('permalink', text_field('article', 'permalink', {:class => 'small medium'}))
         page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}))
       end
 
@@ -216,9 +215,6 @@ class Admin::ContentController < Admin::BaseController
     if @article.title.blank?
       lastid = Article.find(:first, :order => 'id DESC').id
       @article.title = "Draft article " + lastid.to_s
-    end
-    unless @article.parent_id and Article.find(@article.parent_id).published
-      @article.permalink = @article.stripped_title
     end
   end
 
