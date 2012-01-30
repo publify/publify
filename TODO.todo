@@ -4,7 +4,6 @@ neuro for 6.0.10:
   Editor:
   - Add the media back into the editor.
   - Fix pagination display
-  – Fix autosave interactions
 
   Typogarden:
   - Port : http://typogarden.org/hemingway.html

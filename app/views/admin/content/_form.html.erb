@@ -9,8 +9,8 @@
   <div class='well'>
     <h4><%= _("Publish settings") %></h4>
     <div class='actions'>
-      <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? %>
-      <%= link_to_destroy_draft @article %>
+      <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? or @article.state.to_s.downcase == 'draft' %>
+	  <span id='destroy_link'><%= link_to_destroy_draft @article %></span>
       <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span>
     </div>
     <div class='clearfix'>

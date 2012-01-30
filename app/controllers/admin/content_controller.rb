@@ -116,6 +116,7 @@ class Admin::ContentController < Admin::BaseController
       render(:update) do |page|
         page.replace_html('autosave', hidden_field_tag('article[id]', @article.id))
         page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}))
+        page.replace_html('destroy_link', link_to_destroy_draft(@article))
       end
 
       return true

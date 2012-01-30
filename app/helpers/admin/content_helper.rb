@@ -1,10 +1,9 @@
 module Admin::ContentHelper
   def link_to_destroy_draft(record, controller = controller.controller_name)
-    if record.state.to_s == "Draft"
-      link_to(_("Destroy this draft"),
-        { :controller => controller, :action => 'destroy', :id => record.id },
-          :confirm => _("Are you sure?"), :method => :post, :class => 'btn danger' )
-    end
+    return unless record.state.to_s.downcase == "draft"
+    link_to(_("Destroy this draft"),
+      { :controller => controller, :action => 'destroy', :id => record.id },
+        :confirm => _("Are you sure?"), :method => :post, :class => 'btn danger' )
   end
 
   def auto_complete_result(entries, field, phrase = nil)
