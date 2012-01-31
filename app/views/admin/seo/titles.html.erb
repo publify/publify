@@ -1,148 +1,160 @@
-<% @page_heading = _('Titles') %>
+<% @page_heading = _("Title settings")%>
 
 <%= error_messages_for 'blog' %>
 
 <%= form_tag :action => 'titles' do %>
-<div class='widget-container'>
-  <h3 class='light'>
-    <span class='ui-icon ui-icon-gear'></span> <%= _("Title settings")%>
-  </h3>
-  <div class='widget-content'>    
-    <h2>Single pages</h2>
-    <h4 class='clear'>Homepage</h4>    
-    <div class='setting clear'>
-      <label class="float" for="home_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :home_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="home_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :home_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h4 class='clear'>Articles</h4>    
-    <div class='setting clear'>
-      <label class="float" for="article_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :article_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="article_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :article_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h4 class='clear'>Pages</h4>    
-    <div class='setting clear'>
-      <label class="float" for="page_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :page_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="page_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :page_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h2 class='clear'>Archive pages</h2>
-    <h4 class='clear'>Paginated archives</h4>    
-    <div class='setting clear'>
-      <label class="float" for="paginated_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :paginated_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="paginated_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :paginated_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h4 class='clear'>Dates archives</h4>    
-    <div class='setting clear'>
-      <label class="float" for="archives_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :archives_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="archives_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :archives_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h2 class='clear'>Taxonomy</h2>
-    <h4 class='clear'>Categories</h4>    
-    <div class='setting clear'>
-      <label class="float" for="category_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :category_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="category_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :category_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h4 class='clear'>Tags</h4>    
-    <div class='setting clear'>
-      <label class="float" for="tag_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :tag_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="tag_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :tag_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h2 class='clear'>Special pages</h2>
-    <h4 class='clear'>Author page</h4>    
-    <div class='setting clear'>
-      <label class="float" for="author_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :author_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="author_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :author_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
-    </div>
-    <h4 class='clear'>Search results</h4>    
-    <div class='setting clear'>
-      <label class="float" for="search_title_template"><%= _("Title template") %></label>
-      <div class='input_text'>
-        <%= text_field(:setting, :search_title_template, { :class => 'medium'})%>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="search_desc_template"><%= _("Description template") %></label>
-      <div class='input_text'>
-        <%= text_area(:setting, :search_desc_template, :rows => 3, :class => 'medium')%>
-      </div>
+
+<fieldset>
+  <legend><%= _("Home") %></legend>
+  <div class='clearfix'>
+    <label for="home_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :home_title_template, { :class => 'span5'})%>
     </div>
   </div>
-</div>
-<div class='widget-container'>
-  <h3 class='light'>
+  <div class='clearfix'>
+    <label for="home_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :home_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend><%= _("Articles") %></legend>
+  <div class='clearfix'>
+    <label for="article_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :article_title_template, { :class => 'span5'})%>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="article_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :article_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend><%= _("Pages") %></legend>    
+  <div class='clearfix'>
+    <label for="page_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :page_title_template, { :class => 'span5'})%>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="page_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :page_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend><%= _("Paginated archives") %></legend>
+  <div class='clearfix'>
+    <label for="paginated_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :paginated_title_template, { :class => 'span5'})%>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="paginated_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :paginated_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>
+  </fieldset>
+  <fieldset>
+  <legend><%= _("Dated archives") %></legend>    
+  <div class='clearfix'>
+    <label for="archives_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :archives_title_template, { :class => 'span5'})%>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="archives_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :archives_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend><%= _("Categories") %></legend>    
+  <div class='clearfix'>
+    <label for="category_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :category_title_template, { :class => 'span5'})%>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="category_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :category_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>
+  </fieldset>
+  <fieldset>
+  <legend><%= _("Tags") %></legend>    
+  <div class='clearfix'>
+    <label for="tag_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :tag_title_template, { :class => 'span5'})%>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="tag_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :tag_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>  
+</fieldset>
+
+<fieldset>
+    <legend><%= _("Author page") %></legend>    
+    <div class='clearfix'>
+      <label for="author_title_template"><%= _("Title template") %></label>
+      <div class='input'>
+        <%= text_field(:setting, :author_title_template, { :class => 'span5'})%>
+      </div>
+    </div>
+    <div class='clearfix'>
+      <label for="author_desc_template"><%= _("Description template") %></label>
+      <div class='input'>
+        <%= text_area(:setting, :author_desc_template, :rows => 3, :class => 'span5')%>
+      </div>
+    </div>  
+</fieldset>
+
+<fieldset>
+  <legend><%= _("Search results") %></legend>    
+  <div class='clearfix'>
+    <label for="search_title_template"><%= _("Title template") %></label>
+    <div class='input'>
+      <%= text_field(:setting, :search_title_template, { :class => 'span5'})%>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="search_desc_template"><%= _("Description template") %></label>
+    <div class='input'>
+      <%= text_area(:setting, :search_desc_template, :rows => 3, :class => 'span5')%>
+    </div>
+  </div>
+</fieldset>
+
+
+  <h3>
     <span class='ui-icon ui-icon-gear'></span> <%= _("Help on title settings")%>
   </h3>
-  <div class='widget-content'>    
-    <p>These tags can be included in your templates and will be replaced when displaying the page.</p>
-    <table>
+    <p class='help-block'>These tags can be included in your templates and will be replaced when displaying the page.</p>
+    <table class="zebra-striped">
       <tr>
         <td>%title%</td>
         <td><%= _("Replaced with the title of the article/page") %></td>
       </tr>
-      <tr class='shade'>
+      <tr>
         <td>%blog_name%</td>
         <td><%= _("The blog's name") %></td>
       </tr>
@@ -150,7 +162,7 @@
         <td>%blog_subtitle%</td>
         <td><%= _("The blog's tagline / description") %></td>
       </tr>
-      <tr class='shade'>
+      <tr>
         <td>%excerpt%</td>
         <td><%= _("Replaced with the post/page excerpt") %></td>
       </tr>
@@ -158,7 +170,7 @@
         <td>%tags%</td>
         <td><%= _("Replaced with the article tags (comma separated)") %></td>
       </tr>
-      <tr class='shade'>
+      <tr>
         <td>%categories</td>
         <td><%= _("Replaced with the article categories (comma separated)") %></td>
       </tr>
@@ -166,7 +178,7 @@
         <td>%title</td>
         <td><%= _("Replaced with the article/page title") %></td>
       </tr>
-      <tr class='shade'>
+      <tr>
         <td>%name%</td>
         <td><%= _("Replaced with the category/tag name") %></td>
       </tr>
@@ -174,7 +186,7 @@
         <td>%search%</td>
         <td><%= _("Replaced with the current search phrase") %></td>
       </tr>
-      <tr class='shade'>
+      <tr>
         <td>%currenttime%</td>
         <td><%= _("Replaced with the current time") %></td>
       </tr>
@@ -182,7 +194,7 @@
         <td>%currentdate%</td>
         <td><%= _("Replaced with the current date") %></td>
       </tr>
-      <tr class='shade'>
+      <tr>
         <td>%currentmonth%</td>
         <td><%= _("Replaced with the current month") %></td>
       </tr>
@@ -190,7 +202,7 @@
         <td>%currentyear%</td>
         <td><%= _("Replaced with the current year") %></td>
       </tr>
-      <tr class='shade'>
+      <tr>
         <td>%page%</td>
         <td><%= _("Replaced with the current page number") %></td>
       </tr>

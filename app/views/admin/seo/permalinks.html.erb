@@ -2,55 +2,51 @@
 <%= error_messages_for 'blog' %>
 
 <%= form_tag :action => 'permalinks' do %>
-<div class='widget-container'>
-  <h3 class='light'>
-    <span class='ui-icon ui-icon-gear'></span> <%= _("Format of permalink")%>
-  </h3>
-  <div class='widget-content'>
-    <p><%= _("Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.") %></p>
-    <p>Here are some examples to get you started.</p>
-    <div class='setting clear'>
-      <label class="float" for="setting_permalink_format">
-        <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %> Date and title
-      </label>
-      <div class='input_text'>
-        <span class='help-inline'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m/%d')}/sample-article" %></span>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_permalink_format">
-        <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%title%') %> Month and title
-      </label>
-      <div class='input_text'>
-        <span class='help-inline'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m')}/sample-article" %></span>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_permalink_format">
-        <%= radio_button(:setting, :permalink_format, '/%title%') %> Title only
-      </label>
-      <div class='input_text'>
-        <span class='help-inline'><%= "#{this_blog.base_url}/sample-article" %></span>
-      </div>
-    </div>
-    <div class='setting clear'>
-      <label class="float" for="setting_custom_permalink">
-        <%= radio_button(:setting, :permalink_format, 'custom') %> Custom
-      </label>
-      <div class='input_text'>
-        <%= text_field(:setting, :custom_permalink, { :class => 'medium'})%>
-      </div>
-    </div>
-    <p class='clear'><%= _("You can custom your URL structure using the following tags:") %></p>
-    <ul>
-      <li><code>%title%</code>: <%= _("your article slug. <strong>Using this slug is mandatory</strong>.") %></li>
-      <li><code>%year%</code>: <%= _("your article year of publication.") %></li>
-      <li><code>%month%</code>: <%= _("your article month of publication.") %></li>
-      <li><code>%day%</code>: <%= _("your article day of publication.") %></li>
+<p><%= _("Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.") %></p>
+<p><%= _("Here are some examples to get you started.") %></p>
+
+<div class='clearfix'>
+  <label><%= _("Permalink format") %></label>
+  <div class='input'>
+    <ul class='inputs-list'>
+      <li>
+        <label for="setting_permalink_format">
+          <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %> 
+          <%= _("Date and title") %>
+          <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m/%d')}/sample-article" %></span>
+        </label>
+      </li>
+      <li>
+        <label for="setting_permalink_format">
+          <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%title%') %> 
+          <%= _("Month and title") %>
+          <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m')}/sample-article" %></span>
+        </label>
+      </li>
+      <li>
+        <label for="setting_permalink_format">
+          <%= radio_button(:setting, :permalink_format, '/%title%') %> <%= _("Title only") %>
+        </label>
+        <span class='help-block'><%= "#{this_blog.base_url}/sample-article" %></span>
+      </li>
+      <li>
+        <label for="setting_custom_permalink">
+          <%= radio_button(:setting, :permalink_format, 'custom') %> Custom
+          <%= text_field(:setting, :custom_permalink, { :class => 'span5 '})%>
+        </label>
+      </li>
     </ul>
-    
   </div>
 </div>
+	
+<p class='clear'><%= _("You can custom your URL structure using the following tags:") %></p>
+<ul>
+  <li><code>%title%</code>: <%= _("your article slug. <strong>Using this slug is mandatory</strong>.") %></li>
+  <li><code>%year%</code>: <%= _("your article year of publication.") %></li>
+  <li><code>%month%</code>: <%= _("your article month of publication.") %></li>
+  <li><code>%day%</code>: <%= _("your article day of publication.") %></li>
+</ul>
+    
 <%= save_settings %>
 <%= hidden_field_tag 'from', 'permalinks' %>
 <% end %>
