@@ -1,11 +1,41 @@
 <% @page_heading = _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
+
 <%= form_tag :action => "update", :id => @comment.id do %>
-<% content_for(:tasks) do %>
-  <%= task_overview %>
-<% end %>
+
 
   <div class="admin">
-    <%= render :partial => "form" %>
+<%= error_messages_for 'comment' %>
+<%= hidden_field_tag 'article_id', @article.id %>
+
+<div id='comment' class='widget-container'>
+  <h3 class='light'><span class='ui-icon ui-icon-gear'></span> <%= _("Add a comment")%></h3>
+  <div class='widget-content'>
+    <div class='setting'>
+      <label for="comment_author" class='float'><%= _("Author")%></label>
+      <p class='input_text'>
+        <%= text_field 'comment', 'author', :class => 'medium' %>
+      </p>
+    </div>
+    <div class='setting clear'>
+      <label for="comment_email" class='float'><%= _("Email")%></label>
+      <p class='input_text'>
+        <%= text_field 'comment', 'email', :class => 'medium' %>
+      </p>
+    </div>
+    <div class='setting clear'>
+      <label for="comment_url" class='float'><%= _("Url") %></label>
+      <p class='input_text'>
+        <%= text_field 'comment', 'url', :class => 'medium' %>
+      </p>
+    </div>
+    <div id='simple_editor' class='setting clear'>
+      <p class='input_text'>
+        <script type="text/javascript">edToolbar('comment_body');</script>
+        <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
+      </p>
+    </div>
+  </div>
+</div>
   </div>
 
   <%= cancel_or_save %>

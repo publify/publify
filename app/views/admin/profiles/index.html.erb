@@ -1,7 +1,4 @@
 <% @page_heading = _('Your profile') %>
-<% content_for(:tasks) do %>
-    <li><a href='#'>&nbsp;</a></li>
-<% end %>
 
 <%= form_tag :action=>"index", :id => @user.id do %>
   <%= render :partial => "admin/users/form" %>

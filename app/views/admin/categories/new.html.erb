@@ -1,9 +1,53 @@
-<% @page_heading = _("%s Category", controller.action_name.capitalize) %>
+<% @page_heading = _("Categories") %>
 
 <div class='left_form'>
-  <%= render :partial => "form" %>
+  <%= form_tag :action=>"edit", :id => @category.id do %>
+  <%= error_messages_for 'category' %>
+  <div class='clearfix'>
+    <label for="category_name"><%= _("Name")%></label>
+    <div class='input'>
+      <%= text_field :category, :name, :class => 'large'  %>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="category_keywords"><%= _("Keywords") %></label>
+    <div class='input'>
+      <%= text_field :category, :keywords, :class => 'large' %>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <label for="category_description"><%= _("Description") %></label>
+    <div class='input'>
+      <%= text_area :category, :description, :rows => 5, :class => 'large' %>
+    </div>
+  </div>
+  <div class='actions'>
+    <%= cancel_or_save %>  
+  </div>
+  <% end %>
 </div>
 
 <div class="right_table">
-  <%= render :partial => 'categories' %>
+  <table id='category_container' class="zebra-striped">
+    <thead>
+      <tr class='noborder'>
+        <th><%= _("Title") %></th>
+        <th><%= _("Description") %></th>
+        <th><%= _("Permalink") %></th>
+        <th><%= _("Keywords") %></th>
+      </tr>
+    </thead>
+    <%= render_void_table(@categories.size, 4)  %>
+    <% for category in @categories -%>
+    <tr <%= alternate_class -%> id="category_<%= category.id -%>">
+      <td>
+        <%= link_to_edit category.name, category %><br />
+        <%= show_category_actions category %>
+      </td>
+      <td><%= h category.description %></td>
+      <td><%= category.permalink %></td>
+      <td><%= h category.keywords %></td>
+    </tr>
+    <% end -%>
+  </table>
 </div>
