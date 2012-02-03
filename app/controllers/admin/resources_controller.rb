@@ -60,12 +60,12 @@ class Admin::ResourcesController < Admin::BaseController
 
   def destroy
     begin
-      @file = Resource.find(params[:id])
-      mime = @file.mime
-      if request.post?
-        @file.destroy
-        redirect_to :action => 'index'
-      end
+      @record = Resource.find(params[:id])
+      mime = @record.mime
+      return(render 'admin/shared/destroy') unless request.post?
+      
+      @record.destroy
+      redirect_to :action => 'index'
     rescue
       raise
     end

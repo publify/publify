@@ -16,11 +16,11 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    @category = Category.find(params[:id])
-    if request.post?
-      @category.destroy
-      redirect_to :action => 'index'
-    end
+    @record = Category.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+
+    @record.destroy
+    redirect_to :action => 'new'
   end
 
   private

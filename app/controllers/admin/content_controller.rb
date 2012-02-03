@@ -38,20 +38,18 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @record = Article.find(params[:id])
 
-    unless @article.access_by?(current_user)
-      redirect_to :action => 'index'
+    unless @record.article.access_by?(current_user)
       flash[:error] = _("Error, you are not allowed to perform this action")
-      return
+      return(redirect_to :action => 'index')
     end
+    
+    return(render 'admin/shared/destroy') unless request.post?
 
-    if request.post?
-      @article.destroy
-      flash[:notice] = _("This article was deleted successfully")
-      redirect_to :action => 'index'
-      return
-    end
+    @record.destroy
+    flash[:notice] = _("This article was deleted successfully")
+    redirect_to :action => 'index'
   end
 
   def insert_editor

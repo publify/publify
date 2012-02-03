@@ -14,13 +14,12 @@ class Admin::RedirectsController < Admin::BaseController
   end
 
   def destroy
-    @redirect = Redirect.find(params[:id])
-
-    if request.post?
-      @redirect.destroy
-      flash[:notice] = _('Redirection was successfully deleted.')
-      redirect_to :action => 'index'
-    end
+    @record = Redirect.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+    
+    @record.destroy
+    flash[:notice] = _('Redirection was successfully deleted.')
+    redirect_to :action => 'index'
   end
 
   private

@@ -36,7 +36,7 @@ describe Admin::ResourcesController do
     
     it 'should have a valid file' do
       assert_not_nil Resource.find(@res_id)
-      assert_not_nil assigns(:file)      
+      assert_not_nil assigns(:record)      
     end    
   end
     

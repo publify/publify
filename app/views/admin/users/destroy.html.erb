@@ -1,7 +1,0 @@
-<% @page_heading = _('Users') %>
-
-<p><%= _("Really delete user")%> "<%= @user.name || @user.login %>" ?</p>
-<%= form_tag do %>
-	<%= hidden_field "user", "id" %>
-	<%= confirm_delete(_("Yes") + "...") %>
-<% end %>

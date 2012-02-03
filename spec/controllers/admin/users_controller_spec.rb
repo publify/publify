@@ -69,7 +69,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       user_count = User.count
       get :destroy, :id => @admin.id
       assert_template 'destroy'
-      assert assigns(:user).valid?
+      assert assigns(:record).valid?
 
       user = Factory.build(:user)
       user.should_receive(:destroy)

@@ -31,16 +31,6 @@ module Admin::BaseHelper
     '<input type="submit" value="' + val + '" class="btn primary" />'
   end
 
-  def confirm_delete(val = _("Delete"))
-    <<-HTML
-   <div class="actions">
-     #{cancel} #{_("or")}
-     <input type="submit" value="#{val}" class="btn danger" />
-   </div>
-   
-   HTML
-  end
-
   def link_to_edit(label, record, controller = controller.controller_name)
     link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
   end

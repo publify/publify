@@ -25,11 +25,11 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
-    if request.post?
-      @tag.destroy
-      redirect_to :action => 'index'
-    end
+    @record = Tag.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+
+    @record.destroy
+    redirect_to :action => 'index'
   end
 
 end

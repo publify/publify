@@ -34,11 +34,11 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    if request.post?
-      @user.destroy if User.count > 1
-      redirect_to :action => 'index'
-    end
+    @record = User.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+
+    @record.destroy if User.count > 1
+    redirect_to :action => 'index'
   end
 
   private

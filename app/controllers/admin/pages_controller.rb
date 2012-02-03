@@ -42,11 +42,11 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def destroy
-    @page = Page.find(params[:id])
-    if request.post?
-      @page.destroy
-      redirect_to :action => 'index'
-    end
+    @record = Page.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+
+    @record.destroy
+    redirect_to :action => 'index'    
   end
 
   def set_shortened_url

@@ -1,0 +1,6 @@
+<% @page_heading = _(@record.class.name) %>
+
+<p><%= _("Are you sure you want to delete this #{@record.class.name.downcase} ")%></p>
+<%= form_tag :action => "destroy", :id => @record.id do %>
+<div class='actions'><%= cancel %> <%= _("or") %> <input type="submit" value='<%= _("delete") %>' class="btn danger" /></div>
+<% end %>

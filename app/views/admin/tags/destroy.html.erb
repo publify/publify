@@ -1,7 +1,0 @@
-<% @page_heading = _("Tags") %>
-
-<p><%= _("Are you sure you want to delete the tag")%> '<%= @tag[:display_name] %>'?</p>
-<%= form_tag :controller => '/admin/tags', :action => 'destroy', :id => params[:id] do %>
-<%= hidden_field "tag", "id" %>
-  <%= confirm_delete(_("Delete this tag")) %>
-<% end %>

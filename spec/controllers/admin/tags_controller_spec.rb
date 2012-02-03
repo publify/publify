@@ -63,7 +63,7 @@ describe Admin::TagsController do
     end
 
     it 'should assigns value :tag' do
-      assert assigns(:tag).valid?
+      assert assigns(:record).valid?
     end    
   end
 
