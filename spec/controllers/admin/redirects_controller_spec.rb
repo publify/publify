@@ -17,8 +17,7 @@ describe Admin::RedirectsController do
     end
 
     it 'should display index with redirects' do
-      assert_template 'index'
-      assigns(:redirects).should_not be_nil
+      assert_response :redirect, :action => 'new'
     end
   end
 
