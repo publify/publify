@@ -171,7 +171,12 @@ class Admin::ContentController < Admin::BaseController
     if request.post?
       set_article_author
       save_attachments
-      @article.state = "draft" if @article.draft
+      
+      if @article.draft
+        @article.state = "draft"
+      else
+        @article.permalink = @article.stripped_title if @article.permalink.nil? or @article.permalink.empty?
+      end
 
       if @article.save
         destroy_the_draft unless @article.draft
