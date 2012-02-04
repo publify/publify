@@ -40,7 +40,7 @@ class Admin::ContentController < Admin::BaseController
   def destroy
     @record = Article.find(params[:id])
 
-    unless @record.article.access_by?(current_user)
+    unless @record.access_by?(current_user)
       flash[:error] = _("Error, you are not allowed to perform this action")
       return(redirect_to :action => 'index')
     end

@@ -2,18 +2,11 @@ require 'spec_helper'
 
 describe CategoriesController, "/index" do
   before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic")
-    Blog.stub(:default) { blog }
-    Trigger.stub(:fire) { }
-
-    categories = 3.times.map do
-      Factory.build(:category).tap do |category|
-        articles = 2.times.map { stub_model(Article) }
-        category.stub(:published_articles) { articles }
-        category.stub(:display_name) { category.id.to_s }
-      end
-    end
-    Category.stub(:find) { categories }
+    Factory(:blog)
+    3.times {
+      category = Factory(:category)
+      2.times { category.articles << Factory(:article) }
+    }
   end
 
   describe "normally" do
