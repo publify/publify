@@ -42,17 +42,9 @@ gem 'acts_as_tree_rails3'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 
 group :development, :test do
-  if RUBY_VERSION.include?('1.9')
-    gem 'ruby-debug19'
-  else
-    gem 'ruby-debug'
-  end
+  gem 'ruby-debug19'
   gem 'factory_girl', '2.2.0'
   gem 'webrat'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
-  if RUBY_VERSION.include?('1.9')
-    gem 'simplecov', :require => false
-  else
-    gem 'rcov'
-  end
+  gem 'simplecov', :require => false
 end
