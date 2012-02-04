@@ -2,9 +2,7 @@ env = ENV["RAILS_ENV"] || 'development'
 dbfile = File.expand_path("../config/database.yml", __FILE__)
 
 unless File.exists?(dbfile)
-  puts "You need to configure config/database.yml first"
-  puts "Exiting"
-  exit
+  raise "You need to configure config/database.yml first"
 else
   conf = YAML.load(File.read(dbfile))
   adapter = conf[env]['adapter']
