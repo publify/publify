@@ -2,7 +2,6 @@ class Admin::FeedbackController < Admin::BaseController
   layout 'administration'
 
   cache_sweeper :blog_sweeper
-  before_filter :only_own_feedback, :only => [:destroy]
 
   def index
     conditions = ['1 = 1', {}]
@@ -62,6 +61,13 @@ class Admin::FeedbackController < Admin::BaseController
 
   def destroy
     @record = Feedback.find params[:id]
+
+    unless @record.article.user_id == current_user.id
+      unless current_user.admin?
+        return redirect_to :controller => 'admin/feedback', :action => :index
+      end
+    end
+
     return(render 'admin/shared/destroy') unless request.post?
 
     begin
@@ -70,7 +76,7 @@ class Admin::FeedbackController < Admin::BaseController
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = _("Not found")
     end
-    redirect_to :action => 'article', :id => @feedback.article.id
+    redirect_to :action => 'article', :id => @record.article.id
   end
 
   def create
@@ -191,15 +197,6 @@ class Admin::FeedbackController < Admin::BaseController
   def flush_cache
     @unexpired = false
     PageCache.sweep_all
-  end
-
-  def only_own_feedback
-    @feedback = Feedback.find(params[:id])
-    unless @feedback.article.user_id == current_user.id
-      unless current_user.admin?
-        redirect_to :controller => 'admin/feedback', :action => :index
-      end
-    end
   end
 
 end
