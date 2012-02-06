@@ -10,7 +10,9 @@
         <%= text_field(:user, :login, {:class => 'login', :placeholder => _("Username") })%>
       </div>
       <div class='clearfix'>
-        <%= text_field(:user, :email, {:class => 'title', :placeholder => _("Email") })%>
+        <%= text_field(:user, :email, {:class => 'login', :placeholder => _("Email") })%>
+      </div>
+      <div class='clearfix'>
         <input type="submit" id="submit" class='btn info' value="<%= _('Signup')%>" />
       </div>
       <% end %>
