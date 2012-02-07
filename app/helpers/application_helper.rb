@@ -39,7 +39,6 @@ module ApplicationHelper
     avatar_class.get_avatar(options)
   end
 
-
   def trackbacks_link(article)
     trackbacks_count = article.published_trackbacks.size
     link_to_permalink(article,pluralize(trackbacks_count, _('no trackbacks'), _('1 trackback'), _('%d trackbacks',trackbacks_count)),'trackbacks')
@@ -51,11 +50,6 @@ module ApplicationHelper
 
   def date(date)
     "<span class=\"typo_date\">" + date.utc.strftime(_("%%d. %%b", date.utc)) + "</span>"
-  end
-
-  def render_theme(options)
-    options[:controller]=Themes::ThemeController.active_theme_name
-    render_component(options)
   end
 
   def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)

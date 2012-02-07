@@ -1,12 +1,5 @@
 require 'digest/sha1'
 module ContentHelper
-  def calc_distributed_class(articles, max_articles, grp_class, min_class, max_class)
-    (grp_class.to_prefix rescue grp_class.to_s) +
-      ((max_articles == 0) ?
-           min_class.to_s :
-         (min_class + ((max_class-min_class) * articles.to_f / max_articles).to_i).to_s)
-  end
-
   # Need to rewrite this one, quick hack to test my changes.
   def page_title
     @page_title
