@@ -14,6 +14,14 @@ module Migrator
     ActiveRecord::Migrator.current_version rescue 0
   end
 
+  def self.migrations_available
+    path = File.expand_path("db/migrate")
+  	migrator = ActiveRecord::Migrator.new(:up, path)
+  	if migrator.pending_migrations.size > 0
+  		true
+  	end
+  end
+  
   def self.max_schema_version
     available_migrations.size
   end
