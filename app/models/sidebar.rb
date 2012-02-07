@@ -23,11 +23,12 @@ class Sidebar < ActiveRecord::Base
     end
 
     def input_html(sidebar)
-      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'small large'})
+      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'span4'})
     end
 
     def line_html(sidebar)
-      content_tag(:p, label_html(sidebar) +  "<br />" + input_html(sidebar), :class => 'input_text_title')
+      html = label_html(sidebar)
+      html << content_tag(:div,  input_html(sidebar), :class => 'input')
     end
 
     def input_name(sidebar)
@@ -48,7 +49,7 @@ class Sidebar < ActiveRecord::Base
 
     class TextAreaField < self
       def input_html(sidebar)
-        html_options = { "rows" => "10", "class" => "large small" }.update(options.stringify_keys)
+        html_options = { "rows" => "10", "class" => "span4" }.update(options.stringify_keys)
         text_area_tag(input_name(sidebar), sidebar.config[key], html_options)
       end
     end

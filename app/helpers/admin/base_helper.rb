@@ -157,12 +157,12 @@ module Admin::BaseHelper
     end
   end
 
-  def cancel_or_save
+  def cancel_or_save(message=_("Save"))
     result = cancel
     result << " "
     result << _("or")
     result << " "
-    result << save( _("Save") + " &raquo")
+    result << save(message)
     return result
   end
 

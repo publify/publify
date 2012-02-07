@@ -6,14 +6,11 @@
 
 <% i = 0 %>
 <% for theme in @themes %>
-<div class='dashboard-left widget-container'>
-  <h3 class='light'>
-    <span class='ui-icon ui-icon-image'> </span>
-    <%= theme.name %>
-  </h3>
-  <div class='widget-content'>
 
-      <%= link_to(image_tag(theme.image), theme.url) %>
+<div class='dashboard-left'>
+  <h3><%= theme.name %></h3>
+  <div>
+	  <%= link_to(image_tag(theme.image), theme.url) %>
       <p>Created by <%= theme.author %></p>
       <p><%= theme.description %></p>
     </div>

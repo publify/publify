@@ -162,3 +162,17 @@ span.cke_skin_kama {
 label.editor {
 margin-left: 0; padding-left:0;
 }
+
+
+#active label {
+	width: 80px;
+}
+
+
+#active .input {
+	margin-left: 100px;
+}
+
+#active .span4 { 
+	width: 255px;
+}
