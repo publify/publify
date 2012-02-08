@@ -1,0 +1,39 @@
+<div class="article" id="article-<%= @article.id %>">
+  <h1 class='page-header'><%= link_to_permalink(@article,@article.title) %></h1>
+  <%= @article.html(:body) %>
+  <%= @article.html(:extended) %>
+
+  <div class='meta'>
+    <p>
+      <small><%= _("Published on") %>
+        <%= display_date_and_time(@article.published_at) %>
+        <%= category_links(@article, _("under")) unless @article.categories.empty? %>.
+        <%= tag_links(@article) unless @article.tags.empty? %></small>
+      </p>
+    </div>
+
+    <% if @article.user.twitter and @article.user.show_twitter %>
+    <h2 id='twitter'>
+      <%= _("If you liked this article you can %s", link_to(_("add me to Twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
+    </h2>
+    <% end %>
+
+    <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
+    <h3 class="feedback" id="commentaires">
+      <%= display_comments_counter(@article) %>
+      <a href="#commentform" ref="nofollow"> &raquo;</a>
+    </h3>
+    <%= render "articles/comment_list" %>
+    <% end -%>
+
+    <%= render 'articles/comment_form' if @article.allow_comments? %>
+
+    <% if @article.allow_pings? -%>
+    <h5 class="feedback" id="trackbacks"><%= _('Trackbacks for')%> <em><%= @article.title %></em></h5>
+    <% unless @article.published_trackbacks.blank? -%>
+    <ol id="trackbacks" class="trackbacks">
+      <%= render "trackback", :collection => @article.published_trackbacks %>
+    </ol>
+    <% end -%>
+    <% end -%>
+  </div>

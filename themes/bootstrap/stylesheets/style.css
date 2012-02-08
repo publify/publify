@@ -1,0 +1,56 @@
+body {
+  background: #ccc;
+}
+
+#logo h1, p#title {
+  font-size: 30px;
+  line-height: 48px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+p.subtitle {
+  font-weight: 300;
+  margin-bottom: 18px;
+  font-size: 20px;
+  line-height: 27px;
+  text-rendering: optimizelegibility;
+}
+
+#logo {
+  margin-top: 20px;
+  background: url("../../images/theme/bg2.jpg") top left no-repeat;
+  padding-top: 280px;
+}
+
+#main {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding-top: 60px;
+  padding-bottom: 30px;
+  background: #fff;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#page {
+  margin-bottom: 40px;
+}
+
+.navbar-inner {
+  border-radius: 0;
+}
+
+#sidebar {
+  font-size: 90%;
+  margin-top: 24px;
+}
+
+img.centered {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+    line-height: 1;
+    padding: 4px;
+}
