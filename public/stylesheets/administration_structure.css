@@ -90,6 +90,29 @@ footer {
 	margin-right: 340px;
 }
 
+#carousel-wrapper {
+	width: 100%;
+	overflow: hidden;
+	margin-top: 18px;
+}
+
+#carousel-content {
+	width: 3000px;
+	overflow: hidden;
+}
+
+#carousel-wrapper a {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	float: left;
+	padding: 4px;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
 .editor-right {
 	float: right;
 	width: 280px;

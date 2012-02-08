@@ -250,9 +250,10 @@ module Admin::BaseHelper
     # If something went wrong with thumbnail generation, we just display a place holder
     thumbnail = (File.exists? thumb) ? "#{this_blog.base_url}/files/thumb_#{image.filename}" : "#{this_blog.base_url}/images/thumb_blank.jpg"
 
-    picture = "<img class='tumb' src='#{thumbnail}' "
-    picture << "alt='#{this_blog.base_url}/files/#{image.filename}' "
-    picture << " onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{this_blog.base_url}/files/#{image.filename}');\" />"
+    picture = "<a onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{this_blog.base_url}/files/#{image.filename}');\" />"
+    picture << "<img class='tumb' src='#{thumbnail}' "
+    picture << "alt='#{this_blog.base_url}/files/#{image.filename}' />"
+    picture << "</a>"
     return picture
   end
 

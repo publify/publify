@@ -24,7 +24,7 @@
     <%= text_field 'page', 'title', :class => 'span1', :style => ' width: 99%', :placeholder => _('Title')  %>
   </p>
 
-  <%#= render('images', { :images => @images}) unless @images.empty? %>
+  <%= render('images', { :images => @images}) unless @images.empty? %>
 
   <div id='editor-menu'>
 		<ul class="pills">
