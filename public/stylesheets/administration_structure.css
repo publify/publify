@@ -1,61 +1,7 @@
-/* CSS Document */
-/*------------------------------------------------------------------
-[Master Stylesheet]
-
-Project:  Typo administration
-Version:  6.0.6
-Last change:  07/13/11 [complete refatoring]
-Assigned to:  Frédéric de Villamil (neuro)
-
-[Table of contents]
-
-1. Body
-  1.1. Links
-  1.2. Tables
-2. Wrappers
-  2.1. Core structure
-  2.2. Widgets
-  2.3. Menu
-3. Common styles
-  3.1. Forms
-  3.2. Utility classes
-  3.3. Status and info
-  3.4. Carousel
-4. Functionnal parts
-  4.1. Editor
-  4.2. Sidebars
-  4.3. Categories
-  4.4. Dashboard
-  4.5. Settings
-  4.6. Themes
-  4.7. Theme editor
-  4.8. Feedback
-  4.9. Pages
-  4.10. Resources uploads
-
--------------------------------------------------------------------*/
-
-/*------------------------------------------------------------------
-1. Body
-*/
+/* General */
 
 body {
 	padding-top: 60px;
-}
-
-/*------------------------------------------------------------------
-1.1. Links
-*/
-
-.dashboard-left { 
-  width: 49%; 
-  float: left; 
-}
-
-.dashboard {
-    width: 49%; 
-    margin-left: 51%; 
-
 }
 
 table.clearfix {
@@ -67,6 +13,27 @@ footer {
   clear: both;
 }
 
+.container-fluid .sidebar {
+	width: 180px;
+}
+
+.container-fluid .content {
+	margin-left: 200px;
+}
+
+/* Dashboard */
+
+.dashboard-left { 
+  width: 49%; 
+  float: left; 
+}
+
+.dashboard {
+    width: 49%; 
+    margin-left: 51%; 
+}
+
+/* Tags, categories, post types... */
 .left_form {
 	float: left; 
 	width: 380px; 
@@ -78,39 +45,14 @@ footer {
 	padding-top: 18px:
 }
 
-.container-fluid .sidebar {
-	width: 180px;
-}
-
-.container-fluid .content {
-	margin-left: 200px;
+/* Editor */
+#editor {
+	float: left; 
+	width: 100%;
 }
 
 .editor-left {
 	margin-right: 340px;
-}
-
-#carousel-wrapper {
-	width: 100%;
-	overflow: hidden;
-	margin-top: 18px;
-}
-
-#carousel-content {
-	width: 3000px;
-	overflow: hidden;
-}
-
-#carousel-wrapper a {
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-	float: left;
-	padding: 4px;
-	margin-right: 20px;
-	cursor: pointer;
 }
 
 .editor-right {
@@ -178,19 +120,39 @@ span.cke_skin_kama {
 	padding: 0;
 }
 
-#editor {
-	float: left; width: 100%;
-}
-
 label.editor {
-margin-left: 0; padding-left:0;
+  margin-left: 0; 
+  padding-left:0;
 }
 
+/* Carousel */
+#carousel-wrapper {
+	width: 100%;
+	overflow: hidden;
+	margin-top: 18px;
+}
 
+#carousel-content {
+	width: 3000px;
+	overflow: hidden;
+}
+
+#carousel-wrapper a {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	float: left;
+	padding: 4px;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+/* Sidebars */
 #active label {
 	width: 80px;
 }
-
 
 #active .input {
 	margin-left: 100px;
