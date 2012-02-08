@@ -4,6 +4,23 @@ body {
 	padding-top: 60px;
 }
 
+th {
+	background: none;
+}
+
+tr.noborder td {
+  border-top: none;
+}
+
+.label a {
+  color: #fff;
+}
+
+td small {
+  color: #BFBFBF;
+  font-size: 11px;
+}
+
 table.clearfix {
   clear: both;
   margin-top: 18px;
@@ -161,3 +178,4 @@ label.editor {
 #active .span4 { 
 	width: 255px;
 }
+
