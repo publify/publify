@@ -9,5 +9,6 @@
         <%= category_links(article, _("under")) unless article.categories.empty? %>.
         <%= tag_links(article) unless article.tags.empty? %></small>
       </p>
+	  <p><small><%= display_comments_counter(article) %></small></p>
     </div>
 </div>
