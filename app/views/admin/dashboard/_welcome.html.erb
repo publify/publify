@@ -1,5 +1,5 @@
 <div class='well'>
-  <h3><%= _("Welcome back, %s!", current_user.name ) -%></h3>
+  <h3 class='page-header'><%= _("Welcome back, %s!", current_user.name ) -%></h3>
 
   <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts, @newcomments) %></p>
   <p><%= _("You're running Typo %s", TYPO_VERSION) %> <%= @version_message %></p>

@@ -179,3 +179,8 @@ label.editor {
 	width: 255px;
 }
 
+.avatar {
+	float: left;
+	margin-right: 3px;
+	margin-bottom: 3px;
+}

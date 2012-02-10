@@ -1,14 +1,16 @@
 <div class='well'>
-  <h3 class='dark'><%= _("Most popular") %></h3>
-  <ol class='dashboardList'>
+  <h3 class='page-header'><%= _("Most popular") %></h3>
+  <ul class='unstyled'>
   <% if @bestof.size == 0 %>
     <li><%= _("Nothing to show yet") %> !</li>
   <% else %>
     <% for article in @bestof -%>
     <li>
-      <h4><%= sprintf("%s (%s)", link_to_permalink(article, article.title), _("%d comments", article.comment_count)) %></h4>
+      <h5><%= sprintf("%s (%s)", link_to_permalink(article, article.title), _("%d comments", article.comment_count)) %></h5>
       <%= article.body.strip_html.slice(0,300) %>
+			<hr />
+		</li>
     <% end %>
   <% end -%>
-  </ol>
+  </ul>
 </div>

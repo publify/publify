@@ -1,21 +1,22 @@
 <div class='well'>
-  <h3>
+  <h3 class='page-header'>
     <%= _("Latest news from the Typo development blog") %>
   </h3>
   <% if @typo_links.nil? %>
   <%= _('You have no internet connection') %>
   <% else %>
-  <ol class='dashboardList'>
+  <ul class='unstyled'>
   <% if @typo_links.size == 0 %>
     <li><%= _("Oh no, nothing new") %></li>
   <% else %>
     <% @typo_links.each do |link| -%>
     <li <%= alternate_class %>>
-      <h4><%= link_to("#{link.title}</strong>".html_safe, link.link) %> <%= display_date_and_time(link.date) %></h4>
+      <h5><%= link_to("#{link.title}</strong>".html_safe, link.link) %> <%= display_date_and_time(link.date) %></h5>
       <p><%= link.description.strip_html.slice(0, 300) %>...</p>
+	  <hr />
     </li>
     <% end %>
   <% end %>
-  </ol>
+  </ul>
   <% end %>
 </div>
