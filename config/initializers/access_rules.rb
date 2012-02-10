@@ -57,7 +57,6 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :articles, nil do |project|
     project.menu    "Articles",         { :controller => "admin/content",    :action => "index" }
-    project.submenu "Articles",         { :controller => "admin/content",    :action => "index" }
     project.submenu "Add new",          { :controller => "admin/content",    :action => "new" }
     project.submenu "Comments",         { :controller => "admin/feedback",   :action => "index" }
     project.submenu "Categories",       { :controller => "admin/categories", :action => "new" }
@@ -75,20 +74,16 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :pages, nil do |project|
     project.menu "Pages",               { :controller => "admin/pages",      :action => "index" }
-    project.submenu "Pages",            { :controller => "admin/pages",      :action => "index" }
     project.submenu "Add new",          { :controller => "admin/pages", :action => "new" }
   end
 
   map.project_module :media, nil do |project|
-    project.menu    "Media",            { :controller => "admin/resources",  :action => "index" }
-    project.submenu "Library",          { :controller => "admin/resources",   :action => "index" }
+    project.menu    "Media",  { :controller => "admin/resources",  :action => "index" }
   end
 
   map.project_module :themes, nil do |project|
-    project.menu    "Design",               { :controller => "admin/themes", :action => "index"  }
-    project.submenu "Choose theme",         { :controller => "admin/themes", :action => "index" }
+    project.menu    "Choose theme",         { :controller => "admin/themes", :action => "index"  }
     project.submenu "Customize sidebar",    { :controller => "admin/sidebar", :action => "index" }
-    project.submenu "Theme editor",         { :controller => "admin/themes", :action => "editor" }
     project.submenu "View theme catalogue", { :controller => "admin/themes", :action => "catalogue" }
 
     AccessControl.search_plugins_directory.each do |plugin|
@@ -98,8 +93,7 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   end
 
   map.project_module :settings, nil do |project|
-    project.menu    "Settings",         { :controller => "admin/settings", :action => "index" }
-    project.submenu "General settings", { :controller => "admin/settings", :action => "index" }
+    project.menu    "General settings",         { :controller => "admin/settings", :action => "index" }
     project.submenu "Write",            { :controller => "admin/settings", :action => "write" }
     project.submenu "Feedback",         { :controller => "admin/settings", :action => "feedback" }
     project.submenu "Cache",            { :controller => "admin/cache", :action => "index" }
@@ -116,9 +110,8 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   end
 
   map.project_module :seo, nil do |project|
-    project.menu    "SEO",              { :controller => "admin/seo", :action => "index" }
-    project.submenu "Global settings",  { :controller => "admin/seo", :action => "index" }
-    project.submenu "Permalinks",       { :controller => "admin/seo", :action => "permalinks" }
-    project.submenu "Titles",           { :controller => "admin/seo", :action => "titles" }
+    project.menu    "Global SEO settings",  { :controller => "admin/seo", :action => "index" }
+    project.submenu "Permalinks",           { :controller => "admin/seo", :action => "permalinks" }
+    project.submenu "Titles",               { :controller => "admin/seo", :action => "titles" }
   end
 end
