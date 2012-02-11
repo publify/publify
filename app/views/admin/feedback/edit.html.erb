@@ -2,37 +2,33 @@
 
 <%= form_tag :action => "update", :id => @comment.id do %>
 
-
-  <div class="admin">
 <%= error_messages_for 'comment' %>
 <%= hidden_field_tag 'article_id', @article.id %>
 
-<div id='comment' class='widget-container'>
-  <h3 class='light'><span class='ui-icon ui-icon-gear'></span> <%= _("Add a comment")%></h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label for="comment_author" class='float'><%= _("Author")%></label>
-      <p class='input_text'>
+<h3><%= _("Add a comment")%></h3>
+	<div class='clearfix'>
+      <label for="comment_author"><%= _("Author")%></label>
+      <div class='input'>
         <%= text_field 'comment', 'author', :class => 'medium' %>
-      </p>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label for="comment_email" class='float'><%= _("Email")%></label>
-      <p class='input_text'>
+    <div class='clearfix'>
+      <label for="comment_email"><%= _("Email")%></label>
+      <div class='input'>
         <%= text_field 'comment', 'email', :class => 'medium' %>
-      </p>
+      </div>
     </div>
-    <div class='setting clear'>
-      <label for="comment_url" class='float'><%= _("Url") %></label>
-      <p class='input_text'>
+    <div class='clearfix'>
+      <label for="comment_url"><%= _("Url") %></label>
+      <div class='input'>
         <%= text_field 'comment', 'url', :class => 'medium' %>
-      </p>
+      </div>
     </div>
-    <div id='simple_editor' class='setting clear'>
-      <p class='input_text'>
+    <div class='clearfix'>
+      <div class='input'>
         <script type="text/javascript">edToolbar('comment_body');</script>
         <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
-      </p>
+      </div>
     </div>
   </div>
 </div>

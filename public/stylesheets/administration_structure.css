@@ -112,7 +112,8 @@ footer {
 }
 
 #article_body_and_extended,
-#page_body {
+#page_body,
+#comment_body {
 	width: 99%;
 }
 
