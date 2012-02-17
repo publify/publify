@@ -5,7 +5,6 @@ require 'net/http'
 class Article < Content
   include TypoGuid
   include ConfigManager
-  extend ActiveSupport::Memoizable
   serialize :settings, Hash
 
   content_fields :body, :extended
