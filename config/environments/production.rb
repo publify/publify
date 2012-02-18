@@ -25,7 +25,7 @@ TypoBlog::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
-  config.threadsafe!
+  # config.threadsafe!
 
   Migrator.offer_migration_when_available            = true
 end
