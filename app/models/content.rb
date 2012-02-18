@@ -73,16 +73,6 @@ class Content < ActiveRecord::Base
   class << self
     def content_fields *attribs
       class_eval "def content_fields; #{attribs.inspect}; end"
-
-      attribs.each do |field|
-        define_method("#{field}=") do |newval|
-          if self[field] != newval
-            changed
-            self[field] = newval
-          end
-          self[field]
-        end
-      end
     end
 
     def find_published(what = :all, options = {})
@@ -219,23 +209,8 @@ class Content < ActiveRecord::Base
   end
 
   # Set the text filter for this object.
-  def text_filter=(filter)
-    filter.to_text_filter.tap do |tf|
-      if tf.id != text_filter_id
-        changed if !new_record? && published?
-      end
-      self.text_filter_id = tf.id
-    end
-  end
-
-  # Changing the title flags the object as changed
-  def title=(new_title)
-    if new_title == self[:title]
-      self[:title]
-    else
-      changed if !new_record? && published?
-      self[:title] = new_title
-    end
+  def text_filter= filter
+    self.text_filter_id = filter.to_text_filter.id
   end
 
   def blog

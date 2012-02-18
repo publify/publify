@@ -387,41 +387,6 @@ class Article < Content
     state.published = cast_to_boolean(newval)
   end
 
-  # FIXME: Bloody rails reloading. Nasty workaround.
-  def allow_comments=(newval)
-    cast_to_boolean(newval).tap do |val|
-      if self[:allow_comments] != val
-        changed if published?
-        self[:allow_comments] = val
-      end
-    end
-  end
-
-  def allow_pings=(newval)
-    cast_to_boolean(newval).tap do |val|
-      if self[:allow_pings] != val
-        changed if published?
-        self[:allow_pings] = val
-      end
-    end
-  end
-
-  def body=(newval)
-    if self[:body] != newval
-      changed if published?
-      self[:body] = newval
-    end
-    self[:body]
-  end
-
-  def extended=(newval)
-    if self[:extended] != newval
-      changed if published?
-      self[:extended] = newval
-    end
-    self[:extended]
-  end
-
   def content_fields
     [:body, :extended]
   end
