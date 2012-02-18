@@ -5,6 +5,8 @@ require 'net/http'
 class Article < Content
   include TypoGuid
   include ConfigManager
+  include Sanitizable
+
   serialize :settings, Hash
 
   content_fields :body, :extended
@@ -117,24 +119,8 @@ class Article < Content
 
   end
 
-  accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
-    ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
-    ['í','ì','î','ï','I','Î','Ì'] => 'i',
-    ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò'] => 'o',
-    ['œ'] => 'oe',
-    ['ß'] => 'ss',
-    ['ú','ù','û','ü','U','Û','Ù'] => 'u',
-    ['ç','Ç'] => 'c'
-  }
-
-  FROM, TO = accents.inject(['','']) { |o,(k,v)|
-    o[0] << k * '';
-    o[1] << v * k.size
-    o
-  }
-
   def stripped_title
-    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
+    remove_accents(title).gsub(/<[^>]*>/, '').to_url
   end
 
   def year_url
