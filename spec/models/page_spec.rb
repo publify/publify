@@ -17,9 +17,9 @@ describe 'Given the fixture :first_page' do
     Page.new(:name => @page.name, :body => 'body', :title => 'title').should_not be_valid
   end
   
-  it "should give a satanized title" do
+  it "should give a sanitized title" do
     page = Factory.build(:page, :title => 'title with accents éèà')
-    page.satanized_title.should == 'title-with-accents-eea'
+    page.sanitized_title.should == 'title-with-accents-eea'
   end
 end
 

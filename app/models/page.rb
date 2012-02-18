@@ -48,7 +48,7 @@ class Page < Content
     super(:created_at)
   end
 
-  def satanized_title
+  def sanitized_title
     remove_accents(self.title).gsub(/<[^>]*>/, '').to_url
   end
 end
