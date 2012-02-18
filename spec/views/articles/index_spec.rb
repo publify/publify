@@ -34,6 +34,15 @@ with_each_theme do |theme, view_path|
         should_not =~ /&gt;/
         should_not =~ /&amp;/
       end
+
+      it "renders the regular article partial twice" do
+        view.should render_template(:partial => "articles/_article_content",
+                                    :count => 2)
+      end
+
+      it "does not render any password forms" do
+        view.should_not render_template(:partial => "articles/_password_form")
+      end
     end
 
     context "without search, on page 2" do

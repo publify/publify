@@ -12,4 +12,9 @@ class Profile < ActiveRecord::Base
     perms = perms.collect {|p| p.to_sym unless p.blank? }.compact if perms
     write_attribute(:modules, perms)
   end
+
+  def project_modules
+    modules.collect { |mod|
+      AccessControl.project_module(label, mod) }.uniq.compact
+  end
 end

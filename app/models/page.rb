@@ -5,10 +5,9 @@ class Page < Content
 
   include ConfigManager
   include Sanitizable
-  extend ActiveSupport::Memoizable
-  serialize :settings, Hash
 
-  setting :password,                   :string, ''
+  serialize :settings, Hash
+  setting :password, :string, ''
 
   def initialize(*args)
     super

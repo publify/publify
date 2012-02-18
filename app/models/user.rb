@@ -1,8 +1,8 @@
 require 'digest/sha1'
 
+# Typo user.
 class User < ActiveRecord::Base
   include ConfigManager
-  extend ActiveSupport::Memoizable
 
   belongs_to :profile
   belongs_to :text_filter
@@ -15,15 +15,7 @@ class User < ActiveRecord::Base
     :source => 'notify_content',
     :uniq => true
 
-  has_many :articles, :order => 'created_at DESC' do
-    def published
-      find_published(:all, :order => 'created_at DESC')
-    end
-  end
-  has_many :published_articles,
-    :class_name => 'Article',
-    :conditions => { :published => true },
-    :order      => "published_at DESC"
+  has_many :articles, :order => 'created_at DESC'
 
   serialize :settings, Hash
 
@@ -49,23 +41,20 @@ class User < ActiveRecord::Base
   setting :admin_theme,                :string,  'blue'
 
   # echo "typo" | sha1sum -
-  @@salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
-  cattr_accessor :salt
+  class_attribute :salt
+  salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
+
   attr_accessor :last_venue
 
   def initialize(*args)
     super
-    # Yes, this is weird - PDC
-    begin
-      self.settings ||= {}
-    rescue Exception => e
-      self.settings = {}
-    end
+    self.settings ||= {}
   end
+
 
   def self.authenticate(login, pass)
     find(:first,
-         :conditions => ["login = ? AND password = ? AND state = ?", login, sha1(pass), 'active'])
+         :conditions => ["login = ? AND password = ? AND state = ?", login, password_hash(pass), 'active'])
   end
 
   def update_connection_time
@@ -120,9 +109,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  # The current project_modules
   def project_modules
-    profile.modules.collect { |m| AccessControl.project_module(profile.label, m) }.uniq.compact rescue []
+    profile.project_modules
   end
 
   # Generate Methods takes from AccessControl rules
@@ -131,11 +119,10 @@ class User < ActiveRecord::Base
   #   def publisher?
   #     profile.label == :publisher
   #   end
-  AccessControl.roles.each { |r| define_method("#{r.to_s.downcase.to_sym}?") { profile.label.to_s.downcase.to_sym == r.to_s.downcase.to_sym } }
-
-  # Let's be lazy, no need to fetch the counters, rails will handle it.
-  def self.find_all_with_article_counters(ignored_arg)
-    find(:all)
+  AccessControl.roles.each do |role|
+    define_method "#{role.to_s.downcase}?" do
+      profile.label.to_s.downcase == role.to_s.downcase
+    end
   end
 
   def self.to_prefix
@@ -183,8 +170,12 @@ class User < ActiveRecord::Base
   # Apply SHA1 encryption to the supplied password.
   # We will additionally surround the password with a salt
   # for additional security.
-  def self.sha1(pass)
+  def self.password_hash(pass)
     Digest::SHA1.hexdigest("#{salt}--#{pass}--")
+  end
+
+  def password_hash(pass)
+    self.class.password_hash(pass)
   end
 
   before_create :crypt_password
@@ -196,7 +187,7 @@ class User < ActiveRecord::Base
   # password
   def crypt_password
     send_create_notification
-    write_attribute "password", self.class.sha1(password(true))
+    write_attribute "password", password_hash(password(true))
     @password = nil
   end
 
@@ -210,9 +201,7 @@ class User < ActiveRecord::Base
       user = self.class.find(self.id)
       write_attribute "password", user.password
     else
-      send_create_notification
-      write_attribute "password", self.class.sha1(password(true))
-      @password = nil
+      crypt_password
     end
   end
 
