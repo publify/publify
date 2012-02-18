@@ -422,15 +422,6 @@ class Article < Content
     self[:extended]
   end
 
-  def self.html_map(field=nil)
-    html_map = { :body => true, :extended => true }
-    if field
-      html_map[field.to_sym]
-    else
-      html_map
-    end
-  end
-
   def content_fields
     [:body, :extended]
   end
