@@ -192,6 +192,12 @@ describe User do
     end
   end
 
+  describe "#initialize" do
+    it "accepts a settings field in its parameter hash" do
+      User.new({"firstname" => 'foo'})
+    end
+  end
+
   describe '#admin?' do
     it 'should return true if user is admin' do
       admin = Factory.build(:user, :profile => Factory.build(:profile_admin, :label => Profile::ADMIN))

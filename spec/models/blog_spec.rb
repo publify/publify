@@ -1,5 +1,13 @@
 require 'spec_helper'
 
+describe Blog do
+  describe "#initialize" do
+    it "accepts a settings field in its parameter hash" do
+      Blog.new({"blog_name" => 'foo'})
+    end
+  end
+end
+
 describe "A blog" do
   before(:each) {
     RouteCache.clear

@@ -1,6 +1,14 @@
 # coding: utf-8
 require 'spec_helper'
 
+describe Page do
+  describe "#initialize" do
+    it "accepts a settings field in its parameter hash" do
+      Page.new({"password" => 'foo'})
+    end
+  end
+end
+
 describe 'Given the fixture :first_page' do
   before(:each) do
     Factory(:blog)

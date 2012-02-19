@@ -91,16 +91,7 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.get_or_build_article(id)
     @article.text_filter = current_user.text_filter if current_user.simple_editor?
 
-    # This is ugly, but I have to check whether or not the article is
-    # published to create the dummy draft I'll replace later so that the
-    # published article doesn't get overriden on the front
-    if @article.published
-      parent_id = @article.id
-      @article = Article.drafts.child_of(parent_id).first || Article.new
-      @article.allow_comments = this_blog.default_allow_comments
-      @article.allow_pings    = this_blog.default_allow_pings
-      @article.parent_id      = parent_id
-    end
+    get_fresh_or_existing_draft_for_article
 
     @article.attributes = params[:article]
     @article.published = false
@@ -123,6 +114,16 @@ class Admin::ContentController < Admin::BaseController
   end
 
   protected
+
+  def get_fresh_or_existing_draft_for_article
+    if @article.published and @article.id
+      parent_id = @article.id
+      @article = Article.drafts.child_of(parent_id).first || Article.new
+      @article.allow_comments = this_blog.default_allow_comments
+      @article.allow_pings    = this_blog.default_allow_pings
+      @article.parent_id      = parent_id
+    end
+  end
 
   attr_accessor :resources, :categories, :resource, :category
 
@@ -147,14 +148,7 @@ class Admin::ContentController < Admin::BaseController
     @post_types = PostType.find(:all)
     if request.post?
       if params[:article][:draft]
-        # XXX: Straight copy from autosave. Refactor!
-        if @article.published
-          parent_id = @article.id
-          @article = Article.drafts.child_of(parent_id).first || Article.new
-          @article.allow_comments = this_blog.default_allow_comments
-          @article.allow_pings    = this_blog.default_allow_pings
-          @article.parent_id      = parent_id
-        end
+        get_fresh_or_existing_draft_for_article
       else
         if not @article.parent_id.nil?
           @article = Article.find(@article.parent_id)
