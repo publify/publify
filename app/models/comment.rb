@@ -28,13 +28,6 @@ class Comment < Feedback
     blog.comment_text_filter.to_text_filter
   end
 
-  def rss_author(xml)
-  end
-
-  def rss_title(xml)
-    xml.title feed_title
-  end
-
   def feed_title
     "Comment on #{article.title} by #{author}"
   end
@@ -49,21 +42,6 @@ class Comment < Feedback
 
   def originator
     author
-  end
-
-  def additional_akismet_options
-    { :user_agent => user_agent,
-      :referrer   => referrer,
-      :permalink  => permalink }
-  end
-
-  def self.html_map(field=nil)
-    html_map = { :body => true }
-    if field
-      html_map[field.to_sym]
-    else
-      html_map
-    end
   end
 
   def content_fields

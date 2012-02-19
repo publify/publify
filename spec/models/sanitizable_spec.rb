@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Sanitizable, " an object with this module" do
 
-  it "should respond to #satanized_title" do
+  it "should respond to #remove_accents" do
     Object.new.extend(Sanitizable).should respond_to("remove_accents")
   end
 

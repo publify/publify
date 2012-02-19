@@ -48,16 +48,7 @@ class Page < Content
     super(:created_at)
   end
 
-
-  def edit_url
-    blog.url_for(:controller => "/admin/pages", :action =>"edit", :id => id)
-  end
-
-  def delete_url
-    blog.url_for(:controller => "/admin/pages", :action =>"destroy", :id => id)
-  end
-
-  def satanized_title
+  def sanitized_title
     remove_accents(self.title).gsub(/<[^>]*>/, '').to_url
   end
 end

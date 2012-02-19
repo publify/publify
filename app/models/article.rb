@@ -5,6 +5,8 @@ require 'net/http'
 class Article < Content
   include TypoGuid
   include ConfigManager
+  include Sanitizable
+
   serialize :settings, Hash
 
   content_fields :body, :extended
@@ -117,24 +119,8 @@ class Article < Content
 
   end
 
-  accents = { ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
-    ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
-    ['í','ì','î','ï','I','Î','Ì'] => 'i',
-    ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò'] => 'o',
-    ['œ'] => 'oe',
-    ['ß'] => 'ss',
-    ['ú','ù','û','ü','U','Û','Ù'] => 'u',
-    ['ç','Ç'] => 'c'
-  }
-
-  FROM, TO = accents.inject(['','']) { |o,(k,v)|
-    o[0] << k * '';
-    o[1] << v * k.size
-    o
-  }
-
   def stripped_title
-    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
+    remove_accents(title).gsub(/<[^>]*>/, '').to_url
   end
 
   def year_url
@@ -385,50 +371,6 @@ class Article < Content
   # Cast the input value for published= before passing it to the state.
   def published=(newval)
     state.published = cast_to_boolean(newval)
-  end
-
-  # FIXME: Bloody rails reloading. Nasty workaround.
-  def allow_comments=(newval)
-    cast_to_boolean(newval).tap do |val|
-      if self[:allow_comments] != val
-        changed if published?
-        self[:allow_comments] = val
-      end
-    end
-  end
-
-  def allow_pings=(newval)
-    cast_to_boolean(newval).tap do |val|
-      if self[:allow_pings] != val
-        changed if published?
-        self[:allow_pings] = val
-      end
-    end
-  end
-
-  def body=(newval)
-    if self[:body] != newval
-      changed if published?
-      self[:body] = newval
-    end
-    self[:body]
-  end
-
-  def extended=(newval)
-    if self[:extended] != newval
-      changed if published?
-      self[:extended] = newval
-    end
-    self[:extended]
-  end
-
-  def self.html_map(field=nil)
-    html_map = { :body => true, :extended => true }
-    if field
-      html_map[field.to_sym]
-    else
-      html_map
-    end
   end
 
   def content_fields
