@@ -61,6 +61,12 @@ describe Article do
     end
   end
 
+  describe "#initialize" do
+    it "accepts a settings field in its parameter hash" do
+      Article.new({"password" => 'foo'})
+    end
+  end
+
   it "test_edit_url" do
     a = stub_model(Article, :id => 123)
     assert_equal "http://myblog.net/admin/content/edit/#{a.id}", a.edit_url
