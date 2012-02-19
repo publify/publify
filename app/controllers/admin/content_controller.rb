@@ -94,7 +94,7 @@ class Admin::ContentController < Admin::BaseController
     # This is ugly, but I have to check whether or not the article is
     # published to create the dummy draft I'll replace later so that the
     # published article doesn't get overriden on the front
-    if @article.published
+    if @article.published and @article.id
       parent_id = @article.id
       @article = Article.drafts.child_of(parent_id).first || Article.new
       @article.allow_comments = this_blog.default_allow_comments
@@ -148,7 +148,7 @@ class Admin::ContentController < Admin::BaseController
     if request.post?
       if params[:article][:draft]
         # XXX: Straight copy from autosave. Refactor!
-        if @article.published
+        if @article.published and @article.id
           parent_id = @article.id
           @article = Article.drafts.child_of(parent_id).first || Article.new
           @article.allow_comments = this_blog.default_allow_comments

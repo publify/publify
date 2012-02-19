@@ -166,6 +166,18 @@ describe Admin::ContentController do
         result.redirects.count.should == 0
       end
     end
+
+    describe "with an unrelated draft in the database" do
+      before do
+        @draft = Factory(:article, :state => 'draft')
+      end
+
+      it "leaves the original draft in existence" do
+        post :autosave, 'article' => {}
+        assigns(:article).id.should_not == @draft.id
+        Article.find(@draft.id).should_not be_nil
+      end
+    end
   end
 
   describe 'insert_editor action' do
@@ -404,6 +416,22 @@ describe Admin::ContentController do
         draft = Article.child_of(@orig.id).first
         draft.parent_id.should == @orig.id
         draft.should_not be_published
+      end
+    end
+
+    describe "with an unrelated draft in the database" do
+      before do
+        @draft = Factory(:article, :state => 'draft')
+      end
+
+      describe "saving new article as draft" do
+        it "leaves the original draft in existence" do
+          post(
+            :new,
+            'article' => base_article({:draft => 'save as draft'}))
+          assigns(:article).id.should_not == @draft.id
+          Article.find(@draft.id).should_not be_nil
+        end
       end
     end
   end
