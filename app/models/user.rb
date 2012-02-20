@@ -42,7 +42,10 @@ class User < ActiveRecord::Base
 
   # echo "typo" | sha1sum -
   class_attribute :salt
-  salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
+
+  def self.salt
+    '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
+  end
 
   attr_accessor :last_venue
 
