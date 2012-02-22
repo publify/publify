@@ -185,3 +185,19 @@ label.editor {
 	margin-right: 3px;
 	margin-bottom: 3px;
 }
+
+#autocomplete li {
+	background: #F5F5F5;
+	color: #0069D6;
+	padding: 5px 8px;
+	line-height: 18px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#autocomplete li:hover {
+	color: #00438a;
+	border-bottom: 1px solid #00438a;
+}
+
+
+
