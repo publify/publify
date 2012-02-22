@@ -43,7 +43,8 @@ module Admin::ContentHelper
       return hidden_field_tag "article[post_type]", "read"
     end
     
-    html = content_tag(:h4, _("Article type"))
+    html = "<div class='well'>"
+    html << content_tag(:h4, _("Article type"))
     html << "<select name=article[post_type]>"
         
     post_types.each do |pt|
@@ -52,5 +53,6 @@ module Admin::ContentHelper
     end
     
     html << "</select>"
+    html << "</div>"
   end  
 end
