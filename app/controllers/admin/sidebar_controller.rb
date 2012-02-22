@@ -1,6 +1,4 @@
 class Admin::SidebarController < Admin::BaseController
-  layout 'administration'
-
   def index
     @available = available
     # Reset the staged position based on the active position.

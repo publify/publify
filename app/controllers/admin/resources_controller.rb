@@ -1,6 +1,4 @@
 class Admin::ResourcesController < Admin::BaseController
-  layout 'administration'
-
   upload_status_for :file_upload, :status => :upload_status
 
   cache_sweeper :blog_sweeper

@@ -1,6 +1,4 @@
 class Admin::RedirectsController < Admin::BaseController
-  layout 'administration'
-
   def index; redirect_to :action => 'new' ; end
   def edit; new_or_edit;  end
   def new; new_or_edit;  end

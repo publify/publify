@@ -1,6 +1,4 @@
 class Admin::PostTypesController < Admin::BaseController
-  layout 'administration'
-
   cache_sweeper :blog_sweeper
 
   def index; redirect_to :action => 'new' ; end

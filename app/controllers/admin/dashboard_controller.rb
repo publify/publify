@@ -3,8 +3,6 @@ class Admin::DashboardController < Admin::BaseController
   require 'time'
   require 'rexml/document'
 
-  layout 'administration'
-
   def index
     @newposts = Article.count(:all, :conditions => ['published = ? and published_at > ?', true, current_user.last_venue])
     @newcomments = Feedback.count(:all, :conditions =>['state in (?,?) and published_at > ?', 'presumed_ham', 'ham', current_user.last_venue])

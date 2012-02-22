@@ -1,9 +1,8 @@
-class Admin::ThemesController < Admin::BaseController
-  require 'open-uri'
-  require 'time'
-  require 'rexml/document'
+require 'open-uri'
+require 'time'
+require 'rexml/document'
 
-  layout 'administration'
+class Admin::ThemesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
