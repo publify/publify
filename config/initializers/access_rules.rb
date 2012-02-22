@@ -57,11 +57,12 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :articles, nil do |project|
     project.menu    "Articles",         { :controller => "admin/content",    :action => "index" }
-    project.submenu "Add new",          { :controller => "admin/content",    :action => "new" }
+    project.submenu "New Article",          { :controller => "admin/content",    :action => "new" }
     project.submenu "Comments",         { :controller => "admin/feedback",   :action => "index" }
     project.submenu "Categories",       { :controller => "admin/categories", :action => "new" }
     project.submenu "Tags",             { :controller => "admin/tags",       :action => "index" }
     project.submenu "Article Types",    { :controller => "admin/post_types", :action => "new" }
+    project.submenu "Redirects",        { :controller => "admin/redirects", :action => "index" }
     project.submenu "",                 { :controller => "admin/comments",   :action => "show" }
     project.submenu "",                 { :controller => "admin/comments",   :action => "new" }
     project.submenu "",                 { :controller => "admin/comments",   :action => "edit" }
@@ -74,11 +75,11 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :pages, nil do |project|
     project.menu "Pages",               { :controller => "admin/pages",      :action => "index" }
-    project.submenu "Add new",          { :controller => "admin/pages", :action => "new" }
+    project.submenu "New Page",          { :controller => "admin/pages", :action => "new" }
   end
 
   map.project_module :media, nil do |project|
-    project.menu    "Media",  { :controller => "admin/resources",  :action => "index" }
+    project.menu    "Media Library",  { :controller => "admin/resources",  :action => "index" }
   end
 
   map.project_module :themes, nil do |project|
@@ -98,7 +99,6 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Feedback",         { :controller => "admin/settings", :action => "feedback" }
     project.submenu "Cache",            { :controller => "admin/cache", :action => "index" }
     project.submenu "Users",            { :controller => "admin/users", :action => "index" }
-    project.submenu "Redirects",        { :controller => "admin/redirects", :action => "index" }
     project.submenu "Error messages",   { :controller => "admin/settings", :action => "errors" }
     project.submenu "",                 { :controller => "admin/redirects", :action => "new"}
     project.submenu "",                 { :controller => "admin/redirects", :action => "edit"}
