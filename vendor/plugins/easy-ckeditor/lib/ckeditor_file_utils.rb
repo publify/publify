@@ -39,6 +39,7 @@ module CkeditorFileUtils
   end
 
   def CkeditorFileUtils.copy_configuration
+    return if Rails.env.production?
     # need to copy over the code if it doesn't already exist
     config_file = File.join(::Rails.root.to_s, '/vendor/plugins/easy-ckeditor/public/javascripts/ckcustom.js')
     dest = File.join(::Rails.root.to_s, '/public/javascripts/ckcustom.js')
