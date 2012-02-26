@@ -14,7 +14,7 @@ installer/rails_installer.yml
 #/public/javascripts/ckeditor/config.bak
 /public/javascripts/all.js
 /public/robots.txt
-/public/stylesheets/theme
+#/public/stylesheets/theme
 /public/stylesheets/all.css
 tmp/*
 /coverage/
