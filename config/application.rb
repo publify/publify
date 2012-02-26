@@ -90,4 +90,13 @@ module TypoBlog
       ActionMailer::Base.delivery_method = :sendmail
     end
   end
+
+  if ::Rails.env == 'production'
+    # http://markcatley.tumblr.com/post/393941962/deploying-typo-to-heroku
+    require 'fileutils'
+
+    file_utils_no_write = ::FileUtils::NoWrite
+    Object.send :remove_const, :FileUtils
+    ::FileUtils = file_utils_no_write
+  end
 end
