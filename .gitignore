@@ -9,7 +9,7 @@ db/schema.rb
 .rspec
 installer/rails_installer.yml
 #/public/files
-/public/images/theme
+#/public/images/theme
 #/public/javascripts/ckeditor/config.js
 #/public/javascripts/ckeditor/config.bak
 /public/javascripts/all.js
