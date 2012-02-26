@@ -1,9 +1,11 @@
 require 'spec_helper'
 require 'action_web_service/test_invoke'
 
-User.salt = 'change-me'
 
 describe BackendController do
+  before :each do
+    User.stub(:salt).and_return('change-me')
+  end
   include ActionWebService::TestInvoke::InstanceMethods
 
   before do
