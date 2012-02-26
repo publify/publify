@@ -1,22 +1,26 @@
 env = ENV["RAILS_ENV"] || 'development'
 dbfile = File.expand_path("../config/database.yml", __FILE__)
 
-unless File.exists?(dbfile)
-  raise "You need to configure config/database.yml first"
-else
-  conf = YAML.load(File.read(dbfile))
-  adapter = conf[env]['adapter']
-  raise "You need define an adapter in your database.yml" if adapter == '' || adapter.nil?
-  case adapter
-  when 'sqlite3'
-    gem 'sqlite3'
-  when 'postgresql'
-    gem 'pg'
-  when 'mysql'
-    gem 'sam-mysql-ruby'
-  else
-    raise "Don't know what gem to use for adapter #{adapter}"
-  end
+#unless File.exists?(dbfile)
+#  raise "You need to configure config/database.yml first"
+#else
+#  conf = YAML.load(File.read(dbfile))
+#  adapter = conf[env]['adapter']
+#  raise "You need define an adapter in your database.yml" if adapter == '' || adapter.nil?
+#  case adapter
+#  when 'sqlite3'
+#    gem 'sqlite3'
+#  when 'postgresql'
+#    gem 'pg'
+#  when 'mysql'
+#    gem 'sam-mysql-ruby'
+#  else
+#    raise "Don't know what gem to use for adapter #{adapter}"
+#  end
+#end
+
+group :production do
+  gem 'pg'
 end
 
 source :rubygems
@@ -45,4 +49,5 @@ group :development, :test do
   gem 'webrat'
   gem 'rspec-rails', '>= 2.0.0.beta.20'
   gem 'simplecov', :require => false
+  gem 'sqlite3'
 end
