@@ -91,7 +91,7 @@ module TypoBlog
     end
   end
 
-  if ::Rails.env == 'production'
+  if ::Rails.env.production?
     # http://markcatley.tumblr.com/post/393941962/deploying-typo-to-heroku
     require 'fileutils'
 
