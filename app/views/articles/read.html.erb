@@ -1,60 +1,39 @@
-<!--
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
-       xmlns:dc="http://purl.org/dc/elements/1.1/">
-<rdf:Description
-    rdf:about=""
-<% if @article.allow_pings? -%>
-    trackback:ping="<%= @article.trackback_url %>"
-<% end -%>
-    dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
-    dc:identifier="<%= @article.permalink_url %>"
-    dc:description="<%=h (html(@article).strip_html[0..255]).gsub(/-+/, '-') %>"
-    dc:creator="<%= h @article.author %>"
-    dc:date="<%= @article.updated_at.xmlschema %>" />
-</rdf:RDF>
--->
+<div class="article" id="article-<%= @article.id %>">
+  <h1 class='page-header'><%= link_to_permalink(@article,@article.title) %></h1>
+  <%= @article.html(:body) %>
+  <%= @article.html(:extended) %>
 
-<div class="post"<%= onhover_show_admin_tools(:article) %>>
-  <%= link_to("edit", { :controller => "admin/content", :action => "edit", :id => @article.id },
-        :class => "admintools", :style => "display: none", :id => "admin_article") %>
-  <%= render @article %>
-</div>
-<p class="meta">
-  <%= article_links @article %>
-</p>
-<% if @article.allow_comments? or @article.published_comments.size > 0 -%>
-  <a name="comments"></a><h4 class="blueblk"><%= _('Comments') %></h4>
-  <% unless @article.comments_closed? -%>
-    <p class="postmetadata alt">
-      <small><a href="#respond"><%= _("Leave a response")%></a></small>
-    </p>
-  <% end -%>
-  <%= render "articles/comment_list" %>
-<% end -%>
+  <div class='meta'>
+    <p>
+      <small><%= _("Published on") %>
+        <%= display_date_and_time(@article.published_at) %>
+        <%= category_links(@article, _("under")) unless @article.categories.empty? %>.
+        <%= tag_links(@article) unless @article.tags.empty? %></small>
+      </p>
+    </div>
 
-<% if @article.allow_pings? -%>
-  <a name="trackbacks"></a><h4 class="blueblk"><%= _("Trackbacks")%></h4>
-  <p>
-    <%= _("Use the following link to trackback from your own site")%>:<br/>
-    <span class="light-bg"><%= @article.trackback_url %></span>
-    </p>
-  <%= content_tag(:ol,
-        render("trackback", :collection => @article.published_trackbacks),
-        :id => 'trackbackList', :class => 'trackback-list') unless @article.published_trackbacks.blank? %>
-<% end -%>
+    <% if @article.user.twitter and @article.user.show_twitter %>
+    <h2 id='twitter'>
+      <%= _("If you liked this article you can %s", link_to(_("add me to Twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
+    </h2>
+    <% end %>
 
-<p class="postmetadata alt">
-  <small>
-  <a href="<%= @article.feed_url(:rss) %>" title="RSS Feed"><%= _("RSS feed for this post")%></a>
-<% if @article.allow_pings? -%>
-  <a href="<%= @article.trackback_url %>" ><%= _("trackback uri")%></a>
-<% end -%>
-  </small>
-</p>
+    <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
+    <h3 class="feedback" id="commentaires">
+      <%= display_comments_counter(@article) %>
+      <a href="#commentform" ref="nofollow"> &raquo;</a>
+    </h3>
+    <%= render "articles/comment_list" %>
+    <% end -%>
 
-<% unless @article.comments_closed? -%>
-  <%= render 'comment_form' %>
-<% else -%>
-  <p><%= _("Comments are disabled")%></p>
-<% end -%>
+    <%= render 'articles/comment_form' if @article.allow_comments? %>
+
+    <% if @article.allow_pings? -%>
+    <h5 class="feedback" id="trackbacks"><%= _('Trackbacks for')%> <em><%= @article.title %></em></h5>
+    <% unless @article.published_trackbacks.blank? -%>
+    <ol id="trackbacks" class="trackbacks">
+      <%= render "trackback", :collection => @article.published_trackbacks %>
+    </ol>
+    <% end -%>
+    <% end -%>
+  </div>
