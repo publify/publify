@@ -11,6 +11,7 @@ describe CategoriesController, "/index" do
 
   describe "normally" do
     before do
+      controller.stub(:template_exists?).and_return false
       get 'index'
     end
 
