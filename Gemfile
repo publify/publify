@@ -21,7 +21,7 @@ end
 
 source :rubygems
 
-gem 'rails', '3.0.10'
+gem 'rails', '~> 3.0.10'
 gem 'require_relative'
 gem 'htmlentities'
 gem 'json'
@@ -29,7 +29,7 @@ gem 'bluecloth', '>= 2.0.5'
 gem 'coderay', '~> 0.9'
 gem 'kaminari'
 gem 'RedCloth', '~> 4.2.8'
-gem 'addressable', '~> 2.1.0', :require => 'addressable/uri'
+gem 'addressable', '~> 2.1', :require => 'addressable/uri'
 gem 'mini_magick', '1.3.3', :require => 'mini_magick'
 gem 'uuidtools', '~>2.1.1'
 gem 'flickraw-cached'
