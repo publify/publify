@@ -437,7 +437,7 @@ Localization.define("nl_NL") do |l|
   l.store "Write", "Schrijf"
 
   # app/views/admin/sidebar/_publish.html.erb
-  l.store "Changes published", ""
+  l.store "Changes published", "Wijzigingen gepubliceerd"
 
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", ""
@@ -445,18 +445,18 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/sidebar/index.html.erb
   l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", ""
   l.store "Available Items", ""
-  l.store "You have no plugins installed", ""
+  l.store "You have no plugins installed", "Je hebt geen plugins ge&iuml;installeerd"
   l.store "Active Sidebar items", ""
-  l.store "Get more plugins", ""
+  l.store "Get more plugins", "Haal meer thema's op"
   l.store "Sidebar", ""
-  l.store "Publish changes", ""
+  l.store "Publish changes", "Publiceer wijzigingen"
 
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Schermnaam"
 
   # app/views/admin/tags/destroy.html.erb
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
+  l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
+  l.store "Delete this tag", "Verwijder deze tag"
 
   # app/views/admin/tags/edit.html.erb
   l.store "Editing ", ""
@@ -464,25 +464,25 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/tags/index.html.erb
   l.store "Display Name", ""
-  l.store "Manage tags", ""
+  l.store "Manage tags", "Beheer tags"
 
   # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
+  l.store "Sorry the theme catalogue is not available", "Sorry, de thema catalogus is niet beschikbaar"
+  l.store "Theme catalogue", "Thema catalogus"
 
   # app/views/admin/themes/editor.html.erb
-  l.store "Theme editor", ""
+  l.store "Theme editor", "Thema editor"
 
   # app/views/admin/themes/index.html.erb
-  l.store "Active theme", ""
-  l.store "Get more themes", ""
-  l.store "You can download third party themes from officially supported %s ", ""
-  l.store "Typogarden", ""
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", ""
-  l.store "Choose a theme", ""
+  l.store "Active theme", "Actieve thema's"
+  l.store "Get more themes", "Haal meer thema's op"
+  l.store "You can download third party themes from officially supported %s ", "Je kunt thema's van derden downloaden van officieel ondersteunde %s "
+  l.store "Typogarden", "Typogarden"
+  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", "Om een thema te installeren moet je het uploaden in de themes map. Zodra het is geupload zou je het op deze pagina moeten zien."
+  l.store "Choose a theme", "Kies een thema"
 
   # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
+  l.store "Account settings", "Account instellingen"
   l.store "Password confirmation", "Bevestig wachtwoord"
   l.store "Profile", "Profiel"
   l.store "User's status", "Status van de gebruiker"
@@ -536,7 +536,7 @@ Localization.define("nl_NL") do |l|
 
   # app/views/articles/_comment.html.erb
   l.store "said", "zei"
-  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurd."
+  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt."
 
   # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Jouw naam"
