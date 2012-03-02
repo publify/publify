@@ -6,7 +6,7 @@ class String
     return if self.nil?
 
     s = self.downcase.tr("\"'", '')
-    s = s.gsub(/\P{Word}/, ' ')
+    s = s.gsub(/\W/, ' ')
     s.strip.tr_s(' ', '-').tr(' ', '-').sub(/^$/, "-")
   end
 
