@@ -50,10 +50,6 @@ class Category < ActiveRecord::Base
     reorder send(:with_exclusive_scope){find(:all, :order => 'UPPER(name)').collect { |c| c.id }}
   end
 
-  def stripped_name
-    self.name.to_url
-  end
-
   def published_articles
     articles.already_published
   end
@@ -82,7 +78,7 @@ class Category < ActiveRecord::Base
   before_save :set_defaults
 
   def set_defaults
-    self.permalink ||= self.stripped_name
+    self.permalink ||= self.name.to_permalink
   end
 
   validates_presence_of :name
