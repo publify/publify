@@ -43,7 +43,7 @@ end
 
 describe 'Given no pages' do
   def valid_attributes
-    { :name => 'name', :title => 'title', :body => 'body'}
+    { :title => 'title', :body => 'body'}
   end
 
   before(:each) do
@@ -55,16 +55,8 @@ describe 'Given no pages' do
     @page.should_not be_valid
   end
 
-  it 'A page is valid with name, title and body' do
+  it 'A page is valid with a title and body' do
     @page.attributes = valid_attributes
-    @page.should be_valid
-  end
-
-  it 'A page is invalid without a name' do
-    @page.attributes = valid_attributes.except(:name)
-    @page.should_not be_valid
-    @page.errors[:name].should == ["can't be blank"]
-    @page.name = 'somename'
     @page.should be_valid
   end
 
@@ -83,6 +75,15 @@ describe 'Given no pages' do
     @page.body = 'somebody'
     @page.should be_valid
   end
+  
+  it "should use sanitize title to set page name" do
+    @page.attributes = valid_attributes.except(:title)
+    @page.title = 'title with accents éèà'
+    @page.should be_valid
+    @page.save
+    @page.name.should == "title-with-accents-eea"
+  end
+  
 end
 
 describe 'Given a valid page' do
