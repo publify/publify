@@ -166,11 +166,7 @@ class Admin::ContentController < Admin::BaseController
       set_article_author
       save_attachments
       
-      if @article.draft
-        @article.state = "draft"
-      else
-        @article.permalink = @article.title.to_permalink if @article.permalink.nil? or @article.permalink.empty?
-      end
+      @article.state = "draft" if @article.draft
 
       if @article.save
         destroy_the_draft unless @article.draft

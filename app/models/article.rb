@@ -47,7 +47,7 @@ class Article < Content
 
   before_create :set_defaults, :create_guid
   after_create :add_notifications
-  before_save :set_published_at, :ensure_settings_type
+  before_save :set_published_at, :ensure_settings_type, :set_permalink
   after_save :post_trigger
   after_save :keywords_to_tags
 
@@ -70,6 +70,11 @@ class Article < Content
     rescue Exception => e
       self.settings = {}
     end
+  end
+
+  def set_permalink
+    return if self.state == 'draft'
+    self.permalink = self.title.to_permalink if self.permalink.nil? or self.permalink.empty?
   end
 
   def has_child?
@@ -432,7 +437,7 @@ class Article < Content
        self.permalink.to_s =~ /article-draft/ or
        self.state == "draft"
       )
-      self.permalink = self.title.to_permalink
+      set_permalink
     end
     if blog && self.allow_comments.nil?
       self.allow_comments = blog.default_allow_comments
