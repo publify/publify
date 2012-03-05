@@ -5,7 +5,6 @@ require 'net/http'
 class Article < Content
   include TypoGuid
   include ConfigManager
-  include Sanitizable
 
   serialize :settings, Hash
 
@@ -117,10 +116,6 @@ class Article < Content
       eval(list_function.join('.'))
     end
 
-  end
-
-  def stripped_title
-    remove_accents(title).gsub(/<[^>]*>/, '').to_url
   end
 
   def year_url
@@ -437,7 +432,7 @@ class Article < Content
        self.permalink.to_s =~ /article-draft/ or
        self.state == "draft"
       )
-      self.permalink = self.stripped_title
+      self.permalink = self.title.to_permalink
     end
     if blog && self.allow_comments.nil?
       self.allow_comments = blog.default_allow_comments

@@ -27,7 +27,7 @@ describe 'Given the fixture :first_page' do
   
   it "should give a sanitized title" do
     page = Factory.build(:page, :title => 'title with accents éèà')
-    page.sanitized_title.should == 'title-with-accents-eea'
+    page.title.to_permalink.should == 'title-with-accents-eea'
   end
 end
 

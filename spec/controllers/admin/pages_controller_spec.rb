@@ -110,7 +110,7 @@ describe Admin::PagesController do
   #TODO but this kind of action must move to model !
   it "should use sanitize title to set page name" do
     page = Factory.build(:page, :name => '')
-    page.should_receive(:sanitized_title).and_return('title-with-accents-eea') 
+    page.name.should == page.title.to_permalink
     Page.should_receive(:new).and_return(page)
     post :new, :page => {:title => 'title with accents éèà'}
   end
@@ -147,7 +147,4 @@ describe Admin::PagesController do
       response.should render_template('_visual_editor')
     end
   end
-
-
-
 end

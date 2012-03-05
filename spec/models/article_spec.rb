@@ -117,19 +117,19 @@ describe Article do
 
   describe "#stripped_title" do
     it "works for simple cases" do
-      assert_equal "article-1", Article.new(:title => 'Article 1!').stripped_title
-      assert_equal "article-2", Article.new(:title => 'Article 2!').stripped_title
-      assert_equal "article-3", Article.new(:title => 'Article 3!').stripped_title
+      assert_equal "article-1", Article.new(:title => 'Article 1!').title.to_permalink
+      assert_equal "article-2", Article.new(:title => 'Article 2!').title.to_permalink
+      assert_equal "article-3", Article.new(:title => 'Article 3!').title.to_permalink
     end
 
     it "strips html" do
       a = Article.new(:title => "This <i>is</i> a <b>test</b>")
-      assert_equal 'this-is-a-test', a.stripped_title
+      assert_equal 'this-is-a-test', a.title.to_permalink
     end
 
     it "does not escape multibyte characters" do
       a = Article.new(:title => "ルビー")
-      a.stripped_title.should == "ルビー"
+      a.title.to_permalink.should == "ルビー"
     end
 
     it "is called upon saving the article" do

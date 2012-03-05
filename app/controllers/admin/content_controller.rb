@@ -169,7 +169,7 @@ class Admin::ContentController < Admin::BaseController
       if @article.draft
         @article.state = "draft"
       else
-        @article.permalink = @article.stripped_title if @article.permalink.nil? or @article.permalink.empty?
+        @article.permalink = @article.title.to_permalink if @article.permalink.nil? or @article.permalink.empty?
       end
 
       if @article.save
