@@ -16,6 +16,13 @@
     </div>
   </div>
   <div class='clearfix'>
+    <label for="category_permalink"><%= _("Permalink") %></label>
+    <div class='input'>
+      <%= text_field :category, :permalink, :class => 'large' %>
+	  <span class='help-block'><%= _("Your category slug. Leave empty if you don't know what to put here") %></span>
+    </div>
+  </div>
+  <div class='clearfix'>
     <label for="category_description"><%= _("Description") %></label>
     <div class='input'>
       <%= text_area :category, :description, :rows => 5, :class => 'large' %>

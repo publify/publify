@@ -23,6 +23,19 @@ describe "Category" do
     c.articles.size.should == 2
     c.published_articles.size.should == 1
   end
+  
+  it "empty permalink should be converted" do
+    Factory(:blog)
+    c = Category.create(:name => "test 1")
+    c.permalink.should == "test-1"
+  end
+  
+  it "category with permalink should not have permalink generated" do
+    Factory(:blog)
+    c = Category.create(:name => "Test 2", :permalink => "yeah-nice-one")
+    c.permalink.should == "yeah-nice-one"
+  end
+  
 end
 
 describe Category do

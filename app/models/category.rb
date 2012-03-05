@@ -75,10 +75,10 @@ class Category < ActiveRecord::Base
 
   protected
 
-  before_save :set_defaults
+  before_save :set_permalink
 
-  def set_defaults
-    self.permalink ||= self.name.to_permalink
+  def set_permalink
+    self.permalink = self.name.to_permalink if self.permalink.nil? or self.permalink.empty?
   end
 
   validates_presence_of :name
