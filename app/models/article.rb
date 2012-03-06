@@ -48,8 +48,7 @@ class Article < Content
   before_create :set_defaults, :create_guid
   after_create :add_notifications
   before_save :set_published_at, :ensure_settings_type, :set_permalink
-  after_save :post_trigger
-  after_save :keywords_to_tags
+  after_save :post_trigger, :keywords_to_tags, :shorten_url
 
   scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
   scope :drafts, lambda { { :conditions => { :state => 'draft' }, :order => 'created_at DESC' } }
@@ -285,6 +284,7 @@ class Article < Content
       art.allow_comments = art.blog.default_allow_comments
       art.allow_pings = art.blog.default_allow_pings
       art.text_filter = art.blog.text_filter
+      art.old_permalink = art.permalink_url unless art.permalink.nil? or art.permalink.empty?
       art.published = true
     end
   end

@@ -184,6 +184,32 @@ describe Article do
   ### XXX: Should we have a test here?
   it "test_send_multiple_pings" do
   end
+  
+  describe "Testing redirects" do
+    it "a new published article gets a redirect" do
+      a = Article.create(:title => "Some title", :body => "some text", :published => true)
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+    end
+    
+    it "a new unpublished article should not get a redirect" do 
+      a = Article.create(:title => "Some title", :body => "some text", :published => false)
+      a.redirects.first.should be_nil
+    end
+    
+    it "Changin a published article permalink url should only change the to redirection" do
+      a = Article.create(:title => "Some title", :body => "some text", :published => true)
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+      r  = a.redirects.first.from_path
+      
+      a.permalink = "some-new-permalink"
+      a.save
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+      a.redirects.first.from_path.should == r
+    end
+  end
 
   describe "with tags" do
     it "recieves tags from the keywords property" do

@@ -9,6 +9,7 @@ class Page < Content
   setting :password, :string, ''
 
   before_save :set_permalink
+  after_save :shorten_url
   
   def set_permalink
     self.name = self.title.to_permalink if self.name.blank?
