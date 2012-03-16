@@ -95,6 +95,7 @@ class CkeditorController < ActionController::Base
   def upload_file
     begin
       load_file_from_params
+
       Resource.create(:filename => @new_file.original_filename, :mime => @ftype, :created_at => Time.now)
       copy_tmp_file(@new_file) if mime_types_ok(@ftype)
     rescue => e
@@ -207,7 +208,7 @@ class CkeditorController < ActionController::Base
   #
   def check_file(file)
     log "CKEDITOR ---- CLASS OF UPLOAD OBJECT: #{file.class}"
-    unless [Tempfile, StringIO].include? file.class
+    unless [Tempfile, StringIO, ActionDispatch::Http::UploadedFile].include? file.class
       @errorNumber = 403
       throw Exception.new
     end
