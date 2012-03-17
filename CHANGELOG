@@ -1,114 +1,909 @@
-commit 07cd1095848e66d7c847eebbe244890c6ce0e92d
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+    French translation of redirections related sentences
 
-    Fixes live search. I'll have to check why we didn't find that one before
-
-commit 48468deb27cecbf5dd50c1a520bb45b443f26691
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes a bug when displaying a protected article within a category
-
-commit 69ca931d642a4d3db9eae2d1556874df532b8407
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixing issue 42: user creation not working.
-
-commit 717dd9d888b3928154d55d7b4f690ebad5ab0100
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    remove unused files amd directory in test dir
-
-commit b07892e5a728e0e4179da301496e47474b551211
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    remove test dir
-
-commit 163e574de1408d5f1fbc66f60ce509b7946c0ec4
-Author: Huy Dinh <mail@huydinh.eu>
-
-    Fixing an obvious "blunder".
-
-commit 8f2f4ecb0d612f4d3b5dd042797cb48420f51b11
-Author: Huy Dinh <mail@huydinh.eu>
-
-    Follow up, missed fixing another example.
-
-commit 5c0c8bd07502b5c3a507f785a47383b8fc44d874
-Author: Thomas Lecavelier <thomas@lecavelier.name>
-
-    First, the simple link for non-js admin (UJS)
-
-commit 260e760f50f4dafcf1598a73e664ad3f73f84f60
-Merge: b07892e 8f2f4ec
+commit 156b63b6dbdbfd2fdcdbdb748fbdea6e453cd217
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Merge pull request #43 from Skudo/hotfix
+    Create a second migration to fix article post types.
 
-commit 0423a97bd490b1eea600bc4dc7b42d61697934e3
-Author: Huy Dinh <mail@huydinh.eu>
-
-    Fixing issue with RedCloth 4.2.7 (see comments in http://blog.typosphere.org/release-of-typo-6-0-6-a-major-one.html).
-
-commit dee03029faec5bf2611e4e67220d87d1b3ab720b
+commit 1422de9e554d57f5c85cc81c74b892208a73a8e2
 Author: Yannick Francois <yannick.francois@free.fr>
 
-    create a Satanizable module, remove duplication about clean accents (by move method in satanizable)...
+    Fix specs
 
-commit 84ccca3fbaba63b0da6af6a1e8b9c935fd39eeb4
-Merge: 260e760 dee0302
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    Merge branch 'remove_accents'
-
-commit 31027227254a252b8b1add4d9311a7ca495982a5
-Author: Huy Dinh <mail@huydinh.eu>
-
-    This fix addresses issue #39: Time.parse apparently hiccups when the timestamp string contains "GMT+0000 (UTC)". Worked around this using fdv's suggestion to use DateTime.strptime.
-
-commit 28623a8d65d8eeecacd5c1daa11e348920ac9e10
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    refactorimg spec to remove duplications (my new job here ? :-p)
-
-commit 508cfd6e5d860f6512adb1881d0037f7d6622f2c
-Merge: 28623a8 0423a97
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #44 from Skudo/fix/RedCloth
-
-commit cb22ad8c192ad1a509483b309361c35c8d0fa13c
+commit 4779a1fb698eb9a02dec9ce0c71267d5542f22b2
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Upgrades to Rails 3.0.10.
+    Yo dawg, I heard you like typos so I put an epic typo in your typo so you can typo while you typo
 
-commit 6298fcef8ed8909fe4829071fe7df016eeb2a9ea
-Merge: cb22ad8 3102722
-Author: Matijs van Zuijlen <matijs@matijs.net>
+commit a44b1ebc0112d5ed349696d3345edc80e88b0f2e
+Author: Yannick Francois <yannick.francois@free.fr>
 
-    Merge pull request #45 from Skudo/fix/issue_39
+    spec cleaning
 
-commit f56980f25db474d2ea9a6363dfc62a28d4c42615
-Author: Thomas Lecavelier <thomas@lecavelier.name>
+commit a95a4cb2ad093b91ba862f2b1119e7246c49dc18
+Author: Yannick Francois <yannick.francois@free.fr>
 
-    Add Category creation on Content creation page (UJS way). Induced some refactorisation in Categories views and model
+    Move .rspec file to rspec.sample, because, each dev would build is own
+    dev env :-)
 
-commit b8c0ff329f35e537e2ea25b70127a07fb1a3c821
-Merge: f56980f 6298fce
-Author: Thomas Lecavelier <thomas@lecavelier.name>
+commit 6fd964a65b284411ab0a3a32ac1ff2f4f6538ecd
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    some refactoring around comment controller
+
+commit 0ed86c55b1440c0512d4114d9ddfc5c068134bb1
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    some refactoring to remove unuse code
+
+commit 3cafb1177cee92a2d24380d6dc6663f11f4100e3
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Update cKEditor
+
+commit d789da4188c1858a8808bc8193a663435aaea2d3
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Update cKEditor second take
+
+commit 34ec3fbd0a778402bc57133337b24d23ee90ab50
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Upgrade ckeditor third step
+
+commit d41bfcc695882ce6a85c418fcc5ef9775398a370
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Upgrade ckeditor last step
+
+commit 76c9b3ca57028582b4ed7542645121159dd2791a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    clean around text_filter (spec)
+
+commit 815240069a3cfddd861be6672da4d0353770e6e9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    add scope to resource and use them when it's possible
+
+commit 67c908215dfe6c6182ff8f24d94da0ad1df249e4
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    add more scope on resource, (combine one) and use them
+
+commit 53f7cb0086f4207d5fdfad38853a9eab6d710f74
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Fixes switching back and fort between simple and visual editor.
+
+commit 09c0cf266769c3aae24653f7d4a375583188c69d
+Merge: 53f7cb0 67c9082
+Author: Frédéric de Villamil <neuro@asocial.org>
 
     Merge branch 'master' of github.com:fdv/typo
 
-commit ae1ae6f35aecb9fc24c3ea8800e37d13f5173a3c
+commit e6cc3068912d85dc7006718b1dd216c898783191
+Merge: e4aa089 09c0cf2
 Author: Thomas Lecavelier <thomas@lecavelier.name>
 
-    Update todo: category creation in Content creation page: Ok, take Tag merging for me
+    Merge branch 'master' into merge_tags
 
-commit 4501658d08c9b2ee74f1c2a085193799742b2084
+commit 558c4e4ea09ede816bf529b13fcd75604c9691b9
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    TopLayer in admin is now a full page overlay (reduce miss-click risk). Clicking on it close the overlay. Better CSS (background transparancy)
+
+commit 816aa211eae6e3f44e8f05dc4246da2e217f9963
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add encoding comments to spec files to satisfy Ruby 1.9.
+
+commit 4e275ecb7288e53e4be0afe133dd793890e0a394
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Backport fix for rspec issue 258.
+
+commit 618fd2f4e9adb9681052e098b1565dc9f4134082
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make String#to_title deal with contents where body is nil.
+
+commit cb15f079cd3f64f276a889e7f538c6347238d210
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Pass article to partial when password checks out.
+
+commit f21ebfbc5e76b7a1917544cddff3dd4c5079abaf
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix article routing spec: get method no longer works.
+
+commit 575a9e53354cd10357ba7bfe58716cd21479bb21
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove unused stub that fails on currently used RSpec.
+
+commit 386b6822928dde424a262a46cde972a399530799
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Revert "spec cleaning"
+
+commit c174cf4a79f8c3c67ec7c1675aff31ad02db448a
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix factory_girl deprecation warning.
+
+commit daec85a096d9073b557b3402d780ee0a17b28ae0
+Author: Michael Reinsch <michael@mobalean.com>
+
+    use named scope for selecting published articles
+
+commit 7e0199b3b0246519387ae8ccd859749da8a21854
+Author: Michael Reinsch <michael@mobalean.com>
+
+    use published_at, not created_at to determine when comments shall be closed
+
+commit 901f8d6e72055dd42aff2105e39cb4e5e6cc96e1
+Merge: c174cf4 7e0199b
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Merge pull request #53 from mreinsch/master
+
+commit 487dfdc84d6adb8807c6c4733070a5fd835357aa
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    FIX broken spec
+
+commit 39bd190f362585860705ace7a5bf5f0c55544163
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move get_or_build article to Article model (from content_controller). I hope it's a better place...
+
+commit ce95a6a42c422dc530a998992fd158f8c72f2fb5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Add simple_editor? to user, and clean user_spec.
+
+commit a0b9612ae5cd3e0afca8f582633a4b6e09450f50
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean admin content_controller (use simple_editor? and fix insert_editor action)
+
+commit db9416a5dee0f31deb450699f85fefa4c491cfed
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    add test on insert_editor action on admin page_controller
+
+commit d9c29940b82e327608c48d2f34a61b1b0344e289
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Fixes a bug where attachment thumbnails would not be created at upload from the editor and API.
+    Making the dashboard a little bit clearer, and the info style a little less flashy
 
-commit f587ab8a39c8a723d70ca78bbc8fdf0c177f21b3
+commit a444cf9d339dc581a45c6cbc4510e4a60bbce558
 Author: Frédéric de Villamil <neuro@asocial.org>
 
-    Fixing in Ruby 1.9.2
+    Making the simple editor a little clearer
+
+commit 9d8cbd67a85a79befdb54c1b401cd50f5e3a9a06
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Setting up things so we can soon (or later) add a second administration color stylesheet (or two, or three...). I have some nice ideas you can easily imagine for that one
+
+commit 80e2f77e926fec675da74a53241c0fa50a2a49b0
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Adding bootstrap dependencies, switching layout and menu to bootstrap
+
+commit 6e80af523f61a32198360d61fd6799681a74bd57
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Removing dependencies to Twitter bootstrap, html cleaning
+
+commit 160be12102f9c2c0538989f676c820bdd8ac1961
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    add rbenv-version to gitignore
+
+commit f11eb915354149dec400f5ee764af039572d1e80
+Merge: 6e80af5 160be12
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit bf4814eaeadd53981cb135ac02110c4e88162dea
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Moves Dashboard to bootstrap
+
+commit 8b2dbe76268bae61cd6609b80e4d81c78f5db9d7
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Articles / content
+
+commit 3d426f10ac8a4eb9336b6554085f5c3b0c93850e
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Porting the comments view to Bootstrap
+
+commit 733b325b799c64319fe2ddc519ff555335e5d245
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Correct specced admin theme configuration variable.
+
+commit 31fc10deadc67a422a1821378c81abc802ac8620
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove needless #delete_all method calls.
+
+commit 33875a993906fcb7c97c9458cad1169ae2182fe1
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove superfluous bits from Gemfile.
+
+commit bdda71a5917e162b2f9fd1328a091424d2a9635b
+Merge: 3d426f1 33875a9
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 25664cbfbb369c768344e64c6b3bd70d75489057
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add back source line to Gemfile.
+
+commit 8fb9242649f55d580deedf430501ebd8394a8ee1
+Merge: bdda71a 25664cb
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit a3c5c962cd684e1339d373dedcdc0cdc08aadf05
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Moving login form to Bootstrap
+
+commit 038f7379eca68e1dd8608739d8b8a6cf5b8a4075
+Author: Frédéric de Villamil <neuro@asocial.org>
+
+    Adding a quick and dirty fix to users won't have to ssh and run initial migration: if the fire triggers fails it's most probably because the database was not loaded, so we run the migration engine as a rescue.
+
+commit 50b4fdedc3146a442182661ae14dd5568c09a55d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Migrating setup
+
+commit bebe22130204638e3e763a3299f18afda2b473e2
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Migrating sign up
+
+commit a334e9194735ee0306e339bee48f1e3d2ed07864
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    I don't like controllers with empty indexes rendering errors
+
+commit 92b9be985ce55fbe8b4fff5ff923a800a26c2cb9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bad encoding issue under 1.9.2
+
+commit e389f5081175739fee93d7d16bcf5f171bb77199
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Replacing old will_paginate with scope based Kaminari.
+
+commit 6492aa32699e5935e920d5aadcdd9676f2db2cf0
+Merge: 92b9be9 e389f50
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes merge conflict
+
+commit 014391950b88f3bb39173fdd22c0b136fb52521a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds customizable 404 pages with optionnal messages in the admin. Next: 500
+
+commit 1b47f72eff8e4f7324bb4adf157bcd24c0df2249
+Merge: 6492aa3 0143919
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' into bootstrap
+
+commit 58f3dbe72ecc93106fddd583cf3af48ab605f0f6
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing useless Javascript based category reorder interface. Categories will now be ordered by name, which looks like the most likely way to do it. This is a first step to sub categories as the order interface prevented from having them.
+
+commit 2bd809bf8651c858bf6a6e6bd295ce0125ea9849
+Merge: 1b47f72 58f3dbe
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' into bootstrap
+
+commit f7f5515f196d9403f24e68c5358c8fc4caa9fe2d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Allows admin redirects to act like an URL shortener when posting an empty from.
+
+commit 94a56cef7d035c3f8d0748982ed425f472a26c88
+Merge: 2bd809b f7f5515
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' into bootstrap
+
+commit 3512e92a210df6e2543e5d4006af22d903d916f7
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removes Ruby 1.8 specific tests
+
+commit 2715b5ad5a5adecdbf4787f7edb3f8a8eab70fcb
+Merge: 94a56ce 3512e92
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' into bootstrap
+
+commit 75a6137260b74156aaabc9dd0740fd4df19805cd
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updates login, account creation and password recovery
+
+commit 33ba179b26f54c1b9f1905764f329f9669df792a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Make the login form slightly better. Sometimes it's just a matter of connceting the dots.
+
+commit 2128ad4e3a5b25670d22396009e2e8b9528614aa
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Better omments display
+
+commit 1f9fe927c745e8c88511e770475f7dbf9d600c5b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moving pages to Bootstrap
+
+commit e514bf2353aa2214eb0e56f330cd01c44f9e4923
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Resources listing to Bootstrap
+
+commit 8d652589ab38ad141eb0848c60036730f80ed8c0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Categories now
+
+commit 8d409b1abc4e27f136f03d8e117295cfaf30b62b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Tags to bootstrap
+
+commit 959a0dd65d3c865ccb4cf6b22d98ddb6dcee60f8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Settings and users
+
+commit 9d8c05849b2f3590efc55b7235d90eb729622a38
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    New editor for articles
+
+commit 1c6d8dae3f98473540ca7454c10fd1e3626e4686
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds new editor for pages
+
+commit 1d94c294eaf2b833c4e2429117a30f9755e18eaf
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Improving the editor a little bit. This definitely needs some cleaning and... to be refactored
+
+commit ba172af2df45c9e741ab0bcca3925c3387c479ad
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Update to the main editor. Kinda like the way it looks like now, but lots of cleaning still needed (plus a major headache generating bug found).
+
+commit ae0f789c0ffefb8db6d603503757faeed92c8f3d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updated my TODO
+
+commit 2013a32dddf8dc982032da20c05df286f8ff36ef
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing the specs. Removing useless specs as we don't rely on tabs anymore. I, however, need to add some more checks there, but on another way
+
+commit 7353d89e1e8094d31942288dc543df7987c6796f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bug setting up a post as published everytime you edit it even for a draft
+
+commit 85785ac752e3dee0c5fb18eb5a8c547f0794a303
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes comment moderation when using Akismet
+
+commit 76f0e0769520b5fa3cdafdd555e03a094be498cc
+Merge: 7353d89 85785ac
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' into bootstrap
+
+commit 2006bffbfb73e54782d77ac91b732c2f81f2ea1f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes categories views
+
+commit 7bd4ad30c702e3cafa475b0e13971afd6a506dbc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Porting post types to Bootstrap
+
+commit 679345450ba451c58fe14430d5e73ba376d6b661
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing legacy use of subtabs_for
+
+commit 86a50e46a1c5604f2c0b130e9d5b70d90a82b1c7
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing failing specs on post type controllers
+
+commit 5d4bdec10d4a15a279f16b90e86206b14f48adf5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    This one fixes the way articles are displayed in the administration and repairs pagination. I need a way to test this, YAF?
+
+commit a5fbcdfd46a382669258f9d861b159b18ea7042b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating TODO
+
+commit 54f82caf6e0883a1313cb13c159265df952ef16f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    I'm pretty sure someone will be able to tell me why we translated the spam states straight into the state machine, because I f%$#g don't see the point. Plus it breaks all the filterings and display admin side.
+
+commit a59ae1e6ebffce6adf9c5d1ac730ec846ab0ee9b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding per state filtering on articles listing + better display for drafts.
+    - default: everything but draft.
+    - published articles
+    - drafts
+    - publication pending
+    - withdrawn
+
+commit 8bfc7ed75b0df72d7aec2249c2f9528c617ec23f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Drafts should be displayed like every other article
+
+commit 57fd4f07e076c8debb4fb845912625dc62270d85
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Drafts should be displayed like every other article
+
+commit e87d50e0a16ecafe14bcecade6bdc5c604530bb5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    One should run spec before commiting
+
+commit 1324f8d66a2acd07d3cd26511f4a9e8bf476e253
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing the way permalinks generation work.
+
+commit 0fe87923402fad205ffa7ff71990bde5d2271c5d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the way autosave displays buttons:
+    - destroy this draft should only appear at autosave and when editing a draft
+    - destroy this article should only appear when article is not a draft
+
+commit c53eeeca3fb0b07d80328617d7da301eb24d4dd8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating SEO views
+
+commit 6dfb0e4aeb24ff6e2615750fa639fdf1d30a27fa
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Cleaning some code, removing some unshared partials.
+
+commit 4aac6bba0a7d13e316a1f85b18c60d97e66c51a1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Doing some cleaning in the detroy process:
+    – We don't need multiple destroy files when they all share the same code, excepted a message which can be defined from the controller name.
+    – An old chinese master once told me "the earlier you return, the better it is", so I reverted the conditions in the destroy methods, which seems much more sensible now that I think about it.
+
+commit 28c1ce20acab6c87b9d2a1553fd4fe677b7e34b9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the redirects management work like categories and tags.
+
+commit 48922b2b1a39ef2702801d71f34b34749256ad7f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    I may have forgoten to add some files in my last commit.
+
+commit 25149602241184d3b80d5e537cf54d68e509818c
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use simplecov instead of rcov with Ruby 1.9.
+
+commit e24c3e5ac0d579d0048b85964802f836acf45b25
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make specs pass.
+
+commit 2e441914a873e5e4a83de3cd47977fbd55d9c756
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    We said we would not support 1.8 anymore
+
+commit f85c206d77dab9ad4da1c3dbd8bea44cf3f48a84
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the way we generate permalinks.
+
+commit 67a98ff39aa946e769e390078dfc031dd842e3d8
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Avoid confusion between @feedback and @record.
+
+commit 98ed36be1f691a047c074f99f6aed7bc488c3b4f
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Allow newer versions of RedCloth.
+
+commit d439191413dcc403883a753ae317f93c2ce3b223
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Cause bundler to fail when database.yml does not exist.
+
+commit 7dd2503b932ff2e7c51f570be38645266e8b9e53
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes display on account creation and login
+
+commit 28c9364190f27e6cdcea07cf1d8baf758db4b6ba
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moving theme selector to Bootstrap
+
+commit 3f66fa3775b9127d9a430a947c0765b9bf45613b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding sample database.yml for every supported engine
+
+commit cd31dbca13ac2e6eb154a10b040c5b679c518b3b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating sidebar interface
+
+commit 379458c7e0787b18763511807f83333ce31ef7cc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing dead code
+
+commit a3e71a1981ae6b9bfcf65b5cebe08c31f90aafa6
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Database settings
+
+commit e2ac79c612bb1f372c284d7033bf783fd91d2f76
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds the media back into the editor.
+
+commit 545f18c9a5a446c0401bdfac8b8d2fcf1ced126a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Doing some cleaning in the CSS, they really deserved it.
+
+commit f332a2d9c95f06c0956555304876d78f4a03915d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding Bootstrap as a new default theme.
+
+commit 2c2f5e38c14b36cdd594a96fd3374530439967df
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Sometimes you don't clean enough, sometimes you clean too much. In both cases it's a fail
+
+commit 9f3d3208d087384c883fbe52db8d80eea9ad7673
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updating theme and adding theme documentation
+
+commit 61dbe33327801cca6e0bde342e2d1dc1713bee02
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds comment count to Bootstrap index
+
+commit b2b4a9f085aec99631eb70366f6c85657a939d7a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing the theme editor, for now. It will probably come back under another form later.
+
+commit ece334017de9fae82649a8321cefe4cb50d34d7b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ugly fix to make the menu working. One more thing to fix and I can release
+
+commit 2a484a1caa91cc22051b6643823b6e8920ccf2c8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the user edition
+
+commit 82b7ac31e34b090ecfc422e17e570e91b70b024f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes indent
+
+commit 5253418d27a608ab8040dffdfb156f55b57cc061
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Restyling dashboard
+
+commit 698a1ee2eb7e94c32de48889f056c6a094cd3592
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes comment listing style
+
+commit 1653c3470c1719a2d34145f5fb48cc5f5f26ac54
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Hmm this should not be here
+
+commit b817335db1f1921b1c38bf4936ea24fab8dacc18
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes admin/comments edition style
+
+commit 004259923a91866f0c7c0e0ad2f484c3a7a2e07b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove unused extend ActiveSupport::Memoizable.
+
+commit bbfca4f7df86deda245d2b3bcc3420a1e7068fbf
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    In the normal case, the password form is not rendered.
+
+commit b69b91b429c5fa75b766d9466f6324db2164630c
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Clean up User model.
+
+commit 202947f405fb7874b6957a0758db68e9a3d74fd1
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Activate SimpleCov.
+
+commit b5b0da2e85eff3cca43f2a079a1eb7906a6e1b8b
+Merge: b817335 202947f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit cb44d16b47cc50f470ca1b246d88ea97e1949658
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove outdated comment.
+
+commit 1bccf13c52178ee5e7785c75cf09dc91234734fe
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Disable thread safe Rails in production.
+
+commit fb740cf3c2c13b71d5c2c69596134ff851af985d
+Merge: b5b0da2 1bccf13
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit c0e228d7a75970e67cce4597e593f8a1a347c74e
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Clean up Content methods.
+
+commit d7f8b19644f87f5feb952ebd99f807b052b960a4
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove useless calls to #changed.
+
+commit 7211858531958703b48b2323400fc80ad41a4cfb
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove some unused methods.
+
+commit f5d0883587b8f9c9849cf3a2e14ea85e607628f0
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Get behind me, Satan!
+
+commit a1fa1a41194d9939aeec24a10a06fae98f209978
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Use Sanitizable in the Article model.
+
+commit 5174867278bbffcd589c4dd190334d817c9d85e6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove unused themes helper.
+
+commit b2b43bd8afdc88364a47ee60e636974ae8dbc6c9
+Merge: fb740cf a1fa1a4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 7551885b16783c257bf80a199a516d07167ba10d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Make settings writers work during #initialize.
+
+commit 3499c7ae0040a78ee55c8bcaab4240a834e86d44
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Avoid accidentally loading old drafts.
+
+commit d694c2a28c4e722294ef19862159a768f630a8c1
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Small refactoring.
+
+commit 6668930865b59b4379733176168e8fdc5d125cfd
+Merge: b2b43bd d694c2a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of github.com:fdv/typo
+
+commit 52cce13a9adefc8b0a04bc0e71f3dafbc0d07d60
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes broken login and user creation.
+
+commit 476837135b9cb9da63351b5e9bdf4beb022bef03
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes post types display when there is no post type at all
+
+commit 43d1545ee9c2180eb21b0171473ad27eafe7f732
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves redirects from settings to articles. Adds consistency to the menu
+
+commit 591eeb2e32a3c4e9ef5668b9d95b544177091512
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    No need to call layout "administration" in every controller as it is already called from the parent class and therefore inherits from it.
+
+commit 0abd858faa08dd03bcf47f87958b89a24ab030cb
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds some style to autocomplete
+
+commit 82c73cd62c3fc616cb44660d9ac6b4dfbe53ddb9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing theme catalogue and mentions of Typogarden.
+
+commit 0dea7594acd3aa6c107e84ba4ea0d82a2ae1c624
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing theme catalogue from access rules
+
+commit 4f94fd88d28be2d5cafc1200d31a48d3c12605c0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bug in the dashboard
+
+commit 9f5180e903db4a9923e13241597a0d6f171d702f
+Author: Maarten Mulders <m.th.mulders@xs4all.nl>
+
+    Translations and one grammar correction
+
+commit 83d97d0db9c7f17e600db4d8f154a0d5431f4eb4
+Merge: 4f94fd8 9f5180e
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge pull request #61 from mthmulders/master
+
+commit 3f9753c63aa9b6228f9af28a48b7fec66140bd9e
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+
+    Make sure that migration 103 does not destroy tag association.
+
+commit 5ae108a4b3077a24e956daf818655d10b4e49b72
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes issue 55: ActionView::Template::Error (settings was supposed to be a Hash, but was a String)
+
+commit 63843aa9b75b7677aebfc125e1ad44873ede3356
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes specs for tags autocomplete
+
+commit 93f4196ff29f45a65a7571906f51077a22580376
+Author: Maarten Mulders <m.th.mulders@xs4all.nl>
+
+    Some more Dutch translations
+
+commit 7e4f07746f3eb63910da558746aa250582bfc5ab
+Merge: 63843aa 93f4196
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge pull request #64 from mthmulders/master
+
+commit 4c59f992238bfb7df820dda12da4d7a000ee69ea
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves permalink sanitization to String with a new to_permalink method.
+
+commit 7db1582a2e1802fc8d264cfaf074d80a00aed2ad
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Force categories to use to_permalink
+
+commit aae592454fbc95e129aa3ca88eb3f3eb0b48a3ee
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing specs for pages. Moving permalink related specs to model which is where they should be
+
+commit cd2e895be9f312c8830dc33620176c59e15d4795
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves the permalink generation to model
+
+commit 564c0a6740851ec221b9eec669f6c8a08464d01b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds permalink field to category creation
+
+commit 5d2c6dcbe5b14cf52c37b6b6176e0932b737f355
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes permalink not being correctly updated when updating a permalink. closes #62
+
+commit 75c407378096bfc211d33349145f2a08562738ec
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the comment management bulk operations. Closes #46
+
+commit 3139b2d757c8967b051f413d962e40e0a4052ca2
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes article controller specs pass
+
+commit 3f8e52023821cc45268015a98d9f674606c98b52
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Cleans access rules file, adds some more submenu for clarity
+
+commit a1dd7990c9661db5e9ba6da1438803bb2a6c659b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Changes the CKEditor theme
+
+commit a1e70bb5837ad831576c170a59b93a6dd776c5c4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the redirect links clickable (much better heh)
+
+commit 9272674bbfe83f7ade32dd56a78c496af774b5ca
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes CKEditor file upload
+
+commit abb2dcc5017dc6ba81332cb144972228302a05ea
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Smells like 6.0.10
+
+commit f768f674b88afe0fc6eb65469b60ec0b65b15e63
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Release of Typo 6.1.0
