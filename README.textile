@@ -56,7 +56,7 @@ Unpack Typo archive into your Web hosting space. Rename database.yml.yourEngine 
 Then run:
 
 $ bundle install
-$ ./scripts/rails server
+$ ./script/rails server
 
 You can now access Typo to http://yourdomain:3000
 
