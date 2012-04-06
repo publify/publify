@@ -11,24 +11,28 @@ end
 
 describe "Testing redirects" do
   it "a new published page gets a redirect" do
+    Factory(:blog)
     a = Page.create(:title => "Some title", :body => "some text", :published => true)
     a.should be_valid
     a.redirects.first.should_not be_nil
     a.redirects.first.to_path.should == a.permalink_url
   end
-    
+
   it "a new unpublished page should not get a redirect" do 
+    Factory(:blog)
+    a = Page.create(:title => "Some title", :body => "some text", :published => true)
     a = Page.create(:title => "Another title", :body => "some text", :published => false)
     a.redirects.first.should be_nil
   end
-    
+
   it "Changin a published article permalink url should only change the to redirection" do
+    Factory(:blog)
     a = Page.create(:title => "Third title", :body => "some text", :published => true)
     a.should be_valid
     a.redirects.first.should_not be_nil
     a.redirects.first.to_path.should == a.permalink_url
     r  = a.redirects.first.from_path
-      
+
     a.name = "some-new-permalink"
     a.save
     a.redirects.first.should_not be_nil

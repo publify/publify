@@ -10,7 +10,7 @@ class Page < Content
 
   before_save :set_permalink
   after_save :shorten_url
-  
+
   def set_permalink
     self.name = self.title.to_permalink if self.name.blank?
   end
@@ -36,7 +36,7 @@ class Page < Content
     paginate_hash[:order] = 'title ASC'
     list_function << "page(paginate_hash[:page])"
     list_function << "per(paginate_hash[:per_page])"
-    
+
     eval(list_function.join('.'))
   end
 
