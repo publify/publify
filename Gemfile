@@ -5,8 +5,9 @@ unless File.exists?(dbfile)
   raise "You need to configure config/database.yml first"
 else
   conf = YAML.load(File.read(dbfile))
-  adapter = conf[env]['adapter']
-  raise "You need define an adapter in your database.yml" if adapter == '' || adapter.nil?
+  environment = conf[env]
+  adapter = environment['adapter'] if environment
+  raise "You need define an adapter in your database.yml or set your RAILS_ENV variable" if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
     gem 'sqlite3'
