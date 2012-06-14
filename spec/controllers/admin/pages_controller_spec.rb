@@ -107,14 +107,6 @@ describe Admin::PagesController do
       :published => true }.merge(options)
   end
 
-  #TODO but this kind of action must move to model !
-  it "should use sanitize title to set page name" do
-    page = Factory.build(:page, :name => '')
-    page.should_receive(:sanitized_title).and_return('title-with-accents-eea') 
-    Page.should_receive(:new).and_return(page)
-    post :new, :page => {:title => 'title with accents éèà'}
-  end
-
   it 'should create a published page with a redirect' do
     post(:new, 'page' => base_page)
     assigns(:page).redirects.count.should == 1
@@ -147,7 +139,4 @@ describe Admin::PagesController do
       response.should render_template('_visual_editor')
     end
   end
-
-
-
 end

@@ -69,6 +69,24 @@ class Content < ActiveRecord::Base
       (changed? && published?) || just_changed_published_status?
     end
   end
+  
+  def shorten_url
+    return unless self.published
+    
+    r = Redirect.new
+    r.from_path = r.shorten
+    r.to_path = self.permalink_url
+    
+    # This because updating self.redirects.first raises ActiveRecord::ReadOnlyRecord
+    unless (red = self.redirects.first).nil?
+      return if red.to_path == self.permalink_url
+      r.from_path = red.from_path
+      red.destroy
+      self.redirects.clear # not sure we need this one
+    end
+
+    self.redirects << r
+  end
 
   class << self
     def content_fields *attribs
@@ -262,7 +280,7 @@ class Content < ActiveRecord::Base
   def short_url
     # Double check because of crappy data in my own old database
     return unless self.published and self.redirects.count > 0
-    blog.url_for(redirects.first.from_path, :only_path => false)
+    blog.url_for(redirects.last.from_path, :only_path => false)
   end
 
 end

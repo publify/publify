@@ -1,4 +1,4 @@
-require 'spec_helper'
+ require 'spec_helper'
 
 describe Admin::ContentController do
   render_views
@@ -336,11 +336,11 @@ describe Admin::ContentController do
     end
 
     it 'should create a filtered article' do
+      Article.delete_all
       body = "body via *markdown*"
       extended="*foo*"
       post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
-      assert_response :redirect, :action => 'show'
-
+      assert_response :redirect, :action => 'index'
       new_article = Article.find(:first, :order => "created_at DESC")
       assert_equal body, new_article.body
       assert_equal extended, new_article.extended

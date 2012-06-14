@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'action_web_service/test_invoke'
 
-
 describe BackendController do
   before :each do
     User.stub(:salt).and_return('change-me')
@@ -9,6 +8,8 @@ describe BackendController do
   include ActionWebService::TestInvoke::InstanceMethods
 
   before do
+    User.stub!(:salt).and_return('change-me')
+
     #TODO Need to reduce user, but allow to remove user fixture...
     Factory(:user,
             :login => 'henri',
@@ -22,7 +23,6 @@ describe BackendController do
             :notify_on_new_articles => false,
             :notify_on_comments => false,
             :state => 'active')
-
 
     Factory(:blog)
     @protocol = :xmlrpc

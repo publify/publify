@@ -92,7 +92,7 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter = current_user.text_filter if current_user.simple_editor?
 
     get_fresh_or_existing_draft_for_article
-
+    
     @article.attributes = params[:article]
     @article.published = false
     set_article_author
@@ -166,16 +166,11 @@ class Admin::ContentController < Admin::BaseController
       set_article_author
       save_attachments
       
-      if @article.draft
-        @article.state = "draft"
-      else
-        @article.permalink = @article.stripped_title if @article.permalink.nil? or @article.permalink.empty?
-      end
+      @article.state = "draft" if @article.draft
 
       if @article.save
         destroy_the_draft unless @article.draft
         set_article_categories
-        set_shortened_url if @article.published
         set_the_flash
         redirect_to :action => 'index'
         return
@@ -231,19 +226,6 @@ class Admin::ContentController < Admin::BaseController
         @article.categories << cat
       end
     end
-  end
-
-  def set_shortened_url
-    # In a very short time, I'd like to have permalink modification generate a 301 redirect as well to
-    # So I set this up the big way now
-
-    return unless Redirect.find_by_to_path(@article.permalink_url).nil?
-
-    red = Redirect.new
-    red.from_path = red.shorten
-    red.to_path = @article.permalink_url
-    red.save
-    @article.redirects << red
   end
 
   def def_build_body
