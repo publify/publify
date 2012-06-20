@@ -4,7 +4,7 @@ describe AccountsController do
   describe "A successful login with 'Remember me' checked" do
     it 'should not cause password to change' do
       Factory(:blog)
-      User.stub(:salt).and_return 'change-me'
+      User.stub!(:salt).and_return('change-me')
       henri = Factory(:user, :login => 'henri', :password => 'testagain')
       post 'login', {:user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'}
       request.session[:user_id].should == henri.id

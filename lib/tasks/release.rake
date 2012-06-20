@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rake/gempackagetask'
 
-PKG_VERSION = "6.0.9"
+PKG_VERSION = "6.1.0"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'

@@ -3,7 +3,7 @@
     <%= hidden_field_tag "confirmed", params[:confirmed] %>
     <%= hidden_field_tag "published", params[:published] %>
     <select name='<%= "bulkop_#{position}" %>' id="<%= "bulkop_#{position}" %>">
-      <option><%= _("Select action") %></option>
+      <option value=""><%= _("Select action") %></option>
       <option value='Delete Checked Items'><%= _("Delete Checked Items") %></option>
       <option value='Delete all spam'><%= _("Delete all spam") %></option>
       <option value='Mark Checked Items as Spam'><%= _("Mark Checked Items as Spam") %></option>

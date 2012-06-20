@@ -117,19 +117,19 @@ describe Article do
 
   describe "#stripped_title" do
     it "works for simple cases" do
-      assert_equal "article-1", Article.new(:title => 'Article 1!').stripped_title
-      assert_equal "article-2", Article.new(:title => 'Article 2!').stripped_title
-      assert_equal "article-3", Article.new(:title => 'Article 3!').stripped_title
+      assert_equal "article-1", Article.new(:title => 'Article 1!').title.to_permalink
+      assert_equal "article-2", Article.new(:title => 'Article 2!').title.to_permalink
+      assert_equal "article-3", Article.new(:title => 'Article 3!').title.to_permalink
     end
 
     it "strips html" do
       a = Article.new(:title => "This <i>is</i> a <b>test</b>")
-      assert_equal 'this-is-a-test', a.stripped_title
+      assert_equal 'this-is-a-test', a.title.to_permalink
     end
 
     it "does not escape multibyte characters" do
       a = Article.new(:title => "ルビー")
-      a.stripped_title.should == "ルビー"
+      a.title.to_permalink.should == "ルビー"
     end
 
     it "is called upon saving the article" do
@@ -183,6 +183,32 @@ describe Article do
 
   ### XXX: Should we have a test here?
   it "test_send_multiple_pings" do
+  end
+  
+  describe "Testing redirects" do
+    it "a new published article gets a redirect" do
+      a = Article.create(:title => "Some title", :body => "some text", :published => true)
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+    end
+    
+    it "a new unpublished article should not get a redirect" do 
+      a = Article.create(:title => "Some title", :body => "some text", :published => false)
+      a.redirects.first.should be_nil
+    end
+    
+    it "Changin a published article permalink url should only change the to redirection" do
+      a = Article.create(:title => "Some title", :body => "some text", :published => true)
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+      r  = a.redirects.first.from_path
+      
+      a.permalink = "some-new-permalink"
+      a.save
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+      a.redirects.first.from_path.should == r
+    end
   end
 
   describe "with tags" do

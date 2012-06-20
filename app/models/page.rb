@@ -1,13 +1,19 @@
 class Page < Content
   belongs_to :user
-  validates_presence_of :name, :title, :body
+  validates_presence_of :title, :body
   validates_uniqueness_of :name
 
   include ConfigManager
-  include Sanitizable
 
   serialize :settings, Hash
   setting :password, :string, ''
+
+  before_save :set_permalink
+  after_save :shorten_url
+
+  def set_permalink
+    self.name = self.title.to_permalink if self.name.blank?
+  end
 
   def initialize(*args)
     super
@@ -30,7 +36,7 @@ class Page < Content
     paginate_hash[:order] = 'title ASC'
     list_function << "page(paginate_hash[:page])"
     list_function << "per(paginate_hash[:per_page])"
-    
+
     eval(list_function.join('.'))
   end
 
@@ -46,9 +52,5 @@ class Page < Content
 
   def self.find_by_published_at
     super(:created_at)
-  end
-
-  def sanitized_title
-    remove_accents(self.title).gsub(/<[^>]*>/, '').to_url
   end
 end

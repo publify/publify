@@ -3,7 +3,7 @@ development:
   database: db/db_development
   timeout: 5000
 
-test:
+test: &test
   adapter: sqlite3
   database: db/db_test
   timeout: 5000
@@ -12,3 +12,6 @@ production:
   adapter: postgresql
   database: db_production
   timeout: 5000
+
+cucumber:
+  <<: *test

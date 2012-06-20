@@ -34,10 +34,10 @@
 	  <% for redirect in @redirects %>
 	  <tr <%= alternate_class %>>
 	    <td>
-	      <%= "#{this_blog.base_url}/#{redirect.from_path}" %>
+	      <%= link_to("#{this_blog.base_url}/#{redirect.from_path}", "#{this_blog.base_url}/#{redirect.from_path}") %>
 	      <%= show_redirect_actions redirect %>
 	    </td>
-	    <td><%= redirect.to_path %></td>
+	    <td><%= link_to(redirect.to_path, redirect.to_path) %></td>
 	  </tr>
 	  <% end %>
 	  <%= display_pagination(@redirects, 2)%>

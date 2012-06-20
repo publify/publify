@@ -21,3 +21,5 @@ tmp/*
 nbproject
 public/cache/*
 .rbenv-version
+bin/
+.bundle/

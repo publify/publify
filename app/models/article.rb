@@ -5,7 +5,6 @@ require 'net/http'
 class Article < Content
   include TypoGuid
   include ConfigManager
-  include Sanitizable
 
   serialize :settings, Hash
 
@@ -48,9 +47,8 @@ class Article < Content
 
   before_create :set_defaults, :create_guid
   after_create :add_notifications
-  before_save :set_published_at, :ensure_settings_type
-  after_save :post_trigger
-  after_save :keywords_to_tags
+  before_save :set_published_at, :ensure_settings_type, :set_permalink
+  after_save :post_trigger, :keywords_to_tags, :shorten_url
 
   scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
   scope :drafts, lambda { { :conditions => { :state => 'draft' }, :order => 'created_at DESC' } }
@@ -71,6 +69,11 @@ class Article < Content
     rescue Exception => e
       self.settings = {}
     end
+  end
+
+  def set_permalink
+    return if self.state == 'draft'
+    self.permalink = self.title.to_permalink if self.permalink.nil? or self.permalink.empty?
   end
 
   def has_child?
@@ -117,10 +120,6 @@ class Article < Content
       eval(list_function.join('.'))
     end
 
-  end
-
-  def stripped_title
-    remove_accents(title).gsub(/<[^>]*>/, '').to_url
   end
 
   def year_url
@@ -285,6 +284,7 @@ class Article < Content
       art.allow_comments = art.blog.default_allow_comments
       art.allow_pings = art.blog.default_allow_pings
       art.text_filter = art.blog.text_filter
+      art.old_permalink = art.permalink_url unless art.permalink.nil? or art.permalink.empty?
       art.published = true
     end
   end
@@ -437,7 +437,7 @@ class Article < Content
        self.permalink.to_s =~ /article-draft/ or
        self.state == "draft"
       )
-      self.permalink = self.stripped_title
+      set_permalink
     end
     if blog && self.allow_comments.nil?
       self.allow_comments = blog.default_allow_comments

@@ -10,6 +10,11 @@ class ReallyUpdateExistingArticlesWithNilOrEmptyPostType < ActiveRecord::Migrati
         if art.post_type.nil? or art.post_type.empty?
           say "Fixing '#{art.title}'", 1
           art.post_type = "read"
+
+          # this doesn't really belong here but since this migration
+          # would otherwise reset tags, it's better than nothing.
+          art.keywords = art.tags.collect(&:name).join(" ")
+
           art.save!
         end
       end

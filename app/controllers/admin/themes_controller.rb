@@ -27,55 +27,9 @@ class Admin::ThemesController < Admin::BaseController
     redirect_to :action => 'index'
   end
 
-  def catalogue
-    # Data get by this URI is a JSON formatted
-    # The return is a list. All element represent a item
-    # Each item is a hash with this key :
-    #  * uid
-    #  * download_uri
-    #  * name
-    #  * author
-    #  * description
-    #  * tags
-    #  * screenshot_uri
-    url = "http://www.dev411.com/typo/themes_2-1.txt"
-    open(url) do |http|
-      @themes = parse_catalogue_by_json(http.read)
-    end
-  rescue => e
-    logger.info(e.message)
-    nil
-
-    @themes = []
-    @error = true
-  end
-
   protected
 
   def zap_theme_caches
     FileUtils.rm_rf(%w{stylesheets javascript images}.collect{|v| page_cache_directory + "/#{v}/theme"})
-  end
-
-  private
-
-  class ThemeItem < Struct.new(:image, :name, :url, :author, :description)
-    def to_s; name; end
-  end
-
-  def parse_catalogue_by_json(body)
-    items_json = JSON.parse(body)
-    items = []
-    items_json.each do |elem|
-      next unless elem['download_uri'] # No display theme without download URI
-      item = ThemeItem.new
-      item.image = elem['screenshot_uri']
-      item.url = elem['download_uri']
-      item.name = elem['name']
-      item.author = elem['author']
-      item.description = elem['description']
-      items << item
-    end
-    items
-    items.sort_by { |item| item.name }
   end
 end
