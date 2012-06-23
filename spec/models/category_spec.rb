@@ -16,22 +16,22 @@ end
 
 describe "Category" do
   it "should know published_articles" do
-    Factory(:blog)
-    c = Factory(:category, :permalink => 'Ubbercool')
-    Factory(:article, :categories => [c])
-    Factory(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
+    FactoryGirl.create(:blog)
+    c = FactoryGirl.create(:category, :permalink => 'Ubbercool')
+    FactoryGirl.create(:article, :categories => [c])
+    FactoryGirl.create(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
     c.articles.size.should == 2
     c.published_articles.size.should == 1
   end
   
   it "empty permalink should be converted" do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     c = Category.create(:name => "test 1")
     c.permalink.should == "test-1"
   end
   
   it "category with permalink should not have permalink generated" do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     c = Category.create(:name => "Test 2", :permalink => "yeah-nice-one")
     c.permalink.should == "yeah-nice-one"
   end
@@ -40,8 +40,8 @@ end
 
 describe Category do
   describe "permalink" do
-    before(:each) { Factory(:blog) }
-    subject { Factory(:category, :permalink => 'software').permalink_url }
+    before(:each) { FactoryGirl.create(:blog) }
+    subject { FactoryGirl.create(:category, :permalink => 'software').permalink_url }
     it { should == 'http://myblog.net/category/software' }
   end
 end

@@ -4,10 +4,10 @@ describe Admin::CategoriesController do
   render_views
 
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => henri.id }
   end
 
@@ -17,7 +17,7 @@ describe Admin::CategoriesController do
   end
 
   it "test_create" do
-    cat = Factory(:category)
+    cat = FactoryGirl.create(:category)
     Category.should_receive(:find).with(:all).and_return([])
     Category.should_receive(:new).and_return(cat)
     cat.should_receive(:save!).and_return(true)
@@ -40,7 +40,7 @@ describe Admin::CategoriesController do
 
   describe "test_edit" do
     before(:each) do
-      get :edit, :id => Factory(:category).id
+      get :edit, :id => FactoryGirl.create(:category).id
     end
 
     it 'should render template new' do
@@ -57,13 +57,13 @@ describe Admin::CategoriesController do
   end
 
   it "test_update" do
-    post :edit, :id => Factory(:category).id
+    post :edit, :id => FactoryGirl.create(:category).id
     assert_response :redirect, :action => 'index'
   end
 
   describe "test_destroy with GET" do
     before(:each) do
-      test_id = Factory(:category).id
+      test_id = FactoryGirl.create(:category).id
       assert_not_nil Category.find(test_id)
       get :destroy, :id => test_id
     end
@@ -75,7 +75,7 @@ describe Admin::CategoriesController do
   end
 
   it "test_destroy with POST" do
-    test_id = Factory(:category).id
+    test_id = FactoryGirl.create(:category).id
     assert_not_nil Category.find(test_id)
     get :destroy, :id => test_id
 

@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe PostType do
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
   end
   
   describe 'Given a new post type' do

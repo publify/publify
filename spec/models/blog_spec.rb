@@ -50,7 +50,7 @@ end
 
 describe "The first blog" do
   before(:each) {
-    @blog = Factory.create :blog
+    @blog = FactoryGirl.create :blog
   }
 
   it "should be the only blog allowed" do
@@ -60,7 +60,7 @@ end
 
 describe "The default blog" do
   it "should pick up updates after a cache clear" do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     b = Blog.default
     b.blog_name = "some other name"
     b.save

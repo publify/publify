@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe CommentsController do
   before do
-    @blog = Factory(:blog)
+    @blog = FactoryGirl.create(:blog)
   end
 
   describe '#create' do
     describe "Basic comment creation" do
       before do
-        @article = Factory(:article)
+        @article = FactoryGirl.create(:article)
         comment = {:body => 'content', :author => 'bob', :email => 'bob@home', :url => 'http://bobs.home/'}
         post :create, :comment => comment, :article_id => @article.id
       end
@@ -44,7 +44,7 @@ describe CommentsController do
 
 
     it "should redirect to the article" do
-      article = Factory(:article, :created_at => '2005-01-01 02:00:00')
+      article = FactoryGirl.create(:article, :created_at => '2005-01-01 02:00:00')
       post :create, :comment => {:body => 'content', :author => 'bob'},
         :article_id => article.id
       response.should redirect_to("#{@blog.base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}")
@@ -54,7 +54,7 @@ describe CommentsController do
   describe 'AJAX creation' do
     it "should render the comment partial" do
       xhr :post, :create, :comment => {:body => 'content', :author => 'bob'},
-        :article_id => Factory(:article).id
+        :article_id => FactoryGirl.create(:article).id
       response.should render_template("/articles/_comment")
     end
   end
@@ -62,7 +62,7 @@ describe CommentsController do
   describe "#index" do
     context 'scoped index' do
       it "GET 2007/10/11/slug/comments should redirect to /2007/10/11/slug#comments" do
-        article = Factory(:article, :created_at => '2005-01-01 02:00:00')
+        article = FactoryGirl.create(:article, :created_at => '2005-01-01 02:00:00')
         get 'index', :article_id => article.id
         response.should redirect_to("#{@blog.base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}#comments")
       end
@@ -106,7 +106,7 @@ describe CommentsController do
 
       context "with an article" do
         it "should return an atom feed" do
-          get :index, :format => 'atom', :article_id => Factory(:article).id
+          get :index, :format => 'atom', :article_id => FactoryGirl.create(:article).id
           response.should be_success
           response.should render_template("index_atom_feed")
         end
@@ -135,7 +135,7 @@ describe CommentsController do
 
       context "with article" do
         it "should return an rss feed" do
-          get :index, :format => 'rss', :article_id => Factory(:article).id
+          get :index, :format => 'rss', :article_id => FactoryGirl.create(:article).id
           response.should be_success
           response.should render_template("index_rss_feed")
         end

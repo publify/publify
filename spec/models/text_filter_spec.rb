@@ -4,7 +4,7 @@ describe "With the list of available filters" do
 
   attr_reader :blog, :whiteboard
   before(:each) do
-    @blog = Factory(:blog)
+    @blog = FactoryGirl.create(:blog)
     @filters = TextFilter.available_filters 
     @whiteboard = Hash.new
   end
@@ -48,13 +48,13 @@ describe "With the list of available filters" do
     end
 
     it "smartypants" do
-      Factory(:smartypants)
+      FactoryGirl.create(:smartypants)
       text = filter_text('"foo"',[:smartypants])
       text.should == '&#8220;foo&#8221;'
     end
 
     it "markdown" do
-      Factory(:markdown)
+      FactoryGirl.create(:markdown)
       text = filter_text('*foo*', [:markdown])
       assert_equal '<p><em>foo</em></p>', text
 
@@ -63,8 +63,8 @@ describe "With the list of available filters" do
     end
 
     it "filterchain" do
-      Factory(:markdown)
-      Factory(:smartypants)
+      FactoryGirl.create(:markdown)
+      FactoryGirl.create(:smartypants)
       assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
       filter_text('*"foo"*',[:markdown,:smartypants])
 
@@ -238,7 +238,7 @@ _footer text here_
   end # #filter_text
 
   it "#filter text by name" do
-    t = Factory('markdown smartypants')
+    t = FactoryGirl.create('markdown smartypants')
     result = TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
     result.should == '<p><em>&#8220;foo&#8221;</em></p>'
   end

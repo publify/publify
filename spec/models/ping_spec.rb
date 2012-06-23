@@ -13,14 +13,14 @@ describe 'Given a post which references a pingback enabled article' do
   end
 
   it 'Pingback sent to url found in referenced header' do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     @mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(pingback_target)
     @mock_xmlrpc_response.should_receive(:call).with('pingback.ping', referrer_url, referenced_url)
     make_and_send_ping
   end
 
   it 'Pingback sent to url found in referenced body' do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     @mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(nil)
     @mock_response.should_receive(:body).at_least(:once)\
       .and_return(%{<link rel="pingback" href="http://anotherblog.org/xml-rpc" />})
@@ -32,7 +32,7 @@ describe 'Given a post which references a pingback enabled article' do
     ActiveRecord::Base.observers.should include(:email_notifier)
     ActiveRecord::Base.observers.should include(:web_notifier)
 
-    Factory(:blog, :send_outbound_pings => 1)
+    FactoryGirl.create(:blog, :send_outbound_pings => 1)
 
     a = Article.new \
       :body => '<a href="http://anotherblog.org/a-post">',
@@ -62,7 +62,7 @@ describe 'Given a post which references a pingback enabled article' do
     Net::HTTP.should_receive(:get_response).and_return(@mock_response)
     XMLRPC::Client.should_receive(:new2).with(pingback_target).and_return(@mock_xmlrpc_response)
 
-    ping = Factory(:article).pings.build("url" => referenced_url)
+    ping = FactoryGirl.create(:article).pings.build("url" => referenced_url)
     ping.should be_instance_of(Ping)
     ping.url.should == referenced_url
     ping.send_pingback_or_trackback(referrer_url).join
@@ -73,13 +73,13 @@ describe "An article links to another article, which contains a trackback URL" d
   def referenced_url;  'http://anotherblog.org/a-post'; end
   def trackback_url;  "http://anotherblog.org/a-post/trackback"; end
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
   end
 
   it 'Trackback URL is detected and pinged' do
     referrer_url = 'http://myblog.net/referring-post'
     post = "title=Article+1%21&excerpt=body&url=http://myblog.net/referring-post&blog_name=test+blog"
-    article = Factory(:article, :title => 'Article 1!', :body => 'body', :permalink => 'referring-post')
+    article = FactoryGirl.create(:article, :title => 'Article 1!', :body => 'body', :permalink => 'referring-post')
     make_and_send_ping(post, article, referrer_url)
   end
 
@@ -87,7 +87,7 @@ describe "An article links to another article, which contains a trackback URL" d
     # TODO: Assert the following:
     # contents(:xmltest).body = originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
 
-    article = Factory(:article, :title => "Associations aren't :dependent => true anymore",
+    article = FactoryGirl.create(:article, :title => "Associations aren't :dependent => true anymore",
       :excerpt => "A content with several data")
     post = "title=#{CGI.escape(article.title)}"
     post << "&excerpt=#{CGI.escape("A content with several data")}" # not original text see if normal ?
@@ -101,7 +101,7 @@ describe "An article links to another article, which contains a trackback URL" d
     # TODO: Assert the following:
     # contents(:markdown_article) #in markdown format\n * we\n * use\n [ok](http://blog.ok.com) to define a link
 
-    article = Factory(:article, :title => "How made link with markdown",
+    article = FactoryGirl.create(:article, :title => "How made link with markdown",
       :excerpt => "A content with several data" )
     post = "title=#{CGI.escape(article.title)}"
     post << "&excerpt=#{CGI.escape("A content with several data")}" # not original text see if normal ?
@@ -147,13 +147,13 @@ end
 
 describe 'Given a remote site to notify, eg technorati' do
   it 'we can ping them correctly' do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     mock = mock('response')
     XMLRPC::Client.should_receive(:new2).with('http://rpc.technorati.com/rpc/ping').and_return(mock)
     mock.should_receive(:call).with('weblogUpdates.ping', 'test blog',
                                     'http://myblog.net', 'http://myblog.net/new-post')
 
-    ping = Factory(:article).pings.build("url" => "http://rpc.technorati.com/rpc/ping")
+    ping = FactoryGirl.create(:article).pings.build("url" => "http://rpc.technorati.com/rpc/ping")
     ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post').join
   end
 end

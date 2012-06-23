@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Comment do
   def published_article
-    Factory(:article, :published_at => Time.now - 1.hour)
+    FactoryGirl.create(:article, :published_at => Time.now - 1.hour)
   end
 
   def valid_comment(options={})
@@ -14,8 +14,8 @@ describe Comment do
 
   describe '#permalink_url' do
     before(:each) do
-      Factory(:blog)
-      @c = Factory(:comment, :article => Factory(:article,
+      FactoryGirl.create(:blog)
+      @c = FactoryGirl.create(:comment, :article => FactoryGirl.create(:article,
         :permalink => 'inactive-article',
         :published_at => Date.new(2004, 5, 1)))
     end
@@ -29,30 +29,30 @@ describe Comment do
 
   describe '#edit_url' do
     it 'should get a url where edit comment in admin' do
-      Factory(:blog)
-      c = Factory(:comment)
+      FactoryGirl.create(:blog)
+      c = FactoryGirl.create(:comment)
       assert_equal "http://myblog.net/admin/comments/edit/#{c.id}", c.edit_url
     end
   end
 
   describe '#delete_url' do
     it 'should get the delete url of comment in admin part' do
-      Factory(:blog)
-      c = Factory(:comment)
+      FactoryGirl.create(:blog)
+      c = FactoryGirl.create(:comment)
       assert_equal "http://myblog.net/admin/comments/destroy/#{c.id}", c.delete_url
     end
   end
 
   describe '#save' do
-    before(:each) { Factory(:blog, :sp_article_auto_close => 300) }
+    before(:each) { FactoryGirl.create(:blog, :sp_article_auto_close => 300) }
     it 'should save good comment' do
-      c = Factory.build(:comment, :url => "http://www.google.de", :article => published_article)
+      c = FactoryGirl.build(:comment, :url => "http://www.google.de", :article => published_article)
       assert c.save
       assert_equal "http://www.google.de", c.url
     end
 
     it 'should save spam comment' do
-      c = Factory.build(:comment, :body => 'test <a href="http://fakeurl.com">body</a>', :article => published_article)
+      c = FactoryGirl.build(:comment, :body => 'test <a href="http://fakeurl.com">body</a>', :article => published_article)
       assert c.save
       assert_equal "http://fakeurl.com", c.url
     end
@@ -60,14 +60,14 @@ describe Comment do
     it 'should not save in invalid article' do
       c = valid_comment(:author => "Old Spammer",
                         :body => "Old trackback body",
-                        :article => Factory.build(:article, :state => 'draft'))
+                        :article => FactoryGirl.build(:article, :state => 'draft'))
 
       assert ! c.save
       assert c.errors['article_id'].any?
     end
 
     it 'should change old comment' do
-      c = Factory.build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>', :article => published_article)
+      c = FactoryGirl.build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>', :article => published_article)
       assert c.save
       assert c.errors.empty?
     end
@@ -83,7 +83,7 @@ describe Comment do
       b.sp_article_auto_close = 1
       b.save
 
-      c = Factory.build(:comment, :article => Factory(:article, :allow_comments => false))
+      c = FactoryGirl.build(:comment, :article => FactoryGirl.create(:article, :allow_comments => false))
       c.save.should_not be_true
       c.errors.should_not be_empty
     end
@@ -92,7 +92,7 @@ describe Comment do
 
   describe '#create' do
     before do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
     end
 
     it 'should create comment' do
@@ -122,7 +122,7 @@ describe Comment do
 
   describe '#spam?' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
     end
 
     it 'should reject spam rbl' do
@@ -155,19 +155,19 @@ describe Comment do
   end
 
   it 'should have good relation' do
-    article = Factory.build(:article)
-    comment = Factory.build(:comment, :article => article)
+    article = FactoryGirl.build(:article)
+    comment = FactoryGirl.build(:comment, :article => article)
     assert comment.article
     assert_equal article, comment.article
   end
 
   describe 'reject xss' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       @comment = Comment.new do |c|
         c.body = "Test foo <script>do_evil();</script>"
         c.author = 'Bob'
-        c.article_id = Factory(:article).id
+        c.article_id = FactoryGirl.create(:article).id
       end
     end
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
@@ -184,11 +184,11 @@ describe Comment do
 
   describe 'change state' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
     end
 
     it 'should becomes withdraw' do
-      c = Factory(:comment)
+      c = FactoryGirl.create(:comment)
       assert c.withdraw!
       assert ! c.published?
       assert c.spam?
@@ -218,8 +218,8 @@ describe Comment do
     end
 
     it 'should becomes confirmed if withdrawn' do
-      a = Factory(:article)
-      unconfirmed = Factory(:comment, :article => a, :state => 'presumed_ham')
+      a = FactoryGirl.create(:article)
+      unconfirmed = FactoryGirl.create(:comment, :article => a, :state => 'presumed_ham')
       unconfirmed.should_not be_status_confirmed
       unconfirmed.withdraw!
       unconfirmed.should be_status_confirmed
@@ -227,14 +227,14 @@ describe Comment do
   end
 
   it 'should have good default filter' do
-    Factory(:blog, :comment_text_filter => Factory(:markdown))
-    a = Factory.build(:comment)
+    FactoryGirl.create(:blog, :comment_text_filter => FactoryGirl.create(:markdown))
+    a = FactoryGirl.build(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end
 
   describe 'with feedback moderation enabled' do
     before(:each) do
-      @blog = Factory(:blog,
+      @blog = FactoryGirl.create(:blog,
         :sp_global => false,
         :default_moderate_comments => true)
     end
@@ -243,7 +243,7 @@ describe Comment do
       comment = Comment.new do |c|
         c.body = "Test foo"
         c.author = 'Bob'
-        c.article_id = Factory(:article).id
+        c.article_id = FactoryGirl.create(:article).id
       end
       assert comment.save!
 
@@ -253,11 +253,11 @@ describe Comment do
     end
 
     it 'should save comment as confirmed ham' do
-      henri = Factory(:user, :login => 'henri')
+      henri = FactoryGirl.create(:user, :login => 'henri')
       comment = Comment.new do |c|
         c.body = "Test foo"
         c.author = 'Henri'
-        c.article_id = Factory(:article).id
+        c.article_id = FactoryGirl.create(:article).id
         c.user_id = henri.id
       end
       assert comment.save!

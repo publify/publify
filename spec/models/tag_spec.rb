@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Tag do
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
   end
   it 'we can Tag.get by name' do
-    foo = Factory(:tag, :name => 'foo')
+    foo = FactoryGirl.create(:tag, :name => 'foo')
     Tag.get('foo').should == foo
   end
 
@@ -28,8 +28,8 @@ describe Tag do
 
   it 'articles can be tagged' do
     a = Article.create(:title => 'an article')
-    foo = Factory(:tag, :name => 'foo')
-    bar = Factory(:tag, :name => 'bar')
+    foo = FactoryGirl.create(:tag, :name => 'foo')
+    bar = FactoryGirl.create(:tag, :name => 'bar')
     a.tags << foo
     a.tags << bar
     a.reload
@@ -38,11 +38,11 @@ describe Tag do
   end
 
   it 'find_all_with_article_counters finds 2 tags' do
-    a = Factory(:article, :title => 'an article a')
-    b = Factory(:article, :title => 'an article b')
-    c = Factory(:article, :title => 'an article c')
-    foo = Factory(:tag, :name => 'foo', :articles => [a, b, c])
-    bar = Factory(:tag, :name => 'bar', :articles => [a, b])
+    a = FactoryGirl.create(:article, :title => 'an article a')
+    b = FactoryGirl.create(:article, :title => 'an article b')
+    c = FactoryGirl.create(:article, :title => 'an article c')
+    foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [a, b, c])
+    bar = FactoryGirl.create(:tag, :name => 'bar', :articles => [a, b])
     tags = Tag.find_all_with_article_counters
     tags.should have(2).entries
     tags.first.name.should == "foo"
@@ -60,9 +60,9 @@ describe Tag do
 
   describe '#published_articles' do
     it "should return only published articles" do
-      published_art = Factory(:article)
-      draft_art = Factory(:article, :published_at => nil, :published => false, :state => 'draft')
-      art_tag = Factory(:tag, :name => 'art', :articles => [published_art, draft_art])
+      published_art = FactoryGirl.create(:article)
+      draft_art = FactoryGirl.create(:article, :published_at => nil, :published => false, :state => 'draft')
+      art_tag = FactoryGirl.create(:tag, :name => 'art', :articles => [published_art, draft_art])
       art_tag.published_articles.size.should == 1
     end
   end
@@ -70,9 +70,9 @@ end
 
 describe 'with tags foo, bar and bazz' do
   before do
-    @foo = Factory(:tag, :name => 'foo')
-    @bar = Factory(:tag, :name => 'bar')
-    @bazz = Factory(:tag, :name => 'bazz')
+    @foo = FactoryGirl.create(:tag, :name => 'foo')
+    @bar = FactoryGirl.create(:tag, :name => 'bar')
+    @bazz = FactoryGirl.create(:tag, :name => 'bazz')
   end
 
   it "find_with_char('f') should be return foo" do

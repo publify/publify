@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe User do
-  describe 'Factory Girl' do
+  describe 'FactoryGirl Girl' do
     it 'should user factory valid' do
-      Factory.create(:user).should be_valid
-      Factory.build(:user).should be_valid
+      FactoryGirl.create(:user).should be_valid
+      FactoryGirl.build(:user).should be_valid
     end
     it 'should multiple user factory valid' do
-      Factory.create(:user).should be_valid
-      Factory.create(:user).should be_valid
+      FactoryGirl.create(:user).should be_valid
+      FactoryGirl.create(:user).should be_valid
     end
     
     it 'salt should not be nil' do
@@ -22,38 +22,38 @@ describe User do
     end
 
     it 'Calling User.authenticate with a valid user/password combo returns a user' do
-      alice = Factory(:user, :login => 'alice', :password => 'greatest')
+      alice = FactoryGirl.create(:user, :login => 'alice', :password => 'greatest')
       User.authenticate('alice', 'greatest').should == alice
     end
 
     it 'User.authenticate(user,invalid) returns nil' do
-      Factory(:user, :login => 'alice', :password => 'greatest')
+      FactoryGirl.create(:user, :login => 'alice', :password => 'greatest')
       User.authenticate('alice', 'wrong password').should be_nil
     end
 
     it 'User.authenticate(inactive,valid) returns nil' do
-      Factory(:user, :login => 'alice', :state => 'inactive')
+      FactoryGirl.create(:user, :login => 'alice', :state => 'inactive')
       User.authenticate('inactive', 'longtest').should be_nil
     end
 
     it 'User.authenticate(invalid,whatever) returns nil' do
-      Factory(:user, :login => 'alice')
+      FactoryGirl.create(:user, :login => 'alice')
       User.authenticate('userwhodoesnotexist', 'what ever').should be_nil
     end
 
     it 'The various article finders work appropriately' do
-      Factory(:blog)
-      tobi = Factory(:user)
+      FactoryGirl.create(:blog)
+      tobi = FactoryGirl.create(:user)
       7.times do
-        Factory.create(:article, :user => tobi)
+        FactoryGirl.create(:article, :user => tobi)
       end
-      Factory.create(:article, :published => false, :published_at => nil, :user => tobi)
+      FactoryGirl.create(:article, :published => false, :published_at => nil, :user => tobi)
       tobi.articles.size.should == 8
       tobi.articles.published.size.should == 7
     end
 
     it 'authenticate? works as expected' do
-      bob = Factory.create(:user, :login => 'bob', :password => 'testtest')
+      bob = FactoryGirl.create(:user, :login => 'bob', :password => 'testtest')
       User.should be_authenticate('bob', 'testtest')
       User.should_not be_authenticate('bob', 'duff password')
     end
@@ -121,7 +121,7 @@ describe User do
 
   describe 'With a user in the database' do
     before(:each) do
-      @olduser = Factory.create(:user)
+      @olduser = FactoryGirl.create(:user)
     end
 
     it 'should not be able to create another user with the same login' do
@@ -135,7 +135,7 @@ describe User do
 
   describe 'Updating an existing user' do
     before(:each) do
-      @user = Factory.create(:user)
+      @user = FactoryGirl.create(:user)
       set_password 'a secure password'
       @user.save!
     end
@@ -204,31 +204,31 @@ describe User do
 
   describe '#admin?' do
     it 'should return true if user is admin' do
-      admin = Factory.build(:user, :profile => Factory.build(:profile_admin, :label => Profile::ADMIN))
+      admin = FactoryGirl.build(:user, :profile => FactoryGirl.build(:profile_admin, :label => Profile::ADMIN))
       admin.should be_admin
     end
 
     it 'should return false if user is not admin' do
-      publisher = Factory.build(:user, :profile => Factory.build(:profile_publisher))
+      publisher = FactoryGirl.build(:user, :profile => FactoryGirl.build(:profile_publisher))
       publisher.should_not be_admin
     end
 
   end
 
   describe '#permalink_url' do
-    before(:each) { Factory(:blog, :base_url => 'http://myblog.net/') }
-    subject { Factory.build(:user, :login => 'alice').permalink_url }
+    before(:each) { FactoryGirl.create(:blog, :base_url => 'http://myblog.net/') }
+    subject { FactoryGirl.build(:user, :login => 'alice').permalink_url }
     it { should == 'http://myblog.net/author/alice' }
   end
 
   describe "#simple_editor?" do
     it "should be true if editor == 'simple'" do
-      user = Factory.build(:user, :editor => 'simple')
+      user = FactoryGirl.build(:user, :editor => 'simple')
       user.simple_editor?.should be_true
     end
 
     it "should be false if editor != 'simple'" do
-      user = Factory.build(:user, :editor => 'other')
+      user = FactoryGirl.build(:user, :editor => 'other')
       user.simple_editor?.should be_false
     end
   end

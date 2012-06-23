@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe AuthorsController do
   describe '#show' do
-    let!(:blog) { Factory(:blog) }
-    let!(:user) { Factory(:user) }
-    let!(:article) { Factory(:article, :user => user) }
-    let!(:unpublished_article) { Factory(:unpublished_article, :user => user) }
+    let!(:blog) { FactoryGirl.create(:blog) }
+    let!(:user) { FactoryGirl.create(:user) }
+    let!(:article) { FactoryGirl.create(:article, :user => user) }
+    let!(:unpublished_article) { FactoryGirl.create(:unpublished_article, :user => user) }
 
     describe "as html" do
       before do
@@ -81,15 +81,15 @@ describe AuthorsController, "SEO options" do
   render_views
 
   it 'should never have meta keywords with deactivated option' do
-    Factory(:blog, :use_meta_keyword => false)
-    Factory(:user, :login => 'henri')
+    FactoryGirl.create(:blog, :use_meta_keyword => false)
+    FactoryGirl.create(:user, :login => 'henri')
     get 'show', :id => 'henri'
     response.should_not have_selector('head>meta[name="keywords"]')
   end
 
   it 'should never have meta keywords with deactivated option' do
-    Factory(:blog, :use_meta_keyword => true)
-    Factory(:user, :login => 'alice')
+    FactoryGirl.create(:blog, :use_meta_keyword => true)
+    FactoryGirl.create(:user, :login => 'alice')
     get 'show', :id => 'alice'
     response.should_not have_selector('head>meta[name="keywords"]')
   end

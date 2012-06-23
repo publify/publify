@@ -5,10 +5,10 @@ describe Admin::PagesController do
   render_views
   
   before do
-    @blog = Factory(:blog)
+    @blog = FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    @henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    @henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => @henri.id }
   end
 
@@ -69,7 +69,7 @@ describe Admin::PagesController do
 
   describe "test_edit" do
     before(:each) do
-      @page = Factory(:page)
+      @page = FactoryGirl.create(:page)
       get :edit, :id => @page.id
     end
 
@@ -83,7 +83,7 @@ describe Admin::PagesController do
   end
 
   it 'test_update' do
-    page = Factory(:page)
+    page = FactoryGirl.create(:page)
     post :edit, :id => page.id, :page => { :name => "markdown-page", :title => "Markdown Page",
       :body => "Adding a [link](http://www.typosphere.org/) here" }
 
@@ -94,7 +94,7 @@ describe Admin::PagesController do
   end
 
   it "test_destroy" do
-    page = Factory(:page)
+    page = FactoryGirl.create(:page)
     post :destroy, :id => page.id
     assert_response :redirect, :action => "list"
     assert_raise(ActiveRecord::RecordNotFound) { Page.find(page.id) }

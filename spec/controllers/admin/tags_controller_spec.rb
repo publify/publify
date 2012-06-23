@@ -4,10 +4,10 @@ describe Admin::TagsController do
   render_views
   
   before do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => henri.id }
   end
 
@@ -27,7 +27,7 @@ describe Admin::TagsController do
 
   describe 'edit action' do
     before(:each) do
-      tag_id = Factory(:tag).id
+      tag_id = FactoryGirl.create(:tag).id
       get :edit, :id => tag_id
     end
 
@@ -46,7 +46,7 @@ describe Admin::TagsController do
   
   describe 'destroy action with GET' do
     before(:each) do
-      @tag_id = Factory(:tag).id
+      @tag_id = FactoryGirl.create(:tag).id
       get :destroy, :id => @tag_id
     end
     
@@ -69,7 +69,7 @@ describe Admin::TagsController do
 
   describe 'destroy action with POST' do
     before do
-      @tag = Factory(:tag)
+      @tag = FactoryGirl.create(:tag)
       post :destroy, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
     end
     
@@ -85,7 +85,7 @@ describe Admin::TagsController do
 
   describe 'update action' do
     before do
-      @tag = Factory(:tag)
+      @tag = FactoryGirl.create(:tag)
       post :edit, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
     end
 

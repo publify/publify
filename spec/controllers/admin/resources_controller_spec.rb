@@ -4,10 +4,10 @@ describe Admin::ResourcesController do
   render_views
 
   before do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     @request.session = { :user => henri.id }
   end
 
@@ -25,7 +25,7 @@ describe Admin::ResourcesController do
 
   describe "test_destroy_image with get" do
     before(:each) do
-      @res_id = Factory(:resource).id
+      @res_id = FactoryGirl.create(:resource).id
       get :destroy, :id => @res_id
     end
     
@@ -41,7 +41,7 @@ describe Admin::ResourcesController do
   end
     
   it 'test_destroy_image with POST' do
-    res_id = Factory(:resource).id
+    res_id = FactoryGirl.create(:resource).id
 
     post :destroy, :id => res_id
     response.should redirect_to(:action => 'index')

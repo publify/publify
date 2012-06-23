@@ -18,7 +18,7 @@ describe Admin::ContentController do
     end
 
     it 'should restrict only by searchstring' do
-      article = Factory(:article, :body => 'once uppon an originally time')
+      article = FactoryGirl.create(:article, :body => 'once uppon an originally time')
       get :index, :search => {:searchstring => 'originally'}
       assigns(:articles).should == [article]
       response.should render_template('index')
@@ -26,7 +26,7 @@ describe Admin::ContentController do
     end
 
     it 'should restrict by searchstring and published_at' do
-      Factory(:article)
+      FactoryGirl.create(:article)
       get :index, :search => {:searchstring => 'originally', :published_at => '2008-08'}
       assigns(:articles).should be_empty
       response.should render_template('index')
@@ -34,7 +34,7 @@ describe Admin::ContentController do
     end
 
     it 'should restrict to drafts' do
-      article = Factory(:article, :state => 'draft')
+      article = FactoryGirl.create(:article, :state => 'draft')
       get :index, :search => {:state => 'drafts'}
       assigns(:articles).should == [article]
       response.should render_template('index')
@@ -42,7 +42,7 @@ describe Admin::ContentController do
     end
 
     it 'should restrict to publication pending articles' do
-      article = Factory(:article, :state => 'publication_pending', :published_at => '2020-01-01')
+      article = FactoryGirl.create(:article, :state => 'publication_pending', :published_at => '2020-01-01')
       get :index, :search => {:state => 'pending'}
       assigns(:articles).should == [article]
       response.should render_template('index')
@@ -50,7 +50,7 @@ describe Admin::ContentController do
     end
     
     it 'should restrict to withdrawn articles' do
-      article = Factory(:article, :state => 'withdrawn', :published_at => '2010-01-01')
+      article = FactoryGirl.create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
       get :index, :search => {:state => 'withdrawn'}
       assigns(:articles).should == [article]
       response.should render_template('index')
@@ -58,7 +58,7 @@ describe Admin::ContentController do
     end
   
     it 'should restrict to withdrawn articles' do
-      article = Factory(:article, :state => 'withdrawn', :published_at => '2010-01-01')
+      article = FactoryGirl.create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
       get :index, :search => {:state => 'withdrawn'}
       assigns(:articles).should == [article]
       response.should render_template('index')
@@ -66,14 +66,14 @@ describe Admin::ContentController do
     end
 
     it 'should restrict to published articles' do
-      article = Factory(:article, :state => 'published', :published_at => '2010-01-01')
+      article = FactoryGirl.create(:article, :state => 'published', :published_at => '2010-01-01')
       get :index, :search => {:state => 'published'}
       response.should render_template('index')
       response.should be_success
     end
 
     it 'should fallback to default behavior' do
-      article = Factory(:article, :state => 'draft')
+      article = FactoryGirl.create(:article, :state => 'draft')
       get :index, :search => {:state => '3vI1 1337 h4x0r'}
       response.should render_template('index')
       assigns(:articles).should_not == [article]
@@ -85,7 +85,7 @@ describe Admin::ContentController do
   shared_examples_for 'autosave action' do
     describe "first time for a new article" do
       it 'should save new article with draft status and no parent article' do
-        Factory(:none)
+        FactoryGirl.create(:none)
         lambda do
         lambda do
           post :autosave, :article => {:allow_comments => '1',
@@ -109,7 +109,7 @@ describe Admin::ContentController do
 
     describe "second time for a new article" do
       it 'should save the same article with draft status and no parent article' do
-        draft = Factory(:article, :published => false, :state => 'draft')
+        draft = FactoryGirl.create(:article, :published => false, :state => 'draft')
         lambda do
           post :autosave, :article => {
             :id => draft.id,
@@ -124,7 +124,7 @@ describe Admin::ContentController do
 
     describe "for a published article" do
       before :each do
-        @article = Factory(:article)
+        @article = FactoryGirl.create(:article)
         @data = {:allow_comments => @article.allow_comments,
           :body_and_extended => 'my draft in autosave',
           :keywords => '',
@@ -169,7 +169,7 @@ describe Admin::ContentController do
 
     describe "with an unrelated draft in the database" do
       before do
-        @draft = Factory(:article, :state => 'draft')
+        @draft = FactoryGirl.create(:article, :state => 'draft')
       end
 
       it "leaves the original draft in existence" do
@@ -183,8 +183,8 @@ describe Admin::ContentController do
   describe 'insert_editor action' do
 
     before do
-      Factory(:blog)
-      @user = Factory(:user, :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      FactoryGirl.create(:blog)
+      @user = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @user.id }
     end
 
@@ -216,7 +216,7 @@ describe Admin::ContentController do
       end
 
       it "correctly converts multi-word tags" do
-        a = Factory(:article, :keywords => '"foo bar", baz')
+        a = FactoryGirl.create(:article, :keywords => '"foo bar", baz')
         get :new, :id => a.id
         response.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
       end
@@ -232,7 +232,7 @@ describe Admin::ContentController do
 
     it 'should create article with no comments' do
       post(:new, 'article' => base_article({:allow_comments => '0'}),
-                 'categories' => [Factory(:category).id])
+                 'categories' => [FactoryGirl.create(:category).id])
       assigns(:article).should_not be_allow_comments
       assigns(:article).should be_allow_pings
       assigns(:article).should be_published
@@ -259,7 +259,7 @@ describe Admin::ContentController do
     end
 
     it 'should create article with no pings' do
-      post(:new, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'categories' => [Factory(:category).id])
+      post(:new, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'categories' => [FactoryGirl.create(:category).id])
       assigns(:article).should be_allow_comments
       assigns(:article).should_not be_allow_pings
       assigns(:article).should be_published
@@ -284,7 +284,7 @@ describe Admin::ContentController do
 
     it 'should send notifications on create' do
       begin
-        u = Factory(:user, :notify_via_email => true, :notify_on_new_articles => true)
+        u = FactoryGirl.create(:user, :notify_via_email => true, :notify_on_new_articles => true)
         u.save!
         ActionMailer::Base.perform_deliveries = true
         ActionMailer::Base.deliveries = []
@@ -300,7 +300,7 @@ describe Admin::ContentController do
     end
 
     it 'should create an article in a category' do
-      category = Factory(:category)
+      category = FactoryGirl.create(:category)
       post :new, 'article' => base_article, 'categories' => [category.id]
       new_article = Article.last
       assert_equal [category], new_article.categories
@@ -351,8 +351,8 @@ describe Admin::ContentController do
 
     describe "publishing a published article with an autosaved draft" do
       before do
-        @orig = Factory(:article)
-        @draft = Factory(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+        @orig = FactoryGirl.create(:article)
+        @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
         post(:new,
              :id => @orig.id,
              :article => {:id => @draft.id, :body => 'update'})
@@ -371,8 +371,8 @@ describe Admin::ContentController do
 
     describe "publishing a draft copy of a published article" do
       before do
-        @orig = Factory(:article)
-        @draft = Factory(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+        @orig = FactoryGirl.create(:article)
+        @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
         post(:new,
              :id => @draft.id,
              :article => {:id => @draft.id, :body => 'update'})
@@ -391,7 +391,7 @@ describe Admin::ContentController do
 
     describe "saving a published article as draft" do
       before do
-        @orig = Factory(:article)
+        @orig = FactoryGirl.create(:article)
         post(:new,
              :id => @orig.id,
              :article => {:title => @orig.title, :draft => 'draft',
@@ -421,7 +421,7 @@ describe Admin::ContentController do
 
     describe "with an unrelated draft in the database" do
       before do
-        @draft = Factory(:article, :state => 'draft')
+        @draft = FactoryGirl.create(:article, :state => 'draft')
       end
 
       describe "saving new article as draft" do
@@ -466,13 +466,13 @@ describe Admin::ContentController do
   describe 'with admin connection' do
 
     before do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       #TODO delete this after remove fixture
       Profile.delete_all
-      @user = Factory(:user, :text_filter => Factory(:markdown), :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      @user = FactoryGirl.create(:user, :text_filter => FactoryGirl.create(:markdown), :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       @user.editor = 'simple'
       @user.save
-      @article = Factory(:article)
+      @article = FactoryGirl.create(:article)
       request.session = { :user => @user.id }
     end
 
@@ -550,7 +550,7 @@ describe Admin::ContentController do
 
       it 'should add resource' do
         art_id = @article.id
-        resource = Factory(:resource)
+        resource = FactoryGirl.create(:resource)
         get :resource_add, :id => art_id, :resource_id => resource.id
 
         response.should render_template('_show_resources')
@@ -568,7 +568,7 @@ describe Admin::ContentController do
 
       it 'should remove resource' do
         art_id = @article.id
-        resource = Factory(:resource)
+        resource = FactoryGirl.create(:resource)
         get :resource_remove, :id => art_id, :resource_id => resource.id
 
         response.should render_template('_show_resources')
@@ -583,9 +583,9 @@ describe Admin::ContentController do
 
     describe 'auto_complete_for_article_keywords action' do
       before do
-        Factory(:tag, :name => 'foo', :articles => [Factory(:article)])
-        Factory(:tag, :name => 'bazz', :articles => [Factory(:article)])
-        Factory(:tag, :name => 'bar', :articles => [Factory(:article)])
+        FactoryGirl.create(:tag, :name => 'foo', :articles => [FactoryGirl.create(:article)])
+        FactoryGirl.create(:tag, :name => 'bazz', :articles => [FactoryGirl.create(:article)])
+        FactoryGirl.create(:tag, :name => 'bar', :articles => [FactoryGirl.create(:article)])
       end
 
       it 'should return foo for keywords fo' do
@@ -612,9 +612,9 @@ describe Admin::ContentController do
   describe 'with publisher connection' do
 
     before :each do
-      Factory(:blog)
-      @user = Factory(:user, :text_filter => Factory(:markdown), :profile => Factory(:profile_publisher))
-      @article = Factory(:article, :user => @user)
+      FactoryGirl.create(:blog)
+      @user = FactoryGirl.create(:user, :text_filter => FactoryGirl.create(:markdown), :profile => FactoryGirl.create(:profile_publisher))
+      @article = FactoryGirl.create(:article, :user => @user)
       request.session = {:user => @user.id}
     end
 
@@ -625,7 +625,7 @@ describe Admin::ContentController do
     describe 'edit action' do
 
       it "should redirect if edit article doesn't his" do
-        get :edit, :id => Factory(:article, :user => Factory(:user, :login => 'another_user')).id
+        get :edit, :id => FactoryGirl.create(:article, :user => FactoryGirl.create(:user, :login => 'another_user')).id
         response.should redirect_to(:action => 'index')
       end
 
@@ -662,7 +662,7 @@ describe Admin::ContentController do
     describe 'destroy action can be access' do
 
       it 'should redirect when want destroy article' do
-        article = Factory(:article, :user => Factory(:user, :login => Factory(:user, :login => 'other_user')))
+        article = FactoryGirl.create(:article, :user => FactoryGirl.create(:user, :login => FactoryGirl.create(:user, :login => 'other_user')))
         lambda do
           get :destroy, :id => article.id
           response.should redirect_to(:action => 'index')

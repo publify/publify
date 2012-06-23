@@ -7,7 +7,7 @@ describe "trackbacks/index_rss_feed.rss.builder" do
 
   describe "rendering trackbacks" do
     let(:article) { stub_full_article }
-    let(:trackback) { Factory.build(:trackback, :article => article) }
+    let(:trackback) { FactoryGirl.build(:trackback, :article => article) }
 
     before do
       assign(:trackbacks, [trackback])

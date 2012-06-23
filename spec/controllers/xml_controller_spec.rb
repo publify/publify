@@ -184,7 +184,7 @@ describe XmlController do
   # TODO: make this more robust
   describe "#feed with googlesitemap format" do
     before do
-      Factory(:category)
+      FactoryGirl.create(:category)
       get :feed, :format => 'googlesitemap', :type => 'sitemap'
     end
 

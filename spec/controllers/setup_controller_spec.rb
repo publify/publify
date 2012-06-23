@@ -59,7 +59,7 @@ describe SetupController do
   describe 'when a blog is configured and has some users' do
     describe 'GET setup' do
       before do
-        Factory(:blog)
+        FactoryGirl.create(:blog)
         get 'index'
       end
 
@@ -68,7 +68,7 @@ describe SetupController do
 
     describe 'POST setup' do
       before do
-        Factory(:blog)
+        FactoryGirl.create(:blog)
         post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
       end
 

@@ -90,7 +90,7 @@ describe Article do
     a.title = "Zzz"
     assert a.save
 
-    a.categories << Category.find(Factory(:category).id)
+    a.categories << Category.find(FactoryGirl.create(:category).id)
     assert_equal 1, a.categories.size
 
     b = Article.find(a.id)
@@ -98,7 +98,7 @@ describe Article do
   end
 
   it "test_permalink_with_title" do
-    article = Factory(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
+    article = FactoryGirl.create(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
     assert_equal(article,
                 Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
@@ -213,26 +213,26 @@ describe Article do
 
   describe "with tags" do
     it "recieves tags from the keywords property" do
-      a = Factory(:article, :keywords => 'foo bar')
+      a = FactoryGirl.create(:article, :keywords => 'foo bar')
       assert_equal ['foo', 'bar'].sort, a.tags.collect {|t| t.name}.sort
     end
 
     it "changes tags when changing keywords" do
-      a = Factory(:article, :keywords => 'foo bar')
+      a = FactoryGirl.create(:article, :keywords => 'foo bar')
       a.keywords = 'foo baz'
       a.save
       assert_equal ['foo', 'baz'].sort, a.tags.collect {|t| t.name}.sort
     end
 
     it "empties tags when keywords is set to ''" do
-      a = Factory(:article, :keywords => 'foo bar')
+      a = FactoryGirl.create(:article, :keywords => 'foo bar')
       a.keywords = ''
       a.save
       assert_equal [], a.tags.collect {|t| t.name}.sort
     end
 
     it "properly deals with dots and spaces" do
-      c = Factory(:article, :keywords => 'test "tag test" web2.0')
+      c = FactoryGirl.create(:article, :keywords => 'test "tag test" web2.0')
       assert_equal ['test', 'tag-test', 'web2-0'].sort, c.tags.collect(&:name).sort
     end
 
@@ -242,16 +242,16 @@ describe Article do
   end
 
   it "test_find_published_by_tag_name" do
-    art1 = Factory(:article)
-    art2 = Factory(:article)
-    Factory(:tag, :name => 'foo', :articles => [art1, art2])
+    art1 = FactoryGirl.create(:article)
+    art2 = FactoryGirl.create(:article)
+    FactoryGirl.create(:tag, :name => 'foo', :articles => [art1, art2])
     articles = Tag.find_by_name('foo').published_articles
     assert_equal 2, articles.size
   end
 
   it "test_find_published" do
-    article = Factory(:article, :title => 'Article 1!', :state => 'published')
-    Factory(:article, :published => false, :state => 'draft')
+    article = FactoryGirl.create(:article, :title => 'Article 1!', :state => 'published')
+    FactoryGirl.create(:article, :published => false, :state => 'draft')
     @articles = Article.find_published
     assert_equal 1, @articles.size
     @articles = Article.find_published(:all, :conditions => "title = 'Article 1!'")
@@ -306,13 +306,13 @@ describe Article do
   end
 
   it "test_find_published_by_category" do
-    cat = Factory(:category, :permalink => 'personal')
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
+    cat = FactoryGirl.create(:category, :permalink => 'personal')
+    cat.articles << FactoryGirl.create(:article)
+    cat.articles << FactoryGirl.create(:article)
+    cat.articles << FactoryGirl.create(:article)
 
-    cat = Factory(:category, :permalink => 'software')
-    cat.articles << Factory(:article)
+    cat = FactoryGirl.create(:category, :permalink => 'software')
+    cat.articles << FactoryGirl.create(:article)
 
     Article.create!(:title      => "News from the future!",
                     :body       => "The future is cool!",
@@ -333,28 +333,28 @@ describe Article do
   end
 
   it "test_destroy_file_upload_associations" do
-    a = Factory(:article)
-    Factory(:resource, :article => a)
-    Factory(:resource, :article => a)
+    a = FactoryGirl.create(:article)
+    FactoryGirl.create(:resource, :article => a)
+    FactoryGirl.create(:resource, :article => a)
     assert_equal 2, a.resources.size
-    a.resources << Factory(:resource)
+    a.resources << FactoryGirl.create(:resource)
     assert_equal 3, a.resources.size
     a.destroy
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
   end
 
   it 'should notify' do
-    henri = Factory(:user, :login => 'henri', :notify_on_new_articles => true)
-    alice = Factory(:user, :login => 'alice', :notify_on_new_articles => true)
+    henri = FactoryGirl.create(:user, :login => 'henri', :notify_on_new_articles => true)
+    alice = FactoryGirl.create(:user, :login => 'alice', :notify_on_new_articles => true)
 
-    a = Factory.build(:article)
+    a = FactoryGirl.build(:article)
     assert a.save
     assert_equal 2, a.notify_users.size
     assert_equal ['alice', 'henri'], a.notify_users.collect {|u| u.login }.sort
   end
 
   it "test_withdrawal" do
-    art = Factory(:article)
+    art = FactoryGirl.create(:article)
     assert   art.published?
     assert ! art.withdrawn?
     art.withdraw!
@@ -373,24 +373,24 @@ describe Article do
   end
 
   it 'should get only ham not spam comment' do
-    article = Factory(:article)
-    ham_comment = Factory(:comment, :article => article)
-    spam_comment = Factory(:spam_comment, :article => article)
+    article = FactoryGirl.create(:article)
+    ham_comment = FactoryGirl.create(:comment, :article => article)
+    spam_comment = FactoryGirl.create(:spam_comment, :article => article)
     article.comments.ham.should == [ham_comment]
     article.comments.count.should == 2
   end
 
   describe '#access_by?' do
     before do
-      @alice = Factory.build(:user, :profile => Factory.build(:profile_admin, :label => Profile::ADMIN))
+      @alice = FactoryGirl.build(:user, :profile => FactoryGirl.build(:profile_admin, :label => Profile::ADMIN))
     end
 
     it 'admin should have access to an article written by another' do
-      Factory.build(:article).should be_access_by(@alice)
+      FactoryGirl.build(:article).should be_access_by(@alice)
     end
 
     it 'admin should have access to an article written by himself' do
-      article = Factory.build(:article, :author => @alice)
+      article = FactoryGirl.build(:article, :author => @alice)
       article.should be_access_by(@alice)
     end
 
@@ -430,8 +430,8 @@ describe Article do
 
     describe 'with one word and result' do
       it 'should have two items' do
-        Factory(:article, :extended => "extended talk")
-        Factory(:article, :extended => "Once uppon a time, an extended story")
+        FactoryGirl.create(:article, :extended => "extended talk")
+        FactoryGirl.create(:article, :extended => "Once uppon a time, an extended story")
         assert_equal 2, Article.search('extended').size
       end
     end
@@ -488,14 +488,14 @@ describe Article do
   end
 
   it "test_can_ping_fresh_article_iff_it_allows_pings" do
-    a = Factory(:article, :allow_pings => true)
+    a = FactoryGirl.create(:article, :allow_pings => true)
     assert_equal(false, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
   end
 
   it "test_cannot_ping_old_article" do
-    a = Factory(:article, :allow_pings => false)
+    a = FactoryGirl.create(:article, :allow_pings => false)
     assert_equal(true, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
@@ -509,13 +509,13 @@ describe Article do
       # is now more than two years ago, except for two, which are from
       # yesterday and the day before. The existence of those two makes
       # 1.month.ago not suitable, because yesterday can be last month.
-      @article_two_month_ago = Factory(:article, :published_at => 2.month.ago)
+      @article_two_month_ago = FactoryGirl.create(:article, :published_at => 2.month.ago)
 
-      @article_four_months_ago = Factory(:article, :published_at => 4.month.ago)
-      @article_2_four_months_ago = Factory(:article, :published_at => 4.month.ago)
+      @article_four_months_ago = FactoryGirl.create(:article, :published_at => 4.month.ago)
+      @article_2_four_months_ago = FactoryGirl.create(:article, :published_at => 4.month.ago)
 
-      @article_two_year_ago = Factory(:article, :published_at => 2.year.ago)
-      @article_2_two_year_ago = Factory(:article, :published_at => 2.year.ago)
+      @article_two_year_ago = FactoryGirl.create(:article, :published_at => 2.year.ago)
+      @article_2_two_year_ago = FactoryGirl.create(:article, :published_at => 2.year.ago)
     end
 
     it 'should return all content for the year if only year sent' do
@@ -533,32 +533,32 @@ describe Article do
 
   describe '#has_child?' do
     it 'should be true if article has one to link it by parent_id' do
-      parent = Factory(:article)
-      Factory(:article, :parent_id => parent.id)
+      parent = FactoryGirl.create(:article)
+      FactoryGirl.create(:article, :parent_id => parent.id)
       parent.should be_has_child
     end
     it 'should be false if article has no article to link it by parent_id' do
-      parent = Factory(:article)
-      Factory(:article, :parent_id => nil)
+      parent = FactoryGirl.create(:article)
+      FactoryGirl.create(:article, :parent_id => nil)
       parent.should_not be_has_child
     end
   end
 
   describe 'self#last_draft(id)' do
     it 'should return article if no draft associated' do
-      draft = Factory(:article, :state => 'draft')
+      draft = FactoryGirl.create(:article, :state => 'draft')
       Article.last_draft(draft.id).should == draft
     end
     it 'should return draft associated to this article if there are one' do
-      parent = Factory(:article)
-      draft = Factory(:article, :parent_id => parent.id, :state => 'draft')
+      parent = FactoryGirl.create(:article)
+      draft = FactoryGirl.create(:article, :parent_id => parent.id, :state => 'draft')
       Article.last_draft(draft.id).should == draft
     end
   end
 
   describe "an article published just before midnight UTC" do
     before do
-      @a = Factory.build(:article)
+      @a = FactoryGirl.build(:article)
       @a.published_at = "21 Feb 2011 23:30 UTC"
     end
 
@@ -579,7 +579,7 @@ describe Article do
 
   describe "an article published just after midnight UTC" do
     before do
-      @a = Factory.build(:article)
+      @a = FactoryGirl.build(:article)
       @a.published_at = "22 Feb 2011 00:30 UTC"
     end
 
@@ -623,7 +623,7 @@ describe Article do
 
     context "when id params given" do
       it "should return article" do
-        already_exist_article = Factory.create(:article)
+        already_exist_article = FactoryGirl.create(:article)
         article = Article.get_or_build_article(already_exist_article.id)
         article.should be == already_exist_article
       end

@@ -41,7 +41,7 @@ gem 'acts_as_tree_rails3'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 
 group :development, :test do
-  gem 'factory_girl', '~> 2.2'
+  gem 'factory_girl', '~> 3.5'
   gem 'webrat'
   gem 'rspec-rails', '~> 2.0'
   gem 'simplecov', :require => false

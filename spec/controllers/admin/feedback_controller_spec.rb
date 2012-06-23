@@ -35,20 +35,20 @@ describe Admin::FeedbackController do
   describe 'logged in admin user' do
 
     before :each do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       #TODO Delete after removing fixtures
       Profile.delete_all
-      @admin = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      @admin = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @admin.id }
     end
 
     def feedback_from_own_article
-      @article ||= Factory(:article, :user => @admin)
-      @comment_own ||= Factory.create(:comment, :article => @article)
+      @article ||= FactoryGirl.create(:article, :user => @admin)
+      @comment_own ||= FactoryGirl.create(:comment, :article => @article)
     end
 
     def feedback_from_not_own_article
-      @spam_comment_not_own ||= Factory(:spam_comment)
+      @spam_comment_not_own ||= FactoryGirl.create(:spam_comment)
     end
 
     describe 'destroy action' do
@@ -80,33 +80,33 @@ describe Admin::FeedbackController do
       end
 
       it 'should success' do
-        a = Factory(:article)
-        3.times { Factory(:comment, :article => a) }
+        a = FactoryGirl.create(:article)
+        3.times { FactoryGirl.create(:comment, :article => a) }
         get :index
         should_success_with_index(response)
         assert_equal 3, assigns(:feedback).size
       end
 
       it 'should view only unconfirmed feedback' do
-        c = Factory(:comment, :state => 'presumed_ham')
-        Factory(:comment)
+        c = FactoryGirl.create(:comment, :state => 'presumed_ham')
+        FactoryGirl.create(:comment)
         get :index, :confirmed => 'f'
         should_success_with_index(response)
         assigns(:feedback).should == [c]
       end
 
       it 'should view only spam feedback' do
-        Factory(:comment)
-        c = Factory(:spam_comment)
+        FactoryGirl.create(:comment)
+        c = FactoryGirl.create(:spam_comment)
         get :index, :published => 'f'
         should_success_with_index(response)
         assigns(:feedback).should == [c]
       end
 
       it 'should view unconfirmed_spam' do
-        Factory(:comment)
-        Factory(:spam_comment)
-        c = Factory(:spam_comment, :state => 'presumed_spam')
+        FactoryGirl.create(:comment)
+        FactoryGirl.create(:spam_comment)
+        c = FactoryGirl.create(:spam_comment, :state => 'presumed_spam')
         get :index, :published => 'f', :confirmed => 'f'
         should_success_with_index(response)
         assigns(:feedback).should == [c]
@@ -115,17 +115,17 @@ describe Admin::FeedbackController do
       # TODO: Functionality is counter-intuitive: param presumed_spam is
       # set to f(alse), but shows presumed_spam.
       it 'should view presumed_spam' do
-        c = Factory(:comment, :state => :presumed_spam)
-        Factory(:comment, :state => :presumed_ham)
+        c = FactoryGirl.create(:comment, :state => :presumed_spam)
+        FactoryGirl.create(:comment, :state => :presumed_ham)
         get :index, :presumed_spam => 'f'
         should_success_with_index(response)
         assigns(:feedback).should == [c]
       end
 
       it 'should view presumed_ham' do
-        Factory(:comment)
-        Factory(:comment, :state => :presumed_spam)
-        c = Factory(:comment, :state => :presumed_ham)
+        FactoryGirl.create(:comment)
+        FactoryGirl.create(:comment, :state => :presumed_spam)
+        c = FactoryGirl.create(:comment, :state => :presumed_ham)
         get :index, :presumed_ham => 'f'
         should_success_with_index(response)
         assigns(:feedback).should == [c]
@@ -146,9 +146,9 @@ describe Admin::FeedbackController do
       end
 
       it 'should see all feedback on one article' do
-        article = Factory(:article)
-        Factory(:comment, :article => article)
-        Factory(:comment, :article => article)
+        article = FactoryGirl.create(:article)
+        FactoryGirl.create(:comment, :article => article)
+        FactoryGirl.create(:comment, :article => article)
         get :article, :id => article.id
         should_success_with_article_view(response)
         assigns(:article).should == article
@@ -156,8 +156,8 @@ describe Admin::FeedbackController do
       end
 
       it 'should see only spam feedback on one article' do
-        article = Factory(:article)
-        Factory(:comment, :state => 'spam', :article => article)
+        article = FactoryGirl.create(:article)
+        FactoryGirl.create(:comment, :state => 'spam', :article => article)
         get :article, :id => article.id, :spam => 'y'
         should_success_with_article_view(response)
         assigns(:article).should == article
@@ -165,8 +165,8 @@ describe Admin::FeedbackController do
       end
 
       it 'should see only ham feedback on one article' do
-        article = Factory(:article)
-        comment = Factory(:comment, :article => article)
+        article = FactoryGirl.create(:article)
+        comment = FactoryGirl.create(:comment, :article => article)
         get :article, :id => article.id, :ham => 'y'
         should_success_with_article_view(response)
         assigns(:article).should == article
@@ -195,7 +195,7 @@ describe Admin::FeedbackController do
         end
 
         it 'should not create comment' do
-          article = Factory(:article)
+          article = FactoryGirl.create(:article)
           lambda do
             get 'create', :article_id => article.id, :comment => base_comment
             response.should redirect_to(:action => 'article', :id => article.id)
@@ -212,7 +212,7 @@ describe Admin::FeedbackController do
         end
 
         it 'should create comment' do
-          article = Factory(:article)
+          article = FactoryGirl.create(:article)
           lambda do
             post 'create', :article_id => article.id, :comment => base_comment
             response.should redirect_to(:action => 'article', :id => article.id)
@@ -220,7 +220,7 @@ describe Admin::FeedbackController do
         end
 
         it 'should create comment mark as ham' do
-          article = Factory(:article)
+          article = FactoryGirl.create(:article)
           lambda do
             post 'create', :article_id => article.id, :comment => base_comment
             response.should redirect_to(:action => 'article', :id => article.id)
@@ -233,8 +233,8 @@ describe Admin::FeedbackController do
 
     describe 'edit action' do
       it 'should render edit form' do
-        article = Factory(:article)
-        comment = Factory(:comment, :article => article)
+        article = FactoryGirl.create(:article)
+        comment = FactoryGirl.create(:comment, :article => article)
         get 'edit', :id => comment.id
         assigns(:comment).should == comment
         assigns(:article).should == article
@@ -246,8 +246,8 @@ describe Admin::FeedbackController do
     describe 'update action' do
 
       it 'should update comment if post request' do
-        article = Factory(:article)
-        comment = Factory(:comment, :article => article)
+        article = FactoryGirl.create(:article)
+        comment = FactoryGirl.create(:comment, :article => article)
         post 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
             :url => 'http://fakeurl.com',
@@ -258,7 +258,7 @@ describe Admin::FeedbackController do
       end
 
       it 'should not  update comment if get request' do
-        comment = Factory(:comment)
+        comment = FactoryGirl.create(:comment)
         get 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
             :url => 'http://fakeurl.com',
@@ -275,21 +275,21 @@ describe Admin::FeedbackController do
   describe 'publisher access' do
 
     before :each do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       #TODO remove this delete_all after removing all fixture
       Profile.delete_all
-      @publisher = Factory(:user, :profile => Factory(:profile_publisher))
+      @publisher = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_publisher))
       request.session = { :user => @publisher.id }
     end
 
     def feedback_from_own_article
-      @article ||= Factory(:article, :user => @publisher)
-      @feedback_own_article ||= Factory(:comment, :article => @article)
+      @article ||= FactoryGirl.create(:article, :user => @publisher)
+      @feedback_own_article ||= FactoryGirl.create(:comment, :article => @article)
     end
 
     def feedback_from_not_own_article
-      @article ||= Factory(:article, :user => Factory(:user, :login => 'other_user'))
-      @feedback_not_own_article ||= Factory(:comment, :article => @article)
+      @article ||= FactoryGirl.create(:article, :user => FactoryGirl.create(:user, :login => 'other_user'))
+      @feedback_not_own_article ||= FactoryGirl.create(:comment, :article => @article)
     end
 
     describe 'destroy action' do

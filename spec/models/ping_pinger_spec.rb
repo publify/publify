@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Ping::Pinger with Test::Unit' do
   before do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     # avoid mocking constructor until we need it for something
     @pinger = Ping::Pinger.allocate
     class << @pinger

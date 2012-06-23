@@ -8,26 +8,26 @@ describe BackendController do
     User.stub!(:salt).and_return('change-me')
 
     #TODO Need to reduce user, but allow to remove user fixture...
-    Factory(:user,
+    FactoryGirl.create(:user,
             :login => 'henri',
             :password => 'whatever',
             :name => 'Henri',
             :email => 'henri@example.com',
             :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
-            :text_filter => Factory(:markdown),
-            :profile => Factory(:profile_admin, :label => Profile::ADMIN),
+            :text_filter => FactoryGirl.create(:markdown),
+            :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN),
             :notify_via_email => false,
             :notify_on_new_articles => false,
             :notify_on_comments => false,
             :state => 'active')
 
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     @protocol = :xmlrpc
   end
 
   describe "when called through Blogger API" do
     it "test_blogger_delete_post" do
-      article = Factory(:article)
+      article = FactoryGirl.create(:article)
       args = [ 'foo', article.id, 'henri', 'whatever', 1 ]
 
       result = invoke_layered :blogger, :deletePost, *args
@@ -49,7 +49,7 @@ describe BackendController do
     end
 
     it "test_blogger_new_post" do
-      alice = Factory(:user, :login => 'alice', :password => 'whatever')
+      alice = FactoryGirl.create(:user, :login => 'alice', :password => 'whatever')
       args = [ 'foo', '1', 'alice', 'whatever', '<title>new post title</title>new post *body*', 1]
 
       result = invoke_layered :blogger, :newPost, *args
@@ -76,8 +76,8 @@ describe BackendController do
     end
 
     it "test_blogger_new_post_with_categories" do
-      hard_cat = Factory(:category, :name => 'Hardware')
-      soft_cat = Factory(:category, :name => 'Software')
+      hard_cat = FactoryGirl.create(:category, :name => 'Hardware')
+      soft_cat = FactoryGirl.create(:category, :name => 'Software')
       args = [ 'foo', '1', 'henri', 'whatever',
         '<title>new post title</title><category>Software,
         Hardware</category>new post body', 1]
@@ -92,7 +92,7 @@ describe BackendController do
     end
 
     it "test_blogger_new_post_with_non_existing_categories" do
-      hard_cat = Factory(:category, :name => 'Hardware')
+      hard_cat = FactoryGirl.create(:category, :name => 'Hardware')
       args = [ 'foo', '1', 'henri', 'whatever',
         '<title>new post title</title><category>Idontexist,
         Hardware</category>new post body', 1]
@@ -112,14 +112,14 @@ describe BackendController do
   describe "when called through the MetaWeblog API" do
 
     it "test_meta_weblog_get_categories" do
-      Factory(:category, :name => 'Software')
+      FactoryGirl.create(:category, :name => 'Software')
       args = [ 1, 'henri', 'whatever' ]
       result = invoke_layered :metaWeblog, :getCategories, *args
       assert_equal 'Software', result.first
     end
 
     it "test_meta_weblog_get_post" do
-      article = Factory(:article)
+      article = FactoryGirl.create(:article)
       args = [ article.id, 'henri', 'whatever' ]
 
       result = invoke_layered :metaWeblog, :getPost, *args
@@ -127,13 +127,13 @@ describe BackendController do
     end
 
     it "test_meta_weblog_get_recent_posts" do
-      article = Factory.create(:article, :created_at => Time.now - 1.day,
+      article = FactoryGirl.create(:article, :created_at => Time.now - 1.day,
         :allow_pings => true, :published => true)
-      article_before = Factory.create(:article, :created_at => Time.now - 2.day,
+      article_before = FactoryGirl.create(:article, :created_at => Time.now - 2.day,
         :allow_pings => true, :published => true)
-      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+      FactoryGirl.create(:trackback, :article => article, :published_at => Time.now - 1.day,
         :published => true)
-      Factory.create(:trackback, :article => article_before, :published_at => Time.now - 3.day,
+      FactoryGirl.create(:trackback, :article => article_before, :published_at => Time.now - 3.day,
         :published => true)
       args = [ 1, 'henri', 'whatever', 2 ]
       result = invoke_layered :metaWeblog, :getRecentPosts, *args
@@ -142,7 +142,7 @@ describe BackendController do
     end
 
     it "test_meta_weblog_delete_post" do
-      art_id = Factory(:article).id
+      art_id = FactoryGirl.create(:article).id
       args = [ 1, art_id, 'henri', 'whatever', 1 ]
 
       result = invoke_layered :metaWeblog, :deletePost, *args
@@ -151,7 +151,7 @@ describe BackendController do
 
     describe "when editing a post" do
       before do
-        @article = Factory(:article)
+        @article = FactoryGirl.create(:article)
         @art_id = @article.id
         @article.title = "Modified!"
         @article.body = "this is a *test*"
@@ -176,9 +176,9 @@ describe BackendController do
       end
 
       it "should set categories if specified" do
-        Factory(:category, :name => 'foo')
-        Factory(:category, :name => 'bar')
-        Factory(:category, :name => 'baz')
+        FactoryGirl.create(:category, :name => 'foo')
+        FactoryGirl.create(:category, :name => 'bar')
+        FactoryGirl.create(:category, :name => 'baz')
         @dto.categories = ['bar']
 
         args = [ @art_id, 'henri', 'whatever', @dto, 1 ]
@@ -241,9 +241,9 @@ describe BackendController do
     end
 
     it "should set categories if specified in new post" do
-      Factory(:category, :name => 'foo')
-      Factory(:category, :name => 'bar')
-      Factory(:category, :name => 'baz')
+      FactoryGirl.create(:category, :name => 'foo')
+      FactoryGirl.create(:category, :name => 'bar')
+      FactoryGirl.create(:category, :name => 'baz')
 
       dto = MetaWeblogStructs::Article.new(
         :description => "Some text",
@@ -300,7 +300,7 @@ describe BackendController do
       # interpret it, we want to be able to fetch an article from the server,
       # edit it, and write it back to the server without changing its
       # dateCreated field.
-      article = Factory(:article)
+      article = FactoryGirl.create(:article)
       original_published_at = article.published_at
 
       args = [ article.id, 'henri', 'whatever' ]
@@ -316,16 +316,16 @@ describe BackendController do
 
   describe "when called through the Movable Type API" do
     it "test_mt_get_category_list" do
-      Factory(:category, :name => 'Software')
+      FactoryGirl.create(:category, :name => 'Software')
       args = [ 1, 'henri', 'whatever' ]
       result = invoke_layered :mt, :getCategoryList, *args
       assert result.map { |c| c['categoryName'] }.include?('Software')
     end
 
     it "test_mt_get_post_categories" do
-      art_id = Factory(:article).id
+      art_id = FactoryGirl.create(:article).id
       article = Article.find(art_id)
-      article.categories << Factory(:category)
+      article.categories << FactoryGirl.create(:category)
 
       args = [ art_id, 'henri', 'whatever' ]
 
@@ -335,9 +335,9 @@ describe BackendController do
     end
 
     it "test_mt_get_recent_post_titles" do
-      article = Factory.create(:article, :created_at => Time.now - 1.day,
+      article = FactoryGirl.create(:article, :created_at => Time.now - 1.day,
         :allow_pings => true, :published => true)
-      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+      FactoryGirl.create(:trackback, :article => article, :published_at => Time.now - 1.day,
         :published => true)
       args = [ 1, 'henri', 'whatever', 2 ]
       result = invoke_layered :mt, :getRecentPostTitles, *args
@@ -345,9 +345,9 @@ describe BackendController do
     end
 
     it "test_mt_set_post_categories" do
-      article = Factory(:article)
+      article = FactoryGirl.create(:article)
       art_id = article.id
-      cat = Factory(:category)
+      cat = FactoryGirl.create(:category)
       args = [ art_id, 'henri', 'whatever',
         [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal',
                                                  'categoryId' => cat.id, 'isPrimary' => 1)] ]
@@ -355,8 +355,8 @@ describe BackendController do
       result = invoke_layered :mt, :setPostCategories, *args
       assert_equal [cat], article.categories
 
-      soft_cat = Factory(:category, :name => 'soft_cat')
-      hard_cat = Factory(:category, :name => 'hard_cat')
+      soft_cat = FactoryGirl.create(:category, :name => 'soft_cat')
+      hard_cat = FactoryGirl.create(:category, :name => 'hard_cat')
       args = [ art_id, 'henri', 'whatever',
         [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software',
                                                  'categoryId' => soft_cat.id, 'isPrimary' => 1),
@@ -380,9 +380,9 @@ describe BackendController do
     end
 
     it "test_mt_get_trackback_pings" do
-      article = Factory.create(:article, :created_at => Time.now - 1.day,
+      article = FactoryGirl.create(:article, :created_at => Time.now - 1.day,
         :allow_pings => true, :published => true)
-      Factory.create(:trackback, :article => article, :published_at => Time.now - 1.day,
+      FactoryGirl.create(:trackback, :article => article, :published_at => Time.now - 1.day,
         :published => true)
 
       args = [ article.id ]
@@ -391,7 +391,7 @@ describe BackendController do
     end
 
     it "should publish post" do
-      art = Factory.create(:article,
+      art = FactoryGirl.create(:article,
         :published => false,
         :state => 'draft',
         :created_at => '2004-06-01 20:00:01',

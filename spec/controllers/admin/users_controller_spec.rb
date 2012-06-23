@@ -5,8 +5,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
   describe ' when you are admin' do
     before(:each) do
-      Factory(:blog)
-            @admin = Factory(:user, :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      FactoryGirl.create(:blog)
+            @admin = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @admin.id }
     end
 
@@ -71,7 +71,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       assert_template 'destroy'
       assert assigns(:record).valid?
 
-      user = Factory.build(:user)
+      user = FactoryGirl.build(:user)
       user.should_receive(:destroy)
       User.should_receive(:count).and_return(2)
       User.should_receive(:find).with(@admin.id).and_return(user)
@@ -83,8 +83,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
   describe 'when you are not admin' do
 
     before :each do
-      Factory(:blog)
-      user = Factory(:user)
+      FactoryGirl.create(:blog)
+      user = FactoryGirl.create(:user)
       session[:user] = user.id
     end
 
@@ -97,9 +97,9 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
       describe 'try update another user' do
         before do
-          @admin_profile = Factory.create(:profile_admin)
-          @administrator = Factory.create(:user, :profile => @admin_profile)
-          contributor = Factory.create(:profile_contributor)
+          @admin_profile = FactoryGirl.create(:profile_admin)
+          @administrator = FactoryGirl.create(:user, :profile => @admin_profile)
+          contributor = FactoryGirl.create(:profile_contributor)
           post :edit,
             :id => @administrator.id,
             :profile_id => contributor.id

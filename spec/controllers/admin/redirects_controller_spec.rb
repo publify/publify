@@ -4,10 +4,10 @@ describe Admin::RedirectsController do
   render_views
 
   before do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => henri.id }
   end
 
@@ -39,7 +39,7 @@ describe Admin::RedirectsController do
   
   describe "#edit" do
     before(:each) do
-      get :edit, :id => Factory(:redirect).id
+      get :edit, :id => FactoryGirl.create(:redirect).id
     end
 
     it 'should render new template with valid redirect' do
@@ -50,13 +50,13 @@ describe Admin::RedirectsController do
   end
 
   it "test_update" do
-    post :edit, :id => Factory(:redirect).id
+    post :edit, :id => FactoryGirl.create(:redirect).id
     assert_response :redirect, :action => 'index'
   end
 
   describe "test_destroy" do
     before(:each) do
-      @test_id = Factory(:redirect).id
+      @test_id = FactoryGirl.create(:redirect).id
       assert_not_nil Redirect.find(@test_id)
     end
 

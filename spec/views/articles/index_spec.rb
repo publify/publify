@@ -9,8 +9,8 @@ with_each_theme do |theme, view_path|
 
     context "normally" do
       before(:each) do
-        Factory(:blog)
-        2.times {Factory(:article, :body => 'body')}
+        FactoryGirl.create(:blog)
+        2.times {FactoryGirl.create(:article, :body => 'body')}
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
         assign(:articles, Article.page(1).per(4))
@@ -47,8 +47,8 @@ with_each_theme do |theme, view_path|
 
     context "without search, on page 2" do
       before(:each) do
-        Factory(:blog)
-        3.times { Factory(:article) }
+        FactoryGirl.create(:blog)
+        3.times { FactoryGirl.create(:article) }
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
         assign(:articles, Article.page(2).per(2))
@@ -69,8 +69,8 @@ with_each_theme do |theme, view_path|
 
     context "when on page 2 of search" do
       before(:each) do
-        Factory(:blog)
-        3.times {Factory(:article, :body => 'body')}
+        FactoryGirl.create(:blog)
+        3.times {FactoryGirl.create(:article, :body => 'body')}
         @controller.action_name = "search"
         @controller.request.path_parameters["controller"] = "articles"
         params[:q]           = "body"

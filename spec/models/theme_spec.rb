@@ -9,7 +9,7 @@ end
 
 describe 'Given the default theme' do
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     @theme = Blog.default.current_theme
   end
 

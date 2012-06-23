@@ -26,7 +26,7 @@ describe "articles/read.html.erb" do
 
         article.stub(:published_comments) { [@c1, @c2] }
 
-        text_filter = Factory.build(:textile)
+        text_filter = FactoryGirl.build(:textile)
         TextFilter.stub(:find_by_name) { text_filter }
 
         assign(:article, article)

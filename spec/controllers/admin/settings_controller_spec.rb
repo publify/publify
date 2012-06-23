@@ -4,10 +4,10 @@ describe Admin::SettingsController do
   render_views
 
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Remove this line after remove FIXTURE
     Profile.delete_all
-    alice = Factory(:user, :login => 'alice', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    alice = FactoryGirl.create(:user, :login => 'alice', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => alice.id }
   end
 
