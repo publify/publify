@@ -80,7 +80,8 @@ class Article < Content
     Article.exists?({:parent_id => self.id})
   end
 
-  attr_accessor :draft, :keywords
+  attr_accessor :draft
+  attr_writer :keywords
 
   has_state(:state,
             :valid_states  => [:new, :draft,
@@ -104,10 +105,10 @@ class Article < Content
     end
 
     def search_with_pagination(search_hash, paginate_hash)
-      
+
       state = (search_hash[:state] and ["no_draft", "drafts", "published", "withdrawn", "pending"].include? search_hash[:state]) ? search_hash[:state] : 'no_draft'
-      
-      
+
+
       list_function  = ["Article.#{state}"] + function_search_no_draft(search_hash)
 
       if search_hash[:category] and search_hash[:category].to_i > 0
@@ -329,14 +330,14 @@ class Article < Content
     end
   end
 
+   def keywords
+    @keywords || tags.map(&:name).join(', ')
+  end
+
   def keywords_to_tags
-    Article.transaction do
-      tags.clear
-      tags <<
-      keywords.to_s.scan(/((['"]).*?\2|[\.\w]+)/).collect do |x|
-        x.first.tr("\"'", '')
-      end.uniq.map do |tagword|
-        Tag.get(tagword)
+    if @keywords
+      self.tags = @keywords.split(/\s*,\s*/).map do |name|
+        Tag.find_or_create_by_name(name.tr ' ','-')
       end
     end
   end
