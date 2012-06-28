@@ -24,7 +24,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def new
-    new_or_edit :new
+    new_or_edit
   end
 
   def edit
@@ -34,7 +34,7 @@ class Admin::ContentController < Admin::BaseController
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
     end
-    new_or_edit :edit
+    new_or_edit
   end
 
   def destroy
@@ -143,8 +143,8 @@ class Admin::ContentController < Admin::BaseController
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
     @article = Article.get_or_build_article(id)
-    if method_call == :new
-      @article.text_filter = current_user.text_filter if current_user.simple_editor?
+    if current_user.simple_editor?
+     @article.text_filter = current_user.text_filter unless @article.id
     end
     @post_types = PostType.find(:all)
     if request.post?
