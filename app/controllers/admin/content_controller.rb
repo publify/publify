@@ -157,7 +157,9 @@ class Admin::ContentController < Admin::BaseController
       end
     end
 
-    @article.keywords = Tag.collection_to_string @article.tags
+    tags =  Tag.collection_to_string @article.tags
+    @article.keywords = tags.tr '"',''
+
     @article.attributes = params[:article]
     # TODO: Consider refactoring, because double rescue looks... weird.
 
