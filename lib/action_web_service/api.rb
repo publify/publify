@@ -14,9 +14,6 @@ module ActionWebService # :nodoc:
     # See ActionWebService::Container::Direct::ClassMethods for an example
     # of use.
     class Base
-      # By default only HTTP POST requests are processed
-      class_inheritable_option :allowed_http_methods, [ :post ]
-
       # Whether to allow ActiveRecord::Base models in <tt>:expects</tt>.
       # The default is +false+; you should be aware of the security implications
       # of allowing this, and ensure that you don't allow remote callers to
