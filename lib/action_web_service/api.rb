@@ -14,12 +14,6 @@ module ActionWebService # :nodoc:
     # See ActionWebService::Container::Direct::ClassMethods for an example
     # of use.
     class Base
-      # Whether to allow ActiveRecord::Base models in <tt>:expects</tt>.
-      # The default is +false+; you should be aware of the security implications
-      # of allowing this, and ensure that you don't allow remote callers to
-      # easily overwrite data they should not have access to.
-      class_inheritable_option :allow_active_record_expects, false
-
       # If present, the name of a method to call when the remote caller
       # tried to call a nonexistent method. Semantically equivalent to
       # +method_missing+.
@@ -75,7 +69,7 @@ module ActionWebService # :nodoc:
           if expects
             expects.each do |type|
               type = type.element_type if type.is_a?(ArrayType)
-              if type.type_class.ancestors.include?(ActiveRecord::Base) && !allow_active_record_expects
+              if type.type_class.ancestors.include?(ActiveRecord::Base)
                 raise(ActionWebServiceError, "ActiveRecord model classes not allowed in :expects")
               end
             end
