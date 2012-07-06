@@ -3,7 +3,7 @@ class BackendController < ContentController
   skip_before_filter :verify_authenticity_token
   cache_sweeper :blog_sweeper
 
-  web_service_dispatching_mode :layered
+  self.web_service_dispatching_mode = :layered
   self.web_service_exception_reporting = false
 
   web_service(:metaWeblog)  { MetaWeblogService.new(self) }
