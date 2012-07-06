@@ -31,8 +31,6 @@ end
 
 
 class MovableTypeApi < ActionWebService::API::Base
-  inflect_names false
-
   api_method :getCategoryList,
     :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [[MovableTypeStructs::CategoryList]]

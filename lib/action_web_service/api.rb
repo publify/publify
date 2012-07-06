@@ -14,9 +14,6 @@ module ActionWebService # :nodoc:
     # See ActionWebService::Container::Direct::ClassMethods for an example
     # of use.
     class Base
-      # Whether to transform the public API method names into camel-cased names
-      class_inheritable_option :inflect_names, true
-
       # By default only HTTP POST requests are processed
       class_inheritable_option :allowed_http_methods, [ :post ]
 
@@ -123,11 +120,7 @@ module ActionWebService # :nodoc:
         #   ProjectsApi.public_api_method_name('GetCount')  #=> "GetCount"
         #   ProjectsApi.public_api_method_name(:getCount)   #=> "GetCount"
         def public_api_method_name(name)
-          if inflect_names
-            name.to_s.camelize
-          else
-            name.to_s
-          end
+          name.to_s
         end
 
         # The corresponding service method name for the given public method name

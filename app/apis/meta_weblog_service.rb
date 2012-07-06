@@ -30,8 +30,6 @@ end
 
 
 class MetaWeblogApi < ActionWebService::API::Base
-  inflect_names false
-
   api_method :getCategories,
     :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [[:string]]
