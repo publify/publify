@@ -14,11 +14,6 @@ module ActionWebService # :nodoc:
     # See ActionWebService::Container::Direct::ClassMethods for an example
     # of use.
     class Base
-      # If present, the name of a method to call when the remote caller
-      # tried to call a nonexistent method. Semantically equivalent to
-      # +method_missing+.
-      class_inheritable_option :default_api_method
-
       # Disallow instantiation
       private_class_method :new, :allocate
 
@@ -167,17 +162,6 @@ module ActionWebService # :nodoc:
           api_methods[method_name]
         end
 
-        # The Method instance for the default API method, if any
-        def default_api_method_instance
-          return nil unless name = default_api_method
-          instance = read_inheritable_attribute("default_api_method_instance")
-          if instance && instance.name == name
-            return instance
-          end
-          instance = Method.new(name, public_api_method_name(name), nil, nil)
-          write_inheritable_attribute("default_api_method_instance", instance)
-          instance
-        end
 
         private
           def api_public_method_names

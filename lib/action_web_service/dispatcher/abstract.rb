@@ -149,11 +149,7 @@ module ActionWebService # :nodoc:
           if invocation.api.has_public_api_method?(public_method_name)
             invocation.api_method = invocation.api.public_api_method_instance(public_method_name)
           else
-            if invocation.api.default_api_method.nil?
-              raise(DispatcherError, "no such method '#{public_method_name}' on API #{invocation.api}")
-            else
-              invocation.api_method = invocation.api.default_api_method_instance
-            end
+            raise(DispatcherError, "no such method '#{public_method_name}' on API #{invocation.api}")
           end
           if invocation.service.nil?
             raise(DispatcherError, "no service available for service name #{invocation.service_name}")
