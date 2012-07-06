@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_paths
-   prepend_view_path "#{::Rails.root.to_s}/themes/#{this_blog.theme}/views"
+    prepend_view_path "#{::Rails.root.to_s}/themes/#{this_blog.theme}/views"
   end
 
   def setup_themer
