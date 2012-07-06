@@ -72,8 +72,8 @@ module ActionWebService # :nodoc:
           name = name.to_sym
           public_name = public_api_method_name(name)
           method = Method.new(name, public_name, expects, returns)
-          write_inheritable_hash("api_methods", name => method)
-          write_inheritable_hash("api_public_method_names", public_name => name)
+          self.api_methods = self.api_methods.merge(name => method)
+          self.api_public_method_names = self.api_public_method_names.merge(public_name => name)
         end
 
         # Whether the given method name is a service method on this API
@@ -132,9 +132,8 @@ module ActionWebService # :nodoc:
         #     {:getCount=>#<ActionWebService::API::Method:0x24379d8 ...>,
         #      :getCompletedCount=>#<ActionWebService::API::Method:0x2437794 ...>}
         #   ProjectsApi.api_methods[:getCount].public_name #=> "GetCount"
-        def api_methods
-          read_inheritable_attribute("api_methods") || {}
-        end
+        class_attribute :api_methods
+        self.api_methods = {}
 
         # The Method instance for the given public API method name, if any
         #
@@ -162,11 +161,9 @@ module ActionWebService # :nodoc:
           api_methods[method_name]
         end
 
-
         private
-          def api_public_method_names
-            read_inheritable_attribute("api_public_method_names") || {}
-          end
+          class_attribute :api_public_method_names
+          self.api_public_method_names = {}
 
           def validate_options(valid_option_keys, supplied_option_keys)
             unknown_option_keys = supplied_option_keys - valid_option_keys
