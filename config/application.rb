@@ -27,6 +27,9 @@ module TypoBlog
     # Activate observers that should always be running
     config.active_record.observers = :email_notifier, :web_notifier
 
+    # Turn of timestamped migrations
+    config.active_record.timestamped_migrations = false
+
     # Filter sensitive parameters from the log file
     config.filter_parameters << :password
   end
