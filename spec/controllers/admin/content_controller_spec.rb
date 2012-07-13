@@ -472,7 +472,10 @@ describe Admin::ContentController do
       FactoryGirl.create(:blog)
       #TODO delete this after remove fixture
       Profile.delete_all
-      @user = FactoryGirl.create(:user, :text_filter => FactoryGirl.create(:markdown), :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+      @user = FactoryGirl.create(:user,
+                                 :text_filter => FactoryGirl.create(:markdown),
+                                 :profile => FactoryGirl.create(:profile_admin,
+                                                                :label => Profile::ADMIN))
       @user.editor = 'simple'
       @user.save
       @article = FactoryGirl.create(:article)
@@ -616,7 +619,11 @@ describe Admin::ContentController do
 
     before :each do
       FactoryGirl.create(:blog)
-      @user = FactoryGirl.create(:user, :text_filter => FactoryGirl.create(:markdown), :profile => FactoryGirl.create(:profile_publisher))
+      @user = FactoryGirl.create(:user,
+                                 text_filter: FactoryGirl.create(:markdown),
+                                 profile: FactoryGirl.create(:profile_publisher))
+      @user.editor = 'simple'
+      @user.save
       @article = FactoryGirl.create(:article, :user => @user)
       request.session = {:user => @user.id}
     end
