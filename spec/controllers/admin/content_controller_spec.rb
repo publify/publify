@@ -340,13 +340,16 @@ describe Admin::ContentController do
       body = "body via *markdown*"
       extended="*foo*"
       post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
+
       assert_response :redirect, :action => 'index'
+
       new_article = Article.find(:first, :order => "created_at DESC")
-      assert_equal body, new_article.body
-      assert_equal extended, new_article.extended
-      assert_equal "markdown", new_article.text_filter.name
-      assert_equal "<p>body via <em>markdown</em></p>", new_article.html(:body)
-      assert_equal "<p><em>foo</em></p>", new_article.html(:extended)
+
+      new_article.body.should eq body
+      new_article.extended.should eq extended
+      new_article.text_filter.name.should eq @user.text_filter.name
+      new_article.html(:body).should eq "<p>body via <em>markdown</em></p>"
+      new_article.html(:extended).should eq "<p><em>foo</em></p>"
     end
 
     describe "publishing a published article with an autosaved draft" do
