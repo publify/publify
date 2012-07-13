@@ -6,6 +6,7 @@ module ActionWebService # :nodoc:
 
       def self.included(base) # :nodoc:
         base.extend(ClassMethods)
+        base.send :class_attribute, :web_service_api_storage
       end
 
       module ClassMethods
@@ -40,7 +41,7 @@ module ActionWebService # :nodoc:
         #   end
         def web_service_api(definition=nil)
           if definition.nil?
-            read_inheritable_attribute("web_service_api")
+            self.web_service_api_storage
           else
             if definition.is_a?(Symbol)
               raise(ContainerError, "symbols can only be used for #web_service_api inside of a controller")
@@ -48,7 +49,7 @@ module ActionWebService # :nodoc:
             unless definition.respond_to?(:ancestors) && definition.ancestors.include?(ActionWebService::API::Base)
               raise(ContainerError, "#{definition.to_s} is not a valid API definition")
             end
-            write_inheritable_attribute("web_service_api", definition)
+            self.web_service_api_storage = definition
             call_web_service_api_callbacks(self, definition)
           end
         end
