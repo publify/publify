@@ -17,7 +17,7 @@ module Admin::BaseHelper
   end
 
   def show_page_heading
-    return if @page_heading.nil? or @page_heading.blank? 
+    return if @page_heading.nil? or @page_heading.blank?
     heading = "<div class='page-header'>"
     heading << content_tag(:h2, @page_heading.html_safe)
     heading << "</div>"
@@ -49,7 +49,9 @@ module Admin::BaseHelper
   def link_to_destroy_with_profiles(record, controller = controller.controller_name)
     if current_user.admin? || current_user.id == record.user_id
       link_to(_("delete"),
-        { :controller => controller, :action => 'destroy', :id => record.id }, :confirm => _("Are you sure?"), :method => :post, :class => 'btn danger', :title => _("Delete content"))
+        { controller: controller, action: 'destroy', id: record.id },
+        data: {confirm: _("Are you sure?")},
+        method: :post, class: 'btn danger', title: _("Delete content"))
       end
   end
 
