@@ -41,6 +41,7 @@ gem 'acts_as_tree_rails3'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 gem 'prototype-rails', '~> 3.2.1'
 gem 'rails_autolink', '~> 1.0.9'
+gem 'dynamic_form', '~> 1.1.4'
 
 group :development, :test do
   gem 'factory_girl', '~> 3.5'
