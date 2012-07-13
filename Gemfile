@@ -45,6 +45,6 @@ gem 'rails_autolink', '~> 1.0.9'
 group :development, :test do
   gem 'factory_girl', '~> 3.5'
   gem 'webrat'
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 2.11.0'
   gem 'simplecov', :require => false
 end
