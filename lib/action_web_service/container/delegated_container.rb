@@ -7,6 +7,8 @@ module ActionWebService # :nodoc:
       def self.included(base) # :nodoc:
         base.extend(ClassMethods)
         base.send(:include, ActionWebService::Container::Delegated::InstanceMethods)
+        base.send :class_attribute, :web_services
+        base.send :web_services=, {}
       end
 
       module ClassMethods
@@ -46,17 +48,13 @@ module ActionWebService # :nodoc:
           else
             info = { name => { :object => object } }
           end
-          write_inheritable_hash("web_services", info)
+          self.web_services = self.web_services.merge info
           call_web_service_definition_callbacks(self, name, info)
         end
 
         # Whether this service contains a service with the given +name+
         def has_web_service?(name)
-          web_services.has_key?(name.to_sym)
-        end
-
-        def web_services # :nodoc:
-          read_inheritable_attribute("web_services") || {}
+          self.web_services.has_key?(name.to_sym)
         end
 
         def add_web_service_definition_callback(&block) # :nodoc:
