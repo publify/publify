@@ -297,10 +297,11 @@ describe Admin::FeedbackController do
 
       it "should not destroy feedback doesn't own" do
         id = feedback_from_not_own_article.id
-        Feedback.should_receive(:find).with(id).and_return(feedback_from_not_own_article)
-        art = feedback_from_not_own_article.article
         post 'destroy', :id => id
         response.should redirect_to(:controller => 'admin/feedback', :action => 'index')
+        lambda do
+          Feedback.find(id)
+        end.should_not raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
