@@ -4,23 +4,8 @@ require 'uri'
 class Content < ActiveRecord::Base
   belongs_to :text_filter
 
-  has_many :notifications, :foreign_key => 'content_id'
-  has_many :notify_users, :through => :notifications,
-    :source => 'notify_user',
-    :uniq => true
   has_many :redirections
   has_many :redirects, :through => :redirections, :dependent => :destroy
-
-  def notify_users=(collection)
-    return notify_users.clear if collection.empty?
-    self.class.transaction do
-      self.notifications.clear
-      collection.uniq.each do |u|
-        self.notifications.build(:notify_user => u)
-      end
-      notify_users.target = collection
-    end
-  end
 
   has_many :triggers, :as => :pending_item, :dependent => :delete_all
 

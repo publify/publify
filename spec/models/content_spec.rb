@@ -35,5 +35,19 @@ describe Content do
       end
     end
   end
+
+  describe "#really_send_notifications" do
+    it "sends notifications to interested users" do
+      henri = mock_model(User)
+      alice = mock_model(User)
+
+      @content.should_receive(:notify_user_via_email).with henri
+      @content.should_receive(:notify_user_via_email).with alice
+
+      @content.should_receive(:interested_users).and_return([henri, alice])
+
+      @content.really_send_notifications
+    end
+  end
 end
 

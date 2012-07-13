@@ -343,14 +343,16 @@ describe Article do
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
   end
 
-  it 'should notify' do
-    henri = FactoryGirl.create(:user, :login => 'henri', :notify_on_new_articles => true)
-    alice = FactoryGirl.create(:user, :login => 'alice', :notify_on_new_articles => true)
+  describe "#interested_users" do
+    it 'should gather users interested in new articles' do
+      henri = FactoryGirl.create(:user, :login => 'henri', :notify_on_new_articles => true)
+      alice = FactoryGirl.create(:user, :login => 'alice', :notify_on_new_articles => true)
 
-    a = FactoryGirl.build(:article)
-    assert a.save
-    assert_equal 2, a.notify_users.size
-    assert_equal ['alice', 'henri'], a.notify_users.collect {|u| u.login }.sort
+      a = FactoryGirl.build(:article)
+      users = a.interested_users
+      logins = users.map {|u| u.login}.sort
+      logins.should eq ['alice', 'henri']
+    end
   end
 
   it "test_withdrawal" do

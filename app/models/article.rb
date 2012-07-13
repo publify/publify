@@ -46,7 +46,6 @@ class Article < Content
   has_and_belongs_to_many :tags
 
   before_create :set_defaults, :create_guid
-  after_create :add_notifications
   before_save :set_published_at, :ensure_settings_type, :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url
 
@@ -104,10 +103,10 @@ class Article < Content
     end
 
     def search_with_pagination(search_hash, paginate_hash)
-      
+
       state = (search_hash[:state] and ["no_draft", "drafts", "published", "withdrawn", "pending"].include? search_hash[:state]) ? search_hash[:state] : 'no_draft'
-      
-      
+
+
       list_function  = ["Article.#{state}"] + function_search_no_draft(search_hash)
 
       if search_hash[:category] and search_hash[:category].to_i > 0
@@ -448,12 +447,6 @@ class Article < Content
     end
 
     true
-  end
-
-  def add_notifications
-    users = interested_users
-    users << self.user if (self.user.notify_watch_my_articles? rescue false)
-    self.notify_users = users.uniq
   end
 
   def self.time_delta(year = nil, month = nil, day = nil)
