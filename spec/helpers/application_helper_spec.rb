@@ -22,7 +22,9 @@ describe ApplicationHelper do
 
   describe "#link_to_permalink" do
     describe "for a simple ascii-only permalink" do
-      subject { link_to_permalink(FactoryGirl.create(:article, :published_at => Date.new(2004, 6, 1)), "title") }
+      subject { link_to_permalink(
+        FactoryGirl.create(:article, published_at: Date.new(2004, 6, 1).to_datetime),
+        "title") }
       it { should be_html_safe }
       it { should == '<a href="http://myblog.net/2004/06/01/a-big-article">title</a>' }
     end
