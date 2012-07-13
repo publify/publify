@@ -7,6 +7,8 @@ module ActionWebService # :nodoc:
       def self.included(base) # :nodoc:
         base.extend(ClassMethods)
         base.send :class_attribute, :web_service_api_storage
+        base.send :class_attribute, :web_service_api_callbacks
+        base.send :web_service_api_callbacks=, []
       end
 
       module ClassMethods
@@ -55,12 +57,12 @@ module ActionWebService # :nodoc:
         end
 
         def add_web_service_api_callback(&block) # :nodoc:
-          write_inheritable_array("web_service_api_callbacks", [block])
+          self.web_service_api_callbacks += [block]
         end
 
         private
           def call_web_service_api_callbacks(container_class, definition)
-            (read_inheritable_attribute("web_service_api_callbacks") || []).each do |block|
+            self.web_service_api_callbacks.each do |block|
               block.call(container_class, definition)
             end
           end
