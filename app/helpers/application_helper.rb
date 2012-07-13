@@ -5,7 +5,6 @@ require 'digest/sha1'
 module ApplicationHelper
   # Basic english pluralizer.
   # Axe?
-
   def pluralize(size, zero, one , many )
     case size
     when 0 then zero
@@ -13,7 +12,7 @@ module ApplicationHelper
     else        sprintf(many, size)
     end
   end
-
+  
   # Produce a link to the permalink_url of 'item'.
   def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil)
     options = {}
