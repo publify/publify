@@ -213,7 +213,12 @@ class Content < ActiveRecord::Base
 
   # Set the text filter for this object.
   def text_filter= filter
-    self.text_filter_id = filter.to_text_filter.id
+    filter_object = filter.to_text_filter
+    if filter_object
+      self.text_filter_id = filter_object.id
+    else
+      self.text_filter_id = filter.to_i
+    end
   end
 
   def blog
