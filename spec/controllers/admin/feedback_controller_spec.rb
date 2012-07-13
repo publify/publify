@@ -205,7 +205,7 @@ describe Admin::FeedbackController do
       end
 
       describe 'by post access' do
-        it "should raise ActiveRecordNotFound if article doesn't exist" do
+        it "should raise ActiveRecord::RecordNotFound if article doesn't exist" do
           lambda {
             post 'create', :article_id => 123104, :comment => base_comment
           }.should raise_error(ActiveRecord::RecordNotFound)

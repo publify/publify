@@ -34,10 +34,10 @@ describe ApplicationHelper do
       end
     end
   end
-  
+
   describe '#display_date' do
-    before(:each) { 
-      @article = FactoryGirl.create(:article, :body => "hello world and im herer") 
+    before(:each) {
+      @article = FactoryGirl.create(:article, :body => "hello world and im herer")
     }
 
     ['%d/%m/%y', '%m/%m/%y', '%d %b %Y', '%b %d %Y'].each do |spec|
@@ -46,13 +46,12 @@ describe ApplicationHelper do
         display_date(@article.published_at).should == @article.published_at.strftime(spec)
       end
     end
-        
+
     ['%I:%M%p', '%H:%M', '%Hh%M'].each do |spec|
       it "should return time with format #{spec}" do
         @blog.time_format = spec
         display_time(@article.published_at).should == @article.published_at.strftime(spec)
       end
-    end    
+    end
   end
-  
 end
