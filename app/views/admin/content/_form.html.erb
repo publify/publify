@@ -43,7 +43,7 @@
       </ul>
     </div>
 	  <div class='clearfix'>
-      <%= _("Publish <strong>now</strong>") %> <%= toggle_element 'publish' %>
+      <%= _("Publish") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
       <ul class='inputs-list'>
         <li id='publish' style='display: none;'>
           <%= calendar_date_select 'article', 'published_at', {:class => 'span3'} %>

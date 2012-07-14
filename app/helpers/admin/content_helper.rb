@@ -63,4 +63,9 @@ module Admin::ContentHelper
   def toggle_element(element)
     "<a href=\"#\" onclick=\"Element.toggle('#{element}'); return false\">#{_("Change")}</a>".html_safe
   end
+  
+  def publish_now_or_already_published(article)
+    return _("now") unless article.published and article.state == 'published'
+    article.published_at
+  end
 end
