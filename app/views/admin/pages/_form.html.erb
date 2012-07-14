@@ -5,14 +5,35 @@
 <div class='editor-right'>
 	<div class='well'>
 	  <h4><%= _("Publish settings")%></h4>
-    <ul class='inputs-list'>
-      <li>
-        <label for="page_published">
-          <%= check_box 'page', 'published'  %>
-          <%= _("Online")%>
-        </label>
-      </li>
-    </ul>
+	  <div class='actions'></div>
+    <div class='clearfix'>
+      <%= _("Status") %>: <strong><%= _(@page.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
+      <ul class='inputs-list'>
+        <li id='status' style='display: none;'>
+          <label for="page_published">
+            <%= check_box 'page', 'published'  %>
+            <%= _("Online")%>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div class='clearfix'>
+      <%= _("Permanent link")%>: <%= toggle_element 'permalink' %>
+      <ul class='inputs-list'>
+        <li id='permalink' style='display: none;'>
+          <%= text_field 'page', 'name', :class => 'span4' %>
+        </li>
+      </ul>
+    </div>
+    <div class='clearfix'>
+      <%= _("Article filter") %>: <strong><%= @page.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
+      <ul class='inputs-list'>
+        <li id='text_filter' style='display: none;'>
+          <select name="page[text_filter]" id="text_filter">
+            <%= options_for_select text_filter_options, @page.text_filter %>
+          </select>
+        </li>
+    </div>
     <div class='actions'>
       <%= save( _("Publish")) %>
     </div>
@@ -51,20 +72,5 @@
   </div>
   
   <div class='separator'>
-    <h4><%= _("Page settings") %></h4>
-      <div class='clearfix'>
-        <label for="page_name"><%= _("Permanent link")%></label>
-        <div class='input'>
-          <%= text_field 'page', 'name', :class => 'span5' %>
-        </div>
-      </div>
-      <div class='clearfix'>
-        <label for="text_filter"><%= _("Article filter")%></label>
-        <div class='input'>
-          <select name="page[text_filter]" id="text_filter">
-            <%= options_for_select text_filter_options, @page.text_filter %>
-          </select>
-        </div>
-      </div>
     </div>
 </div>
