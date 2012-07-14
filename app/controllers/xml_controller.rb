@@ -56,7 +56,7 @@ class XmlController < ApplicationController
   end
 
   def rsd
-    render "rsd.rsd.builder"
+    render "rsd", formats: [:rsd], handlers: [:builder]
   end
 
   protected
