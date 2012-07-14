@@ -39,7 +39,11 @@ gem 'rake', '~> 0.9.2'
 gem 'acts_as_list'
 gem 'acts_as_tree_rails3'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
+
+# TODO: Replace with jquery
 gem 'prototype-rails', '~> 3.2.1'
+gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
+
 gem 'rails_autolink', '~> 1.0.9'
 gem 'dynamic_form', '~> 1.1.4'
 
