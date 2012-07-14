@@ -127,13 +127,13 @@ class Sidebar < ActiveRecord::Base
         super
       rescue ActiveRecord::SubclassNotFound => e
         available = available_sidebars.map {|klass| klass.to_s}
-        set_inheritance_column :bogus
+        self.inheritance_column = :bogus
         super.each do |record|
           unless available.include? record.type
             record.delete
           end
         end
-        set_inheritance_column :type
+        self.inheritance_column = :type
         super
       end
     end
