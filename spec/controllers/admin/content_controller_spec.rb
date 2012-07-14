@@ -287,7 +287,7 @@ describe Admin::ContentController do
         u = FactoryGirl.create(:user, :notify_via_email => true, :notify_on_new_articles => true)
         u.save!
         ActionMailer::Base.perform_deliveries = true
-        ActionMailer::Base.deliveries = []
+        ActionMailer::Base.deliveries.clear
         emails = ActionMailer::Base.deliveries
 
         post :new, 'article' => base_article
