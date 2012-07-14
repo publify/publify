@@ -14,7 +14,7 @@
       <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span>
     </div>
     <div class='clearfix'>
-        <%= _("Status:") %> <strong><%= @article.state.to_s.downcase %></strong> <a href="#" onclick="Element.toggle('status'); return false">Change</a>
+        <%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
       <ul class='inputs-list'>
         <li id='status' style='display: none;'>        
           <label for="article_published">
@@ -25,7 +25,8 @@
       </ul>
     </div>
     <div class='clearfix'>
-      Comments are <strong>enabled</strong> and trackbacks are <strong>disabled</strong> <a href="#" onclick="Element.toggle('conversation'); return false">Change</a>
+      <%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
+      <%= toggle_element 'conversation' %>
       <ul class='inputs-list' id='conversation' style='display: none'>
         <li>
           <label for="article_allow_pings">
@@ -42,7 +43,7 @@
       </ul>
     </div>
 	  <div class='clearfix'>
-      <%= _("Publish <strong>now</strong>") %> <a href="#" onclick="Element.toggle('publish'); return false">Change</a>
+      <%= _("Publish") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
       <ul class='inputs-list'>
         <li id='publish' style='display: none;'>
           <%= calendar_date_select 'article', 'published_at', {:class => 'span3'} %>
@@ -50,7 +51,7 @@
       </ul>
     </div>
     <div class='clearfix'>
-      <%= _("Visibility:") %> <strong>public</strong> <a href="#" onclick="Element.toggle('visibility'); return false">Change</a>
+      <%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %>
       <ul class='inputs-list' id='visibility' style='display: none'>
         <li>
           <label for="article_password"><%= _("Password:") %>
@@ -60,7 +61,7 @@
       </ul>
     </div>
     <div class='clearfix'>
-      <%= _("Permalink:") %> <a href="#" onclick="Element.toggle('permalink'); return false">Change</a>
+      <%= _("Permalink") %>: <%= toggle_element 'permalink' %>
       <ul class='inputs-list' id='permalink' style='display: none'>
         <li>
             <%= text_field 'article', 'permalink', {:class => 'span4'} %>
@@ -68,7 +69,7 @@
       </ul>
     </div>
     <div class='clearfix'>
-      <%= _("Article filter") %>: <strong><%= @article.text_filter.description %></strong> <a href="#" onclick="Element.toggle('text_filter'); return false">Change</a>
+      <%= _("Article filter") %>: <strong><%= @article.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
       <ul id='text_filter' class='inputs-list' style='display: none'>
         <li>
           <select name="article[text_filter]" id="text_filter">

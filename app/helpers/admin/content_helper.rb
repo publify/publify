@@ -38,6 +38,10 @@ module Admin::ContentHelper
     javascript_tag(function)
   end
 
+  def get_feedback_status(status)
+    status ? _("enabled") : _("disabled")
+  end
+  
   def get_post_types
     post_types = @post_types || []
     if post_types.size.zero?
@@ -55,5 +59,14 @@ module Admin::ContentHelper
 
     html << "</select>"
     html << "</div>"
+  end
+  
+  def toggle_element(element)
+    "<a href=\"#\" onclick=\"Element.toggle('#{element}'); return false\">#{_("Change")}</a>".html_safe
+  end
+  
+  def publish_now_or_already_published(article)
+    return _("now") unless article.published and article.state == 'published'
+    article.published_at
   end
 end
