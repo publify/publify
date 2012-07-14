@@ -3,45 +3,45 @@ class NotificationMailer < ActionMailer::Base
   layout nil
 
   def article(article, user)
-    setup(user, article)
-    @subject = "[#{article.blog.blog_name}] New article: #{article.title}"
+    setup user, article.blog
     @article = article
+    make_subject "New article: #{@article.title}"
     build_mail
   end
 
   def comment(comment, user)
-    setup(user, comment)
-    @subject = "[#{comment.blog.blog_name}] New comment on #{comment.article.title}"
+    setup user, comment.blog
     @article = comment.article
+    make_subject "New comment on #{@article.title}"
     @comment = comment
     build_mail
   end
 
   def trackback(sent_at = Time.now)
-    setup(user, trackback)
-    @subject = "[#{trackback.blog.blog_name}] New trackback on #{trackback.article.title}"
+    setup user, trackback.blog
     @article = trackback.article
+    make_subject "New trackback on #{@article.title}"
     @trackback = trackback
     build_mail
   end
 
   def notif_user(user)
-    @user = user
-    @blog = Blog.default
-    @recipients = user.email
-    @from = Blog.default.email_from
-    headers['X-Mailer'] = "Typo #{TYPO_VERSION}"
+    setup user, Blog.default
     build_mail
   end
 
   private
 
-  def setup(user, content)
+  def setup user, blog
     @user = user
-    @blog = content.blog
+    @blog = blog
     @recipients = user.email
-    @from = content.blog.email_from
+    @from = blog.email_from
     headers['X-Mailer'] = "Typo #{TYPO_VERSION}"
+  end
+
+  def make_subject subject
+    @subject = "[#{@blog.blog_name} #{subject}"
   end
 
   def build_mail
