@@ -11,6 +11,9 @@ class Feedback < ActiveRecord::Base
 
   include ContentBase
 
+  after_save :invalidates_cache?
+  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+
   validate :feedback_not_closed, :on => :create
 
   before_create :create_guid, :article_allows_this_feedback

@@ -70,9 +70,32 @@ module ContentBase
     content_fields.include? field
   end
 
+  def invalidates_cache?(on_destruction = false)
+    @invalidates_cache ||= if on_destruction
+      just_changed_published_status? || published?
+    else
+      (changed? && published?) || just_changed_published_status?
+    end
+  end
+
+  def publish!
+    self.published = true
+    self.save!
+  end
+
   module ClassMethods
     def content_fields *attribs
       class_eval "def content_fields; #{attribs.inspect}; end"
+    end
+
+    def find_published(what = :all, options = {})
+      with_scope(:find => {:order => default_order, :conditions => {:published => true}}) do
+        find what, options
+      end
+    end
+
+    def default_order
+      'published_at DESC'
     end
   end
 end

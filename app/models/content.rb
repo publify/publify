@@ -2,7 +2,13 @@ require 'set'
 require 'uri'
 
 class Content < ActiveRecord::Base
+  include Stateful
+
   include ContentBase
+
+  # TODO: Move these calls to ContentBase
+  after_save :invalidates_cache?
+  after_destroy lambda { |c|  c.invalidates_cache?(true) }
 
   belongs_to :text_filter
 
@@ -41,19 +47,6 @@ class Content < ActiveRecord::Base
 
   serialize :whiteboard
 
-  after_save :invalidates_cache?
-  after_destroy lambda { |c|  c.invalidates_cache?(true) }
-
-  include Stateful
-
-  def invalidates_cache?(on_destruction = false)
-    @invalidates_cache ||= if on_destruction
-      just_changed_published_status? || published?
-    else
-      (changed? && published?) || just_changed_published_status?
-    end
-  end
-
   def shorten_url
     return unless self.published
 
@@ -73,16 +66,6 @@ class Content < ActiveRecord::Base
   end
 
   class << self
-    def find_published(what = :all, options = {})
-      with_scope(:find => {:order => default_order, :conditions => {:published => true}}) do
-        find what, options
-      end
-    end
-
-    def default_order
-      'published_at DESC'
-    end
-
     def find_already_published(what = :all, at = nil, options = { })
       if what.respond_to?(:has_key?)
         what, options = :all, what
@@ -165,11 +148,6 @@ class Content < ActiveRecord::Base
   # but comments may use a different default.
   def default_text_filter
     blog.text_filter_object
-  end
-
-  def publish!
-    self.published = true
-    self.save!
   end
 
   def withdraw!
