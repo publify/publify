@@ -1,8 +1,15 @@
 require_dependency 'spam_protection'
-class Feedback < Content
-  set_table_name "feedback"
+class Feedback < ActiveRecord::Base
+  self.table_name = "feedback"
+
+  belongs_to :text_filter
 
   include TypoGuid
+
+  ## For fixing this not being Content anymore
+  include Stateful
+
+  include ContentBase
 
   validate :feedback_not_closed, :on => :create
 
