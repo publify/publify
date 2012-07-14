@@ -148,7 +148,10 @@ class Blog < ActiveRecord::Base
   end
 
   # The +Theme+ object for the current theme.
-  def current_theme
+  def current_theme reload = nil
+    if reload
+      @current_theme = nil
+    end
     @current_theme ||= Theme.find(theme)
   end
 
