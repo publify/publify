@@ -114,8 +114,8 @@ Localization.define("fr_FR") do |l|
   l.store "Show", "Affichage"
   l.store "Published", "Publié"
   l.store "Draft", ""
-  l.store "Withdrawn", ""
-  l.store "Publication pending", ""
+  l.store "Withdrawn", "Supprimé"
+  l.store "Publication pending", "À publier"
   l.store "Show help on Typo macros", "Afficher l'aide sur les macros Typo"
   l.store "Update settings", "Mettre les paramètres à jour"
   l.store "Back to list", ""
@@ -180,12 +180,12 @@ Localization.define("fr_FR") do |l|
   l.store "Categories", "Catégories"
   l.store "Keywords", "Mots clés"
   l.store "Permalink", "Lien permanent"
-  l.store "Your category slug. Leave empty if you don't know what to put here", ""
+  l.store "Your category slug. Leave empty if you don't know what to put here", "Le lien permanent de votre catégorie. Laissez le vide si vous ne savez pas quoi mettre"
   l.store "Title", "Titre"
 
   # app/views/admin/categories/new.js.erb
   l.store "%s Category", "%s catégories"
-  l.store "close", ""
+  l.store "close", "fermer"
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Supprimer"
@@ -198,15 +198,18 @@ Localization.define("fr_FR") do |l|
   l.store "New Category", "Nouvelle catégorie"
 
   # app/views/admin/content/_form.html.erb
+  l.store "Change", "Modifier"
+  l.store "Comments are %s and trackbacks are %s", "Les commentaires sont %s et les rétroliens %s"
   l.store "Publish settings", "Paramètres de publication"
   l.store "Status:", ""
   l.store "Allow trackbacks", "Autoriser les rétroliens"
   l.store "Allow comments", "Autoriser les commentaires"
-  l.store "Publish <strong>now</strong>", ""
-  l.store "Visibility:", ""
+  l.store "Visibility", "Visibilité"
+  l.store "public", "publique"
+  l.store "protected", "protégée"
   l.store "Password:", "Mot de passe"
-  l.store "Permalink:", ""
   l.store "Article filter", "Mise en forme des billets"
+  l.store "now", "maintenant"
   l.store "Publish", "Publier"
   l.store "Tags", "Labels"
   l.store "Excerpt", "Extrait"
@@ -217,16 +220,13 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/content/index.html.erb
   l.store "New Article", "Nouvel article"
   l.store "Search", "Chercher"
-  l.store "All articles", ""
+  l.store "All Articles", "Tous les articles"
   l.store "Drafts", "Brouillons"
   l.store "Filter", "Filtrer"
   l.store "Author", "Auteur"
   l.store "Date", "Date"
   l.store "Feedback", "Commentaires"
   l.store "Manage articles", "Gestion des articles"
-
-  # app/views/admin/content/new.html.erb
-  l.store "New article", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
@@ -295,7 +295,7 @@ Localization.define("fr_FR") do |l|
   l.store "Url", "Site"
 
   # app/views/admin/feedback/index.html.erb
-  l.store "All", ""
+  l.store "All", "Tous"
   l.store "Unapproved comments", "Commentaires non validés"
   l.store "Ham", "Désirable"
   l.store "Spam", "Spam"
@@ -312,18 +312,19 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/pages/index.html.erb
   l.store "New Page", "Nouvelle page"
   l.store "Manage pages", "Administrer les pages"
+  l.store "All Pages", "Toutes les pages"
 
   # app/views/admin/post_types/new.html.erb
-  l.store "Post Types", ""
-  l.store "Template name", ""
-  l.store "Typo default post type", ""
-  l.store "The template name is the filename Typo will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb", ""
+  l.store "Post Types", "Modèles d'articles"
+  l.store "Template name", "Nom du modèle"
+  l.store "Typo default post type", "Modèle d'article par défaut"
+  l.store "The template name is the filename Typo will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb", "Ce modèle est un fichier que Typo cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Votre profil"
 
   # app/views/admin/redirects/new.html.erb
-  l.store "Redirects", ""
+  l.store "Redirects", "Redirections"
   l.store "From", "De"
   l.store "Leave empty to shorten a link", "Laissez vide pour créer un lien court"
   l.store "To", "Vers"
@@ -335,6 +336,7 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/resources/_upload.html.erb
   l.store "Upload a File to your Site", "Envoyer un fichier sur votre site"
   l.store "Upload", "Ajouter un fichier joint"
+  l.store "Media Library", "Bibliothèque de média"
 
   # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Êtes-vous certain de vouloir supprimer ce fichier"
@@ -352,6 +354,9 @@ Localization.define("fr_FR") do |l|
   l.store "right-click for link", "clic droit pour le lien"
 
   # app/views/admin/seo/index.html.erb
+  l.store "SEO", "Référencement"
+  l.store "Global SEO settings", "Options générales"
+  l.store "Titles", "Titre des pages"
   l.store "General settings", "Options générales"
   l.store "Use meta keywords", "Utiliser les meta mots-clés"
   l.store "Meta description", "Meta description"
@@ -393,7 +398,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", "Paramétrage des titres"
-  l.store "Home", "Accueil"
+  l.store "Home", "Tableau de bord"
   l.store "Title template", "Titres"
   l.store "Description template", "Descriptions"
   l.store "Articles", "Articles"
@@ -525,8 +530,9 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Thème actif"
-  l.store "Chose this theme", ""
+  l.store "Chose this theme", "Choisir ce thème"
   l.store "Choose a theme", "Sélectionnez un thème"
+  l.store "Design", "Personnalisation"
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Paramètres du compte"
@@ -631,15 +637,15 @@ Localization.define("fr_FR") do |l|
   l.store "This comment has been flagged for moderator approval.", "Ce commentaire est en attente de modération"
 
   # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
+  l.store "Logged in as %s", "Salutations, %s"
   l.store "%s &raquo;", "%s &raquo;"
-  l.store "Help", ""
-  l.store "Documentation", ""
-  l.store "Report a bug", ""
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
+  l.store "Help", "Aide"
+  l.store "Documentation", "Documentation"
+  l.store "Report a bug", "Déclarer un bug"
+  l.store "In page plugins", "Plugins"
+  l.store "Sidebar plugins", "Widgets"
   l.store "is proudly powered by", "tourne fièrement sous"
-  l.store "Dashboard", "Accueil"
+  l.store "Dashboard", "Tableau de bord"
 
   # app/views/setup/index.html.erb
   l.store "Welcome", "Bienvenue"
@@ -766,10 +772,9 @@ Localization.define("fr_FR") do |l|
   l.store "Are you sure you want to delete the page", "Voulez-vous vraiment effacer cette page"
   l.store "Are you sure you want to delete the redirection ", ""
   l.store "Are you sure you want to delete the tag", "Êtes-vous certain de vouloir supprimer le label"
-  l.store "Are you sure you want to delete this %s", ""
-  l.store "Are you sure you want to delete this article", "Êtes-vous certain de vouloir supprimer cet article"
+  l.store "Are you sure you want to delete this %s", "Êtes-vous certain de vouloir supprimer cet %s"
   l.store "Are you sure you want to delete this item?", "Êtes vous certain de vouloir supprimer cette entrée ?"
-  l.store "Article Types", ""
+  l.store "Article Types", "Modèles d'articles"
   l.store "Aug", "août"
   l.store "August", "août"
   l.store "Back to ", "Revenir à "
@@ -822,7 +827,7 @@ Localization.define("fr_FR") do |l|
   l.store "Ham?", "Désirable?"
   l.store "IP", "Adresse IP"
   l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur"
-  l.store "If you need help, %s. You can also browse our %s or %s to customize your Typo blog.", "Si vous avez besoin d'aide, n'hésitez pas à %s. Vous pouvez aussi visiter notre %s ou %s afin de personnaliser votre blog sous Typo"
+  l.store "If you need help, %s. You can also %s to customize your Typo blog.", "Si vous avez besoin d'aide, n'hésitez pas à %s. Vous pouvez aussi %s afin de personnaliser votre blog sous Typo"
   l.store "Images", "Images"
   l.store "Jan", "jan"
   l.store "January", "janvier"
@@ -908,7 +913,6 @@ Localization.define("fr_FR") do |l|
   l.store "There is no %s yet. Why don't you start and create one?", "Il n'y a aucun %s, pourquoi n'en créeriez-vous pas ?"
   l.store "Thu", "Jeu"
   l.store "Thursday", "Jeudi"
-  l.store "Titles", ""
   l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", "Pour installer votre thèmes, il suffit de l'uploader dans le dossier themes de votre projet."
   l.store "Tue", "Mar"
   l.store "Tuesday", "Mardi"
@@ -947,7 +951,7 @@ Localization.define("fr_FR") do |l|
   l.store "ja_JP", "Japonais"
   l.store "later", "plus tard"
   l.store "later:", "plus tard"
-  l.store "log out", "déconnexion"
+  l.store "Log out", "déconnexion"
   l.store "lt_LT", "Lituanien"
   l.store "nl_NL", "Hollandais"
   l.store "no posts", "aucun article"
