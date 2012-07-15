@@ -83,15 +83,14 @@ class Content < ActiveRecord::Base
 
       # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
 
-      if defined?(ActiveRecord::ConnectionAdapters::MysqlAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::MysqlAdapter)
+      if defined?(ActiveRecord::ConnectionAdapters::Mysql2Adapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::Mysql2Adapter)
         # MySQL uses date_format
         find_by_sql("SELECT date_format(#{column_name}, '%Y-%m') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-
       elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
         # PostgreSQL uses to_char
         find_by_sql("SELECT to_char(#{column_name}, 'YYYY-MM') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
 
-      else
+      else        
         # If we don't have an adapter-safe conversion from date -> YYYY-MM,
         # we'll do the GROUP BY server-side. There won't be very many objects
         # in this array anyway.
