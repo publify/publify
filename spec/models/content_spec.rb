@@ -36,6 +36,13 @@ describe Content do
     end
   end
 
+  describe "#text_filter" do
+    it "returns the blog's text filter by default" do
+      @blog.should_receive(:text_filter_object).and_return "foo"
+      @content.text_filter.should eq "foo"
+    end
+  end
+
   describe "#really_send_notifications" do
     it "sends notifications to interested users" do
       henri = mock_model(User)

@@ -17,7 +17,7 @@ describe Comment do
       FactoryGirl.create(:blog)
       @c = FactoryGirl.create(:comment, :article => FactoryGirl.create(:article,
         :permalink => 'inactive-article',
-        :published_at => Date.new(2004, 5, 1)))
+        :published_at => Date.new(2004, 5, 1).to_datetime))
     end
 
     subject { @c.permalink_url }
