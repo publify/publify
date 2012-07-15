@@ -13,8 +13,8 @@ else
     gem 'sqlite3'
   when 'postgresql'
     gem 'pg'
-  when 'mysql'
-    gem 'sam-mysql-ruby'
+  when 'mysql2'
+    gem 'mysql2'
   else
     raise "Don't know what gem to use for adapter #{adapter}"
   end
