@@ -14,7 +14,7 @@ class Admin::SeoController < Admin::BaseController
     end
   end
 
-  def permalinks 
+  def permalinks
     if request.post?
       if params[:setting]['permalink_format'] and params[:setting]['permalink_format'] == 'custom'
         params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
@@ -31,7 +31,7 @@ class Admin::SeoController < Admin::BaseController
       @setting.permalink_format = 'custom'
     end
   end
-  
+
   def titles
     load_settings
   end
@@ -64,7 +64,7 @@ class Admin::SeoController < Admin::BaseController
       robots.close
     end
   end
-  
+
   def build_robots
     robots = File.new("#{::Rails.root.to_s}/public/robots.txt", "w+")
     line = "User-agent: *\nAllow: /\nDisallow: /admin\n"

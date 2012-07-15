@@ -22,10 +22,10 @@ describe Sidebar do
 
   describe "#find with an invalid sidebar in the database" do
     before do
-      Sidebar.class_eval { set_inheritance_column :bogus }
+      Sidebar.class_eval { self.inheritance_column = :bogus }
       Sidebar.new(:type => "AmazonSidebar").save
       Sidebar.new(:type => "FooBarSidebar").save
-      Sidebar.class_eval { set_inheritance_column :type }
+      Sidebar.class_eval { self.inheritance_column = :type }
     end
 
     it "skips the invalid active sidebar" do

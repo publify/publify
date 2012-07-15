@@ -63,20 +63,29 @@ describe Admin::UsersController, "rough port of the old functional test" do
         end
 
       end
-  end
+    end
 
-    it "test_destroy" do
-      user_count = User.count
-      get :destroy, :id => @admin.id
-      assert_template 'destroy'
-      assert assigns(:record).valid?
+    describe "#destroy" do
+      let(:user) { FactoryGirl.create(:user) }
 
-      user = FactoryGirl.build(:user)
-      user.should_receive(:destroy)
-      User.should_receive(:count).and_return(2)
-      User.should_receive(:find).with(@admin.id).and_return(user)
-      post :destroy, :id => @admin.id
-      response.should redirect_to(:action => 'index')
+      context "GET" do
+        it "shows the user to be destroyed" do
+          id = user.id
+          get :destroy, :id => id
+          assert_template 'destroy'
+          assert assigns(:record).valid?
+          expect { User.find(id) }.to_not raise_error
+        end
+      end
+
+      context "GET" do
+        it "destroys the user" do
+          id = user.id
+          post :destroy, :id => id
+          response.should redirect_to(:action => 'index')
+          expect { User.find(id) }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
     end
   end
 

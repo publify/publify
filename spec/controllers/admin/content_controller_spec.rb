@@ -287,7 +287,7 @@ describe Admin::ContentController do
         u = FactoryGirl.create(:user, :notify_via_email => true, :notify_on_new_articles => true)
         u.save!
         ActionMailer::Base.perform_deliveries = true
-        ActionMailer::Base.deliveries = []
+        ActionMailer::Base.deliveries.clear
         emails = ActionMailer::Base.deliveries
 
         post :new, 'article' => base_article
@@ -340,13 +340,16 @@ describe Admin::ContentController do
       body = "body via *markdown*"
       extended="*foo*"
       post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
+
       assert_response :redirect, :action => 'index'
+
       new_article = Article.find(:first, :order => "created_at DESC")
-      assert_equal body, new_article.body
-      assert_equal extended, new_article.extended
-      assert_equal "markdown", new_article.text_filter.name
-      assert_equal "<p>body via <em>markdown</em></p>", new_article.html(:body)
-      assert_equal "<p><em>foo</em></p>", new_article.html(:extended)
+
+      new_article.body.should eq body
+      new_article.extended.should eq extended
+      new_article.text_filter.name.should eq @user.text_filter.name
+      new_article.html(:body).should eq "<p>body via <em>markdown</em></p>"
+      new_article.html(:extended).should eq "<p><em>foo</em></p>"
     end
 
     describe "publishing a published article with an autosaved draft" do
@@ -469,7 +472,10 @@ describe Admin::ContentController do
       FactoryGirl.create(:blog)
       #TODO delete this after remove fixture
       Profile.delete_all
-      @user = FactoryGirl.create(:user, :text_filter => FactoryGirl.create(:markdown), :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+      @user = FactoryGirl.create(:user,
+                                 :text_filter => FactoryGirl.create(:markdown),
+                                 :profile => FactoryGirl.create(:profile_admin,
+                                                                :label => Profile::ADMIN))
       @user.editor = 'simple'
       @user.save
       @article = FactoryGirl.create(:article)
@@ -613,7 +619,11 @@ describe Admin::ContentController do
 
     before :each do
       FactoryGirl.create(:blog)
-      @user = FactoryGirl.create(:user, :text_filter => FactoryGirl.create(:markdown), :profile => FactoryGirl.create(:profile_publisher))
+      @user = FactoryGirl.create(:user,
+                                 text_filter: FactoryGirl.create(:markdown),
+                                 profile: FactoryGirl.create(:profile_publisher))
+      @user.editor = 'simple'
+      @user.save
       @article = FactoryGirl.create(:article, :user => @user)
       request.session = {:user => @user.id}
     end

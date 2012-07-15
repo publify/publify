@@ -165,7 +165,7 @@ module Feedback::States
     def enter_hook
       super
       content[:published] = false
-      content[:status_confirmed?] = false
+      content[:status_confirmed] = false
     end
 
     def spam?; true; end

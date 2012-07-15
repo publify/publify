@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'FeedbackStates from Test::Unit' do
+describe Feedback::States do
   before(:each) do
     FactoryGirl.create(:blog)
     @comment = FactoryGirl.create(:article).comments.build(:author => 'Piers',

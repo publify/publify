@@ -22,7 +22,9 @@ describe ApplicationHelper do
 
   describe "#link_to_permalink" do
     describe "for a simple ascii-only permalink" do
-      subject { link_to_permalink(FactoryGirl.create(:article, :published_at => Date.new(2004, 6, 1)), "title") }
+      subject { link_to_permalink(
+        FactoryGirl.create(:article, published_at: Date.new(2004, 6, 1).to_datetime),
+        "title") }
       it { should be_html_safe }
       it { should == '<a href="http://myblog.net/2004/06/01/a-big-article">title</a>' }
     end
@@ -34,10 +36,10 @@ describe ApplicationHelper do
       end
     end
   end
-  
+
   describe '#display_date' do
-    before(:each) { 
-      @article = FactoryGirl.create(:article, :body => "hello world and im herer") 
+    before(:each) {
+      @article = FactoryGirl.create(:article, :body => "hello world and im herer")
     }
 
     ['%d/%m/%y', '%m/%m/%y', '%d %b %Y', '%b %d %Y'].each do |spec|
@@ -46,13 +48,12 @@ describe ApplicationHelper do
         display_date(@article.published_at).should == @article.published_at.strftime(spec)
       end
     end
-        
+
     ['%I:%M%p', '%H:%M', '%Hh%M'].each do |spec|
       it "should return time with format #{spec}" do
         @blog.time_format = spec
         display_time(@article.published_at).should == @article.published_at.strftime(spec)
       end
-    end    
+    end
   end
-  
 end
