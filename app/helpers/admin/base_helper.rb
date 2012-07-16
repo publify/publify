@@ -194,7 +194,10 @@ module Admin::BaseHelper
 
   def link_to_published(item)
     return link_to_permalink(item,  _("Show"), nil, 'published') if item.published
-    link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => item.id}, {:class => 'unpublished', :target => '_new'})
+    
+    type = controller.controller_name == 'content' ? "" : "_page"
+    
+    link_to(_("Preview"), {:controller => '/articles', :action => "preview#{type}", :id => item.id}, {:class => 'unpublished', :target => '_new'}) 
   end
 
   def published_or_not(item)

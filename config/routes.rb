@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   match '/page/:page', :to => 'articles#index', :page => /\d+/, :format => false
   get '/pages/*name', :to => 'articles#view_page', :format => false
   match 'previews(/:id)', :to => 'articles#preview', :format => false
+  match 'previews_pages(/:id)', :to => 'articles#preview_page', :format => false
   match 'check_password', :to => 'articles#check_password', :format => false
   match 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
   match 'articles/tag', :to => 'articles#tag', :format => false

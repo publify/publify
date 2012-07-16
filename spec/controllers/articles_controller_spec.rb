@@ -727,3 +727,42 @@ describe ArticlesController, "assigned keywords" do
     assigns(:keywords).should == "typo, is, amazing"
   end
 end
+
+describe ArticlesController, "preview page" do
+  render_views
+  before(:each) { @blog = FactoryGirl.create(:blog) }
+
+  describe 'with non logged user' do
+    before :each do
+      @request.session = {}
+      get :preview, :id => FactoryGirl.create(:article).id
+    end
+
+    it 'should redirect to login' do
+      response.should redirect_to(:controller => "accounts", :action => "login")
+    end
+  end
+
+  describe 'with logged user' do
+    before :each do
+      #TODO Delete after removing fixtures
+      Profile.delete_all
+      henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+      @request.session = { :user => henri.id }
+      @page = FactoryGirl.create(:page)
+    end
+
+    with_each_theme do |theme, view_path|
+      it "should render template #{view_path}/articles/view_page" do
+        @blog.theme = theme if theme
+        get :preview_page, :id => @page.id
+        response.should render_template('articles/view_page')
+      end
+    end
+
+    it 'should assigns article define with id' do
+      get :preview_page, :id => @page.id
+      assigns[:page].should == @page
+    end
+  end
+end
