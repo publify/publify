@@ -48,7 +48,7 @@
   <%= render('images', { :images => @images}) unless @images.empty? %>
 
   <div id='editor-menu'>
-		<ul class="pills">
+		<ul class="tabs">
 			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
 				<%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
 			</li>
