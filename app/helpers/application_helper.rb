@@ -3,6 +3,13 @@
 require 'digest/sha1'
 
 module ApplicationHelper
+  # Need to rewrite this one, quick hack to test my changes.
+  def page_title
+    @page_title
+  end
+
+  include SidebarHelper
+
   # Basic english pluralizer.
   # Axe?
   def pluralize(size, zero, one , many )

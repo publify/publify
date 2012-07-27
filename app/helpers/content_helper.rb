@@ -1,12 +1,5 @@
 require 'digest/sha1'
 module ContentHelper
-  # Need to rewrite this one, quick hack to test my changes.
-  def page_title
-    @page_title
-  end
-
-  include SidebarHelper
-
   def article_links(article, separator="&nbsp;<strong>|</strong>&nbsp;")
     code = []
     code << category_links(article)   unless article.categories.empty?
