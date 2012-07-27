@@ -15,22 +15,20 @@ describe Comment do
   describe '#permalink_url' do
     before(:each) do
       FactoryGirl.create(:blog)
-      @c = FactoryGirl.create(:comment, :article => FactoryGirl.create(:article,
-        :permalink => 'inactive-article',
-        :published_at => Date.new(2004, 5, 1).to_datetime))
+      @c = FactoryGirl.build_stubbed(:comment)
     end
 
     subject { @c.permalink_url }
 
     it 'should render permalink to comment in public part' do
-      should == "http://myblog.net/2004/05/01/inactive-article#comment-#{@c.id}"
+      should == "#{@c.article.permalink_url}#comment-#{@c.id}"
     end
   end
 
   describe '#edit_url' do
     it 'should get a url where edit comment in admin' do
       FactoryGirl.create(:blog)
-      c = FactoryGirl.create(:comment)
+      c = FactoryGirl.build_stubbed(:comment)
       assert_equal "http://myblog.net/admin/comments/edit/#{c.id}", c.edit_url
     end
   end
@@ -38,7 +36,7 @@ describe Comment do
   describe '#delete_url' do
     it 'should get the delete url of comment in admin part' do
       FactoryGirl.create(:blog)
-      c = FactoryGirl.create(:comment)
+      c = FactoryGirl.build_stubbed(:comment)
       assert_equal "http://myblog.net/admin/comments/destroy/#{c.id}", c.delete_url
     end
   end
@@ -155,8 +153,8 @@ describe Comment do
   end
 
   it 'should have good relation' do
-    article = FactoryGirl.build(:article)
-    comment = FactoryGirl.build(:comment, :article => article)
+    article = FactoryGirl.build_stubbed(:article)
+    comment = FactoryGirl.build_stubbed(:comment, :article => article)
     assert comment.article
     assert_equal article, comment.article
   end
@@ -218,8 +216,7 @@ describe Comment do
     end
 
     it 'should becomes confirmed if withdrawn' do
-      a = FactoryGirl.create(:article)
-      unconfirmed = FactoryGirl.create(:comment, :article => a, :state => 'presumed_ham')
+      unconfirmed = FactoryGirl.build_stubbed(:comment, :state => 'presumed_ham')
       unconfirmed.should_not be_status_confirmed
       unconfirmed.withdraw!
       unconfirmed.should be_status_confirmed
@@ -228,7 +225,7 @@ describe Comment do
 
   it 'should have good default filter' do
     FactoryGirl.create(:blog, :comment_text_filter => FactoryGirl.create(:markdown))
-    a = FactoryGirl.build(:comment)
+    a = FactoryGirl.build_stubbed(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end
 

@@ -55,18 +55,17 @@ FactoryGirl.define do
     u.text_filter {FactoryGirl.create(:textile)}
   end
 
-  factory :article do |a|
-    a.title 'A big article'
-    a.body 'A content with several data'
-    a.extended 'extended content for fun'
-    a.guid { FactoryGirl.generate(:guid) }
-    a.permalink 'a-big-article'
-    a.published_at '2005-01-01 02:00:00'
-    a.updated_at { FactoryGirl.generate(:time) }
-    a.user { some_user }
-    a.allow_comments true
-    a.published true
-    a.allow_pings true
+  factory :article do
+    title 'A big article'
+    body 'A content with several data'
+    extended 'extended content for fun'
+    guid
+    permalink 'a-big-article'
+    published_at '2005-01-01 02:00:00'
+    user
+    allow_comments true
+    published true
+    allow_pings true
   end
 
   factory :unpublished_article, :parent => :article do |a|
@@ -198,18 +197,18 @@ FactoryGirl.define do
     r.to_path '/someplace/else'
   end
 
-  factory :comment do |c|
-    c.published true
-    c.article { some_article }
-    c.text_filter {FactoryGirl.create(:textile)}
-    c.author 'Bob Foo'
-    c.url 'http://fakeurl.com'
-    c.body 'Test <a href="http://fakeurl.co.uk">body</a>'
-    c.created_at '2005-01-01 02:00:00'
-    c.updated_at '2005-01-01 02:00:00'
-    c.published_at '2005-01-01 02:00:00'
-    c.guid '12313123123123123'
-    c.state 'ham'
+  factory :comment do
+    published true
+    article { some_article }
+    text_filter {FactoryGirl.create(:textile)}
+    author 'Bob Foo'
+    url 'http://fakeurl.com'
+    body 'Test <a href="http://fakeurl.co.uk">body</a>'
+    created_at '2005-01-01 02:00:00'
+    updated_at '2005-01-01 02:00:00'
+    published_at '2005-01-01 02:00:00'
+    guid
+    state 'ham'
   end
 
   factory :spam_comment, :parent => :comment do |c|
