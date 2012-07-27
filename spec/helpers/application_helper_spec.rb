@@ -25,7 +25,7 @@ describe ApplicationHelper do
       subject { link_to_permalink(
         FactoryGirl.create(:article, published_at: Date.new(2004, 6, 1).to_datetime),
         "title") }
-      it { should be_html_safe }
+      it { subject.html_safe?.should be_true }
       it { should == '<a href="http://myblog.net/2004/06/01/a-big-article">title</a>' }
     end
 
