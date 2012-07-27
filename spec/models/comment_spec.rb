@@ -68,7 +68,9 @@ describe Comment do
     end
 
     it 'should change old comment' do
-      c = FactoryGirl.build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>', :article => published_article)
+      c = FactoryGirl.build(:comment,
+                            :body => 'Comment body <em>italic</em> <strong>bold</strong>',
+                            :article => published_article)
       assert c.save
       assert c.errors.empty?
     end
@@ -157,7 +159,7 @@ describe Comment do
       @comment = Comment.new do |c|
         c.body = "Test foo <script>do_evil();</script>"
         c.author = 'Bob'
-        c.article_id = FactoryGirl.create(:article).id
+        c.article = FactoryGirl.build_stubbed(:article)
       end
     end
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
@@ -169,43 +171,18 @@ describe Comment do
 
         Blog.default.comment_text_filter = filter
 
-        assert @comment.save
-        assert @comment.errors.empty?
-
         assert @comment.html(:body) !~ /<script>/
       end
     end
   end
 
   describe 'change state' do
-    it 'should becomes withdraw' do
-      c = FactoryGirl.create(:comment)
+    it 'should become unpublished if withdrawn' do
+      c = FactoryGirl.build_stubbed :comment, :published => true, :published_at => Time.now
       assert c.withdraw!
       assert ! c.published?
       assert c.spam?
       assert c.status_confirmed?
-      c.reload
-      assert ! c.published?
-      assert c.spam?
-      assert c.status_confirmed?
-    end
-
-    it 'should becomes not published in article if withdraw' do
-      a = Article.new(:title => 'foo')
-      assert a.save
-
-      assert_equal 0, a.published_comments.size
-      c = a.comments.build(:body => 'foo', :author => 'bob', :published => true, :published_at => Time.now)
-      assert c.save
-      assert c.published?
-      c.reload
-      a.reload
-
-      assert_equal 1, a.published_comments.size
-      c.withdraw!
-
-      a = Article.new(:title => 'foo')
-      assert_equal 0, a.published_comments.size
     end
 
     it 'should becomes confirmed if withdrawn' do
@@ -229,13 +206,12 @@ describe Comment do
       @blog.stub(:default_moderate_comments) { true }
     end
 
-    it 'should save comment as presumably spam' do
+    it 'should mark comment as presumably spam' do
       comment = Comment.new do |c|
         c.body = "Test foo"
         c.author = 'Bob'
-        c.article_id = FactoryGirl.create(:article).id
+        c.article = FactoryGirl.build_stubbed(:article)
       end
-      assert comment.save!
 
       assert ! comment.published?
       assert comment.spam?
@@ -243,14 +219,12 @@ describe Comment do
     end
 
     it 'should save comment as confirmed ham' do
-      henri = FactoryGirl.create(:user, :login => 'henri')
       comment = Comment.new do |c|
         c.body = "Test foo"
         c.author = 'Henri'
-        c.article_id = FactoryGirl.create(:article).id
-        c.user_id = henri.id
+        c.article = FactoryGirl.build_stubbed(:article)
+        c.user = FactoryGirl.build_stubbed(:user)
       end
-      assert comment.save!
 
       assert comment.published?
       assert comment.ham?

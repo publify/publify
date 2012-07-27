@@ -632,5 +632,24 @@ describe Article do
     end
 
   end
-end
 
+  describe "#published_comments" do
+    it 'should not include withdrawn comments' do
+      a = Article.new(:title => 'foo')
+      a.save!
+
+      assert_equal 0, a.published_comments.size
+      c = a.comments.build(:body => 'foo', :author => 'bob', :published => true, :published_at => Time.now)
+      assert c.published?
+      c.save!
+      a.reload
+
+      assert_equal 1, a.published_comments.size
+      c.withdraw!
+
+      assert_equal 0, a.published_comments.size
+    end
+
+
+  end
+end
