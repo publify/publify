@@ -73,6 +73,9 @@ FactoryGirl.define do
     a.published false
   end
 
+  factory :content do
+  end
+
   factory :post_type do |p|
     p.name 'foobar'
     p.description "Some description"

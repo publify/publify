@@ -3,16 +3,15 @@ require 'spec_helper'
 
 describe Content do
   before do
-    @blog = stub_model(Blog)
-    Blog.stub(:default) { @blog }
-    @content = Content.create
+    @blog = stub_default_blog
   end
 
   describe "#short_url" do
     before do
-      @content.published = true
-      @content.redirects.build :from_path => "foo", :to_path => "bar"
-      @content.save
+      @content = FactoryGirl.build_stubbed :content,
+        published: true,
+        redirects: [FactoryGirl.build_stubbed(:redirect, :from_path =>
+                                            "foo", :to_path => "bar")]
     end
 
     describe "normally" do
@@ -21,6 +20,7 @@ describe Content do
       end
 
       it "returns the blog's base url combined with the redirection's from path" do
+        @content.should be_published
         @content.short_url.should == "http://myblog.net/foo"
       end
     end
@@ -39,12 +39,14 @@ describe Content do
   describe "#text_filter" do
     it "returns the blog's text filter by default" do
       @blog.should_receive(:text_filter_object).and_return "foo"
+      @content = Content.new
       @content.text_filter.should eq "foo"
     end
   end
 
   describe "#really_send_notifications" do
     it "sends notifications to interested users" do
+      @content = Content.new
       henri = mock_model(User)
       alice = mock_model(User)
 
