@@ -1,8 +1,12 @@
 require 'spec_helper'
 
 describe Comment do
+  before(:each) do
+    @blog = stub_default_blog
+  end
+
   def published_article
-    FactoryGirl.create(:article, :published_at => Time.now - 1.hour)
+    FactoryGirl.build_stubbed(:article, :published_at => Time.now - 1.hour)
   end
 
   def valid_comment(options={})
@@ -14,7 +18,6 @@ describe Comment do
 
   describe '#permalink_url' do
     before(:each) do
-      FactoryGirl.create(:blog)
       @c = FactoryGirl.build_stubbed(:comment)
     end
 
@@ -27,7 +30,6 @@ describe Comment do
 
   describe '#edit_url' do
     it 'should get a url where edit comment in admin' do
-      FactoryGirl.create(:blog)
       c = FactoryGirl.build_stubbed(:comment)
       assert_equal "http://myblog.net/admin/comments/edit/#{c.id}", c.edit_url
     end
@@ -35,14 +37,15 @@ describe Comment do
 
   describe '#delete_url' do
     it 'should get the delete url of comment in admin part' do
-      FactoryGirl.create(:blog)
       c = FactoryGirl.build_stubbed(:comment)
       assert_equal "http://myblog.net/admin/comments/destroy/#{c.id}", c.delete_url
     end
   end
 
   describe '#save' do
-    before(:each) { FactoryGirl.create(:blog, :sp_article_auto_close => 300) }
+    before(:each) {
+      @blog.stub(:sp_article_auto_close) { 300 }
+    }
     it 'should save good comment' do
       c = FactoryGirl.build(:comment, :url => "http://www.google.de", :article => published_article)
       assert c.save
@@ -77,11 +80,9 @@ describe Comment do
     end
 
     it 'should not save with article not allow comment'  do
-      b = Blog.default
-      b.sp_article_auto_close = 1
-      b.save
+      @blog.stub(:sp_article_auto_close) { 1 }
 
-      c = FactoryGirl.build(:comment, :article => FactoryGirl.create(:article, :allow_comments => false))
+      c = FactoryGirl.build(:comment, :article => FactoryGirl.build_stubbed(:article, :allow_comments => false))
       c.save.should_not be_true
       c.errors.should_not be_empty
     end
@@ -89,10 +90,6 @@ describe Comment do
   end
 
   describe '#create' do
-    before do
-      FactoryGirl.create(:blog)
-    end
-
     it 'should create comment' do
       c = valid_comment
       assert c.save
@@ -119,10 +116,6 @@ describe Comment do
   end
 
   describe '#spam?' do
-    before(:each) do
-      FactoryGirl.create(:blog)
-    end
-
     it 'should reject spam rbl' do
       c = valid_comment(:author => "Spammer",
                         :body => %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.},
@@ -161,7 +154,6 @@ describe Comment do
 
   describe 'reject xss' do
     before(:each) do
-      FactoryGirl.create(:blog)
       @comment = Comment.new do |c|
         c.body = "Test foo <script>do_evil();</script>"
         c.author = 'Bob'
@@ -170,6 +162,11 @@ describe Comment do
     end
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
       it "should reject with filter '#{filter}'" do
+        # XXX: This makes sure text filter exists in the database
+        # FIXME: TextFilter objects should not be in the database!
+        sym = filter.empty? ? :none : filter.to_sym
+        FactoryGirl.create sym
+
         Blog.default.comment_text_filter = filter
 
         assert @comment.save
@@ -181,10 +178,6 @@ describe Comment do
   end
 
   describe 'change state' do
-    before(:each) do
-      FactoryGirl.create(:blog)
-    end
-
     it 'should becomes withdraw' do
       c = FactoryGirl.create(:comment)
       assert c.withdraw!
@@ -224,16 +217,16 @@ describe Comment do
   end
 
   it 'should have good default filter' do
-    FactoryGirl.create(:blog, :comment_text_filter => FactoryGirl.create(:markdown))
+    @blog.stub(:text_filter_object) { FactoryGirl.build_stubbed :textile }
+    @blog.stub(:comment_text_filter) { FactoryGirl.build_stubbed :markdown }
     a = FactoryGirl.build_stubbed(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end
 
   describe 'with feedback moderation enabled' do
     before(:each) do
-      @blog = FactoryGirl.create(:blog,
-        :sp_global => false,
-        :default_moderate_comments => true)
+      @blog.stub(:sp_global) { false }
+      @blog.stub(:default_moderate_comments) { true }
     end
 
     it 'should save comment as presumably spam' do

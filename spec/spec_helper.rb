@@ -87,7 +87,7 @@ def assert_rss20 feed, count
 end
 
 def stub_default_blog
-  blog = stub_model(Blog, :base_url => "http://myblog.net")
+  blog = FactoryGirl.build_stubbed :blog
   Blog.stub(:default) { blog }
   blog
 end

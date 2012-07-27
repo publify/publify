@@ -202,7 +202,7 @@ FactoryGirl.define do
 
   factory :comment do
     published true
-    article { some_article }
+    article
     text_filter {FactoryGirl.create(:textile)}
     author 'Bob Foo'
     url 'http://fakeurl.com'
