@@ -41,6 +41,9 @@ RSpec.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"
 
+  # shortcuts for factory_girl to use: create / build / build_stubbed
+  config.include FactoryGirl::Syntax::Methods
+
   config.before(:each) do
     Localization.lang = :default
   end
@@ -104,6 +107,19 @@ def stub_full_article(time=Time.now)
   a.stub(:tags) { [FactoryGirl.build(:tag)] }
   a.stub(:text_filter) { text_filter }
   a
+end
+
+def stub_pagination collection, attributes = {}
+  length = collection.length
+  per_page = attributes[:per_page] || 25
+  num_pages = length / per_page + (length % per_page == 0 ? 0 : 1)
+
+  attributes = attributes.reverse_merge current_page: 1, num_pages: num_pages,
+    total_count: length, limit_value: per_page
+  attributes.each do |key, value|
+    collection.stub(key).and_return value
+  end
+  collection
 end
 
 # test standard view and all themes

@@ -5,10 +5,6 @@ def some_user
   User.find(:first) || FactoryGirl.create(:user)
 end
 
-def some_article
-  Article.find(:first) || FactoryGirl.create(:article)
-end
-
 # Factory definitions
 FactoryGirl.define do
   sequence :name do |n|
@@ -17,6 +13,10 @@ FactoryGirl.define do
 
   sequence :user do |n|
     "user#{n}"
+  end
+
+  sequence :email do |n|
+    "user#{n}@example.com"
   end
 
   sequence :guid do |n|
@@ -41,18 +41,18 @@ FactoryGirl.define do
     basetime - n
   end
 
-  factory :user do |u|
-    u.login { FactoryGirl.generate(:user) }
-    u.email { FactoryGirl.generate(:user) }
-    u.name 'Bond'
-    u.notify_via_email false
-    u.notify_on_new_articles false
-    u.notify_on_comments false
-    u.password 'top-secret'
-    u.settings({})
-    u.state 'active'
-    u.profile {FactoryGirl.create(:profile)}
-    u.text_filter {FactoryGirl.create(:textile)}
+  factory :user do
+    login { FactoryGirl.generate(:user) }
+    email { generate(:email) }
+    name 'Bond'
+    notify_via_email false
+    notify_on_new_articles false
+    notify_on_comments false
+    password 'top-secret'
+    settings({})
+    state 'active'
+    profile
+    association :text_filter, factory: :textile
   end
 
   factory :article do
@@ -63,6 +63,10 @@ FactoryGirl.define do
     permalink 'a-big-article'
     published_at '2005-01-01 02:00:00'
     user
+    categories []
+    tags []
+    published_comments []
+    published_trackbacks []
     allow_comments true
     published true
     allow_pings true
@@ -149,10 +153,10 @@ FactoryGirl.define do
     default_allow_comments true
     email_from "scott@sigkill.org"
     theme "typographic"
-    text_filter FactoryGirl.create(:textile).name
+    association :text_filter, factory: :textile
     sp_article_auto_close 0
     link_to_author false
-    comment_text_filter FactoryGirl.create(:markdown).name
+    comment_text_filter "markdown" #FactoryGirl.create(:markdown).name
     permalink_format "/%year%/%month%/%day%/%title%"
     use_canonical_url true
 
@@ -236,16 +240,16 @@ FactoryGirl.define do
   end
 
   factory :trackback do |t|
-    t.published true
-    t.state 'ham'
-    t.article { some_article }
-    t.status_confirmed true
-    t.blog_name 'Trackback Blog'
-    t.title 'Trackback Entry'
-    t.url 'http://www.example.com'
-    t.excerpt 'This is an excerpt'
-    t.guid 'dsafsadffsdsf'
-    t.created_at Time.now
-    t.updated_at Time.now
+    published true
+    state 'ham'
+    article
+    status_confirmed true
+    blog_name 'Trackback Blog'
+    title 'Trackback Entry'
+    url 'http://www.example.com'
+    excerpt 'This is an excerpt'
+    guid 'dsafsadffsdsf'
+    created_at Time.now
+    updated_at Time.now
   end
 end

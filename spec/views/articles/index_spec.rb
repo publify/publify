@@ -9,11 +9,11 @@ with_each_theme do |theme, view_path|
 
     context "normally" do
       before(:each) do
-        FactoryGirl.create(:blog)
-        2.times {FactoryGirl.create(:article, :body => 'body')}
+        build_stubbed :blog
+        articles = 2.times.map { build_stubbed(:article, :body => 'body') }
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
-        assign(:articles, Article.page(1).per(4))
+        assign(:articles, stub_pagination(articles))
 
         render
       end
@@ -47,11 +47,11 @@ with_each_theme do |theme, view_path|
 
     context "without search, on page 2" do
       before(:each) do
-        FactoryGirl.create(:blog)
-        3.times { FactoryGirl.create(:article) }
+        build_stubbed :blog
+        articles = 3.times.map { build_stubbed :article }
         @controller.action_name = "index"
         @controller.request.path_parameters["controller"] = "articles"
-        assign(:articles, Article.page(2).per(2))
+        assign(:articles, stub_pagination(articles, current_page: 2, per_page: 2))
 
         render
       end
@@ -69,14 +69,17 @@ with_each_theme do |theme, view_path|
 
     context "when on page 2 of search" do
       before(:each) do
-        FactoryGirl.create(:blog)
-        3.times {FactoryGirl.create(:article, :body => 'body')}
+        build_stubbed :blog
+        articles = 3.times.map { build_stubbed :article }
+
         @controller.action_name = "search"
         @controller.request.path_parameters["controller"] = "articles"
+
         params[:q]           = "body"
         params[:page]        = 2
         params[:action]      = 'search'
-        assign(:articles, Blog.default.articles_matching(params[:q], {:page => params[:page], :per => 1}))
+
+        assign(:articles, stub_pagination(articles, current_page: 2, per_page: 2))
 
         render
       end
