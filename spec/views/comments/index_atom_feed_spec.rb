@@ -7,7 +7,10 @@ describe "comments/index_atom_feed.atom.builder" do
 
   describe "rendering comments with one comment" do
     let(:article) { stub_full_article }
-    let(:comment) { FactoryGirl.build(:comment, :article => article, :body => "Comment body") }
+    let(:comment) { FactoryGirl.build(:comment,
+                                      article: article,
+                                      body: "Comment body",
+                                      guid: '12313123123123123') }
 
     before do
       assign(:comments, [comment])

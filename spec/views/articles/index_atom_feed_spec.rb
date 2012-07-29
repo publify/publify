@@ -93,8 +93,8 @@ describe "articles/index_atom_feed.atom.builder" do
         render
       end
 
-      it "shows the body and extended content in the feed" do
-        rendered_entry.css("content").first.content.should =~ /public info.*and more/m
+      it "shows the body content in the feed" do
+        rendered_entry.css("content").first.content.should =~ /public info/
       end
 
       it "shows the RSS description in the feed" do

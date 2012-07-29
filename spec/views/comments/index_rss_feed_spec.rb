@@ -6,8 +6,11 @@ describe "comments/index_rss_feed.rss.builder" do
   end
 
   describe "rendering comments" do
-    let(:article) { stub_full_article }
-    let(:comment) { FactoryGirl.build(:comment, :article => article, :body => "Comment body") }
+    let(:article) { FactoryGirl.build_stubbed :article }
+    let(:comment) { FactoryGirl.build_stubbed(:comment,
+                                      article: article,
+                                      body: "Comment body",
+                                      guid: '12313123123123123') }
 
     before do
       assign(:comments, [comment])
