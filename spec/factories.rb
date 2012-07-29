@@ -132,29 +132,33 @@ FactoryGirl.define do
     a.published_at Time.now - 2.seconds
   end
 
-  factory :blog do |b|
-    b.base_url 'http://myblog.net'
-    b.hide_extended_on_rss true
-    b.blog_name 'test blog'
-    b.limit_article_display 2
-    b.sp_url_limit 3
-    b.plugin_avatar ''
-    b.blog_subtitle "test subtitles"
-    b.limit_rss_display 10
-    b.ping_urls "http://ping.example.com/ping http://alsoping.example.com/rpc/ping"
-    b.geourl_location ""
-    b.default_allow_pings false
-    b.send_outbound_pings false
-    b.sp_global true
-    b.default_allow_comments true
-    b.email_from "scott@sigkill.org"
-    b.theme "typographic"
-    b.text_filter FactoryGirl.create(:textile).name
-    b.sp_article_auto_close 0
-    b.link_to_author false
-    b.comment_text_filter FactoryGirl.create(:markdown).name
-    b.permalink_format "/%year%/%month%/%day%/%title%"
-    b.use_canonical_url true
+  factory :blog do
+    base_url 'http://myblog.net'
+    hide_extended_on_rss true
+    blog_name 'test blog'
+    limit_article_display 2
+    sp_url_limit 3
+    plugin_avatar ''
+    blog_subtitle "test subtitles"
+    limit_rss_display 10
+    ping_urls "http://ping.example.com/ping http://alsoping.example.com/rpc/ping"
+    geourl_location ""
+    default_allow_pings false
+    send_outbound_pings false
+    sp_global true
+    default_allow_comments true
+    email_from "scott@sigkill.org"
+    theme "typographic"
+    text_filter FactoryGirl.create(:textile).name
+    sp_article_auto_close 0
+    link_to_author false
+    comment_text_filter FactoryGirl.create(:markdown).name
+    permalink_format "/%year%/%month%/%day%/%title%"
+    use_canonical_url true
+
+    after :stub do |blog|
+      Blog.stub(:default) { blog }
+    end
   end
 
   factory :profile, :class => :profile do |l|

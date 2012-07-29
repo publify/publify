@@ -87,9 +87,7 @@ def assert_rss20 feed, count
 end
 
 def stub_default_blog
-  blog = FactoryGirl.build_stubbed :blog
-  Blog.stub(:default) { blog }
-  blog
+  FactoryGirl.build_stubbed :blog
 end
 
 def stub_full_article(time=Time.now)
