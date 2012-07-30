@@ -85,12 +85,16 @@ FactoryGirl.define do
     p.description "Some description"
   end
 
-  factory :markdown, :class => :text_filter do |m|
-    m.name "markdown"
-    m.description "Markdown"
-    m.markup 'markdown'
-    m.filters '--- []'
-    m.params '--- {}'
+  factory :markdown, :class => :text_filter do
+    name "markdown"
+    description "Markdown"
+    markup 'markdown'
+    filters '--- []'
+    params '--- {}'
+
+    after :stub do |filter|
+      TextFilter.stub(:find_by_name).with(filter.name) { filter }
+    end
   end
 
   factory :smartypants, :parent => :markdown do |m|
@@ -162,6 +166,7 @@ FactoryGirl.define do
 
     after :stub do |blog|
       Blog.stub(:default) { blog }
+      build_stubbed blog.text_filter
     end
   end
 
