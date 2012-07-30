@@ -2,8 +2,8 @@ require 'spec_helper'
 
 shared_examples_for "CommentSanitization" do
   before do
-    @blog = FactoryGirl.create(:blog)
-    @article = mock_model(Article, :created_at => Time.now, :published_at => Time.now)
+    @blog = build_stubbed(:blog)
+    @article = build_stubbed(:article, :created_at => Time.now, :published_at => Time.now)
     Article.stub!(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
@@ -22,6 +22,7 @@ shared_examples_for "CommentSanitization" do
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
       @blog.comment_text_filter = value
+      build_stubbed(value.empty? ? 'none' : value)
 
       render :file => 'comments/show'
       rendered.should have_selector('.content')
