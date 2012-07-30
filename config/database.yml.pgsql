@@ -1,9 +1,7 @@
 login: &login
   adapter: postgresql
   host: localhost
-  username: root
-  password:
-
+  username: postgres
 
 development:
   database: typo_dev
