@@ -159,15 +159,15 @@ describe Comment do
       @comment = Comment.new do |c|
         c.body = "Test foo <script>do_evil();</script>"
         c.author = 'Bob'
-        c.article = FactoryGirl.build_stubbed(:article)
+        c.article = build_stubbed(:article)
       end
     end
     ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
       it "should reject with filter '#{filter}'" do
-        # XXX: This makes sure text filter exists in the database
+        # XXX: This makes sure text filter can be 'found' in the database
         # FIXME: TextFilter objects should not be in the database!
         sym = filter.empty? ? :none : filter.to_sym
-        FactoryGirl.create sym
+        build_stubbed sym
 
         Blog.default.comment_text_filter = filter
 
