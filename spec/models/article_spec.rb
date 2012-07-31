@@ -4,12 +4,7 @@ require 'spec_helper'
 describe Article do
 
   before do
-    @blog = stub_model(Blog)
-    @blog.stub(:base_url) { "http://myblog.net" }
-    @blog.stub(:text_filter) { "textile" }
-    @blog.stub(:send_outbound_pings) { false }
-
-    Blog.stub(:default) { @blog }
+    @blog = build_stubbed :blog
 
     @articles = []
   end
@@ -618,6 +613,7 @@ describe Article do
           @article.allow_pings.should be == @blog.default_allow_pings
         end
         it "should have default text filter" do
+          @article.text_filter_id.should be_nil
           @article.text_filter.should be == @blog.text_filter_object
         end
       end
