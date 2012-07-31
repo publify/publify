@@ -8,6 +8,7 @@ class BoolifyPublished < ActiveRecord::Migration
     modify_tables_and_update([:rename_column, Bare34Content, :published, :old_pub],
                              [:add_column,    Bare34Content, :published, :boolean, { :default => true }]) do |c|
       unless $schema_generator
+        Bare34Content.reset_column_information
         if c.old_pub.nil?
           c.published = true
         else
@@ -23,6 +24,7 @@ class BoolifyPublished < ActiveRecord::Migration
     modify_tables_and_update([:rename_column, Bare34Content, :published, :old_pub],
                              [:add_column,    Bare34Content, :published, :integer]) do |c|
       unless $schema_generator
+        Bare34Content.reset_column_information
         say "Old published: #{c.old_pub}"
         if c.old_pub.nil?
           c.published = 1

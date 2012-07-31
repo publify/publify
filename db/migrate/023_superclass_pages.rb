@@ -13,6 +13,7 @@ class SuperclassPages < ActiveRecord::Migration
     modify_tables_and_update(:add_column, Bare23Content, :name, :string) do
       Bare23Content.transaction do
         if not $schema_generator
+          Bare23Content.reset_column_information
           Bare23Page.find(:all).each do |p|
             Bare23Content.create(:type           => 'Page',
                                  :name           => p.name,

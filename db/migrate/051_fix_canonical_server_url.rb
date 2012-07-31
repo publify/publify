@@ -5,6 +5,7 @@ class FixCanonicalServerUrl < ActiveRecord::Migration
   end
   def self.up
     unless $schema_generator
+      Blog.reset_column_information
       Blog.find(:all).each do |b|
         b.settings['canonical_server_url'] = b.settings['canonical_server_url'].to_s.gsub(%r{/$},'')
         b.save

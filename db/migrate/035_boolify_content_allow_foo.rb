@@ -11,6 +11,7 @@ class BoolifyContentAllowFoo < ActiveRecord::Migration
                              [:rename_column, Bare35Content, :allow_comments, :old_ac],
                              [:add_column,    Bare35Content, :allow_comments, :boolean]) do |c|
       unless $schema_generator
+        Bare35Content.reset_column_information
         c.allow_pings    = !c.old_ap.to_i.zero? ? true : false unless c.old_ap.nil?
         c.allow_comments = !c.old_ac.to_i.zero? ? true : false unless c.old_ac.nil?
       end
@@ -26,6 +27,7 @@ class BoolifyContentAllowFoo < ActiveRecord::Migration
                              [:rename_column, Bare35Content, :allow_comments, :old_ac],
                              [:add_column,    Bare35Content, :allow_comments, :integer]) do |c|
       unless $schema_generator
+        Bare35Content.reset_column_information
         c.allow_pings    = c.old_ap ? 1 : 0 unless c.old_ap.nil?
         c.allow_comments = c.old_ac ? 1 : 0 unless c.old_ac.nil?
       end
