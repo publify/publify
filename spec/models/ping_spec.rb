@@ -73,7 +73,7 @@ describe "An article links to another article, which contains a trackback URL" d
   def referenced_url;  'http://anotherblog.org/a-post'; end
   def trackback_url;  "http://anotherblog.org/a-post/trackback"; end
   before(:each) do
-    FactoryGirl.create(:blog)
+    build_stubbed(:blog)
   end
 
   it 'Trackback URL is detected and pinged' do

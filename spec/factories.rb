@@ -170,7 +170,9 @@ FactoryGirl.define do
 
     after :stub do |blog|
       Blog.stub(:default) { blog }
-      build_stubbed blog.text_filter
+      [blog.text_filter, blog.comment_text_filter].uniq.each do |filter|
+        build_stubbed filter
+      end
     end
   end
 
