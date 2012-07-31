@@ -353,6 +353,7 @@ describe BackendController do
                                                  'categoryId' => cat.id, 'isPrimary' => 1)] ]
 
       result = invoke_layered :mt, :setPostCategories, *args
+      article.reload
       assert_equal [cat], article.categories
 
       soft_cat = FactoryGirl.create(:category, :name => 'soft_cat')
