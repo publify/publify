@@ -2,8 +2,6 @@
 require 'spec_helper'
 
 describe ArticlesController do
-  render_views
-
   before(:each) do
     #TODO Need to reduce user, but allow to remove user fixture...
     FactoryGirl.create(:user,
@@ -18,7 +16,7 @@ describe ArticlesController do
             :notify_on_new_articles => false,
             :notify_on_comments => false,
             :state => 'active')
-    FactoryGirl.create(:blog, :custom_tracking_field => '<script src="foo.js" type="text/javascript"></script>') 
+    FactoryGirl.create(:blog, :custom_tracking_field => '<script src="foo.js" type="text/javascript"></script>')
   end
 
 
@@ -46,24 +44,27 @@ describe ArticlesController do
       assigns[:articles].should_not be_empty
     end
 
-    it 'should have good link feed rss' do
-      response.should have_selector('head>link[href="http://test.host/articles.rss"]')
-    end
+    context "with the view rendered" do
+      render_views
+      it 'should have good link feed rss' do
+        response.should have_selector('head>link[href="http://test.host/articles.rss"]')
+      end
 
-    it 'should have good link feed atom' do
-      response.should have_selector('head>link[href="http://test.host/articles.atom"]')
-    end
+      it 'should have good link feed atom' do
+        response.should have_selector('head>link[href="http://test.host/articles.atom"]')
+      end
 
-    it 'should have a canonical url' do
-      response.should have_selector('head>link[href="http://test.host/"]')
-    end
-    
-    it 'should have googd title' do 
-      response.should have_selector('title', :content => "test blog | test subtitles")
-    end
-    
-    it 'should have a custom tracking field' do      
-      response.should have_selector('head>script[src="foo.js"]')
+      it 'should have a canonical url' do
+        response.should have_selector('head>link[href="http://test.host/"]')
+      end
+
+      it 'should have googd title' do
+        response.should have_selector('title', :content => "test blog | test subtitles")
+      end
+
+      it 'should have a custom tracking field' do
+        response.should have_selector('head>script[src="foo.js"]')
+      end
     end
   end
 
@@ -89,30 +90,33 @@ describe ArticlesController do
         assigns[:articles].should_not be_nil
       end
 
-      it 'should have good feed rss link' do
-        response.should have_selector('head>link[href="http://test.host/search/a.rss"]')
-      end
-
-      it 'should have good feed atom link' do
-        response.should have_selector('head>link[href="http://test.host/search/a.atom"]')
-      end
-
-      it 'should have a canonical url' do
-        response.should have_selector('head>link[href="http://test.host/search/a"]')
-      end
-      
-      it 'should have a good title' do
-        response.should have_selector('title', :content => "Results for a | test blog")
-      end
-
-      it 'should have content markdown interpret and without html tag' do
-        response.should have_selector('div') do |div|
-          div.should contain(/in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
+      context "with the view rendered" do
+        render_views
+        it 'should have good feed rss link' do
+          response.should have_selector('head>link[href="http://test.host/search/a.rss"]')
         end
-      end
 
-      it 'should have a custom tracking field' do      
-        response.should have_selector('head>script[src="foo.js"]')
+        it 'should have good feed atom link' do
+          response.should have_selector('head>link[href="http://test.host/search/a.atom"]')
+        end
+
+        it 'should have a canonical url' do
+          response.should have_selector('head>link[href="http://test.host/search/a"]')
+        end
+
+        it 'should have a good title' do
+          response.should have_selector('title', :content => "Results for a | test blog")
+        end
+
+        it 'should have content markdown interpret and without html tag' do
+          response.should have_selector('div') do |div|
+            div.should contain(/in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
+          end
+        end
+
+        it 'should have a custom tracking field' do
+          response.should have_selector('head>script[src="foo.js"]')
+        end
       end
     end
 
@@ -121,7 +125,7 @@ describe ArticlesController do
       response.should be_success
       response.should render_template('index_rss_feed')
       @layouts.keys.compact.should be_empty
-      response.should_not have_selector('head>script[src="foo.js"]')    
+      response.should_not have_selector('head>script[src="foo.js"]')
     end
 
     it 'should render feed atom by search' do
@@ -129,7 +133,7 @@ describe ArticlesController do
       response.should be_success
       response.should render_template('index_atom_feed')
       @layouts.keys.compact.should be_empty
-      response.should_not have_selector('head>script[src="foo.js"]')      
+      response.should_not have_selector('head>script[src="foo.js"]')
     end
 
     it 'search with empty result' do
@@ -137,7 +141,7 @@ describe ArticlesController do
       response.should render_template('articles/error')
       assigns[:articles].should be_empty
     end
-    
+
   end
 
   describe '#livesearch action' do
@@ -164,8 +168,11 @@ describe ArticlesController do
         response.should render_template('live_search')
       end
 
-      it 'should not have h3 tag' do
-        response.should have_selector("h3")
+      context "with the view rendered" do
+        render_views
+        it 'should not have h3 tag' do
+          response.should have_selector("h3")
+        end
       end
 
       it "should assign @search the search string" do
@@ -176,16 +183,19 @@ describe ArticlesController do
   end
 
 
-  it 'archives' do
-    3.times { FactoryGirl.create(:article) }
-    get 'archives'
-    response.should render_template(:archives)
-    assigns[:articles].should_not be_nil
-    assigns[:articles].should_not be_empty
+  describe '#archives' do
+    render_views
+    it "works" do
+      3.times { FactoryGirl.create(:article) }
+      get 'archives'
+      response.should render_template(:archives)
+      assigns[:articles].should_not be_nil
+      assigns[:articles].should_not be_empty
 
-    response.should have_selector('head>link[href="http://test.host/archives"]')
-    response.should have_selector('title', :content => "Archives for test blog")
-    response.should have_selector('head>script[src="foo.js"]')
+      response.should have_selector('head>link[href="http://test.host/archives"]')
+      response.should have_selector('title', :content => "Archives for test blog")
+      response.should have_selector('head>script[src="foo.js"]')
+    end
   end
 
   describe 'index for a month' do
@@ -204,16 +214,19 @@ describe ArticlesController do
       assigns[:articles].should_not be_empty
     end
 
-    it 'should have a canonical url' do
-      response.should have_selector('head>link[href="http://test.host/2004/4/"]')
-    end
-    
-    it 'should have a good title' do
-      response.should have_selector('title', :content => "Archives for test blog")
-    end
-    
-    it 'should have a custom tracking field' do      
-      response.should have_selector('head>script[src="foo.js"]')
+    context "with the view rendered" do
+      render_views
+      it 'should have a canonical url' do
+        response.should have_selector('head>link[href="http://test.host/2004/4/"]')
+      end
+
+      it 'should have a good title' do
+        response.should have_selector('title', :content => "Archives for test blog")
+      end
+
+      it 'should have a custom tracking field' do
+        response.should have_selector('head>script[src="foo.js"]')
+      end
     end
   end
 
@@ -294,7 +307,7 @@ end
 
 describe ArticlesController, "the index" do
   before(:each) do
-    FactoryGirl.create(:blog) 
+    FactoryGirl.create(:blog)
     FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
   end
 
