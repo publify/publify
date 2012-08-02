@@ -156,38 +156,19 @@ module ApplicationHelper
   end
 
   def page_header
-    page_header_includes = content_array.collect { |c| c.whiteboard }.collect do |w|
+    render 'shared/page_header'
+  end
+
+  def page_header_includes
+    content_array.collect { |c| c.whiteboard }.collect do |w|
       w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
         v = v.chomp
-        # trim the same number of spaces from the beginning of each line
-        # this way plugins can indent nicely without making ugly source output
-        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
-        v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
+      # trim the same number of spaces from the beginning of each line
+      # this way plugins can indent nicely without making ugly source output
+      spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+      v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
       end
-    end.flatten.uniq
-    (
-    <<-HTML
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.blank? }
-  #{ meta_tag 'description', @description unless @description.blank? }
-  #{ meta_tag 'robots', 'noindex, follow' unless @noindex.nil? }
-  #{ meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?}
-  <meta name="generator" content="Typo #{TYPO_VERSION}" />
-  #{ show_meta_keyword }
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ feed_atom }" />
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ feed_rss }" />
-  #{ javascript_include_tag 'cookies', 'prototype', 'effects', 'builder', 'typo', :cache => true }
-  #{ stylesheet_link_tag 'coderay', 'user-styles', :cache => true }
-  #{ javascript_include_lang }
-  #{ javascript_tag "window._token = '#{form_authenticity_token}'"}
-  #{ page_header_includes.join("\n") }
-  #{ use_canonical  if this_blog.use_canonical_url }
-  <script type="text/javascript">#{ @content_for_script }</script>
-  #{ this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? }
-  #{ google_analytics }
-    HTML
-    ).chomp
+    end.flatten.uniq.join("\n")
   end
 
   def feed_atom
