@@ -96,37 +96,6 @@ class AddsContentSettings < ActiveRecord::Migration
   end
 
   def self.down
-    # FIXME: The code below does not reverse this migration!
     raise ActiveRecord::IrreversibleMigration
-    begin
-      create_settings
-      unless $schema_generator
-        BareSetting.transaction do
-          BareBlog.find(:all).each do |blog|
-            blog.settings ||= { }
-            BareSetting.with_scope(:create => { :blog_id => blog.id }) do
-              BareBlog.fields.each do |key, spec|
-                next unless blog.settings.has_key?(key.to_s)
-                BareSetting.create!(:name => key.to_s,
-                                    :value => spec.stringify_value(blog.settings[key.to_s]))
-              end
-            end
-          end
-        end
-      end
-      remove_column :blogs, :settings rescue nil
-    rescue Exception => e
-      drop_table :settings rescue nil
-      raise e
-    end
-  end
-
-  def self.create_settings
-    create_table :settings do |t|
-      t.column :name,     :string, :limit => 255
-      t.column :value,    :string, :limit => 255
-      t.column :position, :integer
-      t.column :blog_id,  :integer
-    end
   end
 end
