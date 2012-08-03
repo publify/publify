@@ -3,20 +3,8 @@ require 'spec_helper'
 
 describe ArticlesController do
   before(:each) do
-    #TODO Need to reduce user, but allow to remove user fixture...
-    FactoryGirl.create(:user,
-            :login => 'henri',
-            :password => 'whatever',
-            :name => 'Henri',
-            :email => 'henri@example.com',
-            :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
-            :text_filter => FactoryGirl.create(:markdown),
-            :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN),
-            :notify_via_email => false,
-            :notify_on_new_articles => false,
-            :notify_on_comments => false,
-            :state => 'active')
-    FactoryGirl.create(:blog)
+    build_stubbed :blog
+    create :user
   end
 
 
