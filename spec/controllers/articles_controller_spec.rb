@@ -16,7 +16,7 @@ describe ArticlesController do
             :notify_on_new_articles => false,
             :notify_on_comments => false,
             :state => 'active')
-    FactoryGirl.create(:blog, :custom_tracking_field => '<script src="foo.js" type="text/javascript"></script>')
+    FactoryGirl.create(:blog)
   end
 
 
@@ -60,10 +60,6 @@ describe ArticlesController do
 
       it 'should have googd title' do
         response.should have_selector('title', :content => "test blog | test subtitles")
-      end
-
-      it 'should have a custom tracking field' do
-        response.should have_selector('head>script[src="foo.js"]')
       end
     end
   end
@@ -113,10 +109,6 @@ describe ArticlesController do
             div.should contain(/in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
           end
         end
-
-        it 'should have a custom tracking field' do
-          response.should have_selector('head>script[src="foo.js"]')
-        end
       end
     end
 
@@ -125,7 +117,6 @@ describe ArticlesController do
       response.should be_success
       response.should render_template('index_rss_feed')
       @layouts.keys.compact.should be_empty
-      response.should_not have_selector('head>script[src="foo.js"]')
     end
 
     it 'should render feed atom by search' do
@@ -133,7 +124,6 @@ describe ArticlesController do
       response.should be_success
       response.should render_template('index_atom_feed')
       @layouts.keys.compact.should be_empty
-      response.should_not have_selector('head>script[src="foo.js"]')
     end
 
     it 'search with empty result' do
@@ -194,7 +184,6 @@ describe ArticlesController do
 
       response.should have_selector('head>link[href="http://test.host/archives"]')
       response.should have_selector('title', :content => "Archives for test blog")
-      response.should have_selector('head>script[src="foo.js"]')
     end
   end
 
@@ -222,10 +211,6 @@ describe ArticlesController do
 
       it 'should have a good title' do
         response.should have_selector('title', :content => "Archives for test blog")
-      end
-
-      it 'should have a custom tracking field' do
-        response.should have_selector('head>script[src="foo.js"]')
       end
     end
   end
