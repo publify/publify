@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
-  before(:each) { @blog = FactoryGirl.create(:blog) }
+  before(:each) { @blog = build_stubbed(:blog) }
   describe '#render_flash' do
     it 'should render empty string if no flash' do
       render_flash.should == ''
@@ -23,14 +23,14 @@ describe ApplicationHelper do
   describe "#link_to_permalink" do
     describe "for a simple ascii-only permalink" do
       subject { link_to_permalink(
-        FactoryGirl.create(:article, published_at: Date.new(2004, 6, 1).to_datetime),
+        build_stubbed(:article, published_at: Date.new(2004, 6, 1).to_datetime),
         "title") }
       it { subject.html_safe?.should be_true }
       it { should == '<a href="http://myblog.net/2004/06/01/a-big-article">title</a>' }
     end
 
     describe "for a multibyte permalink" do
-      subject { FactoryGirl.create(:article, :permalink => 'ルビー') }
+      subject { build_stubbed(:article, :permalink => 'ルビー') }
       it "escapes the multibyte characters" do
         link_to_permalink(subject, "title").should =~ /%E3%83%AB%E3%83%93%E3%83%BC/
       end
@@ -39,7 +39,7 @@ describe ApplicationHelper do
 
   describe '#display_date' do
     before(:each) {
-      @article = FactoryGirl.create(:article, :body => "hello world and im herer")
+      @article = build_stubbed(:article, :body => "hello world and im herer")
     }
 
     ['%d/%m/%y', '%m/%m/%y', '%d %b %Y', '%b %d %Y'].each do |spec|
