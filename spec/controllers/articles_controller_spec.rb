@@ -207,7 +207,6 @@ end
 
 describe ArticlesController, "nosettings" do
   before(:each) do
-    Blog.delete_all
     @blog = Blog.new.save
   end
 
@@ -220,11 +219,7 @@ end
 
 describe ArticlesController, "nousers" do
   before(:each) do
-    FactoryGirl.create(:blog)
-    User.stub!(:count).and_return(0)
-    @user = mock("user")
-    @user.stub!(:reload).and_return(@user)
-    User.stub!(:new).and_return(@user)
+    build_stubbed(:blog)
   end
 
   it 'redirects to signup' do
@@ -235,7 +230,7 @@ end
 
 describe ArticlesController, "feeds" do
   before(:each) do
-    FactoryGirl.create(:blog)
+    build_stubbed(:blog)
     @article1 = FactoryGirl.create(:article,
                                :created_at => Time.now - 1.day)
     FactoryGirl.create(:trackback, :article => @article1, :published_at => Time.now - 1.day,
@@ -280,7 +275,7 @@ end
 
 describe ArticlesController, "the index" do
   before(:each) do
-    FactoryGirl.create(:blog)
+    build_stubbed(:blog)
     FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
   end
 
@@ -293,7 +288,7 @@ end
 
 describe ArticlesController, "previewing" do
   render_views
-  before(:each) { @blog = FactoryGirl.create(:blog) }
+  before(:each) { @blog = build_stubbed(:blog) }
 
   describe 'with non logged user' do
     before :each do
@@ -340,42 +335,18 @@ describe ArticlesController, "redirecting" do
 
   describe "with explicit redirects" do
     it 'should redirect from known URL' do
-      #TODO Need to reduce user, but allow to remove user fixture...
-      FactoryGirl.create(:user,
-              :login => 'henri',
-              :password => 'whatever',
-              :name => 'Henri',
-              :email => 'henri@example.com',
-              :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
-              :text_filter => FactoryGirl.create(:markdown),
-              :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN),
-              :notify_via_email => false,
-              :notify_on_new_articles => false,
-              :notify_on_comments => false,
-              :state => 'active')
-      FactoryGirl.create(:blog)
-      FactoryGirl.create(:redirect)
+      build_stubbed(:blog)
+      create(:user)
+      create(:redirect)
       get :redirect, :from => "foo/bar"
       assert_response 301
       response.should redirect_to("http://test.host/someplace/else")
     end
 
     it 'should not redirect from unknown URL' do
-      #TODO Need to reduce user, but allow to remove user fixture...
-      FactoryGirl.create(:user,
-              :login => 'henri',
-              :password => 'whatever',
-              :name => 'Henri',
-              :email => 'henri@example.com',
-              :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
-              :text_filter => FactoryGirl.create(:markdown),
-              :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN),
-              :notify_via_email => false,
-              :notify_on_new_articles => false,
-              :notify_on_comments => false,
-              :state => 'active')
-      FactoryGirl.create(:blog)
-      FactoryGirl.create(:redirect)
+      build_stubbed(:blog)
+      create(:user)
+      create(:redirect)
       get :redirect, :from => "something/that/isnt/there"
       assert_response 404
     end
@@ -387,23 +358,8 @@ describe ArticlesController, "redirecting" do
     # redirects?
     describe 'and non-empty relative_url_root' do
       before do
-        b = FactoryGirl.create(:blog, :base_url => "http://test.host/blog")
-        #TODO Need to reduce user, but allow to remove user fixture...
-        FactoryGirl.create(:user,
-                :login => 'henri',
-                :password => 'whatever',
-                :name => 'Henri',
-                :email => 'henri@example.com',
-                :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
-                :text_filter => FactoryGirl.create(:markdown),
-                :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN),
-                :notify_via_email => false,
-                :notify_on_new_articles => false,
-                :notify_on_comments => false,
-                :state => 'active')
-
-        # XXX: The following has no effect anymore.
-        # request.env["SCRIPT_NAME"] = "/blog"
+        build_stubbed(:blog, :base_url => "http://test.host/blog")
+        create(:user)
       end
 
       it 'should redirect' do
@@ -430,7 +386,7 @@ describe ArticlesController, "redirecting" do
   end
 
   it 'should get good article with utf8 slug' do
-    FactoryGirl.create(:blog)
+    build_stubbed(:blog)
     utf8article = FactoryGirl.create(:utf8article, :permalink => 'ルビー',
                                  :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
@@ -439,7 +395,7 @@ describe ArticlesController, "redirecting" do
 
   # NOTE: This is needed because Rails over-unescapes glob parameters.
   it 'should get good article with pre-escaped utf8 slug using unescaped slug' do
-    FactoryGirl.create(:blog)
+    build_stubbed(:blog)
     utf8article = FactoryGirl.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC',
                                  :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
@@ -448,7 +404,7 @@ describe ArticlesController, "redirecting" do
 
   describe 'accessing old-style URL with "articles" as the first part' do
     it 'should redirect to article' do
-      FactoryGirl.create(:blog)
+      build_stubbed(:blog)
       article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
                         :published_at => '2004-04-01 02:00:00',
                         :updated_at => '2004-04-01 02:00:00',
@@ -459,7 +415,7 @@ describe ArticlesController, "redirecting" do
     end
 
     it 'should redirect to article with url_root' do
-      b = FactoryGirl.create(:blog, :base_url => "http://test.host/blog")
+      b = build_stubbed(:blog, :base_url => "http://test.host/blog")
       article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
                         :published_at => '2004-04-01 02:00:00',
                         :updated_at => '2004-04-01 02:00:00',
@@ -470,7 +426,7 @@ describe ArticlesController, "redirecting" do
     end
 
     it 'should redirect to article with articles in url_root' do
-      b = FactoryGirl.create(:blog, :base_url => "http://test.host/aaa/articles/bbb")
+      b = build_stubbed(:blog, :base_url => "http://test.host/aaa/articles/bbb")
       article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
                         :published_at => '2004-04-01 02:00:00',
                         :updated_at => '2004-04-01 02:00:00',
@@ -484,7 +440,7 @@ describe ArticlesController, "redirecting" do
   describe 'with permalink_format like %title%.html' do
 
     before(:each) do
-      b = FactoryGirl.create(:blog, :permalink_format => '/%title%.html')
+      b = build_stubbed(:blog, :permalink_format => '/%title%.html')
 
       @article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
                          :published_at => '2004-04-01 02:00:00',
@@ -590,7 +546,7 @@ describe ArticlesController, "redirecting" do
 
   describe "with a format containing a fixed component" do
     before(:each) do
-      b = FactoryGirl.create(:blog, :permalink_format => '/foo/%title%')
+      b = build_stubbed(:blog, :permalink_format => '/foo/%title%')
 
       @article = FactoryGirl.create(:article)
     end
@@ -608,7 +564,7 @@ describe ArticlesController, "redirecting" do
 
   describe "with a custom format with several fixed parts and several variables" do
     before(:each) do
-      b = FactoryGirl.create(:blog, :permalink_format => '/foo/bar/%year%/%month%/%title%')
+      b = build_stubbed(:blog, :permalink_format => '/foo/bar/%year%/%month%/%title%')
 
       @article = FactoryGirl.create(:article)
     end
@@ -643,7 +599,7 @@ describe ArticlesController, "password protected" do
   render_views
 
   before do
-    b = FactoryGirl.create(:blog, :permalink_format => '/%title%.html')
+    b = build_stubbed(:blog, :permalink_format => '/%title%.html')
     @article = FactoryGirl.create(:article, :password => 'password')
   end
 
@@ -667,26 +623,12 @@ end
 
 describe ArticlesController, "assigned keywords" do
   before do
-    @blog = FactoryGirl.create(:blog)
-    #TODO Need to reduce user, but allow to remove user fixture...
-    FactoryGirl.create(:user,
-            :login => 'henri',
-            :password => 'whatever',
-            :name => 'Henri',
-            :email => 'henri@example.com',
-            :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
-            :text_filter => FactoryGirl.create(:markdown),
-            :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN),
-            :notify_via_email => false,
-            :notify_on_new_articles => false,
-            :notify_on_comments => false,
-            :state => 'active')
-
+    @blog = build_stubbed(:blog)
+    create :user
   end
 
   it 'article with categories should have meta keywords' do
     @blog.permalink_format = '/%title%.html'
-    @blog.save
     category = FactoryGirl.create(:category)
     article = FactoryGirl.create(:article, :categories => [category])
     get :redirect, :from => "#{article.permalink}.html"
@@ -695,7 +637,6 @@ describe ArticlesController, "assigned keywords" do
 
   it 'article with neither categories nor tags should not have meta keywords' do
     @blog.permalink_format = '/%title%.html'
-    @blog.save
     article = FactoryGirl.create(:article)
     get :redirect, :from => "#{article.permalink}.html"
     assigns(:keywords).should == ""
@@ -708,7 +649,6 @@ describe ArticlesController, "assigned keywords" do
 
   it 'index without option but with blog keywords should have meta keywords' do
     @blog.meta_keywords = "typo, is, amazing"
-    @blog.save
     get 'index'
     assigns(:keywords).should == "typo, is, amazing"
   end
@@ -716,7 +656,7 @@ end
 
 describe ArticlesController, "preview page" do
   render_views
-  before(:each) { @blog = FactoryGirl.create(:blog) }
+  before(:each) { @blog = build_stubbed(:blog) }
 
   describe 'with non logged user' do
     before :each do
@@ -731,9 +671,7 @@ describe ArticlesController, "preview page" do
 
   describe 'with logged user' do
     before :each do
-      #TODO Delete after removing fixtures
-      Profile.delete_all
-      henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+      henri = create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
       @request.session = { :user => henri.id }
       @page = FactoryGirl.create(:page)
     end
