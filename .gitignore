@@ -3,7 +3,6 @@ config/mail.yml
 *.log
 *~
 db/*.sqlite*
-db/schema.rb
 .*.swp
 .*.swo
 .DS_Store
