@@ -16,7 +16,9 @@ describe TagsController, "/index" do
     specify { response.should be_success }
     specify { response.should render_template('articles/groupings') }
     specify { assigns(:groupings).should_not be_empty }
-    specify { response.body.should have_selector('ul.tags[id="taglist"]') }
+    it "has a list of tags" do
+      response.body.should have_selector('ul.tags[id="taglist"]')
+    end
   end
 
   describe "if :index template exists" do
