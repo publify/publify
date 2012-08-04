@@ -11,18 +11,6 @@ Blog.create
 category = Category.create(name: 'General', position: 1,
                            permalink: 'general')
 
-# FIXME: Move creation of first article to where the first user is
-# created
-article = Article.create(title: 'Hello World!',
-                         author: 'Mr Typo',
-                         body: 'Welcome to Typo. This is your first article. Edit or delete it, then start blogging!',
-                         allow_comments: 1,
-                         allow_pings: 1,
-                         published: 1,
-                         permalink: 'hello-world',
-                         categories: [category],
-                         user_id: 1)
-
 Page.create(name: "about",
             title: "about",
             user_id: 1,
