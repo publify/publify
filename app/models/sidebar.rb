@@ -227,7 +227,7 @@ class Sidebar < ActiveRecord::Base
 
 
   def publish
-    self.active_position=self.staged_position
+    self.active_position = self.staged_position
   end
 
   def config
