@@ -151,14 +151,23 @@ class Sidebar < ActiveRecord::Base
     end
 
     def setting(key, default=nil, options = { })
-      return if instance_methods.include?(key.to_s)
-      fields << Field.build(key.to_s, default, options)
-      fieldmap.update(key.to_s => fields.last)
+      key = key.to_s
+
+      return if instance_methods.include?(key)
+
+      fields << Field.build(key, default, options)
+      fieldmap.update(key => fields.last)
+
       self.send(:define_method, key) do
-        self.config[key.to_s]
+        if config.has_key? key
+          config[key]
+        else
+          default
+        end
       end
+
       self.send(:define_method, "#{key}=") do |newval|
-        self.config[key.to_s] = newval
+        config[key] = newval
       end
     end
 
