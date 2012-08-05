@@ -22,21 +22,7 @@ class Resource < ActiveRecord::Base
   end
 
   def upload file
-    config = File.join(Rails.root, "config", "storage.yml")
-    if File.exists? config
-      @conf = YAML.load_file(config)
-      provider = @conf['provider']
-    else
-      provider = "Local"
-    end
-    
-    case provider
-    when "AWS"
-      storage = setup_aws_storage
-    else
-      storage = setup_local_storage
-    end
-    
+    storage = setup_storage
     directory = storage.directories.get('files')
     directory = storage.directories.create(:key => 'files') unless directory
 
@@ -50,9 +36,8 @@ class Resource < ActiveRecord::Base
     create_thumbnail
     update
     self
-    
   end
-
+  
   def create_thumbnail
     blog = Blog.default
     return unless self.mime =~ /image/
@@ -88,6 +73,24 @@ class Resource < ActiveRecord::Base
   end
   
   private
+  def setup_storage
+    config = File.join(Rails.root, "config", "storage.yml")
+    if File.exists? config
+      @conf = YAML.load_file(config)
+      provider = @conf['provider']
+    else
+      provider = "Local"
+    end
+    
+    case provider
+    when "AWS"
+      return setup_aws_storage
+    else
+      return setup_local_storage
+    end
+    
+  end
+  
   def setup_local_storage
     # create the public/files dir if it doesn't exist
     FileUtils.mkdir(fullpath('')) unless File.directory?(fullpath(''))
@@ -96,7 +99,6 @@ class Resource < ActiveRecord::Base
       :local_root => File.join(Rails.root, "public"),
       :provider   => 'Local'
     })
-    
   end
   
   def setup_aws_storage 
@@ -105,7 +107,6 @@ class Resource < ActiveRecord::Base
       :aws_access_key_id => @conf['aws_access_key_id'],
       :aws_secret_access_key => @conf['aws_secret_access_key']
     })
-    
   end
   
 end
