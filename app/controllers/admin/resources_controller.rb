@@ -1,28 +1,23 @@
+require 'fog'
+
 class Admin::ResourcesController < Admin::BaseController
   upload_status_for :file_upload, :status => :upload_status
 
   cache_sweeper :blog_sweeper
 
   def upload
-    begin
-      if request.post?
-        file = params[:upload][:filename]
-        unless file.content_type
-          mime = 'text/plain'
-        else
-          mime = file.content_type.chomp
-        end
-        @up = Resource.create(:filename => file.original_filename, :mime => mime, :created_at => Time.now)
-
-        @up.write_to_disk(file)
-
-        @message = _('File uploaded: ')+ file.size.to_s
-        finish_upload_status "'#{@message}'"
+    if request.post?
+      file = params[:upload][:filename]
+      unless file.content_type
+        mime = 'text/plain'
+      else
+        mime = file.content_type.chomp
       end
-    rescue
-      @message = "'" + _('Unable to upload') + " #{file.original_filename}'"
-      @up.destroy unless @up.nil?
-      raise
+      @up = Resource.create(:filename => file.original_filename, :mime => mime, :created_at => Time.now)
+      @up.upload file
+
+      @message = _('File uploaded: ')+ file.size.to_s
+      finish_upload_status "'#{@message}'"
     end
   end
 

@@ -78,7 +78,7 @@ class Admin::ContentController < Admin::BaseController
   def attachment_save(attachment)
     begin
       Resource.create(:filename => attachment.original_filename, :mime => attachment.content_type.chomp,
-                      :created_at => Time.now).write_to_disk(attachment)
+                      :created_at => Time.now).upload(attachment)
     rescue => e
       logger.info(e.message)
       nil

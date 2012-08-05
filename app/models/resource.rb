@@ -20,32 +20,27 @@ class Resource < ActiveRecord::Base
     "#{::Rails.root.to_s}/public/files/#{file.nil? ? filename : file}"
   end
 
-  def write_to_disk(up)
-    begin
-      # create the public/files dir if it doesn't exist
-      FileUtils.mkdir(fullpath('')) unless File.directory?(fullpath(''))
-      if up.kind_of?(Tempfile) and !up.local_path.nil? and File.exist?(up.local_path)
-        File.chmod(0600, up.local_path)
-        FileUtils.copy(up.local_path, fullpath)
-      elsif up.kind_of?(ActionDispatch::Http::UploadedFile)
-        File.chmod(0600, up.path)
-        FileUtils.copy(up.path, fullpath)
-      else
-        bytes = up
-        if up.kind_of?(StringIO)
-          up.rewind
-          bytes = up.read
-        end
-        File.open(fullpath, "wb") { |f| f.write(bytes) }
-      end
-      File.chmod(0644, fullpath)
-      self.size = File.stat(fullpath).size rescue 0
-      create_thumbnail
-      update
-      self
-    rescue
-      raise
-    end
+  def upload file
+    # create the public/files dir if it doesn't exist
+    FileUtils.mkdir(fullpath('')) unless File.directory?(fullpath(''))
+    
+    storage = Fog::Storage.new({
+      :local_root => File.join(Rails.root, "public"),
+      :provider   => 'Local'
+    })
+    
+    directory = storage.directories.get('files')
+    directory = storage.directories.create(:key => 'files') unless directory
+
+    file = directory.files.create(
+      :body => file,
+      :key  => file.original_filename
+    )
+    self.size = File.stat(fullpath).size rescue 0
+    create_thumbnail
+    update
+    self
+    
   end
 
   def create_thumbnail
