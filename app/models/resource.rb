@@ -1,5 +1,6 @@
 require 'tempfile'
 require 'mini_magick'
+require 'yaml'
 
 class Resource < ActiveRecord::Base
   validates_uniqueness_of :filename
@@ -21,21 +22,30 @@ class Resource < ActiveRecord::Base
   end
 
   def upload file
-    # create the public/files dir if it doesn't exist
-    FileUtils.mkdir(fullpath('')) unless File.directory?(fullpath(''))
+    config = File.join(Rails.root, "config", "storage.yml")
+    if File.exists? config
+      @conf = YAML.load_file(config)
+      provider = @conf['provider']
+    else
+      provider = "Local"
+    end
     
-    storage = Fog::Storage.new({
-      :local_root => File.join(Rails.root, "public"),
-      :provider   => 'Local'
-    })
+    case provider
+    when "AWS"
+      storage = setup_aws_storage
+    else
+      storage = setup_local_storage
+    end
     
     directory = storage.directories.get('files')
     directory = storage.directories.create(:key => 'files') unless directory
 
     file = directory.files.create(
       :body => file,
-      :key  => file.original_filename
+      :key  => file.original_filename,
+      :public => true
     )
+    
     self.size = File.stat(fullpath).size rescue 0
     create_thumbnail
     update
@@ -76,4 +86,26 @@ class Resource < ActiveRecord::Base
   def delete_filename_on_disk
     File.unlink(fullpath(filename)) if File.exist?(fullpath(filename))
   end
+  
+  private
+  def setup_local_storage
+    # create the public/files dir if it doesn't exist
+    FileUtils.mkdir(fullpath('')) unless File.directory?(fullpath(''))
+    
+    Fog::Storage.new({
+      :local_root => File.join(Rails.root, "public"),
+      :provider   => 'Local'
+    })
+    
+  end
+  
+  def setup_aws_storage 
+    Fog::Storage.new({
+      :provider   => 'AWS',
+      :aws_access_key_id => @conf['aws_access_key_id'],
+      :aws_secret_access_key => @conf['aws_secret_access_key']
+    })
+    
+  end
+  
 end
