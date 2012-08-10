@@ -13,12 +13,12 @@
   </style>
 </head>
 <body>
-  <div class='topbar'>
-    <div class='topbar-inner'>
+  <div class='navbar navbar-fixed-top'>
+    <div class='navbar-inner'>
       <div class='container-fluid'>
         <%= link_to this_blog.blog_name, this_blog.base_url, { :class => 'brand' } %>
-        <ul class="nav secondary-nav">
-          <li class="dropdown" onmouseover='$("user_menu").style.display = "block"' onmouseout='$("user_menu").style.display = "none"'>
+        <ul class='nav push-right'>
+          <li class='dropdown' onmouseover='$("user_menu").style.display = "block"' onmouseout='$("user_menu").style.display = "none"'>
             <a class="dropdown-toggle" href="#"><%= _("Logged in as %s", current_user.nickname)%></a>
             <ul class="dropdown-menu" id="user_menu" style='display: none'>
               <li><%= link_to(_("New Article"), {:controller => 'content', :action => 'new'}) %></li>
@@ -26,8 +26,7 @@
               <li><%= link_to _("%s &raquo;", "Log out").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
             </ul>
           </li>
-        </ul>
-        <ul class="nav secondary-nav">
+          <li class='divider-vertical'></li>
           <li class="dropdown" onmouseover='$("help_menu").style.display = "block"' onmouseout='$("help_menu").style.display = "none"'>
             <a class="dropdown-toggle" href="#"><%= _("Help")%></a>
             <ul class="dropdown-menu" id="help_menu" style="display: none;">
@@ -38,32 +37,34 @@
             </ul>
           </li>
         </ul>
-				
       </div>
     </div>
   </div>
   <div class='container-fluid'>
-    <div class='sidebar'>
-      <div class='well'>
-        <% if controller.controller_name == 'dashboard' %>
-        <%= content_tag :h5, _('Dashboard')  %>
-        <% else %>
-        <%= content_tag :h5, (link_to _('Dashboard'), :controller => 'admin/dashboard')  %>
-        <% end %>
-        <% for pm in current_user.project_modules %>
-        <%= content_tag :h5, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
-        <ul id='subtabs'>
-          <%= subtabs_for(pm.name.to_sym)%>
-        </ul>
-        <% end %>
+    <div class='row-fluid'>
+      <div class='span2'>
+        <div class='well'>
+          <% if controller.controller_name == 'dashboard' %>
+          <%= content_tag :h5, _('Dashboard')  %>
+          <% else %>
+          <%= content_tag :h5, (link_to _('Dashboard'), :controller => 'admin/dashboard')  %>
+          <% end %>
+          <% for pm in current_user.project_modules %>
+          <%= content_tag :h5, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
+          <ul id='subtabs'>
+            <%= subtabs_for(pm.name.to_sym)%>
+          </ul>
+          <% end %>
+        </div>
       </div>
-    </div>
-    <div class='content'>
-      <div class=''>
-        <%= render_the_flash %>
-        <%= show_page_heading %>
-        <%= yield  %>
+      <div class='span10'>
+        <div class=''>
+          <%= render_the_flash %>
+          <%= show_page_heading %>
+          <%= yield  %>
+        </div>
       </div>
+      
     </div>
   </div>
 
