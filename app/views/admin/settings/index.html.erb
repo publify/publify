@@ -2,145 +2,125 @@
 
 <%= form_tag :action => 'update' do %>
 
-<fieldset>
+<fieldset class='form-horizontal'>
   <legend><%= _("Your blog")%></legend>
-  <div class='clearfix'>
-    <label for="setting_blog_name"><%= _("Blog name")%></label>
-    <div class='input'>
-      <%= text_field(:setting, :blog_name, {:class => 'span8', :size => this_blog.blog_name.length })%>
+    <div class='control-group'>
+      <label class='control-label' for="setting_blog_name"><%= _("Blog name")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :blog_name, {:class => 'span6', :size => this_blog.blog_name.length })%>
+      </div>
     </div>	
-  </div>
-  <div class='clearfix'>
-    <label for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>
-    <div class='input'>
-      <%= text_field(:setting, :blog_subtitle, {:class => 'span8', :size => this_blog.blog_subtitle.length})%>
-    </div>
-  </div>
-    <div class='clearfix'>
-      <label for="base_url"><%= _("Blog URL")%></label>
-      <div class='input'>
-        <%= text_field(:setting, :base_url, {:size => this_blog.base_url.length, :class => 'span8'})%>
+    <div class='control-group'>
+      <label class='control-label' for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :blog_subtitle, {:class => 'span6', :size => this_blog.blog_subtitle.length})%>
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="setting_lang"><%= _("Language")%></label>
-      <div class='input'>
+    <div class='control-group'>
+      <label class='control-label' for="base_url"><%= _("Blog URL")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :base_url, {:size => this_blog.base_url.length, :class => 'span6'})%>
+      </div>
+    </div>
+    <div class='control-group'>
+      <label class='control-label' for="setting_lang"><%= _("Language")%></label>
+      <div class='controls'>
         <select name="setting[lang]" id='setting_lang'>
           <%= fetch_langs %>
         </select>
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="setting_allow_signup"><%= _("Allow users to register")%></label>
-      <div class='input'>
+    <div class='control-group'>
+      <label class='control-label' for="setting_allow_signup"><%= _("Allow users to register")%></label>
+      <div class='controls'>
         <%= check_box(:setting, :allow_signup) %>
         <span class='help-block'><%= _("You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.") %>.</span>
       </div>
     </div>
-    <div class='clearfix'>
+    <div class='control-group'>
       <p><%= _("Typo can notify you when new articles or comments are posted")%></p>
-      <label for="setting_email_from"><%= _("Source Email")%></label>
-      <div class='input'>
-        <%= text_field(:setting, :email_from, { :class => 'span8'}) %>
+      <label class='control-label' for="setting_email_from"><%= _("Source Email")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :email_from, { :class => 'span6'}) %>
         <span class='help-block'><%= _("Email address used by Typo to send notifications")%></span>
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="setting_admin_display_elements"><%= _("Items to display in admin lists")%></label>
-      <div class='input'>
+    <div class='control-group'>
+      <label class='control-label' for="setting_admin_display_elements"><%= _("Items to display in admin lists")%></label>
+      <div class='controls'>
         <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'span1'})%>
       </div>
     </div>
-    <div class='clearfix'>
-      <label><%= _("Date format")%></label>
-      <div class='input'>
-        <ul class='inputs-list'>
-          <li>
-            <label for="setting_date_format_1">
-              <%= radio_button(:setting, :date_format, '%d/%m/%Y')%>
-              <span><%= Time.now.strftime('%d/%m/%Y') %></span>
-            </label>
-          </li>
-          <li>
-            <label for="setting_date_format_2">
-              <%= radio_button(:setting, :date_format, '%m/%d/%Y') %>
-              <span><%= Time.now.strftime('%m/%d/%Y') %></span>
-            </label>
-          </li>
-          <li>
-            <label for="setting_date_format_3">
-              <%= radio_button(:setting, :date_format, "%d %b %Y" )%>
-              <span><%= Time.now.strftime('%d %b %Y') %></span>
-            </label>
-          </li>
-          <li>
-            <label for="setting_date_format_4">
-              <%= radio_button(:setting, :date_format, '%d %B %Y' )%>
-              <span><%= Time.now.strftime('%d %B %Y') %></span>
-            </label>
-          </li>
-          <li>
-            <label for="setting_date_format_4">
-              <%= radio_button(:setting, :date_format, 'distance_of_time_in_words' )%>
-              <span><%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= _("ago") %></span>
-            </label>            
-          </li>
-        </ul>
+    <div class='control-group'>
+      <label class='control-label'><%= _("Date format")%></label>
+      <div class='controls'>
+        <label class='radio' for="setting_date_format_1">
+          <%= radio_button(:setting, :date_format, '%d/%m/%Y')%>
+          <span><%= Time.now.strftime('%d/%m/%Y') %></span>
+        </label>
+        <label class='radio' for="setting_date_format_2">
+          <%= radio_button(:setting, :date_format, '%m/%d/%Y') %>
+          <span><%= Time.now.strftime('%m/%d/%Y') %></span>
+        </label>
+        <label class='radio' for="setting_date_format_3">
+          <%= radio_button(:setting, :date_format, "%d %b %Y" )%>
+          <span><%= Time.now.strftime('%d %b %Y') %></span>
+        </label>
+        <label class='radio' for="setting_date_format_4">
+          <%= radio_button(:setting, :date_format, '%d %B %Y' )%>
+          <span><%= Time.now.strftime('%d %B %Y') %></span>
+        </label>
+        <label class='radio' for="setting_date_format_4">
+          <%= radio_button(:setting, :date_format, 'distance_of_time_in_words' )%>
+          <span><%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= _("ago") %></span>
+        </label>
       </div>
     </div>
-    <div class='clearfix'>
-      <label><%= _("Time format")%></label>
-      <div class='input'>
-        <ul class='inputs-list'>
-          <li>
-            <label for="setting_time_format_1">
-              <span><%= Time.now.strftime('%Hh%M') %></span>
-              <%= radio_button(:setting, :time_format, '%Hh%M')%>
-            </label>
-          </li>
-          <li>
-            <label for="setting_time_format_2">
-                <%= radio_button(:setting, :time_format, '%H:%M')%>
-              <span><%= Time.now.strftime('%H:%M') %></span>
-            </label>
-          </li>
-          <li>
-            <label for="setting_time_format_3">
-              <%= radio_button(:setting, :time_format, '%I:%M%p')%>
-              <span><%= Time.now.strftime('%I:%M%p') %></span>
-            </label>
-          </li>
-        </ul>
+    <div class='control-group'>
+      <label class='control-label'><%= _("Time format")%></label>
+      <div class='controls'>
+        <label class='radio' for="setting_time_format_1">
+          <span><%= Time.now.strftime('%Hh%M') %></span>
+          <%= radio_button(:setting, :time_format, '%Hh%M')%>
+        </label>
+        <label class='radio' for="setting_time_format_2">
+          <%= radio_button(:setting, :time_format, '%H:%M')%>
+          <span><%= Time.now.strftime('%H:%M') %></span>
+        </label>
+        <label class='radio' for="setting_time_format_3">
+          <%= radio_button(:setting, :time_format, '%I:%M%p')%>
+          <span><%= Time.now.strftime('%I:%M%p') %></span>
+        </label>
       </div>
     </div>
 </fieldset>
   
-<fieldset>
+<fieldset class='form-horizontal'>
   <legend><%= _("Publishing options")%></legend>
-    <div class='clearfix'>
-      <label for="setting_limit_article_display"><%= _("Display")%> </label>
-      <div class='input'>
+    <div class='control-group'>
+      <label class='control-label' for="setting_limit_article_display"><%= _("Display")%> </label>
+      <div class='controls'>
         <%= text_field(:setting, :limit_article_display, {:size => 4, :class => 'span1'})%>
         <%= _("articles on my homepage by default")%>
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="setting_limit_rss_display"><%= _("Display")%> </label>
-      <div class='input'>
+    <div class='control-group'>
+      <label class='control-label' for="setting_limit_rss_display"><%= _("Display")%> </label>
+      <div class='controls'>
         <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'span1'})%>
         <%= _("articles in my news feed by default")%>.
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="setting_hide_extended_on_rss"><%= _("Show only article excerpt on feed")%>:</label>
-      <div class='input'>
+    <div class='control-group'>
+      <label class='control-label' for="setting_hide_extended_on_rss"><%= _("Show only article excerpt on feed")%>:</label>
+      <div class='controls'>
         <%= check_box(:setting, :hide_extended_on_rss) %>
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
-      <div class='input'>
-        <%= text_field(:setting, :feedburner_url, :class => 'span8')%>
+    <div class='control-group'>
+      <label class='control-label' for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :feedburner_url, :class => 'span6')%>
         <span class='help-block'><%= _('You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
       </div>
     </div>

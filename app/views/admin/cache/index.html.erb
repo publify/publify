@@ -5,7 +5,7 @@
 <p><%= _("There are currently %d files in cache for a total amount of %d Kb", @cache_number.to_i, @cache_size.to_i / 1000) %></p>
 
 <%= form_tag(:controller => 'cache', :action => 'index') do %>
-  <div class='actions'>
-  	<%= save( _("Sweep cache")) %>
+  <div class='form-actions'>
+    <%= save( _("Sweep cache")) %>
   </div>
 <% end %>

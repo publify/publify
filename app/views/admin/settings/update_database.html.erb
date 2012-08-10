@@ -1,36 +1,37 @@
 <% @page_heading = _('Database migration') %>
 
-<div class='alert-message block-message warning'>
-	<h3><%= _("Information")%></h3>
-	<p>
-		<strong><%= _("Current database version")%>:</strong>
-		<%= @current_version %>
-	</p>
-	<% unless @needed_migrations.blank? %>
-	<p>
-		<strong><%= _("New database version")%>:</strong>
-		<%= @needed_version %>
-	</p>
-	<p>
-		<%= _("Your database supports migrations")%>:
-		<%= @support ? _('yes') : _('no') %>
-	</p>
-	<p><%= _("Needed migrations")%>:</p>
-	<ul>
-		<% for migration in @needed_migrations %>
-		<li><%= migration.humanize %></li>
-		<% end %>
-	</ul>
-	<% end %>
-	<div class='alert-actions'>
-		<%= form_tag :action => 'migrate' do %>
-		<% if @current_version == @needed_version %>
-		<div class='info'>
-			<p><strong><%= _("You are up to date!")%></strong></p>
-		</div>
-		<% else %>
-		<%= save(_("Update database now")) %>  <small class='help-block'><%= _("may take a moment")%></small>
-		<% end %>
-		<% end %>
-	</div>
+<div class='alert alert-message warning'>
+  <h3><%= _("Information")%></h3>
+  <p>
+    <strong><%= _("Current database version")%>:</strong>
+    <%= @current_version %>
+  </p>
+  <% unless @needed_migrations.blank? %>
+  <p>
+    <strong><%= _("New database version")%>:</strong>
+    <%= @needed_version %>
+  </p>
+  <p>
+    <%= _("Your database supports migrations")%>:
+    <%= @support ? _('yes') : _('no') %>
+  </p>
+  <p><%= _("Needed migrations")%>:</p>
+  <ul>
+    <% for migration in @needed_migrations %>
+    <li><%= migration.humanize %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <div class='alert-actions'>
+    <%= form_tag :action => 'migrate' do %>
+    <% if @current_version == @needed_version %>
+    <div class='info'>
+      <p><strong><%= _("You are up to date!")%></strong></p>
+    </div>
+    <% else %>
+    <%= save(_("Update database now")) %>
+    <small><%= _("may take a moment")%></small>
+    <% end %>
+    <% end %>
+  </div>
 </div>
