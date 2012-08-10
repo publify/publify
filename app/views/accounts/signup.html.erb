@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class='span6 offset5'>
+  <div class='span4 offset4'>
     <div class='well'>
       <%= form_tag :action=> "signup" do %>
       <div class='clearfix'>
@@ -13,7 +13,7 @@
         <%= text_field(:user, :email, {:class => 'login', :placeholder => _("Email") })%>
       </div>
       <div class='clearfix'>
-        <input type="submit" id="submit" class='btn info' value="<%= _('Signup')%>" />
+        <input type="submit" id="submit" class='btn btn-info' value="<%= _('Signup')%>" />
       </div>
       <% end %>
     </div>

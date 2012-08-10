@@ -1,22 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title><%= @page_title %></title>
-		<meta http-equiv="imagetoolbar" content="no" />
-		<%= stylesheet_link_tag "growler", "bootstrap", "accounts" %>
-	</head>
-  <body>
-    <div class='topbar'>
-      <div class='topbar-inner'>
-        <div class='container'>
-          <%= link_to this_blog.blog_name, this_blog.base_url, { :class => 'brand' } %>
-        </div>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title><%= @page_title %></title>
+  <meta http-equiv="imagetoolbar" content="no" />
+  <%= stylesheet_link_tag "growler", "bootstrap", "accounts" %>
+</head>
+<body>
+  <div class='navbar navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <%= link_to this_blog.blog_name, this_blog.base_url, { :class => 'brand' } %>
       </div>
     </div>
-		<div class='container'>
-      <%= yield %>
-		</div>
-  </body>
+  </div>
+  <div class='container'>
+    <%= yield %>
+  </div>
+</body>
 </html>
