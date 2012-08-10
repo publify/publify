@@ -28,7 +28,7 @@ module Admin::BaseHelper
   end
 
   def save(val = _("Store"))
-    '<input type="submit" value="' + val + '" class="btn primary" />'
+    '<input type="submit" value="' + val + '" class="btn btn-primary" />'
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
@@ -86,6 +86,12 @@ module Admin::BaseHelper
     ''
   end
 
+  def class_users
+    return class_selected_tab if controller.controller_name  =~ /users/
+    class_tab
+    
+  end
+
   def class_selected_tab
     'active'
   end
@@ -122,7 +128,7 @@ module Admin::BaseHelper
   end
 
   def class_settings
-    return class_selected_tab if controller.controller_name  =~ /settings|users|cache|redirects/
+    return class_selected_tab if controller.controller_name  =~ /settings|cache|redirects/
     class_tab
   end
 
@@ -263,6 +269,6 @@ module Admin::BaseHelper
   end
 
   def save_settings
-    "<div class='actions'>#{cancel} #{_("or")} #{save(_("Update settings"))}</div>".html_safe
+    "<div class='form-actions'>#{cancel} #{_("or")} #{save(_("Update settings"))}</div>".html_safe
   end
 end

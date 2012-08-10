@@ -89,13 +89,16 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :settings, nil do |project|
     project.menu    "Settings",         { :controller => "admin/settings", :action => "index" }
-    project.menu    "General settings", { :controller => "admin/settings", :action => "index" }
+    project.submenu "General settings", { :controller => "admin/settings", :action => "index" }
     project.submenu "Write",            { :controller => "admin/settings", :action => "write" }
     project.submenu "Feedback",         { :controller => "admin/settings", :action => "feedback" }
     project.submenu "Cache",            { :controller => "admin/cache", :action => "index" }
     project.submenu "Users",            { :controller => "admin/users", :action => "index" }
     project.submenu "Error messages",   { :controller => "admin/settings", :action => "errors" }
-    project.submenu "",                 { :controller => "admin/redirects", :action => "new"}
+  end
+
+  map.project_module :users, nil do |project|
+    project.menu "Users",            { :controller => "admin/users", :action => "index" }
   end
 
   map.project_module :seo, nil do |project|
