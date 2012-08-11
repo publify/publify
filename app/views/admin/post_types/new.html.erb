@@ -3,26 +3,18 @@
 <div class='left_form'>
   <%= error_messages_for 'post_type' %>
   <%= form_tag :action=>"edit", :id => @post_type.id do %>
-  <div class='clearfix'>
-    <label for="post_type_name"><%= _("Name")%></label>
-    <div class='input'>
-      <%= text_field :post_type, :name, :class => 'large'  %>
-    </div>
-  </div>
-  <div class='clearfix'>
-    <label for="post_type_description"><%= _("Description") %></label>
-    <div class='input'>
-      <%= text_area :post_type, :description, :rows => 5, :class => 'span4' %>
-    </div>
-  </div>
-  <div class='actions'>
+  <label for="post_type_name"><%= _("Name")%></label>
+  <%= text_field :post_type, :name, :class => 'span12'  %>
+  <label for="post_type_description"><%= _("Description") %></label>
+  <%= text_area :post_type, :description, :rows => 5, :class => 'span12' %>
+  <div class='form-actions'>
     <%= cancel_or_save %>
   </div>
   <% end %>
 </div>
 
 <div class="right_table">
-  <table class='zebra-striped'>
+  <table class='table table-striped'>
     <thead>
       <tr class='noborder'>
         <th><%= _("Name") %></th>
