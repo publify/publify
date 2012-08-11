@@ -1,17 +1,17 @@
-<% @page_heading = _('Users') + content_tag(:div, link_to(_("New User"), {:controller => 'users', :action => 'new'}, :id => 'dialog-link', :class => 'btn info'), :class => 'pull-right') %>
+<% @page_heading = _('Users') + content_tag(:div, link_to(_("New User"), {:controller => 'users', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
 
-<table class="zebra-striped clearfix">
+<table class="table table-striped">
   <thead>
     <tr class='noborder'>
-    <th><%= _("Username") %></th>
-    <th><%= _("Name") %></th>
-    <th><%= _("Email") %></th>
-    <th><%= _("Profile") %></th>
-    <th><%= _("Articles") %></th>
-    <th><%= _("Comments") %></th>
-    <th><%= _("State") %></th>
-  </tr>
-	</thead>
+      <th><%= _("Username") %></th>
+      <th><%= _("Name") %></th>
+      <th><%= _("Email") %></th>
+      <th><%= _("Profile") %></th>
+      <th><%= _("Articles") %></th>
+      <th><%= _("Comments") %></th>
+      <th><%= _("State") %></th>
+    </tr>
+  </thead>
   <% for user in @users -%>
   <tr <%= alternate_class %>>
     <td><%= link_to_edit user.login, user%></td>
