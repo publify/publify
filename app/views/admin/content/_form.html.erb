@@ -15,71 +15,57 @@
     </div>
     <div class='clearfix'>
         <%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
-      <ul class='inputs-list'>
-        <li id='status' style='display: none;'>        
-          <label for="article_published">
+        <div id='status' style='display: none;'>        
+          <label for="article_published" class='checkbox'>
             <%= check_box 'article', 'published'  %>
             <%= _("Published") %>
           </label>
-        </li>
-      </ul>
+        </div>
     </div>
     <div class='clearfix'>
       <%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
       <%= toggle_element 'conversation' %>
-      <ul class='inputs-list' id='conversation' style='display: none'>
-        <li>
-          <label for="article_allow_pings">
-            <%= check_box 'article', 'allow_pings' %>
-            <%= _("Allow trackbacks") %>
-          </label>
-        </li>
-        <li>
-          <label for="article_allow_comments">
-            <%= check_box 'article', 'allow_comments' %>
-            <%= _("Allow comments") %>
-          </label>
-        </li>
-      </ul>
+      <div id='conversation' style='display: none'>
+        <label for="article_allow_pings" class='checkbox'>
+          <%= check_box 'article', 'allow_pings' %>
+          <%= _("Allow trackbacks") %>
+        </label>
+        <label for="article_allow_comments" class='checkbox'>
+          <%= check_box 'article', 'allow_comments' %>
+          <%= _("Allow comments") %>
+        </label>
+      </div>
     </div>
-	  <div class='clearfix'>
+    <div class='clearfix'>
       <%= _("Publish") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
-      <ul class='inputs-list'>
-        <li id='publish' style='display: none;'>
-          <%= calendar_date_select 'article', 'published_at', {:class => 'span3'} %>
-        </li>
-      </ul>
+      <div id='publish' class='input-append' style='display: none;'>
+        <%= calendar_date_select 'article', 'published_at', {:class => 'span7'} %>
+      </div>
     </div>
     <div class='clearfix'>
       <%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %>
-      <ul class='inputs-list' id='visibility' style='display: none'>
-        <li>
-          <label for="article_password"><%= _("Password:") %>
-            <%= password_field :article, :password, :class => 'span3' %>
-          </label>
-        </li>
-      </ul>
+      <div id='visibility' style='display: none'>
+        <label for="article_password"><%= _("Password:") %>
+          <%= password_field :article, :password, :class => 'span10' %>
+        </label>
+      </div>
     </div>
     <div class='clearfix'>
       <%= _("Permalink") %>: <%= toggle_element 'permalink' %>
-      <ul class='inputs-list' id='permalink' style='display: none'>
-        <li>
-            <%= text_field 'article', 'permalink', {:class => 'span4'} %>
-        </li>
-      </ul>
+      <div class='inputs-list' id='permalink' style='display: none'>
+        <%= text_field 'article', 'permalink', {:class => 'span10'} %>
+      </div>
     </div>
     <div class='clearfix'>
       <%= _("Article filter") %>: <strong><%= @article.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
-      <ul id='text_filter' class='inputs-list' style='display: none'>
-        <li>
-          <select name="article[text_filter]" id="text_filter">
-            <%= options_for_select text_filter_options, @article.text_filter %>
-          </select>
-        </li>
-      </ul>
+      <div id='text_filter' style='display: none'>
+        <select name="article[text_filter]" id="text_filter">
+          <%= options_for_select text_filter_options, @article.text_filter %>
+        </select>
+      </div>
     </div>
 
-    <div class='actions'>
+    <div class='form-actions'>
       <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn info' />
       <%= save( _("Publish")) %>
     </div>
@@ -101,7 +87,7 @@
     <%= render('images', { :images => @images}) unless @images.empty? %>
 
     <div id='editor-menu'>
-		<ul class="tabs">
+		<ul class="nav nav-tabs">
 			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
 				<%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
 			</li>

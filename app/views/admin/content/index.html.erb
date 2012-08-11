@@ -1,6 +1,7 @@
-<% @page_heading = _('Manage articles') + content_tag(:div, link_to(_("New Article"), {:controller => 'content', :action => 'new'}, :id => 'dialog-link', :class => 'btn info'), :class => 'pull-right') %>
+<% @page_heading = _('Manage articles') + content_tag(:div, link_to(_("New Article"), {:controller => 'content', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
 
-<%= form_remote_tag  :url      => {:action => 'index'},
+<%= form_remote_tag  \
+  :url      => {:action => 'index'},
   :method   => :get,
   :name     => 'article',
   :update   => {:success => 'articleList'},
@@ -8,13 +9,13 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
-<table class="zebra-striped clearfix">
+<table class="table table-striped">
   <thead>
     <tr class='noborder'>
       <td colspan=5>
         <input id="search" type="text" name="search[searchstring]" class='large' />
         <%= submit_tag(_("Search"), {:class => 'btn'}) %>
-        <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
+        <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>        
       </td>
 	 </tr>
    <tr class='noborder'>

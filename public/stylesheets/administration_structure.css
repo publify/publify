@@ -70,7 +70,7 @@ footer {
 	width: 280px;
 }
 
-.editor-right .actions {
+.editor-right .form-actions {
 	padding-left: 0;
 	padding-right: 0;
 	text-align: right;
@@ -191,6 +191,3 @@ label.editor {
 	color: #00438a;
 	border-bottom: 1px solid #00438a;
 }
-
-
-

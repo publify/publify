@@ -1,9 +1,7 @@
 <%- article_categories = @article ? @article.categories.map(&:id) : [] -%>
 <%- Category.all.each do |cat| %>
-<ul class='inputs-list'>
-	<li>
-	    <%= label_tag "category_#{h(cat.id)}", check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}")  + h(cat.name) %>
+  <%= label_tag"category_#{h(cat.id)}", check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}")  + h(cat.name), :class => 'checkbox' %>
 	</li>
 </ul>
 <% end -%>
-<%= link_to _("New Category"), {:controller => 'admin/categories', :action => 'new' }, :class => 'btn info' %>
+<%= link_to _("New Category"), {:controller => 'admin/categories', :action => 'new' }, :class => 'btn btn-info' %>
