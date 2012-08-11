@@ -3,44 +3,35 @@
 <div class='left_form'>
 <%= form_tag :action=>"edit", :id => @redirect.id do %>
   <%= error_messages_for 'redirect' %>
-  <div class='clearfix'>
-	<label for="redirect_from_path"><%= _("From")%></label>
-    <div class='input'>
-      <%= text_field :redirect, :from_path, :class => 'large', :placeholder => "#{this_blog.base_url}/" %>
-	  <span class='help-block'><%= _("Leave empty to shorten a link") %></span>
-    </div>
-  </div>
-  <div class='clearfix'>
-	  <label for="redirect_to_path"><%= _("To") %></label>
-    <div class='input'>
-      <%= text_field :redirect, :to_path, :class => 'large' %>
-    </div>
-  </div>
-  <div class='actions'>
-  	  <%= cancel_or_save %>
+  <label for="redirect_from_path"><%= _("From")%></label>
+  <%= text_field :redirect, :from_path, :class => 'span12', :placeholder => "#{this_blog.base_url}/" %>
+  <span class='help-block'><%= _("Leave empty to shorten a link") %></span>
+  <label for="redirect_to_path"><%= _("To") %></label>
+  <%= text_field :redirect, :to_path, :class => 'span12' %>
+  <div class='form-actions'>
+    <%= cancel_or_save %>
   </div>
 <% end %>
 </div>
 
 <div class='right_table'>
-	<table class="zebra-striped">
-	  <thead>
-	    <tr class='noborder'>
-	    <th><%= _("From") %></th>
-	    <th><%= _("To") %></th>
-	  </tr>
-	  </thead>
-	  <%= render_void_table(@redirects.size, 2)  %>
-	  <% for redirect in @redirects %>
-	  <tr <%= alternate_class %>>
-	    <td>
-	      <%= link_to("#{this_blog.base_url}/#{redirect.from_path}", "#{this_blog.base_url}/#{redirect.from_path}") %>
-	      <%= show_redirect_actions redirect %>
-	    </td>
-	    <td><%= link_to(redirect.to_path, redirect.to_path) %></td>
-	  </tr>
-	  <% end %>
-	  <%= display_pagination(@redirects, 2)%>
-	</table>
-	
+  <table class="table table-striped">
+    <thead>
+      <tr class='noborder'>
+      <th><%= _("From") %></th>
+      <th><%= _("To") %></th>
+    </tr>
+  </thead>
+  <%= render_void_table(@redirects.size, 2)  %>
+  <% for redirect in @redirects %>
+  <tr <%= alternate_class %>>
+    <td>
+    <%= link_to("#{this_blog.base_url}/#{redirect.from_path}", "#{this_blog.base_url}/#{redirect.from_path}") %>
+    <%= show_redirect_actions redirect %>
+  </td>
+  <td><%= link_to(redirect.to_path, redirect.to_path) %></td>
+  </tr>
+  <% end %>
+  <%= display_pagination(@redirects, 2)%>
+  </table>
 </div>
