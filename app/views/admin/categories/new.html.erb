@@ -3,39 +3,23 @@
 <div class='left_form'>
   <%= form_tag :action=>"edit", :id => @category.id do %>
   <%= error_messages_for 'category' %>
-  <div class='clearfix'>
-    <label for="category_name"><%= _("Name")%></label>
-    <div class='input'>
-      <%= text_field :category, :name, :class => 'large'  %>
-    </div>
-  </div>
-  <div class='clearfix'>
-    <label for="category_keywords"><%= _("Keywords") %></label>
-    <div class='input'>
-      <%= text_field :category, :keywords, :class => 'large' %>
-    </div>
-  </div>
-  <div class='clearfix'>
-    <label for="category_permalink"><%= _("Permalink") %></label>
-    <div class='input'>
-      <%= text_field :category, :permalink, :class => 'large' %>
-	  <span class='help-block'><%= _("Your category slug. Leave empty if you don't know what to put here") %></span>
-    </div>
-  </div>
-  <div class='clearfix'>
-    <label for="category_description"><%= _("Description") %></label>
-    <div class='input'>
-      <%= text_area :category, :description, :rows => 5, :class => 'large' %>
-    </div>
-  </div>
-  <div class='actions'>
+  <label for='category_name'><%= _("Name") %></label>
+  <%= text_field :category, :name, :class => 'span12' %>
+  <label for='category_keywords' class='control-label'><%= _("Keywords") %></label>
+  <%= text_field :category, :keywords, :class => 'span12' %>
+  <label for="category_permalink"><%= _("Permalink") %></label>
+  <%= text_field :category, :permalink, :class => 'span12' %>
+  <p class='help-block'><%= _("Your category slug. Leave empty if you don't know what to put here") %></p>
+  <label for="category_description"><%= _("Description") %></label>
+  <%= text_area :category, :description, :rows => 5, :class => 'span12' %>
+  <div class='form-actions'>
     <%= cancel_or_save %>  
   </div>
   <% end %>
 </div>
 
 <div class="right_table">
-  <table id='category_container' class="zebra-striped">
+  <table id='category_container' class="table table-striped">
     <thead>
       <tr class='noborder'>
         <th><%= _("Title") %></th>
