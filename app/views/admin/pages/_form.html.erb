@@ -3,38 +3,34 @@
 <%= error_messages_for 'page' %>
 
 <div class='editor-right'>
-	<div class='well'>
-	  <h4><%= _("Publish settings")%></h4>
-	  <div class='actions'></div>
-    <div class='clearfix'>
+  <div class='well'>
+    <fieldset>
+      <legend><%= _("Publish settings") %></legend>
+    </fieldset>
+    <div class='control-group'>
       <%= _("Status") %>: <strong><%= _(@page.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
-      <ul class='inputs-list'>
-        <li id='status' style='display: none;'>
-          <label for="page_published">
-            <%= check_box 'page', 'published'  %>
-            <%= _("Online")%>
-          </label>
-        </li>
-      </ul>
+      <div id='status' style='display: none;'>
+        <label for="page_published" class='checkbox'>
+          <%= check_box 'page', 'published'  %>
+          <%= _("Online")%>
+        </label>
+      </div>
     </div>
-    <div class='clearfix'>
+    <div class='control-group'>
       <%= _("Permanent link")%>: <%= toggle_element 'permalink' %>
-      <ul class='inputs-list'>
-        <li id='permalink' style='display: none;'>
-          <%= text_field 'page', 'name', :class => 'span4' %>
-        </li>
-      </ul>
+      <div id='permalink' style='display: none;'>
+        <%= text_field 'page', 'name', :class => 'span12' %>
+      </div>
     </div>
-    <div class='clearfix'>
+    <div class='control-group'>
       <%= _("Article filter") %>: <strong><%= @page.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
-      <ul class='inputs-list'>
-        <li id='text_filter' style='display: none;'>
-          <select name="page[text_filter]" id="text_filter">
-            <%= options_for_select text_filter_options, @page.text_filter %>
-          </select>
-        </li>
+      <div id='text_filter' style='display: none;'>
+        <select name="page[text_filter]" id="text_filter">
+        <%= options_for_select text_filter_options, @page.text_filter %>
+      </select>
+      </div>
     </div>
-    <div class='actions'>
+    <div class='form-actions'>
       <%= save( _("Publish")) %>
     </div>
 	</div>
@@ -48,14 +44,14 @@
   <%= render('images', { :images => @images}) unless @images.empty? %>
 
   <div id='editor-menu'>
-		<ul class="tabs">
-			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-				<%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-			</li>
-			<li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
-				<%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-			</li>
-		</ul>
+    <ul class="nav nav-tabs">
+      <li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
+        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+      </li>
+      <li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
+        <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+      </li>
+    </ul>
   </div>
 
   <div id='editor'>

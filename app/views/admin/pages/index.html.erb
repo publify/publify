@@ -1,6 +1,6 @@
-<% @page_heading = _('Manage pages') + content_tag(:div, link_to(_("New Page"), {:controller => 'pages', :action => 'new'}, :id => 'dialog-link', :class => 'btn info'), :class => 'pull-right') %>
+<% @page_heading = _('Manage pages') + content_tag(:div, link_to(_("New Page"), {:controller => 'pages', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
 
-<table class='zebra-striped'>
+<table class='table table-striped'>
 <thead>
   <tr class='noborder'>
     <th><%= _("Title") %></th>

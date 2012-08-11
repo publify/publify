@@ -148,9 +148,9 @@ module Admin::BaseHelper
 
   def published_or_not(item)
     return "<span class='label success'>#{_("Published")}</span>" if item.state.to_s.downcase == 'published'
-    return "<span class='label notice'>#{_("Draft")}</span>" if item.state.to_s.downcase == 'draft'
-    return "<span class='label important'>#{_("Withdrawn")}</span>" if item.state.to_s.downcase == 'withdrawn'
-    return "<span class='label warning'>#{_("Publication pending")}</span>" if item.state.to_s.downcase == 'publicationpending'
+    return "<span class='label label-info'>#{_("Draft")}</span>" if item.state.to_s.downcase == 'draft'
+    return "<span class='label label-important'>#{_("Withdrawn")}</span>" if item.state.to_s.downcase == 'withdrawn'
+    return "<span class='label label-warning'>#{_("Publication pending")}</span>" if item.state.to_s.downcase == 'publicationpending'
   end
 
   def macro_help_popup(macro, text)
