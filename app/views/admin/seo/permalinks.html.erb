@@ -5,38 +5,30 @@
 <p><%= _("Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.") %></p>
 <p><%= _("Here are some examples to get you started.") %></p>
 
-<div class='clearfix'>
-  <label><%= _("Permalink format") %></label>
-  <div class='input'>
-    <ul class='inputs-list'>
-      <li>
-        <label for="setting_permalink_format">
-          <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %> 
-          <%= _("Date and title") %>
-          <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m/%d')}/sample-article" %></span>
-        </label>
-      </li>
-      <li>
-        <label for="setting_permalink_format">
-          <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%title%') %> 
-          <%= _("Month and title") %>
-          <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m')}/sample-article" %></span>
-        </label>
-      </li>
-      <li>
-        <label for="setting_permalink_format">
-          <%= radio_button(:setting, :permalink_format, '/%title%') %> <%= _("Title only") %>
-        </label>
+<div class='form-horizontal'>
+  <div class='control-group'>
+    <label class='control-label'><%= _("Permalink format") %></label>
+    <div class='controls'>
+      <label class='radio' for="setting_permalink_format">
+        <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %> 
+        <%= _("Date and title") %>
+        <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m/%d')}/sample-article" %></span>
+      </label>
+      <label class='radio' for="setting_permalink_format">
+        <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%title%') %> 
+        <%= _("Month and title") %>
+        <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m')}/sample-article" %></span>
+      </label>
+      <label class='radio' for="setting_permalink_format">
+        <%= radio_button(:setting, :permalink_format, '/%title%') %> <%= _("Title only") %>
         <span class='help-block'><%= "#{this_blog.base_url}/sample-article" %></span>
-      </li>
-      <li>
-        <label for="setting_custom_permalink">
-          <%= radio_button(:setting, :permalink_format, 'custom') %> Custom
-          <%= text_field(:setting, :custom_permalink, { :class => 'span5 '})%>
-        </label>
-      </li>
-    </ul>
-  </div>
+      </label>
+      <label class='radio' for="setting_custom_permalink">
+        <%= radio_button(:setting, :permalink_format, 'custom') %> Custom
+        <%= text_field(:setting, :custom_permalink, { :class => 'span5 '})%>
+      </label>
+    </div>
+  </div>  
 </div>
 	
 <p class='clear'><%= _("You can custom your URL structure using the following tags:") %></p>
