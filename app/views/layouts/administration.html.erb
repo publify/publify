@@ -51,20 +51,19 @@
             <li class='<%= "active" if controller.controller_name == 'dashboard' %>'>
               <%= link_to _('Dashboard'), {:controller => 'admin/dashboard'} %>              
             </li>
+            <li class="divider"></li>
             <% for pm in current_user.project_modules %>
             <%= content_tag :li, _(pm.menus.first.name), :class => "nav-header" %>
               <%= subtabs_for(pm.name.to_sym)%>
+              <li class="divider"></li>
             <% end %>
-
           </ul>
         </div>
       </div>
       <div class='span10'>
-        <div class=''>
           <%= render_the_flash %>
           <%= show_page_heading %>
           <%= yield  %>
-        </div>
       </div>
       
     </div>

@@ -10,10 +10,9 @@ module Admin::BaseHelper
     end
     output.join("\n").html_safe
   end
-
+  
   def subtab(label, options = {})
     return content_tag :li, link_to(label, '#'), :class => 'active' if options.empty?
-    
     content_tag :li, link_to(label, options) 
   end
 
@@ -29,7 +28,7 @@ module Admin::BaseHelper
   end
 
   def save(val = _("Store"))
-    '<input type="submit" value="' + val + '" class="btn btn-primary" />'
+    submit_tag(val, :class => 'btn btn-primary')
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
