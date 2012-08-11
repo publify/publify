@@ -12,25 +12,25 @@ g.error('Oops, something wrong happened', {life: 3});
 new Element.hide('update_spinner')") \
 do %>
 
-<div class='actions'>
+<div class='form-actions'>
 	<%= cancel_or_save(_('Publish changes'))%>
 </div>
 
 <div id="messages">&nbsp;</div>
 
-<div id="sidebar-config" class='row'>
-	<div id="available" class='span6 well'>
-		<h3><%= _("Available Items")%></h3>
-		<div id="available_box">
-			<% if @available.blank? %>
-			<p class='alert-message warning'><%= _("You have no plugins installed")%>.</p>
-			<% else %>
-			<%= render :partial => 'available', :collection => @available %>
-			<% end %>
-		</div>
-	</div>
+<div id="sidebar-config" class='row-fluid'>
+  <div id="available" class='span6 well'>
+    <h3><%= _("Available Items")%></h3>
+    <div id="available_box">
+    <% if @available.blank? %>
+      <p class='alert-message warning'><%= _("You have no plugins installed")%>.</p>
+    <% else %>
+      <%= render :partial => 'available', :collection => @available %>
+    <% end %>
+    </div>
+  </div>
 
-	<div id="cnt-active" class='span7 well '>
+	<div id="cnt-active" class='span6 well '>
 		<h3 id="hdr-active">
 			<%= _("Active Sidebar items")%>
 			<%= image_tag "spinner-blue.gif", :id => 'update_spinner',
@@ -50,7 +50,7 @@ do %>
 	</div>
 
 </div>
-<div class='actions'>
+<div class='form-actions'>
 	<%= cancel_or_save(_('Publish changes'))%>
 </div>
 

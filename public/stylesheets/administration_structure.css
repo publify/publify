@@ -161,17 +161,6 @@ label.editor {
 }
 
 /* Sidebars */
-#active label {
-	width: 80px;
-}
-
-#active .input {
-	margin-left: 100px;
-}
-
-#active .span4 { 
-	width: 255px;
-}
 
 .avatar {
 	float: left;

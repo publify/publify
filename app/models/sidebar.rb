@@ -21,9 +21,9 @@ class Sidebar < ActiveRecord::Base
     def label_html(sidebar)
       content_tag('label', label)
     end
-
+    
     def input_html(sidebar)
-      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'span4'})
+      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'span12'})
     end
 
     def line_html(sidebar)
@@ -74,13 +74,8 @@ class Sidebar < ActiveRecord::Base
     end
 
     class CheckBoxField < self
-      def input_html(sidebar)
-        hidden_field_tag(input_name(sidebar),0)+
-        check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)
-      end
-
       def line_html(sidebar)
-        input_html(sidebar) + ' ' + label_html(sidebar) + '<br >'
+hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)} #{label}".html_safe)
       end
 
       def canonicalize(value)
