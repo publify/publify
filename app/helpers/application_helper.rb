@@ -200,7 +200,7 @@ module ApplicationHelper
     return unless flash[:notice] or flash[:error] or flash[:warning]
     the_class = flash[:error] ? 'error' : 'success'
 
-    html = "<div class='alert-message #{the_class}'>"
+    html = "<div class='alert alert-#{the_class}'>"
     html << "<a class='close' href='#'>×</a>"
     html << render_flash rescue nil
     html << "</div>"
