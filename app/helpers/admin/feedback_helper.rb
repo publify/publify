@@ -1,9 +1,9 @@
 module Admin::FeedbackHelper
   def comment_class state
-    return 'notice' if state.to_s.downcase == 'ham?'
-    return 'warning' if state.to_s.downcase == 'spam?'
-    return 'success' if state.to_s.downcase == 'ham'
-    return 'important'
+    return 'badge-info' if state.to_s.downcase == 'ham?'
+    return 'badge-warning' if state.to_s.downcase == 'spam?'
+    return 'badge-success' if state.to_s.downcase == 'ham'
+    return 'badge-important'
   end
 
   def show_feedback_actions(item, context='listing')

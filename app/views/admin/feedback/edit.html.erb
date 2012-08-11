@@ -5,34 +5,35 @@
 <%= error_messages_for 'comment' %>
 <%= hidden_field_tag 'article_id', @article.id %>
 
-<h3><%= _("Add a comment")%></h3>
-	<div class='clearfix'>
-      <label for="comment_author"><%= _("Author")%></label>
-      <div class='input'>
-        <%= text_field 'comment', 'author', :class => 'medium' %>
+<fieldset class='form-horizontal'>
+  <div class='control-group'>
+    <label for="comment_author" class='control-label'><%= _("Author")%></label>
+      <div class='controls'>
+        <%= text_field 'comment', 'author', :class => 'span3' %>
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="comment_email"><%= _("Email")%></label>
-      <div class='input'>
-        <%= text_field 'comment', 'email', :class => 'medium' %>
+    <div class='control-group'>
+      <label for="comment_email" class='control-label'><%= _("Email")%></label>
+      <div class='controls'>
+        <%= text_field 'comment', 'email', :class => 'span3' %>
       </div>
     </div>
-    <div class='clearfix'>
-      <label for="comment_url"><%= _("Url") %></label>
-      <div class='input'>
+    <div class='control-group'>
+      <label for="comment_url" class='control-label'><%= _("Url") %></label>
+      <div class='controls'>
         <%= text_field 'comment', 'url', :class => 'medium' %>
       </div>
     </div>
-    <div class='clearfix'>
-      <div class='input'>
+    <div class='control-group'>
+      <label for='comment_body' class='control-label'><%= _("Your comment") %></label>
+      <div class='controls'>
         <script type="text/javascript">edToolbar('comment_body');</script>
         <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
       </div>
     </div>
-  </div>
-</div>
-  </div>
+    <div class='form-actions'>
+      <%= cancel_or_save %>
+    </div>
+</fieldset>
 
-  <%= cancel_or_save %>
 <% end %>

@@ -1,24 +1,24 @@
 <% @page_heading =  _("Feedback") %>
 
-<%= form_tag({:action => 'index'}, :method => :get) do %>
+<%= form_tag({:action => 'index'}, :method => :get, :class => 'form-inline') do %>
 <div class='row'>
   <div class='span10'>
-    <span class='label'>
+    <span class='badge badge-inverse'>
       <%= link_to(_("All"), :controller => 'admin/feedback', :action => 'index') %>
     </span>&nbsp; 
-    <span class='label'>
+    <span class='badge'>
       <%= link_to(_("Unapproved comments"), :controller => 'admin/feedback', :action => 'index', :confirmed => 'f') %>
     </span>&nbsp;
-    <span class='label success'>
+    <span class='badge badge-success'>
       <%= link_to(_("Ham"), :controller => 'admin/feedback', :action => 'index', :ham => 'f') %>
     </span>&nbsp;
-    <span class='label important'>
+    <span class='badge badge-important'>
       <%= link_to(_("Spam"), :controller => 'admin/feedback', :action => 'index', :spam => 'f') %>
     </span>&nbsp;
-    <span class='label notice'>
+    <span class='badge badge-info'>
       <%= link_to(_("Presumed ham"), :controller => 'admin/feedback', :action => 'index', :presumed_ham => 'f') %>
     </span>&nbsp;
-    <span class='label warning'>
+    <span class='badge badge-warning'>
       <%= link_to(_("Presumed spam"), :controller => 'admin/feedback', :action => 'index', :published => 'f') %>
     </span>&nbsp;
   </div>
@@ -35,7 +35,7 @@
 <%= hidden_field_tag "search", params[:search]%>
 <%= hidden_field_tag "page", params[:page]%>
 
-<table class='zebra-striped'>
+<table class='table table-striped'>
 <thead>
   <tr class='noborder'>
     <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
@@ -44,27 +44,24 @@
     <th><%= _("Comment")%></th>
     <th><%= _("Article")%></th>
   </tr>
-  
 </thead>
-  <%= render_void_table(@feedback.size, 5) %>
+<%= render_void_table(@feedback.size, 5) %>
 
-  <% @feedback.each do |comment| %>
-  <tr id='<%= "feedback_#{comment.id}" %>'>
-    <% if comment.state.to_s.downcase == 'spam'  %>
-      <%= render 'spam', {:comment => comment} %>
-    <% else %>
-      <%= render 'ham', {:comment => comment} %>
-    <% end %>
-  </tr>
+<% @feedback.each do |comment| %>
+<tr id='<%= "feedback_#{comment.id}" %>'>
+  <% if comment.state.to_s.downcase == 'spam'  %>
+    <%= render 'spam', {:comment => comment} %>
+  <% else %>
+    <%= render 'ham', {:comment => comment} %>
   <% end %>
-
-  <%= display_pagination(@feedback, 5) %>
-  <tr>
-    <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-    <th colspan='4'><%= _("Select all") %></th>
-  </tr>
+</tr>
+<% end %>
+<%= display_pagination(@feedback, 5) %>
+<tr>
+  <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+  <th colspan='4'><%= _("Select all") %></th>
+</tr>
 </table>
-
 <%= render 'button', { :position => 'bottom' } %>
 <% end %>
 <br class='clear' />

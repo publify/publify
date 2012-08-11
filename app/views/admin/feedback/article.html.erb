@@ -7,13 +7,15 @@
 <%= render 'button', { :position => 'top' } %>
 
 <br class='clear' />
-<table class='settings'>
-  <tr>
-    <th class='first'><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-    <th><%= _("Status")%></th>
-    <th><%= _("Comment Author")%></th>
-    <th><%= _("Comment")%></th>
-  </tr>
+<table class='table table-stripped'>
+  <thead>
+    <tr class='noborder'>
+      <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+      <th><%= _("Status")%></th>
+      <th><%= _("Comment Author")%></th>
+      <th><%= _("Comment")%></th>
+    </tr>    
+  </thead>
   <%= render_void_table(@feedback.size, 5) %>
 
   <% @feedback.each do |comment| %>
@@ -29,34 +31,36 @@
 <%end%>
 
 <%= form_tag :action => "create" do %>
-<div id='comment' class='widget-container'>
-  <h3 class='light'><span class='ui-icon ui-icon-gear'></span> <%= _("Add a comment")%></h3>
-  <div class='widget-content'>
-    <div class='setting'>
-      <label for="comment_author" class='float'><%= _("Author")%></label>
-      <p class='input_text'>
-        <%= text_field 'comment', 'author', :class => 'medium' %>
-      </p>
-    </div>
-    <div class='setting clear'>
-      <label for="comment_email" class='float'><%= _("Email")%></label>
-      <p class='input_text'>
-        <%= text_field 'comment', 'email', :class => 'medium' %>
-      </p>
-    </div>
-    <div class='setting clear'>
-      <label for="comment_url" class='float'><%= _("Url") %></label>
-      <p class='input_text'>
-        <%= text_field 'comment', 'url', :class => 'medium' %>
-      </p>
-    </div>
-    <div id='simple_editor' class='setting clear'>
-      <p class='input_text'>
-        <script type="text/javascript">edToolbar('comment_body');</script>
-        <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
-      </p>
+<fieldset class='form-horizontal'>
+  <legend><%= _("Add a comment")%></legend>
+  <div class='control-group'>
+    <label for="comment_author" class='control-label'><%= _("Author")%></label>
+    <div class='controls'>
+      <%= text_field 'comment', 'author', :class => 'medium' %>
     </div>
   </div>
-</div>
-  <%= cancel_or_save %>
+  <div class='control-group'>
+    <label for="comment_email" class='control-label'><%= _("Email")%></label>
+    <div class='controls'>
+      <%= text_field 'comment', 'email', :class => 'medium' %>
+    </div>
+  </div>
+  <div class='control-group'>
+    <label for="comment_url" class='control-label'><%= _("Url") %></label>
+    <div class='controls'>
+      <%= text_field 'comment', 'url', :class => 'medium' %>
+    </div>
+  </div>
+  <div class='control-group'>
+    <label for='comment_body' class='control-label'><%= _("Your comment") %></label>
+    <div class='controls'>
+      <script type="text/javascript">edToolbar('comment_body');</script>
+      <%= text_area 'comment', 'body', { :rows => '10', :class => 'span6'} %>
+    </div>
+  </div>
+  <div class='form-actions'>
+    <%= cancel_or_save %>
+  </div>
+</fieldset>
+
 <% end %>
