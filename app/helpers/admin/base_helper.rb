@@ -12,8 +12,9 @@ module Admin::BaseHelper
   end
 
   def subtab(label, options = {})
-    return content_tag :li, "<span class='subtabs'>#{label}</span>".html_safe if options.empty?
-    content_tag :li, link_to(label, options)
+    return content_tag :li, link_to(label, '#'), :class => 'active' if options.empty?
+    
+    content_tag :li, link_to(label, options) 
   end
 
   def show_page_heading
@@ -80,66 +81,6 @@ module Admin::BaseHelper
 
   def task_overview
     content_tag :li, link_to(_('Back to list'), :action => 'index')
-  end
-
-  def class_tab
-    ''
-  end
-
-  def class_users
-    return class_selected_tab if controller.controller_name  =~ /users/
-    class_tab
-    
-  end
-
-  def class_selected_tab
-    'active'
-  end
-
-  def class_articles
-    if controller.controller_name  =~ /content|tags|categories|feedback|post_type/
-      return class_selected_tab if controller.action_name =~ /list|index|show|article|destroy|new|edit/
-    end
-    class_tab
-  end
-
-  def class_media
-    if controller.controller_name  =~ /resources/
-      return class_selected_tab
-    end
-    class_tab
-  end
-
-  def class_pages
-    if controller.controller_name  =~ /pages/
-      return class_selected_tab if controller.action_name =~ /index|destroy|new|edit/
-    end
-    class_tab
-  end
-
-  def class_themes
-    return class_selected_tab if controller.controller_name  =~ /themes|sidebar/
-    class_tab
-  end
-
-  def class_dashboard
-    return class_selected_tab if controller.controller_name  =~ /dashboard/
-    class_tab
-  end
-
-  def class_settings
-    return class_selected_tab if controller.controller_name  =~ /settings|cache|redirects/
-    class_tab
-  end
-
-  def class_profile
-    return class_selected_tab if controller.controller_name  =~ /profiles/
-    class_tab
-  end
-
-  def class_seo
-    return class_selected_tab if controller.controller_name  =~ /seo/
-    class_tab
   end
 
   def collection_select_with_current(object, method, collection, value_method, text_method, current_value, prompt=false)

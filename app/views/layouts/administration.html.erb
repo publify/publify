@@ -43,18 +43,20 @@
   <div class='container-fluid'>
     <div class='row-fluid'>
       <div class='span2'>
-        <div class='well'>
-          <% if controller.controller_name == 'dashboard' %>
-          <%= content_tag :h5, _('Dashboard')  %>
-          <% else %>
-          <%= content_tag :h5, (link_to _('Dashboard'), :controller => 'admin/dashboard')  %>
-          <% end %>
-          <% for pm in current_user.project_modules %>
-          <%= content_tag :h5, (link_to _(pm.menus.first.name ), pm.menus.first.url), :class => send("class_#{pm.name}") %>
-          <ul id='subtabs'>
-            <%= subtabs_for(pm.name.to_sym)%>
+        <div class='well' style='padding: 8px 0'>
+          <ul class='nav nav-list'>
+            <li class='nav-header'>
+              <%= _("Home") %>
+            </li>
+            <li class='<%= "active" if controller.controller_name == 'dashboard' %>'>
+              <%= link_to _('Dashboard'), {:controller => 'admin/dashboard'} %>              
+            </li>
+            <% for pm in current_user.project_modules %>
+            <%= content_tag :li, _(pm.menus.first.name), :class => "nav-header" %>
+              <%= subtabs_for(pm.name.to_sym)%>
+            <% end %>
+
           </ul>
-          <% end %>
         </div>
       </div>
       <div class='span10'>
