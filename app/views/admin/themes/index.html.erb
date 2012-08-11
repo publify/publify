@@ -3,31 +3,30 @@
 <% j = 0 %>
 
 <% for theme in @themes %>
-	<% if i == 0 %>
-	<div class='row'>
-	<% end %>	
-	<div class='span6'>
-		<% if j > 1 %>
-		<hr />
-		<% end %>
-		<h4><%= theme.name %></h4>
-		<% if theme.path == @active.path -%>
-		<%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>
-		<% else %>
-		<%= link_to(image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)), :action => 'switchto', :theme => theme.name) %>
-		<% end %>
-		<%= theme.description_html %>
-		<% if theme.path == @active.path -%>
-		<p><em>(<%= _("Active theme")%>)</em></p>
-		<% else -%>
-		<p><%= link_to(_("Chose this theme"), {:action => 'switchto', :theme => theme.name}, :class => 'btn info') %></p>
-		<% end -%>		
-	</div>
-	
+  <% if i == 0 %>
+  <div class='row'>
+  <% end %>	
+  <div class='span6'>
+  <% if j > 1 %>
+  <hr />
+  <% end %>
+  <h4><%= theme.name %></h4>
+  <% if theme.path == @active.path -%>
+    <%= image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)) %>
+  <% else %>
+    <%= link_to(image_tag(url_for(:action => 'preview', :theme => theme.name, :skip_relative_url_root => true)), :action => 'switchto', :theme => theme.name) %>
+  <% end %>
+  <%= theme.description_html %>
+  <% if theme.path == @active.path -%>
+  <p><em>(<%= _("Active theme")%>)</em></p>
+  <% else -%>
+  <p><%= link_to(_("Chose this theme"), {:action => 'switchto', :theme => theme.name}, :class => 'btn btn-info') %></p>
+  <% end -%>		
+  </div>
 
-	<% if i == 1 %>
-	</div>
-	<% end%>
-	<% i = (i == 0) ? 1 : 0%>
-	<% j += 1 %>
+  <% if i == 1 %>
+  </div>
+  <% end%>
+  <% i = (i == 0) ? 1 : 0%>
+  <% j += 1 %>
 <% end %>
