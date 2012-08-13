@@ -589,7 +589,7 @@ Localization.define("nl_NL") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", "Welkom bij je %s blog setup. Vul een titel voor je blog in, en een e-mailadres, en Typo zorgt voor de rest"
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", "Gefeliciteerd!"
+  l.store "Congratulations!", "Gefeliciteerd!"
   l.store "You have successfully signed up", "Je bent succesvol aangemeld"
   l.store "<strong>Login:</strong> %s", "<strong>Inlognaam:</strong> %s"
   l.store "<strong>Password:</strong> %s", "<strong>Wachtwoord:</strong> %s"
