@@ -681,7 +681,7 @@ Localization.define("nb_NO") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Typo ta seg av resten"
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", "Gratulerer!"
+  l.store "Congratulations!", "Gratulerer!"
   l.store "You have successfully signed up", "Du er nå registrert"
   l.store "<strong>Login:</strong> %s", "<strong>Logg inn:</strong> %s"
   l.store "<strong>Password:</strong> %s", "<strong>Passord:</strong> %s"

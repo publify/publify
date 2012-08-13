@@ -595,7 +595,7 @@ Localization.define("pl_PL") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", ""
+  l.store "Congratulations!", ""
   l.store "You have successfully signed up", ""
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
