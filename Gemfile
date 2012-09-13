@@ -25,6 +25,7 @@ end
 
 source :rubygems
 
+gem 'thin'
 gem 'rails', '~> 3.0.10'
 gem 'require_relative'
 gem 'htmlentities'
