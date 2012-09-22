@@ -52,7 +52,7 @@ group :development, :test do
   gem 'simplecov', :require => false
   gem 'sqlite3'
   gem 'cucumber'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
