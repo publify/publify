@@ -15,8 +15,8 @@ describe ApplicationHelper do
 
     it 'should render the notice and error flash' do
       flash[:notice] = 'good update'
-      flash[:error] = "it's not good"
-      render_flash.split("<br />\n").sort.should == ['<span class="error">it\'s not good</span>','<span class="notice">good update</span>']
+      flash[:error] = "its not good"
+      render_flash.split("<br />\n").sort.should == ['<span class="error">its not good</span>','<span class="notice">good update</span>']
     end
   end
 
