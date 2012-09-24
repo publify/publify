@@ -37,7 +37,21 @@ class TimtabConverter < BaseConverter
       [article, article_cats]
     end
 
-    converter.import_comments do |tt_coment|
+    converter.import_comments do |tt_comment|
+      date_created = Time.at(tt_comment.crdate).to_datetime
+
+      comment = ::Comment.new do |c|
+        c.body = tt_comment.content
+        c.created_at = date_created
+        c.updated_at = date_created
+        c.published_at = date_created
+        c.author = tt_comment.firstname
+        c.email = tt_comment.email
+        c.url = tt_comment.homepage
+        c.ip = tt_comment.remote_addr
+      end
+
+      comment
     end
 
   end
