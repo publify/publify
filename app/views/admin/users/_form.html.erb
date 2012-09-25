@@ -46,7 +46,7 @@
 </fieldset>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Profile Settings")%></legend>
+  <legend><%= _("Profile settings")%></legend>
   <div class='control-group'>
     <label class='control-label' for="user_firstname"><%= _("Firstname") %></label>
     <div class='controls'>
@@ -122,14 +122,14 @@
 
 <% unless controller.controller_name == 'users'%>
 <fieldset class='form-horizontal'>
-  <legend><%= _("Contact Options")%></legend>
+  <legend><%= _("Contact options")%></legend>
   <div class='control-group'>
     <label class='control-label' for="user_url"><%= _("Your site")%></label>
     <div class='controls'>
       <%= text_field('user', 'url', {:class => 'span5'}) %>
       <label class='checkbox' for='user_show_url'>
         <%= check_box 'user', 'show_url' %>
-        <%= _("display url on public profile") %>
+        <%= _("display URL on public profile") %>
       </label>
       </div>
     </div>
@@ -179,7 +179,7 @@
         <%= text_field('user', 'twitter', {:class => 'span5'}) %>
         <label class='checkbox' for='user_show_twitter'>
           <%= check_box 'user', 'show_twitter' %>
-          <%= _("display twitter on public profile") %>
+          <%= _("display Twitter on public profile") %>
         </label>
       </div>
     </div>
