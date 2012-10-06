@@ -178,9 +178,6 @@ module ApplicationHelper
       @article.feed_url(:atom)
     elsif not @auto_discovery_url_atom.nil?
       @auto_discovery_url_atom
-    else
-      # FIXME: When is this invoked?
-      url_for(:only_path => false, :format => 'atom')
     end
   end
 
@@ -191,8 +188,6 @@ module ApplicationHelper
       @article.feed_url(:rss20)
     elsif not @auto_discovery_url_rss.nil?
       @auto_discovery_url_rss
-    else
-      url_for(:only_path => false, :format => 'rss')
     end
   end
 
