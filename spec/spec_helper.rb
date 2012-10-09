@@ -115,7 +115,7 @@ def stub_pagination collection, attributes = {}
   num_pages = length / per_page + (length % per_page == 0 ? 0 : 1)
 
   attributes = attributes.reverse_merge current_page: 1, num_pages: num_pages,
-    total_count: length, limit_value: per_page
+    total_count: length, limit_value: per_page, total_pages: 12
   attributes.each do |key, value|
     collection.stub(key).and_return value
   end
@@ -127,9 +127,10 @@ def with_each_theme
   yield nil, ""
   Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
     next if theme =~ /\.\.?/
-    view_path = "#{::Rails.root.to_s}/themes/#{theme}/views"
-    if File.exists?("#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb")
-      require "#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb"
+    theme_dir = "#{::Rails.root.to_s}/themes/#{theme}"
+    view_path = "#{theme_dir}/views"
+    if File.exists?("#{theme_dir}/helpers/theme_helper.rb")
+      require "#{theme_dir}/helpers/theme_helper.rb"
     end
     yield theme, view_path
   end
