@@ -9,7 +9,6 @@
   do %>
 
 <table class="zebra-striped clearfix">
-  <thead>
     <tr class='noborder'>
       <td colspan=5>
         <input id="search" type="text" name="search[searchstring]" class='large' />
@@ -42,9 +41,6 @@
       <th><%= _("Date") %></th>
       <th class='last'><%= _("Feedback")%></th>
     </tr>    
-  </thead>
-  <tbody id="articleList">
     <%= render 'article_list', { :articles => @articles } -%>
-  </tbody>
 </table>
 <%end%>

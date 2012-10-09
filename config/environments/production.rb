@@ -7,7 +7,7 @@ TypoBlog::Application.configure do
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local = false
-  config.action_controller.perform_caching             = true
+  config.action_controller.perform_caching             = false
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
