@@ -80,8 +80,4 @@ class Tag < ActiveRecord::Base
     )
   end
 
-  def to_param
-    permalink
-  end
-
 end

@@ -157,23 +157,6 @@ class Article < Content
       blog.url_for(permalink_url_options, :anchor => anchor, :only_path => only_path)
   end
 
-  def param_array
-    @param_array ||=
-      [published_at.year,
-                 sprintf('%.2d', published_at.month),
-                 sprintf('%.2d', published_at.day),
-                 permalink].tap \
-      do |params|
-        this = self
-        k = class << params; self; end
-        k.send(:define_method, :to_s) { params[-1] }
-      end
-  end
-
-  def to_param
-    param_array
-  end
-
   def trackback_url
     blog.url_for("trackbacks?article_id=#{self.id}", :only_path => false)
   end
@@ -267,7 +250,7 @@ class Article < Content
   def self.count_by_date(year, month = nil, day = nil, limit = nil)
     if !year.blank?
       count(:conditions => { :published_at => time_delta(year, month, day),
-              :published => true })
+                             :published => true })
     else
       count(:conditions => { :published => true })
     end

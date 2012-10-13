@@ -160,10 +160,6 @@ class User < ActiveRecord::Base
     login
   end
 
-  def to_param
-    permalink
-  end
-
   def admin?
     profile.label == Profile::ADMIN
   end

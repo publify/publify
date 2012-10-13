@@ -40,10 +40,6 @@ class Feedback < ActiveRecord::Base
     'created_at ASC'
   end
 
-  def to_param
-    guid
-  end
-
   def parent
     article
   end
