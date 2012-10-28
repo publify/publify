@@ -29,7 +29,7 @@ class ArticlesController < ContentController
 
     @page_title = index_title
     @description = index_description
-    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
+    @keywords = this_blog.meta_keywords
 
     suffix = (params[:page].nil? and params[:year].nil?) ? "" : "/"
 
@@ -106,7 +106,7 @@ class ArticlesController < ContentController
   def archives
     @articles = Article.find_published
     @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
-    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
+    @keywords = this_blog.meta_keywords
     @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)
     @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'archives')
   end
@@ -117,7 +117,7 @@ class ArticlesController < ContentController
       return
     end
 
-    set_headers
+    headers["Content-Type"] = "text/html; charset=utf-8"
     @comment = Comment.new(params[:comment])
     @controller = self
   end
@@ -140,8 +140,8 @@ class ArticlesController < ContentController
   def view_page
     if(@page = Page.find_by_name(Array(params[:name]).map { |c| c }.join("/"))) && @page.published?
       @page_title = @page.title
-      @description = (this_blog.meta_description.empty?) ? "" : this_blog.meta_description
-      @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
+      @description = this_blog.meta_description
+      @keywords = this_blog.meta_keywords
       @canonical_url = @page.permalink_url
     else
       render "errors/404", :status => 404
@@ -170,7 +170,9 @@ class ArticlesController < ContentController
     @comment      = Comment.new
     @page_title   = this_blog.article_title_template.to_title(@article, this_blog, params)
     @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
-    article_meta
+    groupings = @article.categories + @article.tags
+    @keywords = groupings.map { |g| g.name }.join(", ")
+    @canonical_url = @article.permalink_url
 
     auto_discovery_feed
     respond_to do |format|
@@ -181,13 +183,6 @@ class ArticlesController < ContentController
     end
   rescue ActiveRecord::RecordNotFound
     error("Post not found...")
-  end
-
-
-  def article_meta
-    groupings = @article.categories + @article.tags
-    @keywords = groupings.map { |g| g.name }.join(", ")
-    @canonical_url = @article.permalink_url
   end
 
   def render_articles_feed format
@@ -201,10 +196,6 @@ class ArticlesController < ContentController
   def render_feedback_feed format
     @feedback = @article.published_feedback
     render "feedback_#{format}_feed", :layout => false
-  end
-
-  def set_headers
-    headers["Content-Type"] = "text/html; charset=utf-8"
   end
 
   def render_paginated_index(on_empty = _("No posts found..."))
@@ -236,16 +227,6 @@ class ArticlesController < ContentController
     else
       this_blog.home_desc_template.to_title(@articles, this_blog, params)
     end
-  end
-
-  def time_delta(year, month = nil, day = nil)
-    from = Time.mktime(year, month || 1, day || 1)
-
-    to = from.next_year
-    to = from.next_month unless month.blank?
-    to = from + 1.day unless day.blank?
-    to = to - 1 # pull off 1 second so we don't overlap onto the next day
-    return from..to
   end
 
   def split_from_path path
