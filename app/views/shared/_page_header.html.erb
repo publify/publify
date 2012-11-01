@@ -14,7 +14,7 @@
 <%- end %>
 <%= javascript_include_tag 'cookies', 'prototype', 'effects', 'builder', 'typo', :cache => true %>
 <%= stylesheet_link_tag 'coderay', 'user-styles', :cache => true %>
-<%= javascript_include_lang %>
+<%= javascript_include_tag "lang/#{Localization.lang.to_s}" if File.exists? File.join(::Rails.root.to_s, 'public', 'lang', Localization.lang.to_s) %>
 <%= javascript_tag "window._token = '#{form_authenticity_token}'"%>
 <%= page_header_includes %>
 <%= use_canonical  if this_blog.use_canonical_url %>

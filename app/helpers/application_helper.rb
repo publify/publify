@@ -147,10 +147,6 @@ module ApplicationHelper
     end
   end
 
-  def javascript_include_lang
-    javascript_include_tag "lang/#{Localization.lang.to_s}" if File.exists? File.join(::Rails.root.to_s, 'public', 'lang', Localization.lang.to_s)
-  end
-
   def use_canonical
     "<link rel='canonical' href='#{@canonical_url}' />".html_safe unless @canonical_url.nil?
   end
@@ -172,23 +168,11 @@ module ApplicationHelper
   end
 
   def feed_atom
-    if params[:action] == 'search'
-      url_for(:only_path => false, :format => 'atom', :q => params[:q])
-    elsif not @article.nil?
-      @article.feed_url(:atom)
-    elsif not @auto_discovery_url_atom.nil?
-      @auto_discovery_url_atom
-    end
+    feed_for('atom')
   end
 
   def feed_rss
-    if params[:action] == 'search'
-      url_for(:only_path => false, :format => 'rss', :q => params[:q])
-    elsif not @article.nil?
-      @article.feed_url(:rss20)
-    elsif not @auto_discovery_url_rss.nil?
-      @auto_discovery_url_rss
-    end
+    feed_for('rss')
   end
 
   def render_the_flash
@@ -232,27 +216,9 @@ module ApplicationHelper
     "#{display_date(timestamp)} #{_('at')} #{display_time(timestamp)}"
   end
 
-  def js_distance_of_time_in_words_to_now(date)
-    display_date_and_time date
-  end
-
   def show_meta_keyword
     return unless this_blog.use_meta_keyword
     meta_tag 'keywords', @keywords unless @keywords.blank?
-  end
-
-  def show_menu_for_post_type(posttype, before='<li>', after='</li>')
-    list = Article.find(:all, :conditions => ['post_type = ?', post_type])
-    html = ''
-    
-    return if list.size.zero?
-    list.each do |item|
-      html << before
-      html << link_to_permalink(item, item.title)
-      html << after
-    end
-    
-    html
   end
 
   def this_blog
@@ -269,4 +235,17 @@ module ApplicationHelper
     stop = @blog.unindex_categories if controller_name == "categories"
     stop
   end
+
+  private
+
+  def feed_for(type)
+    if params[:action] == 'search'
+      url_for(only_path: false, format: type, q: params[:q])
+    elsif not @article.nil?
+      @article.feed_url(type.to_sym)
+    elsif not @auto_discovery_url_atom.nil?
+      instance_variable_get("@auto_discovery_url_#{type}")
+    end
+  end
+
 end

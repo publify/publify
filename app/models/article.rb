@@ -181,7 +181,7 @@ class Article < Content
     blog.url_for("comments/preview?article_id=#{self.id}", :only_path => false)
   end
 
-  def feed_url(format = :rss20)
+  def feed_url(format = :rss)
     format_extension = format.to_s.gsub(/\d/,'')
     permalink_url + ".#{format_extension}"
   end
