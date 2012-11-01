@@ -56,4 +56,32 @@ describe ApplicationHelper do
       end
     end
   end
+
+  describe "stop_index_robots?" do
+    it "returns false by default" do
+      helper.stop_index_robots?.should be_false
+    end
+
+    it "returns true when params[:year] present" do
+      params[:year] = 2010
+      helper.stop_index_robots?.should be_true
+    end
+
+    it "returns true when params[:page] present" do
+      params[:page] = 2
+      helper.stop_index_robots?.should be_true
+    end
+
+    it "returns true when controller is tags and blog configure to unindex tags page" do
+      Blog.any_instance.should_receive(:unindex_tags).and_return(true)
+      helper.stub(:controller_name).and_return("tags")
+      helper.stop_index_robots?.should be_true
+    end
+
+    it "returns true when controller is tags and blog configure to unindex tags page" do
+      Blog.any_instance.should_receive(:unindex_categories).and_return(true)
+      helper.stub(:controller_name).and_return("categories")
+      helper.stop_index_robots?.should be_true
+    end
+  end
 end

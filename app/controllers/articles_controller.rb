@@ -20,10 +20,8 @@ class ArticlesController < ContentController
     end
 
     unless params[:year].blank?
-      @noindex = 1
       @articles = Article.published_at(params.values_at(:year, :month, :day)).page(params[:page]).per(@limit)
     else
-      @noindex = 1 unless params[:page].blank?
       @articles = Article.published.page(params[:page]).per(@limit)
     end
 
