@@ -227,17 +227,12 @@ describe BackendController do
     end
 
     it "test_meta_weblog_new_unpublished_post_with_blank_creation_date" do
-      dto = MetaWeblogStructs::Article.new(
-        :description       => "Some text",
-        :title             => "A Title"
-      )
-
+      dto = MetaWeblogStructs::Article.new(:description => "Some text", :title => "A Title")
       args = [ 1, 'henri', 'whatever', dto, 0 ]
-
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
       new_post = Article.find(result)
-      assert !new_post.published?
+      new_post.should_not be_published
     end
 
     it "should set categories if specified in new post" do
@@ -271,7 +266,7 @@ describe BackendController do
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
       new_post = Article.find(result)
-      assert !new_post.published?
+      new_post.should_not be_published
     end
 
     it "test_meta_weblog_new_media_object" do
@@ -309,8 +304,7 @@ describe BackendController do
 
       args = [ article.id, 'henri', 'whatever', result, 1 ]
       result = invoke_layered :metaWeblog, :editPost, *args
-      article.reload
-      assert_equal original_published_at, article.published_at
+      article.reload.published_at.should eq original_published_at
     end
   end
 
