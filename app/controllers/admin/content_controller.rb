@@ -1,6 +1,7 @@
 require 'base64'
 
 module Admin; end
+
 class Admin::ContentController < Admin::BaseController
   layout "administration", :except => [:show, :autosave]
 
@@ -52,18 +53,23 @@ class Admin::ContentController < Admin::BaseController
     redirect_to :action => 'index'
   end
 
-  def insert_editor
-    editor = 'visual'
-    editor = 'simple' if params[:editor].to_s == 'simple'
-    current_user.editor = editor
-    current_user.save!
+  def resource_do(action)
+    @article = Article.find(params[:id])
+    @resources = Resource.by_created_at
+    @resource = Resource.find(params["resource_id"])
+    @article.resources.send(action, resource)
+    @article.save
 
-    render :partial => "#{editor}_editor"
+    render :partial => "show_resources"
   end
 
-  def category_add; do_add_or_remove_fu; end
-  alias_method :resource_add,    :category_add
-  alias_method :resource_remove, :category_add
+  def resource_add
+    resource_do(:<<)
+  end
+
+  def resource_remove
+    resource_do(:delete)
+  end
 
   def attachment_box_add
     render :update do |page|
@@ -76,13 +82,10 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def attachment_save(attachment)
-    begin
-      Resource.create(:filename => attachment.original_filename, :mime => attachment.content_type.chomp,
-                      :created_at => Time.now).upload(attachment)
-    rescue => e
-      logger.info(e.message)
-      nil
-    end
+    Resource.create(filename: attachment.original_filename, mime: attachment.content_type.chomp, created_at: Time.now).upload(attachment)
+  rescue => e
+    logger.info(e.message)
+    nil
   end
 
   def autosave
@@ -126,18 +129,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   attr_accessor :resources, :categories, :resource, :category
-
-  def do_add_or_remove_fu
-    attrib, action = params[:action].split('_')
-    @article = Article.find(params[:id])
-    self.send("#{attrib}=", self.class.const_get(attrib.classify).find(params["#{attrib}_id"]))
-    send("setup_#{attrib.pluralize}")
-    @article.send(attrib.pluralize).send(real_action_for(action), send(attrib))
-    @article.save
-    render :partial => "show_#{attrib.pluralize}"
-  end
-
-  def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
     id = params[:id]
@@ -237,7 +228,4 @@ class Admin::ContentController < Admin::BaseController
 
   end
 
-  def setup_resources
-    @resources = Resource.by_created_at
-  end
 end
