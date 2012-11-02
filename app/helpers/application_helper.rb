@@ -36,9 +36,6 @@ module ApplicationHelper
     link_to_permalink(article,pluralize(comment_count, _('no comments'), _('1 comment'), _('%d comments', comment_count)),'comments')
   end
 
-  # wrapper for TypoPlugins::Avatar
-  # options is a hash which should contain :email and :url for the plugin
-  # (gravatar will use :email, pavatar will use :url, etc.)
   def avatar_tag(options = {})
     avatar_class = this_blog.plugin_avatar.constantize
     return '' unless avatar_class.respond_to?(:get_avatar)
@@ -52,14 +49,6 @@ module ApplicationHelper
 
   def meta_tag(name, value)
     tag :meta, :name => name, :content => value unless value.blank?
-  end
-
-  def date(date)
-    "<span class=\"typo_date\">" + date.utc.strftime(_("%%d. %%b", date.utc)) + "</span>"
-  end
-
-  def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
-    "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
 
   def markup_help_popup(markup, text)
@@ -97,24 +86,13 @@ module ApplicationHelper
     tag
   end
 
-  def render_flash
-    output = []
-
-    for key,value in flash
-      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
-    end if flash
-
-    output.join("<br />\n")
-  end
-
   def feed_title
-    case
-    when @feed_title
-      return @feed_title
-    when (@page_title and not @page_title.blank?)
-      return "#{this_blog.blog_name} : #{@page_title}"
+    if @feed_title.present?
+      @feed_title
+    elsif @page_title.present?
+      "#{this_blog.blog_name} : #{@page_title}"
     else
-      return this_blog.blog_name
+      this_blog.blog_name
     end
   end
 
@@ -225,10 +203,6 @@ module ApplicationHelper
     @blog ||= Blog.default
   end
 
-  def will_paginate(items, params = {})
-    paginate(items, params)
-  end
-
   def stop_index_robots?
     stop = (params[:year].present? || params[:page].present?)
     stop = @blog.unindex_tags if controller_name == "tags"
@@ -246,6 +220,14 @@ module ApplicationHelper
     elsif not @auto_discovery_url_atom.nil?
       instance_variable_get("@auto_discovery_url_#{type}")
     end
+  end
+
+  def render_flash
+    output = []
+    for key,value in flash
+      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
+    end if flash
+    output.join("<br />\n")
   end
 
 end
