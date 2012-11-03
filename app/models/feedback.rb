@@ -129,14 +129,17 @@ class Feedback < ActiveRecord::Base
     end
   end
 
-  def mark_as_ham!
-    mark_as_ham
+  def change_state!
+    result = ''
+    if state.spam?
+      mark_as_ham
+      result = 'ham'
+    else
+      mark_as_spam
+      result = 'spam'
+    end
     save!
-  end
-
-  def mark_as_spam!
-    mark_as_spam
-    save
+    result
   end
 
   def report_as_spam

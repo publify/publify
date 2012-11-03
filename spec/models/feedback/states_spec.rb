@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Feedback::States do
   before(:each) do
     FactoryGirl.create(:blog)
-    @comment = FactoryGirl.create(:article).comments.build(:author => 'Piers',
-                                                  :body => 'Body')
+    @comment = FactoryGirl.create(:article).comments.build(author: 'Piers', body: 'Body')
   end
 
   it "test_ham_all_the_way" do

@@ -238,6 +238,11 @@ FactoryGirl.define do
     c.published false
   end
 
+  factory :ham_comment, :parent => :comment do |c|
+    c.state 'ham'
+    c.published false
+  end
+
   factory :page do |p|
     p.name 'page_one'
     p.title 'Page One Title'

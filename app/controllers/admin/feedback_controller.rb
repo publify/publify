@@ -84,7 +84,8 @@ class Admin::FeedbackController < Admin::BaseController
 
     if request.post? and @comment.save
       # We should probably wave a spam filter over this, but for now, just mark it as published.
-      @comment.mark_as_ham!
+      @comment.mark_as_ham
+      @comment.save!
       flash[:notice] = _('Comment was successfully created.')
     end
     redirect_to :action => 'article', :id => @article.id
@@ -118,18 +119,13 @@ class Admin::FeedbackController < Admin::BaseController
     return unless request.xhr?
 
     feedback = Feedback.find(params[:id])
-    if (feedback.state.to_s.downcase == 'spam')
-      feedback.mark_as_ham!
-    else
-      feedback.mark_as_spam!
-    end
+    template = feedback.change_state!
 
-    template = (feedback.state.to_s.downcase == 'spam') ? 'spam' : 'ham'
     render(:update) do |page|
       if params[:context] != 'listing'
         page.visual_effect :fade, "feedback_#{feedback.id}"
       else
-        page.replace("feedback_#{feedback.id}", :partial => template, :locals => {:comment => feedback})
+        page.replace("feedback_#{feedback.id}", partial: template, locals: {comment: feedback})
       end
     end
   end
