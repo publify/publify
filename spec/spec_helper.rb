@@ -9,10 +9,11 @@ require 'factory_girl'
 require 'rexml/document'
 FactoryGirl.find_definitions
 
-User
-class User
-  alias real_send_create_notification send_create_notification
-  def send_create_notification; end
+class EmailNotify
+  class << self
+    alias real_send_user_create_notification send_user_create_notification
+    def send_user_create_notification user; end
+  end
 end
 
 class ActionView::TestCase::TestController
