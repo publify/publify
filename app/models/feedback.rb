@@ -6,7 +6,6 @@ class Feedback < ActiveRecord::Base
 
   include TypoGuid
 
-  ## For fixing this not being Content anymore
   include Stateful
 
   include ContentBase

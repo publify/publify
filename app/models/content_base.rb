@@ -62,7 +62,7 @@ module ContentBase
 
   # Post-process the HTML.  This is a noop by default, but Comment overrides it
   # to enforce HTML sanity.
-  def html_postprocess(field,html)
+  def html_postprocess(field, html)
     html
   end
 

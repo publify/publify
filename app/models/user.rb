@@ -223,11 +223,7 @@ class User < ActiveRecord::Base
   before_validation :set_default_profile
 
   def set_default_profile
-    if User.count.zero?
-      self.profile ||= Profile.find_by_label('admin')
-    else
-      self.profile ||= Profile.find_by_label('contributor')
-    end
+    self.profile ||= Profile.find_by_label(User.count.zero? ? 'admin' : 'contributor')
   end
 
   validates_uniqueness_of :login, :on => :create
