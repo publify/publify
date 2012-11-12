@@ -642,10 +642,35 @@ describe Article do
 
       assert_equal 1, a.published_comments.size
       c.withdraw!
-
       assert_equal 0, a.published_comments.size
     end
+  end
 
+  describe "save_attachments!" do
+    it "calls save_attachment for each file given" do
+      first_file = OpenStruct.new
+      second_file = OpenStruct.new
+      hash = {a_key: first_file, a_second_key: second_file}
+      article = FactoryGirl.build(:article)
+      article.should_receive(:save_attachment!).with(first_file)
+      article.should_receive(:save_attachment!).with(second_file)
+      article.save_attachments!(hash)
+    end
 
+    it "do nothing with nil given" do
+      article = FactoryGirl.build(:article)
+      article.save_attachments!(nil)
+    end
+  end
+
+  describe "save_attachment!" do
+    it "calls resource create_and_upload and add this new resource" do
+      resource = FactoryGirl.build(:resource)
+      file = OpenStruct.new
+      article = FactoryGirl.create(:article)
+      Resource.should_receive(:create_and_upload).with(file).and_return(resource)
+      article.save_attachment!(file).reload
+      article.resources.should eq [resource]
+    end
   end
 end

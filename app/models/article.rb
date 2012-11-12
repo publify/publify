@@ -157,6 +157,17 @@ class Article < Content
       blog.url_for(permalink_url_options, :anchor => anchor, :only_path => only_path)
   end
 
+  def save_attachments!(files)
+    files ||= {}
+    files.values.each { |f| self.save_attachment!(f) }
+  end
+
+  def save_attachment!(file)
+    self.resources << Resource.create_and_upload(file)
+  rescue => e
+    logger.info(e.message)
+  end
+
   def trackback_url
     blog.url_for("trackbacks?article_id=#{self.id}", :only_path => false)
   end

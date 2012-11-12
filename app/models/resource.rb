@@ -21,7 +21,12 @@ class Resource < ActiveRecord::Base
     "#{::Rails.root.to_s}/public/files/#{file.nil? ? filename : file}"
   end
 
-  def upload file
+  def self.create_and_upload(file)
+    resource = create(filename: file.original_filename, mime: file.content_type.chomp, created_at: Time.now)
+    resource.upload(file)
+  end
+
+  def upload(file)
     storage = setup_storage
     directory = storage.directories.get('files')
     directory = storage.directories.create(:key => 'files') unless directory

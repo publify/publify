@@ -72,4 +72,18 @@ describe Resource do
     File.should_receive(:unlink).with(res.fullpath).and_return(true)
     res.destroy
   end
+
+  describe "create_and_upload" do
+    it "calls create and upload" do
+      now = Time.new(2012,1,23,23,45)
+      Time.stub(:now).and_return(now)
+      file = OpenStruct.new(original_filename: 'orig', content_type: "mime")
+
+      resource = FactoryGirl.build(:resource)
+      Resource.should_receive(:create).with(filename: "orig", mime: "mime", created_at: now).and_return(resource)
+      resource.should_receive(:upload).with(file).and_return(resource)
+
+      Resource.create_and_upload(file)
+    end
+  end
 end

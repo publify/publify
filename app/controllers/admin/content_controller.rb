@@ -81,13 +81,6 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  def attachment_save(attachment)
-    Resource.create(filename: attachment.original_filename, mime: attachment.content_type.chomp, created_at: Time.now).upload(attachment)
-  rescue => e
-    logger.info(e.message)
-    nil
-  end
-
   def autosave
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
@@ -99,9 +92,12 @@ class Admin::ContentController < Admin::BaseController
     @article.attributes = params[:article]
     @article.published = false
     set_article_author
-    save_attachments
+    @article.save_attachments!(params[:attachments])
 
-    set_article_title_for_autosave
+    if @article.title.blank?
+      lastid = Article.find(:first, :order => 'id DESC').id
+      @article.title = "Draft article " + lastid.to_s
+    end
 
     @article.state = "draft" unless @article.state == "withdrawn"
     if @article.save
@@ -155,13 +151,20 @@ class Admin::ContentController < Admin::BaseController
 
     if request.post?
       set_article_author
-      save_attachments
+      @article.save_attachments!(params[:attachments])
 
       @article.state = "draft" if @article.draft
 
       if @article.save
-        destroy_the_draft unless @article.draft
-        set_article_categories
+        unless @article.draft
+          Article.all(conditions: { parent_id: @article.id }).map(&:destroy)
+        end
+        @article.categorizations.clear
+        if params[:categories]
+          Category.find(params[:categories]).each do |cat|
+            @article.categories << cat
+          end
+        end
         set_the_flash
         redirect_to :action => 'index'
         return
@@ -185,47 +188,10 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  def destroy_the_draft
-    Article.all(:conditions => { :parent_id => @article.id }).map(&:destroy)
-  end
-
   def set_article_author
     return if @article.author
     @article.author = current_user.login
-    @article.user   = current_user
-  end
-
-  def set_article_title_for_autosave
-    if @article.title.blank?
-      lastid = Article.find(:first, :order => 'id DESC').id
-      @article.title = "Draft article " + lastid.to_s
-    end
-  end
-
-  def save_attachments
-    return if params[:attachments].nil?
-    params[:attachments].each do |k,v|
-      a = attachment_save(v)
-      @article.resources << a unless a.nil?
-    end
-  end
-
-  def set_article_categories
-    @article.categorizations.clear
-    if params[:categories]
-      Category.find(params[:categories]).each do |cat|
-        @article.categories << cat
-      end
-    end
-  end
-
-  def def_build_body
-    if @article.body =~ /<!--more-->/
-      body = @article.body.split('<!--more-->')
-      @article.body = body[0]
-      @article.extended = body[1]
-    end
-
+    @article.user = current_user
   end
 
 end
