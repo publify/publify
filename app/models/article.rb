@@ -75,6 +75,11 @@ class Article < Content
     self.permalink = self.title.to_permalink if self.permalink.nil? or self.permalink.empty?
   end
 
+  def set_author(user)
+    self.author = user.login
+    self.user = user
+  end
+
   def has_child?
     Article.exists?({:parent_id => self.id})
   end

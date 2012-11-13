@@ -3,22 +3,22 @@ require 'base64'
 module Admin; end
 
 class Admin::ContentController < Admin::BaseController
-  layout "administration", :except => [:show, :autosave]
+  layout "administration", except: [:show, :autosave]
 
   cache_sweeper :blog_sweeper
 
   def auto_complete_for_article_keywords
     @items = Tag.find_with_char params[:article][:keywords].strip
-    render :inline => "<%= raw auto_complete_result @items, 'name' %>"
+    render inline: "<%= raw auto_complete_result @items, 'name' %>"
   end
 
   def index
     @search = params[:search] ? params[:search] : {}
 
-    @articles = Article.search_with_pagination(@search, {:page => params[:page], :per_page => this_blog.admin_display_elements})
+    @articles = Article.search_with_pagination(@search, {page: params[:page], per_page: this_blog.admin_display_elements})
 
     if request.xhr?
-      render :partial => 'article_list', :locals => { :articles => @articles }
+      render partial: 'article_list', locals: { articles: @articles }
     else
       @article = Article.new(params[:article])
     end
@@ -31,7 +31,7 @@ class Admin::ContentController < Admin::BaseController
   def edit
     @article = Article.find(params[:id])
     unless @article.access_by? current_user
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
     end
@@ -84,6 +84,7 @@ class Admin::ContentController < Admin::BaseController
   def autosave
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
+
     @article = Article.get_or_build_article(id)
     @article.text_filter = current_user.text_filter if current_user.simple_editor?
 
@@ -91,15 +92,15 @@ class Admin::ContentController < Admin::BaseController
 
     @article.attributes = params[:article]
     @article.published = false
-    set_article_author
+    @article.set_author(current_user)
     @article.save_attachments!(params[:attachments])
+    @article.state = "draft" unless @article.state == "withdrawn"
 
     if @article.title.blank?
       lastid = Article.find(:first, :order => 'id DESC').id
       @article.title = "Draft article " + lastid.to_s
     end
 
-    @article.state = "draft" unless @article.state == "withdrawn"
     if @article.save
       render(:update) do |page|
         page.replace_html('autosave', hidden_field_tag('article[id]', @article.id))
@@ -150,9 +151,9 @@ class Admin::ContentController < Admin::BaseController
     @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue Time.parse(params[:article][:published_at]).utc rescue nil
 
     if request.post?
-      set_article_author
-      @article.save_attachments!(params[:attachments])
+      @article.set_author(current_user)
 
+      @article.save_attachments!(params[:attachments])
       @article.state = "draft" if @article.draft
 
       if @article.save
@@ -186,12 +187,6 @@ class Admin::ContentController < Admin::BaseController
     else
       raise "I don't know how to tidy up action: #{params[:action]}"
     end
-  end
-
-  def set_article_author
-    return if @article.author
-    @article.author = current_user.login
-    @article.user = current_user
   end
 
 end

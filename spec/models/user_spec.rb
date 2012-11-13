@@ -232,4 +232,14 @@ describe User do
       user.simple_editor?.should be_false
     end
   end
+
+  describe "set_author" do
+    it "uses user given param to set author AND user of article" do
+      article = Article.new
+      user = FactoryGirl.build(:user, login: 'Henri')
+      article.set_author(user)
+      article.author.should eq 'Henri'
+      article.user.should eq user
+    end
+  end
 end
