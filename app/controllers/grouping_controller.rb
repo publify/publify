@@ -7,20 +7,15 @@ class GroupingController < ContentController
     c.request.query_string == ''
   }
 
-  class << self
-    def grouping_class(klass = nil)
-      if klass
-        @grouping_class = klass
-      end
-      @grouping_class ||= \
-        self.to_s \
-        .sub(/Controller$/,'') \
-        .singularize.constantize
+  def self.grouping_class(klass = nil)
+    if klass
+      @grouping_class = klass
     end
+    @grouping_class ||= self.to_s.sub(/Controller$/,'').singularize.constantize
+  end
 
-    def ivar_name
-      @ivar_name ||= "@#{to_s.sub(/Controller$/, '').underscore}"
-    end
+  def self.ivar_name
+    @ivar_name ||= "@#{to_s.sub(/Controller$/, '').underscore}"
   end
 
   def index
@@ -29,20 +24,55 @@ class GroupingController < ContentController
     @keywords = ""
     @description = "#{_(self.class.to_s.sub(/Controller$/,''))} #{'for'} #{this_blog.blog_name}"
     @description << "#{_('page')} #{params[:page]}" if params[:page]
-    render_index(groupings)
+
+    respond_to do |format|
+      format.html do
+        unless template_exists? "#{grouping_name.downcase}/index"
+          @grouping_class = self.class.grouping_class
+          @groupings = groupings
+          render 'articles/groupings'
+        end
+      end
+    end
   end
 
   def show
     @grouping = grouping_class.find_by_permalink(params[:id])
-    return render_empty if @grouping.nil?
+    if @grouping.nil?
+      @articles = []
+    else
+      @canonical_url = permalink_with_page @grouping, params[:page]
+      @page_title = show_page_title_for @grouping, params[:page]
+      @description = @grouping.description.to_s
+      @keywords = ""
+      @keywords << @grouping.keywords unless @grouping.keywords.blank?
+      @keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
+      @articles = @grouping.articles.published.page(params[:page]).per(10)
+    end
+    respond_to do |format|
+      format.html do
+        if @articles.empty?
+          redirect_to this_blog.base_url, status: 301
+        elsif template_exists? "#{grouping_name.downcase}/#{params[:id]}"
+          render params[:id]
+        elsif template_exists? "#{grouping_name.downcase}/show"
+          render 'show'
+        else
+          render 'articles/index'
+        end
+      end
 
-    @canonical_url = permalink_with_page @grouping, params[:page]
-    @page_title = show_page_title_for @grouping, params[:page]
-    @description = @grouping.description.to_s
-    @keywords = keyword_from @grouping
-    @articles = @grouping.articles.published.page(params[:page]).per(10)
+      format.atom {
+        @articles = @article[0,this_blog.limit_rss_display]
+        render "articles/index_atom_feed", :layout => false
+      }
 
-    render_articles
+      format.rss  {
+        @articles = @article[0,this_blog.limit_rss_display]
+        render "articles/index_rss_feed", :layout => false
+      }
+    end
+
   end
 
   protected
@@ -59,18 +89,15 @@ class GroupingController < ContentController
     instance_variable_get(self.class.ivar_name)
   end
 
-  def keyword_from grouping
-    keywords = ""
-    keywords << grouping.keywords unless grouping.keywords.blank?
-    keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
-    keywords
+  def grouping_name
+    @grouping_name ||= self.class.to_s.sub(/Controller$/,'')
   end
 
   def show_page_title_for grouping, page
-    if self.class.to_s.sub(/Controller$/,'').singularize == 'Category'
+    if grouping_name.singularize == 'Category'
       @page_title   = this_blog.category_title_template.to_title(@grouping, this_blog, params)
       @description = this_blog.category_title_template.to_title(@grouping, this_blog, params)
-    elsif self.class.to_s.sub(/Controller$/,'').singularize == 'Tag'
+    elsif grouping_name.singularize == 'Tag'
       @page_title   = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
       @description = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
     end
@@ -80,51 +107,5 @@ class GroupingController < ContentController
   def permalink_with_page grouping, page
     suffix = page.nil? ? "/" : "/page/#{page}/"
     grouping.permalink_url + suffix
-  end
-
-  def render_index(groupings)
-    respond_to do |format|
-      format.html do
-        unless template_exists? "#{self.class.to_s.sub(/Controller$/,'').downcase}/index"
-          @grouping_class = self.class.grouping_class
-          @groupings = groupings
-          render 'articles/groupings'
-        end
-      end
-    end
-  end
-
-  def render_articles
-    respond_to do |format|
-      format.html do
-        if @articles.empty?
-          redirect_to this_blog.base_url, :status => 301
-          return
-        end
-
-        render active_template
-        
-      end
-
-      format.atom { render_feed 'atom', @articles }
-      format.rss  { render_feed 'rss', @articles }
-    end
-  end
-
-  def render_feed(format, collection)
-    @articles = collection[0,this_blog.limit_rss_display]
-    render "articles/index_#{format}_feed", :layout => false
-  end
-
-  def render_empty
-    @articles = []
-    render_articles
-  end
-
-  private
-  def active_template
-    return params[:id] if template_exists? "#{self.class.to_s.sub(/Controller$/,'').downcase}/#{params[:id]}"
-    return 'show' if template_exists? "#{self.class.to_s.sub(/Controller$/,'').downcase}/show"
-    'articles/index'
   end
 end
