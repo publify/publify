@@ -37,8 +37,7 @@ describe CategoriesController do
 
   describe '#show' do
     before do
-      blog = FactoryGirl.create(:blog, :base_url => "http://myblog.net", :theme => "typographic",
-                                :use_canonical_url => true, :blog_name => "My Shiny Weblog!")
+      blog = FactoryGirl.create(:blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true, blog_name: "My Shiny Weblog!")
       Blog.stub(:default) { blog }
       Trigger.stub(:fire) { }
 

@@ -63,12 +63,12 @@ class GroupingController < ContentController
       end
 
       format.atom {
-        @articles = @article[0,this_blog.limit_rss_display]
+        @articles = @articles[0,this_blog.limit_rss_display]
         render "articles/index_atom_feed", :layout => false
       }
 
       format.rss  {
-        @articles = @article[0,this_blog.limit_rss_display]
+        @articles = @articles[0,this_blog.limit_rss_display]
         render "articles/index_rss_feed", :layout => false
       }
     end
