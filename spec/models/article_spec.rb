@@ -727,4 +727,45 @@ describe Article do
     end
 
   end
+
+  describe ".search_with_pagination" do
+    #TODO move those kind of test to a "integration specs" that can be run only for integration
+    context "given some datas" do
+      it "returns an empty array when no article and no params" do
+        Article.search_with_pagination({}, {page: nil, per_page: 12}).should be_empty
+      end
+
+      it "returns article" do
+        article = FactoryGirl.create(:article)
+        Article.search_with_pagination({}, {page: nil, per_page: 12}).should eq([article])
+      end
+
+      it "returns only published article where search params ask about published state" do
+        published_article = FactoryGirl.create(:article, state: 'published')
+        article = FactoryGirl.create(:article, state: 'draft')
+        Article.search_with_pagination({state: 'published'}, {page: nil, per_page: 12}).should eq([published_article])
+      end
+
+      it "returns only quantity of article ask in per_page" do
+        article = FactoryGirl.create(:article, state: 'published')
+        out_of_per_page_article = FactoryGirl.create(:article, state: 'draft')
+        Article.search_with_pagination({}, {page: nil, per_page: 1}).should eq([article])
+      end
+
+      it "returns no draft article by default" do
+        article = FactoryGirl.create(:article, state: 'published')
+        draft_article = FactoryGirl.create(:article, state: 'draft')
+        Article.search_with_pagination({}, {page: nil, per_page: 12}).should eq([article])
+      end
+
+      it "returns article of search categorie" do
+        show_category = FactoryGirl.create(:category, name: 'show')
+        hide_category = FactoryGirl.create(:category, name: 'not_show')
+        article = FactoryGirl.create(:article, categories: [show_category])
+        hide_article = FactoryGirl.create(:article, categories: [hide_category])
+        Article.search_with_pagination({category: show_category.id}, {page: nil, per_page: 12}).should eq([article])
+      end
+
+    end
+  end
 end

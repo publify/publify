@@ -58,5 +58,37 @@ describe Content do
       @content.really_send_notifications
     end
   end
+
+  describe "#function_search_no_draft" do
+    it "returns empty array when nil given" do
+      Content.function_search_no_draft(nil).should be_empty
+    end
+
+    it "returns article that match with searchstring" do
+      expected_function = ['searchstring(search_hash[:searchstring])']
+      Content.function_search_no_draft({searchstring: 'something'}).should eq expected_function
+    end
+
+    it "returns article that match with published_at" do
+      expected_function = ['published_at_like(search_hash[:published_at])']
+      Content.function_search_no_draft({published_at: '2012-02'}).should eq expected_function
+    end
+
+    it "returns article that match with user_id" do
+      expected_function = ['user_id(search_hash[:user_id])']
+      Content.function_search_no_draft({user_id: '1'}).should eq expected_function
+    end
+
+    it "returns article that match with not published" do
+      expected_function = ['not_published']
+      Content.function_search_no_draft({published: '0'}).should eq expected_function
+    end
+
+    it "returns article that match with published" do
+      expected_function = ['published']
+      Content.function_search_no_draft({published: '1'}).should eq expected_function
+    end
+
+  end
 end
 

@@ -21,13 +21,13 @@ class Content < ActiveRecord::Base
     :published_at => (
       if date_at =~ /\d{4}-\d{2}-\d{2}/
         DateTime.strptime(date_at, '%Y-%m-%d').beginning_of_day..DateTime.strptime(date_at, '%Y-%m-%d').end_of_day
-      elsif date_at =~ /\d{4}-\d{2}/
-        DateTime.strptime(date_at, '%Y-%m').beginning_of_month..DateTime.strptime(date_at, '%Y-%m').end_of_month
-      elsif date_at =~ /\d{4}/
-        DateTime.strptime(date_at, '%Y').beginning_of_year..DateTime.strptime(date_at, '%Y').end_of_year
-      else
-        date_at
-      end
+    elsif date_at =~ /\d{4}-\d{2}/
+      DateTime.strptime(date_at, '%Y-%m').beginning_of_month..DateTime.strptime(date_at, '%Y-%m').end_of_month
+    elsif date_at =~ /\d{4}/
+      DateTime.strptime(date_at, '%Y').beginning_of_year..DateTime.strptime(date_at, '%Y').end_of_year
+    else
+      date_at
+    end
     )}
   }
   }
@@ -39,11 +39,11 @@ class Content < ActiveRecord::Base
   scope :searchstring, lambda {|search_string|
     tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
     {:conditions => ['state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
-                        "published", *tokens.collect{ |token| [token] * 3 }.flatten]}
+                     "published", *tokens.collect{ |token| [token] * 3 }.flatten]}
   }
   scope :already_published, lambda { {:conditions => ['published = ? AND published_at < ?', true, Time.now],
-    :order => default_order,
-    }}
+                                      :order => default_order,
+  }}
 
   serialize :whiteboard
 
@@ -65,78 +65,74 @@ class Content < ActiveRecord::Base
     self.redirects << r
   end
 
-  class << self
-    def find_already_published(what = :all, at = nil, options = { })
-      if what.respond_to?(:has_key?)
-        what, options = :all, what
-      elsif at.respond_to?(:has_key?)
-        options, at = at, nil
-      end
-      at ||= options.delete(:at) || Time.now
-      with_scope(:find => { :conditions => ['published_at < ?', at]}) do
-        find_published(what, options)
-      end
+  def self.find_already_published(what = :all, at = nil, options = { })
+    if what.respond_to?(:has_key?)
+      what, options = :all, what
+    elsif at.respond_to?(:has_key?)
+      options, at = at, nil
     end
+    at ||= options.delete(:at) || Time.now
+    with_scope(:find => { :conditions => ['published_at < ?', at]}) do
+      find_published(what, options)
+    end
+  end
 
-    def find_by_published_at(column_name = :published_at)
-      from_where = "FROM #{self.table_name} WHERE #{column_name} is not NULL AND type='#{self.name}'"
+  def self.find_by_published_at(column_name = :published_at)
+    from_where = "FROM #{self.table_name} WHERE #{column_name} is not NULL AND type='#{self.name}'"
 
-      # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
+    # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
 
-      if defined?(ActiveRecord::ConnectionAdapters::Mysql2Adapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::Mysql2Adapter)
-        # MySQL uses date_format
-        find_by_sql("SELECT date_format(#{column_name}, '%Y-%m') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-      elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
-        # PostgreSQL uses to_char
-        find_by_sql("SELECT to_char(#{column_name}, 'YYYY-MM') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
+    if defined?(ActiveRecord::ConnectionAdapters::Mysql2Adapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::Mysql2Adapter)
+      # MySQL uses date_format
+      find_by_sql("SELECT date_format(#{column_name}, '%Y-%m') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
+    elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
+      # PostgreSQL uses to_char
+      find_by_sql("SELECT to_char(#{column_name}, 'YYYY-MM') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
 
-      else        
-        # If we don't have an adapter-safe conversion from date -> YYYY-MM,
-        # we'll do the GROUP BY server-side. There won't be very many objects
-        # in this array anyway.
-        date_map = {}
-        dates = find_by_sql("SELECT #{column_name} AS publication #{from_where}")
+    else
+      # If we don't have an adapter-safe conversion from date -> YYYY-MM,
+      # we'll do the GROUP BY server-side. There won't be very many objects
+      # in this array anyway.
+      date_map = {}
+      dates = find_by_sql("SELECT #{column_name} AS publication #{from_where}")
 
-        dates.map! do |d|
-          d.publication = Time.parse(d.publication).strftime('%Y-%m')
-          d.freeze
-          if !date_map.has_key?(d.publication)
-            date_map[d.publication] = true
-            d
-          end
+      dates.map! do |d|
+        d.publication = Time.parse(d.publication).strftime('%Y-%m')
+        d.freeze
+        if !date_map.has_key?(d.publication)
+          date_map[d.publication] = true
+          d
         end
-        dates.reject!{|d| d.blank? || d.publication.blank?}
-        dates.sort!{|a,b| b.publication <=> a.publication}
-
-        dates
       end
+      dates.reject!{|d| d.blank? || d.publication.blank?}
+      dates.sort!{|a,b| b.publication <=> a.publication}
+
+      dates
+    end
+  end
+
+  def self.function_search_no_draft(search_hash)
+    list_function = []
+    search_hash ||= {}
+
+    if search_hash[:searchstring]
+      list_function << 'searchstring(search_hash[:searchstring])' unless search_hash[:searchstring].to_s.empty?
     end
 
-    def function_search_no_draft(search_hash)
-      list_function = []
-      if search_hash.nil?
-        search_hash = {}
-      end
-
-      if search_hash[:searchstring]
-        list_function << 'searchstring(search_hash[:searchstring])' unless search_hash[:searchstring].to_s.empty?
-      end
-
-      if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
-        list_function << 'published_at_like(search_hash[:published_at])'
-      end
-
-      if search_hash[:user_id] && search_hash[:user_id].to_i > 0
-        list_function << 'user_id(search_hash[:user_id])'
-      end
-
-      if search_hash[:published]
-        list_function << 'published' if search_hash[:published].to_s == '1'
-        list_function << 'not_published' if search_hash[:published].to_s == '0'
-      end
-
-      list_function
+    if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
+      list_function << 'published_at_like(search_hash[:published_at])'
     end
+
+    if search_hash[:user_id] && search_hash[:user_id].to_i > 0
+      list_function << 'user_id(search_hash[:user_id])'
+    end
+
+    if search_hash[:published]
+      list_function << 'published' if search_hash[:published].to_s == '1'
+      list_function << 'not_published' if search_hash[:published].to_s == '0'
+    end
+
+    list_function
   end
 
   def whiteboard
