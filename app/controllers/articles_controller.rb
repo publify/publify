@@ -25,8 +25,18 @@ class ArticlesController < ContentController
       @articles = Article.published.page(params[:page]).per(@limit)
     end
 
-    @page_title = index_title
-    @description = index_description
+    @page_title = this_blog.home_title_template
+    @description = this_blog.home_desc_template
+    if params[:year]
+      @page_title = this_blog.archives_title_template
+      @description = this_blog.archives_desc_template
+    elsif params[:page]
+      @page_title = this_blog.paginated_title_template
+      @description = this_blog.paginated_desc_template
+    end
+    @page_title = @page_title.to_title(@articles, this_blog, params)
+    @description = @description.to_title(@articles, this_blog, params)
+
     @keywords = this_blog.meta_keywords
 
     suffix = (params[:page].nil? and params[:year].nil?) ? "" : "/"
@@ -205,26 +215,6 @@ class ArticlesController < ContentController
       @auto_discovery_url_atom = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
     render 'index'
-  end
-
-  def index_title
-    if params[:year]
-      return this_blog.archives_title_template.to_title(@articles, this_blog, params)
-    elsif params[:page]
-      return this_blog.paginated_title_template.to_title(@articles, this_blog, params)
-    else
-      this_blog.home_title_template.to_title(@articles, this_blog, params)
-    end
-  end
-
-  def index_description
-    if params[:year]
-      return this_blog.archives_desc_template.to_title(@articles, this_blog, params)
-    elsif params[:page]
-      return this_blog.paginated_desc_template.to_title(@articles, this_blog, params)
-    else
-      this_blog.home_desc_template.to_title(@articles, this_blog, params)
-    end
   end
 
   def split_from_path path
