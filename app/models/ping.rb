@@ -107,8 +107,7 @@ class Ping < ActiveRecord::Base
 
   def send_weblogupdatesping(server_url, origin_url)
     t = Thread.start(article.blog.blog_name) do |blog_name|
-      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name,
-                   server_url, origin_url)
+      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name, server_url, origin_url)
     end
     t
   end

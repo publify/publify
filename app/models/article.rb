@@ -221,31 +221,24 @@ class Article < Content
     urls.uniq
   end
 
-  def really_send_pings(serverurl = blog.base_url, articleurl = nil)
+  def really_send_pings
     return unless blog.send_outbound_pings
 
-    articleurl ||= permalink_url(nil)
-
-    weblogupdatesping_urls = blog.ping_urls.gsub(/ +/,'').split(/[\n\r]+/).map(&:strip)
-    pingback_or_trackback_urls = self.html_urls
-
-    ping_urls = weblogupdatesping_urls + pingback_or_trackback_urls
-
-    existing_ping_urls = pings.collect { |p| p.url }
-
-    ping_urls.uniq.each do |url|
+    blog.urls_to_ping_for(self).each do |url_to_ping|
       begin
-        unless existing_ping_urls.include?(url)
-          ping = pings.build("url" => url)
-
-          if weblogupdatesping_urls.include?(url)
-            ping.send_weblogupdatesping(serverurl, articleurl)
-          elsif pingback_or_trackback_urls.include?(url)
-            ping.send_pingback_or_trackback(articleurl)
-          end
-        end
+        url_to_ping.send_weblogupdatesping(blog.base_url, permalink_url)
       rescue Exception => e
         logger.error(e)
+        # in case the remote server doesn't respond or gives an error,
+        # we should throw an xmlrpc error here.
+      end
+    end
+
+    html_urls_to_ping.each do |url_to_ping|
+      begin
+        url_to_ping.send_pingback_or_trackback(permalink_url)
+      rescue Exception => exception
+        logger.error(exception)
         # in case the remote server doesn't respond or gives an error,
         # we should throw an xmlrpc error here.
       end
@@ -413,6 +406,10 @@ class Article < Content
     user.admin? || user_id == user.id
   end
 
+  def already_ping?(url)
+    self.pings.map(&:url).include?(url)
+  end
+
   protected
 
   def set_published_at
@@ -432,10 +429,10 @@ class Article < Content
     if self.attributes.include?("permalink") and
       (self.permalink.blank? or
        self.permalink.to_s =~ /article-draft/ or
-       self.state == "draft"
-      )
+       self.state == "draft")
       set_permalink
     end
+
     if blog && self.allow_comments.nil?
       self.allow_comments = blog.default_allow_comments
     end
@@ -456,5 +453,15 @@ class Article < Content
     to = from + 1.day unless day.blank?
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
+  end
+
+  private
+
+  def html_urls_to_ping
+    urls_to_ping = []
+    self.html_urls.delete_if{|url| already_ping?(url)}.uniq.each do |url_to_ping|
+      urls_to_ping << self.pings.build("url" => url_to_ping)
+    end
+    urls_to_ping
   end
 end

@@ -673,4 +673,58 @@ describe Article do
       article.resources.should eq [resource]
     end
   end
+
+  describe ".really_send_pings" do
+    it "return nil and do nothing when blog should not send_outbound_pings" do
+      Blog.any_instance.should_receive(:send_outbound_pings).and_return(false)
+      Article.new.really_send_pings.should be_nil
+    end
+
+    it "do nothing when no urls to ping article" do
+      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
+      Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
+      article = Article.new
+      article.should_receive(:html_urls_to_ping).and_return([])
+      Ping.any_instance.should_not_receive(:send_weblogupdatesping)
+      Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+      article.really_send_pings
+    end
+
+    it "do nothing when urls already list in article.pings (already ping ?)"  do
+      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
+      ping = OpenStruct.new(url: "an_url_to_ping")
+      Blog.any_instance.should_receive(:urls_to_ping_for).and_return([ping])
+      article = Article.new
+      article.should_receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
+      Ping.any_instance.should_not_receive(:send_weblogupdatesping)
+      Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+      article.really_send_pings
+    end
+
+    it "calls send_weblogupdatesping when it's not already done"  do
+      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
+      new_ping = OpenStruct.new
+      urls_to_ping = [new_ping]
+      Blog.any_instance.should_receive(:urls_to_ping_for).and_return(urls_to_ping)
+      article = Article.new
+      article.should_receive(:permalink_url)
+      article.should_receive(:html_urls_to_ping).and_return([])
+      new_ping.should_receive(:send_weblogupdatesping)
+      new_ping.should_not_receive(:send_pingback_or_trackback)
+      article.really_send_pings
+    end
+
+    it "calls send_pingback_or_trackback when it's not already done"  do
+      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
+      Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
+      article = Article.new
+      new_ping = OpenStruct.new
+      article.should_receive(:html_urls_to_ping).and_return([new_ping])
+      article.should_receive(:permalink_url)
+      new_ping.should_receive(:send_pingback_or_trackback)
+      new_ping.should_not_receive(:send_weblogupdatesping)
+      article.really_send_pings
+    end
+
+  end
 end

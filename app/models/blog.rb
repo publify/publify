@@ -229,6 +229,14 @@ class Blog < ActiveRecord::Base
     text_filter.to_text_filter
   end
 
+  def urls_to_ping_for(article)
+    urls_to_ping = []
+    self.ping_urls.gsub(/ +/, '').split(/[\n\r]+/).map(&:strip).delete_if{|u| article.already_ping?(u)}.uniq.each do |url|
+      urls_to_ping << article.pings.build("url" => url)
+    end
+    urls_to_ping
+  end
+
   private
 
   def protocol

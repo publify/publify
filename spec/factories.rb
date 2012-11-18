@@ -153,7 +153,8 @@ FactoryGirl.define do
     plugin_avatar ''
     blog_subtitle "test subtitles"
     limit_rss_display 10
-    ping_urls "http://ping.example.com/ping http://alsoping.example.com/rpc/ping"
+    ping_urls "http://ping.example.com/ping
+http://alsoping.example.com/rpc/ping"
     geourl_location ""
     default_allow_pings false
     send_outbound_pings false
