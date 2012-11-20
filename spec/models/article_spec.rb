@@ -5,7 +5,6 @@ describe Article do
 
   before do
     @blog = build_stubbed :blog
-
     @articles = []
   end
 
@@ -371,6 +370,7 @@ describe Article do
 
   it 'should get only ham not spam comment' do
     article = FactoryGirl.create(:article)
+    article.stub(:allow_comments?).and_return(true)
     ham_comment = FactoryGirl.create(:comment, :article => article)
     spam_comment = FactoryGirl.create(:spam_comment, :article => article)
     article.comments.ham.should == [ham_comment]
@@ -631,11 +631,11 @@ describe Article do
 
   describe "#published_comments" do
     it 'should not include withdrawn comments' do
-      a = Article.new(:title => 'foo')
+      a = Article.new(title: 'foo')
       a.save!
 
       assert_equal 0, a.published_comments.size
-      c = a.comments.build(:body => 'foo', :author => 'bob', :published => true, :published_at => Time.now)
+      c = a.comments.build(body: 'foo', author: 'bob', published: true, published_at: Time.now)
       assert c.published?
       c.save!
       a.reload
@@ -675,57 +675,58 @@ describe Article do
   end
 
   describe ".really_send_pings" do
-    it "return nil and do nothing when blog should not send_outbound_pings" do
-      Blog.any_instance.should_receive(:send_outbound_pings).and_return(false)
-      Article.new.really_send_pings.should be_nil
-    end
+    context "given a new article" do
+      let(:article) { Article.new }
 
-    it "do nothing when no urls to ping article" do
-      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
-      Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
-      article = Article.new
-      article.should_receive(:html_urls_to_ping).and_return([])
-      Ping.any_instance.should_not_receive(:send_weblogupdatesping)
-      Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
-      article.really_send_pings
-    end
+      it "return nil and do nothing when blog should not send_outbound_pings" do
+        Blog.any_instance.should_receive(:send_outbound_pings).and_return(false)
+        article.really_send_pings.should be_nil
+      end
 
-    it "do nothing when urls already list in article.pings (already ping ?)"  do
-      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
-      ping = OpenStruct.new(url: "an_url_to_ping")
-      Blog.any_instance.should_receive(:urls_to_ping_for).and_return([ping])
-      article = Article.new
-      article.should_receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
-      Ping.any_instance.should_not_receive(:send_weblogupdatesping)
-      Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
-      article.really_send_pings
-    end
+      context "given a blog that allow send outbound pings" do
+        before(:each) do
+          Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
+        end
 
-    it "calls send_weblogupdatesping when it's not already done"  do
-      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
-      new_ping = OpenStruct.new
-      urls_to_ping = [new_ping]
-      Blog.any_instance.should_receive(:urls_to_ping_for).and_return(urls_to_ping)
-      article = Article.new
-      article.should_receive(:permalink_url)
-      article.should_receive(:html_urls_to_ping).and_return([])
-      new_ping.should_receive(:send_weblogupdatesping)
-      new_ping.should_not_receive(:send_pingback_or_trackback)
-      article.really_send_pings
-    end
+        it "do nothing when no urls to ping article" do
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
+          article.should_receive(:html_urls_to_ping).and_return([])
+          Ping.any_instance.should_not_receive(:send_weblogupdatesping)
+          Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+          article.really_send_pings
+        end
 
-    it "calls send_pingback_or_trackback when it's not already done"  do
-      Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
-      Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
-      article = Article.new
-      new_ping = OpenStruct.new
-      article.should_receive(:html_urls_to_ping).and_return([new_ping])
-      article.should_receive(:permalink_url)
-      new_ping.should_receive(:send_pingback_or_trackback)
-      new_ping.should_not_receive(:send_weblogupdatesping)
-      article.really_send_pings
-    end
+        it "do nothing when urls already list in article.pings (already ping ?)"  do
+          ping = OpenStruct.new(url: "an_url_to_ping")
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([ping])
+          article.should_receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
+          Ping.any_instance.should_not_receive(:send_weblogupdatesping)
+          Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+          article.really_send_pings
+        end
 
+        it "calls send_weblogupdatesping when it's not already done"  do
+          new_ping = OpenStruct.new
+          urls_to_ping = [new_ping]
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return(urls_to_ping)
+          article.should_receive(:permalink_url)
+          article.should_receive(:html_urls_to_ping).and_return([])
+          new_ping.should_receive(:send_weblogupdatesping)
+          new_ping.should_not_receive(:send_pingback_or_trackback)
+          article.really_send_pings
+        end
+
+        it "calls send_pingback_or_trackback when it's not already done"  do
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
+          new_ping = OpenStruct.new
+          article.should_receive(:html_urls_to_ping).and_return([new_ping])
+          article.should_receive(:permalink_url)
+          new_ping.should_receive(:send_pingback_or_trackback)
+          new_ping.should_not_receive(:send_weblogupdatesping)
+          article.really_send_pings
+        end
+      end
+    end
   end
 
   describe ".search_with_pagination" do
@@ -767,5 +768,50 @@ describe Article do
       end
 
     end
+  end
+
+  describe ".allow_comments?" do
+    it "true if article set to true" do
+      Article.new(allow_comments: true).allow_comments?.should be_true
+    end
+
+    it "false if article set to false" do
+      Article.new(allow_comments: false).allow_comments?.should be_false
+    end
+
+    context "given an article with no allow comments state" do
+      it "returns true when blog default allow comments is true" do
+        Blog.any_instance.should_receive(:default_allow_comments).and_return(true)
+        Article.new(allow_comments: nil).allow_comments?.should be_true
+      end
+
+      it "returns false when blog default allow comments is true" do
+        Blog.any_instance.should_receive(:default_allow_comments).and_return(false)
+        Article.new(allow_comments: nil).allow_comments?.should be_false
+      end
+    end
+  end
+
+  describe ".allow_pings?" do
+    it "true if article set to true" do
+      Article.new(allow_pings: true).allow_pings?.should be_true
+    end
+
+    it "false if article set to false" do
+      Article.new(allow_pings: false).allow_pings?.should be_false
+    end
+
+    context "given an article with no allow pings state" do
+      it "returns true when blog default allow pings is true" do
+        Blog.any_instance.should_receive(:default_allow_pings).and_return(true)
+        Article.new(allow_pings: nil).allow_pings?.should be_true
+      end
+
+      it "returns false when blog default allow pings is true" do
+        Blog.any_instance.should_receive(:default_allow_pings).and_return(false)
+        Article.new(allow_pings: nil).allow_pings?.should be_false
+      end
+    end
+
   end
 end

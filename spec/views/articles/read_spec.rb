@@ -20,6 +20,7 @@ describe "articles/read.html.erb" do
         article = stub_full_article(Time.now - 2.hours)
         article.body = 'body'
         article.extended = 'extended content'
+        article.stub(:allow_comments?).and_return(false)
 
         @c1 = stub_model(Comment, :created_at => Time.now - 2.seconds, :body => 'Comment body _italic_ *bold*')
         @c2 = stub_model(Comment, :created_at => Time.now, :body => 'Hello foo@bar.com http://www.bar.com')

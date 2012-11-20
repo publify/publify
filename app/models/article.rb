@@ -45,7 +45,7 @@ class Article < Content
 
   has_and_belongs_to_many :tags
 
-  before_create :set_defaults, :create_guid
+  before_create :create_guid
   before_save :set_published_at, :ensure_settings_type, :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url
 
@@ -71,8 +71,8 @@ class Article < Content
   end
 
   def set_permalink
-    return if self.state == 'draft'
-    self.permalink = self.title.to_permalink if self.permalink.nil? or self.permalink.empty?
+    return if self.state == 'draft' || self.permalink.present?
+    self.permalink = self.title.to_permalink
   end
 
   def set_author(user)
@@ -405,6 +405,16 @@ class Article < Content
     self.pings.map(&:url).include?(url)
   end
 
+  def allow_comments?
+    return self.allow_comments unless self.allow_comments.nil?
+    blog.default_allow_comments
+  end
+
+  def allow_pings?
+    return self.allow_pings unless self.allow_pings.nil?
+    blog.default_allow_pings
+  end
+
   protected
 
   def set_published_at
@@ -420,25 +430,6 @@ class Article < Content
     end
   end
 
-  def set_defaults
-    if self.attributes.include?("permalink") and
-      (self.permalink.blank? or
-       self.permalink.to_s =~ /article-draft/ or
-       self.state == "draft")
-      set_permalink
-    end
-
-    if blog && self.allow_comments.nil?
-      self.allow_comments = blog.default_allow_comments
-    end
-
-    if blog && self.allow_pings.nil?
-      self.allow_pings = blog.default_allow_pings
-    end
-
-    true
-  end
-
   def self.time_delta(year = nil, month = nil, day = nil)
     return nil if year.nil? && month.nil? && day.nil?
     from = Time.utc(year, month || 1, day || 1)
@@ -447,7 +438,7 @@ class Article < Content
     to = from.next_month unless month.blank?
     to = from + 1.day unless day.blank?
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
-    return from..to
+    from..to
   end
 
   private
