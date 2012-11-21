@@ -9,7 +9,7 @@ class SetupController < ApplicationController
     this_blog.base_url = blog_base_url
 
     @user = User.new(:login => 'admin', :email => params[:setting][:email])
-    @user.password = generate_password
+    @user.generate_password!
     @user.name = @user.login
 
     unless this_blog.valid? and @user.valid?
@@ -53,13 +53,6 @@ class SetupController < ApplicationController
                      categories: [Category.find(:first)],
                      user: user)
     end
-  end
-
-  def generate_password
-    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-    newpass = ""
-    1.upto(7) { |i| newpass << chars[rand(chars.size-1)] }
-    return newpass
   end
 
   def check_config

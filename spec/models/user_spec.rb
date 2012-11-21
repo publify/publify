@@ -242,4 +242,17 @@ describe User do
       article.user.should eq user
     end
   end
+
+  describe "generate_password!" do
+    it "respond to generate_password!" do
+      User.new.should respond_to(:generate_password!)
+    end
+
+    it "set a 7 char length password" do
+      user = User.new
+      user.should_receive(:rand).exactly(7).times.and_return(0)
+      user.should_receive(:password=).with('a' * 7)
+      user.generate_password!
+    end
+  end
 end
