@@ -814,4 +814,10 @@ describe Article do
     end
 
   end
+
+  describe "#find_by_published_at" do
+    it "respond to find_by_published_at" do
+      Article.should respond_to(:find_by_published_at)
+    end
+  end
 end

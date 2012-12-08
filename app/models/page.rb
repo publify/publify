@@ -50,7 +50,4 @@ class Page < Content
     )
   end
 
-  def self.find_by_published_at
-    super(:created_at)
-  end
 end

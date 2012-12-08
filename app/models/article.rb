@@ -90,11 +90,11 @@ class Article < Content
             :valid_states  => [:new, :draft,
                                :publication_pending, :just_published, :published,
                                :just_withdrawn, :withdrawn],
-            :initial_state =>  :new,
-            :handles       => [:withdraw,
-                               :post_trigger,
-                               :send_pings, :send_notifications,
-                               :published_at=, :just_published?])
+                               :initial_state =>  :new,
+                               :handles       => [:withdraw,
+                                                  :post_trigger,
+                                                  :send_pings, :send_notifications,
+                                                  :published_at=, :just_published?])
 
   include Article::States
 
@@ -261,7 +261,37 @@ class Article < Content
   end
 
   def self.find_by_published_at
-    super(:published_at)
+    from_where = "FROM contents WHERE published_at is not NULL AND type='Article'"
+
+    # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
+
+    if defined?(ActiveRecord::ConnectionAdapters::Mysql2Adapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::Mysql2Adapter)
+      # MySQL uses date_format
+      find_by_sql("SELECT date_format(published_at, '%Y-%m') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
+    elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
+      # PostgreSQL uses to_char
+      find_by_sql("SELECT to_char(published_at, 'YYYY-MM') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
+
+    else
+      # If we don't have an adapter-safe conversion from date -> YYYY-MM,
+      # we'll do the GROUP BY server-side. There won't be very many objects
+      # in this array anyway.
+      date_map = {}
+      dates = find_by_sql("SELECT published_at AS publication #{from_where}")
+
+      dates.map! do |d|
+        d.publication = Time.parse(d.publication).strftime('%Y-%m')
+        d.freeze
+        if !date_map.has_key?(d.publication)
+          date_map[d.publication] = true
+          d
+        end
+      end
+      dates.reject!{|d| d.blank? || d.publication.blank?}
+      dates.sort!{|a,b| b.publication <=> a.publication}
+
+      dates
+    end
   end
 
   def self.get_or_build_article id = nil

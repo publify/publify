@@ -77,40 +77,6 @@ class Content < ActiveRecord::Base
     end
   end
 
-  def self.find_by_published_at(column_name = :published_at)
-    from_where = "FROM #{self.table_name} WHERE #{column_name} is not NULL AND type='#{self.name}'"
-
-    # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
-
-    if defined?(ActiveRecord::ConnectionAdapters::Mysql2Adapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::Mysql2Adapter)
-      # MySQL uses date_format
-      find_by_sql("SELECT date_format(#{column_name}, '%Y-%m') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-    elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
-      # PostgreSQL uses to_char
-      find_by_sql("SELECT to_char(#{column_name}, 'YYYY-MM') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-
-    else
-      # If we don't have an adapter-safe conversion from date -> YYYY-MM,
-      # we'll do the GROUP BY server-side. There won't be very many objects
-      # in this array anyway.
-      date_map = {}
-      dates = find_by_sql("SELECT #{column_name} AS publication #{from_where}")
-
-      dates.map! do |d|
-        d.publication = Time.parse(d.publication).strftime('%Y-%m')
-        d.freeze
-        if !date_map.has_key?(d.publication)
-          date_map[d.publication] = true
-          d
-        end
-      end
-      dates.reject!{|d| d.blank? || d.publication.blank?}
-      dates.sort!{|a,b| b.publication <=> a.publication}
-
-      dates
-    end
-  end
-
   def self.function_search_no_draft(search_hash)
     list_function = []
     search_hash ||= {}
