@@ -51,14 +51,11 @@ class Article < Content
 
   scope :category, lambda {|category_id| {:conditions => ['categorizations.category_id = ?', category_id], :include => 'categorizations'}}
   scope :drafts, lambda { { :conditions => { :state => 'draft' }, :order => 'created_at DESC' } }
-  scope :without_parent, {:conditions => {:parent_id => nil}}
   scope :child_of, lambda { |article_id| {:conditions => {:parent_id => article_id}} }
   scope :published, lambda { { :conditions => { :published => true, :published_at => Time.at(0)..Time.now }, :order => 'published_at DESC' } }
-  scope :pending, lambda { { :conditions => ['state = ? and published_at > ?', 'publication_pending', Time.now], :order => 'published_at DESC' } }
-  scope :withdrawn, lambda { { :conditions => { :state => 'withdrawn' }, :order => 'published_at DESC' } }
   scope :published_at, lambda {|time_params| { :conditions => { :published => true, :published_at => Article.time_delta(*time_params) }, :order => 'published_at DESC' } }
 
-  setting :password,                   :string, ''
+  setting :password, :string, ''
 
   def initialize(*args)
     super
