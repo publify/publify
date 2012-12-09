@@ -569,17 +569,6 @@ describe ArticlesController, "redirecting" do
       @article = FactoryGirl.create(:article)
     end
 
-    it "should find the article if the url matches all components" do
-      get :redirect, :from => "foo/bar/#{@article.year_url}/#{@article.month_url}/#{@article.permalink}"
-      response.should be_success
-    end
-
-    # FIXME: Documents current behavior; Blog URL format is only meant for one article shown
-    it "should not find the article if the url only matches some components" do
-      get :redirect, :from => "foo/bar/#{@article.year_url}/#{@article.month_url}"
-      assert_response 404
-    end
-
     # TODO: Think about allowing this, and changing find_by_params_hash to match.
     if false
       it "should find the article if the url matches all fixed parts and no variable components" do

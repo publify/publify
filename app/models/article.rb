@@ -57,6 +57,19 @@ class Article < Content
 
   setting :password, :string, ''
 
+  attr_accessor :draft, :keywords
+
+  include Article::States
+
+  has_state(:state, :valid_states  => [:new, :draft,
+                                       :publication_pending, :just_published, :published,
+                                       :just_withdrawn, :withdrawn],
+                                       :initial_state =>  :new,
+                                       :handles       => [:withdraw,
+                                                          :post_trigger,
+                                                          :send_pings, :send_notifications,
+                                                          :published_at=, :just_published?])
+
   def initialize(*args)
     super
     # Yes, this is weird - PDC
@@ -78,22 +91,8 @@ class Article < Content
   end
 
   def has_child?
-    Article.exists?({:parent_id => self.id})
+    Article.exists?(parent_id: self.id)
   end
-
-  attr_accessor :draft, :keywords
-
-  has_state(:state,
-            :valid_states  => [:new, :draft,
-                               :publication_pending, :just_published, :published,
-                               :just_withdrawn, :withdrawn],
-                               :initial_state =>  :new,
-                               :handles       => [:withdraw,
-                                                  :post_trigger,
-                                                  :send_pings, :send_notifications,
-                                                  :published_at=, :just_published?])
-
-  include Article::States
 
   def self.last_draft(article_id)
     article = Article.find(article_id)
@@ -118,28 +117,12 @@ class Article < Content
     eval(list_function.join('.'))
   end
 
-  def year_url
-    published_at.year.to_s
-  end
-
-  def month_url
-    sprintf("%.2d", published_at.month)
-  end
-
-  def day_url
-    sprintf("%.2d", published_at.day)
-  end
-
-  def title_url
-    URI.encode(permalink.to_s)
-  end
-
-  def permalink_url_options(nesting = false)
+  def permalink_url_options
     format_url = blog.permalink_format.dup
-    format_url.gsub!('%year%', year_url)
-    format_url.gsub!('%month%', month_url)
-    format_url.gsub!('%day%', day_url)
-    format_url.gsub!('%title%', title_url)
+    format_url.gsub!('%year%', published_at.year.to_s)
+    format_url.gsub!('%month%', sprintf("%.2d", published_at.month))
+    format_url.gsub!('%day%', sprintf("%.2d", published_at.day))
+    format_url.gsub!('%title%', URI.encode(permalink.to_s))
     if format_url[0,1] == '/'
       format_url[1..-1]
     else
@@ -149,9 +132,7 @@ class Article < Content
 
   def permalink_url(anchor=nil, only_path=false)
     @cached_permalink_url ||= {}
-
-    @cached_permalink_url["#{anchor}#{only_path}"] ||= \
-      blog.url_for(permalink_url_options, :anchor => anchor, :only_path => only_path)
+    @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(permalink_url_options, anchor: anchor, only_path: only_path)
   end
 
   def save_attachments!(files)
@@ -169,18 +150,6 @@ class Article < Content
     blog.url_for("trackbacks?article_id=#{self.id}", :only_path => false)
   end
 
-  def permalink_by_format(format=nil)
-    if format.nil?
-      permalink_url
-    elsif format.to_sym == :rss
-      feed_url(:rss)
-    elsif format.to_sym == :atom
-      feed_url(:atom)
-    else
-      raise UnSupportedFormat
-    end
-  end
-
   def comment_url
     blog.url_for("comments?article_id=#{self.id}", :only_path => false)
   end
@@ -189,28 +158,8 @@ class Article < Content
     blog.url_for("comments/preview?article_id=#{self.id}", :only_path => false)
   end
 
-  def feed_url(format = :rss)
-    format_extension = format.to_s.gsub(/\d/,'')
-    permalink_url + ".#{format_extension}"
-  end
-
-  def edit_url
-    blog.url_for(:controller => "/admin/content", :action =>"edit", :id => id)
-  end
-
-  def delete_url
-    blog.url_for(:controller => "/admin/content", :action =>"destroy", :id => id)
-  end
-
-  def html_urls
-    urls = Array.new
-    html.gsub(/<a\s+[^>]*>/) do |tag|
-      if(tag =~ /\bhref=(["']?)([^ >"]+)\1/)
-        urls.push($2.strip)
-      end
-    end
-
-    urls.uniq
+  def feed_url(format)
+    "#{permalink_url}.#{format.gsub(/\d/,'')}"
   end
 
   def really_send_pings
@@ -238,23 +187,11 @@ class Article < Content
   end
 
   def next
-    self.class.find(:first, :conditions => ['published_at > ?', published_at],
-                    :order => 'published_at asc')
+    Article.where('published_at > ?', published_at).order('published_at asc').limit(1).first
   end
 
   def previous
-    self.class.find(:first, :conditions => ['published_at < ?', published_at],
-                    :order => 'published_at desc')
-  end
-
-  # Count articles on a certain date
-  def self.count_by_date(year, month = nil, day = nil, limit = nil)
-    if !year.blank?
-      count(:conditions => { :published_at => time_delta(year, month, day),
-                             :published => true })
-    else
-      count(:conditions => { :published => true })
-    end
+    Article.where('published_at < ?', published_at).order('published_at desc').limit(1).first
   end
 
   def self.find_by_published_at
@@ -367,6 +304,17 @@ class Article < Content
     !(allow_comments? && in_feedback_window?)
   end
 
+  def html_urls
+    urls = Array.new
+    html.gsub(/<a\s+[^>]*>/) do |tag|
+      if(tag =~ /\bhref=(["']?)([^ >"]+)\1/)
+        urls.push($2.strip)
+      end
+    end
+    urls.uniq
+  end
+
+
   def pings_closed?
     !(allow_pings? && in_feedback_window?)
   end
@@ -472,7 +420,7 @@ class Article < Content
 
   def html_urls_to_ping
     urls_to_ping = []
-    self.html_urls.delete_if{|url| already_ping?(url)}.uniq.each do |url_to_ping|
+    html_urls.delete_if{|url| already_ping?(url)}.uniq.each do |url_to_ping|
       urls_to_ping << self.pings.build("url" => url_to_ping)
     end
     urls_to_ping

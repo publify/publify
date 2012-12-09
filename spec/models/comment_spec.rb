@@ -28,20 +28,6 @@ describe Comment do
     end
   end
 
-  describe '#edit_url' do
-    it 'should get a url where edit comment in admin' do
-      c = FactoryGirl.build_stubbed(:comment)
-      assert_equal "http://myblog.net/admin/comments/edit/#{c.id}", c.edit_url
-    end
-  end
-
-  describe '#delete_url' do
-    it 'should get the delete url of comment in admin part' do
-      c = FactoryGirl.build_stubbed(:comment)
-      assert_equal "http://myblog.net/admin/comments/destroy/#{c.id}", c.delete_url
-    end
-  end
-
   describe '#save' do
     before(:each) {
       @blog.stub(:sp_article_auto_close) { 300 }

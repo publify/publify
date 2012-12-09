@@ -216,7 +216,7 @@ module ApplicationHelper
     if params[:action] == 'search'
       url_for(only_path: false, format: type, q: params[:q])
     elsif not @article.nil?
-      @article.feed_url(type.to_sym)
+      @article.feed_url(type)
     elsif not @auto_discovery_url_atom.nil?
       instance_variable_get("@auto_discovery_url_#{type}")
     end

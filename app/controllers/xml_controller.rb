@@ -22,7 +22,7 @@ class XmlController < ApplicationController
     when 'comments'
       redirect_to admin_comments_url(format: @format), status: :moved_permanently
     when 'article'
-      redirect_to Article.find(params[:id]).permalink_by_format(@format), status: :moved_permanently
+      redirect_to Article.find(params[:id]).feed_url(@format), status: :moved_permanently
     when 'category', 'tag', 'author'
       redirect_to self.send("#{params[:type]}_url", params[:id], format: @format), status: :moved_permanently
     when 'trackbacks'
@@ -50,7 +50,7 @@ class XmlController < ApplicationController
 
   # TODO: Move redirects into config/routes.rb, if possible
   def articlerss
-    redirect_to Article.find(params[:id]).permalink_by_format('rss'), status: :moved_permanently
+    redirect_to Article.find(params[:id]).feed_url('rss'), status: :moved_permanently
   end
 
   def commentrss

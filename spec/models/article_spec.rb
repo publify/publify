@@ -61,20 +61,16 @@ describe Article do
     end
   end
 
-  it "test_edit_url" do
-    a = stub_model(Article, :id => 123)
-    assert_equal "http://myblog.net/admin/content/edit/#{a.id}", a.edit_url
-  end
+  describe ".feed_url" do
+    let(:article) { FactoryGirl.build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
 
-  it "test_delete_url" do
-    a = stub_model(Article, :id => 123)
-    assert_equal "http://myblog.net/admin/content/destroy/#{a.id}", a.delete_url
-  end
+    it "returns url for atom feed for a Atom 1.0 asked" do
+      article.feed_url('atom10').should eq "http://myblog.net/2004/06/01/article-3.atom"
+    end
 
-  it "test_feed_url" do
-    a = stub_model(Article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
-    assert_equal "http://myblog.net/2004/06/01/article-3.atom", a.feed_url(:atom10)
-    assert_equal "http://myblog.net/2004/06/01/article-3.rss", a.feed_url(:rss20)
+    it "returns url for rss feed for a RSS 2 asked" do
+      article.feed_url('rss20').should eq "http://myblog.net/2004/06/01/article-3.rss"
+    end
   end
 
   it "test_create" do
@@ -94,7 +90,7 @@ describe Article do
   it "test_permalink_with_title" do
     article = FactoryGirl.create(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
     assert_equal(article,
-                Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
+                 Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink :year => 2005, :month => "06", :day => "01", :title => "article-5"
     end
@@ -178,25 +174,25 @@ describe Article do
   ### XXX: Should we have a test here?
   it "test_send_multiple_pings" do
   end
-  
+
   describe "Testing redirects" do
     it "a new published article gets a redirect" do
       a = Article.create(:title => "Some title", :body => "some text", :published => true)
       a.redirects.first.should_not be_nil
       a.redirects.first.to_path.should == a.permalink_url
     end
-    
+
     it "a new unpublished article should not get a redirect" do 
       a = Article.create(:title => "Some title", :body => "some text", :published => false)
       a.redirects.first.should be_nil
     end
-    
+
     it "Changin a published article permalink url should only change the to redirection" do
       a = Article.create(:title => "Some title", :body => "some text", :published => true)
       a.redirects.first.should_not be_nil
       a.redirects.first.to_path.should == a.permalink_url
       r  = a.redirects.first.from_path
-      
+
       a.permalink = "some-new-permalink"
       a.save
       a.redirects.first.should_not be_nil
@@ -269,7 +265,7 @@ describe Article do
 
   it "test_future_publishing" do
     assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
-      :published => true, :published_at => Time.now + 4.seconds))
+                                        :published => true, :published_at => Time.now + 4.seconds))
   end
 
   it "test_future_publishing_without_published_flag" do

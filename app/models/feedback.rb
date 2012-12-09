@@ -48,14 +48,6 @@ class Feedback < ActiveRecord::Base
     article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
   end
 
-  def edit_url(anchor=:ignored)
-    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"edit", :id => id)
-  end
-
-  def delete_url(anchor=:ignored)
-    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"destroy", :id => id)
-  end
-
   def html_postprocess(field, html)
     helper = ContentTextHelpers.new
     helper.sanitize(helper.auto_link(html)).nofollowify
