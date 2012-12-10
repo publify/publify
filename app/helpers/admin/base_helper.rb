@@ -82,23 +82,6 @@ module Admin::BaseHelper
     content_tag :li, link_to(_('Back to list'), :action => 'index')
   end
 
-  def collection_select_with_current(object, method, collection, value_method, text_method, current_value, prompt=false)
-    result = "<select name='#{object}[#{method}]'>\n"
-
-    if prompt == true
-      result << "<option value=''>" << _("Please select") << "</option>"
-    end
-    for element in collection
-      if current_value and current_value == element.send(value_method)
-        result << "<option value='#{element.send(value_method)}' selected='selected'>#{element.send(text_method)}</option>\n"
-      else
-        result << "<option value='#{element.send(value_method)}'>#{element.send(text_method)}</option>\n"
-      end
-    end
-    result << "</select>\n"
-    return result
-  end
-
   def render_void_table(size, cols)
     if size == 0
       "<tr>\n<td colspan=#{cols}>" + _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)) + "</td>\n</tr>\n"

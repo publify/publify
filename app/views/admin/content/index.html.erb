@@ -28,12 +28,9 @@
           <option value='withdrawn'><%= _("Withdrawn") %></option>
         </select>
       </td>
-      <td><%= collection_select_with_current('search', 'category', Category.all, "id", "name", @search[:category].to_i, true)
-      %></td>
-      <td><%= collection_select_with_current(:search, :user_id, User.find(:all), "id", "name", @search[:user_id].to_i, true) %></td>
-      <td>
-        <%= collection_select_with_current(:search, :published_at, Article.find_by_published_at, "publication", "publication", @search[:published_at], true) %>
-      </td>
+      <td><%= select_tag('search_category', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: _("Please select")}) %></td>
+      <td><%= select_tag('search_user_id', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: _("Please select")}) %></td>
+      <td><%= select_tag('search_published_at', options_for_select(Article.find_by_published_at), {prompt: _("Please select")}) %></td>
       <td><input type="submit" value='<%= _("Filter") %>' class='btn' />
     </tr>
     <tr>

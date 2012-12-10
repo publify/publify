@@ -61,7 +61,7 @@ FactoryGirl.define do
     extended 'extended content for fun'
     guid
     permalink 'a-big-article'
-    published_at '2005-01-01 02:00:00'
+    published_at DateTime.new(2005,1,1,2,0,0)
     user
     categories []
     tags []
@@ -134,14 +134,12 @@ FactoryGirl.define do
 
   factory :second_article, :parent => :article do |a|
     a.title 'Another big article'
-    a.published_at Time.now - 2.seconds
   end
 
   factory :article_with_accent_in_html, :parent => :article do |a|
     a.title 'article with accent'
     a.body '&eacute;coute The future is cool!'
     a.permalink 'article-with-accent'
-    a.published_at Time.now - 2.seconds
   end
 
   factory :blog do

@@ -592,23 +592,25 @@ describe Article do
   end
 
   describe "#get_or_build" do
-    context "when no params given" do
+    context "when nil params given" do
       before(:each) do
-        @article = Article.get_or_build_article
+        @article = Article.get_or_build_article(nil)
       end
 
-      it "should return article" do
+      it "is an Article" do
         @article.should be_a(Article)
       end
 
-      context "should have blog default value for" do
+      context "have blog default value for" do
         it "allow_comments" do
           @article.allow_comments.should be == @blog.default_allow_comments
         end
+
         it "allow_pings" do
           @article.allow_pings.should be == @blog.default_allow_pings
         end
-        it "should have default text filter" do
+
+        it "text filter" do
           @article.text_filter_id.should be_nil
           @article.text_filter.should be == @blog.text_filter_object
         end
@@ -812,8 +814,26 @@ describe Article do
   end
 
   describe "#find_by_published_at" do
-    it "respond to find_by_published_at" do
-      Article.should respond_to(:find_by_published_at)
+    it "returns an empty array when no articles" do
+      Article.find_by_published_at.should be_empty
     end
+
+    context "returns objects that respond to publication with YYYY-MM published_at date format" do
+      it "with article published_at date" do
+        FactoryGirl.create(:article, published_at: Date.new(2010, 11, 23))
+        result = Article.find_by_published_at
+        result.count.should eq 1
+        result.first.should eq ["2010-11"]
+      end
+
+      it "with 2 articles" do
+        FactoryGirl.create(:article, published_at: Date.new(2010, 11, 23))
+        FactoryGirl.create(:article, published_at: Date.new(2002, 4, 9))
+        result = Article.find_by_published_at
+        result.count.should eq 2
+        result.sort.should eq [["2010-11"], ["2002-04"]].sort
+      end
+    end
+
   end
 end
