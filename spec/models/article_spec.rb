@@ -751,10 +751,11 @@ describe Article do
         Article.search_with_pagination({}, {page: nil, per_page: 1}).should eq([article])
       end
 
-      it "returns no draft article by default" do
+      it "returns both published and draft articles by default" do
         article = FactoryGirl.create(:article, state: 'published')
         draft_article = FactoryGirl.create(:article, state: 'draft')
-        Article.search_with_pagination({}, {page: nil, per_page: 12}).should eq([article])
+        result = Article.search_with_pagination({}, {page: nil, per_page: 12})
+        result.count.should eq 2
       end
 
       it "returns article of search categorie" do

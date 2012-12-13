@@ -105,9 +105,13 @@ class Article < Content
   end
 
   def self.search_with_pagination(search_hash, paginate_hash)
-    state = (search_hash[:state] and ["no_draft", "drafts", "published", "withdrawn", "pending"].include? search_hash[:state]) ? search_hash[:state] : 'no_draft'
+    state = (search_hash[:state] and ["no_draft", "drafts", "published", "withdrawn", "pending"].include? search_hash[:state]) ? search_hash[:state] : nil
 
-    list_function  = ["Article.#{state}"] + function_search_no_draft(search_hash)
+    if state.nil?
+      list_function  = function_search_all_posts(search_hash)
+    elsif
+      list_function  = ["Article.#{state}"] + function_search_all_posts(search_hash)
+    end
 
     if search_hash[:category] && search_hash[:category].to_i > 0
       list_function << 'category(search_hash[:category])'
