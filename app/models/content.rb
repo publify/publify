@@ -54,7 +54,7 @@ class Content < ActiveRecord::Base
     where('published_at < ?', Time.now).limit(1000).order('created_at DESC')
   end
 
-  # Use only for self.function_search_no_draft method
+  # Use only for self.function_search_all_posts method
   scope :published_at_like, lambda {|date_at| {:conditions => {
     :published_at => (
       if date_at =~ /\d{4}-\d{2}-\d{2}/
@@ -70,7 +70,7 @@ class Content < ActiveRecord::Base
   }
   }
 
-  def self.function_search_no_draft(search_hash)
+  def self.function_search_all_posts(search_hash)
     list_function = []
     search_hash ||= {}
 
