@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 
 PKG_VERSION = "6.1.0"
 PKG_NAME = "typo"
@@ -30,7 +30,7 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
 end
 
-Rake::GemPackageTask.new(spec) do |p|
+Gem::PackageTask.new(spec) do |p|
   p.need_tar = true
   p.need_zip = true
 end
