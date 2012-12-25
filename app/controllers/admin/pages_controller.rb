@@ -2,6 +2,10 @@
 require 'base64'
 
 class Admin::PagesController < Admin::BaseController
+
+  before_filter :set_images, only: [:new, :edit]
+  before_filter :set_macro, only: [:new, :edit]
+
   layout "administration", :except => 'show'
   cache_sweeper :blog_sweeper
 
@@ -11,11 +15,9 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def new
-    @macros = TextFilter.macro_filters
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
     @page.text_filter ||= current_user.text_filter
-    @images = Resource.where("mime LIKE '%image%'").order('created_at DESC').page(1).per(10)
     if request.post?
       @page.published_at = Time.now
       if @page.save
@@ -26,8 +28,6 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def edit
-    @macros = TextFilter.macro_filters
-    @images = Resource.where("mime LIKE '%image%'").page(1).order('created_at DESC').per(10)
     @page = Page.find(params[:id])
     @page.attributes = params[:page]
     if request.post? and @page.save
@@ -39,9 +39,17 @@ class Admin::PagesController < Admin::BaseController
   def destroy
     @record = Page.find(params[:id])
     return(render 'admin/shared/destroy') unless request.post?
-
     @record.destroy
     redirect_to :action => 'index'    
   end
 
+  private
+
+  def set_macro
+    @macros = TextFilter.macro_filters
+  end
+
+  def set_images
+    @images = Resource.images.by_created_at.page(1).per(10)
+  end
 end
