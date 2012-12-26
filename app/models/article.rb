@@ -119,7 +119,7 @@ class Article < Content
 
     list_function << "page(paginate_hash[:page])"
     list_function << "per(paginate_hash[:per_page])"
-
+    list_function << "order('published_at desc, created_at desc')"
     eval(list_function.join('.'))
   end
 
