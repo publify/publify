@@ -213,7 +213,8 @@ class BaseConverter
 
   def create_comment(article, other_comment, &block)
     ActiveRecord::Base.logger.info "adding comment"
-    returning block.call(other_comment) do |comment|
+    comment = block.call(other_comment)
+    if comment
       comment.article  = article
       comment.text_filter ||= filter
       comment.ip ||= '127.0.0.1'
