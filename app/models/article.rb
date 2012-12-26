@@ -246,7 +246,7 @@ class Article < Content
     Article.transaction do
       tags.clear
       tags <<
-      keywords.to_s.scan(/((['"]).*?\2|[\.\w]+)/).collect do |x|
+      keywords.to_s.scan(/((['"]).*?\2|[\.[[:alnum:]]]+)/).collect do |x|
         x.first.tr("\"'", '')
       end.uniq.map do |tagword|
         Tag.get(tagword)
