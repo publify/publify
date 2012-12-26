@@ -16,6 +16,11 @@
         <input type="submit" id="submit" class='btn btn-info' value="<%= _('Signup')%>" />
       </div>
       <% end %>
+      <div class='clearfix'>
+        <p>
+			<%= [lost_password, create_account_link].join("<br />") %>
+        </p>        
+      </div>
     </div>
   </div>
 </div>

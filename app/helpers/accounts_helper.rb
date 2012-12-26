@@ -1,7 +1,7 @@
 # coding: utf-8
 module AccountsHelper
   def lost_password
-    link_to("<small> • #{_("I've lost my password")}</small>".html_safe, :action => 'recover_password').html_safe
+    link_to("<small>#{_("I've lost my password")}</small>".html_safe, :action => 'recover_password').html_safe
   end
   
   def create_account_link

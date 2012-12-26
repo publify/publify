@@ -18,8 +18,7 @@
       </div>	  
       <div class='clearfix'>
         <p>
-          <%= lost_password %>
-          <%= create_account_link %>
+			<%= [lost_password, create_account_link].join("<br />") %>
         </p>        
       </div>
       <% end %>
