@@ -21,6 +21,13 @@ class Trigger < ActiveRecord::Base
         end
         if @needed_migrations
           Migrator.migrate
+          if @current_version == 0
+            load "#{Rails.root}/Rakefile"
+            Rake::Task['db:seed'].invoke
+            User.reset_column_information
+            Article.reset_column_information
+            Page.reset_column_information
+          end
         end
       end
     end
