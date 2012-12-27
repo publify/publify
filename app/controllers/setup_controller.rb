@@ -29,6 +29,7 @@ class SetupController < ApplicationController
     # FIXME: Crappy hack : by default, the auto generated post is user_id less and it makes Typo crash
     if User.count == 1
       update_or_create_first_post_with_user @user
+      create_first_page @user
     end
 
     redirect_to :action => 'confirm'
