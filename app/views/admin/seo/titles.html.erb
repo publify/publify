@@ -1,8 +1,7 @@
 <% @page_heading = _("Title settings")%>
-
 <%= error_messages_for 'blog' %>
 
-<%= form_tag :action => 'titles' do %>
+<%= form_tag :action => 'update' do %>
 
 <fieldset class='form-horizontal'>
   <legend><%= _("Home") %></legend>
@@ -211,6 +210,6 @@
   </div>
 </div>
 <%= save_settings %>
-<%= hidden_field_tag 'from', 'permalinks' %>
+<%= hidden_field_tag 'from', 'titles' %>
 <% end %>
 
