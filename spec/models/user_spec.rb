@@ -228,8 +228,20 @@ describe User do
     end
 
     it "should be false if editor != 'simple'" do
-      user = FactoryGirl.build(:user, :editor => 'other')
+      user = FactoryGirl.build(:user, :editor => 'visual')
       user.simple_editor?.should be_false
+    end
+  end
+  
+  describe "#visual_editor?" do
+    it "should be true if editor == 'visual'" do
+      user = FactoryGirl.build(:user, :editor => 'visual')
+      user.visual_editor?.should be_true
+    end
+    
+    it "should be false if editor != 'visual" do
+      user = FactoryGirl.build(:user, :editor => 'simple')
+      user.visual_editor?.should be_false      
     end
   end
 

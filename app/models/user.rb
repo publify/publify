@@ -135,7 +135,11 @@ class User < ActiveRecord::Base
   def simple_editor?
     editor == 'simple'
   end
-
+  
+  def visual_editor?
+    editor == 'visual'
+  end
+  
   def password=(newpass)
     @password = newpass
   end
