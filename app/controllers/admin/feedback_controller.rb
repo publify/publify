@@ -150,10 +150,10 @@ class Admin::FeedbackController < Admin::BaseController
         return
       end
     when 'Mark Checked Items as Ham'
-      update_feedback(items, :mark_as_ham!)
+      update_feedback(items, :change_state!)
       flash[:notice]= _("Marked %d item(s) as Ham",ids.size)
     when 'Mark Checked Items as Spam'
-      update_feedback(items, :mark_as_spam!)
+      update_feedback(items, :change_state!)
       flash[:notice]= _("Marked %d item(s) as Spam",ids.size)
     when 'Confirm Classification of Checked Items'
       update_feedback(items, :confirm_classification!)
