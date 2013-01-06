@@ -45,18 +45,6 @@ class Admin::FeedbackController < Admin::BaseController
     end
     @feedback = Feedback.where(conditions).order('feedback.created_at desc').page(params[:page]).per(this_blog.admin_display_elements)
   end
-
-  def article
-    @article = Article.find(params[:id])
-    if params[:ham] && params[:spam].blank?
-      @feedback = @article.comments.ham
-    end
-    if params[:spam] && params[:ham].blank?
-      @feedback = @article.comments.spam
-    end
-    @feedback ||= @article.comments
-  end
-
   def destroy
     @record = Feedback.find params[:id]
 
@@ -114,6 +102,18 @@ class Admin::FeedbackController < Admin::BaseController
       redirect_to :action => 'edit', :id => comment.id
     end
   end
+
+  def article
+    @article = Article.find(params[:id])
+    if params[:ham] && params[:spam].blank?
+      @feedback = @article.comments.ham
+    end
+    if params[:spam] && params[:ham].blank?
+      @feedback = @article.comments.spam
+    end
+    @feedback ||= @article.comments
+  end
+
 
   def change_state
     return unless request.xhr?
