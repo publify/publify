@@ -97,9 +97,9 @@ class Admin::FeedbackController < Admin::BaseController
     comment.attributes = params[:comment]
     if request.post? and comment.save
       flash[:notice] = _('Comment was successfully updated.')
-      redirect_to :action => 'article', :id => comment.article.id
+      redirect_to action: 'article', id: comment.article.id
     else
-      redirect_to :action => 'edit', :id => comment.id
+      redirect_to action: 'edit', id: comment.id
     end
   end
 
