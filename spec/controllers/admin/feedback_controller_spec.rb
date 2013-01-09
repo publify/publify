@@ -346,9 +346,15 @@ describe Admin::FeedbackController do
     end
 
     describe '#bulkops action' do
-      it 'should redirect to action' do
-        post :bulkops, :bulkop_top => 'destroy all spam'
-        @response.should redirect_to(:action => 'index')
+      it "redirect to index" do
+        post :bulkops, bulkop_top: 'destroy all spam'
+        @response.should redirect_to(action: 'index')
+      end
+
+      it "mark comments as spam" do
+        comment = FactoryGirl.create(:comment, state: :presumed_spam)
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
+        comment.reload.should be_spam
       end
     end
   end
