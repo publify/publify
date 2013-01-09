@@ -6,7 +6,7 @@ It provides every feature a modern blogging engine needs: powerful themes, exten
 
 Typo is free software released under the MIT licence and maintained by a bunch of cool people on their spare time.
 
-The current version is Typo 6.1.0 for Ruby on Rails 3.0.10.
+The current version is Typo 6.1.1 for Ruby on Rails 3.2.11.
 
 !http://blog.typosphere.org/download-typo.png(Download Typo)!:http://typosphere.org/stable.tgz
 
