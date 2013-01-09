@@ -380,7 +380,7 @@ Localization.define("fr_FR") do |l|
   l.store "Custom tracking code", "Code de tracking personnalisé"
   l.store "Global settings", "Options générales"
   l.store "This will display", "Cela affichera"
-  l.store "at the bottom of each of your post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
+  l.store "at the bottom of each post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""

@@ -408,7 +408,7 @@ Localization.define("nl_NL") do |l|
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Je robots.txt bestand is niet schrijfbaar. Typo kan het niet wijzigen"
   l.store "Search Engine Optimization", "Zoekmachine optimalisatie"
   l.store "This will display", "Dit zorgt er voor dat "
-  l.store "at the bottom of each of your post in the RSS feed", " onderaan elke post in je RSS-feed verschijnt"
+  l.store "at the bottom of each post in the RSS feed", " onderaan elke post in je RSS-feed verschijnt"
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informatie"
