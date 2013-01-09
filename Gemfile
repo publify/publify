@@ -22,7 +22,7 @@ end
 
 source :rubygems
 
-gem 'rails', '~> 3.2.6'
+gem 'rails', '~> 3.2.11'
 gem 'require_relative'
 gem 'htmlentities'
 gem 'json'
