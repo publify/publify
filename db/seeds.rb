@@ -52,9 +52,9 @@ admin.rights += category_rights
 publisher.rights += category_rights
 
 # Page rights
-page_rights = [Right.create(name: 'page_create', description: 'Create a category'),
-               Right.create(name: 'page_edit', description: 'Edit a category'),
-               Right.create(name: 'page_delete', description: 'Delete a category')]
+page_rights = [Right.create(name: 'page_create', description: 'Create pages'),
+               Right.create(name: 'page_edit', description: 'Edit pages'),
+               Right.create(name: 'page_delete', description: 'Delete pages')]
 
 admin.rights += page_rights
 publisher.rights += page_rights
