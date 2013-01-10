@@ -417,7 +417,7 @@ Localization.define("nb_NO") do |l|
   l.store "Google Webmaster Tools validation link", ""
   l.store "Global settings", "Globale innstillinger"
   l.store "This will display", "Dette vil vise"
-  l.store "at the bottom of each of your post in the RSS feed", "på bunnen av hver artikkel i RSS-feeden"
+  l.store "at the bottom of each post in the RSS feed", "på bunnen av hver artikkel i RSS-feeden"
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Format of permalink", "Permalinkformat"

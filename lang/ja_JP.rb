@@ -409,7 +409,7 @@ Localization.define("ja_JP") do |l|
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
   l.store "Search Engine Optimization", "検索エンジン最適化"
   l.store "This will display", ""
-  l.store "at the bottom of each of your post in the RSS feed", ""
+  l.store "at the bottom of each post in the RSS feed", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "インフォメーション"
