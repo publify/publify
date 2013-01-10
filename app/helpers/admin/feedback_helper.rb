@@ -7,15 +7,15 @@ module Admin::FeedbackHelper
   end
 
   def show_feedback_actions(item, context='listing')
-    html = <<-HTML
-      <small>
-        #{published_or_not item} |
-        #{change_status(item, context)} |
-        #{link_to _("Edit"), edit_admin_feedback_path(item.id)} |
-        #{link_to _("Delete"), admin_feedback_path(item.id), method: :delete }
-        #{link_to _("Show conversation"), :controller => 'admin/feedback', :action => 'article', :id => item.article_id}
-    </small>
-    HTML
+    return if current_user.profile.label == "contributor"
+    content_tag(:small) do
+      [published_or_not(item), 
+        change_status(item, context),
+        link_to(_("Edit"), edit_admin_feedback_path(item.id)),
+        link_to(_("Delete"), admin_feedback_path(item.id), method: :destroy),
+        link_to(_("Show conversation"), :controller => 'admin/feedback', :action => 'article', :id => item.article_id)].join(" | ").html_safe
+    end
+      
   end
 
   def filter_link(text, filter='', style='')
