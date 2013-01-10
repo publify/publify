@@ -27,7 +27,7 @@
         <%= check_box(:setting, :rss_description)%>
         <%= _("Use RSS description")%>
       </label>
-      <p class='help-block'><%= "#{_('This will display')}  #{_('at the bottom of each of your post in the RSS feed')}"%></p>
+      <p class='help-block'><%= "#{_('This will display')}  #{_('at the bottom of each post in the RSS feed')}"%></p>
       <%= show_rss_description %>
     </div>
   </div>
@@ -80,7 +80,7 @@
       <label class='checkbox' for="setting_use_canonical_url">
         <%= check_box(:setting, :use_canonical_url)%>
         <%= _("Use canonical URL")%>
-        <span class='help-block'><%= _("Read more about %s", link_to("rel='canonical'", "http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
+        <span class='help-block'><%= _("Read more about %s", link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
       </label>      
     </div>
   </div>	
