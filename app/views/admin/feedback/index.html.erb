@@ -4,22 +4,22 @@
 <div class='row'>
   <div class='span10'>
     <span class='badge badge-inverse'>
-      <%= link_to(_("All"), admin_feedback_index_path) %>
+      <%= link_to(_("All"), controller: 'admin/feedback', action: :index) %>
     </span>&nbsp; 
     <span class='badge'>
-      <%= link_to(_("Unapproved comments"), admin_feedback_index_path(confirmed: 'f')) %>
+      <%= link_to(_("Unapproved comments"), controller: 'admin/feedback', action: :index, confirmed: 'f') %>
     </span>&nbsp;
     <span class='badge badge-success'>
-      <%= link_to(_("Ham"), admin_feedback_index_path(ham: 'f')) %>
+      <%= link_to(_("Ham"), controller: 'admin/feedback', action: :index, ham: 'f') %>
     </span>&nbsp;
     <span class='badge badge-important'>
-      <%= link_to(_("Spam"), admin_feedback_index_path(spam: 'f')) %>
+      <%= link_to(_("Spam"), controller: 'admin/feedback', action: :index, spam: 'f') %>
     </span>&nbsp;
     <span class='badge badge-info'>
-      <%= link_to(_("Presumed ham"), admin_feedback_index_path(presumed_ham: 'f')) %>
+      <%= link_to(_("Presumed ham"), controller: 'admin/feedback', action: :index, presumed_ham: 'f') %>
     </span>&nbsp;
     <span class='badge badge-warning'>
-      <%= link_to(_("Presumed spam"), admin_feedback_index_path(published: 'f')) %>
+      <%= link_to(_("Presumed spam"), controller: 'admin/feedback', action: :index, published: 'f') %>
     </span>&nbsp;
   </div>
   <div class='pull-right'>
