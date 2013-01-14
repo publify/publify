@@ -13,8 +13,8 @@
 
   <p><strong><%= _("Feedback") %></strong></p>
   <ul>
-    <li> <%= sprintf("%s %d", link_to(_("Total comments:"), admin_feedback_index_path) , @statcomments) %></li>
-    <li> <%= sprintf("%s %d", link_to(_("Spam comments:"), admin_feedback_index_path(published: 'f')), @statspam) %></li>
-    <li> <%= sprintf("%s %d", link_to(_("In your spam queue:"), admin_feedback_index_path(presumed_spam: 'f')), @presumedspam) %></li>
+    <li> <%= sprintf("%s %d", link_to(_("Total comments:"), :controller => 'admin/feedback') , @statcomments) %></li>
+    <li> <%= sprintf("%s %d", link_to(_("Spam comments:"), :controller => 'admin/feedback', :published => 'f'), @statspam) %></li>
+    <li> <%= sprintf("%s %d", link_to(_("In your spam queue:"), :controller => 'admin/feedback', :presumed_spam => 'f'), @presumedspam) %></li>
   </ul>
 </div>
