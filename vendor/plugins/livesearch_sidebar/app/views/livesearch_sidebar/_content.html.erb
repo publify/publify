@@ -1,7 +1,7 @@
 <h3 class='sidebar-title'>
   <label for="q"><%= sidebar.title %></label>
 </h3>
-<% form_tag({:controller => 'articles',  :action => 'search'}, {:method => 'get', :id => 'sform'}) do %>
+<%= form_tag({:controller => 'articles',  :action => 'search'}, {:method => 'get', :id => 'sform'}) do %>
   <%= text_field_tag :q, '', {:id => "live_search", :size => 15, :autocomplete => "off"} %>
   <%= image_tag "spinner-blue.gif", :id => 'search_spinner', :style => 'display:none;' %>
 <% end %>
