@@ -1,10 +1,10 @@
 h1. About Typo
 
-Typo has been around since March of 2005 making it one of the oldest blogging platforms in Rails.
+Typo has been around since March 2005, making it one of the oldest blogging platforms based on Rails.
 
-It provides every feature a modern blogging engine needs: powerful themes, extensions, smart users management, SEO capabilities and brings a great user experience for both site visitors and Web developpers. Typo is easy to install and even easier to use.
+It provides every feature a modern blogging engine needs: powerful themes, extensions, smart user management, SEO capabilities and provides a great user experience for both site visitors and web developers. Typo is easy to install and even easier to use.
 
-Typo is free software released under the MIT licence and maintained by a bunch of cool people on their spare time.
+Typo is free software released under the MIT licence and maintained by a bunch of cool people in their spare time.
 
 The current version is Typo 6.1.2 for Ruby on Rails 3.2.11.
 
@@ -19,11 +19,11 @@ h2. Enhance your Typo blog
 
 h2. More resources:
 
-* "Download Typo source code:":http://typosphere.org/stable.tgz
+* "Download Typo source code":http://typosphere.org/stable.tgz
 * "*Report a bug*":https://github.com/fdv/typo/issues
 * "*Frequently Asked Questions*":http://wiki.github.com/fdv/typo/frequently-asked-questions
 * "Official Typo blog":http://blog.typosphere.org
-* "Follow us on Twitter":http://twitter.com/typosphere
+* "Follow us on Twitter":https://twitter.com/typosphere
 
 h2. Get in touch
 
@@ -34,7 +34,7 @@ If you need help or want to contribute to Typo, you should start with the follow
 
 h1. Install Typo
 
-Installing Typo is trivial, provided you follow the following steps.
+Installing Typo is trivial, provided you follow the steps.
 
 h2. 1. Prerequisites
 
@@ -43,7 +43,7 @@ To install Typo you need the following:
 * Ruby 1.9.2 or 1.9.3. Typo may work with Ruby 1.8.7 with some minor tweakings, but this version is not supported anymore.
 * Ruby On Rails 3.0.10
 * A database engine, MySQL, PgSQL or SQLite3
-* A FTP client or even better SSH access to your hosting provider
+* A FTP client, or even better SSH access to your hosting provider
 
 h2. 2. Download Typo
 
@@ -51,14 +51,15 @@ Download Typo stable version at http://typosphere.org/stable.tar.gz or http://ty
 
 h2. 3. Install Typo
 
-Unpack Typo archive into your Web hosting space. Rename database.yml.yourEngine to database.yml, edit the file and add your database name, login and password. If you have a doubt about this one, just ask your Web hosting provider.
+# Unpack Typo archive into your web hosting space 
+# Rename database.yml.yourEngine to database.yml
+# Edit database.yml to add your database name, login and password. If you have a doubt about this one, just ask your web hosting provider.
+# Then run:
 
-Then run:
+@$ bundle install@
+@$ ./script/rails server@
 
-$ bundle install
-$ ./script/rails server
-
-You can now access Typo to http://yourdomain:3000
+You can now access Typo at http://yourdomain:3000
 
 That's all!
 
@@ -66,7 +67,7 @@ h2. 4. Daily Typo use
 
 We recommend using Passenger (mod_rails) or Thin / Unicorn with Apache or Nginx.
 
-The admin interface for Typo allows you to post articles and change configuration settings. It can be found at http://yourdomain.com/admin. New content can be posted using the admin interface or a desktop blog editor such as MarsEdit or Ecto. For a list of working clients, please visit http://typosphere.org/wiki/DesktopClients.
+The admin interface for Typo allows you to post articles and change configuration settings. It can be found at http://yourdomain.com/admin. New content can be posted using the admin interface or a desktop blog editor such as MarsEdit or Ecto.
 
 h1. Maintainers
 
@@ -90,7 +91,7 @@ irc: ook
 blog: http://elsif.fr
 irc: yaf
 
-And many more cool people who've one day or another contributed to Typo.
+And "many more cool people who've one day or another contributed to Typo":https://github.com/fdv/typo/graphs/contributors.
 
 *Original Author: Tobias Luetke*
 blog: http://blog.leetsoft.com/
