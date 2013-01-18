@@ -6,7 +6,7 @@ describe "admin/pages/new.html.erb" do
                        :text_filter_name => "", :profile_label => "admin")
     blog = mock_model(Blog, :base_url => "http://myblog.net/")
     page = stub_model(Page).as_new_record
-    text_filter = stub_model(TextFilter)
+    text_filter = stub_model(TextFilter, :description => 'None')
 
     page.stub(:text_filter) { text_filter }
     view.stub(:current_user) { admin }

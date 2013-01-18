@@ -1,0 +1,52 @@
+<%= form_remote_tag :url      => @article.comment_url,
+                    :position => :bottom,
+                    :update   => {:success => 'commentList'},
+                    :loading  => "loading()",
+                    :complete => "complete(request)",
+                    :failure  => "failure(request)",
+                    :html     => {:id => 'commentform', :class => 'comments' } \
+    do %>
+
+<div id="preview" style="display:none"></div>
+
+<h2 id="formComments-title"><%= _("Leave a comment")%></h2>
+<div id="respond" class="post">
+  <p>
+		<label for="comment_author"><%= _("Name %s", content_tag(:small, '('+_('required')+')' ))%></label>
+		<%= text_field "comment", "author" %>
+  </p>
+
+  <p>
+		<label for="comment_email"><%= _("Email")%> <small>(<%= _("never displayed") %>)</small></label>
+		<%= text_field "comment", "email" %>
+	</p>
+	<p>
+		<label><%= _("Website")%></label>
+		<%= text_field "comment", "url" %>
+	</p>
+
+  <p>
+    <label>
+      <%= _("Comments")%>:
+      <%= content_tag('small', link_to(_("Textile enabled"), "http://hobix.com/textile/")) if this_blog.comment_text_filter.include? 'textile' %>
+      <%= content_tag('small', link_to(_("Markdown enabled"), "http://daringfireball.net/projects/markdown/")) if this_blog.comment_text_filter.include? 'markdown' %>
+      <br />
+    </label>
+    <%= text_area 'comment', 'body', :rows => 10 %>
+  </p>
+
+  <% if this_blog.use_recaptcha %>
+  <p><%= raw recaptcha_tags :ajax => true %></p>
+  <% end %>
+
+  <p class="buttons">
+    <%= submit_to_remote('preview', _('Preview') + '!',
+                         :update => 'preview',
+                         :complete => "Element.show('preview')",
+                         :url    => @article.preview_comment_url,
+												 :html => {:class => 'submit', :id => 'form-preview-button'}) %>
+    <%= submit_tag _('Submit'), :id => 'form-submit-button', :class => 'submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
+    <%= image_tag 'theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
+  </p>
+</div>
+<% end %>

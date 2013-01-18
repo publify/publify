@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <%= page_header %>
+  <title><%=h page_title %></title>
+  <%= stylesheet_link_tag '/stylesheets/theme/style.css', :media => 'all' %>
+  <!--[if IE 6]>
+      <%= stylesheet_link_tag '/stylesheets/theme/ie6.css', :media => 'all' %>
+  <![endif]-->
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- start header -->
+    <div id="header">
+      <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
+      <p class="desc"><%= this_blog.blog_subtitle %></p>
+    </div>
+    <!-- end header -->
+
+    <div id="page">
+      <div id="sidebar">
+        <!-- sidebar components -->
+        <%= render_sidebars %>
+      </div>
+
+      <div id="content">
+        <%= yield %>
+        <%= javascript_tag 'show_dates_as_local_time()' %>
+      </div>
+
+      <div id="footer">
+        <div class="wrap">
+          <p id="legal">
+          <%= _("Powered by %s", link_to('typo', 'http://typosphere.org')) %>
+          <%= _("Designed by %s ", link_to('Hélène', 'http://www.o2sources.com/people/helene')) %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

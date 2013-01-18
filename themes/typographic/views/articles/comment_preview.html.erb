@@ -1,0 +1,10 @@
+<div class="comment preview">
+  <div class="author">
+    <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+    <cite><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></cite>
+    <abbr><%= _("is about to say")%></abbr>
+  </div>
+  <div class="content">
+    <%= @comment.html %>
+  </div>
+</div>

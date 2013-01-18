@@ -1,0 +1,45 @@
+<!--
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+  rdf:about=""
+  trackback:ping="<%= @article.trackback_url %>"
+  dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
+  dc:identifier="<%= @article.permalink_url %>"
+  dc:description="<%=h (@article.html.strip_html[0..255]).gsub(/-+/, '-') %>"
+  dc:creator="<%= h @article.author %>"
+  dc:date="<%= @article.updated_at.xmlschema %>" />
+</rdf:RDF>
+-->
+
+<%= render @article %>
+
+<% if @article.allow_pings? -%>
+  <h2 id="trackbacks-title"><a id="trackbacks"><%= _("Trackbacks")%></a></h2>
+  <p class="trackbackurl">
+    <%= _("Use the following link to trackback from your own site")%>:<br />
+    <%= @article.trackback_url %>
+  </p>
+
+  <% unless @article.published_trackbacks.blank? -%>
+  <ol id="trackbacks" class="comments">
+    <%= render "trackback", :collection => @article.published_trackbacks %>
+  </ol>
+  <% end -%>
+<% end -%>
+
+<% if @article.allow_comments? or @article.published_comments.size > 0 -%>
+
+
+  <% unless @article.comments_closed? and @article.published_comments.size == 0 %>
+    <h2 id="comments-title"><a id="comments"><%= _("Comments")%></a></h2>
+  <% end -%>
+
+  <div id="comments_div">
+    <%= render "articles/comment_list" %>
+  </div>
+<% end -%>
+
+<%= render 'articles/comment_form' unless @article.comments_closed? %>

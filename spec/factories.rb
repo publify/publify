@@ -159,7 +159,7 @@ http://alsoping.example.com/rpc/ping"
     sp_global true
     default_allow_comments true
     email_from "scott@sigkill.org"
-    theme "bootstrap"
+    theme "typographic"
     association :text_filter, factory: :textile
     sp_article_auto_close 0
     link_to_author false

@@ -13,17 +13,17 @@ describe 'Given the default theme' do
     @theme = Blog.default.current_theme
   end
 
-  it 'theme should be bootstrap' do
-    @theme.name.should == 'bootstrap'
+  it 'theme should be typographic' do
+    @theme.name.should == 'typographic'
   end
 
   it 'theme description should be correct' do
     @theme.description.should ==
-      File.open(::Rails.root.to_s + '/themes/bootstrap/about.markdown') {|f| f.read}
+      File.open(::Rails.root.to_s + '/themes/typographic/about.markdown') {|f| f.read}
   end
 
   it 'theme_from_path should find the correct theme' do
-    Theme.theme_from_path(::Rails.root.to_s + 'themes/bootstrap').name.should == 'bootstrap'
+    Theme.theme_from_path(::Rails.root.to_s + 'themes/typographic').name.should == 'typographic'
   end
 
   it '#search_theme_path finds the right things 2' do
