@@ -23,12 +23,12 @@ describe Admin::ThemesController do
   end
 
   it "redirects to :index after the :switchto action" do
-    get :switchto, :theme => 'typographic'
+    get :switchto, :theme => 'bootstrap'
     assert_response :redirect, :action => 'index'
   end
 
   it "returns succes for the :preview action" do
-    get :preview, :theme => 'typographic'
+    get :preview, :theme => 'bootstrap'
     assert_response :success
   end  
 end

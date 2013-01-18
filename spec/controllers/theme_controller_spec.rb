@@ -29,7 +29,7 @@ describe ThemeController do
     get :static_view_test
     assert_response :success
 
-    assert @response.body =~ /Static View Test from typographic/
+    assert @response.body =~ /Static View Test from bootstrap/
   end
 
   it "disabled_test_javascript"

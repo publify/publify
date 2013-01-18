@@ -37,7 +37,7 @@ describe CategoriesController do
 
   describe '#show' do
     before do
-      blog = FactoryGirl.create(:blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true, blog_name: "My Shiny Weblog!")
+      blog = FactoryGirl.create(:blog, base_url: "http://myblog.net", theme: "bootstrap", use_canonical_url: true, blog_name: "My Shiny Weblog!")
       Blog.stub(:default) { blog }
       Trigger.stub(:fire) { }
 
@@ -109,7 +109,7 @@ describe CategoriesController do
 
   describe "#show with a non-existent category" do
     before do
-      blog = stub_model(Blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true)
+      blog = stub_model(Blog, base_url: "http://myblog.net", theme: "bootstrap", use_canonical_url: true)
       Blog.stub(:default) { blog }
       Trigger.stub(:fire) { }
     end
