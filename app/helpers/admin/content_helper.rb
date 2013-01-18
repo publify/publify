@@ -66,7 +66,7 @@ module Admin::ContentHelper
   end
   
   def publish_now_or_already_published(article)
-    return _("now") unless article.published and article.state == 'published'
-    article.published_at
+    return _("now") unless article.published and article.state.to_s.downcase == 'published'
+    display_date_and_time(article.published_at)
   end
 end
