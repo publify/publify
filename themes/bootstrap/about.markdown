@@ -12,4 +12,4 @@ Please view the README.md for theme customization.
 [2]: http://t37.net
 [3]: http://twitter.github.com/bootstrap
 [4]: http://www.flickr.com/photos/blmiers2/6167391543/sizes/l/in/photostream/
-[5]: http://www.flickr.com/photos/23948654@N04/2383869528/sizes/l/in/photostream/
+[5]: http://www.flickr.com/photos/glenn-/7194522034/

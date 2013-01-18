@@ -1,5 +1,5 @@
 body {
-  background: #ccc;
+  background: #ccc url("../../images/theme/background.gif");
 }
 
 #logo h1, p#title {
@@ -20,18 +20,22 @@ p.subtitle {
 #logo {
   margin-top: 20px;
   background: url("../../images/theme/bg2.jpg") top left no-repeat;
-  padding-top: 280px;
+  padding-top: 290px;
+}
+
+#external {
+  padding: 0 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 #main {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  box-shadow : 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  border-radius: 5px;
+  margin: 30px auto 20px auto;
   padding-top: 60px;
   padding-bottom: 30px;
   background: #fff;
-  width: 980px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #page {
@@ -47,10 +51,25 @@ p.subtitle {
   margin-top: 24px;
 }
 
-img.centered {
+img.centered, img.alignleft, img.alignright, img.thumb {
     border: 1px solid #DDDDDD;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
     line-height: 1;
     padding: 4px;
+}
+
+.navbar-inverse .navbar-inner {
+        background-image: url("/images/theme/header-menu.png");
+        
+}
+
+.navbar .nav > li {
+border-left: 1px solid #111111;
+    border-right: 1px solid #444444;
+}
+
+.navbar .nav > li > a {
+        color: #eee;
+        padding: 8px 10px;
 }
