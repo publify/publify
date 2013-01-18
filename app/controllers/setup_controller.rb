@@ -8,7 +8,7 @@ class SetupController < ApplicationController
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url
 
-    @user = User.new(:login => 'admin', :email => params[:setting][:email])
+    @user = User.new(:login => 'admin', :email => params[:setting][:email], :nickname => "Typo Admin")
     @user.generate_password!
     @user.name = @user.login
 
