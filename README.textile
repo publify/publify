@@ -57,6 +57,7 @@ h2. 3. Install Typo
 # Then run:
 
 @$ bundle install@
+@$ rake db:create@
 @$ ./script/rails server@
 
 You can now access Typo at http://yourdomain:3000
