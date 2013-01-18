@@ -24,7 +24,7 @@
         <span class='help-block'><%= "#{this_blog.base_url}/sample-article" %></span>
       </label>
       <label class='radio' for="setting_custom_permalink">
-        <%= radio_button(:setting, :permalink_format, 'custom') %> Custom
+        <%= radio_button(:setting, :permalink_format, 'custom') %> <%= _("Custom") %>
         <%= text_field(:setting, :custom_permalink, { :class => 'span5 '})%>
       </label>
     </div>

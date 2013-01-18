@@ -240,7 +240,17 @@ Localization.define("nb_NO") do |l|
   l.store "Publish at", "Offentliggjort den"
   l.store "Article filter", "artikkelfilter"
   l.store "Save as draft", "Lagre som utkast"
-
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
+  
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
@@ -254,6 +264,9 @@ Localization.define("nb_NO") do |l|
   l.store "Date", "Dato"
   l.store "Feedback", "Diskusjon"
   l.store "Manage articles", "Administrer artikler"
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Siste kommentarer"
@@ -393,6 +406,7 @@ Localization.define("nb_NO") do |l|
   l.store "Medium size", "Mellomstor"
   l.store "Original size", "Opprinnelig størrelse"
   l.store "right-click for link", "høyreklikk for lenke"
+  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "General settings", "Generelle innstillinger"
@@ -418,7 +432,7 @@ Localization.define("nb_NO") do |l|
   l.store "Global settings", "Globale innstillinger"
   l.store "This will display", "Dette vil vise"
   l.store "at the bottom of each post in the RSS feed", "på bunnen av hver artikkel i RSS-feeden"
-
+  l.store "Here you can add anything you want to appear in your application header, such as an anaytics service tracking code.", ""
   # app/views/admin/seo/permalinks.html.erb
   l.store "Format of permalink", "Permalinkformat"
   l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Typo tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
@@ -428,6 +442,7 @@ Localization.define("nb_NO") do |l|
   l.store "your article month of publication.", "din artikkels publiseringmåned"
   l.store "your article day of publication.", "din artikkels publiseringsdag"
   l.store "Permalinks", "Permalenker"
+  l.store "Custom", ""
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", "Tittelinnstillinger"
@@ -452,6 +467,7 @@ Localization.define("nb_NO") do |l|
   l.store "Titles", "Titler"
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback-moderering"
@@ -536,6 +552,21 @@ Localization.define("nb_NO") do |l|
   l.store "Get more plugins", "Hent flere plugins"
   l.store "Sidebar", ""
   l.store "Publish changes", "Publiser endringer"
+  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", "Er du sikker på at du vil slette denne taggen"
@@ -558,6 +589,7 @@ Localization.define("nb_NO") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "Aktivt tema"
   l.store "Chose this theme", "Velg dette temaet"
   l.store "Get more themes", "Hent flere temaer"
@@ -612,6 +644,7 @@ Localization.define("nb_NO") do |l|
   l.store "Comments", "Kommentarer"
   l.store "State", "Tilstand"
   l.store "%s user", "% bruker"
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Legg til bruker"

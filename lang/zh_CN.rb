@@ -216,6 +216,16 @@ Localization.define("zh_CN") do |l|
   l.store "Permalink", "固定链接"
   l.store "Article filter", ""
   l.store "Save as draft", "保存为草稿"
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "确定删除本篇文章？"
@@ -234,6 +244,9 @@ Localization.define("zh_CN") do |l|
   l.store "All articles", "所有文章"
   l.store "All Articles", "所有文章"
   l.store "Drafts", "草稿"
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "最近评论"
@@ -352,11 +365,13 @@ Localization.define("zh_CN") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "檔案名稱"
+  l.store "Browse", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
   l.store "Enable feedback moderation", "適度可以反饋"
@@ -456,6 +471,21 @@ Localization.define("zh_CN") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "公開變更"
+  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "暱稱"
@@ -480,6 +510,7 @@ Localization.define("zh_CN") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "執行中主題"
   l.store "Get more themes", ""
   l.store "You can download third party themes from officially supported %s ", ""
@@ -532,6 +563,7 @@ Localization.define("zh_CN") do |l|
   l.store "Comments", "评论"
   l.store "State", ""
   l.store "%s user", ""
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""

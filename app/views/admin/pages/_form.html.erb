@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class='control-group'>
-      <%= _("Article filter") %>: <strong><%= @page.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
+      <%= _("Article filter") %>: <strong><%= _("#{@page.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
       <div id='text_filter' style='display: none;'>
         <select name="page[text_filter]" id="text_filter">
         <%= options_for_select text_filter_options, @page.text_filter %>
@@ -46,7 +46,7 @@
   <div id='editor-menu'>
     <ul class="nav nav-tabs">
       <li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+        <%= build_editor_link(_("Visual"), 'insert_editor', 'fck', 'visual_editor', 'visual') %>
       </li>
       <li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
         <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>

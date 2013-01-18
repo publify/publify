@@ -215,6 +215,16 @@ Localization.define("lt_LT") do |l|
   l.store "Permalink", "Nuoroda"
   l.store "Article filter", "Straipsnių filtras"
   l.store "Save as draft", ""
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ar tikrai norite ištrinti šį straipsnį"
@@ -230,6 +240,9 @@ Localization.define("lt_LT") do |l|
   l.store "Feedback", "Atsiliepimas"
   l.store "Filter", ""
   l.store "Manage articles", ""
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", ""
@@ -345,11 +358,13 @@ Localization.define("lt_LT") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "Dateiname"
+  l.store "Browse", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "Kommentare per default erlauben"
   l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
   l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
@@ -449,6 +464,21 @@ Localization.define("lt_LT") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Änderungen veröffentlichen"
+  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Rodomas vardas"
@@ -473,6 +503,7 @@ Localization.define("lt_LT") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "Aktives Motiv"
   l.store "Get more themes", ""
   l.store "You can download third party themes from officially supported %s ", ""
@@ -525,6 +556,7 @@ Localization.define("lt_LT") do |l|
   l.store "Comments", ""
   l.store "State", ""
   l.store "%s user", ""
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""

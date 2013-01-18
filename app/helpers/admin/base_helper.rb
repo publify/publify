@@ -57,13 +57,13 @@ module Admin::BaseHelper
 
   def text_filter_options
     TextFilter.all.collect do |filter|
-      [ filter.description, filter ]
+      [ _(filter.description), filter ]
     end
   end
 
   def text_filter_options_with_id
     TextFilter.all.collect do |filter|
-      [ filter.description, filter.id ]
+      [ _(filter.description), filter.id ]
     end
   end
 

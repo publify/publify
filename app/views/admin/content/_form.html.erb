@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class='clearfix'>
-        <%= _("Publish") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
+        <%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
         <div id='publish' class='input-append' style='display: none;'>
           <%= calendar_date_select 'article', 'published_at', {:class => 'span7'} %>
         </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class='clearfix'>
-        <%= _("Article filter") %>: <strong><%= @article.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
+        <%= _("Article filter") %>: <strong><%= _("#{@article.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
         <div id='text_filter' style='display: none'>
           <select name="article[text_filter]" id="text_filter">
             <%= options_for_select text_filter_options, @article.text_filter %>
@@ -92,10 +92,10 @@
     <div id='editor-menu'>
 		<ul class="nav nav-tabs">
 			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-				<%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+				<%= build_editor_link(_("Visual"), 'insert_editor', 'fck', 'visual_editor', 'visual') %>
 			</li>
 			<li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
-				<%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+				<%= build_editor_link(_("HTML"), 'insert_editor', 'simple', 'simple_editor', 'simple') %>
 			</li>
 		</ul>
     </div>

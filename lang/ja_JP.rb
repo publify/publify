@@ -215,7 +215,16 @@ Localization.define("ja_JP") do |l|
   l.store "Permalink", "パーマリンク"
   l.store "Article filter", "記事フィルター"
   l.store "Save as draft", "下書きとして保存"
-
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "本当にこの記事を削除してよろしいですか？"
   l.store "Delete this article", "この記事を削除"
@@ -230,6 +239,9 @@ Localization.define("ja_JP") do |l|
   l.store "Feedback", "フィードバック"
   l.store "Filter", "フィルター"
   l.store "Manage articles", "記事の管理"
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", ""
@@ -345,11 +357,13 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "ファイル名"
+  l.store "Browse", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "デフォルトでコメントを有効にする"
   l.store "Enable Trackbacks by default", "デフォルトでトラックバックを許可する"
   l.store "Enable feedback moderation", "フィードバック承認機能を有効にする"
@@ -449,6 +463,21 @@ Localization.define("ja_JP") do |l|
   l.store "Get more plugins", "他のプラグインの入手"
   l.store "Sidebar", "サイドバー"
   l.store "Publish changes", "変更を公開"
+  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "表示名"
@@ -473,6 +502,7 @@ Localization.define("ja_JP") do |l|
   l.store "Theme editor", "テーマエディタ"
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "現在のテーマ"
   l.store "Get more themes", "他のテーマの入手"
   l.store "You can download third party themes from officially supported %s ", "公式サイト%sからサードパーティのテーマをダウンロードできます。"
@@ -525,6 +555,7 @@ Localization.define("ja_JP") do |l|
   l.store "Comments", "コメント"
   l.store "State", "状態"
   l.store "%s user", "%s"
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "ユーザーの追加"

@@ -205,7 +205,7 @@ module ApplicationHelper
   def render_flash
     output = []
     for key,value in flash
-      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
+      output << "<span class=\"#{key.to_s.downcase}\">#{h(_(value))}</span>"
     end if flash
     output.join("<br />\n")
   end

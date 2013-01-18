@@ -215,6 +215,7 @@ Localization.define("da_DK") do |l|
   l.store "Permalink", "Permanent link"
   l.store "Article filter", "Artikelfilter"
   l.store "Save as draft", ""
+  l.store "New article", ""
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikel"
@@ -230,7 +231,18 @@ Localization.define("da_DK") do |l|
   l.store "Feedback", "Diskussion"
   l.store "Filter", "Filtrer"
   l.store "Manage articles", "Administrer artikler"
-
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
   l.store "No comments yet", "Der er ingen kommentarer endnu"
@@ -345,11 +357,13 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "Filnavn"
+  l.store "Browse", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback moderation"
@@ -449,7 +463,22 @@ Localization.define("da_DK") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Udgiv ændringer"
-
+  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
+  
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Vis navn"
 
@@ -473,6 +502,7 @@ Localization.define("da_DK") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "Aktiv tema"
   l.store "Get more themes", ""
   l.store "You can download third party themes from officially supported %s ", ""
@@ -521,6 +551,7 @@ Localization.define("da_DK") do |l|
   l.store "Edit User", "Rediger bruger"
 
   # app/views/admin/users/index.html.erb
+  l.store "Manage users", ""
   l.store "New User", "Ny bruger"
   l.store "Comments", "Kommentarer"
   l.store "State", ""

@@ -3,7 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr class='noborder'>
-      <th><%= _("Username") %></th>
+      <th><%= _("Login") %></th>
       <th><%= _("Name") %></th>
       <th><%= _("Email") %></th>
       <th><%= _("Profile") %></th>
@@ -15,12 +15,12 @@
   <% for user in @users -%>
   <tr <%= alternate_class %>>
     <td><%= link_to_edit user.login, user%></td>
-    <td> <%= user.name %></td>
+    <td> <%= user.nickname %></td>
     <td><%= mail_to user.email, user.email%></td>
     <td><%= _(user.profile.nicename) %></td>
     <td><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
     <td><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
-    <td class='<%= user.state %>'><%= _("%s user", user.state)%></td>
+    <td class='<%= user.state %>'><%= _("%s user", _("#{user.state.capitalize}").downcase)%></td>
   </tr>
   <% end -%>
   <%= display_pagination(@users, 7)%>

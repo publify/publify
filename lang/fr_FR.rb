@@ -103,7 +103,7 @@ Localization.define("fr_FR") do |l|
   l.store "delete", "supprimer"
   l.store "Delete content", "Supprimer le contenu"
   l.store "Are you sure?", "Êtes-vous certain ?"
-  l.store "none", ""
+  l.store "none", "Aucun"
   l.store "Please select", "Veuillez sélectionner"
   l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
   l.store "Save", "Sauver"
@@ -119,7 +119,7 @@ Localization.define("fr_FR") do |l|
   l.store "Show help on Typo macros", "Afficher l'aide sur les macros Typo"
   l.store "Update settings", "Mettre les paramètres à jour"
   l.store "Back to list", ""
-  l.store "Name", "Titre"
+  l.store "Name", "Nom"
   l.store "Description", "Description"
   l.store "Tag", "Label"
 
@@ -201,7 +201,7 @@ Localization.define("fr_FR") do |l|
   l.store "Change", "Modifier"
   l.store "Comments are %s and trackbacks are %s", "Les commentaires sont %s et les rétroliens %s"
   l.store "Publish settings", "Paramètres de publication"
-  l.store "Status:", ""
+  l.store "Status:", "État"
   l.store "Allow trackbacks", "Autoriser les rétroliens"
   l.store "Allow comments", "Autoriser les commentaires"
   l.store "Visibility", "Visibilité"
@@ -216,17 +216,29 @@ Localization.define("fr_FR") do |l|
   l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
   l.store "Uploads", "Pièces jointes"
   l.store "Save as draft", "Sauver comme brouillon"
+  l.store "New article", "Nouvel article"
+  l.store "disabled", "désactivés"
+  l.store "Markdown with SmartyPants", "Mardown et SmartyPants"
+  l.store "Markdown", "Markdown"
+  l.store "Texttile", "Texttile"
+  l.store "None", "Aucun"
+  l.store "SmartyPants", "SmartyPants"
+  l.store "Visual", "Éditeur riche"
+  l.store "Edit article", "Éditer un article"
 
   # app/views/admin/content/index.html.erb
   l.store "New Article", "Nouvel article"
   l.store "Search", "Chercher"
-  l.store "All Articles", "Tous les articles"
+  l.store "All articles", "Tous les articles"
   l.store "Drafts", "Brouillons"
   l.store "Filter", "Filtrer"
   l.store "Author", "Auteur"
   l.store "Date", "Date"
   l.store "Feedback", "Commentaires"
   l.store "Manage articles", "Gestion des articles"
+  l.store "Select a category", "Catégorie"
+  l.store "Select an author", "Auteur"
+  l.store "Publication date", "Publié le"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
@@ -299,10 +311,10 @@ Localization.define("fr_FR") do |l|
   l.store "Unapproved comments", "Commentaires non validés"
   l.store "Ham", "Désirable"
   l.store "Spam", "Spam"
-  l.store "Presumed ham", ""
-  l.store "Presumed spam", ""
+  l.store "Presumed ham", "Probablement valide"
+  l.store "Presumed spam", "Probablement du spam"
   l.store "Article", "Article"
-  l.store "Select all", ""
+  l.store "Select all", "Tout sélectionner"
 
   # app/views/admin/pages/_form.html.erb
   l.store "Online", "En ligne"
@@ -352,6 +364,7 @@ Localization.define("fr_FR") do |l|
   l.store "Original size", "Fichier original"
   l.store "Files", "Fichiers"
   l.store "right-click for link", "clic droit pour le lien"
+  l.store "Browse", "Parcourir"
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", "Référencement"
@@ -381,10 +394,11 @@ Localization.define("fr_FR") do |l|
   l.store "Global settings", "Options générales"
   l.store "This will display", "Cela affichera"
   l.store "at the bottom of each post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
-
+  l.store "Here you can add anything you want to appear in your application header, such as an anaytics service tracking code.", "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
+  
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", "Typo vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
+  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Les exemples ci-dessous vous aideront à démarrerTypo vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
+  l.store "Here are some examples to get you started.", "Les exemples ci-dessous vous aideront à démarrer."
   l.store "Permalink format", "Format des permaliens"
   l.store "Date and title", "Date et titre"
   l.store "Month and title", "Mois et titre"
@@ -395,12 +409,13 @@ Localization.define("fr_FR") do |l|
   l.store "your article month of publication.", "Le mois de publication de votre article."
   l.store "your article day of publication.", "Le jour de publication de votre article."
   l.store "Permalinks", "Permaliens"
+  l.store "Custom", "Personnalisé"
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", "Paramétrage des titres"
   l.store "Home", "Tableau de bord"
-  l.store "Title template", "Titres"
-  l.store "Description template", "Descriptions"
+  l.store "Title template", "Titre"
+  l.store "Description template", "Description"
   l.store "Articles", "Articles"
   l.store "Pages","Pages"
   l.store "Paginated archives", "Archives paginées"
@@ -423,6 +438,7 @@ Localization.define("fr_FR") do |l|
   l.store "Replaced with the current year", "Remplacé par l'année en cours"
   l.store "Replaced with the current page number", "Remplacé par le numéro de la page"
   l.store "Replaced by the archive date", "Remplacé par la date de l'archive"
+  l.store "These tags can be included in your templates and will be replaced when displaying the page.", "Ces tags peuvent être ajoutés dans le template et seront remplacés lors de l'affichage de la page"
 
   # app/views/admin/settings/errors.html.erb
   l.store "Error 404", "Erreur 404 (le document demandé n'existe pas)"
@@ -430,6 +446,7 @@ Localization.define("fr_FR") do |l|
   l.store "Error messages", "Messages d'erreur"
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", "Protection contre le spam"
   l.store "Enable comments by default", "Activer les commentaires par défaut"
   l.store "Enable Trackbacks by default", "Activer les rétroliens par défaut"
   l.store "Enable feedback moderation", "Activer la modération des commentaires"
@@ -502,7 +519,7 @@ Localization.define("fr_FR") do |l|
   l.store "Write", "Écrire"
 
   # app/views/admin/shared/destroy.html.erb
-  l.store "Are you sure you want to delete this #{@record.class.name.downcase} ", ""
+  l.store "Are you sure you want to delete this %s?", "Êtes-vous certain de vouloir supprimer ce %s ?"
 
   # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Modifications publiées"
@@ -517,9 +534,24 @@ Localization.define("fr_FR") do |l|
   l.store "Active Sidebar items", "Éléments utilisés"
   l.store "Get more plugins", "Télécharger d'autres plugins"
   l.store "You can download and install sidebar plugins from our official %s. All you have to do is upload the theme directory in your vendor/plugins directory.", ""
-  l.store "plugin repository", ""
+  l.store "plugin repository", "catalogue de greffons"
   l.store "Sidebar", "Plugins"
   l.store "Publish changes", "Publier les modifications"
+  l.store "Adds sidebar links to any amazon books linked in the body of the page", "Ajoute des liens vers les articles amazon liés dans l'article ou la page"
+  l.store "Displays links to monthly archives", "Affiche des liens vers les archives mensuelles"
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", "Affiche la liste des auteurs par ordre alphabétique avec un lien vers leur profil"
+  l.store "Livesearch", "Recherche dynamique"
+  l.store "Adds livesearch to your Typo blog", "Ajoute une recherche dynamique à votre blog"
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", "Ce lien affiche juste un lien vers le site de Typo, l'administration de ce blog et son flux RSS"
+  l.store "Page", "Page"
+  l.store "Show pages for this blog", "Affiche la liste des pages de ce blog"
+  l.store "Adds basic search sidebar in your Typo blog", "Ajoute un champ de recherche basic"
+  l.store "Static", "Contenu statique"
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", "Contenu statique, comme des liens, de la publicité ou toute autre information"
+  l.store "Show most popular tags for this blog", "Affiche les tags les plus populaires"
+  l.store "RSS and Atom feeds", "Flux RSS et Atom"
+  l.store "XML Syndication", "Syndication XML"
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/edit.html.erb
   l.store "Editing tag ", ""
@@ -533,6 +565,8 @@ Localization.define("fr_FR") do |l|
   l.store "Chose this theme", "Choisir ce thème"
   l.store "Choose a theme", "Sélectionnez un thème"
   l.store "Design", "Personnalisation"
+  l.store "Choose theme", "Choisir un thème"
+  l.store "Customize sidebar", "Greffons"
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Paramètres du compte"
@@ -567,6 +601,9 @@ Localization.define("fr_FR") do |l|
   l.store "Your Twitter username", "Identifiant Twitter"
   l.store "display Twitter on public profile", "Afficher votre identifiant Twitter sur votre profil public"
   l.store "Tell us more about you", "Dites nous en plus à votre sujet"
+  l.store "Typo administrator", "Administrateur"
+  l.store "Blog publisher", "Rédacteur"
+  l.store "Contributor", "Contributeur"
 
   # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Modifier un utilisateur"
@@ -575,8 +612,9 @@ Localization.define("fr_FR") do |l|
   l.store "New User", "Nouvel utilisateur"
   l.store "Comments", "Commentaires"
   l.store "State", "État"
-  l.store "%s user", "utilisateur %s"
+  l.store "%s user", "%s"
   l.store "Users", "Utilisateurs"
+  l.store "Manage users", "Gérer les utilisateurs"
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Ajouter un utilisateur"
@@ -921,7 +959,6 @@ Localization.define("fr_FR") do |l|
   l.store "Unable to write file", "Impossible d'écrire le fichier"
   l.store "Unclassified", "Non vérifié"
   l.store "Unpublished", "Non publié"
-  l.store "Visual", "Visuel"
   l.store "Wed", "Mer"
   l.store "Wednesday", "Mercredi"
   l.store "Yes", "Oui"
