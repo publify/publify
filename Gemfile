@@ -25,7 +25,6 @@ source :rubygems
 gem 'rails', '~> 3.2.11'
 gem 'require_relative'
 gem 'htmlentities'
-gem 'json'
 gem 'bluecloth', '~> 2.1'
 gem 'coderay', '~> 0.9'
 gem 'kaminari'
