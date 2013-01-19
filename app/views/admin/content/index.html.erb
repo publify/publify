@@ -28,9 +28,9 @@
           <option value='withdrawn'><%= _("Withdrawn") %></option>
         </select>
       </td>
-      <td><%= select_tag('search_category', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: _("Select a category")}) %></td>
-      <td><%= select_tag('search_user_id', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: _("Select an author")}) %></td>
-      <td><%= select_tag('search_published_at', options_for_select(Article.find_by_published_at), {prompt: _("Publication date")}) %></td>
+      <td><%= select_tag('search[category]', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: _("Select a category")}) %></td>
+      <td><%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: _("Select an author")}) %></td>
+      <td><%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: _("Publication date")}) %></td>
       <td><input type="submit" value='<%= _("Filter") %>' class='btn' />
     </tr>
     <tr>
