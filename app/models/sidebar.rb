@@ -114,102 +114,94 @@ hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(
     end
   end
 
-  class << self
-    attr_accessor :view_root
-
-    def find *args
-      begin
-        super
-      rescue ActiveRecord::SubclassNotFound => e
-        available = available_sidebars.map {|klass| klass.to_s}
-        self.inheritance_column = :bogus
-        super.each do |record|
-          unless available.include? record.type
-            record.delete
-          end
-        end
-        self.inheritance_column = :type
-        super
-      end
-    end
-
-    def find_all_visible
-      find :all, :conditions => 'active_position is not null', :order => 'active_position'
-    end
-
-    def find_all_staged
-      find :all, :conditions => 'staged_position is not null', :order => 'staged_position'
-    end
-
-    def purge
-      delete_all('active_position is null and staged_position is null')
-    end
-
-    def setting(key, default=nil, options = { })
-      key = key.to_s
-
-      return if instance_methods.include?(key)
-
-      fields << Field.build(key, default, options)
-      fieldmap.update(key => fields.last)
-
-      self.send(:define_method, key) do
-        if config.has_key? key
-          config[key]
-        else
-          default
+  def self.find *args
+    begin
+      super
+    rescue ActiveRecord::SubclassNotFound => e
+      available = available_sidebars.map {|klass| klass.to_s}
+      self.inheritance_column = :bogus
+      super.each do |record|
+        unless available.include? record.type
+          record.delete
         end
       end
+      self.inheritance_column = :type
+      super
+    end
+  end
 
-      self.send(:define_method, "#{key}=") do |newval|
-        config[key] = newval
+  def self.find_all_visible
+    find :all, :conditions => 'active_position is not null', :order => 'active_position'
+  end
+
+  def self.find_all_staged
+    find :all, :conditions => 'staged_position is not null', :order => 'staged_position'
+  end
+
+  def self.purge
+    delete_all('active_position is null and staged_position is null')
+  end
+
+  def self.setting(key, default=nil, options = { })
+    key = key.to_s
+
+    return if instance_methods.include?(key)
+
+    fields << Field.build(key, default, options)
+    fieldmap.update(key => fields.last)
+
+    self.send(:define_method, key) do
+      if config.has_key? key
+        config[key]
+      else
+        default
       end
     end
 
-    def fieldmap
-      @fieldmap ||= {}
+    self.send(:define_method, "#{key}=") do |newval|
+      config[key] = newval
     end
+  end
 
-    def fields
-      @fields ||= []
+  def self.fieldmap
+    @fieldmap ||= {}
+  end
+
+  def self.fields
+    @fields ||= []
+  end
+
+  def self.description(desc = nil)
+    if desc
+      @description = desc
+    else
+      @description || ''
     end
+  end
 
-    def fields=(newval)
+  def self.short_name
+    self.to_s.underscore.split(%r{_}).first
+  end
+
+  def self.path_name
+    self.to_s.underscore
+  end
+
+  def self.display_name(new_dn = nil)
+    @display_name = new_dn if new_dn
+    @display_name || short_name.humanize
+  end
+
+  def self.available_sidebars
+    Sidebar.descendants.sort_by { |klass| klass.to_s }
+  end
+
+    def self.fields=(newval)
       @fields = newval
     end
 
-    def description(desc = nil)
-      if desc
-        @description = desc
-      else
-        @description
-      end
-    end
-
-    def lifetime(timeout = nil)
-      if timeout
-        @lifetime = timeout
-      else
-        @lifetime
-      end
-    end
-
-    def short_name
-      self.to_s.underscore.split(%r{_}).first
-    end
-
-    def path_name
-      self.to_s.underscore
-    end
-
-    def display_name(new_dn = nil)
-      @display_name = new_dn if new_dn
-      @display_name || short_name.humanize
-    end
-
-    def available_sidebars
-      Sidebar.descendants.sort_by { |klass| klass.to_s }
-    end
+  class << self
+    attr_accessor :view_root
   end
 
   def blog
@@ -281,10 +273,6 @@ hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(
     fields.inject({ :sidebar => self }) do |hash, field|
       hash.merge(field.key => config[field.key])
     end
-  end
-
-  def lifetime
-    self.class.lifetime
   end
 
   def view_root
