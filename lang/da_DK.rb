@@ -199,7 +199,7 @@ Localization.define("da_DK") do |l|
   l.store "Currently this article has the following resources", "Artiklen har følgende ressourcer"
   l.store "You can associate the following resources", "Du kan associere den med følgende ressourcer"
   l.store "Really delete attachment", "Vil du virkelig slette vedhæftet fil"
-  l.store "Add Another Attachment", "Vedhæft en fil mere"
+  l.store "Add another attachment", "Vedhæft en fil mere"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", "Kladder"
@@ -211,7 +211,7 @@ Localization.define("da_DK") do |l|
   l.store "Password:", "Kodeord"
   l.store "Publish", "Udgiv"
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "Filer"
   l.store "Post settings", ""
   l.store "Publish at", "Offentliggjort den"
@@ -370,7 +370,7 @@ Localization.define("da_DK") do |l|
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback moderation"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Kommentarfilter"
   l.store "Enable gravatars", "Vis gravatars"
   l.store "Show your email address", "Vis din e-mail addresse"
@@ -378,7 +378,7 @@ Localization.define("da_DK") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo kan give dig besked, når nye artikler eller kommentarer er indsendt"
   l.store "Source Email", "Afsender e-mail"
   l.store "Email address used by Typo to send notifications", "E-mail adresse der bruges af Typo til at sende meddelelser"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots" #Need translate
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots" #Need translate
   l.store "Enable spam protection", "Aktiver spam beskyttelse"
   l.store "Akismet Key", "Akismet nøgle"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here" #Need translate
@@ -427,6 +427,7 @@ Localization.define("da_DK") do |l|
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Information"
@@ -446,8 +447,8 @@ Localization.define("da_DK") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du udgiver artikler kan Typo sende trackbacks til de hjemmesider du linker til. Dette bør slåes fra for private blogs da det ellers kan lække privat information til hjemmesider du diskuterer. For offentlige blogs, er der ingen reel mening i at deaktivere dette."
   l.store "URLs to ping automatically", "Webadresser der automatisk pinges"
   l.store "Latitude, Longitude", "Breddegrad, længdegrad"
-  l.store "your lattitude and longitude", "din breddegrad og længdegrad"
-  l.store "exemple", "for eksempel"
+  l.store "your latitude and longitude", "din breddegrad og længdegrad"
+  l.store "example", "for eksempel"
   l.store "Write", "Skriv"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -460,13 +461,13 @@ Localization.define("da_DK") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Træk plugins herover for at fylde din sidebar"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Træk og slip for at ændre indholdsoversigten der vises på denne blog. Du kan fjerne elementer fra indholdsoversigten bare ved at klikke fjern. Ændringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Træk og slip for at ændre indholdsoversigten der vises på denne blog. Du kan fjerne elementer fra indholdsoversigten bare ved at klikke fjern. Ændringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
   l.store "Available Items", "Tilgængelige objekter"
   l.store "Active Sidebar items", "Aktive sidebar objekter"
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Udgiv ændringer"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""

@@ -199,7 +199,7 @@ Localization.define("ja_JP") do |l|
   l.store "Currently this article has the following resources", "現在この記事には以下のリソースが含まれています"
   l.store "You can associate the following resources", "以下のリソースを整理することができます"
   l.store "Really delete attachment", "本当に添付ファイルを削除してもよろしいですか？"
-  l.store "Add Another Attachment", "添付ファイルを追加"
+  l.store "Add another attachment", "添付ファイルを追加"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -211,7 +211,7 @@ Localization.define("ja_JP") do |l|
   l.store "Password:", ""
   l.store "Publish", "公開"
   l.store "Excerpt", "要約"
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "アップロード"
   l.store "Post settings", "投稿設定"
   l.store "Publish at", "公開日"
@@ -370,7 +370,7 @@ Localization.define("ja_JP") do |l|
   l.store "Enable comments by default", "デフォルトでコメントを有効にする"
   l.store "Enable Trackbacks by default", "デフォルトでトラックバックを許可する"
   l.store "Enable feedback moderation", "フィードバック承認機能を有効にする"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "サイト全体のフィードバック承認機能を有効にすることができます。有効にするとコメントやトラックバックは承認されるまで表示されません。"
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "サイト全体のフィードバック承認機能を有効にすることができます。有効にするとコメントやトラックバックは承認されるまで表示されません。"
   l.store "Comments filter", "コメントフィルター"
   l.store "Enable gravatars", "Gravatarを有効にする"
   l.store "Show your email address", "メールアドレスを表示"
@@ -378,7 +378,7 @@ Localization.define("ja_JP") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "新しい記事やコメントが投稿された場合に通知を送ることができます"
   l.store "Source Email", "メールアドレス"
   l.store "Email address used by Typo to send notifications", "通知の送信先メールアドレス"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します"
   l.store "Enable spam protection", "スパムプロテクションを有効にする"
   l.store "Akismet Key", "Akismetキー"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typoはオプションで%sスパムフィルタリングサービスを利用できます。これらのサービスを使用するにはAkismetに登録し、APIキーを取得する必要があります。すでにAkismetキーをお持ちであればここに入力してください"
@@ -427,6 +427,7 @@ Localization.define("ja_JP") do |l|
   l.store "Search Engine Optimization", "検索エンジン最適化"
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "インフォメーション"
@@ -446,8 +447,8 @@ Localization.define("ja_JP") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "記事が公開されると、Typoはリンクしたページへトラックバックを送信します。非公開ブログの場合は公開されたブログへ情報が漏れないようにこのチェックボックスを非選択にしてください。公開ブログの場合は非選択にする必要はありません。"
   l.store "URLs to ping automatically", "自動的にPingを送信するURL"
   l.store "Latitude, Longitude", "緯度、経度"
-  l.store "your lattitude and longitude", "あなたの緯度、経度"
-  l.store "exemple", "例"
+  l.store "your latitude and longitude", "あなたの緯度、経度"
+  l.store "example", "例"
   l.store "Write", "新規作成"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -460,13 +461,13 @@ Localization.define("ja_JP") do |l|
   l.store "Drag some plugins here to fill your sidebar", "サイドバーで利用するプラグインをドラッグしてください"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
   l.store "Available Items", "利用可能な項目"
   l.store "Active Sidebar items", "有効なサイドバー項目"
   l.store "Get more plugins", "他のプラグインの入手"
   l.store "Sidebar", "サイドバー"
   l.store "Publish changes", "変更を公開"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""

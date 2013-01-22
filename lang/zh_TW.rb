@@ -199,7 +199,7 @@ Localization.define("zh_TW") do |l|
   l.store "Currently this article has the following resources", ""
   l.store "You can associate the following resources", "你可以連結下列資源"
   l.store "Really delete attachment", "確定刪除附件？"
-  l.store "Add Another Attachment", "新增其他附件"
+  l.store "Add another attachment", "新增其他附件"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -211,7 +211,7 @@ Localization.define("zh_TW") do |l|
   l.store "Password:", ""
   l.store "Publish", "公開"
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage but won’t appear on the post itself", ""
   l.store "Uploads", "上載"
   l.store "Post settings", ""
   l.store "Publish at", "公開"
@@ -370,7 +370,7 @@ Localization.define("zh_TW") do |l|
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
   l.store "Enable feedback moderation", "適度可以反饋"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "你可以設定網點範圍有限度的反饋。這麼做將不會有任何評論引用出現在你的部落格，除非你使之生效"
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "你可以設定網點範圍有限度的反饋。這麼做將不會有任何評論引用出現在你的部落格，除非你使之生效"
   l.store "Comments filter", "篩選評論"
   l.store "Enable gravatars", "可以顯示留言大頭貼"
   l.store "Show your email address", "秀出你的email位址"
@@ -378,7 +378,7 @@ Localization.define("zh_TW") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "當新的文章或評論被貼上時typo會通知你"
   l.store "Source Email", "原始email"
   l.store "Email address used by Typo to send notifications", "email位址使用typo發出通知"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "typo會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "typo會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄"
   l.store "Enable spam protection", "有效防止垃圾郵件"
   l.store "Akismet Key", "Akismet鍵"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo隨意的使用 %s 篩選垃圾郵件服務。"
@@ -427,6 +427,7 @@ Localization.define("zh_TW") do |l|
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "資訊"
@@ -446,8 +447,8 @@ Localization.define("zh_TW") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "當公開的文章或引用會洩漏你私人的資訊時，對於不公開的部落格typo會終止連結。在公開的部落格並無此選項"
   l.store "URLs to ping automatically", "URL自動地Ping"
   l.store "Latitude, Longitude", "緯度,經度"
-  l.store "your lattitude and longitude", "你的緯度、經度"
-  l.store "exemple", "舉例"
+  l.store "your latitude and longitude", "你的緯度、經度"
+  l.store "example", "舉例"
   l.store "Write", "寫入"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -460,13 +461,13 @@ Localization.define("zh_TW") do |l|
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "在這個部落格顯示拖曳改變的sidebar選項。從sidebar選項移除會立即存檔，但是不會執行直到你輸入<公開>鍵"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "在這個部落格顯示拖曳改變的sidebar選項。從sidebar選項移除會立即存檔，但是不會執行直到你輸入<公開>鍵"
   l.store "Available Items", "可用的項目"
   l.store "Active Sidebar items", "有效的側邊欄項目"
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "公開變更"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""

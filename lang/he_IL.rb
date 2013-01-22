@@ -199,7 +199,7 @@ Localization.define("he_IL") do |l|
   l.store "Currently this article has the following resources", "כרגע לכתבה שייכים המשאבים הבאים"
   l.store "You can associate the following resources", "תוכל לשייך אליה את המשאבים הבאים"
   l.store "Really delete attachment", "האם אתה בטוח שברצונך למחוק את הקובץ הצורף"
-  l.store "Add Another Attachment", "הוסף קובץ-מצורף"
+  l.store "Add another attachment", "הוסף קובץ-מצורף"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -211,7 +211,7 @@ Localization.define("he_IL") do |l|
   l.store "Password:", ""
   l.store "Publish", "פרסם"
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "העלאות"
   l.store "Post settings", "הגדרות כתבה"
   l.store "Publish at", "פורסם בתאריך"
@@ -371,7 +371,7 @@ Localization.define("he_IL") do |l|
   l.store "Enable comments by default", "אפשר תגובות כברירת מחדל"
   l.store "Enable Trackbacks by default", "אפשר עוקבים-חזרה כברירת מחדל"
   l.store "Enable feedback moderation", "אפשר ביקורת על המשוב"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "תוכל לאפשר ביקורת על המשוב בכל האתר. אם תבצע זאת, לא תוצג שום תגובה או עוקב-חזרה בבלוג שלך אלא אם תאשר אותה."
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "תוכל לאפשר ביקורת על המשוב בכל האתר. אם תבצע זאת, לא תוצג שום תגובה או עוקב-חזרה בבלוג שלך אלא אם תאשר אותה."
   l.store "Comments filter", "מסנן התגובות"
   l.store "Enable gravatars", "אפשר דמויות"
   l.store "Show your email address", "הצג את כתובת הדואל שלך"
@@ -379,7 +379,7 @@ Localization.define("he_IL") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo יכולה לעדכן אותך בעת שמאמרים חדשים או תגובות נשלחות."
   l.store "Source Email", "דואל המקור"
   l.store "Email address used by Typo to send notifications", "כתובת הדואל שתשמש את Typo לשלוח עדכונים"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "אפשור הגנת ספאם תגרום ל-Typo להשוות כתובות ה-IP של השולחים ואת תוכן השליחה כנגד רשימות שחורות מקומיות או מרוחקות - הגנה טובה כנגד רובוטי ספאם."
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "אפשור הגנת ספאם תגרום ל-Typo להשוות כתובות ה-IP של השולחים ואת תוכן השליחה כנגד רשימות שחורות מקומיות או מרוחקות - הגנה טובה כנגד רובוטי ספאם."
   l.store "Enable spam protection", "אפשר הגנת ספאם"
   l.store "Akismet Key", "מפתח Akismet"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "תוכל להשתמש בשירות מסנן ספאם של %s. עליך להירשם Akisemt מפתח API לפני שתוכל להשתמש בשירות. אם כבר יש לך מפתח, רשום אותו כאן."
@@ -428,6 +428,7 @@ Localization.define("he_IL") do |l|
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "מידע"
@@ -447,8 +448,8 @@ Localization.define("he_IL") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "בעת פרסום במאמר, Typo יכולה לשלוח עוקבים-חזרה לאתרים אליהם אתה מקשר. מומלץ לבטל זאת לבלוגים פרטיים משום שמידע פרטי על האתרים אליהם אתה מקשר עלול לדלוף. לבלוגים ציבוריים, אין טעם לבטל זאת."
   l.store "URLs to ping automatically", "כתובות לקישור אוטומטי"
   l.store "Latitude, Longitude", "קו רוחב, קו אורך"
-  l.store "your lattitude and longitude", "קווי הרוחב והאורך שלך"
-  l.store "exemple", "דוגמא"
+  l.store "your latitude and longitude", "קווי הרוחב והאורך שלך"
+  l.store "example", "דוגמא"
   l.store "Write", "כתוב"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -461,13 +462,13 @@ Localization.define("he_IL") do |l|
   l.store "Drag some plugins here to fill your sidebar", "גרור חלק מהתוספים כדי למלא את תיבת הצד"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל לא מופעלים עד שתלחץ על הכפתור 'פרסם'."
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל לא מופעלים עד שתלחץ על הכפתור 'פרסם'."
   l.store "Available Items", "פריטים זמינים"
   l.store "Active Sidebar items", "הפעל פריטי תיבת צד"
   l.store "Get more plugins", ""
   l.store "Sidebar", "תיבת צד"
   l.store "Publish changes", "פרסם שינויים"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""

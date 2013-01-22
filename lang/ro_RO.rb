@@ -199,7 +199,7 @@ Localization.define("ro_RO") do |l|
   l.store "Currently this article has the following resources", "Resursele disponibile acestui articol sînt"
   l.store "You can associate the following resources", "Puteți asocia următoarele resurse"
   l.store "Really delete attachment", "Ești sigur că dorești să ștergi atașamentul"
-  l.store "Add Another Attachment", "Adaugă un nou atașament"
+  l.store "Add another attachment", "Adaugă un nou atașament"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -211,7 +211,7 @@ Localization.define("ro_RO") do |l|
   l.store "Password:", ""
   l.store "Publish", "Publică"
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", "Publică la"
@@ -362,7 +362,7 @@ Localization.define("ro_RO") do |l|
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "Nume de fișier"
   l.store "Browse", ""
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
@@ -386,7 +386,7 @@ Localization.define("ro_RO") do |l|
   l.store "Enable comments by default", "Implicit comentariile să fie active"
   l.store "Enable Trackbacks by default", "Implicit retrolegăturile să fie active"
   l.store "Enable feedback moderation", "Activează moderarea comentariilor"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Filtru pentru comentarii"
   l.store "Enable gravatars", "Activează gravataruri"
   l.store "Show your email address", "Arată adresa ta de email"
@@ -394,7 +394,7 @@ Localization.define("ro_RO") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo te poate alerta la publicarea de noi articole sau comentarii"
   l.store "Source Email", "Expeditor email"
   l.store "Email address used by Typo to send notifications", "Adresa email folosită de Typo pentru a trimite alerte prin email"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La activarea protecției anti-spam, Typo va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot "
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La activarea protecției anti-spam, Typo va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot "
   l.store "Enable spam protection", "Activează protecția anti-spam"
   l.store "Akismet Key", "Cheia Akismet"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Opțional, Typo poate folosi serviciul %s de filtrare spam. Trebuie să te înregistrezi la Akismet și să primești o cheie API pentru a putea folosi acest serviciu. Dacă ai deja o cheie Akismet, introdu-o aici"
@@ -443,6 +443,7 @@ Localization.define("ro_RO") do |l|
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informații"
@@ -462,8 +463,8 @@ Localization.define("ro_RO") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Cînd publici un articol, Typo poate trimite automat retrolegături site-urilor pe care le specifici. În cazul unui blog personal, această opțiune ar trebui dezactivată, ca să nu deconspire informații private. Dacă blogul e public, opțiunea aceasta poate rămîne activă."
   l.store "URLs to ping automatically", "Site-uri de anunțat automat"
   l.store "Latitude, Longitude", "Latitudine, longitudine"
-  l.store "your lattitude and longitude", "latitudinea și longitudinea ta"
-  l.store "exemple", "de pildă"
+  l.store "your latitude and longitude", "latitudinea și longitudinea ta"
+  l.store "example", "de pildă"
   l.store "Write", "Publicare"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -476,7 +477,7 @@ Localization.define("ro_RO") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Trage plugin-uri aici pentru a popula bara laterală"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"
   l.store "Available Items", "Obiecte disponibile"
   l.store "Active Sidebar items", "Obiecte utilizate"
   l.store "Get more plugins", ""

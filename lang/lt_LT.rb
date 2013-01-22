@@ -199,7 +199,7 @@ Localization.define("lt_LT") do |l|
   l.store "Currently this article has the following resources", "Šiuo metu straipsnis turi šiuos resursus"
   l.store "You can associate the following resources", "Jūs galite susieti su šiais resursais"
   l.store "Really delete attachment", "Ištrinti prikabintus failus"
-  l.store "Add Another Attachment", "Prikabinti kitą failą"
+  l.store "Add another attachment", "Prikabinti kitą failą"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -211,7 +211,7 @@ Localization.define("lt_LT") do |l|
   l.store "Password:", ""
   l.store "Publish", "Publikuoti"
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", "Publikuotas"
@@ -371,7 +371,7 @@ Localization.define("lt_LT") do |l|
   l.store "Enable comments by default", "Kommentare per default erlauben"
   l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
   l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Komentarų filtras"
   l.store "Enable gravatars", "Gratavare aktivieren"
   l.store "Show your email address", "Ihre Email Adresse anzeigen"
@@ -379,7 +379,7 @@ Localization.define("lt_LT") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo kann Sie benachrichtigen, wenn neue Artikel oder Kommentare angelegt werden"
   l.store "Source Email", "Email Adresse"
   l.store "Email address used by Typo to send notifications", "Email Adresse, die Typo beim Versenden von Benachrichtigungen verwenden soll"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Bei Aktivierung des Spamschutzes wird Typo sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Bei Aktivierung des Spamschutzes wird Typo sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots"
   l.store "Enable spam protection", "Spamschutz aktivieren"
   l.store "Akismet Key", "Akismet Key"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo kann (optional) den %s Spam-Filterdienst verwenden. Sie müssen sich dort registriert und einen API Key erhalten haben, bevor Sie diesen Dienst nutzen können. Wenn Sie einen solchen Key haben, geben Sie ihn hier ein"
@@ -428,6 +428,7 @@ Localization.define("lt_LT") do |l|
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Information"
@@ -447,8 +448,8 @@ Localization.define("lt_LT") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publikuojant straipsnius Typo gali siųsti dienoraščių nuorodas į puslapius, į kuriuos jūs rodote. Tai gali būti išjungta ant privačių dienoraščių, bet viešuose nėra priežasties išjungti šio nustatymo" # need fix
   l.store "URLs to ping automatically", "URL adresai į kuriuos pranešti automatiškai"
   l.store "Latitude, Longitude", "Geografinė platuma, ilguma"
-  l.store "your lattitude and longitude", "Tavo geografinė platuma ir ilguma"
-  l.store "exemple", "Pavyzdys"
+  l.store "your latitude and longitude", "Tavo geografinė platuma ir ilguma"
+  l.store "example", "Pavyzdys"
   l.store "Write", "Rašyti"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -461,13 +462,13 @@ Localization.define("lt_LT") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
   l.store "Available Items", "Verfügbare Einträge"
   l.store "Active Sidebar items", "Aktive Einträge der Seitenleiste"
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Änderungen veröffentlichen"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""

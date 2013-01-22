@@ -198,7 +198,7 @@ Localization.define("nl_NL") do |l|
   l.store "Currently this article has the following resources", "Momenteel heeft dit artikel de volgende bronnen"
   l.store "You can associate the following resources", "Je kunt de volgende bronnen koppelen"
   l.store "Really delete attachment", "Bijlage echt verwijderen"
-  l.store "Add Another Attachment", "Voeg een andere bijlage toe"
+  l.store "Add another attachment", "Voeg een andere bijlage toe"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", "Concepten"
@@ -210,7 +210,7 @@ Localization.define("nl_NL") do |l|
   l.store "Password:", "Wachtwoord:"
   l.store "Publish", "Publiceer"
   l.store "Excerpt", "Uittreksel"
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
   l.store "Uploads", "Uploads"
   l.store "Post settings", "Post instellingen"
   l.store "Publish at", "Publiceren op"
@@ -369,7 +369,7 @@ Localization.define("nl_NL") do |l|
   l.store "Enable comments by default", "Commentaren standaard toestaan"
   l.store "Enable Trackbacks by default", "Trackbacks standaard toestaan"
   l.store "Enable feedback moderation", "Feedback controle aanzetten"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Je kunt voor de hele site feedback controle aanzetten. Als je dat doet zal geen enkel commentaar of trackback op je blog verschijnen totdat je het goedkeurt"
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "Je kunt voor de hele site feedback controle aanzetten. Als je dat doet zal geen enkel commentaar of trackback op je blog verschijnen totdat je het goedkeurt"
   l.store "Comments filter", "Commentaren filter"
   l.store "Enable gravatars", "Enable gravatars"
   l.store "Show your email address", "Toon je e-mail adres"
@@ -377,7 +377,7 @@ Localization.define("nl_NL") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo can je notificeren wanneer nieuwe artikelen of commentaren gepost worden"
   l.store "Source Email", "Bron e-mail"
   l.store "Email address used by Typo to send notifications", "E-mail adres dat Typo gebruikt om notificaties te versturen"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Het aanzetten van spambescherming zorgt dat typo het IP-adres en de inhoud van reacties vergelijkt met lokale en centrale zwarte lijsten. Een goede bescherming tegen spam robots"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Het aanzetten van spambescherming zorgt dat typo het IP-adres en de inhoud van reacties vergelijkt met lokale en centrale zwarte lijsten. Een goede bescherming tegen spam robots"
   l.store "Enable spam protection", "Gebruik spam-bescherming"
   l.store "Akismet Key", "Akismet sleutel"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo kan (optioneel) de %s spam-filter dienst gebruiken. Je moet een registratie bij Akismet hebben en een API sleutel voordat je deze dienst kunt gebruiken. Als je een Akismet sleutel hebt, vul die dan hier in"
@@ -426,6 +426,7 @@ Localization.define("nl_NL") do |l|
   l.store "Search Engine Optimization", "Zoekmachine optimalisatie"
   l.store "This will display", "Dit zorgt er voor dat "
   l.store "at the bottom of each post in the RSS feed", " onderaan elke post in je RSS-feed verschijnt"
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informatie"
@@ -445,8 +446,8 @@ Localization.define("nl_NL") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Wanneer je een artikel publiceert kan Typo een trackback sturen naar de sites waaraan je linkt. Dit zou voor priv&eacute;-blogs uit moeten staan, omdat het niet-publieke informatie 'lekt' naar sites die je bediscussieert. Voor publieke blogs is er geen goede reden om het uit te zetten."
   l.store "URLs to ping automatically", ""
   l.store "Latitude, Longitude", ""
-  l.store "your lattitude and longitude", ""
-  l.store "exemple", ""
+  l.store "your latitude and longitude", ""
+  l.store "example", ""
   l.store "Write", "Schrijf"
 
   # app/views/admin/sidebar/_publish.html.erb
@@ -456,14 +457,14 @@ Localization.define("nl_NL") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Sleep wat plugins naar hier om de zijbalk te vullen"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Sleep dingen heen en weer om de zijbalk van dit blog aan te passen. Om dingen te verwijderen klik je op verwijderen  Wijzigen worden automatisch opgeslagen, maar niet geactiveerd totdat je de 'Publiceer' knop klikt"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Sleep dingen heen en weer om de zijbalk van dit blog aan te passen. Om dingen te verwijderen klik je op verwijderen  Wijzigen worden automatisch opgeslagen, maar niet geactiveerd totdat je de 'Publiceer' knop klikt"
   l.store "Available Items", "Beschikbare dingen"
   l.store "You have no plugins installed", "Je hebt geen plugins ge&iuml;installeerd"
   l.store "Active Sidebar items", "Actieve zijbalk dingen"
   l.store "Get more plugins", "Haal meer thema's op"
   l.store "Sidebar", "Zijbalk"
   l.store "Publish changes", "Publiceer wijzigingen"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""

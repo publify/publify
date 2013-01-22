@@ -201,7 +201,7 @@ Localization.define("es_MX") do |l|
   l.store "Currently this article has the following resources", "Este art&iacute;culo tiene los siguientes recursos"
   l.store "You can associate the following resources", "Puedes asociarlo con los siguientes recursos"
   l.store "Really delete attachment", "&iquest;Realmente deseas borrar este archivo?"
-  l.store "Add Another Attachment", "Agregar Otro Archivo"
+  l.store "Add another attachment", "Agregar Otro Archivo"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -213,7 +213,7 @@ Localization.define("es_MX") do |l|
   l.store "Password:", ""
   l.store "Publish", "Publicar"
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", "Publicado el"
@@ -373,7 +373,7 @@ Localization.define("es_MX") do |l|
   l.store "Enable comments by default", "Habilitar comentarios por default"
   l.store "Enable Trackbacks by default", "Habilitar Trackbacks por default"
   l.store "Enable feedback moderation", "Habilitar moderaci&oacute;n de comentarios y trackbacks"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Filtro de comentarios"
   l.store "Enable gravatars", "Habilitar gravatars"
   l.store "Show your email address", "Mostrar tu direcci&oacute;n de email"
@@ -381,7 +381,7 @@ Localization.define("es_MX") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo puede notificarte cuando nuevos art&iacute;culos o comentarios sean a&ntilde;adidos"
   l.store "Source Email", "Email remitente"
   l.store "Email address used by Typo to send notifications", "Direcci&oacute;n de email usada por Typo para enviar notificaciones"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Habilitando la protecci&oacute;n anti-spam har&aacute; que typo compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Habilitando la protecci&oacute;n anti-spam har&aacute; que typo compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam"
   l.store "Enable spam protection", "Habilitar protecci&oacute;n anti-spam"
   l.store "Akismet Key", "Clave de Akismet (API key)"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo puede (opcionalmente) usar el servicio anti-spam de %s. Necesitas registrarte en Akismet y obtener una API key antes de poder usar su servicio. Si tienes una clave de Akismet, introd&uacute;cela aqu&iacute;"
@@ -430,6 +430,7 @@ Localization.define("es_MX") do |l|
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informaci&oacute;n"
@@ -449,8 +450,8 @@ Localization.define("es_MX") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Cuando se publican art&iacute;culos, Typo puede enviar trackbacks a sitios enlazados. Esto deber&iacute;a deshabilitarse para blogs privados para que no se escape informaci&oacute;n privada a sitios que est&aacute;s comentando. Para blogs p&uacute;blicos, realmente no hay raz&oacute;n para deshabilitar esto."
   l.store "URLs to ping automatically", "Enviar pings a URLs autom&aacute;ticamente"
   l.store "Latitude, Longitude", "Latitud, Longitud"
-  l.store "your lattitude and longitude", "tu latitud y longitud"
-  l.store "exemple", "ejemplo"
+  l.store "your latitude and longitude", "tu latitud y longitud"
+  l.store "example", "ejemplo"
   l.store "Write", "Escribir"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -463,13 +464,13 @@ Localization.define("es_MX") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", ""
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", ""
   l.store "Available Items", "Items disponibles"
   l.store "Active Sidebar items", "Items activos de la barra lateral"
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Publicar cambios"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""

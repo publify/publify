@@ -199,7 +199,7 @@ Localization.define("it_IT") do |l|
   l.store "Currently this article has the following resources", "Questo articolo ha le seguenti risorse"
   l.store "You can associate the following resources", "Puoi associare le seguenti risorse"
   l.store "Really delete attachment", "Vuoi realmente eliminare l'allegato"
-  l.store "Add Another Attachment", "Aggiungi un'altro allegato"
+  l.store "Add another attachment", "Aggiungi un'altro allegato"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -211,7 +211,7 @@ Localization.define("it_IT") do |l|
   l.store "Password:", ""
   l.store "Publish", "Pubblica"
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "Uploads"
   l.store "Post settings", ""
   l.store "Publish at", "Pubblicato il"
@@ -371,7 +371,7 @@ Localization.define("it_IT") do |l|
   l.store "Enable comments by default", "Abilita commenti di defaault"
   l.store "Enable Trackbacks by default", "Abilita Trackbacks come default"
   l.store "Enable feedback moderation", "Abilita la moderazione dei feedback"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Puoi abilitare in modo globale la moderazione dei feedback. Se fai cio', nessun commento o trackback apparira' sul tuo blog se tu non lo autorizzi."
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "Puoi abilitare in modo globale la moderazione dei feedback. Se fai cio', nessun commento o trackback apparira' sul tuo blog se tu non lo autorizzi."
   l.store "Comments filter", "Filtra commenti"
   l.store "Enable gravatars", "Abilita gravatars"
   l.store "Show your email address", "Mostra il tuo indirizzo mail"
@@ -379,7 +379,7 @@ Localization.define("it_IT") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Il blog puo' notificarti l'inserimento di un nuovo articolo e/o commento"
   l.store "Source Email", "Indirizzo mittente mail"
   l.store "Email address used by Typo to send notifications", "Indirizzo email usato dal blog per inviare le notifiche"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Abilitando la protezione contro lo spam fa si che il blog compari gli IP di chi invia i commenti e anche il loro contenuto con una blacklist remota. E' una buona difesa contro gli spam robot"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Abilitando la protezione contro lo spam fa si che il blog compari gli IP di chi invia i commenti e anche il loro contenuto con una blacklist remota. E' una buona difesa contro gli spam robot"
   l.store "Enable spam protection", "Abilita la protezione spam"
   l.store "Akismet Key", "Chiave Akismet"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", ""
@@ -428,6 +428,7 @@ Localization.define("it_IT") do |l|
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informazioni"
@@ -447,8 +448,8 @@ Localization.define("it_IT") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Quando pubblichi gli articoli, e' possibile inviare trackback ai siti di cui fornisci l'url. E' possibile disabilitare questa funzione nel caso di blog privato di cui non si vogliono condividere le informazioni. Per blog pubblici non esiste una necessita' reale di disabilitare questa funzione."
   l.store "URLs to ping automatically", "Indirizzi da pingare automaticamente"
   l.store "Latitude, Longitude", "Latitudine, Longitudine"
-  l.store "your lattitude and longitude", "la tua latitudine e longitudine"
-  l.store "exemple", "esempio"
+  l.store "your latitude and longitude", "la tua latitudine e longitudine"
+  l.store "example", "esempio"
   l.store "Write", "Scrivi"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -461,13 +462,13 @@ Localization.define("it_IT") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
   l.store "Available Items", "Elementi disponibili"
   l.store "Active Sidebar items", "Attiva elementi Sidebar"
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Pubblica cambiamenti"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
