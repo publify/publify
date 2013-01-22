@@ -387,7 +387,7 @@ Localization.define("fr_FR") do |l|
   l.store "Robots.txt", "Robots.txt"
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Typo ne peut pas écrire dans votre fichier robots.txt."
   l.store "Use dofollow in comments", "Mettre les commentaires en dofollow"
-  l.store "Maybe you want to moderate feedbacks when turning this on", "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
+  l.store "You may want to moderate feedback when turning this on", "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
   l.store "Use canonical URL", "Utiliser les URL canoniques"
   l.store "Read more about %s", "En savoir plus à propos de %s"
   l.store "Google", "Google"

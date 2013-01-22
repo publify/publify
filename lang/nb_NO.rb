@@ -426,7 +426,7 @@ Localization.define("nb_NO") do |l|
   l.store "Robots.txt", "Robots.txt"
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Din robots.txt er ikke skrivbar. Typo vil ikke kunne skrive til den"
   l.store "Use dofollow in comments", "Bruk dofollow i kommentarer"
-  l.store "Maybe you want to moderate feedbacks when turning this on", "Kanskje du ønsker å moderere feedbacks når du slår på denne"
+  l.store "You may want to moderate feedback when turning this on", "Kanskje du ønsker å moderere feedbacks når du slår på denne"
   l.store "Use canonical URL", "Bruk kanonisk URL"
   l.store "Read more about %s", "Les mer om %s"
   l.store "Google", ""
