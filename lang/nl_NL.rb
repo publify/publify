@@ -155,6 +155,7 @@ Localization.define("nl_NL") do |l|
   l.store "Spam", "Spam"
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "I've lost my password", "Ik ben mijn wachtwoord kwijt"
   l.store "Login", "Log in"
   l.store "Password", "Wachtwoord"

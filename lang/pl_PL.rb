@@ -159,6 +159,7 @@ Localization.define("pl_PL") do |l|
   l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "I've lost my password", ""
   l.store "Login", "Login"
   l.store "Password", "Hasło"
@@ -167,6 +168,7 @@ Localization.define("pl_PL") do |l|
   l.store "Back to ", ""
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb

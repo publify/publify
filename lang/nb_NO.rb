@@ -180,12 +180,14 @@ Localization.define("nb_NO") do |l|
   l.store "Spam", "Spam"
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "Login", "Logg inn"
   l.store "Password", "Passord"
   l.store "Remember me", "Husk meg"
   l.store "Submit", "Send inn"
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", "Brukernavn eller epost"
   l.store "Reset my password", "Nullstill passordet mitt"
 

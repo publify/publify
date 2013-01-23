@@ -162,8 +162,10 @@ Localization.define("da_DK") do |l|
   l.store "Remember me", ""
   l.store "Submit", "Indsend"
   l.store "Back to ", ""
+  l.store "Sign in", ""
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb

@@ -156,6 +156,7 @@ Localization.define("he_IL") do |l|
   l.store "Spam", "ספאם"
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "I've lost my password", ""
   l.store "Login", "התחבר"
   l.store "Password", "סיסמה"
@@ -164,6 +165,7 @@ Localization.define("he_IL") do |l|
   l.store "Back to ", "חזור אל "
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb

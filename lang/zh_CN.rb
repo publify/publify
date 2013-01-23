@@ -156,6 +156,7 @@ Localization.define("zh_CN") do |l|
   l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "I've lost my password", "忘记密码"
   l.store "Login", "登录"
   l.store "Password", "密码"
@@ -165,6 +166,7 @@ Localization.define("zh_CN") do |l|
   l.store "Back to ", "返回"
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", "用户名或邮箱"
 
   # app/views/accounts/signup.html.erb

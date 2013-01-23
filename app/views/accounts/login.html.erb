@@ -3,17 +3,17 @@
     <div class='well'>
       <%= form_tag :action=> "login" do %>
       <div class='clearfix'>
-        <h2><%= _("Login") %></h2>
+        <h2><%= _("Sign in") %></h2>
       </div>
       <div id="flash"><%= render_the_flash %></div>
       <div class='clearfix'>
-        <%= text_field(:user, :login, {:class => 'login', :placeholder => _("login")})%>  
+        <%= text_field(:user, :login, {:class => 'login', :placeholder => _("Login")})%>  
       </div>
       <div class='clearfix'>
-        <%= password_field(:user, :password, {:class => 'login', :placeholder => _("password")})%>
+        <%= password_field(:user, :password, {:class => 'login', :placeholder => _("Password")})%>
       </div>
       <div class='clearfix'>
-        <input type="submit" name="login" class="btn btn-info" value= "<%= _('Login') %>" />
+        <input type="submit" name="login" class="btn btn-info" value= "<%= _('Sign in') %>" />
         <%= check_box_tag 'remember_me' %> <small><%= _('Remember me')%></small> 
       </div>	  
       <div class='clearfix'>

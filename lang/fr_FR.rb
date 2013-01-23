@@ -160,13 +160,15 @@ Localization.define("fr_FR") do |l|
   l.store "This article type already exists", ""
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", "S'identifier"
   l.store "Login", "Identifiant"
-  l.store "password", "Mot de passe"
+  l.store "Password", "Mot de passe"
   l.store "Remember me", "Rester connecté"
 
   # app/views/accounts/recover_password.html.erb
   l.store "Reset my password", "Me renvoyer un mot de passe"
   l.store "Username or email", "Identifiant ou email"
+  l.store "Back to login", "S'identifier"
 
   # app/views/accounts/signup.html.erb
   l.store "Username", "Identifiant"
