@@ -8,7 +8,7 @@
       end) -%>
 </li>
 <li id="attachment_add_<%= attachment_num.succ %>">
-  <%= link_to_remote _('Add Another Attachment'),
+  <%= link_to_remote _('Add another attachment'),
     :url => { :action => "attachment_box_add", :id => attachment_num.succ },
     :asynchronus => false -%>
 </li>

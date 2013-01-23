@@ -19,7 +19,7 @@ describe "Given a brand new AmazonSidebar" do
 
   it "description should be 'Adds sidebar links...'" do
     @sidebar.description.should ==
-      "Adds sidebar links to any amazon books linked in the body of the page"
+      "Adds sidebar links to any Amazon.com books linked in the body of the page"
   end
 
   it "sidebar should be valid" do

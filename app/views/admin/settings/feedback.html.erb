@@ -12,7 +12,7 @@
         </label>
         <label class='checkbox' for="setting_default_moderate_comments"><%= _("Enable feedback moderation")%>
           <%= check_box(:setting, :default_moderate_comments)%>
-          <span class='help-block'><%= _("You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it")%>.</span>
+          <span class='help-block'><%= _("You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.")%></span>
         </label>
         <label class='checkbox' for="setting_link_to_author"><%= _("Show your email address") %>
           <%= check_box(:setting, :link_to_author)%>
@@ -57,7 +57,7 @@
     <div class='controls'>
       <label class='checkbox' for="setting_sp_global"><%= _("Enable spam protection")%>
         <%= check_box(:setting, :sp_global)%>
-        <span class='help-block'><%= _("Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</span>  
+        <span class='help-block'><%= _("Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</span>  
       </label>
     </div>
   </div>
@@ -74,7 +74,7 @@
       <div class='input-append'>
         <%= text_field(:setting, :sp_article_auto_close, {:size => 4, :class => 'span3'})%><span class='add-on'><%= _("days") %></span>
       </div>
-      <span class='help-block'><%= _("Set to 0 to never disable comments")%></span>
+      <span class='help-block'><%= _("Set to 0 to never disable comments")%>.</span>
     </div>
   </div>
   <div class='control-group'>
@@ -82,7 +82,7 @@
     <div class='controls'>
       <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'span1'})%>
       <span class='help-block'><%= _("Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.
-      <%= _("Set to 0 to never reject comments")%></span>
+      <%= _("Set to 0 to never reject comments")%>.</span>
     </div>
   </div>
   <div class='control-group'>
