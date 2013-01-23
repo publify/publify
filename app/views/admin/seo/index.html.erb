@@ -70,7 +70,7 @@
     <label class='control-label'><%= _("Dofollow") %></label>
     <div class='controls'>
       <label class='checkbox' for="setting_dofollowify"><%= _("Use dofollow in comments")%>
-        <%= check_box(:setting, :dofollowify)%><p class='help-block'><%= _("Maybe you want to moderate feedbacks when turning this on") %></p>
+        <%= check_box(:setting, :dofollowify)%><p class='help-block'><%= _("You may want to moderate feedback when turning this on") %></p>
       </label>
     </div>
   </div>
@@ -104,7 +104,7 @@
     <label class='control-label' for="setting_custom_tracking_field"><%= _("Custom tracking code")%></label>
     <div class='controls'>
       <%= text_area(:setting, :custom_tracking_field, :rows => 3, :class => 'span6')%>
-      <p class='help-block'><%= _("Here you can add anything you want to appear in your application header, such as an anaytics service tracking code.") %></p>
+      <p class='help-block'><%= _("Here you can add anything you want to appear in your application header, such as analytics service tracking code.") %></p>
     </div>
   </div>
 </fieldset>

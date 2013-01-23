@@ -176,7 +176,7 @@ Localization.define("fr_FR") do |l|
   l.store "Signup", "S'inscrire"
 
   # app/views/admin/cache/index.html.erb
-  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache by yourself", "Afin d'économiser des ressources, Typo génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", "Afin d'économiser des ressources, Typo génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
   l.store "There are currently %d files in cache for a total amount of %d Kb", "Il y a actuellement %d fichiers en cache pour un total de %d kilo octets."
   l.store "Sweep cache", "Vider le cache"
   l.store "Cache", "Cache"
@@ -197,7 +197,7 @@ Localization.define("fr_FR") do |l|
   l.store "Currently this article has the following resources", "Les fichiers suivants sont actuellement liés à ce billet"
   l.store "You can associate the following resources", "Vous pouvez y lier les fichiers suivants"
   l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
-  l.store "Add Another Attachment", "Ajouter une autre pièce jointe"
+  l.store "Add another attachment", "Ajouter une autre pièce jointe"
 
   # app/views/admin/content/_categories.html.erb
   l.store "New Category", "Nouvelle catégorie"
@@ -218,7 +218,7 @@ Localization.define("fr_FR") do |l|
   l.store "Publish", "Publier"
   l.store "Tags", "Labels"
   l.store "Excerpt", "Extrait"
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
   l.store "Uploads", "Pièces jointes"
   l.store "Save as draft", "Sauver comme brouillon"
   l.store "New article", "Nouvel article"
@@ -389,7 +389,7 @@ Localization.define("fr_FR") do |l|
   l.store "Robots.txt", "Robots.txt"
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Typo ne peut pas écrire dans votre fichier robots.txt."
   l.store "Use dofollow in comments", "Mettre les commentaires en dofollow"
-  l.store "Maybe you want to moderate feedbacks when turning this on", "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
+  l.store "You may want to moderate feedback when turning this on", "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
   l.store "Use canonical URL", "Utiliser les URL canoniques"
   l.store "Read more about %s", "En savoir plus à propos de %s"
   l.store "Google", "Google"
@@ -399,7 +399,7 @@ Localization.define("fr_FR") do |l|
   l.store "Global settings", "Options générales"
   l.store "This will display", "Cela affichera"
   l.store "at the bottom of each post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
-  l.store "Here you can add anything you want to appear in your application header, such as an anaytics service tracking code.", "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
   
   # app/views/admin/seo/permalinks.html.erb
   l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Les exemples ci-dessous vous aideront à démarrerTypo vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
@@ -455,12 +455,12 @@ Localization.define("fr_FR") do |l|
   l.store "Enable comments by default", "Activer les commentaires par défaut"
   l.store "Enable Trackbacks by default", "Activer les rétroliens par défaut"
   l.store "Enable feedback moderation", "Activer la modération des commentaires"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part"
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part"
   l.store "Comments filter", "Mise en forme des commentaires"
   l.store "Avatars provider", "Fournisseur d’avatars"
   l.store "Show your email address", "Afficher votre adresse courriel"
   l.store "Enable spam protection", "Activer la protection contre le spam"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La protection contre le spam permettra à typo de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La protection contre le spam permettra à typo de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
   l.store "Akismet Key", "Clé Akismet"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo peut utiliser le service de lutte contre le spam %s. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici"
   l.store "Disable trackbacks site-wide", "Désactiver les trackbacks"
@@ -516,8 +516,8 @@ Localization.define("fr_FR") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Quand vous publiez un billet sur Typo, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public."
   l.store "URLs to ping automatically", "Sites à alerter automatiquement"
   l.store "Latitude, Longitude", "Latitude, Longitude"
-  l.store "your lattitude and longitude", "vos coordonnées géographiques"
-  l.store "exemple", "exemple"
+  l.store "your latitude and longitude", "vos coordonnées géographiques"
+  l.store "example", "exemple"
   l.store "Media", "Média"
   l.store "Image thumbnail size", "Taille des vignettes"
   l.store "Image medium size", "Taille des images réduites"
@@ -533,7 +533,7 @@ Localization.define("fr_FR") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."
   l.store "Available Items", "Éléments disponibles"
   l.store "You have no plugins installed", "Aucun plugin n'est disponible"
   l.store "Active Sidebar items", "Éléments utilisés"
@@ -542,7 +542,7 @@ Localization.define("fr_FR") do |l|
   l.store "plugin repository", "catalogue de greffons"
   l.store "Sidebar", "Plugins"
   l.store "Publish changes", "Publier les modifications"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", "Ajoute des liens vers les articles amazon liés dans l'article ou la page"
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", "Ajoute des liens vers les articles amazon liés dans l'article ou la page"
   l.store "Displays links to monthly archives", "Affiche des liens vers les archives mensuelles"
   l.store "Displays a list of authors ordered by name with links to their articles and profile", "Affiche la liste des auteurs par ordre alphabétique avec un lien vers leur profil"
   l.store "Livesearch", "Recherche dynamique"

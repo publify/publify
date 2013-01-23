@@ -197,7 +197,7 @@ Localization.define("nb_NO") do |l|
   l.store "Signup", "Registrer"
 
   # app/views/admin/cache/index.html.erb
-  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache by yourself", 
+  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", 
   "For å lagre resurser cacher Typo innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
   l.store "There are currently %d files in cache for a total amount of %d Kb", "Det finnes for øyeblikket %d filer i cachen som utgjør totalt %d kB"
   l.store "Sweep cache", ""
@@ -226,7 +226,7 @@ Localization.define("nb_NO") do |l|
   l.store "Currently this article has the following resources", "Artiklen har følgende ressourser"
   l.store "You can associate the following resources", "Du kan koble til følgende ressourser"
   l.store "Really delete attachment", "Vil du virkelig slette vedlagt fil"
-  l.store "Add Another Attachment", "Vedlegg enda en fil"
+  l.store "Add another attachment", "Vedlegg enda en fil"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", "Utkast"
@@ -239,7 +239,7 @@ Localization.define("nb_NO") do |l|
   l.store "Publish", "Publiser"
   l.store "Tags", "Tags"
   l.store "Excerpt", "Utdrag"
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
   l.store "Uploads", "Opplastede filer"
   l.store "Post settings", "Postinnstillinger"
   l.store "Publish at", "Offentliggjort den"
@@ -428,7 +428,7 @@ Localization.define("nb_NO") do |l|
   l.store "Robots.txt", "Robots.txt"
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Din robots.txt er ikke skrivbar. Typo vil ikke kunne skrive til den"
   l.store "Use dofollow in comments", "Bruk dofollow i kommentarer"
-  l.store "Maybe you want to moderate feedbacks when turning this on", "Kanskje du ønsker å moderere feedbacks når du slår på denne"
+  l.store "You may want to moderate feedback when turning this on", "Kanskje du ønsker å moderere feedbacks når du slår på denne"
   l.store "Use canonical URL", "Bruk kanonisk URL"
   l.store "Read more about %s", "Les mer om %s"
   l.store "Google", ""
@@ -437,7 +437,8 @@ Localization.define("nb_NO") do |l|
   l.store "Global settings", "Globale innstillinger"
   l.store "This will display", "Dette vil vise"
   l.store "at the bottom of each post in the RSS feed", "på bunnen av hver artikkel i RSS-feeden"
-  l.store "Here you can add anything you want to appear in your application header, such as an anaytics service tracking code.", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
+
   # app/views/admin/seo/permalinks.html.erb
   l.store "Format of permalink", "Permalinkformat"
   l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Typo tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
@@ -476,11 +477,11 @@ Localization.define("nb_NO") do |l|
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback-moderering"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Du kan aktivere feedback-moderering for hele siden. Dersom du gjør det vil ingen kommentarer eller trackbacks vises på bloggen din uten at du har godkjent dem"
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "Du kan aktivere feedback-moderering for hele siden. Dersom du gjør det vil ingen kommentarer eller trackbacks vises på bloggen din uten at du har godkjent dem"
   l.store "Comments filter", "Kommentarfilter"
   l.store "Avatars provider", "Avatartilbyder"
   l.store "Show your email address", "Vis din epostadresse"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots"
   l.store "Enable spam protection", "Aktiver Spam-beskyttelse"
   l.store "Akismet Key", "Akismet-nøkkel"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here"
@@ -536,8 +537,8 @@ Localization.define("nb_NO") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du publiserer artikler kan Typo sende trackbacks til de hjemmesider du lenker til. Dette bør deaktiveres for private blogger da det ellers kan lekke privat informasjion til hjemmesider du diskuterer. For offentlige blogger, er det ingen reell mening i å deaktivere dette."
   l.store "URLs to ping automatically", "Nettadresser som skal pinges automatisk"
   l.store "Latitude, Longitude", "Breddegrad, lengdegrad"
-  l.store "your lattitude and longitude", "din breddegrad og lengdegrad"
-  l.store "exemple", "for eksempel"
+  l.store "your latitude and longitude", "din breddegrad og lengdegrad"
+  l.store "example", "for eksempel"
   l.store "Media", ""
   l.store "Image thumbnail size", "Liten bildestørrelse"
   l.store "Image medium size", "Mellomstor bildestørrelse"
@@ -550,14 +551,14 @@ Localization.define("nb_NO") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Dra og slipp plugins hit for å populere sidebar"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
   l.store "Available Items", "Tilgjengelige enheter"
   l.store "You have no plugins installed", "Du har ikke installert noen plugins"
   l.store "Active Sidebar items", "Aktive sidebar-enheter"
   l.store "Get more plugins", "Hent flere plugins"
   l.store "Sidebar", ""
   l.store "Publish changes", "Publiser endringer"
-  l.store "Adds sidebar links to any amazon books linked in the body of the page", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
