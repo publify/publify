@@ -14,4 +14,4 @@
   <td class='last'><%= (article.allow_comments?) ? link_to(article.comments.ham.size.to_s, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %></td>
 </tr>
 <% end %>
-<%= display_pagination(@articles, 7, 'first', 'last')%>
+<%= display_pagination(@articles, 5, 'first', 'last')%>
