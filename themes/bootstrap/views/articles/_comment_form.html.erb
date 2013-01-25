@@ -11,14 +11,14 @@
 		<%= text_field "comment", "url", :class => 'span4', :placeholder => _("Your website") %>
 	</div>
 	<div class='control-group'>
-		<%= text_area 'comment', 'body', :rows => 8, :class => 'span8' %>
+		<%= text_area 'comment', 'body', :rows => 8, :class => 'span6' %>
 	</div>
 
 	<% if this_blog.use_recaptcha %>
 	<div class='control-group'><%= raw recaptcha_tags :ajax => true %></div>
 	<% end %>
 	<div class='form-actions'>
-		<input type='submit' id='form-submit-button' class='btn btn-info' value="<%= _('comment') %>" />
+		<input type='submit' id='form-submit-button' class='btn btn-info' value="<%= _('Comment') %>" />
 	</div>
 </div>
 <% end %>
