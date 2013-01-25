@@ -3,7 +3,8 @@ class Tag < ActiveRecord::Base
 
   validates_uniqueness_of :name
 
-  # Satisfy GroupingController needs.
+  before_save :ensure_naming_conventions
+
   attr_accessor :description, :keywords
 
   def self.get(name)
@@ -22,10 +23,7 @@ class Tag < ActiveRecord::Base
     self.name = self.display_name.to_url
   end
 
-  before_save :ensure_naming_conventions
-
-  def self.find_all_with_article_counters(limit=20, orderby='article_counter DESC', start=0)
-    # Only count published articles
+  def self.find_all_with_article_counters
     self.find_by_sql([%{
       SELECT tags.id, tags.name, tags.display_name, COUNT(articles_tags.article_id) AS article_counter
       FROM #{Tag.table_name} tags LEFT OUTER JOIN #{Tag.table_name_prefix}articles_tags#{Tag.table_name_suffix} articles_tags
@@ -34,25 +32,15 @@ class Tag < ActiveRecord::Base
         ON articles_tags.article_id = articles.id
       WHERE articles.published = ?
       GROUP BY tags.id, tags.name, tags.display_name
-      ORDER BY #{orderby}
+      ORDER BY article_counter DESC
       LIMIT ? OFFSET ?
-      },true, limit, start]).each{|item| item.article_counter = item.article_counter.to_i }
-  end
-
-  def self.merge(from, to)
-    self.update_by_sql([%{UPDATE article_tags SET tag_id = #{to} WHERE tag_id = #{from} }])
+      },true, 1000, 0]).each{|item| item.article_counter = item.article_counter.to_i }
   end
 
   def self.find_by_permalink(name)
     self.find_by_name(name)
   end
 
-  def self.to_prefix
-    'tag'
-  end
-
-  # Return all tags with the char or string
-  # send by parameter
   def self.find_with_char(char)
     find :all, :conditions => ['name LIKE ? ', "%#{char}%"], :order => 'name ASC'
   end
@@ -71,13 +59,7 @@ class Tag < ActiveRecord::Base
 
   def permalink_url(anchor=nil, only_path=false)
     blog = Blog.default # remove me...
-
-    blog.url_for(
-      :controller => 'tags',
-      :action => 'show',
-      :id => permalink,
-      :only_path => only_path
-    )
+    blog.url_for(controller: 'tags', action: 'show', id: permalink, only_path: only_path)
   end
 
 end
