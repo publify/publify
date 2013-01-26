@@ -1,2 +1,6 @@
-FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
+# Please get your own API key for setting up this.
+# You can request it at
+# https://www.flickr.com/services/api/misc.api_keys.html
+FLICKR_KEY=''
+FLICKR_SECRET=''
 
