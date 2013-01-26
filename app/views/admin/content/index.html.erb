@@ -13,9 +13,11 @@
   <thead>
     <tr class='noborder'>
       <td colspan=5>
-        <input id="search" type="text" name="search[searchstring]" class='large' />
-        <%= submit_tag(_("Search"), {:class => 'btn'}) %>
-        <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>        
+        <span class="input-append">
+          <input id="search" type="text" name="search[searchstring]" class='large' />
+          <%= submit_tag(_("Search"), {:class => 'btn'}) %>
+          <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
+        </span>
       </td>
 	 </tr>
    <tr class='noborder'>
