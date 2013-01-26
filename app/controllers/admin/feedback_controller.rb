@@ -125,7 +125,13 @@ class Admin::FeedbackController < Admin::BaseController
       if params[:context] != 'listing'
         page.visual_effect :fade, "feedback_#{feedback.id}"
       else
-        page.replace("feedback_#{feedback.id}", partial: template, locals: {comment: feedback})
+        if template == "ham"
+          page.visual_effect :appear, "feedback_#{feedback.id}"
+          page.visual_effect :fade, "placeholder_#{feedback.id}"
+        else
+          page.visual_effect :appear, "placeholder_#{feedback.id}"
+          page.visual_effect :fade, "feedback_#{feedback.id}"
+        end
       end
     end
   end

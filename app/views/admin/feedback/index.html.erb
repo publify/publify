@@ -1,8 +1,7 @@
 <% @page_heading =  _("Feedback") %>
 
 <%= form_tag({:action => 'index'}, :method => :get, :class => 'form-inline') do %>
-<div class='row'>
-  <div class='span10'>
+  <div>
     <span class='badge badge-inverse'>
       <%= link_to(_("All"), controller: 'admin/feedback', action: :index) %>
     </span>&nbsp; 
@@ -21,8 +20,7 @@
     <span class='badge badge-warning'>
       <%= link_to(_("Presumed spam"), controller: 'admin/feedback', action: :index, published: 'f') %>
     </span>&nbsp;
-  </div>
-  <div class='pull-right'>
+  <div class='pull-right input-append'>
     <input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" class='medium' />
     <%= submit_tag(_("Search"), {:class => 'btn'}) %>
   </div>
@@ -36,32 +34,27 @@
 <%= hidden_field_tag "page", params[:page]%>
 
 <table class='table table-striped'>
-<thead>
-  <tr class='noborder'>
-    <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-    <th><%= _("Status")%></th>
-    <th><%= _("Comment Author")%></th>
-    <th><%= _("Comment")%></th>
-    <th><%= _("Article")%></th>
-  </tr>
-</thead>
-<%= render_void_table(@feedback.size, 5) %>
+  <thead>
+    <tr class='noborder'>
+      <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+      <th><%= _("Status")%></th>
+      <th><%= _("Comment Author")%></th>
+      <th><%= _("Comment")%></th>
+      <th><%= _("Article")%></th>
+    </tr>
+  </thead>
+  <%= render_void_table(@feedback.size, 5) %>
 
-<% @feedback.each do |comment| %>
-<tr id='<%= "feedback_#{comment.id}" %>'>
-  <% if comment.state.to_s.downcase == 'spam'  %>
-    <%= render 'spam', {:comment => comment} %>
-  <% else %>
-    <%= render 'ham', {:comment => comment} %>
+  <% @feedback.each do |comment| %>
+  <%= render 'feedback', {:comment => comment} %>
   <% end %>
-</tr>
-<% end %>
-<%= display_pagination(@feedback, 5) %>
-<tr>
-  <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+  <%= display_pagination(@feedback, 5) %>
+  <tr>
+    <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
   <th colspan='4'><%= _("Select all") %></th>
-</tr>
+  </tr>
 </table>
 <%= render 'button', { :position => 'bottom' } %>
 <% end %>
+
 <br class='clear' />

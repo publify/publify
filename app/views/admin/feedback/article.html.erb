@@ -19,13 +19,7 @@
   <%= render_void_table(@feedback.size, 5) %>
 
   <% @feedback.each do |comment| %>
-  <tr <%= alternate_class %> id='<%= "feedback_#{comment.id}" %>'>
-    <% if comment.state.to_s.downcase == 'spam'  %>
-      <%= render 'spam', {:comment => comment} %>
-    <% else %>
-      <%= render 'ham', {:comment => comment} %>
-    <% end %>
-  </tr>
+    <%= render 'feedback', {:comment => comment} %>
   <% end %>
 </table>
 <%end%>

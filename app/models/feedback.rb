@@ -123,7 +123,7 @@ class Feedback < ActiveRecord::Base
 
   def change_state!
     result = ''
-    if state.spam?
+    if state.spam? || state.presumed_spam?
       mark_as_ham
       result = 'ham'
     else

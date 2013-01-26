@@ -80,9 +80,8 @@ module Admin::BaseHelper
   end
 
   def render_void_table(size, cols)
-    if size == 0
-      "<tr>\n<td colspan=#{cols}>" + _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)) + "</td>\n</tr>\n"
-    end
+    return unless size == 0
+    "<tr>\n<td colspan=#{cols}>" + _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)) + "</td>\n</tr>\n"
   end
 
   def cancel_or_save(message=_("Save"))
@@ -169,6 +168,7 @@ module Admin::BaseHelper
   end
 
   def display_pagination(collection, cols, first='', last='')
+    return if collection.count == 0
     "<tr><td class='#{first} #{last}' colspan=#{cols} class='paginate'>#{paginate(collection)}</td></tr>"
   end
 
