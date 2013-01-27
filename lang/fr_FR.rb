@@ -257,12 +257,13 @@ Localization.define("fr_FR") do |l|
   l.store "You have no internet connection", "Vous n'avez pas de connexion à internet"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Voici un rapide aperçu de ce que peut faire votre blog Typo. Peux-être voulez vous %s, %s ou %s"
+  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s", "Voici un rapide aperçu de ce que peut faire votre blog Typo. Peux-être voulez vous %s"
   l.store "update your profile or change your password", "mettre votre profil à jour ou changer votre mot de passe"
   l.store "You can also do a bit of design, %s or %s.", "Vous pouvez également faire un peu de personnalisation, %s, %s"
   l.store "change your blog presentation", "changer l'apparence de votre blog"
   l.store "enable plugins", "activer des plugins"
-  l.store "If you need help, %s. You can also %s to customize your Typo blog.", ""
+  l.store "If you need help, %s.", "Si vous avez besoin d'aide, vous pouvez %s."
+  l.store "You can also %s to customize your Typo blog.", "Vous pouvez également %s pour personnaliser votre blog Typo."
   l.store "write a post", "écrire un article"
   l.store "write a page", "publier une page statique"
   l.store "read our documentation", "consulter notre documentation"

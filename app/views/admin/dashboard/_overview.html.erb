@@ -1,18 +1,12 @@
 <div class='alert alert-message warning'>
   <p>
-    <%= _("This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s." ,
-      link_to(_('write a post'), :controller => 'content', :action => 'new'),
-      link_to(_('write a page'), :controller => 'pages', :action => 'new') ,
-      link_to(_("update your profile or change your password"), :controller => 'users', :action => 'edit', :id => session[:user_id]) ) -%>
+    <%= _("This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s", dashboard_action_links) %>
   </p>
   <p> 
-    <%= _("You can also do a bit of design, %s or %s." ,
-      link_to(_("change your blog presentation"), :controller => 'themes') ,
-      link_to(_("enable plugins"), :controller => 'sidebar') ) -%>
+    <%= dashboard_theme_link %>
   </p>
   <p>
-    <%= _("If you need help, %s. You can also %s to customize your Typo blog.",
-      link_to(_('read our documentation'), 'http://typosphere.org'),
-      link_to(_('download some plugins'), 'http://plugins.typosphere.org')) %>
+    <%= _("If you need help, %s.",
+      link_to(_('read our documentation'), 'http://typosphere.org')) %> <%= dashboard_sidebar_link %>      
   </p>
 </div>

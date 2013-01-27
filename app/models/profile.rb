@@ -3,6 +3,8 @@ class Profile < ActiveRecord::Base
   validates_uniqueness_of :label
 
   ADMIN = 'admin'
+  PUBLISHER = 'publisher'
+  CONTRIBUTOR = 'contributor'
 
   def modules
     read_attribute(:modules) || []
