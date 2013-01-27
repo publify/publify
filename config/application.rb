@@ -31,6 +31,9 @@ module TypoBlog
 
     # Filter sensitive parameters from the log file
     config.filter_parameters << :password
+
+    # To avoid exception when deploying on Heroku
+    config.assets.initialize_on_precompile = false
   end
 
   # Load included libraries.
