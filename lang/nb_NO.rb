@@ -42,6 +42,8 @@ Localization.define("nb_NO") do |l|
   l.store "Article was successfully updated.", "Artikkel oppdatert"
 
   # app/controllers/admin/dashboard_controller.rb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Typo. Du bør oppgradere snarest. Last ned og installer %s"
   l.store "the latest Typo version", "den siste versjonan av Typo"
   l.store "There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Typo som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"

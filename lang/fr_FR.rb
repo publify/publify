@@ -26,6 +26,8 @@ Localization.define("fr_FR") do |l|
   l.store "Article was successfully updated.", "Cet article a été mis à jour avec succès"
 
   # app/controllers/admin/dashboard_controller.rb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", "Erreur : nous n'avons pas pu générer le jeton secret. La sécurité de votre blog est à risque. Veuillez changer le contenu du fichier %s."
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", "Pour des raisons de sécurité, merci de redémarrer votre blog Typo. Bonne expérience de blogging !"
   l.store "You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "Vous avez au moins une version majeure de Typo de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez %s" 
   l.store "the latest Typo version", "la dernière version de Typo"
   l.store "There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Typo est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"

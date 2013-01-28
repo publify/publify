@@ -249,6 +249,8 @@ Localization.define("zh_TW") do |l|
   l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "最近評論"
   l.store "No comments yet", "沒有任何評論"
   l.store "By %s on %s", ""

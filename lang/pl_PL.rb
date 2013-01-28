@@ -253,6 +253,8 @@ Localization.define("pl_PL") do |l|
   l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Ostatnie komentarze"
   l.store "No comments yet", "Brak komentarzy"
   l.store "By %s on %s", "Przez %s odnośnie %s"

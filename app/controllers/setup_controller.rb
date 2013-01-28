@@ -31,7 +31,8 @@ class SetupController < ApplicationController
       update_or_create_first_post_with_user @user
       create_first_page @user
     end
-
+    
+    generate_secret_token
     redirect_to :action => 'confirm'
   end
 
@@ -54,6 +55,21 @@ class SetupController < ApplicationController
                      categories: [Category.find(:first)],
                      user: user)
     end
+  end
+  
+  def generate_secret_token
+    file = File.join(Rails.root, "config", "secret.token")
+
+    return unless File.open(file, "r") { |f| f.read.delete("\n") } == "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7debac56b48ffd0b5990d6ed0cbecc7dc08dce1503b6b864d580758c3c46056729a"
+    
+    if ! File.writable?(file)
+      flash[:error] = _("Error: can't generate secret token. Security is at risk. Please, change %s content", file)
+      return
+    end
+    
+    newtoken = Digest::SHA1.hexdigest("#{Blog.default.base_url} #{DateTime.now.to_s}")
+        
+    File.open(file, 'w') {|f| f.write(newtoken) }
   end
   
   def create_first_page user
