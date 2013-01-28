@@ -695,7 +695,13 @@ Localization.define("it_IT") do |l|
   l.store "This comment has been flagged for moderator approval.", ""
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", "Benvenuto, %s"
   l.store "%s &raquo;", ""
+  l.store "Help", "Aiuto"
+  l.store "Documentation", "Documentazione"
+  l.store "Report a bug", "Segnalare un bug"
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", ""
   l.store "Dashboard", ""
 
