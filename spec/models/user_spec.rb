@@ -114,6 +114,12 @@ describe User do
       @user.should_not be_valid
     end
 
+    describe "#display_name" do
+      it 'should not be blank' do
+        @user.display_name.should_not be_empty
+      end
+    end
+
     def set_password(newpass)
       @user.password = @user.password_confirmation = newpass
     end

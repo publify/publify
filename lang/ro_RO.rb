@@ -697,7 +697,13 @@ Localization.define("ro_RO") do |l|
   l.store "This comment has been flagged for moderator approval.", ""
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""
+  l.store "Help", "Ajutor"
+  l.store "Documentation", "Documentație"
+  l.store "Report a bug", "Raport de eroare"
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", ""
   l.store "Dashboard", ""
 
