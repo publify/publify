@@ -692,7 +692,13 @@ Localization.define("nl_NL") do |l|
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""
+  l.store "Help", ""
+  l.store "Documentation", ""
+  l.store "Report a bug", ""
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", "wordt trots aangedreven door"
   l.store "Dashboard", "Dashboard"
 

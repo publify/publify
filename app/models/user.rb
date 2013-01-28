@@ -157,7 +157,13 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    name
+    if !nickname.blank?
+      nickname
+    elsif !name.blank?
+      name
+    else
+      login
+    end
   end
 
   def permalink
