@@ -1,9 +1,7 @@
-<%= form_tag_with_upload_progress({:action => 'upload'}, { :begin => "new Effect.Appear('status')", :finish => "$('message').innertHTML = arguments[0]" }) %>
+<%= form_tag({:action => 'upload'}, {:enctype => "multipart/form-data"}) %>
 
-<h3><%= _('Upload a File to your Site') %></h3>
-
-<%= file_field('upload', 'filename', {:class => 'input-file'}) -%>
-<%= submit_tag(_('Upload'), {:class => 'btn'}) -%>  
-
-<div id='status' style="display: none"><%= upload_status_tag %></div>
-<div id="message"><%= @message %></div>
+<div class='well well-small'>
+  <h3><%= _('Upload a File to your Site') %></h3>
+  <%= file_field('upload', 'filename', {:class => 'input-file'}) -%>
+  <%= submit_tag(_('Upload'), {:class => 'btn'}) -%>    
+</div>
