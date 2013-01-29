@@ -252,6 +252,8 @@ Localization.define("es_MX") do |l|
   l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", ""
   l.store "No comments yet", ""
   l.store "By %s on %s", ""
@@ -697,7 +699,13 @@ Localization.define("es_MX") do |l|
   l.store "This comment has been flagged for moderator approval.", ""
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", "Bienvenido, %s"
   l.store "%s &raquo;", ""
+  l.store "Help", "Ayuda"
+  l.store "Documentation", "Documentación"
+  l.store "Report a bug", "Informar de un error"
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", ""
   l.store "Dashboard", ""
 

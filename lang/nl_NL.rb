@@ -247,6 +247,8 @@ Localization.define("nl_NL") do |l|
   l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Laatste reacties"
   l.store "No comments yet", "Nog geen reacties"
   l.store "By %s on %s", "door %s op %s"
@@ -690,7 +692,13 @@ Localization.define("nl_NL") do |l|
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""
+  l.store "Help", ""
+  l.store "Documentation", ""
+  l.store "Report a bug", ""
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", "wordt trots aangedreven door"
   l.store "Dashboard", "Dashboard"
 

@@ -1,12 +1,9 @@
-<% @page_heading = _('Files') %>
+<% @page_heading = _('Media library') %>
+
+<%= render 'upload' -%>
 
 <table class="table table-striped">
   <thead>
-    <tr class='norborder'>
-      <th colspan='5'>
-          <%= render 'upload' -%>
-      </td>
-    </tr>
     <tr class='noborder'>
       <th><%= _("Filename")%> <small>(<%= _('right-click for link')%>)</small></th>
       <th><%= _("Content Type")%></th>
@@ -14,32 +11,6 @@
       <th><%= _("Date")%></th>
     </tr>
   </thead>
-<%= render_void_table(@resources.size, 6) %>
-<% for upload in @resources -%>
-<tr <%= alternate_class -%>>
-  <td>
-  <% if upload.mime =~ /image/ %>
-    <a href='<%= "#{this_blog.base_url}/files/#{upload.filename}" %>' rel='lightbox'>
-      <%= show_thumbnail(upload) %>
-    </a>
-		<p>
-			<small>
-			<%= link_to(_("Thumbnail"), "#{this_blog.base_url}/files/thumb_#{upload.filename}" ) %>
-				<%= link_to(_("Medium size"), "#{this_blog.base_url}/files/medium_#{upload.filename}" ) %> |
-				<%= link_to(_("Original size"), "#{this_blog.base_url}/files/#{upload.filename}" ) %> |
-        <%= link_to _("delete"), {:action => 'destroy', :id => upload.id, :search => params[:search], :page => params[:page] },  :confirm => _("Are you sure?"), :method => :post %>
-			</small>
-		</p>
-  <% else %>
-    <%= link_to("#{upload.filename}", "#{this_blog.base_url}/files/#{upload.filename}", {:rel => 'lightbox'}) -%>
-  <% end %>
-  </td>
-  <td>
-    <%= upload.mime %>
-  </td>
-  <td><%=h upload.size rescue 0 -%> bytes</td>
-  <td><%= format_date upload.created_at -%></td>
-</tr>
-<% end -%>
+  <%= render 'resource_list', { :resources => @resources } %>    
   <%= display_pagination(@resources, 6)%>
 </table>

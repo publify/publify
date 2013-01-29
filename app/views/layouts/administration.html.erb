@@ -19,7 +19,7 @@
         <%= link_to this_blog.blog_name, this_blog.base_url, { :class => 'brand' } %>
         <ul class='nav push-right'>
           <li class='dropdown' onmouseover='$("user_menu").style.display = "block"' onmouseout='$("user_menu").style.display = "none"'>
-            <a class="dropdown-toggle" href="#"><%= _("Logged in as %s", current_user.nickname)%></a>
+            <a class="dropdown-toggle" href="#"><%= _("Logged in as %s", current_user.display_name)%></a>
             <ul class="dropdown-menu" id="user_menu" style='display: none'>
               <li><%= link_to(_("New Article"), {:controller => 'content', :action => 'new'}) %></li>
               <li><%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
