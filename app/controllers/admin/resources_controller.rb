@@ -14,7 +14,7 @@ class Admin::ResourcesController < Admin::BaseController
       @up = Resource.create(:filename => file.original_filename, :mime => mime, :created_at => Time.now)
       @up.upload file
     end
-    
+
     flash[:notice] = _("File successfully uploaded")
     redirect_to :action => "index"
   end
@@ -26,7 +26,8 @@ class Admin::ResourcesController < Admin::BaseController
 
   def get_thumbnails
     position = params[:position].to_i
-    @resources = Resource.without_images.by_created_at.limit("#{position}, 10")
+    @resources = Resource.without_images.by_created_at.limit(10).offset(position)
+
     render 'get_thumbnails', :layout => false
   end
 
@@ -35,7 +36,7 @@ class Admin::ResourcesController < Admin::BaseController
       @record = Resource.find(params[:id])
       mime = @record.mime
       return(render 'admin/shared/destroy') unless request.post?
-      
+
       @record.destroy
       redirect_to :action => 'index'
     rescue
