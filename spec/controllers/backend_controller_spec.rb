@@ -279,6 +279,7 @@ describe BackendController do
       args = [ 1, 'henri', 'whatever', media_object ]
 
       result = invoke_layered :metaWeblog, :newMediaObject, *args
+
       assert result['url'] =~ /#{media_object['name']}/
         assert File.unlink(File.expand_path(::Rails.root.to_s) + "/public/files/#{media_object['name']}")
     end
