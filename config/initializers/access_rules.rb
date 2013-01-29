@@ -54,6 +54,7 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   # ArticlesController
   map.permission "previews"
   map.permission "articles"
+  map.permission "c_articles"
 
   map.project_module :articles, nil do |project|
     project.menu    "Articles",       { :controller => "admin/content", :action => "index" }
@@ -64,6 +65,11 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Tags",           { :controller => "admin/tags", :action => "index" }
     project.submenu "Article Types",  { :controller => "admin/post_types", :action => "new" }
     project.submenu "Redirects",      { :controller => "admin/redirects", :action => "new" }
+  end
+
+  map.project_module :c_articles, nil do |project|
+    project.menu    "Articles",       { :controller => "admin/content", :action => "index" }
+    project.submenu "New Article",    { :controller => "admin/content", :action => "new" }
   end
 
   map.project_module :pages, nil do |project|

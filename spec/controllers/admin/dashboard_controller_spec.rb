@@ -147,11 +147,11 @@ describe Admin::DashboardController do
       response.should_not have_selector("a", :href => "http://plugins.typosphere.org" , :content => "download some plugins")
     end
     
-    it "should not have a link to a new article" do
-      response.should_not have_selector("a", :href => "/admin/content/new" , :content => "write a post")
+    it "should have a link to a new article" do
+      response.should have_selector("a", :href => "/admin/content/new" , :content => "write a post")
     end
 
-    it "should not have a link to a new article" do
+    it "should not have a link to a new page" do
       response.should_not have_selector("a", :href => "/admin/pages/new" , :content => "write a page")
     end
     

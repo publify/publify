@@ -13,6 +13,13 @@
   </ul>
   <% end %>
 
+  <% if current_user.profile.modules.include? :c_articles%>
+  <p><strong><%= _("Content") %></strong></p>
+  <ul>
+    <li> <%= sprintf("%s %d", link_to(_("Your posts:"), :controller => 'admin/content', "search[user_id]" => current_user.id), @statuserposts) %></li>
+  </ul>
+  <% end %>
+
   <%  if current_user.profile.modules.include? :articles %>
   <p><strong><%= _("Feedback") %></strong></p>
   <ul>

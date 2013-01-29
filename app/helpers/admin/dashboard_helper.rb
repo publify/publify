@@ -15,7 +15,7 @@ module Admin::DashboardHelper
   def dashboard_action_links
     links = []
     
-    links << link_to(_('write a post'), :controller => 'content', :action => 'new') if current_user.profile.modules.include? :articles
+    links << link_to(_('write a post'), :controller => 'content', :action => 'new') if current_user.profile.modules.include? :articles or current_user.profile.modules.include? :c_articles
     links << link_to(_('write a page'), :controller => 'pages', :action => 'new') if current_user.profile.modules.include? :pages
     links << link_to(_("update your profile or change your password"), :controller => 'profiles', :action => 'index') if current_user.profile.modules.include? :profile
     
