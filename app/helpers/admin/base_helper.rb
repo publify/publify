@@ -15,9 +15,10 @@ module Admin::BaseHelper
   
   def show_page_heading
     return if @page_heading.nil? or @page_heading.blank?
-    heading = "<div class='page-header'>"
-    heading << content_tag(:h2, @page_heading.html_safe)
-    heading << "</div>"
+
+    content_tag(:div, {:class => 'page-header'}) do
+      content_tag(:h2, @page_heading.html_safe)
+    end
   end
 
   def cancel(url = {:action => 'index'})
@@ -81,32 +82,27 @@ module Admin::BaseHelper
 
   def render_void_table(size, cols)
     return unless size == 0
-    "<tr>\n<td colspan=#{cols}>" + _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)) + "</td>\n</tr>\n"
+    content_tag(:tr) do
+      content_tag(:td, _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)), { :colspan => cols})
+    end
   end
 
   def cancel_or_save(message=_("Save"))
-    result = cancel
-    result << " "
-    result << _("or")
-    result << " "
-    result << save(message)
-    return result
+    "#{cancel} #{_("or")} #{save(message)}"
   end
 
     def get_short_url(item)
       return "" if item.short_url.nil?
-      sprintf("<small>%s %s</small>", _("Short url:"), link_to(item.short_url, item.short_url))
+      sprintf(content_tag(:small, "%s %s"), _("Short url:"), link_to(item.short_url, item.short_url))
     end
 
   def show_actions item
-    html = <<-HTML
-      <div class='action'>
-        <small>#{link_to_published item}</small> |
-        <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
-        <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small> |
-        #{get_short_url item}
-    </div>
-    HTML
+    content_tag(:div, { :class => 'action' }) do
+      [ content_tag(:small, link_to_published(item)), 
+        small_to_edit(item),
+        small_to_delete(item),
+        get_short_url(item) ].join(" | ").html_safe
+    end
   end
 
   def format_date(date)
@@ -126,10 +122,10 @@ module Admin::BaseHelper
   end
 
   def published_or_not(item)
-    return "<span class='label label-success'>#{_("Published")}</span>" if item.state.to_s.downcase == 'published'
-    return "<span class='label label-info'>#{_("Draft")}</span>" if item.state.to_s.downcase == 'draft'
-    return "<span class='label label-important'>#{_("Withdrawn")}</span>" if item.state.to_s.downcase == 'withdrawn'
-    return "<span class='label label-warning'>#{_("Publication pending")}</span>" if item.state.to_s.downcase == 'publicationpending'
+    return content_tag(:small, _("Published"), :class => 'label label-success') if item.state.to_s.downcase == 'published'
+    return content_tag(:small, _("Draft"), :class => 'label label-info') if item.state.to_s.downcase == 'draft'
+    return content_tag(:small, _("Withdrawn"), :class => 'label label-important') if item.state.to_s.downcase == 'withdrawn'
+    return content_tag(:small, _("Publication pending"), :class => 'label label-warning') if item.state.to_s.downcase == 'publicationpending'
   end
 
   def macro_help_popup(macro, text)
@@ -139,22 +135,23 @@ module Admin::BaseHelper
   end
 
   def render_macros(macros)
-    result = link_to_function _("Show help on Typo macros") + " (+/-)",update_page { |page| page.visual_effect(:toggle_blind, "macros", :duration => 0.2) }
-    result << "<table id='macros' style='display: none;'>"
-    result << "<tr>"
-    result << "<th>#{_('Name')}</th>"
-    result << "<th>#{_('Description')}</th>"
-    result << "<th>#{_('Tag')}</th>"
-    result << "</tr>"
-
-    for macro in macros.sort_by { |f| f.short_name }
-      result << "<tr #{alternate_class}>"
-      result << "<td>#{macro_help_popup macro, macro.display_name}</td>"
-      result << "<td>#{h macro.description}</td>"
-      result << "<td><code>&lt;typo:#{h macro.short_name}&gt;</code></td>"
-      result << "</tr>"
+    content_tag(:div) do
+      link_to_function(_("Show help on Typo macros") + " (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "macros", :duration => 0.2) })
+      content_tag(:table, {:id => 'macros', :style => 'display: none'}) do
+        content_tag(:tr) do
+          content_tag(:th, _('Name'))
+          content_tag(:th, _('Description'))
+          content_tag(:th, _('Tag'))
+        end
+        for macro in macros.sort_by { |f| f.short_name }
+          content_tag(:tr, {:class => alternate_class}) do
+            content_tag(:td, macro_help_popup(macro, macro.display_name))
+            content_tag(:td, h(macro.description))
+            content_tag(:td, content_tag(:code, "&lt;#{h(macro.short_name)}&gt;"))
+          end
+        end
+      end
     end
-    result << "</table>"
   end
 
   def build_editor_link(label, action, id, update, editor)
@@ -169,7 +166,9 @@ module Admin::BaseHelper
 
   def display_pagination(collection, cols, first='', last='')
     return if collection.count == 0
-    "<tr><td class='#{first} #{last}' colspan=#{cols} class='paginate'>#{paginate(collection)}</td></tr>"
+    content_tag(:tr) do
+      content_tag(:td, paginate(collection), {:class => 'paginate', :colspan => cols})
+    end
   end
 
   def show_thumbnail_for_editor(image)
@@ -189,6 +188,14 @@ module Admin::BaseHelper
   end
 
   def save_settings
-    "<div class='form-actions'>#{cancel} #{_("or")} #{save(_("Update settings"))}</div>".html_safe
+    content_tag(:div, cancel_or_save(_("Update settings")).html_safe)
+  end
+  
+  def small_to_edit(item)
+    content_tag(:small, link_to(_("Edit"), :action => 'edit', :id => item.id))
+  end
+  
+  def small_to_delete(item)
+    content_tag(:small, link_to(_("Delete"), :action => 'destroy', :id => item.id))
   end
 end

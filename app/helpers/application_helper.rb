@@ -157,8 +157,8 @@ module ApplicationHelper
 
   def new_js_distance_of_time_in_words_to_now(date)
     time = _(date.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M:%%S GMT", date.utc)))
-    timestamp = date.utc.to_i ;
-    "<span class=\"typo_date date gmttimestamp-#{timestamp}\" title=\"#{time}\" >#{time}</span>"
+    timestamp = date.utc.to_i
+    content_tag(:span, time, {:class => "typo_date date gmttimestamp-#{timestamp}", :title => time})
   end
 
   def display_date(date)

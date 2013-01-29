@@ -10,8 +10,8 @@ module Admin::FeedbackHelper
     return if current_user.profile.label == "contributor"
     content_tag(:small) do
       [change_status(item, context),
-        link_to(_("Edit"), :controller => "admin/feedback", action: :edit, id: item.id),
-        link_to(_("Delete"), :controller => "admin/feedback", action: 'destroy', id: item.id),
+        small_to_edit(item),
+        small_to_delete(item),
         link_to(_("Show conversation"), :controller => 'admin/feedback', :action => 'article', :id => item.article_id)].join(" | ").html_safe
     end
       

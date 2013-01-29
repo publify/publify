@@ -1,11 +1,9 @@
 module Admin::RedirectsHelper
   def show_redirect_actions item
-    html = <<-HTML
-      <div class='action'>
-        <small>#{link_to _("Edit"), :action => 'edit', :id => item.id}</small> |
-        <small>#{link_to _("Delete"), :action => 'destroy', :id => item.id}</small>
-    </div>
-    HTML
+    content_tag(:div, {:class => 'action'}) do
+      [ content_tag(:small, link_to(_("Edit"), :action => 'edit', :id => item.id)), 
+        content_tag(:small, link_to(_("Delete"), :action => 'destroy', :id => item.id))
+        ].join(" | ").html_safe
+    end    
   end
-
 end
