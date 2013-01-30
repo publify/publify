@@ -20,7 +20,8 @@ class AddsResourcesUpload < ActiveRecord::Migration
           FileUtils.mkdir_p(cw_path.join(resource.id.to_s)) unless File.exists?(cw_path.join(resource.id.to_s))
           FileUtils.cp(old_path.join(upload_attribute), cw_path.join(resource.id.to_s))
           %w(thumb medium).each do |size|
-            FileUtils.cp(old_path.join("#{size}_#{upload_attribute}"), cw_path.join(resource.id.to_s)) unless File.exists?(cw_path.join(resource.id.to_s, "#{size}_#{upload_attribute}"))
+            next unless File.exists?(old_path.join("#{size}_#{upload_attribute}")) && !File.exists?(cw_path.join(resource.id.to_s, "#{size}_#{upload_attribute}"))
+            FileUtils.cp(old_path.join("#{size}_#{upload_attribute}"), cw_path.join(resource.id.to_s))
           end
         end
       end
