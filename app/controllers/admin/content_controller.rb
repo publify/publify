@@ -50,7 +50,13 @@ class Admin::ContentController < Admin::BaseController
 
     @record.destroy
     flash[:notice] = _("This article was deleted successfully")
-    redirect_to :action => 'index'
+
+    if current_user.profile.modules.include? :c_articles
+      redirect_to :action => 'index', :search => {:user_id => current_user.id};
+    else
+      redirect_to :action => 'index'
+    end
+   
   end
 
   def resource_do(action)
@@ -176,7 +182,13 @@ class Admin::ContentController < Admin::BaseController
           end
         end
         set_the_flash
-        redirect_to :action => 'index'
+
+        if current_user.profile.modules.include? :c_articles
+          redirect_to :action => 'index', :search => {:user_id => current_user.id};
+        else
+          redirect_to :action => 'index'
+        end
+        
         return
       end
     end
