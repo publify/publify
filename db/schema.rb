@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(:version => 107) do
 
   create_table "resources", :force => true do |t|
     t.integer  "size"
-    t.string   "filename"
+    t.string   "upload"
     t.string   "mime"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -153,7 +153,6 @@ ActiveRecord::Schema.define(:version => 107) do
     t.string   "itunes_keywords"
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
-    t.string   "upload"
   end
 
   create_table "sidebars", :force => true do |t|

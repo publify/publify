@@ -175,7 +175,7 @@ module Admin::BaseHelper
   def show_thumbnail_for_editor(image)
     picture = "<a onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{image.upload.url}');\" />"
     picture << "<img class='tumb' src='#{image.upload.thumb.url}' "
-    picture << "alt='#{image.filename}' />"
+    picture << "alt='#{image.upload.url}' />"
     picture << "</a>"
 
     return picture

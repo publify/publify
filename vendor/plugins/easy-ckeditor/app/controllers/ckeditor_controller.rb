@@ -96,7 +96,7 @@ class CkeditorController < ActionController::Base
     begin
       load_file_from_params
 
-      resource = Resource.create(:upload => @new_file, :filename => @new_file.original_filename, :mime => @ftype, :created_at => Time.now)
+      resource = Resource.create(:upload => @new_file, :mime => @ftype, :created_at => Time.now)
       #copy_tmp_file(@new_file) if mime_types_ok(@ftype)
     rescue => e
       @errorNumber = 110 if @errorNumber.nil?
@@ -106,7 +106,7 @@ class CkeditorController < ActionController::Base
     <html>
       <body>
         <script type="text/javascript">
-          window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, "#{resource.upload.url}");
+          window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, "#{resource.upload_url}");
         </script>
       </body>
     </html>'

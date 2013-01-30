@@ -145,7 +145,7 @@ class MetaWeblogService < TypoWebService
   def newMediaObject(blogid, username, password, data)
     # TODO : fix this.
     raise
-    resource = Resource.create(:upload => data['bits'], :filename => data['name'], :mime => data['type'], :created_at => Time.now)
+    resource = Resource.create(:upload => data['bits'], :mime => data['type'], :created_at => Time.now)
 
     MetaWeblogStructs::Url.new("url" => this_blog.file_url(resource.upload.url))
   end

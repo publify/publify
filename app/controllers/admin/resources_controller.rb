@@ -11,7 +11,7 @@ class Admin::ResourcesController < Admin::BaseController
     else
       mime = file.content_type.chomp
     end
-    @up = Resource.create(:upload => file, :filename => file.original_filename, :mime => mime, :created_at => Time.now)
+    @up = Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
 
     flash[:notice] = _("File successfully uploaded")
     redirect_to :action => "index"
