@@ -664,6 +664,7 @@ Localization.define("fr_FR") do |l|
   l.store "RSS feed for this post", "Flux RSS de ce billet"
   l.store "trackback uri", "URL de rétrolien"
   l.store "Comments are disabled", "Les commentaires sont désactivés"
+  l.store "Trackbacks are disabled", "Les rétroliens sont désactivés"
 
   # app/views/authors/show.html.erb
   l.store "Web site:", "Site web:"

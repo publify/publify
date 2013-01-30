@@ -681,6 +681,7 @@ Localization.define("ja_JP") do |l|
   l.store "RSS feed for this post", "この記事のRSSフィード"
   l.store "trackback uri", "トラックバックURL"
   l.store "Comments are disabled", "コメントは許可されていません"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""

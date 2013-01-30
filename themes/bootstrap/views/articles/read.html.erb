@@ -26,7 +26,13 @@
     <%= render "articles/comment_list" %>
     <% end -%>
 
-    <%= render 'articles/comment_form' if @article.allow_comments? %>
+    <% if @article.allow_comments? %>
+      <%= render 'articles/comment_form' %>
+    <% else %>
+      <div class="well well-small">
+        <%= _("Comments are disabled") %>
+      </div>
+    <% end %>
 
     <% if @article.allow_pings? -%>
     <h5 class="feedback" id="trackbacks"><%= _('Trackbacks for')%> <em><%= @article.title %></em></h5>
@@ -35,5 +41,9 @@
       <%= render "trackback", :collection => @article.published_trackbacks %>
     </ol>
     <% end -%>
+    <% else -%>
+    <div class="well well-small">
+      <%= _("Trackbacks are disabled") %>
+    </div>    
     <% end -%>
   </div>

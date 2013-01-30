@@ -682,6 +682,7 @@ Localization.define("ro_RO") do |l|
   l.store "RSS feed for this post", "Flux RSS pentru acest articol"
   l.store "trackback uri", "URL pentru retrolegătură"
   l.store "Comments are disabled", "Comentariile sînt dezactivate"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""
