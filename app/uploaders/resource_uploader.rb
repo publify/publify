@@ -1,4 +1,13 @@
 class ResourceUploader < CarrierWave::Uploader::Base
+  class FilelessIO < StringIO
+    attr_accessor :original_filename
+
+    def initialize(data, filename)
+      super(data)
+      @original_filename = filename
+    end
+  end
+
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
 
@@ -24,6 +33,6 @@ class ResourceUploader < CarrierWave::Uploader::Base
   end
 
   def image?(new_file)
-    new_file.content_type.include?('image')
+    new_file.content_type && new_file.content_type.include?('image')
   end
 end

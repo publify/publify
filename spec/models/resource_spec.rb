@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+def file_upload(filename)
+  ActionDispatch::Http::UploadedFile.new(
+    :tempfile => File.new(Rails.root.join("spec", "fixtures", "testfile.txt")),
+    :filename => filename)
+end
+
 describe Resource do
   describe "scopes" do
     describe "#without_images" do
@@ -21,8 +27,8 @@ describe Resource do
 
     describe "#by_filename" do
       it "should sort resource by filename" do
-        b_resource = FactoryGirl.create(:resource, :filename => 'b')
-        a_resource = FactoryGirl.create(:resource, :filename => 'a')
+        b_resource = FactoryGirl.create(:resource, upload: file_upload("b"))
+        a_resource = FactoryGirl.create(:resource, upload: file_upload("a"))
         Resource.by_filename.should == [a_resource, b_resource]
       end
     end
@@ -38,8 +44,8 @@ describe Resource do
      describe "#without_images_by_filename" do
       it "should combine 2 scopes" do
         image_resource = FactoryGirl.create(:resource, :mime => 'image/jpeg')
-        b_resource = FactoryGirl.create(:resource, :mime => 'text/html', :filename => 'b')
-        a_resource = FactoryGirl.create(:resource, :mime => 'text/html', :filename => 'a')
+        b_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload("b"))
+        a_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload("a"))
         Resource.without_images_by_filename.should == [a_resource, b_resource]
       end
     end

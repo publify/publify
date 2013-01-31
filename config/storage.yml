@@ -1,5 +1,5 @@
 #Storage provider: Local, AWS
 provider: Local
-# engine: AWS
-# aws_access_key_id: YOUR_AWS_ACCESS_KEY_ID
-# aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
+aws_access_key_id: 087M9NBVV78AWJZV3F82
+aws_secret_access_key: xWxh3aUKRYGsHuQ6Rhc5B2iQCLgumNXn80lqqGwQ
+aws_bucket: typo-dev
