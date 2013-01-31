@@ -7,7 +7,7 @@
       <%= image_tag(upload.upload.thumb.url) %>
     <% end %>
   <% else %>
-    <%= link_to(upload.upload_url, upload.upload_url, rel: 'lightbox') -%>
+    <%= link_to(upload.upload_url, upload.upload_url) -%>
   <% end %>
 	<p><%= resource_action_links(upload) %></p>
   </td>
