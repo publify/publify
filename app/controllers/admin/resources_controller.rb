@@ -4,16 +4,14 @@ class Admin::ResourcesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def upload
-    if request.post?
-      file = params[:upload][:filename]
-      unless file.content_type
-        mime = 'text/plain'
-      else
-        mime = file.content_type.chomp
-      end
-      @up = Resource.create(:filename => file.original_filename, :mime => mime, :created_at => Time.now)
-      @up.upload file
+    file = params[:upload][:filename]
+
+    unless file.content_type
+      mime = 'text/plain'
+    else
+      mime = file.content_type.chomp
     end
+    @up = Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
 
     flash[:notice] = _("File successfully uploaded")
     redirect_to :action => "index"

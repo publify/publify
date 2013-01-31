@@ -26,7 +26,7 @@ xm.item do
   if not item.resources.empty?
     resource = item.resources.first
     xm.enclosure(
-      :url => item.blog.file_url(resource.filename),
+      :url => item.blog.file_url(resource.upload_url),
       :length => resource.size,
       :type => resource.mime)
   end

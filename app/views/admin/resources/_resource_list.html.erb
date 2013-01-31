@@ -3,11 +3,11 @@
 <tr <%= alternate_class -%>>
   <td>
   <% if upload.mime =~ /image/ %>
-    <a href='<%= "#{this_blog.base_url}/files/#{upload.filename}" %>' rel='lightbox'>
-      <%= show_thumbnail(upload) %>
-    </a>
+    <%= link_to upload.upload_url, rel: 'lightbox' do %>
+      <%= image_tag(upload.upload.thumb.url) %>
+    <% end %>
   <% else %>
-    <%= link_to("#{upload.filename}", "#{this_blog.base_url}/files/#{upload.filename}", {:rel => 'lightbox'}) -%>
+    <%= link_to(upload.upload_url, upload.upload_url, rel: 'lightbox') -%>
   <% end %>
 	<p><%= resource_action_links(upload) %></p>
   </td>

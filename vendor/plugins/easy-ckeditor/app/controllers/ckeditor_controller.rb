@@ -96,8 +96,8 @@ class CkeditorController < ActionController::Base
     begin
       load_file_from_params
 
-      Resource.create(:filename => @new_file.original_filename, :mime => @ftype, :created_at => Time.now)
-      copy_tmp_file(@new_file) if mime_types_ok(@ftype)
+      resource = Resource.create(:upload => @new_file, :mime => @ftype, :created_at => Time.now)
+      #copy_tmp_file(@new_file) if mime_types_ok(@ftype)
     rescue => e
       @errorNumber = 110 if @errorNumber.nil?
     end
@@ -106,7 +106,7 @@ class CkeditorController < ActionController::Base
     <html>
       <body>
         <script type="text/javascript">
-          window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, "#{uploaded_file_path}");
+          window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, "#{resource.upload_url}");
         </script>
       </body>
     </html>'
@@ -190,6 +190,7 @@ class CkeditorController < ActionController::Base
   ##############################################################################
   # Returns the upload url folder with the current folder
   #
+  # TODO: delete this?
   def upload_directory_path
     url_root = env["RAILS_RELATIVE_URL_ROOT"].to_s
     uploaded = url_root + "#{UPLOAD_FOLDER}/#{params[:Type]}"
@@ -199,8 +200,9 @@ class CkeditorController < ActionController::Base
   ##############################################################################
   # Current uploaded file path
   #
+  # TODO : delete this?
   def uploaded_file_path
-    "#{upload_directory_path}#{@new_file.original_filename}"
+    @new_file.upload.url
   end
 
   ##############################################################################
