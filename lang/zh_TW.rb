@@ -681,6 +681,7 @@ Localization.define("zh_TW") do |l|
   l.store "RSS feed for this post", "為本篇提供RSS"
   l.store "trackback uri", "引用URL"
   l.store "Comments are disabled", "評論停用"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""

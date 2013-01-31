@@ -1,15 +1,7 @@
 body {
-	padding-top: 60px;
-}
-
-.login {
-	width: 250px;
+	padding-top: 80px;
 }
 
 form .clearfix {
 	margin-bottom: 8px;
-}
-
-form {
-    margin-bottom: 0;
 }

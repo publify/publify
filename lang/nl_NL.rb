@@ -677,6 +677,7 @@ Localization.define("nl_NL") do |l|
   l.store "RSS feed for this post", "RSS feed voor dit bericht"
   l.store "trackback uri", "trackback uri"
   l.store "Comments are disabled", "Reacties zijn niet mogelijk"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", "Website:"

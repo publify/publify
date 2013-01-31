@@ -682,6 +682,7 @@ Localization.define("he_IL") do |l|
   l.store "RSS feed for this post", "מזין RSS לכתבה זו"
   l.store "trackback uri", "כתובת העוקב-חזרה"
   l.store "Comments are disabled", "התגובות מבוטלות"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""

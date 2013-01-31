@@ -682,6 +682,7 @@ Localization.define("lt_LT") do |l|
   l.store "RSS feed for this post", "šio įrašo RSS"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Komentavimas išjungtas"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""

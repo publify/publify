@@ -685,6 +685,7 @@ Localization.define("pl_PL") do |l|
   l.store "RSS feed for this post", "Subskrypcja RSS dla tego wpisu"
   l.store "trackback uri", "Adres trackback"
   l.store "Comments are disabled", "Komentarze wyłączone"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""

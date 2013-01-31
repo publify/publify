@@ -681,6 +681,7 @@ Localization.define("da_DK") do |l|
   l.store "RSS feed for this post", "RSS Feed for denne artikel"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""
