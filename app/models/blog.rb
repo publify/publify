@@ -192,7 +192,11 @@ class Blog < ActiveRecord::Base
 
   # The URL for a static file.
   def file_url(filename)
-    url_for "files/#{filename}", :only_path => false
+    if CarrierWave.configure { |config| config.storage == CarrierWave::Storage::Fog }
+      filename
+    else
+      url_for "files/#{filename}", :only_path => false
+    end
   end
 
   def requested_article(params)
