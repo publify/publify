@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rubygems/package_task'
 
-PKG_VERSION = "6.1.2"
+PKG_VERSION = "6.1.3"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
