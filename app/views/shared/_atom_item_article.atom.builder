@@ -20,13 +20,13 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
       entry.tag! :link, "rel" => "enclosure",
               :type => resource.mime,
               :title => item.title,
-              :href => this_blog.file_url(resource.filename),
+              :href => this_blog.file_url(resource.upload_url),
               :length => resource.size
     else
       entry.tag! :link, "rel" => "enclosure",
               :type => resource.mime,
               :title => item.title,
-              :href => this_blog.file_url(resource.filename)
+              :href => this_blog.file_url(resource.upload_url)
     end
   end
   content_html =

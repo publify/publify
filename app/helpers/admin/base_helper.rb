@@ -12,7 +12,7 @@ module Admin::BaseHelper
     end
     output
   end
-  
+
   def show_page_heading
     return if @page_heading.nil? or @page_heading.blank?
 
@@ -98,7 +98,7 @@ module Admin::BaseHelper
 
   def show_actions item
     content_tag(:div, { :class => 'action' }) do
-      [ content_tag(:small, link_to_published(item)), 
+      [ content_tag(:small, link_to_published(item)),
         small_to_edit(item),
         small_to_delete(item),
         get_short_url(item) ].join(" | ").html_safe
@@ -115,10 +115,10 @@ module Admin::BaseHelper
 
   def link_to_published(item)
     return link_to_permalink(item,  _("Show"), nil, 'published') if item.published
-    
+
     type = controller.controller_name == 'content' ? "" : "_page"
-    
-    link_to(_("Preview"), {:controller => '/articles', :action => "preview#{type}", :id => item.id}, {:class => 'unpublished', :target => '_new'}) 
+
+    link_to(_("Preview"), {:controller => '/articles', :action => "preview#{type}", :id => item.id}, {:class => 'unpublished', :target => '_new'})
   end
 
   def published_or_not(item)
@@ -172,29 +172,22 @@ module Admin::BaseHelper
   end
 
   def show_thumbnail_for_editor(image)
-    thumb = "#{::Rails.root.to_s}/public/files/thumb_#{image.filename}"
-    picture = "#{this_blog.base_url}/files/#{image.filename}"
-
-    image.create_thumbnail unless File.exists? thumb
-
-    # If something went wrong with thumbnail generation, we just display a place holder
-    thumbnail = (File.exists? thumb) ? "#{this_blog.base_url}/files/thumb_#{image.filename}" : "#{this_blog.base_url}/images/thumb_blank.jpg"
-
-    picture = "<a onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{this_blog.base_url}/files/#{image.filename}');\" />"
-    picture << "<img class='tumb' src='#{thumbnail}' "
-    picture << "alt='#{this_blog.base_url}/files/#{image.filename}' />"
+    picture = "<a onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{image.upload.url}');\" />"
+    picture << "<img class='tumb' src='#{image.upload.thumb.url}' "
+    picture << "alt='#{image.upload.url}' />"
     picture << "</a>"
+
     return picture
   end
 
   def save_settings
     content_tag(:div, cancel_or_save(_("Update settings")).html_safe)
   end
-  
+
   def small_to_edit(item)
     content_tag(:small, link_to(_("Edit"), :action => 'edit', :id => item.id))
   end
-  
+
   def small_to_delete(item)
     content_tag(:small, link_to(_("Delete"), :action => 'destroy', :id => item.id))
   end
