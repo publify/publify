@@ -3,22 +3,23 @@ h1. Typo
 h3. Table of contents
 
 * "The missing weblog engine":#themissingweblogengine
-* Download Typo
-* Install Typo locally
-** Prerequisites
-** Install Typo
-* Install Typo on Heroku
-** Database
-** Storage 
-** Gemfile
-** Gemfile.lock
-* Useful links
-** Enhance your blog
-** More resources
-** Get in touch
-* Maintainers
+* "Download Typo":#downloadtypo
+* "Install Typo locally":#installtypolocally
+** "Prerequisites":#prerequisites
+** "Install Typo":#installtypo
+* "Install Typo on Heroku":#installtypoonheroku
+** "Database":#database
+** "Storage ":#storage
+** "Gemfile":#gemfile
+** "Gemfile.lock":#gemfilelock
+* "Useful links":#usefullinks
+** "Enhance your blog":#enhanceyourblog
+** "More resources":#moreresources
+** "Support":#support
+* "Maintainers":#maintainers
 
 <a name="themissingweblogengine"></a>
+
 h2. The missing weblog engine
 
 Typo is a modern, lightweight, comprehensive, full featured Weblog engine using Ruby on Rails. It's been around since 2004 and probably the oldest open source project based on Ruby on Rails.
@@ -35,13 +36,19 @@ Typo provides you with everything you need to easily publish content on the Web.
 
 **On demand editor:** Typo supports various editors (visual, plain HTML, Markdown, Textile)
 
+<a name="downloadtypo"></a>
+
 h2. Download Typo
 
 For a production blog, you should download "download Typo 6.1.3":http://typosphere.org/stable.tgz
 
 If you feel adventurous or want to hack on Typo, "clone Typo repository":git://github.com/fdv/typo.git
 
+<a name="installtypolocally"></a>
+
 h2. Install Typo locally
+
+<a name="prerequisites"></a>
 
 h3. Prerequisites
 
@@ -50,6 +57,8 @@ To install Typo you need the following:
 * Ruby 1.9.2 or 1.9.3. 
 * Ruby On Rails 3.0.10
 * A database engine, MySQL, PgSQL or SQLite3
+
+<a href="installtypo"></a>
 
 h3. Install Typo
 
@@ -65,13 +74,19 @@ $ ./script/rails server
 
 You don't need to run @rake db:migrate@ and @rake db:seed@ as Typo will take care of everything the first time you access 127.0.0.1:3000.
 
+<a href="installtypoonheroku"></a>
+
 h2. Install Typo on Heroku
 
 In order to install Typo on Heroku, you'll need to do some minor tweaks...
 
+<a name="database"></a>
+
 h3. Database
 
 Just add the Heroku Postgres plugin to your app. When deploying, Heroku will write the database configuration so you don't have to do anything.
+
+<a name="storage"></a>
 
 h3. Storage
 
@@ -83,6 +98,8 @@ engine: AWS
 aws_access_key_id: YOUR_AWS_ACCESS_KEY_ID
 aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
 </pre>
+
+<a name="gemfile"></a>
 
 h3. Gemfile
 
@@ -97,16 +114,24 @@ Now, run
 bundle install
 </pre>
 
+<a name="gemfilelock"></a>
+
 h3. Gemfile.lock
 
 Heroku needs Gemfile.lock to be in the Git repository. Remove Gemfile.lock from .gitignore and add it `git add .gitignore Gemfile.lock`
 
+<a name="usefullinks"></a>
+
 h2. Useful links
 
-h3. Enhance your Typo blog
+<a name="enhanceyourblog"></a>
+
+h3. Enhance your blog
 
 * "Sidebar Plugins":https://github.com/fdv/typo/wiki/Sidebar-plugins
 * "In page Plugins":https://github.com/fdv/typo/wiki/In-Page-Plugins
+
+<a name="moreresources"></a>
 
 h3. More resources:
 
@@ -116,12 +141,16 @@ h3. More resources:
 * "Official Typo blog":http://blog.typosphere.org
 * "Follow us on Twitter":https://twitter.com/typosphere
 
-h3. Get in touch
+<a name="support"></a>
+
+h3. Support
 
 If you need help or want to contribute to Typo, you should start with the following:
 
 * IRC: #typo on irc.freenode.net
 * "Mailing list":http://rubyforge.org/mailman/listinfo/typo-list
+
+<a name="maintainers"></a>
 
 h2. Maintainers
 
