@@ -15,6 +15,9 @@ h3. Table of contents
 * "Create a simple theme":#createasimpletheme
 ** "Header":#createasimplethemeheader
 ** "Body":#createasimplethemebody
+* "Advanced theme creation":#advancedthemecreation
+** "Pave the path":#advancedthemecreationpavethepath
+** "Create the templates":#advancedthemecreationcreatetemplate
 * "Useful links":#usefullinks
 ** "Enhance your blog":#enhanceyourblog
 ** "More resources":#moreresources
@@ -220,6 +223,77 @@ The importants things are:
 * @render_sidebars@ displays your sdebar made of Typo plugins.
 
 Here you are. You can now build a standard Typo theme and profit from the great things Typo can provide.
+
+<a name="advancedthemecreation"></a>
+
+h2. Advanced theme cration
+
+Typo offers custom post type. Let's say you blog about tech and wine, and want to display wine posts differently. You upload an attached picture to every wine related post and want it to be displayed in every article. You also have a custom CSS for wine blocks, and don't want people to comment your wine reviews (this to make the sample template more readable). You also want to apply this to the category page.
+
+<a name="advancedthemecreationpavethepath"></a>
+
+h3. Pave the path
+
+First, login to your blog admin and go to Article -&gt; Post Types. Create a new post type called Wine. 
+
+Now, create a new category in Articles -&gt; Categories. We'll call it Wine too. 
+
+<a name="advancedthemecreationcreatetemplate"></a>
+
+h3. Create the templates
+
+Create 2 custom templates: one to display wine related articles, and one to display the Wine category.
+
+First, create a templates called @wine.html.erb@ in your @theme/views/articles/@ directory. If the @views/articles@ directory doesn't exist, create it. The template will probably look like something like this:
+
+<pre>
+<div class="wine" %>>
+  <h2><%= link_to_permalink @article, @article.title %></h2>
+  <p class="auth"><%= _("Posted by")%> <%= author_link(@article) %>
+  <%= display_date_and_time @article.published_at %></p>
+  <%= @article.html(:body) %>
+  <!-- This display the attached images -->
+  <% @article.resources.each do |upload| %>
+    <img src='<%= "#{this_blog.base_url}/files/#{upload.filename}" %>' class="centered" />
+  <% end %>
+  <div class="extended">
+    <%= @article.html(:extended) %>
+  </div>
+
+</div>
+<p class="meta">
+  <%= article_links @article %>
+</p>
+</pre>
+
+Do the same with the wine category. In your theme @/views/categories@, create a @wine.html.erb@ template. This is adapted from the @category/show.html.erb@ of one of the stock themes.
+
+<pre>
+<h1><%= link_to "Wine", "#{this_blog.base_url}/category/#{params[:id]}" %></h1>
+
+<div class='category-excerpt <%= "border" if @article_counter >= 0 %>' id="article-<%= article.id %>">
+  
+<% @articles.each do |article| %>
+  <h2><%= link_to_permalink(article, article.title) %></h2>
+  <p class="auth"><%= _("Posted by")%> <%= author_link(earticle) %>
+  <%= display_date_and_time article.published_at %></p>
+  <%= article.html(:body) %>
+  <!-- This display the attached images -->
+  <% article.resources.each do |upload| %>
+    <img src='<%= "#{this_blog.base_url}/files/#{upload.filename}" %>' class="centered" />
+  <% end %>
+  <div class="extended">
+    <%= article.html(:extended) %>
+  </div>
+<% end %>
+</div>
+
+<div id='paginate'>
+  <%= paginate @articles, { :previous_label => _('Previous'), :next_label => _('Next')  } %>
+</div>
+</pre>
+
+Here you are, you can now write about wine. Just don't forget to chose the wine post type within the editor.
 
 <a name="usefullinks"></a>
 
