@@ -29,7 +29,7 @@ h3. Table of contents
 ** "The admin":#advancedplugins-theadmin
 *** "Add your module":#advancedplugins-theadmin-add-your-module
 *** "Controllers":#advancedplugins-theadmin-controllers
-*** "Views:#advancedplugins-theadmin-views"
+*** "Views":#advancedplugins-theadmin-views
 * "Useful links":#usefullinks
 ** "Enhance your blog":#enhanceyourblog
 ** "More resources":#moreresources
