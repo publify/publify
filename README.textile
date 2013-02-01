@@ -3,6 +3,7 @@ h1. Typo
 h3. Table of contents
 
 * "The missing weblog engine":#themissingweblogengine
+* "Typo demo":#typodemo
 * "Download Typo":#downloadtypo
 * "Install Typo locally":#installtypolocally
 ** "Prerequisites":#prerequisites
@@ -53,6 +54,21 @@ Typo provides you with everything you need to easily publish content on the Web.
 **Cool API:** Typo supports the various blogging engine APIs so you can publish from desktop clients.
 
 **On demand editor:** Typo supports various editors (visual, plain HTML, Markdown, Textile)
+
+**Multilingual**: Typo is (more or less) translated in English, French, German, Danish, Norvegian, Japanese, Hebrew, Simple Chinese, Mexicain Spanish, Italian, Lituanese, Dutch, Polish, Romanian...
+
+<a name="typodemo"></a>
+
+h2. Typo demo
+
+If you want to give Typo a try, check out "our full featured demo":http://demo.typosphere.org
+
+The login / password "to the admin":http://demo.typosphere.org/admin: are:
+
+* Administrator: admin / admin
+* Publisher: publish / publish
+
+The demo is reset every hours.
 
 <a name="downloadtypo"></a>
 
