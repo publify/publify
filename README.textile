@@ -9,7 +9,7 @@ h3. Table of contents
 ** "Install Typo":#installtypo
 * "Install Typo on Heroku":#installtypoonheroku
 ** "Database":#database
-** "Storage ":#storage
+** "Storage":#storage
 ** "Gemfile":#gemfile
 ** "Gemfile.lock":#gemfilelock
 * "Useful links":#usefullinks
