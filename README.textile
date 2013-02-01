@@ -18,6 +18,18 @@ h3. Table of contents
 * "Advanced theme creation":#advancedthemecreation
 ** "Pave the path":#advancedthemecreationpavethepath
 ** "Create the templates":#advancedthemecreationcreatetemplate
+* "Advanced plugins":#advancedplugins
+** "Create the plugin":#advancedplugins-createtheplugin
+** "Make your code accessible":#advancedplugins-makeyourcodeaccessible
+** "The routing":#advancedplugins-therouting
+** "The models":#advancedplugins-themodels
+** "The front":#advancedplugins-thefront
+*** "Controllers":#advancedplugins-thefront-controllers
+*** "Views":#advancedplugins-thefront-views
+** "The admin":#advancedplugins-theadmin
+*** "Add your module":#advancedplugins-theadmin-add-your-module
+*** "Controllers":#advancedplugins-theadmin-controllers
+*** "Views:#advancedplugins-theadmin-views"
 * "Useful links":#usefullinks
 ** "Enhance your blog":#enhanceyourblog
 ** "More resources":#moreresources
@@ -294,6 +306,200 @@ Do the same with the wine category. In your theme @/views/categories@, create a 
 </pre>
 
 Here you are, you can now write about wine. Just don't forget to chose the wine post type within the editor.
+
+<a name="advancedplugins"></a>
+
+h2. Advanced plugins
+
+<a name="advancedplugins-createtheplugin"></a>
+
+h3. Create the plugin
+
+As Typo plugins are just plain Rails plugins, creation is kinda trivial.
+
+<pre>
+./script/rails generate plugin typo_sample_plugin
+</pre>
+
+Create some folders to reflect a Rails application tree:
+
+<pre>
+cd vendor/plugins/typo_sample_plugin
+mkdir -p app/controllers/admin app/models app/helpers/admin config app/views/admin
+</pre>
+
+<a name="advancedplugins-makeyourcodeaccessible"></a>
+
+h3. Make your code accessible
+
+Mmake Typo access your code. Edit your @init.rb@ file and add the following:
+
+<pre>
+PLUGIN_NAME = 'typo_sample_plugin'
+PLUGIN_PATH = "#{::Rails.root.to_s}/vendor/plugins/#{PLUGIN_NAME}"
+PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app/controllers"
+PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app/views"
+PLUGIN_HELPER_PATH = "#{PLUGIN_PATH}/app/helpers"
+PLUGIN_MODELS_PATH = "#{PLUGIN_PATH}/app/models" 
+
+config.autoload_paths += %W(#{TypoSamplePlugin::PLUGIN_CONTROLLER_PATH}  \
+                            #{TypoSamplePlugin::PLUGIN_HELPER_PATH}      \
+                            #{TypoSamplePlugin::PLUGIN_VIEWS_PATH}       \
+                            #{TypoSamplePlugin::PLUGIN_MODELS_PATH}
+
+ActionView::Base.send(:include, TypoSamplePlugin::Helper)
+</pre>
+
+<a name="advancedplugins-therouting"></a>
+
+h3. The routing
+
+Unless Rails generators, your plugin won't be allowed to change routes.rb. We want our end users to remove them if they don't want them anymore. So we're going to create our own @config/routes.rb@. It's going to look like this:
+
+<pre>
+ActionController::Routing::Routes.draw do |map|
+  map.connect 'sample_plugin/:action', :controller => 'typo_sample', :action => 'index'
+  
+  %w{ sample_plugin }.each do |i|
+    map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
+    map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
+  end
+end
+</pre>
+
+I know, we're still using Rails 2 routing DSL. It's bad but Rails 3 can't handle everything we do.
+
+The first block is for your frontend controllers, the second one for the admin. Easy as pie isn't it?
+
+<a name="advancedplugins-themodels"></a>
+
+h3. The models
+
+Add your models files in app/models exactly like on any Rails application. You can use any Active Record relations you want and access or extend existing Typo models.
+
+To create your database schema, edit your @init.rb@ file, and add the following code:
+
+<pre>
+unless ::TypoSamplePlugin.table_exists?
+  ActiveRecord::Schema.create_table(TypoSamplePlugin.table_name) do |t|
+    t.column :name,  :string
+    t.column :description,  :text
+  end
+end
+</pre>
+
+<a name="advancedplugins-thefront"></a>
+
+h3. The front
+
+<a name="advancedplugins-thefront-controllers"></a>
+
+h4. Controllers
+
+To be able to display your content within your Typo blog layout, every front end controller will need the following code:
+
+<pre>
+class TypoSamplePluginController < ActionController::Base 
+  unloadable
+  layout :theme_layout
+  before_filter :template_root
+    
+  def template_root
+    self.class.view_paths = ::ActionController::Base.view_paths.dup.unshift(TypoSamplePlugin::PLUGIN_VIEWS_PATH)
+  end
+  
+  def theme_layout
+    File.join("#{::Rails.root.to_s}/themes/#{Blog.default.theme}/views", Blog.default.current_theme.layout(self.action_name))
+  end
+    
+end
+</pre>
+
+There's certainly a cleaner way to do it by not repeating the code, but I'll dig it later.
+
+<a name="advancedplugins-thefront-views"></a>
+
+h4. Views
+
+Nothing special here. Really.
+
+<a name="advancedplugins-theadmin"></a>
+
+h3. The admin
+
+OK, now you want to give your plugin a fancy back office? Let's go.
+
+<a name="advancedplugins-theadmin-add-your-module"></a>
+
+h4. Add your modules to the admim
+
+Edit your @init.rb@. In your model creation block, add the following:
+
+<pre>
+admin = Profile.find_by_label('admin')
+admin.modules << :typosampleplugin
+admin.save
+  
+publisher = Profile.find_by_label('publisher')
+publisher.modules << :typosampleplugin
+publisher.save    
+</pre>
+
+This will update both admin and publisher profiles giving them the rights to access your plugin admin.
+
+Add them to the access control list (and the menu as well). This is still in init.rb
+
+<pre>
+AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
+  map.project_module :typosampleplugin, nil do |project|
+    project.menu    "My plugin meny",  { :controller => "admin/typo_sample_plugin" }
+    project.submenu "My submenu", {:controller => "admin/typo_sample_plugin_other" }
+  end
+end
+</pre>
+
+Edit your lib/typo_sample_plugin.rb and add the following:
+
+<pre>
+module Helper
+  def class_typosampleplugin
+  return class_selected_tab if controller.controller_name  =~ /typo_sample_plugin/
+  class_tab  
+  end
+end
+</pre>
+
+This will allow you to manage the tabs highligh in the admin.
+
+<a name="advancedplugins-theadmin-controllers"></a>
+
+h4. Controllers
+
+Your controllers will go to @app/controllers/admin@ and will all look like this, pretty like normal admin controller:
+
+<pre>
+module Admin; end
+
+class Admin::TypoSamplePluginController < Admin::BaseController
+  layout 'administration'
+  unloadable
+
+	...
+end
+</pre>
+
+<a name="advancedplugins-theadmin-views"></a>
+
+h4. Views
+
+Typo plugins admin views look like normal admin views. Minimum code is:
+
+<pre>
+<% @page_heading = _('Sample plugin') %>
+<% subtabs_for(:typosampleplugin) %>
+</pre>
+
+You can access any admin helper like save_or_cancel or link_to_new.
 
 <a name="usefullinks"></a>
 
