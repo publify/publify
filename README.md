@@ -586,7 +586,7 @@ Useful links
 -   [**Frequently Asked
     Questions**](http://wiki.github.com/fdv/typo/frequently-asked-questions)
 -   [Official Typo blog](http://blog.typosphere.org)
--   [Follow us on Twitter](https://twitter.com/typosphere)
+-   [Follow us on Twitter](https://twitter.com/gettypo)
 
 <a name="support"></a>
 
