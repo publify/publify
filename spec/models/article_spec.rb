@@ -182,7 +182,7 @@ describe Article do
       a.redirects.first.to_path.should == a.permalink_url
     end
 
-    it "a new unpublished article should not get a redirect" do 
+    it "a new unpublished article should not get a redirect" do
       a = Article.create(:title => "Some title", :body => "some text", :published => false)
       a.redirects.first.should be_nil
     end
@@ -564,7 +564,7 @@ describe Article do
     describe "#find_by_permalink" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article' 
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article'
         a.should == @a
       end
     end
@@ -585,7 +585,7 @@ describe Article do
     describe "#find_by_permalink" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article' 
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
         a.should == @a
       end
     end
@@ -748,7 +748,8 @@ describe Article do
       it "returns only quantity of article ask in per_page" do
         article = FactoryGirl.create(:article, state: 'published')
         out_of_per_page_article = FactoryGirl.create(:article, state: 'draft')
-        Article.search_with_pagination({}, {page: nil, per_page: 1}).should eq([article])
+
+        Article.search_with_pagination({}, { page: nil, per_page: 1 }).should have(1).item
       end
 
       it "returns both published and draft articles by default" do
