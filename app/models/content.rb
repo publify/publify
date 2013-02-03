@@ -98,12 +98,6 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= Hash.new
   end
 
-  # The default text filter.  Generally, this is the filter specified by blog.text_filter,
-  # but comments may use a different default.
-  def default_text_filter
-    blog.text_filter_object
-  end
-
   def withdraw!
     self.withdraw
     self.save!

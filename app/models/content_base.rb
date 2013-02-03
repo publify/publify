@@ -83,6 +83,13 @@ module ContentBase
     self.save!
   end
 
+  # The default text filter.  Generally, this is the filter specified by blog.text_filter,
+  # but comments may use a different default.
+  def default_text_filter
+    blog.text_filter_object
+  end
+
+
   module ClassMethods
     def content_fields *attribs
       class_eval "def content_fields; #{attribs.inspect}; end"
