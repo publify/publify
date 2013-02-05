@@ -6,10 +6,9 @@
   <% else %>
     <% for post in @recent_posts -%>
     <li>
-      <h5><%= sprintf("%s on %s at %s",
+      <h5><%= sprintf("%s on %s",
         link_to_permalink(post, post.title),
-        post.published_at.strftime(this_blog.date_format),
-        post.published_at.strftime(this_blog.time_format)) %></h5>
+        display_date_and_time(post.published_at)) %></h5>
       <p><%= post.body.strip_html.slice(0,300) if post.body %></p>
 	  <hr />
     </li>
