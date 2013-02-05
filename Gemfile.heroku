@@ -1,7 +1,10 @@
 source :rubygems
 
+ruby '1.9.3'
+
 gem 'pg'
 gem 'rails', '~> 3.2.11'
+gem 'thin'
 gem 'require_relative'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
@@ -27,7 +30,6 @@ gem 'rails_autolink', '~> 1.0.9'
 gem 'dynamic_form', '~> 1.1.4'
 
 group :development, :test do
-  gem 'thin'
   gem 'factory_girl', '~> 3.5'
   gem 'webrat'
   gem 'rspec-rails', '~> 2.12.0'
