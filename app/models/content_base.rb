@@ -96,7 +96,7 @@ module ContentBase
     end
 
     def find_published(what = :all, options = {})
-      with_scope(:find => {:order => default_order, :conditions => {:published => true}}) do
+      with_scope(:find => where(:published => true).order(default_order)) do
         find what, options
       end
     end

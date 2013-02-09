@@ -71,7 +71,7 @@ class AccountsController < ApplicationController
   def recover_password
     @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
     if request.post?
-      @user = User.find(:first, :conditions => ["login = ? or email = ?", params[:user][:login], params[:user][:login]])
+      @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
 
       if @user
         @user.generate_password!

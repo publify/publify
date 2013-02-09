@@ -1,13 +1,13 @@
 class Admin::DashboardController < Admin::BaseController
   before_filter :check_secret_token
-  
+
   require 'open-uri'
   require 'time'
   require 'rexml/document'
 
   def index
-    @newposts = Article.count(:all, :conditions => ['published = ? and published_at > ?', true, current_user.last_venue])
-    @newcomments = Feedback.count(:all, :conditions =>['state in (?,?) and published_at > ?', 'presumed_ham', 'ham', current_user.last_venue])
+    @newposts = Article.where('published = ? and published_at > ?', true, current_user.last_venue).count
+    @newcomments = Feedback.where('state in (?,?) and published_at > ?', 'presumed_ham', 'ham', current_user.last_venue).count
     comments
     lastposts
     popular
@@ -21,35 +21,27 @@ class Admin::DashboardController < Admin::BaseController
 
   def statistics
     @statposts = Article.published.count
-    @statuserposts = Article.published.count(:conditions => {:user_id => current_user.id})
-    @statcomments = Comment.count(:all, :conditions => "state != 'spam'")
-    @statspam = Comment.count(:all, :conditions => { :state => 'spam' })
-    @presumedspam = Comment.count(:all, :conditions => { :state => 'presumed_spam' })
-    @categories = Category.count(:all)
+    @statuserposts = Article.published.where(:user_id => current_user.id).count
+    @statcomments = Comment.where("state != 'spam'").count
+    @statspam = Comment.where(:state => 'spam').count
+    @presumedspam = Comment.where(:state => 'presumed_spam').count
+    @categories = Category.count
   end
 
   def comments
-    @comments ||=
-      Comment.find(:all,
-                   :limit => 5,
-                   :conditions => ['published = ?', true],
-                   :order => 'created_at DESC')
+    @comments ||= Comment.where('published = ?', true).limit(5).order('created_at DESC')
   end
 
   def lastposts
-    @recent_posts = Article.find(:all,
-                                 :conditions => ["published = ?", true],
-                                 :order => 'published_at DESC',
-                                 :limit => 5)
+    @recent_posts = Article.where("published = ?", true).order('published_at DESC').limit(5)
   end
 
   def popular
-    @bestof = Article.find(:all,
-                           :select => 'contents.*, comment_counts.count AS comment_count',
-                           :from => "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
-                           :conditions => ['comment_counts.article_id = contents.id AND published = ?', true],
-                           :order => 'comment_counts.count DESC',
-                           :limit => 5)
+    @bestof = Article.select('contents.*, comment_counts.count AS comment_count').
+                      from("contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts").
+                      where("comment_counts.article_id = contents.id AND published = ?", true).
+                      order('comment_counts.count DESC').
+                      limit(5)
   end
 
   def inbound_links
@@ -97,15 +89,15 @@ class Admin::DashboardController < Admin::BaseController
   def check_secret_token
     if TypoBlog::Application.config.secret_token == "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7debac56b48ffd0b5990d6ed0cbecc7dc08dce1503b6b864d580758c3c46056729a"
       file = File.join(Rails.root, "config", "secret.token")
-      
+
       if ! File.writable?(file)
         flash[:error] = _("Error: Typo was unable to generate a decent secret token. Security is at risk. Please, change %s content", file)
         return
-      end      
+      end
       flash[:error] = _("For security reasons, you should restart your Typo application. Enjoy your blogging experience.")
     end
   end
-  
+
   class RssItem < Struct.new(:link, :title, :description, :description_link, :date, :author)
     def to_s; title end
   end

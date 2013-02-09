@@ -18,8 +18,8 @@
     <td> <%= user.nickname %></td>
     <td><%= mail_to user.email, user.email%></td>
     <td><%= _(user.profile.nicename) %></td>
-    <td><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
-    <td><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
+    <td><%= Article.where("user_id = #{user.id}").count %></td>
+    <td><%= Comment.where("user_id = #{user.id}").count %></td>
     <td class='<%= user.state %>'><%= _("%s user", _("#{user.state.capitalize}").downcase)%></td>
   </tr>
   <% end -%>
