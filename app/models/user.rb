@@ -56,8 +56,7 @@ class User < ActiveRecord::Base
 
 
   def self.authenticate(login, pass)
-    find(:first,
-         :conditions => ["login = ? AND password = ? AND state = ?", login, password_hash(pass), 'active'])
+    where("login = ? AND password = ? AND state = ?", login, password_hash(pass), 'active').first
   end
 
   def update_connection_time
@@ -135,11 +134,11 @@ class User < ActiveRecord::Base
   def simple_editor?
     editor == 'simple'
   end
-  
+
   def visual_editor?
     editor == 'visual'
   end
-  
+
   def password=(newpass)
     @password = newpass
   end
