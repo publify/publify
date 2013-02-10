@@ -9,7 +9,7 @@ class Admin::PostTypesController < Admin::BaseController
     @record = PostType.find(params[:id])
     return(render 'admin/shared/destroy') unless request.post?
 
-    Article.find(:all, :conditions => ["post_type = ?", @record.permalink]).each do |article|
+    Article.where("post_type = ?", @record.permalink).each do |article|
       article.post_type = 'read'
       article.save
     end

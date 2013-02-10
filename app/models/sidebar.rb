@@ -21,7 +21,7 @@ class Sidebar < ActiveRecord::Base
     def label_html(sidebar)
       content_tag('label', label)
     end
-    
+
     def input_html(sidebar)
       text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'span12'})
     end
@@ -131,11 +131,11 @@ hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(
   end
 
   def self.find_all_visible
-    find :all, :conditions => 'active_position is not null', :order => 'active_position'
+    where('active_position is not null').order('active_position')
   end
 
   def self.find_all_staged
-    find :all, :conditions => 'staged_position is not null', :order => 'staged_position'
+    where('staged_position is not null').order('staged_position')
   end
 
   def self.purge

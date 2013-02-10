@@ -13,7 +13,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.find_by_name_or_display_name(tagname, name)
-    self.find(:first, :conditions => [%{name = ? OR display_name = ? OR display_name = ?}, tagname, tagname, name])
+    where(%{name = ? OR display_name = ? OR display_name = ?}, tagname, tagname, name).first
   end
 
   def ensure_naming_conventions
@@ -42,7 +42,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.find_with_char(char)
-    find :all, :conditions => ['name LIKE ? ', "%#{char}%"], :order => 'name ASC'
+    where('name LIKE ? ', "%#{char}%").order('name ASC')
   end
 
   def self.collection_to_string tags
