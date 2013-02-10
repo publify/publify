@@ -156,6 +156,9 @@ module ApplicationHelper
   end
 
   def new_js_distance_of_time_in_words_to_now(date)
+    # Ruby Date class doesn't have #utc method, but _typo_dev.html.erb
+    # passes Ruby Date.
+    date = date.to_time
     time = _(date.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M:%%S GMT", date.utc)))
     timestamp = date.utc.to_i
     content_tag(:span, time, {:class => "typo_date date gmttimestamp-#{timestamp}", :title => time})
