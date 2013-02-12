@@ -1,332 +1,160 @@
-commit 62c601e1eb717ead2a3c5a359eccbcfe76c5f48f
+commit eab27653bdf9b82a88cf1f7da8339b4aede9f294
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Better, more complete doc
+
+commit be65bcf6577f5bd204ea7634b653c90455251d58
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Testing links in TOC
+
+commit 404d567322c11aed9080dc1f681d10fcdbe5774f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Add real TOC in README
+
+commit 4b4da56dd8d7384f7177789e9dc6e7524a35f05b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fix typo in TOC
+
+commit d7c59cae01b45f09b78f0b7457ec4ed34b75a836
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Add minimal theme documentation
+
+commit 2b309782ff71f4254d1f1948b313d4f8c3caaf25
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds more documentation: how to use per post template
+
+commit 6937f06114a504ce94b46d14e5e9bd1f2f7bf1c8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds more documentation: advanced plugins
+
+commit 8592088faf16b84c42ae109fe56283176e42be14
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    ooops typo
+
+commit 8a102738b2e60237da85b36a5e3a381c94bb3cf9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Add some more doc
+
+commit db3ef9050a133a25d66ee497a5e06042b00b29ca
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Changes to a markdown readme so I can use documentup
+
+commit 7ec9d4d8197f17d76961c9c62f0ba4dabe32c495
 Author: Soon Van <cog@randomecho.com>
 
-    Bullets for installation steps to make it even easier
+    Mark out code describing template parts in README
 
-commit 90b192324c4a958817a150776d68d2427ad64ca2
-Author: mcary <mc-github@oak.homeunix.org>
+commit b64ed5af95231b147439823c027d48346f8dc66e
+Author: Soon Van <cog@randomecho.com>
 
-    Fix live_search by outputting the ERB form block
+    Twitter account now @gettypo
 
-commit 363b162f120eadc6f224370a4bb3c36dfc05a492
-Merge: 77db116 382a06e
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit bdd6c126a7a6e707c1514803e1c2cb72f1cbe681
+Merge: db3ef90 3cb6caa
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Merge pull request #111 from randomecho/admin-article-filters
+    Merge pull request #127 from slainer68/master
 
-commit 03843e6890374ee7c83831428d8cf682f1a009f2
-Merge: 363b162 62c601e
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit 295b02cdd10f7fd393518f1a8e05cb974abb117b
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Merge pull request #112 from randomecho/copyedit-readme
+    Move #default_text_filter so Trackback can use it
 
-commit 8270609f132338568484ff26ef1aff8e5d7c2d2d
-Merge: 03843e6 90b1923
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit e092160e6f598ad8f2025266092282eeb7432e9f
+Author: Marcel M. Cary <marcel@oreilly.com>
 
-    Merge pull request #113 from mcary/patch-1
+    Fix typo news date format with distance_of_time_in_words
 
-commit 602e2944493fe9e462942591b9c14c034ca1b137
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit 17e7edb722c5a566791a69546477d557de04fb23
+Author: Marcel M. Cary <marcel@oreilly.com>
 
-    Makes the default admin have a nickname by default so it doesn't appear as empty all over the place at first login.
+    Fix latest posts date format with distance_of_time_in_words
 
-commit a56140ff89c68c2c0306be2c15629d41f19b29c6
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes the autosave behavior so the publication date would be updated to now if article is a draft and published date is in the past.
-
-commit 0242aaa471024a8d641a122f59203a1142fe4fb9
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Gives translation a little love
-
-commit 2c93a39d967b2b1d570f639addb48143cefadab9
-Merge: 0242aaa 8270609
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Resolves conflict
-
-commit f6299ffbb34bdb7126c82d324623cd271e65e623
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    removing old themes, they will come back as a legacy package later
-
-commit e70f3e7a847c88fe1d4476f371aaf88695ff755c
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Updates documentation with db creation
-
-commit d20fac083bc11c53621ca39ef52cabbe0762b87d
+commit 7befdd6bac79e97e582853267be5e4ba6cc6c7bf
 Author: slainer68 <slainer68@gmail.com>
 
-    Remove obsolete json dependency.
+    Heroku needs thin and ruby definition in Gemfile.lock otherwise it won't deploy.
 
-commit 072ab7d7f0f559048f8a586d74c8d17f5058dedb
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Spank me please cause I forgot to run the specs before I commit
-
-commit b7a2d39c2c4b342018cdda1bdd3a4883e825f71d
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adding back Typographic until we have a second theme to add. Fixes the specs, stop hurting me please
-
-commit ef3fbf1936ec1b3da13aaca36824be0c5c0c875c
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Refreshing default theme. Better no? And now with responsive layout
-
-commit fa4d9489283264402196079353f0bfe7733685e6
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adds random image rotation at page generation. Need more photos, gonna keep browsing the CC part of Flickr
-
-commit 00dadec4d932d8b8dd947d594cc77066c934bce3
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes the random on the theme header
-
-commit 0d5f471fc4bfcf185601b5fd1e318fbc447eb40c
-Author: Soon Van <cog@randomecho.com>
-
-    Make article dashboard filters send correct search params
-
-commit 63411e47e5526219096a3bca1673623d8bc715c3
-Merge: 00dadec 0d5f471
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #115 from randomecho/article-dashboard-filters
-
-commit 7bb2f6064d255551ad78d1c3a9f87d5041b55e1f
-Merge: 63411e4 d20fac0
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #114 from slainer68/master
-
-commit 4b1f2d71358f4695ad1cea14c3858bf751c18dba
-Author: Soon Van <cog@randomecho.com>
-
-    Fix dashboard link to display all of Your Posts
-
-commit 8687b588d4da23f1769e741db55feead99de0791
-Merge: 7bb2f60 4b1f2d7
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #116 from randomecho/110-your-posts-quicklink-from-dashboard
-
-commit 2106423707d631618ad281302ba5e00930edc5d1
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    remove complexity in admin/base helper
-
-commit f049f77dbd70e3cf3401ec5f24de477d4a03b075
-Author: Soon Van <cog@randomecho.com>
-
-    Various typos, grammar fixes, title casing and sentence forms
-
-commit 258db02e084e099b928419b6e8cc5cee9c679da7
-Author: Soon Van <cog@randomecho.com>
-
-    Seed language files with SEO definitions
-
-commit 6002a8032f2c02de4f18b3ae49e7b37b35eba79b
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Gives the login form some more consistency
-
-commit 817e87c1ff9b0254a52eee06d8d89705220c9910
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes account creation link
-
-commit 659ee9bae38d05529466a8a5d28c095a4acb4f6b
-Merge: 817e87c 258db02
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #118 from randomecho/copyedits
-
-commit 97e77afdc281fb6dfdb185d56c8628f2175c8af6
+commit bc21ecb90d4f8b5c8b200946f60bcbea7bad171a
 Author: slainer68 <slainer68@gmail.com>
 
-    Don't initialize rails app when compiling assets to avoid exception on Heroku
+    Document aws_bucket config in config/storage.yml
 
-commit 4ad4560ac6a3bbe246a632ddc54981a618dd012a
-Author: Yannick Francois <yannick.francois@free.fr>
+commit a4b15383d1613b2006f3dc75c57398e911d3c484
+Merge: 295b02c 7befdd6
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Remove unused code
+    Merge pull request #137 from slainer68/heroku
 
-commit 9081979512648509376cdfd40805fdcc6887e0db
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit ba55ce5c64fbc66d6cfc3aa31b1a0000ae06da94
+Merge: a4b1538 bc21ecb
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Upgrades Coderay to 1.0 series
+    Merge pull request #138 from slainer68/awsbucket
 
-commit aff9a4854469b39eea40942966c44a5ff87e7fb6
-Author: Frédéric de Villamil <frederic@de-villamil.com>
+commit 7ddca03c03382bf2a210f7227875c5e2eae88dcb
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Centers the setup
+    Remove redundant cookie secret
 
-commit 4e0b72d3a1413012e496e6b22c82fc02b365f120
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes article list display
-
-commit afd86255019e121a282a6ea47d71364374c20648
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Removes dead links from the default sidebar
-
-commit da68e517810d5f8224c78514c5b93b417c9c1b74
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes formating on the default theme comment form
-
-commit 72be47f6d3cba2bb8b40e2680a41b846607084ca
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Upgrades to Bootstrap 2.2.2
-
-commit cd87871c703e61726651ae3c896a5027188e91fc
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Gives the comment listing some love.
-
-commit bdd249a634ab1886478b87bcca89f470d75f40ba
-Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
-
-    Really use flickraw-cached.
-
-commit d5949ed4ce80c31f750bee9995d7ad67bea7a6d8
-Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
-
-    flickr: sanitize handling of API keys and secrets.
-
-commit 97734984f2e622f48d28b119835484f8aea3462d
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes a visual bug in admin / content listing
-
-commit 8e66516cb5aa3987ad3229a9ee9c41e3474d2084
-Merge: 9773498 d5949ed
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #122 from Flameeyes/master
-
-commit 32a4f93f83c61f6b061aacbab184340483f36ef8
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes the links on the dashboard according to the profiles. This commit solves issue #123
-
-commit a463ba23670c004301c7c053698b4390d7a99d58
-Merge: 32a4f93 97e77af
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #119 from slainer68/master
-
-commit 6fb10cf13350d4cb6a652cbae3a94951833729b0
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes upload form
-
-commit 1c855fc0cecdae736b97bab1fc5bd98c727cc48f
-Merge: 6fb10cf a463ba2
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge branch 'master' of github.com:fdv/typo
-
-commit 8f86bbe704e5ea4f8074f421e62f4442f37f0594
-Author: Soon Van <cog@randomecho.com>
-
-    Show fallback account name on header bar when logged in admin
-
-commit bc6b8fb400e6219216a8e5bfbc07b54d0042cebe
-Author: Soon Van <cog@randomecho.com>
-
-    Add missing language sections for admin layout view
-
-commit b501cdf509c79bf79f6eca591b81859ea4bf6dc3
-Author: Soon Van <cog@randomecho.com>
-
-    Hide Display Name option choices in profile edit if blank
-
-commit 0e29358cc91e902654a7089617ce1619036de849
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    - Removes buggy upload_progress plugin.
-    - Removes dead code (we can't update resources anymore since we removed the iTunes metadata 2 years ago).
-    - Prepares a new AJAX upload when we switch to JQuery.
-    - Fixes the file upload behavior.
-    - Closes issue #86.
-
-commit b65589c1b9bda7d2155b0384e1fa4978e9702a0a
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adds secret token generation + error message to force Typo restart. Closes #103
-
-commit edf1337f972105140c47431a06fe534fae3ffc98
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Adds a Gemfile.heroku for Heroku deployment
-
-commit 7ababc19d3e3df329b8c5ed3cba5d7e28bf10204
-Merge: edf1337 b501cdf
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #125 from randomecho/profile-display-name-setting
-
-commit 05b3ab7c4b96712e019e78352616a6a42119de44
-Author: yaf <yannick.francois@free.fr>
-
-    Update README.textile
-
-commit 321b33d3b6e2bcca11a9ffd462220cca0fb4b757
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Fixes issue #124. Used to be visually nicer but I can't do anything else yet. Will come back when we redesign the editor
-
-commit d3e58c8cbccecb8f4808d918df5532fb4781e7c5
+commit d21acd7e3c4c22f2513f5bcf14b5557e73fe6b83
 Author: slainer68 <slainer68@gmail.com>
 
-    Fixes Admin::ResourcesController#get_thumbnails on PostgreSQL
+    Refactors almost all scopes to use Rails 3/4 style
 
-commit 6ad9d24178a2ab34d552a5fe00b21e07e3ab954a
-Merge: 321b33d d3e58c8
+commit f78622459cf946a843014a49738136cdd387bf8c
+Merge: 7ddca03 d21acd7
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Merge pull request #131 from slainer68/pgbug
+    Merge pull request #139 from slainer68/ar_scopes
 
-commit eed8e3ec971964efb970c7c418c0b5f7a41b882f
+commit 7f324dac6ec772943f0a60f08ecc22c66ce186b7
+Merge: f786224 17e7edb
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Removes HTML from helpers for content_tag blocks
+    Merge pull request #136 from mcary/fix-dashboard-date-format
 
-commit da9d35ee920edc760cd54f181c262a15a38f94db
+commit cf8efcb6e9c5c8766737549b25d1bde9d4361067
+Merge: 7f324da b64ed5a
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes login / account creation / password recovery style
+    Merge pull request #135 from randomecho/copyedit-readme
 
-commit ed70f3e4d693fe0b6d637e6d1bec6bd0a65ad845
+commit 151264dc30f2c62a68b96a67667125e279629575
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes dashboard crashing. Sometimes too much refactoring is too much
+    Adds secret token generation to existing blog
 
-commit d5f55392ca10b4995d19a51f3ba347ade4f281f4
+commit 52580a0752b2f573feb9412f0be3364c5ace652a
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Update to Rails 3.2.12
+
+commit 3e11fa031172d6f7c87b4b6685b7cfe86ee8291c
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes default theme behavior according to blog options. Solves #129
+    Upgrading Gemfile.heroku to Rails 3.2.12
 
-commit 05baa3837e49c80cbc5d3542f0a442ee4cfad74a
-Author: slainer68 <slainer68@gmail.com>
-
-    Migration to CarrierWave
-
-commit ab4cb06e422c0a62d90d6ed981607d717394f0af
-Merge: d5f5539 05baa38
+commit 93b2c92ee12ece6820fea98551c1d2e48fb1af47
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Merge pull request #133 from slainer68/carrierwave-migration
+    Fixes the secret token generation on an existing blog.
 
-commit 26a3df613ffc87d72e188309eea8f87482ca7864
+commit 64708c77a9e2143f8ed3133267f8f24504dcbe8d
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes buggy behavior whe trying to view a non image resource.
+    Fixes a bug where already published articles publication date would be changed by autosave.
+
+commit 800604bfb1f30bf7108ec87d631f7b66b966a0c4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Closes issue #69

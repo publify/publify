@@ -99,7 +99,7 @@ Download Typo
 -------------
 
 For a production blog, you should download [download Typo
-6.1.3](http://typosphere.org/stable.tgz)
+6.1.4](http://typosphere.org/stable.tgz)
 
 If you feel adventurous or want to hack on Typo, [clone Typo
 repository](git://github.com/fdv/typo.git)
@@ -116,7 +116,7 @@ Install Typo locally
 To install Typo you need the following:
 
 -   Ruby 1.9.2 or 1.9.3.
--   Ruby On Rails 3.0.10
+-   Ruby On Rails 3.2.12
 -   A database engine, MySQL, PgSQL or SQLite3
 
 <a href="installtypo"></a>
