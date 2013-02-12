@@ -3,7 +3,7 @@ source :rubygems
 ruby '1.9.3'
 
 gem 'pg'
-gem 'rails', '~> 3.2.11'
+gem 'rails', '~> 3.2.12'
 gem 'thin'
 gem 'require_relative'
 gem 'htmlentities'
