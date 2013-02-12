@@ -1,6 +1,4 @@
 class Admin::DashboardController < Admin::BaseController
-  before_filter :check_secret_token
-
   require 'open-uri'
   require 'time'
   require 'rexml/document'
@@ -85,23 +83,6 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   private
-
-  def check_secret_token
-    if TypoBlog::Application.config.secret_token == "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7debac56b48ffd0b5990d6ed0cbecc7dc08dce1503b6b864d580758c3c46056729a"
-      file = File.join(Rails.root, "config", "secret.token")
-
-      unless File.writable?(file)
-        flash[:error] = _("Error: Typo was unable to generate a decent secret token. Security is at risk. Please, change %s content", file)
-        return
-      end
-      
-      if File.open(file, "r") { |f| f.read.delete("\n") } == "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7debac56b48ffd0b5990d6ed0cbecc7dc08dce1503b6b864d580758c3c46056729a"
-        newtoken = Digest::SHA1.hexdigest("#{Blog.default.base_url} #{DateTime.now.to_s}")
-        File.open(file, 'w') {|f| f.write(newtoken) }
-      end
-      flash[:error] = _("For security reasons, you should restart your Typo application. Enjoy your blogging experience.")
-    end
-  end
 
   class RssItem < Struct.new(:link, :title, :description, :description_link, :date, :author)
     def to_s; title end
