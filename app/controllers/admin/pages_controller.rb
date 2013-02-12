@@ -17,7 +17,7 @@ class Admin::PagesController < Admin::BaseController
   def new
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
-    @page.text_filter ||= current_user.text_filter
+    @page.text_filter = set_textfilter
     if request.post?
       @page.published_at = Time.now
       if @page.save
@@ -44,6 +44,11 @@ class Admin::PagesController < Admin::BaseController
   end
 
   private
+
+  def set_textfilter
+    return TextFilter.find_by_name("none") if current_user.visual_editor?
+    return current_user.text_filter if @page.id.nil?
+  end
 
   def set_macro
     @macros = TextFilter.macro_filters
