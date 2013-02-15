@@ -4,51 +4,32 @@ class Admin::DashboardController < Admin::BaseController
   require 'rexml/document'
 
   def index
-    @newposts = Article.where('published = ? and published_at > ?', true, current_user.last_venue).count
-    @newcomments = Feedback.where('state in (?,?) and published_at > ?', 'presumed_ham', 'ham', current_user.last_venue).count
-    comments
-    lastposts
-    popular
-    statistics
-    inbound_links
-    typo_dev
-    typo_version
-  end
-
-  private
-
-  def statistics
+    @newposts_count = Article.published_since(current_user.last_venue).count
+    @newcomments_count = Feedback.published_since(current_user.last_venue).count
+    @comments = Comment.where(published: true).order('created_at DESC').limit(5)
+    @recent_posts = Article.where(published: true).order('published_at DESC').limit(5)
+    @bestof = Article.find(:all, :select => 'contents.*, comment_counts.count AS comment_count',
+                           :from => "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
+                           :conditions => ['comment_counts.article_id = contents.id AND published = ?', true],
+                           :order => 'comment_counts.count DESC', :limit => 5)
     @statposts = Article.published.count
-    @statuserposts = Article.published.where(:user_id => current_user.id).count
-    @statcomments = Comment.where("state != 'spam'").count
-    @statspam = Comment.where(:state => 'spam').count
-    @presumedspam = Comment.where(:state => 'presumed_spam').count
-    @categories = Category.count
-  end
-
-  def comments
-    @comments ||= Comment.where('published = ?', true).limit(5).order('created_at DESC')
-  end
-
-  def lastposts
-    @recent_posts = Article.where("published = ?", true).order('published_at DESC').limit(5)
-  end
-
-  def popular
-    @bestof = Article.select('contents.*, comment_counts.count AS comment_count').
-                      from("contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts").
-                      where("comment_counts.article_id = contents.id AND published = ?", true).
-                      order('comment_counts.count DESC').
-                      limit(5)
+    @statuserposts = Article.published.count(:conditions => {:user_id => current_user.id})
+    @statcomments = Comment.count(:all, :conditions => "state != 'spam'")
+    @statspam = Comment.count(:all, :conditions => { :state => 'spam' })
+    @presumedspam = Comment.count(:all, :conditions => { :state => 'presumed_spam' })
+    @categories = Category.count(:all)
+    @inbound_links = inbound_links
+    @typo_links = typo_dev
+    typo_version
   end
 
   def inbound_links
     url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
     open(url) do |http|
-      @inbound_links = parse_rss(http.read).reverse
+      return parse_rss(http.read).reverse
     end
   rescue
-    @inbound_links = nil
+    nil
   end
 
   def typo_version
@@ -76,10 +57,10 @@ class Admin::DashboardController < Admin::BaseController
   def typo_dev
     url = "http://blog.typosphere.org/articles.rss"
     open(url) do |http|
-      @typo_links = parse_rss(http.read)[0..4]
+      return parse_rss(http.read)[0..4]
     end
   rescue
-    @typo_links = nil
+    nil
   end
 
   private

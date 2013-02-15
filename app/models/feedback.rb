@@ -7,7 +7,6 @@ class Feedback < ActiveRecord::Base
   include TypoGuid
 
   include Stateful
-
   include ContentBase
 
   after_save :invalidates_cache?
@@ -19,6 +18,9 @@ class Feedback < ActiveRecord::Base
   before_save :correct_url
   after_save :post_trigger
   after_save :report_classification
+
+  scope :ham, where("state in ('presumed_ham', 'ham')")
+  scope :published_since, lambda {|time| ham.where('published_at > ?', time)}
 
   has_state(:state,
             :valid_states => [:unclassified, #initial state

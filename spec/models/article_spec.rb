@@ -838,4 +838,22 @@ describe Article do
     end
 
   end
+
+  describe "published_since" do
+    let(:time) { DateTime.new(2010,11,3,23,34) }
+    it "empty when no articles" do
+      Article.published_since(time).should be_empty
+    end
+
+    it "returns article that was published since" do
+      article = FactoryGirl.create(:article, published_at: time + 2.hours)
+      Article.published_since(time).should eq [article]
+    end
+
+    it "returns only article that was published since last visit" do
+      already_seen_article = FactoryGirl.create(:article, published_at: time - 2.hours)
+      article = FactoryGirl.create(:article, published_at: time + 2.hours)
+      Article.published_since(time).should eq [article]
+    end
+  end
 end

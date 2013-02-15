@@ -25,50 +25,39 @@ describe CategoriesController do
   describe '#show' do
     before do
       blog = FactoryGirl.create(:blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true, blog_name: "My Shiny Weblog!")
-      Blog.stub(:default) { blog }
       Trigger.stub(:fire) { }
 
-      category = FactoryGirl.create(:category, :permalink => 'personal', :name => 'Personal')
-      2.times {|i| FactoryGirl.create(:article, :published_at => Time.now, :categories => [category]) }
-      FactoryGirl.create(:article, :published_at => nil)
-    end
-
-    def do_get
-      get 'show', :id => 'personal'
+      category = FactoryGirl.create(:category, permalink: 'personal', name: 'Personal')
+      2.times {|i| FactoryGirl.create(:article, published_at: Time.now - 3.minutes, categories: [category]) }
+      Article.count.should eq 2
+      FactoryGirl.create(:article, published_at: nil)
     end
 
     it 'should be successful' do
-      do_get
+      get 'show', id: 'personal'
       response.should be_success
-    end
-
-    it 'should render :show by default' do
-      pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?).and_return(true)
-      do_get
-      response.should render_template(:show)
     end
 
     it 'should fall back to rendering articles/index' do
       controller.stub!(:template_exists?).and_return(false)
-      do_get
+      get 'show', id: 'personal'
       response.should render_template('articles/index')
     end
 
     it 'should render personal when template exists' do
       pending "Stubbing #template_exists is not enough to fool Rails"
       controller.stub!(:template_exists?).and_return(true)
-      do_get
+      get 'show', :id => 'personal'
       response.should render_template('personal')
-    end  
+    end
 
     it 'should show only published articles' do
-      do_get
+      get 'show', :id => 'personal'
       assigns(:articles).size.should == 2
     end
 
     it 'should set the page title to "Category Personal"' do
-      do_get
+      get 'show', :id => 'personal'
       assigns[:page_title].should == 'Category: Personal | My Shiny Weblog! '
     end
 
@@ -100,7 +89,7 @@ describe CategoriesController do
       render_views
 
       it 'should have a canonical URL' do
-        do_get
+        get 'show', id: 'personal'
         response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
       end
     end
@@ -126,8 +115,7 @@ describe CategoriesController do
     end
 
     it 'should raise ActiveRecord::RecordNotFound' do
-      Category.should_receive(:find_by_permalink) \
-        .with('foo').and_raise(ActiveRecord::RecordNotFound)
+      Category.should_receive(:find_by_permalink).with('foo').and_raise(ActiveRecord::RecordNotFound)
       lambda do
         get 'show', :id => 'foo'
       end.should raise_error(ActiveRecord::RecordNotFound)
@@ -153,10 +141,9 @@ describe CategoriesController do
       cat.articles << FactoryGirl.create(:article, :password => 'my_super_pass')
       cat.save!
 
-      get 'show', :id => 'personal'
+      get 'show', id: 'personal'
 
-      assert_tag :tag => "input",
-        :attributes => { :id => "article_password" }
-    end  
+      assert_tag tag: "input", attributes: { id: "article_password" }
+    end
   end
 end

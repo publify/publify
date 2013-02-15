@@ -50,12 +50,13 @@ class Article < Content
   after_save :post_trigger, :keywords_to_tags, :shorten_url
 
   scope :category, lambda { |category_id| where('categorizations.category_id = ?', category_id).includes('categorizations') }
-  scope :drafts, lambda { where(:state => 'draft').order('created_at DESC') }
-  scope :child_of, lambda { |article_id| where(:parent_id => article_id) }
-  scope :published, lambda { where(:published => true, :published_at => Time.at(0)..Time.now).order('published_at DESC') }
-  scope :published_at, lambda { |time_params| where(:published => true, :published_at => Article.time_delta(*time_params)).order('published_at DESC') }
-  scope :withdrawn, lambda { where(:state => 'withdrawn').order('published_at DESC') }
-  scope :pending, lambda { where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC') }
+  scope :drafts, where(state: 'draft').order('created_at DESC')
+  scope :child_of, lambda { |article_id| where(parent_id: article_id) }
+  scope :published, where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC')
+  scope :published_at, lambda {|time_params| published.where(published_at: Article.time_delta(*time_params)).order('published_at DESC')}
+  scope :published_since, lambda {|time| published.where('published_at > ?', time).order('published_at DESC') }
+  scope :withdrawn, where(state: 'withdrawn').order('published_at DESC')
+  scope :pending, where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC')
 
   setting :password, :string, ''
 

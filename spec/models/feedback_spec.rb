@@ -28,4 +28,33 @@ describe Feedback do
       end
     end
   end
+
+  describe "scopes" do
+    describe "ham" do
+      it "returns nothing when no ham" do
+        FactoryGirl.create(:spam_comment)
+        Feedback.ham.should be_empty
+      end
+
+      it "returns only ham" do
+        FactoryGirl.create(:spam_comment)
+        ham = FactoryGirl.create(:ham_comment)
+        Feedback.ham.should eq [ham]
+      end
+    end
+
+    describe "published_since" do
+      let(:time) { DateTime.new(2011, 11, 1, 13, 45) }
+      it "returns nothing with no feedback" do
+        FactoryGirl.create(:ham_comment)
+        Feedback.published_since(time).should be_empty
+      end
+
+      it "returns feedback when one published since last visit" do
+        FactoryGirl.create(:ham_comment)
+        feedback = FactoryGirl.create(:ham_comment, published_at: time + 2.hours)
+        Feedback.published_since(time).should eq [feedback]
+      end
+    end
+  end
 end
