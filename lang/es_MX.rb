@@ -214,6 +214,8 @@ Localization.define("es_MX") do |l|
   l.store "Allow trackbacks", "Se permiten trackbacks"
   l.store "Password:", ""
   l.store "Publish", "Publicar"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", ""
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", ""

@@ -212,6 +212,8 @@ Localization.define("he_IL") do |l|
   l.store "Allow trackbacks", "אפשר עוקבים חזרה"
   l.store "Password:", ""
   l.store "Publish", "פרסם"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", ""
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "העלאות"

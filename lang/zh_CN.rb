@@ -213,6 +213,8 @@ Localization.define("zh_CN") do |l|
   l.store "Allow trackbacks", "允许引用"
   l.store "Password:", "密码"
   l.store "Publish", "发布"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "摘要"
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "摘要对文章的总结，只会显示在首页，不会出现在文章正文。"
   l.store "Uploads", "上传"

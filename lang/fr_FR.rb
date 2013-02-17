@@ -219,6 +219,7 @@ Localization.define("fr_FR") do |l|
   l.store "now", "maintenant"
   l.store "Publish", "Publier"
   l.store "Tags", "Labels"
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "Extrait"
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
   l.store "Uploads", "Pièces jointes"
