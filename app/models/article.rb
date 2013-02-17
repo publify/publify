@@ -155,11 +155,11 @@ class Article < Content
   end
 
   def comment_url
-    blog.url_for("comments?article_id=#{self.id}", :only_path => false)
+    blog.url_for("comments?article_id=#{self.id}", :only_path => true)
   end
 
   def preview_comment_url
-    blog.url_for("comments/preview?article_id=#{self.id}", :only_path => false)
+    blog.url_for("comments/preview?article_id=#{self.id}", :only_path => true)
   end
 
   def feed_url(format)
