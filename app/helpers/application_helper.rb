@@ -21,19 +21,19 @@ module ApplicationHelper
   end
   
   # Produce a link to the permalink_url of 'item'.
-  def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil)
+  def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil, only_path=false)
     options = {}
     options[:class] = style if style
     options[:rel] = "nofollow" if nofollow
 
-    link_to title, item.permalink_url(anchor), options
+    link_to title, item.permalink_url(anchor,only_path), options
   end
 
   # The '5 comments' link from the bottom of articles
   def comments_link(article)
     comment_count = article.published_comments.size
     # FIXME Why using own pluralize metchod when the Localize._ provides the same funciotnality, but better? (by simply calling _('%d comments', comment_count) and using the en translation: l.store "%d comments", ["No nomments", "1 comment", "%d comments"])
-    link_to_permalink(article,pluralize(comment_count, _('no comments'), _('1 comment'), _('%d comments', comment_count)),'comments')
+    link_to_permalink(article,pluralize(comment_count, _('no comments'), _('1 comment'), _('%d comments', comment_count)),'comments', nil, nil, true)
   end
 
   def avatar_tag(options = {})
