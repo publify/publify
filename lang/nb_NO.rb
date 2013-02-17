@@ -240,6 +240,7 @@ Localization.define("nb_NO") do |l|
   l.store "Password:", "Passord"
   l.store "Publish", "Publiser"
   l.store "Tags", "Tags"
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "Utdrag"
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
   l.store "Uploads", "Opplastede filer"
