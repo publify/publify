@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 describe Admin::TagsController do
-  render_views
-  
   before do
-    FactoryGirl.create(:blog)
-    #TODO Delete after removing fixtures
-    Profile.delete_all
-    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+    create :blog
+    henri = create :user, login: 'henri', profile: create(:profile_admin)
     request.session = { :user => henri.id }
   end
 
@@ -22,7 +18,7 @@ describe Admin::TagsController do
 
     it 'should render template index' do
       response.should render_template('index')
-    end    
+    end
   end
 
   describe 'edit action' do
@@ -41,21 +37,25 @@ describe Admin::TagsController do
 
     it 'should assigns value :tag' do
       assert assigns(:tag).valid?
-    end    
+    end
   end
-  
+
   describe 'destroy action with GET' do
     before(:each) do
-      @tag_id = FactoryGirl.create(:tag).id
+      @tag_id = create(:tag).id
       get :destroy, :id => @tag_id
     end
-    
+
     it 'should be success' do
       response.should be_success
     end
-    
-    it 'should have an id in the form destination' do
-      response.should have_selector("form[action='/admin/tags/destroy/#{@tag_id}'][method='post']") 
+
+    context "with view" do
+      render_views
+
+      it 'should have an id in the form destination' do
+        response.should have_selector("form[action='/admin/tags/destroy/#{@tag_id}'][method='post']")
+      end
     end
 
     it 'should render template edit' do
@@ -64,7 +64,7 @@ describe Admin::TagsController do
 
     it 'should assigns value :tag' do
       assert assigns(:record).valid?
-    end    
+    end
   end
 
   describe 'destroy action with POST' do
@@ -72,15 +72,14 @@ describe Admin::TagsController do
       @tag = FactoryGirl.create(:tag)
       post :destroy, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
     end
-    
+
     it 'should redirect to index' do
       response.should redirect_to(:action => 'index')
     end
-    
+
     it 'should have one less tags' do
       Tag.count.should == 0
     end
-    
   end
 
   describe 'update action' do
@@ -108,5 +107,4 @@ describe Admin::TagsController do
       r.to_path.should == "/tag/#{new_name}"
     end
   end
-
 end
