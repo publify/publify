@@ -210,6 +210,8 @@ Localization.define("nl_NL") do |l|
   l.store "Allow trackbacks", "Sta trackbacks toe"
   l.store "Password:", "Wachtwoord:"
   l.store "Publish", "Publiceer"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "Uittreksel"
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
   l.store "Uploads", "Uploads"
