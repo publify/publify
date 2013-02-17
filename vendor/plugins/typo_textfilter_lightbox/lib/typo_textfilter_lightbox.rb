@@ -89,9 +89,11 @@ Common attributes:
 
           width  = thumbdetails['width']
           height = thumbdetails['height']
-          thumburl    = thumbdetails['source']
 
-          displayurl    = displaydetails['source']
+          # use protocol-relative URL after getting the source address
+          # so not to break HTTPS support
+          thumburl = thumbdetails['source'].sub(/^https?:/, '')
+          displayurl = displaydetails['source'].sub(/^https?:/, '')
 
           caption ||= flickrimage.description
           title ||= flickrimage.title
@@ -123,8 +125,8 @@ Common attributes:
 
       def self.set_whiteboard(blog, content)
         content.whiteboard['page_header_lightbox'] = <<-HTML
-          <link href="#{blog.base_url}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
-          <script src="#{blog.base_url}/javascripts/lightbox.js" type="text/javascript"></script>
+          <link href="#{blog_base_url(true)}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
+          <script src="#{blog_base_url(true)}/javascripts/lightbox.js" type="text/javascript"></script>
         HTML
       end
     end

@@ -56,8 +56,8 @@ class ApplicationController < ActionController::Base
 
   # The base URL for this request, calculated by looking up the URL for the main
   # blog index page.
-  def blog_base_url
-    url_for(:controller => '/articles').gsub(%r{/$},'')
+  def blog_base_url(only_path = false)
+    url_for(:controller => '/articles', :only_path => only_path).gsub(%r{/$},'')
   end
 
   def add_to_cookies(name, value, path=nil, expires=nil)
