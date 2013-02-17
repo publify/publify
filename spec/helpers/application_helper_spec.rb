@@ -72,16 +72,36 @@ describe ApplicationHelper do
       helper.stop_index_robots?.should be_true
     end
 
-    it "returns true when controller is tags and blog configure to unindex tags page" do
-      Blog.any_instance.should_receive(:unindex_tags).and_return(true)
-      helper.stub(:controller_name).and_return("tags")
-      helper.stop_index_robots?.should be_true
+    context "for the tags controller" do
+      before do
+        helper.stub(:controller_name).and_return("tags")
+      end
+
+      it "returns true when blog is configured to unindex tags page" do
+        Blog.any_instance.should_receive(:unindex_tags).and_return(true)
+        helper.stop_index_robots?.should be_true
+      end
+
+      it "returns false when blog is configured to index tags page" do
+        Blog.any_instance.should_receive(:unindex_tags).and_return(true)
+        helper.stop_index_robots?.should be_true
+      end
     end
 
-    it "returns true when controller is tags and blog configure to unindex tags page" do
-      Blog.any_instance.should_receive(:unindex_categories).and_return(true)
-      helper.stub(:controller_name).and_return("categories")
-      helper.stop_index_robots?.should be_true
+    context "for the categories controller" do
+      before do
+        helper.stub(:controller_name).and_return("categories")
+      end
+
+      it "returns true when blog is configured to unindex categories page" do
+        Blog.any_instance.should_receive(:unindex_categories).and_return(true)
+        helper.stop_index_robots?.should be_true
+      end
+
+      it "returns false when blog is configured to index categories page" do
+        Blog.any_instance.should_receive(:unindex_categories).and_return(true)
+        helper.stop_index_robots?.should be_true
+      end
     end
   end
 end

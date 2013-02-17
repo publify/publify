@@ -72,6 +72,30 @@ describe CategoriesController do
       assigns[:page_title].should == 'Category: Personal | My Shiny Weblog! '
     end
 
+    describe "@keywords" do
+      let(:category) { build_stubbed :category, :permalink => 'personal', keywords: keywords }
+
+      before do
+        Category.stub(:find_by_permalink).with('personal').and_return category
+      end
+
+      context "when the category has no keywords" do
+        let(:keywords) { nil }
+        it 'should be empty' do
+          get 'show', :id => 'personal'
+          assigns(:keywords).should eq ""
+        end
+      end
+
+      context "when the category has no keywords" do
+        let(:keywords) { 'some, keywords' }
+        it 'should contain the keywords' do
+          get 'show', :id => 'personal'
+          assigns(:keywords).should eq "some, keywords"
+        end
+      end
+    end
+
     describe "when rendered" do
       render_views
 
@@ -134,51 +158,5 @@ describe CategoriesController do
       assert_tag :tag => "input",
         :attributes => { :id => "article_password" }
     end  
-  end
-
-  describe "SEO Options" do
-    render_views
-
-    it 'category without meta keywords and activated options (use_meta_keyword ON) should not have meta keywords' do
-      FactoryGirl.create(:blog, :use_meta_keyword => true)
-      cat = FactoryGirl.create(:category, :permalink => 'personal')
-      FactoryGirl.create(:article, :categories => [cat])
-      get 'show', :id => 'personal'
-      response.should_not have_selector('head>meta[name="keywords"]')
-    end
-
-    it 'category with keywords and activated option (use_meta_keyword ON) should have meta keywords' do
-      FactoryGirl.create(:blog, :use_meta_keyword => true)
-      after_build_category_should_have_selector('head>meta[name="keywords"]')
-    end
-
-    it 'category with meta keywords and deactivated options (use_meta_keyword off) should not have meta keywords' do
-      FactoryGirl.create(:blog, :use_meta_keyword => false)
-      after_build_category_should_not_have_selector('head>meta[name="keywords"]')
-    end
-
-    it 'with unindex_categories (set ON), should have rel nofollow' do
-      FactoryGirl.create(:blog, :unindex_categories => true)
-      after_build_category_should_have_selector('head>meta[content="noindex, follow"]')
-    end
-
-    it 'without unindex_categories (set OFF), should not have rel nofollow' do
-      FactoryGirl.create(:blog, :unindex_categories => false)
-      after_build_category_should_not_have_selector('head>meta[content="noindex, follow"]')
-    end
-
-    def after_build_category_should_have_selector expected
-      cat = FactoryGirl.create(:category, permalink: 'personal', keywords: "some, keywords")
-      FactoryGirl.create(:article, categories: [cat])
-      get 'show', id: 'personal'
-      response.should have_selector(expected)
-    end
-
-    def after_build_category_should_not_have_selector expected
-      cat = FactoryGirl.create(:category, permalink: 'personal', keywords: "some, keywords")
-      FactoryGirl.create(:article, categories: [cat])
-      get 'show', id: 'personal'
-      response.should_not have_selector(expected)
-    end
   end
 end

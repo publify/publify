@@ -137,60 +137,24 @@ describe TagsController, "password protected article" do
 end
 
 describe TagsController, "SEO Options" do
-  render_views
-
   before(:each) do 
     @blog = FactoryGirl.create(:blog)
     @a = FactoryGirl.create(:article)
     @foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [@a])
   end
 
-  describe "rendering list article with a given tag" do
-    it 'contains rel nofollow in head when blog is configure to unindex_tags' do
-      @blog.unindex_tags = true
-      @blog.save
+  describe "keywords" do
+    it 'does not assign keywords when the blog has no keywords' do
       get 'show', :id => 'foo'
-      response.should have_selector('head>meta[content="noindex, follow"]')
+
+      assigns(:keywords).should eq ""
     end
 
-    it 'not contains rel nofollow when blog is configure to index_tags' do
-      @blog.unindex_tags = false
+    it "assigns the blog's keywords if present" do
+      @blog.meta_keywords = "foo, bar"
       @blog.save
       get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[content="noindex, follow"]')
+      assigns(:keywords).should eq "foo, bar"
     end
-
-    it 'not contains meta keywords with deactivated option and no blog keywords' do
-      @blog.use_meta_keyword = false
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[name="keywords"]')
-    end
-
-
-    it 'should not have meta keywords with deactivated option and blog keywords' do
-      @blog.use_meta_keyword = false
-      @blog.meta_keywords = "foo, bar, some, keyword"
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[name="keywords"]')
-    end
-
-    it 'should not have meta keywords with activated option and no blog keywords' do
-      @blog.use_meta_keyword = true
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[name="keywords"]')
-    end
-
-    it 'should have meta keywords with activated option and blog keywords' do
-      @blog.use_meta_keyword = true
-      @blog.meta_keywords = "foo, bar, some, keyword"
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should have_selector('head>meta[name="keywords"]')
-    end
-
   end
-
 end
