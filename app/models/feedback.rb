@@ -66,8 +66,7 @@ class Feedback < ActiveRecord::Base
   end
 
   def akismet_options
-    {:user_ip => ip,
-      :comment_type => self.class.to_s.downcase,
+    {:comment_type => self.class.to_s.downcase,
       :comment_author => originator,
       :comment_author_email => email,
       :comment_author_url => url,
@@ -110,7 +109,7 @@ class Feedback < ActiveRecord::Base
 
     begin
       Timeout.timeout(defined?($TESTING) ? 30 : 60) do
-        akismet.comment_check(ip, nil, akismet_options)
+        akismet.comment_check(ip, user_agent, akismet_options)
       end
     rescue Timeout::Error => e
       nil
@@ -153,7 +152,7 @@ class Feedback < ActiveRecord::Base
     begin
       Timeout.timeout(defined?($TESTING) ? 5 : 3600) {
         akismet.send("submit_#{spam_or_ham}",
-                     ip, nil, akismet_options)
+                     ip, user_agent, akismet_options)
       }
     rescue Timeout::Error => e
       nil

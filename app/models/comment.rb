@@ -7,7 +7,6 @@ class Comment < Feedback
   content_fields :body
   validates_presence_of :author, :body
 
-  attr_accessor :user_agent
   attr_accessor :referrer
   attr_accessor :permalink
 
