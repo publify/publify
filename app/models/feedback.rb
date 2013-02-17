@@ -133,6 +133,16 @@ class Feedback < ActiveRecord::Base
     result
   end
 
+  def mark_as_ham!
+    mark_as_ham
+    save!
+  end
+
+  def mark_as_spam!
+    mark_as_ham
+    save!
+  end
+
   def report_as_spam
     report_as('spam')
   end
