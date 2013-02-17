@@ -70,7 +70,7 @@ module ApplicationHelper
     if @feed_title.present?
       @feed_title
     elsif @page_title.present?
-      "#{this_blog.blog_name} : #{@page_title}"
+      @page_title
     else
       this_blog.blog_name
     end
