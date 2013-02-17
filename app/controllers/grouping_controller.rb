@@ -15,25 +15,15 @@ class GroupingController < ContentController
   end
 
   def self.ivar_name
-    @ivar_name ||= "@#{to_s.sub(/Controller$/, '').underscore}"
+    @ivar_name ||= "@#{controller_name}"
   end
 
   def index
     self.groupings = grouping_class.page(params[:page]).per(100)
-    @page_title = "#{self.class.to_s.sub(/Controller$/,'')}"
+    @page_title = self.controller_name.capitalize
     @keywords = ""
     @description = "#{_(self.class.to_s.sub(/Controller$/,''))} #{'for'} #{this_blog.blog_name}"
     @description << "#{_('page')} #{params[:page]}" if params[:page]
-
-    respond_to do |format|
-      format.html do
-        unless template_exists? "#{grouping_name.downcase}/index"
-          @grouping_class = self.class.grouping_class
-          @groupings = groupings
-          render 'articles/groupings'
-        end
-      end
-    end
   end
 
   def show

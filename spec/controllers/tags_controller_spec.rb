@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe TagsController, "/index" do
-  render_views
-
   before do
-    FactoryGirl.create(:blog)
-    FactoryGirl.create(:tag).articles << FactoryGirl.create(:article)
+    create(:blog)
+    @tag = create(:tag)
+    @tag.articles << create(:article)
   end
 
   describe "normally" do
@@ -14,22 +13,8 @@ describe TagsController, "/index" do
     end
 
     specify { response.should be_success }
-    specify { response.should render_template('articles/groupings') }
-    specify { assigns(:groupings).should_not be_empty }
-    it "has a list of tags" do
-      response.body.should have_selector('ul.tags[id="taglist"]')
-    end
-  end
-
-  describe "if :index template exists" do
-    it "should render :index" do
-      pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?) \
-        .and_return(true)
-
-      get 'index'
-      response.should render_template(:index)
-    end
+    specify { response.should render_template('tags/index') }
+    specify { assigns(:tags).should =~ [@tag] }
   end
 end
 

@@ -3,10 +3,11 @@ require 'spec_helper'
 describe CategoriesController do
   describe "/index" do
     before do
-      FactoryGirl.create(:blog)
-      3.times {
-        category = FactoryGirl.create(:category)
-        2.times { category.articles << FactoryGirl.create(:article) }
+      create(:blog)
+      @categories = 3.times.map {
+        create(:category).tap { |category|
+          2.times { category.articles << FactoryGirl.create(:article) }
+        }
       }
     end
 
@@ -16,22 +17,8 @@ describe CategoriesController do
       end
 
       specify { response.should be_success }
-      specify { response.should render_template('articles/groupings') }
-      specify { assigns(:groupings).should_not be_empty }
-
-      describe "when rendered" do
-        render_views
-        specify { response.body.should have_selector('ul.categorylist') }
-      end
-    end
-
-    describe "if :index template exists" do
-      it "should render :index" do
-        pending "Stubbing #template_exists is not enough to fool Rails"
-        controller.stub!(:template_exists?).and_return(true)
-        do_get
-        response.should render_template(:index)
-      end
+      specify { response.should render_template('categories/index') }
+      specify { assigns(:categories).should =~ @categories }
     end
   end
 
