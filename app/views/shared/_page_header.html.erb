@@ -22,3 +22,5 @@
 <%= this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
 <%= google_analytics %>
 
+<%= meta_tag 'og:site_name', this_blog.blog_name %>
+<%= meta_tag 'og:title', @article ? @article.title : @page_title %>
