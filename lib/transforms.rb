@@ -60,11 +60,11 @@ class String
     s = s.gsub('%author%', item.name) if s =~ /(%author%)/ and item.respond_to? :name
     
     if s =~ /(%categories%)/ and item.respond_to? :categories
-      s = s.gsub('%categories%', article.categories.map { |c| c.name }.join(", "))
+      s = s.gsub('%categories%', item.categories.map { |c| c.name }.join(", "))
     end
 
     if s =~ /(%tags%)/ and item.respond_to? :tags
-      s = s.gsub('%tags%', article.tags.map { |t| t.display_name }.join(", "))
+      s = s.gsub('%tags%', item.tags.map { |t| t.display_name }.join(", "))
     end
 
     # Other
