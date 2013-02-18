@@ -196,7 +196,8 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Supprimer"
-  l.store "Currently this article has the following resources", "Les fichiers suivants sont actuellement liés à ce billet"
+  l.store "Resources attached to this article", "Les fichiers suivants sont actuellement liés à ce billet"
+  l.store "No resources are currently attached", "Aucun"
   l.store "You can associate the following resources", "Vous pouvez y lier les fichiers suivants"
   l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
   l.store "Add another attachment", "Ajouter une autre pièce jointe"

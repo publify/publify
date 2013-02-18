@@ -198,7 +198,8 @@ Localization.define("lt_LT") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Pašalinti"
-  l.store "Currently this article has the following resources", "Šiuo metu straipsnis turi šiuos resursus"
+  l.store "Resources attached to this article", "Šiuo metu straipsnis turi šiuos resursus"
+  l.store "No resources are currently attached", "Nė vienas"
   l.store "You can associate the following resources", "Jūs galite susieti su šiais resursais"
   l.store "Really delete attachment", "Ištrinti prikabintus failus"
   l.store "Add another attachment", "Prikabinti kitą failą"

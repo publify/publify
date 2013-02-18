@@ -198,7 +198,8 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Șterge"
-  l.store "Currently this article has the following resources", "Resursele disponibile acestui articol sînt"
+  l.store "Resources attached to this article", "Resursele disponibile acestui articol sînt"
+  l.store "No resources are currently attached", "Nici una"
   l.store "You can associate the following resources", "Puteți asocia următoarele resurse"
   l.store "Really delete attachment", "Ești sigur că dorești să ștergi atașamentul"
   l.store "Add another attachment", "Adaugă un nou atașament"

@@ -198,7 +198,8 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Löschen"
-  l.store "Currently this article has the following resources", "Aktuell sind folgende Ressourcen dem Artikel zugeordnet"
+  l.store "Resources attached to this article", "Aktuell sind folgende Ressourcen dem Artikel zugeordnet"
+  l.store "No resources are currently attached", "Keiner"
   l.store "You can associate the following resources", "Sie können folgende Ressourcen zuordnen"
   l.store "Really delete attachment", "Anhang wirklich löschen"
   l.store "Add another attachment", "Einen weiteren Anhang hinzufügen"

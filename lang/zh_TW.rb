@@ -198,7 +198,8 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "移除"
-  l.store "Currently this article has the following resources", ""
+  l.store "Resources attached to this article", ""
+  l.store "No resources are currently attached", "無"
   l.store "You can associate the following resources", "你可以連結下列資源"
   l.store "Really delete attachment", "確定刪除附件？"
   l.store "Add another attachment", "新增其他附件"
