@@ -3,50 +3,47 @@ require 'spec_helper'
 
 describe Admin::PagesController do
   render_views
-  
+
   before do
     @blog = FactoryGirl.create(:blog)
-    #TODO Delete after removing fixtures
-    Profile.delete_all
-    @henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
-    request.session = { :user => @henri.id }
+    @henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
+    request.session = { user: @henri.id }
   end
 
   describe '#index' do
     it 'should response success' do
       get :index
-      response.should be_success
-      assert_template 'index'
-      assert_not_nil assigns(:pages)
+      expect(response).to be_success
+      expect(response).to render_template('index')
+      expect(assigns(:pages)).to_not be_nil
     end
 
     it 'should response success with :page args' do
-      get :index, :page => 1
-      response.should be_success
-      assert_template 'index'
-      assert_not_nil assigns(:pages)
+      get :index, page: 1
+      expect(response).to be_success
+      expect(response).to render_template('index')
+      expect(assigns(:pages)).to_not be_nil
     end
 
   end
 
   describe "new" do
-    
     context "without page params" do
-      before(:each) do
-        get :new
-      end
-
       it "should render template new and has a page object" do
-        assert_response :success
-        assert_template "new"
-        assert_not_nil assigns(:page)
+        get :new
+        expect(response).to be_success
+        expect(response).to render_template("new")
+        expect(assigns(:page)).to_not be_nil
       end
 
       it "should assign to current user" do
-        assert_equal @henri, assigns(:page).user
+        get :new
+        expect(assigns(:page).user).to eq(@henri)
       end
 
       it "should have a text filter" do
+        get :new
+        expect(TextFilter.find_by_name(@blog.text_filter)).to_not be_nil
         assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
       end
     end
