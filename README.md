@@ -299,8 +299,8 @@ the great things Typo can provide.
 
 <a name="advancedthemecreation"></a>
 
-Advanced theme cration
-----------------------
+Advanced theme creation
+-----------------------
 
 Typo offers custom post type. Let’s say you blog about tech and wine,
 and want to display wine posts differently. You upload an attached
@@ -401,7 +401,7 @@ Create some folders to reflect a Rails application tree:
 
 ### Make your code accessible
 
-Mmake Typo access your code. Edit your `init.rb` file and add the
+Make Typo access your code. Edit your `init.rb` file and add the
 following:
 
     PLUGIN_NAME = 'typo_sample_plugin'
