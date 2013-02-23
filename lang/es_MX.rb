@@ -589,13 +589,9 @@ Localization.define("es_MX") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
-  l.store "Choose theme", ""
   l.store "Active theme", "Tema activo"
-  l.store "Get more themes", ""
-  l.store "You can download third party themes from officially supported %s ", ""
-  l.store "Typogarden", ""
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", ""
   l.store "Choose a theme", "Escoge un tema"
+  l.store "Use this theme", ""
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
