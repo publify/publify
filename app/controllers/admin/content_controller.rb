@@ -38,9 +38,46 @@ class Admin::ContentController < Admin::BaseController
     @macros = TextFilter.macro_filters
   end
 
-  # FIXME: Separate from new
   def create
-    new_or_create
+    # TODO: Add tests for the case where this non-nil (i.e., after an earlier autosave).
+    id = params[:article][:id]
+    @article = Article.get_or_build_article(id)
+    @article.text_filter ||= default_textfilter
+
+    if params[:article][:draft]
+      get_fresh_or_existing_draft_for_article
+    else
+      if not @article.parent_id.nil?
+        @article = Article.find(@article.parent_id)
+      end
+    end
+
+    @article.keywords = Tag.collection_to_string @article.tags
+    @article.attributes = params[:article]
+    @article.published_at = parse_date_time params[:article][:published_at]
+    @article.set_author(current_user)
+    @article.save_attachments!(params[:attachments])
+    @article.state = "draft" if @article.draft
+
+    if @article.save
+      unless @article.draft
+        Article.where(parent_id: @article.id).map(&:destroy)
+      end
+      @article.categorizations.clear
+      if params[:categories]
+        Category.find(params[:categories]).each do |cat|
+          @article.categories << cat
+        end
+      end
+      set_the_flash
+      redirect_to :action => 'index'
+    else
+      @post_types = PostType.find(:all)
+      @images = Resource.images_by_created_at.page(params[:page]).per(10)
+      @resources = Resource.without_images_by_filename
+      @macros = TextFilter.macro_filters
+      render 'new'
+    end
   end
 
   # FIXME: Separate from update
@@ -163,57 +200,6 @@ class Admin::ContentController < Admin::BaseController
 
   attr_accessor :resources, :categories, :resource, :category
 
-  def new_or_create
-    id = params[:id]
-    id = params[:article][:id] if params[:article] && params[:article][:id]
-    @article = Article.get_or_build_article(id)
-    @article.text_filter ||= default_textfilter
-
-    @post_types = PostType.find(:all)
-    if request.post?
-      if params[:article][:draft]
-        get_fresh_or_existing_draft_for_article
-      else
-        if not @article.parent_id.nil?
-          @article = Article.find(@article.parent_id)
-        end
-      end
-    end
-
-    @article.keywords = Tag.collection_to_string @article.tags
-    @article.attributes = params[:article]
-    # TODO: Consider refactoring, because double rescue looks... weird.
-
-    @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue Time.parse(params[:article][:published_at]).utc rescue nil
-
-    if request.post?
-      @article.set_author(current_user)
-
-      @article.save_attachments!(params[:attachments])
-      @article.state = "draft" if @article.draft
-
-      if @article.save
-        unless @article.draft
-          Article.where(parent_id: @article.id).map(&:destroy)
-        end
-        @article.categorizations.clear
-        if params[:categories]
-          Category.find(params[:categories]).each do |cat|
-            @article.categories << cat
-          end
-        end
-        set_the_flash
-        redirect_to :action => 'index'
-        return
-      end
-    end
-
-    @images = Resource.images_by_created_at.page(params[:page]).per(10)
-    @resources = Resource.without_images_by_filename
-    @macros = TextFilter.macro_filters
-    render 'new'
-  end
-
   def edit_or_update
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
@@ -290,9 +276,7 @@ class Admin::ContentController < Admin::BaseController
     begin
       DateTime.strptime(str, "%B %e, %Y %I:%M %p GMT%z").utc
     rescue
-      Time.parse(str).utc
-    rescue
-      nil
+      Time.parse(str).utc rescue nil
     end
   end
 end
