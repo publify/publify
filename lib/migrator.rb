@@ -25,12 +25,12 @@ module Migrator
 
   def self.migrations_available
     path = File.expand_path("db/migrate")
-  	migrator = ActiveRecord::Migrator.new(:up, path)
-  	if migrator.pending_migrations.size > 0
-  		true
-  	end
+    migrator = ActiveRecord::Migrator.new(:up, path)
+    if migrator.pending_migrations.size > 0
+      true
+    end
   end
-  
+
   def self.max_schema_version
     available_migrations.last.gsub(migrations_path,"").split('_').first.tr('^0-9','').to_i
   end
