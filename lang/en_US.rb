@@ -8,10 +8,11 @@ Localization.define('en_US') do |l|
   l.store "he_IL", "Hebrew"
   l.store "it_IT", "Italian"
   l.store "ja_JP", "Japanese"
-  l.store "lt_LT", "Lituanian"
+  l.store "lt_LT", "Lithuanian"
   l.store "nb_NO", "Norwegian"
   l.store "nl_NL", "Nederland"
   l.store "pl_PL", "Polish"
   l.store "ro_RO", "Romanian"
   l.store "zh_TW", "Chinese"
+  l.store "zh_CN", "Simple Chinese"
 end

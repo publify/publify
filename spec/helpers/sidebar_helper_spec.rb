@@ -10,7 +10,7 @@ end
 
 describe SidebarHelper do
   before do
-    @blog = Factory(:blog)
+    @blog = FactoryGirl.create(:blog)
   end
 
   def content_array

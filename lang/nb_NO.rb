@@ -42,6 +42,8 @@ Localization.define("nb_NO") do |l|
   l.store "Article was successfully updated.", "Artikkel oppdatert"
 
   # app/controllers/admin/dashboard_controller.rb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Typo. Du bør oppgradere snarest. Last ned og installer %s"
   l.store "the latest Typo version", "den siste versjonan av Typo"
   l.store "There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Typo som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"
@@ -123,6 +125,9 @@ Localization.define("nb_NO") do |l|
   l.store "Are you sure?", "Er du sikker?"
   l.store "none", "ingen"
   l.store "Please select", "Vennligst velg"
+  l.store "All categories", "Alle kategorier"
+  l.store "All authors", "Alle forfatterne"
+  l.store "All published dates", "Alle datoer"
   l.store "There are no %s yet. Why don't you start and create one?", "Det finnes ingen %s enda. Hva med å opprette en?"
   l.store "or", "eller"
   l.store "Save", "Lagre"
@@ -177,12 +182,14 @@ Localization.define("nb_NO") do |l|
   l.store "Spam", "Spam"
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "Login", "Logg inn"
   l.store "Password", "Passord"
   l.store "Remember me", "Husk meg"
   l.store "Submit", "Send inn"
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", "Brukernavn eller epost"
   l.store "Reset my password", "Nullstill passordet mitt"
 
@@ -192,7 +199,7 @@ Localization.define("nb_NO") do |l|
   l.store "Signup", "Registrer"
 
   # app/views/admin/cache/index.html.erb
-  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache by yourself", 
+  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", 
   "For å lagre resurser cacher Typo innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
   l.store "There are currently %d files in cache for a total amount of %d Kb", "Det finnes for øyeblikket %d filer i cachen som utgjør totalt %d kB"
   l.store "Sweep cache", ""
@@ -221,7 +228,7 @@ Localization.define("nb_NO") do |l|
   l.store "Currently this article has the following resources", "Artiklen har følgende ressourser"
   l.store "You can associate the following resources", "Du kan koble til følgende ressourser"
   l.store "Really delete attachment", "Vil du virkelig slette vedlagt fil"
-  l.store "Add Another Attachment", "Vedlegg enda en fil"
+  l.store "Add another attachment", "Vedlegg enda en fil"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", "Utkast"
@@ -233,14 +240,25 @@ Localization.define("nb_NO") do |l|
   l.store "Password:", "Passord"
   l.store "Publish", "Publiser"
   l.store "Tags", "Tags"
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "Utdrag"
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
   l.store "Uploads", "Opplastede filer"
   l.store "Post settings", "Postinnstillinger"
   l.store "Publish at", "Offentliggjort den"
   l.store "Article filter", "artikkelfilter"
   l.store "Save as draft", "Lagre som utkast"
-
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
+  
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
@@ -254,6 +272,9 @@ Localization.define("nb_NO") do |l|
   l.store "Date", "Dato"
   l.store "Feedback", "Diskusjon"
   l.store "Manage articles", "Administrer artikler"
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Siste kommentarer"
@@ -393,6 +414,7 @@ Localization.define("nb_NO") do |l|
   l.store "Medium size", "Mellomstor"
   l.store "Original size", "Opprinnelig størrelse"
   l.store "right-click for link", "høyreklikk for lenke"
+  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "General settings", "Generelle innstillinger"
@@ -409,7 +431,7 @@ Localization.define("nb_NO") do |l|
   l.store "Robots.txt", "Robots.txt"
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Din robots.txt er ikke skrivbar. Typo vil ikke kunne skrive til den"
   l.store "Use dofollow in comments", "Bruk dofollow i kommentarer"
-  l.store "Maybe you want to moderate feedbacks when turning this on", "Kanskje du ønsker å moderere feedbacks når du slår på denne"
+  l.store "You may want to moderate feedback when turning this on", "Kanskje du ønsker å moderere feedbacks når du slår på denne"
   l.store "Use canonical URL", "Bruk kanonisk URL"
   l.store "Read more about %s", "Les mer om %s"
   l.store "Google", ""
@@ -417,7 +439,8 @@ Localization.define("nb_NO") do |l|
   l.store "Google Webmaster Tools validation link", ""
   l.store "Global settings", "Globale innstillinger"
   l.store "This will display", "Dette vil vise"
-  l.store "at the bottom of each of your post in the RSS feed", "på bunnen av hver artikkel i RSS-feeden"
+  l.store "at the bottom of each post in the RSS feed", "på bunnen av hver artikkel i RSS-feeden"
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Format of permalink", "Permalinkformat"
@@ -428,6 +451,7 @@ Localization.define("nb_NO") do |l|
   l.store "your article month of publication.", "din artikkels publiseringmåned"
   l.store "your article day of publication.", "din artikkels publiseringsdag"
   l.store "Permalinks", "Permalenker"
+  l.store "Custom", ""
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", "Tittelinnstillinger"
@@ -452,14 +476,15 @@ Localization.define("nb_NO") do |l|
   l.store "Titles", "Titler"
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback-moderering"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Du kan aktivere feedback-moderering for hele siden. Dersom du gjør det vil ingen kommentarer eller trackbacks vises på bloggen din uten at du har godkjent dem"
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "Du kan aktivere feedback-moderering for hele siden. Dersom du gjør det vil ingen kommentarer eller trackbacks vises på bloggen din uten at du har godkjent dem"
   l.store "Comments filter", "Kommentarfilter"
   l.store "Avatars provider", "Avatartilbyder"
   l.store "Show your email address", "Vis din epostadresse"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots"
   l.store "Enable spam protection", "Aktiver Spam-beskyttelse"
   l.store "Akismet Key", "Akismet-nøkkel"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here"
@@ -515,8 +540,8 @@ Localization.define("nb_NO") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du publiserer artikler kan Typo sende trackbacks til de hjemmesider du lenker til. Dette bør deaktiveres for private blogger da det ellers kan lekke privat informasjion til hjemmesider du diskuterer. For offentlige blogger, er det ingen reell mening i å deaktivere dette."
   l.store "URLs to ping automatically", "Nettadresser som skal pinges automatisk"
   l.store "Latitude, Longitude", "Breddegrad, lengdegrad"
-  l.store "your lattitude and longitude", "din breddegrad og lengdegrad"
-  l.store "exemple", "for eksempel"
+  l.store "your latitude and longitude", "din breddegrad og lengdegrad"
+  l.store "example", "for eksempel"
   l.store "Media", ""
   l.store "Image thumbnail size", "Liten bildestørrelse"
   l.store "Image medium size", "Mellomstor bildestørrelse"
@@ -529,13 +554,28 @@ Localization.define("nb_NO") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Dra og slipp plugins hit for å populere sidebar"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
   l.store "Available Items", "Tilgjengelige enheter"
   l.store "You have no plugins installed", "Du har ikke installert noen plugins"
   l.store "Active Sidebar items", "Aktive sidebar-enheter"
   l.store "Get more plugins", "Hent flere plugins"
   l.store "Sidebar", ""
   l.store "Publish changes", "Publiser endringer"
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", "Er du sikker på at du vil slette denne taggen"
@@ -558,6 +598,7 @@ Localization.define("nb_NO") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "Aktivt tema"
   l.store "Chose this theme", "Velg dette temaet"
   l.store "Get more themes", "Hent flere temaer"
@@ -573,7 +614,7 @@ Localization.define("nb_NO") do |l|
   l.store "User's status", "Brukerens status"
   l.store "Active", "Aktiv"
   l.store "Inactive", "Inaktiv"
-  l.store "Profile Settings", "Profilinnstillinger"
+  l.store "Profile settings", "Profilinnstillinger"
   l.store "Firstname", "Fornavn"
   l.store "Lastname", "Etternavn"
   l.store "Nickname", "Nick"
@@ -584,9 +625,9 @@ Localization.define("nb_NO") do |l|
   l.store "Send notification messages via email", "Send beskjeder via epost"
   l.store "Send notification messages when new articles are posted", "Send beskjeder når nye artikler blir publisert"
   l.store "Send notification messages when comments are posted", "Send beskjeder når det kommer nye kommentarer"
-  l.store "Contact Options", "Kontaktinformasjon"
+  l.store "Contact options", "Kontaktinformasjon"
   l.store "Your site", "Din hjemmeside"
-  l.store "display url on public profile", "Vis hjemmeside på din profil"
+  l.store "display URL on public profile", "Vis hjemmeside på din profil"
   l.store "Your MSN", "Din MSN ID"
   l.store "display MSN ID on public profile", "Vis din MSN ID på din profil"
   l.store "Your Yahoo ID", "Din Yahoo ID"
@@ -596,7 +637,7 @@ Localization.define("nb_NO") do |l|
   l.store "Your AIM id", "Dit AIM ID"
   l.store "display AIM ID on public profile", "Vis dit AIM ID på din profil"
   l.store "Your Twitter username", "Ditt Twitter-brukernavn"
-  l.store "display twitter on public profile", "Vis Twitter på din profil"
+  l.store "display Twitter on public profile", "Vis Twitter på din profil"
   l.store "Tell us more about you", "Fortell litt mer om deg selv"
 
   # app/views/admin/users/destroy.html.erb
@@ -612,6 +653,7 @@ Localization.define("nb_NO") do |l|
   l.store "Comments", "Kommentarer"
   l.store "State", "Tilstand"
   l.store "%s user", "% bruker"
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Legg til bruker"
@@ -653,6 +695,7 @@ Localization.define("nb_NO") do |l|
   l.store "RSS feed for this post", "RSS-feed for denne artikkel"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Website:", "Hjemmeside:"
@@ -672,7 +715,13 @@ Localization.define("nb_NO") do |l|
   l.store "This comment has been flagged for moderator approval.", "Denne kommentaren har blitt flagget for godkjenning av moderator."
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""
+  l.store "Help", ""
+  l.store "Documentation", ""
+  l.store "Report a bug", ""
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", "bruker med stolthet"
   l.store "Dashboard", ""
 
@@ -681,7 +730,7 @@ Localization.define("nb_NO") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Typo ta seg av resten"
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", "Gratulerer!"
+  l.store "Congratulations!", "Gratulerer!"
   l.store "You have successfully signed up", "Du er nå registrert"
   l.store "<strong>Login:</strong> %s", "<strong>Logg inn:</strong> %s"
   l.store "<strong>Password:</strong> %s", "<strong>Passord:</strong> %s"

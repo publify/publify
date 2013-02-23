@@ -1,0 +1,22 @@
+<% @page_heading = _('Error messages') %>
+<%= form_tag :action => 'update' do %>
+
+<fieldset class='form-horizontal'>
+  <legend><%= _("Error 404")%></legend>
+    <div class='control-group'>
+      <label class='control-label' for="setting_title_error_404"><%= _("Title")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :title_error_404, { :class => 'span6'})%>
+      </div>
+    </div>
+    <div class='control-group'>
+      <label class='control-label' for="setting_msg_error_404"><%= _("Message")%></label>
+      <div class='controls'>
+        <%= text_area(:setting, :msg_error_404, :rows => 4, :class => 'span6') %>
+      </div>
+    </div>
+</fieldset>
+
+<%= hidden_field_tag 'from', 'errors' %>
+<%= save_settings %>
+<% end %>

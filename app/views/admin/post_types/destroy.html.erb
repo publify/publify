@@ -1,9 +1,0 @@
-<% @page_heading = _('Article Types') %>
-<% content_for(:tasks) do %>
-  <%= task_overview %>
-<% end %>
-
-<p><%= _("Are you sure you want to delete the Article Type ")%> '<%= @pt.name %>'?</p>
-<%= form_tag :action => "destroy", :id => @pt.id do %>
-<%= confirm_delete(_("Delete this Post Type")) %>
-<% end %>

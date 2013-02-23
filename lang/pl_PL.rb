@@ -92,6 +92,9 @@ Localization.define("pl_PL") do |l|
   l.store "Delete content", ""
   l.store "Are you sure?", ""
   l.store "Please select", ""
+  l.store "All categories", "Wszystkie kategorie"
+  l.store "All authors", "Wszystkie autorzy"
+  l.store "All published dates", "Wszystkie daty"
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "or", "lub"
   l.store "Save", "Zapisz"
@@ -156,6 +159,7 @@ Localization.define("pl_PL") do |l|
   l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "I've lost my password", ""
   l.store "Login", "Login"
   l.store "Password", "Hasło"
@@ -164,6 +168,7 @@ Localization.define("pl_PL") do |l|
   l.store "Back to ", ""
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb
@@ -199,7 +204,7 @@ Localization.define("pl_PL") do |l|
   l.store "Currently this article has the following resources", "Artykuł ma dołączone następujące zasoby"
   l.store "You can associate the following resources", "Możesz przypisać do artykułu następujące zasoby"
   l.store "Really delete attachment", "Na pewno skasować?"
-  l.store "Add Another Attachment", "Dodaj kolejny załącznik"
+  l.store "Add another attachment", "Dodaj kolejny załącznik"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -210,14 +215,26 @@ Localization.define("pl_PL") do |l|
   l.store "Allow trackbacks", "Zezwól na podawanie trackbacków"
   l.store "Password:", ""
   l.store "Publish", "Publikuj"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "Załadowane zasoby"
   l.store "Post settings", ""
   l.store "Publish at", "Opublikowane dnia"
   l.store "Permalink", "Permalink"
   l.store "Article filter", "Filtr artykułów"
   l.store "Save as draft", ""
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
@@ -233,8 +250,13 @@ Localization.define("pl_PL") do |l|
   l.store "Feedback", "Komentarze"
   l.store "Filter", ""
   l.store "Manage articles", ""
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Ostatnie komentarze"
   l.store "No comments yet", "Brak komentarzy"
   l.store "By %s on %s", "Przez %s odnośnie %s"
@@ -348,15 +370,91 @@ Localization.define("pl_PL") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "Nazwa pliku"
+  l.store "Browse", ""
+
+  # app/views/admin/seo/index.html.erb
+  l.store "SEO", ""
+  l.store "Global SEO settings", ""
+  l.store "Titles", ""
+  l.store "General settings", ""
+  l.store "Use meta keywords", ""
+  l.store "Meta description", ""
+  l.store "Meta keywords", ""
+  l.store "Use RSS description", ""
+  l.store "RSS description message", ""
+  l.store "Indexing", ""
+  l.store "Do not index categories", ""
+  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Do not index tags", ""
+  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Robots.txt", ""
+  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "Use dofollow in comments", ""
+  l.store "You may want to moderate feedback when turning this on", ""
+  l.store "Use canonical URL", ""
+  l.store "Read more about %s", ""
+  l.store "Google", ""
+  l.store "Google Analytics", ""
+  l.store "Google Webmaster Tools validation link", ""
+  l.store "Custom tracking code", ""
+  l.store "Global settings", ""
+  l.store "This will display", ""
+  l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+
+  # app/views/admin/seo/permalinks.html.erb
+  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
+  l.store "Here are some examples to get you started.", ""
+  l.store "Permalink format", ""
+  l.store "Date and title", ""
+  l.store "Month and title", ""
+  l.store "Title only", ""
+  l.store "You can custom your URL structure using the following tags:", ""
+  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
+  l.store "your article year of publication.", ""
+  l.store "your article month of publication.", ""
+  l.store "your article day of publication.", ""
+  l.store "Permalinks", ""
+  l.store "Custom", ""
+
+  # app/views/admin/seo/titles.html.erb
+  l.store "Title settings", ""
+  l.store "Home", ""
+  l.store "Title template", ""
+  l.store "Description template", ""
+  l.store "Articles", ""
+  l.store "Pages", ""
+  l.store "Paginated archives", ""
+  l.store "Dated archives", ""
+  l.store "Author page", ""
+  l.store "Search results", ""
+  l.store "Help on title settings", ""
+  l.store "Replaced with the title of the article/page", ""
+  l.store "The blog's name", ""
+  l.store "The blog's tagline / description", ""
+  l.store "Replaced with the post/page excerpt", ""
+  l.store "Replaced with the article tags (comma separated)", ""
+  l.store "Replaced with the article categories (comma separated)", ""
+  l.store "Replaced with the article/page title", ""
+  l.store "Replaced with the category/tag name", ""
+  l.store "Replaced with the current search phrase", ""
+  l.store "Replaced with the current time", ""
+  l.store "Replaced with the current date", ""
+  l.store "Replaced with the current month", ""
+  l.store "Replaced with the current year", ""
+  l.store "Replaced with the current page number", ""
+  l.store "Replaced by the archive date", ""
+  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "Komentarze domyślnie włączone"
   l.store "Enable Trackbacks by default", "Trackbacki domyślnie włączone"
   l.store "Enable feedback moderation", "Włącz moderację komentarzy"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Możesz włączyć globalną moderację komentarzy. W takim przypadku żaden komentarz nie ukaże się na blogu aż do momentu jego akceptacji."
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "Możesz włączyć globalną moderację komentarzy. W takim przypadku żaden komentarz nie ukaże się na blogu aż do momentu jego akceptacji."
   l.store "Comments filter", "Filtr komentarzy"
   l.store "Enable gravatars", "Włącz gravatary"
   l.store "Show your email address", "Pokaż swój adres email"
@@ -364,7 +462,7 @@ Localization.define("pl_PL") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo może wysyłać powiadomienia o nowych artykułach bądź komentarzach"
   l.store "Source Email", "Źródłowy adres email"
   l.store "Email address used by Typo to send notifications", "Adres email używany przez Typo do wysyłania powiadomień"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Włączenie ochrony przed spamem sprawi, iż Typo będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami."
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Włączenie ochrony przed spamem sprawi, iż Typo będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami."
   l.store "Enable spam protection", "Włącz ochronę przed spamem"
   l.store "Akismet Key", "Klucz Akismet"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo może (opcjonalnie) stosować usługę %s do filtrowania spamu. Musisz zarejestrować się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj"
@@ -412,7 +510,8 @@ Localization.define("pl_PL") do |l|
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
-  l.store "at the bottom of each of your post in the RSS feed", ""
+  l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informacja"
@@ -432,8 +531,8 @@ Localization.define("pl_PL") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publikując artykuły, Typo może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu."
   l.store "URLs to ping automatically", "Automatycznie pingowane łącza"
   l.store "Latitude, Longitude", "Szerokość geogr., długość geogr."
-  l.store "your lattitude and longitude", "Twoją szerokość i długość geograficzna"
-  l.store "exemple", "na przykład"
+  l.store "your latitude and longitude", "Twoją szerokość i długość geograficzna"
+  l.store "example", "na przykład"
   l.store "Write", "Pisanie"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -446,12 +545,27 @@ Localization.define("pl_PL") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Przeciągnij i upuść wtyczki na pasek boczny"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
   l.store "Available Items", "Dostępne elementy"
   l.store "Active Sidebar items", "Aktywne elementy paska"
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Publikuj zmiany"
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Wyświetlana nazwa"
@@ -476,6 +590,7 @@ Localization.define("pl_PL") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "Temat aktywny"
   l.store "Get more themes", ""
   l.store "You can download third party themes from officially supported %s ", ""
@@ -490,7 +605,7 @@ Localization.define("pl_PL") do |l|
   l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
-  l.store "Profile Settings", ""
+  l.store "Profile settings", ""
   l.store "Firstname", ""
   l.store "Lastname", ""
   l.store "Nickname", ""
@@ -500,9 +615,9 @@ Localization.define("pl_PL") do |l|
   l.store "Send notification messages via email", "Wysyłaj powiadomienia emailem"
   l.store "Send notification messages when new articles are posted", "Wysyłaj powiadomienia o nowych artykułach"
   l.store "Send notification messages when comments are posted", "Wysyłaj powiadomienia o nowych komentarzach"
-  l.store "Contact Options", ""
+  l.store "Contact options", ""
   l.store "Your site", ""
-  l.store "display url on public profile", ""
+  l.store "display URL on public profile", ""
   l.store "Your MSN", ""
   l.store "display MSN ID on public profile", ""
   l.store "Your Yahoo ID", ""
@@ -512,7 +627,7 @@ Localization.define("pl_PL") do |l|
   l.store "Your AIM id", ""
   l.store "display AIM ID on public profile", ""
   l.store "Your Twitter username", ""
-  l.store "display twitter on public profile", ""
+  l.store "display Twitter on public profile", ""
   l.store "Tell us more about you", ""
 
   # app/views/admin/users/destroy.html.erb
@@ -528,6 +643,7 @@ Localization.define("pl_PL") do |l|
   l.store "Comments", ""
   l.store "State", ""
   l.store "%s user", ""
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
@@ -571,6 +687,7 @@ Localization.define("pl_PL") do |l|
   l.store "RSS feed for this post", "Subskrypcja RSS dla tego wpisu"
   l.store "trackback uri", "Adres trackback"
   l.store "Comments are disabled", "Komentarze wyłączone"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""
@@ -586,7 +703,13 @@ Localization.define("pl_PL") do |l|
   l.store "This comment has been flagged for moderator approval.", ""
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""
+  l.store "Help", "Pomocy"
+  l.store "Documentation", ""
+  l.store "Report a bug", ""
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", "dumnie działa na"
   l.store "Dashboard", "Podsumowanie"
 
@@ -595,7 +718,7 @@ Localization.define("pl_PL") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", ""
+  l.store "Congratulations!", ""
   l.store "You have successfully signed up", ""
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""

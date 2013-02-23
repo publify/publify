@@ -1,0 +1,15 @@
+<div id="article-<%= article.id %>">
+  <h2 class='page-header'><%= link_to_permalink(article,article.title) %></h2>
+  <%= render 'articles/protected_article_content', { :article => article } %>
+  <div class='meta'>
+    <p>
+      <small><%= _("Published on") %>
+        <%= display_date_and_time(article.published_at) %>
+        <%= category_links(article, _("under")) unless article.categories.empty? %>.
+        <%= tag_links(article) unless article.tags.empty? %></small>
+      </p>
+    </div>
+  <div class='comments'>
+    <%= display_comments_counter(article) %>
+  </div>
+</div>

@@ -5,10 +5,10 @@ describe Admin::TextfiltersController do
 
   describe 'macro help action' do
     it 'should render success' do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       #TODO Delete after removing fixtures
       Profile.delete_all
-      henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => henri.id }
       get 'macro_help', :id => 'code'
       response.should be_success

@@ -3,7 +3,6 @@ config/mail.yml
 *.log
 *~
 db/*.sqlite*
-db/schema.rb
 .*.swp
 .*.swo
 .DS_Store
@@ -22,3 +21,6 @@ tmp/*
 nbproject
 public/cache/*
 Gemfile.lock
+.rbenv-version
+bin/
+.bundle/

@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe 'Given a new blog' do
   before(:each) do
-    Blog.delete_all
     @blog = Blog.new
   end
   
@@ -75,8 +74,8 @@ describe 'Given a new blog' do
     @blog.should_not be_hide_extended_on_rss
   end
 
-  it '#theme should be "True Blue 3"' do
-    @blog.theme.should == 'true-blue-3'
+  it '#theme should be "Bootstrap"' do
+    @blog.theme.should == 'bootstrap'
   end
 
   it 'should not use any avatar plugin' do
@@ -237,11 +236,17 @@ describe 'Given a new blog' do
     @blog.custom_tracking_field.should == ''
   end
 
+  it '404 title should be page not found' do
+    @blog.title_error_404.should == "Page not found"
+  end
+  
+  it '404 text should be "The page you are looking for has moved or does not exist"' do
+    @blog.msg_error_404.should == "<p>The page you are looking for has moved or does not exist.</p>"
+  end
 end
 
 describe 'Given a new user' do
   before(:each) do
-    User.delete_all
     @user = User.new
   end
 
@@ -316,11 +321,14 @@ describe 'Given a new user' do
   it 'Jabber display in user profile is not enabled' do
     @user.should_not be_show_jabber
   end
+  
+  it 'Admin theme should be blue' do
+    @user.admin_theme.should == 'blue'
+  end  
 end
 
 describe 'Given a new article' do
   before(:each) do
-    Article.delete_all
     @article = Article.new
   end
 
@@ -331,7 +339,6 @@ end
 
 describe 'Given a new page' do
   before(:each) do
-    Page.delete_all
     @page = Page.new
   end
 

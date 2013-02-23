@@ -1,6 +1,4 @@
 class Admin::CategoriesController < Admin::BaseController
-  layout 'administration'
-
   cache_sweeper :blog_sweeper
 
   def index; redirect_to :action => 'new' ; end
@@ -16,31 +14,11 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    @category = Category.find(params[:id])
-    if request.post?
-      @category.destroy
-      redirect_to :action => 'index'
-    end
-  end
+    @record = Category.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
 
-  def order
-    Category.reorder(params[:category_list])
-    render :nothing => true
-  end
-
-  def asort
-    Category.reorder_alpha
-    category_container
-  end
-
-  def category_container
-    @categories = Category.find(:all, :order => :position)
-    render :partial => "categories"
-  end
-
-  def reorder
-    @categories = Category.find(:all, :order => :position)
-    render :layout => false
+    @record.destroy
+    redirect_to :action => 'new'
   end
 
   private
@@ -75,7 +53,7 @@ class Admin::CategoriesController < Admin::BaseController
     else
       flash[:error] = _('Category could not be saved.')
     end
-    redirect_to :action => 'index'
+    redirect_to :action => 'new'
   end
 
 end

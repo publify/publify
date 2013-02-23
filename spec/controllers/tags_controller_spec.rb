@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe TagsController, "/index" do
-  render_views
-
   before do
-    Factory(:blog)
-    Factory(:tag).articles << Factory(:article)
+    create(:blog)
+    @tag = create(:tag)
+    @tag.articles << create(:article)
   end
 
   describe "normally" do
@@ -14,27 +13,15 @@ describe TagsController, "/index" do
     end
 
     specify { response.should be_success }
-    specify { response.should render_template('articles/groupings') }
-    specify { assigns(:groupings).should_not be_empty }
-    specify { response.body.should have_selector('ul.tags[id="taglist"]') }
-  end
-
-  describe "if :index template exists" do
-    it "should render :index" do
-      pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?) \
-        .and_return(true)
-
-      get 'index'
-      response.should render_template(:index)
-    end
+    specify { response.should render_template('tags/index') }
+    specify { assigns(:tags).should =~ [@tag] }
   end
 end
 
 describe TagsController, 'showing a single tag' do
   before do
-    Factory(:blog)
-    @tag = Factory(:tag, :name => 'Foo')
+    FactoryGirl.create(:blog)
+    @tag = FactoryGirl.create(:tag, :name => 'Foo')
   end
 
   def do_get
@@ -43,7 +30,7 @@ describe TagsController, 'showing a single tag' do
 
   describe "with some articles" do
     before do
-      @articles = 2.times.map { Factory(:article) }
+      @articles = 2.times.map { FactoryGirl.create(:article) }
       @tag.articles << @articles
     end
 
@@ -105,9 +92,9 @@ describe TagsController, 'showing tag "foo"' do
   render_views
 
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO need to add default article into tag_factory build to remove this :articles =>...
-    foo = Factory(:tag, :name => 'foo', :articles => [Factory(:article)])
+    foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [FactoryGirl.create(:article)])
     get 'show', :id => 'foo'
   end
 
@@ -127,7 +114,7 @@ end
 describe TagsController, "showing a non-existant tag" do
   # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should redirect to main page' do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     get 'show', :id => 'thistagdoesnotexist'
 
     response.status.should == 301
@@ -139,10 +126,10 @@ describe TagsController, "password protected article" do
   render_views
 
   it 'article in tag should be password protected' do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO need to add default article into tag_factory build to remove this :articles =>...
-    a = Factory(:article, :password => 'password')
-    foo = Factory(:tag, :name => 'foo', :articles => [a])
+    a = FactoryGirl.create(:article, :password => 'password')
+    foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [a])
     get 'show', :id => 'foo'
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
@@ -150,59 +137,24 @@ describe TagsController, "password protected article" do
 end
 
 describe TagsController, "SEO Options" do
-  render_views
-  
   before(:each) do 
-    @blog = Factory(:blog)
-    @a = Factory(:article)
-    @foo = Factory(:tag, :name => 'foo', :articles => [@a])
-  end
-  
-  it 'should have rel nofollow' do
-    @blog.unindex_tags = true
-    @blog.save
-    
-    get 'show', :id => 'foo'
-    response.should have_selector('head>meta[content="noindex, follow"]')
+    @blog = FactoryGirl.create(:blog)
+    @a = FactoryGirl.create(:article)
+    @foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [@a])
   end
 
-  it 'should not have rel nofollow' do
-    @blog.unindex_tags = false
-    @blog.save
-    
-    get 'show', :id => 'foo'
-    response.should_not have_selector('head>meta[content="noindex, follow"]')
-  end
-  # meta_keywords
-  
-  it 'should not have meta keywords with deactivated option and no blog keywords' do
-    @blog.use_meta_keyword = false
-    @blog.save
-    get 'show', :id => 'foo'
-    response.should_not have_selector('head>meta[name="keywords"]')
-  end
+  describe "keywords" do
+    it 'does not assign keywords when the blog has no keywords' do
+      get 'show', :id => 'foo'
 
-  it 'should not have meta keywords with deactivated option and blog keywords' do
-    @blog.use_meta_keyword = false
-    @blog.meta_keywords = "foo, bar, some, keyword"
-    @blog.save
-    get 'show', :id => 'foo'
-    response.should_not have_selector('head>meta[name="keywords"]')
-  end
+      assigns(:keywords).should eq ""
+    end
 
-  it 'should not have meta keywords with activated option and no blog keywords' do
-    @blog.use_meta_keyword = true
-    @blog.save
-    get 'show', :id => 'foo'
-    response.should_not have_selector('head>meta[name="keywords"]')
+    it "assigns the blog's keywords if present" do
+      @blog.meta_keywords = "foo, bar"
+      @blog.save
+      get 'show', :id => 'foo'
+      assigns(:keywords).should eq "foo, bar"
+    end
   end
-
-  it 'should have meta keywords with activated option and blog keywords' do
-    @blog.use_meta_keyword = true
-    @blog.meta_keywords = "foo, bar, some, keyword"
-    @blog.save
-    get 'show', :id => 'foo'
-    response.should have_selector('head>meta[name="keywords"]')
-  end
-
 end

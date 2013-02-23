@@ -9,8 +9,9 @@ describe "shared/_atom_header.atom.builder" do
     before do
       @xml = ::Builder::XmlMarkup.new
       @xml.foo do
-        render :partial => "shared/atom_header.atom.builder",
-          :locals => { :feed => @xml, :items => [] }
+        render partial: "shared/atom_header",
+          formats: [:atom], handlers: [:builder],
+          locals: { feed: @xml, items: [] }
       end
     end
 
@@ -23,5 +24,3 @@ describe "shared/_atom_header.atom.builder" do
     end
   end
 end
-
-

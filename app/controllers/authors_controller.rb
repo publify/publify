@@ -4,17 +4,18 @@ class AuthorsController < ContentController
   def show
     @author = User.find_by_login(params[:id])
     raise ActiveRecord::RecordNotFound unless @author
-    @articles = @author.published_articles
+    @articles = @author.articles.published
     @page_title = this_blog.author_title_template.to_title(@author, this_blog, params)
-    @keywords = (this_blog.meta_keywords.empty?) ? "" : this_blog.meta_keywords
+    @keywords = this_blog.meta_keywords
     @description = this_blog.author_desc_template.to_title(@author, this_blog, params)
+
+    auto_discovery_feed(:only_path => false)
 
     respond_to do |format|
       format.html do
         render
       end
       format.rss do
-        auto_discovery_feed(:only_path => false)
         render_feed "rss"
       end
       format.atom do

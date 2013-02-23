@@ -1,71 +1,66 @@
 require 'spec_helper'
 
-describe 'Given the results of Category.find_all_with_article_counters' do
-  before(:each) { @cats = Category.find_all_with_article_counters }
-
-  it "Categories should be sorted by category.position" do
-    @cats.should == @cats.sort_by { |c| c.position }
-  end
-
-  it "Counts should be correct" do
-    @cats.each do |cat|
-      cat.article_counter.should == cat.published_articles.size
-    end
-  end
-end
-
-describe "Category" do
-  it "should know published_articles" do
-    Factory(:blog)
-    c = Factory(:category, :permalink => 'Ubbercool')
-    Factory(:article, :categories => [c])
-    Factory(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
-    c.articles.size.should == 2
-    c.published_articles.size.should == 1
-  end
-end
-
-describe 'Given the fixtures' do
-  it 'find gets the order right' do
-    cats = [Factory.create(:category, :id => 2, :position => 1),
-            Factory.create(:category, :id => 3, :position => 2),
-            Factory.create(:category, :id => 1, :position => 3)]
-    cats.should == cats.sort_by { |c| c.position }
-    Category.reorder(cats.reverse.collect { |c| c.id })
-    Category.all.should == cats.reverse
-  end
-
-  it 'can still override order in find' do
-    cats = [Factory.create(:category, :id => 2, :name => 'c', :position => 1),
-            Factory.create(:category, :id => 3, :name => 'a', :position => 2),
-            Factory.create(:category, :id => 1, :name => 'b', :position => 3)]
-    cats = Category.send(:with_exclusive_scope) do
-      Category.all(:order => 'name ASC')
-    end
-    cats.should == cats.sort_by {|c| c.name}
-    Category.all.should_not == cats
-  end
-
-  it '.reorder_alpha puts categories in alphabetical order' do
-    cats = [Factory.create(:category, :id => 2, :name => 'c', :position => 1),
-            Factory.create(:category, :id => 3, :name => 'a', :position => 2),
-            Factory.create(:category, :id => 1, :name => 'b', :position => 3)]
-    Category.all.should_not == Category.send(:with_exclusive_scope) do
-      Category.all(:order => :name)
-    end
-    Category.reorder_alpha
-    Category.all.should == Category.send(:with_exclusive_scope) do
-      Category.all(:order => :name)
-    end
-  end
-end
-
 describe Category do
+  before(:each) { FactoryGirl.create(:blog) }
+
   describe "permalink" do
-    before(:each) { Factory(:blog) }
-    subject { Factory(:category, :permalink => 'software').permalink_url }
-    it { should == 'http://myblog.net/category/software' }
+    it "return link with category and name" do
+      category = FactoryGirl.build(:category, permalink: 'software')
+      category.permalink_url.should eq 'http://myblog.net/category/software'
+    end
   end
+
+  describe "published_articles" do
+    it "should know published_articles" do
+      c = FactoryGirl.create(:category, :permalink => 'Ubbercool')
+      FactoryGirl.create(:article, :categories => [c])
+      FactoryGirl.create(:article, :categories => [c], :published_at => nil, :published => false, :state => 'draft')
+      c.articles.size.should == 2
+      c.published_articles.size.should == 1
+    end
+  end
+
+  describe "permalink" do
+    it "empty permalink should be converted" do
+      c = FactoryGirl.create(:category, name: "test 1", permalink: nil)
+      c.permalink.should eq "test-1"
+    end
+
+    it "category with permalink should not have permalink generated" do
+      c = FactoryGirl.build(:category, name: "Test 2", permalink: "yeah-nice-one")
+      c.permalink.should eq "yeah-nice-one"
+    end
+  end
+
+  describe 'Category.find_all_with_article_counters' do
+    before(:each) { @cats = Category.find_all_with_article_counters }
+
+    it "Categories should be sorted by category.position" do
+      @cats.should == @cats.sort_by { |c| c.position }
+    end
+
+    it "Counts should be correct" do
+      @cats.each do |cat|
+        cat.article_counter.should == cat.published_articles.size
+      end
+    end
+  end
+
+  describe "find_by_permalink" do
+    it "return first that match with this permalink" do
+      cat = FactoryGirl.create(:category, permalink: "a-permalink")
+      Category.find_by_permalink("a-permalink").should eq cat
+    end
+  end
+
 end
 
+__END__
+xm.loc item.permalink_url
+xm.lastmod item.updated_at.xmlschema
+xm.priority 0.8
 
+
+category
+xm.loc item.permalink_url
+i  xm.lastmod collection_lastmod(item)

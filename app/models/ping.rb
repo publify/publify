@@ -13,10 +13,10 @@ class Ping < ActiveRecord::Base
         @response = Net::HTTP.get_response(URI.parse(ping.url))
         send_pingback or send_trackback
       rescue Timeout::Error => err
-        logger.info "Sending pingback or trackback timed out"
+        Rails.logger.info "Sending pingback or trackback timed out"
         return
       rescue => err
-        logger.info "Sending pingback or trackback failed with error: #{err}"
+        Rails.logger.info "Sending pingback or trackback failed with error: #{err}"
       end
     end
 
@@ -107,8 +107,7 @@ class Ping < ActiveRecord::Base
 
   def send_weblogupdatesping(server_url, origin_url)
     t = Thread.start(article.blog.blog_name) do |blog_name|
-      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name,
-                   server_url, origin_url)
+      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name, server_url, origin_url)
     end
     t
   end

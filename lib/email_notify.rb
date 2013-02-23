@@ -8,7 +8,7 @@ class EmailNotify
 
     begin
       email = NotificationMailer.comment(comment, user)
-      EmailNotify.send_message(user,email)
+      email.deliver
     rescue => err
       logger.error "Unable to send comment email: #{err.inspect}"
     end
@@ -19,14 +19,19 @@ class EmailNotify
 
     begin
       email = NotificationMailer.article(article, user)
-      EmailNotify.send_message(user,email)
+      email.deliver
     rescue => err
       logger.error "Unable to send article email: #{err.inspect}"
     end
   end
 
-  def self.send_message(user, email)
-    email.content_type = "text/html; charset=utf-8"
-    email.deliver
+  # Send a welcome mail to the user created
+  def self.send_user_create_notification(user)
+    begin
+      email_notification = NotificationMailer.notif_user(user)
+      email.deliver
+    rescue => err
+      logger.error "Unable to send notification of create user email: #{err.inspect}"
+    end
   end
 end

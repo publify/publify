@@ -18,7 +18,7 @@ describe "layouts/default.html.erb" do
 
       context "when use_meta_keyword set to true" do
         before do
-          @blog = Factory(:blog, :use_meta_keyword => true)
+          @blog = FactoryGirl.create(:blog, :use_meta_keyword => true)
         end
 
         it 'renders assigned keywords' do
@@ -29,7 +29,7 @@ describe "layouts/default.html.erb" do
 
       context "when use_meta_keyword set to false" do
         before do
-          @blog = Factory(:blog, :use_meta_keyword => false)
+          @blog = FactoryGirl.create(:blog, :use_meta_keyword => false)
         end
 
         it 'does not render assigned keywords' do

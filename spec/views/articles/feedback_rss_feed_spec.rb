@@ -7,8 +7,8 @@ describe "articles/feedback_rss_feed.rss.builder" do
 
   describe "with feedback consisting of one trackback and one comment" do
     let(:article) { stub_full_article }
-    let(:trackback) { Factory.build(:trackback, :article => article) }
-    let(:comment) { Factory.build(:comment, :article => article, :body => "Comment body") }
+    let(:trackback) { FactoryGirl.build(:trackback, :article => article) }
+    let(:comment) { FactoryGirl.build(:comment, :article => article, :body => "Comment body") }
 
     before do
       assign(:feedback, [trackback, comment])

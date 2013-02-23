@@ -1,10 +1,17 @@
+# coding: utf-8
 # Methods added to this helper will be available to all templates in the application.
 require 'digest/sha1'
 
 module ApplicationHelper
+  # Need to rewrite this one, quick hack to test my changes.
+  def page_title
+    @page_title
+  end
+
+  include SidebarHelper
+
   # Basic english pluralizer.
   # Axe?
-
   def pluralize(size, zero, one , many )
     case size
     when 0 then zero
@@ -12,7 +19,7 @@ module ApplicationHelper
     else        sprintf(many, size)
     end
   end
-
+  
   # Produce a link to the permalink_url of 'item'.
   def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil)
     options = {}
@@ -29,15 +36,11 @@ module ApplicationHelper
     link_to_permalink(article,pluralize(comment_count, _('no comments'), _('1 comment'), _('%d comments', comment_count)),'comments')
   end
 
-  # wrapper for TypoPlugins::Avatar
-  # options is a hash which should contain :email and :url for the plugin
-  # (gravatar will use :email, pavatar will use :url, etc.)
   def avatar_tag(options = {})
     avatar_class = this_blog.plugin_avatar.constantize
     return '' unless avatar_class.respond_to?(:get_avatar)
     avatar_class.get_avatar(options)
   end
-
 
   def trackbacks_link(article)
     trackbacks_count = article.published_trackbacks.size
@@ -48,45 +51,12 @@ module ApplicationHelper
     tag :meta, :name => name, :content => value unless value.blank?
   end
 
-  def date(date)
-    "<span class=\"typo_date\">" + date.utc.strftime(_("%%d. %%b", date.utc)) + "</span>"
-  end
-
-  def render_theme(options)
-    options[:controller]=Themes::ThemeController.active_theme_name
-    render_component(options)
-  end
-
-  def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
-    "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
-  end
-
   def markup_help_popup(markup, text)
     if markup and markup.commenthelp.size > 1
       "<a href=\"#{url_for :controller => 'articles', :action => 'markup_help', :id => markup.id}\" onclick=\"return popup(this, 'Typo Markup Help')\">#{text}</a>"
     else
       ''
     end
-  end
-
-  def admin_tools_for(model)
-    type = model.class.to_s.downcase
-    tag = []
-    tag << content_tag("div",
-      link_to_remote('nuke', {
-        :url => {
-          :controller => "admin/feedback",
-          :action => "delete",
-          :id => model.id },
-        :method => :post,
-        :confirm => _("Are you sure you want to delete this %s?", "#{type}" )
-        }, :class => "admintools") <<
-      link_to('edit', {
-        :controller => "admin/feedback",
-        :action => "edit", :id => model.id
-        }, :class => "admintools"),
-      :id => "admin_#{type}_#{model.id}", :style => "display: none")
-    tag.join(" | ")
   end
 
   def onhover_show_admin_tools(type, id = nil)
@@ -96,24 +66,13 @@ module ApplicationHelper
     tag
   end
 
-  def render_flash
-    output = []
-
-    for key,value in flash
-      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
-    end if flash
-
-    output.join("<br />\n")
-  end
-
   def feed_title
-    case
-    when @feed_title
-      return @feed_title
-    when (@page_title and not @page_title.blank?)
-      return "#{this_blog.blog_name} : #{@page_title}"
+    if @feed_title.present?
+      @feed_title
+    elsif @page_title.present?
+      @page_title
     else
-      return this_blog.blog_name
+      this_blog.blog_name
     end
   end
 
@@ -146,84 +105,41 @@ module ApplicationHelper
     end
   end
 
-  def javascript_include_lang
-    javascript_include_tag "lang/#{Localization.lang.to_s}" if File.exists? File.join(::Rails.root.to_s, 'public', 'lang', Localization.lang.to_s)
-  end
-
   def use_canonical
     "<link rel='canonical' href='#{@canonical_url}' />".html_safe unless @canonical_url.nil?
   end
 
   def page_header
-    page_header_includes = content_array.collect { |c| c.whiteboard }.collect do |w|
+    render 'shared/page_header'
+  end
+
+  def page_header_includes
+    content_array.collect { |c| c.whiteboard }.collect do |w|
       w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
         v = v.chomp
-        # trim the same number of spaces from the beginning of each line
-        # this way plugins can indent nicely without making ugly source output
-        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
-        v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
+      # trim the same number of spaces from the beginning of each line
+      # this way plugins can indent nicely without making ugly source output
+      spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+      v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
       end
-    end.flatten.uniq
-    (
-    <<-HTML
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.blank? }
-  #{ meta_tag 'description', @description unless @description.blank? }
-  #{ meta_tag 'robots', 'noindex, follow' unless @noindex.nil? }
-  #{ meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?}
-  <meta name="generator" content="Typo #{TYPO_VERSION}" />
-  #{ show_meta_keyword }
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ url_for :controller => '/xml', :action => 'rsd' }" />
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="#{ feed_atom }" />
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="#{ feed_rss }" />
-  #{ javascript_include_tag 'cookies', 'prototype', 'effects', 'builder', 'typo', :cache => true }
-  #{ stylesheet_link_tag 'coderay', 'user-styles', :cache => true }
-  #{ javascript_include_lang }
-  #{ javascript_tag "window._token = '#{form_authenticity_token}'"}
-  #{ page_header_includes.join("\n") }
-  #{ use_canonical  if this_blog.use_canonical_url }
-  <script type="text/javascript">#{ @content_for_script }</script>
-  #{ this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? }
-  #{ google_analytics }
-    HTML
-    ).chomp
+    end.flatten.uniq.join("\n")
   end
 
   def feed_atom
-    if params[:action] == 'search'
-      url_for(:only_path => false, :format => 'atom', :q => params[:q])
-    elsif not @article.nil?
-      @article.feed_url(:atom)
-    elsif not @auto_discovery_url_atom.nil?
-      @auto_discovery_url_atom
-    else
-      # FIXME: When is this invoked?
-      url_for(:only_path => false, :format => 'atom')
-    end
+    feed_for('atom')
   end
 
   def feed_rss
-    if params[:action] == 'search'
-      url_for(:only_path => false, :format => 'rss', :q => params[:q])
-    elsif not @article.nil?
-      @article.feed_url(:rss20)
-    elsif not @auto_discovery_url_rss.nil?
-      @auto_discovery_url_rss
-    else
-      url_for(:only_path => false, :format => 'rss')
-    end
+    feed_for('rss')
   end
 
   def render_the_flash
     return unless flash[:notice] or flash[:error] or flash[:warning]
-    the_class = flash[:error] ? 'ui-state-error' : 'ui-state-highlight'
-    the_icon = flash[:error] ? 'ui-icon-alert' : 'ui-icon-info'
+    the_class = flash[:error] ? 'error' : 'success'
 
-    html = "<div class='ui-widget settings'>"
-    html << "<div class='#{the_class}'>"
-    html << "<p><span class='ui-icon #{the_icon}' style='float: left;'></span>"
+    html = "<div class='alert alert-#{the_class}'>"
+    html << "<a class='close' href='#'>×</a>"
     html << render_flash rescue nil
-    html << "</div>"
     html << "</div>"
   end
 
@@ -240,9 +156,12 @@ module ApplicationHelper
   end
 
   def new_js_distance_of_time_in_words_to_now(date)
+    # Ruby Date class doesn't have #utc method, but _typo_dev.html.erb
+    # passes Ruby Date.
+    date = date.to_time
     time = _(date.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M:%%S GMT", date.utc)))
-    timestamp = date.utc.to_i ;
-    "<span class=\"typo_date date gmttimestamp-#{timestamp}\" title=\"#{time}\" >#{time}</span>"
+    timestamp = date.utc.to_i
+    content_tag(:span, time, {:class => "typo_date date gmttimestamp-#{timestamp}", :title => time})
   end
 
   def display_date(date)
@@ -258,30 +177,40 @@ module ApplicationHelper
     "#{display_date(timestamp)} #{_('at')} #{display_time(timestamp)}"
   end
 
-  def js_distance_of_time_in_words_to_now(date)
-    display_date_and_time date
-  end
-
   def show_meta_keyword
     return unless this_blog.use_meta_keyword
     meta_tag 'keywords', @keywords unless @keywords.blank?
   end
 
-  def show_menu_for_post_type(posttype, before='<li>', after='</li>')
-    list = Article.find(:all, :conditions => ['post_type = ?', post_type])
-    html = ''
-    
-    return if list.size.zero?
-    list.each do |item|
-      html << before
-      html << link_to_permalink(item, item.title)
-      html << after
-    end
-    
-    html
-  end
-
   def this_blog
     @blog ||= Blog.default
   end
+
+  def stop_index_robots?
+    stop = (params[:year].present? || params[:page].present?)
+    stop = @blog.unindex_tags if controller_name == "tags"
+    stop = @blog.unindex_categories if controller_name == "categories"
+    stop
+  end
+
+  private
+
+  def feed_for(type)
+    if params[:action] == 'search'
+      url_for(only_path: false, format: type, q: params[:q])
+    elsif not @article.nil?
+      @article.feed_url(type)
+    elsif not @auto_discovery_url_atom.nil?
+      instance_variable_get("@auto_discovery_url_#{type}")
+    end
+  end
+
+  def render_flash
+    output = []
+    for key,value in flash
+      output << "<span class=\"#{key.to_s.downcase}\">#{h(_(value))}</span>"
+    end if flash
+    output.join("<br />\n")
+  end
+
 end

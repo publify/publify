@@ -1,0 +1,29 @@
+<tr id='<%= "placeholder_#{comment.id}" %>' <%= "style='display: none'" unless comment.state.to_s.downcase == 'spam' %>>
+  <td colspan='5' <%= "style='display: none'" if comment.state.to_s == 'spam' %>>
+    <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 25) %>
+    <%= _("This comment by <strong>%s</strong> was flagged as spam, %s?", comment.author, link_to_remote('Cancel', :url => {:action => 'change_state', :id => comment.id})) %> <%= toggle_element "feedback_#{comment.id}" %>
+  </td>
+</tr>
+
+<tr id='<%= "feedback_#{comment.id}" %>' <%= "style='display: none'" if comment.state.to_s.downcase == 'spam' %>>
+<td><input class= "feedback_check" type="checkbox" name="feedback_check[<%= comment.id %>]"/></td>
+<td><span class='badge <%= comment_class comment.state.to_s.downcase %>'><%= comment.state %></span></td>
+<td>
+  <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 32) %>
+  <div class='comment_content'>
+    <strong><%= mail_to h(comment.email), h(comment.author), {:class => 'noborder'} %></strong><br />
+    <%= link_to "#{h(comment.url)}<br />".html_safe, comment.url, {:class => 'noborder'} unless comment.url.blank? %>
+    <small><%= format_date_time comment.created_at %></small>
+  </div>
+</td>
+<td>
+  <%= comment.html(:all) %>
+  <p>
+    <%= show_feedback_actions comment %>
+  </p>
+</td>
+
+<% if controller.action_name == 'index' %>
+<td><%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %></td>
+<% end %>
+</tr>

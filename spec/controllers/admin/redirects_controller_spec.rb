@@ -4,10 +4,10 @@ describe Admin::RedirectsController do
   render_views
 
   before do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => henri.id }
   end
 
@@ -17,19 +17,8 @@ describe Admin::RedirectsController do
     end
 
     it 'should display index with redirects' do
-      assert_template 'index'
-      assigns(:redirects).should_not be_nil
+      assert_response :redirect, :action => 'new'
     end
-
-    it 'should have Settings as selected tab' do
-      test_tabs "Settings"
-    end
-
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with Redirects selected' do
-      subtabs = ["General settings", "Write", "Feedback", "Cache", "Users", "Redirects"]
-      test_subtabs(subtabs, "Redirects")
-    end        
-
   end
 
   it "test_create" do
@@ -39,10 +28,18 @@ describe Admin::RedirectsController do
       assert_response :redirect, :action => 'index'
     end.should change(Redirect, :count)
   end
-
+  
+  it "test_create with empty from path" do
+    lambda do
+      post :edit, 'redirect' => { :from_path => "", 
+        :to_path => "somewhere/else/else" }
+      assert_response :redirect, :action => 'index'
+    end.should change(Redirect, :count)
+  end
+  
   describe "#edit" do
     before(:each) do
-      get :edit, :id => Factory(:redirect).id
+      get :edit, :id => FactoryGirl.create(:redirect).id
     end
 
     it 'should render new template with valid redirect' do
@@ -50,24 +47,16 @@ describe Admin::RedirectsController do
       assigns(:redirect).should_not be_nil
       assert assigns(:redirect).valid?
     end
-
-    it 'should have Settings as selected tab' do
-      test_tabs "Settings"
-    end
-
-    it 'should have a link back to list' do
-      test_back_to_list
-    end
   end
 
   it "test_update" do
-    post :edit, :id => Factory(:redirect).id
+    post :edit, :id => FactoryGirl.create(:redirect).id
     assert_response :redirect, :action => 'index'
   end
 
   describe "test_destroy" do
     before(:each) do
-      @test_id = Factory(:redirect).id
+      @test_id = FactoryGirl.create(:redirect).id
       assert_not_nil Redirect.find(@test_id)
     end
 
@@ -79,14 +68,6 @@ describe Admin::RedirectsController do
       it 'should render destroy template' do
         assert_response :success
         assert_template 'destroy'
-      end
-
-      it 'should have Settings as selected tab' do
-        test_tabs "Settings"
-      end
-
-      it 'should have a link back to list' do
-        response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
       end
     end
 

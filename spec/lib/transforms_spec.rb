@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'spec_helper'
 
 describe String do
@@ -17,6 +18,11 @@ describe String do
 
       "%excerpt%".to_title(item, settings, params)
     end
+    
+    it 'should build a nice permalink from an accentuated string' do
+      "L'été s'ra chaud, l'été s'ra chaud".to_permalink.should == "l-ete-s-ra-chaud-l-ete-s-ra-chaud"
+    end
+    
   end
 end
 

@@ -9,15 +9,34 @@ class Trigger < ActiveRecord::Base
     end
 
     def fire
-      destroy_all ['due_at <= ?', Time.now]
-      true
+      begin
+        destroy_all ['due_at <= ?', Time.now]
+        true
+      rescue
+        @current_version = Migrator.current_schema_version
+        @needed_version = Migrator.max_schema_version
+        @support = Migrator.db_supports_migrations?
+        @needed_migrations = Migrator.available_migrations[@current_version..@needed_version].collect do |mig|
+          mig.scan(/\d+\_([\w_]+)\.rb$/).flatten.first.humanize
+        end
+        if @needed_migrations
+          Migrator.migrate
+          if @current_version == 0
+            load "#{Rails.root}/Rakefile"
+            Rake::Task['db:seed'].invoke
+            User.reset_column_information
+            Article.reset_column_information
+            Page.reset_column_information
+          end
+        end
+      end
     end
 
     def remove(pending_item, conditions = { })
       return if pending_item.new_record?
       conditions_string =
         conditions.keys.collect{ |k| "(#{k} = :#{k})"}.join(' AND ')
-      with_scope(:find => { :conditions => [conditions_string, conditions]}) do
+      with_scope(:find => where(conditions_string, conditions)) do
         delete_all(["pending_item_id = ? AND pending_item_type = ?",
                     pending_item.id, pending_item.class.to_s])
       end

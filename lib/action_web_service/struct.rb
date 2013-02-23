@@ -39,13 +39,16 @@ module ActionWebService
       end
     end
 
+    class_attribute :struct_members
+    self.struct_members = {}
+
     class << self
       # Creates a structure member with the specified +name+ and +type+. Generates
       # accessor methods for reading and writing the member value.
       def member(name, type)
         name = name.to_sym
         type = ActionWebService::SignatureTypes.canonical_signature_entry({ name => type }, 0)
-        write_inheritable_hash("struct_members", name => type)
+        self.struct_members = self.struct_members.merge(name => type)
         class_eval <<-END
           def #{name}; @#{name}; end
           def #{name}=(value); @#{name} = value; end
@@ -53,7 +56,7 @@ module ActionWebService
       end
 
       def members # :nodoc:
-        read_inheritable_attribute("struct_members") || {}
+        self.struct_members
       end
 
       def member_type(name) # :nodoc:

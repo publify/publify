@@ -16,8 +16,6 @@ end
 
 
 class BloggerApi < ActionWebService::API::Base
-  inflect_names false
-
   api_method :deletePost,
     :expects => [ {:appkey => :string}, {:postid => :int}, {:username => :string}, {:password => :string},
                   {:publish => :bool} ],

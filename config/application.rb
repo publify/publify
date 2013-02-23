@@ -17,8 +17,7 @@ module TypoBlog
 
     # I need the localization plugin to load first
     # Otherwise, I can't localize plugins <= localization
-    # Forcing manually the load of the textfilters plugins fixes the bugs with apache in production.
-    config.plugins = [ :localization, :prototype_legacy_helper, :all ]
+    config.plugins = [ :localization, :all ]
 
     config.autoload_paths += %W(
       app/apis
@@ -27,13 +26,14 @@ module TypoBlog
     # Activate observers that should always be running
     config.active_record.observers = :email_notifier, :web_notifier
 
+    # Turn om timestamped migrations
+    config.active_record.timestamped_migrations = true
+
     # Filter sensitive parameters from the log file
     config.filter_parameters << :password
-  end
 
-  if RUBY_VERSION < "1.9"
-    $KCODE = 'u'
-    require 'jcode'
+    # To avoid exception when deploying on Heroku
+    config.assets.initialize_on_precompile = false
   end
 
   # Load included libraries.
@@ -62,7 +62,6 @@ module TypoBlog
   require 'rails_patch/active_support'
 
   require "#{Rails.root.to_s}/vendor/plugins/typo_login_system/lib/login_system"
-  require "#{Rails.root.to_s}/vendor/akismet/akismet"
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'

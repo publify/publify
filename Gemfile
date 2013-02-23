@@ -2,59 +2,58 @@ env = ENV["RAILS_ENV"] || 'development'
 dbfile = File.expand_path("../config/database.yml", __FILE__)
 
 unless File.exists?(dbfile)
-  puts "You need to configure config/database.yml first"
-  puts "Exiting"
-  exit
+  raise "You need to configure config/database.yml first"
 else
   conf = YAML.load(File.read(dbfile))
-  adapter = conf[env]['adapter']
-  raise "You need define an adapter in your database.yml" if adapter == '' || adapter.nil?
+  environment = conf[env]
+  adapter = environment['adapter'] if environment
+  raise "You need define an adapter in your database.yml or set your RAILS_ENV variable" if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
     gem 'sqlite3'
   when 'postgresql'
     gem 'pg'
-  when 'mysql'
-    if RUBY_VERSION.include?('1.9')
-      gem 'sam-mysql-ruby'
-    else
-      gem 'mysql'
-    end
+  when 'mysql2'
+    gem 'mysql2'
   else
     raise "Don't know what gem to use for adapter #{adapter}"
   end
 end
 
-require 'fileutils'
-require 'yaml'
+source 'https://rubygems.org'
 
-source :gemcutter
-gem 'rails', '3.0.10'
+gem 'rails', '~> 3.2.12'
 gem 'require_relative'
 gem 'htmlentities'
-gem 'json'
-gem 'bluecloth', '>= 2.0.5'
-gem 'coderay', '~> 0.9'
-gem 'will_paginate', '3.0.pre2'
-gem 'RedCloth', '4.2.8'
-gem 'addressable', '~> 2.1.0', :require => 'addressable/uri'
-gem 'mini_magick', '1.3.3', :require => 'mini_magick'
-gem 'uuidtools', '~>2.1.1'
+gem 'bluecloth', '~> 2.1'
+gem 'coderay', '~> 1.0.8'
+gem 'kaminari'
+gem 'RedCloth', '~> 4.2.8'
+gem 'addressable', '~> 2.1', :require => 'addressable/uri'
+gem 'mini_magick', '~> 1.3.3', :require => 'mini_magick'
+gem 'uuidtools', '~> 2.1.1'
 gem 'flickraw-cached'
 gem 'rubypants', '~> 0.2.0'
-gem 'rake', '>= 0.9.2' 
+gem 'rake', '~> 10.0.2'
 gem 'acts_as_list'
 gem 'acts_as_tree_rails3'
+gem 'fog'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
+gem 'carrierwave'
+gem 'akismet', '~> 1.0'
+
+# TODO: Replace with jquery
+gem 'prototype-rails', '~> 3.2.1'
+gem 'prototype_legacy_helper', '0.0.0', :git => 'http://github.com/rails/prototype_legacy_helper.git'
+
+gem 'rails_autolink', '~> 1.0.9'
+gem 'dynamic_form', '~> 1.1.4'
 
 group :development, :test do
-  if RUBY_VERSION.include?('1.9')
-    gem 'ruby-debug19'
-  else
-    gem 'ruby-debug'
-  end
-  gem 'factory_girl', '2.2.0'
+  gem 'thin'
+  gem 'factory_girl', '~> 3.5'
   gem 'webrat'
-  gem 'rspec-rails', '>= 2.0.0.beta.20'
-  gem 'rcov'
+  gem 'rspec-rails', '~> 2.12.0'
+  gem 'simplecov', :require => false
+  gem 'pry-rails'
 end

@@ -2,283 +2,96 @@ require 'set'
 require 'uri'
 
 class Content < ActiveRecord::Base
-  belongs_to :text_filter
+  include Stateful
 
-  has_many :notifications, :foreign_key => 'content_id'
-  has_many :notify_users, :through => :notifications,
-    :source => 'notify_user',
-    :uniq => true
-  has_many :redirections
-  has_many :redirects, :through => :redirections, :dependent => :destroy
+  include ContentBase
 
-  def notify_users=(collection)
-    return notify_users.clear if collection.empty?
-    self.class.transaction do
-      self.notifications.clear
-      collection.uniq.each do |u|
-        self.notifications.build(:notify_user => u)
-      end
-      notify_users.target = collection
-    end
-  end
-
-  has_many :triggers, :as => :pending_item, :dependent => :delete_all
-
-  scope :published_at_like, lambda {|date_at| {:conditions => {
-    :published_at => (
-      if date_at =~ /\d{4}-\d{2}-\d{2}/
-        DateTime.strptime(date_at, '%Y-%m-%d').beginning_of_day..DateTime.strptime(date_at, '%Y-%m-%d').end_of_day
-      elsif date_at =~ /\d{4}-\d{2}/
-        DateTime.strptime(date_at, '%Y-%m').beginning_of_month..DateTime.strptime(date_at, '%Y-%m').end_of_month
-      elsif date_at =~ /\d{4}/
-        DateTime.strptime(date_at, '%Y').beginning_of_year..DateTime.strptime(date_at, '%Y').end_of_year
-      else
-        date_at
-      end
-    )}
-  }
-  }
-  scope :user_id, lambda {|user_id| {:conditions => ['user_id = ?', user_id]}}
-  scope :published, {:conditions => ['published = ?', true]}
-  scope :not_published, {:conditions => ['published = ?', false]}
-  scope :draft, {:conditions => ['state = ?', 'draft']}
-  scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'created_at DESC'}
-  scope :searchstring, lambda {|search_string|
-    tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
-    {:conditions => ['state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
-                        "published", *tokens.collect{ |token| [token] * 3 }.flatten]}
-  }
-  scope :already_published, lambda { {:conditions => ['published = ? AND published_at < ?', true, Time.now],
-    :order => default_order,
-    }}
-
-  serialize :whiteboard
-
-  attr_accessor :just_changed_published_status
-  alias_method :just_changed_published_status?, :just_changed_published_status
-
+  # TODO: Move these calls to ContentBase
   after_save :invalidates_cache?
   after_destroy lambda { |c|  c.invalidates_cache?(true) }
 
-  include Stateful
+  belongs_to :text_filter
 
-  @@content_fields = Hash.new
-  @@html_map       = Hash.new
+  has_many :redirections
+  has_many :redirects, :through => :redirections, :dependent => :destroy
 
-  def invalidates_cache?(on_destruction = false)
-    @invalidates_cache ||= if on_destruction
-      just_changed_published_status? || published?
+  has_many :triggers, :as => :pending_item, :dependent => :delete_all
+
+  scope :user_id, lambda { |user_id| where('user_id = ?', user_id) }
+  scope :published, lambda { where('published = ?', true) }
+  scope :not_published, lambda { where('published = ?', false) }
+  scope :draft, lambda { where('state = ?', 'draft') }
+  scope :no_draft, lambda { where('state <> ?', 'draft').order('published_at DESC') }
+  scope :searchstring, lambda { |search_string|
+    tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
+    where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
+                     "published", *tokens.collect{ |token| [token] * 3 }.flatten)
+  }
+  scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
+
+  # Use only for self.function_search_all_posts method
+  scope :published_at_like, lambda { |date_at| where(:published_at => (
+      if date_at =~ /\d{4}-\d{2}-\d{2}/
+        DateTime.strptime(date_at, '%Y-%m-%d').beginning_of_day..DateTime.strptime(date_at, '%Y-%m-%d').end_of_day
+    elsif date_at =~ /\d{4}-\d{2}/
+      DateTime.strptime(date_at, '%Y-%m').beginning_of_month..DateTime.strptime(date_at, '%Y-%m').end_of_month
+    elsif date_at =~ /\d{4}/
+      DateTime.strptime(date_at, '%Y').beginning_of_year..DateTime.strptime(date_at, '%Y').end_of_year
     else
-      (changed? && published?) || just_changed_published_status?
+      date_at
+    end)
+  )}
+
+  serialize :whiteboard
+
+  def shorten_url
+    return unless self.published
+
+    r = Redirect.new
+    r.from_path = r.shorten
+    r.to_path = self.permalink_url
+
+    # This because updating self.redirects.first raises ActiveRecord::ReadOnlyRecord
+    unless (red = self.redirects.first).nil?
+      return if red.to_path == self.permalink_url
+      r.from_path = red.from_path
+      red.destroy
+      self.redirects.clear # not sure we need this one
     end
+
+    self.redirects << r
   end
 
-  class << self
-    # FIXME: Quite a bit of this isn't needed anymore.
-    def content_fields(*attribs)
-      @@content_fields[self] = ((@@content_fields[self]||[]) + attribs).uniq
-      @@html_map[self] = nil
-      attribs.each do | field |
-        define_method("#{field}=") do | newval |
-          if self[field] != newval
-            changed
-            self[field] = newval
-          end
-          self[field]
-        end
-        unless self.method_defined?("#{field}_html")
-          define_method("#{field}_html") do
-            html(field.to_sym)
-          end
-        end
-      end
-    end
-
-    def html_map(field=nil)
-      unless @@html_map[self]
-        @@html_map[self] = Hash.new
-        instance = self.new
-        @@content_fields[self].each do |attrib|
-          @@html_map[self][attrib] = true
-        end
-      end
-      if field
-        @@html_map[self][field]
-      else
-        @@html_map[self]
-      end
-    end
-
-    def find_published(what = :all, options = {})
-      with_scope(:find => {:order => default_order, :conditions => {:published => true}}) do
-        find what, options
-      end
-    end
-
-    def default_order
-      'published_at DESC'
-    end
-
-    def find_already_published(what = :all, at = nil, options = { })
-      if what.respond_to?(:has_key?)
-        what, options = :all, what
-      elsif at.respond_to?(:has_key?)
-        options, at = at, nil
-      end
-      at ||= options.delete(:at) || Time.now
-      with_scope(:find => { :conditions => ['published_at < ?', at]}) do
-        find_published(what, options)
-      end
-    end
-
-    def find_by_published_at(column_name = :published_at)
-      from_where = "FROM #{self.table_name} WHERE #{column_name} is not NULL AND type='#{self.name}'"
-
-      # Implement adapter-specific groupings below, or allow us to fall through to the generic ruby-side grouping
-
-      if defined?(ActiveRecord::ConnectionAdapters::MysqlAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::MysqlAdapter)
-        # MySQL uses date_format
-        find_by_sql("SELECT date_format(#{column_name}, '%Y-%m') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-
-      elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && self.connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
-        # PostgreSQL uses to_char
-        find_by_sql("SELECT to_char(#{column_name}, 'YYYY-MM') AS publication #{from_where} GROUP BY publication ORDER BY publication DESC")
-
-      else
-        # If we don't have an adapter-safe conversion from date -> YYYY-MM,
-        # we'll do the GROUP BY server-side. There won't be very many objects
-        # in this array anyway.
-        date_map = {}
-        dates = find_by_sql("SELECT #{column_name} AS publication #{from_where}")
-
-        dates.map! do |d|
-          d.publication = Time.parse(d.publication).strftime('%Y-%m')
-          d.freeze
-          if !date_map.has_key?(d.publication)
-            date_map[d.publication] = true
-            d
-          end
-        end
-        dates.reject!{|d| d.blank? || d.publication.blank?}
-        dates.sort!{|a,b| b.publication <=> a.publication}
-
-        dates
-      end
-    end
-
-    def function_search_no_draft(search_hash)
-      list_function = []
-      if search_hash.nil?
-        search_hash = {}
-      end
-
-      if search_hash[:searchstring]
-        list_function << 'searchstring(search_hash[:searchstring])' unless search_hash[:searchstring].to_s.empty?
-      end
-
-      if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
-        list_function << 'published_at_like(search_hash[:published_at])'
-      end
-
-      if search_hash[:user_id] && search_hash[:user_id].to_i > 0
-        list_function << 'user_id(search_hash[:user_id])'
-      end
-
-      if search_hash[:published]
-        list_function << 'published' if search_hash[:published].to_s == '1'
-        list_function << 'not_published' if search_hash[:published].to_s == '0'
-      end
-
-      list_function
-    end
+  def self.find_already_published(limit)
+    where('published_at < ?', Time.now).limit(1000).order('created_at DESC')
   end
 
-  def content_fields
-    @@content_fields[self.class]
-  end
+  def self.function_search_all_posts(search_hash)
+    list_function = []
+    search_hash ||= {}
 
-  def html_map(field=nil)
-    self.class.html_map(field)
-  end
-
-  def cache_key(field)
-    id ? "contents_html/#{id}/#{field}" : nil
-  end
-
-  # Return HTML for some part of this object.  It will be fetched from the
-  # cache if possible, or regenerated if needed.
-  def html(field = :all)
-    if field == :all
-      generate_html(:all, content_fields.map{|f| self[f].to_s}.join("\n\n"))
-    elsif self.class.html_map(field)
-      generate_html(field)
-    else
-      raise "Unknown field: #{field.inspect} in content.html"
+    if search_hash[:searchstring]
+      list_function << 'searchstring(search_hash[:searchstring])' unless search_hash[:searchstring].to_s.empty?
     end
-  end
 
-  # Generate HTML for a specific field using the text_filter in use for this
-  # object.  The HTML is cached in the fragment cache, using the +ContentCache+
-  # object in @@cache.
-  def generate_html(field, text = nil)
-    text ||= self[field].to_s
-    html = text_filter.filter_text_for_content(blog, text, self) || text
-    html_postprocess(field,html).to_s
-  end
+    if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
+      list_function << 'published_at_like(search_hash[:published_at])'
+    end
 
-  # Post-process the HTML.  This is a noop by default, but Comment overrides it
-  # to enforce HTML sanity.
-  def html_postprocess(field,html)
-    html
+    if search_hash[:user_id] && search_hash[:user_id].to_i > 0
+      list_function << 'user_id(search_hash[:user_id])'
+    end
+
+    if search_hash[:published]
+      list_function << 'published' if search_hash[:published].to_s == '1'
+      list_function << 'not_published' if search_hash[:published].to_s == '0'
+    end
+
+    list_function
   end
 
   def whiteboard
     self[:whiteboard] ||= Hash.new
-  end
-
-  # The default text filter.  Generally, this is the filter specified by blog.text_filter,
-  # but comments may use a different default.
-  def default_text_filter
-    blog.text_filter_object
-  end
-
-  # Grab the text filter for this object.  It's either the filter specified by
-  # self.text_filter_id, or the default specified in the default blog object.
-  def text_filter
-    if self[:text_filter_id] && !self[:text_filter_id].zero?
-      TextFilter.find(self[:text_filter_id])
-    else
-      default_text_filter
-    end
-  end
-
-  # Set the text filter for this object.
-  def text_filter=(filter)
-    filter.to_text_filter.tap do |tf|
-      if tf.id != text_filter_id
-        changed if !new_record? && published?
-      end
-      self.text_filter_id = tf.id
-    end
-  end
-
-  # Changing the title flags the object as changed
-  def title=(new_title)
-    if new_title == self[:title]
-      self[:title]
-    else
-      changed if !new_record? && published?
-      self[:title] = new_title
-    end
-  end
-
-  def blog
-    @blog ||= Blog.default
-  end
-
-  def publish!
-    self.published = true
-    self.save!
   end
 
   def withdraw!
@@ -288,17 +101,6 @@ class Content < ActiveRecord::Base
 
   def published_at
     self[:published_at] || self[:created_at]
-  end
-
-  def send_notification_to_user(user)
-    notify_user_via_email(user)
-  end
-
-  def really_send_notifications
-    interested_users.each do |value|
-      send_notification_to_user(value)
-    end
-    return true
   end
 
   def get_rss_description
@@ -320,8 +122,8 @@ class Content < ActiveRecord::Base
 
   def short_url
     # Double check because of crappy data in my own old database
-    return unless self.published and self.redirects.count > 0
-    blog.url_for(redirects.first.from_path, :only_path => false)
+    return unless self.published and self.redirects.size > 0
+    blog.url_for(redirects.last.from_path, :only_path => false)
   end
 
 end

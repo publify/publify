@@ -1,0 +1,12 @@
+<li id="comment-<%= comment.id %>">
+  <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+  <h4>
+    <%= _("By") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
+    <%= display_date_and_time comment.created_at %>
+  </h4>
+    <%= comment.html %>
+    <% unless comment.published -%>
+    <div class="spamwarning"><%= _("This comment has been flagged for moderator approval.") %></div>
+    <% end -%>
+  <hr />
+</li>

@@ -4,10 +4,10 @@ describe Admin::CategoriesController do
   render_views
 
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => henri.id }
   end
 
@@ -17,13 +17,13 @@ describe Admin::CategoriesController do
   end
 
   it "test_create" do
-    cat = Factory(:category)
+    cat = FactoryGirl.create(:category)
     Category.should_receive(:find).with(:all).and_return([])
     Category.should_receive(:new).and_return(cat)
     cat.should_receive(:save!).and_return(true)
     post :edit, 'category' => { :name => "test category" }
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'new'
   end
 
   describe "test_new" do
@@ -33,28 +33,19 @@ describe Admin::CategoriesController do
 
     it 'should render template view' do
       assert_template 'new'
-      assert_tag :tag => "div",
+      assert_tag :tag => "table",
         :attributes => { :id => "category_container" }
-    end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with General settings selected' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags"]
-      test_subtabs(subtabs, "Categories")
     end
   end
 
   describe "test_edit" do
     before(:each) do
-      get :edit, :id => Factory(:category).id
+      get :edit, :id => FactoryGirl.create(:category).id
     end
 
     it 'should render template new' do
       assert_template 'new'
-      assert_tag :tag => "div",
+      assert_tag :tag => "table",
         :attributes => { :id => "category_container" }
     end
 
@@ -63,25 +54,16 @@ describe Admin::CategoriesController do
       assert assigns(:category).valid?
       assigns(:categories).should_not be_nil
     end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have General settings, Write, Feedback, Cache, Users and Redirects with no tab selected' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags"]
-      test_subtabs(subtabs, "")
-    end    
   end
 
   it "test_update" do
-    post :edit, :id => Factory(:category).id
+    post :edit, :id => FactoryGirl.create(:category).id
     assert_response :redirect, :action => 'index'
   end
 
   describe "test_destroy with GET" do
     before(:each) do
-      test_id = Factory(:category).id
+      test_id = FactoryGirl.create(:category).id
       assert_not_nil Category.find(test_id)
       get :destroy, :id => test_id
     end
@@ -90,18 +72,10 @@ describe Admin::CategoriesController do
       assert_response :success
       assert_template 'destroy'      
     end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have a back to list link' do
-      test_back_to_list
-    end
   end
 
   it "test_destroy with POST" do
-    test_id = Factory(:category).id
+    test_id = FactoryGirl.create(:category).id
     assert_not_nil Category.find(test_id)
     get :destroy, :id => test_id
 
@@ -110,44 +84,5 @@ describe Admin::CategoriesController do
 
     assert_raise(ActiveRecord::RecordNotFound) { Category.find(test_id) }
   end
-
-  it "test_order" do
-    second_cat = Factory(:category, :name => 'b', :position => 1)
-    first_cat = Factory(:category, :name => 'a', :position => 3)
-    third_cat = Factory(:category, :name => 'c', :position => 2)
-
-    assert_equal second_cat, Category.first
-    get :order, :category_list => [first_cat.id, second_cat.id, third_cat.id]
-    assert_response :success
-    assert_equal first_cat, Category.first
-  end
-
-  it "test_asort sort by alpha" do
-    second_cat = Factory(:category, :name => 'b', :position => 1)
-    first_cat = Factory(:category, :name => 'a', :position => 2)
-    assert_equal second_cat, Category.first
-    get :asort
-    assert_response :success
-    assert_template "_categories"
-    assert_equal first_cat, Category.first
-  end
-
-  it "test_category_container" do
-    Factory(:category)
-    Factory(:category)
-    get :category_container
-    assert_response :success
-    assert_template "_categories"
-    assert_tag :tag => "table",
-      :children => { :count => Category.count + 2,
-        :only => { :tag => "tr" } }
-  end
-
-  it "test_reorder" do
-    get :reorder
-    assert_response :success
-    assert_template "reorder"
-    assert_select 'ul#category_list > li', Category.count
-    assert_select 'a', '(Done)'
-  end
+  
 end

@@ -89,6 +89,9 @@ Localization.define("ja_JP") do |l|
   l.store "Delete content", ""
   l.store "Are you sure?", ""
   l.store "Please select", "選択してください"
+  l.store "All categories", ""
+  l.store "All authors", ""
+  l.store "All published dates", ""
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "or", "または"
   l.store "Save", "保存"
@@ -153,6 +156,7 @@ Localization.define("ja_JP") do |l|
   l.store "Spam", "スパム"
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "I've lost my password", ""
   l.store "Login", "ログイン"
   l.store "Password", "パスワード"
@@ -161,6 +165,7 @@ Localization.define("ja_JP") do |l|
   l.store "Back to ", ""
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb
@@ -196,7 +201,7 @@ Localization.define("ja_JP") do |l|
   l.store "Currently this article has the following resources", "現在この記事には以下のリソースが含まれています"
   l.store "You can associate the following resources", "以下のリソースを整理することができます"
   l.store "Really delete attachment", "本当に添付ファイルを削除してもよろしいですか？"
-  l.store "Add Another Attachment", "添付ファイルを追加"
+  l.store "Add another attachment", "添付ファイルを追加"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -207,15 +212,26 @@ Localization.define("ja_JP") do |l|
   l.store "Allow trackbacks", "トラックバックを許可"
   l.store "Password:", ""
   l.store "Publish", "公開"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "要約"
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "アップロード"
   l.store "Post settings", "投稿設定"
   l.store "Publish at", "公開日"
   l.store "Permalink", "パーマリンク"
   l.store "Article filter", "記事フィルター"
   l.store "Save as draft", "下書きとして保存"
-
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "本当にこの記事を削除してよろしいですか？"
   l.store "Delete this article", "この記事を削除"
@@ -230,8 +246,13 @@ Localization.define("ja_JP") do |l|
   l.store "Feedback", "フィードバック"
   l.store "Filter", "フィルター"
   l.store "Manage articles", "記事の管理"
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", ""
   l.store "No comments yet", "まだコメントはありません"
   l.store "By %s on %s", ""
@@ -345,15 +366,91 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "ファイル名"
+  l.store "Browse", ""
+
+  # app/views/admin/seo/index.html.erb
+  l.store "SEO", ""
+  l.store "Global SEO settings", ""
+  l.store "Titles", ""
+  l.store "General settings", ""
+  l.store "Use meta keywords", ""
+  l.store "Meta description", ""
+  l.store "Meta keywords", ""
+  l.store "Use RSS description", ""
+  l.store "RSS description message", ""
+  l.store "Indexing", ""
+  l.store "Do not index categories", ""
+  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Do not index tags", ""
+  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Robots.txt", ""
+  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "Use dofollow in comments", ""
+  l.store "You may want to moderate feedback when turning this on", ""
+  l.store "Use canonical URL", ""
+  l.store "Read more about %s", ""
+  l.store "Google", ""
+  l.store "Google Analytics", ""
+  l.store "Google Webmaster Tools validation link", ""
+  l.store "Custom tracking code", ""
+  l.store "Global settings", ""
+  l.store "This will display", ""
+  l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+
+  # app/views/admin/seo/permalinks.html.erb
+  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
+  l.store "Here are some examples to get you started.", ""
+  l.store "Permalink format", ""
+  l.store "Date and title", ""
+  l.store "Month and title", ""
+  l.store "Title only", ""
+  l.store "You can custom your URL structure using the following tags:", ""
+  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
+  l.store "your article year of publication.", ""
+  l.store "your article month of publication.", ""
+  l.store "your article day of publication.", ""
+  l.store "Permalinks", ""
+  l.store "Custom", ""
+
+  # app/views/admin/seo/titles.html.erb
+  l.store "Title settings", ""
+  l.store "Home", ""
+  l.store "Title template", ""
+  l.store "Description template", ""
+  l.store "Articles", ""
+  l.store "Pages", ""
+  l.store "Paginated archives", ""
+  l.store "Dated archives", ""
+  l.store "Author page", ""
+  l.store "Search results", ""
+  l.store "Help on title settings", ""
+  l.store "Replaced with the title of the article/page", ""
+  l.store "The blog's name", ""
+  l.store "The blog's tagline / description", ""
+  l.store "Replaced with the post/page excerpt", ""
+  l.store "Replaced with the article tags (comma separated)", ""
+  l.store "Replaced with the article categories (comma separated)", ""
+  l.store "Replaced with the article/page title", ""
+  l.store "Replaced with the category/tag name", ""
+  l.store "Replaced with the current search phrase", ""
+  l.store "Replaced with the current time", ""
+  l.store "Replaced with the current date", ""
+  l.store "Replaced with the current month", ""
+  l.store "Replaced with the current year", ""
+  l.store "Replaced with the current page number", ""
+  l.store "Replaced by the archive date", ""
+  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "デフォルトでコメントを有効にする"
   l.store "Enable Trackbacks by default", "デフォルトでトラックバックを許可する"
   l.store "Enable feedback moderation", "フィードバック承認機能を有効にする"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "サイト全体のフィードバック承認機能を有効にすることができます。有効にするとコメントやトラックバックは承認されるまで表示されません。"
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", "サイト全体のフィードバック承認機能を有効にすることができます。有効にするとコメントやトラックバックは承認されるまで表示されません。"
   l.store "Comments filter", "コメントフィルター"
   l.store "Enable gravatars", "Gravatarを有効にする"
   l.store "Show your email address", "メールアドレスを表示"
@@ -361,7 +458,7 @@ Localization.define("ja_JP") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "新しい記事やコメントが投稿された場合に通知を送ることができます"
   l.store "Source Email", "メールアドレス"
   l.store "Email address used by Typo to send notifications", "通知の送信先メールアドレス"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します"
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します"
   l.store "Enable spam protection", "スパムプロテクションを有効にする"
   l.store "Akismet Key", "Akismetキー"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typoはオプションで%sスパムフィルタリングサービスを利用できます。これらのサービスを使用するにはAkismetに登録し、APIキーを取得する必要があります。すでにAkismetキーをお持ちであればここに入力してください"
@@ -409,7 +506,8 @@ Localization.define("ja_JP") do |l|
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
   l.store "Search Engine Optimization", "検索エンジン最適化"
   l.store "This will display", ""
-  l.store "at the bottom of each of your post in the RSS feed", ""
+  l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "インフォメーション"
@@ -429,8 +527,8 @@ Localization.define("ja_JP") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "記事が公開されると、Typoはリンクしたページへトラックバックを送信します。非公開ブログの場合は公開されたブログへ情報が漏れないようにこのチェックボックスを非選択にしてください。公開ブログの場合は非選択にする必要はありません。"
   l.store "URLs to ping automatically", "自動的にPingを送信するURL"
   l.store "Latitude, Longitude", "緯度、経度"
-  l.store "your lattitude and longitude", "あなたの緯度、経度"
-  l.store "exemple", "例"
+  l.store "your latitude and longitude", "あなたの緯度、経度"
+  l.store "example", "例"
   l.store "Write", "新規作成"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -443,12 +541,27 @@ Localization.define("ja_JP") do |l|
   l.store "Drag some plugins here to fill your sidebar", "サイドバーで利用するプラグインをドラッグしてください"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
   l.store "Available Items", "利用可能な項目"
   l.store "Active Sidebar items", "有効なサイドバー項目"
   l.store "Get more plugins", "他のプラグインの入手"
   l.store "Sidebar", "サイドバー"
   l.store "Publish changes", "変更を公開"
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
 
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "表示名"
@@ -473,6 +586,7 @@ Localization.define("ja_JP") do |l|
   l.store "Theme editor", "テーマエディタ"
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "現在のテーマ"
   l.store "Get more themes", "他のテーマの入手"
   l.store "You can download third party themes from officially supported %s ", "公式サイト%sからサードパーティのテーマをダウンロードできます。"
@@ -487,7 +601,7 @@ Localization.define("ja_JP") do |l|
   l.store "User's status", ""
   l.store "Active", "有効"
   l.store "Inactive", "無効"
-  l.store "Profile Settings", ""
+  l.store "Profile settings", ""
   l.store "Firstname", "姓"
   l.store "Lastname", "名"
   l.store "Nickname", "ニックネーム"
@@ -497,9 +611,9 @@ Localization.define("ja_JP") do |l|
   l.store "Send notification messages via email", "メールで通知を送信"
   l.store "Send notification messages when new articles are posted", "新しい記事が投稿された際に通知メッセージを送る"
   l.store "Send notification messages when comments are posted", "コメントが投稿された際に通知メッセージを送る"
-  l.store "Contact Options", ""
+  l.store "Contact options", ""
   l.store "Your site", "あなたのホームページ"
-  l.store "display url on public profile", "公開プロフィールにURLを表示"
+  l.store "display URL on public profile", "公開プロフィールにURLを表示"
   l.store "Your MSN", "あなたのMSN ID"
   l.store "display MSN ID on public profile", "公開プロフィールにMSN IDを表示"
   l.store "Your Yahoo ID", "あなたのYahoo ID"
@@ -509,7 +623,7 @@ Localization.define("ja_JP") do |l|
   l.store "Your AIM id", "あなたのAIM ID"
   l.store "display AIM ID on public profile", "公開プロフィールにAIM IDを表示"
   l.store "Your Twitter username", "あなたのTwitter ID"
-  l.store "display twitter on public profile", "公開プロフィールにTwitter IDを表示"
+  l.store "display Twitter on public profile", "公開プロフィールにTwitter IDを表示"
   l.store "Tell us more about you", "補足事項"
 
   # app/views/admin/users/destroy.html.erb
@@ -525,6 +639,7 @@ Localization.define("ja_JP") do |l|
   l.store "Comments", "コメント"
   l.store "State", "状態"
   l.store "%s user", "%s"
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "ユーザーの追加"
@@ -568,6 +683,7 @@ Localization.define("ja_JP") do |l|
   l.store "RSS feed for this post", "この記事のRSSフィード"
   l.store "trackback uri", "トラックバックURL"
   l.store "Comments are disabled", "コメントは許可されていません"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""
@@ -583,7 +699,13 @@ Localization.define("ja_JP") do |l|
   l.store "This comment has been flagged for moderator approval.", ""
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""
+  l.store "Help", ""
+  l.store "Documentation", ""
+  l.store "Report a bug", ""
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", ""
   l.store "Dashboard", "ダッシュボード"
 
@@ -592,7 +714,7 @@ Localization.define("ja_JP") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", ""
+  l.store "Congratulations!", ""
   l.store "You have successfully signed up", ""
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""

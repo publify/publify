@@ -1,6 +1,5 @@
 # coding: utf-8
 class PostType < ActiveRecord::Base
-  include Sanitizable
   validates_uniqueness_of :name
   validates_presence_of :name
   validate :name_is_not_read
@@ -11,7 +10,7 @@ class PostType < ActiveRecord::Base
   end
   
   def sanitize_title
-    self.permalink = remove_accents(self.name).gsub(/<[^>]*>/, '').to_url
+    self.permalink = self.name.to_permalink
   end
 
 end

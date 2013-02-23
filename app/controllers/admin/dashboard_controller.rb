@@ -3,62 +3,33 @@ class Admin::DashboardController < Admin::BaseController
   require 'time'
   require 'rexml/document'
 
-  layout 'administration'
-
   def index
-    @newposts = Article.count(:all, :conditions => ['published = ? and published_at > ?', true, current_user.last_venue])
-    @newcomments = Feedback.count(:all, :conditions =>['state in (?,?) and published_at > ?', 'presumed_ham', 'ham', current_user.last_venue])
-    comments
-    lastposts
-    popular
-    statistics
-    inbound_links
-    typo_dev
-    typo_version
-  end
-
-  private
-
-  def statistics
-    @statposts = Article.count_published_articles
-    @statuserposts =  Article.count(:conditions => {:user_id => current_user.id, :state => 'published'})
-    @statcomments = Comment.count(:all, :conditions => "state != 'spam'")
-    @statspam = Comment.count(:all, :conditions => { :state => 'spam' })
-    @presumedspam = Comment.count(:all, :conditions => { :state => 'presumed_spam' })
+    @newposts_count = Article.published_since(current_user.last_venue).count
+    @newcomments_count = Feedback.published_since(current_user.last_venue).count
+    @comments = Comment.where(published: true).order('created_at DESC').limit(5)
+    @recent_posts = Article.where(published: true).order('published_at DESC').limit(5)
+    @bestof = Article.find(:all, select: 'contents.*, comment_counts.count AS comment_count',
+                           from: "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
+                           conditions: ['comment_counts.article_id = contents.id AND published = ?', true],
+                           order: 'comment_counts.count DESC', :limit => 5)
+    @statposts = Article.published.count
+    @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
+    @statcomments = Comment.count(:all, conditions: "state != 'spam'")
+    @statspam = Comment.count(:all, conditions: { state: 'spam' })
+    @presumedspam = Comment.count(:all, conditions: { state: 'presumed_spam' })
     @categories = Category.count(:all)
-  end
-
-  def comments
-    @comments ||=
-      Comment.find(:all,
-                   :limit => 5,
-                   :conditions => ['published = ?', true],
-                   :order => 'created_at DESC')
-  end
-
-  def lastposts
-    @recent_posts = Article.find(:all,
-                                 :conditions => ["published = ?", true],
-                                 :order => 'published_at DESC',
-                                 :limit => 5)
-  end
-
-  def popular
-    @bestof = Article.find(:all,
-                           :select => 'contents.*, comment_counts.count AS comment_count',
-                           :from => "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
-                           :conditions => ['comment_counts.article_id = contents.id AND published = ?', true],
-                           :order => 'comment_counts.count DESC',
-                           :limit => 5)
+    @inbound_links = inbound_links
+    @typo_links = typo_dev
+    typo_version
   end
 
   def inbound_links
     url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
     open(url) do |http|
-      @inbound_links = parse_rss(http.read).reverse
+      return parse_rss(http.read).reverse
     end
   rescue
-    @inbound_links = nil
+    nil
   end
 
   def typo_version
@@ -86,10 +57,10 @@ class Admin::DashboardController < Admin::BaseController
   def typo_dev
     url = "http://blog.typosphere.org/articles.rss"
     open(url) do |http|
-      @typo_links = parse_rss(http.read)[0..4]
+      return parse_rss(http.read)[0..4]
     end
   rescue
-    @typo_links = nil
+    nil
   end
 
   private
@@ -111,7 +82,7 @@ class Admin::DashboardController < Admin::BaseController
       item.link        = REXML::XPath.match(elem, "link/text()").first.value rescue ""
       item.description = REXML::XPath.match(elem, "description/text()").first.value rescue ""
       item.author      = REXML::XPath.match(elem, "dc:publisher/text()").first.value rescue ""
-      item.date        = Time.mktime(*ParseDate.parsedate(REXML::XPath.match(elem, "dc:date/text()").first.value)) rescue Time.now
+      item.date        = Time.mktime(*ParseDate.parsedate(REXML::XPath.match(elem, "dc:date/text()").first.value)) rescue Date.parse(REXML::XPath.match(elem, "pubDate/text()").first.value) rescue Time.now
 
       item.description_link = item.description
       item.description.gsub!(/<\/?a\b.*?>/, "") # remove all <a> tags

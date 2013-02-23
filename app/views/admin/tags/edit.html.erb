@@ -1,13 +1,12 @@
-<% @page_heading =  _("Editing ") + " #{h @tag.display_name}" %>
-
-<% content_for(:tasks) do %>
-  <%= task_overview %>
-<% end %>
+<% @page_heading =  _("Editing tag ") + " #{h @tag.display_name}" %>
 
 <%= form_tag :action=>"edit", :id => @tag.id do %>
-  <%= render :partial => "form" %>
-
-  <%= cancel_or_save %>
+<%= error_messages_for 'tag' %>
+<label for="tag_display_name"><%= _("Name")%>:</label>
+<div class='input'>
+	<%= text_field 'tag', 'display_name', :class => 'medium' %>
+</div>
+<div class='actions'>
+	<%= cancel_or_save %>		
+</div>
 <% end %>
-
-

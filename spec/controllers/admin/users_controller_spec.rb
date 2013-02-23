@@ -5,8 +5,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
   describe ' when you are admin' do
     before(:each) do
-      Factory(:blog)
-            @admin = Factory(:user, :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+      FactoryGirl.create(:blog)
+            @admin = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @admin.id }
     end
 
@@ -63,50 +63,59 @@ describe Admin::UsersController, "rough port of the old functional test" do
         end
 
       end
-  end
+    end
 
-    it "test_destroy" do
-      user_count = User.count
-      get :destroy, :id => @admin.id
-      assert_template 'destroy'
-      assert assigns(:user).valid?
+    describe "#destroy" do
+      let(:user) { FactoryGirl.create(:user) }
 
-      user = Factory.build(:user)
-      user.should_receive(:destroy)
-      User.should_receive(:count).and_return(2)
-      User.should_receive(:find).with(@admin.id).and_return(user)
-      post :destroy, :id => @admin.id
-      response.should redirect_to(:action => 'index')
+      context "GET" do
+        it "shows the user to be destroyed" do
+          id = user.id
+          get :destroy, :id => id
+          assert_template 'destroy'
+          assert assigns(:record).valid?
+          expect { User.find(id) }.to_not raise_error
+        end
+      end
+
+      context "GET" do
+        it "destroys the user" do
+          id = user.id
+          post :destroy, :id => id
+          response.should redirect_to(:action => 'index')
+          expect { User.find(id) }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
     end
   end
 
   describe 'when you are not admin' do
 
     before :each do
-      Factory(:blog)
-      user = Factory(:user)
+      FactoryGirl.create(:blog)
+      user = FactoryGirl.create(:user)
       session[:user] = user.id
     end
 
     it "don't see the list of user" do
       get :index
-      response.should redirect_to(:controller => "/accounts", :action => "login")
+      response.should redirect_to(:controller => "/admin/dashboard", :action => "index")
     end
 
     describe 'EDIT Action' do
 
       describe 'try update another user' do
         before do
-          @admin_profile = Factory.create(:profile_admin)
-          @administrator = Factory.create(:user, :profile => @admin_profile)
-          contributor = Factory.create(:profile_contributor)
+          @admin_profile = FactoryGirl.create(:profile_admin)
+          @administrator = FactoryGirl.create(:user, :profile => @admin_profile)
+          contributor = FactoryGirl.create(:profile_contributor)
           post :edit,
             :id => @administrator.id,
             :profile_id => contributor.id
         end
 
         it 'should redirect to login' do
-          response.should redirect_to(:controller => "/accounts", :action => "login")
+          response.should redirect_to(:controller => "/admin/dashboard", :action => "index")
         end
 
         it 'should not change user profile' do

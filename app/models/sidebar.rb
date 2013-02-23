@@ -23,11 +23,12 @@ class Sidebar < ActiveRecord::Base
     end
 
     def input_html(sidebar)
-      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'small large'})
+      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'span12'})
     end
 
     def line_html(sidebar)
-      content_tag(:p, label_html(sidebar) +  "<br />" + input_html(sidebar), :class => 'input_text_title')
+      html = label_html(sidebar)
+      html << content_tag(:div,  input_html(sidebar), :class => 'input')
     end
 
     def input_name(sidebar)
@@ -48,7 +49,7 @@ class Sidebar < ActiveRecord::Base
 
     class TextAreaField < self
       def input_html(sidebar)
-        html_options = { "rows" => "10", "class" => "large small" }.update(options.stringify_keys)
+        html_options = { "rows" => "10", "class" => "span12" }.update(options.stringify_keys)
         text_area_tag(input_name(sidebar), sidebar.config[key], html_options)
       end
     end
@@ -73,13 +74,8 @@ class Sidebar < ActiveRecord::Base
     end
 
     class CheckBoxField < self
-      def input_html(sidebar)
-        hidden_field_tag(input_name(sidebar),0)+
-        check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)
-      end
-
       def line_html(sidebar)
-        input_html(sidebar) + ' ' + label_html(sidebar) + '<br >'
+hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)} #{label}".html_safe)
       end
 
       def canonicalize(value)
@@ -118,93 +114,94 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
-  class << self
-    attr_accessor :view_root
-
-    def find *args
-      begin
-        super
-      rescue ActiveRecord::SubclassNotFound => e
-        available = available_sidebars.map {|klass| klass.to_s}
-        set_inheritance_column :bogus
-        super.each do |record|
-          unless available.include? record.type
-            record.delete
-          end
+  def self.find *args
+    begin
+      super
+    rescue ActiveRecord::SubclassNotFound => e
+      available = available_sidebars.map {|klass| klass.to_s}
+      self.inheritance_column = :bogus
+      super.each do |record|
+        unless available.include? record.type
+          record.delete
         end
-        set_inheritance_column :type
-        super
+      end
+      self.inheritance_column = :type
+      super
+    end
+  end
+
+  def self.find_all_visible
+    where('active_position is not null').order('active_position')
+  end
+
+  def self.find_all_staged
+    where('staged_position is not null').order('staged_position')
+  end
+
+  def self.purge
+    delete_all('active_position is null and staged_position is null')
+  end
+
+  def self.setting(key, default=nil, options = { })
+    key = key.to_s
+
+    return if instance_methods.include?(key)
+
+    fields << Field.build(key, default, options)
+    fieldmap.update(key => fields.last)
+
+    self.send(:define_method, key) do
+      if config.has_key? key
+        config[key]
+      else
+        default
       end
     end
 
-    def find_all_visible
-      find :all, :conditions => 'active_position is not null', :order => 'active_position'
+    self.send(:define_method, "#{key}=") do |newval|
+      config[key] = newval
     end
+  end
 
-    def find_all_staged
-      find :all, :conditions => 'staged_position is not null', :order => 'staged_position'
+  def self.fieldmap
+    @fieldmap ||= {}
+  end
+
+  def self.fields
+    @fields ||= []
+  end
+
+  def self.description(desc = nil)
+    if desc
+      @description = desc
+    else
+      @description || ''
     end
+  end
 
-    def purge
-      delete_all('active_position is null and staged_position is null')
-    end
+  def self.short_name
+    self.to_s.underscore.split(%r{_}).first
+  end
 
-    def setting(key, default=nil, options = { })
-      return if instance_methods.include?(key.to_s)
-      fields << Field.build(key.to_s, default, options)
-      fieldmap.update(key.to_s => fields.last)
-      self.send(:define_method, key) do
-        self.config[key.to_s]
-      end
-      self.send(:define_method, "#{key}=") do |newval|
-        self.config[key.to_s] = newval
-      end
-    end
+  def self.path_name
+    self.to_s.underscore
+  end
 
-    def fieldmap
-      @fieldmap ||= {}
-    end
+  def self.display_name(new_dn = nil)
+    @display_name = new_dn if new_dn
+    @display_name || short_name.humanize
+  end
 
-    def fields
-      @fields ||= []
-    end
+  def self.available_sidebars
+    Sidebar.descendants.sort_by { |klass| klass.to_s }
+  end
 
-    def fields=(newval)
+    def self.fields=(newval)
       @fields = newval
     end
 
-    def description(desc = nil)
-      if desc
-        @description = desc
-      else
-        @description
-      end
-    end
-
-    def lifetime(timeout = nil)
-      if timeout
-        @lifetime = timeout
-      else
-        @lifetime
-      end
-    end
-
-    def short_name
-      self.to_s.underscore.split(%r{_}).first
-    end
-
-    def path_name
-      self.to_s.underscore
-    end
-
-    def display_name(new_dn = nil)
-      @display_name = new_dn if new_dn
-      @display_name || short_name.humanize
-    end
-
-    def available_sidebars
-      Sidebar.descendants.sort_by { |klass| klass.to_s }
-    end
+  class << self
+    attr_accessor :view_root
   end
 
   def blog
@@ -226,7 +223,7 @@ class Sidebar < ActiveRecord::Base
 
 
   def publish
-    self.active_position=self.staged_position
+    self.active_position = self.staged_position
   end
 
   def config
@@ -276,10 +273,6 @@ class Sidebar < ActiveRecord::Base
     fields.inject({ :sidebar => self }) do |hash, field|
       hash.merge(field.key => config[field.key])
     end
-  end
-
-  def lifetime
-    self.class.lifetime
   end
 
   def view_root

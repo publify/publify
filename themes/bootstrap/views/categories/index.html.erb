@@ -1,0 +1,13 @@
+<div class='category-excerpt'>
+  <h1 class='page-header'>Categories</h1>
+  <% @categories.each do |cat| %>
+    <h2 class='page-header'><%= cat.display_name%></h2>
+    <% articles = cat.articles.slice(0, 9)%>
+    <ul>
+      <% articles.each do |article| %>
+        <li><%= link_to_permalink(article, article.title)%></li>
+      <% end %>
+    </ul>
+    <p> <%= _("Read all articles in %s", link_to_permalink(cat, cat.display_name))  %></p>
+  <% end%>
+</div>

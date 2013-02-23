@@ -32,7 +32,10 @@ module LoginSystem
         accepts.html do
           #store_location
           session[:return_to] = request.fullpath
-          if User.find(:first)
+          if logged_in?
+            flash[:error] = "You're not allowed to perform this action"
+            redirect_to :controller => "admin/dashboard", :action => "index"
+          elsif User.find(:first)
             redirect_to :controller => "/accounts", :action => "login"
           else
             redirect_to :controller => "/accounts", :action => "signup"

@@ -1,12 +1,39 @@
 <% @page_heading = _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
+
 <%= form_tag :action => "update", :id => @comment.id do %>
-<% content_for(:tasks) do %>
-  <%= task_overview %>
-<% end %>
 
-  <div class="admin">
-    <%= render :partial => "form" %>
-  </div>
+<%= error_messages_for 'comment' %>
+<%= hidden_field_tag 'article_id', @article.id %>
 
-  <%= cancel_or_save %>
+<fieldset class='form-horizontal'>
+  <div class='control-group'>
+    <label for="comment_author" class='control-label'><%= _("Author")%></label>
+      <div class='controls'>
+        <%= text_field 'comment', 'author', :class => 'span3' %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <label for="comment_email" class='control-label'><%= _("Email")%></label>
+      <div class='controls'>
+        <%= text_field 'comment', 'email', :class => 'span3' %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <label for="comment_url" class='control-label'><%= _("Url") %></label>
+      <div class='controls'>
+        <%= text_field 'comment', 'url', :class => 'medium' %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <label for='comment_body' class='control-label'><%= _("Your comment") %></label>
+      <div class='controls'>
+        <script type="text/javascript">edToolbar('comment_body');</script>
+        <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
+      </div>
+    </div>
+    <div class='form-actions'>
+      <%= cancel_or_save %>
+    </div>
+</fieldset>
+
 <% end %>

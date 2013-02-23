@@ -1,4 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+SimpleCov.start 'rails'
+
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -6,10 +9,15 @@ require 'factory_girl'
 require 'rexml/document'
 FactoryGirl.find_definitions
 
-User
-class User
-  alias real_send_create_notification send_create_notification
-  def send_create_notification; end
+class EmailNotify
+  class << self
+    alias real_send_user_create_notification send_user_create_notification
+    def send_user_create_notification user; end
+  end
+end
+
+class ActionView::TestCase::TestController
+  include Rails.application.routes.url_helpers
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -33,6 +41,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"
+
+  # shortcuts for factory_girl to use: create / build / build_stubbed
+  config.include FactoryGirl::Syntax::Methods
 
   config.before(:each) do
     Localization.lang = :default
@@ -80,26 +91,36 @@ def assert_rss20 feed, count
 end
 
 def stub_default_blog
-  blog = stub_model(Blog, :base_url => "http://myblog.net")
-  view.stub(:this_blog) { blog }
-  Blog.stub(:default) { blog }
-  blog
+  FactoryGirl.build_stubbed :blog
 end
 
 def stub_full_article(time=Time.now)
   author = stub_model(User, :name => "User Name")
-  text_filter = Factory.build(:textile)
+  text_filter = FactoryGirl.build(:textile)
 
   a = stub_model(Article, :published_at => time, :user => author,
                  :created_at => time, :updated_at => time,
                  :title => "Foo Bar", :permalink => 'foo-bar',
                  :guid => time.hash)
-  a.stub(:categories) { [Factory.build(:category)] }
+  a.stub(:categories) { [FactoryGirl.build(:category)] }
   a.stub(:published_comments) { [] }
-  a.stub(:resources) { [Factory.build(:resource)] }
-  a.stub(:tags) { [Factory.build(:tag)] }
+  a.stub(:resources) { [FactoryGirl.build(:resource)] }
+  a.stub(:tags) { [FactoryGirl.build(:tag)] }
   a.stub(:text_filter) { text_filter }
   a
+end
+
+def stub_pagination collection, attributes = {}
+  length = collection.length
+  per_page = attributes[:per_page] || 25
+  num_pages = length / per_page + (length % per_page == 0 ? 0 : 1)
+
+  attributes = attributes.reverse_merge current_page: 1, num_pages: num_pages,
+    total_count: length, limit_value: per_page, total_pages: 12
+  attributes.each do |key, value|
+    collection.stub(key).and_return value
+  end
+  collection
 end
 
 # test standard view and all themes
@@ -107,9 +128,10 @@ def with_each_theme
   yield nil, ""
   Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
     next if theme =~ /\.\.?/
-    view_path = "#{::Rails.root.to_s}/themes/#{theme}/views"
-    if File.exists?("#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb")
-      require "#{::Rails.root.to_s}/themes/#{theme}/helpers/theme_helper.rb"
+    theme_dir = "#{::Rails.root.to_s}/themes/#{theme}"
+    view_path = "#{theme_dir}/views"
+    if File.exists?("#{theme_dir}/helpers/theme_helper.rb")
+      require "#{theme_dir}/helpers/theme_helper.rb"
     end
     yield theme, view_path
   end
@@ -212,25 +234,3 @@ module Webrat #:nodoc:
   end
 end
 
-def test_tabs(active)
-  ["Dashboard", "Articles", "Pages", "Media", "Design", "Settings", "SEO"].each do |l|
-    next if l == active
-    response.should_not have_selector(".active", :content => "#{l}")
-  end
-  response.should have_selector(".active", :content => "#{active}")
-end
-
-def test_subtabs(tabs, active)
-  tabs.each do |t|
-    if t == active
-      response.should_not have_selector("ul#subtabs>li>a", :content => active)
-      response.should have_selector("ul#subtabs>li", :content => active)      
-    else
-      response.should have_selector("ul#subtabs>li>a", :content => "#{t}")
-    end
-  end
-end
-
-def test_back_to_list
-  response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
-end

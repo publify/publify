@@ -4,8 +4,8 @@ describe "With the list of available filters" do
 
   attr_reader :blog, :whiteboard
   before(:each) do
-    @blog = Factory(:blog)
-    @filters = TextFilter.available_filters 
+    @blog = build_stubbed(:blog)
+    @filters = TextFilter.available_filters
     @whiteboard = Hash.new
   end
 
@@ -48,13 +48,13 @@ describe "With the list of available filters" do
     end
 
     it "smartypants" do
-      Factory(:smartypants)
+      build_stubbed(:smartypants)
       text = filter_text('"foo"',[:smartypants])
       text.should == '&#8220;foo&#8221;'
     end
 
     it "markdown" do
-      Factory(:markdown)
+      build_stubbed(:markdown)
       text = filter_text('*foo*', [:markdown])
       assert_equal '<p><em>foo</em></p>', text
 
@@ -63,8 +63,8 @@ describe "With the list of available filters" do
     end
 
     it "filterchain" do
-      Factory(:markdown)
-      Factory(:smartypants)
+      build_stubbed(:markdown)
+      build_stubbed(:smartypants)
       assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
       filter_text('*"foo"*',[:markdown,:smartypants])
 
@@ -133,11 +133,11 @@ class Foo
 end
 </typo:code>
           },[:macropre,:macropost]).should == %{
-<div class=\"CodeRay\"><pre><notextile><span class=\"CodeRay\"><span class=\"r\">class</span> <span class=\"cl\">Foo</span>
-  <span class=\"r\">def</span> <span class=\"fu\">bar</span>
-    <span class=\"iv\">@a</span> = <span class=\"s\"><span class=\"dl\">&quot;</span><span class=\"k\">zzz</span><span class=\"dl\">&quot;</span></span>
-  <span class=\"r\">end</span>
-<span class=\"r\">end</span></span></notextile></pre></div>
+<div class=\"CodeRay\"><pre><notextile><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">Foo</span>
+  <span class=\"keyword\">def</span> <span class=\"function\">bar</span>
+    <span class=\"instance-variable\">@a</span> = <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">zzz</span><span class=\"delimiter\">&quot;</span></span>
+  <span class=\"keyword\">end</span>
+<span class=\"keyword\">end</span></span></notextile></pre></div>
           }
         end
       end #multiline
@@ -145,6 +145,9 @@ end
 
 
     it "test_code_plus_markup_chain" do
+      build_stubbed :textile
+      build_stubbed :markdown
+
       text = <<-EOF
 *header text here*
 
@@ -163,24 +166,18 @@ _footer text here_
       expects_markdown = <<-EOF
 <p><em>header text here</em></p>
 
-<div class="CodeRay"><pre><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
-  <span class="r">def</span> <span class="fu">method</span>
-    <span class="s"><span class="dl">&quot;</span><span class="k">foo</span><span class="dl">&quot;</span></span>
-  <span class="r">end</span>
-<span class="r">end</span></span></pre></div>
+<div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
+  <span class=\"keyword\">def</span> <span class=\"function\">method</span>
+    <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>
+  <span class=\"keyword\">end</span>
+<span class=\"keyword\">end</span></span></pre></div>
 
 
 <p><em>footer text here</em></p>
       EOF
 
       expects_textile = <<-EOF
-<p><strong>header text here</strong></p>
-<div class="CodeRay"><pre><span class="CodeRay"><span class="r">class</span> <span class="cl">test</span>
-  <span class="r">def</span> <span class="fu">method</span>
-    <span class="s"><span class="dl">&quot;</span><span class="k">foo</span><span class="dl">&quot;</span></span>
-  <span class="r">end</span>
-<span class="r">end</span></span></pre></div>
-<p><em>footer text here</em></p>
+<p><strong>header text here</strong></p>\n<div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>\n  <span class=\"keyword\">def</span> <span class=\"function\">method</span>\n    <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>\n  <span class=\"keyword\">end</span>\n<span class=\"keyword\">end</span></span></pre></div>\n<p><em>footer text here</em></p>
       EOF
 
       assert_equal expects_markdown.strip, TextFilter.filter_text_by_name(blog, text, 'markdown')
@@ -238,7 +235,7 @@ _footer text here_
   end # #filter_text
 
   it "#filter text by name" do
-    t = Factory('markdown smartypants')
+    t = build_stubbed('markdown smartypants')
     result = TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
     result.should == '<p><em>&#8220;foo&#8221;</em></p>'
   end

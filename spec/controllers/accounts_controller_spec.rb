@@ -3,9 +3,9 @@ require 'spec_helper'
 describe AccountsController do
   describe "A successful login with 'Remember me' checked" do
     it 'should not cause password to change' do
-      Factory(:blog)
-      henri = Factory(:user, :login => 'henri', :password => 'testagain')
-      User.salt = 'change-me'
+      FactoryGirl.create(:blog)
+      User.stub!(:salt).and_return('change-me')
+      henri = FactoryGirl.create(:user, :login => 'henri', :password => 'testagain')
       post 'login', {:user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'}
       request.session[:user_id].should == henri.id
     end
@@ -13,9 +13,9 @@ describe AccountsController do
 
   describe 'A successfully authenticated login' do
     before(:each) do
-      Factory(:blog)
-      @henri = Factory(:user, :login => 'henri', :password => 'testagain', :profile => Factory(:profile_admin, :label => 'admin_henri'))
+      FactoryGirl.create(:blog)
       User.stub!(:salt).and_return('change-me')
+      @henri = FactoryGirl.create(:user, :login => 'henri', :password => 'testagain', :profile => FactoryGirl.create(:profile_admin, :label => 'admin_henri'))
     end
 
     def make_request
@@ -58,7 +58,7 @@ describe AccountsController do
 
   describe 'User is inactive' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       User.stub!(:authenticate).and_return(nil)
       User.stub!(:count).and_return(1)
     end
@@ -91,7 +91,7 @@ describe AccountsController do
 
   describe 'Login with nil user and password' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       User.stub!(:count).and_return(1)
     end
 
@@ -107,7 +107,7 @@ describe AccountsController do
 
   describe 'Login gets the wrong password' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       User.stub!(:authenticate).and_return(nil)
       User.stub!(:count).and_return(1)
     end
@@ -137,9 +137,25 @@ describe AccountsController do
     end
   end
 
+  describe 'GET /index' do
+    it 'should redirect to login' do
+      FactoryGirl.create(:blog)
+      User.stub!(:count).and_return(1)
+      get 'index'
+      response.should redirect_to(:action => 'login')
+    end
+    
+    it 'should redirect to signup' do
+      FactoryGirl.create(:blog)
+      User.stub!(:count).and_return(0)
+      get 'index'
+      response.should redirect_to(:action => 'signup')
+    end    
+  end
+
   describe 'GET /login' do
     it 'should render action :login' do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       User.stub!(:count).and_return(1)
       get 'login'
       response.should render_template(:login)
@@ -149,7 +165,7 @@ describe AccountsController do
 
   describe 'GET /login with 0 existing users' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       User.stub!(:count).and_return(0)
     end
 
@@ -167,7 +183,7 @@ describe AccountsController do
 
   describe 'with >0 existing user and allow_signup = 0' do
     before(:each) do
-      @blog = Factory(:blog)
+      @blog = FactoryGirl.create(:blog)
       User.stub!(:count).and_return(1)
     end
 
@@ -188,7 +204,7 @@ describe AccountsController do
 
   describe 'with > 0 existing user and allow_signup = 1' do
     before(:each) do
-      @blog = Factory(:blog, :allow_signup => 1)
+      @blog = FactoryGirl.create(:blog, :allow_signup => 1)
       User.stub!(:count).and_return(1)
     end
     
@@ -209,7 +225,7 @@ describe AccountsController do
   end
   describe 'GET signup with 0 existing users' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       User.stub!(:count).and_return(0)
       @user = mock("user")
       @user.stub!(:reload).and_return(@user)
@@ -270,12 +286,11 @@ describe AccountsController do
 
   describe 'POST signup with 0 existing users' do
     before(:each) do
-      Factory(:blog)
+      FactoryGirl.create(:blog)
       User.stub!(:count).and_return(0)
       @user = mock_model(User)
       @user.stub!(:login).and_return('newbob')
-      @user.stub!(:password=).and_return(true)
-      @user.stub!(:password).and_return('foo')
+      @user.stub!(:generate_password!).and_return(true)
       @user.stub!(:name=).and_return(true)
       User.stub!(:new).and_return(@user)
       User.stub!(:authenticate).and_return(@user)
@@ -307,8 +322,8 @@ describe AccountsController do
 
   describe 'User is logged in' do
     before(:each) do
-      Factory(:blog)
-      @user = Factory(:user)
+      FactoryGirl.create(:blog)
+      @user = FactoryGirl.create(:user)
 
       # The AccountsController class uses session[:user_id], and the
       # Typo LoginSystem uses session[:user].  So we need to set both of
@@ -350,8 +365,8 @@ describe AccountsController do
 
   describe 'when user has lost their password' do
     before(:each) do
-      Factory(:blog)
-      @user = Factory(:user)
+      FactoryGirl.create(:blog)
+      @user = FactoryGirl.create(:user)
       @user.profile = Profile.find_by_label('admin')
     end
 

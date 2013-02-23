@@ -1,9 +1,16 @@
 require_dependency 'spam_protection'
-class Feedback < Content
-  # Empty, for now, ready to hoist up methods from Comment & Trackback
-  set_table_name "feedback"
+class Feedback < ActiveRecord::Base
+  self.table_name = "feedback"
+
+  belongs_to :text_filter
 
   include TypoGuid
+
+  include Stateful
+  include ContentBase
+
+  after_save :invalidates_cache?
+  after_destroy lambda { |c|  c.invalidates_cache?(true) }
 
   validate :feedback_not_closed, :on => :create
 
@@ -11,6 +18,9 @@ class Feedback < Content
   before_save :correct_url
   after_save :post_trigger
   after_save :report_classification
+
+  scope :ham, where("state in ('presumed_ham', 'ham')")
+  scope :published_since, lambda {|time| ham.where('published_at > ?', time)}
 
   has_state(:state,
             :valid_states => [:unclassified, #initial state
@@ -31,24 +41,12 @@ class Feedback < Content
     'created_at ASC'
   end
 
-  def to_param
-    guid
-  end
-
   def parent
     article
   end
 
   def permalink_url(anchor=:ignored, only_path=false)
     article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
-  end
-
-  def edit_url(anchor=:ignored)
-    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"edit", :id => id)
-  end
-
-  def delete_url(anchor=:ignored)
-    blog.url_for(:controller => "/admin/#{self.class.to_s.downcase}s", :action =>"destroy", :id => id)
   end
 
   def html_postprocess(field, html)
@@ -98,10 +96,6 @@ class Feedback < Content
     end
   end
 
-  def akismet
-    Akismet.new(blog.sp_akismet_key, blog.base_url)
-  end
-
   def sp_is_spam?(options={})
     sp = SpamProtection.new(blog)
     Timeout.timeout(defined?($TESTING) ? 10 : 30) do
@@ -114,24 +108,28 @@ class Feedback < Content
   end
 
   def akismet_is_spam?(options={})
-    return false if blog.sp_akismet_key.blank?
+    return false if akismet.nil?
+
     begin
       Timeout.timeout(defined?($TESTING) ? 30 : 60) do
-        akismet.commentCheck(akismet_options)
+        akismet.comment_check(ip, nil, akismet_options)
       end
     rescue Timeout::Error => e
       nil
     end
   end
 
-  def mark_as_ham!
-    mark_as_ham
+  def change_state!
+    result = ''
+    if state.spam? || state.presumed_spam?
+      mark_as_ham
+      result = 'ham'
+    else
+      mark_as_spam
+      result = 'spam'
+    end
     save!
-  end
-
-  def mark_as_spam!
-    mark_as_spam
-    save
+    result
   end
 
   def report_as_spam
@@ -143,9 +141,12 @@ class Feedback < Content
   end
 
   def report_as spam_or_ham
-    return if blog.sp_akismet_key.blank?
+    return if akismet.nil?
     begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.send("submit#{spam_or_ham}", akismet_options) }
+      Timeout.timeout(defined?($TESTING) ? 5 : 3600) {
+        akismet.send("submit_#{spam_or_ham}",
+                     ip, nil, akismet_options)
+      }
     rescue Timeout::Error => e
       nil
     end
@@ -165,5 +166,21 @@ class Feedback < Content
     if article.comments_closed?
       errors.add(:article_id, 'Comment are closed')
     end
+  end
+
+  private
+  @@akismet = nil
+
+  def akismet
+    @@akismet = akismet_client if @@akismet.nil?
+    return @@akismet == false ? nil : @@akismet
+  end
+
+  def akismet_client
+    return false if blog.sp_akismet_key.blank?
+
+    client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
+
+    return client.verify_key ? client : false
   end
 end

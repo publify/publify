@@ -9,7 +9,7 @@ end
 
 describe 'Given the default theme' do
   before(:each) do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     @theme = Blog.default.current_theme
   end
 
@@ -24,7 +24,6 @@ describe 'Given the default theme' do
 
   it 'theme_from_path should find the correct theme' do
     Theme.theme_from_path(::Rails.root.to_s + 'themes/typographic').name.should == 'typographic'
-    Theme.theme_from_path(::Rails.root.to_s + 'themes/scribbish').name.should == 'scribbish'
   end
 
   it '#search_theme_path finds the right things 2' do

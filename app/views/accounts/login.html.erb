@@ -1,25 +1,27 @@
-<%= content_tag :h1, link_to(image_tag("/images/admin/typologo.gif", :alt=>"Typo website"), "http://typosphere.org") %>
-
-<div id="flash"><%= render_the_flash %></div>
-<%= form_tag :action=> "login" do %>
-  <p>
-    <label for="user_login"><%= _('Login')%></label>
-    <%= text_field(:user, :login, {:class => 'title'})%>
-  </p>
-  <p>
-    <label for="user_password"><%= _('Password')%></label>
-    <%= password_field(:user, :password, {:class => 'title'})%>
-  </p>
-  <p>
-    <label for="remember_me">
-      <div id='remember'>
-        <%= check_box_tag 'remember_me' %>
-        <%= _('Remember me')%>
+<div class='row'>
+  <div class='span4 offset4'>
+    <div class='well'>
+      <%= form_tag :action=> "login" do %>
+      <div class='clearfix'>
+        <h2><%= _("Sign in") %></h2>
       </div>
-      <input type="submit" name="login" value= "<%= _('Submit') %>" class="save" id="submit" />
-    </label>
-  </p>
-  <p class='clear'>
-    <%= display_accounts_link %>
-  </p>
-<% end %>
+      <div id="flash"><%= render_the_flash %></div>
+      <div class='clearfix'>
+        <%= text_field(:user, :login, {:class => 'login', :placeholder => _("Login")})%>  
+      </div>
+      <div class='clearfix'>
+        <%= password_field(:user, :password, {:class => 'login', :placeholder => _("Password")})%>
+      </div>
+      <div class='clearfix'>
+        <input type="submit" name="login" class="btn btn-info" value= "<%= _('Sign in') %>" />
+        <%= check_box_tag 'remember_me' %> <small><%= _('Remember me')%></small> 
+      </div>	  
+      <div class='clearfix'>
+        <p>
+			<%= [lost_password, create_account_link].join("<br />") %>
+        </p>        
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

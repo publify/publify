@@ -46,7 +46,7 @@
 
 <p class="postmetadata alt">
   <small>
-  <a href="<%= @article.feed_url(:rss) %>" title="RSS Feed"><%= _("RSS feed for this post")%></a>
+  <a href="<%= @article.feed_url('rss') %>" title="RSS Feed"><%= _("RSS feed for this post")%></a>
 <% if @article.allow_pings? -%>
   <a href="<%= @article.trackback_url %>" ><%= _("trackback uri")%></a>
 <% end -%>

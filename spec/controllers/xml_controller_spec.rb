@@ -110,21 +110,21 @@ describe XmlController do
       describe "without format parameter" do
         it "redirects article feed to Article RSS feed" do
           get :feed, :type => 'article', :id => @article.id
-          assert_moved_permanently_to @article.permalink_by_format(:rss)
+          assert_moved_permanently_to @article.feed_url('rss')
         end
       end
 
       describe "with format rss20" do
         it "redirects the article feed to the article RSS feed" do
           get :feed, :format => 'rss20', :type => 'article', :id => @article.id
-          assert_moved_permanently_to @article.permalink_by_format(:rss)
+          assert_moved_permanently_to @article.feed_url('rss')
         end
       end
 
       describe "with format atom10" do
         it "redirects the article feed to the article Atom feed" do
           get :feed, :format => 'atom10', :type => 'article', :id => @article.id
-          assert_moved_permanently_to @article.permalink_by_format('atom')
+          assert_moved_permanently_to @article.feed_url('atom')
         end
       end
     end
@@ -148,7 +148,7 @@ describe XmlController do
 
     it "redirects permanently to the article RSS feed" do
       get :articlerss, :id => @article.id
-      assert_moved_permanently_to @article.permalink_by_format(:rss)
+      assert_moved_permanently_to @article.feed_url('rss')
     end
   end
 
@@ -184,7 +184,7 @@ describe XmlController do
   # TODO: make this more robust
   describe "#feed with googlesitemap format" do
     before do
-      Factory(:category)
+      FactoryGirl.create(:category)
       get :feed, :format => 'googlesitemap', :type => 'sitemap'
     end
 

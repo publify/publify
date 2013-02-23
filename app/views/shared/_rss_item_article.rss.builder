@@ -9,7 +9,7 @@ xm.item do
       html(item, :all)
     end
   xm.description content_html + item.get_rss_description
-  xm.pubDate pub_date(item.published_at)
+  xm.pubDate item.published_at.rfc822
   xm.guid "urn:uuid:#{item.guid}", "isPermaLink" => "false"
   if item.link_to_author?
     xm.author "#{item.user.email} (#{item.user.name})"
@@ -26,7 +26,7 @@ xm.item do
   if not item.resources.empty?
     resource = item.resources.first
     xm.enclosure(
-      :url => item.blog.file_url(resource.filename),
+      :url => item.blog.file_url(resource.upload_url),
       :length => resource.size,
       :type => resource.mime)
   end

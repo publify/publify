@@ -1,10 +1,8 @@
 class Admin::UsersController < Admin::BaseController
-  layout 'administration'
-
   cache_sweeper :blog_sweeper
 
   def index
-    @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => this_blog.admin_display_elements
+    @users = User.order('login asc').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def new
@@ -34,11 +32,11 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    if request.post?
-      @user.destroy if User.count > 1
-      redirect_to :action => 'index'
-    end
+    @record = User.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+
+    @record.destroy if User.count > 1
+    redirect_to :action => 'index'
   end
 
   private

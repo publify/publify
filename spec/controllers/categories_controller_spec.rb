@@ -1,214 +1,149 @@
 require 'spec_helper'
 
-describe CategoriesController, "/index" do
-  before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic")
-    Blog.stub(:default) { blog }
-    Trigger.stub(:fire) { }
-
-    categories = 3.times.map do
-      Factory.build(:category).tap do |category|
-        articles = 2.times.map { stub_model(Article) }
-        category.stub(:published_articles) { articles }
-        category.stub(:display_name) { category.id.to_s }
-      end
+describe CategoriesController do
+  describe "/index" do
+    before do
+      create(:blog)
+      @categories = 3.times.map {
+        create(:category).tap { |category|
+          2.times { category.articles << FactoryGirl.create(:article) }
+        }
+      }
     end
-    Category.stub(:find) { categories }
+
+    describe "normally" do
+      before do
+        get 'index'
+      end
+
+      specify { response.should be_success }
+      specify { response.should render_template('categories/index') }
+      specify { assigns(:categories).should =~ @categories }
+    end
   end
 
-  describe "normally" do
+  describe '#show' do
     before do
-      get 'index'
+      blog = FactoryGirl.create(:blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true, blog_name: "My Shiny Weblog!")
+      Trigger.stub(:fire) { }
+
+      category = FactoryGirl.create(:category, permalink: 'personal', name: 'Personal')
+      2.times {|i| FactoryGirl.create(:article, published_at: Time.now - 3.minutes, categories: [category]) }
+      Article.count.should eq 2
+      FactoryGirl.create(:article, published_at: nil)
     end
 
-    specify { response.should be_success }
-    specify { response.should render_template('articles/groupings') }
-    specify { assigns(:groupings).should_not be_empty }
+    it 'should be successful' do
+      get 'show', id: 'personal'
+      response.should be_success
+    end
+
+    it 'should fall back to rendering articles/index' do
+      controller.stub!(:template_exists?).and_return(false)
+      get 'show', id: 'personal'
+      response.should render_template('articles/index')
+    end
+
+    it 'should render personal when template exists' do
+      pending "Stubbing #template_exists is not enough to fool Rails"
+      controller.stub!(:template_exists?).and_return(true)
+      get 'show', :id => 'personal'
+      response.should render_template('personal')
+    end
+
+    it 'should show only published articles' do
+      get 'show', :id => 'personal'
+      assigns(:articles).size.should == 2
+    end
+
+    it 'should set the page title to "Category Personal"' do
+      get 'show', :id => 'personal'
+      assigns[:page_title].should == 'Category: Personal | My Shiny Weblog! '
+    end
+
+    describe "@keywords" do
+      let(:category) { build_stubbed :category, :permalink => 'personal', keywords: keywords }
+
+      before do
+        Category.stub(:find_by_permalink).with('personal').and_return category
+      end
+
+      context "when the category has no keywords" do
+        let(:keywords) { nil }
+        it 'should be empty' do
+          get 'show', :id => 'personal'
+          assigns(:keywords).should eq ""
+        end
+      end
+
+      context "when the category has no keywords" do
+        let(:keywords) { 'some, keywords' }
+        it 'should contain the keywords' do
+          get 'show', :id => 'personal'
+          assigns(:keywords).should eq "some, keywords"
+        end
+      end
+    end
 
     describe "when rendered" do
       render_views
 
-      specify { response.body.should have_selector('ul.categorylist') }
+      it 'should have a canonical URL' do
+        get 'show', id: 'personal'
+        response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
+      end
+    end
+
+    it 'should render the atom feed for /articles/category/personal.atom' do
+      get 'show', :id => 'personal', :format => 'atom'
+      response.should render_template('articles/index_atom_feed')
+      @layouts.keys.compact.should be_empty
+    end
+
+    it 'should render the rss feed for /articles/category/personal.rss' do
+      get 'show', :id => 'personal', :format => 'rss'
+      response.should render_template('articles/index_rss_feed')
+      @layouts.keys.compact.should be_empty
     end
   end
 
-  describe "if :index template exists" do
-    it "should render :index" do
-      pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?) \
-        .and_return(true)
+  describe "#show with a non-existent category" do
+    before do
+      blog = stub_model(Blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true)
+      Blog.stub(:default) { blog }
+      Trigger.stub(:fire) { }
+    end
 
-      do_get
-      response.should render_template(:index)
+    it 'should raise ActiveRecord::RecordNotFound' do
+      Category.should_receive(:find_by_permalink).with('foo').and_raise(ActiveRecord::RecordNotFound)
+      lambda do
+        get 'show', :id => 'foo'
+      end.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
-end
 
-describe CategoriesController, '#show' do
-  before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic",
-                      :use_canonical_url => true)
-    Blog.stub(:default) { blog }
-    Trigger.stub(:fire) { }
-
-    category = stub_model(Category, :permalink => 'personal', :name => 'Personal')
-    published_articles = 2.times.map { stub_full_article }
-    category.stub(:published_articles) { published_articles }
-    articles = published_articles + [ stub_full_article ]
-    category.stub(:articles) { articles }
-
-    Category.stub(:find_by_permalink) { category }
+  describe 'empty category life-on-mars' do
+    it 'should redirect to home when the category is empty' do
+      FactoryGirl.create(:blog)
+      FactoryGirl.create(:category, :permalink => 'life-on-mars')
+      get 'show', :id => 'life-on-mars'
+      response.status.should == 301
+      response.should redirect_to(Blog.default.base_url)
+    end
   end
 
-  def do_get
-    get 'show', :id => 'personal'
-  end
-
-  it 'should be successful' do
-    do_get
-    response.should be_success
-  end
-
-  it 'should render :show by default' do
-    pending "Stubbing #template_exists is not enough to fool Rails"
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-    do_get
-    response.should render_template(:show)
-  end
-
-  it 'should fall back to rendering articles/index' do
-    controller.stub!(:template_exists?) \
-      .and_return(false)
-    do_get
-    response.should render_template('articles/index')
-  end
-  
-  it 'should render personal when template exists' do
-    pending "Stubbing #template_exists is not enough to fool Rails"
-    controller.stub!(:template_exists?) \
-      .and_return(true)
-    do_get
-    response.should render_template('personal')
-  end  
-
-  it 'should show only published articles' do
-    do_get
-    assigns(:articles).size.should == 2
-  end
-
-  it 'should set the page title to "Category Personal"' do
-    do_get
-    assigns[:page_title].should == 'Category: Personal | My Shiny Weblog! '
-  end
-
-  describe "when rendered" do
+  describe "password protected article" do
     render_views
-  
-    it 'should have a canonical URL' do
-      do_get
-      response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
+
+    it 'should be password protected when shown in category' do
+      FactoryGirl.create(:blog)
+      cat = FactoryGirl.create(:category, :permalink => 'personal')
+      cat.articles << FactoryGirl.create(:article, :password => 'my_super_pass')
+      cat.save!
+
+      get 'show', id: 'personal'
+
+      assert_tag tag: "input", attributes: { id: "article_password" }
     end
-  end
-
-  it 'should render the atom feed for /articles/category/personal.atom' do
-    get 'show', :id => 'personal', :format => 'atom'
-    response.should render_template('articles/index_atom_feed')
-    @layouts.keys.compact.should be_empty
-  end
-
-  it 'should render the rss feed for /articles/category/personal.rss' do
-    get 'show', :id => 'personal', :format => 'rss'
-    response.should render_template('articles/index_rss_feed')
-    @layouts.keys.compact.should be_empty
-  end
-end
-
-describe CategoriesController, "#show with a non-existent category" do
-  before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net", :theme => "typographic",
-                      :use_canonical_url => true)
-    Blog.stub(:default) { blog }
-    Trigger.stub(:fire) { }
-  end
-
-  it 'should raise ActiveRecord::RecordNotFound' do
-    Category.should_receive(:find_by_permalink) \
-      .with('foo').and_raise(ActiveRecord::RecordNotFound)
-    lambda do
-      get 'show', :id => 'foo'
-    end.should raise_error(ActiveRecord::RecordNotFound)
-  end
-end
-
-describe CategoriesController, 'empty category life-on-mars' do
-  it 'should redirect to home when the category is empty' do
-    Factory(:blog)
-    Factory(:category, :permalink => 'life-on-mars')
-    get 'show', :id => 'life-on-mars'
-    response.status.should == 301
-    response.should redirect_to(Blog.default.base_url)
-  end
-end
-
-describe CategoriesController, "password protected article" do
-  render_views
-
-  it 'should be password protected when shown in category' do
-    Factory(:blog)
-    cat = Factory(:category, :permalink => 'personal')
-    cat.articles << Factory(:article, :password => 'my_super_pass')
-    cat.save!
-
-    get 'show', :id => 'personal'
-
-    assert_tag :tag => "input",
-      :attributes => { :id => "article_password" }
-  end  
-end
-
-describe CategoriesController, "SEO Options" do
-  render_views
-
-  it 'category without meta keywords and activated options (use_meta_keyword ON) should not have meta keywords' do
-    Factory(:blog, :use_meta_keyword => true)
-    cat = Factory(:category, :permalink => 'personal')
-    Factory(:article, :categories => [cat])
-    get 'show', :id => 'personal'
-    response.should_not have_selector('head>meta[name="keywords"]')
-  end
-
-  it 'category with keywords and activated option (use_meta_keyword ON) should have meta keywords' do
-    Factory(:blog, :use_meta_keyword => true)
-    after_build_category_should_have_selector('head>meta[name="keywords"]')
-  end
-
-  it 'category with meta keywords and deactivated options (use_meta_keyword off) should not have meta keywords' do
-    Factory(:blog, :use_meta_keyword => false)
-    after_build_category_should_not_have_selector('head>meta[name="keywords"]')
-  end
-
-  it 'with unindex_categories (set ON), should have rel nofollow' do
-    Factory(:blog, :unindex_categories => true)
-    after_build_category_should_have_selector('head>meta[content="noindex, follow"]')
-  end
-
-  it 'without unindex_categories (set OFF), should not have rel nofollow' do
-    Factory(:blog, :unindex_categories => false)
-    after_build_category_should_not_have_selector('head>meta[content="noindex, follow"]')
-  end
-
-  def after_build_category_should_have_selector expected
-    cat = Factory(:category, :permalink => 'personal', :keywords => "some, keywords")
-    Factory(:article, :categories => [cat])
-    get 'show', :id => 'personal'
-    response.should have_selector(expected)
-  end
-
-  def after_build_category_should_not_have_selector expected
-    cat = Factory(:category, :permalink => 'personal', :keywords => "some, keywords")
-    Factory(:article, :categories => [cat])
-    get 'show', :id => 'personal'
-    response.should_not have_selector(expected)
   end
 end

@@ -10,8 +10,10 @@ module ActionWebService # :nodoc:
     end
 
     def self.included(base) # :nodoc:
-      base.class_inheritable_option(:web_service_dispatching_mode, :direct)
-      base.class_inheritable_option(:web_service_exception_reporting, true)
+      base.send :class_attribute, :web_service_dispatching_mode
+      base.send :web_service_dispatching_mode=, :direct
+      base.class_attribute :web_service_exception_reporting
+      base.web_service_exception_reporting = true
       base.send(:include, ActionWebService::Dispatcher::InstanceMethods)
     end
 
@@ -149,11 +151,7 @@ module ActionWebService # :nodoc:
           if invocation.api.has_public_api_method?(public_method_name)
             invocation.api_method = invocation.api.public_api_method_instance(public_method_name)
           else
-            if invocation.api.default_api_method.nil?
-              raise(DispatcherError, "no such method '#{public_method_name}' on API #{invocation.api}")
-            else
-              invocation.api_method = invocation.api.default_api_method_instance
-            end
+            raise(DispatcherError, "no such method '#{public_method_name}' on API #{invocation.api}")
           end
           if invocation.service.nil?
             raise(DispatcherError, "no service available for service name #{invocation.service_name}")

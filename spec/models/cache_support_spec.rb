@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'Given a published article' do
   before(:each) do
-    Factory(:blog)
-    Factory(:article)
+    FactoryGirl.create(:blog)
+    FactoryGirl.create(:article)
     @article = Article.first
   end
 
@@ -35,8 +35,8 @@ end
 
 describe "Given an unpublished article" do
   before(:each) do
-    Factory(:blog)
-    Factory(:article, :published => false, :state => 'draft')
+    FactoryGirl.create(:blog)
+    FactoryGirl.create(:article, :published => false, :state => 'draft')
     @article = Article.first
   end
 
@@ -57,8 +57,8 @@ end
 
 describe "Given an unpublished spammy comment" do
   before(:each) do
-    Factory(:blog)
-    @comment = Factory(:comment, 
+    FactoryGirl.create(:blog)
+    @comment = FactoryGirl.create(:comment, 
         :published => false,
         :state => 'presumed_spam',
         :status_confirmed => false)
@@ -85,8 +85,8 @@ end
 
 describe "Given a published comment" do
   before(:each) do
-    Factory(:blog)
-    @comment = Factory(:comment)
+    FactoryGirl.create(:blog)
+    @comment = FactoryGirl.create(:comment)
   end
 
   it 'changing it destroys the cache' do
@@ -108,8 +108,8 @@ end
 
 describe "Given an unpublished spammy trackback" do
   before(:each) do
-    Factory(:blog)
-    @trackback = Factory(:trackback, :published => false,
+    FactoryGirl.create(:blog)
+    @trackback = FactoryGirl.create(:trackback, :published => false,
       :state => 'presumed_spam', :status_confirmed => false)
   end
 
@@ -134,8 +134,8 @@ end
 
 describe "Given a published trackback" do
   before(:each) do
-    Factory(:blog)
-    @trackback = Factory(:comment)
+    FactoryGirl.create(:blog)
+    @trackback = FactoryGirl.create(:comment)
   end
 
   it 'changing it destroys the cache' do

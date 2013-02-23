@@ -1,10 +1,8 @@
 class Admin::TagsController < Admin::BaseController
-  layout 'administration'
-
   cache_sweeper :blog_sweeper
 
   def index
-    @tags = Tag.paginate(:page => params[:page], :order => :display_name, :per_page => this_blog.admin_display_elements)
+    @tags = Tag.order('display_name').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def edit
@@ -25,11 +23,11 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
-    if request.post?
-      @tag.destroy
-      redirect_to :action => 'index'
-    end
+    @record = Tag.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+
+    @record.destroy
+    redirect_to :action => 'index'
   end
 
 end

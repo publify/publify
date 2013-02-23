@@ -30,6 +30,7 @@ describe SetupController do
         admin.should_not be_nil
         admin.email.should == 'foo@bar.net'
         Article.find(:first).user.should == admin
+        Page.find(:first).user.should == admin
       end
 
       it "should log in admin user" do
@@ -59,7 +60,7 @@ describe SetupController do
   describe 'when a blog is configured and has some users' do
     describe 'GET setup' do
       before do
-        Factory(:blog)
+        FactoryGirl.create(:blog)
         get 'index'
       end
 
@@ -68,7 +69,7 @@ describe SetupController do
 
     describe 'POST setup' do
       before do
-        Factory(:blog)
+        FactoryGirl.create(:blog)
         post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
       end
 

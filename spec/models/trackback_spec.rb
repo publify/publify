@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Trackback, 'With the various trackback filters loaded and DNS mocked out appropriately' do
   before(:each) do
     IPSocket.stub!(:getaddress).and_return { raise SocketError.new("getaddrinfo: Name or service not known") }
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     @blog = Blog.default
     @blog.sp_global = true
     @blog.default_moderate_comments = false
@@ -14,7 +14,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
     tb = Trackback.new(:blog_name => 'Blog name',
                        :title => 'Title',
                        :excerpt => 'Excerpt',
-                       :article_id => Factory(:article).id)
+                       :article_id => FactoryGirl.create(:article).id)
     tb.should_not be_valid
     tb.errors['url'].should be_any
   end
@@ -24,7 +24,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
                        :title => 'Title',
                        :url => 'http://foo.com',
                        :excerpt => 'Excerpt',
-                       :article_id => Factory(:article).id)
+                       :article_id => FactoryGirl.create(:article).id)
     tb.should be_valid
     tb.save
     tb.guid.size.should be > 15

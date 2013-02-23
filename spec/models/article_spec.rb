@@ -4,13 +4,7 @@ require 'spec_helper'
 describe Article do
 
   before do
-    @blog = stub_model(Blog)
-    @blog.stub(:base_url) { "http://myblog.net" }
-    @blog.stub(:text_filter) { "textile" }
-    @blog.stub(:send_outbound_pings) { false }
-
-    Blog.stub(:default) { @blog }
-
+    @blog = build_stubbed :blog
     @articles = []
   end
 
@@ -61,20 +55,22 @@ describe Article do
     end
   end
 
-  it "test_edit_url" do
-    a = stub_model(Article, :id => 123)
-    assert_equal "http://myblog.net/admin/content/edit/#{a.id}", a.edit_url
+  describe "#initialize" do
+    it "accepts a settings field in its parameter hash" do
+      Article.new({"password" => 'foo'})
+    end
   end
 
-  it "test_delete_url" do
-    a = stub_model(Article, :id => 123)
-    assert_equal "http://myblog.net/admin/content/destroy/#{a.id}", a.delete_url
-  end
+  describe ".feed_url" do
+    let(:article) { FactoryGirl.build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
 
-  it "test_feed_url" do
-    a = stub_model(Article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
-    assert_equal "http://myblog.net/2004/06/01/article-3.atom", a.feed_url(:atom10)
-    assert_equal "http://myblog.net/2004/06/01/article-3.rss", a.feed_url(:rss20)
+    it "returns url for atom feed for a Atom 1.0 asked" do
+      article.feed_url('atom10').should eq "http://myblog.net/2004/06/01/article-3.atom"
+    end
+
+    it "returns url for rss feed for a RSS 2 asked" do
+      article.feed_url('rss20').should eq "http://myblog.net/2004/06/01/article-3.rss"
+    end
   end
 
   it "test_create" do
@@ -84,7 +80,7 @@ describe Article do
     a.title = "Zzz"
     assert a.save
 
-    a.categories << Category.find(Factory(:category).id)
+    a.categories << Category.find(FactoryGirl.create(:category).id)
     assert_equal 1, a.categories.size
 
     b = Article.find(a.id)
@@ -92,9 +88,9 @@ describe Article do
   end
 
   it "test_permalink_with_title" do
-    article = Factory(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
+    article = FactoryGirl.create(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
     assert_equal(article,
-                Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
+                 Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink :year => 2005, :month => "06", :day => "01", :title => "article-5"
     end
@@ -111,19 +107,19 @@ describe Article do
 
   describe "#stripped_title" do
     it "works for simple cases" do
-      assert_equal "article-1", Article.new(:title => 'Article 1!').stripped_title
-      assert_equal "article-2", Article.new(:title => 'Article 2!').stripped_title
-      assert_equal "article-3", Article.new(:title => 'Article 3!').stripped_title
+      assert_equal "article-1", Article.new(:title => 'Article 1!').title.to_permalink
+      assert_equal "article-2", Article.new(:title => 'Article 2!').title.to_permalink
+      assert_equal "article-3", Article.new(:title => 'Article 3!').title.to_permalink
     end
 
     it "strips html" do
       a = Article.new(:title => "This <i>is</i> a <b>test</b>")
-      assert_equal 'this-is-a-test', a.stripped_title
+      assert_equal 'this-is-a-test', a.title.to_permalink
     end
 
     it "does not escape multibyte characters" do
       a = Article.new(:title => "ルビー")
-      a.stripped_title.should == "ルビー"
+      a.title.to_permalink.should == "ルビー"
     end
 
     it "is called upon saving the article" do
@@ -179,28 +175,54 @@ describe Article do
   it "test_send_multiple_pings" do
   end
 
+  describe "Testing redirects" do
+    it "a new published article gets a redirect" do
+      a = Article.create(:title => "Some title", :body => "some text", :published => true)
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+    end
+
+    it "a new unpublished article should not get a redirect" do
+      a = Article.create(:title => "Some title", :body => "some text", :published => false)
+      a.redirects.first.should be_nil
+    end
+
+    it "Changin a published article permalink url should only change the to redirection" do
+      a = Article.create(:title => "Some title", :body => "some text", :published => true)
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+      r  = a.redirects.first.from_path
+
+      a.permalink = "some-new-permalink"
+      a.save
+      a.redirects.first.should_not be_nil
+      a.redirects.first.to_path.should == a.permalink_url
+      a.redirects.first.from_path.should == r
+    end
+  end
+
   describe "with tags" do
     it "recieves tags from the keywords property" do
-      a = Factory(:article, :keywords => 'foo bar')
+      a = FactoryGirl.create(:article, :keywords => 'foo bar')
       assert_equal ['foo', 'bar'].sort, a.tags.collect {|t| t.name}.sort
     end
 
     it "changes tags when changing keywords" do
-      a = Factory(:article, :keywords => 'foo bar')
+      a = FactoryGirl.create(:article, :keywords => 'foo bar')
       a.keywords = 'foo baz'
       a.save
       assert_equal ['foo', 'baz'].sort, a.tags.collect {|t| t.name}.sort
     end
 
     it "empties tags when keywords is set to ''" do
-      a = Factory(:article, :keywords => 'foo bar')
+      a = FactoryGirl.create(:article, :keywords => 'foo bar')
       a.keywords = ''
       a.save
       assert_equal [], a.tags.collect {|t| t.name}.sort
     end
 
     it "properly deals with dots and spaces" do
-      c = Factory(:article, :keywords => 'test "tag test" web2.0')
+      c = FactoryGirl.create(:article, :keywords => 'test "tag test" web2.0')
       assert_equal ['test', 'tag-test', 'web2-0'].sort, c.tags.collect(&:name).sort
     end
 
@@ -210,16 +232,16 @@ describe Article do
   end
 
   it "test_find_published_by_tag_name" do
-    art1 = Factory(:article)
-    art2 = Factory(:article)
-    Factory(:tag, :name => 'foo', :articles => [art1, art2])
+    art1 = FactoryGirl.create(:article)
+    art2 = FactoryGirl.create(:article)
+    FactoryGirl.create(:tag, :name => 'foo', :articles => [art1, art2])
     articles = Tag.find_by_name('foo').published_articles
     assert_equal 2, articles.size
   end
 
   it "test_find_published" do
-    article = Factory(:article, :title => 'Article 1!', :state => 'published')
-    Factory(:article, :published => false, :state => 'draft')
+    article = FactoryGirl.create(:article, :title => 'Article 1!', :state => 'published')
+    FactoryGirl.create(:article, :published => false, :state => 'draft')
     @articles = Article.find_published
     assert_equal 1, @articles.size
     @articles = Article.find_published(:all, :conditions => "title = 'Article 1!'")
@@ -243,7 +265,7 @@ describe Article do
 
   it "test_future_publishing" do
     assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
-      :published => true, :published_at => Time.now + 4.seconds))
+                                        :published => true, :published_at => Time.now + 4.seconds))
   end
 
   it "test_future_publishing_without_published_flag" do
@@ -274,13 +296,13 @@ describe Article do
   end
 
   it "test_find_published_by_category" do
-    cat = Factory(:category, :permalink => 'personal')
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
-    cat.articles << Factory(:article)
+    cat = FactoryGirl.create(:category, :permalink => 'personal')
+    cat.articles << FactoryGirl.create(:article)
+    cat.articles << FactoryGirl.create(:article)
+    cat.articles << FactoryGirl.create(:article)
 
-    cat = Factory(:category, :permalink => 'software')
-    cat.articles << Factory(:article)
+    cat = FactoryGirl.create(:category, :permalink => 'software')
+    cat.articles << FactoryGirl.create(:article)
 
     Article.create!(:title      => "News from the future!",
                     :body       => "The future is cool!",
@@ -301,28 +323,30 @@ describe Article do
   end
 
   it "test_destroy_file_upload_associations" do
-    a = Factory(:article)
-    Factory(:resource, :article => a)
-    Factory(:resource, :article => a)
+    a = FactoryGirl.create(:article)
+    FactoryGirl.create(:resource, :article => a)
+    FactoryGirl.create(:resource, :article => a)
     assert_equal 2, a.resources.size
-    a.resources << Factory(:resource)
+    a.resources << FactoryGirl.create(:resource)
     assert_equal 3, a.resources.size
     a.destroy
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
   end
 
-  it 'should notify' do
-    henri = Factory(:user, :login => 'henri', :notify_on_new_articles => true)
-    alice = Factory(:user, :login => 'alice', :notify_on_new_articles => true)
+  describe "#interested_users" do
+    it 'should gather users interested in new articles' do
+      henri = FactoryGirl.create(:user, :login => 'henri', :notify_on_new_articles => true)
+      alice = FactoryGirl.create(:user, :login => 'alice', :notify_on_new_articles => true)
 
-    a = Factory.build(:article)
-    assert a.save
-    assert_equal 2, a.notify_users.size
-    assert_equal ['alice', 'henri'], a.notify_users.collect {|u| u.login }.sort
+      a = FactoryGirl.build(:article)
+      users = a.interested_users
+      logins = users.map {|u| u.login}.sort
+      logins.should eq ['alice', 'henri']
+    end
   end
 
   it "test_withdrawal" do
-    art = Factory(:article)
+    art = FactoryGirl.create(:article)
     assert   art.published?
     assert ! art.withdrawn?
     art.withdraw!
@@ -341,24 +365,25 @@ describe Article do
   end
 
   it 'should get only ham not spam comment' do
-    article = Factory(:article)
-    ham_comment = Factory(:comment, :article => article)
-    spam_comment = Factory(:spam_comment, :article => article)
+    article = FactoryGirl.create(:article)
+    article.stub(:allow_comments?).and_return(true)
+    ham_comment = FactoryGirl.create(:comment, :article => article)
+    spam_comment = FactoryGirl.create(:spam_comment, :article => article)
     article.comments.ham.should == [ham_comment]
     article.comments.count.should == 2
   end
 
   describe '#access_by?' do
     before do
-      @alice = Factory.build(:user, :profile => Factory.build(:profile_admin, :label => Profile::ADMIN))
+      @alice = FactoryGirl.build(:user, :profile => FactoryGirl.build(:profile_admin, :label => Profile::ADMIN))
     end
 
     it 'admin should have access to an article written by another' do
-      Factory.build(:article).should be_access_by(@alice)
+      FactoryGirl.build(:article).should be_access_by(@alice)
     end
 
     it 'admin should have access to an article written by himself' do
-      article = Factory.build(:article, :author => @alice)
+      article = FactoryGirl.build(:article, :author => @alice)
       article.should be_access_by(@alice)
     end
 
@@ -398,8 +423,8 @@ describe Article do
 
     describe 'with one word and result' do
       it 'should have two items' do
-        Factory(:article, :extended => "extended talk")
-        Factory(:article, :extended => "Once uppon a time, an extended story")
+        FactoryGirl.create(:article, :extended => "extended talk")
+        FactoryGirl.create(:article, :extended => "Once uppon a time, an extended story")
         assert_equal 2, Article.search('extended').size
       end
     end
@@ -456,14 +481,14 @@ describe Article do
   end
 
   it "test_can_ping_fresh_article_iff_it_allows_pings" do
-    a = Factory(:article, :allow_pings => true)
+    a = FactoryGirl.create(:article, :allow_pings => true)
     assert_equal(false, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
   end
 
   it "test_cannot_ping_old_article" do
-    a = Factory(:article, :allow_pings => false)
+    a = FactoryGirl.create(:article, :allow_pings => false)
     assert_equal(true, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
@@ -477,13 +502,13 @@ describe Article do
       # is now more than two years ago, except for two, which are from
       # yesterday and the day before. The existence of those two makes
       # 1.month.ago not suitable, because yesterday can be last month.
-      @article_two_month_ago = Factory(:article, :published_at => 2.month.ago)
+      @article_two_month_ago = FactoryGirl.create(:article, :published_at => 2.month.ago)
 
-      @article_four_months_ago = Factory(:article, :published_at => 4.month.ago)
-      @article_2_four_months_ago = Factory(:article, :published_at => 4.month.ago)
+      @article_four_months_ago = FactoryGirl.create(:article, :published_at => 4.month.ago)
+      @article_2_four_months_ago = FactoryGirl.create(:article, :published_at => 4.month.ago)
 
-      @article_two_year_ago = Factory(:article, :published_at => 2.year.ago)
-      @article_2_two_year_ago = Factory(:article, :published_at => 2.year.ago)
+      @article_two_year_ago = FactoryGirl.create(:article, :published_at => 2.year.ago)
+      @article_2_two_year_ago = FactoryGirl.create(:article, :published_at => 2.year.ago)
     end
 
     it 'should return all content for the year if only year sent' do
@@ -501,32 +526,32 @@ describe Article do
 
   describe '#has_child?' do
     it 'should be true if article has one to link it by parent_id' do
-      parent = Factory(:article)
-      Factory(:article, :parent_id => parent.id)
+      parent = FactoryGirl.create(:article)
+      FactoryGirl.create(:article, :parent_id => parent.id)
       parent.should be_has_child
     end
     it 'should be false if article has no article to link it by parent_id' do
-      parent = Factory(:article)
-      Factory(:article, :parent_id => nil)
+      parent = FactoryGirl.create(:article)
+      FactoryGirl.create(:article, :parent_id => nil)
       parent.should_not be_has_child
     end
   end
 
   describe 'self#last_draft(id)' do
     it 'should return article if no draft associated' do
-      draft = Factory(:article, :state => 'draft')
+      draft = FactoryGirl.create(:article, :state => 'draft')
       Article.last_draft(draft.id).should == draft
     end
     it 'should return draft associated to this article if there are one' do
-      parent = Factory(:article)
-      draft = Factory(:article, :parent_id => parent.id, :state => 'draft')
+      parent = FactoryGirl.create(:article)
+      draft = FactoryGirl.create(:article, :parent_id => parent.id, :state => 'draft')
       Article.last_draft(draft.id).should == draft
     end
   end
 
   describe "an article published just before midnight UTC" do
     before do
-      @a = Factory.build(:article)
+      @a = FactoryGirl.build(:article)
       @a.published_at = "21 Feb 2011 23:30 UTC"
     end
 
@@ -539,7 +564,7 @@ describe Article do
     describe "#find_by_permalink" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article' 
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article'
         a.should == @a
       end
     end
@@ -547,7 +572,7 @@ describe Article do
 
   describe "an article published just after midnight UTC" do
     before do
-      @a = Factory.build(:article)
+      @a = FactoryGirl.build(:article)
       @a.published_at = "22 Feb 2011 00:30 UTC"
     end
 
@@ -560,10 +585,275 @@ describe Article do
     describe "#find_by_permalink" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article' 
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
         a.should == @a
       end
     end
   end
-end
 
+  describe "#get_or_build" do
+    context "when nil params given" do
+      before(:each) do
+        @article = Article.get_or_build_article(nil)
+      end
+
+      it "is an Article" do
+        @article.should be_a(Article)
+      end
+
+      context "have blog default value for" do
+        it "allow_comments" do
+          @article.allow_comments.should be == @blog.default_allow_comments
+        end
+
+        it "allow_pings" do
+          @article.allow_pings.should be == @blog.default_allow_pings
+        end
+
+        it "text filter" do
+          @article.text_filter_id.should be_nil
+          @article.text_filter.should be == @blog.text_filter_object
+        end
+      end
+    end
+
+    context "when id params given" do
+      it "should return article" do
+        already_exist_article = FactoryGirl.create(:article)
+        article = Article.get_or_build_article(already_exist_article.id)
+        article.should be == already_exist_article
+      end
+    end
+
+  end
+
+  describe "#published_comments" do
+    it 'should not include withdrawn comments' do
+      a = Article.new(title: 'foo')
+      a.save!
+
+      assert_equal 0, a.published_comments.size
+      c = a.comments.build(body: 'foo', author: 'bob', published: true, published_at: Time.now)
+      assert c.published?
+      c.save!
+      a.reload
+
+      assert_equal 1, a.published_comments.size
+      c.withdraw!
+      assert_equal 0, a.published_comments.size
+    end
+  end
+
+  describe "save_attachments!" do
+    it "calls save_attachment for each file given" do
+      first_file = OpenStruct.new
+      second_file = OpenStruct.new
+      hash = {a_key: first_file, a_second_key: second_file}
+      article = FactoryGirl.build(:article)
+      article.should_receive(:save_attachment!).with(first_file)
+      article.should_receive(:save_attachment!).with(second_file)
+      article.save_attachments!(hash)
+    end
+
+    it "do nothing with nil given" do
+      article = FactoryGirl.build(:article)
+      article.save_attachments!(nil)
+    end
+  end
+
+  describe "save_attachment!" do
+    it "calls resource create_and_upload and add this new resource" do
+      resource = FactoryGirl.build(:resource)
+      file = OpenStruct.new
+      article = FactoryGirl.create(:article)
+      Resource.should_receive(:create_and_upload).with(file).and_return(resource)
+      article.save_attachment!(file).reload
+      article.resources.should eq [resource]
+    end
+  end
+
+  describe ".really_send_pings" do
+    context "given a new article" do
+      let(:article) { Article.new }
+
+      it "return nil and do nothing when blog should not send_outbound_pings" do
+        Blog.any_instance.should_receive(:send_outbound_pings).and_return(false)
+        article.really_send_pings.should be_nil
+      end
+
+      context "given a blog that allow send outbound pings" do
+        before(:each) do
+          Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
+        end
+
+        it "do nothing when no urls to ping article" do
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
+          article.should_receive(:html_urls_to_ping).and_return([])
+          Ping.any_instance.should_not_receive(:send_weblogupdatesping)
+          Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+          article.really_send_pings
+        end
+
+        it "do nothing when urls already list in article.pings (already ping ?)"  do
+          ping = OpenStruct.new(url: "an_url_to_ping")
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([ping])
+          article.should_receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
+          Ping.any_instance.should_not_receive(:send_weblogupdatesping)
+          Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+          article.really_send_pings
+        end
+
+        it "calls send_weblogupdatesping when it's not already done"  do
+          new_ping = OpenStruct.new
+          urls_to_ping = [new_ping]
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return(urls_to_ping)
+          article.should_receive(:permalink_url)
+          article.should_receive(:html_urls_to_ping).and_return([])
+          new_ping.should_receive(:send_weblogupdatesping)
+          new_ping.should_not_receive(:send_pingback_or_trackback)
+          article.really_send_pings
+        end
+
+        it "calls send_pingback_or_trackback when it's not already done"  do
+          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
+          new_ping = OpenStruct.new
+          article.should_receive(:html_urls_to_ping).and_return([new_ping])
+          article.should_receive(:permalink_url)
+          new_ping.should_receive(:send_pingback_or_trackback)
+          new_ping.should_not_receive(:send_weblogupdatesping)
+          article.really_send_pings
+        end
+      end
+    end
+  end
+
+  describe ".search_with_pagination" do
+    #TODO move those kind of test to a "integration specs" that can be run only for integration
+    context "given some datas" do
+      it "returns an empty array when no article and no params" do
+        Article.search_with_pagination({}, {page: nil, per_page: 12}).should be_empty
+      end
+
+      it "returns article" do
+        article = FactoryGirl.create(:article)
+        Article.search_with_pagination({}, {page: nil, per_page: 12}).should eq([article])
+      end
+
+      it "returns only published article where search params ask about published state" do
+        published_article = FactoryGirl.create(:article, state: 'published')
+        article = FactoryGirl.create(:article, state: 'draft')
+        Article.search_with_pagination({state: 'published'}, {page: nil, per_page: 12}).should eq([published_article])
+      end
+
+      it "returns only quantity of article ask in per_page" do
+        article = FactoryGirl.create(:article, state: 'published')
+        out_of_per_page_article = FactoryGirl.create(:article, state: 'draft')
+
+        Article.search_with_pagination({}, { page: nil, per_page: 1 }).should have(1).item
+      end
+
+      it "returns both published and draft articles by default" do
+        article = FactoryGirl.create(:article, state: 'published')
+        draft_article = FactoryGirl.create(:article, state: 'draft')
+        result = Article.search_with_pagination({}, {page: nil, per_page: 12})
+        result.count.should eq 2
+      end
+
+      it "returns article of search categorie" do
+        show_category = FactoryGirl.create(:category, name: 'show')
+        hide_category = FactoryGirl.create(:category, name: 'not_show')
+        article = FactoryGirl.create(:article, categories: [show_category])
+        hide_article = FactoryGirl.create(:article, categories: [hide_category])
+        Article.search_with_pagination({category: show_category.id}, {page: nil, per_page: 12}).should eq([article])
+      end
+
+    end
+  end
+
+  describe ".allow_comments?" do
+    it "true if article set to true" do
+      Article.new(allow_comments: true).allow_comments?.should be_true
+    end
+
+    it "false if article set to false" do
+      Article.new(allow_comments: false).allow_comments?.should be_false
+    end
+
+    context "given an article with no allow comments state" do
+      it "returns true when blog default allow comments is true" do
+        Blog.any_instance.should_receive(:default_allow_comments).and_return(true)
+        Article.new(allow_comments: nil).allow_comments?.should be_true
+      end
+
+      it "returns false when blog default allow comments is true" do
+        Blog.any_instance.should_receive(:default_allow_comments).and_return(false)
+        Article.new(allow_comments: nil).allow_comments?.should be_false
+      end
+    end
+  end
+
+  describe ".allow_pings?" do
+    it "true if article set to true" do
+      Article.new(allow_pings: true).allow_pings?.should be_true
+    end
+
+    it "false if article set to false" do
+      Article.new(allow_pings: false).allow_pings?.should be_false
+    end
+
+    context "given an article with no allow pings state" do
+      it "returns true when blog default allow pings is true" do
+        Blog.any_instance.should_receive(:default_allow_pings).and_return(true)
+        Article.new(allow_pings: nil).allow_pings?.should be_true
+      end
+
+      it "returns false when blog default allow pings is true" do
+        Blog.any_instance.should_receive(:default_allow_pings).and_return(false)
+        Article.new(allow_pings: nil).allow_pings?.should be_false
+      end
+    end
+
+  end
+
+  describe "#find_by_published_at" do
+    it "returns an empty array when no articles" do
+      Article.find_by_published_at.should be_empty
+    end
+
+    context "returns objects that respond to publication with YYYY-MM published_at date format" do
+      it "with article published_at date" do
+        FactoryGirl.create(:article, published_at: Date.new(2010, 11, 23))
+        result = Article.find_by_published_at
+        result.count.should eq 1
+        result.first.should eq ["2010-11"]
+      end
+
+      it "with 2 articles" do
+        FactoryGirl.create(:article, published_at: Date.new(2010, 11, 23))
+        FactoryGirl.create(:article, published_at: Date.new(2002, 4, 9))
+        result = Article.find_by_published_at
+        result.count.should eq 2
+        result.sort.should eq [["2010-11"], ["2002-04"]].sort
+      end
+    end
+
+  end
+
+  describe "published_since" do
+    let(:time) { DateTime.new(2010,11,3,23,34) }
+    it "empty when no articles" do
+      Article.published_since(time).should be_empty
+    end
+
+    it "returns article that was published since" do
+      article = FactoryGirl.create(:article, published_at: time + 2.hours)
+      Article.published_since(time).should eq [article]
+    end
+
+    it "returns only article that was published since last visit" do
+      already_seen_article = FactoryGirl.create(:article, published_at: time - 2.hours)
+      article = FactoryGirl.create(:article, published_at: time + 2.hours)
+      Article.published_since(time).should eq [article]
+    end
+  end
+end

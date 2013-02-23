@@ -1,4 +1,0 @@
-<td colspan='5'>
-  <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 25) %>
-  <%= _("This comment by <strong>%s</strong> was flagged as spam, %s?", comment.author, link_to_remote('Cancel', :url => {:action => 'change_state', :id => comment.id})) %>
-</td>

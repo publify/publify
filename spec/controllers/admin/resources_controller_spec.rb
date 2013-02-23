@@ -4,10 +4,10 @@ describe Admin::ResourcesController do
   render_views
 
   before do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     @request.session = { :user => henri.id }
   end
 
@@ -20,22 +20,12 @@ describe Admin::ResourcesController do
       assert_response :success
       assert_template 'index'
       assigns(:resources).should_not be_nil
-    end
-    
-    it 'should have Media tab selected' do
-      test_tabs "Media"
-    end
-    
-    it 'should have Library with Library selected' do
-      subtabs = ["Library"]
-      test_subtabs(subtabs, "Library")
-    end
-    
+    end    
   end
 
   describe "test_destroy_image with get" do
     before(:each) do
-      @res_id = Factory(:resource).id
+      @res_id = FactoryGirl.create(:resource).id
       get :destroy, :id => @res_id
     end
     
@@ -46,20 +36,12 @@ describe Admin::ResourcesController do
     
     it 'should have a valid file' do
       assert_not_nil Resource.find(@res_id)
-      assert_not_nil assigns(:file)      
-    end
-    
-    it 'should have Media tab selected' do
-      test_tabs "Media"
-    end
-    
-    it 'should have a back to list subtab' do
-      test_back_to_list
-    end
+      assert_not_nil assigns(:record)      
+    end    
   end
     
   it 'test_destroy_image with POST' do
-    res_id = Factory(:resource).id
+    res_id = FactoryGirl.create(:resource).id
 
     post :destroy, :id => res_id
     response.should redirect_to(:action => 'index')

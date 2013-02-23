@@ -1,6 +1,4 @@
 class Admin::PostTypesController < Admin::BaseController
-  layout 'administration'
-
   cache_sweeper :blog_sweeper
 
   def index; redirect_to :action => 'new' ; end
@@ -8,15 +6,15 @@ class Admin::PostTypesController < Admin::BaseController
   def edit; new_or_edit;  end
 
   def destroy
-    @pt = PostType.find(params[:id])
-    if request.post?
-      Article.find(:all, :conditions => ["post_type = ?", @pt.permalink]).each do |article|
-        article.post_type = 'read'
-        article.save
-      end
-      @pt.destroy
-      redirect_to :action => 'index'
+    @record = PostType.find(params[:id])
+    return(render 'admin/shared/destroy') unless request.post?
+
+    Article.where("post_type = ?", @record.permalink).each do |article|
+      article.post_type = 'read'
+      article.save
     end
+    @record.destroy
+    redirect_to :action => 'index'
   end
 
   private

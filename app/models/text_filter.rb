@@ -42,8 +42,6 @@ class TextFilter < ActiveRecord::Base
     @cached_filter_types[filters]
   end
 
-
-
   def self.filters_map
     TextFilterPlugin.filter_map
   end

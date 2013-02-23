@@ -1,26 +1,26 @@
-<% @page_heading = _('Users')  %>
-<% @link_to_new = link_to(_("New User"), {:action => 'new'}, :id => 'dialog-link', :class => 'button') %>
-<% subtabs_for(:settings) %>
+<% @page_heading = _('Users') + content_tag(:div, link_to(_("New User"), {:controller => 'users', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
 
-<table>
-  <tr>
-    <th><%= _("Username") %></th>
-    <th><%= _("Name") %></th>
-    <th><%= _("Email") %></th>
-    <th><%= _("Profile") %></th>
-    <th><%= _("Articles") %></th>
-    <th><%= _("Comments") %></th>
-    <th><%= _("State") %></th>
-  </tr>
+<table class="table table-striped">
+  <thead>
+    <tr class='noborder'>
+      <th><%= _("Login") %></th>
+      <th><%= _("Name") %></th>
+      <th><%= _("Email") %></th>
+      <th><%= _("Profile") %></th>
+      <th><%= _("Articles") %></th>
+      <th><%= _("Comments") %></th>
+      <th><%= _("State") %></th>
+    </tr>
+  </thead>
   <% for user in @users -%>
   <tr <%= alternate_class %>>
     <td><%= link_to_edit user.login, user%></td>
-    <td> <%= user.name %></td>
+    <td> <%= user.nickname %></td>
     <td><%= mail_to user.email, user.email%></td>
     <td><%= _(user.profile.nicename) %></td>
-    <td><%= Article.count :conditions => "user_id = #{user.id}"  %></td>
-    <td><%= Comment.count :conditions => "user_id = #{user.id}"  %></td>
-    <td class='<%= user.state %>'><%= _("%s user", user.state)%></td>
+    <td><%= Article.where("user_id = #{user.id}").count %></td>
+    <td><%= Comment.where("user_id = #{user.id}").count %></td>
+    <td class='<%= user.state %>'><%= _("%s user", _("#{user.state.capitalize}").downcase)%></td>
   </tr>
   <% end -%>
   <%= display_pagination(@users, 7)%>

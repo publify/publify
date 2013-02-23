@@ -1,114 +1,160 @@
-commit 07cd1095848e66d7c847eebbe244890c6ce0e92d
+commit eab27653bdf9b82a88cf1f7da8339b4aede9f294
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes live search. I'll have to check why we didn't find that one before
+    Better, more complete doc
 
-commit 48468deb27cecbf5dd50c1a520bb45b443f26691
+commit be65bcf6577f5bd204ea7634b653c90455251d58
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixes a bug when displaying a protected article within a category
+    Testing links in TOC
 
-commit 69ca931d642a4d3db9eae2d1556874df532b8407
+commit 404d567322c11aed9080dc1f681d10fcdbe5774f
 Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixing issue 42: user creation not working.
+    Add real TOC in README
 
-commit 717dd9d888b3928154d55d7b4f690ebad5ab0100
-Author: Yannick Francois <yannick.francois@free.fr>
+commit 4b4da56dd8d7384f7177789e9dc6e7524a35f05b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    remove unused files amd directory in test dir
+    Fix typo in TOC
 
-commit b07892e5a728e0e4179da301496e47474b551211
-Author: Yannick Francois <yannick.francois@free.fr>
+commit d7c59cae01b45f09b78f0b7457ec4ed34b75a836
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    remove test dir
+    Add minimal theme documentation
 
-commit 163e574de1408d5f1fbc66f60ce509b7946c0ec4
-Author: Huy Dinh <mail@huydinh.eu>
+commit 2b309782ff71f4254d1f1948b313d4f8c3caaf25
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Fixing an obvious "blunder".
+    Adds more documentation: how to use per post template
 
-commit 8f2f4ecb0d612f4d3b5dd042797cb48420f51b11
-Author: Huy Dinh <mail@huydinh.eu>
+commit 6937f06114a504ce94b46d14e5e9bd1f2f7bf1c8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    Follow up, missed fixing another example.
+    Adds more documentation: advanced plugins
 
-commit 5c0c8bd07502b5c3a507f785a47383b8fc44d874
-Author: Thomas Lecavelier <thomas@lecavelier.name>
+commit 8592088faf16b84c42ae109fe56283176e42be14
+Author: Frédéric de Villamil <frederic@de-villamil.com>
 
-    First, the simple link for non-js admin (UJS)
+    ooops typo
 
-commit 260e760f50f4dafcf1598a73e664ad3f73f84f60
-Merge: b07892e 8f2f4ec
+commit 8a102738b2e60237da85b36a5e3a381c94bb3cf9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Add some more doc
+
+commit db3ef9050a133a25d66ee497a5e06042b00b29ca
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Changes to a markdown readme so I can use documentup
+
+commit 7ec9d4d8197f17d76961c9c62f0ba4dabe32c495
+Author: Soon Van <cog@randomecho.com>
+
+    Mark out code describing template parts in README
+
+commit b64ed5af95231b147439823c027d48346f8dc66e
+Author: Soon Van <cog@randomecho.com>
+
+    Twitter account now @gettypo
+
+commit bdd6c126a7a6e707c1514803e1c2cb72f1cbe681
+Merge: db3ef90 3cb6caa
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Merge pull request #43 from Skudo/hotfix
+    Merge pull request #127 from slainer68/master
 
-commit 0423a97bd490b1eea600bc4dc7b42d61697934e3
-Author: Huy Dinh <mail@huydinh.eu>
-
-    Fixing issue with RedCloth 4.2.7 (see comments in http://blog.typosphere.org/release-of-typo-6-0-6-a-major-one.html).
-
-commit dee03029faec5bf2611e4e67220d87d1b3ab720b
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    create a Satanizable module, remove duplication about clean accents (by move method in satanizable)...
-
-commit 84ccca3fbaba63b0da6af6a1e8b9c935fd39eeb4
-Merge: 260e760 dee0302
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    Merge branch 'remove_accents'
-
-commit 31027227254a252b8b1add4d9311a7ca495982a5
-Author: Huy Dinh <mail@huydinh.eu>
-
-    This fix addresses issue #39: Time.parse apparently hiccups when the timestamp string contains "GMT+0000 (UTC)". Worked around this using fdv's suggestion to use DateTime.strptime.
-
-commit 28623a8d65d8eeecacd5c1daa11e348920ac9e10
-Author: Yannick Francois <yannick.francois@free.fr>
-
-    refactorimg spec to remove duplications (my new job here ? :-p)
-
-commit 508cfd6e5d860f6512adb1881d0037f7d6622f2c
-Merge: 28623a8 0423a97
-Author: Frédéric de Villamil <frederic@de-villamil.com>
-
-    Merge pull request #44 from Skudo/fix/RedCloth
-
-commit cb22ad8c192ad1a509483b309361c35c8d0fa13c
-Author: Frédéric de Villamil <neuro@asocial.org>
-
-    Upgrades to Rails 3.0.10.
-
-commit 6298fcef8ed8909fe4829071fe7df016eeb2a9ea
-Merge: cb22ad8 3102722
+commit 295b02cdd10f7fd393518f1a8e05cb974abb117b
 Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Merge pull request #45 from Skudo/fix/issue_39
+    Move #default_text_filter so Trackback can use it
 
-commit f56980f25db474d2ea9a6363dfc62a28d4c42615
-Author: Thomas Lecavelier <thomas@lecavelier.name>
+commit e092160e6f598ad8f2025266092282eeb7432e9f
+Author: Marcel M. Cary <marcel@oreilly.com>
 
-    Add Category creation on Content creation page (UJS way). Induced some refactorisation in Categories views and model
+    Fix typo news date format with distance_of_time_in_words
 
-commit b8c0ff329f35e537e2ea25b70127a07fb1a3c821
-Merge: f56980f 6298fce
-Author: Thomas Lecavelier <thomas@lecavelier.name>
+commit 17e7edb722c5a566791a69546477d557de04fb23
+Author: Marcel M. Cary <marcel@oreilly.com>
 
-    Merge branch 'master' of github.com:fdv/typo
+    Fix latest posts date format with distance_of_time_in_words
 
-commit ae1ae6f35aecb9fc24c3ea8800e37d13f5173a3c
-Author: Thomas Lecavelier <thomas@lecavelier.name>
+commit 7befdd6bac79e97e582853267be5e4ba6cc6c7bf
+Author: slainer68 <slainer68@gmail.com>
 
-    Update todo: category creation in Content creation page: Ok, take Tag merging for me
+    Heroku needs thin and ruby definition in Gemfile.lock otherwise it won't deploy.
 
-commit 4501658d08c9b2ee74f1c2a085193799742b2084
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit bc21ecb90d4f8b5c8b200946f60bcbea7bad171a
+Author: slainer68 <slainer68@gmail.com>
 
-    Fixes a bug where attachment thumbnails would not be created at upload from the editor and API.
+    Document aws_bucket config in config/storage.yml
 
-commit f587ab8a39c8a723d70ca78bbc8fdf0c177f21b3
-Author: Frédéric de Villamil <neuro@asocial.org>
+commit a4b15383d1613b2006f3dc75c57398e911d3c484
+Merge: 295b02c 7befdd6
+Author: Matijs van Zuijlen <matijs@matijs.net>
 
-    Fixing in Ruby 1.9.2
+    Merge pull request #137 from slainer68/heroku
+
+commit ba55ce5c64fbc66d6cfc3aa31b1a0000ae06da94
+Merge: a4b1538 bc21ecb
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge pull request #138 from slainer68/awsbucket
+
+commit 7ddca03c03382bf2a210f7227875c5e2eae88dcb
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove redundant cookie secret
+
+commit d21acd7e3c4c22f2513f5bcf14b5557e73fe6b83
+Author: slainer68 <slainer68@gmail.com>
+
+    Refactors almost all scopes to use Rails 3/4 style
+
+commit f78622459cf946a843014a49738136cdd387bf8c
+Merge: 7ddca03 d21acd7
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #139 from slainer68/ar_scopes
+
+commit 7f324dac6ec772943f0a60f08ecc22c66ce186b7
+Merge: f786224 17e7edb
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #136 from mcary/fix-dashboard-date-format
+
+commit cf8efcb6e9c5c8766737549b25d1bde9d4361067
+Merge: 7f324da b64ed5a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #135 from randomecho/copyedit-readme
+
+commit 151264dc30f2c62a68b96a67667125e279629575
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds secret token generation to existing blog
+
+commit 52580a0752b2f573feb9412f0be3364c5ace652a
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Update to Rails 3.2.12
+
+commit 3e11fa031172d6f7c87b4b6685b7cfe86ee8291c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Upgrading Gemfile.heroku to Rails 3.2.12
+
+commit 93b2c92ee12ece6820fea98551c1d2e48fb1af47
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the secret token generation on an existing blog.
+
+commit 64708c77a9e2143f8ed3133267f8f24504dcbe8d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bug where already published articles publication date would be changed by autosave.
+
+commit 800604bfb1f30bf7108ec87d631f7b66b966a0c4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Closes issue #69

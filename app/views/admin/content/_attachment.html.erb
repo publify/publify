@@ -8,7 +8,7 @@
       end) -%>
 </li>
 <li id="attachment_add_<%= attachment_num.succ %>">
-  <%= link_to_remote _('Add Another Attachment'),
+  <%= link_to_remote _('Add another attachment'),
     :url => { :action => "attachment_box_add", :id => attachment_num.succ },
     :asynchronus => false -%>
 </li>
@@ -18,13 +18,13 @@
   <% if  @article.resources.count > 0 %>
     <h3><%= _("Currently this article has the following resources")%></h3>
     <% for resource in @article.resources %>
-      <%= link_to_remote "- #{resource.filename}", :url => { :action => "resource_remove", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br/>
+      <%= link_to_remote "- #{resource.upload_url}", :url => { :action => "resource_remove", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br/>
     <% end %>
   <% end %>
 
   <h3><%= _("You can associate the following resources")%></h3>
   <% for resource in @resources - @article.resources %>
-    <%= link_to_remote "+ #{resource.filename}", :url => { :action => "resource_add", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br />
+    <%= link_to_remote "+ #{resource.upload_url}", :url => { :action => "resource_add", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br />
   <% end %>
 </li>
 <% end %>

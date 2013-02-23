@@ -3,71 +3,48 @@ require 'spec_helper'
 
 describe Admin::PagesController do
   render_views
-  
+
   before do
-    @blog = Factory(:blog)
-    #TODO Delete after removing fixtures
-    Profile.delete_all
-    @henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
-    request.session = { :user => @henri.id }
+    @blog = FactoryGirl.create(:blog)
+    @henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
+    request.session = { user: @henri.id }
   end
 
   describe '#index' do
     it 'should response success' do
       get :index
-      response.should be_success
-      assert_template 'index'
-      assert_not_nil assigns(:pages)
+      expect(response).to be_success
+      expect(response).to render_template('index')
+      expect(assigns(:pages)).to_not be_nil
     end
 
     it 'should response success with :page args' do
-      get :index, :page => 1
-      response.should be_success
-      assert_template 'index'
-      assert_not_nil assigns(:pages)
+      get :index, page: 1
+      expect(response).to be_success
+      expect(response).to render_template('index')
+      expect(assigns(:pages)).to_not be_nil
     end
 
-    it 'should have Pages tab selected' do
-      get :index
-      test_tabs "Pages"
-    end
-
-    it 'should have Pages and Add new subtabs with Pages selected' do
-      get :index
-      subtabs = ["Pages", "Add new"]
-      test_subtabs(subtabs, "Pages")
-    end        
-    
   end
 
   describe "new" do
-    
     context "without page params" do
-      before(:each) do
-        get :new
-      end
-
       it "should render template new and has a page object" do
-        assert_response :success
-        assert_template "new"
-        assert_not_nil assigns(:page)
+        get :new
+        expect(response).to be_success
+        expect(response).to render_template("new")
+        expect(assigns(:page)).to_not be_nil
       end
 
       it "should assign to current user" do
-        assert_equal @henri, assigns(:page).user
+        get :new
+        expect(assigns(:page).user).to eq(@henri)
       end
 
       it "should have a text filter" do
+        get :new
+        expect(TextFilter.find_by_name(@blog.text_filter)).to_not be_nil
         assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
-      end
-
-      it 'should have Pages tab selected' do
-        test_tabs "Pages"
-      end
-
-      it 'should have Pages and Add new with no tab selected' do
-        subtabs = ["Pages", "Add new"]
-        test_subtabs(subtabs, "Add new")
       end
     end
 
@@ -89,7 +66,7 @@ describe Admin::PagesController do
 
   describe "test_edit" do
     before(:each) do
-      @page = Factory(:page)
+      @page = FactoryGirl.create(:page)
       get :edit, :id => @page.id
     end
 
@@ -100,18 +77,10 @@ describe Admin::PagesController do
       assert_equal @page, assigns(:page)
     end
 
-    it 'should have Pages tab selected' do
-      test_tabs "Pages"
-    end
-
-    it 'should have Pages and Add new with no tab selected' do
-      subtabs = ["Pages", "Add new"]
-      test_subtabs(subtabs, "")
-    end
   end
 
   it 'test_update' do
-    page = Factory(:page)
+    page = FactoryGirl.create(:page)
     post :edit, :id => page.id, :page => { :name => "markdown-page", :title => "Markdown Page",
       :body => "Adding a [link](http://www.typosphere.org/) here" }
 
@@ -122,7 +91,7 @@ describe Admin::PagesController do
   end
 
   it "test_destroy" do
-    page = Factory(:page)
+    page = FactoryGirl.create(:page)
     post :destroy, :id => page.id
     assert_response :redirect, :action => "list"
     assert_raise(ActiveRecord::RecordNotFound) { Page.find(page.id) }
@@ -133,14 +102,6 @@ describe Admin::PagesController do
       :body => "A good body",
       :name => "posted-via-tests",
       :published => true }.merge(options)
-  end
-
-  #TODO but this kind of action must move to model !
-  it "should use satanize title to set page name" do
-    page = Factory.build(:page, :name => '')
-    page.should_receive(:satanized_title).and_return('title-with-accents-eea') 
-    Page.should_receive(:new).and_return(page)
-    post :new, :page => {:title => 'title with accents éèà'}
   end
 
   it 'should create a published page with a redirect' do
@@ -159,5 +120,20 @@ describe Admin::PagesController do
     assigns(:page).redirects.count.should == 0
   end
 
+  describe 'insert_editor action' do
+    it 'should render _simple_editor' do
+      get(:insert_editor, :editor => 'simple')
+      response.should render_template('_simple_editor')
+    end
 
+    it 'should render _visual_editor' do
+      get(:insert_editor, :editor => 'visual')
+      response.should render_template('_visual_editor')
+    end
+
+    it 'should render _visual_editor even if editor param is set to unknow editor' do
+      get(:insert_editor, :editor => 'unknow')
+      response.should render_template('_visual_editor')
+    end
+  end
 end

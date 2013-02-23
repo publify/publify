@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Admin::PostTypesController do
   render_views
   before do 
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     #TODO delete this after remove fixture
     Profile.delete_all
-    @user = Factory(:user, :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    @user = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
     request.session = { :user => @user.id }
   end
 
@@ -16,7 +16,7 @@ describe Admin::PostTypesController do
   end
 
   it "test_create" do
-    pt = Factory(:post_type)
+    pt = FactoryGirl.create(:post_type)
     PostType.should_receive(:find).with(:all).and_return([])
     PostType.should_receive(:new).and_return(pt)
     pt.should_receive(:save!).and_return(true)
@@ -30,39 +30,27 @@ describe Admin::PostTypesController do
       get :new
     end
 
-    it 'should render template view' do
+    it 'should render template new' do
       assert_template 'new'
-      assert_tag :tag => "div",
-        :attributes => { :id => "category_container" }
     end
 
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have Articles, Add new, Comments, Categories and Article Types with Article Types selected' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags", "Article Types"]
-      test_subtabs(subtabs, "Article Types")
-    end
   end
 
   describe "test_edit" do
     it 'should render template new' do
-      get :edit, :id => Factory.build(:post_type).id
+      get :edit, :id => FactoryGirl.build(:post_type).id
       assert_template 'new'
-      assert_tag :tag => "div",
-        :attributes => { :id => "category_container" }
     end
       
     it "test_update" do
-      post :edit, :id => Factory(:post_type).id
+      post :edit, :id => FactoryGirl.create(:post_type).id
       assert_response :redirect, :action => 'index'
     end
   end
     
   describe "test_destroy with GET" do
     before(:each) do
-      test_id = Factory(:post_type).id
+      test_id = FactoryGirl.create(:post_type).id
       assert_not_nil PostType.find(test_id)
       get :destroy, :id => test_id
     end
@@ -71,18 +59,10 @@ describe Admin::PostTypesController do
       assert_response :success
       assert_template 'destroy'      
     end
-
-    it 'should have Articles tab selected' do
-      test_tabs "Articles"
-    end
-
-    it 'should have a back to list link' do
-      test_back_to_list
-    end
   end
 
   it "test_destroy with POST" do
-    test_id = Factory(:post_type).id
+    test_id = FactoryGirl.create(:post_type).id
     assert_not_nil PostType.find(test_id)
     get :destroy, :id => test_id
 

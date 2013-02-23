@@ -1,8 +1,6 @@
 require 'find'
 
 class Admin::CacheController < Admin::BaseController
-  layout 'administration'
-
   def index
     @cache_size = 0
     @cache_number = 0

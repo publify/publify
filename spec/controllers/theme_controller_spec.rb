@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ThemeController do
   render_views
 
-  before(:each) { Factory(:blog) }
+  before(:each) { FactoryGirl.create(:blog) }
 
   it "test_stylesheets" do
     get :stylesheets, :filename => "style.css"

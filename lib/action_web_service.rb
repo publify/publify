@@ -21,7 +21,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require 'action_web_service/support/class_inheritable_options'
 require 'action_web_service/support/signature_types'
 require 'action_web_service/base'
 require 'action_web_service/invocation'

@@ -1,0 +1,20 @@
+<%= render_void_table(@resources.size, 6) %>
+<% for upload in @resources -%>
+<tr <%= alternate_class -%>>
+  <td>
+  <% if upload.mime =~ /image/ %>
+    <%= link_to upload.upload_url, rel: 'lightbox' do %>
+      <%= image_tag(upload.upload.thumb.url) %>
+    <% end %>
+  <% else %>
+    <%= link_to(upload.upload_url, upload.upload_url) -%>
+  <% end %>
+	<p><%= resource_action_links(upload) %></p>
+  </td>
+  <td>
+    <%= upload.mime %>
+  </td>
+  <td><%=h upload.size rescue 0 -%> bytes</td>
+  <td><%= format_date upload.created_at -%></td>
+</tr>
+<% end -%>

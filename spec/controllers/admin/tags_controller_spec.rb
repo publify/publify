@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 describe Admin::TagsController do
-  render_views
-  
   before do
-    Factory(:blog)
-    #TODO Delete after removing fixtures
-    Profile.delete_all
-    henri = Factory(:user, :login => 'henri', :profile => Factory(:profile_admin, :label => Profile::ADMIN))
+    create :blog
+    henri = create :user, login: 'henri', profile: create(:profile_admin)
     request.session = { :user => henri.id }
   end
 
@@ -23,20 +19,11 @@ describe Admin::TagsController do
     it 'should render template index' do
       response.should render_template('index')
     end
-    
-    it 'should have Articles as selected tab only' do
-      test_tabs "Articles"
-    end
-    
-    it 'should have article, new article, comments, categories subtab links' do
-      subtabs = ["Articles", "Add new", "Comments", "Categories", "Tags"]
-      test_subtabs(subtabs, "Tags")
-    end  
   end
 
   describe 'edit action' do
     before(:each) do
-      tag_id = Factory(:tag).id
+      tag_id = FactoryGirl.create(:tag).id
       get :edit, :id => tag_id
     end
 
@@ -51,28 +38,24 @@ describe Admin::TagsController do
     it 'should assigns value :tag' do
       assert assigns(:tag).valid?
     end
-    
-    it 'should have a link back to list' do
-      response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
-    end
-    
-    it 'should have Articles as selected tab only' do
-      test_tabs "Articles"
-    end
   end
-  
+
   describe 'destroy action with GET' do
     before(:each) do
-      @tag_id = Factory(:tag).id
+      @tag_id = create(:tag).id
       get :destroy, :id => @tag_id
     end
-    
+
     it 'should be success' do
       response.should be_success
     end
-    
-    it 'should have an id in the form destination' do
-      response.should have_selector("form[action='/admin/tags/destroy/#{@tag_id}'][method='post']") 
+
+    context "with view" do
+      render_views
+
+      it 'should have an id in the form destination' do
+        response.should have_selector("form[action='/admin/tags/destroy/#{@tag_id}'][method='post']")
+      end
     end
 
     it 'should render template edit' do
@@ -80,37 +63,28 @@ describe Admin::TagsController do
     end
 
     it 'should assigns value :tag' do
-      assert assigns(:tag).valid?
-    end
-    
-    it 'should have a link back to list' do
-      response.should have_selector("ul#subtabs>li>a", :content => "Back to list")
-    end
-    
-    it 'should have Articles as selected tab only' do
-      test_tabs "Articles"
+      assert assigns(:record).valid?
     end
   end
 
   describe 'destroy action with POST' do
     before do
-      @tag = Factory(:tag)
+      @tag = FactoryGirl.create(:tag)
       post :destroy, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
     end
-    
+
     it 'should redirect to index' do
       response.should redirect_to(:action => 'index')
     end
-    
+
     it 'should have one less tags' do
       Tag.count.should == 0
     end
-    
   end
 
   describe 'update action' do
     before do
-      @tag = Factory(:tag)
+      @tag = FactoryGirl.create(:tag)
       post :edit, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
     end
 
@@ -133,5 +107,4 @@ describe Admin::TagsController do
       r.to_path.should == "/tag/#{new_name}"
     end
   end
-
 end

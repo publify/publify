@@ -3,6 +3,14 @@ class AccountsController < ApplicationController
   before_filter :verify_config
   before_filter :verify_users, :only => [:login, :recover_password]
 
+  def index
+    if User.count.zero?
+      redirect_to :action => 'signup'
+    else
+      redirect_to :action => 'login'
+    end
+  end
+
   def login
     if session[:user_id] && session[:user_id] == self.current_user.id
       redirect_back_or_default :controller => "admin/dashboard", :action => "index"
@@ -47,7 +55,7 @@ class AccountsController < ApplicationController
     @user = User.new(params[:user])
 
     if request.post?
-      @user.password = generate_password
+      @user.generate_password!
       session[:tmppass] = @user.password
       @user.name = @user.login
       if @user.save
@@ -63,10 +71,10 @@ class AccountsController < ApplicationController
   def recover_password
     @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
     if request.post?
-      @user = User.find(:first, :conditions => ["login = ? or email = ?", params[:user][:login], params[:user][:login]])
+      @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
 
       if @user
-        @user.password = generate_password
+        @user.generate_password!
         @user.save
         flash[:notice] = _("An email has been successfully sent to your address with your new password")
         redirect_to :action => 'login'
@@ -87,12 +95,6 @@ class AccountsController < ApplicationController
   end
 
   private
-  def generate_password
-    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-    newpass = ""
-    1.upto(7) { |i| newpass << chars[rand(chars.size-1)] }
-    return newpass
-  end
 
   def verify_users
     redirect_to(:controller => "accounts", :action => "signup") if User.count == 0

@@ -1,10 +1,14 @@
+# coding: utf-8
 module AccountsHelper
-  def display_accounts_link
-    html = ""
-    html << link_to("<small>&raquo; #{_("Create an account")}</small><br />".html_safe, :action => 'signup') if this_blog.allow_signup == 1
-    html << link_to("<small>&raquo; #{_('Back to ')} #{this_blog.blog_name}</small><br />".html_safe, this_blog.base_url)
-    html << link_to("<small>&raquo; #{_("I've lost my password")}</small>".html_safe, :action => 'recover_password')
-    html.html_safe
+  def lost_password
+    link_to(content_tag(:small, _("I've lost my password")), :action => 'recover_password')
+  end
+  
+  def create_account_link
+    link_to(content_tag(:small, _("Create an account")), :action => 'signup') if this_blog.allow_signup == 1
   end
 
+  def back_to_login
+    link_to(content_tag(:small, _("Back to login")), :action => 'login')
+  end
 end

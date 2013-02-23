@@ -1,8 +1,0 @@
-<div class='widget-container'>
-  <h3 class='dark'><%= _("Drafts")%></h3>
-  <div class='widget-content'>
-    <% Article.drafts.all.each do |draft| %>
-      <%= link_to("#{draft.title},", :action => 'edit', :id => draft.id) %>
-    <% end %>
-  </div>
-</div>

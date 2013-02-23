@@ -1,14 +1,19 @@
 class Page < Content
   belongs_to :user
-  validates_presence_of :name, :title, :body
+  validates_presence_of :title, :body
   validates_uniqueness_of :name
 
   include ConfigManager
-  include Sanitizable
-  extend ActiveSupport::Memoizable
-  serialize :settings, Hash
 
-  setting :password,                   :string, ''
+  serialize :settings, Hash
+  setting :password, :string, ''
+
+  before_save :set_permalink
+  after_save :shorten_url
+
+  def set_permalink
+    self.name = self.title.to_permalink if self.name.blank?
+  end
 
   def initialize(*args)
     super
@@ -27,9 +32,10 @@ class Page < Content
   end
 
   def self.search_paginate(search_hash, paginate_hash)
-    list_function = ["Page"] + function_search_no_draft(search_hash)
+    list_function = ["Page"] + function_search_all_posts(search_hash)
     paginate_hash[:order] = 'title ASC'
-    list_function << "paginate(paginate_hash)"
+    list_function << "page(paginate_hash[:page])"
+    list_function << "per(paginate_hash[:per_page])"
     eval(list_function.join('.'))
   end
 
@@ -43,20 +49,4 @@ class Page < Content
     )
   end
 
-  def self.find_by_published_at
-    super(:created_at)
-  end
-
-
-  def edit_url
-    blog.url_for(:controller => "/admin/pages", :action =>"edit", :id => id)
-  end
-
-  def delete_url
-    blog.url_for(:controller => "/admin/pages", :action =>"destroy", :id => id)
-  end
-
-  def satanized_title
-    remove_accents(self.title).gsub(/<[^>]*>/, '').to_url
-  end
 end

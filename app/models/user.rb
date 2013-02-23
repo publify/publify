@@ -1,8 +1,8 @@
 require 'digest/sha1'
 
+# Typo user.
 class User < ActiveRecord::Base
   include ConfigManager
-  extend ActiveSupport::Memoizable
 
   belongs_to :profile
   belongs_to :text_filter
@@ -15,15 +15,7 @@ class User < ActiveRecord::Base
     :source => 'notify_content',
     :uniq => true
 
-  has_many :articles, :order => 'created_at DESC' do
-    def published
-      find_published(:all, :order => 'created_at DESC')
-    end
-  end
-  has_many :published_articles,
-    :class_name => 'Article',
-    :conditions => { :published => true },
-    :order      => "published_at DESC"
+  has_many :articles, :order => 'created_at DESC'
 
   serialize :settings, Hash
 
@@ -46,25 +38,25 @@ class User < ActiveRecord::Base
   setting :show_yahoo,                 :boolean, false
   setting :show_twitter,               :boolean, false
   setting :show_jabber,                :boolean, false
+  setting :admin_theme,                :string,  'blue'
 
   # echo "typo" | sha1sum -
-  @@salt = '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
-  cattr_accessor :salt
+  class_attribute :salt
+
+  def self.salt
+    '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
+  end
+
   attr_accessor :last_venue
 
   def initialize(*args)
     super
-    # Yes, this is weird - PDC
-    begin
-      self.settings ||= {}
-    rescue Exception => e
-      self.settings = {}
-    end
+    self.settings ||= {}
   end
 
+
   def self.authenticate(login, pass)
-    find(:first,
-         :conditions => ["login = ? AND password = ? AND state = ?", login, sha1(pass), 'active'])
+    where("login = ? AND password = ? AND state = ?", login, password_hash(pass), 'active').first
   end
 
   def update_connection_time
@@ -119,9 +111,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  # The current project_modules
   def project_modules
-    profile.modules.collect { |m| AccessControl.project_module(profile.label, m) }.uniq.compact rescue []
+    profile.project_modules
   end
 
   # Generate Methods takes from AccessControl rules
@@ -130,15 +121,22 @@ class User < ActiveRecord::Base
   #   def publisher?
   #     profile.label == :publisher
   #   end
-  AccessControl.roles.each { |r| define_method("#{r.to_s.downcase.to_sym}?") { profile.label.to_s.downcase.to_sym == r.to_s.downcase.to_sym } }
-
-  # Let's be lazy, no need to fetch the counters, rails will handle it.
-  def self.find_all_with_article_counters(ignored_arg)
-    find(:all)
+  AccessControl.roles.each do |role|
+    define_method "#{role.to_s.downcase}?" do
+      profile.label.to_s.downcase == role.to_s.downcase
+    end
   end
 
   def self.to_prefix
     'author'
+  end
+
+  def simple_editor?
+    editor == 'simple'
+  end
+
+  def visual_editor?
+    editor == 'visual'
   end
 
   def password=(newpass)
@@ -158,19 +156,28 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    name
+    if !nickname.blank?
+      nickname
+    elsif !name.blank?
+      name
+    else
+      login
+    end
   end
 
   def permalink
     login
   end
 
-  def to_param
-    permalink
-  end
-
   def admin?
     profile.label == Profile::ADMIN
+  end
+
+  def generate_password!
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    newpass = ""
+    1.upto(7) { |i| newpass << chars[rand(chars.size-1)] }
+    self.password = newpass
   end
 
   protected
@@ -178,8 +185,12 @@ class User < ActiveRecord::Base
   # Apply SHA1 encryption to the supplied password.
   # We will additionally surround the password with a salt
   # for additional security.
-  def self.sha1(pass)
+  def self.password_hash(pass)
     Digest::SHA1.hexdigest("#{salt}--#{pass}--")
+  end
+
+  def password_hash(pass)
+    self.class.password_hash(pass)
   end
 
   before_create :crypt_password
@@ -190,8 +201,8 @@ class User < ActiveRecord::Base
   # But before the encryption, we send an email to user for he can remind his
   # password
   def crypt_password
-    send_create_notification
-    write_attribute "password", self.class.sha1(password(true))
+    EmailNotify.send_user_create_notification self
+    write_attribute "password", password_hash(password(true))
     @password = nil
   end
 
@@ -205,20 +216,14 @@ class User < ActiveRecord::Base
       user = self.class.find(self.id)
       write_attribute "password", user.password
     else
-      send_create_notification
-      write_attribute "password", self.class.sha1(password(true))
-      @password = nil
+      crypt_password
     end
   end
 
   before_validation :set_default_profile
 
   def set_default_profile
-    if User.count.zero?
-      self.profile ||= Profile.find_by_label('admin')
-    else
-      self.profile ||= Profile.find_by_label('contributor')
-    end
+    self.profile ||= Profile.find_by_label(User.count.zero? ? 'admin' : 'contributor')
   end
 
   validates_uniqueness_of :login, :on => :create
@@ -232,17 +237,4 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
   validates_length_of :login, :within => 3..40
-
-
-  private
-
-  # Send a mail of creation user to the user create
-  def send_create_notification
-    begin
-      email_notification = NotificationMailer.notif_user(self)
-      EmailNotify.send_message(self, email_notification)
-    rescue => err
-      logger.error "Unable to send notification of create user email: #{err.inspect}"
-    end
-  end
 end

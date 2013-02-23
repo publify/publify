@@ -47,6 +47,7 @@ This macro takes a number of parameters:
 
         begin
           FlickRaw.api_key = FLICKR_KEY
+          FlickRaw.shared_secret = FLICKR_SECRET
           flickrimage = flickr.photos.getInfo(:photo_id => img)
           sizes = flickr.photos.getSizes(:photo_id => img)
 

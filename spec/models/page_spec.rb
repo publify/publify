@@ -1,10 +1,50 @@
 # coding: utf-8
 require 'spec_helper'
 
+describe Page do
+  describe "#initialize" do
+    it "accepts a settings field in its parameter hash" do
+      Page.new({"password" => 'foo'})
+    end
+  end
+end
+
+describe "Testing redirects" do
+  it "a new published page gets a redirect" do
+    FactoryGirl.create(:blog)
+    a = Page.create(:title => "Some title", :body => "some text", :published => true)
+    a.should be_valid
+    a.redirects.first.should_not be_nil
+    a.redirects.first.to_path.should == a.permalink_url
+  end
+
+  it "a new unpublished page should not get a redirect" do 
+    FactoryGirl.create(:blog)
+    a = Page.create(:title => "Some title", :body => "some text", :published => true)
+    a = Page.create(:title => "Another title", :body => "some text", :published => false)
+    a.redirects.first.should be_nil
+  end
+
+  it "Changin a published article permalink url should only change the to redirection" do
+    FactoryGirl.create(:blog)
+    a = Page.create(:title => "Third title", :body => "some text", :published => true)
+    a.should be_valid
+    a.redirects.first.should_not be_nil
+    a.redirects.first.to_path.should == a.permalink_url
+    r  = a.redirects.first.from_path
+
+    a.name = "some-new-permalink"
+    a.save
+    a.redirects.first.should_not be_nil
+    a.redirects.first.to_path.should == a.permalink_url
+    a.redirects.first.from_path.should == r
+  end
+end
+
 describe 'Given the fixture :first_page' do
   before(:each) do
-    Factory(:blog)
-    @page = Factory(:page)
+    FactoryGirl.create(:blog)
+    @page = FactoryGirl.create(:page)
   end
 
   describe "#permalink_url" do
@@ -12,28 +52,14 @@ describe 'Given the fixture :first_page' do
     it { should == 'http://myblog.net/pages/page_one' }
   end
 
-  describe "url" do
-    before do
-      @base_url = 'http://myblog.net/admin/pages/'
-    end
-
-    it '#edit_url should be: http://myblog.net/admin/pages/edit/<page_id>' do
-      @page.edit_url.should == "#{@base_url}edit/#{@page.id}"
-    end
-
-    it '#delete_url should work too' do
-      @page.delete_url.should == "#{@base_url}destroy/#{@page.id}"
-    end
-  end
-
   it 'Pages cannot have the same name' do
     Page.new(:name => @page.name, :body => @page.body, :title => @page.title).should_not be_valid
     Page.new(:name => @page.name, :body => 'body', :title => 'title').should_not be_valid
   end
   
-  it "should give a satanized title" do
-    page = Factory.build(:page, :title => 'title with accents éèà')
-    page.satanized_title.should == 'title-with-accents-eea'
+  it "should give a sanitized title" do
+    page = FactoryGirl.build(:page, :title => 'title with accents éèà')
+    page.title.to_permalink.should == 'title-with-accents-eea'
   end
 end
 
@@ -49,7 +75,7 @@ end
 
 describe 'Given no pages' do
   def valid_attributes
-    { :name => 'name', :title => 'title', :body => 'body'}
+    { :title => 'title', :body => 'body'}
   end
 
   before(:each) do
@@ -61,16 +87,8 @@ describe 'Given no pages' do
     @page.should_not be_valid
   end
 
-  it 'A page is valid with name, title and body' do
+  it 'A page is valid with a title and body' do
     @page.attributes = valid_attributes
-    @page.should be_valid
-  end
-
-  it 'A page is invalid without a name' do
-    @page.attributes = valid_attributes.except(:name)
-    @page.should_not be_valid
-    @page.errors[:name].should == ["can't be blank"]
-    @page.name = 'somename'
     @page.should be_valid
   end
 
@@ -89,11 +107,20 @@ describe 'Given no pages' do
     @page.body = 'somebody'
     @page.should be_valid
   end
+  
+  it "should use sanitize title to set page name" do
+    @page.attributes = valid_attributes.except(:title)
+    @page.title = 'title with accents éèà'
+    @page.should be_valid
+    @page.save
+    @page.name.should == "title-with-accents-eea"
+  end
+  
 end
 
 describe 'Given a valid page' do
   it 'default filter should be fetched from the blog' do
-    Factory(:blog)
+    FactoryGirl.create(:blog)
     @page = Page.new()
     @page.default_text_filter.name.should == Blog.default.text_filter
   end

@@ -89,6 +89,9 @@ Localization.define("ro_RO") do |l|
   l.store "Delete content", ""
   l.store "Are you sure?", ""
   l.store "Please select", ""
+  l.store "All categories", "toate categoriile"
+  l.store "All authors", "toate autorii"
+  l.store "All published dates", "toate timp"
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "or", "sau"
   l.store "Save", "Salvează"
@@ -153,6 +156,7 @@ Localization.define("ro_RO") do |l|
   l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
+  l.store "Sign in", ""
   l.store "I've lost my password", ""
   l.store "Login", "Login"
   l.store "Password", "Parola"
@@ -161,6 +165,7 @@ Localization.define("ro_RO") do |l|
   l.store "Back to ", ""
 
   # app/views/accounts/recover_password.html.erb
+  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb
@@ -196,7 +201,7 @@ Localization.define("ro_RO") do |l|
   l.store "Currently this article has the following resources", "Resursele disponibile acestui articol sînt"
   l.store "You can associate the following resources", "Puteți asocia următoarele resurse"
   l.store "Really delete attachment", "Ești sigur că dorești să ștergi atașamentul"
-  l.store "Add Another Attachment", "Adaugă un nou atașament"
+  l.store "Add another attachment", "Adaugă un nou atașament"
 
   # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", ""
@@ -207,14 +212,26 @@ Localization.define("ro_RO") do |l|
   l.store "Allow trackbacks", "Se permit retrolegături"
   l.store "Password:", ""
   l.store "Publish", "Publică"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", ""
-  l.store "Excerpts are posts summaries that are shown on your blog homepage only but won’t appear on the post itself", ""
+  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", "Publică la"
   l.store "Permalink", "Legătură permanentă"
   l.store "Article filter", "Filtru pentru articole"
   l.store "Save as draft", ""
+  l.store "New article", ""
+  l.store "disabled", ""
+  l.store "Markdown with SmartyPants", ""
+  l.store "Markdown", ""
+  l.store "Texttile", ""
+  l.store "None", ""
+  l.store "SmartyPants", ""
+  l.store "Visual", ""
+  l.store "Edit article", ""
+  
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ești sigur că dorești ștergerea acestui articol"
@@ -230,8 +247,13 @@ Localization.define("ro_RO") do |l|
   l.store "Feedback", ""
   l.store "Filter", ""
   l.store "Manage articles", ""
+  l.store "Select a category", ""
+  l.store "Select an author", ""
+  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
+  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
+  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", ""
   l.store "No comments yet", ""
   l.store "By %s on %s", ""
@@ -345,15 +367,106 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "Nume de fișier"
+  l.store "Browse", ""
+  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
+  l.store "Displays links to monthly archives", ""
+  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
+  l.store "Livesearch", ""
+  l.store "Adds livesearch to your Typo blog", ""
+  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Page", ""
+  l.store "Show pages for this blog", ""
+  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Static", ""
+  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
+  l.store "Show most popular tags for this blog", ""
+  l.store "RSS and Atom feeds", ""
+  l.store "XML Syndication", ""
+  l.store "remove", "supprimer"
+
+  # app/views/admin/seo/index.html.erb
+  l.store "SEO", ""
+  l.store "Global SEO settings", ""
+  l.store "Titles", ""
+  l.store "General settings", ""
+  l.store "Use meta keywords", ""
+  l.store "Meta description", ""
+  l.store "Meta keywords", ""
+  l.store "Use RSS description", ""
+  l.store "RSS description message", ""
+  l.store "Indexing", ""
+  l.store "Do not index categories", ""
+  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Do not index tags", ""
+  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
+  l.store "Robots.txt", ""
+  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "Use dofollow in comments", ""
+  l.store "You may want to moderate feedback when turning this on", ""
+  l.store "Use canonical URL", ""
+  l.store "Read more about %s", ""
+  l.store "Google", ""
+  l.store "Google Analytics", ""
+  l.store "Google Webmaster Tools validation link", ""
+  l.store "Custom tracking code", ""
+  l.store "Global settings", ""
+  l.store "This will display", ""
+  l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+
+  # app/views/admin/seo/permalinks.html.erb
+  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
+  l.store "Here are some examples to get you started.", ""
+  l.store "Permalink format", ""
+  l.store "Date and title", ""
+  l.store "Month and title", ""
+  l.store "Title only", ""
+  l.store "You can custom your URL structure using the following tags:", ""
+  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
+  l.store "your article year of publication.", ""
+  l.store "your article month of publication.", ""
+  l.store "your article day of publication.", ""
+  l.store "Permalinks", ""
+  l.store "Custom", ""
+
+  # app/views/admin/seo/titles.html.erb
+  l.store "Title settings", ""
+  l.store "Home", ""
+  l.store "Title template", ""
+  l.store "Description template", ""
+  l.store "Articles", ""
+  l.store "Pages", ""
+  l.store "Paginated archives", ""
+  l.store "Dated archives", ""
+  l.store "Author page", ""
+  l.store "Search results", ""
+  l.store "Help on title settings", ""
+  l.store "Replaced with the title of the article/page", ""
+  l.store "The blog's name", ""
+  l.store "The blog's tagline / description", ""
+  l.store "Replaced with the post/page excerpt", ""
+  l.store "Replaced with the article tags (comma separated)", ""
+  l.store "Replaced with the article categories (comma separated)", ""
+  l.store "Replaced with the article/page title", ""
+  l.store "Replaced with the category/tag name", ""
+  l.store "Replaced with the current search phrase", ""
+  l.store "Replaced with the current time", ""
+  l.store "Replaced with the current date", ""
+  l.store "Replaced with the current month", ""
+  l.store "Replaced with the current year", ""
+  l.store "Replaced with the current page number", ""
+  l.store "Replaced by the archive date", ""
+  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
+  l.store "Spam protection", ""
   l.store "Enable comments by default", "Implicit comentariile să fie active"
   l.store "Enable Trackbacks by default", "Implicit retrolegăturile să fie active"
   l.store "Enable feedback moderation", "Activează moderarea comentariilor"
-  l.store "You can enable site wide feeback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
+  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Filtru pentru comentarii"
   l.store "Enable gravatars", "Activează gravataruri"
   l.store "Show your email address", "Arată adresa ta de email"
@@ -361,7 +474,7 @@ Localization.define("ro_RO") do |l|
   l.store "Typo can notify you when new articles or comments are posted", "Typo te poate alerta la publicarea de noi articole sau comentarii"
   l.store "Source Email", "Expeditor email"
   l.store "Email address used by Typo to send notifications", "Adresa email folosită de Typo pentru a trimite alerte prin email"
-  l.store "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La activarea protecției anti-spam, Typo va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot "
+  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La activarea protecției anti-spam, Typo va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot "
   l.store "Enable spam protection", "Activează protecția anti-spam"
   l.store "Akismet Key", "Cheia Akismet"
   l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Opțional, Typo poate folosi serviciul %s de filtrare spam. Trebuie să te înregistrezi la Akismet și să primești o cheie API pentru a putea folosi acest serviciu. Dacă ai deja o cheie Akismet, introdu-o aici"
@@ -409,7 +522,8 @@ Localization.define("ro_RO") do |l|
   l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
-  l.store "at the bottom of each of your post in the RSS feed", ""
+  l.store "at the bottom of each post in the RSS feed", ""
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informații"
@@ -429,8 +543,8 @@ Localization.define("ro_RO") do |l|
   l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Cînd publici un articol, Typo poate trimite automat retrolegături site-urilor pe care le specifici. În cazul unui blog personal, această opțiune ar trebui dezactivată, ca să nu deconspire informații private. Dacă blogul e public, opțiunea aceasta poate rămîne activă."
   l.store "URLs to ping automatically", "Site-uri de anunțat automat"
   l.store "Latitude, Longitude", "Latitudine, longitudine"
-  l.store "your lattitude and longitude", "latitudinea și longitudinea ta"
-  l.store "exemple", "de pildă"
+  l.store "your latitude and longitude", "latitudinea și longitudinea ta"
+  l.store "example", "de pildă"
   l.store "Write", "Publicare"
 
   # app/views/admin/sidebar/_availables.html.erb
@@ -443,7 +557,7 @@ Localization.define("ro_RO") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Trage plugin-uri aici pentru a popula bara laterală"
 
   # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog.  To remove items from the sidebar just click remove  Changes are saved immediately, but not activated until you click the 'Publish' button", "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"
+  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"
   l.store "Available Items", "Obiecte disponibile"
   l.store "Active Sidebar items", "Obiecte utilizate"
   l.store "Get more plugins", ""
@@ -473,6 +587,7 @@ Localization.define("ro_RO") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
+  l.store "Choose theme", ""
   l.store "Active theme", "Tema activă"
   l.store "Get more themes", ""
   l.store "You can download third party themes from officially supported %s ", ""
@@ -487,7 +602,7 @@ Localization.define("ro_RO") do |l|
   l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
-  l.store "Profile Settings", ""
+  l.store "Profile settings", ""
   l.store "Firstname", ""
   l.store "Lastname", ""
   l.store "Nickname", ""
@@ -497,9 +612,9 @@ Localization.define("ro_RO") do |l|
   l.store "Send notification messages via email", "Alerte prin email"
   l.store "Send notification messages when new articles are posted", "Alerte la publicarea de articole noi"
   l.store "Send notification messages when comments are posted", "Alerte la publicarea de comentarii noi"
-  l.store "Contact Options", ""
+  l.store "Contact options", ""
   l.store "Your site", ""
-  l.store "display url on public profile", ""
+  l.store "display URL on public profile", ""
   l.store "Your MSN", ""
   l.store "display MSN ID on public profile", ""
   l.store "Your Yahoo ID", ""
@@ -509,7 +624,7 @@ Localization.define("ro_RO") do |l|
   l.store "Your AIM id", ""
   l.store "display AIM ID on public profile", ""
   l.store "Your Twitter username", ""
-  l.store "display twitter on public profile", ""
+  l.store "display Twitter on public profile", ""
   l.store "Tell us more about you", ""
 
   # app/views/admin/users/destroy.html.erb
@@ -525,6 +640,7 @@ Localization.define("ro_RO") do |l|
   l.store "Comments", ""
   l.store "State", ""
   l.store "%s user", ""
+  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
@@ -568,6 +684,7 @@ Localization.define("ro_RO") do |l|
   l.store "RSS feed for this post", "Flux RSS pentru acest articol"
   l.store "trackback uri", "URL pentru retrolegătură"
   l.store "Comments are disabled", "Comentariile sînt dezactivate"
+  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Web site:", ""
@@ -583,7 +700,13 @@ Localization.define("ro_RO") do |l|
   l.store "This comment has been flagged for moderator approval.", ""
 
   # app/views/layouts/administration.html.erb
+  l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""
+  l.store "Help", "Ajutor"
+  l.store "Documentation", "Documentație"
+  l.store "Report a bug", "Raport de eroare"
+  l.store "In page plugins", ""
+  l.store "Sidebar plugins", ""
   l.store "is proudly powered by", ""
   l.store "Dashboard", ""
 
@@ -592,7 +715,7 @@ Localization.define("ro_RO") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
-  l.store "Congratulation!", ""
+  l.store "Congratulations!", ""
   l.store "You have successfully signed up", ""
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
