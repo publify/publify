@@ -1,7 +1,4 @@
 class Migrator
-  cattr_accessor :offer_migration_when_available
-  @@offer_migration_when_available = true
-
   def current_schema_version
     ActiveRecord::Migrator.current_version
   end
