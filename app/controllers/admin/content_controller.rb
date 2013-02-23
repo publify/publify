@@ -21,12 +21,21 @@ class Admin::ContentController < Admin::BaseController
       render partial: 'article_list', locals: { articles: @articles }
     else
       @article = Article.new(params[:article])
+
     end
   end
 
-  # FIXME: Separate from create
   def new
-    new_or_create
+    @article = Article.get_or_build_article(nil)
+    @article.text_filter ||= default_textfilter
+
+    @post_types = PostType.find(:all)
+
+    @article.keywords = Tag.collection_to_string @article.tags
+
+    @images = Resource.images_by_created_at.page(params[:page]).per(10)
+    @resources = Resource.without_images_by_filename
+    @macros = TextFilter.macro_filters
   end
 
   # FIXME: Separate from new
@@ -274,6 +283,16 @@ class Admin::ContentController < Admin::BaseController
       "none"
     else
       current_user.text_filter
+    end
+  end
+
+  def parse_date_time(str)
+    begin
+      DateTime.strptime(str, "%B %e, %Y %I:%M %p GMT%z").utc
+    rescue
+      Time.parse(str).utc
+    rescue
+      nil
     end
   end
 end

@@ -207,21 +207,12 @@ describe Admin::ContentController do
 
   shared_examples_for 'new action' do
 
-    describe 'GET' do
       it "renders the 'new' template" do
         get :new
         response.should render_template('new')
         assigns(:article).should_not be_nil
         assigns(:article).redirects.count.should == 0
       end
-
-      it "correctly converts multi-word tags" do
-        a = FactoryGirl.create(:article, :keywords => '"foo bar", baz')
-        get :new, :id => a.id
-        response.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
-      end
-
-    end
   end
 
   shared_examples_for 'create action' do
@@ -487,7 +478,6 @@ describe Admin::ContentController do
     it_should_behave_like 'autosave action'
 
     describe 'edit action' do
-
       it 'should edit article' do
         get :edit, 'id' => @article.id
         response.should render_template 'edit'
@@ -497,6 +487,14 @@ describe Admin::ContentController do
         response.should contain(/extended content/)
       end
 
+      it "correctly converts multi-word tags" do
+        a = FactoryGirl.create(:article, :keywords => '"foo bar", baz')
+        get :edit, :id => a.id
+        response.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
+      end
+    end
+
+    describe 'update action' do
       it 'should update article by edit action' do
         begin
           ActionMailer::Base.perform_deliveries = true
@@ -670,7 +668,6 @@ describe Admin::ContentController do
     end
 
     describe 'destroy action can be access' do
-
       it 'should redirect when want destroy article' do
         article = FactoryGirl.create(:article, :user => FactoryGirl.create(:user, :login => FactoryGirl.create(:user, :login => 'other_user')))
         lambda do
@@ -678,7 +675,6 @@ describe Admin::ContentController do
           response.should redirect_to(:action => 'index')
         end.should_not change(Article, :count)
       end
-
     end
   end
 end
