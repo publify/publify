@@ -107,10 +107,21 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{advanced cache categories comments content profiles general pages feedback
+  %w{advanced cache categories comments profiles general pages feedback
      resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
+  end
+
+  namespace :admin do
+    resources :content do
+      post :autosave, on: :collection
+      get :insert_editor, on: :collection
+      get :auto_complete_for_article_keywords, on: :collection
+      get :attachment_box_add, on: :member
+      get :resource_add, on: :member
+      get :resource_remove, on: :member
+    end
   end
 
   # default
