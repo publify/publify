@@ -54,7 +54,9 @@ This macro takes a number of parameters:
           details     = sizes.find {|s| s['label'].downcase == size.downcase } || sizes.first
           width       = details['width']
           height      = details['height']
-          imageurl    = details['source']
+          # use protocol-relative URL after getting the source address
+          # so not to break HTTPS support
+          imageurl    = details['source'].sub(/^https?:/, '')
           imagelink = flickrimage.urls.find {|u| u.type == "photopage"}.to_s
 
           caption   ||= sanitize(CGI.unescapeHTML(flickrimage.description)) unless flickrimage.description.blank?

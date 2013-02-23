@@ -17,7 +17,7 @@ class Admin::PagesController < Admin::BaseController
   def new
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
-    @page.text_filter = set_textfilter
+    @page.text_filter ||= set_textfilter
     if request.post?
       @page.published_at = Time.now
       if @page.save
