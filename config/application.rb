@@ -48,7 +48,6 @@ module TypoBlog
 
   require 'format'
   require 'i18n_interpolation_deprecation'
-  require 'migrator'
   require 'route_cache'
   ## Required by the models themselves.
   # require 'spam_protection'

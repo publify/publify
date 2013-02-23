@@ -26,6 +26,4 @@ TypoBlog::Application.configure do
 
   # Enable threaded mode
   # config.threadsafe!
-
-  Migrator.offer_migration_when_available            = true
 end

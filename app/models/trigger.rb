@@ -13,15 +13,13 @@ class Trigger < ActiveRecord::Base
         destroy_all ['due_at <= ?', Time.now]
         true
       rescue
-        @current_version = Migrator.current_schema_version
-        @needed_version = Migrator.max_schema_version
-        @support = Migrator.db_supports_migrations?
-        @needed_migrations = Migrator.available_migrations[@current_version..@needed_version].collect do |mig|
-          mig.scan(/\d+\_([\w_]+)\.rb$/).flatten.first.humanize
-        end
-        if @needed_migrations
-          Migrator.migrate
-          if @current_version == 0
+        migrator = Migrator.new
+
+        if !migrator.pending_migrations.empty?
+          starting_version = migrator.current_schema_version
+          migrator.migrate
+
+          if starting_version == 0
             load "#{Rails.root}/Rakefile"
             Rake::Task['db:seed'].invoke
             User.reset_column_information

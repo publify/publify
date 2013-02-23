@@ -8,23 +8,19 @@
   </p>
   <% unless @needed_migrations.blank? %>
   <p>
-    <strong><%= _("New database version")%>:</strong>
-    <%= @needed_version %>
-  </p>
-  <p>
-    <%= _("Your database supports migrations")%>:
-    <%= @support ? _('yes') : _('no') %>
+    <strong><%= _("Migrations")%>:</strong>
+    <%= _("There are %d migration(s) pending.", @needed_migrations.count) %>
   </p>
   <p><%= _("Needed migrations")%>:</p>
   <ul>
     <% for migration in @needed_migrations %>
-    <li><%= migration.humanize %></li>
+    <li><%= migration.name %></li>
     <% end %>
   </ul>
   <% end %>
   <div class='alert-actions'>
     <%= form_tag :action => 'migrate' do %>
-    <% if @current_version == @needed_version %>
+    <% if @needed_migrations.blank? %>
     <div class='info'>
       <p><strong><%= _("You are up to date!")%></strong></p>
     </div>
