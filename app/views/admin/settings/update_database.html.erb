@@ -24,7 +24,7 @@
   <% end %>
   <div class='alert-actions'>
     <%= form_tag :action => 'migrate' do %>
-    <% if @pending.nil? %>
+    <% if @needed_migrations.blank? %>
     <div class='info'>
       <p><strong><%= _("You are up to date!")%></strong></p>
     </div>
