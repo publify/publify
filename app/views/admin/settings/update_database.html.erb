@@ -11,10 +11,6 @@
     <strong><%= _("Migrations")%>:</strong>
     <%= _("There are %d migration(s) pending.", @needed_migrations.count) %>
   </p>
-  <p>
-    <%= _("Your database supports migrations")%>:
-    <%= @support ? _('yes') : _('no') %>
-  </p>
   <p><%= _("Needed migrations")%>:</p>
   <ul>
     <% for migration in @needed_migrations %>

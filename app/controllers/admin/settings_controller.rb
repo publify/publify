@@ -32,21 +32,13 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def update_database
-    @current_version = Migrator.current_schema_version
-    @support = Migrator.db_supports_migrations?
-
-    path = File.expand_path("db/migrate")
-    migrator = ActiveRecord::Migrator.new(:up, path)
-    if migrator.pending_migrations.size > 0
-      @needed_migrations = migrator.pending_migrations
-    else
-      @needed_migrations = nil
-    end	
+    @current_version = migrator.current_schema_version
+    @needed_migrations = migrator.pending_migrations
   end
 
   def migrate
     if request.post?
-      Migrator.migrate
+      migrator.migrate
       redirect_to :action => 'update_database'
     end
   end
@@ -54,5 +46,9 @@ class Admin::SettingsController < Admin::BaseController
   private
   def load_settings
     @setting = this_blog
+  end
+
+  def migrator
+    @migrator ||= Migrator.new
   end
 end
