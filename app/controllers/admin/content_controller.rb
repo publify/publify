@@ -29,13 +29,9 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.get_or_build_article(nil)
     @article.text_filter ||= default_textfilter
 
-    @post_types = PostType.find(:all)
-
     @article.keywords = Tag.collection_to_string @article.tags
 
-    @images = Resource.images_by_created_at.page(params[:page]).per(10)
-    @resources = Resource.without_images_by_filename
-    @macros = TextFilter.macro_filters
+    load_resources
   end
 
   def create
@@ -63,19 +59,11 @@ class Admin::ContentController < Admin::BaseController
       unless @article.draft
         Article.where(parent_id: @article.id).map(&:destroy)
       end
-      @article.categorizations.clear
-      if params[:categories]
-        Category.find(params[:categories]).each do |cat|
-          @article.categories << cat
-        end
-      end
+      update_categories_for_article
       set_the_flash
       redirect_to :action => 'index'
     else
-      @post_types = PostType.find(:all)
-      @images = Resource.images_by_created_at.page(params[:page]).per(10)
-      @resources = Resource.without_images_by_filename
-      @macros = TextFilter.macro_filters
+      load_resources
       render 'new'
     end
   end
@@ -206,7 +194,6 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.get_or_build_article(id)
     @article.text_filter ||= default_textfilter
 
-    @post_types = PostType.find(:all)
     if request.put?
       if params[:article][:draft]
         get_fresh_or_existing_draft_for_article
@@ -219,9 +206,8 @@ class Admin::ContentController < Admin::BaseController
 
     @article.keywords = Tag.collection_to_string @article.tags
     @article.attributes = params[:article]
-    # TODO: Consider refactoring, because double rescue looks... weird.
 
-    @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue Time.parse(params[:article][:published_at]).utc rescue nil
+    @article.published_at = parse_date_time params[:article][:published_at] if params[:article]
 
     if request.put?
       @article.set_author(current_user)
@@ -233,21 +219,14 @@ class Admin::ContentController < Admin::BaseController
         unless @article.draft
           Article.where(parent_id: @article.id).map(&:destroy)
         end
-        @article.categorizations.clear
-        if params[:categories]
-          Category.find(params[:categories]).each do |cat|
-            @article.categories << cat
-          end
-        end
+        update_categories_for_article
         set_the_flash
         redirect_to :action => 'index'
         return
       end
     end
 
-    @images = Resource.images_by_created_at.page(params[:page]).per(10)
-    @resources = Resource.without_images_by_filename
-    @macros = TextFilter.macro_filters
+    load_resources
     render 'edit'
   end
 
@@ -277,6 +256,22 @@ class Admin::ContentController < Admin::BaseController
       DateTime.strptime(str, "%B %e, %Y %I:%M %p GMT%z").utc
     rescue
       Time.parse(str).utc rescue nil
+    end
+  end
+
+  def load_resources
+    @post_types = PostType.find(:all)
+    @images = Resource.images_by_created_at.page(params[:page]).per(10)
+    @resources = Resource.without_images_by_filename
+    @macros = TextFilter.macro_filters
+  end
+
+  def update_categories_for_article
+    @article.categorizations.clear
+    if params[:categories]
+      Category.find(params[:categories]).each do |cat|
+        @article.categories << cat
+      end
     end
   end
 end
