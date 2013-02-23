@@ -9,7 +9,7 @@
   <% unless @needed_migrations.blank? %>
   <p>
     <strong><%= _("Migrations")%>:</strong>
-    There are <%= @pending %> migration(s) pending.
+    <%= _("There are %d migration(s) pending.", @needed_migrations.count) %>
   </p>
   <p>
     <%= _("Your database supports migrations")%>:
