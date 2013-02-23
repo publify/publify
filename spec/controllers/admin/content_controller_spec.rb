@@ -204,15 +204,13 @@ describe Admin::ContentController do
     end
   end
 
-
   shared_examples_for 'new action' do
-
-      it "renders the 'new' template" do
-        get :new
-        response.should render_template('new')
-        assigns(:article).should_not be_nil
-        assigns(:article).redirects.count.should == 0
-      end
+    it "renders the 'new' template" do
+      get :new
+      response.should render_template('new')
+      assigns(:article).should_not be_nil
+      assigns(:article).redirects.count.should == 0
+    end
   end
 
   shared_examples_for 'create action' do
@@ -224,8 +222,9 @@ describe Admin::ContentController do
     end
 
     it 'should create article with no comments' do
-      post(:create, 'article' => base_article({:allow_comments => '0'}),
-                 'categories' => [FactoryGirl.create(:category).id])
+      post(:create,
+           'article' => base_article({:allow_comments => '0'}),
+           'categories' => [FactoryGirl.create(:category).id])
       assigns(:article).should_not be_allow_comments
       assigns(:article).should be_allow_pings
       assigns(:article).should be_published
@@ -345,76 +344,6 @@ describe Admin::ContentController do
       new_article.html(:extended).should eq "<p><em>foo</em></p>"
     end
 
-    describe "publishing a published article with an autosaved draft" do
-      before do
-        @orig = FactoryGirl.create(:article)
-        @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
-        post(:create,
-             :id => @orig.id,
-             :article => {:id => @draft.id, :body => 'update'})
-      end
-
-      it "updates the original" do
-        assert_raises ActiveRecord::RecordNotFound do
-          Article.find(@draft.id)
-        end
-      end
-
-      it "deletes the draft" do
-        Article.find(@orig.id).body.should == 'update'
-      end
-    end
-
-    describe "publishing a draft copy of a published article" do
-      before do
-        @orig = FactoryGirl.create(:article)
-        @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
-        post(:create,
-             :id => @draft.id,
-             :article => {:id => @draft.id, :body => 'update'})
-      end
-
-      it "updates the original" do
-        assert_raises ActiveRecord::RecordNotFound do
-          Article.find(@draft.id)
-        end
-      end
-
-      it "deletes the draft" do
-        Article.find(@orig.id).body.should == 'update'
-      end
-    end
-
-    describe "saving a published article as draft" do
-      before do
-        @orig = FactoryGirl.create(:article)
-        post(:create,
-             :id => @orig.id,
-             :article => {:title => @orig.title, :draft => 'draft',
-               :body => 'update' })
-      end
-
-      it "leaves the original published" do
-        @orig.reload
-        @orig.published.should == true
-      end
-
-      it "leaves the original as is" do
-        @orig.reload
-        @orig.body.should_not == 'update'
-      end
-
-      it "redirects to the index" do
-        response.should redirect_to(:action => 'index')
-      end
-
-      it "creates a draft" do
-        draft = Article.child_of(@orig.id).first
-        draft.parent_id.should == @orig.id
-        draft.should_not be_published
-      end
-    end
-
     describe "with an unrelated draft in the database" do
       before do
         @draft = FactoryGirl.create(:article, :state => 'draft')
@@ -495,7 +424,7 @@ describe Admin::ContentController do
     end
 
     describe 'update action' do
-      it 'should update article by edit action' do
+      it 'should update article' do
         begin
           ActionMailer::Base.perform_deliveries = true
           emails = ActionMailer::Base.deliveries
@@ -547,6 +476,77 @@ describe Admin::ContentController do
         Article.should_not be_exists({:id => draft.id})
         Article.should_not be_exists({:id => draft_2.id})
       end
+
+      describe "publishing a published article with an autosaved draft" do
+        before do
+          @orig = FactoryGirl.create(:article)
+          @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+          put(:update,
+              :id => @orig.id,
+              :article => {:id => @draft.id, :body => 'update'})
+        end
+
+        it "updates the original" do
+          Article.find(@orig.id).body.should == 'update'
+        end
+
+        it "deletes the draft" do
+          assert_raises ActiveRecord::RecordNotFound do
+            Article.find(@draft.id)
+          end
+        end
+      end
+
+      describe "publishing a draft copy of a published article" do
+        before do
+          @orig = FactoryGirl.create(:article)
+          @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+          put(:update,
+              :id => @draft.id,
+              :article => {:id => @draft.id, :body => 'update'})
+        end
+
+        it "updates the original" do
+          Article.find(@orig.id).body.should == 'update'
+        end
+
+        it "deletes the draft" do
+          assert_raises ActiveRecord::RecordNotFound do
+            Article.find(@draft.id)
+          end
+        end
+      end
+
+      describe "saving a published article as draft" do
+        before do
+          @orig = FactoryGirl.create(:article)
+          put(:update,
+              :id => @orig.id,
+              :article => {:title => @orig.title, :draft => 'draft',
+                           :body => 'update' })
+        end
+
+        it "leaves the original published" do
+          @orig.reload
+          @orig.published.should == true
+        end
+
+        it "leaves the original as is" do
+          @orig.reload
+          @orig.body.should_not == 'update'
+        end
+
+        it "redirects to the index" do
+          response.should redirect_to(:action => 'index')
+        end
+
+        it "creates a draft" do
+          draft = Article.child_of(@orig.id).first
+          draft.parent_id.should == @orig.id
+          draft.should_not be_published
+        end
+      end
+
     end
 
     describe 'resource_add action' do
