@@ -27,28 +27,14 @@ class Admin::ContentController < Admin::BaseController
 
   def new
     @article = Article.get_or_build_article(nil)
-    @article.text_filter ||= default_textfilter
-
-    @article.keywords = Tag.collection_to_string @article.tags
-
+    @article.text_filter = default_textfilter
     load_resources
   end
 
   def create
-    # TODO: Add tests for the case where this non-nil (i.e., after an earlier autosave).
-    id = params[:article][:id]
-    @article = Article.get_or_build_article(id)
+    @article = Article.get_or_build_article(params[:article][:id])
     @article.text_filter ||= default_textfilter
 
-    if params[:article][:draft]
-      get_fresh_or_existing_draft_for_article
-    else
-      if not @article.parent_id.nil?
-        @article = Article.find(@article.parent_id)
-      end
-    end
-
-    @article.keywords = Tag.collection_to_string @article.tags
     @article.attributes = params[:article]
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.set_author(current_user)
@@ -56,13 +42,11 @@ class Admin::ContentController < Admin::BaseController
     @article.state = "draft" if @article.draft
 
     if @article.save
-      unless @article.draft
-        Article.where(parent_id: @article.id).map(&:destroy)
-      end
       update_categories_for_article
       set_the_flash
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     else
+      @article.keywords = Tag.collection_to_string @article.tags
       load_resources
       render 'new'
     end

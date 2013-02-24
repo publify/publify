@@ -344,6 +344,21 @@ describe Admin::ContentController do
       new_article.html(:extended).should eq "<p><em>foo</em></p>"
     end
 
+    context "with a previously autosaved draft" do
+      before do
+        @draft = create(:article, body: 'draft', state: 'draft', published: false)
+        post(:create, article: {id: @draft.id, body: 'update', published: true})
+      end
+
+      it "updates the draft" do
+        Article.find(@draft.id).body.should eq 'update'
+      end
+
+      it "makes the draft published" do
+        Article.find(@draft.id).should be_published
+      end
+    end
+
     describe "with an unrelated draft in the database" do
       before do
         @draft = FactoryGirl.create(:article, :state => 'draft')
