@@ -33,12 +33,3 @@ def display_comments_counter(article)
           _('%d comment', article.published_comments.size),
           _('%d comments', article.published_comments.size)), article.permalink_url
 end
-
-def show_pages_links
-  html = ''.html_safe
-  pages = Page.find(:all, :conditions => {:published => true})
-  pages.each do |page|
-    html << content_tag(:li, link_to_permalink(page, page.title, nil, render_active_page(page.name)))
-  end
-  html
-end

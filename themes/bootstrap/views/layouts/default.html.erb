@@ -11,13 +11,13 @@
 </head>
 <body>
   <div id="external">
-  	<div id='main'>
-    	  <div class='container'>
+    <div id='main'>
+       <div class='container'>
           <div class="row">
             <div class='span1'></div>
             <div class='span10'>
-      		    <% if controller.controller_name == 'articles' and controller.action_name.include? 'index' %>
-      		    <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
+              <% if controller.controller_name == 'articles' and controller.action_name.include? 'index' %>
+              <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
               <% else %>
               <p id='title'><%= link_to(this_blog.blog_name, this_blog.base_url) %></p>
               <% end %>
@@ -32,16 +32,18 @@
            <div class='container'>
              <dic class='span1'></dic>
              <ul class='nav'>
-               <%= content_tag(:li, link_to(_('Home'), this_blog.base_url, {:class => render_active_home}))%>
-               <%= content_tag(:li, link_to(_('Articles'), {:controller => 'categories'}, {:class => render_active_articles}))%>
-               <%= show_pages_links %>
+               <li><%= link_to(_('Home'), this_blog.base_url, {:class => render_active_home})%></li>
+               <li><%= link_to(_('Articles'), {:controller => 'categories'}, {:class => render_active_articles})%></li>
+               <%- Page.published.each do |page| %>
+                 <li><%= link_to_permalink(page, page.title, nil, render_active_page(page.name)) %></li>
+               <%- end %>
              </ul>
            </div>
          </div>
        </div>
-	
+
        <div id='page' class='container'>
-         <div class='row'>
+          <div class='row'>
            <div class='span1'></div>
            <div class='span7'>
              <%= yield %>
@@ -49,12 +51,12 @@
            <div id='sidebar' class='span3'>
              <%= render_sidebars %>
            </div>
-  			</div>
+        </div>
       </div>
     <p style='text-align: center'><small>Powered by <a href='http://typosphere.org'>Typo</a> – Thème <a href='http://t37.net'>Frédéric de Villamil</a> | Photo <a href='http://www.flickr.com/photos/glenn-/7194522034/'>Glenn</a></small></p>
     </div>
   </div>
-    
+
   </div>
 </body>
 </html>
