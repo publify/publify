@@ -21,8 +21,3 @@ def render_active_articles
   end
   return 'active'
 end
-
-def category_name(id)
-  category = Category.find_by_permalink(id)
-  category.name
-end
