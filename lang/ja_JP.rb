@@ -586,13 +586,9 @@ Localization.define("ja_JP") do |l|
   l.store "Theme editor", "テーマエディタ"
 
   # app/views/admin/themes/index.html.erb
-  l.store "Choose theme", ""
   l.store "Active theme", "現在のテーマ"
-  l.store "Get more themes", "他のテーマの入手"
-  l.store "You can download third party themes from officially supported %s ", "公式サイト%sからサードパーティのテーマをダウンロードできます。"
-  l.store "Typogarden", ""
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", "テーマをインストールするには、アプリケーションのthemes/ディレクトリに任意のテーマのフォルダをアップロードしてください。そうすればそのテーマをこのページで閲覧することができます。"
   l.store "Choose a theme", "テーマの選択"
+  l.store "Use this theme", ""
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
