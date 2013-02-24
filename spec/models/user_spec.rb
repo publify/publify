@@ -2,15 +2,17 @@ require 'spec_helper'
 
 describe User do
   describe 'FactoryGirl Girl' do
+
     it 'should user factory valid' do
       FactoryGirl.create(:user).should be_valid
       FactoryGirl.build(:user).should be_valid
     end
+
     it 'should multiple user factory valid' do
       FactoryGirl.create(:user).should be_valid
       FactoryGirl.create(:user).should be_valid
     end
-    
+
     it 'salt should not be nil' do
       User.salt.should == '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
     end
@@ -238,16 +240,16 @@ describe User do
       user.simple_editor?.should be_false
     end
   end
-  
+
   describe "#visual_editor?" do
     it "should be true if editor == 'visual'" do
       user = FactoryGirl.build(:user, :editor => 'visual')
       user.visual_editor?.should be_true
     end
-    
+
     it "should be false if editor != 'visual" do
       user = FactoryGirl.build(:user, :editor => 'simple')
-      user.visual_editor?.should be_false      
+      user.visual_editor?.should be_false
     end
   end
 
@@ -273,4 +275,18 @@ describe User do
       user.generate_password!
     end
   end
+
+  describe "default_text_filter" do
+    it "returns none when editor set to visual" do
+      user = FactoryGirl.build(:user, editor: "visual")
+      expect(user.default_text_filter).to eq('none')
+    end
+
+    it "returns text_filter when editor set to simple" do
+      blog = FactoryGirl.create(:blog)
+      user = FactoryGirl.build(:user, editor: "simple")
+      expect(user.default_text_filter.name).to eq(blog.text_filter)
+    end
+  end
+
 end

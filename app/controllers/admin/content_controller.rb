@@ -31,7 +31,8 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def create
-    @article = get_or_build_article(params[:article][:id])
+    article_factory = ArticleFactory.new(this_blog, current_user)
+    @article = article_factory.get_or_build_from(params[:article][:id])
 
     update_article_attributes
 
@@ -49,7 +50,7 @@ class Admin::ContentController < Admin::BaseController
   def edit
     return unless access_granted?(params[:id])
     @article = Article.find(params[:id])
-    @article.text_filter ||= default_textfilter
+    @article.text_filter ||= current_user.default_text_filter
     @article.keywords = Tag.collection_to_string @article.tags
     load_resources
   end
@@ -128,7 +129,9 @@ class Admin::ContentController < Admin::BaseController
 
   def autosave
     id = params[:article][:id] || params[:id]
-    @article = get_or_build_article(id)
+
+    article_factory = ArticleFactory.new(this_blog, current_user)
+    @article = article_factory.get_or_build_from(id)
 
     get_fresh_or_existing_draft_for_article
 
@@ -143,7 +146,7 @@ class Admin::ContentController < Admin::BaseController
     @article.set_author(current_user)
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" unless @article.state == "withdrawn"
-    @article.text_filter ||= default_textfilter
+    @article.text_filter ||= current_user.default_text_filter
 
     if @article.title.blank?
       lastid = Article.find(:first, :order => 'id DESC').id
@@ -192,14 +195,6 @@ class Admin::ContentController < Admin::BaseController
 
   private
 
-  def default_textfilter
-    if current_user.visual_editor?
-      "none"
-    else
-      current_user.text_filter
-    end
-  end
-
   def parse_date_time(str)
     begin
       DateTime.strptime(str, "%B %e, %Y %I:%M %p GMT%z").utc
@@ -241,20 +236,15 @@ class Admin::ContentController < Admin::BaseController
     @article.set_author(current_user)
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" if @article.draft
-    @article.text_filter ||= default_textfilter
+    @article.text_filter ||= current_user.default_text_filter
   end
 
   def new_article_with_defaults
     Article.new.tap do |art|
       art.allow_comments = this_blog.default_allow_comments
       art.allow_pings = this_blog.default_allow_pings
-      art.text_filter = default_textfilter
+      art.text_filter = current_user.default_text_filter
       art.published = true
     end
-  end
-
-  def get_or_build_article(id)
-    return Article.find(id) if id.present?
-    new_article_with_defaults
   end
 end

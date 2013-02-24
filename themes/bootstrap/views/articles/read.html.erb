@@ -3,7 +3,7 @@
   <%= @article.html(:body) %>
   <%= @article.html(:extended) %>
 
-  <%= render 'articles/meta', article: article %>
+  <%= render 'articles/meta', article: @article %>
 
     <% if @article.user.twitter and @article.user.show_twitter %>
     <h2 id='twitter'>
@@ -37,6 +37,6 @@
     <% else -%>
     <div class="well well-small">
       <%= _("Trackbacks are disabled") %>
-    </div>    
+    </div>
     <% end -%>
   </div>
