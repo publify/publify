@@ -47,6 +47,7 @@ FactoryGirl.define do
     settings({})
     state 'active'
     profile
+    editor 'simple'
     association :text_filter, factory: :textile
   end
 
