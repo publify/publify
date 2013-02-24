@@ -52,10 +52,12 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  # FIXME: Separate from update
   def edit
     return unless access_granted?(params[:id])
-    edit_or_update
+    @article = Article.find(params[:id])
+    @article.text_filter ||= default_textfilter
+    @article.keywords = Tag.collection_to_string @article.tags
+    load_resources
   end
 
   # FIXME: Separate from edit
