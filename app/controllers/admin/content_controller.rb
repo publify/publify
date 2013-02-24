@@ -33,13 +33,8 @@ class Admin::ContentController < Admin::BaseController
 
   def create
     @article = Article.get_or_build_article(params[:article][:id])
-    @article.text_filter ||= default_textfilter
 
-    @article.attributes = params[:article]
-    @article.published_at = parse_date_time params[:article][:published_at]
-    @article.set_author(current_user)
-    @article.save_attachments!(params[:attachments])
-    @article.state = "draft" if @article.draft
+    update_article_attributes
 
     if @article.save
       update_categories_for_article
@@ -60,10 +55,33 @@ class Admin::ContentController < Admin::BaseController
     load_resources
   end
 
-  # FIXME: Separate from edit
   def update
     return unless access_granted?(params[:id])
-    edit_or_update
+    id = params[:article][:id] || params[:id]
+    @article = Article.get_or_build_article(id)
+
+    if params[:article][:draft]
+      get_fresh_or_existing_draft_for_article
+    else
+      if not @article.parent_id.nil?
+        @article = Article.find(@article.parent_id)
+      end
+    end
+
+    update_article_attributes
+
+    if @article.save
+      unless @article.draft
+        Article.where(parent_id: @article.id).map(&:destroy)
+      end
+      update_categories_for_article
+      set_the_flash
+      redirect_to :action => 'index'
+    else
+      @article.keywords = Tag.collection_to_string @article.tags
+      load_resources
+      render 'edit'
+    end
   end
 
   def destroy
@@ -164,48 +182,6 @@ class Admin::ContentController < Admin::BaseController
 
   attr_accessor :resources, :categories, :resource, :category
 
-  def edit_or_update
-    id = params[:id]
-    id = params[:article][:id] if params[:article] && params[:article][:id]
-    @article = Article.get_or_build_article(id)
-    @article.text_filter ||= default_textfilter
-
-    if request.put?
-      if params[:article][:draft]
-        get_fresh_or_existing_draft_for_article
-      else
-        if not @article.parent_id.nil?
-          @article = Article.find(@article.parent_id)
-        end
-      end
-    end
-
-    @article.keywords = Tag.collection_to_string @article.tags
-    @article.attributes = params[:article]
-
-    @article.published_at = parse_date_time params[:article][:published_at] if params[:article]
-
-    if request.put?
-      @article.set_author(current_user)
-
-      @article.save_attachments!(params[:attachments])
-      @article.state = "draft" if @article.draft
-
-      if @article.save
-        unless @article.draft
-          Article.where(parent_id: @article.id).map(&:destroy)
-        end
-        update_categories_for_article
-        set_the_flash
-        redirect_to :action => 'index'
-        return
-      end
-    end
-
-    load_resources
-    render 'edit'
-  end
-
   def set_the_flash
     case params[:action]
     when 'create'
@@ -262,4 +238,12 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
+  def update_article_attributes
+    @article.attributes = params[:article]
+    @article.published_at = parse_date_time params[:article][:published_at]
+    @article.set_author(current_user)
+    @article.save_attachments!(params[:attachments])
+    @article.state = "draft" if @article.draft
+    @article.text_filter ||= default_textfilter
+  end
 end
