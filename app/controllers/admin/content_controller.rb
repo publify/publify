@@ -54,23 +54,13 @@ class Admin::ContentController < Admin::BaseController
 
   # FIXME: Separate from update
   def edit
-    @article = Article.find(params[:id])
-    unless @article.access_by? current_user
-      redirect_to action: 'index'
-      flash[:error] = _("Error, you are not allowed to perform this action")
-      return
-    end
+    return unless access_granted?(params[:id])
     edit_or_update
   end
 
   # FIXME: Separate from edit
   def update
-    @article = Article.find(params[:id])
-    unless @article.access_by? current_user
-      redirect_to action: 'index'
-      flash[:error] = _("Error, you are not allowed to perform this action")
-      return
-    end
+    return unless access_granted?(params[:id])
     edit_or_update
   end
 
@@ -258,4 +248,16 @@ class Admin::ContentController < Admin::BaseController
       end
     end
   end
+
+  def access_granted?(article_id)
+    article = Article.find(article_id)
+    if article.access_by? current_user
+      return true
+    else
+      flash[:error] = _("Error, you are not allowed to perform this action")
+      redirect_to action: 'index'
+      return false
+    end
+  end
+
 end
