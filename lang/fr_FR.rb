@@ -571,11 +571,8 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Thème actif"
-  l.store "Chose this theme", "Choisir ce thème"
   l.store "Choose a theme", "Sélectionnez un thème"
-  l.store "Design", "Personnalisation"
-  l.store "Choose theme", "Choisir un thème"
-  l.store "Customize sidebar", "Greffons"
+  l.store "Use this theme", "Choisir ce thème"
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Paramètres du compte"
