@@ -5,8 +5,10 @@ describe Admin::PagesController do
   render_views
 
   before do
-    @blog = FactoryGirl.create(:blog)
-    @henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
+    @blog = create(:blog)
+    @henri = create(:user,
+                    login: 'henri',
+                    profile: create(:profile_admin))
     request.session = { user: @henri.id }
   end
 
@@ -43,11 +45,9 @@ describe Admin::PagesController do
 
       it "should have a text filter" do
         get :new
-        expect(TextFilter.find_by_name(@blog.text_filter)).to_not be_nil
-        assert_equal TextFilter.find_by_name(@blog.text_filter), assigns(:page).text_filter
+        assigns(:page).text_filter.name.should eq 'textile'
       end
     end
-
   end
 
   it "test_create" do
