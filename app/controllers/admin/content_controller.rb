@@ -127,11 +127,8 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
-    id = params[:id]
-    id = params[:article][:id] if params[:article] && params[:article][:id]
-
+    id = params[:article][:id] || params[:id]
     @article = get_or_build_article(id)
-    @article.text_filter ||= default_textfilter
 
     get_fresh_or_existing_draft_for_article
 
@@ -146,6 +143,7 @@ class Admin::ContentController < Admin::BaseController
     @article.set_author(current_user)
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" unless @article.state == "withdrawn"
+    @article.text_filter ||= default_textfilter
 
     if @article.title.blank?
       lastid = Article.find(:first, :order => 'id DESC').id
