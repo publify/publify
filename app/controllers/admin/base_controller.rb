@@ -30,7 +30,7 @@ class Admin::BaseController < ApplicationController
     return if checker.safe_token_in_use?
 
     begin
-      checker.generate_token if needs_token_generation?
+      checker.generate_token
       flash[:error] = _("For security reasons, you should restart your Typo application. Enjoy your blogging experience.")
     rescue
       flash[:error] = _("Error: can't generate secret token. Security is at risk. Please, change %s content", checker.file)
