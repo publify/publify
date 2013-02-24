@@ -78,7 +78,7 @@ class Article < Content
     # Yes, this is weird - PDC
     begin
       self.settings ||= {}
-    rescue Exception => e
+    rescue
       self.settings = {}
     end
   end
@@ -191,16 +191,6 @@ class Article < Content
   def self.find_by_published_at
     result = select('published_at').where('published_at is not NULL').where(type: 'Article')
     result.map{ |d| [d.published_at.strftime('%Y-%m')]}.uniq
-  end
-
-  def self.get_or_build_article(id)
-    return Article.find(id) if id.present?
-    article = Article.new.tap do |art|
-      art.allow_comments = art.blog.default_allow_comments
-      art.allow_pings = art.blog.default_allow_pings
-      art.old_permalink = art.permalink_url unless art.permalink.nil? or art.permalink.empty?
-      art.published = true
-    end
   end
 
   # Finds one article which was posted on a certain date and matches the supplied dashed-title

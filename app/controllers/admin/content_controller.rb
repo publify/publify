@@ -26,13 +26,12 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def new
-    @article = Article.get_or_build_article(nil)
-    @article.text_filter = default_textfilter
+    @article = new_article_with_defaults
     load_resources
   end
 
   def create
-    @article = Article.get_or_build_article(params[:article][:id])
+    @article = get_or_build_article(params[:article][:id])
 
     update_article_attributes
 
@@ -58,7 +57,7 @@ class Admin::ContentController < Admin::BaseController
   def update
     return unless access_granted?(params[:id])
     id = params[:article][:id] || params[:id]
-    @article = Article.get_or_build_article(id)
+    @article = Article.find(id)
 
     if params[:article][:draft]
       get_fresh_or_existing_draft_for_article
@@ -131,7 +130,7 @@ class Admin::ContentController < Admin::BaseController
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
 
-    @article = Article.get_or_build_article(id)
+    @article = get_or_build_article(id)
     @article.text_filter ||= default_textfilter
 
     get_fresh_or_existing_draft_for_article
@@ -245,5 +244,19 @@ class Admin::ContentController < Admin::BaseController
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" if @article.draft
     @article.text_filter ||= default_textfilter
+  end
+
+  def new_article_with_defaults
+    Article.new.tap do |art|
+      art.allow_comments = this_blog.default_allow_comments
+      art.allow_pings = this_blog.default_allow_pings
+      art.text_filter = default_textfilter
+      art.published = true
+    end
+  end
+
+  def get_or_build_article(id)
+    return Article.find(id) if id.present?
+    new_article_with_defaults
   end
 end
