@@ -26,10 +26,3 @@ def category_name(id)
   category = Category.find_by_permalink(id)
   category.name
 end
-
-def display_comments_counter(article)
-  link_to pluralize(article.published_comments.size,
-          _('%d comments', article.published_comments.size),
-          _('%d comment', article.published_comments.size),
-          _('%d comments', article.published_comments.size)), article.permalink_url
-end

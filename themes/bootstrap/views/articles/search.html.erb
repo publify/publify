@@ -8,7 +8,7 @@
     Le <%= "#{article.published_at.strftime('%d')} #{_(article.published_at.strftime('%B'))} #{article.published_at.strftime('%Y')}" %>
   </div>
   <div class='comments'>
-    <%= display_comments_counter(article) %>
+    <%= render 'articles/comment_counter', article: article %>
   </div>
 </div>
 
