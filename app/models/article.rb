@@ -244,6 +244,11 @@ class Article < Content
   end
 
   def keywords_to_tags
+    # if keywords is empty, we want to reset the tags altogether, but
+    # if they do not exists (for instance because we're triggered by a
+    # publication_pending) we don't want to destroy the tags
+    return if keywords.nil?
+
     Article.transaction do
       tags.clear
       tags <<
