@@ -606,6 +606,8 @@ Maintainers
 
 [![](https://codeclimate.com/badge.png)](https://codeclimate.com/github/fdv/typo)
 
+[![Build Status](https://travis-ci.org/fdv/typo.png)](https://travis-ci.org/fdv/typo)
+
 This is a list of Typo maintainers. If you have committed, please add
 your name and contact details to the list.
 
