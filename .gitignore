@@ -25,3 +25,4 @@ Gemfile.lock
 .ruby-version
 bin/
 .bundle/
+/vendor/bundle
