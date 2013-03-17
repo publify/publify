@@ -58,6 +58,14 @@ class Article < Content
   scope :withdrawn, lambda { where(state: 'withdrawn').order('published_at DESC') }
   scope :pending, lambda { where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC') }
 
+  scope :bestof, lambda {
+    select('contents.*, comment_counts.count AS comment_count') \
+    .from("contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts") \
+    .where('comment_counts.article_id = contents.id') \
+    .where(published: true) \
+    .limit(5)
+  }
+
   setting :password, :string, ''
 
   attr_accessor :draft, :keywords

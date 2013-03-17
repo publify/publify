@@ -820,4 +820,42 @@ describe Article do
       Article.published_since(time).should eq [article]
     end
   end
+
+  describe "bestof" do
+    it "returns empty array when no content" do
+      expect(Article.bestof).to be_empty
+    end
+
+    it "returns article with comment count field" do
+      comment = FactoryGirl.create(:comment)
+      article = comment.article
+      expect(Article.bestof.first).to respond_to(:comment_count)
+      expect(Article.bestof.first.comment_count).to eq(1)
+    end
+
+    it "returns only 5 articles" do
+      6.times { FactoryGirl.create(:comment) }
+      expect(Article.bestof.length).to eq(5)
+    end
+
+    it "returns only published articles" do
+      article = FactoryGirl.create(:article)
+      FactoryGirl.create(:comment, article: article)
+      unpublished_article = FactoryGirl.create(:article, published: false)
+      FactoryGirl.create(:comment, article: unpublished_article)
+      expect(Article.published).to eq([article])
+      expect(Article.bestof).to eq([article])
+    end
+
+    it "returns article sorted bu comment counts" do
+      last_article = FactoryGirl.create(:article)
+      FactoryGirl.create(:comment, article: last_article)
+
+      first_article = FactoryGirl.create(:article)
+      FactoryGirl.create(:comment, article: first_article)
+      FactoryGirl.create(:comment, article: first_article)
+
+      expect(Article.bestof).to eq([first_article, last_article])
+    end
+  end
 end
