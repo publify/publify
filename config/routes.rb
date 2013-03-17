@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   match ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
   match ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
 
-  match 'admin', :to  => 'admin/dashboard#index', :format => false, :as => :admin_dashboard
+  resources :dashboard, only: [:index], module: 'admin', path: '/admin'
 
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
