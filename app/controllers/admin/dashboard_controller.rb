@@ -7,14 +7,14 @@ class Admin::DashboardController < Admin::BaseController
     @newposts_count = Article.published_since(current_user.last_venue).count
     @newcomments_count = Feedback.published_since(current_user.last_venue).count
     @comments = Comment.where(published: true).order('created_at DESC').limit(5)
-    @recent_posts = Article.where(published: true).order('published_at DESC').limit(5)
+    @recent_posts = Article.published.limit(5)
     @bestof = Article.bestof
     @statposts = Article.published.count
     @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
     @statcomments = Comment.count(:all, conditions: "state != 'spam'")
     @statspam = Comment.count(:all, conditions: { state: 'spam' })
     @presumedspam = Comment.count(:all, conditions: { state: 'presumed_spam' })
-    @categories = Category.count(:all)
+    @categories = Category.count
     @inbound_links = inbound_links
     @typo_links = typo_dev
     typo_version
