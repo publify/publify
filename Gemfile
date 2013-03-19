@@ -1,3 +1,4 @@
+require 'yaml'
 env = ENV["RAILS_ENV"] || 'development'
 dbfile = File.expand_path("../config/database.yml", __FILE__)
 
