@@ -219,4 +219,43 @@ describe Comment do
     end
   end
 
+  describe "spam", integration: true do
+    it "returns only spam comment" do
+      comment = FactoryGirl.create(:comment, state: 'spam')
+      ham_comment = FactoryGirl.create(:comment, state: 'ham')
+      expect(Comment.spam).to eq([comment])
+    end
+  end
+
+  describe "not_spam", integration: true do
+    it "returns all comment that not_spam" do
+      comment = FactoryGirl.create(:comment, state: 'spam')
+      ham_comment = FactoryGirl.create(:comment, state: 'ham')
+      presumed_spam_comment = FactoryGirl.create(:comment, state: 'presumed_spam')
+      expect(Comment.not_spam.sort).to eq([ham_comment, presumed_spam_comment].sort)
+    end
+  end
+
+  describe "presumed_spam", integration: true do
+    it "returns only presumed_spam" do
+      comment = FactoryGirl.create(:comment, state: 'spam')
+      ham_comment = FactoryGirl.create(:comment, state: 'ham')
+      presumed_spam_comment = FactoryGirl.create(:comment, state: 'presumed_spam')
+      expect(Comment.presumed_spam).to eq([presumed_spam_comment])
+    end
+  end
+
+  describe "last_published", integration: true do
+    it "respond only 5 last_published" do
+      date = DateTime.new(2012, 12, 23, 12, 47)
+      comment_1 = FactoryGirl.create(:comment, body: "1", published: true, created_at: date + 1.day)
+      comment_4 = FactoryGirl.create(:comment, body: "4", published: true, created_at: date + 4.day)
+      comment_2 = FactoryGirl.create(:comment, body: "2", published: true, created_at: date + 2.day)
+      comment_6 = FactoryGirl.create(:comment, body: "6", published: true, created_at: date + 6.day)
+      comment_3 = FactoryGirl.create(:comment, body: "3", published: true, created_at: date + 3.day)
+      comment_5 = FactoryGirl.create(:comment, body: "5", published: true, created_at: date + 5.day)
+      expect(Comment.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])
+    end
+  end
+
 end

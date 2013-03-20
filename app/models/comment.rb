@@ -7,9 +7,12 @@ class Comment < Feedback
   content_fields :body
   validates_presence_of :author, :body
 
-  attr_accessor :user_agent
-  attr_accessor :referrer
-  attr_accessor :permalink
+  attr_accessor :user_agent, :referrer, :permalink
+
+  scope :spam, lambda { where(state: 'spam') }
+  scope :not_spam, lambda { where("state != 'spam'")}
+  scope :presumed_spam, lambda { where(state: 'presumed_spam')}
+  scope :last_published, lambda { where(published:true).limit(5).order('created_at DESC') }
 
   def notify_user_via_email(user)
     if user.notify_via_email?

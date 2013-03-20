@@ -6,14 +6,14 @@ class Admin::DashboardController < Admin::BaseController
   def index
     @newposts_count = Article.published_since(current_user.last_venue).count
     @newcomments_count = Feedback.published_since(current_user.last_venue).count
-    @comments = Comment.where(published: true).order('created_at DESC').limit(5)
+    @comments = Comment.last_published
     @recent_posts = Article.published.limit(5)
     @bestof = Article.bestof
     @statposts = Article.published.count
     @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
-    @statcomments = Comment.count(:all, conditions: "state != 'spam'")
-    @statspam = Comment.count(:all, conditions: { state: 'spam' })
-    @presumedspam = Comment.count(:all, conditions: { state: 'presumed_spam' })
+    @statcomments = Comment.not_spam.count
+    @statspam = Comment.spam.count
+    @presumedspam = Comment.presumed_spam.count
     @categories = Category.count
     @inbound_links = inbound_links
     @typo_links = typo_dev
@@ -30,8 +30,16 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def typo_version
-    get_typo_version
-    version =  @typo_version ? @typo_version.split('.') : TYPO_VERSION.to_s.split('.')
+    typo_version = nil
+    version = TYPO_VERSION.to_s.split('.')
+    begin
+      url = "http://blog.typosphere.org/version.txt"
+      open(url) do |http|
+        typo_version = http.read[0..5]
+        version = typo_version.split('.')
+      end
+    rescue
+    end
 
     if version[0].to_i > TYPO_MAJOR.to_i
       flash.now[:error] = _("You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
@@ -40,15 +48,6 @@ class Admin::DashboardController < Admin::BaseController
     elsif version[2].to_i > TYPO_MINOR.to_i
       flash.now[:notice] = _("There's a new version of Typo available. Why don't you upgrade to %s ?", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
     end
-  end
-
-  def get_typo_version
-    url = "http://blog.typosphere.org/version.txt"
-    open(url) do |http|
-      @typo_version = http.read[0..5]
-    end
-  rescue
-    @typo_version = nil
   end
 
   def typo_dev
