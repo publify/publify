@@ -6,27 +6,21 @@ class Admin::DashboardController < Admin::BaseController
   def index
     @newposts_count = Article.published_since(current_user.last_venue).count
     @newcomments_count = Feedback.published_since(current_user.last_venue).count
+
+    @statposts = Article.published.count
+    @statcomments = Comment.not_spam.count
+    @presumedspam = Comment.presumed_spam.count
+
+    @categories = Category.count
+
     @comments = Comment.last_published
     @recent_posts = Article.published.limit(5)
     @bestof = Article.bestof
-    @statposts = Article.published.count
     @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
-    @statcomments = Comment.not_spam.count
     @statspam = Comment.spam.count
-    @presumedspam = Comment.presumed_spam.count
-    @categories = Category.count
     @inbound_links = inbound_links
     @typo_links = typo_dev
     typo_version
-  end
-
-  def inbound_links
-    url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
-    open(url) do |http|
-      return parse_rss(http.read).reverse
-    end
-  rescue
-    nil
   end
 
   def typo_version
@@ -50,16 +44,26 @@ class Admin::DashboardController < Admin::BaseController
     end
   end
 
-  def typo_dev
-    url = "http://blog.typosphere.org/articles.rss"
-    open(url) do |http|
-      return parse_rss(http.read)[0..4]
-    end
-  rescue
-    nil
+  private
+
+  def inbound_links
+    url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
+    parse(url).reverse
   end
 
-  private
+  def typo_dev
+    url = "http://blog.typosphere.org/articles.rss"
+    parse(url)[0..4]
+  end
+
+
+  def parse(url)
+    open(url) do |http|
+      return parse_rss(http.read)
+    end
+  rescue
+    []
+  end
 
   class RssItem < Struct.new(:link, :title, :description, :description_link, :date, :author)
     def to_s; title end

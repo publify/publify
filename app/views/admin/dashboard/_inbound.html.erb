@@ -4,7 +4,7 @@
   <%= _('You have no internet connection') %>
   <% else %>
   <ul class='unstyled'>
-  <% if @inbound_links.size == 0 %>
+  <% if @inbound_links.empty? %>
     <li><%= _("No one made a link to you yet") %></li>
   <% else %>
     <% for link in @inbound_links -%>
