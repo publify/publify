@@ -19,7 +19,7 @@ describe Trigger do
 
     # Stub Time.now to emulate sleep.
     t = Time.now
-    Time.stub!(:now).and_return(t + 5.seconds)
+    Time.stub(:now).and_return(t + 5.seconds)
     Trigger.fire
     Trigger.count.should == 0
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Trackback, 'With the various trackback filters loaded and DNS mocked out appropriately' do
   before(:each) do
-    IPSocket.stub!(:getaddress).and_return { raise SocketError.new("getaddrinfo: Name or service not known") }
+    IPSocket.stub(:getaddress).and_return { raise SocketError.new("getaddrinfo: Name or service not known") }
     FactoryGirl.create(:blog)
     @blog = Blog.default
     @blog.sp_global = true
