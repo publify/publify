@@ -19,29 +19,28 @@ class AccountsController < ApplicationController
 
     @page_title = "#{this_blog.blog_name} - #{_('login')}"
 
-    if request.post?
-      self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
+    return unless request.post?
+    self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
 
-      if logged_in?
-        session[:user_id] = self.current_user.id
+    if logged_in?
+      session[:user_id] = self.current_user.id
 
-        if params[:remember_me] == "1"
-          self.current_user.remember_me unless self.current_user.remember_token?
-          cookies[:auth_token] = {
-            :value => self.current_user.remember_token,
-            :expires => self.current_user.remember_token_expires_at,
-            :httponly => true # Help prevent auth_token theft.
-          }
-        end
-        add_to_cookies(:typo_user_profile, self.current_user.profile_label, '/')
-
-        self.current_user.update_connection_time
-        flash[:notice]  = _("Login successful")
-        redirect_back_or_default :controller => "admin/dashboard", :action => "index"
-      else
-        flash.now[:error]  = _("Login unsuccessful")
-        @login = params[:user][:login]
+      if params[:remember_me] == "1"
+        self.current_user.remember_me unless self.current_user.remember_token?
+        cookies[:auth_token] = {
+          :value => self.current_user.remember_token,
+          :expires => self.current_user.remember_token_expires_at,
+          :httponly => true # Help prevent auth_token theft.
+        }
       end
+      add_to_cookies(:typo_user_profile, self.current_user.profile_label, '/')
+
+      self.current_user.update_connection_time
+      flash[:notice]  = _("Login successful")
+      redirect_back_or_default :controller => "admin/dashboard", :action => "index"
+    else
+      flash.now[:error]  = _("Login unsuccessful")
+      @login = params[:user][:login]
     end
   end
 
@@ -54,33 +53,32 @@ class AccountsController < ApplicationController
 
     @user = User.new(params[:user])
 
-    if request.post?
-      @user.generate_password!
-      session[:tmppass] = @user.password
-      @user.name = @user.login
-      if @user.save
-        self.current_user = @user
-        session[:user_id] = @user.id
+    return unless request.post?
 
-        redirect_to :controller => "accounts", :action => "confirm"
-        return
-      end
+    @user.generate_password!
+    session[:tmppass] = @user.password
+    @user.name = @user.login
+    if @user.save
+      self.current_user = @user
+      session[:user_id] = @user.id
+
+      redirect_to :controller => "accounts", :action => "confirm"
+      return
     end
   end
 
   def recover_password
     @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
-    if request.post?
-      @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
+    return unless request.post?
+    @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
 
-      if @user
-        @user.generate_password!
-        @user.save
-        flash[:notice] = _("An email has been successfully sent to your address with your new password")
-        redirect_to :action => 'login'
-      else
-        flash[:error] = _("Oops, something wrong just happened")
-      end
+    if @user
+      @user.generate_password!
+      @user.save
+      flash[:notice] = _("An email has been successfully sent to your address with your new password")
+      redirect_to :action => 'login'
+    else
+      flash[:error] = _("Oops, something wrong just happened")
     end
   end
 
