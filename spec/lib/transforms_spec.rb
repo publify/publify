@@ -10,19 +10,19 @@ describe String do
       params = {}
 
       settings = double("settings")
-      settings.stub!(:blog_name).and_return('')
-      settings.stub!(:blog_subtitle).and_return('')
-      settings.stub!(:meta_keywords).and_return('')
-      settings.stub!(:date_format).and_return('')
-      settings.stub!(:time_format).and_return('')
+      settings.stub(:blog_name).and_return('')
+      settings.stub(:blog_subtitle).and_return('')
+      settings.stub(:meta_keywords).and_return('')
+      settings.stub(:date_format).and_return('')
+      settings.stub(:time_format).and_return('')
 
       "%excerpt%".to_title(item, settings, params)
     end
-    
+
     it 'should build a nice permalink from an accentuated string' do
       "L'été s'ra chaud, l'été s'ra chaud".to_permalink.should == "l-ete-s-ra-chaud-l-ete-s-ra-chaud"
     end
-    
+
   end
 end
 

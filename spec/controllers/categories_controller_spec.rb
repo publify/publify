@@ -39,14 +39,14 @@ describe CategoriesController do
     end
 
     it 'should fall back to rendering articles/index' do
-      controller.stub!(:template_exists?).and_return(false)
+      controller.stub(:template_exists?).and_return(false)
       get 'show', id: 'personal'
       response.should render_template('articles/index')
     end
 
     it 'should render personal when template exists' do
       pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?).and_return(true)
+      controller.stub(:template_exists?).and_return(true)
       get 'show', :id => 'personal'
       response.should render_template('personal')
     end

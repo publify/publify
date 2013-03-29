@@ -4,7 +4,7 @@ shared_examples_for "CommentSanitization" do
   before do
     @blog = build_stubbed(:blog)
     @article = build_stubbed(:article, :created_at => Time.now, :published_at => Time.now)
-    Article.stub!(:find).and_return(@article)
+    Article.stub(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
 
@@ -14,7 +14,7 @@ shared_examples_for "CommentSanitization" do
       @comment = klass.new(comment_options)
     end
 
-    @comment.stub!(:id).and_return(1)
+    @comment.stub(:id).and_return(1)
     assign(:comment, @comment)
   end
 
@@ -120,7 +120,7 @@ shared_examples_for "CommentSanitizationWithDofollow" do
   before do
     @blog = FactoryGirl.create(:blog)
     @article = FactoryGirl.create(:article, :created_at => Time.now, :published_at => Time.now)
-    Article.stub!(:find).and_return(@article)
+    Article.stub(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
     @blog.dofollowify = true
@@ -130,8 +130,8 @@ shared_examples_for "CommentSanitizationWithDofollow" do
                          :created_at => Time.now) do |klass|
       @comment = klass.new(comment_options)
     end
-      
-    @comment.stub!(:id).and_return(1)
+
+    @comment.stub(:id).and_return(1)
     assign(:comment, @comment)
   end
 

@@ -20,7 +20,7 @@ describe User do
 
   context 'With the contents and users fixtures loaded' do
     before(:each) do
-      User.stub!(:salt).and_return('change-me')
+      User.stub(:salt).and_return('change-me')
     end
 
     it 'Calling User.authenticate with a valid user/password combo returns a user' do
