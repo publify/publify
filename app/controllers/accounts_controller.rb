@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
 
   before_filter :verify_config
   before_filter :verify_users, :only => [:login, :recover_password]
+  before_filter :redirect_if_already_logged_in, :only => :login
 
   def index
     if User.count.zero?
@@ -12,35 +13,16 @@ class AccountsController < ApplicationController
   end
 
   def login
-    if session[:user_id] && session[:user_id] == self.current_user.id
-      redirect_back_or_default :controller => "admin/dashboard", :action => "index"
-      return
-    end
-
     @page_title = "#{this_blog.blog_name} - #{_('login')}"
 
     return unless request.post?
+
     self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
 
     if logged_in?
-      session[:user_id] = self.current_user.id
-
-      if params[:remember_me] == "1"
-        self.current_user.remember_me unless self.current_user.remember_token?
-        cookies[:auth_token] = {
-          :value => self.current_user.remember_token,
-          :expires => self.current_user.remember_token_expires_at,
-          :httponly => true # Help prevent auth_token theft.
-        }
-      end
-      add_to_cookies(:typo_user_profile, self.current_user.profile_label, '/')
-
-      self.current_user.update_connection_time
-      flash[:notice]  = _("Login successful")
-      redirect_back_or_default :controller => "admin/dashboard", :action => "index"
+      successful_login
     else
-      flash.now[:error]  = _("Login unsuccessful")
-      @login = params[:user][:login]
+      unsuccessful_login
     end
   end
 
@@ -101,5 +83,35 @@ class AccountsController < ApplicationController
 
   def verify_config
     redirect_to :controller => "setup", :action => "index" if  ! this_blog.configured?
+  end
+
+  def redirect_if_already_logged_in
+    if session[:user_id] && session[:user_id] == self.current_user.id
+      redirect_back_or_default :controller => "admin/dashboard", :action => "index"
+      return
+    end
+  end
+
+  def successful_login
+    session[:user_id] = self.current_user.id
+
+    if params[:remember_me] == "1"
+      self.current_user.remember_me unless self.current_user.remember_token?
+      cookies[:auth_token] = {
+        :value => self.current_user.remember_token,
+        :expires => self.current_user.remember_token_expires_at,
+        :httponly => true # Help prevent auth_token theft.
+      }
+    end
+    add_to_cookies(:typo_user_profile, self.current_user.profile_label, '/')
+
+    self.current_user.update_connection_time
+    flash[:notice]  = _("Login successful")
+    redirect_back_or_default :controller => "admin/dashboard", :action => "index"
+  end
+
+  def unsuccessful_login
+    flash.now[:error]  = _("Login unsuccessful")
+    @login = params[:user][:login]
   end
 end
