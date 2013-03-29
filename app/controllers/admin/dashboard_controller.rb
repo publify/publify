@@ -6,7 +6,12 @@ class Admin::DashboardController < Admin::BaseController
   def index
     @newposts_count = Article.published_since(current_user.last_venue).count
     @newcomments_count = Feedback.published_since(current_user.last_venue).count
-
+    @comments = Comment.where(published: true).order('created_at DESC').limit(5)
+    @recent_posts = Article.where(published: true).order('published_at DESC').limit(5)
+    @bestof = Article.find(:all, select: 'contents.*, comment_counts.count AS comment_count',
+                           from: "contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts",
+                           conditions: ['comment_counts.article_id = contents.id AND published = ?', true],
+                           order: 'comment_counts.count DESC', :limit => 5)
     @statposts = Article.published.count
     @statcomments = Comment.not_spam.count
     @presumedspam = Comment.presumed_spam.count
@@ -15,7 +20,6 @@ class Admin::DashboardController < Admin::BaseController
 
     @comments = Comment.last_published
     @recent_posts = Article.published.limit(5)
-    @bestof = Article.bestof
     @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
     @statspam = Comment.spam.count
     @inbound_links = inbound_links
