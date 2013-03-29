@@ -289,7 +289,7 @@ describe Article do
     t = Time.now
     # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
     # speed up in test
-    Time.stub!(:now).and_return(t + 5.seconds)
+    Time.stub(:now).and_return(t + 5.seconds)
     Trigger.fire
     art.reload
     assert art.published
