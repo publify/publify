@@ -196,7 +196,8 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Verwijder"
-  l.store "Currently this article has the following resources", "Momenteel heeft dit artikel de volgende bronnen"
+  l.store "Resources attached to this article", "Momenteel heeft dit artikel de volgende bronnen"
+  l.store "No resources are currently attached", "Geen"
   l.store "You can associate the following resources", "Je kunt de volgende bronnen koppelen"
   l.store "Really delete attachment", "Bijlage echt verwijderen"
   l.store "Add another attachment", "Voeg een andere bijlage toe"

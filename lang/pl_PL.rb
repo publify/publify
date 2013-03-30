@@ -201,7 +201,8 @@ Localization.define("pl_PL") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Skasuj"
-  l.store "Currently this article has the following resources", "Artykuł ma dołączone następujące zasoby"
+  l.store "Resources attached to this article", "Artykuł ma dołączone następujące zasoby"
+  l.store "No resources are currently attached", "żaden"
   l.store "You can associate the following resources", "Możesz przypisać do artykułu następujące zasoby"
   l.store "Really delete attachment", "Na pewno skasować?"
   l.store "Add another attachment", "Dodaj kolejny załącznik"

@@ -125,20 +125,16 @@
 
   <div class='separator'>
     <h4><%= _("Excerpt") %></h4>
-    <div class=''>
       <%= text_area 'article', 'excerpt', {:height => '150', :style => 'width: 100%', :rows => '5'} %>
       <span class='help-block'><%=_("Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself") %></span>
-    </div>
   </div>
 
   <div class=''>
     <h4><%= _("Uploads") %></h4>
     <p class='help-block'>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
-    <ul id='attachments' class='inputs-list'>
+    <div id='attachments' class='inputs-list'>
       <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
-    </ul>
-  </div>    
+    </div>
   </div>
 
 </div>
-

@@ -198,7 +198,8 @@ Localization.define("he_IL") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "הסר"
-  l.store "Currently this article has the following resources", "כרגע לכתבה שייכים המשאבים הבאים"
+  l.store "Resources attached to this article", "כרגע לכתבה שייכים המשאבים הבאים"
+  l.store "No resources are currently attached", ""
   l.store "You can associate the following resources", "תוכל לשייך אליה את המשאבים הבאים"
   l.store "Really delete attachment", "האם אתה בטוח שברצונך למחוק את הקובץ הצורף"
   l.store "Add another attachment", "הוסף קובץ-מצורף"

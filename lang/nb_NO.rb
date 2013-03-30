@@ -225,7 +225,8 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Slett"
-  l.store "Currently this article has the following resources", "Artiklen har følgende ressourser"
+  l.store "Resources attached to this article", "Artiklen har følgende ressourser"
+  l.store "No resources are currently attached", "Ingen"
   l.store "You can associate the following resources", "Du kan koble til følgende ressourser"
   l.store "Really delete attachment", "Vil du virkelig slette vedlagt fil"
   l.store "Add another attachment", "Vedlegg enda en fil"
