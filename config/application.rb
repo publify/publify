@@ -61,7 +61,7 @@ module TypoBlog
   require 'typo_version'
   require 'rails_patch/active_support'
 
-  require "#{Rails.root.to_s}/vendor/plugins/typo_login_system/lib/login_system"
+  require 'typo_login_system'
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
