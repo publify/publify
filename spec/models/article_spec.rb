@@ -829,8 +829,7 @@ describe Article do
     it "returns article with comment count field" do
       comment = FactoryGirl.create(:comment)
       article = comment.article
-      expect(Article.bestof.first).to respond_to(:comment_count)
-      expect(Article.bestof.first.comment_count).to eq(1)
+      expect(Article.bestof.first.comment_count.to_i).to eq 1
     end
 
     it "returns only 5 articles" do
@@ -847,7 +846,7 @@ describe Article do
       expect(Article.bestof).to eq([article])
     end
 
-    it "returns article sorted bu comment counts" do
+    it "returns article sorted by comment counts" do
       last_article = FactoryGirl.create(:article)
       FactoryGirl.create(:comment, article: last_article)
 
