@@ -212,6 +212,8 @@ Localization.define("it_IT") do |l|
   l.store "Allow trackbacks", "Permetti trackbacks"
   l.store "Password:", ""
   l.store "Publish", "Pubblica"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", ""
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "Uploads"
@@ -585,13 +587,9 @@ Localization.define("it_IT") do |l|
   l.store "Theme editor", "Editor dei temi"
 
   # app/views/admin/themes/index.html.erb
-  l.store "Choose theme", ""
   l.store "Active theme", "Tema Attivo"
-  l.store "Get more themes", ""
-  l.store "You can download third party themes from officially supported %s ", ""
-  l.store "Typogarden", ""
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", ""
   l.store "Choose a theme", "Seleziona un tema"
+  l.store "Use this theme", ""
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""

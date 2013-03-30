@@ -204,25 +204,16 @@ describe Admin::ContentController do
     end
   end
 
-
   shared_examples_for 'new action' do
-
-    describe 'GET' do
-      it "renders the 'new' template" do
-        get :new
-        response.should render_template('new')
-        assigns(:article).should_not be_nil
-        assigns(:article).redirects.count.should == 0
-      end
-
-      it "correctly converts multi-word tags" do
-        a = FactoryGirl.create(:article, :keywords => '"foo bar", baz')
-        get :new, :id => a.id
-        response.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
-      end
-
+    it "renders the 'new' template" do
+      get :new
+      response.should render_template('new')
+      assigns(:article).should_not be_nil
+      assigns(:article).redirects.count.should == 0
     end
+  end
 
+  shared_examples_for 'create action' do
     def base_article(options={})
       { :title => "posted via tests!",
         :body => "A good body",
@@ -231,54 +222,55 @@ describe Admin::ContentController do
     end
 
     it 'should create article with no comments' do
-      post(:new, 'article' => base_article({:allow_comments => '0'}),
-                 'categories' => [FactoryGirl.create(:category).id])
+      post(:create,
+           'article' => base_article({:allow_comments => '0'}),
+           'categories' => [FactoryGirl.create(:category).id])
       assigns(:article).should_not be_allow_comments
       assigns(:article).should be_allow_pings
       assigns(:article).should be_published
     end
 
     it 'should create a published article with a redirect' do
-      post(:new, 'article' => base_article)
+      post(:create, 'article' => base_article)
       assigns(:article).redirects.count.should == 1
     end
 
     it 'should create a draft article without a redirect' do
-      post(:new, 'article' => base_article({:state => 'draft'}))
+      post(:create, 'article' => base_article({:state => 'draft'}))
       assigns(:article).redirects.count.should == 0
     end
 
     it 'should create an unpublished article without a redirect' do
-      post(:new, 'article' => base_article({:published => false}))
+      post(:create, 'article' => base_article({:published => false}))
       assigns(:article).redirects.count.should == 0
     end
 
     it 'should create an article published in the future without a redirect' do
-      post(:new, 'article' => base_article({:published_at => (Time.now + 1.hour).to_s}))
+      post(:create, 'article' => base_article({:published_at => (Time.now + 1.hour).to_s}))
       assigns(:article).redirects.count.should == 0
     end
 
     it 'should create article with no pings' do
-      post(:new, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'categories' => [FactoryGirl.create(:category).id])
+      post(:create, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'categories' => [FactoryGirl.create(:category).id])
       assigns(:article).should be_allow_comments
       assigns(:article).should_not be_allow_pings
       assigns(:article).should be_published
     end
 
     it 'should create an article linked to the current user' do
-      post :new, 'article' => base_article
+      post :create, 'article' => base_article
       new_article = Article.last
       assert_equal @user, new_article.user
     end
 
     it 'should create new published article' do
       Article.count.should be == 1
-      post :new, 'article' => base_article
+      post :create, 'article' => base_article
       Article.count.should be == 2
     end
 
     it 'should redirect to show' do
-      post :new, 'article' => base_article
+      post :create, 'article' => base_article
       assert_response :redirect, :action => 'show'
     end
 
@@ -290,7 +282,7 @@ describe Admin::ContentController do
         ActionMailer::Base.deliveries.clear
         emails = ActionMailer::Base.deliveries
 
-        post :new, 'article' => base_article
+        post :create, 'article' => base_article
 
         assert_equal(1, emails.size)
         assert_equal(u.email, emails.first.to[0])
@@ -301,20 +293,20 @@ describe Admin::ContentController do
 
     it 'should create an article in a category' do
       category = FactoryGirl.create(:category)
-      post :new, 'article' => base_article, 'categories' => [category.id]
+      post :create, 'article' => base_article, 'categories' => [category.id]
       new_article = Article.last
       assert_equal [category], new_article.categories
     end
 
     it 'should create an article with tags' do
-      post :new, 'article' => base_article(:keywords => "foo bar")
+      post :create, 'article' => base_article(:keywords => "foo bar")
       new_article = Article.last
       assert_equal 2, new_article.tags.size
     end
 
     it 'should create article in future' do
       lambda do
-        post(:new,
+        post(:create,
              :article =>  base_article(:published_at => (Time.now + 1.hour).to_s) )
         assert_response :redirect, :action => 'show'
         assigns(:article).should_not be_published
@@ -324,13 +316,13 @@ describe Admin::ContentController do
     end
 
     it "should correctly interpret time zone in :published_at" do
-      post :new, 'article' => base_article(:published_at => "February 17, 2011 08:47 PM GMT+0100 (CET)")
+      post :create, 'article' => base_article(:published_at => "February 17, 2011 08:47 PM GMT+0100 (CET)")
       new_article = Article.last
       assert_equal Time.utc(2011, 2, 17, 19, 47), new_article.published_at
     end
 
     it 'should respect "GMT+0000 (UTC)" in :published_at' do
-      post :new, 'article' => base_article(:published_at => 'August 23, 2011 08:40 PM GMT+0000 (UTC)')
+      post :create, 'article' => base_article(:published_at => 'August 23, 2011 08:40 PM GMT+0000 (UTC)')
       new_article = Article.last
       assert_equal Time.utc(2011, 8, 23, 20, 40), new_article.published_at
     end
@@ -339,7 +331,7 @@ describe Admin::ContentController do
       Article.delete_all
       body = "body via *markdown*"
       extended="*foo*"
-      post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
+      post :create, 'article' => { :title => "another test", :body => body, :extended => extended}
 
       assert_response :redirect, :action => 'index'
 
@@ -352,73 +344,18 @@ describe Admin::ContentController do
       new_article.html(:extended).should eq "<p><em>foo</em></p>"
     end
 
-    describe "publishing a published article with an autosaved draft" do
+    context "with a previously autosaved draft" do
       before do
-        @orig = FactoryGirl.create(:article)
-        @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
-        post(:new,
-             :id => @orig.id,
-             :article => {:id => @draft.id, :body => 'update'})
+        @draft = create(:article, body: 'draft', state: 'draft', published: false)
+        post(:create, article: {id: @draft.id, body: 'update', published: true})
       end
 
-      it "updates the original" do
-        assert_raises ActiveRecord::RecordNotFound do
-          Article.find(@draft.id)
-        end
+      it "updates the draft" do
+        Article.find(@draft.id).body.should eq 'update'
       end
 
-      it "deletes the draft" do
-        Article.find(@orig.id).body.should == 'update'
-      end
-    end
-
-    describe "publishing a draft copy of a published article" do
-      before do
-        @orig = FactoryGirl.create(:article)
-        @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
-        post(:new,
-             :id => @draft.id,
-             :article => {:id => @draft.id, :body => 'update'})
-      end
-
-      it "updates the original" do
-        assert_raises ActiveRecord::RecordNotFound do
-          Article.find(@draft.id)
-        end
-      end
-
-      it "deletes the draft" do
-        Article.find(@orig.id).body.should == 'update'
-      end
-    end
-
-    describe "saving a published article as draft" do
-      before do
-        @orig = FactoryGirl.create(:article)
-        post(:new,
-             :id => @orig.id,
-             :article => {:title => @orig.title, :draft => 'draft',
-               :body => 'update' })
-      end
-
-      it "leaves the original published" do
-        @orig.reload
-        @orig.published.should == true
-      end
-
-      it "leaves the original as is" do
-        @orig.reload
-        @orig.body.should_not == 'update'
-      end
-
-      it "redirects to the index" do
-        response.should redirect_to(:action => 'index')
-      end
-
-      it "creates a draft" do
-        draft = Article.child_of(@orig.id).first
-        draft.parent_id.should == @orig.id
-        draft.should_not be_published
+      it "makes the draft published" do
+        Article.find(@draft.id).should be_published
       end
     end
 
@@ -429,9 +366,7 @@ describe Admin::ContentController do
 
       describe "saving new article as draft" do
         it "leaves the original draft in existence" do
-          post(
-            :new,
-            'article' => base_article({:draft => 'save as draft'}))
+          post :create, article: base_article({:draft => 'save as draft'})
           assigns(:article).id.should_not == @draft.id
           Article.find(@draft.id).should_not be_nil
         end
@@ -470,8 +405,6 @@ describe Admin::ContentController do
 
     before do
       FactoryGirl.create(:blog)
-      #TODO delete this after remove fixture
-      Profile.delete_all
       @user = FactoryGirl.create(:user,
                                  :text_filter => FactoryGirl.create(:markdown),
                                  :profile => FactoryGirl.create(:profile_admin,
@@ -484,21 +417,29 @@ describe Admin::ContentController do
 
     it_should_behave_like 'index action'
     it_should_behave_like 'new action'
+    it_should_behave_like 'create action'
     it_should_behave_like 'destroy action'
     it_should_behave_like 'autosave action'
 
     describe 'edit action' do
-
       it 'should edit article' do
         get :edit, 'id' => @article.id
-        response.should render_template('new')
+        response.should render_template 'edit'
         assigns(:article).should_not be_nil
         assigns(:article).should be_valid
         response.should contain(/body/)
         response.should contain(/extended content/)
       end
 
-      it 'should update article by edit action' do
+      it "correctly converts multi-word tags" do
+        a = FactoryGirl.create(:article, :keywords => '"foo bar", baz')
+        get :edit, :id => a.id
+        response.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
+      end
+    end
+
+    describe 'update action' do
+      it 'should update article' do
         begin
           ActionMailer::Base.perform_deliveries = true
           emails = ActionMailer::Base.deliveries
@@ -507,7 +448,7 @@ describe Admin::ContentController do
           art_id = @article.id
 
           body = "another *textile* test"
-          post :edit, 'id' => art_id, 'article' => {:body => body, :text_filter => 'textile'}
+          put :update, 'id' => art_id, 'article' => {:body => body, :text_filter => 'textile'}
           assert_response :redirect, :action => 'show', :id => art_id
 
           article = @article.reload
@@ -522,7 +463,7 @@ describe Admin::ContentController do
 
       it 'should allow updating body_and_extended' do
         article = @article
-        post :edit, 'id' => article.id, 'article' => {
+        put :update, 'id' => article.id, 'article' => {
           'body_and_extended' => 'foo<!--more-->bar<!--more-->baz'
         }
         assert_response :redirect
@@ -535,7 +476,7 @@ describe Admin::ContentController do
         article = @article
         draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
         lambda do
-          post :edit, 'id' => article.id, 'article' => { 'title' => 'new'}
+          put :update, 'id' => article.id, 'article' => { 'title' => 'new'}
         end.should change(Article, :count).by(-1)
         Article.should_not be_exists({:id => draft.id})
       end
@@ -545,11 +486,82 @@ describe Admin::ContentController do
         draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
         draft_2 = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
         lambda do
-          post :edit, 'id' => article.id, 'article' => { 'title' => 'new'}
+          put :update, 'id' => article.id, 'article' => { 'title' => 'new'}
         end.should change(Article, :count).by(-2)
         Article.should_not be_exists({:id => draft.id})
         Article.should_not be_exists({:id => draft_2.id})
       end
+
+      describe "publishing a published article with an autosaved draft" do
+        before do
+          @orig = FactoryGirl.create(:article)
+          @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+          put(:update,
+              :id => @orig.id,
+              :article => {:id => @draft.id, :body => 'update'})
+        end
+
+        it "updates the original" do
+          Article.find(@orig.id).body.should == 'update'
+        end
+
+        it "deletes the draft" do
+          assert_raises ActiveRecord::RecordNotFound do
+            Article.find(@draft.id)
+          end
+        end
+      end
+
+      describe "publishing a draft copy of a published article" do
+        before do
+          @orig = FactoryGirl.create(:article)
+          @draft = FactoryGirl.create(:article, :parent_id => @orig.id, :state => 'draft', :published => false)
+          put(:update,
+              :id => @draft.id,
+              :article => {:id => @draft.id, :body => 'update'})
+        end
+
+        it "updates the original" do
+          Article.find(@orig.id).body.should == 'update'
+        end
+
+        it "deletes the draft" do
+          assert_raises ActiveRecord::RecordNotFound do
+            Article.find(@draft.id)
+          end
+        end
+      end
+
+      describe "saving a published article as draft" do
+        before do
+          @orig = FactoryGirl.create(:article)
+          put(:update,
+              :id => @orig.id,
+              :article => {:title => @orig.title, :draft => 'draft',
+                           :body => 'update' })
+        end
+
+        it "leaves the original published" do
+          @orig.reload
+          @orig.published.should == true
+        end
+
+        it "leaves the original as is" do
+          @orig.reload
+          @orig.body.should_not == 'update'
+        end
+
+        it "redirects to the index" do
+          response.should redirect_to(:action => 'index')
+        end
+
+        it "creates a draft" do
+          draft = Article.child_of(@orig.id).first
+          draft.parent_id.should == @orig.id
+          draft.should_not be_published
+        end
+      end
+
     end
 
     describe 'resource_add action' do
@@ -630,6 +642,7 @@ describe Admin::ContentController do
 
     it_should_behave_like 'index action'
     it_should_behave_like 'new action'
+    it_should_behave_like 'create action'
     it_should_behave_like 'destroy action'
 
     describe 'edit action' do
@@ -641,7 +654,7 @@ describe Admin::ContentController do
 
       it 'should edit article' do
         get :edit, 'id' => @article.id
-        response.should render_template('new')
+        response.should render_template('edit')
         assigns(:article).should_not be_nil
         assigns(:article).should be_valid
       end
@@ -655,7 +668,7 @@ describe Admin::ContentController do
           art_id = @article.id
 
           body = "another *textile* test"
-          post :edit, 'id' => art_id, 'article' => {:body => body, :text_filter => 'textile'}
+          put :update, 'id' => art_id, 'article' => {:body => body, :text_filter => 'textile'}
           response.should redirect_to(:action => 'index')
 
           article = @article.reload
@@ -670,7 +683,6 @@ describe Admin::ContentController do
     end
 
     describe 'destroy action can be access' do
-
       it 'should redirect when want destroy article' do
         article = FactoryGirl.create(:article, :user => FactoryGirl.create(:user, :login => FactoryGirl.create(:user, :login => 'other_user')))
         lambda do
@@ -678,7 +690,6 @@ describe Admin::ContentController do
           response.should redirect_to(:action => 'index')
         end.should_not change(Article, :count)
       end
-
     end
   end
 end

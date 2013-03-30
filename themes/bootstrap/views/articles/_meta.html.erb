@@ -1,0 +1,9 @@
+<div class='meta'>
+  <p><small>
+    <%= _("Published on") %>
+    <%= display_date_and_time(article.published_at) %>
+    <%= category_links(article, _("under")) unless article.categories.empty? %>.
+    <%= tag_links(article) unless article.tags.empty? %>
+  </small></p>
+</div>
+

@@ -4,56 +4,36 @@ class Admin::DashboardController < Admin::BaseController
   require 'rexml/document'
 
   def index
-    @newposts = Article.where('published = ? and published_at > ?', true, current_user.last_venue).count
-    @newcomments = Feedback.where('state in (?,?) and published_at > ?', 'presumed_ham', 'ham', current_user.last_venue).count
-    comments
-    lastposts
-    popular
-    statistics
-    inbound_links
-    typo_dev
+    @newposts_count = Article.published_since(current_user.last_venue).count
+    @newcomments_count = Feedback.published_since(current_user.last_venue).count
+
+    @statposts = Article.published.count
+    @statcomments = Comment.not_spam.count
+    @presumedspam = Comment.presumed_spam.count
+
+    @categories = Category.count
+
+    @comments = Comment.last_published
+    @recent_posts = Article.published.limit(5)
+    @bestof = Article.bestof
+    @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
+    @statspam = Comment.spam.count
+    @inbound_links = inbound_links
+    @typo_links = typo_dev
     typo_version
   end
 
-  private
-
-  def statistics
-    @statposts = Article.published.count
-    @statuserposts = Article.published.where(:user_id => current_user.id).count
-    @statcomments = Comment.where("state != 'spam'").count
-    @statspam = Comment.where(:state => 'spam').count
-    @presumedspam = Comment.where(:state => 'presumed_spam').count
-    @categories = Category.count
-  end
-
-  def comments
-    @comments ||= Comment.where('published = ?', true).limit(5).order('created_at DESC')
-  end
-
-  def lastposts
-    @recent_posts = Article.where("published = ?", true).order('published_at DESC').limit(5)
-  end
-
-  def popular
-    @bestof = Article.select('contents.*, comment_counts.count AS comment_count').
-                      from("contents, (SELECT feedback.article_id AS article_id, COUNT(feedback.id) as count FROM feedback WHERE feedback.state IN ('presumed_ham', 'ham') GROUP BY feedback.article_id ORDER BY count DESC LIMIT 9) AS comment_counts").
-                      where("comment_counts.article_id = contents.id AND published = ?", true).
-                      order('comment_counts.count DESC').
-                      limit(5)
-  end
-
-  def inbound_links
-    url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
-    open(url) do |http|
-      @inbound_links = parse_rss(http.read).reverse
-    end
-  rescue
-    @inbound_links = nil
-  end
-
   def typo_version
-    get_typo_version
-    version =  @typo_version ? @typo_version.split('.') : TYPO_VERSION.to_s.split('.')
+    typo_version = nil
+    version = TYPO_VERSION.to_s.split('.')
+    begin
+      url = "http://blog.typosphere.org/version.txt"
+      open(url) do |http|
+        typo_version = http.read[0..5]
+        version = typo_version.split('.')
+      end
+    rescue
+    end
 
     if version[0].to_i > TYPO_MAJOR.to_i
       flash.now[:error] = _("You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
@@ -64,25 +44,26 @@ class Admin::DashboardController < Admin::BaseController
     end
   end
 
-  def get_typo_version
-    url = "http://blog.typosphere.org/version.txt"
-    open(url) do |http|
-      @typo_version = http.read[0..5]
-    end
-  rescue
-    @typo_version = nil
+  private
+
+  def inbound_links
+    url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
+    parse(url).reverse
   end
 
   def typo_dev
     url = "http://blog.typosphere.org/articles.rss"
-    open(url) do |http|
-      @typo_links = parse_rss(http.read)[0..4]
-    end
-  rescue
-    @typo_links = nil
+    parse(url)[0..4]
   end
 
-  private
+
+  def parse(url)
+    open(url) do |http|
+      return parse_rss(http.read)
+    end
+  rescue
+    []
+  end
 
   class RssItem < Struct.new(:link, :title, :description, :description_link, :date, :author)
     def to_s; title end

@@ -1,0 +1,10 @@
+<% @page_heading = _("Edit article") %>
+
+<%= form_tag(admin_content_path(@article.id),
+             method: :put,
+             multipart: true,
+             id: "article_form",
+             class: 'autosave') do %>
+
+  <%= render :partial => "form" %>
+<% end %>

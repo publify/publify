@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe TagsController, "/index" do
-  render_views
-
   before do
-    FactoryGirl.create(:blog)
-    FactoryGirl.create(:tag).articles << FactoryGirl.create(:article)
+    create(:blog)
+    @tag = create(:tag)
+    @tag.articles << create(:article)
   end
 
   describe "normally" do
@@ -14,22 +13,8 @@ describe TagsController, "/index" do
     end
 
     specify { response.should be_success }
-    specify { response.should render_template('articles/groupings') }
-    specify { assigns(:groupings).should_not be_empty }
-    it "has a list of tags" do
-      response.body.should have_selector('ul.tags[id="taglist"]')
-    end
-  end
-
-  describe "if :index template exists" do
-    it "should render :index" do
-      pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?) \
-        .and_return(true)
-
-      get 'index'
-      response.should render_template(:index)
-    end
+    specify { response.should render_template('tags/index') }
+    specify { assigns(:tags).should =~ [@tag] }
   end
 end
 
@@ -61,14 +46,14 @@ describe TagsController, 'showing a single tag' do
 
     it 'should render :show by default' do
       pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?) \
+      controller.stub(:template_exists?) \
         .and_return(true)
       do_get
       response.should render_template(:show)
     end
 
     it 'should fall back to rendering articles/index' do
-      controller.stub!(:template_exists?) \
+      controller.stub(:template_exists?) \
         .and_return(false)
       do_get
       response.should render_template('articles/index')
@@ -120,7 +105,7 @@ describe TagsController, 'showing tag "foo"' do
   it 'should have good atom feed link in head' do
     response.should have_selector('head>link[href="http://test.host/tag/foo.atom"][rel=alternate][type="application/atom+xml"][title=Atom]')
   end
-  
+
   it 'should have a canonical URL' do
     response.should have_selector('head>link[href="http://myblog.net/tag/foo/"]')
   end
@@ -152,60 +137,24 @@ describe TagsController, "password protected article" do
 end
 
 describe TagsController, "SEO Options" do
-  render_views
-
-  before(:each) do 
+  before(:each) do
     @blog = FactoryGirl.create(:blog)
     @a = FactoryGirl.create(:article)
     @foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [@a])
   end
 
-  describe "rendering list article with a given tag" do
-    it 'contains rel nofollow in head when blog is configure to unindex_tags' do
-      @blog.unindex_tags = true
-      @blog.save
+  describe "keywords" do
+    it 'does not assign keywords when the blog has no keywords' do
       get 'show', :id => 'foo'
-      response.should have_selector('head>meta[content="noindex, follow"]')
+
+      assigns(:keywords).should eq ""
     end
 
-    it 'not contains rel nofollow when blog is configure to index_tags' do
-      @blog.unindex_tags = false
+    it "assigns the blog's keywords if present" do
+      @blog.meta_keywords = "foo, bar"
       @blog.save
       get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[content="noindex, follow"]')
+      assigns(:keywords).should eq "foo, bar"
     end
-
-    it 'not contains meta keywords with deactivated option and no blog keywords' do
-      @blog.use_meta_keyword = false
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[name="keywords"]')
-    end
-
-
-    it 'should not have meta keywords with deactivated option and blog keywords' do
-      @blog.use_meta_keyword = false
-      @blog.meta_keywords = "foo, bar, some, keyword"
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[name="keywords"]')
-    end
-
-    it 'should not have meta keywords with activated option and no blog keywords' do
-      @blog.use_meta_keyword = true
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should_not have_selector('head>meta[name="keywords"]')
-    end
-
-    it 'should have meta keywords with activated option and blog keywords' do
-      @blog.use_meta_keyword = true
-      @blog.meta_keywords = "foo, bar, some, keyword"
-      @blog.save
-      get 'show', :id => 'foo'
-      response.should have_selector('head>meta[name="keywords"]')
-    end
-
   end
-
 end

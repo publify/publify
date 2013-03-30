@@ -240,6 +240,7 @@ Localization.define("nb_NO") do |l|
   l.store "Password:", "Passord"
   l.store "Publish", "Publiser"
   l.store "Tags", "Tags"
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "Utdrag"
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
   l.store "Uploads", "Opplastede filer"
@@ -597,14 +598,9 @@ Localization.define("nb_NO") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
-  l.store "Choose theme", ""
   l.store "Active theme", "Aktivt tema"
-  l.store "Chose this theme", "Velg dette temaet"
-  l.store "Get more themes", "Hent flere temaer"
-  l.store "You can download third party themes from officially supported %s ", "Du kan laste ned tredjepartstemaer fra offisielt støttede %s "
-  l.store "Typogarden", ""
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", "For å installere et tema må du laste opp temakatalogen til themes-katalogen til Typo. Når et tema er lastet opp, vil du se det på denne siden."
   l.store "Choose a theme", "Velg et tema"
+  l.store "Use this theme", "Velg dette temaet"
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Kontoinnstillinger"

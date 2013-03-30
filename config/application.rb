@@ -48,12 +48,12 @@ module TypoBlog
 
   require 'format'
   require 'i18n_interpolation_deprecation'
-  require 'migrator'
   require 'route_cache'
   ## Required by the models themselves.
   # require 'spam_protection'
   require 'stateful'
   require 'transforms'
+  require 'typo_time'
   require 'typo_guid'
   ## Required by the plugins themselves.
   # require 'typo_plugins'
@@ -62,7 +62,6 @@ module TypoBlog
   require 'rails_patch/active_support'
 
   #require "#{Rails.root.to_s}/vendor/plugins/typo_login_system/lib/login_system"
-  require "#{Rails.root.to_s}/vendor/akismet/akismet"
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'

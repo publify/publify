@@ -3,11 +3,11 @@ class Feedback < ActiveRecord::Base
   self.table_name = "feedback"
 
   belongs_to :text_filter
+  belongs_to :article
 
   include TypoGuid
 
   include Stateful
-
   include ContentBase
 
   after_save :invalidates_cache?
@@ -19,6 +19,9 @@ class Feedback < ActiveRecord::Base
   before_save :correct_url
   after_save :post_trigger
   after_save :report_classification
+
+  scope :ham, where("state in ('presumed_ham', 'ham')")
+  scope :published_since, lambda {|time| ham.where('published_at > ?', time)}
 
   has_state(:state,
             :valid_states => [:unclassified, #initial state
@@ -94,10 +97,6 @@ class Feedback < ActiveRecord::Base
     end
   end
 
-  def akismet
-    Akismet.new(blog.sp_akismet_key, blog.base_url)
-  end
-
   def sp_is_spam?(options={})
     sp = SpamProtection.new(blog)
     Timeout.timeout(defined?($TESTING) ? 10 : 30) do
@@ -105,17 +104,18 @@ class Feedback < ActiveRecord::Base
         sp.is_spam?(self.send(field))
       end
     end
-  rescue Timeout::Error => e
+  rescue Timeout::Error
     nil
   end
 
   def akismet_is_spam?(options={})
-    return false if blog.sp_akismet_key.blank?
+    return false if akismet.nil?
+
     begin
       Timeout.timeout(defined?($TESTING) ? 30 : 60) do
-        akismet.commentCheck(akismet_options)
+        akismet.comment_check(ip, nil, akismet_options)
       end
-    rescue Timeout::Error => e
+    rescue Timeout::Error
       nil
     end
   end
@@ -142,10 +142,13 @@ class Feedback < ActiveRecord::Base
   end
 
   def report_as spam_or_ham
-    return if blog.sp_akismet_key.blank?
+    return if akismet.nil?
     begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) { akismet.send("submit#{spam_or_ham.capitalize}", akismet_options) }
-    rescue Timeout::Error => e
+      Timeout.timeout(defined?($TESTING) ? 5 : 3600) {
+        akismet.send("submit_#{spam_or_ham}",
+                     ip, nil, akismet_options)
+      }
+    rescue Timeout::Error
       nil
     end
   end
@@ -164,5 +167,21 @@ class Feedback < ActiveRecord::Base
     if article.comments_closed?
       errors.add(:article_id, 'Comment are closed')
     end
+  end
+
+  private
+  @@akismet = nil
+
+  def akismet
+    @@akismet = akismet_client if @@akismet.nil?
+    return @@akismet == false ? nil : @@akismet
+  end
+
+  def akismet_client
+    return false if blog.sp_akismet_key.blank?
+
+    client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
+
+    return client.verify_key ? client : false
   end
 end

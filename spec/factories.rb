@@ -1,10 +1,5 @@
 # coding: utf-8
 
-# Helper methods
-def some_user
-  User.find(:first) || FactoryGirl.create(:user)
-end
-
 # Factory definitions
 FactoryGirl.define do
   sequence :name do |n|
@@ -52,6 +47,7 @@ FactoryGirl.define do
     settings({})
     state 'active'
     profile
+    editor 'simple'
     association :text_filter, factory: :textile
   end
 
@@ -182,10 +178,11 @@ http://alsoping.example.com/rpc/ping"
     l.modules [:dashboard, :profile]
   end
 
-  factory :profile_admin, :parent => :profile do |l|
-    l.label {FactoryGirl.generate(:label)}
-    l.nicename 'Typo administrator'
-    l.modules [:dashboard, :write, :articles, :pages, :feedback, :themes, :sidebar, :users, :seo, :media, :settings, :profile]
+  factory :profile_admin, parent: :profile do
+    label Profile::ADMIN
+    nicename 'Typo administrator'
+    modules [ :dashboard, :write, :articles, :pages, :feedback, :themes,
+              :sidebar, :users, :seo, :media, :settings, :profile ]
   end
 
   factory :profile_publisher, :parent => :profile do |l|
@@ -243,16 +240,16 @@ http://alsoping.example.com/rpc/ping"
     c.published false
   end
 
-  factory :page do |p|
-    p.name 'page_one'
-    p.title 'Page One Title'
-    p.body 'ho ho ho'
-    p.created_at '2005-05-05 01:00:01'
-    p.published_at '2005-05-05 01:00:01'
-    p.updated_at '2005-05-05 01:00:01'
-    p.user { some_user }
-    p.published true
-    p.state 'published'
+  factory :page do
+    name 'page_one'
+    title 'Page One Title'
+    body 'ho ho ho'
+    created_at '2005-05-05 01:00:01'
+    published_at '2005-05-05 01:00:01'
+    updated_at '2005-05-05 01:00:01'
+    user
+    published true
+    state 'published'
   end
 
   factory :trackback do |t|

@@ -1,0 +1,17 @@
+<div class="post">
+  <h2 class="title"><%= _(page_title) %></h2>
+<% unless groupings.empty? -%>
+<ul>
+<% for grp in groupings.sort_by{|grp|grp.display_name} -%>
+  <li>
+    <%= link_to_permalink(grp, grp.display_name) %>
+  </li>
+<% end -%>
+</ul>
+<% else -%>
+<p><%= _("There are")%> <%= controller.controller_name %>.</p>
+<% end -%>
+</div>
+<p><%= paginate(groupings,
+                :right => "#{_("Next page")} &raquo;",
+                :left => "&laquo; #{_('Previous page')}") %></p>

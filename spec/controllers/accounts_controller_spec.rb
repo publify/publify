@@ -4,7 +4,7 @@ describe AccountsController do
   describe "A successful login with 'Remember me' checked" do
     it 'should not cause password to change' do
       FactoryGirl.create(:blog)
-      User.stub!(:salt).and_return('change-me')
+      User.stub(:salt).and_return('change-me')
       henri = FactoryGirl.create(:user, :login => 'henri', :password => 'testagain')
       post 'login', {:user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'}
       request.session[:user_id].should == henri.id
@@ -14,7 +14,7 @@ describe AccountsController do
   describe 'A successfully authenticated login' do
     before(:each) do
       FactoryGirl.create(:blog)
-      User.stub!(:salt).and_return('change-me')
+      User.stub(:salt).and_return('change-me')
       @henri = FactoryGirl.create(:user, :login => 'henri', :password => 'testagain', :profile => FactoryGirl.create(:profile_admin, :label => 'admin_henri'))
     end
 
@@ -50,7 +50,7 @@ describe AccountsController do
     end
 
     it "should redirect to signup if no users" do
-      User.stub!(:count).and_return(0)
+      User.stub(:count).and_return(0)
       make_request
       response.should redirect_to('/accounts/signup')
     end
@@ -59,8 +59,8 @@ describe AccountsController do
   describe 'User is inactive' do
     before(:each) do
       FactoryGirl.create(:blog)
-      User.stub!(:authenticate).and_return(nil)
-      User.stub!(:count).and_return(1)
+      User.stub(:authenticate).and_return(nil)
+      User.stub(:count).and_return(1)
     end
 
     def make_request
@@ -92,7 +92,7 @@ describe AccountsController do
   describe 'Login with nil user and password' do
     before(:each) do
       FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(1)
+      User.stub(:count).and_return(1)
     end
 
     def make_request
@@ -108,8 +108,8 @@ describe AccountsController do
   describe 'Login gets the wrong password' do
     before(:each) do
       FactoryGirl.create(:blog)
-      User.stub!(:authenticate).and_return(nil)
-      User.stub!(:count).and_return(1)
+      User.stub(:authenticate).and_return(nil)
+      User.stub(:count).and_return(1)
     end
 
     def make_request
@@ -140,23 +140,23 @@ describe AccountsController do
   describe 'GET /index' do
     it 'should redirect to login' do
       FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(1)
+      User.stub(:count).and_return(1)
       get 'index'
       response.should redirect_to(:action => 'login')
     end
-    
+
     it 'should redirect to signup' do
       FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(0)
+      User.stub(:count).and_return(0)
       get 'index'
       response.should redirect_to(:action => 'signup')
-    end    
+    end
   end
 
   describe 'GET /login' do
     it 'should render action :login' do
       FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(1)
+      User.stub(:count).and_return(1)
       get 'login'
       response.should render_template(:login)
       assigns[:login].should be_nil
@@ -166,7 +166,7 @@ describe AccountsController do
   describe 'GET /login with 0 existing users' do
     before(:each) do
       FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(0)
+      User.stub(:count).and_return(0)
     end
 
     it 'should render action :signup' do
@@ -184,7 +184,7 @@ describe AccountsController do
   describe 'with >0 existing user and allow_signup = 0' do
     before(:each) do
       @blog = FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(1)
+      User.stub(:count).and_return(1)
     end
 
     describe 'GET signup' do
@@ -193,43 +193,43 @@ describe AccountsController do
         response.should redirect_to(:action => 'login')
       end
     end
-    
+
     describe 'POST signup without allow_signup' do
       it 'should redirect to login' do
         post 'signup', {'user' =>  {'login' => 'newbob'}}
         response.should redirect_to(:action => 'login')
       end
-    end    
+    end
   end
 
   describe 'with > 0 existing user and allow_signup = 1' do
     before(:each) do
       @blog = FactoryGirl.create(:blog, :allow_signup => 1)
-      User.stub!(:count).and_return(1)
+      User.stub(:count).and_return(1)
     end
-    
+
     describe 'GET signup with allow_signup' do
       it 'should redirect to login' do
         get 'signup'
         response.should render_template('signup')
       end
-    end    
+    end
 
-    describe 'POST signup with allow_signup' do    
+    describe 'POST signup with allow_signup' do
       it 'should redirect to login' do
         post 'signup', {'user' =>  {'login' => 'newbob', 'email' => 'newbob@mail.com'}}
         response.should redirect_to(:action => 'confirm')
       end
     end
-    
+
   end
   describe 'GET signup with 0 existing users' do
     before(:each) do
       FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(0)
+      User.stub(:count).and_return(0)
       @user = mock("user")
-      @user.stub!(:reload).and_return(@user)
-      User.stub!(:new).and_return(@user)
+      @user.stub(:reload).and_return(@user)
+      User.stub(:new).and_return(@user)
     end
 
     it 'sets @user' do
@@ -287,14 +287,14 @@ describe AccountsController do
   describe 'POST signup with 0 existing users' do
     before(:each) do
       FactoryGirl.create(:blog)
-      User.stub!(:count).and_return(0)
+      User.stub(:count).and_return(0)
       @user = mock_model(User)
-      @user.stub!(:login).and_return('newbob')
-      @user.stub!(:generate_password!).and_return(true)
-      @user.stub!(:name=).and_return(true)
-      User.stub!(:new).and_return(@user)
-      User.stub!(:authenticate).and_return(@user)
-      @user.stub!(:save).and_return(@user)
+      @user.stub(:login).and_return('newbob')
+      @user.stub(:generate_password!).and_return(true)
+      @user.stub(:name=).and_return(true)
+      User.stub(:new).and_return(@user)
+      User.stub(:authenticate).and_return(@user)
+      @user.stub(:save).and_return(@user)
     end
 
     it 'creates and saves a user' do

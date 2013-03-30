@@ -3,14 +3,7 @@
   <%= @article.html(:body) %>
   <%= @article.html(:extended) %>
 
-  <div class='meta'>
-    <p>
-      <small><%= _("Published on") %>
-        <%= display_date_and_time(@article.published_at) %>
-        <%= category_links(@article, _("under")) unless @article.categories.empty? %>.
-        <%= tag_links(@article) unless @article.tags.empty? %></small>
-      </p>
-    </div>
+  <%= render 'articles/meta', article: @article %>
 
     <% if @article.user.twitter and @article.user.show_twitter %>
     <h2 id='twitter'>
@@ -20,7 +13,7 @@
 
     <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
     <h3 class="feedback" id="commentaires">
-      <%= display_comments_counter(@article) %>
+      <%= render 'articles/comment_counter', article: @article %>
       <a href="#commentform" ref="nofollow"> &raquo;</a>
     </h3>
     <%= render "articles/comment_list" %>
@@ -44,6 +37,6 @@
     <% else -%>
     <div class="well well-small">
       <%= _("Trackbacks are disabled") %>
-    </div>    
+    </div>
     <% end -%>
   </div>

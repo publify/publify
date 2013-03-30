@@ -97,6 +97,11 @@ class User < ActiveRecord::Base
     )
   end
 
+  def default_text_filter
+    return "none" if visual_editor?
+    text_filter
+  end
+
   def self.authenticate?(login, pass)
     user = self.authenticate(login, pass)
     return false if user.nil?

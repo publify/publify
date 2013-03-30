@@ -212,6 +212,8 @@ Localization.define("he_IL") do |l|
   l.store "Allow trackbacks", "אפשר עוקבים חזרה"
   l.store "Password:", ""
   l.store "Publish", "פרסם"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", ""
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "העלאות"
@@ -585,13 +587,9 @@ Localization.define("he_IL") do |l|
   l.store "Theme editor", "עורך העיצוב"
 
   # app/views/admin/themes/index.html.erb
-  l.store "Choose theme", ""
   l.store "Active theme", "עיצוב פעיל"
-  l.store "Get more themes", "קבל עיצובים נוספים"
-  l.store "You can download third party themes from officially supported %s ", "תוכל להוריד עיצובים נוספים מהאתר %s"
-  l.store "Typogarden", "Typogarden"
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", "כדי להתקין עיצוב עליך תצטרך להעלות אותא אל ספריית העיצובים שלך (Themes). ברגע שהעיצוב הועלה תוכל לראות בדף זה."
   l.store "Choose a theme", "בחר עיצוב"
+  l.store "Use this theme", ""
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""

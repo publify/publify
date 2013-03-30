@@ -210,6 +210,8 @@ Localization.define("nl_NL") do |l|
   l.store "Allow trackbacks", "Sta trackbacks toe"
   l.store "Password:", "Wachtwoord:"
   l.store "Publish", "Publiceer"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "Uittreksel"
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
   l.store "Uploads", "Uploads"
@@ -580,13 +582,9 @@ Localization.define("nl_NL") do |l|
   l.store "Theme editor", "Thema editor"
 
   # app/views/admin/themes/index.html.erb
-  l.store "Choose theme", ""
   l.store "Active theme", "Actieve thema's"
-  l.store "Get more themes", "Haal meer thema's op"
-  l.store "You can download third party themes from officially supported %s ", "Je kunt thema's van derden downloaden van officieel ondersteunde %s "
-  l.store "Typogarden", "Typogarden"
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", "Om een thema te installeren moet je het uploaden in de themes map. Zodra het is geupload zou je het op deze pagina moeten zien."
   l.store "Choose a theme", "Kies een thema"
+  l.store "Use this theme", ""
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Account instellingen"

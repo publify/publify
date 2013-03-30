@@ -21,21 +21,67 @@ class Admin::ContentController < Admin::BaseController
       render partial: 'article_list', locals: { articles: @articles }
     else
       @article = Article.new(params[:article])
+
     end
   end
 
   def new
-    new_or_edit
+    @article = new_article_with_defaults
+    load_resources
+  end
+
+  def create
+    article_factory = ArticleFactory.new(this_blog, current_user)
+    @article = article_factory.get_or_build_from(params[:article][:id])
+
+    update_article_attributes
+
+    if @article.save
+      update_categories_for_article
+      set_the_flash
+      redirect_to action: 'index'
+    else
+      @article.keywords = Tag.collection_to_string @article.tags
+      load_resources
+      render 'new'
+    end
   end
 
   def edit
+    return unless access_granted?(params[:id])
     @article = Article.find(params[:id])
-    unless @article.access_by? current_user
-      redirect_to action: 'index'
-      flash[:error] = _("Error, you are not allowed to perform this action")
-      return
+    @article.text_filter ||= current_user.default_text_filter
+    @article.keywords = Tag.collection_to_string @article.tags
+    load_resources
+  end
+
+  def update
+    return unless access_granted?(params[:id])
+    id = params[:article][:id] || params[:id]
+    @article = Article.find(id)
+
+    if params[:article][:draft]
+      get_fresh_or_existing_draft_for_article
+    else
+      if not @article.parent_id.nil?
+        @article = Article.find(@article.parent_id)
+      end
     end
-    new_or_edit
+
+    update_article_attributes
+
+    if @article.save
+      unless @article.draft
+        Article.where(parent_id: @article.id).map(&:destroy)
+      end
+      update_categories_for_article
+      set_the_flash
+      redirect_to :action => 'index'
+    else
+      @article.keywords = Tag.collection_to_string @article.tags
+      load_resources
+      render 'edit'
+    end
   end
 
   def destroy
@@ -82,11 +128,10 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
-    id = params[:id]
-    id = params[:article][:id] if params[:article] && params[:article][:id]
+    id = params[:article][:id] || params[:id]
 
-    @article = Article.get_or_build_article(id)
-    @article.text_filter = current_user.text_filter if current_user.simple_editor?
+    article_factory = ArticleFactory.new(this_blog, current_user)
+    @article = article_factory.get_or_build_from(id)
 
     get_fresh_or_existing_draft_for_article
 
@@ -101,6 +146,7 @@ class Admin::ContentController < Admin::BaseController
     @article.set_author(current_user)
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" unless @article.state == "withdrawn"
+    @article.text_filter ||= current_user.default_text_filter
 
     if @article.title.blank?
       lastid = Article.find(:first, :order => 'id DESC').id
@@ -136,62 +182,11 @@ class Admin::ContentController < Admin::BaseController
 
   attr_accessor :resources, :categories, :resource, :category
 
-  def new_or_edit
-    id = params[:id]
-    id = params[:article][:id] if params[:article] && params[:article][:id]
-    @article = Article.get_or_build_article(id)
-    @article.text_filter = set_textfilter
-
-    @post_types = PostType.find(:all)
-    if request.post?
-      if params[:article][:draft]
-        get_fresh_or_existing_draft_for_article
-      else
-        if not @article.parent_id.nil?
-          @article = Article.find(@article.parent_id)
-        end
-      end
-    end
-
-    @article.keywords = Tag.collection_to_string @article.tags
-    @article.attributes = params[:article]
-    # TODO: Consider refactoring, because double rescue looks... weird.
-
-    @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue Time.parse(params[:article][:published_at]).utc rescue nil
-
-    if request.post?
-      @article.set_author(current_user)
-
-      @article.save_attachments!(params[:attachments])
-      @article.state = "draft" if @article.draft
-
-      if @article.save
-        unless @article.draft
-          Article.where(parent_id: @article.id).map(&:destroy)
-        end
-        @article.categorizations.clear
-        if params[:categories]
-          Category.find(params[:categories]).each do |cat|
-            @article.categories << cat
-          end
-        end
-        set_the_flash
-        redirect_to :action => 'index'
-        return
-      end
-    end
-
-    @images = Resource.images_by_created_at.page(params[:page]).per(10)
-    @resources = Resource.without_images_by_filename
-    @macros = TextFilter.macro_filters
-    render 'new'
-  end
-
   def set_the_flash
     case params[:action]
-    when 'new'
+    when 'create'
       flash[:notice] = _('Article was successfully created')
-    when 'edit'
+    when 'update'
       flash[:notice] = _('Article was successfully updated.')
     else
       raise "I don't know how to tidy up action: #{params[:action]}"
@@ -199,9 +194,57 @@ class Admin::ContentController < Admin::BaseController
   end
 
   private
-  def set_textfilter
-    return TextFilter.find_by_name("none") if current_user.visual_editor?
-    return current_user.text_filter if @article.id.nil?
+
+  def parse_date_time(str)
+    begin
+      DateTime.strptime(str, "%B %e, %Y %I:%M %p GMT%z").utc
+    rescue
+      Time.parse(str).utc rescue nil
+    end
   end
-  
+
+  def load_resources
+    @post_types = PostType.find(:all)
+    @images = Resource.images_by_created_at.page(params[:page]).per(10)
+    @resources = Resource.without_images_by_filename
+    @macros = TextFilter.macro_filters
+  end
+
+  def update_categories_for_article
+    @article.categorizations.clear
+    if params[:categories]
+      Category.find(params[:categories]).each do |cat|
+        @article.categories << cat
+      end
+    end
+  end
+
+  def access_granted?(article_id)
+    article = Article.find(article_id)
+    if article.access_by? current_user
+      return true
+    else
+      flash[:error] = _("Error, you are not allowed to perform this action")
+      redirect_to action: 'index'
+      return false
+    end
+  end
+
+  def update_article_attributes
+    @article.attributes = params[:article]
+    @article.published_at = parse_date_time params[:article][:published_at]
+    @article.set_author(current_user)
+    @article.save_attachments!(params[:attachments])
+    @article.state = "draft" if @article.draft
+    @article.text_filter ||= current_user.default_text_filter
+  end
+
+  def new_article_with_defaults
+    Article.new.tap do |art|
+      art.allow_comments = this_blog.default_allow_comments
+      art.allow_pings = this_blog.default_allow_pings
+      art.text_filter = current_user.default_text_filter
+      art.published = true
+    end
+  end
 end

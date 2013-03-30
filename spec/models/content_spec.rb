@@ -37,10 +37,9 @@ describe Content do
   end
 
   describe "#text_filter" do
-    it "returns the blog's text filter by default" do
-      @blog.should_receive(:text_filter_object).and_return "foo"
+    it "returns nil by default" do
       @content = Content.new
-      @content.text_filter.should eq "foo"
+      @content.text_filter.should be_nil
     end
   end
 

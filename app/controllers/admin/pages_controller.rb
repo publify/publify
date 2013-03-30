@@ -17,7 +17,8 @@ class Admin::PagesController < Admin::BaseController
   def new
     @page = Page.new(params[:page])
     @page.user_id = current_user.id
-    @page.text_filter = set_textfilter
+    @page.text_filter ||= default_textfilter
+
     if request.post?
       @page.published_at = Time.now
       if @page.save
@@ -30,6 +31,7 @@ class Admin::PagesController < Admin::BaseController
   def edit
     @page = Page.find(params[:id])
     @page.attributes = params[:page]
+    @page.text_filter ||= default_textfilter
     if request.post? and @page.save
       flash[:notice] = _('Page was successfully updated.')
       redirect_to :action => 'index'
@@ -45,10 +47,14 @@ class Admin::PagesController < Admin::BaseController
 
   private
 
-  def set_textfilter
-    return TextFilter.find_by_name("none") if current_user.visual_editor?
-    return current_user.text_filter if @page.id.nil?
+  def default_textfilter
+    if current_user.visual_editor?
+      "none"
+    else
+      current_user.text_filter || blog.text_filter
+    end
   end
+
 
   def set_macro
     @macros = TextFilter.macro_filters

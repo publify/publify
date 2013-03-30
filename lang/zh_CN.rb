@@ -213,6 +213,8 @@ Localization.define("zh_CN") do |l|
   l.store "Allow trackbacks", "允许引用"
   l.store "Password:", "密码"
   l.store "Publish", "发布"
+  l.store "Tags", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
   l.store "Excerpt", "摘要"
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "摘要对文章的总结，只会显示在首页，不会出现在文章正文。"
   l.store "Uploads", "上传"
@@ -592,13 +594,9 @@ Localization.define("zh_CN") do |l|
   l.store "Theme editor", ""
 
   # app/views/admin/themes/index.html.erb
-  l.store "Choose theme", ""
   l.store "Active theme", "執行中主題"
-  l.store "Get more themes", ""
-  l.store "You can download third party themes from officially supported %s ", ""
-  l.store "Typogarden", ""
-  l.store "To install a theme you  just need to upload the theme folder into your themes directory. Once a theme is uploaded, you should see it on this page.", ""
   l.store "Choose a theme", "選擇主題"
+  l.store "Use this theme", ""
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""

@@ -1,10 +1,11 @@
 function autosave_request(e) {
+
   new Form.Observer (e, 30, function(element, value) {
 			if ($('current_editor').value == 'visual') {
 				$('article__body_and_extended_editor').value = CKEDITOR.instances.article__body_and_extended_editor.getData();;
 			}
 
-      new Ajax.Request(e.action.gsub(/\/new\/{0,1}/, '/autosave/') , {
+      new Ajax.Request(e.action.gsub(/\/admin\/content\/{0,1}.*/, '/admin/content/autosave') , {
                                         asynchronous:true,
                                         evalScripts:true,
                                         parameters: Form.serialize(e)

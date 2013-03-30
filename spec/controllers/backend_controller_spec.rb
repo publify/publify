@@ -5,7 +5,7 @@ describe BackendController do
   include ActionWebService::TestInvoke::InstanceMethods
 
   before do
-    User.stub!(:salt).and_return('change-me')
+    User.stub(:salt).and_return('change-me')
 
     #TODO Need to reduce user, but allow to remove user fixture...
     FactoryGirl.create(:user,
@@ -196,7 +196,7 @@ describe BackendController do
                              :published_at => Time.now.utc.midnight)
       @article.errors.add(:base, 'test error')
       @article.should_receive(:save).and_return(false)
-      Article.stub!(:new).and_return(@article)
+      Article.stub(:new).and_return(@article)
       args = [1, 'henri', 'whatever', MetaWeblogService.new(@controller).article_dto_from(@article), 1]
       lambda { invoke_layered :metaWeblog , :newPost, *args }.should \
         raise_error(XMLRPC::FaultException,
