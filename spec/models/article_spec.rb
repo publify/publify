@@ -832,6 +832,14 @@ describe Article do
       expect(Article.bestof.first.comment_count.to_i).to eq 1
     end
 
+    it "counts comments but not trackbacks" do
+      article = create :article
+      create :trackback, article: article
+      create_list :comment, 2, article: article
+
+      expect(Article.bestof.first.comment_count.to_i).to eq 2
+    end
+
     it "returns only 5 articles" do
       6.times { FactoryGirl.create(:comment) }
       expect(Article.bestof.length).to eq(5)
