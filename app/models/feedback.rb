@@ -3,6 +3,7 @@ class Feedback < ActiveRecord::Base
   self.table_name = "feedback"
 
   belongs_to :text_filter
+  belongs_to :article
 
   include TypoGuid
 
