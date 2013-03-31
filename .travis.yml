@@ -1,7 +1,14 @@
 language: ruby
 rvm:
   - 1.9.3
+env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgresql
 before_install:
-  - cp config/database.yml.pgsql config/database.yml
+  - cp config/database.yml.travis config/database.yml
 before_script:
-  - rake db:create db:migrate
+  - mysql -e 'create database typo_test;'
+  - psql -c 'create database typo_test;' -U postgres
+script:
+  - bundle exec rake db:migrate test
