@@ -647,7 +647,7 @@ Localization.define("nb_NO") do |l|
   l.store "New User", "Ny bruker"
   l.store "Comments", "Kommentarer"
   l.store "State", "Tilstand"
-  l.store "%s user", "% bruker"
+  l.store "%s user", "%s bruker"
   l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
