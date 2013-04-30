@@ -155,11 +155,11 @@ class Article < Content
   end
 
   def comment_url
-    blog.url_for("comments?article_id=#{self.id}", :only_path => false)
+    blog.url_for("comments?article_id=#{self.id}", :only_path => true)
   end
 
   def preview_comment_url
-    blog.url_for("comments/preview?article_id=#{self.id}", :only_path => false)
+    blog.url_for("comments/preview?article_id=#{self.id}", :only_path => true)
   end
 
   def feed_url(format)
@@ -244,6 +244,11 @@ class Article < Content
   end
 
   def keywords_to_tags
+    # if keywords is empty, we want to reset the tags altogether, but
+    # if they do not exists (for instance because we're triggered by a
+    # publication_pending) we don't want to destroy the tags
+    return if keywords.nil?
+
     Article.transaction do
       tags.clear
       tags <<

@@ -6,7 +6,7 @@ class Comment < Feedback
   content_fields :body
   validates_presence_of :author, :body
 
-  attr_accessor :user_agent, :referrer, :permalink
+  attr_accessor :referrer, :permalink
 
   scope :spam, lambda { where(state: 'spam') }
   scope :not_spam, lambda { where("state != 'spam'")}

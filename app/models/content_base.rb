@@ -60,6 +60,19 @@ module ContentBase
     content_fields.include? field
   end
 
+  def excerpt_text(length = 160)
+    if respond_to?(:excerpt) and (excerpt || "") != ""
+      text = generate_html(:excerpt, excerpt)
+    else
+      text = html(:all)
+    end
+
+    text = text.strip_html
+
+    return text.slice(0, length) +
+      (text.length > length ? '...' : '');
+  end
+
   def invalidates_cache?(on_destruction = false)
     @invalidates_cache ||= if on_destruction
       just_changed_published_status? || published?

@@ -469,14 +469,14 @@ describe Article do
   describe '#comment_url' do
     it 'should render complete url of comment' do
       article = stub_model(Article, :id => 123)
-      article.comment_url.should == "http://myblog.net/comments?article_id=#{article.id}"
+      article.comment_url.should == "/comments?article_id=#{article.id}"
     end
   end
 
   describe '#preview_comment_url' do
     it 'should render complete url of comment' do
       article = stub_model(Article, :id => 123)
-      article.preview_comment_url.should == "http://myblog.net/comments/preview?article_id=#{article.id}"
+      article.preview_comment_url.should == "/comments/preview?article_id=#{article.id}"
     end
   end
 

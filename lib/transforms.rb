@@ -43,9 +43,9 @@ class String
     s = self
     
     # Tags for params
-    s = s.gsub('%date%', parse_date(s, params)) if s =~ /(%date%)/
+    s = s.gsub('%date%', parse_date(s, params)) if s =~ /%date%/
     s = s.gsub('%search%', params[:q]) if params[:q]
-    s = s.gsub('%page%', parse_page(s, params)) if s=~ /(%page%)/
+    s = s.gsub('%page%', parse_page(s, params)) if s=~ /%page%/
     
     # Tags for settings
     s = s.gsub('%blog_name%', settings.blog_name) 
@@ -53,18 +53,18 @@ class String
     s = s.gsub('%meta_keywords%', settings.meta_keywords)
     
     # Tags for item
-    s = s.gsub('%title%', item.title) if s =~ /(%title)/ and item.respond_to? :title
-    s = s.gsub('%excerpt%', (item.body || '').strip_html.slice(0, 160)) if s =~ /(%excerpt%)/ and item.respond_to? :body
-    s = s.gsub('%description%', item.description) if s =~ /(%description%)/ and item.respond_to? :description
-    s = s.gsub('%name%', item.name) if s =~ /(%name%)/ and item.respond_to? :name
-    s = s.gsub('%author%', item.name) if s =~ /(%author%)/ and item.respond_to? :name
+    s = s.gsub('%title%', item.title) if s =~ /%title/ and item.respond_to? :title
+    s = s.gsub('%excerpt%', item.excerpt_text) if s =~ /%excerpt%/ and item.respond_to? :excerpt_text
+    s = s.gsub('%description%', item.description) if s =~ /%description%/ and item.respond_to? :description
+    s = s.gsub('%name%', item.name) if s =~ /%name%/ and item.respond_to? :name
+    s = s.gsub('%author%', item.name) if s =~ /%author%/ and item.respond_to? :name
     
-    if s =~ /(%categories%)/ and item.respond_to? :categories
-      s = s.gsub('%categories%', article.categories.map { |c| c.name }.join(", "))
+    if s =~ /%categories%/ and item.respond_to? :categories
+      s = s.gsub('%categories%', item.categories.map { |c| c.name }.join(", "))
     end
 
-    if s =~ /(%tags%)/ and item.respond_to? :tags
-      s = s.gsub('%tags%', article.tags.map { |t| t.display_name }.join(", "))
+    if s =~ /%tags%/ and item.respond_to? :tags
+      s = s.gsub('%tags%', item.tags.map { |t| t.display_name }.join(", "))
     end
 
     # Other
