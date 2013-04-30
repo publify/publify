@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 107) do
+ActiveRecord::Schema.define(:version => 108) do
 
   create_table "articles_tags", :id => false, :force => true do |t|
     t.integer "article_id"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 107) do
     t.datetime "published_at"
     t.string   "state"
     t.boolean  "status_confirmed"
+    t.string   "user_agent"
   end
 
   add_index "feedback", ["article_id"], :name => "index_feedback_on_article_id"
