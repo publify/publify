@@ -50,6 +50,8 @@ gem 'prototype_legacy_helper', '0.0.0', :git => 'http://github.com/rails/prototy
 gem 'rails_autolink', '~> 1.0.9'
 gem 'dynamic_form', '~> 1.1.4'
 
+gem 'iconv'
+
 group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 3.5'
