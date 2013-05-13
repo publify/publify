@@ -1,0 +1,31 @@
+sqlite: &sqlite
+adapter: sqlite3
+
+mysql: &mysql
+  adapter: mysql2
+  username: root
+  password:
+
+postgresql: &postgresql
+  adapter: postgresql
+  username: postgres
+  password:
+  min_messages: ERROR
+
+defaults: &defaults
+  pool: 5
+  timeout: 5000
+  host: localhost
+  <<: *<%= ENV['DB'] || "sqlite" %>
+
+development:
+  database: typo_dev
+  <<: *defaults
+
+test:
+  database: typo_test
+  <<: *defaults
+
+production:
+  database: typo
+  <<: *defaults
