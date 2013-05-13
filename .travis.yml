@@ -7,7 +7,5 @@ env:
   - DB=mysql
   - DB=postgresql
   
-before_install:
-  - rake travis
 before_script:
   - rake db:create db:migrate
