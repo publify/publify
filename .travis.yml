@@ -8,6 +8,6 @@ env:
   - DB=postgresql
   
 before_install:
-  - cp config/database.travis.yml config/database.yml
+  - rake travis
 before_script:
   - rake db:create db:migrate
