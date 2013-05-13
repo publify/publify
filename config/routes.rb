@@ -117,7 +117,6 @@ Rails.application.routes.draw do
     resources :content do
       post :autosave, on: :collection
       get :insert_editor, on: :collection
-      get :destroy, on: :member
       post :destroy, on: :member
       get :auto_complete_for_article_keywords, on: :collection
       get :attachment_box_add, on: :member
