@@ -5,7 +5,6 @@ class Sidebar < ActiveRecord::Base
     attr_accessor :key
     attr_accessor :options
     attr_accessor :default
-    include ApplicationHelper
     include ActionView::Helpers::TagHelper
     include ActionView::Helpers::FormTagHelper
     include ActionView::Helpers::FormOptionsHelper
