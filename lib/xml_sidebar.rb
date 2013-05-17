@@ -1,1 +1,0 @@
-require 'xml_sidebar/lib/xml_sidebar'
