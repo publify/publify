@@ -18,6 +18,7 @@ module TypoBlog
     # I need the localization plugin to load first
     # Otherwise, I can't localize plugins <= localization
 #    require 'localization'
+    
     config.plugins = [ :all ]
 
     config.autoload_paths += %W(
@@ -39,7 +40,12 @@ module TypoBlog
 
   # Load included libraries.
   require 'localization'
+  require 'sidebar'
   
+  Dir.glob(File.join(::Rails.root.to_s, "lib", "*_sidebar")).select do |file|
+    require file
+  end
+    
   require 'action_web_service'
   ## Required by the plugins themselves.
   # require 'avatar_plugin'

@@ -3,7 +3,7 @@ class SidebarGenerator < Rails::Generator::NamedBase
 
   def initialize(runtime_args, runtime_options = { })
     super
-    @plugin_path = "vendor/plugins/#{file_name}"
+    @plugin_path = "lib/#{file_name}"
   end
 
   def manifest
