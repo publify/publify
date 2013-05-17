@@ -14,10 +14,6 @@ module TypoBlog
     # Setup the cache path
     config.action_controller.page_cache_directory = "#{::Rails.root.to_s}/public/cache/"
     config.cache_store=:file_store, "#{::Rails.root.to_s}/public/cache/"
-
-    # I need the localization plugin to load first
-    # Otherwise, I can't localize plugins <= localization
-#    require 'localization'
     
     config.plugins = [ :all ]
 
@@ -42,6 +38,7 @@ module TypoBlog
   require 'localization'
   require 'sidebar'
   require 'typo_sidebar'
+  require 'typo_textfilters'
     
   require 'action_web_service'
   ## Required by the plugins themselves.
