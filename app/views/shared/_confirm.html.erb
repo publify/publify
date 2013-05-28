@@ -1,20 +1,23 @@
 <div class='row'>
-  <div class='span6 offset3'>
-    <div class='well'>
-      <h2><%= _("Congratulations!") %></h2>
-      <p><%= _("You have successfully signed up") %></p>
-      <p>
-        <%= _("<strong>Login:</strong> %s", current_user.login)%>
-      </p>
-      <p>
-        <%= _("<strong>Password:</strong> %s", session[:tmppass]) %>
-      </p>
-      <p>
-        <%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%>
-      </p>
-      <p>
-        <%= _("Proceed to %s",  link_to(_("admin"), :controller => 'admin/dashboard')) %>
-      </p>
+  <div class='span4 offset4'>
+    <h3><%= _("Congratulations!") %></h3>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='span4 offset4 well'>
+    <p><%= _("You have successfully signed up") %></p>
+    <p>
+      <%= _("<strong>Login:</strong> %s", current_user.login)%>
+    </p>
+    <p>
+      <%= _("<strong>Password:</strong> %s", session[:tmppass]) %>
+    </p>
+    <div class='alert'>
+      <small><%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%></small>
     </div>
   </div>
+</div>
+<div class='span4 offset4'>
+  <small><%= _("Proceed to %s",  link_to(_("admin"), :controller => 'admin/dashboard')) %></small>
 </div>

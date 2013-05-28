@@ -1,27 +1,29 @@
 <div class='row'>
   <div class='span4 offset4'>
-    <div class='well'>
-      <%= form_tag :action=> "login" do %>
-      <div class='clearfix'>
-        <h2><%= _("Sign in") %></h2>
-      </div>
-      <div id="flash"><%= render_the_flash %></div>
-      <div class='clearfix'>
-        <%= text_field(:user, :login, {:class => 'login', :placeholder => _("Login")})%>  
-      </div>
-      <div class='clearfix'>
-        <%= password_field(:user, :password, {:class => 'login', :placeholder => _("Password")})%>
-      </div>
-      <div class='clearfix'>
-        <input type="submit" name="login" class="btn btn-info" value= "<%= _('Sign in') %>" />
-        <%= check_box_tag 'remember_me' %> <small><%= _('Remember me')%></small> 
-      </div>	  
-      <div class='clearfix'>
-        <p>
-			<%= [lost_password, create_account_link].join("<br />") %>
-        </p>        
-      </div>
-      <% end %>
-    </div>
+    <h3><%= _("Sign in") %></h3>
   </div>
 </div>
+<div class='row'>
+  <div class='span4 offset4 well'>
+    <div id="flash"><%= render_the_flash %></div>
+      <%= form_tag :action=> "login" do %>
+        <%= text_field(:user, :login, {:class => 'input-block-level', :placeholder => _("Login")})%>  
+        <%= password_field(:user, :password, {:class => 'input-block-level', :placeholder => _("Password")})%>
+        <div class='clearfix'>
+          <div class='row'>
+            <div class='span2'>
+              <label class='checkbox inline'>
+                <%= check_box_tag 'remember_me' %><small><%= _('Remember me')%></small>
+              </label>
+            </div>
+            <div class='span2'>
+              <input type="submit" name="login" class="btn btn-info pull-right" value= "<%= _('Sign in') %>" />
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
+<div class='span4 offset4'>
+  <%= [lost_password, create_account_link].join("<br />") %>
+</div>  
