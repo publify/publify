@@ -1,7 +1,7 @@
 # coding: utf-8
 # Translation by Edgar J. Suarez
 
-Localization.define("es_MX") do |l|
+Localization.define("pt_BR") do |l|
 
   # app/controllers/accounts_controller.rb
   l.store "Login successful", "Logado com sucesso"
@@ -34,188 +34,188 @@ Localization.define("es_MX") do |l|
   l.store "All spam have been deleted", "Todos os spans foram deletados"
   l.store "Comment was successfully created.", "Comentário criado com sucesso"
   l.store "Comment was successfully updated.", "Comentário atualizado com sucesso"
-
+  
   # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
+  l.store "Page was successfully created.", "Página criada com sucesso"
+  l.store "Page was successfully updated.", "Página atualizada com sucesso"
 
   # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
+  l.store "User was successfully updated.", "Usuário atualizado com sucesso"
 
   # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-  l.store "Metadata was successfully updated.", ""
-  l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
+  l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
+  l.store "complete", "completo"
+  l.store "File uploaded: ", "Arquivo enviado"
+  l.store "Unable to upload", "Incapaz de fazer enviar o arquivo"
+  l.store "Metadata was successfully updated.", "Metadata atualizado com sucesso"
+  l.store "Not all metadata was defined correctly.", "Nem todos os metadatas foram definidos corretamente"
+  l.store "Content Type was successfully updated.", "Content Type foi atualizado com sucesso"
 
   # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
+  l.store "Please review and save the settings before continuing", "Por favor, reveja e salve as configurações antes de continuar"
+  l.store "config updated.", "Config atualizada."
 
   # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
+  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou remove-las manualmente"
 
   # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
+  l.store "Tag was successfully updated.", "Tag atualizada com sucesso"
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
+  l.store "Theme changed successfully", "Tema alterado com sucesso"
+  l.store "You are not authorized to open this file", "Você não está autorizado a abrir esse arquivo"
+  l.store "File saved successfully", "Arquivo salvo com sucesso"
+  l.store "Unable to write file", "Incapaz de escrever no arquivo"
 
   # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
+  l.store "User was successfully created.", "Usuário criado com sucesso"
 
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
 
   # app/controllers/articles_controller.rb
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-  l.store ", Articles for ", ""
+  l.store "No posts found...", "Nenhum post encontrado..."
+  l.store "Archives for", "Arquivos de"
+  l.store "Archives for ", "Arquivos de"
+  l.store ", Articles for ", "Artigos de"
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
-  l.store "everything about", ""
+  l.store "page", "página"
+  l.store "everything about", "tudo sobre"
 
   # app/helpers/admin/base_helper.rb
   l.store "Cancel", "Cancelar"
-  l.store "Store", ""
-  l.store "Delete", "Eliminar"
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
-  l.store "All categories", "Todos las categorias"
-  l.store "All authors", "Todos los autores"
-  l.store "All published dates", "Todos los fechas"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "o"
-  l.store "Save", "Guardar"
+  l.store "Store", "Salvar"
+  l.store "Delete", "Deletar"
+  l.store "delete", "deletar"
+  l.store "Delete content", "Deletar conteúdo?"
+  l.store "Are you sure?", "Você tem certeza?"
+  l.store "Please select", "Por favor selecione"
+  l.store "All categories", "Todas as categorias"
+  l.store "All authors", "Todos os authores"
+  l.store "All published dates", "Todas as datas publicadas"
+  l.store "There are no %s yet. Why don't you start and create one?", "Não existem %s ainda. Por que você não inicia e cria um?"
+  l.store "or", "ou"
+  l.store "Save", "Salvar"
   l.store "Edit", "Editar"
-  l.store "Show", ""
+  l.store "Show", "Exibir"
   l.store "Published", "Publicado"
-  l.store "Unpublished", ""
-  l.store "Show help on Typo macros", ""
-  l.store "Back to overview", ""
-  l.store "Name", "Nombre"
-  l.store "Description", "Descripci&oacute;n"
-  l.store "Tag", ""
+  l.store "Unpublished", "Despublicado"
+  l.store "Show help on Typo macros", "Exibir ajuda no Typo macros"
+  l.store "Back to overview", "Voltar para o overview"
+  l.store "Name", "Nome"
+  l.store "Description", "Descrição"
+  l.store "Tag", "Tag"
 
   # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
+  l.store "no articles", "sem artigos"
+  l.store "1 article", "1 artigo"
+  l.store "%d articles", "%d artigos"
 
   # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
+  l.store "Destroy this draft", "Excluir esse rascunho"
 
   # app/helpers/admin/feedback_helper.rb
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
+  l.store "Show conversation", "Exibir conversa"
+  l.store "Flag as %s", "Marcar como %s"
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", ""
-  l.store "no comments", "no hay comentarios"
-  l.store "1 comment", ""
-  l.store "no trackbacks", "no hay trackbacks"
+  l.store "%d comments", "%d comentários"
+  l.store "no comments", "sem comentários"
+  l.store "1 comment", "1 comentário"
+  l.store "no trackbacks", "sem trackbacks"
   l.store "1 trackback", ""
-  l.store "%d trackbacks", ""
+  l.store "%d trackbacks", "%d trackbacks"
 
   # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "Tags", "Tags"
-  l.store "no posts", ""
+  l.store "Posted in", "Postado em"
+  l.store "Tags", ""
+  l.store "no posts", "Sem posts"
   l.store "1 post", ""
   l.store "%d posts", ""
 
   # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "and published on", ""
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
+  l.store "Original article writen by", "Artigo original escrito por"
+  l.store "and published on", "e publicado em"
+  l.store "direct link to this article", "link direto para esse artigo"
+  l.store "If you are reading this article elsewhere than", "Se você está lendo este artigo em outro lugar que"
+  l.store "it has been illegally reproduced and without proper authorization", "Foi reproduzido ilegalmente e sem autorização"
 
   # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
+  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Você precisa de um permalink com um identificador : %%day%%, %%month%%, %%year%%, %%title%%"
+  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Não pode terminar em .rss ou .atom. Esses formatos são reservados para URLs de feed"
 
   # app/models/feedback/states.rb
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
+  l.store "Unclassified", "Não classificado"
+  l.store "Just Presumed Ham", "Ham apenas presumido"
   l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
+  l.store "Just Marked As Ham", "Apenas marcado como Ham"
   l.store "Ham", ""
   l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
+  l.store "Just Marked As Spam", "Apenas marcado como Spam"
   l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
-  l.store "Sign in", ""
-  l.store "I've lost my password", ""
-  l.store "Login", "Login"
-  l.store "Password", "Contrase&ntilde;a"
-  l.store "Remember me", ""
-  l.store "Submit", ""
-  l.store "Back to ", ""
+  l.store "Sign in", "Entre"
+  l.store "I've lost my password", "Eu perdi minha senha"
+  l.store "Login", ""
+  l.store "Password", "Senha"
+  l.store "Remember me", "Lembrar"
+  l.store "Submit", "Enviar"
+  l.store "Back to ", "Voltar para"
 
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", ""
-  l.store "Username or email", ""
+  l.store "Back to login", "Voltar para o login"
+  l.store "Username or email", "Usuario ou e-mail"
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", ""
+  l.store "Create an account", "Crie uma conta"
   l.store "Username", "Usuario"
   l.store "Email", "Email"
-  l.store "Signup", "Registro"
+  l.store "Signup", "Registrar"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "T&iacute;tulo"
+  l.store "Title", "Título"
   l.store "Reorder", "Reorganizar"
-  l.store "Sort alphabetically", "Ordenar alfab&eacute;ticamente"
+  l.store "Sort alphabetically", "Ordenar alfabéticamente"
 
   # app/views/admin/categories/_form.html.erb
   l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
-  l.store "Are you sure you want to delete the category ", "&iquest;Est&aacute;s seguro que quieres eliminar esta categor&iacute;a?"
-  l.store "Delete this category", "Eliminar esta categor&iacute;a"
-  l.store "Categories", ""
+  l.store "Are you sure you want to delete the category", "Tem certeza que deseja deletar essa categoria?"
+  l.store "Delete this category", "Eliminar esta categoria"
+  l.store "Categories", "Categorias"
 
   # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
+  l.store "New Category", "Nova Categoria"
 
   # app/views/admin/categories/new.html.erb
-  l.store "%s Category", ""
+  l.store "%s Category", "%s Categoria"
 
   # app/views/admin/categories/reorder.html.erb
-  l.store "(Done)", "(Hecho)"
+  l.store "(Done)", "(Feito)"
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Remover"
-  l.store "Currently this article has the following resources", "Este art&iacute;culo tiene los siguientes recursos"
-  l.store "You can associate the following resources", "Puedes asociarlo con los siguientes recursos"
-  l.store "Really delete attachment", "&iquest;Realmente deseas borrar este archivo?"
-  l.store "Add another attachment", "Agregar Otro Archivo"
+  l.store "Currently this article has the following resources", "Esse arquivo tem os seguintes recursos"
+  l.store "You can associate the following resources", "Você pode associar os seguintes recursos"
+  l.store "Really delete attachment", "Realmente deletar attachment"
+  l.store "Add another attachment", "Adicionar outro attachment"
 
   # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
+  l.store "Drafts", "Rascunhos"
 
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
-  l.store "Allow comments", "Se permiten comentarios"
-  l.store "Allow trackbacks", "Se permiten trackbacks"
-  l.store "Password:", ""
+  l.store "Publish settings", "Configurações de publicação"
+  l.store "Allow comments", "Permitir comentários"
+  l.store "Allow trackbacks", "Permitir trackbacks"
+  l.store "Password:", "Senha"
   l.store "Publish", "Publicar"
   l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
+  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", "Separe as tags com vírgulas. Use áspas duplas (&quot;) em palavras compostas, ex: opera-house."
   l.store "Excerpt", ""
   l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", ""
