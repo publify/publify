@@ -1,8 +1,8 @@
+<h3><%= _("Latest Comments") %></h3>
 <div class='well'>
-  <h3 class='page-header'><%= _("Latest Comments") %></h3>
   <ul class='unstyled' id="commentList">
   <% if @comments.size == 0 %>
-    <li><%= _("No comments yet") %></li>
+    <li class='alert'><%= _("No comments yet") %></li>
   <% else %>
     <% for comment in @comments -%>
     <li id='feedback_<%= comment.id %>'>

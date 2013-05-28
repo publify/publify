@@ -1,8 +1,10 @@
+<h3><%= _("Latest Posts") %></h3>
 <div class='well'>
-  <h3 class='page-header'><%= _("Latest Posts") %></h3>
   <ul class='unstyled'>
   <% if @recent_posts.size == 0 %>
-    <li><%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?</li>
+    <li class='alert'>
+      <%= link_to _("No posts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?
+    </li>
   <% else %>
     <% for post in @recent_posts -%>
     <li>

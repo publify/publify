@@ -1,27 +1,31 @@
+<h3><%= _("Inbound links") %></h3>
 <div class='well'>
-  <h3 class='page-header'><%= _("Inbound links") %></h3>
-  <% if @inbound_links.nil? %>
-  <%= _('You have no internet connection') %>
-  <% else %>
   <ul class='unstyled'>
-  <% if @inbound_links.empty? %>
-    <li><%= _("No one made a link to you yet") %></li>
-  <% else %>
-    <% for link in @inbound_links -%>
-    <li>
-      <h5>
-        <%= sprintf("%s %s %s %s %s",
-          link_to(link.author, link.link),
-          _("made a link to you on"),
-          link.date.strftime(this_blog.date_format),
-          _("at"),
-          link.date.strftime(this_blog.time_format)) %>
-      </h5>
-      <p><%= link.description.strip_html.slice(0, 300) %></p>
-	  <hr />
-    </li>
+    <% if @inbound_links.nil? %>
+      <li class='alert alert-error'>
+        <%= _('You have no internet connection') %>
+      </li>
+    <% else %>
+      <% if @inbound_links.empty? %>
+      <li class='alert'>
+        <%= _("No one made a link to you yet") %>
+      </li>
+      <% else %>
+        <% for link in @inbound_links -%>
+          <li>
+            <h5>
+              <%= sprintf("%s %s %s %s %s",
+              link_to(link.author, link.link),
+              _("made a link to you on"),
+              link.date.strftime(this_blog.date_format),
+              _("at"),
+              link.date.strftime(this_blog.time_format)) %>
+            </h5>
+            <p><%= link.description.strip_html.slice(0, 300) %></p>
+            <hr />
+          </li>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
   </ul>
-<% end %>
 </div>
