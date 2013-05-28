@@ -1,7 +1,7 @@
 /* General */
 
 body {
-	padding-top: 60px;
+	padding-top: 40px;
 }
 
 th {
@@ -27,7 +27,7 @@ table.clearfix {
 }
 
 footer {
-  clear: both;
+  padding-bottom: 20px;
 }
 
 
@@ -179,4 +179,8 @@ label.editor {
 #autocomplete li:hover {
 	color: #00438a;
 	border-bottom: 1px solid #00438a;
+}
+
+#main  {
+  padding-left: 0;
 }
