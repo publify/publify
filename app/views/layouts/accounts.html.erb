@@ -6,21 +6,6 @@
   <title><%= @page_title %></title>
   <meta http-equiv="imagetoolbar" content="no" />
   <%= stylesheet_link_tag "bootstrap-accounts", "accounts" %>
-  <style type="text/css">
-    @font-face {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 400;
-      src: local('Open Sans'), local('OpenSans'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans.woff') %>) format('woff');
-    }
-    @font-face {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 700;
-      src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
-    }
-  </style>
-  
 </head>
 <body>
   <div class='navbar navbar-fixed-top'>
