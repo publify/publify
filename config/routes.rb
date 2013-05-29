@@ -120,8 +120,6 @@ Rails.application.routes.draw do
       post :destroy, on: :member
       get :auto_complete_for_article_keywords, on: :collection
       get :attachment_box_add, on: :member
-      get :resource_add, on: :member
-      get :resource_remove, on: :member
     end
   end
 

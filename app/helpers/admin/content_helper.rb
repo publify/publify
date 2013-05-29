@@ -61,8 +61,8 @@ module Admin::ContentHelper
     html << "</div>"
   end
   
-  def toggle_element(element)
-    "<a href=\"#\" onclick=\"Element.toggle('#{element}'); return false\">#{_("Change")}</a>".html_safe
+  def toggle_element(element, label=_("Change"))
+    "<a href=\"#\" onclick=\"Element.toggle('#{element}'); return false\">#{label}</a>".html_safe
   end
   
   def publish_now_or_already_published(article)

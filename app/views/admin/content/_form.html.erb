@@ -3,101 +3,34 @@
 <div id="autosave"></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 
+<h2 class='page-header'>
+  <%= _("#{controller.action_name.to_s.capitalize} article") %>
+  <span class='pull-right'>
+    <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn'}) if @article.id %></span>
+    <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn' />
+    <%= save( _("Publish")) %>
+  </span>
+  </h2>  
+
 <%= error_messages_for 'article' %>
-
-<div class='editor-right'>
-  <div class='well'>
-    <fieldset>
-      <legend><%= _("Publish settings") %></legend>
-      <div class='actions'>
-        <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? or @article.state.to_s.downcase == 'draft' %>
-        <span id='destroy_link'><%= link_to_destroy_draft @article %></span>
-        <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span>
-      </div>
-      <div class='clearfix'>
-          <%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
-          <div id='status' style='display: none;'>        
-            <label for="article_published" class='checkbox'>
-              <%= check_box 'article', 'published'  %>
-              <%= _("Published") %>
-            </label>
-          </div>
-      </div>
-      <div class='clearfix'>
-        <%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
-        <%= toggle_element 'conversation' %>
-        <div id='conversation' style='display: none'>
-          <label for="article_allow_pings" class='checkbox'>
-            <%= check_box 'article', 'allow_pings' %>
-            <%= _("Allow trackbacks") %>
-          </label>
-          <label for="article_allow_comments" class='checkbox'>
-            <%= check_box 'article', 'allow_comments' %>
-            <%= _("Allow comments") %>
-          </label>
-        </div>
-      </div>
-      <div class='clearfix'>
-        <%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
-        <div id='publish' class='input-append' style='display: none;'>
-          <%= calendar_date_select 'article', 'published_at', {:class => 'span7'} %>
-        </div>
-      </div>
-      <div class='clearfix'>
-        <%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %>
-        <div id='visibility' style='display: none'>
-          <label for="article_password"><%= _("Password:") %>
-            <%= password_field :article, :password, :class => 'span10' %>
-          </label>
-        </div>
-      </div>
-      <div class='clearfix'>
-        <%= _("Permalink") %>: <%= toggle_element 'permalink' %>
-        <div class='inputs-list' id='permalink' style='display: none'>
-          <%= text_field 'article', 'permalink', {:class => 'span10'} %>
-        </div>
-      </div>
-      <div class='clearfix'>
-        <%= _("Article filter") %>: <strong><%= _("#{@article.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
-        <div id='text_filter' style='display: none'>
-          <select name="article[text_filter]" id="text_filter">
-            <%= options_for_select text_filter_options, @article.text_filter %>
-          </select>
-        </div>
-      </div>
-      <div class='form-actions'>
-        <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn info' />
-        <%= save( _("Publish")) %>
-      </div>      
-      
-    </fieldset>
-
-  </div>
-
-  <div class='well'>
-    <h4><%= _("Categories") %></h4>
-    <%= render 'categories' %>
-  </div>
-  <%= get_post_types %>
-</div>
-
-<div class='editor-left'>
-  <div>
+<div>
+  <div class='span9'>
     <div>
-      <%= text_field 'article', 'title', :class => 'span1', :style => ' width: 99%', :placeholder => _('Title') %>
+      <%= text_field 'article', 'title', :class => 'input-block-level', :placeholder => _('Title') %>
     </div>
 
     <%= render('images', { :images => @images}) unless @images.empty? %>
 
     <div id='editor-menu'>
-		<ul class="nav nav-tabs">
-			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-				<%= build_editor_link(_("Visual"), 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-			</li>
-			<li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
-				<%= build_editor_link(_("HTML"), 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-			</li>
-		</ul>
+      <ul class="nav nav-tabs">
+        <li id='image-link' <%= 'style="display: none"' if current_user.editor == 'visual' %>><%= toggle_element 'carousel-wrapper', _("Images") %></li>
+        <li id="f" class='pull-right <%= "active" if current_user.editor == 'visual' %>'>
+          <%= build_editor_link(_("Visual"), 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+        </li>
+        <li id="s" class='pull-right <%= "active" if current_user.editor == 'simple' %> '>
+          <%= build_editor_link(_("HTML"), 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+        </li>
+      </ul>
     </div>
 
     <div id="editor">
@@ -109,36 +42,98 @@
         <%= ckeditor_textarea('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
       </div>
 
-      <div id='simple_editor' class='input_text' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
-        <%= text_area('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'simple' %>
+      <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
+        <%= text_area('article', 'body_and_extended', {:class => 'input-block-level', :height => '300px'}) if current_user.editor == 'simple' %>
         <%= render_macros(@macros) if current_user.editor == 'simple' %>
       </div>
     </div>
 
-    <h4><%= _("Tags") %></h4>
-    <div class='class'>
-      <%= text_field 'article', 'keywords', {:autocomplete => 'off', :style => 'width: 100%'} %>
-      <span class='help-block'><%=_("Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.") %></span>
-    </div>
-    <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :tokens => ','}%>		
-  </div>
-
-  <div class='separator'>
-    <h4><%= _("Excerpt") %></h4>
-    <div class=''>
-      <%= text_area 'article', 'excerpt', {:height => '150', :style => 'width: 100%', :rows => '5'} %>
+    <div class='separator'>
+      <h4><%= _("Excerpt") %></h4>
+      <%= text_area 'article', 'excerpt', {:height => '150', :class => 'input-block-level', :rows => '5'} %>
       <span class='help-block'><%=_("Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself") %></span>
     </div>
-  </div>
+    <div class='well'>
+      <fieldset>
+        <legend><%= _("Publish settings") %></legend>
+        <div class='clearfix'>
+          <%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
+          <div id='status' style='display: none;'>        
+            <label for="article_published" class='checkbox'>
+              <%= check_box 'article', 'published'  %>
+              <%= _("Published") %>
+            </label>
+          </div>
+        </div>
+        <div class='clearfix'>
+          <%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
+          <%= toggle_element 'conversation' %>
+          <div id='conversation' style='display: none'>
+            <label for="article_allow_pings" class='checkbox'>
+              <%= check_box 'article', 'allow_pings' %>
+              <%= _("Allow trackbacks") %>
+            </label>
+            <label for="article_allow_comments" class='checkbox'>
+              <%= check_box 'article', 'allow_comments' %>
+              <%= _("Allow comments") %>
+            </label>
+          </div>
+        </div>
+        <div class='clearfix'>
+          <%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
+          <div id='publish' class='input-append' style='display: none;'>
+            <%= calendar_date_select 'article', 'published_at', {:class => 'span7'} %>
+          </div>
+        </div>
+        <div class='clearfix'>
+          <%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %>
+          <div id='visibility' style='display: none'>
+            <label for="article_password"><%= _("Password:") %>
+              <%= password_field :article, :password, :class => 'span10' %>
+            </label>
+          </div>
+        </div>
+        <div class='clearfix'>
+          <%= _("Permalink") %>: <%= toggle_element 'permalink' %>
+          <div class='inputs-list' id='permalink' style='display: none'>
+            <%= text_field 'article', 'permalink', {:class => 'span10'} %>
+          </div>
+        </div>
+        <div class='clearfix'>
+          <%= _("Article filter") %>: <strong><%= _("#{@article.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
+          <div id='text_filter' style='display: none'>
+            <select name="article[text_filter]" id="text_filter">
+              <%= options_for_select text_filter_options, @article.text_filter %>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class='form-actions'>
+      <div class='pull-right'>
+        <%= link_to_destroy_with_profiles(@article) unless @article.id.nil? or @article.state.to_s.downcase == 'draft' %>
+        <span id='destroy_link'><%= link_to_destroy_draft @article %></span>
+        <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn info' />
+        <%= save( _("Publish")) %>        
+      </div>
+    </div>
 
-  <div class=''>
-    <h4><%= _("Uploads") %></h4>
-    <p class='help-block'>Uploads will be displayed as attachments in your RSS feed, but won't appear in your articles.</p>
-    <ul id='attachments' class='inputs-list'>
-      <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
-    </ul>
-  </div>    
   </div>
-
 </div>
 
+<div class='span3'>
+  <div class='well'>
+    <h4><%= _("Categories") %></h4>
+    <%= render 'categories' %>
+  </div>
+  <div class='well'>
+    <h4><%= _("Tags") %></h4>
+    <div class='class'>
+      <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'input-block-level'} %>
+      <p class='alert alert-warning'><%=_("Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.") %></p>
+    </div>
+    <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>		
+    
+  </div>
+  <%= get_post_types %>
+</div>

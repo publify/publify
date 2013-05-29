@@ -331,7 +331,7 @@ function edSpell(which) {
 }
 
 function edToolbar(which) {
-	document.write('<div id="ed_toolbar_' + which + '" class="btn-toolbar">');
+	document.write('<div id="ed_toolbar_' + which + '" class="btn-toolbar"><div class="btn-group">');
 	for (i = 0; i < extendedStart; i++) {
 		edShowButton(which, edButtons[i], i);
 	}
@@ -351,7 +351,7 @@ function edToolbar(which) {
 		edShowButton(which, edButtons[i], i);
 	}
 //	edShowLinks();
-	document.write('</div>');
+	document.write('</div></div>');
     edOpenTags[which] = new Array();
 }
 

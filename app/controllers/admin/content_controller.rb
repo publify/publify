@@ -99,34 +99,6 @@ class Admin::ContentController < Admin::BaseController
     redirect_to :action => 'index'
   end
 
-  def resource_do(action)
-    @article = Article.find(params[:id])
-    @resources = Resource.by_created_at
-    @resource = Resource.find(params["resource_id"])
-    @article.resources.send(action, resource)
-    @article.save
-
-    render :partial => "show_resources"
-  end
-
-  def resource_add
-    resource_do(:<<)
-  end
-
-  def resource_remove
-    resource_do(:delete)
-  end
-
-  def attachment_box_add
-    render :update do |page|
-      page["attachment_add_#{params[:id]}"].remove
-      page.insert_html :bottom, 'attachments',
-          :partial => 'admin/content/attachment',
-          :locals => { :attachment_num => params[:id], :hidden => true }
-      page.visual_effect(:toggle_appear, "attachment_#{params[:id]}")
-    end
-  end
-
   def autosave
     id = params[:article][:id] || params[:id]
 

@@ -561,42 +561,6 @@ describe Admin::ContentController do
           draft.should_not be_published
         end
       end
-
-    end
-
-    describe 'resource_add action' do
-
-      it 'should add resource' do
-        art_id = @article.id
-        resource = FactoryGirl.create(:resource)
-        get :resource_add, :id => art_id, :resource_id => resource.id
-
-        response.should render_template('_show_resources')
-        assigns(:article).should be_valid
-        assigns(:resource).should be_valid
-        assert Article.find(art_id).resources.include?(resource)
-        assert_not_nil assigns(:article)
-        assert_not_nil assigns(:resource)
-        assert_not_nil assigns(:resources)
-      end
-
-    end
-
-    describe 'resource_remove action' do
-
-      it 'should remove resource' do
-        art_id = @article.id
-        resource = FactoryGirl.create(:resource)
-        get :resource_remove, :id => art_id, :resource_id => resource.id
-
-        response.should render_template('_show_resources')
-        assert assigns(:article).valid?
-        assert assigns(:resource).valid?
-        assert !Article.find(art_id).resources.include?(resource)
-        assert_not_nil assigns(:article)
-        assert_not_nil assigns(:resource)
-        assert_not_nil assigns(:resources)
-      end
     end
 
     describe 'auto_complete_for_article_keywords action' do

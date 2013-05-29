@@ -157,6 +157,7 @@ module Admin::BaseHelper
   def build_editor_link(label, action, id, update, editor)
     link = link_to_remote(label,
             :url => { :action => action, 'editor' => editor},
+            :method => :get,
             :class => 'ui-button-text',
             :loading => "new Element.show('update_spinner_#{id}')",
             :success => "new Element.toggle('update_spinner_#{id}')",

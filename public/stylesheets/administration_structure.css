@@ -81,18 +81,14 @@ footer {
 }
 
 #editor-menu {
-	width: 100%;
-	float: left;
-	margin-top: 18px;
+  width: 100%;
+  float: left;
+  margin-top: 18px;
 }
 
 #editor-menu ul {
 	width: 100%;
 	margin-bottom: 0;
-}
-
-#editor-menu ul li {
-	float: right;
 }
 
 #editor-menu ul li.active a {
@@ -169,11 +165,12 @@ label.editor {
 }
 
 #autocomplete li {
-	background: #F5F5F5;
-	color: #0069D6;
+	background: #D9EDF7;
+	color: #3A87AD;
 	padding: 5px 8px;
 	line-height: 18px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 }
 
 #autocomplete li:hover {
@@ -200,4 +197,8 @@ td.article-title .action {
 
 td.article-title:hover .action {
   display: block;
+}
+
+#preview_link {
+  font-weight: normal;
 }
