@@ -97,7 +97,7 @@ module Admin::BaseHelper
     end
 
   def show_actions item
-    content_tag(:div, { :class => 'action' }) do
+    content_tag(:div, { :class => 'action', :style => '' }) do
       [ content_tag(:small, link_to_published(item)),
         small_to_edit(item),
         small_to_delete(item),
@@ -189,6 +189,6 @@ module Admin::BaseHelper
   end
 
   def small_to_delete(item)
-    content_tag(:small, link_to(_("Delete"), :action => 'destroy', :id => item.id))
+    content_tag(:small, link_to(_("Delete"), {:action => 'destroy', :id => item.id}, :class => 'delete'))
   end
 end

@@ -184,3 +184,20 @@ label.editor {
 #main  {
   padding-left: 0;
 }
+
+a.delete {
+  color: #d14;
+}
+
+a.delete:hover,
+a.delete:focus {
+  color: #b94a48;
+}
+
+td.article-title .action {
+  display: none;
+}
+
+td.article-title:hover .action {
+  display: block;
+}

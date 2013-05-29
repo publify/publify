@@ -9,30 +9,43 @@
   :complete => "Element.hide('spinner')" \
   do %>
 
+<% if params[:search] and params[:search]['state'] %>
+<input type='hidden' name="search[state]" value="<%= params[:search]['state'] %>" >
+<% end %>
+
+<div>
+  <span class='badge badge-inverse'>
+    <%= link_to(_("All articles"), :action => 'index') %>
+    
+  </span>
+  <span class='badge badge-success'>
+    <%= link_to(_("Published"), :action => 'index', :search => {:state => 'published'}) %>
+  </span>
+  <span class='badge badge-important'>
+    <%= link_to(_("Withdrawn"), :action => 'index', :search => {:state => 'withdrawn'}) %>
+  </span>
+  <span class='badge badge-info'>
+    <%= link_to(_("Drafts"), :action => 'index', :search => {:state => 'drafts'}) %>
+  </span>
+  <span class='badge badge-warning'>
+    <%= link_to(_("Publication pending"), :action => 'index', :search => {:state => 'pending'}) %>
+  </span>
+  <div class='pull-right'>
+    <span class="input-append">
+      <input id="search" type="text" name="search[searchstring]" class='large' />
+      <%= submit_tag(_("Search"), {:class => 'btn'}) %>
+      <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
+    </span>    
+  </div>
+</div>
+<br class='clearleft' />
 <table class="table table-striped">
   <thead>
-    <tr class='noborder'>
-      <td colspan=5>
-        <span class="input-append">
-          <input id="search" type="text" name="search[searchstring]" class='large' />
-          <%= submit_tag(_("Search"), {:class => 'btn'}) %>
-          <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
-        </span>
-      </td>
-	 </tr>
    <tr class='noborder'>
-      <td>
-        <select name="search[state]">
-          <option value=''><%= _("All articles") %></option>
-          <option value='published'><%= _("Published") %></option>
-          <option value='pending'><%= _("Publication pending") %></option>
-          <option value='drafts'><%= _("Drafts") %></option>
-          <option value='withdrawn'><%= _("Withdrawn") %></option>
-        </select>
-      </td>
-      <td><%= select_tag('search[category]', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: _("Select a category")}) %></td>
-      <td><%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: _("Select an author")}) %></td>
-      <td><%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: _("Publication date")}) %></td>
+      <td></td>
+      <td><%= select_tag('search[category]', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: _("Select a category"), :class => 'span12'}) %></td>
+      <td><%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: _("Select an author"), :class => 'span12'}) %></td>
+      <td><%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: _("Publication date"), :class => 'span12'}) %></td>
       <td><input type="submit" value='<%= _("Filter") %>' class='btn' />
     </tr>
     <tr>
