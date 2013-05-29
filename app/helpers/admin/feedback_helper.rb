@@ -11,7 +11,7 @@ module Admin::FeedbackHelper
     content_tag(:small) do
       [change_status(item, context),
         content_tag(:small, link_to(_("Edit"), :controller => 'admin/feedback', :action => 'edit', :id => item.id)),
-        content_tag(:small, link_to(_("Delete"), :controller => 'admin/feedback', :action => 'destroy', :id => item.id)),
+        content_tag(:small, link_to(_("Delete"), {:controller => 'admin/feedback', :action => 'destroy', :id => item.id}, {:class => 'delete'})),
         link_to(_("Show conversation"), :controller => 'admin/feedback', :action => 'article', :id => item.article_id)].join(" | ").html_safe
     end      
   end
