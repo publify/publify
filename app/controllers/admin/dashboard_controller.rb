@@ -48,7 +48,7 @@ class Admin::DashboardController < Admin::BaseController
 
   def inbound_links
     url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
-    parse(url).reverse
+    parse(url).reverse.compact
   end
 
   def typo_dev
