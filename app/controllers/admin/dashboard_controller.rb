@@ -47,6 +47,8 @@ class Admin::DashboardController < Admin::BaseController
   private
 
   def inbound_links
+    host = URI.parse(this_blog.base_url).host 
+    return [] if (host.downcase == 'localhost' || host =~ /\.local$/) # don't try to fetch links for local blogs
     url = "http://www.google.com/search?q=link:#{this_blog.base_url}&tbm=blg&output=rss"
     parse(url).reverse.compact
   end
