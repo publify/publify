@@ -32,6 +32,7 @@ Localization.define("fr_FR") do |l|
   l.store "the latest Typo version", "la dernière version de Typo"
   l.store "There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Typo est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"
   l.store "There's a new version of Typo available. Why don't you upgrade to %s ?", "Une nouvelle version de Typo est disponible. Pouquoi n'installeriez-vous pas %s"
+  l.store "at an unknown date", "à une date inconnue"
 
   # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Supprimé"
