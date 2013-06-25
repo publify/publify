@@ -6,7 +6,7 @@ describe Admin::TokenChecker do
 
   describe "#safe_token_in_use?" do
     it "returns false with the default token loaded" do
-      TypoBlog::Application.config.secret_token = Admin::TokenChecker::DEFAULT_TOKEN
+      TypoBlog::Application.config.secret_token = $default_token
       expect(checker.safe_token_in_use?).to be_false
     end
 
@@ -18,7 +18,7 @@ describe Admin::TokenChecker do
 
   describe "#needs_token_generation?" do
     it "returns true with the default token in the config" do
-      File.write(fixture, "#{Admin::TokenChecker::DEFAULT_TOKEN}\n")
+      File.write(fixture, "#{$default_token}\n")
       expect(checker.needs_token_generation?).to be_true
     end
 
@@ -30,7 +30,7 @@ describe Admin::TokenChecker do
 
   describe "#generate_token" do
     before do
-      File.write(fixture, "#{Admin::TokenChecker::DEFAULT_TOKEN}\n")
+      File.write(fixture, "#{$default_token}\n")
     end
 
     it "stores a new token in the token file" do
@@ -42,7 +42,7 @@ describe Admin::TokenChecker do
     it "creates a token of the same length as the default token" do
       checker.generate_token
       result = File.read(fixture).chomp
-      expect(result.length).to eq Admin::TokenChecker::DEFAULT_TOKEN.length
+      expect(result.length).to eq $default_token.length
     end
 
     it "does not generate a new token if the current one is safe" do

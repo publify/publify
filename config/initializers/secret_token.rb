@@ -4,4 +4,11 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-TypoBlog::Application.config.secret_token = File.open(File.join(Rails.root, "config", "secret.token"), "r") { |f| f.read.delete("\n") }
+
+file = File.join(Rails.root, "config", "secret.token")
+
+if File.exists?(file)
+  TypoBlog::Application.config.secret_token = File.open(file, "r") { |f| f.read.delete("\n") }
+else
+  TypoBlog::Application.config.secret_token = $default_token
+end

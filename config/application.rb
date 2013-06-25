@@ -11,6 +11,9 @@ module TypoBlog
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    #define default secret token to avoid information duplication
+    $default_token = "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7debac56b48ffd0b5990d6ed0cbecc7dc08dce1503b6b864d580758c3c46056729a"
+    
     # Setup the cache path
     config.action_controller.page_cache_directory = "#{::Rails.root.to_s}/public/cache/"
     config.cache_store=:file_store, "#{::Rails.root.to_s}/public/cache/"
