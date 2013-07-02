@@ -4,21 +4,21 @@ require 'spec_helper'
 describe "Admin::ContentController routing" do
   it "routes #new" do
     { :get => "/admin/content/new"}.should route_to(controller: "admin/content",
-                                                    action: "new")
+                                                    action: "new", :id => nil)
   end
 
   it "routes #autosave" do
     { :post => "/admin/content/autosave"}.should route_to(controller: "admin/content",
-                                                          action: "autosave")
+                                                          action: "autosave", :id => nil)
   end
 
   it "routes #insert_editor" do
     { :get => "/admin/content/insert_editor"}.should route_to(controller: "admin/content",
-                                                              action: "insert_editor")
+                                                              action: "insert_editor", :id => nil)
   end
 
   it "routes #auto_complete_for_article_keywords" do
     { :get => "/admin/content/auto_complete_for_article_keywords"}.should route_to(controller: "admin/content",
-                                                                                   action: "auto_complete_for_article_keywords")
+                                                                                   action: "auto_complete_for_article_keywords", :id => nil)
   end
 end
