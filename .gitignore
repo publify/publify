@@ -1,5 +1,6 @@
 config/database.yml
 config/mail.yml
+config/secret.token
 *.log
 *~
 db/*.sqlite*
