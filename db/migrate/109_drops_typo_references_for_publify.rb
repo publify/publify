@@ -11,6 +11,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
     say "Removes references to typo:something from articles, pages, feedback"
     unless Blog.default.nil?
       Blog.default.plugin_avatar = "PublifyPlugins::Gravatar" if Blog.default.plugin_avatar == "TypoPlugins::Gravatar"
+      Blog.default.save!
     end
     
     Article.find(:all).each do |art|
