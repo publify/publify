@@ -6,7 +6,7 @@ class Admin::TokenChecker
   end
 
   def safe_token_in_use?
-    TypoBlog::Application.config.secret_token != $default_token
+    Publify::Application.config.secret_token != $default_token
   end
 
   def needs_token_generation?

@@ -19,28 +19,28 @@ class Admin::DashboardController < Admin::BaseController
     @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
     @statspam = Comment.spam.count
     @inbound_links = inbound_links
-    @typo_links = typo_dev
-    typo_version
+    @publify_links = publify_dev
+    publify_version
   end
 
-  def typo_version
-    typo_version = nil
+  def publify_version
+    publify_version = nil
     version = TYPO_VERSION.to_s.split('.')
     begin
-      url = "http://blog.typosphere.org/version.txt"
+      url = "http://blog.publify.co/version.txt"
       open(url) do |http|
-        typo_version = http.read[0..5]
-        version = typo_version.split('.')
+        publify_version = http.read[0..5]
+        version = publify_version.split('.')
       end
     rescue
     end
 
     if version[0].to_i > TYPO_MAJOR.to_i
-      flash.now[:error] = _("You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
+      flash.now[:error] = _("You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "<a href='http://publify.co/stable.tgz'>#{_("the latest Publify version")}</a>").html_safe
     elsif version[1].to_i > TYPO_SUB.to_i
-      flash.now[:warning] = _("There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
+      flash.now[:warning] = _("There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "<a href='http://publify.co/stable.tgz'>#{_("the latest Publify version")}</a>").html_safe
     elsif version[2].to_i > TYPO_MINOR.to_i
-      flash.now[:notice] = _("There's a new version of Typo available. Why don't you upgrade to %s ?", "<a href='http://typosphere.org/stable.tgz'>#{_("the latest Typo version")}</a>").html_safe
+      flash.now[:notice] = _("There's a new version of Publify available. Why don't you upgrade to %s ?", "<a href='http://publify.co/stable.tgz'>#{_("the latest Publify version")}</a>").html_safe
     end
   end
 
@@ -53,8 +53,8 @@ class Admin::DashboardController < Admin::BaseController
     parse(url).reverse.compact
   end
 
-  def typo_dev
-    url = "http://blog.typosphere.org/articles.rss"
+  def publify_dev
+    url = "http://blog.publify.co/articles.rss"
     parse(url)[0..4]
   end
 

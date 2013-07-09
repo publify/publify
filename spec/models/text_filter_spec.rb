@@ -12,26 +12,26 @@ describe "With the list of available filters" do
 
   describe "#available_filters" do
     subject { @filters }
-    it { should include(Typo::Textfilter::Markdown) }
-    it { should include(Typo::Textfilter::Smartypants) }
-    it { should include(Typo::Textfilter::Htmlfilter) }
-    it { should include(Typo::Textfilter::Textile) }
-    it { should include(Typo::Textfilter::Flickr) }
-    it { should include(Typo::Textfilter::Code) }
-    it { should include(Typo::Textfilter::Lightbox) }
+    it { should include(PublifyApp::Textfilter::Markdown) }
+    it { should include(PublifyApp::Textfilter::Smartypants) }
+    it { should include(PublifyApp::Textfilter::Htmlfilter) }
+    it { should include(PublifyApp::Textfilter::Textile) }
+    it { should include(PublifyApp::Textfilter::Flickr) }
+    it { should include(PublifyApp::Textfilter::Code) }
+    it { should include(PublifyApp::Textfilter::Lightbox) }
     it { should_not include(TextFilterPlugin::Markup) }
     it { should_not include(TextFilterPlugin::Macro) }
   end
 
   describe "#macro_filters" do
     subject { TextFilter.macro_filters }
-    it { should_not include(Typo::Textfilter::Markdown) }
-    it { should_not include(Typo::Textfilter::Smartypants) }
-    it { should_not include(Typo::Textfilter::Htmlfilter) }
-    it { should_not include(Typo::Textfilter::Textile) }
-    it { should include(Typo::Textfilter::Flickr) }
-    it { should include(Typo::Textfilter::Code) }
-    it { should include(Typo::Textfilter::Lightbox) }
+    it { should_not include(PublifyApp::Textfilter::Markdown) }
+    it { should_not include(PublifyApp::Textfilter::Smartypants) }
+    it { should_not include(PublifyApp::Textfilter::Htmlfilter) }
+    it { should_not include(PublifyApp::Textfilter::Textile) }
+    it { should include(PublifyApp::Textfilter::Flickr) }
+    it { should include(PublifyApp::Textfilter::Code) }
+    it { should include(PublifyApp::Textfilter::Lightbox) }
     it { should_not include(TextFilterPlugin::Markup) }
     it { should_not include(TextFilterPlugin::Macro) }
   end
@@ -72,34 +72,34 @@ describe "With the list of available filters" do
       filter_text('*"foo"*',[:doesntexist1,:markdown,"doesn't exist 2",:smartypants,:nopenotmeeither])
     end
 
-    describe "specific typo tags" do
+    describe "specific publify tags" do
 
       describe "flickr" do
 
         it "should show with default settings" do
           assert_equal "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
-            filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',
+            filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
                         [:macropre,:macropost],
                         {'flickr-user' => 'scott@sigkill.org'})
         end
 
         it "should use default image size" do
           assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
-            filter_text('<typo:flickr img="31366117"/>',
+            filter_text('<publify:flickr img="31366117"/>',
                         [:macropre,:macropost],
                         {'flickr-user' => 'scott@sigkill.org'})
         end
 
         it "should use caption" do
           assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a></div>",
-            filter_text('<typo:flickr img="31366117" caption=""/>',
+            filter_text('<publify:flickr img="31366117" caption=""/>',
                         [:macropre,:macropost],
                         {'flickr-user' => 'scott@sigkill.org'})
         end
 
         it "broken_flickr_link" do
           assert_equal %{<div class='broken_flickr_link'>\`notaflickrid\' could not be displayed because: <br />Photo not found</div>},
-            filter_text('<typo:flickr img="notaflickrid" />',
+            filter_text('<publify:flickr img="notaflickrid" />',
                         [:macropre, :macropost],
                         { 'flickr-user' => 'scott@sigkill.org' })
         end
@@ -110,28 +110,28 @@ describe "With the list of available filters" do
     describe 'code textfilter' do
       describe 'single line' do
         it 'should made nothin if no args' do
-          filter_text('<typo:code>foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>}
+          filter_text('<publify:code>foo-code</publify:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>}
         end
 
         it 'should parse ruby lang' do
-          filter_text('<typo:code lang="ruby">foo-code</typo:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile><span class=\"CodeRay\">foo-code</span></notextile></pre></div>}
+          filter_text('<publify:code lang="ruby">foo-code</publify:code>', [:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile><span class=\"CodeRay\">foo-code</span></notextile></pre></div>}
         end
 
         it 'should parse ruby and xml in same sentence but not in same place' do
-          filter_text('<typo:code lang="ruby">foo-code</typo:code> blah blah <typo:code lang="xml">zzz</typo:code>',[:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div> blah blah <div class="CodeRay"><pre><notextile><span class="CodeRay">zzz</span></notextile></pre></div>}
+          filter_text('<publify:code lang="ruby">foo-code</publify:code> blah blah <publify:code lang="xml">zzz</publify:code>',[:macropre,:macropost]).should == %{<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div> blah blah <div class="CodeRay"><pre><notextile><span class="CodeRay">zzz</span></notextile></pre></div>}
         end
 
       end
       describe 'multiline' do
         it 'should render ruby' do
           filter_text(%{
-<typo:code lang="ruby">
+<publify:code lang="ruby">
 class Foo
   def bar
     @a = "zzz"
   end
 end
-</typo:code>
+</publify:code>
           },[:macropre,:macropost]).should == %{
 <div class=\"CodeRay\"><pre><notextile><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">Foo</span>
   <span class=\"keyword\">def</span> <span class=\"function\">bar</span>
@@ -151,13 +151,13 @@ end
       text = <<-EOF
 *header text here*
 
-<typo:code lang="ruby">
+<publify:code lang="ruby">
 class test
   def method
     "foo"
   end
 end
-</typo:code>
+</publify:code>
 
 _footer text here_
 
@@ -187,28 +187,28 @@ _footer text here_
     context "lightbox" do
       it "should work" do
         assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_t.jpg\" width=\"67\" height=\"100\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>",
-          filter_text('<typo:lightbox img="31366117" thumbsize="Thumbnail" displaysize="Large" style="float:left"/>',
+          filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail" displaysize="Large" style="float:left"/>',
                       [:macropre,:macropost],
                       {})
       end
 
       it "shoudl use default thumb image size" do
         assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
-          filter_text('<typo:lightbox img="31366117" displaysize="Large"/>',
+          filter_text('<publify:lightbox img="31366117" displaysize="Large"/>',
                       [:macropre,:macropost],
                       {})
       end
 
       it "should use default display image size" do
         assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
-          filter_text('<typo:lightbox img="31366117"/>',
+          filter_text('<publify:lightbox img="31366117"/>',
                       [:macropre,:macropost],
                       {})
       end
 
       it "should work with caption" do
         assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a>",
-          filter_text('<typo:lightbox img="31366117" caption=""/>',
+          filter_text('<publify:lightbox img="31366117" caption=""/>',
                       [:macropre,:macropost],
                       {})
       end
@@ -217,7 +217,7 @@ _footer text here_
     describe "combining a post-macro" do
       describe "with markdown" do
         it "correctly interprets the macro" do
-          result = filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',
+          result = filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
                                [:macropre, :markdown, :macropost])
           result.should =~ %r{<div style="float:left" class="flickrplugin"><a href="http://www.flickr.com/users/scottlaird/31366117"><img src="http://photos23.flickr.com/31366117_b1a791d68e_s.jpg" width="75" height="75" alt="Matz" title="Matz"/></a><p class="caption" style="width:75px">This is Matz, Ruby's creator</p></div>}
         end
@@ -225,7 +225,7 @@ _footer text here_
 
       describe "with markdown" do
         it "correctly interprets the macro" do
-          result = filter_text('<typo:flickr img="31366117" size="Square" style="float:left"/>',
+          result = filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
                                [:macropre, :textile, :macropost])
           result.should == "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>"
         end

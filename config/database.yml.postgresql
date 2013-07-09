@@ -11,16 +11,16 @@ connection: &connection
 
 
 development:
-  database: typo_dev
+  database: publify_dev
   <<: *login
   <<: *connection
 
 test:
-  database: typo_tests
+  database: publify_tests
   <<: *login
   <<: *connection
 
 production:
-  database: typo
+  database: publify
   <<: *login
   <<: *connection

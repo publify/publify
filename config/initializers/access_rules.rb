@@ -3,7 +3,7 @@
 # Based on the LoginSystem of Lipisadmin
 # You can define on the fly, roles access, for example:
 #
-#   Typo::AccessControl.map :require => [ :administrator, :manager, :customer ]  do |map|
+#   Publify::AccessControl.map :require => [ :administrator, :manager, :customer ]  do |map|
 #     # Shared Permission
 #     map.permission "backend/base"
 #     # Module Permission
@@ -14,7 +14,7 @@
 #
 #   end
 #
-#   Typo::AccessControl.map :require => :customer do |map|
+#   Publify::AccessControl.map :require => :customer do |map|
 #     # Shared Permission
 #     map.permission "frontend/cart"
 #     # Module Permission
@@ -26,13 +26,13 @@
 #
 # So the when you do:
 #
-#   Typo::AccessControl.roles
+#   Publify::AccessControl.roles
 #   # => [:administrator, :manager, :customer]
 #
-#   Typo::AccessControl.project_modules(:customer)
-#   # => [#<Typo::AccessControl::ProjectModule:0x254a9c8 @controller="backend/accounts", @name=:accounts, @menus=[#<Typo::AccessControl::Menu:0x254a928 @url={:action=>:index}, @name=:list, @options={:class=>"icon-no-group"}>, #<Typo::AccessControl::Menu:0x254a8d8 @url={:action=>:new}, @name=:new, @options={:class=>"icon-new"}>]>, #<Typo::AccessControl::ProjectModule:0x254a84c @controller="frontend/store", @name=:store, @menus=[#<Typo::AccessControl::Menu:0x254a7d4 @url={:cart=>:add}, @name=:add, @options={}>, #<Typo::AccessControl::Menu:0x254a798 @url={:cart=>:list}, @name=:list, @options={}>]>]
+#   Publify::AccessControl.project_modules(:customer)
+#   # => [#<Publify::AccessControl::ProjectModule:0x254a9c8 @controller="backend/accounts", @name=:accounts, @menus=[#<Publify::AccessControl::Menu:0x254a928 @url={:action=>:index}, @name=:list, @options={:class=>"icon-no-group"}>, #<Publify::AccessControl::Menu:0x254a8d8 @url={:action=>:new}, @name=:new, @options={:class=>"icon-new"}>]>, #<Publify::AccessControl::ProjectModule:0x254a84c @controller="frontend/store", @name=:store, @menus=[#<Publify::AccessControl::Menu:0x254a7d4 @url={:cart=>:add}, @name=:add, @options={}>, #<Publify::AccessControl::Menu:0x254a798 @url={:cart=>:list}, @name=:list, @options={}>]>]
 #
-#   Typo::AccessControl.allowed_controllers(:customer)
+#   Publify::AccessControl.allowed_controllers(:customer)
 #   => ["backend/base", "backend/accounts", "frontend/cart", "frontend/store"]
 #
 # If in your controller there is *login_required* our Authenticated System verify the allowed_controllers for the account role (Ex: :customer),

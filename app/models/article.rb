@@ -3,7 +3,7 @@ require 'uri'
 require 'net/http'
 
 class Article < Content
-  include TypoGuid
+  include PublifyGuid
   include ConfigManager
 
   serialize :settings, Hash
@@ -53,7 +53,7 @@ class Article < Content
   scope :drafts, lambda { where(state: 'draft').order('created_at DESC') }
   scope :child_of, lambda { |article_id| where(parent_id: article_id) }
   scope :published, lambda { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
-  scope :published_at, lambda {|time_params| published.where(published_at: TypoTime.delta(*time_params)).order('published_at DESC')}
+  scope :published_at, lambda {|time_params| published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC')}
   scope :published_since, lambda {|time| published.where('published_at > ?', time).order('published_at DESC') }
   scope :withdrawn, lambda { where(state: 'withdrawn').order('published_at DESC') }
   scope :pending, lambda { where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC') }
@@ -206,7 +206,7 @@ class Article < Content
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   # params is a Hash
   def self.find_by_permalink(params)
-    date_range = TypoTime.delta(params[:year], params[:month], params[:day])
+    date_range = PublifyTime.delta(params[:year], params[:month], params[:day])
 
     req_params = {}
     req_params[:permalink] = params[:title] if params[:title]

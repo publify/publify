@@ -5,7 +5,7 @@ class Feedback < ActiveRecord::Base
   belongs_to :text_filter
   belongs_to :article
 
-  include TypoGuid
+  include PublifyGuid
 
   include Stateful
   include ContentBase

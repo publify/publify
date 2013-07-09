@@ -34,9 +34,9 @@ describe ThemeController do
 
   it "disabled_test_javascript"
   if false
-    get :stylesheets, :filename => "typo.js"
+    get :stylesheets, :filename => "publify.js"
     assert_response :success
     assert_equal "text/javascript", @response.content_type
-    assert_equal "inline; filename=\"typo.js\"", @response.headers['Content-Disposition']
+    assert_equal "inline; filename=\"publify.js\"", @response.headers['Content-Disposition']
   end
 end

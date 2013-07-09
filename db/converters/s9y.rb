@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Serendipity (S9Y) 0.8.x converter for typo by Jochen Schalanda <jochen@schalanda.de>
+# Serendipity (S9Y) 0.8.x converter for publify by Jochen Schalanda <jochen@schalanda.de>
 # heavily based on the Wordpress 1.5x converter by Patrick Lenz <patrick@lenz.sh>
 #
 # MAKE BACKUPS OF EVERYTHING BEFORE RUNNING THIS SCRIPT!
@@ -11,7 +11,7 @@
 #
 # Migrated users will have the default password "password", since the
 # MD5 hashes of S9Y cannot be converted to salted SHA1 hashes which are
-# used by Typo.
+# used by Publify.
 #
 
 require File.dirname(__FILE__) + '/../../config/environment'

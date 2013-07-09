@@ -1,6 +1,6 @@
 require 'digest/sha1'
 
-# Typo user.
+# Publify user.
 class User < ActiveRecord::Base
   include ConfigManager
 
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   setting :show_jabber,                :boolean, false
   setting :admin_theme,                :string,  'blue'
 
-  # echo "typo" | sha1sum -
+  # echo "publify" | sha1sum -
   class_attribute :salt
 
   def self.salt

@@ -8,8 +8,8 @@ module Admin::DashboardHelper
   
   def dashboard_sidebar_link
     return unless current_user.profile.modules.include? :sidebar
-    _("You can also %s to customize your Typo blog.", 
-      link_to(_('download some plugins'), 'http://plugins.typosphere.org'))
+    _("You can also %s to customize your Publify blog.", 
+      link_to(_('download some plugins'), 'http://plugins.publify.co'))
   end 
 
   def dashboard_action_links

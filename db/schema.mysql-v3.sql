@@ -1,3 +1,3 @@
 -- Leaving this file empty forces the whole migration
--- and fixes a bug when using Typo installer.
+-- and fixes a bug when using Publify installer.
 -- Please, leave them as is.

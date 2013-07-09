@@ -1,10 +1,10 @@
-To fully profit from Typo static caching capabilities, you need to add the
+To fully profit from Publify static caching capabilities, you need to add the
 following rewrite rules to either your .htaccess or your virtualhost after
 declaring the document root.
 
 == Rewrite Rules For Apache
 
-=== If Typo is installed at your URL root.
+=== If Publify is installed at your URL root.
   
   RewriteEngine On
 
@@ -17,7 +17,7 @@ declaring the document root.
   RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_FILENAME}.html -f
   RewriteRule ^/(.*)$ /cache/$1.html [PT]
 
-=== If Typo is installed in a sub-URL, e.g., /blog:
+=== If Publify is installed in a sub-URL, e.g., /blog:
 
   # Note that 'blog' appears twice in the rewritten URL.
 

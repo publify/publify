@@ -637,9 +637,9 @@ describe ArticlesController, "assigned keywords" do
   end
 
   it 'index without option but with blog keywords should have meta keywords' do
-    @blog.meta_keywords = "typo, is, amazing"
+    @blog.meta_keywords = "publify, is, amazing"
     get 'index'
-    assigns(:keywords).should == "typo, is, amazing"
+    assigns(:keywords).should == "publify, is, amazing"
   end
 end
 

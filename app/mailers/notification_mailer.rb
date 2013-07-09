@@ -19,7 +19,7 @@ class NotificationMailer < ActionMailer::Base
   def notif_user(user)
     @user = user
     @blog = Blog.default
-    build_mail @blog, @user, "Welcome to Typo"
+    build_mail @blog, @user, "Welcome to Publify"
   end
 
   private
@@ -29,7 +29,7 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def build_mail blog, user, subject
-    headers['X-Mailer'] = "Typo #{TYPO_VERSION}"
+    headers['X-Mailer'] = "Publify #{TYPO_VERSION}"
     mail(from: blog.email_from,
          to: user.email,
          subject: make_subject(blog, subject))

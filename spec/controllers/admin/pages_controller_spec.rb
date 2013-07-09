@@ -82,7 +82,7 @@ describe Admin::PagesController do
   it 'test_update' do
     page = FactoryGirl.create(:page)
     post :edit, :id => page.id, :page => { :name => "markdown-page", :title => "Markdown Page",
-      :body => "Adding a [link](http://www.typosphere.org/) here" }
+      :body => "Adding a [link](http://www.publify.co/) here" }
 
     assert_response :redirect, :action => "show", :id => page.id
 

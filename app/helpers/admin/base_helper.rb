@@ -66,7 +66,7 @@ module Admin::BaseHelper
   end
 
   def plugin_options(kind, blank = true)
-    r = TypoPlugins::Keeper.available_plugins(kind).collect do |plugin|
+    r = PublifyPlugins::Keeper.available_plugins(kind).collect do |plugin|
       [ plugin.name, plugin.to_s ]
     end
     blank ? r << [_("none"),''] : r
@@ -130,13 +130,13 @@ module Admin::BaseHelper
 
   def macro_help_popup(macro, text)
     unless current_user.editor == 'visual'
-      "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Typo Macro Help')\">#{text}</a>"
+      "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
     end
   end
 
   def render_macros(macros)
     content_tag(:div) do
-      link_to_function(_("Show help on Typo macros") + " (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "macros", :duration => 0.2) })
+      link_to_function(_("Show help on Publify macros") + " (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "macros", :duration => 0.2) })
       content_tag(:table, {:id => 'macros', :style => 'display: none'}) do
         content_tag(:tr) do
           content_tag(:th, _('Name'))

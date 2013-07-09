@@ -8,7 +8,7 @@ class SetupController < ApplicationController
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url
 
-    @user = User.new(:login => 'admin', :email => params[:setting][:email], :nickname => "Typo Admin")
+    @user = User.new(:login => 'admin', :email => params[:setting][:email], :nickname => "Publify Admin")
     @user.generate_password!
     @user.name = @user.login
 
@@ -26,7 +26,7 @@ class SetupController < ApplicationController
     self.current_user = @user
     session[:user_id] = @user.id
 
-    # FIXME: Crappy hack : by default, the auto generated post is user_id less and it makes Typo crash
+    # FIXME: Crappy hack : by default, the auto generated post is user_id less and it makes Publify crash
     if User.count == 1
       update_or_create_first_post_with_user @user
       create_first_page @user
@@ -46,7 +46,7 @@ class SetupController < ApplicationController
     else
       Article.create(title: 'Hello World!',
                      author: user.login,
-                     body: 'Welcome to Typo. This is your first article. Edit or delete it, then start blogging!',
+                     body: 'Welcome to Publify. This is your first article. Edit or delete it, then start blogging!',
                      allow_comments: 1,
                      allow_pings: 1,
                      published: 1,
@@ -60,7 +60,7 @@ class SetupController < ApplicationController
     Page.create(name: "about",
       title: "about",
       user: user,
-      body: "This is an example of a Typo page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Typo.")
+      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.")
     
   end
 

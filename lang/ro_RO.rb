@@ -99,7 +99,7 @@ Localization.define("ro_RO") do |l|
   l.store "Show", ""
   l.store "Published", "Publicat"
   l.store "Unpublished", ""
-  l.store "Show help on Typo macros", ""
+  l.store "Show help on Publify macros", ""
   l.store "Back to overview", ""
   l.store "Name", "Nume"
   l.store "Description", "Descriere"
@@ -253,7 +253,7 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
+  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", ""
   l.store "No comments yet", ""
   l.store "By %s on %s", ""
@@ -265,7 +265,7 @@ Localization.define("ro_RO") do |l|
   l.store "You have no internet connection", ""
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", ""
+  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
   l.store "update your profile or change your password", ""
   l.store "You can also do a bit of design, %s or %s.", ""
   l.store "change your blog presentation", ""
@@ -281,14 +281,14 @@ Localization.define("ro_RO") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
 
-  # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Latest news from the Typo development blog", ""
+  # app/views/admin/dashboard/_publify_dev.html.erb
+  l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
   l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Typo %s", ""
+  l.store "You're running Publify %s", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Total comments : %d", ""
@@ -372,11 +372,11 @@ Localization.define("ro_RO") do |l|
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
-  l.store "Adds livesearch to your Typo blog", ""
-  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Adds livesearch to your Publify blog", ""
+  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Page", ""
   l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "Show most popular tags for this blog", ""
@@ -400,7 +400,7 @@ Localization.define("ro_RO") do |l|
   l.store "Do not index tags", ""
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
   l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
@@ -415,7 +415,7 @@ Localization.define("ro_RO") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
+  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "Permalink format", ""
   l.store "Date and title", ""
@@ -471,20 +471,20 @@ Localization.define("ro_RO") do |l|
   l.store "Enable gravatars", "Activează gravataruri"
   l.store "Show your email address", "Arată adresa ta de email"
   l.store "Notifications", ""
-  l.store "Typo can notify you when new articles or comments are posted", "Typo te poate alerta la publicarea de noi articole sau comentarii"
+  l.store "Publify can notify you when new articles or comments are posted", "Publify te poate alerta la publicarea de noi articole sau comentarii"
   l.store "Source Email", "Expeditor email"
-  l.store "Email address used by Typo to send notifications", "Adresa email folosită de Typo pentru a trimite alerte prin email"
-  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La activarea protecției anti-spam, Typo va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot "
+  l.store "Email address used by Publify to send notifications", "Adresa email folosită de Publify pentru a trimite alerte prin email"
+  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La activarea protecției anti-spam, Publify va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot "
   l.store "Enable spam protection", "Activează protecția anti-spam"
   l.store "Akismet Key", "Cheia Akismet"
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Opțional, Typo poate folosi serviciul %s de filtrare spam. Trebuie să te înregistrezi la Akismet și să primești o cheie API pentru a putea folosi acest serviciu. Dacă ai deja o cheie Akismet, introdu-o aici"
+  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Opțional, Publify poate folosi serviciul %s de filtrare spam. Trebuie să te înregistrezi la Akismet și să primești o cheie API pentru a putea folosi acest serviciu. Dacă ai deja o cheie Akismet, introdu-o aici"
   l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Această opțiune va dezactiva trimiterea de retrolegături de acum înainte. Retrolegăturile existente vor rămîne în site-uri, dar alte retrolegături nu vor mai fi posibile nicăieri in blog."
   l.store "Disable comments after", "Dezactivează comentariile după "
   l.store "days", "zile"
   l.store "Set to 0 to never disable comments", "Comentariile nu vor fi dezactivate niciodată dacă alegi valoarea 0"
   l.store "Max Links", "Număr maxim de legături"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături"
+  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături"
   l.store "Set to 0 to never reject comments", "Comentariile nu vor fi respinse niciodată dacă alegi valoarea 0"
   l.store "Feedback settings", ""
 
@@ -504,7 +504,7 @@ Localization.define("ro_RO") do |l|
   l.store "Show full article on feed", "Include articole complete în RSS"
   l.store "Feedburner ID", ""
   l.store "General settings", "Setări generale"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
+  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
@@ -519,7 +519,7 @@ Localization.define("ro_RO") do |l|
   l.store "Index tags", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
@@ -540,7 +540,7 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "Trimite retrolegături"
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Cînd publici un articol, Typo poate trimite automat retrolegături site-urilor pe care le specifici. În cazul unui blog personal, această opțiune ar trebui dezactivată, ca să nu deconspire informații private. Dacă blogul e public, opțiunea aceasta poate rămîne activă."
+  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Cînd publici un articol, Publify poate trimite automat retrolegături site-urilor pe care le specifici. În cazul unui blog personal, această opțiune ar trebui dezactivată, ca să nu deconspire informații private. Dacă blogul e public, opțiunea aceasta poate rămîne activă."
   l.store "URLs to ping automatically", "Site-uri de anunțat automat"
   l.store "Latitude, Longitude", "Latitudine, longitudine"
   l.store "your latitude and longitude", "latitudinea și longitudinea ta"
@@ -708,7 +708,7 @@ Localization.define("ro_RO") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", ""
@@ -760,7 +760,7 @@ Localization.define("ro_RO") do |l|
   # themes/dirtylicious/layouts/default.html.erb
   l.store "Home", ""
   l.store "About", ""
-  l.store "Designed by %s ported to typo by %s ", ""
+  l.store "Designed by %s ported to publify by %s ", ""
 
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
@@ -956,7 +956,7 @@ Localization.define("ro_RO") do |l|
   l.store "Things you can do", "Acțiuni"
   l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!","This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!" #Need translate
   l.store "Type", "Tip"
-  l.store "Typo admin", "Administrare Typo"
+  l.store "Publify admin", "Administrare Publify"
   l.store "Upload a new File", "Încarcă un fișier nou"
   l.store "Upload a new Resource", "Încarcă o nouă resursă"
   l.store "Uploaded", "Încărcat la"
@@ -970,7 +970,7 @@ Localization.define("ro_RO") do |l|
   l.store "You are now logged out of the system", "Ați ieșit din aplicație"
   l.store "You can add it to the following categories", "Îl puteți adăuga următoarelor categorii"
   l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Opțional, puteți dezactiva comentariile non-AJAX. Typo va folosi întotdeauna AJAX pentru trimiterea comentariilor dacă funcționează Javascript la utilizator, astfel că orice comentariu care nu vine prin AJAX trebuie să vină fie de la spammeri, fie de la vizitatori fără Javascript."
+  l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Opțional, puteți dezactiva comentariile non-AJAX. Publify va folosi întotdeauna AJAX pentru trimiterea comentariilor dacă funcționează Javascript la utilizator, astfel că orice comentariu care nu vine prin AJAX trebuie să vină fie de la spammeri, fie de la vizitatori fără Javascript."
   l.store "by", "de"
   l.store "on", "la"
   l.store "seperate with spaces", "separate de spațiu"

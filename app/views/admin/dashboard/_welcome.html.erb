@@ -2,7 +2,7 @@
 
 <div class='well'>
   <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts_count, @newcomments_count) %></p>
-  <p><%= _("You're running Typo %s", TYPO_VERSION) %> <%= @version_message %></p>
+  <p><%= _("You're running Publify %s", TYPO_VERSION) %> <%= @version_message %></p>
 
   <% if current_user.profile.modules.include? :articles%>
   <p><strong><%= _("Content") %></strong></p>

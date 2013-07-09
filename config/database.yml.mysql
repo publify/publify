@@ -6,13 +6,13 @@ login: &login
 
 
 development:
-  database: typo_dev
+  database: publify_dev
   <<: *login
 
 test:
-  database: typo_tests
+  database: publify_tests
   <<: *login
 
 production:
-  database: typo
+  database: publify
   <<: *login

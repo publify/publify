@@ -99,7 +99,7 @@ Localization.define("zh_TW") do |l|
   l.store "Show", ""
   l.store "Published", "已公開的"
   l.store "Unpublished", ""
-  l.store "Show help on Typo macros", ""
+  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "回到概覽"
   l.store "Name", "名字"
   l.store "Description", "説明"
@@ -252,7 +252,7 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
+  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "最近評論"
   l.store "No comments yet", "沒有任何評論"
   l.store "By %s on %s", ""
@@ -264,7 +264,7 @@ Localization.define("zh_TW") do |l|
   l.store "You have no internet connection", "你沒有連結到網路"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%s， %s或%s"
+  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%s， %s或%s"
   l.store "update your profile or change your password", "更新資料或者修改密碼"
   l.store "You can also do a bit of design, %s or %s.", "你也可以作一些設計, %s或%s."
   l.store "change your blog presentation", "修改你的部落格外觀"
@@ -280,14 +280,14 @@ Localization.define("zh_TW") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", "你還沒有發文"
 
-  # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Latest news from the Typo development blog", "Typo開發部落格的最新消息"
+  # app/views/admin/dashboard/_publify_dev.html.erb
+  l.store "Latest news from the Publify development blog", "Publify開發部落格的最新消息"
   l.store "Oh no, nothing new", "沒有新訊息"
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "歡迎回來， %s！"
   l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Typo %s", "你現在是使用Typo %s"
+  l.store "You're running Publify %s", "你現在是使用Publify %s"
   l.store "Total posts : %d", "發文總計：%d"
   l.store "Your posts : %d", "你的發文：%d"
   l.store "Total comments : %d", "評論總計：%d"
@@ -384,7 +384,7 @@ Localization.define("zh_TW") do |l|
   l.store "Do not index tags", ""
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
   l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
@@ -399,7 +399,7 @@ Localization.define("zh_TW") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
+  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "Permalink format", ""
   l.store "Date and title", ""
@@ -455,20 +455,20 @@ Localization.define("zh_TW") do |l|
   l.store "Enable gravatars", "可以顯示留言大頭貼"
   l.store "Show your email address", "秀出你的email位址"
   l.store "Notifications", ""
-  l.store "Typo can notify you when new articles or comments are posted", "當新的文章或評論被貼上時typo會通知你"
+  l.store "Publify can notify you when new articles or comments are posted", "當新的文章或評論被貼上時publify會通知你"
   l.store "Source Email", "原始email"
-  l.store "Email address used by Typo to send notifications", "email位址使用typo發出通知"
-  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "typo會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄"
+  l.store "Email address used by Publify to send notifications", "email位址使用publify發出通知"
+  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "publify會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄"
   l.store "Enable spam protection", "有效防止垃圾郵件"
   l.store "Akismet Key", "Akismet鍵"
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo隨意的使用 %s 篩選垃圾郵件服務。"
+  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify隨意的使用 %s 篩選垃圾郵件服務。"
   l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "此設定可以讓你部落格裡的文章停止引用，這個舉動並不會刪除存在的引用，但是會阻止將來你要試圖增加的引用"
   l.store "Disable comments after", "在失效的評論之後"
   l.store "days", "日期"
   l.store "Set to 0 to never disable comments", "設定0為絕不失效的評論"
   l.store "Max Links", "最大的連結值"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo會自動回絕評論和引用，包含某些可靠的連結總數"
+  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify會自動回絕評論和引用，包含某些可靠的連結總數"
   l.store "Set to 0 to never reject comments", "設定0回絕不回絕的評論"
   l.store "Feedback settings", ""
 
@@ -488,7 +488,7 @@ Localization.define("zh_TW") do |l|
   l.store "Show full article on feed", "顯示全部feed文章"
   l.store "Feedburner ID", ""
   l.store "General settings", "一般設定"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
+  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "SEO"
@@ -503,7 +503,7 @@ Localization.define("zh_TW") do |l|
   l.store "Index tags", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
@@ -524,7 +524,7 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "引用發送"
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "當公開的文章或引用會洩漏你私人的資訊時，對於不公開的部落格typo會終止連結。在公開的部落格並無此選項"
+  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "當公開的文章或引用會洩漏你私人的資訊時，對於不公開的部落格publify會終止連結。在公開的部落格並無此選項"
   l.store "URLs to ping automatically", "URL自動地Ping"
   l.store "Latitude, Longitude", "緯度,經度"
   l.store "your latitude and longitude", "你的緯度、經度"
@@ -551,11 +551,11 @@ Localization.define("zh_TW") do |l|
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
-  l.store "Adds livesearch to your Typo blog", ""
-  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Adds livesearch to your Publify blog", ""
+  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Page", ""
   l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "Show most popular tags for this blog", ""
@@ -707,7 +707,7 @@ Localization.define("zh_TW") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", ""
@@ -759,7 +759,7 @@ Localization.define("zh_TW") do |l|
   # themes/dirtylicious/layouts/default.html.erb
   l.store "Home", ""
   l.store "About", ""
-  l.store "Designed by %s ported to typo by %s ", ""
+  l.store "Designed by %s ported to publify by %s ", ""
 
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
@@ -979,8 +979,8 @@ Localization.define("zh_TW") do |l|
   l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only.", "只讓進階使用者選擇簡單或完整的界面，顯示更多更複雜的選項"
   l.store "Toggle Extended Content", "切換擴增內容"
   l.store "Type", "型態"
-  l.store "Typo admin", "Typo管理員"
-  l.store "Typo documentation", "Typo文件"
+  l.store "Publify admin", "Publify管理員"
+  l.store "Publify documentation", "Publify文件"
   l.store "Update your profile or change your password", "請更新您的個人資料或者修改密碼"
   l.store "Upload a new File", "上載一個新檔案"
   l.store "Upload a new Resource", "上傳一個新的資源"
@@ -999,7 +999,7 @@ Localization.define("zh_TW") do |l|
   l.store "XML Syndication", "XML簡易整合"
   l.store "You are now logged out of the system", "您已經登出系統"
   l.store "You can add it to the following categories", "你可以新增至以下分類中"
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "你可以隨意地讓non-Ajax評論無效。如果Javascript是有效的，對於提交評論typo會使用ajax，所以non-Ajax的評論是因為使用者或spammper沒有使用Javascript。"
+  l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "你可以隨意地讓non-Ajax評論無效。如果Javascript是有效的，對於提交評論publify會使用ajax，所以non-Ajax的評論是因為使用者或spammper沒有使用Javascript。"
   l.store "add new", "新增"
   l.store "by", "by"
   l.store "by %s on %s", "由%s在%s"

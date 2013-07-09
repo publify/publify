@@ -37,6 +37,7 @@ module ApplicationHelper
   end
 
   def avatar_tag(options = {})
+    puts this_blog.plugin_avatar.to_s
     avatar_class = this_blog.plugin_avatar.constantize
     return '' unless avatar_class.respond_to?(:get_avatar)
     avatar_class.get_avatar(options)
@@ -53,7 +54,7 @@ module ApplicationHelper
 
   def markup_help_popup(markup, text)
     if markup and markup.commenthelp.size > 1
-      "<a href=\"#{url_for :controller => 'articles', :action => 'markup_help', :id => markup.id}\" onclick=\"return popup(this, 'Typo Markup Help')\">#{text}</a>"
+      "<a href=\"#{url_for :controller => 'articles', :action => 'markup_help', :id => markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
     else
       ''
     end
@@ -61,7 +62,7 @@ module ApplicationHelper
 
   def onhover_show_admin_tools(type, id = nil)
     tag = []
-    tag << %{ onmouseover="if (getCookie('typo_user_profile') == 'admin') { Element.show('admin_#{[type, id].compact.join('_')}'); }" }
+    tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { Element.show('admin_#{[type, id].compact.join('_')}'); }" }
     tag << %{ onmouseout="Element.hide('admin_#{[type, id].compact.join('_')}');" }
     tag
   end
@@ -156,12 +157,12 @@ module ApplicationHelper
   end
 
   def new_js_distance_of_time_in_words_to_now(date)
-    # Ruby Date class doesn't have #utc method, but _typo_dev.html.erb
+    # Ruby Date class doesn't have #utc method, but _publify_dev.html.erb
     # passes Ruby Date.
     date = date.to_time
     time = _(date.utc.strftime(_("%%a, %%d %%b %%Y %%H:%%M:%%S GMT", date.utc)))
     timestamp = date.utc.to_i
-    content_tag(:span, time, {:class => "typo_date date gmttimestamp-#{timestamp}", :title => time})
+    content_tag(:span, time, {:class => "publify_date date gmttimestamp-#{timestamp}", :title => time})
   end
 
   def display_date(date)

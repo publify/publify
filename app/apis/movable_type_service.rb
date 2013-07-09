@@ -65,7 +65,7 @@ class MovableTypeApi < ActionWebService::API::Base
 end
 
 
-class MovableTypeService < TypoWebService
+class MovableTypeService < PublifyWebService
   web_service_api MovableTypeApi
 
   before_invocation :authenticate, :except => [:getTrackbackPings, :supportedMethods, :supportedTextFilters]

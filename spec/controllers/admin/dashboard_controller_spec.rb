@@ -25,8 +25,8 @@ describe Admin::DashboardController do
       response.should have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
     
-    it "should have a link to plugins.typosphere.org" do
-      response.should have_selector("a", :href => "http://plugins.typosphere.org" , :content => "download some plugins")
+    it "should have a link to plugins.publify.co" do
+      response.should have_selector("a", :href => "http://plugins.publify.co" , :content => "download some plugins")
     end
     
     it "should have a link to a new article" do
@@ -84,8 +84,8 @@ describe Admin::DashboardController do
       response.should_not have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
     
-    it "should not have a link to plugins.typosphere.org" do
-      response.should_not have_selector("a", :href => "http://plugins.typosphere.org" , :content => "download some plugins")
+    it "should not have a link to plugins.publify.co" do
+      response.should_not have_selector("a", :href => "http://plugins.publify.co" , :content => "download some plugins")
     end
     
     it "should have a link to a new article" do
@@ -143,8 +143,8 @@ describe Admin::DashboardController do
       response.should_not have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
     
-    it "should not have a link to plugins.typosphere.org" do
-      response.should_not have_selector("a", :href => "http://plugins.typosphere.org" , :content => "download some plugins")
+    it "should not have a link to plugins.publify.co" do
+      response.should_not have_selector("a", :href => "http://plugins.publify.co" , :content => "download some plugins")
     end
     
     it "should not have a link to a new article" do

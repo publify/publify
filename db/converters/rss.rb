@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# RSS 0.9/2.0 converter for typo by Chris Lee <clee@kde.org>
+# RSS 0.9/2.0 converter for publify by Chris Lee <clee@kde.org>
 #
 # No need to make a backup of the original blog, really. This takes a URL for a
 # read-only import, so there's not really any chance of it munging the original
@@ -41,7 +41,7 @@ class RSSMigrate
     OptionParser.new do |opt|
       opt.banner = 'Usage: rss.rb [options]'
 
-      opt.on('-a', '--author AUTHOR', 'Username of author in typo') do |a|
+      opt.on('-a', '--author AUTHOR', 'Username of author in publify') do |a|
         self.options[:author] = a
       end
 

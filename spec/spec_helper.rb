@@ -168,7 +168,7 @@ def assert_feedvalidator(rss, todo=nil)
   end
 
   begin
-    file = Tempfile.new('typo-feed-test')
+    file = Tempfile.new('publify-feed-test')
     filename = file.path
     file.write(rss)
     file.close

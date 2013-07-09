@@ -43,11 +43,11 @@ Localization.define("nb_NO") do |l|
 
   # app/controllers/admin/dashboard_controller.rb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
-  l.store "You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Typo. Du bør oppgradere snarest. Last ned og installer %s"
-  l.store "the latest Typo version", "den siste versjonan av Typo"
-  l.store "There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Typo som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"
-  l.store "There's a new version of Typo available. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Typo. Hva med å oppgradere til %s?"
+  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
+  l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer %s"
+  l.store "the latest Publify version", "den siste versjonan av Publify"
+  l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"
+  l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify. Hva med å oppgradere til %s?"
 
   # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Slettet"
@@ -136,7 +136,7 @@ Localization.define("nb_NO") do |l|
   l.store "Show", "Vis"
   l.store "Published", "Publisert"
   l.store "Unpublished", "Ikke publisert"
-  l.store "Show help on Typo macros", "Vis hjelp i Typo makroer"
+  l.store "Show help on Publify macros", "Vis hjelp i Publify makroer"
   l.store "Update settings", "Oppdater innstillinger"
   l.store "Back to list", "Tilbake til listen"
   l.store "Name", "Navn"
@@ -199,8 +199,8 @@ Localization.define("nb_NO") do |l|
   l.store "Signup", "Registrer"
 
   # app/views/admin/cache/index.html.erb
-  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", 
-  "For å lagre resurser cacher Typo innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
+  l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", 
+  "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
   l.store "There are currently %d files in cache for a total amount of %d Kb", "Det finnes for øyeblikket %d filer i cachen som utgjør totalt %d kB"
   l.store "Sweep cache", ""
   l.store "Cache", "Cache"
@@ -288,12 +288,12 @@ Localization.define("nb_NO") do |l|
   l.store "You have no internet connection", "Du har ingen internettforbindelse"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Dette stedet gir deg en rask oversikt over hva som foregår på din Typo-blogg og hva du kan gjøre. Kanskje du ønsker å %s, %s eller %s."
+  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Dette stedet gir deg en rask oversikt over hva som foregår på din Publify-blogg og hva du kan gjøre. Kanskje du ønsker å %s, %s eller %s."
   l.store "update your profile or change your password", "oppdatere profilen din eller endre passordet ditt"
   l.store "You can also do a bit of design, %s or %s.", "Du kan også tilpasse utseendet, %s eller %s."
   l.store "change your blog presentation", "endre utseende på bloggen din"
   l.store "enable plugins", "aktivere plugins"
-  l.store "If you need help, %s. You can also browse our %s or %s to customize your Typo blog.", "Hvis du behøver hjelp, %s. Du kan også se gjennom vår %s eller %s for å tilpasse Typo-bloggen din."
+  l.store "If you need help, %s. You can also browse our %s or %s to customize your Publify blog.", "Hvis du behøver hjelp, %s. Du kan også se gjennom vår %s eller %s for å tilpasse Publify-bloggen din."
   l.store "write a post", "skrive en artikkel"
   l.store "write a page", "skrive en side"
   l.store "read our documentation", "les dokumentasjonen vår"
@@ -308,14 +308,14 @@ Localization.define("nb_NO") do |l|
   l.store "Latest Posts", "Siste poster"
   l.store "No posts yet, why don't you start and write one", "Det finnes ingen artikler enda. Hvorfor ikke skrive en"
 
-  # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Latest news from the Typo development blog", "Siste nytt fra utviklingsbloggen til Typo"
+  # app/views/admin/dashboard/_publify_dev.html.erb
+  l.store "Latest news from the Publify development blog", "Siste nytt fra utviklingsbloggen til Publify"
   l.store "Oh no, nothing new", "Dessverre, ingenting nytt"
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Velkommen tilbake, %s!"
   l.store "%d articles and %d comments were posted since your last connexion", "%d artikler og %d kommentarer siden forrige besøk"
-  l.store "You're running Typo %s", "Du bruker Typo versjon %s"
+  l.store "You're running Publify %s", "Du bruker Publify versjon %s"
   l.store "Content", "Innhold"
   l.store "Total posts:", "Antall artikler:"
   l.store "Your posts:", "Dine artikler:"
@@ -429,7 +429,7 @@ Localization.define("nb_NO") do |l|
   l.store "Do not index tags", "Ikke indekser tagger"
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", "Robots.txt"
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Din robots.txt er ikke skrivbar. Typo vil ikke kunne skrive til den"
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Din robots.txt er ikke skrivbar. Publify vil ikke kunne skrive til den"
   l.store "Use dofollow in comments", "Bruk dofollow i kommentarer"
   l.store "You may want to moderate feedback when turning this on", "Kanskje du ønsker å moderere feedbacks når du slår på denne"
   l.store "Use canonical URL", "Bruk kanonisk URL"
@@ -444,7 +444,7 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Format of permalink", "Permalinkformat"
-  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Typo tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
+  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
   l.store "You can custom your URL structure using the following tags:", "Du kan tilbasse URL-strukturen din ved å bruke følgende tags:"
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", "Din artikkel-slug. <strong>Det er påkrevd å bruke denne slug</strong>."
   l.store "your article year of publication.", "din artikkels publiseringsår"
@@ -484,17 +484,17 @@ Localization.define("nb_NO") do |l|
   l.store "Comments filter", "Kommentarfilter"
   l.store "Avatars provider", "Avatartilbyder"
   l.store "Show your email address", "Vis din epostadresse"
-  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots"
+  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots"
   l.store "Enable spam protection", "Aktiver Spam-beskyttelse"
   l.store "Akismet Key", "Akismet-nøkkel"
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here"
+  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here"
   l.store "Disable trackbacks site-wide", "Deaktiver Trackbacks på hele siden"
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Denne innstillingen gir deg mulighet for å daktivere Trackbacks for hver artikkel i bloggen din. Eksisterende Trackbacks vil ikke fjernes, men det vil forhindre nye forsøk på å legge til Trackbacks over hele bloggen din."
   l.store "Disable comments after", "Deaktiver kommentarer etter"
   l.store "days", "dager"
   l.store "Set to 0 to never disable comments", "Sett til 0 for å aldri deaktivere kommentarer"
   l.store "Max Links", "Maks antall lenker"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them"
+  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them"
   l.store "Set to 0 to never reject comments", "Sett til 0 for å aldri forkaste kommentarer"
   l.store "Enable reCaptcha", "Aktiver reCaptcha"
   l.store "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb", "Husk å sette reCaptcha-nøklene dine i filen config/initializers/recaptcha.rb"
@@ -508,9 +508,9 @@ Localization.define("nb_NO") do |l|
   l.store "Language", "Språk"
   l.store "Allow users to register", "Tillat brukere å registrere seg"
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer."
-  l.store "Typo can notify you when new articles or comments are posted", "Typo kan gi deg beskjed når nye artikler eller kommentarer er mottatt"
+  l.store "Publify can notify you when new articles or comments are posted", "Publify kan gi deg beskjed når nye artikler eller kommentarer er mottatt"
   l.store "Source Email", "Epostavsender"
-  l.store "Email address used by Typo to send notifications", "Epostadresse som brukes av Typo til å sende beskjeder"
+  l.store "Email address used by Publify to send notifications", "Epostadresse som brukes av Publify til å sende beskjeder"
   l.store "Items to display in admin lists", "Enheter å vise i adminlisten"
   l.store "Date format", "Datoformat"
   l.store "ago", "siden"
@@ -520,7 +520,7 @@ Localization.define("nb_NO") do |l|
   l.store "articles in my news feed by default", "artikler i min nyhetsfeed som standard"
   l.store "Show only article excerpt on feed", "Vis bare artikkelens utdrag i feed"
   l.store "Feedburner ID", "Feedburner ID"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", "Du kan bruke din Gooogle Feedburner-konto istedet for Typo feed URL. For å aktivere dette, fyll ut dette skjemaet med din Feedburner ID."
+  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Du kan bruke din Gooogle Feedburner-konto istedet for Publify feed URL. For å aktivere dette, fyll ut dette skjemaet med din Feedburner ID."
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informasjon"
@@ -537,7 +537,7 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "Send trackbacks"
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du publiserer artikler kan Typo sende trackbacks til de hjemmesider du lenker til. Dette bør deaktiveres for private blogger da det ellers kan lekke privat informasjion til hjemmesider du diskuterer. For offentlige blogger, er det ingen reell mening i å deaktivere dette."
+  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du publiserer artikler kan Publify sende trackbacks til de hjemmesider du lenker til. Dette bør deaktiveres for private blogger da det ellers kan lekke privat informasjion til hjemmesider du diskuterer. For offentlige blogger, er det ingen reell mening i å deaktivere dette."
   l.store "URLs to ping automatically", "Nettadresser som skal pinges automatisk"
   l.store "Latitude, Longitude", "Breddegrad, lengdegrad"
   l.store "your latitude and longitude", "din breddegrad og lengdegrad"
@@ -565,11 +565,11 @@ Localization.define("nb_NO") do |l|
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
-  l.store "Adds livesearch to your Typo blog", ""
-  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Adds livesearch to your Publify blog", ""
+  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Page", ""
   l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "Show most popular tags for this blog", ""
@@ -722,7 +722,7 @@ Localization.define("nb_NO") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", "Velkommen"
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Typo ta seg av resten"
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Publify ta seg av resten"
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", "Gratulerer!"
@@ -768,7 +768,7 @@ Localization.define("nb_NO") do |l|
   # themes/dirtylicious/views/layouts/default.html.erb
   l.store "Home", "Hjem"
   l.store "About", "Om"
-  l.store "Designed by %s ported to typo by %s ", "Utformet av %s portert til Typo av %s "
+  l.store "Designed by %s ported to publify by %s ", "Utformet av %s portert til Publify av %s "
 
   # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
@@ -813,7 +813,7 @@ Localization.define("nb_NO") do |l|
   # vendor/plugins/meta_sidebar/app/views/meta_sidebar/_content.html.erb
   l.store "RSS Feed", ""
   l.store "Admin", ""
-  l.store "Powered by Typo", "Bloggen bruker Typo"
+  l.store "Powered by Publify", "Bloggen bruker Publify"
 
   # vendor/plugins/xml_sidebar/app/views/xml_sidebar/_content.html.erb
   l.store "Syndicate", "Syndikat"
@@ -1004,7 +1004,7 @@ Localization.define("nb_NO") do |l|
   l.store "Total comments : %d", "Antall kommentarer : %d"
   l.store "Total posts : %d", "Antall artikler : %d"
   l.store "Type", "Type"
-  l.store "Typo admin", "Typo administrator"
+  l.store "Publify admin", "Publify administrator"
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", "Avmerking av denne boksen vil legge til <code>noindex, follow</code> meta tags i hver kategoriside, som fjerner dem fra søkemotorer og motvirker problemer som skyldes duplisert innhold"
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", "Avmerking av denne boksen vil legge til <code>noindex, follow</code> meta tags i hver tagsside, som fjerner dem fra søkemotorer og motvirker problemer som skyldes duplisert innhold"
   l.store "Upload a new File", "Upload en ny fil"
@@ -1021,7 +1021,7 @@ Localization.define("nb_NO") do |l|
   l.store "You are now logged out of the system", "Du er nu logget af systemet"
   l.store "You can add it to the following categories", "Du kan tilføje følgende kategorier"
   l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Du kan slå feedback moderation til for hele bloggen. Hvis du gør dette kommer kommentarer og trackbacks først frem når du har godkendt dem"
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Du kan valgfritt deaktivere non-AJAX-kommentarer. Typo vil alltid bruke AJAX for kommentarinnsending dersom Javascript er aktivert, slik at non-AJAX-kommentarer enten kommer fra brukere uten Javascript eller fra spammere.."
+  l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Du kan valgfritt deaktivere non-AJAX-kommentarer. Publify vil alltid bruke AJAX for kommentarinnsending dersom Javascript er aktivert, slik at non-AJAX-kommentarer enten kommer fra brukere uten Javascript eller fra spammere.."
   l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Du må ha et permalenkeformat med en identifikator : %%month%%, %%year%%, %%day%%, %%title%%"
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "add new", "legg til ny"

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# RSS 0.2/2.0/Atom converter to typo by Lennon Day-Reynolds <rcoder@gmail.com>
+# RSS 0.2/2.0/Atom converter to publify by Lennon Day-Reynolds <rcoder@gmail.com>
 # Shamelessly copied from RSS-only converter by Chris Lee
 
 require File.dirname(__FILE__) + '/../../config/environment'
@@ -42,7 +42,7 @@ class FeedMigrate
     OptionParser.new do |opt|
       opt.banner = 'Usage: feed.rb [options]'
 
-      opt.on('-a', '--author AUTHOR', 'Username of author in typo') do |a|
+      opt.on('-a', '--author AUTHOR', 'Username of author in publify') do |a|
         self.options[:author] = a
       end
 

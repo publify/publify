@@ -1,13 +1,13 @@
 class TextFilterPlugin
   class << self
-    include TypoPlugins
+    include PublifyPlugins
     include ActionView::Helpers::TextHelper
     include ActionView::Helpers::TagHelper
   end
 
   @@filter_map = {}
   def self.inherited(sub)
-    if sub.to_s =~ /^Plugin/ or sub.to_s =~ /^Typo::Textfilter/
+    if sub.to_s =~ /^Plugin/ or sub.to_s =~ /^PublifyApp::Textfilter/
       name = sub.short_name
       @@filter_map[name] = sub
     end
@@ -91,8 +91,8 @@ class TextFilterPlugin::Macro < TextFilterPlugin
 
   def self.filtertext(blog, content, text, params)
     filterparams = params[:filterparams]
-    regex1 = /<typo:#{short_name}(?:[ \t][^>]*)?\/>/
-    regex2 = /<typo:#{short_name}([ \t][^>]*)?>(.*?)<\/typo:#{short_name}>/m
+    regex1 = /<publify:#{short_name}(?:[ \t][^>]*)?\/>/
+    regex2 = /<publify:#{short_name}([ \t][^>]*)?>(.*?)<\/publify:#{short_name}>/m
 
     new_text = text.gsub(regex1) do |match|
       macrofilter(blog,content,attributes_parse(match),params)
@@ -115,7 +115,7 @@ end
 class TextFilterPlugin::Markup < TextFilterPlugin
 end
 
-class Typo
+class PublifyApp
   class Textfilter
     class MacroPost < TextFilterPlugin
       plugin_display_name "MacroPost"

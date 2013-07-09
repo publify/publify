@@ -174,13 +174,13 @@ http://alsoping.example.com/rpc/ping"
 
   factory :profile, :class => :profile do |l|
     l.label {FactoryGirl.generate(:label)}
-    l.nicename 'Typo contributor'
+    l.nicename 'Publify contributor'
     l.modules [:dashboard, :profile]
   end
 
   factory :profile_admin, parent: :profile do
     label Profile::ADMIN
-    nicename 'Typo administrator'
+    nicename 'Publify administrator'
     modules [ :dashboard, :write, :articles, :pages, :feedback, :themes,
               :sidebar, :users, :seo, :media, :settings, :profile ]
   end

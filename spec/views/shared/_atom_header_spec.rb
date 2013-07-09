@@ -15,11 +15,11 @@ describe "shared/_atom_header.atom.builder" do
       end
     end
 
-    it "shows typo with the current version as the generator" do
+    it "shows publify with the current version as the generator" do
       xml = Nokogiri::XML.parse(@xml.target!)
       generator = xml.css("generator").first
       generator.should_not be_nil
-      generator.content.should == "Typo"
+      generator.content.should == "Publify"
       generator["version"].should == TYPO_VERSION
     end
   end

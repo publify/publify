@@ -2,8 +2,8 @@
 # configuration settings and is linked to most of the assorted content
 # classes via has_many.
 #
-# Once upon a time, there were plans to make typo handle multiple blogs,
-# but it never happened and typo is now firmly single-blog.
+# Once upon a time, there were plans to make publify handle multiple blogs,
+# but it never happened and publify is now firmly single-blog.
 #
 class Blog < ActiveRecord::Base
   include ConfigManager
@@ -52,7 +52,7 @@ class Blog < ActiveRecord::Base
   setting :global_pings_disable,       :boolean, false
   setting :ping_urls,                  :string, "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
-  setting :email_from,                 :string, 'typo@example.com'
+  setting :email_from,                 :string, 'publify@example.com'
   setting :editor,                     :integer, 'visual'
   setting :allow_signup,               :integer, 0
   setting :date_format,                :string, '%d/%m/%Y'

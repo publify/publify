@@ -27,9 +27,9 @@ describe AccountsController do
       request.session[:user_id].should == @henri.id
     end
 
-    it 'sets typo_user_profile cookie' do
+    it 'sets publify_user_profile cookie' do
       make_request
-      cookies["typo_user_profile"].should == 'admin_henri'
+      cookies["publify_user_profile"].should == 'admin_henri'
     end
 
     it 'redirects to /bogus/location' do
@@ -77,9 +77,9 @@ describe AccountsController do
       assigns[:login].should == 'inactive'
     end
 
-    it 'typo_user_profile cookie should be blank' do
+    it 'publify_user_profile cookie should be blank' do
       make_request
-      cookies["typo_user_profile"].should be_blank
+      cookies["publify_user_profile"].should be_blank
     end
 
     it 'should render login action' do
@@ -126,9 +126,9 @@ describe AccountsController do
       assigns[:login].should == 'bob'
     end
 
-    it 'typo_user_profile cookie should be blank' do
+    it 'publify_user_profile cookie should be blank' do
       make_request
-      cookies["typo_user_profile"].should be_blank
+      cookies["publify_user_profile"].should be_blank
     end
 
     it 'should render login action' do
@@ -326,12 +326,12 @@ describe AccountsController do
       @user = FactoryGirl.create(:user)
 
       # The AccountsController class uses session[:user_id], and the
-      # Typo LoginSystem uses session[:user].  So we need to set both of
+      # Publify LoginSystem uses session[:user].  So we need to set both of
       # these up correctly.  I'm not sure why the duplication exists.
       session[:user_id] = @user.id
       session[:user] = @user.id
 
-      cookies["typo_user_profile"] = 'admin'
+      cookies["publify_user_profile"] = 'admin'
     end
 
     it 'trying to log in once again redirects to admin/dashboard/index' do
@@ -358,7 +358,7 @@ describe AccountsController do
 
       it 'deletes cookies containing credentials' do
         cookies["auth_token"].should == nil
-        cookies["typo_user_profile"].should == nil
+        cookies["publify_user_profile"].should == nil
       end
     end
   end

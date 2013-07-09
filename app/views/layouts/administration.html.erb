@@ -6,7 +6,7 @@
   <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
   <meta http-equiv="imagetoolbar" content="no" />
   <%= stylesheet_link_tag "growler", "bootstrap", "administration_structure", "lightbox" %>
-  <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "typo", "lightbox", "growler", "typo_carousel", "administration", "ckeditor/ckeditor" %>
+  <%= javascript_include_tag "prototype", "effects", "builder", "dragdrop", "controls", "publify", "lightbox", "growler", "publify_carousel", "administration", "ckeditor/ckeditor" %>
   <%= calendar_date_select_includes %>
   <style type="text/css">
     #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
@@ -35,10 +35,10 @@
           <li class="dropdown" onmouseover='$("help_menu").style.display = "block"' onmouseout='$("help_menu").style.display = "none"'>
             <a class="dropdown-toggle" href="#"><%= _("Help")%></a>
             <ul class="dropdown-menu" id="help_menu" style="display: none;">
-              <li><%= link_to _("Documentation"), "https://github.com/fdv/typo/wiki" %></li>
-              <li><%= link_to _("Report a bug"), "https://github.com/fdv/typo/issues" %></li>
-              <li><%= link_to _("In page plugins"), "https://github.com/fdv/typo/wiki/In-Page-Plugins" %></li>
-              <li><%= link_to _("Sidebar plugins"), "https://github.com/fdv/typo/wiki/Sidebar-plugins" %></li>
+              <li><%= link_to _("Documentation"), "https://github.com/fdv/publify/wiki" %></li>
+              <li><%= link_to _("Report a bug"), "https://github.com/fdv/publify/issues" %></li>
+              <li><%= link_to _("In page plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
+              <li><%= link_to _("Sidebar plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
             </ul>
           </li>
           <li class='dropdown' onmouseover='$("user_menu").style.display = "block"' onmouseout='$("user_menu").style.display = "none"'>
@@ -84,7 +84,7 @@
 
   <footer class='clearfix'>
     <div class='span12'>
-      <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Typo <%=h TYPO_VERSION %>
+      <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Publify <%=h TYPO_VERSION %>
     </div>
   </footer>
 </body>

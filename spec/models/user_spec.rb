@@ -64,7 +64,7 @@ describe User do
   describe 'With a new user' do
     before(:each) do
       @user = User.new :login => 'not_bob'
-      @user.email = 'typo@typo.com'
+      @user.email = 'publify@publify.com'
       set_password 'a secure password'
     end
 

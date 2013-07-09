@@ -8,7 +8,7 @@
 file = File.join(Rails.root, "config", "secret.token")
 
 if File.exists?(file)
-  TypoBlog::Application.config.secret_token = File.open(file, "r") { |f| f.read.delete("\n") }
+  Publify::Application.config.secret_token = File.open(file, "r") { |f| f.read.delete("\n") }
 else
-  TypoBlog::Application.config.secret_token = $default_token
+  Publify::Application.config.secret_token = $default_token
 end

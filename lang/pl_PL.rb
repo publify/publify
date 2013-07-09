@@ -102,7 +102,7 @@ Localization.define("pl_PL") do |l|
   l.store "Show", ""
   l.store "Published", "Opublikowane"
   l.store "Unpublished", ""
-  l.store "Show help on Typo macros", ""
+  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Wróć do podglądu"
   l.store "Name", "Nazwa"
   l.store "Description", "Opis"
@@ -256,7 +256,7 @@ Localization.define("pl_PL") do |l|
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
+  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Ostatnie komentarze"
   l.store "No comments yet", "Brak komentarzy"
   l.store "By %s on %s", "Przez %s odnośnie %s"
@@ -268,7 +268,7 @@ Localization.define("pl_PL") do |l|
   l.store "You have no internet connection", "Nie masz połączenia internetowego"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", ""
+  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
   l.store "update your profile or change your password", "zaktualizować profil lub zmienić hasło"
   l.store "You can also do a bit of design, %s or %s.", "Możesz również trochę poprojektować wygląd, %s lub %s."
   l.store "change your blog presentation", "zmienić wygląd swojego bloga"
@@ -284,14 +284,14 @@ Localization.define("pl_PL") do |l|
   l.store "Latest Posts", "Ostatnie Wpisy"
   l.store "No posts yet, why don't you start and write one", ""
 
-  # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Latest news from the Typo development blog", "Najnowsze wieści z bloga developerskiego Typo"
+  # app/views/admin/dashboard/_publify_dev.html.erb
+  l.store "Latest news from the Publify development blog", "Najnowsze wieści z bloga developerskiego Publify"
   l.store "Oh no, nothing new", ""
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Witamy spowrotem, %s!"
   l.store "%d articles and %d comments were posted since your last connexion", "%d artykułów i %d komentarzy zostało opublikowanych od twojego ostaniego połączenia"
-  l.store "You're running Typo %s", "Działasz na Typo %s"
+  l.store "You're running Publify %s", "Działasz na Publify %s"
   l.store "Total posts : %d", "Liczba wszystkich wpisów: %d"
   l.store "Your posts : %d", "Twoje wpisy: %d"
   l.store "Total comments : %d", "Liczba wszystkich komentarzy: %d"
@@ -388,7 +388,7 @@ Localization.define("pl_PL") do |l|
   l.store "Do not index tags", ""
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
   l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
@@ -403,7 +403,7 @@ Localization.define("pl_PL") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
+  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "Permalink format", ""
   l.store "Date and title", ""
@@ -459,20 +459,20 @@ Localization.define("pl_PL") do |l|
   l.store "Enable gravatars", "Włącz gravatary"
   l.store "Show your email address", "Pokaż swój adres email"
   l.store "Notifications", ""
-  l.store "Typo can notify you when new articles or comments are posted", "Typo może wysyłać powiadomienia o nowych artykułach bądź komentarzach"
+  l.store "Publify can notify you when new articles or comments are posted", "Publify może wysyłać powiadomienia o nowych artykułach bądź komentarzach"
   l.store "Source Email", "Źródłowy adres email"
-  l.store "Email address used by Typo to send notifications", "Adres email używany przez Typo do wysyłania powiadomień"
-  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Włączenie ochrony przed spamem sprawi, iż Typo będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami."
+  l.store "Email address used by Publify to send notifications", "Adres email używany przez Publify do wysyłania powiadomień"
+  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Włączenie ochrony przed spamem sprawi, iż Publify będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami."
   l.store "Enable spam protection", "Włącz ochronę przed spamem"
   l.store "Akismet Key", "Klucz Akismet"
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo może (opcjonalnie) stosować usługę %s do filtrowania spamu. Musisz zarejestrować się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj"
+  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify może (opcjonalnie) stosować usługę %s do filtrowania spamu. Musisz zarejestrować się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj"
   l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Ta opcja pozwala na wyłączenie trackbacków we wszystkich artykułach. Nie usunie jednak istniejących trackbacków, a jedynie zabroni dodawania nowych."
   l.store "Disable comments after", "Wyłącz komentarze po "
   l.store "days", "dni"
   l.store "Set to 0 to never disable comments", "Ustaw 0 by komentarze były zawsze włączone"
   l.store "Max Links", "Max. liczba łączy"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo automatycznie odrzuca komentarze i trackbacki, które zawierają większą, niż podana, liczbę łączy"
+  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify automatycznie odrzuca komentarze i trackbacki, które zawierają większą, niż podana, liczbę łączy"
   l.store "Set to 0 to never reject comments", "Ustaw 0 by komentarze były zawsze akceptowane"
   l.store "Feedback settings", ""
 
@@ -492,7 +492,7 @@ Localization.define("pl_PL") do |l|
   l.store "Show full article on feed", "Pokaż pełną treść artykułu w subskrypcji RSS"
   l.store "Feedburner ID", ""
   l.store "General settings", "Ustawienia ogólne"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
+  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Optymalizacja silnika wyszukiwania"
@@ -507,7 +507,7 @@ Localization.define("pl_PL") do |l|
   l.store "Index tags", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
@@ -528,7 +528,7 @@ Localization.define("pl_PL") do |l|
 
   # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "Wyślij trackbacki"
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publikując artykuły, Typo może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu."
+  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publikując artykuły, Publify może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu."
   l.store "URLs to ping automatically", "Automatycznie pingowane łącza"
   l.store "Latitude, Longitude", "Szerokość geogr., długość geogr."
   l.store "your latitude and longitude", "Twoją szerokość i długość geograficzna"
@@ -555,11 +555,11 @@ Localization.define("pl_PL") do |l|
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
-  l.store "Adds livesearch to your Typo blog", ""
-  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Adds livesearch to your Publify blog", ""
+  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Page", ""
   l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "Show most popular tags for this blog", ""
@@ -711,7 +711,7 @@ Localization.define("pl_PL") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", ""
@@ -763,7 +763,7 @@ Localization.define("pl_PL") do |l|
   # themes/dirtylicious/layouts/default.html.erb
   l.store "Home", ""
   l.store "About", ""
-  l.store "Designed by %s ported to typo by %s ", ""
+  l.store "Designed by %s ported to publify by %s ", ""
 
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
@@ -985,8 +985,8 @@ Localization.define("pl_PL") do |l|
   l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!", "Ta opcja pozwala wybrać prosty lub pełny panel administracyjny. Pełny panel administracyjny zawiera więcej opcji przez co jest bardziej skomplikowany. Tylko dla zaawansowanych użytkowników!"
   l.store "Toggle Extended Content", "Przełącz treść rozszerzoną"
   l.store "Type", "Typ"
-  l.store "Typo admin", "administracja Typo"
-  l.store "Typo documentation", "Oficjalna dokumentacja Typo"
+  l.store "Publify admin", "administracja Publify"
+  l.store "Publify documentation", "Oficjalna dokumentacja Publify"
   l.store "Update your profile or change your password", "Zaktualizować profil lub zmienić hasło"
   l.store "Upload a new File", "Wyślij nowy plik"
   l.store "Upload a new Resource", "Wyślij nowy zasób"
@@ -1005,7 +1005,7 @@ Localization.define("pl_PL") do |l|
   l.store "XML Syndication", "Subskrypcja XML"
   l.store "You are now logged out of the system", "Wylogowano z systemu"
   l.store "You can add it to the following categories", "Możesz dodać go do następujących kategorii"
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Można opcjonalnie wyłączyć nie-Ajaxowe komentarze. Typo zawsze używa technologii Ajax do przesyłania komentarzy - o ile Javascript jest włączony. Przeważnie komentarze nie-Ajaxowe pochodzą od spamerów lub użytkowników bez Javascript."
+  l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Można opcjonalnie wyłączyć nie-Ajaxowe komentarze. Publify zawsze używa technologii Ajax do przesyłania komentarzy - o ile Javascript jest włączony. Przeważnie komentarze nie-Ajaxowe pochodzą od spamerów lub użytkowników bez Javascript."
   l.store "add new", "dodaj nową"
   l.store "by", "przez"
   l.store "log out", "wyloguj"

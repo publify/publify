@@ -94,7 +94,7 @@ iframe.ie6_blocker {
   text-align:center;
   vertical-align: middle;
   background-color: #fff;
-  padding: 0px; # Override to typo because td has padding in administratrion.css
+  padding: 0px; # Override to publify because td has padding in administratrion.css
 }
 .calendar_date_select td.weekend {
   background-color: #eee;

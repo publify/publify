@@ -393,7 +393,7 @@ describe Article do
     before :each do
       @article = Article.new(
         :body => 'basic text',
-        :extended => 'extended text to explain more and more how Typo is wonderful')
+        :extended => 'extended text to explain more and more how Publify is wonderful')
     end
 
     it 'should combine body and extended content' do

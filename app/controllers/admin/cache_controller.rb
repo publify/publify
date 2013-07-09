@@ -5,7 +5,7 @@ class Admin::CacheController < Admin::BaseController
     @cache_size = 0
     @cache_number = 0
 
-    FileUtils.mkdir_p(TypoBlog::Application.config.action_controller.page_cache_directory) unless File.exists?(TypoBlog::Application.config.action_controller.page_cache_directory)
+    FileUtils.mkdir_p(Publify::Application.config.action_controller.page_cache_directory) unless File.exists?(Publify::Application.config.action_controller.page_cache_directory)
 
     if request.post?
       begin
@@ -16,7 +16,7 @@ class Admin::CacheController < Admin::BaseController
       end
     end
 
-    Find.find(TypoBlog::Application.config.action_controller.page_cache_directory) do |path|
+    Find.find(Publify::Application.config.action_controller.page_cache_directory) do |path|
       if FileTest.directory?(path)
         if File.basename(path)[0] == ?.
           Find.prune

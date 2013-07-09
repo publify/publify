@@ -70,7 +70,7 @@ class AccountsController < ApplicationController
     self.current_user = nil
     session[:user_id] = nil
     cookies.delete :auth_token
-    cookies.delete :typo_user_profile
+    cookies.delete :publify_user_profile
     redirect_to :action => 'login'
   end
 
@@ -103,7 +103,7 @@ class AccountsController < ApplicationController
         :httponly => true # Help prevent auth_token theft.
       }
     end
-    add_to_cookies(:typo_user_profile, self.current_user.profile_label, '/')
+    add_to_cookies(:publify_user_profile, self.current_user.profile_label, '/')
 
     self.current_user.update_connection_time
     flash[:notice]  = _("Login successful")

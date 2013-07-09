@@ -28,7 +28,7 @@ TextFilter.create(name: 'markdown smartypants', description: 'Markdown with Smar
 TextFilter.create(name: 'textile', description: 'Textile',
                   markup: 'textile', filters: [], params: {})
 
-admin = Profile.create(label: 'admin', nicename: 'Typo administrator',
+admin = Profile.create(label: 'admin', nicename: 'Publify administrator',
                        modules: [:dashboard, :articles, :pages, :media, :feedback, :themes, :sidebar, :users, :settings, :profile, :seo])
 publisher = Profile.create(label: 'publisher', nicename: 'Blog publisher',
                            modules: [:dashboard, :articles, :media, :pages, :feedback, :profile])

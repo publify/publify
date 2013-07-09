@@ -96,8 +96,8 @@ describe 'Given a new blog' do
     @blog.should be_send_outbound_pings
   end
 
-  it '#email_from should be typo@example.com' do
-    @blog.email_from.should == 'typo@example.com'
+  it '#email_from should be publify@example.com' do
+    @blog.email_from.should == 'publify@example.com'
   end
 
   it '#editor should be visual' do

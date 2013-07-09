@@ -2,9 +2,9 @@
 require 'rubygems/package_task'
 
 PKG_VERSION = "6.1.3"
-PKG_NAME = "typo"
+PKG_NAME = "publify"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
-RUBY_FORGE_PROJECT = 'typo'
+RUBY_FORGE_PROJECT = 'publify'
 RUBY_FORGE_USER = 'fdevillamil'
 RELEASE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
@@ -25,8 +25,8 @@ spec = Gem::Specification.new do |s|
   s.require_path = '.'
   s.author = "Frédéric de Villamil"
   s.email = "frederic@de-villamil.com"
-  s.homepage = "http://typosphere.org"
-  s.rubyforge_project = "typo"
+  s.homepage = "http://publify.co"
+  s.rubyforge_project = "publify"
   s.platform = Gem::Platform::RUBY
 end
 

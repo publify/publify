@@ -18,10 +18,10 @@ describe "trackbacks/index_atom_feed.atom.builder" do
       assert_feedvalidator rendered
     end
 
-    it "shows typo with the current version as the generator" do
+    it "shows publify with the current version as the generator" do
       xml = Nokogiri::XML.parse(rendered)
       generator = xml.css("generator").first
-      generator.content.should == "Typo"
+      generator.content.should == "Publify"
       generator["version"].should == TYPO_VERSION
     end
 

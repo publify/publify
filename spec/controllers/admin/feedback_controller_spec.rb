@@ -184,7 +184,7 @@ describe Admin::FeedbackController do
     describe 'create action' do
 
       def base_comment(options = {})
-        {"body"=>"a new comment", "author"=>"Me", "url"=>"http://typosphere.org", "email"=>"dev@typosphere.org"}.merge(options)
+        {"body"=>"a new comment", "author"=>"Me", "url"=>"http://publify.co", "email"=>"dev@publify.co"}.merge(options)
       end
 
       describe 'by get access' do

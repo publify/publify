@@ -5,7 +5,7 @@ require 'rails/all'
 # Auto-require default libraries and those for the current Rails environment.
 Bundler.require :default, Rails.env
 
-module TypoBlog
+module Publify
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -40,8 +40,8 @@ module TypoBlog
   # Load included libraries.
   require 'localization'
   require 'sidebar'
-  require 'typo_sidebar'
-  require 'typo_textfilters'
+  require 'publify_sidebar'
+  require 'publify_textfilters'
     
   require 'action_web_service'
   ## Required by the plugins themselves.
@@ -58,15 +58,15 @@ module TypoBlog
   # require 'spam_protection'
   require 'stateful'
   require 'transforms'
-  require 'typo_time'
-  require 'typo_guid'
+  require 'publify_time'
+  require 'publify_guid'
   ## Required by the plugins themselves.
-  # require 'typo_plugins'
+  # require 'publify_plugins'
   require 'bare_migration'
-  require 'typo_version'
+  require 'publify_version'
   require 'rails_patch/active_support'
 
-  require 'typo_login_system'
+  require 'publify_login_system'
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'

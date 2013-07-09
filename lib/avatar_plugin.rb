@@ -1,6 +1,6 @@
-require 'typo_plugins'
+require 'publify_plugins'
 
-module TypoPlugins
+module PublifyPlugins
 
   class AvatarPlugin < Base
 

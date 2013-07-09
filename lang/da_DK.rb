@@ -99,7 +99,7 @@ Localization.define("da_DK") do |l|
   l.store "Show", ""
   l.store "Published", "Offentliggjort"
   l.store "Unpublished", "Ikke offentliggjort"
-  l.store "Show help on Typo macros", ""
+  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Tilbage til oversigten"
   l.store "Name", "Navn"
   l.store "Description", "Beskrivelse"
@@ -262,7 +262,7 @@ Localization.define("da_DK") do |l|
   l.store "You have no internet connection", "Du har ingen internet forbindelse"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s, %s or %s.", "Dette sted giver dig en hurtig oversigt over, hvad der sker på din Typo blog, og hvad du kan gøre. Måske du ønsker at %s, %s eller %s."
+  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Dette sted giver dig en hurtig oversigt over, hvad der sker på din Publify blog, og hvad du kan gøre. Måske du ønsker at %s, %s eller %s."
   l.store "update your profile or change your password", "opdatere din profil eller rette dit kodeord"
   l.store "You can also do a bit of design, %s or %s.", "Du kan også tilpasse designet, %s eller %s."
   l.store "change your blog presentation", "ændre din blogs udseende"
@@ -272,7 +272,7 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", ""
+  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Most popular", "Mest populære"
   l.store "Nothing to show yet", "Intet at vise endnu"
 
@@ -280,14 +280,14 @@ Localization.define("da_DK") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", "Der er ingen artikler endnu, du kan evt. starte med at skrive en"
 
-  # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Latest news from the Typo development blog", ""
+  # app/views/admin/dashboard/_publify_dev.html.erb
+  l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Velkommen tilbage, %s!"
   l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Typo %s", "Du kører Typo version %s"
+  l.store "You're running Publify %s", "Du kører Publify version %s"
   l.store "Total posts : %d", "Total artikler : %d"
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Total comments : %d", "Total kommentarer : %d"
@@ -384,7 +384,7 @@ Localization.define("da_DK") do |l|
   l.store "Do not index tags", ""
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
   l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
@@ -399,7 +399,7 @@ Localization.define("da_DK") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
+  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "Permalink format", ""
   l.store "Date and title", ""
@@ -455,20 +455,20 @@ Localization.define("da_DK") do |l|
   l.store "Enable gravatars", "Vis gravatars"
   l.store "Show your email address", "Vis din e-mail addresse"
   l.store "Notifications", ""
-  l.store "Typo can notify you when new articles or comments are posted", "Typo kan give dig besked, når nye artikler eller kommentarer er indsendt"
+  l.store "Publify can notify you when new articles or comments are posted", "Publify kan give dig besked, når nye artikler eller kommentarer er indsendt"
   l.store "Source Email", "Afsender e-mail"
-  l.store "Email address used by Typo to send notifications", "E-mail adresse der bruges af Typo til at sende meddelelser"
-  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots" #Need translate
+  l.store "Email address used by Publify to send notifications", "E-mail adresse der bruges af Publify til at sende meddelelser"
+  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots" #Need translate
   l.store "Enable spam protection", "Aktiver spam beskyttelse"
   l.store "Akismet Key", "Akismet nøgle"
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here" #Need translate
+  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here" #Need translate
   l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Denne indstilling giver dig mulighed for at deaktivere Trackbacks for hver artikel i din blog. Det vil ikke fjerne eksisterende Trackbacks, men det vil forhindre yderligere forsøg på at tilføje Trackbacks overalt på din blog."
   l.store "Disable comments after", "Deaktiver kommentarer efter"
   l.store "days", "dage"
   l.store "Set to 0 to never disable comments", "Sæt til 0 for at aldrig deaktivere kommentarer"
   l.store "Max Links", "Max Links"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them" #Need translate
+  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them" #Need translate
   l.store "Set to 0 to never reject comments", "Sæt til 0 for at aldrig forkaste kommentarer"
   l.store "Feedback settings", ""
 
@@ -488,7 +488,7 @@ Localization.define("da_DK") do |l|
   l.store "Show full article on feed", "Vis hele artiklen i min feed"
   l.store "Feedburner ID", ""
   l.store "General settings", "Generelle indstillinger"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", ""
+  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
@@ -503,7 +503,7 @@ Localization.define("da_DK") do |l|
   l.store "Index tags", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", ""
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
@@ -524,7 +524,7 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "Send trackbacks"
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du udgiver artikler kan Typo sende trackbacks til de hjemmesider du linker til. Dette bør slåes fra for private blogs da det ellers kan lække privat information til hjemmesider du diskuterer. For offentlige blogs, er der ingen reel mening i at deaktivere dette."
+  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du udgiver artikler kan Publify sende trackbacks til de hjemmesider du linker til. Dette bør slåes fra for private blogs da det ellers kan lække privat information til hjemmesider du diskuterer. For offentlige blogs, er der ingen reel mening i at deaktivere dette."
   l.store "URLs to ping automatically", "Webadresser der automatisk pinges"
   l.store "Latitude, Longitude", "Breddegrad, længdegrad"
   l.store "your latitude and longitude", "din breddegrad og længdegrad"
@@ -551,11 +551,11 @@ Localization.define("da_DK") do |l|
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
-  l.store "Adds livesearch to your Typo blog", ""
-  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", ""
+  l.store "Adds livesearch to your Publify blog", ""
+  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Page", ""
   l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Typo blog", ""
+  l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "Show most popular tags for this blog", ""
@@ -707,7 +707,7 @@ Localization.define("da_DK") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", ""
@@ -759,7 +759,7 @@ Localization.define("da_DK") do |l|
   # themes/dirtylicious/layouts/default.html.erb
   l.store "Home", ""
   l.store "About", ""
-  l.store "Designed by %s ported to typo by %s ", ""
+  l.store "Designed by %s ported to publify by %s ", ""
 
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
@@ -966,7 +966,7 @@ Localization.define("da_DK") do |l|
   l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!","This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!" #Need translate
   l.store "Toggle Extended Content", "Slå udvidet indhold til/fra"
   l.store "Type", "Type"
-  l.store "Typo admin", "Typo administrator"
+  l.store "Publify admin", "Publify administrator"
   l.store "Upload a new File", "Upload en ny fil"
   l.store "Upload a new Resource", "Upload en ny ressource"
   l.store "Uploaded", "Uploaded"
@@ -981,7 +981,7 @@ Localization.define("da_DK") do |l|
   l.store "You are now logged out of the system", "Du er nu logget af systemet"
   l.store "You can add it to the following categories", "Du kan tilføje følgende kategorier"
   l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Du kan slå feedback moderation til for hele bloggen. Hvis du gør dette kommer kommentarer og trackbacks først frem når du har godkendt dem"
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript." #Need translate
+  l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript." #Need translate
   l.store "add new", "tilføj ny"
   l.store "by", "af"
   l.store "log out", "log ud"

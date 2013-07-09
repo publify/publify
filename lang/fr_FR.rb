@@ -27,11 +27,11 @@ Localization.define("fr_FR") do |l|
 
   # app/controllers/admin/dashboard_controller.rb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", "Erreur : nous n'avons pas pu générer le jeton secret. La sécurité de votre blog est à risque. Veuillez changer le contenu du fichier %s."
-  l.store "For security reasons, you should restart your Typo application. Enjoy your blogging experience.", "Pour des raisons de sécurité, merci de redémarrer votre blog Typo. Bonne expérience de blogging !"
-  l.store "You are late from at least one major version of Typo. You should upgrade immediately. Download and install %s", "Vous avez au moins une version majeure de Typo de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez %s" 
-  l.store "the latest Typo version", "la dernière version de Typo"
-  l.store "There's a new version of Typo available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Typo est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"
-  l.store "There's a new version of Typo available. Why don't you upgrade to %s ?", "Une nouvelle version de Typo est disponible. Pouquoi n'installeriez-vous pas %s"
+  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "Pour des raisons de sécurité, merci de redémarrer votre blog Publify. Bonne expérience de blogging !"
+  l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez %s" 
+  l.store "the latest Publify version", "la dernière version de Publify"
+  l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"
+  l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas %s"
   l.store "at an unknown date", "à une date inconnue"
 
   # app/controllers/admin/feedback_controller.rb
@@ -122,7 +122,7 @@ Localization.define("fr_FR") do |l|
   l.store "Draft", ""
   l.store "Withdrawn", "Supprimé"
   l.store "Publication pending", "À publier"
-  l.store "Show help on Typo macros", "Afficher l'aide sur les macros Typo"
+  l.store "Show help on Publify macros", "Afficher l'aide sur les macros Publify"
   l.store "Update settings", "Mettre les paramètres à jour"
   l.store "Back to list", ""
   l.store "Name", "Nom"
@@ -179,7 +179,7 @@ Localization.define("fr_FR") do |l|
   l.store "Signup", "S'inscrire"
 
   # app/views/admin/cache/index.html.erb
-  l.store "To save resources Typo caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", "Afin d'économiser des ressources, Typo génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+  l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
   l.store "There are currently %d files in cache for a total amount of %d Kb", "Il y a actuellement %d fichiers en cache pour un total de %d kilo octets."
   l.store "Sweep cache", "Vider le cache"
   l.store "Cache", "Cache"
@@ -261,13 +261,13 @@ Localization.define("fr_FR") do |l|
   l.store "You have no internet connection", "Vous n'avez pas de connexion à internet"
 
   # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Typo blog and what you can do. Maybe will you want to %s", "Voici un rapide aperçu de ce que peut faire votre blog Typo. Peux-être voulez vous %s"
+  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s", "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peux-être voulez vous %s"
   l.store "update your profile or change your password", "mettre votre profil à jour ou changer votre mot de passe"
   l.store "You can also do a bit of design, %s or %s.", "Vous pouvez également faire un peu de personnalisation, %s, %s"
   l.store "change your blog presentation", "changer l'apparence de votre blog"
   l.store "enable plugins", "activer des plugins"
   l.store "If you need help, %s.", "Si vous avez besoin d'aide, vous pouvez %s."
-  l.store "You can also %s to customize your Typo blog.", "Vous pouvez également %s pour personnaliser votre blog Typo."
+  l.store "You can also %s to customize your Publify blog.", "Vous pouvez également %s pour personnaliser votre blog Publify."
   l.store "write a post", "écrire un article"
   l.store "write a page", "publier une page statique"
   l.store "read our documentation", "consulter notre documentation"
@@ -281,14 +281,14 @@ Localization.define("fr_FR") do |l|
   l.store "Latest Posts", "Derniers articles"
   l.store "No posts yet, why don't you start and write one", "Vous n'avez encore écrit aucun article, pourquoi ne pas commencer par là"
 
-  # app/views/admin/dashboard/_typo_dev.html.erb
-  l.store "Latest news from the Typo development blog", "Dernières nouvelles du blog officiel de Typo"
+  # app/views/admin/dashboard/_publify_dev.html.erb
+  l.store "Latest news from the Publify development blog", "Dernières nouvelles du blog officiel de Publify"
   l.store "Oh no, nothing new", "Non, rien de nouveau"
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Bienvenue, %s !"
   l.store "%d articles and %d comments were posted since your last connexion", "Depuis votre dernière connexion, %d articles et %d commentaires ont été publiés"
-  l.store "You're running Typo %s", "Vous utilisez Typo %s"
+  l.store "You're running Publify %s", "Vous utilisez Publify %s"
   l.store "Content", "Contenu"
   l.store "Total posts:", "Nombre total d'articles :"
   l.store "Your posts:", "Vos articles :"
@@ -339,8 +339,8 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/post_types/new.html.erb
   l.store "Post Types", "Modèles d'articles"
   l.store "Template name", "Nom du modèle"
-  l.store "Typo default post type", "Modèle d'article par défaut"
-  l.store "The template name is the filename Typo will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb", "Ce modèle est un fichier que Typo cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
+  l.store "Publify default post type", "Modèle d'article par défaut"
+  l.store "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb", "Ce modèle est un fichier que Publify cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Votre profil"
@@ -392,7 +392,7 @@ Localization.define("fr_FR") do |l|
   l.store "Do not index tags", "Ne pas indexer les labels"
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
   l.store "Robots.txt", "Robots.txt"
-  l.store "You robots.txt file is not writeable. Typo won't be able to write it", "Typo ne peut pas écrire dans votre fichier robots.txt."
+  l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Publify ne peut pas écrire dans votre fichier robots.txt."
   l.store "Use dofollow in comments", "Mettre les commentaires en dofollow"
   l.store "You may want to moderate feedback when turning this on", "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
   l.store "Use canonical URL", "Utiliser les URL canoniques"
@@ -407,7 +407,7 @@ Localization.define("fr_FR") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
   
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Typo offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Les exemples ci-dessous vous aideront à démarrerTypo vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
+  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Les exemples ci-dessous vous aideront à démarrerPublify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
   l.store "Here are some examples to get you started.", "Les exemples ci-dessous vous aideront à démarrer."
   l.store "Permalink format", "Format des permaliens"
   l.store "Date and title", "Date et titre"
@@ -465,16 +465,16 @@ Localization.define("fr_FR") do |l|
   l.store "Avatars provider", "Fournisseur d’avatars"
   l.store "Show your email address", "Afficher votre adresse courriel"
   l.store "Enable spam protection", "Activer la protection contre le spam"
-  l.store "Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La protection contre le spam permettra à typo de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
+  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La protection contre le spam permettra à publify de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
   l.store "Akismet Key", "Clé Akismet"
-  l.store "Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Typo peut utiliser le service de lutte contre le spam %s. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici"
+  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify peut utiliser le service de lutte contre le spam %s. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici"
   l.store "Disable trackbacks site-wide", "Désactiver les trackbacks"
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Cette option vous permet de désactiver totalement les rétroliens sur votre blog. Ceci ne supprimera pas les rétroliens existants, mais empêchera tout nouveau rétrolien d'être créé"
   l.store "Disable comments after", "Désactiver les commentaires au bout de "
   l.store "days", "jours"
   l.store "Set to 0 to never disable comments", "Mettez cette option à 0 pour ne jamais désactiver les commentaires dans le temps"
   l.store "Max Links", "Nombre de liens maximum"
-  l.store "Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Typo rejettera automatiquement les commentaires et les rétroliens contenant un certain nombre de liens"
+  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify rejettera automatiquement les commentaires et les rétroliens contenant un certain nombre de liens"
   l.store "Set to 0 to never reject comments", "Mettez cette option à 0 pour ne jamais rejeter les commentaires"
   l.store "Enable reCaptcha", "Utiliser reCaptcha"
   l.store "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb", "N'oubliez pas de mettre votre clé d'activation dans config/initializers/recaptcha.rb"
@@ -488,9 +488,9 @@ Localization.define("fr_FR") do |l|
   l.store "Language", "Langue"
   l.store "Allow users to register", "Autoriser les utilisateurs à s'enregistrer"
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "Vous pouvez permettre aux utilisateurs de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
-  l.store "Typo can notify you when new articles or comments are posted", "Typo peut vous alerter quand de nouveaux articles et commentaires sont publiés"
+  l.store "Publify can notify you when new articles or comments are posted", "Publify peut vous alerter quand de nouveaux articles et commentaires sont publiés"
   l.store "Source Email", "Adresse courriel source"
-  l.store "Email address used by Typo to send notifications", "Adresse courriel utilisée par Typo pour l'envoi d'alertes"
+  l.store "Email address used by Publify to send notifications", "Adresse courriel utilisée par Publify pour l'envoi d'alertes"
   l.store "Items to display in admin lists", "Nombre d'éléments à afficher dans les listes"
   l.store "Date format", "Afficher les dates"
   l.store "ago", "il y a"
@@ -501,7 +501,7 @@ Localization.define("fr_FR") do |l|
   l.store "articles in my news feed by default", "billets dans mon flux RSS par défaut"
   l.store "Show only article excerpt on feed", "Tronquer les articles dans le flux RSS"
   l.store "Feedburner ID", "Identifiant Feedburner"
-  l.store "You can use your Google Feedburner account instead of Typo feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Typo. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
+  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Publify. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
 
   # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informations"
@@ -518,7 +518,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "Envoyer des rétroliens"
-  l.store "When publishing articles, Typo can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Quand vous publiez un billet sur Typo, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public."
+  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Quand vous publiez un billet sur Publify, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public."
   l.store "URLs to ping automatically", "Sites à alerter automatiquement"
   l.store "Latitude, Longitude", "Latitude, Longitude"
   l.store "your latitude and longitude", "vos coordonnées géographiques"
@@ -551,11 +551,11 @@ Localization.define("fr_FR") do |l|
   l.store "Displays links to monthly archives", "Affiche des liens vers les archives mensuelles"
   l.store "Displays a list of authors ordered by name with links to their articles and profile", "Affiche la liste des auteurs par ordre alphabétique avec un lien vers leur profil"
   l.store "Livesearch", "Recherche dynamique"
-  l.store "Adds livesearch to your Typo blog", "Ajoute une recherche dynamique à votre blog"
-  l.store "This widget just displays links to Typo main site, this blog's admin and RSS.", "Ce lien affiche juste un lien vers le site de Typo, l'administration de ce blog et son flux RSS"
+  l.store "Adds livesearch to your Publify blog", "Ajoute une recherche dynamique à votre blog"
+  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", "Ce lien affiche juste un lien vers le site de Publify, l'administration de ce blog et son flux RSS"
   l.store "Page", "Page"
   l.store "Show pages for this blog", "Affiche la liste des pages de ce blog"
-  l.store "Adds basic search sidebar in your Typo blog", "Ajoute un champ de recherche basic"
+  l.store "Adds basic search sidebar in your Publify blog", "Ajoute un champ de recherche basic"
   l.store "Static", "Contenu statique"
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", "Contenu statique, comme des liens, de la publicité ou toute autre information"
   l.store "Show most popular tags for this blog", "Affiche les tags les plus populaires"
@@ -608,7 +608,7 @@ Localization.define("fr_FR") do |l|
   l.store "Your Twitter username", "Identifiant Twitter"
   l.store "display Twitter on public profile", "Afficher votre identifiant Twitter sur votre profil public"
   l.store "Tell us more about you", "Dites nous en plus à votre sujet"
-  l.store "Typo administrator", "Administrateur"
+  l.store "Publify administrator", "Administrateur"
   l.store "Blog publisher", "Rédacteur"
   l.store "Contributor", "Contributeur"
 
@@ -695,7 +695,7 @@ Localization.define("fr_FR") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", "Bienvenue"
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Typo will take care of everything else", ""
+  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", "Félicitations !"
@@ -741,7 +741,7 @@ Localization.define("fr_FR") do |l|
 
   # themes/dirtylicious/views/layouts/default.html.erb
   l.store "About", "À propos de"
-  l.store "Designed by %s ported to typo by %s ", "Design par %s porté sous Typo par %s"
+  l.store "Designed by %s ported to publify by %s ", "Design par %s porté sous Publify par %s"
   l.store "Powered by %s", "Propulsé par %s"
 
   # themes/scribbish/views/articles/_article.html.erb
@@ -789,7 +789,7 @@ Localization.define("fr_FR") do |l|
   # vendor/plugins/meta_sidebar/app/views/meta_sidebar/_content.html.erb
   l.store "RSS Feed", ""
   l.store "Admin", ""
-  l.store "Powered by Typo", ""
+  l.store "Powered by Publify", ""
 
   # vendor/plugins/xml_sidebar/app/views/xml_sidebar/_content.html.erb
   l.store "Syndicate", "Suivre ce blog"
@@ -873,7 +873,7 @@ Localization.define("fr_FR") do |l|
   l.store "Ham?", "Désirable?"
   l.store "IP", "Adresse IP"
   l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur"
-  l.store "If you need help, %s. You can also %s to customize your Typo blog.", "Si vous avez besoin d'aide, n'hésitez pas à %s. Vous pouvez aussi %s afin de personnaliser votre blog sous Typo"
+  l.store "If you need help, %s. You can also %s to customize your Publify blog.", "Si vous avez besoin d'aide, n'hésitez pas à %s. Vous pouvez aussi %s afin de personnaliser votre blog sous Publify"
   l.store "Images", "Images"
   l.store "Jan", "jan"
   l.store "January", "janvier"
@@ -963,7 +963,7 @@ Localization.define("fr_FR") do |l|
   l.store "Tue", "Mar"
   l.store "Tuesday", "Mardi"
   l.store "Type", "Type"
-  l.store "Typogarden", "Typogarden"
+  l.store "Publifygarden", "Publifygarden"
   l.store "Unable to write file", "Impossible d'écrire le fichier"
   l.store "Unclassified", "Non vérifié"
   l.store "Unpublished", "Non publié"
@@ -972,9 +972,9 @@ Localization.define("fr_FR") do |l|
   l.store "Yes", "Oui"
   l.store "You are not authorized to open this file", "Vous n'êtes pas autorisé à ouvrir ce fichier"
   l.store "You can download third party themes from officially supported %s ", "Vous pouvez télécharger des thèmes officiellement supportés sur %s "
-  l.store "You can optionally disable non-Ajax comments. Typo will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Vous pouvez désactiver l'envoi des commentaires en AJAX. Typo utilisera toujours l'AJAX par défaut pour envoyer les commentaires si Javascript est activé. Désactiver l'AJAX sert donc aux gens ne disposant pas de Javascript et aux robots spammeurs"
+  l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Vous pouvez désactiver l'envoi des commentaires en AJAX. Publify utilisera toujours l'AJAX par défaut pour envoyer les commentaires si Javascript est activé. Désactiver l'AJAX sert donc aux gens ne disposant pas de Javascript et aux robots spammeurs"
   l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Vous devez spécifier un identifiant : %%month%%, %%year%%, %%day%%, %%title%%"
-  l.store "Your robots.txt file is not writeable. Typo won't be able to write it", "Votre fichier Robots.txt n'est pas écrivable. Typo ne peux donc pas y écrire."
+  l.store "Your robots.txt file is not writeable. Publify won't be able to write it", "Votre fichier Robots.txt n'est pas écrivable. Publify ne peux donc pas y écrire."
   l.store "add a comment", "Ajouter un commentaire"
   l.store "add new", "nouveau"
   l.store "and published on", "et publié sur"

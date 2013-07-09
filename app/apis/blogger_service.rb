@@ -36,7 +36,7 @@ class BloggerApi < ActionWebService::API::Base
 end
 
 
-class BloggerService < TypoWebService
+class BloggerService < PublifyWebService
   web_service_api BloggerApi
   before_invocation :authenticate
 

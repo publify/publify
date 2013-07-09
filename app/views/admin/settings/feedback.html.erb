@@ -57,7 +57,7 @@
     <div class='controls'>
       <label class='checkbox' for="setting_sp_global"><%= _("Enable spam protection")%>
         <%= check_box(:setting, :sp_global)%>
-        <span class='help-block'><%= _("Enabling spam protection will make Typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</span>  
+        <span class='help-block'><%= _("Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</span>  
       </label>
     </div>
   </div>
@@ -65,7 +65,7 @@
     <label class='control-label' for="setting_sp_akismet_key"><%= _("Akismet Key")%></label>
     <div class='controls'>
       <%= text_field(:setting, :sp_akismet_key, {:class => 'span6'}) %>
-      <span class='help-block'><%= _("Typo can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%>.</span>
+      <span class='help-block'><%= _("Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%>.</span>
     </div>
   </div>
   <div class='control-group'>
@@ -81,7 +81,7 @@
     <label class='control-label' for="setting_sp_url_limit"><%= _("Max Links")%></label>
     <div class='controls'>
       <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'span1'})%>
-      <span class='help-block'><%= _("Typo will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.
+      <span class='help-block'><%= _("Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.
       <%= _("Set to 0 to never reject comments")%>.</span>
     </div>
   </div>

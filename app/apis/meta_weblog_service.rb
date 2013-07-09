@@ -61,7 +61,7 @@ class MetaWeblogApi < ActionWebService::API::Base
 end
 
 
-class MetaWeblogService < TypoWebService
+class MetaWeblogService < PublifyWebService
   web_service_api MetaWeblogApi
   before_invocation :authenticate
 
