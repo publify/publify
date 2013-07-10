@@ -192,4 +192,9 @@ module Admin::BaseHelper
   def small_to_delete(item)
     content_tag(:small, link_to(_("Delete"), {:action => 'destroy', :id => item.id}, :class => 'delete'))
   end
+
+  def set_autosave_tag(article)
+    @article.inspect
+    hidden_field_tag("article[id]", @article.id) unless @article.id.nil?
+  end
 end

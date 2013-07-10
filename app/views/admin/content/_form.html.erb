@@ -1,6 +1,6 @@
 <input type="hidden" name="current_editor" id="current_editor" value="<%= current_user.editor %>" />
 <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
-<div id="autosave"></div>
+<div id="autosave"><%= set_autosave_tag(@article) %></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 
 <h2 class='page-header'>
