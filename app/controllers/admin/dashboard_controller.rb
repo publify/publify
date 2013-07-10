@@ -25,7 +25,7 @@ class Admin::DashboardController < Admin::BaseController
 
   def publify_version
     publify_version = nil
-    version = TYPO_VERSION.to_s.split('.')
+    version = PUBLIFY_VERSION.to_s.split('.')
     begin
       url = "http://blog.publify.co/version.txt"
       open(url) do |http|

@@ -29,7 +29,7 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def build_mail blog, user, subject
-    headers['X-Mailer'] = "Publify #{TYPO_VERSION}"
+    headers['X-Mailer'] = "Publify #{PUBLIFY_VERSION}"
     mail(from: blog.email_from,
          to: user.email,
          subject: make_subject(blog, subject))

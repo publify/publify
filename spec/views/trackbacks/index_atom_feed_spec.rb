@@ -22,7 +22,7 @@ describe "trackbacks/index_atom_feed.atom.builder" do
       xml = Nokogiri::XML.parse(rendered)
       generator = xml.css("generator").first
       generator.content.should == "Publify"
-      generator["version"].should == TYPO_VERSION
+      generator["version"].should == PUBLIFY_VERSION
     end
 
     it "should render an Atom feed with one item" do

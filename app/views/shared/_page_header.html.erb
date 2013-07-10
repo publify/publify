@@ -3,7 +3,7 @@
 <%= meta_tag 'description', @description unless @description.blank? %>
 <%= meta_tag 'robots', 'noindex, follow' if stop_index_robots? %>
 <%= meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?%>
-<meta name="generator" content="Publify <%=TYPO_VERSION%>" />
+<meta name="generator" content="Publify <%=PUBLIFY_VERSION%>" />
 <%= show_meta_keyword %>
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml', :action => 'rsd' %>" />
 <%- if feed_atom %>

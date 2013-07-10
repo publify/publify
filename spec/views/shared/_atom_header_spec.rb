@@ -20,7 +20,7 @@ describe "shared/_atom_header.atom.builder" do
       generator = xml.css("generator").first
       generator.should_not be_nil
       generator.content.should == "Publify"
-      generator["version"].should == TYPO_VERSION
+      generator["version"].should == PUBLIFY_VERSION
     end
   end
 end
