@@ -42,6 +42,7 @@ module Publify
   require 'sidebar'
   require 'publify_sidebar'
   require 'publify_textfilters'
+  require 'publify_avatar_gravatar'
   require 'calendar_date_select/lib/calendar_date_select.rb'
   require 'easy-ckeditor'
   require 'action_web_service'

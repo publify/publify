@@ -36,7 +36,6 @@ module PublifyPlugins
           raise ArgumentError.new "#{klass.kind.to_s} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
           @@registered[klass.kind] ||= []
           @@registered[klass.kind] << klass
-          Rails.logger.debug("PublifyPlugins: just registered plugin #{@@registered[klass.kind]} for #{klass.kind.inspect} target.")
           @@registered[klass.kind]
         end
       end
