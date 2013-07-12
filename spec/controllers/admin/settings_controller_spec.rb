@@ -15,7 +15,7 @@ describe Admin::SettingsController do
     before(:each) do
       get :index
     end
-    
+  
     it 'should render index' do  
       response.should render_template('index')
     end
@@ -25,7 +25,7 @@ describe Admin::SettingsController do
     before(:each) do
       get :write
     end
-    
+  
     it 'should be success' do
       assert_template 'write'
     end    
@@ -35,9 +35,19 @@ describe Admin::SettingsController do
     before(:each) do
       get :feedback
     end
-    
+  
     it 'should be sucess' do
       assert_template 'feedback'
+    end    
+  end
+
+  describe 'update database action' do
+    before(:each) do
+      get :update_database
+    end
+  
+    it 'should be sucess' do
+      assert_template 'update_database'
     end    
   end
 
@@ -75,4 +85,5 @@ describe Admin::SettingsController do
       @blog.should == Blog.default
     end
   end
+  
 end
