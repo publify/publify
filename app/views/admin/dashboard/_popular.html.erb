@@ -1,7 +1,7 @@
 <h3><%= _("Most popular") %></h3>
 <div class='well'>
   <ul class='unstyled'>
-    <% if @bestof.size == 0 %>
+    <% if @bestof.empty? || @bestof.size == 0 %>
       <li class='alert'><%= _("Nothing to show yet") %> !</li>
     <% else %>
       <% for article in @bestof -%>
