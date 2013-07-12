@@ -104,7 +104,6 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Write",            { :controller => "admin/settings", :action => "write" }
     project.submenu "Feedback",         { :controller => "admin/settings", :action => "feedback" }
     project.submenu "Cache",            { :controller => "admin/cache",    :action => "index" }
-    project.submenu "Error messages",   { :controller => "admin/settings", :action => "errors" }
   end
 
 

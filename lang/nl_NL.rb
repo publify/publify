@@ -690,6 +690,10 @@ Localization.define("nl_NL") do |l|
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
 
+  # app/views/errors/404.html.erb
+  l.store "Page not found", ""
+  l.store "The page you are looking for has moved or does not exist.", ""
+
   # app/views/layouts/administration.html.erb
   l.store "Logged in as %s", ""
   l.store "%s &raquo;", ""

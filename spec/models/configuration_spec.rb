@@ -235,14 +235,6 @@ describe 'Given a new blog' do
   it 'custom tracking fiels is empty' do
     @blog.custom_tracking_field.should == ''
   end
-
-  it '404 title should be page not found' do
-    @blog.title_error_404.should == "Page not found"
-  end
-  
-  it '404 text should be "The page you are looking for has moved or does not exist"' do
-    @blog.msg_error_404.should == "<p>The page you are looking for has moved or does not exist.</p>"
-  end
 end
 
 describe 'Given a new user' do

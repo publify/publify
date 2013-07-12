@@ -100,10 +100,6 @@ class Blog < ActiveRecord::Base
   setting :custom_tracking_field,      :string, ''
   # setting :meta_author_template,       :string, "%blog_name% | %nickname%"
 
-  # Error handling
-  setting :title_error_404,            :string, "Page not found"
-  setting :msg_error_404,              :string, "<p>The page you are looking for has moved or does not exist.</p>"
-
   validate :permalink_has_identifier
 
   def initialize(*args)
