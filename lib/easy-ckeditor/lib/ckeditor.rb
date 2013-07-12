@@ -12,8 +12,6 @@ module Ckeditor
   PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app/controllers"
   PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app/views"
   PLUGIN_HELPER_PATH = "#{PLUGIN_PATH}/app/helpers"
-  PLUGIN_FILE_MANAGER_URI = '/fm/filemanager'
-  PLUGIN_FILE_MANAGER_UPLOAD_URI = '/ckeditor/upload'
 
   module Helper
     def ckeditor_textarea(object, field, options = {})
@@ -46,11 +44,7 @@ module Ckeditor
       end
 
       return inputs <<
-        javascript_tag("CKEDITOR.replace('#{object}[#{field}]', {
-    filebrowserBrowseUrl : '#{PLUGIN_FILE_MANAGER_URI}',
-    filebrowserUploadUrl : '#{PLUGIN_FILE_MANAGER_UPLOAD_URI}'
-
-});\n")
+        javascript_tag("CKEDITOR.replace('#{object}[#{field}]', {});\n")
     end
 
     def ckeditor_form_remote_tag(options = {})

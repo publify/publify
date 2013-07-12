@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
 
   # for CK Editor
-  match 'fm/filemanager(/:action(/:id))', :to => 'Fm::Filemanager', :format => false
   match 'ckeditor/command', :to => 'ckeditor#command', :format => false
   match 'ckeditor/upload', :to => 'ckeditor#upload', :format => false
 

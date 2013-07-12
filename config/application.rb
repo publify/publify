@@ -49,9 +49,6 @@ module Publify
   # require 'avatar_plugin'
   require 'email_notify'
 
-  $FM_OVERWRITE = true
-  require 'filemanager'
-
   require 'format'
   require 'i18n_interpolation_deprecation'
   require 'route_cache'
