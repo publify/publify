@@ -1,8 +1,8 @@
 <script type="text/javascript">
   $('quicktags').style.display = 'block';
   $('simple_editor').style.display = 'block';
-  $('s').className = 'active';
-  $('f').className = 'inactive';
+  $('s').className = 'pull-right active';
+  $('f').className = 'pull-right inactive';
   $('text_filter').value = $('user_textfilter').value;
   content = CKEDITOR.instances.page__body_editor.getData();
   if (CKEDITOR.instances.page__body_editor &&
@@ -10,7 +10,7 @@
       delete(CKEDITOR.instances.page__body_editor);
     }
 </script>
-<%= text_area('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) %>
+<%= text_area('page', 'body', {:class => 'input-block-level', :height => '300px', :rows => '20'}) %>
 <script type="text/javascript">
   $('visual_editor').innerHTML = "";
   $('visual_editor').style.display = 'none';

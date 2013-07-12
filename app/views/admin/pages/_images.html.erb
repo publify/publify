@@ -1,7 +1,7 @@
 <!--
 <a href="javascript:" class="carousel-control" rel="prev">Previous</a>
 -->
-<div id="carousel-wrapper" <%= 'style="display: none;"' if current_user.editor == 'visual' %>>
+<div id="carousel-wrapper" <%= 'style="display: none;"' %>>
     <div id="carousel-content">
       <% @images.each do |image| %>
         <div class="slide">

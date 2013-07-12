@@ -1,72 +1,83 @@
 <input type="hidden" name="current_editor" id="current_editor" value="<%= current_user.editor %>" />
 <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
-<%= error_messages_for 'page' %>
 
-<div class='editor-right'>
-  <div class='well'>
-    <fieldset>
-      <legend><%= _("Publish settings") %></legend>
-    </fieldset>
-    <div class='control-group'>
-      <%= _("Status") %>: <strong><%= _(@page.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
-      <div id='status' style='display: none;'>
-        <label for="page_published" class='checkbox'>
-          <%= check_box 'page', 'published'  %>
-          <%= _("Online")%>
-        </label>
-      </div>
-    </div>
-    <div class='control-group'>
-      <%= _("Permanent link")%>: <%= toggle_element 'permalink' %>
-      <div id='permalink' style='display: none;'>
-        <%= text_field 'page', 'name', :class => 'span12' %>
-      </div>
-    </div>
-    <div class='control-group'>
-      <%= _("Article filter") %>: <strong><%= _("#{@page.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
-      <div id='text_filter' style='display: none;'>
-        <select name="page[text_filter]" id="text_filter">
-        <%= options_for_select text_filter_options, @page.text_filter %>
-      </select>
-      </div>
-    </div>
-    <div class='form-actions'>
-      <%= save( _("Publish")) %>
-    </div>
-	</div>
-</div>
-
-<div class='editor-left'>
-  <p class='input_text'>
-    <%= text_field 'page', 'title', :class => 'span1', :style => ' width: 99%', :placeholder => _('Title')  %>
-  </p>
-
-  <%= render('images', { :images => @images}) unless @images.empty? %>
-
-  <div id='editor-menu'>
-    <ul class="nav nav-tabs">
-      <li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-        <%= build_editor_link(_("Visual"), 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-      </li>
-      <li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
-        <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-      </li>
-    </ul>
-  </div>
-
-  <div id='editor'>
-    <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
-      <script type="text/javascript">edToolbar('page_body');</script>
-    </div>
-    <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
-      <%= ckeditor_textarea('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
-    </div>
-    <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
-      <%= text_area('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'simple' %>
-      <%= render_macros(@macros) if current_user.editor == 'simple' %>
-    </div>
-  </div>
+<h2 class='page-header'>
+  <%= _("#{controller.action_name.to_s.capitalize} Page") %>
+  <span class='pull-right'>
+    <%= save( _("Publish")) %>
+  </span>
+</h2>
   
-  <div class='separator'>
+<%= error_messages_for 'page' %>
+<div>
+  <div class='span9'>
+    <div>
+      <%= text_field 'page', 'title', :class => 'input-block-level', :placeholder => _('Title')  %>
     </div>
+    
+    <%= render('images', { :images => @images}) unless @images.empty? %>
+    
+    <div id='editor-menu'>
+      <ul class="nav nav-tabs">
+        <li id='image-link' <%= 'style="display: none"' if current_user.editor == 'visual' %>><%= toggle_element 'carousel-wrapper', _("Images") %></li>
+        <li id="f" class='pull-right <%= "active" if current_user.editor == 'visual' %>'>
+          <%= build_editor_link(_("Visual"), 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+        </li>
+        <li id="s" class='pull-right <%= "active" if current_user.editor == 'simple' %> '>
+          <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+        </li>
+      </ul>
+    </div>
+    
+    <div id='editor'>
+      <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
+        <script type="text/javascript">edToolbar('page_body');</script>
+      </div>
+      <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
+        <%= ckeditor_textarea('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
+      </div>
+      <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
+        <%= text_area('page', 'body', {:class => 'input-block-level', :height => '300px', :rows => '20'}) if current_user.editor == 'simple' %>
+        <%= render_macros(@macros) if current_user.editor == 'simple' %>
+      </div>
+    </div>
+    <div class='separator'>
+      <div class='well'>
+        <fieldset>
+          <legend><%= _("Publish settings") %></legend>
+          <div class='control-group'>
+            <%= _("Status") %>: <strong><%= _(@page.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
+            <div id='status' style='display: none;'>
+              <label for="page_published" class='checkbox'>
+                <%= check_box 'page', 'published'  %>
+                <%= _("Online")%>
+              </label>
+            </div>
+          </div>
+          <div class='control-group'>
+            <%= _("Article filter") %>: <strong><%= _("#{@page.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
+            <div id='text_filter' style='display: none;'>
+              <select name="page[text_filter]" id="text_filter">
+              <%= options_for_select text_filter_options, @page.text_filter %>
+            </select>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class='form-actions'>
+        <div class='pull-right'>
+            <%= save( _("Publish")) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='span3'>
+    <div class='well'>
+      <h4><%= _("Permanent link")%></h4>
+      <div>
+        <%= text_field 'page', 'name', :class => 'input-block-level' %>
+      </div>
+      
+    </div>
+  </div>
 </div>
