@@ -1,0 +1,15 @@
+<div class="hfeed">
+  <% for status in @statuses -%>
+  <div class='h-entry hentry h-as-note'>
+    <article>
+      <p class='p-name entry-title e-content entry-content article'><%= status.html(:body) %></p>
+      <footer>
+        <small><%= link_to_permalink(status, display_date_and_time(status.published_at)) %></small>
+      </footer>
+    </article>
+        <hr />
+  </div>
+  <% end -%>
+</div>
+
+<%= paginate @statuses, :next_label => "#{_("Next page")} &raquo;", :previous_label => "&laquo; #{_('Previous page')}" %>

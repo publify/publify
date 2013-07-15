@@ -98,6 +98,12 @@ Rails.application.routes.draw do
   # For the tests
   get 'theme/static_view_test', :format => false
 
+  # For the statuses
+  match '/sts', :to => 'statuses#index', :format => false
+  match '/sts/page/:page', :to => 'statuses#index', :format => false
+  get '/st/:permalink', :to => 'statuses#show', :format => false
+
+
   # Work around the Bad URI bug
   %w{ accounts backend files sidebar }.each do |i|
     match "#{i}", :to => "#{i}#index", :format => false

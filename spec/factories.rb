@@ -252,6 +252,16 @@ http://alsoping.example.com/rpc/ping"
     state 'published'
   end
 
+  factory :status do
+    body 'this is a status'
+    created_at '2013-07-14 01:00:01'
+    published_at '2013-07-14 01:00:01'
+    updated_at '2013-07-14 01:00:01'
+    user
+    published true
+    state 'published'
+  end
+
   factory :trackback do |t|
     published true
     state 'ham'
