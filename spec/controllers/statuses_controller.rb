@@ -41,7 +41,6 @@ describe StatusesController, 'showing a single status' do
 end
 
 describe StatusesController, "showing a non-existant status" do
-  # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should display a 404 error' do
     FactoryGirl.create(:blog)
     get 'show', :permalink => 'thistagdoesnotexist'

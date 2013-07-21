@@ -106,6 +106,11 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Cache",            { :controller => "admin/cache",    :action => "index" }
   end
 
+  map.project_module :statuses, nil do |project|
+    project.menu "Short statuses",      { :controller => "admin/statuses", :action => "index" }
+    project.submenu "All statuses",     { :controller => "admin/statuses", :action => "index" }
+    project.submenu "Write",            { :controller => "admin/statuses", :action => "new" }
+  end
 
   map.project_module :seo, nil do |project|
     project.menu    "SEO",  { :controller => "admin/seo", :action => "index" }

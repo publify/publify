@@ -2,14 +2,20 @@ class Status < Content
   belongs_to :user
   validates_presence_of :body
   validates_uniqueness_of :permalink
-
+  attr_accessor :push_to_twitter
+  
   after_create :set_permalink, :shorten_url
 
   default_scope order("created_at DESC")  
 
   def set_permalink
-    self.permalink = "#{self.id}-#{self.body.to_permalink}"
+    self.permalink = "#{self.id}-#{self.body.to_permalink}" if self.permalink.nil? or self.permalink.empty?
     self.save
+  end
+
+  def set_author(user)
+    self.author = user.login
+    self.user = user
   end
 
   def initialize(*args)
@@ -24,16 +30,8 @@ class Status < Content
 
   content_fields :body
 
-  def self.default_order
-    'id ASC'
-  end
-
-  def self.search_paginate(search_hash, paginate_hash)
-    list_function = ["Page"] + function_search_all_posts(search_hash)
-    paginate_hash[:order] = 'id ASC'
-    list_function << "page(paginate_hash[:page])"
-    list_function << "per(paginate_hash[:per_page])"
-    eval(list_function.join('.'))
+  def access_by?(user)
+    user.admin? || user_id == user.id
   end
 
   def permalink_url(anchor=nil, only_path=false)

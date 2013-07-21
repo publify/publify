@@ -1,0 +1,27 @@
+<% @page_heading = _('Manage statuses') + content_tag(:div, link_to(_("New Status"), {:controller => 'statuses', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= _("Message") %></th>
+      <th><%= _("Author") %></th>
+      <th><%= _("Date") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render_void_table(@statuses.size, 3)  %>
+    <% for status in @statuses %>
+    <tr>
+      <td>
+        <strong><%= link_to_edit h(status.body), status %></strong>
+        <%= show_actions status %>
+      </td>
+      <td><%= author_link(status)%></td>
+      <td>
+        <%= format_date_time status.published_at %><br />
+      </td>
+    </tr>
+    <% end %>
+    <%= display_pagination(@statuses, 3, 'first', 'last')%>    
+  </tbody>
+</table>
