@@ -232,6 +232,22 @@ describe 'Given a new blog' do
     @blog.search_desc_template.should == "Results for %search% | %blog_name% | %blog_subtitle% %page%"
   end
   
+  it 'status list title is Statuses | blog name page' do
+    @blog.statuses_title_template.should == "Statuses | %blog_name% %page%"
+  end
+  
+  it 'status list description  is Statuses | blog name | blog subtitle page' do
+    @blog.statuses_desc_template.should == "Statuses | %blog_name% | %blog_subtitle% %page%"
+  end
+
+  it 'a single status title is status content | blog name' do
+    @blog.status_title_template.should == "%body% | %blog_name%"
+  end
+  
+  it 'status list description  is status content' do
+    @blog.status_desc_template.should == "%excerpt%"
+  end
+
   it 'custom tracking fiels is empty' do
     @blog.custom_tracking_field.should == ''
   end

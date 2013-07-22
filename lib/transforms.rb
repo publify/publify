@@ -58,6 +58,7 @@ class String
     s = s.gsub('%description%', item.description) if s =~ /%description%/ and item.respond_to? :description
     s = s.gsub('%name%', item.name) if s =~ /%name%/ and item.respond_to? :name
     s = s.gsub('%author%', item.name) if s =~ /%author%/ and item.respond_to? :name
+    s = s.gsub('%body%', item.body) if s =~ /%body%/ and item.respond_to? :body
     
     if s =~ /%categories%/ and item.respond_to? :categories
       s = s.gsub('%categories%', item.categories.map { |c| c.name }.join(", "))

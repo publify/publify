@@ -81,22 +81,27 @@ class Blog < ActiveRecord::Base
   setting :use_meta_keyword,           :boolean, true
   setting :home_title_template,        :string, "%blog_name% | %blog_subtitle%" # spec OK
   setting :home_desc_template,         :string, "%blog_name% | %blog_subtitle% | %meta_keywords%" # OK
-  setting :article_title_template,     :string, "%title% | %blog_name%" # spec OK
-  setting :article_desc_template,      :string, "%excerpt%" #OK
-  setting :page_title_template,        :string, "%title% | %blog_name%" # OK
-  setting :page_desc_template,         :string, "%excerpt%" # OK
-  setting :paginated_title_template,   :string, "%blog_name% | %blog_subtitle% %page%" # spec OK
-  setting :paginated_desc_template,    :string, "%blog_name% | %blog_subtitle% | %meta_keywords% %page%" # OK
-  setting :category_title_template,    :string, "Category: %name% | %blog_name% %page%" # Spec
-  setting :category_desc_template,     :string, "%name% | %description% | %blog_subtitle% %page%" # Spec
+  setting :article_title_template,     :string, "%title% | %blog_name%"
+  setting :article_desc_template,      :string, "%excerpt%"
+  setting :page_title_template,        :string, "%title% | %blog_name%"
+  setting :page_desc_template,         :string, "%excerpt%"
+  setting :paginated_title_template,   :string, "%blog_name% | %blog_subtitle% %page%"
+  setting :paginated_desc_template,    :string, "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
+  setting :category_title_template,    :string, "Category: %name% | %blog_name% %page%"
+  setting :category_desc_template,     :string, "%name% | %description% | %blog_subtitle% %page%"
   setting :tag_title_template,         :string, "Tag: %name% | %blog_name% %page%"
   setting :tag_desc_template,          :string, "%name% | %blog_name% | %blog_subtitle% %page%"
-  setting :author_title_template,      :string, "%author% | %blog_name%" # OK
-  setting :author_desc_template,       :string, "%author% | %blog_name% | %blog_subtitle%" # OK
-  setting :archives_title_template,    :string, "Archives for %blog_name% %date% %page%" # specs OK
-  setting :archives_desc_template,     :string, "Archives for %blog_name% %date% %page% %blog_subtitle%" # OK
-  setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%" # OK
-  setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%" # OK
+  setting :author_title_template,      :string, "%author% | %blog_name%"
+  setting :author_desc_template,       :string, "%author% | %blog_name% | %blog_subtitle%"
+  setting :archives_title_template,    :string, "Archives for %blog_name% %date% %page%"
+  setting :archives_desc_template,     :string, "Archives for %blog_name% %date% %page% %blog_subtitle%"
+  setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%" 
+  setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%"
+  setting :statuses_title_template,    :string, "Statuses | %blog_name% %page%"
+  setting :statuses_desc_template,     :string, "Statuses | %blog_name% | %blog_subtitle% %page%"
+  setting :status_title_template,      :string, "%body% | %blog_name%"
+  setting :status_desc_template,       :string, "%excerpt%"
+  
   setting :custom_tracking_field,      :string, ''
   # setting :meta_author_template,       :string, "%blog_name% | %nickname%"
 
