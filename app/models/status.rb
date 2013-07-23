@@ -1,6 +1,7 @@
 class Status < Content
   require 'twitter'
   require 'json'
+  require 'uri'
   include PublifyGuid
   include ConfigManager
 
@@ -48,12 +49,13 @@ class Status < Content
       :oauth_token_secret => user.twitter_oauth_token_secret
     )
     
-    shortened_url = "(#{blog.base_url.sub(/^https?\:\/\//, '')} #{self.redirects.first.from_path})"
+    shortened_url = "(#{blog.base_url.sub(/^https?\:\/\//, '')}/#{self.redirects.first.from_path})"
     message = self.body.strip_html
+
+    length = calculate_real_length(message)
     
-    if message.length + shortened_url.length + 1 > 150
-      drop = message.length + shortened_url.length - 143
-      message = "#{message[0..drop]} [...] (#{shortened_url})"
+    if length > 126
+      message = "#{message[0..126]} [...] #{shortened_url}"
     else
       message = "#{message} #{shortened_url}"
     end
@@ -79,6 +81,20 @@ class Status < Content
       :anchor => anchor,
       :only_path => only_path
     )
+  end
+
+  private
+  def calculate_real_length(message)
+    link_length = 21 # t.co URL length
+    length = message.length
+    
+    uris = URI.extract(message)
+    
+    uris.each do |uri|
+      length = length - (uri.length + link_length)
+    end
+    
+    return length
   end
 
 end
