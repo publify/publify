@@ -1,5 +1,9 @@
 class StatusesController < ContentController
   layout :theme_layout
+  cache_sweeper :blog_sweeper
+  caches_page :index, :show, :if => Proc.new {|c|
+    c.request.query_string == ''
+  }
   
   def index
     @statuses = Status.page(params[:page]).per(this_blog.limit_article_display)
