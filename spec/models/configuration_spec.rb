@@ -30,7 +30,6 @@ describe 'Given a new blog' do
     @blog.should_not be_sp_global
   end
 
-
   it "#sp_article_auto_close should be 0" do
     @blog.sp_article_auto_close.should == 0
   end
@@ -251,6 +250,14 @@ describe 'Given a new blog' do
   it 'custom tracking fiels is empty' do
     @blog.custom_tracking_field.should == ''
   end
+
+  it 'twitter_consumer_key is empty' do
+    @blog.twitter_consumer_key.should == ''
+  end
+  
+  it 'twitter consumer secret should be empty' do
+    @blog.twitter_consumer_secret.should == ''
+  end  
 end
 
 describe 'Given a new user' do
@@ -333,6 +340,23 @@ describe 'Given a new user' do
   it 'Admin theme should be blue' do
     @user.admin_theme.should == 'blue'
   end  
+  
+  it 'Twitter account for statuses should be empty' do
+    @user.twitter_account.should == ''
+  end
+  
+  it 'Twitter oauth token should be empty' do
+    @user.twitter_oauth_token.should == ''
+  end
+
+  it 'Twitter oauth secret token should be empty' do
+    @user.twitter_oauth_token_secret.should == ''
+  end
+  
+  it 'Twitter profile image should be empty' do
+    @user.twitter_profile_image.should == ''
+  end
+  
 end
 
 describe 'Given a new article' do

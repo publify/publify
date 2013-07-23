@@ -105,6 +105,9 @@ class Blog < ActiveRecord::Base
   setting :custom_tracking_field,      :string, ''
   # setting :meta_author_template,       :string, "%blog_name% | %nickname%"
 
+  setting :twitter_consumer_key,      :string, ''
+  setting :twitter_consumer_secret,   :string, ''
+
   validate :permalink_has_identifier
 
   def initialize(*args)

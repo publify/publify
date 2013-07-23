@@ -39,7 +39,11 @@ class User < ActiveRecord::Base
   setting :show_twitter,               :boolean, false
   setting :show_jabber,                :boolean, false
   setting :admin_theme,                :string,  'blue'
-
+  setting :twitter_account,            :string, ''
+  setting :twitter_oauth_token,        :string, ''
+  setting :twitter_oauth_token_secret, :string, ''
+  setting :twitter_profile_image,      :string, ''
+  
   # echo "publify" | sha1sum -
   class_attribute :salt
 
@@ -177,6 +181,12 @@ class User < ActiveRecord::Base
   def admin?
     profile.label == Profile::ADMIN
   end
+  
+  def update_twitter_profile_image(img)
+    return if self.twitter_profile_image == img
+    self.twitter_profile_image = img
+    self.save
+  end
 
   def generate_password!
     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
@@ -185,6 +195,12 @@ class User < ActiveRecord::Base
     self.password = newpass
   end
 
+  def twitter_configured?
+    return false if self.twitter_oauth_token.nil? or self.twitter_oauth_token.empty?
+    return false if self.twitter_oauth_token_secret.nil? or self.twitter_oauth_token_secret.empty?
+    true
+  end
+  
   protected
 
   # Apply SHA1 encryption to the supplied password.

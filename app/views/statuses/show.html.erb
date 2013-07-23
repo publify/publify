@@ -1,11 +1,13 @@
 <div class="hfeed">
   <div class='h-entry hentry h-as-note'>
     <article>
+      <%= author_picture @status %>
       <p class='p-name entry-title e-content entry-content article'><%= @status.html(:body) %></p>
       <footer>
         <%= link_to_permalink(@status, display_date_and_time(@status.published_at)) %> | 
         <%= link_to File.join(this_blog.base_url, @status.redirects.first.from_path), File.join(this_blog.base_url, @status.redirects.first.from_path) %> | 
-        <%= author_link @status %>
+        <%= author_link @status %> 
+        <%= view_on_twitter @status %>
       </footer>
     </article>
   </div>

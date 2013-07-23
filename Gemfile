@@ -46,6 +46,7 @@ gem 'fog'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 gem 'carrierwave'
 gem 'akismet', '~> 1.0'
+gem 'twitter'
 
 # TODO: Replace with jquery
 gem 'prototype-rails', '~> 3.2.1'

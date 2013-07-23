@@ -16,6 +16,7 @@ class Admin::StatusesController < Admin::ContentController
     update_status_attributes
     
     if @status.save
+      @status.send_to_twitter(current_user) if params[:status][:push_to_twitter]
       flash[:notice] = _('Status was successfully created.')
       redirect_to :action => 'index'
     end

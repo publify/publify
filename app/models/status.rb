@@ -1,4 +1,13 @@
 class Status < Content
+  require 'twitter'
+  require 'json'
+  include PublifyGuid
+  include ConfigManager
+
+  serialize :settings, Hash
+
+  setting :twitter_id, :string, ''
+  
   belongs_to :user
   validates_presence_of :body
   validates_uniqueness_of :permalink
@@ -26,6 +35,34 @@ class Status < Content
     rescue Exception => e
       self.settings = {}
     end
+  end
+
+  def send_to_twitter(user)
+    blog = Blog.default
+    return if blog.twitter_consumer_key.nil? or blog.twitter_consumer_secret.nil?
+    return unless user.twitter_configured?
+    twitter = Twitter::Client.new(
+      :consumer_key => blog.twitter_consumer_key,
+      :consumer_secret => blog.twitter_consumer_secret,
+      :oauth_token => user.twitter_oauth_token,
+      :oauth_token_secret => user.twitter_oauth_token_secret
+    )
+    
+    shortened_url = "(#{blog.base_url.sub(/^https?\:\/\//, '')} #{self.redirects.first.from_path})"
+    message = self.body.strip_html
+    
+    if message.length + shortened_url.length + 1 > 150
+      drop = message.length + shortened_url.length - 143
+      message = "#{message[0..drop]} [...] (#{shortened_url})"
+    else
+      message = "#{message} #{shortened_url}"
+    end
+    
+    tweet = twitter.update(message)
+    self.twitter_id = tweet.attrs[:id_str]
+    self.save
+    
+    user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
   end
 
   content_fields :body

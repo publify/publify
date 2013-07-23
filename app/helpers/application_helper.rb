@@ -90,6 +90,18 @@ module ApplicationHelper
       h article.author
     end
   end
+  
+  def author_picture(status)
+    return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
+    return if status.twitter_id.nil? or status.twitter_id.empty?
+    
+    image_tag(status.user.twitter_profile_image , class: "alignleft", alt: status.user.twitter_account)
+  end
+  
+  def view_on_twitter(status)
+    return if status.twitter_id.nil? or status.twitter_id.empty?
+    return " | " + link_to(_("View on Twitter"), File.join('https://twitter.com', status.user.twitter_account, 'status', status.twitter_id))
+  end
 
   def google_analytics
     unless this_blog.google_analytics.empty?
