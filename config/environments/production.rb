@@ -26,4 +26,9 @@ Publify::Application.configure do
 
   # Enable threaded mode
   # config.threadsafe!
+
+  #TimeZone setting
+  config.time_zone = 'UTC'
+  config.active_record.default_timezone = :utc
+
 end

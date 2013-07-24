@@ -1,7 +1,7 @@
 class PublifyTime
   def self.delta(year = nil, month = nil, day = nil)
     return nil if year.nil? && month.nil? && day.nil?
-    from = Time.utc(year, month || 1, day || 1)
+    from = Time.zone.local(year, month || 1, day || 1)
     to = from.next_year
     to = from.next_month unless month.blank?
     to = from + 1.day unless day.blank?
