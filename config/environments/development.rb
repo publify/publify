@@ -24,4 +24,9 @@ Publify::Application.configure do
   end
 
   config.log_level = :debug
+
+  #TimeZone setting
+  config.time_zone = 'UTC'
+  config.active_record.default_timezone = :utc
+
 end
