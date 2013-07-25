@@ -16,7 +16,7 @@ class Status < Content
   
   after_create :set_permalink, :shorten_url
 
-  default_scope order("created_at DESC")  
+  default_scope order("published_at DESC")  
 
   def set_permalink
     self.permalink = "#{self.id}-#{self.body.to_permalink[0..79]}" if self.permalink.nil? or self.permalink.empty?
