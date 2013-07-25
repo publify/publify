@@ -75,6 +75,7 @@ class ArticlesController < ContentController
 
   def preview
     @article = Article.last_draft(params[:id])
+    @page_title = this_blog.article_title_template.to_title(@article, this_blog, params)
     @canonical_url = ""
     render 'read'
   end
