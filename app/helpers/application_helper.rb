@@ -100,7 +100,7 @@ module ApplicationHelper
   
   def view_on_twitter(status)
     return if status.twitter_id.nil? or status.twitter_id.empty?
-    return " | " + link_to(_("View on Twitter"), File.join('https://twitter.com', status.user.twitter_account, 'status', status.twitter_id))
+    return " | " + link_to(_("View on Twitter"), File.join('https://twitter.com', status.user.twitter_account, 'status', status.twitter_id), {class: 'u-syndication', rel: 'syndication'})
   end
 
   def google_analytics
