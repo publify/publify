@@ -8,8 +8,8 @@ describe 'Given a post which references a pingback enabled article' do
 
 
   before(:each) do
-    @mock_response = mock('response')
-    @mock_xmlrpc_response = mock('xmlrpc_response')
+    @mock_response = double('response')
+    @mock_xmlrpc_response = double('xmlrpc_response')
   end
 
   it 'Pingback sent to url found in referenced header' do
@@ -112,7 +112,7 @@ describe "An article links to another article, which contains a trackback URL" d
   end
 
   def make_and_send_ping(post, article, article_url)
-    @mock = mock('html_response')
+    @mock = double('html_response')
     Net::HTTP.should_receive(:get_response).with(URI.parse(referenced_url)).and_return(@mock)
     @mock.should_receive(:[]).with('X-Pingback').at_least(:once)
     @mock.should_receive(:body).twice.and_return(referenced_body)
@@ -148,7 +148,7 @@ end
 describe 'Given a remote site to notify, eg technorati' do
   it 'we can ping them correctly' do
     FactoryGirl.create(:blog)
-    mock = mock('response')
+    mock = double('response')
     XMLRPC::Client.should_receive(:new2).with('http://rpc.technorati.com/rpc/ping').and_return(mock)
     mock.should_receive(:call).with('weblogUpdates.ping', 'test blog',
                                     'http://myblog.net', 'http://myblog.net/new-post')
