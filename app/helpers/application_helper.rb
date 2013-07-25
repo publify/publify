@@ -37,7 +37,6 @@ module ApplicationHelper
   end
 
   def avatar_tag(options = {})
-    puts this_blog.plugin_avatar.to_s
     avatar_class = this_blog.plugin_avatar.constantize
     return '' unless avatar_class.respond_to?(:get_avatar)
     avatar_class.get_avatar(options)
