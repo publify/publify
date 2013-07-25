@@ -47,10 +47,10 @@ module Admin::BaseHelper
   def link_to_destroy_with_profiles(record, controller = controller.controller_name)
     if current_user.admin? || current_user.id == record.user_id
       link_to(_("delete"),
-        { controller: controller, action: 'destroy', id: record.id },
-        data: {confirm: _("Are you sure?")},
-        method: :post, class: 'btn danger', title: _("Delete content"))
-      end
+              { controller: controller, action: 'destroy', id: record.id },
+              data: {confirm: _("Are you sure?")},
+              method: :post, class: 'btn danger', title: _("Delete content"))
+    end
   end
 
   def text_filter_options

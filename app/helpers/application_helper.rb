@@ -128,12 +128,12 @@ module ApplicationHelper
 
   def page_header_includes
     content_array.collect { |c| c.whiteboard }.collect do |w|
-      w.select {|k,v| k =~ /^page_header_/}.collect do |(k,v)|
+      w.select {|k,v| k =~ /^page_header_/}.collect do |_,v|
         v = v.chomp
-      # trim the same number of spaces from the beginning of each line
-      # this way plugins can indent nicely without making ugly source output
-      spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
-      v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
+        # trim the same number of spaces from the beginning of each line
+        # this way plugins can indent nicely without making ugly source output
+        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+        v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
       end
     end.flatten.uniq.join("\n")
   end
