@@ -257,7 +257,11 @@ describe 'Given a new blog' do
   
   it 'twitter consumer secret should be empty' do
     @blog.twitter_consumer_secret.should == ''
-  end  
+  end
+  
+  it 'should have an empty custom url shortener' do
+    @blog.custom_url_shortener.should == ''
+  end
 end
 
 describe 'Given a new user' do

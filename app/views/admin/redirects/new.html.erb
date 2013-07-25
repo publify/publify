@@ -26,7 +26,7 @@
   <% for redirect in @redirects %>
   <tr <%= alternate_class %>>
     <td>
-    <%= link_to("#{this_blog.base_url}/#{redirect.from_path}", "#{this_blog.base_url}/#{redirect.from_path}") %>
+    <%= link_to("#{redirect.to_url}", "#{redirect.to_url}") %>
     <%= show_redirect_actions redirect %>
   </td>
   <td><%= link_to(redirect.to_path, redirect.to_path) %></td>

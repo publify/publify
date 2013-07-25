@@ -128,6 +128,15 @@
         <span class='help-block'><%= _('You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
       </div>
     </div>
+    <div class='control-group'>
+      <label class='control-label' for="custom_url_shortener"><%= _("Custom URL shortener domain")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :custom_url_shortener, { :class => 'span6'})%>
+        <p class='help block'><%= _("You may want to use a custom domain for URL shortening, here's where it happens.") %></p>
+      </div>
+    </div>
+    
+    
 </fieldset>
 
 <%= hidden_field_tag 'from', 'index' %>

@@ -123,7 +123,7 @@ class Content < ActiveRecord::Base
   def short_url
     # Double check because of crappy data in my own old database
     return unless self.published and self.redirects.size > 0
-    blog.url_for(redirects.last.from_path, :only_path => false)
+    self.redirects.last.to_url
   end
 
 end

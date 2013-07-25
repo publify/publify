@@ -107,7 +107,8 @@ class Blog < ActiveRecord::Base
 
   setting :twitter_consumer_key,      :string, ''
   setting :twitter_consumer_secret,   :string, ''
-
+  setting :custom_url_shortener,      :string, ''
+  
   validate :permalink_has_identifier
 
   def initialize(*args)

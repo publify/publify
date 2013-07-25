@@ -19,7 +19,7 @@ class Status < Content
   default_scope order("created_at DESC")  
 
   def set_permalink
-    self.permalink = "#{self.id}-#{self.body.to_permalink}" if self.permalink.nil? or self.permalink.empty?
+    self.permalink = "#{self.id}-#{self.body.to_permalink[0..79]}" if self.permalink.nil? or self.permalink.empty?
     self.save
   end
 
@@ -49,7 +49,7 @@ class Status < Content
       :oauth_token_secret => user.twitter_oauth_token_secret
     )
     
-    shortened_url = "(#{blog.base_url.sub(/^https?\:\/\//, '')}/#{self.redirects.first.from_path})"
+    shortened_url = self.redirects.first.to_url
     message = self.body.strip_html
 
     length = calculate_real_length(message)

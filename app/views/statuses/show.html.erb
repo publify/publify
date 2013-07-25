@@ -2,10 +2,10 @@
   <div class='h-entry hentry h-as-note'>
     <article>
       <%= author_picture @status %>
-      <p class='p-name entry-title e-content entry-content article'><%= @status.html(:body) %></p>
+      <div class='p-name entry-title e-content entry-content article'><%= @status.html(:body) %></div>
       <footer>
         <%= link_to_permalink(@status, display_date_and_time(@status.published_at)) %> | 
-        <%= link_to File.join(this_blog.base_url, @status.redirects.first.from_path), File.join(this_blog.base_url, @status.redirects.first.from_path) %> | 
+        <%= link_to @status.redirects.first.to_url, @status.redirects.first.to_url %> | 
         <%= author_link @status %> 
         <%= view_on_twitter @status %>
       </footer>
