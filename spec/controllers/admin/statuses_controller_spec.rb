@@ -83,8 +83,6 @@ describe Admin::StatusesController do
       response.should redirect_to(:controller => 'statuses', :action => 'new')
       flash[:notice].should ==  "Status was successfully created."
     end
-
-    
   end
     
   describe "Destorying a status" do

@@ -60,7 +60,7 @@ class Admin::StatusesController < Admin::ContentController
       end
     
       if @status.save
-        @status.send_to_twitter(current_user) if params[:status][:push_to_twitter] and @status.twitter_id.nil?
+        @status.send_to_twitter(current_user) if params[:status][:push_to_twitter] and @status.twitter_id.nil? or @status.twitter_id.empty?
         flash[:notice] = _("Status was successfully %s.", message)
         redirect_to :action => 'new'
       end
