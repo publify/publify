@@ -61,7 +61,7 @@ group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 4.2.0'
   gem 'webrat'
-  gem 'rspec-rails', '~> 2.13.1'
+  gem 'rspec-rails', '~> 2.14'
   gem 'simplecov', :require => false
   gem 'pry-rails'
 end

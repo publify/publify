@@ -27,7 +27,7 @@ describe Admin::FeedbackController do
       end.should_not change(Feedback, :count)
       lambda do
         Feedback.find(feedback_from_own_article.id)
-      end.should_not raise_error(ActiveRecord::RecordNotFound)
+      end.should_not raise_error
       response.should render_template 'destroy'
     end
   end
@@ -301,7 +301,7 @@ describe Admin::FeedbackController do
         response.should redirect_to(:controller => 'admin/feedback', :action => 'index')
         lambda do
           Feedback.find(id)
-        end.should_not raise_error(ActiveRecord::RecordNotFound)
+        end.should_not raise_error
       end
     end
 

@@ -37,7 +37,7 @@ describe SidebarHelper do
       end
 
       def logger
-        fake_logger = mock('fake logger')
+        fake_logger = double('fake logger')
         fake_logger.should_receive(:error)
         fake_logger
       end

@@ -227,7 +227,7 @@ describe AccountsController do
     before(:each) do
       FactoryGirl.create(:blog)
       User.stub(:count).and_return(0)
-      @user = mock("user")
+      @user = double("user")
       @user.stub(:reload).and_return(@user)
       User.stub(:new).and_return(@user)
     end
