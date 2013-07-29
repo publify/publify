@@ -1,1 +1,60 @@
-<%= render "admin/shared/edit", { :form_type => "status", :form_action => { :action => "create", :id => @status.id} } %>
+<% @page_heading = _('Short statuses') + content_tag(:div, link_to(_("New Status"), {:controller => 'statuses', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
+<div>
+  <div class='span4'>
+    <%= form_tag :action=>"edit", :id => @status.id do %>
+    <input type="hidden" name="status[text_filter]" id="status_textfilter" value="<%= current_user.text_filter_name %>" />
+    <div id='quicktags'>
+      <script type="text/javascript">//edToolbar('status_body');</script>
+    </div>
+    <%= text_area('status', 'body', {:class => 'input-block-level', :rows => '7', :placeholder => _("Compose new status")}) %>
+    <label for="status_push_to_twitter" class='checkbox'>
+      <%= check_box 'status', 'push_to_twitter'  %>
+      <%= _("POSSE to Twitter")%>
+    </label>
+    
+    <fieldset class="hidden-phone">
+      <legend><%= _("Publish settings") %></legend>
+      <label for="status_permalink"><%= _("Permanent link")%></label>
+      <%= text_field 'status', 'permalink', :class => 'input-block-level' %>
+      <label for='status_published' class='checkbox'>
+        <%= check_box 'status', 'published'  %>
+        <%= _("Published") %>                    
+      </label>
+      <label><%= _("Publish at") %></label>
+      <%= calendar_date_select 'status', 'published_at', {:class => 'span11'} %>
+      </fieldset>
+      <div class='pull-right'>
+          <%= save( _("Publish")) %>
+      </div>        
+    </div>  
+    <% end %>
+  </div>
+  <div class='span8'>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= _("Message") %></th>
+          <th><%= _("Author") %></th>
+          <th><%= _("Date") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render_void_table(@statuses.size, 3)  %>
+        <% for status in @statuses %>
+        <tr>
+          <td>
+            <strong><%= link_to_edit h(status.body), status %></strong>
+            <%= show_actions status %>
+          </td>
+          <td><%= author_link(status)%></td>
+          <td>
+            <%= format_date_time status.published_at %><br />
+          </td>
+        </tr>
+        <% end %>
+        <%= display_pagination(@statuses, 3, 'first', 'last')%>    
+      </tbody>
+    </table>
+    
+  </div>
+</div>

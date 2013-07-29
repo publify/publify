@@ -12,9 +12,9 @@ describe Admin::StatusesController do
       request.session = { :user => henri.id }
     end
     
-    it 'should render template index' do
+    it 'should redirect to new' do
       get 'index'
-      response.should render_template('index')
+      response.should redirect_to(:action => 'new')
     end
   
   end
@@ -46,7 +46,7 @@ describe Admin::StatusesController do
     
     it 'should render template edit' do
       get 'edit', :id => @status.id
-      response.should render_template('edit')
+      response.should render_template('new')
     end
   end
   
@@ -62,25 +62,25 @@ describe Admin::StatusesController do
     end
     
     it 'creates a status' do
-      post :create, :status => { :body => "Emphasis _mine_, arguments *strong*" }
+      post :new, :status => { :body => "Emphasis _mine_, arguments *strong*" }
       
       Status.count.should == 2
-      status = Status.find(:first, :order => "id DESC")
+      status = Status.find(:last)
       status.body.should == "Emphasis _mine_, arguments *strong*"
 
-      response.should redirect_to(:controller => 'statuses', :action => 'index')
+      response.should redirect_to(:controller => 'statuses', :action => 'new')
       flash[:notice].should ==  "Status was successfully created."
     end
 
     it 'creates a status with a chosen permalink' do
-      post :create, :status => { :body => "Emphasis _mine_, arguments *strong*", :permalink => 'my-cool-permalink' }
+      post :new, :status => { :body => "Emphasis _mine_, arguments *strong*", :permalink => 'my-cool-permalink' }
       
       Status.count.should == 2
-      status = Status.find(:first, :order => "id DESC")
+      status = Status.find(:last)
       status.body.should == "Emphasis _mine_, arguments *strong*"
       status.permalink.should == "my-cool-permalink"
 
-      response.should redirect_to(:controller => 'statuses', :action => 'index')
+      response.should redirect_to(:controller => 'statuses', :action => 'new')
       flash[:notice].should ==  "Status was successfully created."
     end
 

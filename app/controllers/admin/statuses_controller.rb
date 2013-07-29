@@ -2,43 +2,11 @@ module Admin; end
 
 class Admin::StatusesController < Admin::ContentController
   layout "administration"
-  
-  def index
-    @statuses = Status.page(params[:page]).per(this_blog.limit_article_display)
-  end
-  
-  def new; @status = get_or_build_status; end
 
-  def edit; @status = get_or_build_status; end
-  
-  def create
-    @status = Status.new
-    update_status_attributes
+  def index; redirect_to :action => 'new' ; end  
+  def new; new_or_edit; end
+  def edit; new_or_edit; end
     
-    if @status.save
-      @status.send_to_twitter(current_user) if params[:status][:push_to_twitter]
-      flash[:notice] = _('Status was successfully created.')
-      redirect_to :action => 'index'
-    end
-  end
-  
-  def update
-    @status = Status.find(params[:id])
-    
-    unless @status.access_by?(current_user)
-      flash[:error] = _("Error, you are not allowed to perform this action")
-      return(redirect_to :action => 'index')
-    end
-    
-    update_status_attributes
-    
-    if @status.save
-      flash[:notice] = _('Status was successfully created.')
-      redirect_to :action => 'index'
-    end
-    
-  end
-  
   def destroy
     @record = Status.find(params[:id])
 
@@ -72,6 +40,34 @@ class Admin::StatusesController < Admin::ContentController
     @status.published_at = parse_date_time params[:status][:published_at]
     @status.set_author(current_user)
     @status.text_filter ||= current_user.default_text_filter
+  end
+  
+  def new_or_edit
+    @statuses = Status.page(params[:page]).per(this_blog.limit_article_display)
+    @status = get_or_build_status
+        
+    if request.post?
+      update_status_attributes
+
+      message = "created"
+      if @status.id
+        unless @status.access_by?(current_user)
+          flash[:error] = _("Error, you are not allowed to perform this action")
+          return(redirect_to :action => 'new')
+        end
+        
+        message = "updated"
+      end
+    
+      if @status.save
+        @status.send_to_twitter(current_user) if params[:status][:push_to_twitter] and @status.twitter_id.nil?
+        flash[:notice] = _("Status was successfully %s.", message)
+        redirect_to :action => 'new'
+      end
+      return
+    end
+    
+    render 'new'
   end
   
 end
