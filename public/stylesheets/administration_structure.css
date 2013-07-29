@@ -50,18 +50,6 @@ td.article-title:hover .action {
     margin-left: 51%; 
 }
 
-/* Tags, categories, post types... */
-.left_form {
-  float: left; 
-  width: 300px; 
-  padding-top: 18px;
-}
-
-.right_table {
-  margin-left: 320px;
-  padding-top: 18px:
-}
-
 /* Editor */
 #editor {
   float: left; 
