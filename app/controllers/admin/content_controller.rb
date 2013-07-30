@@ -26,12 +26,12 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def new
-    @article = new_article_with_defaults
+    @article = Article::Factory.new(this_blog, current_user).default
     load_resources
   end
 
   def create
-    article_factory = ArticleFactory.new(this_blog, current_user)
+    article_factory = Article::Factory.new(this_blog, current_user)
     @article = article_factory.get_or_build_from(params[:article][:id])
 
     update_article_attributes
@@ -102,7 +102,7 @@ class Admin::ContentController < Admin::BaseController
   def autosave
     id = params[:article][:id] || params[:id]
 
-    article_factory = ArticleFactory.new(this_blog, current_user)
+    article_factory = Article::Factory.new(this_blog, current_user)
     @article = article_factory.get_or_build_from(id)
 
     get_fresh_or_existing_draft_for_article
@@ -209,14 +209,5 @@ class Admin::ContentController < Admin::BaseController
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" if @article.draft
     @article.text_filter ||= current_user.default_text_filter
-  end
-
-  def new_article_with_defaults
-    Article.new.tap do |art|
-      art.allow_comments = this_blog.default_allow_comments
-      art.allow_pings = this_blog.default_allow_pings
-      art.text_filter = current_user.default_text_filter
-      art.published = true
-    end
   end
 end
