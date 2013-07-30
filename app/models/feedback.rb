@@ -138,7 +138,7 @@ class Feedback < ActiveRecord::Base
   end
 
   def mark_as_spam!
-    mark_as_ham
+    mark_as_spam
     save!
   end
 
