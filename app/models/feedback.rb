@@ -188,9 +188,12 @@ class Feedback < ActiveRecord::Base
 
   def akismet_client
     return false if blog.sp_akismet_key.blank?
+    begin
+      client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
 
-    client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
-
-    return client.verify_key ? client : false
+      return client.verify_key ? client : false
+    rescue
+      nil
+    end
   end
 end
