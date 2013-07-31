@@ -59,15 +59,12 @@ Rails.application.routes.draw do
   match '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search'
   match '/search(/:q(.:format))', :to => 'articles#search', :as => 'search'
   match '/search/', :to => 'articles#search', :as => 'search_base', :format => false
-  match '/archives/', :to => 'articles#archives', :format => false
   match '/page/:page', :to => 'articles#index', :page => /\d+/, :format => false
   get '/pages/*name', :to => 'articles#view_page', :format => false
   match 'previews(/:id)', :to => 'articles#preview', :format => false
   match 'previews_pages(/:id)', :to => 'articles#preview_page', :format => false
   match 'check_password', :to => 'articles#check_password', :format => false
   match 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
-  match 'articles/tag', :to => 'articles#tag', :format => false
-  match 'articles/category', :to => 'articles#category', :format => false
 
   # SetupController
   match '/setup', :to => 'setup#index', :format => false
