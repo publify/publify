@@ -109,9 +109,6 @@ class ArticlesController < ContentController
     render "errors/404", :status => 404
   end
 
-
-  ### Deprecated Actions ###
-
   def archives
     @articles = Article.find_published
     @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
@@ -140,11 +137,11 @@ class ArticlesController < ContentController
   end
 
   def preview_page
-    @page = Page.find(params[:id]) 
+    @page = Page.find(params[:id])
     @canonical_url = ""
     render 'view_page'
   end
-  
+
 
   def view_page
     if(@page = Page.find_by_name(Array(params[:name]).map { |c| c }.join("/"))) && @page.published?
