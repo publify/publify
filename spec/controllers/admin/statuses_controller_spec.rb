@@ -71,6 +71,14 @@ describe Admin::StatusesController do
 
         it { expect(Status.last.permalink).to eq("my-cool-permalink") }
       end
+
+      context "with an existing status" do
+        let!(:existing_status) { create(:status) }
+        before(:each) { post :new, status: { body: "Emphasis _mine_, arguments *strong*" } }
+
+        it {expect(response).to redirect_to(controller: 'statuses', action: 'new')}
+        it {expect(Status.count).to eq(2) }
+      end
     end
   end
 
