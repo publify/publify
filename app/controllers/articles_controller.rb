@@ -111,11 +111,40 @@ class ArticlesController < ContentController
 
 
   ### Deprecated Actions ###
+
+  def archives
+    @articles = Article.find_published
+    @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
+    @keywords = this_blog.meta_keywords
+    @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)
+    @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'archives')
+  end
+
+  def comment_preview
+    if (params[:comment][:body].blank? rescue true)
+      render :nothing => true
+      return
+    end
+
+    headers["Content-Type"] = "text/html; charset=utf-8"
+    @comment = Comment.new(params[:comment])
+    @controller = self
+  end
+
+  def category
+    redirect_to categories_path, :status => 301
+  end
+
+  def tag
+    redirect_to tags_path, :status => 301
+  end
+
   def preview_page
-    @page = Page.find(params[:id])
+    @page = Page.find(params[:id]) 
     @canonical_url = ""
     render 'view_page'
   end
+  
 
   def view_page
     if(@page = Page.find_by_name(Array(params[:name]).map { |c| c }.join("/"))) && @page.published?

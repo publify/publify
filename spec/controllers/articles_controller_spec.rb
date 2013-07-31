@@ -7,6 +7,17 @@ describe ArticlesController do
     create :user
   end
 
+
+  it "should redirect category to /categories" do
+    get 'category'
+    response.should redirect_to(categories_path)
+  end
+
+  it "should redirect tag to /tags" do
+    get 'tag'
+    response.should redirect_to(tags_path)
+  end
+
   describe 'index action' do
     before :each do
       FactoryGirl.create(:article)
@@ -146,6 +157,21 @@ describe ArticlesController do
         assigns[:search].should be_equal(controller.params[:q])
       end
 
+    end
+  end
+
+
+  describe '#archives' do
+    render_views
+    it "works" do
+      3.times { FactoryGirl.create(:article) }
+      get 'archives'
+      response.should render_template(:archives)
+      assigns[:articles].should_not be_nil
+      assigns[:articles].should_not be_empty
+
+      response.should have_selector('head>link[href="http://test.host/archives"]')
+      response.should have_selector('title', :content => "Archives for test blog")
     end
   end
 
