@@ -158,7 +158,7 @@ describe BackendController do
         @article.text_filter = TextFilter.find_by_name("textile")
         @article.published_at = Time.now.utc.midnight
 
-        @dto = MetaWeblogService.new(@controller).article_dto_from(@article)
+        @dto = MetaWeblog::Service.new(@controller).article_dto_from(@article)
       end
 
       it "test_meta_weblog_edit_post" do
@@ -197,7 +197,7 @@ describe BackendController do
       @article.errors.add(:base, 'test error')
       @article.should_receive(:save).and_return(false)
       Article.stub(:new).and_return(@article)
-      args = [1, 'henri', 'whatever', MetaWeblogService.new(@controller).article_dto_from(@article), 1]
+      args = [1, 'henri', 'whatever', MetaWeblog::Service.new(@controller).article_dto_from(@article), 1]
       lambda { invoke_layered :metaWeblog , :newPost, *args }.should \
         raise_error(XMLRPC::FaultException,
                     'Internal server error (exception raised)')
@@ -211,7 +211,7 @@ describe BackendController do
       article.text_filter = TextFilter.find_by_name("textile")
       article.published_at = Time.now.utc.midnight
 
-      args = [ 1, 'henri', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 1 ]
+      args = [ 1, 'henri', 'whatever', MetaWeblog::Service.new(@controller).article_dto_from(article), 1 ]
 
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
@@ -227,7 +227,7 @@ describe BackendController do
     end
 
     it "test_meta_weblog_new_unpublished_post_with_blank_creation_date" do
-      dto = MetaWeblogStructs::Article.new(:description => "Some text", :title => "A Title")
+      dto = MetaWeblog::Structs::Article.new(:description => "Some text", :title => "A Title")
       args = [ 1, 'henri', 'whatever', dto, 0 ]
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
@@ -240,7 +240,7 @@ describe BackendController do
       FactoryGirl.create(:category, :name => 'bar')
       FactoryGirl.create(:category, :name => 'baz')
 
-      dto = MetaWeblogStructs::Article.new(
+      dto = MetaWeblog::Structs::Article.new(
         :description => "Some text",
         :title => "A Title",
         :categories => ["foo", "baz"]
@@ -261,7 +261,7 @@ describe BackendController do
       article.text_filter = TextFilter.find_by_name("textile")
       article.published_at = Time.now - 1.days
 
-      args = [ 1, 'henri', 'whatever', MetaWeblogService.new(@controller).article_dto_from(article), 0 ]
+      args = [ 1, 'henri', 'whatever', MetaWeblog::Service.new(@controller).article_dto_from(article), 0 ]
 
       result = invoke_layered :metaWeblog, :newPost, *args
       assert result
@@ -270,7 +270,7 @@ describe BackendController do
     end
 
     it "test_meta_weblog_new_media_object" do
-      media_object = MetaWeblogStructs::MediaObject.new(
+      media_object = MetaWeblog::Structs::MediaObject.new(
         "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".gif",
         "type" => "image/gif",
           "bits" => Base64.encode64(File.open(File.expand_path(::Rails.root.to_s) + "/public/images/powered.gif", "rb") { |f| f.read })
