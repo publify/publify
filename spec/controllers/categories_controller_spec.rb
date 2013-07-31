@@ -23,8 +23,8 @@ describe CategoriesController do
   end
 
   describe '#show' do
+    let!(:blog) { FactoryGirl.create(:blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true, blog_name: "My Shiny Weblog!") }
     before do
-      blog = FactoryGirl.create(:blog, base_url: "http://myblog.net", theme: "typographic", use_canonical_url: true, blog_name: "My Shiny Weblog!")
       Trigger.stub(:fire) { }
 
       category = FactoryGirl.create(:category, permalink: 'personal', name: 'Personal')
@@ -90,7 +90,7 @@ describe CategoriesController do
 
       it 'should have a canonical URL' do
         get 'show', id: 'personal'
-        response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
+        response.should have_selector("head>link[href='#{blog.base_url}/category/personal']")
       end
     end
 

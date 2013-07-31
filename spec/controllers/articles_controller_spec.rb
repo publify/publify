@@ -2,11 +2,11 @@
 require 'spec_helper'
 
 describe ArticlesController do
+  let!(:blog) { build_stubbed :blog }
+
   before(:each) do
-    build_stubbed :blog
     create :user
   end
-
 
   it "should redirect category to /categories" do
     get 'category'
@@ -43,7 +43,7 @@ describe ArticlesController do
       end
 
       it 'should have a canonical url' do
-        response.should have_selector('head>link[href="http://test.host/"]')
+        response.should have_selector("head>link[href='#{blog.base_url}/']")
       end
 
       it 'should have googd title' do
@@ -85,7 +85,7 @@ describe ArticlesController do
         end
 
         it 'should have a canonical url' do
-          response.should have_selector('head>link[href="http://test.host/search/a"]')
+          response.should have_selector("head>link[href='#{blog.base_url}/search/a']")
         end
 
         it 'should have a good title' do
@@ -170,7 +170,7 @@ describe ArticlesController do
       assigns[:articles].should_not be_nil
       assigns[:articles].should_not be_empty
 
-      response.should have_selector('head>link[href="http://test.host/archives"]')
+      response.should have_selector("head>link[href='#{blog.base_url}/archives']")
       response.should have_selector('title', :content => "Archives for test blog")
     end
   end
@@ -194,7 +194,7 @@ describe ArticlesController do
     context "with the view rendered" do
       render_views
       it 'should have a canonical url' do
-        response.should have_selector('head>link[href="http://test.host/2004/4/"]')
+        response.should have_selector("head>link[href='#{blog.base_url}/2004/4']")
       end
 
       it 'should have a good title' do
@@ -396,8 +396,7 @@ describe ArticlesController, "redirecting" do
   # NOTE: This is needed because Rails over-unescapes glob parameters.
   it 'should get good article with pre-escaped utf8 slug using unescaped slug' do
     build_stubbed(:blog)
-    utf8article = FactoryGirl.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC',
-                                 :published_at => Time.utc(2004, 6, 2))
+    utf8article = FactoryGirl.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC', :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
     assigns(:article).should == utf8article
   end
@@ -438,14 +437,11 @@ describe ArticlesController, "redirecting" do
   end
 
   describe 'with permalink_format like %title%.html' do
+      let!(:blog) { build_stubbed(:blog, :permalink_format => '/%title%.html') }
 
     before(:each) do
-      b = build_stubbed(:blog, :permalink_format => '/%title%.html')
 
-      @article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
-                         :published_at => '2004-04-01 02:00:00',
-                         :updated_at => '2004-04-01 02:00:00',
-                         :created_at => '2004-04-01 02:00:00')
+      @article = FactoryGirl.create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
     end
 
     describe "accessing various non-matching URLs" do
@@ -505,7 +501,7 @@ describe ArticlesController, "redirecting" do
         end
 
         it 'should have a canonical url' do
-          response.should have_selector("head>link[href='http://myblog.net/#{@article.permalink}.html']")
+          response.should have_selector("head>link[href='#{blog.base_url}/#{@article.permalink}.html']")
         end
 
         it 'should have a good title' do

@@ -19,7 +19,7 @@ module ApplicationHelper
     else        sprintf(many, size)
     end
   end
-  
+
   # Produce a link to the permalink_url of 'item'.
   def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil, only_path=false)
     options = {}
@@ -89,14 +89,14 @@ module ApplicationHelper
       h article.author
     end
   end
-  
+
   def author_picture(status)
     return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
     return if status.twitter_id.nil? or status.twitter_id.empty?
-    
+
     image_tag(status.user.twitter_profile_image , class: "alignleft", alt: status.user.twitter_account)
   end
-  
+
   def view_on_twitter(status)
     return if status.twitter_id.nil? or status.twitter_id.empty?
     return " | " + link_to(_("View on Twitter"), File.join('https://twitter.com', status.user.twitter_account, 'status', status.twitter_id), {class: 'u-syndication', rel: 'syndication'})
@@ -118,7 +118,7 @@ module ApplicationHelper
   end
 
   def use_canonical
-    "<link rel='canonical' href='#{@canonical_url}' />".html_safe unless @canonical_url.nil?
+    "<link rel='canonical' href='#{this_blog.base_url + request.fullpath}' />".html_safe
   end
 
   def page_header

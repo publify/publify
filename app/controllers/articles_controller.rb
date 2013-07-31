@@ -41,7 +41,6 @@ class ArticlesController < ContentController
 
     suffix = (params[:page].nil? and params[:year].nil?) ? "" : "/"
 
-    @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'index', :page => params[:page], :year => params[:year], :month => params[:month], :day => params[:day]) + suffix
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do
@@ -55,7 +54,6 @@ class ArticlesController < ContentController
   end
 
   def search
-    @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'search', :page => params[:page], :q => params[:q])
     @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
     return error(_("No posts found..."), :status => 200) if @articles.empty?
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
@@ -76,7 +74,6 @@ class ArticlesController < ContentController
   def preview
     @article = Article.last_draft(params[:id])
     @page_title = this_blog.article_title_template.to_title(@article, this_blog, params)
-    @canonical_url = ""
     render 'read'
   end
 
@@ -114,7 +111,6 @@ class ArticlesController < ContentController
     @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
     @keywords = this_blog.meta_keywords
     @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)
-    @canonical_url = url_for(:only_path => false, :controller => 'articles', :action => 'archives')
   end
 
   def comment_preview
@@ -138,7 +134,6 @@ class ArticlesController < ContentController
 
   def preview_page
     @page = Page.find(params[:id])
-    @canonical_url = ""
     render 'view_page'
   end
 
@@ -148,7 +143,6 @@ class ArticlesController < ContentController
       @page_title = @page.title
       @description = this_blog.meta_description
       @keywords = this_blog.meta_keywords
-      @canonical_url = @page.permalink_url
     else
       render "errors/404", :status => 404
     end
@@ -178,7 +172,6 @@ class ArticlesController < ContentController
     @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
     groupings = @article.categories + @article.tags
     @keywords = groupings.map { |g| g.name }.join(", ")
-    @canonical_url = @article.permalink_url
 
     auto_discovery_feed
     respond_to do |format|

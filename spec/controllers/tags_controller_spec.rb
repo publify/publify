@@ -91,23 +91,24 @@ end
 describe TagsController, 'showing tag "foo"' do
   render_views
 
+  let!(:blog) { FactoryGirl.create(:blog) }
+
   before(:each) do
-    FactoryGirl.create(:blog)
     #TODO need to add default article into tag_factory build to remove this :articles =>...
-    foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [FactoryGirl.create(:article)])
+    foo = FactoryGirl.create(:tag, name: 'foo', articles: [FactoryGirl.create(:article)])
     get 'show', :id => 'foo'
   end
 
   it 'should have good rss feed link in head' do
-    response.should have_selector('head>link[href="http://test.host/tag/foo.rss"][rel=alternate][type="application/rss+xml"][title=RSS]')
+    response.should have_selector("head>link[href='http://test.host/tag/foo.rss'][rel=alternate][type='application/rss+xml'][title=RSS]")
   end
 
   it 'should have good atom feed link in head' do
-    response.should have_selector('head>link[href="http://test.host/tag/foo.atom"][rel=alternate][type="application/atom+xml"][title=Atom]')
+    response.should have_selector("head>link[href='http://test.host/tag/foo.atom'][rel=alternate][type='application/atom+xml'][title=Atom]")
   end
 
   it 'should have a canonical URL' do
-    response.should have_selector('head>link[href="http://myblog.net/tag/foo/"]')
+    response.should have_selector("head>link[href='#{blog.base_url}/tag/foo']")
   end
 end
 
