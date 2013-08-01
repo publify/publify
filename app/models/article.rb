@@ -213,7 +213,6 @@ class Article < Content
     req_params[:published_at] = date_range if date_range
 
     return nil if req_params.empty? # no search if no params send
-
     article = find_published(:first, :conditions => req_params)
     return article if article
 
@@ -224,11 +223,6 @@ class Article < Content
     end
 
     raise ActiveRecord::RecordNotFound
-  end
-
-  def self.find_by_params_hash(params = {})
-    params[:title] ||= params[:article_id]
-    find_by_permalink(params)
   end
 
   # Fulltext searches the body of published articles

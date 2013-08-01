@@ -204,11 +204,7 @@ class Blog < ActiveRecord::Base
     end
   end
 
-  def requested_article(params)
-    Article.find_by_params_hash(params)
-  end
-
-  def articles_matching(query, args={})
+ def articles_matching(query, args={})
     Article.search(query, args)
   end
 
