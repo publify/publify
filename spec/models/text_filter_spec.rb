@@ -38,8 +38,34 @@ describe "With the list of available filters" do
     it { should_not include(TextFilterPlugin::Macro) }
   end
 
-  describe "#filter_text" do
+  describe "Twitter filter" do
+    def filter_text(text, filters, filterparams={})
+      TextFilter.filter_text(blog, text, self, filters, filterparams)
+    end
+    
+    it "should replace a hashtag with a proper URL to Twitter search" do
+      text = filter_text("A test tweet with a #hashtag", [:twitterfilter])
+      text.should == "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a>"
+    end  
+  
+    it "should replace a @mention by a proper URL to the twitter account" do
+      text = filter_text("A test tweet with a @mention", [:twitterfilter])
+      text.should == "A test tweet with a <a href='https://twitter.com/mention'>@mention</a>"
+    end
 
+    it "should replace a http URL by a proper link" do
+      text = filter_text("A test tweet with a http://link.com", [:twitterfilter])
+      text.should == "A test tweet with a <a href='http://link.com'>http://link.com</a>"
+    end
+
+    it "should replace a https URL with a proper link" do
+      text = filter_text("A test tweet with a https://link.com", [:twitterfilter])
+      text.should == "A test tweet with a <a href='https://link.com'>https://link.com</a>"
+    end  
+    
+  end
+
+  describe "#filter_text" do
     def filter_text(text, filters, filterparams={})
       TextFilter.filter_text(blog, text, self, filters, filterparams)
     end

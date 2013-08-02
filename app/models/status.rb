@@ -28,7 +28,7 @@ class Status < Content
     self.user = user
   end
 
-  def html_postprocess(field, html)
+  def html_preprocess(field, html)
     PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,html,nil).nofollowify
   end
 

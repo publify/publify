@@ -14,14 +14,31 @@ end
 describe "Testing hashtag and @mention replacement in html postprocessing" do
   before(:each) do
     FactoryGirl.create(:blog, :dofollowify => true)
-    @status = FactoryGirl.create(:status, :body => "A test tweet with a #hashtag and a @mention")
   end
+
+  it "should replace a hashtag with a proper URL to Twitter search" do
+    status = FactoryGirl.create(:status, :body => "A test tweet with a #hashtag")
+    text = status.html_preprocess(status.body, status.body)
+    text.should == "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a>"
+  end  
   
-  it "should replace the hastag with a proper URL to Twitter" do
-    text = @status.html_postprocess(@status.body, @status.body)
-    
-    text.should == "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a> and a <a href='https://twitter.com/mention'>@mention</a>"
+  it "should replace a @mention by a proper URL to the twitter account" do
+    status = FactoryGirl.create(:status, :body => "A test tweet with a @mention")
+    text = status.html_preprocess(status.body, status.body)
+    text.should == "A test tweet with a <a href='https://twitter.com/mention'>@mention</a>"
   end
+
+  it "should replace a http URL by a proper link" do
+    status = FactoryGirl.create(:status, :body => "A test tweet with a http://link.com")
+    text = status.html_preprocess(status.body, status.body)
+    text.should == "A test tweet with a <a href='http://link.com'>http://link.com</a>"
+  end
+
+  it "should replace a https URL with a proper link" do
+    status = FactoryGirl.create(:status, :body => "A test tweet with a https://link.com")
+    text = status.html_preprocess(status.body, status.body)
+    text.should == "A test tweet with a <a href='https://link.com'>https://link.com</a>"
+  end  
 end
 
 describe 'Given the factory :status' do
