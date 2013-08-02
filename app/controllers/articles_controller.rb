@@ -88,22 +88,23 @@ class ArticlesController < ContentController
   end
 
   def redirect
-    from = split_from_path params[:from]
+    from = extract_feed_format(params[:from])
+    factory = Article::Factory.new(this_blog, current_user)
 
-    match_permalink_format from, this_blog.permalink_format
+    @article = factory.match_permalink_format(from, this_blog.permalink_format)
     return show_article if @article
 
     # Redirect old version with /:year/:month/:day/:title to new format,
     # because it's changed
     ["%year%/%month%/%day%/%title%", "articles/%year%/%month%/%day%/%title%"].each do |part|
-      match_permalink_format from, part
-      return redirect_to @article.permalink_url, :status => 301 if @article
+      @article = factory.match_permalink_format(from, part)
+      return redirect_to @article.permalink_url, status: 301 if @article
     end
 
-    r = Redirect.find_by_from_path(from.join("/"))
-    return redirect_to r.full_to_path, :status => 301 if r
+    r = Redirect.find_by_from_path(from)
+    return redirect_to r.full_to_path, status: 301 if r
 
-    render "errors/404", :status => 404
+    render "errors/404", status: 404
   end
 
   def archives
@@ -121,15 +122,14 @@ class ArticlesController < ContentController
 
     headers["Content-Type"] = "text/html; charset=utf-8"
     @comment = Comment.new(params[:comment])
-    @controller = self
   end
 
   def category
-    redirect_to categories_path, :status => 301
+    redirect_to categories_path, status: 301
   end
 
   def tag
-    redirect_to tags_path, :status => 301
+    redirect_to tags_path, status: 301
   end
 
   def preview_page
@@ -137,29 +137,28 @@ class ArticlesController < ContentController
     render 'view_page'
   end
 
-
   def view_page
     if(@page = Page.find_by_name(Array(params[:name]).map { |c| c }.join("/"))) && @page.published?
       @page_title = @page.title
       @description = this_blog.meta_description
       @keywords = this_blog.meta_keywords
     else
-      render "errors/404", :status => 404
+      render "errors/404", status: 404
     end
   end
 
   # TODO: Move to TextfilterController?
   def markup_help
-    render :text => TextFilter.find(params[:id]).commenthelp
+    render text: TextFilter.find(params[:id]).commenthelp
   end
 
   private
 
   def verify_config
     if  ! this_blog.configured?
-      redirect_to :controller => "setup", :action => "index"
+      redirect_to controller: "setup", action: "index"
     elsif User.count == 0
-      redirect_to :controller => "accounts", :action => "signup"
+      redirect_to controller: "accounts", action: "signup"
     else
       return true
     end
@@ -208,43 +207,15 @@ class ArticlesController < ContentController
     render 'index'
   end
 
-  def split_from_path path
-    parts = path.split '/'
-    parts.delete('')
-    if parts.last =~ /\.atom$/
-      request.format = 'atom'
-      parts.last.gsub!(/\.atom$/, '')
-    elsif parts.last =~ /\.rss$/
+  def extract_feed_format(from)
+    if from =~ /^.*\.rss$/
       request.format = 'rss'
-      parts.last.gsub!(/\.rss$/, '')
+      from = from.gsub(/\.rss/,'')
+    elsif from =~ /^.*\.atom$/
+      request.format = 'atom'
+      from = from.gsub(/\.atom$/,'')
     end
-    parts
+    from
   end
 
-  def match_permalink_format parts, format
-    specs = format.split('/')
-    specs.delete('')
-
-    return if parts.length != specs.length
-
-    article_params = {}
-
-    specs.zip(parts).each do |spec, item|
-      if spec =~ /(.*)%(.*)%(.*)/
-        before_format = $1
-        format_string = $2
-        after_format = $3
-        result = item.gsub(/^#{before_format}(.*)#{after_format}$/, '\1')
-        article_params[format_string.to_sym] = result
-      else
-        return unless spec == item
-      end
-    end
-    begin
-      @article = this_blog.requested_article(article_params)
-    rescue
-      #Not really good.
-      # TODO :Check in request_article type of DATA made in next step
-    end
-  end
 end
