@@ -11,6 +11,19 @@ describe "Testing redirects" do
   end
 end
 
+describe "Testing hashtag and @mention replacement in html postprocessing" do
+  before(:each) do
+    FactoryGirl.create(:blog, :dofollowify => true)
+    @status = FactoryGirl.create(:status, :body => "A test tweet with a #hashtag and a @mention")
+  end
+  
+  it "should replace the hastag with a proper URL to Twitter" do
+    text = @status.html_postprocess(@status.body, @status.body)
+    
+    text.should == "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a> and a <a href='https://twitter.com/mention'>@mention</a>"
+  end
+end
+
 describe 'Given the factory :status' do
   before(:each) do
     FactoryGirl.create(:blog)

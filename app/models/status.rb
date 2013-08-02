@@ -28,6 +28,10 @@ class Status < Content
     self.user = user
   end
 
+  def html_postprocess(field, html)
+    PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,html,nil).nofollowify
+  end
+
   def initialize(*args)
     super
     # Yes, this is weird - PDC

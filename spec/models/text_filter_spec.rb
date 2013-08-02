@@ -19,6 +19,7 @@ describe "With the list of available filters" do
     it { should include(PublifyApp::Textfilter::Flickr) }
     it { should include(PublifyApp::Textfilter::Code) }
     it { should include(PublifyApp::Textfilter::Lightbox) }
+    it { should include(PublifyApp::Textfilter::Twitterfilter) }
     it { should_not include(TextFilterPlugin::Markup) }
     it { should_not include(TextFilterPlugin::Macro) }
   end
@@ -32,6 +33,7 @@ describe "With the list of available filters" do
     it { should include(PublifyApp::Textfilter::Flickr) }
     it { should include(PublifyApp::Textfilter::Code) }
     it { should include(PublifyApp::Textfilter::Lightbox) }
+    it { should_not include(PublifyApp::Textfilter::Twitterfilter) }
     it { should_not include(TextFilterPlugin::Markup) }
     it { should_not include(TextFilterPlugin::Macro) }
   end
@@ -45,6 +47,11 @@ describe "With the list of available filters" do
     it "unknown" do
       text = filter_text('*foo*',[:unknowndoesnotexist])
       text.should == '*foo*'
+    end
+
+    it "Twitter" do
+      text = filter_text("A test tweet with a #hashtag and a @mention", [:twitterfilter])
+      text.should == "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a> and a <a href='https://twitter.com/mention'>@mention</a>"
     end
 
     it "smartypants" do
