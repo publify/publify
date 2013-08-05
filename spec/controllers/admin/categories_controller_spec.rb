@@ -4,85 +4,65 @@ describe Admin::CategoriesController do
   render_views
 
   before(:each) do
-    FactoryGirl.create(:blog)
-    #TODO Delete after removing fixtures
-    Profile.delete_all
-    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
-    request.session = { :user => henri.id }
+    create(:blog)
+    henri = create(:user, login: 'henri', profile: create(:profile_admin, label: Profile::ADMIN))
+    request.session = { user: henri.id }
   end
 
-  it "test_index" do
-    get :index
-    assert_response :redirect, :action => 'index'
+  describe :index do
+    before(:each) { get :index }
+    it { expect(response).to redirect_to(action: 'new') }
   end
 
-  it "test_create" do
-    cat = FactoryGirl.create(:category)
-    Category.should_receive(:find).with(:all).and_return([])
-    Category.should_receive(:new).and_return(cat)
-    cat.should_receive(:save!).and_return(true)
-    post :edit, 'category' => { :name => "test category" }
-    assert_response :redirect
-    assert_redirected_to :action => 'new'
-  end
-
-  describe "test_new" do
-    before(:each) do
-      get :new
+  describe :edit do
+    context "when no category exist" do
+      before(:each) { post :edit, category: { name: "test category" }}
+      it { expect(response).to redirect_to(action: 'index') }
     end
 
-    it 'should render template view' do
-      assert_template 'new'
-      assert_tag :tag => "table",
-        :attributes => { :id => "category_container" }
-    end
-  end
+    context "with an existing category" do
+      let!(:category) { create(:category) }
 
-  describe "test_edit" do
-    before(:each) do
-      get :edit, :id => FactoryGirl.create(:category).id
-    end
+      context "when use post method" do
+        before(:each) { post :edit, id: category.id, category: { name: "new category name" }}
+        it { expect(response).to redirect_to(action: 'index') }
+      end
 
-    it 'should render template new' do
-      assert_template 'new'
-      assert_tag :tag => "table",
-        :attributes => { :id => "category_container" }
-    end
+      context "when use get method" do
+        before(:each) { get :edit, id: create(:category).id }
 
-    it 'should have valid category' do
-      assigns(:category).should_not be_nil
-      assert assigns(:category).valid?
-      assigns(:categories).should_not be_nil
+        context "with an existing category" do
+          let!(:category) { create(:category) }
+
+          it { expect(response).to render_template('new') }
+          it { expect(response.body).to have_selector('table', id: 'category_container')}
+          it { expect(assigns(:category)).to_not be_nil }
+          it { expect(assigns(:category)).to be_valid }
+          it { expect(assigns(:categories)).to_not be_nil }
+        end
+      end
     end
   end
 
-  it "test_update" do
-    post :edit, :id => FactoryGirl.create(:category).id
-    assert_response :redirect, :action => 'index'
+  describe :new do
+    before(:each) { get :new }
+    it { expect(response).to render_template('new') }
+    it { expect(response.body).to have_selector('table', id: 'category_container')}
   end
 
-  describe "test_destroy with GET" do
-    before(:each) do
-      test_id = FactoryGirl.create(:category).id
-      assert_not_nil Category.find(test_id)
-      get :destroy, :id => test_id
+  describe :destroy do
+    let!(:category) { create(:category) }
+
+    context "with get method" do
+      before(:each) { get :destroy, id: category.id }
+      it { expect(response).to be_success }
+      it { expect(response).to render_template('destroy') }
     end
 
-    it 'should render destroy template' do
-      assert_response :success
-      assert_template 'destroy'      
+    context "with post method" do
+      before(:each) { post :destroy, id: category.id }
+      it { expect(response).to redirect_to(action: 'index') }
+      it { expect(Category.count).to eq(0) }
     end
   end
-
-  it "test_destroy with POST" do
-    test_id = FactoryGirl.create(:category).id
-    assert_not_nil Category.find(test_id)
-    get :destroy, :id => test_id
-
-    post :destroy, :id => test_id
-    assert_response :redirect, :action => 'index'
-
-    assert_raise(ActiveRecord::RecordNotFound) { Category.find(test_id) }
-  end
-  
 end

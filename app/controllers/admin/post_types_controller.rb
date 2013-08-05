@@ -21,27 +21,14 @@ class Admin::PostTypesController < Admin::BaseController
 
   def new_or_edit
     @post_types = PostType.find(:all)
-    @post_type = case params[:id]
-                when nil
-                  PostType.new
-                else
-                  PostType.find(params[:id])
-                end
+    @post_type = PostType.where(id: params[:id]).first
+    @post_type ||= PostType.new
     @post_type.attributes = params[:post_type]
     if request.post?
-      save_post_type
-      return
-    end
-    render 'new'
-  end
-
-  def save_post_type
-    if @post_type.save!
-      flash[:notice] = _('Post Type was successfully saved.')
+      save_a(@post_type, 'Post Type')
     else
-      flash[:error] = _('Post Type could not be saved.')
+      render 'new'
     end
-    redirect_to :action => 'index'
   end
 
 end

@@ -17,6 +17,15 @@ class Admin::BaseController < ApplicationController
 
   private
 
+  def save_a(object, title)
+    if object.save
+      flash[:notice] = _("#{title.capitalize} was successfully saved.")
+    else
+      flash[:error] = _("#{title.capitalize} could not be saved.")
+    end
+    redirect_to action: 'index'
+  end
+
   def destroy_a(klass_to_destroy)
     @record = klass_to_destroy.find(params[:id])
     return render('admin/shared/destroy') unless request.post?
