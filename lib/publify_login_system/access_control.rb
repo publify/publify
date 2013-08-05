@@ -100,16 +100,12 @@ module AccessControl
     end
 
     def menu(name, url, options={})
-      if url.is_a?(Hash)
-        url[:controller].nil? ? url[:controller] = @controllers.first : @controllers << url[:controller]
-      end
+      url = set_controller_from_url(url)
       @menus << Menu.new(name, url, options)
     end
 
     def submenu(name, url, options={})
-      if url.is_a?(Hash)
-        url[:controller].nil? ? url[:controller] = @controllers.first : @controllers << url[:controller]
-      end
+      url = set_controller_from_url(url)
       @submenus << Menu.new(name, url, options)
     end
 
@@ -119,6 +115,14 @@ module AccessControl
 
     def uid
       @name.to_s.downcase.gsub(/[^a-z0-9]+/, '').gsub(/-+$/, '').gsub(/^-+$/, '')
+    end
+
+    private
+
+    def set_controller_from_url(url)
+      return url unless url.is_a?(Hash)
+      url[:controller].nil? ? url[:controller] = @controllers.first : @controllers << url[:controller]
+      url
     end
   end
 
