@@ -16,6 +16,14 @@ class Admin::BaseController < ApplicationController
   end
 
   private
+
+  def destroy_a(klass_to_destroy)
+    @record = klass_to_destroy.find(params[:id])
+    return render('admin/shared/destroy') unless request.post?
+    @record.destroy
+    redirect_to action: 'index'
+  end
+
   def look_for_needed_db_updates
     migrator = Migrator.new
     if migrator.migrations_pending?
