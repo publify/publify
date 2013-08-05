@@ -89,33 +89,39 @@ module ActionWebService # :nodoc:
       alias :after_invocation :append_after_invocation
 
       private
-        def append_interceptors_to_chain(condition, interceptors)
-          name = "#{condition}_invocation_interceptors"
-          old = self.send name
+      def append_interceptors_to_chain(condition, interceptors)
+        interceptors_to_chain(:append, condition, interceptors)
+      end
+
+      def prepend_interceptors_to_chain(condition, interceptors)
+        interceptors_to_chain(:prepend, condition, interceptors)
+      end
+
+      def interceptors_to_chain(direction, condition, interceptors)
+        name = "#{condition}_invocation_interceptors"
+        old = self.send name
+        if direction == :prepend
+          self.send "#{name}=", interceptors + old
+        else
           self.send "#{name}=", old + interceptors
         end
+      end
 
-        def prepend_interceptors_to_chain(condition, interceptors)
-          name = "#{condition}_invocation_interceptors"
-          old = self.send name
-          self.send "#{name}=", interceptors + old
-        end
+      def extract_conditions!(interceptors)
+        return nil unless interceptors.last.is_a? Hash
+        interceptors.pop
+      end
 
-        def extract_conditions!(interceptors)
-          return nil unless interceptors.last.is_a? Hash
-          interceptors.pop
-        end
+      def add_interception_conditions(interceptors, conditions)
+        return unless conditions
+        included, excluded = conditions[:only], conditions[:except]
+        self.included_intercepted_methods = self.included_intercepted_methods.merge condition_hash(interceptors, included) && return if included
+        self.excluded_intercepted_methods = self.excluded_intercepted_methods.merge condition_hash(interceptors, excluded) if excluded
+      end
 
-        def add_interception_conditions(interceptors, conditions)
-          return unless conditions
-          included, excluded = conditions[:only], conditions[:except]
-          self.included_intercepted_methods = self.included_intercepted_methods.merge condition_hash(interceptors, included) && return if included
-          self.excluded_intercepted_methods = self.excluded_intercepted_methods.merge condition_hash(interceptors, excluded) if excluded
-        end
-
-        def condition_hash(interceptors, *methods)
-          interceptors.inject({}) {|hash, interceptor| hash.merge(interceptor => methods.flatten.map {|method| method.to_s})}
-        end
+      def condition_hash(interceptors, *methods)
+        interceptors.inject({}) {|hash, interceptor| hash.merge(interceptor => methods.flatten.map {|method| method.to_s})}
+      end
     end
 
     module InstanceMethods # :nodoc:
@@ -146,52 +152,52 @@ module ActionWebService # :nodoc:
 
       private
 
-        def call_interceptors(interceptors, interceptor_args, &block)
-          if interceptors and not interceptors.empty?
-            interceptors.each do |interceptor|
-              next if method_exempted?(interceptor, interceptor_args[0].to_s)
-              result = case
-                when interceptor.is_a?(Symbol)
-                  self.send(interceptor, *interceptor_args)
-                when interceptor_block?(interceptor)
-                  interceptor.call(self, *interceptor_args)
-                when interceptor_class?(interceptor)
-                  interceptor.intercept(self, *interceptor_args)
-                else
-                  raise(
-                    InvocationError,
-                    "Interceptors need to be either a symbol, proc/method, or a class implementing a static intercept method"
-                  )
-              end
-              reason = nil
-              if result.is_a?(Array)
-                reason = result[1] if result[1]
-                result = result[0]
-              end
-              if result == false
-                block.call(reason) if block && reason
-                return false
-              end
+      def call_interceptors(interceptors, interceptor_args, &block)
+        if interceptors and not interceptors.empty?
+          interceptors.each do |interceptor|
+            next if method_exempted?(interceptor, interceptor_args[0].to_s)
+            result = case
+                     when interceptor.is_a?(Symbol)
+                       self.send(interceptor, *interceptor_args)
+                     when interceptor_block?(interceptor)
+                       interceptor.call(self, *interceptor_args)
+                     when interceptor_class?(interceptor)
+                       interceptor.intercept(self, *interceptor_args)
+                     else
+                       raise(
+                         InvocationError,
+                         "Interceptors need to be either a symbol, proc/method, or a class implementing a static intercept method"
+                       )
+                     end
+            reason = nil
+            if result.is_a?(Array)
+              reason = result[1] if result[1]
+              result = result[0]
+            end
+            if result == false
+              block.call(reason) if block && reason
+              return false
             end
           end
         end
+      end
 
-        def interceptor_block?(interceptor)
-          interceptor.respond_to?("call") && (interceptor.arity == 3 || interceptor.arity == -1)
-        end
+      def interceptor_block?(interceptor)
+        interceptor.respond_to?("call") && (interceptor.arity == 3 || interceptor.arity == -1)
+      end
 
-        def interceptor_class?(interceptor)
-          interceptor.respond_to?("intercept")
-        end
+      def interceptor_class?(interceptor)
+        interceptor.respond_to?("intercept")
+      end
 
-        def method_exempted?(interceptor, method_name)
-          case
-            when self.class.included_intercepted_methods[interceptor]
-              !self.class.included_intercepted_methods[interceptor].include?(method_name)
-            when self.class.excluded_intercepted_methods[interceptor]
-              self.class.excluded_intercepted_methods[interceptor].include?(method_name)
-          end
+      def method_exempted?(interceptor, method_name)
+        case
+        when self.class.included_intercepted_methods[interceptor]
+          !self.class.included_intercepted_methods[interceptor].include?(method_name)
+        when self.class.excluded_intercepted_methods[interceptor]
+          self.class.excluded_intercepted_methods[interceptor].include?(method_name)
         end
+      end
     end
   end
 end
