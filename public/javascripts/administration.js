@@ -195,10 +195,10 @@ edButtons.push(
 edButtons.push(
 	new edButton(
 		'ed_publifycode'
-		,'typo:code'
+		,'publify:code'
 		,''
-		,'\n</typo:code>\n\n'
-		,'typo:code'
+		,'\n</publify:code>\n\n'
+		,'publify:code'
 	)
 );
 
