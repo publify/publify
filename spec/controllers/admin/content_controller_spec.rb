@@ -2,6 +2,7 @@
 
 describe Admin::ContentController do
   render_views
+  let!(:blog) { create(:blog) }
 
   # Like it's a shared, need call everywhere
   shared_examples_for 'index action' do
@@ -48,7 +49,7 @@ describe Admin::ContentController do
       response.should render_template('index')
       response.should be_success
     end
-    
+
     it 'should restrict to withdrawn articles' do
       article = FactoryGirl.create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
       get :index, :search => {:state => 'withdrawn'}
@@ -56,7 +57,7 @@ describe Admin::ContentController do
       response.should render_template('index')
       response.should be_success
     end
-  
+
     it 'should restrict to withdrawn articles' do
       article = FactoryGirl.create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
       get :index, :search => {:state => 'withdrawn'}
@@ -183,7 +184,6 @@ describe Admin::ContentController do
   describe 'insert_editor action' do
 
     before do
-      FactoryGirl.create(:blog)
       @user = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @user.id }
     end
@@ -374,37 +374,9 @@ describe Admin::ContentController do
     end
   end
 
-  shared_examples_for 'destroy action' do
-
-    it 'should_not destroy article by get' do
-      lambda do
-        art_id = @article.id
-        assert_not_nil Article.find(art_id)
-
-        get :destroy, 'id' => art_id
-        response.should be_success
-      end.should_not change(Article, :count)
-    end
-
-    it 'should destroy article by post' do
-      lambda do
-        art_id = @article.id
-        post :destroy, 'id' => art_id
-        response.should redirect_to(:action => 'index')
-
-        lambda{
-          article = Article.find(art_id)
-        }.should raise_error(ActiveRecord::RecordNotFound)
-      end.should change(Article, :count).by(-1)
-    end
-
-  end
-
-
   describe 'with admin connection' do
 
     before do
-      FactoryGirl.create(:blog)
       @user = FactoryGirl.create(:user,
                                  :text_filter => FactoryGirl.create(:markdown),
                                  :profile => FactoryGirl.create(:profile_admin,
@@ -418,7 +390,6 @@ describe Admin::ContentController do
     it_should_behave_like 'index action'
     it_should_behave_like 'new action'
     it_should_behave_like 'create action'
-    it_should_behave_like 'destroy action'
     it_should_behave_like 'autosave action'
 
     describe 'edit action' do
@@ -588,71 +559,91 @@ describe Admin::ContentController do
         response.body.should == '<ul class="unstyled" id="autocomplete"><li>bar</li><li>bazz</li></ul>'
       end
     end
-
   end
 
-  describe 'with publisher connection' do
+  describe 'common behavior with publisher connection' do
+    let!(:user) { create(:user, text_filter: create(:markdown), profile: create(:profile_publisher)) }
 
     before :each do
-      FactoryGirl.create(:blog)
-      @user = FactoryGirl.create(:user,
-                                 text_filter: FactoryGirl.create(:markdown),
-                                 profile: FactoryGirl.create(:profile_publisher))
-      @user.editor = 'simple'
-      @user.save
-      @article = FactoryGirl.create(:article, :user => @user)
-      request.session = {:user => @user.id}
+      user.editor = 'simple'
+      user.save
+      @user = user
+      @article = create(:article, user: user)
+      request.session = {user: user.id}
     end
 
     it_should_behave_like 'index action'
     it_should_behave_like 'new action'
     it_should_behave_like 'create action'
-    it_should_behave_like 'destroy action'
+  end
 
-    describe 'edit action' do
+  describe 'with publisher connection' do
+    let!(:user) { create(:user, text_filter: create(:markdown), profile: create(:profile_publisher)) }
 
-      it "should redirect if edit article doesn't his" do
-        get :edit, :id => FactoryGirl.create(:article, :user => FactoryGirl.create(:user, :login => 'another_user')).id
-        response.should redirect_to(:action => 'index')
+    before(:each) { request.session = {user: user.id} }
+
+    describe :edit do
+      context "with an article from an other user" do
+        let!(:article) { create(:article, user: create(:user, login: 'another_user')) }
+
+        before(:each) { get :edit, id: article.id }
+        it { expect(response).to redirect_to(action: 'index') }
       end
 
-      it 'should edit article' do
-        get :edit, 'id' => @article.id
-        response.should render_template('edit')
-        assigns(:article).should_not be_nil
-        assigns(:article).should be_valid
-      end
+      context "with an article from current user" do
+        let!(:article) { create(:article, user: user) }
 
-      it 'should update article by edit action' do
-        begin
-          ActionMailer::Base.perform_deliveries = true
-          emails = ActionMailer::Base.deliveries
-          emails.clear
-
-          art_id = @article.id
-
-          body = "another *textile* test"
-          put :update, 'id' => art_id, 'article' => {:body => body, :text_filter => 'textile'}
-          response.should redirect_to(:action => 'index')
-
-          article = @article.reload
-          article.text_filter.name.should == "textile"
-          body.should == article.body
-
-          emails.size.should == 0
-        ensure
-          ActionMailer::Base.perform_deliveries = false
-        end
+        before(:each) { get :edit, id: article.id }
+        it { expect(response).to render_template('edit') }
+        it { expect(assigns(:article)).to_not be_nil }
+        it { expect(assigns(:article)).to be_valid }
       end
     end
 
-    describe 'destroy action can be access' do
-      it 'should redirect when want destroy article' do
-        article = FactoryGirl.create(:article, :user => FactoryGirl.create(:user, :login => FactoryGirl.create(:user, :login => 'other_user')))
-        lambda do
-          get :destroy, :id => article.id
-          response.should redirect_to(:action => 'index')
-        end.should_not change(Article, :count)
+    describe :update do
+      context "with an article" do
+        let!(:article) { create(:article, body: "another *textile* test", user: user) }
+        let!(:body) { "not the *same* text" }
+        before(:each) { put :update, id: article.id, article: {body: body, text_filter: 'textile'} }
+        it { expect(response).to redirect_to(action: 'index') }
+        it { expect(article.reload.text_filter.name).to eq('textile') }
+        it { expect(article.reload.body).to eq(body) }
+      end
+    end
+
+    describe :destroy do
+      context "with post method" do
+        context "with an article from other user" do
+          let(:article) { create(:article, user: create(:user, login: 'other_user')) }
+
+          before(:each) { post :destroy, id: article.id }
+          it { expect(response).to redirect_to(action: 'index') }
+          it { expect(Article.count).to eq(1) }
+        end
+
+        context "with an article from user" do
+          let(:article) { create(:article, user: user) }
+          before(:each) { post :destroy, id: article.id }
+          it { expect(response).to redirect_to(action: 'index') }
+          it { expect(Article.count).to eq(0) }
+        end
+      end
+
+      context "with get method" do
+        context "with an article from other user" do
+          let(:article) { create(:article, user: create(:user, login: 'other_user')) }
+
+          before(:each) { get :destroy, id: article.id }
+          it { expect(response).to redirect_to(action: 'index') }
+          it { expect(Article.count).to eq(1) }
+        end
+
+        context "with an article from user" do
+          let(:article) { create(:article, user: user) }
+          before(:each) { get :destroy, id: article.id }
+          it { expect(response).to render_template('admin/shared/destroy') }
+          it { expect(Article.count).to eq(1) }
+        end
       end
     end
   end
