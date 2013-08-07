@@ -57,18 +57,23 @@ class Status < Content
     message = self.body.strip_html
 
     length = calculate_real_length(message)
-    
-    if length > 126
-      message = "#{message[0..126]} [...] #{shortened_url}"
+    return length
+    if length > 113
+      
+      message = "#{message[0..116]}... #{shortened_url}"
     else
       message = "#{message} #{shortened_url}"
     end
+
+    begin
+      tweet = twitter.update(message)
+      self.twitter_id = tweet.attrs[:id_str]
+      self.save
     
-    tweet = twitter.update(message)
-    self.twitter_id = tweet.attrs[:id_str]
-    self.save
-    
-    user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
+      user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
+    rescue
+      flash[:error] = "Oooops something wrong happened"
+    end
   end
 
   content_fields :body
@@ -88,17 +93,13 @@ class Status < Content
   end
 
   private
-  def calculate_real_length(message)
-    link_length = 21 # t.co URL length
-    length = message.length
-    
-    uris = URI.extract(message)
-    
+  def calculate_real_length(message)    
+    uris = URI.extract(message, ['http', 'https', 'ftp'])
     uris.each do |uri|
-      length = length - (uri.length + link_length)
+      message = message.gsub(uri, "---------------------")
     end
-    
-    return length
+
+    return message.length
   end
 
 end
