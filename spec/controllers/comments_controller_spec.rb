@@ -1,144 +1,88 @@
 require 'spec_helper'
 
 describe CommentsController do
-  before do
-    @blog = FactoryGirl.create(:blog)
-  end
+  let!(:blog) { create(:blog) }
 
-  describe '#create' do
+  describe :create do
     describe "Basic comment creation" do
-      before do
-        @article = FactoryGirl.create(:article)
-        comment = {:body => 'content', :author => 'bob', :email => 'bob@home', :url => 'http://bobs.home/'}
-        post :create, :comment => comment, :article_id => @article.id
-      end
+      let(:article) { create(:article) }
+      let(:comment) { {body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/'} }
 
-      it "should assign the new comment to @comment" do
-        assigns[:comment].should == Comment.find_by_author_and_body_and_article_id('bob', 'content', @article.id)
-      end
+      before { post :create, comment: comment, article_id: article.id }
 
-      it "should assign the article to @article" do
-        assigns[:article].should == @article
-      end
-
-      it "should save the comment" do
-        @article.comments.size.should == 1
-      end
-
-      it "should set the author" do
-        @article.comments.last.author.should == 'bob'
-      end
-
-      it "should set an author cookie" do
-        cookies["author"].should == 'bob'
-      end
-
-      it "should set a gravatar_id cookie" do
-        cookies["gravatar_id"].should == Digest::MD5.hexdigest('bob@home')
-      end
-
-      it "should set a url cookie" do
-        cookies["url"].should == 'http://bobs.home/'
-      end
+      it { expect(assigns[:comment]).to eq(Comment.find_by_author_and_body_and_article_id('bob', 'content', article.id)) }
+      it { expect(assigns[:article]).to eq(article) }
+      it { expect(article.comments.size).to eq(1) }
+      it { expect(article.comments.last.author).to eq('bob') }
+      it { expect(cookies["author"]).to eq('bob') }
+      it { expect(cookies["gravatar_id"]).to eq(Digest::MD5.hexdigest('bob@home')) }
+      it { expect(cookies["url"]).to eq('http://bobs.home/') }
     end
 
-
     it "should redirect to the article" do
-      article = FactoryGirl.create(:article, :created_at => '2005-01-01 02:00:00')
-      post :create, :comment => {:body => 'content', :author => 'bob'},
-        :article_id => article.id
-      response.should redirect_to("#{@blog.base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}")
+      article = create(:article, created_at: '2005-01-01 02:00:00')
+      post :create, comment: {body: 'content', author: 'bob'}, article_id: article.id
+      expect(response).to redirect_to("#{blog.base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}")
     end
   end
 
   describe 'AJAX creation' do
     it "should render the comment partial" do
-      xhr :post, :create, :comment => {:body => 'content', :author => 'bob'},
-        :article_id => FactoryGirl.create(:article).id
-      response.should render_template("/articles/_comment")
+      xhr :post, :create, comment: {body: 'content', author: 'bob'}, article_id: create(:article).id
+      expect(response).to render_template("/articles/_comment")
     end
   end
 
-  describe "#index" do
+  describe :index do
     context 'scoped index' do
-      it "GET 2007/10/11/slug/comments should redirect to /2007/10/11/slug#comments" do
-        article = FactoryGirl.create(:article, :created_at => '2005-01-01 02:00:00')
-        get 'index', :article_id => article.id
-        response.should redirect_to("#{@blog.base_url}/#{article.created_at.year}/#{sprintf("%.2d", article.created_at.month)}/#{sprintf("%.2d", article.created_at.day)}/#{article.permalink}#comments")
-      end
-
+      let(:article) { create(:article) }
+      before(:each) { get 'index', article_id: article.id }
+      it { expect(response).to redirect_to("#{article.permalink_url}#comments") }
     end
 
     context "without format" do
-      it "should be successful" do
-        get 'index'
-        response.should be_success
-      end
-
-      it "should not bother fetching any comments " do
-        mock_comment = double(Comment)
-        mock_comment.should_not_receive(:published_comments)
-        mock_comment.should_not_receive(:rss_limit_params)
-
-        get 'index'
-      end
+      before(:each) { get :index }
+      it { expect(response).to be_success }
+      it { expect(assigns(:comments)).to be_nil }
     end
 
-    context "with :format => 'atom'" do
+    context "with atom format" do
       context "without article" do
-        before do
-          Comment.should_receive(:find).and_return(['some','items'])
-          get 'index', :format => 'atom'
-        end
+        let!(:some) { create(:comment) }
+        let!(:items) { create(:comment) }
 
-        it "is succesful" do
-          response.should be_success
-        end
+        before(:each) { get 'index', format: 'atom' }
 
-        it "passes the comments to the template" do
-          assigns(:comments).should == ["some", "items"]
-        end
-
-        it "should return an atom feed" do
-          response.should render_template("index_atom_feed")
-        end
+        it { expect(response).to be_success }
+        it { expect(assigns(:comments)).to eq([some, items]) }
+        it { expect(response).to render_template("index_atom_feed") }
       end
 
       context "with an article" do
-        it "should return an atom feed" do
-          get :index, :format => 'atom', :article_id => FactoryGirl.create(:article).id
-          response.should be_success
-          response.should render_template("index_atom_feed")
-        end
+        let!(:article) { create(:article) }
+        before(:each) { get :index, format: 'atom', article_id: article.id }
+        it { expect(response).to be_success }
+        it { expect(response).to render_template("index_atom_feed") }
       end
     end
 
-    context "with :format => 'rss'" do
+    context "with rss format" do
       context "without article" do
-        before do
-          Comment.should_receive(:find).and_return(['some','items'])
-          get 'index', :format => 'rss'
-        end
+        let!(:some) { create(:comment, title: 'some') }
+        let!(:items) { create(:comment, title: 'items') }
 
-        it "is succesful" do
-          response.should be_success
-        end
-
-        it "passes the comments to the template" do
-          assigns(:comments).should == ["some", "items"]
-        end
-
-        it "should return an rss feed" do
-          response.should render_template("index_rss_feed")
-        end
+        before { get 'index', format: 'rss' }
+        it { expect(response).to be_success }
+        it { expect(assigns(:comments)).to eq([some, items]) }
+        it { expect(response).to render_template("index_rss_feed") }
       end
 
       context "with article" do
-        it "should return an rss feed" do
-          get :index, :format => 'rss', :article_id => FactoryGirl.create(:article).id
-          response.should be_success
-          response.should render_template("index_rss_feed")
-        end
+        let!(:article) { create(:article) }
+        before(:each) { get :index, format: 'rss', article_id: article.id}
+
+        it {expect(response).to be_success}
+        it {expect(response).to render_template("index_rss_feed")}
       end
     end
   end

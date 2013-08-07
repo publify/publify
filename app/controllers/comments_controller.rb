@@ -1,5 +1,5 @@
 class CommentsController < FeedbackController
-  before_filter :get_article, :only => [:create, :preview]
+  before_filter :get_article, only: [:create, :preview]
 
   def create
     @comment = @article.with_options(new_comment_defaults) do |art|
@@ -20,7 +20,7 @@ class CommentsController < FeedbackController
       partial = '/articles/comment'
     end
     if request.xhr?
-      render :partial => partial, :object => @comment 
+      render :partial => partial, :object => @comment
     else
       redirect_to @article.permalink_url
     end
@@ -52,15 +52,6 @@ class CommentsController < FeedbackController
   def recaptcha_ok_for? comment
     use_recaptcha = Blog.default.settings["use_recaptcha"]
     ((use_recaptcha && verify_recaptcha(:model => comment)) || !use_recaptcha)
-  end
-
-  def get_feedback
-    @comments = \
-      if params[:article_id]
-        Article.find(params[:article_id]).published_comments
-      else
-        Comment.find_published(:all, this_blog.rss_limit_params.merge(:order => 'created_at DESC'))
-      end
   end
 
   def new_comment_defaults

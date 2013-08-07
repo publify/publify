@@ -1,51 +1,26 @@
 require 'spec_helper'
 
 describe TrackbacksController do
-  before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net")
-    Blog.stub(:default) { blog }
-    Trigger.stub(:fire) { }
-  end
+  let!(:blog) { create(:blog) }
 
-  describe "#index" do
-    before do
-      Trackback.stub(:find) { [ "some", "items" ] }
-    end
+  describe :index do
+    let!(:some) { create(:trackback, title: 'some') }
+    let!(:items) { create(:trackback, title: 'items') }
 
     describe "with :format => atom" do
-      before do
-        get :index, :format => :atom
-      end
+      before { get :index, format: :atom }
 
-      it "is succesful" do
-        response.should be_success
-      end
-
-      it "passes the trackbacks to the template" do
-        assigns(:trackbacks).should == ["some", "items"]
-      end
-
-      it "renders the atom template" do
-        response.should render_template("index_atom_feed")
-      end
+      it { expect(response).to be_success }
+      it { expect(assigns(:trackbacks)).to eq([some, items]) }
+      it { expect(response).to render_template("index_atom_feed") }
     end
 
     describe "with :format => rss" do
-      before do
-        get :index, :format => :rss
-      end
+      before { get :index, format: :rss }
 
-      it "is succesful" do
-        response.should be_success
-      end
-
-      it "passes the trackbacks to the template" do
-        assigns(:trackbacks).should == ["some", "items"]
-      end
-
-      it "renders the atom template" do
-        response.should render_template("index_rss_feed")
-      end
+      it { expect(response).to be_success }
+      it { expect(assigns(:trackbacks)).to eq([some, items]) }
+      it { expect(response).to render_template("index_rss_feed") }
     end
   end
 end

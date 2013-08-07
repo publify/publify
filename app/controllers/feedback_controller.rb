@@ -1,7 +1,7 @@
 class FeedbackController < ApplicationController
   helper :theme
 
-  before_filter :get_article, :only => [:create]
+  before_filter :get_article, only: [:create]
 
   cache_sweeper :blog_sweeper
 
@@ -40,17 +40,16 @@ class FeedbackController < ApplicationController
 
   protected
 
-  def get_feedback
-    if params[:article_id]
-      Article.find(params[:article_id]).published_feedback
-    else
-      this_blog.published_feedback.find(:all, this_blog.rss_limit_params.merge(:order => 'created_at DESC'))
-    end
-  end
-
   def render_feed(format, collection)
     ivar_name = "@#{self.class.to_s.sub(/Controller$/, '').underscore}"
     instance_variable_set(ivar_name, collection)
     render "index_#{format}_feed"
   end
+
+  private
+
+  def get_feedback
+    @items = Feedback.from(controller_name, params[:article_id]).limit(this_blog.rss_limit_params[:limit])
+  end
+
 end

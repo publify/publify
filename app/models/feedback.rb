@@ -42,6 +42,22 @@ class Feedback < ActiveRecord::Base
     'created_at ASC'
   end
 
+  def self.comments
+    Comment.where(published: true).order('created_at DESC')
+  end
+
+  def self.trackbacks
+    Trackback.where(published: true).order('created_at DESC')
+  end
+
+  def self.from(type, article_id = nil)
+    if article_id.present?
+      Article.find(article_id).send("published_#{type}")
+    else
+      send(type)
+    end
+  end
+
   def parent
     article
   end
@@ -70,10 +86,10 @@ class Feedback < ActiveRecord::Base
 
   def akismet_options
     {:comment_type => self.class.to_s.downcase,
-      :comment_author => originator,
-      :comment_author_email => email,
-      :comment_author_url => url,
-      :comment_content => body}
+     :comment_author => originator,
+     :comment_author_email => email,
+     :comment_author_url => url,
+     :comment_content => body}
   end
 
   def spam_fields

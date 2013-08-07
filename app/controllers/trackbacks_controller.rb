@@ -26,15 +26,6 @@ class TrackbacksController < FeedbackController
 
   protected
 
-  def get_feedback
-    @trackbacks =
-      if params[:article_id]
-        Article.find(params[:article_id]).published_trackbacks
-      else
-        Trackback.find_published(:all, this_blog.rss_limit_params.merge(:order => 'created_at DESC'))
-      end
-  end
-
   def get_article
     true
   end

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe Feedback do
-  before do
-    FactoryGirl.create(:blog)
-  end
+  before { create(:blog) }
 
   describe ".change_state!" do
     it "respond to change_state!" do
@@ -30,6 +28,23 @@ describe Feedback do
   end
 
   describe "scopes" do
+
+    describe :comments do
+      context "with 1 comments" do
+        let!(:comment) { create(:comment) }
+        it { expect(Feedback.comments).to eq([comment]) }
+      end
+    end
+
+    describe :trackbacks do
+      it { expect(Feedback).to respond_to(:trackbacks) }
+
+      context "with 1 Trackback" do
+        let!(:trackback) { create(:trackback) }
+        it { expect(Feedback.trackbacks).to eq([trackback]) }
+      end
+    end
+
     describe "ham" do
       it "returns nothing when no ham" do
         FactoryGirl.create(:spam_comment)
@@ -55,6 +70,40 @@ describe Feedback do
         feedback = FactoryGirl.create(:ham_comment, published_at: time + 2.hours)
         Feedback.published_since(time).should eq [feedback]
       end
+    end
+  end
+
+  describe :from do
+    context "with a comment" do
+      let(:comment) { create(:comment) }
+      it { expect(Feedback.from(:comments)).to eq([comment]) }
+      it { expect(Feedback.from(:trackbacks)).to be_empty }
+    end
+
+    context "with a trackback" do
+      let(:trackback) { create(:trackback) }
+      it { expect(Feedback.from(:comments)).to be_empty }
+      it { expect(Feedback.from(:trackbacks)).to eq([trackback]) }
+    end
+
+    context "with an article without published_comments" do
+      let!(:article) { create(:article) }
+      it { expect(Feedback.from(:comments, article.id)).to be_empty }
+      it { expect(Feedback.from(:trackbacks, article.id)).to be_empty }
+    end
+
+    context "with an article with published_comments" do
+      let!(:article) { create(:article) }
+      let!(:comment) { create(:comment, article: article) }
+      it { expect(Feedback.from(:comments, article.id)).to eq([comment]) }
+      it { expect(Feedback.from(:trackbacks, article.id)).to be_empty }
+    end
+
+    context "with an article with published_trackbacks" do
+      let!(:article) { create(:article) }
+      let!(:trackback) { create(:trackback, article: article) }
+      it { expect(Feedback.from(:comments, article.id)).to be_empty }
+      it { expect(Feedback.from(:trackbacks, article.id)).to eq([trackback]) }
     end
   end
 end

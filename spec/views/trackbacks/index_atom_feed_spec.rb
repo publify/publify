@@ -6,11 +6,11 @@ describe "trackbacks/index_atom_feed.atom.builder" do
   end
 
   describe "rendering trackbacks with one trackback" do
-    let(:article) { stub_full_article }
-    let(:trackback) { FactoryGirl.build(:trackback, :article => article) }
+    let(:article) { create(:article) }
+    let(:trackback) { create(:trackback, :article => article) }
 
     before do
-      assign(:trackbacks, [trackback])
+      assign(:items, [trackback])
       render
     end
 

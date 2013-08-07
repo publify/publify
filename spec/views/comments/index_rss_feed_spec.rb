@@ -13,7 +13,7 @@ describe "comments/index_rss_feed.rss.builder" do
                                       guid: '12313123123123123') }
 
     before do
-      assign(:comments, [comment])
+      assign(:items, [comment])
       render
     end
 

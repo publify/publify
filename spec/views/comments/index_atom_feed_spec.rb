@@ -13,7 +13,7 @@ describe "comments/index_atom_feed.atom.builder" do
                                       guid: '12313123123123123') }
 
     before do
-      assign(:comments, [comment])
+      assign(:items, [comment])
       render
     end
 
