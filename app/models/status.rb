@@ -57,13 +57,13 @@ class Status < Content
     message = self.body.strip_html
 
     length = calculate_real_length(message)
-    return length
-    if length > 113
-      
-      message = "#{message[0..116]}... #{shortened_url}"
+
+    if length > 115
+      message = "#{message[0..115]}... #{shortened_url}"
     else
       message = "#{message} #{shortened_url}"
     end
+    return
 
     begin
       tweet = twitter.update(message)
