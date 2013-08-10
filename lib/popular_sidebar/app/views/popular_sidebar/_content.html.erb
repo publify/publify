@@ -1,0 +1,11 @@
+<h3 class="sidebar-title"><%= sidebar.title %></h3>
+<ul class='popular_sidebar'>
+  <% if sidebar.popular.empty? || sidebar.popular.size == 0 %>
+  <li class='alert'><%= _("Nothing to show yet") %> !</li>
+  <% else %>
+    <% sidebar.popular.each do |article| %>
+    <%= sprintf("%s (%s)", link_to_permalink(article, article.title), _("%d comments", article.comment_count)) %>
+    <% end %>
+  <% end %>
+  </li>
+</ul>
