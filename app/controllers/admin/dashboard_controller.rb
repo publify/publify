@@ -17,15 +17,13 @@ class Admin::DashboardController < Admin::BaseController
     @statspages = Page.where("published_at > ?", today).count
     @statuses = Status.where("published_at > ?", today).count
     @statuserposts = Article.published.where("published_at > ?", today).count(conditions: {user_id: current_user.id})
-    
     @statcomments = Comment.where("created_at > ?", today).count
     @presumedspam = Comment.presumed_spam.where("created_at > ?", today).count
     @confirmed = Comment.ham.where("created_at > ?", today).count
     @unconfirmed = Comment.unconfirmed.where("created_at > ?", today).count
     
     @comments = Comment.last_published
-    @recent_posts = Article.published.limit(5)
-    @bestof = Article.bestof
+    @drafts = Article.drafts.where("user_id = ?", current_user.id).limit(5)
     
     @statspam = Comment.spam.count
     @inbound_links = inbound_links
@@ -65,7 +63,7 @@ class Admin::DashboardController < Admin::BaseController
 
   def publify_dev
     url = "http://blog.publify.co/articles.rss"
-    parse(url)[0..4]
+    parse(url)[0..2]
   end
 
 

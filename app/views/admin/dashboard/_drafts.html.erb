@@ -1,0 +1,18 @@
+<h3><%= _("Your Drafts") %></h3>
+<div class='well'>
+  <ul class='unstyled'>
+  <% if @drafts.size == 0 %>
+    <li class='alert'>
+      <%= link_to _("No drafts yet, why don't you start and write one"), :controller => 'content', :action => 'new' %> ?
+    </li>
+  <% else %>
+    <% for post in @drafts -%>
+    <li>
+      <h5><%= link_to(post.title, :controller => "admin/content", :action => "edit", :id => post.id) %> <%= display_date_and_time(post.created_at) %></h5>
+      <p><%= post.body.strip_html.slice(0,300) if post.body %></p>
+	  <hr />
+    </li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>
