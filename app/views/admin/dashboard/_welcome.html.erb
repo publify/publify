@@ -1,24 +1,29 @@
-<h3><%= _("Welcome back, %s!", current_user.name ) -%></h3>
+<h3><%= _("Today") -%></h3>
+<div>
+  <div class='span12 well'>
+    <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts_count, @newcomments_count) %></p>
+    <p><%= _("You're running Publify %s", PUBLIFY_VERSION) %> <%= @version_message %></p>
 
-<div class='well'>
-  <p><%= _("%d articles and %d comments were posted since your last connexion", @newposts_count, @newcomments_count) %></p>
-  <p><%= _("You're running Publify %s", PUBLIFY_VERSION) %> <%= @version_message %></p>
-
-  <% if current_user.profile.modules.include? :articles%>
-  <p><strong><%= _("Content") %></strong></p>
-  <ul class='unstyled'>
-    <li> <%= sprintf("%s %d", link_to(_("Total posts:"), :controller => 'admin/content'), @statposts) %></li>
-    <li> <%= sprintf("%s %d", link_to(_("Your posts:"), :controller => 'admin/content', "search[user_id]" => current_user.id), @statuserposts) %></li>
-    <li> <%= sprintf("%s %d", link_to(_("Categories:"), :controller => 'admin/categories'), @categories) %></li>
-  </ul>
-  <% end %>
-
-  <%  if current_user.profile.modules.include? :articles %>
-  <p><strong><%= _("Feedback") %></strong></p>
-  <ul class='unstyled'>
-    <li> <%= sprintf("%s %d", link_to(_("Total comments:"), :controller => 'admin/feedback') , @statcomments) %></li>
-    <li> <%= sprintf("%s %d", link_to(_("Spam comments:"), :controller => 'admin/feedback', :published => 'f'), @statspam) %></li>
-    <li> <%= sprintf("%s %d", link_to(_("In your spam queue:"), :controller => 'admin/feedback', :presumed_spam => 'f'), @presumedspam) %></li>
-  </ul>
-  <% end %>
+    <div>
+      <div class='span6'>
+      <% if current_user.profile.modules.include? :articles%>
+        <h4 class='page-header'><%= _("Content") %></h4>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statposts, pluralize(@statposts, _("articles"), _("article"), _("articles"))).html_safe, :controller => 'admin/content').html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statuserposts, _("articles writen by you")).html_safe, :controller => 'admin/content', "search[user_id]" => current_user.id).html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statsdrafts, pluralize(@statsdrafts, _("drafts"), _("draft"), _("drafts"))).html_safe, :controller => 'admin/content', "search[state]" => "drafts").html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statspages, pluralize(@statspages, _("pages"), _("page"), _("pages"))).html_safe, :controller => 'admin/pages').html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statuses, pluralize(@statspages, _("short statuses"), _("short status"), _("short statuses"))).html_safe, :controller => 'admin/statuses').html_safe %></p>
+      <% end %>    
+      </div>      
+      <div class='span6'>
+        <%  if current_user.profile.modules.include? :feedback %>
+        <h4 class='page-header'><%= _("Feedback") %></h4>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statcomments, _("comments")).html_safe, :controller => 'admin/feedback').html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @confirmed, _("approved")).html_safe, :controller => 'admin/feedback', "ham" => "f").html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @unconfirmed, _("unconfirmed")).html_safe, :controller => 'admin/feedback', "presumed_ham" => "f").html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statspam, _("spam")).html_safe, :controller => 'admin/feedback', "spam" => "f").html_safe %></p>
+        <% end %>    
+      </div>
+    </div>
+  </div>  
 </div>

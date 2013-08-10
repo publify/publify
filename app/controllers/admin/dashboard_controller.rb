@@ -4,19 +4,29 @@ class Admin::DashboardController < Admin::BaseController
   require 'rexml/document'
 
   def index
+    t = Time.new
+    today = t.strftime("%Y-%m-%d 00:00")
+    
+    # Since last venue
     @newposts_count = Article.published_since(current_user.last_venue).count
     @newcomments_count = Feedback.published_since(current_user.last_venue).count
-
-    @statposts = Article.published.count
-    @statcomments = Comment.not_spam.count
-    @presumedspam = Comment.presumed_spam.count
-
-    @categories = Category.count
-
+    
+    # Today
+    @statposts = Article.published.where("published_at > ?", today).count
+    @statsdrafts = Article.drafts.where("created_at > ?", today).count
+    @statspages = Page.where("published_at > ?", today).count
+    @statuses = Status.where("published_at > ?", today).count
+    @statuserposts = Article.published.where("published_at > ?", today).count(conditions: {user_id: current_user.id})
+    
+    @statcomments = Comment.where("created_at > ?", today).count
+    @presumedspam = Comment.presumed_spam.where("created_at > ?", today).count
+    @confirmed = Comment.ham.where("created_at > ?", today).count
+    @unconfirmed = Comment.unconfirmed.where("created_at > ?", today).count
+    
     @comments = Comment.last_published
     @recent_posts = Article.published.limit(5)
     @bestof = Article.bestof
-    @statuserposts = Article.published.count(conditions: {user_id: current_user.id})
+    
     @statspam = Comment.spam.count
     @inbound_links = inbound_links
     @publify_links = publify_dev

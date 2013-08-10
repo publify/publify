@@ -38,27 +38,31 @@ describe Admin::DashboardController do
     end
     
     it "should have a link to article listing" do
-      response.should have_selector("a", :href => "/admin/content" , :content => "Total posts:")
+      response.should have_selector("a", :href => "/admin/content" , :content => "0 articles")
     end
     
     it "should have a link to user's article listing" do
-      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@henri.id}" , :content => "Your posts:")
+      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@henri.id}" , :content => "0 articles writen by you")
     end
 
-    it "should have a link to categories" do
-      response.should have_selector("a", :href => "/admin/categories" , :content => "Categories:")
+    it "should have a link to drafts" do
+      response.should have_selector("a", :href => "/admin/content?search%5Bstate%5D=drafts" , :content => "0 drafts")
+    end
+
+    it "should have a link to pages" do
+      response.should have_selector("a", :href => "/admin/pages" , :content => "0 pages")
     end
 
     it "should have a link to total comments" do
-      response.should have_selector("a", :href => "/admin/feedback" , :content => "Total comments:")
+      response.should have_selector("a", :href => "/admin/feedback" , :content => "0 comments")
     end
 
     it "should have a link to Spam" do
-      response.should have_selector("a", :href => "/admin/feedback?published=f" , :content => "Spam comments:")
+      response.should have_selector("a", :href => "/admin/feedback?spam=f" , :content => "0 spam")
     end
 
     it "should have a link to Spam queue" do
-      response.should have_selector("a", :href => "/admin/feedback?presumed_spam=f" , :content => "In your spam queue:")
+      response.should have_selector("a", :href => "/admin/feedback?presumed_ham=f" , :content => "0 unconfirmed")
     end
   end
   
@@ -97,27 +101,23 @@ describe Admin::DashboardController do
     end
     
     it "should have a link to article listing" do
-      response.should have_selector("a", :href => "/admin/content" , :content => "Total posts:")
+      response.should have_selector("a", :href => "/admin/content" , :content => "0 articles")
     end
     
     it "should have a link to user's article listing" do
-      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@rene.id}" , :content => "Your posts:")
-    end
-
-    it "should have a link to categories" do
-      response.should have_selector("a", :href => "/admin/categories" , :content => "Categories:")
+      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@rene.id}" , :content => "0 articles writen by you")
     end
 
     it "should have a link to total comments" do
-      response.should have_selector("a", :href => "/admin/feedback" , :content => "Total comments:")
+      response.should have_selector("a", :href => "/admin/feedback" , :content => "0 comments")
     end
 
     it "should have a link to Spam" do
-      response.should have_selector("a", :href => "/admin/feedback?published=f" , :content => "Spam comments:")
+      response.should have_selector("a", :href => "/admin/feedback?spam=f" , :content => "0 spam")
     end
 
     it "should have a link to Spam queue" do
-      response.should have_selector("a", :href => "/admin/feedback?presumed_spam=f" , :content => "In your spam queue:")
+      response.should have_selector("a", :href => "/admin/feedback?presumed_ham=f" , :content => "0 unconfirmed")
     end
   end
   

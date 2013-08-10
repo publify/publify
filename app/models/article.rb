@@ -34,7 +34,6 @@ class Article < Content
     def spam
       where(:state => ["presumed_spam", "spam"])
     end
-
   end
 
   with_options(:conditions => { :published => true }, :order => 'created_at ASC') do |this|

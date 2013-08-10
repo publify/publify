@@ -11,6 +11,9 @@ class Comment < Feedback
   scope :spam, lambda { where(state: 'spam') }
   scope :not_spam, lambda { where("state != 'spam'")}
   scope :presumed_spam, lambda { where(state: 'presumed_spam')}
+  scope :presumed_ham, lambda { where(state: 'presumed_ham')}
+  scope :ham, lambda { where(state: 'ham')}
+  scope :unconfirmed, lambda { where("state in (?, ?)", "presumed_spam", "presumed_ham")}
   scope :last_published, lambda { where(published:true).limit(5).order('created_at DESC') }
 
   def notify_user_via_email(user)
