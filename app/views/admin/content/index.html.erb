@@ -16,7 +16,6 @@
 <div>
   <span class='badge badge-inverse'>
     <%= link_to(_("All articles"), :action => 'index') %>
-    
   </span>
   <span class='badge badge-success'>
     <%= link_to(_("Published"), :action => 'index', :search => {:state => 'published'}) %>
@@ -48,8 +47,8 @@
       <td><%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: _("Publication date"), :class => 'span12'}) %></td>
       <td><input type="submit" value='<%= _("Filter") %>' class='btn' />
     </tr>
-    <tr>
-      <th class='first'><%= _("Title") %></th>
+    <tr  class='noborder'>
+      <th><%= _("Title") %></th>
       <th><%= _("Categories") %></th>
       <th><%= _("Author")%></th>
       <th><%= _("Date") %></th>

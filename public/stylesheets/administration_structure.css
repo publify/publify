@@ -17,6 +17,10 @@ tr.noborder td {
   border-top: none;
 }
 
+tr.noborder th {
+  border-top: none;
+}
+
 th {
   background: none;
 }
