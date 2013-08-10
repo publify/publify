@@ -261,6 +261,7 @@ Localization.define("fr_FR") do |l|
   l.store "You have no internet connection", "Vous n'avez pas de connexion à internet"
 
   # app/views/admin/dashboard/_overview.html.erb
+  l.store "Getting started", "Pour commencer"
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s", "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peux-être voulez vous %s"
   l.store "update your profile or change your password", "mettre votre profil à jour ou changer votre mot de passe"
   l.store "You can also do a bit of design, %s or %s.", "Vous pouvez également faire un peu de personnalisation, %s, %s"

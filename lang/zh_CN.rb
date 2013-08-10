@@ -269,6 +269,7 @@ Localization.define("zh_CN") do |l|
   l.store "You have no internet connection", "你没有连接到网络"
 
   # app/views/admin/dashboard/_overview.html.erb
+  l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "这里給你一個快速的概览，让你知道你的博客发生什么事情了。也许你想要%s， %s, %s"
   l.store "update your profile or change your password", "更新资料或者修改密码"
   l.store "You can also do a bit of design, %s or %s.", "你也可以做一些设计, %s或%s."

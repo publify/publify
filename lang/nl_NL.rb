@@ -262,6 +262,7 @@ Localization.define("nl_NL") do |l|
   l.store "You have no internet connection", "Je hebt geen internetverbinding"
 
   # app/views/admin/dashboard/_overview.html.erb
+  l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Deze pagina geeft je een snel overzicht van wat er gebeurt op je Type blog en wat je doen kunt. Misschien wil je %s, %s of %s"
   l.store "update your profile or change your password", "je profiel bijwerken of je wachtwoord wijzigen"
   l.store "You can also do a bit of design, %s or %s.", "Je kunt ook wat design doen, %s of %s"

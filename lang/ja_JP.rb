@@ -264,6 +264,7 @@ Localization.define("ja_JP") do |l|
   l.store "You have no internet connection", "インターネットに接続できません"
 
   # app/views/admin/dashboard/_overview.html.erb
+  l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "ここはこのPublifyブログの全体が概観できるページです。ここから%sこと、%sこと、そして%sことができます。"
   l.store "update your profile or change your password", "プロフィールを編集したりパスワードを変更する"
   l.store "You can also do a bit of design, %s or %s.", ""
