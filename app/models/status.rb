@@ -63,7 +63,6 @@ class Status < Content
     else
       message = "#{message} #{shortened_url}"
     end
-    return
 
     begin
       tweet = twitter.update(message)
