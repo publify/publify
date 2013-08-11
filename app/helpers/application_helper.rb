@@ -94,7 +94,7 @@ module ApplicationHelper
     return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
     return if status.twitter_id.nil? or status.twitter_id.empty?
 
-    image_tag(status.user.twitter_profile_image , class: "alignleft", alt: status.user.twitter_account)
+    image_tag(status.user.twitter_profile_image , class: "alignleft", alt: status.user.nickname)
   end
 
   def view_on_twitter(status)
