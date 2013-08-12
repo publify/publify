@@ -32,11 +32,7 @@ class Admin::SeoController < Admin::BaseController
     if params[:setting]['permalink_format'] and params[:setting]['permalink_format'] == 'custom'
       params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
     end
-    Blog.transaction do
-      params[:setting].each { |k,v| this_blog.send("#{k.to_s}=", v) }
-      this_blog.save
-      flash[:notice] = _('config updated.')
-    end
+    update_settings_with!(params)
     if params[:setting][:robots].present?
       Robot.new.add(params[:setting][:robots])
     end

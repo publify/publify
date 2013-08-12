@@ -17,6 +17,14 @@ class Admin::BaseController < ApplicationController
 
   private
 
+  def update_settings_with!(params)
+    Blog.transaction do
+      params[:setting].each { |k,v| this_blog.send("#{k.to_s}=", v) }
+      this_blog.save
+      flash[:notice] = _('config updated.')
+    end
+  end
+
   def save_a(object, title)
     if object.save
       flash[:notice] = _("#{title.capitalize} was successfully saved.")
