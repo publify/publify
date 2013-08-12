@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   setting :twitter_oauth_token,        :string, ''
   setting :twitter_oauth_token_secret, :string, ''
   setting :twitter_profile_image,      :string, ''
-  
+
   # echo "publify" | sha1sum -
   class_attribute :salt
 
@@ -58,6 +58,14 @@ class User < ActiveRecord::Base
     self.settings ||= {}
   end
 
+  def first_and_last_name
+    return '' unless firstname.present? && lastname.present?
+    "#{firstname} #{lastname}"
+  end
+
+  def display_names
+    [:login, :nickname, :firstname, :lastname, :first_and_last_name].map{|f| send(f)}.delete_if{|e| e.empty?}
+  end
 
   def self.authenticate(login, pass)
     where("login = ? AND password = ? AND state = ?", login, password_hash(pass), 'active').first
@@ -181,7 +189,7 @@ class User < ActiveRecord::Base
   def admin?
     profile.label == Profile::ADMIN
   end
-  
+
   def update_twitter_profile_image(img)
     return if self.twitter_profile_image == img
     self.twitter_profile_image = img
@@ -200,7 +208,7 @@ class User < ActiveRecord::Base
     return false if self.twitter_oauth_token_secret.nil? or self.twitter_oauth_token_secret.empty?
     true
   end
-  
+
   protected
 
   # Apply SHA1 encryption to the supplied password.
