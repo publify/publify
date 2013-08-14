@@ -70,7 +70,7 @@
     <label class='control-label' for="user_login"><%= _("Display Name")%></label>
     <div class='controls'>
       <select name="user[name]">
-        <%= render_options_for_display_name %>
+        <%= options_for_select(@user.display_names, @user.name) %>
       </select>
     </div>
   </div>
@@ -212,7 +212,7 @@
       <div class='controls'>
         <%= text_area('user', 'description', {:class => 'span5', :rows => 5}) %>
       </div>
-    </div>  
+    </div>
   </fieldset>
   <% end %>
 

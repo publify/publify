@@ -85,18 +85,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def destroy
-    @record = Article.find(params[:id])
-
-    unless @record.access_by?(current_user)
-      flash[:error] = _("Error, you are not allowed to perform this action")
-      return(redirect_to :action => 'index')
-    end
-
-    return(render 'admin/shared/destroy') unless request.post?
-
-    @record.destroy
-    flash[:notice] = _("This article was deleted successfully")
-    redirect_to :action => 'index'
+    destroy_a(Article)
   end
 
   def autosave

@@ -17,6 +17,14 @@ class Admin::BaseController < ApplicationController
 
   private
 
+  def update_settings_with!(params)
+    Blog.transaction do
+      params[:setting].each { |k,v| this_blog.send("#{k.to_s}=", v) }
+      this_blog.save
+      flash[:notice] = _('config updated.')
+    end
+  end
+
   def save_a(object, title)
     if object.save
       flash[:notice] = _("#{title.capitalize} was successfully saved.")
@@ -28,8 +36,13 @@ class Admin::BaseController < ApplicationController
 
   def destroy_a(klass_to_destroy)
     @record = klass_to_destroy.find(params[:id])
+    if @record.respond_to?(:access_by?) && !@record.access_by?(current_user)
+      flash[:error] = _("Error, you are not allowed to perform this action")
+      return(redirect_to action: 'index')
+    end
     return render('admin/shared/destroy') unless request.post?
     @record.destroy
+    flash[:notice] = _("This #{controller_name.humanize} was deleted successfully")
     redirect_to action: 'index'
   end
 
