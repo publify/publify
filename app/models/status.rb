@@ -59,7 +59,7 @@ class Status < Content
     short_permalink = build_short_link(length)
     
     if length > 114
-      message = "#{message[0..114]}#{short_permalink}"
+      message = "#{message[0..113]}#{short_permalink}"
     else
       message = "#{message}#{short_permalink}"
     end
