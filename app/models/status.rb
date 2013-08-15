@@ -53,16 +53,18 @@ class Status < Content
       :oauth_token_secret => user.twitter_oauth_token_secret
     )
     
-    shortened_url = self.redirects.first.to_url
     message = self.body.strip_html
 
     length = calculate_real_length(message)
-
-    if length > 115
-      message = "#{message[0..115]}... #{shortened_url}"
+    short_permalink = build_short_link(length)
+    
+    if length > 114
+      message = "#{message[0..114]}#{short_permalink}"
     else
-      message = "#{message} #{shortened_url}"
+      message = "#{message}#{short_permalink}"
     end
+
+    puts message
 
     begin
       tweet = twitter.update(message)
@@ -101,4 +103,15 @@ class Status < Content
     return message.length
   end
 
+  def build_short_link(length)
+    if length > 115
+      return "... #{self.redirects.first.to_url}"
+    else
+      path = self.redirects.first.from_path
+      blog = Blog.default
+      prefix = (blog.custom_url_shortener) ? blog.custom_url_shortener : blog.base_url
+      prefix.sub!(/^https?\:\/\//, '')
+      return " (#{prefix} #{path})"
+    end
+  end
 end
