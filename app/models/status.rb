@@ -64,16 +64,15 @@ class Status < Content
       message = "#{message}#{short_permalink}"
     end
 
-    puts message
-
     begin
       tweet = twitter.update(message)
       self.twitter_id = tweet.attrs[:id_str]
       self.save
     
       user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
+      return true
     rescue
-      flash[:error] = "Oooops something wrong happened"
+      return false
     end
   end
 
