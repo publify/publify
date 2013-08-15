@@ -23,7 +23,7 @@ group :production do
   gem 'pg'
 end
 
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'thin'
 gem 'rails', '~> 3.0.10'
