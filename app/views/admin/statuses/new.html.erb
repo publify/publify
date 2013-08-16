@@ -1,4 +1,4 @@
-<% @page_heading = _('Short statuses') + content_tag(:div, link_to(_("New Status"), {:controller => 'statuses', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
+<% @page_heading = _('Short statuses') %>
 <div>
   <div class='span4'>
     <%= form_tag :action=>"edit", :id => @status.id do %>
