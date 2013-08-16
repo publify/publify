@@ -1,4 +1,6 @@
 class StatusesController < ContentController
+  require 'json'
+  
   layout :theme_layout
   cache_sweeper :blog_sweeper
   caches_page :index, :show, :if => Proc.new {|c|
@@ -18,6 +20,11 @@ class StatusesController < ContentController
       @page_title = this_blog.status_title_template.to_title(@status, this_blog, params)
       @description = this_blog.status_desc_template.to_title(@status, this_blog, params)    
       @canonical_url = @status.permalink_url
+      
+      if @status.in_reply_to_message and !@status.in_reply_to_message.empty?
+        @reply = JSON.parse(@status.in_reply_to_message)
+      end
+      
     else
       render "errors/404", :status => 404
     end

@@ -18,7 +18,12 @@ img.right {
 }
 
 .gravatar {
-	float: left;
-	margin-right: 3px;
-	margin-bottom: 3px;
+  float: left;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
+.status {
+  background: #fff; 
+  margin: -8px; padding: 8px;
 }

@@ -382,3 +382,25 @@ describe 'Given a new page' do
     @page.password.should == ''
   end
 end
+
+describe "Given a new status" do
+  before(:each) do
+    @status = Status.new
+  end
+  
+  it "should not have a twitter id set" do
+    @status.twitter_id.should == ""
+  end
+  
+  it "should not reply to another one" do
+    @status.in_reply_to_status_id.should == ""
+  end
+
+  it "should not have a reply context message" do
+    @status.in_reply_to_message.should == ""
+  end
+  
+  it "should not have a reply context protected" do
+    @status.in_reply_to_protected.should == false
+  end
+end

@@ -1,13 +1,18 @@
 <div class="hfeed">
-  <div class='h-entry hentry h-as-note'>
-    <article>
+  <div class='h-entry hentry h-as-note well well-small'>
+    <% if @reply %>
+      <%= render :partial => "status_reply_context", :object => @reply %>
+    <% end %>
+    <article class='status'>
       <%= author_picture @status %>
       <div class='p-name entry-title e-content entry-content article'><%= @status.html(:body) %></div>
       <footer>
-        <%= link_to_permalink(@status, display_date_and_time(@status.published_at)) %> | 
-        <%= link_to @status.redirects.first.to_url, @status.redirects.first.to_url %> | 
-        <%= author_link @status %> 
-        <%= view_on_twitter @status %>
+        <small>
+          <%= link_to_permalink(@status, display_date_and_time(@status.published_at)) %> | 
+          <%= link_to @status.redirects.first.to_url, @status.redirects.first.to_url %> | 
+          <%= author_link @status %> 
+          <%= view_on_twitter @status %>          
+        </small>
       </footer>
     </article>
   </div>

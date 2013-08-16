@@ -7,7 +7,10 @@ class Status < Content
 
   serialize :settings, Hash
 
-  setting :twitter_id, :string, ''
+  setting :twitter_id,                          :string,    ""
+  setting :in_reply_to_status_id,               :string,    ""
+  setting :in_reply_to_protected,               :boolean,   false
+  setting :in_reply_to_message,                 :string,    ""
   
   belongs_to :user
   validates_presence_of :body
@@ -65,8 +68,16 @@ class Status < Content
     end
 
     begin
-      tweet = twitter.update(message)
-      self.twitter_id = tweet.attrs[:id_str]
+      options = {}
+      
+      if self.in_reply_to_status_id and self.in_reply_to_status_id != ""
+        options = {:in_reply_to_status_id => self.in_reply_to_status_id}
+        self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
+      end
+      
+      tweet = twitter.update(message, options)
+      self.twitter_id = tweet.attrs[:id_str]      
+      
       self.save
     
       user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
