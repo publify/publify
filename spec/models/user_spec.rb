@@ -327,4 +327,46 @@ describe User do
       it { expect(user.display_names).to eq([user.login, user.firstname, user.lastname, "#{user.firstname} #{user.lastname}"]) }
     end
   end
+  
+  describe "User's Twitter configuration" do    
+    it "A user without twitter_oauth_token or twitter_oauth_token_secret should not have Twitter configured" do
+      user = FactoryGirl.build(:user)
+      user.has_twitter_configured?.should == false
+    end
+    
+    it "A user with an empty twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
+      user = FactoryGirl.build(:user, twitter_oauth_token: "")
+      user.has_twitter_configured?.should == false
+    end
+
+    it "A user with an empty twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
+      user = FactoryGirl.build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "")
+      user.has_twitter_configured?.should == false
+    end
+    
+    it "A user with a twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
+      user = FactoryGirl.build(:user, twitter_oauth_token: "12345")
+      user.has_twitter_configured?.should == false
+    end
+    
+    it "A user with a twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
+      user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "")
+      user.has_twitter_configured?.should == false
+    end
+    
+    it "A user with a twitter_oauth_token_secret and no twitter_oauth_token should not have Twitter configured" do
+      user = FactoryGirl.build(:user, twitter_oauth_token_secret: "67890")
+      user.has_twitter_configured?.should == false
+    end
+    
+    it "A user with a twitter_oauth_token_secret and an empty twitter_oauth_token should not have Twitter configured" do
+      user = FactoryGirl.build(:user, twitter_oauth_token_secret: "67890", twitter_oauth_token: "")
+      user.has_twitter_configured?.should == false
+    end
+    
+    it "A user with a twitter_oauth_token and a twitter_oauth_token_secret should have Twitter configured" do
+      user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
+      user.has_twitter_configured?.should == true
+    end
+  end
 end

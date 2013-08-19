@@ -51,7 +51,7 @@ class Admin::StatusesController < Admin::ContentController
       if @status.save
         flash[:notice] = _("Status was successfully %s.", message)
         if params[:status][:push_to_twitter] and params[:status][:push_to_twitter] != "0" and (@status.twitter_id.nil? or @status.twitter_id.empty?)
-          unless  @status.send_to_twitter(current_user)
+          unless  @status.send_to_twitter
             flash[:error] = _("Oooops something wrong happened")
             flash[:notice] = nil
           end

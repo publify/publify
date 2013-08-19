@@ -112,3 +112,80 @@ describe 'Given a status page' do
     @status.default_text_filter.name.should == Blog.default.text_filter
   end
 end
+
+describe "Checking Twitter message length..." do
+  it "A twitter message without URL should not be changed" do
+    status = FactoryGirl.build(:status, twitter_message: "A message without URL")
+    status.instance_eval{ calculate_real_length }.should == 21
+  end
+  
+  it "A twitter message with a short http URL should have its URL expanded to 20 chars" do
+    status = FactoryGirl.build(:status, twitter_message: "A message with a short URL http://foo.com")
+    status.instance_eval{ calculate_real_length }.should == 47
+  end
+  
+  it "A twitter message with a short https URL should have its URL expanded to 21 chars" do
+    status = FactoryGirl.build(:status, twitter_message: "A message with a short URL https://foo.com")
+    status.instance_eval{ calculate_real_length }.should == 48
+  end
+
+  it "A twitter message with a short https URL should have its URL expanded to 19 chars" do
+    status = FactoryGirl.build(:status, twitter_message: "A message with a short URL ftp://foo.com")
+    status.instance_eval{ calculate_real_length }.should == 46
+  end
+
+  it "A twitter message with a long http URL should have its URL shortened to 20 chars" do
+    status = FactoryGirl.build(:status, twitter_message: "A message with a long URL http://foobarsomething.com?blablablablabla")
+    status.instance_eval{ calculate_real_length }.should == 46
+  end
+  
+  it "A twitter message with a short https URL should have its URL expanded to 21 chars" do
+    status = FactoryGirl.build(:status, twitter_message: "A message with a long URL https://foobarsomething.com?blablablablabla")
+    status.instance_eval{ calculate_real_length }.should == 47
+  end
+
+  it "A twitter message with a short https URL should have its URL expanded to 19 chars" do
+    status = FactoryGirl.build(:status, twitter_message: "A message with a long URL ftp://foobarsomething.com?blablablablabla")
+    status.instance_eval{ calculate_real_length }.should == 45
+  end
+end 
+
+describe 'Pushing a status to Twitter' do
+  before :each do
+    Blog.delete_all
+  end
+
+  it 'A status without push to twitter defined should not push to Twitter' do
+    FactoryGirl.create(:blog)
+    status = FactoryGirl.build(:status, :push_to_twitter => 0)
+    status.send_to_twitter.should == false
+  end
+  
+  it 'a non configured blog and non configured user should not send a status to Twitter' do
+    FactoryGirl.create(:blog)
+    status = FactoryGirl.create(:status)
+    status.send_to_twitter.should == false
+  end
+
+  it 'a configured blog and non configured user should not send a status to Twitter' do
+    FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
+    user = FactoryGirl.build(:user)
+    status = FactoryGirl.build(:status, user: user)
+    status.send_to_twitter.should == false
+  end
+  
+  it 'a non configured blog and a configured user should not send a status to Twitter' do
+    FactoryGirl.build(:blog)
+    user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
+    status = FactoryGirl.build(:status, user: user)
+    status.send_to_twitter.should == false
+  end
+
+  it 'a configured blog and a configured user should send a status to Twitter' do
+    FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
+    user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
+    status = FactoryGirl.build(:status, user: user)
+    pending "Need to find a way to fake the Twitter API behavior"
+    # status.send_to_twitter.should == false
+  end
+end
