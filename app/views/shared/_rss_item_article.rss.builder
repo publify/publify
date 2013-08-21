@@ -14,22 +14,25 @@ xm.item do
   if item.link_to_author?
     xm.author "#{item.user.email} (#{item.user.name})"
   end
-  xm.comments(item.permalink_url("comments"))
-  for category in item.categories
-    xm.category category.name
-  end
-  for tag in item.tags
-    xm.category tag.display_name
-  end
 
-  # RSS 2.0 only allows a single enclosure per item, so only include the first one here.
-  if not item.resources.empty?
-    resource = item.resources.first
-    xm.enclosure(
-      :url => item.blog.file_url(resource.upload_url),
-      :length => resource.size,
-      :type => resource.mime)
-  end
+  if item.is_a?(Article)
+    xm.comments(item.permalink_url("comments"))
+    for category in item.categories
+      xm.category category.name
+    end
+    for tag in item.tags
+      xm.category tag.display_name
+    end
+    # RSS 2.0 only allows a single enclosure per item, so only include the first one here.
+    if not item.resources.empty?
+      resource = item.resources.first
+      xm.enclosure(
+        :url => item.blog.file_url(resource.upload_url),
+        :length => resource.size,
+        :type => resource.mime)
+      end
+    end
+
   if item.allow_pings?
     xm.trackback :ping, item.trackback_url
   end

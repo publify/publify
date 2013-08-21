@@ -182,7 +182,7 @@ module Admin::BaseHelper
   end
 
   def save_settings
-    content_tag(:div, cancel_or_save(_("Update settings")).html_safe)
+    content_tag(:div, cancel_or_save(_("Update settings")).html_safe, :class => 'form-actions')
   end
 
   def small_to_edit(item)

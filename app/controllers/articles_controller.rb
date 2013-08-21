@@ -13,6 +13,8 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
+    conditions = (Blog.default.statuses_in_timeline) ? ["type in (?, ?)", "Article", "Status"] : ["type = ?", "Article"]
+    
     respond_to do |format|
       format.html { @limit = this_blog.limit_article_display }
       format.rss { @limit = this_blog.limit_rss_display }
@@ -20,9 +22,9 @@ class ArticlesController < ContentController
     end
 
     unless params[:year].blank?
-      @articles = Article.published_at(params.values_at(:year, :month, :day)).page(params[:page]).per(@limit)
+      @articles = Content.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(@limit)
     else
-      @articles = Article.published.page(params[:page]).per(@limit)
+      @articles = Content.published.where(conditions).page(params[:page]).per(@limit)
     end
 
     @page_title = this_blog.home_title_template

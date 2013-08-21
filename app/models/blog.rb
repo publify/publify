@@ -108,6 +108,7 @@ class Blog < ActiveRecord::Base
   setting :twitter_consumer_key,      :string, ''
   setting :twitter_consumer_secret,   :string, ''
   setting :custom_url_shortener,      :string, ''
+  setting :statuses_in_timeline,      :boolean, ''
   
   validate :permalink_has_identifier
 

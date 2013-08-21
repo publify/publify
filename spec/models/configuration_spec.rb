@@ -262,6 +262,10 @@ describe 'Given a new blog' do
   it 'should have an empty custom url shortener' do
     @blog.custom_url_shortener.should == ''
   end
+  
+  it 'a new blog should display statuses in the main feed' do
+    @blog.statuses_in_timeline.should == true
+  end
 end
 
 describe 'Given a new user' do

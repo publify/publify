@@ -319,10 +319,6 @@ class Article < Content
     self.extended = parts[1] || ''
   end
 
-  def link_to_author?
-    !user.email.blank? && blog.link_to_author
-  end
-
   def password_protected?
     not password.blank?
   end

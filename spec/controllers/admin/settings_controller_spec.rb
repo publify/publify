@@ -31,6 +31,16 @@ describe Admin::SettingsController do
     end    
   end
 
+  describe 'display action' do
+    before(:each) do
+      get :display
+    end
+  
+    it 'should be success' do
+      assert_template 'display'
+    end    
+  end
+
   describe 'feedback action' do
     before(:each) do
       get :feedback

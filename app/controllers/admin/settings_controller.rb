@@ -10,6 +10,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def write; load_settings end
   def feedback; load_settings end
+  def display; load_settings end
 
   def redirect
     flash[:notice] = _("Please review and save the settings before continuing")
