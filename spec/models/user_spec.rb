@@ -329,7 +329,7 @@ describe User do
 
   describe "User's Twitter configuration" do
     it "A user without twitter_oauth_token or twitter_oauth_token_secret should not have Twitter configured" do
-      user = FactoryGirl.build(:user)
+      user = FactoryGirl.build(:user, twitter_oauth_token:nil, twitter_oauth_token_secret:nil)
       user.has_twitter_configured?.should == false
     end
 
