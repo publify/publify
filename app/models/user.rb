@@ -204,9 +204,7 @@ class User < ActiveRecord::Base
   end
 
   def has_twitter_configured?
-    return false if self.twitter_oauth_token.nil? or self.twitter_oauth_token.empty?
-    return false if self.twitter_oauth_token_secret.nil? or self.twitter_oauth_token_secret.empty?
-    true
+    self.twitter_oauth_token.present? && self.twitter_oauth_token_secret.present?
   end
 
   protected

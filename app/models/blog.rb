@@ -95,21 +95,21 @@ class Blog < ActiveRecord::Base
   setting :author_desc_template,       :string, "%author% | %blog_name% | %blog_subtitle%"
   setting :archives_title_template,    :string, "Archives for %blog_name% %date% %page%"
   setting :archives_desc_template,     :string, "Archives for %blog_name% %date% %page% %blog_subtitle%"
-  setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%" 
+  setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%"
   setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%"
   setting :statuses_title_template,    :string, "Statuses | %blog_name% %page%"
   setting :statuses_desc_template,     :string, "Statuses | %blog_name% | %blog_subtitle% %page%"
   setting :status_title_template,      :string, "%body% | %blog_name%"
   setting :status_desc_template,       :string, "%excerpt%"
-  
+
   setting :custom_tracking_field,      :string, ''
   # setting :meta_author_template,       :string, "%blog_name% | %nickname%"
 
   setting :twitter_consumer_key,      :string, ''
   setting :twitter_consumer_secret,   :string, ''
   setting :custom_url_shortener,      :string, ''
-  setting :statuses_in_timeline,      :boolean, ''
-  
+  setting :statuses_in_timeline,      :boolean, true
+
   validate :permalink_has_identifier
 
   def initialize(*args)
@@ -242,7 +242,7 @@ class Blog < ActiveRecord::Base
     end
     urls_to_ping
   end
-  
+
   def has_twitter_configured?
     return false if self.twitter_consumer_key.nil? or self.twitter_consumer_secret.nil?
     return false if self.twitter_consumer_key.empty? or self.twitter_consumer_secret.empty?
