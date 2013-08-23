@@ -1,18 +1,7 @@
-<div class='row'>
-  <div class='span4 offset4'>
-    <h3><%= _("Create an account") %></h3>
-  </div>
-</div>
-<div class='row'>
-  <div class='span4 offset4 well'>
-    <div id="flash"><%= render_the_flash %></div>
-    <%= form_tag :action=> "signup" do %>
-      <%= text_field(:user, :login, {:class => 'input-block-level', :placeholder => _("Username") })%>
-      <%= text_field(:user, :email, {:class => 'input-block-level', :placeholder => _("Email") })%>
-      <input type="submit" id="submit" class='btn btn-info pull-right' value="<%= _('Signup')%>" />
-    <% end %>
-  </div>
-</div>
-<div class='span4 offset4'>
-  <%= [lost_password, back_to_login].join("<br />") %>    
-</div>
+<%= form_tag :action=> "signup" do %>
+  <%= text_field(:user, :login, {:class => 'input-block-level', :placeholder => _("Username") })%>
+  <%= text_field(:user, :email, {:class => 'input-block-level', :placeholder => _("Email") })%>
+  <input type="submit" id="submit" class='btn btn-info pull-right' value="<%= _('Signup')%>" />
+<% end %>
+
+<% @accounts_links = [lost_password, back_to_login, back_home].join("<br />") %>    

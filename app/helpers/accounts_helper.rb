@@ -11,4 +11,12 @@ module AccountsHelper
   def back_to_login
     link_to(content_tag(:small, _("Back to login")), :action => 'login')
   end
+  
+  def back_home
+    link_to(content_tag(:small, _("&larr; Back to %s", this_blog.blog_name).html_safe), this_blog.base_url)
+  end
+  
+  def link_to_publify
+    content_tag(:h1, link_to("Publify", "http://publify.co"))
+  end
 end
