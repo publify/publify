@@ -262,6 +262,10 @@ http://alsoping.example.com/rpc/ping"
     state 'published'
     text_filter {FactoryGirl.create(:markdown)}
   end
+  
+  factory :unpublished_status, :parent => :status do |s|
+    s.published false
+  end
 
   factory :trackback do |t|
     published true

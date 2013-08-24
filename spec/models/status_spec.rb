@@ -41,6 +41,30 @@ describe "Testing hashtag and @mention replacement in html postprocessing" do
   end  
 end
 
+describe 'Testing status scopes' do
+  before(:each) do
+    FactoryGirl.create(:blog)
+    Status.delete_all
+  end
+
+  it 'Published scope should not bring unpublished statuses' do
+    FactoryGirl.create(:status)
+    FactoryGirl.create(:unpublished_status)
+    
+    statuses = Status.published
+    statuses.count.should == 1
+  end
+
+  it 'Published scope should not bring statuses published in the future' do
+    FactoryGirl.create(:status)
+    FactoryGirl.create(:status, published_at: Time.now + 3.days )
+    
+    statuses = Status.published
+    statuses.count.should == 1
+  end
+end
+
+
 describe 'Given the factory :status' do
   before(:each) do
     FactoryGirl.create(:blog)
@@ -189,3 +213,4 @@ describe 'Pushing a status to Twitter' do
     # status.send_to_twitter.should == false
   end
 end
+
