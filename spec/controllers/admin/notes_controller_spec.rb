@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::StatusesController do
+describe Admin::NotesController do
   render_views
 
   describe "For index action" do
@@ -19,7 +19,7 @@ describe Admin::StatusesController do
 
   end
 
-  describe "For a new status" do
+  describe "For a new note" do
     before :each do
       create(:blog)
       #TODO Delete after removing fixtures
@@ -34,75 +34,75 @@ describe Admin::StatusesController do
     end
   end
 
-  describe "Editing an existing status" do
+  describe "Editing an existing note" do
     before :each do
       create(:blog)
       #TODO Delete after removing fixtures
       Profile.delete_all
       henri = create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => henri.id }
-      @status = FactoryGirl.create(:status)
+      @note = FactoryGirl.create(:note)
     end
 
     it 'should render template edit' do
-      get 'edit', :id => @status.id
+      get 'edit', :id => @note.id
       response.should render_template('new')
     end
   end
 
   describe :new do
-    describe "Creating a new status" do
+    describe "Creating a new note" do
       let!(:blog) { create(:blog) }
       let(:henri) { create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN)) }
 
       before(:each) { request.session = { :user => henri.id } }
 
       context "without permalink" do
-        before(:each) { post :new, status: { body: "Emphasis _mine_, arguments *strong*" } }
+        before(:each) { post :new, note: { body: "Emphasis _mine_, arguments *strong*" } }
 
-        it {expect(response).to redirect_to(controller: 'statuses', action: 'new')}
-        it {expect(Status.count).to eq(1) }
-        it {expect(Status.first.body).to eq("Emphasis _mine_, arguments *strong*") }
-        it {expect(flash[:notice]).to eq("Status was successfully created.") }
+        it {expect(response).to redirect_to(controller: 'notes', action: 'new')}
+        it {expect(Note.count).to eq(1) }
+        it {expect(Note.first.body).to eq("Emphasis _mine_, arguments *strong*") }
+        it {expect(flash[:notice]).to eq("Note was successfully created.") }
       end
 
       context "with permalink" do
-        before(:each) { post :new, status: { body: "Emphasis _mine_, arguments *strong*", permalink: 'my-cool-permalink'} }
+        before(:each) { post :new, note: { body: "Emphasis _mine_, arguments *strong*", permalink: 'my-cool-permalink'} }
 
-        it { expect(Status.last.permalink).to eq("my-cool-permalink") }
+        it { expect(Note.last.permalink).to eq("my-cool-permalink") }
       end
 
-      context "with an existing status" do
-        let!(:existing_status) { create(:status) }
-        before(:each) { post :new, status: { body: "Emphasis _mine_, arguments *strong*" } }
+      context "with an existing note" do
+        let!(:existing_note) { create(:note) }
+        before(:each) { post :new, note: { body: "Emphasis _mine_, arguments *strong*" } }
 
-        it {expect(response).to redirect_to(controller: 'statuses', action: 'new')}
-        it {expect(Status.count).to eq(2) }
+        it {expect(response).to redirect_to(controller: 'notes', action: 'new')}
+        it {expect(Note.count).to eq(2) }
       end
     end
   end
 
-  describe "Destorying a status" do
+  describe "Destorying a note" do
     before :each do
       create(:blog)
       #TODO Delete after removing fixtures
       Profile.delete_all
       henri = create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => henri.id }
-      Status.delete_all
-      @status = FactoryGirl.create(:status, :user_id => henri.id)
+      Note.delete_all
+      @note = FactoryGirl.create(:note, :user_id => henri.id)
     end
 
     it 'should render template destroy' do
-      get 'destroy', :id => @status.id
+      get 'destroy', :id => @note.id
       response.should render_template('destroy')
-      Status.count.should == 1
+      Note.count.should == 1
     end
 
-    it 'should destroy the last existing status and return zero' do
-      post 'destroy', :id => @status.id
-      response.should redirect_to(:controller => 'admin/statuses', :action => 'index')
-      Status.count.should == 0
+    it 'should destroy the last existing note and return zero' do
+      post 'destroy', :id => @note.id
+      response.should redirect_to(:controller => 'admin/notes', :action => 'index')
+      Note.count.should == 0
     end
 
   end

@@ -99,9 +99,9 @@ Rails.application.routes.draw do
   get 'theme/static_view_test', :format => false
 
   # For the statuses
-  match '/sts', :to => 'statuses#index', :format => false
-  match '/sts/page/:page', :to => 'statuses#index', :format => false
-  get '/st/:permalink', :to => 'statuses#show', :format => false
+  match '/notes', :to => 'notes#index', :format => false
+  match '/notes/page/:page', :to => 'notes#index', :format => false
+  get '/note/:permalink', :to => 'notes#show', :format => false
 
 
   # Work around the Bad URI bug
@@ -113,7 +113,7 @@ Rails.application.routes.draw do
 
   # Admin/XController
   %w{advanced cache categories content comments profiles general pages feedback
-     resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types statuses }.each do |i|
+     resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types notes }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
   end

@@ -97,8 +97,8 @@ class Blog < ActiveRecord::Base
   setting :archives_desc_template,     :string, "Archives for %blog_name% %date% %page% %blog_subtitle%"
   setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%"
   setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%"
-  setting :statuses_title_template,    :string, "Statuses | %blog_name% %page%"
-  setting :statuses_desc_template,     :string, "Statuses | %blog_name% | %blog_subtitle% %page%"
+  setting :statuses_title_template,    :string, "Notes | %blog_name% %page%"
+  setting :statuses_desc_template,     :string, "Notes | %blog_name% | %blog_subtitle% %page%"
   setting :status_title_template,      :string, "%body% | %blog_name%"
   setting :status_desc_template,       :string, "%excerpt%"
 

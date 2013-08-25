@@ -1,0 +1,18 @@
+<div class='h-entry hentry h-as-note well well-small'>
+  <% if @reply %>
+    <%= render :partial => "note_reply_context", :object => @reply %>
+  <% end %>
+  
+  <article class='status'>
+    <%= author_picture note %>
+    <div class='p-name entry-title e-content entry-content article'><%= note.html(:body) %></div>
+    <footer>
+      <small>
+        <%= link_to_permalink(note, display_date_and_time(note.published_at)) %> | 
+        <%= link_to note.redirects.first.to_url, note.redirects.first.to_url %> | 
+        <%= author_link note %> 
+        <%= view_on_twitter note %>          
+      </small>
+    </footer>
+  </article>
+</div>

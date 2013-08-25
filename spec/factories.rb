@@ -182,13 +182,13 @@ http://alsoping.example.com/rpc/ping"
     label Profile::ADMIN
     nicename 'Publify administrator'
     modules [ :dashboard, :write, :articles, :pages, :feedback, :themes,
-              :sidebar, :users, :seo, :media, :settings, :profile, :statuses ]
+              :sidebar, :users, :seo, :media, :settings, :profile, :notes ]
   end
 
   factory :profile_publisher, :parent => :profile do |l|
     l.label 'publisher'
     l.nicename 'Blog publisher'
-    l.modules [:users, :dashboard, :write, :articles, :pages, :feedback, :media, :statuses]
+    l.modules [:users, :dashboard, :write, :articles, :pages, :feedback, :media, :notes]
   end
 
   factory :profile_contributor, :parent => :profile do |l|
@@ -252,8 +252,8 @@ http://alsoping.example.com/rpc/ping"
     state 'published'
   end
 
-  factory :status do
-    body 'this is a status'
+  factory :note do
+    body 'this is a note'
     created_at '2013-07-14 01:00:01'
     published_at '2013-07-14 01:00:01'
     updated_at '2013-07-14 01:00:01'
@@ -263,8 +263,8 @@ http://alsoping.example.com/rpc/ping"
     text_filter {FactoryGirl.create(:markdown)}
   end
   
-  factory :unpublished_status, :parent => :status do |s|
-    s.published false
+  factory :unpublished_note, :parent => :note do |n|
+    n.published false
   end
 
   factory :trackback do |t|

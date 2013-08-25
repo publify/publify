@@ -12,7 +12,7 @@
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statuserposts, _("articles writen by you")).html_safe, :controller => 'admin/content', "search[user_id]" => current_user.id).html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statsdrafts, pluralize(@statsdrafts, _("drafts"), _("draft"), _("drafts"))).html_safe, :controller => 'admin/content', "search[state]" => "drafts").html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statspages, pluralize(@statspages, _("pages"), _("page"), _("pages"))).html_safe, :controller => 'admin/pages').html_safe %></p>
-        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statuses, pluralize(@statspages, _("short statuses"), _("short status"), _("short statuses"))).html_safe, :controller => 'admin/statuses').html_safe %></p>
+        <p><%= link_to(sprintf("<strong>%d</strong> %s", @statuses, pluralize(@statspages, _("notes"), _("note"), _("notes"))).html_safe, :controller => 'admin/notes').html_safe %></p>
       <% end %>    
       </div>      
       <div class='span6'>

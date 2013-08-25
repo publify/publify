@@ -232,11 +232,11 @@ describe 'Given a new blog' do
   end
   
   it 'status list title is Statuses | blog name page' do
-    @blog.statuses_title_template.should == "Statuses | %blog_name% %page%"
+    @blog.statuses_title_template.should == "Notes | %blog_name% %page%"
   end
   
-  it 'status list description  is Statuses | blog name | blog subtitle page' do
-    @blog.statuses_desc_template.should == "Statuses | %blog_name% | %blog_subtitle% %page%"
+  it 'status list description  is Notes | blog name | blog subtitle page' do
+    @blog.statuses_desc_template.should == "Notes | %blog_name% | %blog_subtitle% %page%"
   end
 
   it 'a single status title is status content | blog name' do
@@ -389,22 +389,22 @@ end
 
 describe "Given a new status" do
   before(:each) do
-    @status = Status.new
+    @note = Note.new
   end
   
   it "should not have a twitter id set" do
-    @status.twitter_id.should == ""
+    @note.twitter_id.should == ""
   end
   
   it "should not reply to another one" do
-    @status.in_reply_to_status_id.should == ""
+    @note.in_reply_to_status_id.should == ""
   end
 
   it "should not have a reply context message" do
-    @status.in_reply_to_message.should == ""
+    @note.in_reply_to_message.should == ""
   end
   
   it "should not have a reply context protected" do
-    @status.in_reply_to_protected.should == false
+    @note.in_reply_to_protected.should == false
   end
 end

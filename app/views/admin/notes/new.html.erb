@@ -1,7 +1,7 @@
-<% @page_heading = _('Short statuses') %>
+<% @page_heading = _('Notes') %>
 <div>
   <div class='span4'>
-    <%= form_tag :action=>"edit", :id => @status.id do %>
+    <%= form_tag :action=>"edit", :id => @note.id do %>
     <input type="hidden" name="status[text_filter]" id="status_textfilter" value="<%= current_user.text_filter_name %>" />
     <div id='quicktags'>
       <script type="text/javascript">//edToolbar('status_body');</script>
@@ -41,8 +41,8 @@
         </tr>
       </thead>
       <tbody>
-        <%= render_void_table(@statuses.size, 3)  %>
-        <% for status in @statuses %>
+        <%= render_void_table(@notes.size, 3)  %>
+        <% for status in @notes %>
         <tr>
           <td>
             <strong><%= link_to_edit h(status.body), status %></strong>
@@ -54,7 +54,7 @@
           </td>
         </tr>
         <% end %>
-        <%= display_pagination(@statuses, 3, 'first', 'last')%>    
+        <%= display_pagination(@notes, 3, 'first', 'last')%>    
       </tbody>
     </table>
     

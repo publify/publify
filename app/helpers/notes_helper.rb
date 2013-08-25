@@ -1,4 +1,4 @@
-module StatusesHelper
+module NotesHelper
   def get_reply_context_url(reply)
     begin
       return reply['user']['entities']['url']['urls'][0]['expanded_url']

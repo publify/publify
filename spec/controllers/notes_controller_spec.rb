@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe StatusesController, "/index" do
+describe NotesController, "/index" do
   before do
     create(:blog)
-    @status = create(:status)
+    @note = create(:note)
   end
 
   describe "normally" do
@@ -12,21 +12,21 @@ describe StatusesController, "/index" do
     end
 
     specify { response.should be_success }
-    specify { response.should render_template('statuses/index') }
-    specify { assigns(:statuses).should =~ [@status] }
+    specify { response.should render_template('notes/index') }
+    specify { assigns(:notes).should =~ [@note] }
   end
 end
 
-describe StatusesController, 'showing a single status' do
+describe NotesController, 'showing a single note' do
   render_views
   
   before do
     FactoryGirl.create(:blog)
-    @status = FactoryGirl.create(:status)
+    @note = FactoryGirl.create(:note)
   end
 
   def do_get
-    get 'show', :permalink => "#{@status.id}-this-is-a-status"
+    get 'show', :permalink => "#{@note.id}-this-is-a-note"
   end
 
   it 'should be successful' do
@@ -34,13 +34,13 @@ describe StatusesController, 'showing a single status' do
     response.should be_success
   end
 
-  it 'should set the page title to "this is a status"' do
+  it 'should set the page title to "this is a note"' do
     do_get
-    assigns[:page_title].should == 'this is a status'
+    assigns[:page_title].should == 'this is a note | test blog'
   end  
 end
 
-describe StatusesController, "showing a non-existant status" do
+describe NotesController, "showing a non-existant note" do
   it 'should display a 404 error' do
     FactoryGirl.create(:blog)
     get 'show', :permalink => 'thistagdoesnotexist'

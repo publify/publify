@@ -15,7 +15,7 @@ class Admin::DashboardController < Admin::BaseController
     @statposts = Article.published.where("published_at > ?", today).count
     @statsdrafts = Article.drafts.where("created_at > ?", today).count
     @statspages = Page.where("published_at > ?", today).count
-    @statuses = Status.where("published_at > ?", today).count
+    @statuses = Note.where("published_at > ?", today).count
     @statuserposts = Article.published.where("published_at > ?", today).count(conditions: {user_id: current_user.id})
     @statcomments = Comment.where("created_at > ?", today).count
     @presumedspam = Comment.presumed_spam.where("created_at > ?", today).count

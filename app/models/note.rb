@@ -1,4 +1,4 @@
-class Status < Content
+class Note < Content
   require 'twitter'
   require 'json'
   require 'uri'
@@ -71,7 +71,7 @@ class Status < Content
         self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
       end
       
-      tweet = twitter.update(self.message, options)
+      tweet = twitter.update(self.twitter_message, options)
        self.twitter_id = tweet.attrs[:id_str]      
       
       self.save
@@ -95,7 +95,7 @@ class Status < Content
 
   def permalink_url(anchor=nil, only_path=false)
     blog.url_for(
-      :controller => '/statuses',
+      :controller => '/notes',
       :action => 'show',
       :permalink => permalink,
       :anchor => anchor,
