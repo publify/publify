@@ -73,7 +73,7 @@ describe 'Given the factory :status' do
 
   describe "#permalink_url" do
     subject { @note.permalink_url }
-    it { should == "http://myblog.net/note/#{@note.id}-this-is-a-status" }
+    it { should == "http://myblog.net/note/#{@note.id}-this-is-a-note" }
   end
   
   it "should give a sanitized title" do
