@@ -1,5 +1,5 @@
 class BlogSweeper < ActionController::Caching::Sweeper
-  observe Category, Blog, User, Article, Page, Categorization, Comment, Trackback
+  observe Category, Blog, User, Article, Page, Categorization, Comment, Trackback, Note
 
   def pending_sweeps
     @pending_sweeps ||= Set.new
