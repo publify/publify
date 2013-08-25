@@ -4,6 +4,10 @@ class MovesStatusesToNotes < ActiveRecord::Migration
 
     serialize :profiles
   end
+
+  class Content < ActiveRecord::Base
+    include BareMigration
+  end
   
   class Status < Content
     include BareMigration
@@ -19,6 +23,7 @@ class MovesStatusesToNotes < ActiveRecord::Migration
       
     statuses = Content.where("type = ?", "Status")
     statuses.each do |status|
+      say "#{status.id} #{status.type}"
       status.type = "Note"
       status.save
     end
