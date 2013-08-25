@@ -6,24 +6,24 @@
     <div id='quicktags'>
       <script type="text/javascript">//edToolbar('status_body');</script>
     </div>
-    <%= text_area('status', 'body', {:class => 'input-block-level', :rows => '7', :placeholder => _("Compose new status")}) %>
+    <%= text_area('note', 'body', {:class => 'input-block-level', :rows => '7', :placeholder => _("Compose new note")}) %>
 
     <fieldset class="hidden-phone">
       <legend><%= _("Publish settings") %></legend>
-      <label for="status_push_to_twitter" class='checkbox'>
-        <%= check_box 'status', 'push_to_twitter'  %>
+      <label for="note_push_to_twitter" class='checkbox'>
+        <%= check_box 'note', 'push_to_twitter'  %>
         <%= _("POSSE to Twitter")%>
       </label>
-      <label for="in_reply_to"><%= _("In reply to")%></label>
-      <%= text_field 'status', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456") %>
+      <label for="note_in_reply_to"><%= _("In reply to")%></label>
+      <%= text_field 'note', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456") %>
       <label for="status_permalink"><%= _("Permanent link")%></label>
-      <%= text_field 'status', 'permalink', :class => 'input-block-level' %>
-      <label for='status_published' class='checkbox'>
-        <%= check_box 'status', 'published'  %>
+      <%= text_field 'note', 'permalink', :class => 'input-block-level' %>
+      <label for='note_published' class='checkbox'>
+        <%= check_box 'note', 'published'  %>
         <%= _("Published") %>                    
       </label>
       <label><%= _("Publish at") %></label>
-      <%= calendar_date_select 'status', 'published_at', {:class => 'span11'} %>
+      <%= calendar_date_select 'note', 'published_at', {:class => 'span11'} %>
       </fieldset>
       <div class='pull-right'>
           <%= save( _("Publish")) %>
