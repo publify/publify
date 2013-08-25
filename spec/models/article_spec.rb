@@ -3,17 +3,7 @@ require 'spec_helper'
 
 describe Article do
 
-  before do
-    @blog = build_stubbed :blog
-    @articles = []
-  end
-
-  def assert_results_are(*expected)
-    assert_equal expected.size, @articles.size
-    expected.each do |i|
-      assert @articles.include?(i.is_a?(Symbol) ? contents(i) : i)
-    end
-  end
+  let!(:blog) { create(:blog) }
 
   it "test_content_fields" do
     a = Article.new
@@ -88,11 +78,10 @@ describe Article do
   end
 
   it "test_permalink_with_title" do
-    article = FactoryGirl.create(:article, :permalink => 'article-3', :published_at => Time.utc(2004, 6, 1))
-    assert_equal(article,
-                 Article.find_by_permalink({:year => 2004, :month => 06, :day => 01, :title => "article-3"}) )
+    article = FactoryGirl.create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
+    assert_equal(article, Article.find_by_permalink({year: 2004, month: 06, day: 01, title: "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
-      Article.find_by_permalink :year => 2005, :month => "06", :day => "01", :title => "article-5"
+      Article.find_by_permalink year: 2005, month: "06", day: "01", title: "article-5"
     end
   end
 
@@ -132,7 +121,7 @@ describe Article do
 
   describe "the html_urls method" do
     before do
-      @blog.stub(:text_filter_object) { TextFilter.new(:filters => []) }
+      blog.stub(:text_filter_object) { TextFilter.new(:filters => []) }
       @article = Article.new
     end
 
@@ -201,36 +190,6 @@ describe Article do
     end
   end
 
-  describe "with tags" do
-    it "recieves tags from the keywords property" do
-      a = FactoryGirl.create(:article, :keywords => 'foo bar')
-      assert_equal ['foo', 'bar'].sort, a.tags.collect {|t| t.name}.sort
-    end
-
-    it "changes tags when changing keywords" do
-      a = FactoryGirl.create(:article, :keywords => 'foo bar')
-      a.keywords = 'foo baz'
-      a.save
-      assert_equal ['foo', 'baz'].sort, a.tags.collect {|t| t.name}.sort
-    end
-
-    it "empties tags when keywords is set to ''" do
-      a = FactoryGirl.create(:article, :keywords => 'foo bar')
-      a.keywords = ''
-      a.save
-      assert_equal [], a.tags.collect {|t| t.name}.sort
-    end
-
-    it "properly deals with dots and spaces" do
-      c = FactoryGirl.create(:article, :keywords => 'test "tag test" web2.0')
-      assert_equal ['test', 'tag-test', 'web2-0'].sort, c.tags.collect(&:name).sort
-    end
-
-    # TODO: Get rid of using the keywords field.
-    # TODO: Add functions to Tag to convert collection from and to string.
-    it "lets the tag collection survive a load-save cycle"
-  end
-
   it "test_find_published_by_tag_name" do
     art1 = FactoryGirl.create(:article)
     art2 = FactoryGirl.create(:article)
@@ -240,12 +199,12 @@ describe Article do
   end
 
   it "test_find_published" do
-    article = FactoryGirl.create(:article, :title => 'Article 1!', :state => 'published')
-    FactoryGirl.create(:article, :published => false, :state => 'draft')
-    @articles = Article.find_published
-    assert_equal 1, @articles.size
-    @articles = Article.find_published(:all, :conditions => "title = 'Article 1!'")
-    assert_equal [article], @articles
+    article = create(:article, title: 'Article 1!', state: 'published')
+    create(:article, published: false, state: 'draft')
+    articles = Article.find_published
+    assert_equal 1, articles.size
+    articles = Article.find_published(:all, :conditions => "title = 'Article 1!'")
+    assert_equal [article], articles
   end
 
   it "test_just_published_flag" do
@@ -357,13 +316,6 @@ describe Article do
     assert   art.withdrawn?
   end
 
-  describe "#default_text_filter" do
-    it "returns the blog's text filter" do
-      a = Article.new
-      assert_equal @blog.text_filter, a.default_text_filter.name
-    end
-  end
-
   it 'should get only ham not spam comment' do
     article = FactoryGirl.create(:article)
     article.stub(:allow_comments?).and_return(true)
@@ -408,18 +360,6 @@ describe Article do
   end
 
   describe '#search' do
-
-    describe 'with several words and no result' do
-
-      # FIXME: This tests nothing, really.
-      before :each do
-        @articles = Article.search('hello world')
-      end
-
-      it 'should be empty' do
-        @articles.should be_empty
-      end
-    end
 
     describe 'with one word and result' do
       it 'should have two items' do
@@ -481,7 +421,7 @@ describe Article do
   end
 
   it "test_can_ping_fresh_article_iff_it_allows_pings" do
-    a = FactoryGirl.create(:article, :allow_pings => true)
+    a = create(:article, allow_pings: true)
     assert_equal(false, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
@@ -863,6 +803,51 @@ describe Article do
       FactoryGirl.create(:comment, article: first_article)
 
       expect(Article.bestof).to eq([first_article, last_article])
+    end
+  end
+
+  describe "update tags from article keywords" do
+    before(:each) { article.save }
+
+    context "without keywords" do
+      let(:article) { build(:article, keywords: nil) }
+      it { expect(article.tags).to be_empty }
+    end
+
+    context "with a simple keyword" do
+      let(:article) { build(:article, keywords: "foo") }
+      it { expect(article.tags.size).to eq(1) }
+      it { expect(article.tags.first).to be_kind_of(Tag) }
+      it { expect(article.tags.first.name).to eq('foo') }
+    end
+
+    context "with two keyword separate by a space" do
+      let(:article) { build(:article, keywords: "foo bar") }
+      it { expect(article.tags.size).to eq(2) }
+      it { expect(article.tags.map(&:name)).to eq(['foo', 'bar']) }
+    end
+
+    context "with two keyword separate by a coma" do
+      let(:article) { build(:article, keywords: "foo, bar") }
+      it { expect(article.tags.size).to eq(2) }
+      it { expect(article.tags.map(&:name)).to eq(['foo', 'bar']) }
+    end
+
+    context "with two keyword with apostrophe" do
+      let(:article) { build(:article, keywords: "foo, l'bar") }
+      it { expect(article.tags.size).to eq(3) }
+      it { expect(article.tags.map(&:name)).to eq(['foo', 'l', 'bar']) }
+    end
+
+    context "with two identical keywords" do
+      let(:article) { build(:article, keywords: "same, same") }
+      it { expect(article.tags.size).to eq(1) }
+      it { expect(article.tags.map(&:name)).to eq(['same']) }
+    end
+
+    context "with keywords with dot and quote" do
+      let(:article) { build(:article, keywords: 'foo "bar quiz" web2.0') }
+      it { expect(article.tags.map(&:name)).to eq(['foo', 'bar-quiz', 'web2-0'])}
     end
   end
 end

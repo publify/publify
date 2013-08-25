@@ -1,13 +1,7 @@
 require 'spec_helper'
 
 describe Tag do
-  before(:each) do
-    FactoryGirl.create(:blog)
-  end
-  it 'we can Tag.get by name' do
-    foo = FactoryGirl.create(:tag, :name => 'foo')
-    Tag.get('foo').should == foo
-  end
+  let!(:blog) { create(:blog) }
 
   it 'tags are unique' do
     lambda {Tag.create!(:name => 'test')}.should_not raise_error
@@ -22,8 +16,6 @@ describe Tag do
     tag.should be_valid
     tag.name.should == 'monty-python'
     tag.display_name.should == 'Monty Python'
-    tag.should == Tag.get('monty-python')
-    tag.should == Tag.get('Monty Python')
   end
 
   it 'articles can be tagged' do
@@ -52,10 +44,8 @@ describe Tag do
   end
 
   describe 'permalink_url' do
-    subject { Tag.get('foo').permalink_url }
-    it 'should be of form /tag/<name>' do
-      should == 'http://myblog.net/tag/foo'
-    end
+    let(:tag) { create(:tag, name: 'foo', display_name: 'foo') }
+    it { expect(tag.permalink_url).to eq('http://myblog.net/tag/foo') }
   end
 
   describe '#published_articles' do
@@ -66,24 +56,61 @@ describe Tag do
       art_tag.published_articles.size.should == 1
     end
   end
-end
 
-describe 'with tags foo, bar and bazz' do
-  before do
-    @foo = FactoryGirl.create(:tag, :name => 'foo')
-    @bar = FactoryGirl.create(:tag, :name => 'bar')
-    @bazz = FactoryGirl.create(:tag, :name => 'bazz')
-  end
+  context 'with tags foo, bar and bazz' do
 
-  it "find_with_char('f') should be return foo" do
-    Tag.find_with_char('f').should == [@foo]
-  end
+    before do
+      @foo = FactoryGirl.create(:tag, :name => 'foo')
+      @bar = FactoryGirl.create(:tag, :name => 'bar')
+      @bazz = FactoryGirl.create(:tag, :name => 'bazz')
+    end
 
-  it "find_with_char('v') should return empty data" do
-    Tag.find_with_char('v').should == []
-  end
+    it "find_with_char('f') should be return foo" do
+      Tag.find_with_char('f').should == [@foo]
+    end
 
-  it "find_with_char('ba') should return tag bar and bazz" do
-    Tag.find_with_char('ba').sort_by(&:id).should == [@bar, @bazz].sort_by(&:id)
+    it "find_with_char('v') should return empty data" do
+      Tag.find_with_char('v').should == []
+    end
+
+    it "find_with_char('ba') should return tag bar and bazz" do
+      Tag.find_with_char('ba').sort_by(&:id).should == [@bar, @bazz].sort_by(&:id)
+    end
+
+
+    describe :create_from_article do
+      before(:each) { Tag.create_from_article!(article) }
+
+      context "without keywords" do
+        let(:article) { create(:article, keywords: nil) }
+        it { expect(article.tags).to be_empty }
+      end
+
+      context "with a simple keyword" do
+        let(:article) { create(:article, keywords: "akeyword") }
+        it { expect(article.tags.size).to eq(1) }
+        it { expect(article.tags.first).to be_kind_of(Tag) }
+        it { expect(article.tags.first.name).to eq('akeyword') }
+      end
+
+      context "with two keyword separate by a coma" do
+        let(:article) { create(:article, keywords: "first, second") }
+        it { expect(article.tags.size).to eq(2) }
+        it { expect(article.tags.map(&:name)).to eq(['first', 'second']) }
+      end
+
+      context "with two keyword with apostrophe" do
+        let(:article) { create(:article, keywords: "first, l'éléphant") }
+        it { expect(article.tags.size).to eq(3) }
+        it { expect(article.tags.map(&:name)).to eq(['first', 'l', 'éléphant']) }
+      end
+
+      context "with two identical keywords" do
+        let(:article) { create(:article, keywords: "same'same") }
+        it { expect(article.tags.size).to eq(1) }
+        it { expect(article.tags.map(&:name)).to eq(['same']) }
+      end
+    end
+
   end
 end

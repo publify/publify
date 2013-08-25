@@ -7,9 +7,19 @@ class Tag < ActiveRecord::Base
 
   attr_accessor :description, :keywords
 
-  def self.get(name)
-    tagname = name.to_url
-    find_or_create_by_name(tagname, :display_name => name)
+  def self.create_from_article!(article)
+    return if article.keywords.nil?
+    tags = []
+    Tag.transaction do
+      article.keywords.to_s.scan(/((['"]).*?\2|[\.[[:alnum:]]]+)/).collect do |x|
+        x.first.tr("\"'", '')
+      end.uniq.map do |tagword|
+        tagname = tagword.to_url
+        tags << find_or_create_by_name(tagname, display_name: tagword)
+      end
+    end
+    article.tags = tags
+    tags
   end
 
   def self.find_by_name_or_display_name(tagname, name)

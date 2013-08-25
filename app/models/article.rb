@@ -236,20 +236,7 @@ class Article < Content
   end
 
   def keywords_to_tags
-    # if keywords is empty, we want to reset the tags altogether, but
-    # if they do not exists (for instance because we're triggered by a
-    # publication_pending) we don't want to destroy the tags
-    return if keywords.nil?
-
-    Article.transaction do
-      tags.clear
-      tags <<
-      keywords.to_s.scan(/((['"]).*?\2|[\.[[:alnum:]]]+)/).collect do |x|
-        x.first.tr("\"'", '')
-      end.uniq.map do |tagword|
-        Tag.get(tagword)
-      end
-    end
+    Tag.create_from_article!(self)
   end
 
   def interested_users

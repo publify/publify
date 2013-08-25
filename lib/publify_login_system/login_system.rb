@@ -16,7 +16,7 @@ module LoginSystem
 
     # If the current actions are in our access rule will be verifyed
     def allowed?
-      return AccessControl.allowed_controllers(current_user.profile.label, current_user.profile.modules).include?(params[:controller])
+      AccessControl.allowed_controllers(current_user.profile.label, current_user.profile.modules).include?(params[:controller])
     end
 
     def authorized?
