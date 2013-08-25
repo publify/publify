@@ -13,7 +13,7 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
-    conditions = (Blog.default.statuses_in_timeline) ? ["type in (?, ?)", "Article", "Status"] : ["type = ?", "Article"]
+    conditions = (Blog.default.statuses_in_timeline) ? ["type in (?, ?)", "Article", "Note"] : ["type = ?", "Article"]
     
     respond_to do |format|
       format.html { @limit = this_blog.limit_article_display }
