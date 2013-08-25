@@ -5,14 +5,6 @@ class MovesStatusesToNotes < ActiveRecord::Migration
     serialize :profiles
   end
   
-  class Content < ActiveRecord::Base
-    include BareMigration
-  end
-  
-  class Note < Content 
-    include BareMigration
-  end
-  
   class Status < Content
     include BareMigration
   end
@@ -25,7 +17,7 @@ class MovesStatusesToNotes < ActiveRecord::Migration
     Profile.find_by_label("publisher").try :update_attributes,
       modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile]
       
-    statuses = Status.find(:all)
+    statuses = Content.where("type = ?", "Status")
     statuses.each do |status|
       status.type = "Note"
       status.save
