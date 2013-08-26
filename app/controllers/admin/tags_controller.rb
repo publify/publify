@@ -2,7 +2,7 @@ class Admin::TagsController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index; redirect_to action: 'new' ; end
-  def new; new_or_edit; end 
+  def new; new_or_edit; end
   def edit; new_or_edit; end
 
   def destroy

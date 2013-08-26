@@ -1,110 +1,55 @@
 require 'spec_helper'
 
 describe Admin::TagsController do
-  before do
-    create :blog
-    henri = create :user, login: 'henri', profile: create(:profile_admin)
-    request.session = { :user => henri.id }
+  let!(:blog) { create(:blog) }
+  let!(:user) { create(:user, login: 'henri', profile: create(:profile_admin)) }
+
+  before { request.session = { user: user.id } }
+
+  describe :index do
+    before(:each) { get :index }
+    it { expect(response).to redirect_to(action: 'new') }
   end
 
-  describe 'index action' do
-    before :each do
-      get :index
+  context "with a tag" do
+    let(:tag) { create(:tag) }
+
+    describe :edit do
+      before(:each) { get :edit, id: tag.id }
+
+      it { expect(response).to be_success }
+      it { expect(response).to render_template('new') }
+      it { expect(assigns(:tag)).to be_valid }
     end
 
-    it 'should be success' do
-      response.should be_success
-    end
+    describe :destroy do
+      context "with a get" do
+        before(:each) { get :destroy, id: tag.id }
 
-    it 'should render template index' do
-      response.should render_template('index')
-    end
-  end
+        it { expect(response).to be_success }
+        it { expect(response).to render_template('destroy') }
+        it { expect(assigns(:record)).to be_valid }
 
-  describe 'edit action' do
-    before(:each) do
-      tag_id = FactoryGirl.create(:tag).id
-      get :edit, :id => tag_id
-    end
+        context "with view" do
+          render_views
+          it { expect(response).to have_selector("form[action='/admin/tags/destroy/#{tag.id}'][method='post']") }
+        end
+      end
 
-    it 'should be success' do
-      response.should be_success
-    end
-
-    it 'should render template edit' do
-      response.should render_template('edit')
-    end
-
-    it 'should assigns value :tag' do
-      assert assigns(:tag).valid?
-    end
-  end
-
-  describe 'destroy action with GET' do
-    before(:each) do
-      @tag_id = create(:tag).id
-      get :destroy, :id => @tag_id
-    end
-
-    it 'should be success' do
-      response.should be_success
-    end
-
-    context "with view" do
-      render_views
-
-      it 'should have an id in the form destination' do
-        response.should have_selector("form[action='/admin/tags/destroy/#{@tag_id}'][method='post']")
+      context "with a post" do
+        before(:each) { post :destroy, id: tag.id, tag: {display_name: 'Foo Bar'}}
+        it { expect(response).to redirect_to(action: 'index') }
+        it { expect(Tag.count).to eq(0) }
       end
     end
 
-    it 'should render template edit' do
-      response.should render_template('destroy')
-    end
-
-    it 'should assigns value :tag' do
-      assert assigns(:record).valid?
-    end
-  end
-
-  describe 'destroy action with POST' do
-    before do
-      @tag = FactoryGirl.create(:tag)
-      post :destroy, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
-    end
-
-    it 'should redirect to index' do
-      response.should redirect_to(:action => 'index')
-    end
-
-    it 'should have one less tags' do
-      Tag.count.should == 0
-    end
-  end
-
-  describe 'update action' do
-    before do
-      @tag = FactoryGirl.create(:tag)
-      post :edit, 'id' => @tag.id, 'tag' => {:display_name => 'Foo Bar'}
-    end
-
-    it 'should redirect to index' do
-      response.should redirect_to(:action => 'index')
-    end
-
-    it 'should update tag' do
-      @tag.reload
-      @tag.name.should == 'foo-bar'
-      @tag.display_name.should == "Foo Bar"
-    end
-
-    it 'should create a redirect from the old to the new' do
-      old_name = @tag.name
-      @tag.reload
-      new_name = @tag.name
-
-      r = Redirect.find_by_from_path "/tag/#{old_name}"
-      r.to_path.should == "/tag/#{new_name}"
+    describe :update do
+      before(:each) { post :edit, id: tag.id, tag: {display_name: 'Foo Bar'} }
+      it { expect(response).to be_success }
+      it { expect(tag.reload.name).to eq('foo-bar') }
+      it { expect(tag.reload.display_name).to eq('Foo Bar') }
+      it { expect(Redirect.count).to eq(1) }
+      it { expect(Redirect.first.to_path).to eq('/tag/foo-bar') }
     end
   end
 end
