@@ -178,7 +178,7 @@ describe ArticlesController do
   describe 'index for a month' do
 
     before :each do
-      FactoryGirl.create(:article, :published_at => Time.utc(2004, 4, 23))
+      FactoryGirl.create(:article, :published_at => Time.zone.local(2004, 4, 23))
       get 'index', :year => 2004, :month => 4
     end
 
@@ -388,7 +388,7 @@ describe ArticlesController, "redirecting" do
   it 'should get good article with utf8 slug' do
     build_stubbed(:blog)
     utf8article = FactoryGirl.create(:utf8article, :permalink => 'ルビー',
-                                 :published_at => Time.utc(2004, 6, 2))
+                                 :published_at => Time.zone.local(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
     assigns(:article).should == utf8article
   end
@@ -396,7 +396,7 @@ describe ArticlesController, "redirecting" do
   # NOTE: This is needed because Rails over-unescapes glob parameters.
   it 'should get good article with pre-escaped utf8 slug using unescaped slug' do
     build_stubbed(:blog)
-    utf8article = FactoryGirl.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC', :published_at => Time.utc(2004, 6, 2))
+    utf8article = FactoryGirl.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC', :published_at => Time.zone.local(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
     assigns(:article).should == utf8article
   end

@@ -12,33 +12,33 @@ describe Article do
 
   describe "#permalink_url" do
     describe "with hostname" do
-      subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
+      subject { Article.new(:permalink => 'article-3', :published_at => Time.zone.local(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
       it { should == 'http://myblog.net/2004/06/01/article-3' }
     end
 
     describe "without hostname" do
-      subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
+      subject { Article.new(:permalink => 'article-3', :published_at => Time.zone.local(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
       it { should == '/2004/06/01/article-3' }
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
     # browser may display them differently, though.
     describe "with a multibyte permalink" do
-      subject { Article.new(:permalink => 'ルビー', :published_at => Time.utc(2004, 6, 1)) }
+      subject { Article.new(:permalink => 'ルビー', :published_at => Time.zone.local(2004, 6, 1)) }
       it "escapes the multibyte characters" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC'
       end
     end
 
     describe "with a permalink containing a space" do
-      subject { Article.new(:permalink => 'hello there', :published_at => Time.utc(2004, 6, 1)) }
+      subject { Article.new(:permalink => 'hello there', :published_at => Time.zone.local(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/hello%20there'
       end
     end
 
     describe "with a permalink containing a plus" do
-      subject { Article.new(:permalink => 'one+two', :published_at => Time.utc(2004, 6, 1)) }
+      subject { Article.new(:permalink => 'one+two', :published_at => Time.zone.local(2004, 6, 1)) }
       it "does not escape the plus" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/one+two'
       end
@@ -52,7 +52,7 @@ describe Article do
   end
 
   describe ".feed_url" do
-    let(:article) { FactoryGirl.build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
+    let(:article) { FactoryGirl.build(:article, permalink: 'article-3', published_at: Time.zone.local(2004, 6, 1)) }
 
     it "returns url for atom feed for a Atom 1.0 asked" do
       article.feed_url('atom10').should eq "http://myblog.net/2004/06/01/article-3.atom"
@@ -78,7 +78,7 @@ describe Article do
   end
 
   it "test_permalink_with_title" do
-    article = FactoryGirl.create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
+    article = FactoryGirl.create(:article, permalink: 'article-3', published_at: Time.zone.local(2004, 6, 1))
     assert_equal(article, Article.find_by_permalink({year: 2004, month: 06, day: 01, title: "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink year: 2005, month: "06", day: "01", title: "article-5"

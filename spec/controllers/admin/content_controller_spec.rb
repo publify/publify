@@ -318,13 +318,13 @@ describe Admin::ContentController do
     it "should correctly interpret time zone in :published_at" do
       post :create, 'article' => base_article(:published_at => "February 17, 2011 08:47 PM GMT+0100 (CET)")
       new_article = Article.last
-      assert_equal Time.utc(2011, 2, 17, 19, 47), new_article.published_at
+      assert_equal Time.zone.local(2011, 2, 17, 19, 47), new_article.published_at
     end
 
     it 'should respect "GMT+0000 (UTC)" in :published_at' do
       post :create, 'article' => base_article(:published_at => 'August 23, 2011 08:40 PM GMT+0000 (UTC)')
       new_article = Article.last
-      assert_equal Time.utc(2011, 8, 23, 20, 40), new_article.published_at
+      assert_equal Time.zone.local(2011, 8, 23, 20, 40), new_article.published_at
     end
 
     it 'should create a filtered article' do
