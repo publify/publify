@@ -87,22 +87,22 @@ describe Tag do
       end
 
       context "with a simple keyword" do
-        let(:article) { create(:article, keywords: "akeyword") }
+        let(:article) { create(:article, keywords: "foo") }
         it { expect(article.tags.size).to eq(1) }
         it { expect(article.tags.first).to be_kind_of(Tag) }
-        it { expect(article.tags.first.name).to eq('akeyword') }
+        it { expect(article.tags.first.name).to eq('foo') }
       end
 
       context "with two keyword separate by a coma" do
-        let(:article) { create(:article, keywords: "first, second") }
+        let(:article) { create(:article, keywords: "foo, bar") }
         it { expect(article.tags.size).to eq(2) }
-        it { expect(article.tags.map(&:name)).to eq(['first', 'second']) }
+        it { expect(article.tags.map(&:name)).to eq(['foo', 'bar']) }
       end
 
       context "with two keyword with apostrophe" do
-        let(:article) { create(:article, keywords: "first, l'éléphant") }
+        let(:article) { create(:article, keywords: "foo, l'bar") }
         it { expect(article.tags.size).to eq(3) }
-        it { expect(article.tags.map(&:name)).to eq(['first', 'l', 'éléphant']) }
+        it { expect(article.tags.map(&:name)).to eq(['foo', 'l', 'bar']) }
       end
 
       context "with two identical keywords" do
