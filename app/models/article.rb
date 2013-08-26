@@ -15,24 +15,22 @@ class Article < Content
 
   belongs_to :user
 
-  has_many :pings, :dependent => :destroy, :order => "created_at ASC"
-  has_many :trackbacks, :dependent => :destroy, :order => "created_at ASC"
-  has_many :feedback, :order => "created_at DESC"
-  has_many :resources, :order => "created_at DESC", :dependent => :nullify
+  has_many :pings, dependent: :destroy, order: "created_at ASC"
+  has_many :trackbacks, dependent: :destroy, order: "created_at ASC"
+  has_many :feedback, order: "created_at DESC"
+  has_many :resources, order: "created_at DESC", dependent: :nullify
   has_many :categorizations
-  has_many :categories, :through => :categorizations
-  has_many :triggers, :as => :pending_item
-
-  has_many :comments,   :dependent => :destroy, :order => "created_at ASC" do
-
+  has_many :categories, through: :categorizations
+  has_many :triggers, as: :pending_item
+  has_many :comments, dependent: :destroy, order: "created_at ASC" do
     # Get only ham or presumed_ham comments
     def ham
-      where(:state => ["presumed_ham", "ham"])
+      where(state: ["presumed_ham", "ham"])
     end
 
     # Get only spam or presumed_spam comments
     def spam
-      where(:state => ["presumed_spam", "spam"])
+      where(state: ["presumed_spam", "spam"])
     end
   end
 
@@ -124,7 +122,7 @@ class Article < Content
       scoped = scoped.category(params[:category])
     end
 
-    scoped.order('published_at DESC').order('created_at DESC')
+    scoped.order('created_at DESC')
   end
 
   def permalink_url(anchor=nil, only_path=false)

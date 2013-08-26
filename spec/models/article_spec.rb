@@ -663,9 +663,9 @@ describe Article do
       let(:params) { nil }
       let(:now) { DateTime.new(2011,3,12) }
       let!(:article) { create(:article, state: 'published', created_at: now) }
-      let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days, published_at: nil) }
-      let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days, published_at:nil) }
-      it { expect(subject).to eq([article, draft_article, last_draft_article]) }
+      let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days) }
+      let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days) }
+      it { expect(subject).to eq([draft_article, last_draft_article, article]) }
     end
 
     context "with two articles in two catageory" do
