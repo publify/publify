@@ -163,3 +163,42 @@ a.delete:focus {
   border-collapse: collapse !important;
   background-image: none !important;
 }
+
+/* Classes for menu icons */
+
+.icon-articles {
+  background-position: 0 -72px;
+}
+
+.icon-pages {
+  background-position: -408px -120px;
+  width: 16px;
+  
+}
+.icon-notes {
+  background-position: -264px -24px;
+}
+
+.icon-media {
+  background-position: -456px -48px;
+}
+
+.icon-users {
+  background-position: -168px 0;
+}
+
+.icon-themes {
+  background-position: -96px -120px;
+}
+
+.icon-seo {
+  background-position: -24px -72px;
+}
+
+.icon-settings {
+  background-position: -432px 0;
+}
+
+.icon-profile {
+  background-position: -240px 0;
+}

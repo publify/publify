@@ -59,7 +59,7 @@
       <div class='span2'>
         <div class='well' style='padding: 28px 0'>
           <ul class='nav nav-list'>
-            <li class='nav-header'>
+            <li class='nav-header'><i class='icon icon-home'></i>
               <%= _("Home") %>
             </li>
             <li class='<%= "active" if controller.controller_name == 'dashboard' %>'>
@@ -67,7 +67,10 @@
             </li>
             <li class="divider"></li>
             <% for pm in current_user.project_modules %>
-            <%= content_tag :li, _(pm.menus.first.name), :class => "nav-header" %>
+            <li class="nav-header">
+              <i class='icon icon-<%= pm.name %>'></i>
+              <%= _(pm.menus.first.name) %>
+            </li>            
               <%= subtabs_for(pm.name.to_sym)%>
               <li class="divider"></li>
             <% end %>
