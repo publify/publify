@@ -19,8 +19,8 @@ describe Admin::ContentController do
     end
 
     it 'should restrict only by searchstring' do
-      article = FactoryGirl.create(:article, :body => 'once uppon an originally time')
-      get :index, :search => {:searchstring => 'originally'}
+      article = create(:article, body: 'once uppon an originally time')
+      get :index, search: {searchstring: 'originally'}
       assigns(:articles).should == [article]
       response.should render_template('index')
       response.should be_success

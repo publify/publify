@@ -2,39 +2,16 @@
 
 # Factory definitions
 FactoryGirl.define do
-  sequence :name do |n|
-    "name_#{n}"
-  end
 
-  sequence :user do |n|
-    "user#{n}"
-  end
-
-  sequence :email do |n|
-    "user#{n}@example.com"
-  end
-
-  sequence :guid do |n|
-    "deadbeef#{n}"
-  end
-
-  sequence :label do |n|
-    "lab_#{n}"
-  end
-
-  sequence :file_name do |f|
-    "file_name_#{f}"
-  end
-
-  sequence :category do |n|
-    "c_#{n}"
-  end
-
-  basetime = Time.now
-
-  sequence :time do |n|
-    basetime - n
-  end
+  sequence :name do |n|; "name_#{n}"; end
+  sequence :body do |n|; "body #{n}" * (n+3 % 5) ; end
+  sequence :user do |n|; "user#{n}" ; end
+  sequence :email do |n|; "user#{n}@example.com" ; end
+  sequence :guid do |n|; "deadbeef#{n}" ; end
+  sequence :label do |n|; "lab_#{n}" ; end
+  sequence :file_name do |f|; "file_name_#{f}" ; end
+  sequence :category do |n|; "c_#{n}" ; end
+  sequence :time do |n|; DateTime.new(2012,3,26,19,56) - n ; end
 
   factory :user do
     login { FactoryGirl.generate(:user) }
@@ -241,9 +218,9 @@ http://alsoping.example.com/rpc/ping"
   end
 
   factory :page do
-    name 'page_one'
+    name {FactoryGirl.generate(:name)}
     title 'Page One Title'
-    body 'ho ho ho'
+    body {FactoryGirl.generate(:body)}
     created_at '2005-05-05 01:00:01'
     published_at '2005-05-05 01:00:01'
     updated_at '2005-05-05 01:00:01'
@@ -262,7 +239,7 @@ http://alsoping.example.com/rpc/ping"
     state 'published'
     text_filter {FactoryGirl.create(:markdown)}
   end
-  
+
   factory :unpublished_note, :parent => :note do |n|
     n.published false
   end

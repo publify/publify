@@ -631,46 +631,50 @@ describe Article do
     end
   end
 
-  describe ".search_with_pagination" do
-    #TODO move those kind of test to a "integration specs" that can be run only for integration
-    context "given some datas" do
-      it "returns an empty array when no article and no params" do
-        Article.search_with_pagination({}, {page: nil, per_page: 12}).should be_empty
-      end
+  describe :search_with do
+    subject { Article.search_with(params) }
 
-      it "returns article" do
-        article = FactoryGirl.create(:article)
-        Article.search_with_pagination({}, {page: nil, per_page: 12}).should eq([article])
-      end
+    context "without article" do
+      let(:params) { nil }
+      it { expect(subject).to be_empty }
+    end
 
-      it "returns only published article where search params ask about published state" do
-        published_article = FactoryGirl.create(:article, state: 'published')
-        article = FactoryGirl.create(:article, state: 'draft')
-        Article.search_with_pagination({state: 'published'}, {page: nil, per_page: 12}).should eq([published_article])
-      end
+    context "with an article" do
+      let(:params) { nil }
+      let!(:article) { create(:article) }
+      it { expect(subject).to eq([article]) }
+    end
 
-      it "returns only quantity of article ask in per_page" do
-        article = FactoryGirl.create(:article, state: 'published')
-        out_of_per_page_article = FactoryGirl.create(:article, state: 'draft')
+    context "with two article but only one matching searchstring" do
+      let(:params) { {searchstring: 'match the string'} }
+      let!(:not_found_article) { create(:article) }
+      let!(:article) { create(:article, body: 'this match the string of article') }
+      it { expect(subject).to eq([article]) }
+    end
 
-        Article.search_with_pagination({}, { page: nil, per_page: 1 }).should have(1).item
-      end
+    context "with two articles with differents states and published params" do
+      let(:params) { {state: 'published'} }
+      let!(:article) { create(:article, state: 'published') }
+      let!(:draft_article) { create(:article, state: 'draft') }
+      it { expect(subject).to eq([article]) }
+    end
 
-      it "returns both published and draft articles by default" do
-        article = FactoryGirl.create(:article, state: 'published')
-        draft_article = FactoryGirl.create(:article, state: 'draft')
-        result = Article.search_with_pagination({}, {page: nil, per_page: 12})
-        result.count.should eq 2
-      end
+    context "with two articles with differents states and no params" do
+      let(:params) { nil }
+      let(:now) { DateTime.new(2011,3,12) }
+      let!(:article) { create(:article, state: 'published', created_at: now) }
+      let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days, published_at: nil) }
+      let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days, published_at:nil) }
+      it { expect(subject).to eq([article, draft_article, last_draft_article]) }
+    end
 
-      it "returns article of search categorie" do
-        show_category = FactoryGirl.create(:category, name: 'show')
-        hide_category = FactoryGirl.create(:category, name: 'not_show')
-        article = FactoryGirl.create(:article, categories: [show_category])
-        hide_article = FactoryGirl.create(:article, categories: [hide_category])
-        Article.search_with_pagination({category: show_category.id}, {page: nil, per_page: 12}).should eq([article])
-      end
-
+    context "with two articles in two catageory" do
+      let(:show_category) { create(:category, name: 'show') }
+      let(:not_show_category) { create(:category, name: 'not_show') }
+      let(:params) { {category: show_category.id } }
+      let!(:article) { create(:article, categories: [show_category]) }
+      let!(:bad_category_article) { create(:article, categories: [not_show_category]) }
+      it { expect(subject).to eq([article]) }
     end
   end
 

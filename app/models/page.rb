@@ -31,12 +31,8 @@ class Page < Content
     'name ASC'
   end
 
-  def self.search_paginate(search_hash, paginate_hash)
-    list_function = ["Page"] + function_search_all_posts(search_hash)
-    paginate_hash[:order] = 'title ASC'
-    list_function << "page(paginate_hash[:page])"
-    list_function << "per(paginate_hash[:per_page])"
-    eval(list_function.join('.'))
+  def self.search_with(search_hash)
+    super(search_hash).order('title ASC')
   end
 
   def permalink_url(anchor=nil, only_path=false)

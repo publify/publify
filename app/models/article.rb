@@ -113,23 +113,18 @@ class Article < Content
     article
   end
 
-  def self.search_with_pagination(search_hash, paginate_hash)
-    state = (search_hash[:state] and ["no_draft", "drafts", "published", "withdrawn", "pending"].include? search_hash[:state]) ? search_hash[:state] : nil
-
-    if state.nil?
-      list_function  = function_search_all_posts(search_hash)
-    elsif
-      list_function  = ["Article.#{state}"] + function_search_all_posts(search_hash)
+  def self.search_with(params)
+    params ||= {}
+    scoped = super(params)
+    if ["no_draft", "drafts", "published", "withdrawn", "pending"].include?(params[:state])
+      scoped = scoped.send(params[:state])
     end
 
-    if search_hash[:category] && search_hash[:category].to_i > 0
-      list_function << 'category(search_hash[:category])'
+    if params[:category] && params[:category].to_i > 0
+      scoped = scoped.category(params[:category])
     end
 
-    list_function << "page(paginate_hash[:page])"
-    list_function << "per(paginate_hash[:per_page])"
-    list_function << "order('published_at desc, created_at desc')"
-    eval(list_function.join('.'))
+    scoped.order('published_at DESC').order('created_at DESC')
   end
 
   def permalink_url(anchor=nil, only_path=false)

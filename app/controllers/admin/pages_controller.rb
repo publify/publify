@@ -11,7 +11,7 @@ class Admin::PagesController < Admin::BaseController
 
   def index
     @search = params[:search] ? params[:search] : {}
-    @pages = Page.search_paginate(@search, :page => params[:page], :per_page => this_blog.admin_display_elements)
+    @pages = Page.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def new

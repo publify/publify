@@ -80,21 +80,25 @@ module Admin::BaseHelper
     content_tag :li, link_to(_('Back to list'), :action => 'index')
   end
 
+  def render_empty_table(cols)
+    content_tag(:tr) do
+      content_tag(:td, _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)), { colspan: cols})
+    end
+  end
+
   def render_void_table(size, cols)
     return unless size == 0
-    content_tag(:tr) do
-      content_tag(:td, _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)), { :colspan => cols})
-    end
+    render_empty_table(cols)
   end
 
   def cancel_or_save(message=_("Save"))
     "#{cancel} #{_("or")} #{save(message)}"
   end
 
-    def get_short_url(item)
-      return "" if item.short_url.nil?
-      sprintf(content_tag(:small, "%s %s"), _("Short url:"), link_to(item.short_url, item.short_url))
-    end
+  def get_short_url(item)
+    return "" if item.short_url.nil?
+    sprintf(content_tag(:small, "%s %s"), _("Short url:"), link_to(item.short_url, item.short_url))
+  end
 
   def show_actions item
     content_tag(:div, { :class => 'action', :style => '' }) do
@@ -156,12 +160,12 @@ module Admin::BaseHelper
 
   def build_editor_link(label, action, id, update, editor)
     link = link_to_remote(label,
-            :url => { :action => action, 'editor' => editor},
-            :method => :get,
-            :class => 'ui-button-text',
-            :loading => "new Element.show('update_spinner_#{id}')",
-            :success => "new Element.toggle('update_spinner_#{id}')",
-            :update => "#{update}")
+                          :url => { :action => action, 'editor' => editor},
+                          :method => :get,
+                          :class => 'ui-button-text',
+                          :loading => "new Element.show('update_spinner_#{id}')",
+                          :success => "new Element.toggle('update_spinner_#{id}')",
+                          :update => "#{update}")
     link << image_tag("spinner-blue.gif", :id => "update_spinner_#{id}", :style => 'display:none;')
   end
 

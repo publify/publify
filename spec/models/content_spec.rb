@@ -2,9 +2,7 @@
 require 'spec_helper'
 
 describe Content do
-  before do
-    @blog = stub_default_blog
-  end
+  let!(:blog) { create(:blog) }
 
   describe "#short_url" do
     before do
@@ -15,9 +13,7 @@ describe Content do
     end
 
     describe "normally" do
-      before do
-        @blog.stub(:base_url) { "http://myblog.net" }
-      end
+      let!(:blog) { create(:blog, base_url: "http://myblog.net") }
 
       it "returns the blog's base url combined with the redirection's from path" do
         @content.should be_published
@@ -26,9 +22,7 @@ describe Content do
     end
 
     describe "when the blog is in a sub-uri" do
-      before do
-        @blog.stub(:base_url) { "http://myblog.net/blog" }
-      end
+      let!(:blog) { create(:blog, base_url: "http://myblog.net/blog") }
 
       it "includes the sub-uri path" do
         @content.short_url.should == "http://myblog.net/blog/foo"
@@ -58,36 +52,48 @@ describe Content do
     end
   end
 
-  describe "#function_search_all_posts" do
-    it "returns empty array when nil given" do
-      Content.function_search_all_posts(nil).should be_empty
-    end
+  describe :search_posts_with do
+    context "with an simple article" do
+      subject { Content.search_with(params) }
 
-    it "returns article that match with searchstring" do
-      expected_function = ['searchstring(search_hash[:searchstring])']
-      Content.function_search_all_posts({searchstring: 'something'}).should eq expected_function
-    end
+      context "with nil params" do
+        let(:params) { nil }
+        it { expect(subject).to be_empty }
+      end
 
-    it "returns article that match with published_at" do
-      expected_function = ['published_at_like(search_hash[:published_at])']
-      Content.function_search_all_posts({published_at: '2012-02'}).should eq expected_function
-    end
+      context "with a matching searchstring article" do
+        let(:params) { {searchstring: 'a search string'} }
+        let!(:match_article) { create(:article, body: 'there is a search string here') }
+        it { expect(subject).to eq([match_article]) }
+      end
 
-    it "returns article that match with user_id" do
-      expected_function = ['user_id(search_hash[:user_id])']
-      Content.function_search_all_posts({user_id: '1'}).should eq expected_function
-    end
+      context "with an article published_at" do
+        let(:params) { {published_at: '2012-02'} }
+        let!(:article) { create(:article) }
+        let!(:match_article) { create(:article, published_at: DateTime.new(2012,2,13)) }
+        it { expect(subject).to eq([match_article]) }
+      end
 
-    it "returns article that match with not published" do
-      expected_function = ['not_published']
-      Content.function_search_all_posts({published: '0'}).should eq expected_function
-    end
+      context "with same user_id article" do
+        let(:params) { {user_id: '13'} }
+        let!(:article) { create(:article) }
+        let!(:match_article) { create(:article, user_id: 13) }
+        it { expect(subject).to eq([match_article]) }
+      end
 
-    it "returns article that match with published" do
-      expected_function = ['published']
-      Content.function_search_all_posts({published: '1'}).should eq expected_function
-    end
+      context "with not published status article" do
+        let(:params) { {published: '0' } }
+        let!(:article) { create(:article) }
+        let!(:match_article) { create(:article, published: false) }
+        it { expect(subject).to eq([match_article]) }
+      end
 
+      context "with published status article" do
+        let(:params) { {published: '1' } }
+        let!(:article) { create(:article, published: true) }
+        it { expect(subject).to eq([article]) }
+      end
+    end
   end
 end
 

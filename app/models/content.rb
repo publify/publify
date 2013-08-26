@@ -30,7 +30,6 @@ class Content < ActiveRecord::Base
   }
   scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
-  # Use only for self.function_search_all_posts method
   scope :published_at_like, lambda { |date_at| where(:published_at => (
       if date_at =~ /\d{4}-\d{2}-\d{2}/
         DateTime.strptime(date_at, '%Y-%m-%d').beginning_of_day..DateTime.strptime(date_at, '%Y-%m-%d').end_of_day
@@ -67,28 +66,27 @@ class Content < ActiveRecord::Base
     where('published_at < ?', Time.now).limit(1000).order('created_at DESC')
   end
 
-  def self.function_search_all_posts(search_hash)
-    list_function = []
-    search_hash ||= {}
-
-    if search_hash[:searchstring]
-      list_function << 'searchstring(search_hash[:searchstring])' unless search_hash[:searchstring].to_s.empty?
+  def self.search_with(params)
+    params ||= {}
+    scoped = self.unscoped
+    if params[:searchstring].present?
+      scoped = scoped.searchstring(params[:searchstring])
     end
 
-    if search_hash[:published_at] and %r{(\d\d\d\d)-(\d\d)} =~ search_hash[:published_at]
-      list_function << 'published_at_like(search_hash[:published_at])'
+    if params[:published_at].present? && %r{(\d\d\d\d)-(\d\d)} =~ params[:published_at]
+      scoped = scoped.published_at_like(params[:published_at])
     end
 
-    if search_hash[:user_id] && search_hash[:user_id].to_i > 0
-      list_function << 'user_id(search_hash[:user_id])'
+    if params[:user_id].present? && params[:user_id].to_i > 0
+      scoped = scoped.user_id(params[:user_id])
     end
 
-    if search_hash[:published]
-      list_function << 'published' if search_hash[:published].to_s == '1'
-      list_function << 'not_published' if search_hash[:published].to_s == '0'
+    if params[:published].present?
+      scoped = scoped.published if params[:published].to_s == '1'
+      scoped = scoped.not_published if params[:published].to_s == '0'
     end
 
-    list_function
+    scoped
   end
 
   def whiteboard
