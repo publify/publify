@@ -1,5 +1,5 @@
 <% @page_heading = _('Users') + content_tag(:div, link_to(_("New User"), {:controller => 'users', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
-
+<% @page_heading_class = 'icon-user' %>
 <table class="table table-striped">
   <thead>
     <tr class='noborder'>

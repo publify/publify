@@ -1,4 +1,5 @@
 <% @page_heading = _('Edit User') %>
+<% @page_heading_class = 'icon-user-add' %>
 
 <%= form_tag :action=>"edit", :id => @user.id do %>
   <%= render :partial => "form" %>

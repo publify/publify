@@ -1,5 +1,5 @@
 <% @page_heading = _('Manage articles') + content_tag(:div, link_to(_("New Article"), {:controller => 'content', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
-
+<% @page_heading_class = 'icon-articles' %>
 <%= form_remote_tag url: {action: 'index'}, method: :get, name: 'article', update: {:success => 'articleList'}, before: "Element.show('spinner')", complete: "Element.hide('spinner')" do %>
 
 <% if params[:search] and params[:search]['state'] %>

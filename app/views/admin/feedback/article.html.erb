@@ -1,4 +1,6 @@
 <% @page_heading = _("Comments for %s", @article.title) %>
+<% @page_heading_class = 'icon-comment' %>
+
 <% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'button'}) %>
 
 <%= form_tag({:action => 'bulkops'}) do %>

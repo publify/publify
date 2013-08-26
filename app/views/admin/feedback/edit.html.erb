@@ -1,4 +1,5 @@
 <% @page_heading = _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
+<% @page_heading_class = 'icon-comment' %>
 
 <%= form_tag :action => "update", :id => @comment.id do %>
 

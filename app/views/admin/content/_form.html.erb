@@ -4,6 +4,7 @@
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 
 <h2 class='page-header'>
+  <i class='icon-large icon-article-new'></i>
   <%= _("#{controller.action_name.to_s.capitalize} article") %>
   <span class='pull-right'>
     <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn'}) if @article.id %></span>
