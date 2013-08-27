@@ -33,19 +33,12 @@
 <br class='clearleft' />
 <table class="table table-striped">
   <thead>
-   <tr class='noborder'>
-      <td></td>
-      <td><%= select_tag('search[category]', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: _("Select a category"), :class => 'span12'}) %></td>
-      <td><%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: _("Select an author"), :class => 'span12'}) %></td>
-      <td><%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: _("Publication date"), :class => 'span12'}) %></td>
-      <td><input type="submit" value='<%= _("Filter") %>' class='btn' />
-    </tr>
     <tr  class='noborder'>
       <th><%= _("Title") %></th>
-      <th><%= _("Categories") %></th>
-      <th><%= _("Author")%></th>
-      <th><%= _("Date") %></th>
-      <th class='last'><%= _("Feedback")%></th>
+      <th><%= select_tag('search[category]', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: _("Select a category"), :class => 'span12'}) %></th>
+      <th><%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: _("Select an author"), :class => 'span12'}) %></th>
+      <th><%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: _("Publication date"), :class => 'span12'}) %></th>
+      <th><input type="submit" value='<%= _("Filter") %>' class='btn' />
     </tr>
   </thead>
   <tbody id="articleList">
