@@ -298,6 +298,18 @@ Localization.define("fr_FR") do |l|
   l.store "Total comments:", "Nombre total de commentaires :"
   l.store "Spam comments:", "Nombre total de spam :"
   l.store "In your spam queue:", "En attente de modération :"
+  l.store "articles writen by you", "articles que vous avez écris"
+  l.store "drafts", "brouillons"
+  l.store "draft", "brouillon"
+  l.store "comments", "commentaires"
+  l.store "approved", "approuvés"
+  l.store "unconfirmed", "non validés"
+
+  # app/views/admin/dashboard/_dafts.html.erb
+  l.store "Your drafts", "Vos brouillons"
+  l.store "No drafts yet, why don't you start and write one", "Pas de brouillons, pourquoi ne pas en écrire un"
+ 
+  # app/views/admin/dashboard/_dafts.html.erb
 
   # app/views/admin/feedback/_button.html.erb
   l.store "Select action", "Choisir de..."
@@ -321,7 +333,7 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/feedback/index.html.erb
   l.store "All", "Tous"
   l.store "Unapproved comments", "Commentaires non validés"
-  l.store "Ham", "Désirable"
+  l.store "Ham", "Valide"
   l.store "Spam", "Spam"
   l.store "Presumed ham", "Probablement valide"
   l.store "Presumed spam", "Probablement du spam"
@@ -564,6 +576,7 @@ Localization.define("fr_FR") do |l|
   l.store "RSS and Atom feeds", "Flux RSS et Atom"
   l.store "XML Syndication", "Syndication XML"
   l.store "remove", "supprimer"
+  l.store "Customize sidebar", "Modifiez les plugins"
 
   # app/views/admin/tags/edit.html.erb
   l.store "Editing tag ", ""
@@ -575,6 +588,7 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Thème actif"
   l.store "Choose a theme", "Sélectionnez un thème"
+  l.store "Choose theme", "Sélectionnez un thème"
   l.store "Use this theme", "Choisir ce thème"
 
   # app/views/admin/users/_form.html.erb
@@ -630,6 +644,12 @@ Localization.define("fr_FR") do |l|
 
   # app/views/articles/_article.html.erb
   l.store "Posted by", "Publié par"
+
+  # app/view/admin/
+  l.store "All notes", "Toutes les notes"
+  l.store "Statuses", "Notes"
+
+
 
   # app/views/articles/_article_excerpt.html.erb
   l.store "Continue reading", "Lire plus"
