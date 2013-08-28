@@ -248,6 +248,7 @@ Localization.define("fr_FR") do |l|
   l.store "Select a category", "Catégorie"
   l.store "Select an author", "Auteur"
   l.store "Publication date", "Publié le"
+  l.store "All Articles", "Tous les articles"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
