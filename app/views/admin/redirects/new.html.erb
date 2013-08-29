@@ -25,7 +25,7 @@
     </thead>
     <%= render_void_table(@redirects.size, 2)  %>
     <% for redirect in @redirects %>
-    <tr <%= alternate_class %>>
+    <tr>
       <td>
       <%= link_to("#{redirect.to_url}", "#{redirect.to_url}") %>
       <%= show_redirect_actions redirect %>

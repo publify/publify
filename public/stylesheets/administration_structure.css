@@ -30,11 +30,11 @@ td small {
   font-size: 11px;
 }
 
-td.article-title .action {
+tr .action {
   display: none;
 }
 
-td.article-title:hover .action {
+tr:hover .action {
   display: block;
 }
 

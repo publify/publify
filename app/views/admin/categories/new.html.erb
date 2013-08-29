@@ -31,9 +31,9 @@
       </thead>
       <%= render_void_table(@categories.size, 4)  %>
       <% for category in @categories -%>
-      <tr <%= alternate_class -%> id="category_<%= category.id -%>">
+      <tr id="category_<%= category.id -%>">
         <td>
-          <%= link_to_edit category.name, category %><br />
+          <%= link_to_edit category.name, category %>
           <%= show_category_actions category %>
         </td>
         <td><%= h category.description %></td>
