@@ -11,7 +11,7 @@
     <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn' />
     <%= save( _("Publish")) %>
   </span>
-  </h2>  
+</h2>
 
 <%= error_messages_for 'article' %>
 <div>
@@ -40,7 +40,7 @@
       </div>
 
       <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
-        <%= ckeditor_textarea('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
+         <%= ckeditor_textarea('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
       </div>
 
       <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
@@ -54,21 +54,23 @@
       <%= text_area 'article', 'excerpt', {:height => '150', :class => 'input-block-level', :rows => '5'} %>
       <span class='help-block'><%=_("Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself") %></span>
     </div>
+    
     <div class='well'>
       <fieldset>
         <legend><%= _("Publish settings") %></legend>
-        <div class='clearfix'>
-          <%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
-          <div id='status' style='display: none;'>        
+        <div class='control-group'>
+          <p><%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %></p>
+          <div id='status' style='display: none;'>
             <label for="article_published" class='checkbox'>
               <%= check_box 'article', 'published'  %>
               <%= _("Published") %>
             </label>
+            <%= ok_button('status') %>
           </div>
         </div>
-        <div class='clearfix'>
-          <%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
-          <%= toggle_element 'conversation' %>
+        <div class='control-group'>
+          <p><%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
+          <%= toggle_element 'conversation' %></p>
           <div id='conversation' style='display: none'>
             <label for="article_allow_pings" class='checkbox'>
               <%= check_box 'article', 'allow_pings' %>
@@ -78,34 +80,40 @@
               <%= check_box 'article', 'allow_comments' %>
               <%= _("Allow comments") %>
             </label>
+            <p><span class='btn btn-mini'><%= toggle_element 'conversation', "OK" %></span></p>
           </div>
         </div>
-        <div class='clearfix'>
-          <%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %>
+        <div class='control-group'>
+          <p><%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %></p>
           <div id='publish' class='input-append' style='display: none;'>
-            <%= calendar_date_select 'article', 'published_at', {:class => 'span7'} %>
+            <%= calendar_date_select 'article', 'published_at' %>
+            <%= ok_button('publish') %>
           </div>
+          
         </div>
-        <div class='clearfix'>
-          <%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %>
+        <div class='control-group'>
+          <p><%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %></p>
           <div id='visibility' style='display: none'>
             <label for="article_password"><%= _("Password:") %>
               <%= password_field :article, :password, :class => 'span10' %>
             </label>
+            <%= ok_button('visibility') %>
           </div>
         </div>
-        <div class='clearfix'>
+        <div class='control-group'>
           <%= _("Permalink") %>: <%= toggle_element 'permalink' %>
           <div class='inputs-list' id='permalink' style='display: none'>
             <%= text_field 'article', 'permalink', {:class => 'span10'} %>
+            <%= ok_button('permalink') %>
           </div>
         </div>
-        <div class='clearfix'>
-          <%= _("Article filter") %>: <strong><%= _("#{@article.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
+        <div class='control-group'>
+          <%= _("Article filter") %>: <strong id='text_filter_placeholder'><%= _("#{@article.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
           <div id='text_filter' style='display: none'>
-            <select name="article[text_filter]" id="text_filter">
+            <select name="article[text_filter]" id="article_text_filter">
               <%= options_for_select text_filter_options, @article.text_filter %>
             </select>
+            <%= ok_button('text_filter') %>
           </div>
         </div>
       </fieldset>
