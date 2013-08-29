@@ -134,26 +134,6 @@ module Admin::BaseHelper
     end
   end
 
-  def render_macros(macros)
-    content_tag(:div) do
-      link_to_function(_("Show help on Publify macros") + " (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "macros", :duration => 0.2) })
-      content_tag(:table, {:id => 'macros', :style => 'display: none'}) do
-        content_tag(:tr) do
-          content_tag(:th, _('Name'))
-          content_tag(:th, _('Description'))
-          content_tag(:th, _('Tag'))
-        end
-        for macro in macros.sort_by { |f| f.short_name }
-          content_tag(:tr) do
-            content_tag(:td, macro_help_popup(macro, macro.display_name))
-            content_tag(:td, h(macro.description))
-            content_tag(:td, content_tag(:code, "&lt;#{h(macro.short_name)}&gt;"))
-          end
-        end
-      end
-    end
-  end
-
   def build_editor_link(label, action, id, update, editor)
     link = link_to_remote(label,
                           :url => { :action => action, 'editor' => editor},
