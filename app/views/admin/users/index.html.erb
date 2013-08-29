@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <% for user in @users -%>
-  <tr <%= alternate_class %>>
+  <tr>
     <td><%= link_to_edit user.login, user%></td>
     <td> <%= user.nickname %></td>
     <td><%= mail_to user.email, user.email%></td>

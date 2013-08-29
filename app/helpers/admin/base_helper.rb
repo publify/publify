@@ -76,10 +76,6 @@ module Admin::BaseHelper
     blank ? r << [_("none"),''] : r
   end
 
-  def alternate_class
-    @class = @class != '' ? '' : 'class="shade"'
-  end
-
   def task_overview
     content_tag :li, link_to(_('Back to list'), :action => 'index')
   end
@@ -152,7 +148,7 @@ module Admin::BaseHelper
           content_tag(:th, _('Tag'))
         end
         for macro in macros.sort_by { |f| f.short_name }
-          content_tag(:tr, {:class => alternate_class}) do
+          content_tag(:tr) do
             content_tag(:td, macro_help_popup(macro, macro.display_name))
             content_tag(:td, h(macro.description))
             content_tag(:td, content_tag(:code, "&lt;#{h(macro.short_name)}&gt;"))

@@ -1,6 +1,6 @@
 <%= render_void_table(@resources.size, 6) %>
 <% for upload in @resources -%>
-<tr <%= alternate_class -%>>
+<tr>
   <td>
   <% if upload.mime =~ /image/ %>
     <%= link_to upload.upload_url, rel: 'lightbox' do %>

@@ -1,7 +1,7 @@
 <%= render_void_table(@pages.size, 5)  %>
 
 <% for page in @pages %>
-<tr <%= alternate_class %>>
+<tr>
   <td>
     <%= link_to_edit_with_profiles page.title, page %>
     <%= show_actions page %>

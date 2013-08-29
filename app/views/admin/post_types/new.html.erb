@@ -29,7 +29,7 @@
         <td>read</td>
       </tr>
       <% for pt in @post_types -%>
-      <tr <%= alternate_class -%>>
+      <tr>
         <td>
           <%= link_to_edit pt.name, pt %><br />
           <%= show_post_types_actions pt %>
