@@ -1,4 +1,4 @@
-<%= render_empty_table(7) if @articles.empty? %>
+<%= render_void_table(@articles.size, 7) %>
 <% for article in @articles %>
 <tr>
   <td>

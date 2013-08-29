@@ -80,15 +80,11 @@ module Admin::BaseHelper
     content_tag :li, link_to(_('Back to list'), :action => 'index')
   end
 
-  def render_empty_table(cols)
+  def render_void_table(size, cols)
+    return unless size == 0
     content_tag(:tr) do
       content_tag(:td, _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)), { colspan: cols})
     end
-  end
-
-  def render_void_table(size, cols)
-    return unless size == 0
-    render_empty_table(cols)
   end
 
   def cancel_or_save(message=_("Save"))
