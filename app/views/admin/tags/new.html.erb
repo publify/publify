@@ -23,7 +23,7 @@
       </thead>
       <%= render_void_table(@tags.size, 3)  %>
       <% for tag in @tags %>
-      <tr <%= alternate_class %>>
+      <tr>
         <td>
           <%= link_to_edit tag.display_name, tag %>
           <%= show_tag_actions tag %>

@@ -1,7 +1,7 @@
 <%= render_empty_table(7) if @articles.empty? %>
 <% for article in @articles %>
 <tr <%= alternate_class %>>
-  <td class='article-title'>
+  <td>
     <strong><%= link_to_edit h(article.title), article %></strong>
     <%= show_actions article %>
   </td>
