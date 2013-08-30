@@ -135,50 +135,6 @@ describe Admin::FeedbackController do
         get :index, :page => ''
         should_success_with_index(response)
       end
-
-    end
-
-    describe 'article action' do
-
-      def should_success_with_article_view(response)
-        response.should be_success
-        response.should render_template('article')
-      end
-
-      it 'should see all feedback on one article' do
-        article = FactoryGirl.create(:article)
-        FactoryGirl.create(:comment, :article => article)
-        FactoryGirl.create(:comment, :article => article)
-        get :article, :id => article.id
-        should_success_with_article_view(response)
-        assigns(:article).should == article
-        assigns(:feedback).size.should == 2
-      end
-
-      it 'should see only spam feedback on one article' do
-        article = FactoryGirl.create(:article)
-        FactoryGirl.create(:comment, :state => 'spam', :article => article)
-        get :article, :id => article.id, :spam => 'y'
-        should_success_with_article_view(response)
-        assigns(:article).should == article
-        assigns(:feedback).size.should == 1
-      end
-
-      it 'should see only ham feedback on one article' do
-        article = FactoryGirl.create(:article)
-        comment = FactoryGirl.create(:comment, :article => article)
-        get :article, :id => article.id, :ham => 'y'
-        should_success_with_article_view(response)
-        assigns(:article).should == article
-        assigns(:feedback).size.should == 1
-      end
-
-      it 'should redirect_to index if bad article id' do
-        lambda{
-          get :article, :id => 102302
-        }.should raise_error(ActiveRecord::RecordNotFound)
-      end
-
     end
 
     describe 'create action' do
