@@ -13,6 +13,7 @@ CKEDITOR.editorConfig = function( config )
 	config.entities_greek = false;
 	config.entities_latin = false;
 	config.entities_processNumerical = false;
+  config.height = 360;
 	config.toolbar_Basic =
 	[
 	        ['Format', '-', 'Bold', 'Italic'],
