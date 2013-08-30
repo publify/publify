@@ -28,8 +28,8 @@
     <div class='control-group'>
       <label for='comment_body' class='control-label'><%= _("Your comment") %></label>
       <div class='controls'>
-        <script type="text/javascript">edToolbar('comment_body');</script>
-        <%= text_area 'comment', 'body', { :rows => '10', :class => 'large'} %>
+        <script type="text/javascript">edToolbar('comment_body', '<%= current_user.default_text_filter.name %>');</script>
+        <%= text_area 'comment', 'body', { :rows => '10', :class => 'input-block-level'} %>
       </div>
     </div>
     <div class='form-actions'>

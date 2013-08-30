@@ -82,125 +82,55 @@ function edButton(id, display, tagStart, tagEnd, access, open) {
 	this.open = open;			// set to -1 if tag does not need to be closed
 }
 
-edButtons.push(
-	new edButton(
-		'ed_bold'
-		,'b'
-		,'<strong>'
-		,'</strong>'
-		,'b'
-	)
-);
+function get_buttons(textfilter) {
+  switch (textfilter) {
+  case "textile":
+      edButtons.push(new edButton('ed_bold', 'b', '**', '**', 'b'));
+      edButtons.push(new edButton('ed_italic', 'i', '_', '_', 'i'));
+      edButtons.push(new edButton('ed_link', 'link', '', '</a>', 'a'));
+      edButtons.push(new edButton('ed_img', 'img', '!', '!', 'm' ,-1));
+      edButtons.push(new edButton('ed_li', 'li', '* ', '', 'l', -1));
+      edButtons.push(new edButton('ed_block', 'b-quote', '>', '', 'q', -1));
+      edButtons.push(new edButton('ed_del', 'del', '<del>', '</del>'));
+      edButtons.push(new edButton('ed_code', 'code', '@', '@', 'c'));
+      edButtons.push(new edButton('ed_more', 'more', '\n<!--more-->\n', '', ''));
+      edButtons.push(new edButton('ed_publifycode', 'publify:code', '', '\n</publify:code>\n\n', 'publify:code'));
+      break;
+      
+  case "markdown":
+  case "markdown smartypants":
+      edButtons.push(new edButton('ed_bold', 'b', '**', '**', 'b'));
+      edButtons.push(new edButton('ed_italic', 'i', '_', '_', 'i'));
+      edButtons.push(new edButton('ed_link', 'link', '', '</a>', 'a'));
+      edButtons.push(new edButton('ed_img', 'img', '', '', 'm' ,-1));
+      edButtons.push(new edButton('ed_li', 'li', '* ', '', 'l', -1));
+      edButtons.push(new edButton('ed_ol', 'ol', '#', '', 'o', -1));
+      edButtons.push(new edButton('ed_block', 'b-quote', '>', '', 'q', -1));
+      edButtons.push(new edButton('ed_del', 'del', '<del>', '</del>'));
+      edButtons.push(new edButton('ed_code', 'code', '`', '`', 'c'));
+      edButtons.push(new edButton('ed_more', 'more', '\n<!--more-->\n', '', ''));
+      edButtons.push(new edButton('ed_publifycode', 'publify:code', '', '\n</publify:code>\n\n', 'publify:code'));
+      break;
 
-edButtons.push(
-	new edButton(
-		'ed_italic'
-		,'i'
-		,'<em>'
-		,'</em>'
-		,'i'
-	)
-);
+  default:
+      edButtons.push(new edButton('ed_bold', 'b', '<strong>', '</strong>', 'b'));
+      edButtons.push(new edButton('ed_italic', 'i', '<em>', '</em>', 'i'));
+      edButtons.push(new edButton('ed_link', 'link', '', '</a>', 'a'));
+      edButtons.push(new edButton('ed_img', 'img', '', '', 'm' ,-1));
+      edButtons.push(new edButton('ed_ul', 'ul', '<ul>\n', '</ul>\n\n', 'u'));
+      edButtons.push(new edButton('ed_ol', 'ol', '<ol>\n', '</ol>\n\n', 'o'));
+      edButtons.push(new edButton('ed_li', 'li', '\t<li>', '</li>\n', 'l'));
+      edButtons.push(new edButton('ed_block', 'b-quote', '<blockquote>', '</blockquote>', 'q'));
+      edButtons.push(new edButton('ed_del', 'del', '<del>', '</del>'));
+      edButtons.push(new edButton('ed_code', 'code', '<code>', '</code>', 'c'));
+      edButtons.push(new edButton('ed_more', 'more', '\n<!--more-->\n', '', ''));
+      edButtons.push(new edButton('ed_publifycode', 'publify:code', '', '\n</publify:code>\n\n', 'publify:code'));
+      break;
+  }
+  
 
-edButtons.push(
-	new edButton(
-		'ed_link'
-		,'link'
-		,''
-		,'</a>'
-		,'a'
-	)
-); // special case
+}
 
-edButtons.push(
-	new edButton(
-		'ed_img'
-		,'img'
-		,''
-		,''
-		,'m'
-		,-1
-	)
-); // special case
-
-edButtons.push(
-	new edButton(
-		'ed_ul'
-		,'ul'
-		,'<ul>\n'
-		,'</ul>\n\n'
-		,'u'
-	)
-);
-
-edButtons.push(
-	new edButton(
-		'ed_ol'
-		,'ol'
-		,'<ol>\n'
-		,'</ol>\n\n'
-		,'o'
-	)
-);
-
-edButtons.push(
-	new edButton(
-		'ed_li'
-		,'li'
-		,'\t<li>'
-		,'</li>\n'
-		,'l'
-	)
-);
-
-edButtons.push(
-	new edButton(
-		'ed_block'
-		,'b-quote'
-		,'<blockquote>'
-		,'</blockquote>'
-		,'q'
-	)
-);
-
-edButtons.push(
-	new edButton(
-		'ed_del'
-		,'del'
-		,'<del>'
-		,'</del>'
-	)
-);
-
-edButtons.push(
-	new edButton(
-		'ed_code'
-		,'code'
-		,'<code>'
-		,'</code>'
-		,'c'
-	)
-);
-
-edButtons.push(
-	new edButton(
-		'ed_more'
-		,'more'
-		,'\n<!--more-->\n'
-		,''
-		,''
-	)
-);
-
-edButtons.push(
-	new edButton(
-		'ed_publifycode'
-		,'publify:code'
-		,''
-		,'\n</publify:code>\n\n'
-		,'publify:code'
-	)
-);
 
 var extendedStart = edButtons.length;
 
@@ -330,11 +260,18 @@ function edSpell(which) {
 	}
 }
 
-function edToolbar(which) {
+function edToolbar(which, textfilter) {
+  get_buttons(textfilter);
+        
 	document.write('<div id="ed_toolbar_' + which + '" class="btn-toolbar"><div class="btn-group">');
 	for (i = 0; i < extendedStart; i++) {
 		edShowButton(which, edButtons[i], i);
 	}
+  
+	for (i = extendedStart; i < edButtons.length; i++) {
+		edShowButton(which, edButtons[i], i);
+	}
+  
 	if (edShowExtraCookie()) {
 		document.write(
 			'<input type="button" id="ed_close_' + which + '" class="btn" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" />'
@@ -347,9 +284,9 @@ function edToolbar(which) {
 			+ '<input type="button" id="ed_spell_' + which + '" class="btn" onclick="edSpell(\'' + which + '\');" value="Dict" />'
 		);
 	}
-	for (i = extendedStart; i < edButtons.length; i++) {
-		edShowButton(which, edButtons[i], i);
-	}
+
+
+
 //	edShowLinks();
 	document.write('</div></div>');
     edOpenTags[which] = new Array();

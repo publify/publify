@@ -32,7 +32,7 @@
     
     <div id='editor'>
       <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
-        <script type="text/javascript">edToolbar('page_body');</script>
+        <script type="text/javascript">edToolbar('page_body', '<%= @page.text_filter %>');</script>
       </div>
       <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
         <%= ckeditor_textarea('page', 'body', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>

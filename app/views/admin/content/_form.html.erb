@@ -36,7 +36,7 @@
 
     <div id="editor">
       <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
-        <script type="text/javascript">edToolbar('article_body_and_extended');</script>
+        <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
       </div>
 
       <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
@@ -44,7 +44,7 @@
       </div>
 
       <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
-        <%= text_area('article', 'body_and_extended', {:class => 'input-block-level', :height => '300px'}) if current_user.editor == 'simple' %>
+        <%= text_area('article', 'body_and_extended', {:class => 'input-block-level', :height => '360px'}) if current_user.editor == 'simple' %>
         <%= render 'admin/shared/macros' if current_user.editor == 'simple' %>
       </div>
     </div>

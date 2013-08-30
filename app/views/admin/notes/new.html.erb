@@ -5,7 +5,7 @@
     <%= form_tag :action=>"edit", :id => @note.id do %>
     <input type="hidden" name="status[text_filter]" id="status_textfilter" value="<%= current_user.text_filter_name %>" />
     <div id='quicktags'>
-      <script type="text/javascript">//edToolbar('status_body');</script>
+      <script type="text/javascript">//edToolbar('status_body', '<%= current_user.default_text_filter.name %>');</script>
     </div>
     <%= text_area('note', 'body', {:class => 'input-block-level', :rows => '7', :placeholder => _("Compose new note")}) %>
 
