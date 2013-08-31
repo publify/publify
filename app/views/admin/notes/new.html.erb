@@ -3,20 +3,22 @@
 <div>
   <div class='span4'>
     <%= form_tag :action=>"edit", :id => @note.id do %>
-    <input type="hidden" name="status[text_filter]" id="status_textfilter" value="<%= current_user.text_filter_name %>" />
+    <input type="hidden" name="note[text_filter]" id="note_textfilter" value="<%= current_user.text_filter_name %>" />
     <div id='quicktags'>
-      <script type="text/javascript">//edToolbar('status_body', '<%= current_user.default_text_filter.name %>');</script>
+      <script type="text/javascript">//edToolbar('status_body', '<%= current_user.text_filter_name %>');</script>
     </div>
     <%= text_area('note', 'body', {:class => 'input-block-level', :rows => '7', :placeholder => _("Compose new note")}) %>
 
     <fieldset class="hidden-phone">
       <legend><%= _("Publish settings") %></legend>
+      <% disabled = (this_blog.has_twitter_configured? and current_user.has_twitter_configured?) ? false : true %>
+      <%= twitter_disabled_message(disabled) %>
       <label for="note_push_to_twitter" class='checkbox'>
-        <%= check_box 'note', 'push_to_twitter'  %>
+        <%= check_box 'note', 'push_to_twitter', {:disabled => disabled}  %>
         <%= _("POSSE to Twitter")%>
       </label>
       <label for="note_in_reply_to"><%= _("In reply to")%></label>
-      <%= text_field 'note', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456") %>
+      <%= text_field 'note', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456"), :disabled => disabled %>
       <label for="status_permalink"><%= _("Permanent link")%></label>
       <%= text_field 'note', 'permalink', :class => 'input-block-level' %>
       <label for='note_published' class='checkbox'>

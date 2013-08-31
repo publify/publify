@@ -49,7 +49,8 @@
 
 <fieldset class='form-horizontal'>
   <legend><%= _("Publish on Twitter")%></legend>
-  <p class='alert alert-info'><%= _("To be able to post short statuses on %s, you first need to %s, and fill in its oauth credential.", link_to("Twitter", "http://twitter.com") ,link_to(_("register an application"), "https://dev.twitter.com/apps/new") ) %></p>
+  <% disabled = (this_blog.has_twitter_configured?) ? false : true %>
+  <%= twitter_disabled_message(disabled) %>
   <div class='control-group'>
     <label class='control-label' for="twitter_consumer_key"><%= _("Twitter consumer key")%></label>
     <div class='controls'>

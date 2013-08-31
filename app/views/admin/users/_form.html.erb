@@ -122,24 +122,25 @@
 <% unless controller.controller_name == 'users'%>
 <fieldset class='form-horizontal'>
   <legend><%= _("Publish on Twitter")%></legend>
-  <p class='alert alert-info'><%= _("If you want to push short statuses on Twitter, you need to fill in the oauth credentials Twitter gave you after you registered your application.") %></p>
+  <% disabled = (this_blog.has_twitter_configured?) ? false : true %>
+  <%= twitter_disabled_message(disabled) %>
   <div class='control-group'>
     <label class='control-label' for="twitter_account"><%= _("Twitter account")%></label>
     <div class='controls'>
-      <%= text_field('user', 'twitter_account', {:class => 'span5'}) %>
+      <%= text_field('user', 'twitter_account', {:class => 'span5', :disabled => disabled }) %>
       <p class='help-block'>The Twitter account you want to post with</p>
     </div>
   </div>
   <div class='control-group'>
     <label class='control-label' for="twitter_oauth_token"><%= _("Twitter oauth token")%></label>
     <div class='controls'>
-      <%= text_field('user', 'twitter_oauth_token', {:class => 'span5'}) %>
+      <%= text_field('user', 'twitter_oauth_token', {:class => 'span5', :disabled => disabled}) %>
     </div>
   </div>
   <div class='control-group'>
     <label class='control-label' for="twitter_oauth_token_secret"><%= _("Twitter oauth secret")%></label>
     <div class='controls'>
-      <%= text_field('user', 'twitter_oauth_token_secret', {:class => 'span5'}) %>
+      <%= text_field('user', 'twitter_oauth_token_secret', {:class => 'span5', :disabled => disabled}) %>
     </div>
   </div>
 </fieldset>
