@@ -6,9 +6,14 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
     entry.email email if this_blog.link_to_author unless email.blank?
   end
 
-  entry.title item.title, "type"=>"html"
+  if item.is_a?(Note)
+    entry.title item.body, "type"=>"html"
+  else
+    entry.title item.title, "type"=>"html"
+  end
 
   if item.is_a?(Article)
+
     item.categories.each do |category|
       entry.category "term" => category.permalink, "label" => category.name, "scheme" => category.permalink_url
     end

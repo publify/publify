@@ -14,10 +14,11 @@ class Note < Content
   
   belongs_to :user
   validates_presence_of :body
-  validates_uniqueness_of :permalink
+  validates_uniqueness_of :permalink, :guid
   attr_accessor :push_to_twitter, :twitter_message
   
   after_create :set_permalink, :shorten_url
+  before_create :create_guid
 
   default_scope order("published_at DESC")  
 

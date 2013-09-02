@@ -158,5 +158,23 @@ describe "articles/index_atom_feed.atom.builder" do
     parsed = Nokogiri::XML.parse(rendered)
     parsed.css("entry").first
   end
+
+  describe :title do
+
+    before(:each) do
+      assign(:articles, [article])
+      render
+    end
+
+    context "with a note" do
+      let(:article) { create(:note) }
+      it { expect(rendered_entry.css("title").text).to eq(article.body) }
+    end
+
+    context "with an article" do
+      let(:article) { create(:article) }
+      it { expect(rendered_entry.css("title").text).to eq(article.title) }
+    end
+  end
 end
 

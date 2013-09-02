@@ -1,6 +1,20 @@
 # coding: utf-8
 require 'spec_helper'
 
+describe Note do
+  let!(:blog) { create(:blog) }
+
+  describe "validations" do
+    it { expect(create(:note)).to be_valid }
+
+    context "with an existing note" do
+      let(:existing_note) { create(:note) }
+
+      it { expect(build(:note, guid: existing_note.guid)).to be_invalid }
+    end
+  end
+end
+
 describe "Testing redirects" do
   it "a new published status gets a redirect" do
     FactoryGirl.create(:blog)
@@ -20,8 +34,8 @@ describe "Testing hashtag and @mention replacement in html postprocessing" do
     note = FactoryGirl.create(:note, :body => "A test tweet with a #hashtag")
     text = note.html_preprocess(note.body, note.body)
     text.should == "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a>"
-  end  
-  
+  end
+
   it "should replace a @mention by a proper URL to the twitter account" do
     note = FactoryGirl.create(:note, :body => "A test tweet with a @mention")
     text = note.html_preprocess(note.body, note.body)
@@ -38,7 +52,7 @@ describe "Testing hashtag and @mention replacement in html postprocessing" do
     note = FactoryGirl.create(:note, :body => "A test tweet with a https://link.com")
     text = note.html_preprocess(note.body, note.body)
     text.should == "A test tweet with a <a href='https://link.com'>https://link.com</a>"
-  end  
+  end
 end
 
 describe 'Testing notes scopes' do
@@ -50,7 +64,7 @@ describe 'Testing notes scopes' do
   it 'Published scope should not bring unpublished statuses' do
     FactoryGirl.create(:note)
     FactoryGirl.create(:unpublished_note)
-    
+
     notes = Note.published
     notes.count.should == 1
   end
@@ -58,7 +72,7 @@ describe 'Testing notes scopes' do
   it 'Published scope should not bring notes published in the future' do
     FactoryGirl.create(:note)
     FactoryGirl.create(:note, published_at: Time.now + 3.days )
-    
+
     notes = Note.published
     notes.count.should == 1
   end
@@ -75,7 +89,7 @@ describe 'Given the factory :status' do
     subject { @note.permalink_url }
     it { should == "http://myblog.net/note/#{@note.id}-this-is-a-note" }
   end
-  
+
   it "should give a sanitized title" do
     note = FactoryGirl.build(:note, :body => 'body with accents éèà')
     note.body.to_permalink.should == 'body-with-accents-eea'
@@ -118,7 +132,7 @@ describe 'Given no notes' do
     @note.body = 'somebody'
     @note.should be_valid
   end
-  
+
   it "should use sanitize title to set note name" do
     @note.attributes = valid_attributes.except(:body)
     @note.body = 'title with accents éèà'
@@ -126,7 +140,7 @@ describe 'Given no notes' do
     @note.save
     @note.permalink.should == "#{@note.id}-title-with-accents-eea"
   end
-  
+
 end
 
 describe 'Given a note page' do
@@ -142,12 +156,12 @@ describe "Checking Twitter message length..." do
     note = FactoryGirl.build(:note, twitter_message: "A message without URL")
     note.instance_eval{ calculate_real_length }.should == 21
   end
-  
+
   it "A twitter message with a short http URL should have its URL expanded to 20 chars" do
     note = FactoryGirl.build(:note, twitter_message: "A message with a short URL http://foo.com")
     note.instance_eval{ calculate_real_length }.should == 47
   end
-  
+
   it "A twitter message with a short https URL should have its URL expanded to 21 chars" do
     note = FactoryGirl.build(:note, twitter_message: "A message with a short URL https://foo.com")
     note.instance_eval{ calculate_real_length }.should == 48
@@ -162,7 +176,7 @@ describe "Checking Twitter message length..." do
     note = FactoryGirl.build(:note, twitter_message: "A message with a long URL http://foobarsomething.com?blablablablabla")
     note.instance_eval{ calculate_real_length }.should == 46
   end
-  
+
   it "A twitter message with a short https URL should have its URL expanded to 21 chars" do
     note = FactoryGirl.build(:note, twitter_message: "A message with a long URL https://foobarsomething.com?blablablablabla")
     note.instance_eval{ calculate_real_length }.should == 47
@@ -172,7 +186,7 @@ describe "Checking Twitter message length..." do
     note = FactoryGirl.build(:note, twitter_message: "A message with a long URL ftp://foobarsomething.com?blablablablabla")
     note.instance_eval{ calculate_real_length }.should == 45
   end
-end 
+end
 
 describe 'Pushing a note to Twitter' do
   before :each do
@@ -184,7 +198,7 @@ describe 'Pushing a note to Twitter' do
     note = FactoryGirl.build(:note, :push_to_twitter => 0)
     note.send_to_twitter.should == false
   end
-  
+
   it 'a non configured blog and non configured user should not send a note to Twitter' do
     FactoryGirl.create(:blog)
     note = FactoryGirl.create(:note)
@@ -197,7 +211,7 @@ describe 'Pushing a note to Twitter' do
     note = FactoryGirl.build(:note, user: user)
     note.send_to_twitter.should == false
   end
-  
+
   it 'a non configured blog and a configured user should not send a note to Twitter' do
     FactoryGirl.build(:blog)
     user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
