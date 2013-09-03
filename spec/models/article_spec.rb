@@ -12,33 +12,33 @@ describe Article do
 
   describe "#permalink_url" do
     describe "with hostname" do
-      subject { Article.new(:permalink => 'article-3', :published_at => Time.zone.local(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
+      subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
       it { should == 'http://myblog.net/2004/06/01/article-3' }
     end
 
     describe "without hostname" do
-      subject { Article.new(:permalink => 'article-3', :published_at => Time.zone.local(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
+      subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
       it { should == '/2004/06/01/article-3' }
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
     # browser may display them differently, though.
     describe "with a multibyte permalink" do
-      subject { Article.new(:permalink => 'ルビー', :published_at => Time.zone.local(2004, 6, 1)) }
+      subject { Article.new(:permalink => 'ルビー', :published_at => Time.utc(2004, 6, 1)) }
       it "escapes the multibyte characters" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC'
       end
     end
 
     describe "with a permalink containing a space" do
-      subject { Article.new(:permalink => 'hello there', :published_at => Time.zone.local(2004, 6, 1)) }
+      subject { Article.new(:permalink => 'hello there', :published_at => Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/hello%20there'
       end
     end
 
     describe "with a permalink containing a plus" do
-      subject { Article.new(:permalink => 'one+two', :published_at => Time.zone.local(2004, 6, 1)) }
+      subject { Article.new(:permalink => 'one+two', :published_at => Time.utc(2004, 6, 1)) }
       it "does not escape the plus" do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/one+two'
       end
@@ -52,7 +52,7 @@ describe Article do
   end
 
   describe ".feed_url" do
-    let(:article) { FactoryGirl.build(:article, permalink: 'article-3', published_at: Time.zone.local(2004, 6, 1)) }
+    let(:article) { FactoryGirl.build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
 
     it "returns url for atom feed for a Atom 1.0 asked" do
       article.feed_url('atom10').should eq "http://myblog.net/2004/06/01/article-3.atom"
@@ -491,8 +491,15 @@ describe Article do
 
   describe "an article published just before midnight UTC" do
     before do
+      @time_zone = Time.zone
+      Time.zone = 'UTC'
       @a = FactoryGirl.build(:article)
       @a.published_at = "21 Feb 2011 23:30 UTC"
+
+    end
+
+    after do
+      Time.zone = @time_zone
     end
 
     describe "#permalink_url" do
@@ -512,8 +519,14 @@ describe Article do
 
   describe "an article published just after midnight UTC" do
     before do
+      @time_zone = Time.zone
+      Time.zone = 'UTC'
       @a = FactoryGirl.build(:article)
       @a.published_at = "22 Feb 2011 00:30 UTC"
+    end
+
+    after do
+      Time.zone = @time_zone
     end
 
     describe "#permalink_url" do
@@ -524,6 +537,114 @@ describe Article do
 
     describe "#find_by_permalink" do
       it "uses UTC to determine correct day" do
+        @a.save
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
+        a.should == @a
+      end
+    end
+  end
+
+  describe "an article published just before midnight JST" do
+    before do
+      @time_zone = Time.zone
+      Time.zone = "Tokyo"
+      @a = FactoryGirl.build(:article)
+      @a.published_at = "21 Feb 2011 23:30 JST"
+    end
+
+    after do
+      Time.zone = @time_zone
+    end
+
+    describe "#permalink_url" do
+      it "uses JST to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2011/02/21/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses JST to determine correct day" do
+        @a.save
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article'
+        a.should == @a
+      end
+    end
+  end
+
+  describe "an article published just after midnight JST" do
+    before do
+      @time_zone = Time.zone
+      Time.zone = "Tokyo"
+      @a = FactoryGirl.build(:article)
+      @a.published_at = "22 Feb 2011 00:30 JST"
+    end
+
+    after do
+      Time.zone = @time_zone
+    end
+
+    describe "#permalink_url" do
+      it "uses JST to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2011/02/22/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses JST to determine correct day" do
+        @a.save
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
+        a.should == @a
+      end
+    end
+  end
+
+  describe "an article published just befor day UTC (JST +15 hour)" do
+    before do
+      @time_zone = Time.zone
+      Time.zone = "Tokyo"
+      @a = FactoryGirl.build(:article)
+      @a.published_at = "22 Feb 2011 14:30 JST"
+    end
+
+    after do
+      Time.zone = @time_zone
+    end
+
+    describe "#permalink_url" do
+      it "uses JST to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2011/02/22/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses JST to determine correct day" do
+        @a.save
+        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
+        a.should == @a
+      end
+    end
+  end
+
+  describe "an article published just after day UTC (JST +15 hour)" do
+    before do
+      @time_zone = Time.zone
+      Time.zone = "Tokyo"
+      @a = FactoryGirl.build(:article)
+      @a.published_at = "22 Feb 2011 15:30 JST"
+    end
+
+    after do
+      Time.zone = @time_zone
+    end
+
+    describe "#permalink_url" do
+      it "uses JST to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2011/02/22/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses JST to determine correct day" do
         @a.save
         a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
         a.should == @a
