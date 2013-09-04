@@ -73,7 +73,7 @@ core engine.
 **Cool API:** Publify supports the various blogging engine APIs so you can
 publish from desktop clients.
 
-**On demand editor:** Publify supports various editors (visual, plain HTML,
+**On demand syntax:** Publify supports various syntax (plain HTML,
 Markdown, Textile)
 
 **Multilingual**: Publify is (more or less) translated in English, French,

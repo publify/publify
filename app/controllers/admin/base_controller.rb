@@ -6,15 +6,6 @@ class Admin::BaseController < ApplicationController
   before_filter :look_for_needed_db_updates, :except => [:login, :signup, :update_database, :migrate]
   before_filter :check_and_generate_secret_token, :except => [:login, :signup, :update_database, :migrate]
 
-  def insert_editor
-    editor = 'visual'
-    editor = 'simple' if params[:editor].to_s == 'simple'
-    current_user.editor = editor
-    current_user.save!
-
-    render :partial => "#{editor}_editor"
-  end
-
   private
 
   def update_settings_with!(params)

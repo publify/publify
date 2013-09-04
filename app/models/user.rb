@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
 
   # Settings
   setting :notify_watch_my_articles,   :boolean, true
-  setting :editor,                     :string, 'visual'
   setting :firstname,                  :string, ''
   setting :lastname,                   :string, ''
   setting :nickname,                   :string, ''
@@ -110,7 +109,6 @@ class User < ActiveRecord::Base
   end
 
   def default_text_filter
-    return "none" if visual_editor?
     text_filter
   end
 
@@ -146,14 +144,6 @@ class User < ActiveRecord::Base
 
   def self.to_prefix
     'author'
-  end
-
-  def simple_editor?
-    editor == 'simple'
-  end
-
-  def visual_editor?
-    editor == 'visual'
   end
 
   def password=(newpass)

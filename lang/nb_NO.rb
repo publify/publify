@@ -593,11 +593,6 @@ Localization.define("nb_NO") do |l|
   l.store "Sorry the theme catalogue is not available", "Beklager, men temakatalogen er ikke tilgjengelig"
   l.store "Theme catalogue", "Temakatalog"
 
-  # app/views/admin/themes/editor.html.erb
-  l.store "Stylesheets", ""
-  l.store "Layout", ""
-  l.store "Theme editor", ""
-
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Aktivt tema"
   l.store "Choose a theme", "Velg et tema"
@@ -615,8 +610,6 @@ Localization.define("nb_NO") do |l|
   l.store "Lastname", "Etternavn"
   l.store "Nickname", "Nick"
   l.store "Editor", "Tekstbehandler"
-  l.store "Use simple editor", "Bruk enkel tekstbehandler"
-  l.store "Use visual rich editor", "Bruk visuelt rik tekstbehandler"
   l.store "Notifications", "Beskjeder"
   l.store "Send notification messages via email", "Send beskjeder via epost"
   l.store "Send notification messages when new articles are posted", "Send beskjeder når nye artikler blir publisert"

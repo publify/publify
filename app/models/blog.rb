@@ -53,7 +53,6 @@ class Blog < ActiveRecord::Base
   setting :ping_urls,                  :string, "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'publify@example.com'
-  setting :editor,                     :integer, 'visual'
   setting :allow_signup,               :integer, 0
   setting :date_format,                :string, '%d/%m/%Y'
   setting :time_format,                :string, '%Hh%M'

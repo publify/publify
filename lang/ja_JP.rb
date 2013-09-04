@@ -583,9 +583,6 @@ Localization.define("ja_JP") do |l|
   l.store "Sorry the theme catalogue is not available", ""
   l.store "Theme catalogue", "テーマカタログ"
 
-  # app/views/admin/themes/editor.html.erb
-  l.store "Theme editor", "テーマエディタ"
-
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "現在のテーマ"
   l.store "Choose a theme", "テーマの選択"
@@ -603,8 +600,6 @@ Localization.define("ja_JP") do |l|
   l.store "Lastname", "名"
   l.store "Nickname", "ニックネーム"
   l.store "Editor", "エディタ"
-  l.store "Use simple editor", "プレーンなエディタを使う"
-  l.store "Use visual rich editor", "WYSIWYGエディタを使う"
   l.store "Send notification messages via email", "メールで通知を送信"
   l.store "Send notification messages when new articles are posted", "新しい記事が投稿された際に通知メッセージを送る"
   l.store "Send notification messages when comments are posted", "コメントが投稿された際に通知メッセージを送る"

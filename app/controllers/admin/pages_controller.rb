@@ -45,11 +45,7 @@ class Admin::PagesController < Admin::BaseController
   private
 
   def default_textfilter
-    if current_user.visual_editor?
-      "none"
-    else
-      current_user.text_filter || blog.text_filter
-    end
+    current_user.text_filter || blog.text_filter
   end
 
 

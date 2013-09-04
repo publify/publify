@@ -7,10 +7,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # for CK Editor
-  match 'ckeditor/command', :to => 'ckeditor#command', :format => false
-  match 'ckeditor/upload', :to => 'ckeditor#upload', :format => false
-
   # TODO: use only in archive sidebar. See how made other system
   match ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
   match ':year/:month/page/:page', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month_page', :format => false
@@ -121,7 +117,6 @@ Rails.application.routes.draw do
 #  namespace :admin do
 #    resources :content do
 #      post :autosave, on: :collection
-#      get :insert_editor, on: :collection
 #      post :destroy, on: :member
 #      get :auto_complete_for_article_keywords, on: :collection
 ##      get :attachment_box_add, on: :member

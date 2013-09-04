@@ -584,9 +584,6 @@ Localization.define("it_IT") do |l|
   l.store "Sorry the theme catalogue is not available", ""
   l.store "Theme catalogue", ""
 
-  # app/views/admin/themes/editor.html.erb
-  l.store "Theme editor", "Editor dei temi"
-
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Tema Attivo"
   l.store "Choose a theme", "Seleziona un tema"
@@ -604,8 +601,6 @@ Localization.define("it_IT") do |l|
   l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
-  l.store "Use simple editor", ""
-  l.store "Use visual rich editor", ""
   l.store "Send notification messages via email", "Invia notifiche via mail"
   l.store "Send notification messages when new articles are posted", "Invia notifiche quando viene pubblicato un nuovo articolo"
   l.store "Send notification messages when comments are posted", "Invia notifiche quando viene inserito un nuovo commento"

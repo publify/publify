@@ -83,12 +83,6 @@ tr:hover .action {
   padding: 17px 0 18px 0;
 }
 
-#visual_editor {
-  width: 100%; 
-  float: left; 
-  display: block;
-}
-
 /* Carousel */
 #carousel-wrapper {
   width: 100%;

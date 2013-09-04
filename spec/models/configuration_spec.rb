@@ -99,10 +99,6 @@ describe 'Given a new blog' do
     @blog.email_from.should == 'publify@example.com'
   end
 
-  it '#editor should be visual' do
-    @blog.editor.should == 'visual'
-  end
-
   it '#date format should be day/month/year hour:minute' do
     @blog.date_format.should == '%d/%m/%Y'
     @blog.time_format.should == '%Hh%M'
@@ -277,10 +273,6 @@ describe 'Given a new user' do
     @user.should be_notify_watch_my_articles
   end
 
-  it 'Default editor is visual' do
-    @user.editor.should == 'visual'
-  end
-  
   it 'Firstname is empty' do
     @user.firstname.should == ''
   end

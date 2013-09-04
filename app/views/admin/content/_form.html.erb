@@ -1,4 +1,3 @@
-<input type="hidden" name="current_editor" id="current_editor" value="<%= current_user.editor %>" />
 <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
 <div id="autosave"><%= set_autosave_tag(@article) %></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
@@ -24,28 +23,18 @@
 
     <div id='editor-menu'>
       <ul class="nav nav-tabs">
-        <li id='image-link' <%= 'style="display: none"' if current_user.editor == 'visual' %>><%= toggle_element 'carousel-wrapper', _("Images") %></li>
-        <li id="f" class='pull-right <%= "active" if current_user.editor == 'visual' %>'>
-          <%= build_editor_link(_("Visual"), 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-        </li>
-        <li id="s" class='pull-right <%= "active" if current_user.editor == 'simple' %> '>
-          <%= build_editor_link(_("HTML"), 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-        </li>
+        <li id='image-link'><%= toggle_element 'carousel-wrapper', _("Images") %></li>
       </ul>
     </div>
 
     <div id="editor">
-      <div id='quicktags' style='<%= "display: none;" if current_user.editor == 'visual' %>'>
+      <div id='quicktags'>
         <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
       </div>
 
-      <div id ='visual_editor' <%= "style='display: none;'" if current_user.editor == 'simple'%> >
-         <%= ckeditor_textarea('article', 'body_and_extended', {:class => 'large', :height => '300px', :rows => '20'}) if current_user.editor == 'visual' %>
-      </div>
-
-      <div id='simple_editor' <%= "style='display: none;'" if current_user.editor == 'visual'%> >
-        <%= text_area('article', 'body_and_extended', {:class => 'input-block-level', :height => '360px'}) if current_user.editor == 'simple' %>
-        <%= render 'admin/shared/macros' if current_user.editor == 'simple' %>
+      <div id='simple_editor'>
+        <%= text_area('article', 'body_and_extended', {:class => 'input-block-level', :height => '360px'}) %>
+        <%= render 'admin/shared/macros' %>
       </div>
     </div>
 

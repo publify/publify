@@ -96,11 +96,6 @@ class Admin::ContentController < Admin::BaseController
 
     @article.attributes = params[:article]
 
-    # Crappy workaround to have the visual editor work.
-    if current_user.visual_editor?
-      @article.body = params[:article][:body_and_extended]
-    end
-
     @article.published = false
     @article.set_author(current_user)
     @article.save_attachments!(params[:attachments])

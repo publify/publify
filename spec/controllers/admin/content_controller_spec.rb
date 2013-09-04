@@ -181,29 +181,6 @@ describe Admin::ContentController do
     end
   end
 
-  describe 'insert_editor action' do
-
-    before do
-      @user = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
-      request.session = { :user => @user.id }
-    end
-
-    it 'should render _simple_editor' do
-      get(:insert_editor, :editor => 'simple')
-      response.should render_template('_simple_editor')
-    end
-
-    it 'should render _visual_editor' do
-      get(:insert_editor, :editor => 'visual')
-      response.should render_template('_visual_editor')
-    end
-
-    it 'should render _visual_editor even if editor param is set to unknow editor' do
-      get(:insert_editor, :editor => 'unknow')
-      response.should render_template('_visual_editor')
-    end
-  end
-
   shared_examples_for 'new action' do
     it "renders the 'new' template" do
       get :new
@@ -381,7 +358,6 @@ describe Admin::ContentController do
                                  :text_filter => FactoryGirl.create(:markdown),
                                  :profile => FactoryGirl.create(:profile_admin,
                                                                 :label => Profile::ADMIN))
-      @user.editor = 'simple'
       @user.save
       @article = FactoryGirl.create(:article)
       request.session = { :user => @user.id }
@@ -565,7 +541,6 @@ describe Admin::ContentController do
     let!(:user) { create(:user, text_filter: create(:markdown), profile: create(:profile_publisher)) }
 
     before :each do
-      user.editor = 'simple'
       user.save
       @user = user
       @article = create(:article, user: user)

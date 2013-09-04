@@ -13,7 +13,7 @@ describe BackendController do
             :password => 'whatever',
             :name => 'Henri',
             :email => 'henri@example.com',
-            :settings => {:notify_watch_my_articles => false, :editor => 'simple'},
+            :settings => {:notify_watch_my_articles => false},
             :text_filter => FactoryGirl.create(:markdown),
             :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN),
             :notify_via_email => false,

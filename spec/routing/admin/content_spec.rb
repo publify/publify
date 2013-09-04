@@ -12,11 +12,6 @@ describe "Admin::ContentController routing" do
                                                           action: "autosave", :id => nil)
   end
 
-  it "routes #insert_editor" do
-    { :get => "/admin/content/insert_editor"}.should route_to(controller: "admin/content",
-                                                              action: "insert_editor", :id => nil)
-  end
-
   it "routes #auto_complete_for_article_keywords" do
     { :get => "/admin/content/auto_complete_for_article_keywords"}.should route_to(controller: "admin/content",
                                                                                    action: "auto_complete_for_article_keywords", :id => nil)

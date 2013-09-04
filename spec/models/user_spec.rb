@@ -228,30 +228,6 @@ describe User do
     it { should == 'http://myblog.net/author/alice' }
   end
 
-  describe "#simple_editor?" do
-    it "should be true if editor == 'simple'" do
-      user = FactoryGirl.build(:user, :editor => 'simple')
-      user.simple_editor?.should be_true
-    end
-
-    it "should be false if editor != 'simple'" do
-      user = FactoryGirl.build(:user, :editor => 'visual')
-      user.simple_editor?.should be_false
-    end
-  end
-
-  describe "#visual_editor?" do
-    it "should be true if editor == 'visual'" do
-      user = FactoryGirl.build(:user, :editor => 'visual')
-      user.visual_editor?.should be_true
-    end
-
-    it "should be false if editor != 'visual" do
-      user = FactoryGirl.build(:user, :editor => 'simple')
-      user.visual_editor?.should be_false
-    end
-  end
-
   describe "set_author" do
     it "uses user given param to set author AND user of article" do
       article = Article.new
@@ -276,14 +252,9 @@ describe User do
   end
 
   describe "default_text_filter" do
-    it "returns none when editor set to visual" do
-      user = FactoryGirl.build(:user, editor: "visual")
-      expect(user.default_text_filter).to eq('none')
-    end
-
-    it "returns text_filter when editor set to simple" do
+    it "returns user text_filter" do
       blog = FactoryGirl.create(:blog)
-      user = FactoryGirl.build(:user, editor: "simple")
+      user = FactoryGirl.build(:user)
       expect(user.default_text_filter.name).to eq(blog.text_filter)
     end
   end

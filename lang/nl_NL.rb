@@ -579,9 +579,6 @@ Localization.define("nl_NL") do |l|
   l.store "Sorry the theme catalogue is not available", "Sorry, de thema catalogus is niet beschikbaar"
   l.store "Theme catalogue", "Thema catalogus"
 
-  # app/views/admin/themes/editor.html.erb
-  l.store "Theme editor", "Thema editor"
-
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Actieve thema's"
   l.store "Choose a theme", "Kies een thema"
@@ -599,8 +596,6 @@ Localization.define("nl_NL") do |l|
   l.store "Lastname", "Achternaam"
   l.store "Nickname", "Bijnaam"
   l.store "Editor", "Editor"
-  l.store "Use simple editor", "Gebruik de simpele editor"
-  l.store "Use visual rich editor", "Gebruik de visuele editor"
   l.store "Send notification messages via email", "Zend notificaties via e-mail"
   l.store "Send notification messages when new articles are posted", "Zend notificaties wanneer nieuwe artikelen worden gepubliceerd"
   l.store "Send notification messages when comments are posted", "Zend notificaties wanneer commentaren geplaatst worden"

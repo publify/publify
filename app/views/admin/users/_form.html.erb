@@ -76,19 +76,6 @@
   </div>
   <% end %>
   <div class='control-group'>
-    <label class='control-label'><%= _("Editor")%></label>
-    <div class='controls'>
-      <label class='radio' for="editor_0">
-        <input type="radio" name="user[editor]" value="simple" id="editor_0" <%= 'checked="checked"' if @user.editor == 'simple' %>/>
-        <%= _("Use simple editor")%>
-      </label>
-      <label class='radio' for="editor_2">
-        <input type="radio" name="user[editor]" value="visual" id="editor_2" <%= 'checked="checked"' if @user.editor == 'visual' %>/>
-        <%= _("Use visual rich editor")%>
-      </label>
-    </div>
-  </div>
-  <div class='control-group'>
     <label class='control-label' for="text_filter"><%= _("Article filter")%></label>
     <div class='controls'>
       <select name="user[text_filter_id]" id="text_filter">

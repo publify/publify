@@ -583,9 +583,6 @@ Localization.define("da_DK") do |l|
   l.store "Sorry the theme catalogue is not available", ""
   l.store "Theme catalogue", ""
 
-  # app/views/admin/themes/editor.html.erb
-  l.store "Theme editor", ""
-
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Aktiv tema"
   l.store "Choose a theme", "Vælg et tema"
@@ -603,8 +600,6 @@ Localization.define("da_DK") do |l|
   l.store "Lastname", "Efternavn"
   l.store "Nickname", "Kælenavn"
   l.store "Editor", ""
-  l.store "Use simple editor", ""
-  l.store "Use visual rich editor", ""
   l.store "Send notification messages via email", "Send meddelelser via e-mail"
   l.store "Send notification messages when new articles are posted", "Send meddelelser når ny artikler bliver udgivet"
   l.store "Send notification messages when comments are posted", "Send meddelelser når der er nye kommentarer"

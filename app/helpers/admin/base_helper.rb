@@ -129,20 +129,7 @@ module Admin::BaseHelper
   end
 
   def macro_help_popup(macro, text)
-    unless current_user.editor == 'visual'
-      "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
-    end
-  end
-
-  def build_editor_link(label, action, id, update, editor)
-    link = link_to_remote(label,
-                          :url => { :action => action, 'editor' => editor},
-                          :method => :get,
-                          :class => 'ui-button-text',
-                          :loading => "new Element.show('update_spinner_#{id}')",
-                          :success => "new Element.toggle('update_spinner_#{id}')",
-                          :update => "#{update}")
-    link << image_tag("spinner-blue.gif", :id => "update_spinner_#{id}", :style => 'display:none;')
+    "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
   end
 
   def display_pagination(collection, cols, first='', last='')

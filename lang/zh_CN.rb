@@ -591,9 +591,6 @@ Localization.define("zh_CN") do |l|
   l.store "Sorry the theme catalogue is not available", ""
   l.store "Theme catalogue", ""
 
-  # app/views/admin/themes/editor.html.erb
-  l.store "Theme editor", ""
-
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
@@ -611,8 +608,6 @@ Localization.define("zh_CN") do |l|
   l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
-  l.store "Use simple editor", ""
-  l.store "Use visual rich editor", ""
   l.store "Send notification messages via email", "經由email發出通知訊息"
   l.store "Send notification messages when new articles are posted", "新的文章貼上時發出通知訊息"
   l.store "Send notification messages when comments are posted", "新的評錀貼上時發出通知訊息"

@@ -584,9 +584,6 @@ Localization.define("he_IL") do |l|
   l.store "Sorry the theme catalogue is not available", ""
   l.store "Theme catalogue", ""
 
-  # app/views/admin/themes/editor.html.erb
-  l.store "Theme editor", "עורך העיצוב"
-
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "עיצוב פעיל"
   l.store "Choose a theme", "בחר עיצוב"
@@ -604,8 +601,6 @@ Localization.define("he_IL") do |l|
   l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", "עורך"
-  l.store "Use simple editor", ""
-  l.store "Use visual rich editor", "השתמש בעורך ויזואלי עשיר"
   l.store "Send notification messages via email", "שלח עדכונים באמצאות הדואל"
   l.store "Send notification messages when new articles are posted", "עדכן בעת כתבות חדשים"
   l.store "Send notification messages when comments are posted", "עדכן בעת תגובות חדשות"
@@ -939,7 +934,6 @@ Localization.define("he_IL") do |l|
   l.store "URL", "כתובת"
   l.store "Update your profile or change your password", "לעדכן את פרטי חשבונך או לשנות את סיסמתך"
   l.store "Use semi static caching (default)", "השתמש במטמון חצי סטטי(ברירת מחדל)"
-  l.store "Use simple editor without live preview", "השתמש בעורך פשוט ללא תצוגה מקדימה חיה"
   l.store "Use static HTML page caching ", "השתמש במטמון HTML סטטי"
   l.store "View", "הצג"
   l.store "Write a page", "כתוב דף"
