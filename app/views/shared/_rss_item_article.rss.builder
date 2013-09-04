@@ -1,5 +1,9 @@
 xm.item do
-  xm.title item.title
+  if item.is_a?(Note)
+    xm.title item.body
+  else
+    xm.title item.title
+  end
   content_html =
     if item.password_protected?
       "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
