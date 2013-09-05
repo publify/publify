@@ -59,10 +59,9 @@ describe "articles/read.html.erb" do
       end
 
       it "should show the comment creation times in the comment list" do
-        rendered.should =~ /#{@c1.created_at.to_s}/
-        rendered.should =~ /#{@c2.created_at.to_s}/
+        rendered.should =~ /#{Regexp.escape(@c1.created_at.to_s)}/
+        rendered.should =~ /#{Regexp.escape(@c2.created_at.to_s)}/
       end
     end
   end
 end
-
