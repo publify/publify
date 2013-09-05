@@ -35,6 +35,10 @@ module Publify
 
     # To avoid exception when deploying on Heroku
     config.assets.initialize_on_precompile = false
+
+    #TimeZone
+    config.time_zone ='UTC'
+    config.active_record.default_timezone = :utc
   end
 
   # Load included libraries.
@@ -65,6 +69,7 @@ module Publify
   require 'rails_patch/active_support'
 
   require 'publify_login_system'
+
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
