@@ -58,22 +58,7 @@ tr:hover .action {
 #editor {
   float: left; 
   width: 100%;
-}
-
-#editor-menu {
-  width: 100%;
-  float: left;
   margin-top: 18px;
-}
-
-#editor-menu ul {
-  width: 100%;
-  margin-bottom: 0;
-}
-
-#editor-menu ul li.active a {
-  color: #808080;
-  background: #F5F5F5;
 }
 
 .separator {

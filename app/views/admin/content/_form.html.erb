@@ -21,13 +21,8 @@
 
     <%= render('images', { :images => @images}) unless @images.empty? %>
 
-    <div id='editor-menu'>
-      <ul class="nav nav-tabs">
-        <li id='image-link'><%= toggle_element 'carousel-wrapper', _("Images") %></li>
-      </ul>
-    </div>
-
     <div id="editor">
+      <i class='icon icon-media'></i> <span id='image-link'><%= toggle_element 'carousel-wrapper', _("Images") %></span>
       <div id='quicktags'>
         <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
       </div>
