@@ -93,7 +93,7 @@ module Admin::BaseHelper
 
   def get_short_url(item)
     return "" if item.short_url.nil?
-    sprintf(content_tag(:small, "%s %s"), _("Short url:"), link_to(item.short_url, item.short_url))
+    sprintf(content_tag(:small, "%s %s"), _("Short url:"), link_to(item.short_url, item.short_url, only_path: false))
   end
 
   def show_actions item
