@@ -11,21 +11,21 @@
   <div class='control-group'>
     <label class='control-label'><%= _("Permalink format") %></label>
     <div class='controls'>
-      <label class='radio' for="setting_permalink_format">
+      <label class='radio' for="setting_permalink_format_yearmonthdaytitle">
         <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %> 
         <%= _("Date and title") %>
         <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m/%d')}/sample-article" %></span>
       </label>
-      <label class='radio' for="setting_permalink_format">
+      <label class='radio' for="setting_permalink_format_yearmonthtitle">
         <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%title%') %> 
         <%= _("Month and title") %>
         <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m')}/sample-article" %></span>
       </label>
-      <label class='radio' for="setting_permalink_format">
+      <label class='radio' for="setting_permalink_format_title">
         <%= radio_button(:setting, :permalink_format, '/%title%') %> <%= _("Title only") %>
         <span class='help-block'><%= "#{this_blog.base_url}/sample-article" %></span>
       </label>
-      <label class='radio' for="setting_custom_permalink">
+      <label class='radio' for="setting_permalink_format_custom">
         <%= radio_button(:setting, :permalink_format, 'custom') %> <%= _("Custom") %>
         <%= text_field(:setting, :custom_permalink, { :class => 'span5 '})%>
       </label>

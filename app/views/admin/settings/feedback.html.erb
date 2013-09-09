@@ -42,9 +42,9 @@
       </div>
     </div>
     <div class='control-group'>
-      <label class='control-label' for="setting_use_gravatar"><%= _("Avatars provider")%></label>
+      <label class='control-label' for="setting_plugin_avatar"><%= _("Avatars provider")%></label>
       <div class='controls'>
-        <select name="setting[plugin_avatar]" id="plugin_avatar">
+        <select name="setting[plugin_avatar]" id="setting_plugin_avatar">
           <%= options_for_select plugin_options(:avatar), this_blog.plugin_avatar %>
         </select>
       </div>
@@ -89,7 +89,7 @@
   <div class='control-group'>
     <label class='control-label'><%= _("Captcha") %></label>  
     <div class='controls'>
-      <label class='checkbox' for="setting_recaptcha"><%= _("Enable reCaptcha") %>
+      <label class='checkbox' for="setting_use_recaptcha"><%= _("Enable reCaptcha") %>
         <%= check_box(:setting, :use_recaptcha)%>
         <span class='help-block'><%= _("Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb")%></span>
       </label>

@@ -30,7 +30,7 @@
 <fieldset class='form-horizontal'>
   <legend><%= _("Media")%></legend>
   <div class='control-group'>
-    <label class='control-label' for="image_thumb_size"><%= _("Image thumbnail size")%></label>
+    <label class='control-label' for="setting_image_thumb_size"><%= _("Image thumbnail size")%></label>
     <div class='controls'>
       <div class='input-append'>
         <%= text_field(:setting, :image_thumb_size, { :class => 'span3'})%><span class='add-on'>px</span>
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label' for="image_medium_size"><%= _("Image medium size")%></label>
+    <label class='control-label' for="setting_image_medium_size"><%= _("Image medium size")%></label>
     <div class='controls'>
       <div class='input-append'>
         <%= text_field(:setting, :image_medium_size, { :class => 'span3'})%><span class='add-on'>px</span>
@@ -52,13 +52,13 @@
   <% disabled = (this_blog.has_twitter_configured?) ? false : true %>
   <%= twitter_disabled_message(disabled) %>
   <div class='control-group'>
-    <label class='control-label' for="twitter_consumer_key"><%= _("Twitter consumer key")%></label>
+    <label class='control-label' for="setting_twitter_consumer_key"><%= _("Twitter consumer key")%></label>
     <div class='controls'>
       <%= text_field(:setting, :twitter_consumer_key, { :class => 'span6'})%>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label' for="twitter_consumer_secret"><%= _("Twitter consumer secret")%></label>
+    <label class='control-label' for="setting_twitter_consumer_secret"><%= _("Twitter consumer secret")%></label>
     <div class='controls'>
       <%= text_field(:setting, :twitter_consumer_secret, { :class => 'span6'})%>
     </div>
