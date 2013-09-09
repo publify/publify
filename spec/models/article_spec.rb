@@ -491,8 +491,14 @@ describe Article do
 
   describe "an article published just before midnight UTC" do
     before do
+      @timezone = Time.zone
+      Time.zone = 'UTC'
       @a = FactoryGirl.build(:article)
       @a.published_at = "21 Feb 2011 23:30 UTC"
+    end
+
+    after do
+      Time.zone = @timezone
     end
 
     describe "#permalink_url" do
@@ -512,8 +518,14 @@ describe Article do
 
   describe "an article published just after midnight UTC" do
     before do
+      @timezone = Time.zone
+      Time.zone = 'UTC'
       @a = FactoryGirl.build(:article)
       @a.published_at = "22 Feb 2011 00:30 UTC"
+    end
+
+    after do
+      Time.zone = @timezone
     end
 
     describe "#permalink_url" do
@@ -530,6 +542,61 @@ describe Article do
       end
     end
   end
+
+  describe "an article published just before midnight JST (+0900)" do
+    before do
+      @time_zone = Time.zone
+      Time.zone = "Tokyo"
+      @a = FactoryGirl.build(:article)
+      @a.published_at = "31 Dec 2012 23:30 +0900"
+    end
+
+    after do
+      Time.zone = @time_zone
+    end
+
+    describe "#permalink_url" do
+      it "uses JST to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2012/12/31/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses JST to determine correct day" do
+        @a.save
+        a = Article.find_by_permalink :year => 2012, :month => 12, :day => 31, :permalink => 'a-big-article'
+        a.should == @a
+      end
+    end
+  end
+
+  describe "an article published just after midnight  JST (+0900)" do
+    before do
+      @time_zone = Time.zone
+      Time.zone = "Tokyo"
+      @a = FactoryGirl.build(:article)
+      @a.published_at = "1 Jan 2013 00:30 +0900"
+    end
+
+    after do
+      Time.zone = @time_zone
+    end
+
+    describe "#permalink_url" do
+      it "uses JST to determine correct day" do
+        @a.permalink_url.should == "http://myblog.net/2013/01/01/a-big-article"
+      end
+    end
+
+    describe "#find_by_permalink" do
+      it "uses JST to determine correct day" do
+        @a.save
+        a = Article.find_by_permalink :year => 2013, :month => 1, :day => 1, :permalink => 'a-big-article'
+        a.should == @a
+      end
+    end
+  end
+
 
   describe "#published_comments" do
     it 'should not include withdrawn comments' do
