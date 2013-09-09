@@ -51,13 +51,6 @@ describe "articles/read.html.erb" do
         rendered.should_not have_selector("p>p>em", :content => "italic")
       end
 
-      it "should automatically add links" do
-        rendered.should have_selector("a", :href => "mailto:foo@bar.com",
-          :content => "foo@bar.com")
-        rendered.should have_selector("a", :href=>"http://www.bar.com",
-          :content => "http://www.bar.com")
-      end
-
       it "should show the comment creation times in the comment list" do
         rendered.should =~ /#{@c1.created_at.to_s}/
         rendered.should =~ /#{@c2.created_at.to_s}/

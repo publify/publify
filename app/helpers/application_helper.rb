@@ -80,16 +80,6 @@ module ApplicationHelper
     content.html(what)
   end
 
-  def author_link(article)
-    if this_blog.link_to_author and article.user and article.user.email.to_s.size>0
-      "<a href=\"mailto:#{h article.user.email}\">#{h article.user.name}</a>"
-    elsif article.user and article.user.name.to_s.size>0
-      h article.user.name
-    else
-      h article.author
-    end
-  end
-
   def display_user_avatar(user_id)
     user = User.find(user_id)
     
