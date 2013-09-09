@@ -22,27 +22,27 @@
     <div class='control-group'>
       <label class='control-label'><%= _("Date format")%></label>
       <div class='controls'>
-        <label class='radio' for="setting_date_format_1">
+        <label class='radio' for="setting_date_format_dmy">
           <%= radio_button(:setting, :date_format, '%d/%m/%Y')%>
           <span><%= Time.now.strftime('%d/%m/%Y') %></span>
         </label>
-        <label class='radio' for="setting_date_format_2">
+        <label class='radio' for="setting_date_format_mdy">
           <%= radio_button(:setting, :date_format, '%m/%d/%Y') %>
           <span><%= Time.now.strftime('%m/%d/%Y') %></span>
         </label>
-        <label class='radio' for="setting_date_format_3">
+        <label class='radio' for="setting_date_format_d_b_y">
           <%= radio_button(:setting, :date_format, "%d %b %Y" )%>
           <span><%= Time.now.strftime('%d %b %Y') %></span>
         </label>
-        <label class='radio' for="setting_date_format_4">
+        <label class='radio' for="setting_date_format_d_b_y">
           <%= radio_button(:setting, :date_format, '%d %B %Y' )%>
           <span><%= Time.now.strftime('%d %B %Y') %></span>
         </label>
         <label class='radio' for="setting_date_format_4">
-          <%= radio_button(:setting, :date_format, 'distance_of_time_in_words' )%>
+          <%= radio_button(:setting, :date_format, 'setting_date_format_distance_of_time_in_words' )%>
           <span><%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= _("ago") %></span>
         </label>
-        <label class='radio' for="setting_date_format_4">
+        <label class='radio' for="setting_date_format_ymd">
           <%= radio_button(:setting, :date_format, '%Y/%m/%d' )%>
           <span><%= Time.now.strftime('%Y/%m/%d') %></span>
         </label>
@@ -51,22 +51,22 @@
     <div class='control-group'>
       <label class='control-label'><%= _("Time format")%></label>
       <div class='controls'>
-        <label class='radio' for="setting_time_format_1">
+        <label class='radio' for="setting_time_format_hhm">
           <span><%= Time.now.strftime('%Hh%M') %></span>
           <%= radio_button(:setting, :time_format, '%Hh%M')%>
         </label>
-        <label class='radio' for="setting_time_format_2">
+        <label class='radio' for="setting_time_format_hm">
           <%= radio_button(:setting, :time_format, '%H:%M')%>
           <span><%= Time.now.strftime('%H:%M') %></span>
         </label>
-        <label class='radio' for="setting_time_format_3">
+        <label class='radio' for="setting_time_format_imp">
           <%= radio_button(:setting, :time_format, '%I:%M%p')%>
           <span><%= Time.now.strftime('%I:%M%p') %></span>
         </label>
       </div>
     </div>
     <div class='control-group'>
-      <label class='control-label' for="custom_url_shortener"><%= _("Custom URL shortener domain")%></label>
+      <label class='control-label' for="setting_custom_url_shortener"><%= _("Custom URL shortener domain")%></label>
       <div class='controls'>
         <%= text_field(:setting, :custom_url_shortener, { :class => 'span6'})%>
         <p class='help block'><%= _("You may want to use a custom domain for URL shortening, here's where it happens.") %></p>
