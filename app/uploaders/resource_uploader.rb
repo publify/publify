@@ -27,6 +27,10 @@ class ResourceUploader < CarrierWave::Uploader::Base
     process :dynamic_resize_to_fit => :medium
   end
 
+  version :avatar, :if => :image? do
+    process :dynamic_resize_to_fit => :avatar
+  end
+
   def dynamic_resize_to_fit(size)
     blog = Blog.default
     resize_setting = blog.send("image_#{size}_size").to_i

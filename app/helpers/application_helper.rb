@@ -90,6 +90,19 @@ module ApplicationHelper
     end
   end
 
+  def display_user_avatar(user_id)
+    user = User.find(user_id)
+    
+    if user.avatar.present?
+      avatar = user.avatar 
+    elsif user.twitter_profile_image.present?
+      avatar = user.twitter_profile_image.present?
+    end
+    
+    return unless avatar
+    image_tag(File.join(this_blog.base_url, avatar))
+  end
+
   def author_picture(status)
     return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
     return if status.twitter_id.nil? or status.twitter_id.empty?

@@ -56,6 +56,7 @@ class Blog < ActiveRecord::Base
   setting :allow_signup,               :integer, 0
   setting :date_format,                :string, '%d/%m/%Y'
   setting :time_format,                :string, '%Hh%M'
+  setting :image_avatar_size,          :integer, 48
   setting :image_thumb_size,           :integer, 125
   setting :image_medium_size,          :integer, 600
 

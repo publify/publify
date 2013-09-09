@@ -85,6 +85,20 @@
   </div>
 </fieldset>
 
+<% unless controller.controller_name == 'users'%>
+<fieldset class='form-horizontal'>
+  <legend><%= _("Avatar") %></legend>
+  <p><%= display_user_avatar(current_user.id) %> <%= _("Your current avatar") %></p>
+  <div class='control-group'>
+    <label class='control-label' for="avatar"><%= _("Upload your image")%></label>
+    <div class='controls'>
+      <%= file_field('user', 'filename', {:class => 'input-file'}) -%>
+      <p class='help-block'><%= _("Upload a .jpg, .png or .gif file") %></p>
+    </div>
+  </div>
+</fieldset>
+<% end %>
+
 <fieldset class='form-horizontal'>
   <legend><%= _("Notifications")%></legend>
   <div class='control-group'>

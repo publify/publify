@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   serialize :settings, Hash
 
+  attr_accessor :filename
+
   # Settings
   setting :notify_watch_my_articles,   :boolean, true
   setting :firstname,                  :string, ''
@@ -42,6 +44,10 @@ class User < ActiveRecord::Base
   setting :twitter_oauth_token,        :string, ''
   setting :twitter_oauth_token_secret, :string, ''
   setting :twitter_profile_image,      :string, ''
+  setting :avatar,                     :string, ''
+  setting :thumb_avatar,               :string, ''
+  setting :medium_avatar,              :string, ''
+  setting :large_avatar,               :string, ''
 
   # echo "publify" | sha1sum -
   class_attribute :salt

@@ -1,6 +1,5 @@
 <% @page_heading = _('Your profile') %>
 <% @page_heading_class = 'icon-profile' %>
 
-<%= form_tag :action=>"index", :id => @user.id do %>
+<%= form_tag({:action => 'index', :id => @user.id}, {:enctype => "multipart/form-data"}) %>
   <%= render :partial => "admin/users/form" %>
-<% end %>

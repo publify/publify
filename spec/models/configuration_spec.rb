@@ -104,7 +104,8 @@ describe 'Given a new blog' do
     @blog.time_format.should == '%Hh%M'
   end
 
-  it 'Thumb and medium image size' do
+  it 'Thumb, medium and avatar image size' do
+    @blog.image_avatar_size.should == 48
     @blog.image_thumb_size.should == 125
     @blog.image_medium_size.should == 600
   end
@@ -357,6 +358,12 @@ describe 'Given a new user' do
     @user.twitter_profile_image.should == ''
   end
   
+  it 'avatar is empty' do
+    @user.avatar.should == ''
+    @user.thumb_avatar.should == '' 
+    @user.medium_avatar.should == '' 
+    @user.large_avatar.should == '' 
+  end
 end
 
 describe 'Given a new article' do
