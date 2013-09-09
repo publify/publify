@@ -2,6 +2,7 @@
 require 'spec_helper'
 
 describe Content do
+  context "with a simple blog" do
   let!(:blog) { create(:blog) }
 
   describe "#short_url" do
@@ -94,6 +95,21 @@ describe Content do
         it { expect(subject).to eq([article]) }
       end
     end
+  end
+  end
+
+  describe :generate_html do
+    context "with a blog with textile filter" do
+      let!(:blog) { create(:blog, comment_text_filter: 'textile') }
+
+      context "comment with italic and bold" do
+        let(:comment) {build(:comment, body: 'Comment body _italic_ *bold*')}
+
+        it { expect(comment.generate_html(:body)).to match(/\<em\>italic\<\/em\>/) }
+        it { expect(comment.generate_html(:body)).to match(/\<strong\>bold\<\/strong\>/) }
+      end
+    end
+
   end
 end
 

@@ -44,13 +44,6 @@ describe "articles/read.html.erb" do
         rendered.should_not have_selector("p>p", :content => "extended content")
       end
 
-      # FIXME: Move comment partial specs to their own spec file.
-      it "should not have too many paragraph marks around comment contents" do
-        rendered.should have_selector("p>em", :content => "italic")
-        rendered.should have_selector("p>strong", :content => "bold")
-        rendered.should_not have_selector("p>p>em", :content => "italic")
-      end
-
       it "should show the comment creation times in the comment list" do
         rendered.should =~ /#{@c1.created_at.to_s}/
         rendered.should =~ /#{@c2.created_at.to_s}/
