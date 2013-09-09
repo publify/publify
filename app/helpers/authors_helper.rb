@@ -4,7 +4,7 @@ module AuthorsHelper
     if show_item
       item = link_to(item, item) if is_url?(item)
       content_tag :li do
-        "#{item_desc} #{item}"
+        "#{item_desc} #{item.html_safe}".html_safe
       end
     end
   end
