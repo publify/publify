@@ -27,3 +27,6 @@ Gemfile.lock
 bin/
 .bundle/
 /vendor/bundle
+/themes/*
+!/themes/bootstrap
+!/themes/typographic
