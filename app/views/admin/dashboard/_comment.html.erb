@@ -1,0 +1,18 @@
+<% if @comments.size == 0 %>
+  <li class='alert'><%= _("No comments yet") %></li>
+<% else %>
+  <% for comment in @comments -%>
+  <li id='feedback_<%= comment.id %>'>
+    <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+    <h5>
+      <%= _("By") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
+      <%= display_date_and_time comment.created_at %>
+    </h5>
+    <p>
+      <%= comment.html.strip_html.slice(0..300) %>
+    </p>
+    <%= show_feedback_actions(comment, 'dashboard') %>
+    <hr />
+  </li>
+  <% end %>
+<% end %>

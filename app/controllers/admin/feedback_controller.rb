@@ -111,7 +111,8 @@ class Admin::FeedbackController < Admin::BaseController
 
     render(:update) do |page|
       if params[:context] != 'listing'
-        page.visual_effect :fade, "feedback_#{feedback.id}"
+        @comments = Comment.last_published
+        page.replace_html('commentList', :partial => 'admin/dashboard/comment')
       else
         if template == "ham"
           page.visual_effect :appear, "feedback_#{feedback.id}"
