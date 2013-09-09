@@ -6,11 +6,13 @@ class Admin::ProfilesController < Admin::BaseController
     @profiles = Profile.find(:all, :order => 'id')
     @user.attributes = params[:user]
     if request.post?
-      avatar = upload_avatar if params[:user][:filename]
-      @user.avatar = avatar.upload.avatar.url
-      @user.thumb_avatar = avatar.upload.thumb.url
-      @user.medium_avatar = avatar.upload.medium.url
-      @user.large_avatar = avatar.upload.url
+      if params[:user][:filename]
+        avatar = upload_avatar 
+        @user.avatar = avatar.upload.avatar.url
+        @user.thumb_avatar = avatar.upload.thumb.url
+        @user.medium_avatar = avatar.upload.medium.url
+        @user.large_avatar = avatar.upload.url
+      end
       
       if @user.save
         current_user = @user
