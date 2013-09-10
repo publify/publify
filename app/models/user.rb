@@ -33,12 +33,6 @@ class User < ActiveRecord::Base
   setting :yahoo,                      :string, ''
   setting :twitter,                    :string, ''
   setting :jabber,                     :string, ''
-  setting :show_url,                   :boolean, false
-  setting :show_msn,                   :boolean, false
-  setting :show_aim,                   :boolean, false
-  setting :show_yahoo,                 :boolean, false
-  setting :show_twitter,               :boolean, false
-  setting :show_jabber,                :boolean, false
   setting :admin_theme,                :string,  'blue'
   setting :twitter_account,            :string, ''
   setting :twitter_oauth_token,        :string, ''

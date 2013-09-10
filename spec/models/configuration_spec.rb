@@ -313,30 +313,6 @@ describe 'Given a new user' do
   it 'Jabber is empty' do
     @user.jabber.should == ''
   end
-
-  it 'URL display in user profile is not enabled' do
-    @user.should_not be_show_url
-  end
-
-  it 'MSN display in user profile is not enabled' do
-    @user.should_not be_show_msn
-  end
-
-  it 'AIM display in user profile is not enabled' do
-    @user.should_not be_show_aim
-  end
-
-  it 'Yahoo ID display in user profile is not enabled' do
-    @user.should_not be_show_yahoo
-  end
-  
-  it 'Twitter display in user profile is not enabled' do
-    @user.should_not be_show_twitter
-  end
-  
-  it 'Jabber display in user profile is not enabled' do
-    @user.should_not be_show_jabber
-  end
   
   it 'Admin theme should be blue' do
     @user.admin_theme.should == 'blue'

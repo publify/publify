@@ -5,10 +5,10 @@
 
   <%= render 'articles/meta', article: @article %>
 
-    <% if @article.user.twitter and @article.user.show_twitter %>
-    <h2 id='twitter'>
+    <% if @article.user.twitter %>
+    <div class='well'>
       <%= _("If you liked this article you can %s", link_to(_("add me to Twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
-    </h2>
+    </div>
     <% end %>
 
     <% if @article.allow_comments? or @article.published_comments.size > 0 -%>

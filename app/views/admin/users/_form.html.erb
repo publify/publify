@@ -149,64 +149,41 @@
 
 <fieldset class='form-horizontal'>
   <legend><%= _("Contact options")%></legend>
+  <div class='alert alert-info'><%= _("These information will be displayed on your %s", link_to(_("author page"), :controller => '/authors', :action => 'show', :id => current_user.login)) %></div>
   <div class='control-group'>
     <label class='control-label' for="user_url"><%= _("Your site")%></label>
     <div class='controls'>
       <%= text_field('user', 'url', {:class => 'span5'}) %>
-      <label class='checkbox' for='user_show_url'>
-        <%= check_box 'user', 'show_url' %>
-        <%= _("display URL on public profile") %>
-      </label>
-      </div>
+    </div>
     </div>
     <div class='control-group'>
       <label class='control-label' for="user_msn"><%= _("Your MSN")%></label>
       <div class='controls'>
         <%= text_field('user', 'msn', {:class => 'span5'}) %>
-        <label class='checkbox' for='user_show_msn'>
-          <%= check_box 'user', 'show_msn' %>
-          <%= _("display MSN ID on public profile") %>
-        </label>
       </div>
     </div>
     <div class='control-group'>
       <label class='control-label' for="user_yahoo"><%= _("Your Yahoo ID")%></label>
       <div class='controls'>
         <%= text_field('user', 'yahoo', {:class => 'span5'}) %>
-        <label class='checkbox' for='user_show_yahoo'>
-          <%= _("display Yahoo! ID on public profile") %>
-          <%= check_box 'user', 'show_yahoo' %>
-        </label>
       </div>
     </div>
     <div class='control-group'>
       <label class='control-label' for="user_jabber"><%= _("Your Jabber ID")%></label>
       <div class='controls'>
         <%= text_field('user', 'jabber', {:class => 'span5'}) %>
-        <label class='checkbox' for='user_show_jabber'>
-          <%= check_box 'user', 'show_jabber' %>
-          <%= _("display Jabber ID on public profile") %>
-        </label>
       </div>
     </div>
     <div class='control-group'>
       <label class='control-label' for="user_aim"><%= _("Your AIM id")%></label>
       <div class='controls'>
         <%= text_field('user', 'aim', {:class => 'span5'}) %>
-        <label class='checkbox' for='user_show_aim'>
-          <%= check_box 'user', 'show_aim' %>
-          <%= _("display AIM ID on public profile") %>
-        </label>
       </div>
     </div>
     <div class='control-group'>
       <label class='control-label' for="user_twitter"><%= _("Your Twitter username")%></label>
       <div class='controls'>
         <%= text_field('user', 'twitter', {:class => 'span5'}) %>
-        <label class='checkbox' for='user_show_twitter'>
-          <%= check_box 'user', 'show_twitter' %>
-          <%= _("display Twitter on public profile") %>
-        </label>
       </div>
     </div>
     <div class='control-group'>

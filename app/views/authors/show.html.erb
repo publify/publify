@@ -1,12 +1,12 @@
 <div class="post">
   <h2><%= @author.name %></h2>
   <ul>
-    <%= display_profile_item @author.url, @author.show_url, _("Web site:") %>
-    <%= display_profile_item @author.msn, @author.show_msn, _("MSN:") %>
-    <%= display_profile_item @author.yahoo, @author.show_yahoo, _("Yahoo:") %>
-    <%= display_profile_item @author.jabber, @author.show_jabber, _("Jabber:") %>
-    <%= display_profile_item @author.aim, @author.show_aim, _("AIM:") %>
-    <%= display_profile_item @author.twitter, @author.show_twitter, _("Twitter:") %>
+    <%= display_profile_item @author.url, _("Web site:") %>
+    <%= display_profile_item @author.msn, _("MSN:") %>
+    <%= display_profile_item @author.yahoo, _("Yahoo:") %>
+    <%= display_profile_item @author.jabber, _("Jabber:") %>
+    <%= display_profile_item @author.aim, _("AIM:") %>
+    <%= display_profile_item @author.twitter, _("Twitter:") %>
   </ul>
 
   <h3><%= _("About %s", @author.name)%></h3>
