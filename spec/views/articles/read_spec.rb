@@ -1,31 +1,24 @@
 require 'spec_helper'
 
 describe "articles/read.html.erb" do
+  let!(:blog) { create(:blog, comment_text_filter: 'textile') }
+
   with_each_theme do |theme, view_path|
     describe theme ? "with theme #{theme}" : "without a theme" do
       before(:each) do
         @controller.view_paths.unshift(view_path) if theme
-
         # we do not want to test article links and such
         view.stub(:article_links) { "" }
         view.stub(:category_links) { "" }
         view.stub(:tag_links) { "" }
-
         view.stub(:display_date_and_time) {|dt| dt.to_s}
-
-        blog = stub_default_blog
-        blog.comment_text_filter = "textile"
         @controller.action_name = "redirect"
 
-        article = stub_full_article(Time.now - 2.hours)
-        article.body = 'body'
-        article.extended = 'extended content'
-        article.stub(:allow_comments?).and_return(false)
+        now = DateTime.new(2013,2,21,15,45)
+        article = create(:article, published_at: now, body: 'body', extended: 'extended content', allow_comments: false)
 
-        @c1 = stub_model(Comment, :created_at => Time.now - 2.seconds, :body => 'Comment body _italic_ *bold*')
-        @c2 = stub_model(Comment, :created_at => Time.now, :body => 'Hello foo@bar.com http://www.bar.com')
-
-        article.stub(:published_comments) { [@c1, @c2] }
+        @c1 = create(:comment, created_at: now + 1.hour, body: 'Comment body _italic_ *bold*', article: article, published: true)
+        @c2 = create(:comment, created_at: now + 18.minutes, body: 'Hello foo@bar.com http://www.bar.com', article: article, published: true)
 
         text_filter = FactoryGirl.build(:textile)
         TextFilter.stub(:find_by_name) { text_filter }
