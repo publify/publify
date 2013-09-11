@@ -1,5 +1,9 @@
 <div class="post">
-  <h2><%= @author.name %></h2>
+  <h2><%= @author.nickname %></h2>
+  <%= display_user_avatar(@author.id, 'thumb', 'alignright') %>
+  <%= @author.description%>
+
+  <h2><%= _("Contact information") %></h2>
   <ul>
     <%= display_profile_item @author.url, _("Web site:") %>
     <%= display_profile_item @author.msn, _("MSN:") %>
@@ -8,9 +12,6 @@
     <%= display_profile_item @author.aim, _("AIM:") %>
     <%= display_profile_item @author.twitter, _("Twitter:") %>
   </ul>
-
-  <h3><%= _("About %s", @author.name)%></h3>
-  <%= @author.description%>
 </div>
 
 <% if @articles.empty? -%>
@@ -33,5 +34,6 @@
   <%= article.categories.collect {|c| link_to_permalink c,c.name }.join(", ") -%>
   <% end -%>
  </div>
-<% end
-  end -%>
+<% end %>
+<%= paginate @articles, :next_label => "#{_("Next page")} &raquo;", :previous_label => "&laquo; #{_('Previous page')}" %>
+<%  end -%>

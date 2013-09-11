@@ -4,7 +4,14 @@ class AuthorsController < ContentController
   def show
     @author = User.find_by_login(params[:id])
     raise ActiveRecord::RecordNotFound unless @author
-    @articles = @author.articles.published
+    
+    respond_to do |format|
+      format.html { @limit = this_blog.limit_article_display }
+      format.rss { @limit = this_blog.limit_rss_display }
+      format.atom { @limit = this_blog.limit_rss_display }
+    end
+    
+    @articles = @author.articles.published.page(params[:page]).per(@limit)
     @page_title = this_blog.author_title_template.to_title(@author, this_blog, params)
     @keywords = this_blog.meta_keywords
     @description = this_blog.author_desc_template.to_title(@author, this_blog, params)
@@ -25,7 +32,6 @@ class AuthorsController < ContentController
   end
 
   private
-
   def render_feed format
     render "show_#{format}_feed", :layout => false
   end

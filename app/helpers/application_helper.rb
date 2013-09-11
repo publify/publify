@@ -90,17 +90,27 @@ module ApplicationHelper
     end
   end
 
-  def display_user_avatar(user_id)
+  def display_user_avatar(user_id, size='avatar', klass='alignleft')
     user = User.find(user_id)
     
     if user.avatar.present?
-      avatar = user.avatar 
+      avatar = case size
+      when 'thumb'
+        user.thumb_avatar
+      when 'medium'
+        user.medium_avatar
+      when 'large'
+        user.large_avatar
+      else
+        user.avatar
+      end
+      
     elsif user.twitter_profile_image.present?
       avatar = user.twitter_profile_image.present?
     end
     
     return unless avatar
-    image_tag(File.join(this_blog.base_url, avatar))
+    image_tag(File.join(this_blog.base_url, avatar), :alt => user.nickname, :class => klass)
   end
 
   def author_picture(status)

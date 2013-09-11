@@ -17,12 +17,17 @@ FactoryGirl.define do
     login { FactoryGirl.generate(:user) }
     email { generate(:email) }
     name 'Bond'
+    nickname "James Bond"
     notify_via_email false
     notify_on_new_articles false
     notify_on_comments false
     password 'top-secret'
-    settings({})
+    avatar 'avatar.jpg'
+    medium_avatar 'medium_avatar.jpg'
+    thumb_avatar 'thumb_avatar.jpg'
+    large_avatar 'large_avatar.jpg'
     state 'active'
+    twitter '@getpublify'
     profile
     association :text_filter, factory: :textile
   end

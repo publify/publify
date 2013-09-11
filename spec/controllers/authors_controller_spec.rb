@@ -34,6 +34,19 @@ describe AuthorsController do
         it 'has a link to the atom feed' do
           response.should have_selector("head>link[href=\"http://test.host/author/#{user.login}.atom\"]")
         end
+        
+        it 'includes an image to the user avatar when available' do
+          response.should have_selector("img[alt=\"James Bond\"]")
+        end
+        
+        it 'completed profile items should show accurate information' do
+          response.should have_selector('li', :content => "Twitter: @getpublify")
+        end
+        
+        it 'not completed profile items should show accurate information' do
+          response.should_not have_selector('li', :content => "Jabber: @getpublify")
+        end
+        
       end
     end
 
@@ -93,5 +106,4 @@ describe AuthorsController, "SEO options" do
     get 'show', :id => 'alice'
     response.should_not have_selector('head>meta[name="keywords"]')
   end
-
 end
