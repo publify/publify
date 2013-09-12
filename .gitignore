@@ -3,6 +3,7 @@ config/mail.yml
 config/secret.token
 *.log
 *~
+db/db*
 db/*.sqlite*
 .*.swp
 .*.swo
