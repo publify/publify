@@ -1,7 +1,8 @@
 <div class="post">
   <h2><%= @author.nickname %></h2>
-  <%= display_user_avatar(@author.id, 'thumb', 'alignright') %>
-  <%= @author.description%>
+  <%= display_user_avatar(@author, 'thumb', 'alignright') %>
+  
+  <%= author_description @author %>
 
   <h2><%= _("Contact information") %></h2>
   <ul>

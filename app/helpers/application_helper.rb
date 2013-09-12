@@ -80,21 +80,18 @@ module ApplicationHelper
     content.html(what)
   end
 
-  def display_user_avatar(user_id, size='avatar', klass='alignleft')
-    user = User.find(user_id)
-    
-    if user.avatar.present?
+  def display_user_avatar(user, size='avatar', klass='alignleft')
+    if user.resource.present?
       avatar = case size
       when 'thumb'
-        user.thumb_avatar
+        user.resource.upload.thumb.url
       when 'medium'
-        user.medium_avatar
+        user.resource.upload.medium.url
       when 'large'
-        user.large_avatar
+        user.resource.upload.large.url
       else
-        user.avatar
+        user.resource.upload.avatar.url
       end
-      
     elsif user.twitter_profile_image.present?
       avatar = user.twitter_profile_image.present?
     end

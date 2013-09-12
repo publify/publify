@@ -22,14 +22,28 @@ FactoryGirl.define do
     notify_on_new_articles false
     notify_on_comments false
     password 'top-secret'
-    avatar 'avatar.jpg'
-    medium_avatar 'medium_avatar.jpg'
-    thumb_avatar 'thumb_avatar.jpg'
-    large_avatar 'large_avatar.jpg'
+    association :resource, factory: :avatar
     state 'active'
     twitter '@getpublify'
     profile
     association :text_filter, factory: :textile
+  end
+  
+  factory :user_with_an_empty_profile, parent: :user do |u|
+    u.name "Doe"
+    u.nickname "John Doe"
+    u.twitter nil
+    u.association :resource, nil
+  end
+  
+  factory :user_with_a_full_profile, parent: :user do |u|
+    u.description "I am a poor lonesone factory generated user"
+    u.url "http://myblog.net"
+    u.msn "random@mail.com"
+    u.aim "randomaccount"
+    u.yahoo "anotherrandomaccount"
+    u.twitter "@random"
+    u.jabber "random@account.com"
   end
 
   factory :article do
@@ -190,6 +204,12 @@ http://alsoping.example.com/rpc/ping"
     r.upload {FactoryGirl.generate(:file_name)}
     r.mime 'image/jpeg'
     r.size 110
+  end
+  
+  factory :avatar, parent: :resource do |a|
+    a.upload "avatar.jpg"
+    a.mime 'image.jpeg'
+    a.size 600
   end
 
   factory :redirect do |r|

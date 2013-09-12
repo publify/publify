@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   belongs_to :profile
   belongs_to :text_filter
-
+  belongs_to :resource
+  
   delegate :name, :to => :text_filter, :prefix => true
   delegate :label, :to => :profile, :prefix => true
 
@@ -38,10 +39,6 @@ class User < ActiveRecord::Base
   setting :twitter_oauth_token,        :string, ''
   setting :twitter_oauth_token_secret, :string, ''
   setting :twitter_profile_image,      :string, ''
-  setting :avatar,                     :string, ''
-  setting :thumb_avatar,               :string, ''
-  setting :medium_avatar,              :string, ''
-  setting :large_avatar,               :string, ''
 
   # echo "publify" | sha1sum -
   class_attribute :salt

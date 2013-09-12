@@ -7,11 +7,7 @@ class Admin::ProfilesController < Admin::BaseController
     @user.attributes = params[:user]
     if request.post?
       if params[:user][:filename]
-        avatar = upload_avatar 
-        @user.avatar = avatar.upload.avatar.url
-        @user.thumb_avatar = avatar.upload.thumb.url
-        @user.medium_avatar = avatar.upload.medium.url
-        @user.large_avatar = avatar.upload.url
+        @user.resource = upload_avatar
       end
       
       if @user.save

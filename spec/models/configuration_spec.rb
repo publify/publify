@@ -332,14 +332,7 @@ describe 'Given a new user' do
   
   it 'Twitter profile image should be empty' do
     @user.twitter_profile_image.should == ''
-  end
-  
-  it 'avatar is empty' do
-    @user.avatar.should == ''
-    @user.thumb_avatar.should == '' 
-    @user.medium_avatar.should == '' 
-    @user.large_avatar.should == '' 
-  end
+  end  
 end
 
 describe 'Given a new article' do

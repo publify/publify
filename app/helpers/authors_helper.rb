@@ -16,6 +16,12 @@ module AuthorsHelper
     end
   end
 
+  def author_description(user)
+    return unless user.description.present?
+
+    content_tag(:div, user.description, id: 'author-description')
+  end
+
   def author_link(article)
     return h(article.author) if just_author?(article.user)
     return h(article.user.name) if just_name?(article.user)
