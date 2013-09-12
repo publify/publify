@@ -127,6 +127,14 @@ class User < ActiveRecord::Base
     profile.project_modules
   end
 
+  AccessControl.available_modules.each do |m|
+    define_method("can_access_to_#{m}?") { can_access_to?(m) }
+  end
+
+  def can_access_to?(m)
+    profile.modules.include?(m)
+  end
+
   # Generate Methods takes from AccessControl rules
   # Example:
   #

@@ -6,8 +6,6 @@ describe Admin::DashboardController do
   describe 'test admin profile' do
     before do
       @blog ||= FactoryGirl.create(:blog)
-      #TODO Delete after removing fixtures
-      Profile.delete_all
       @henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @henri.id }
       get :index

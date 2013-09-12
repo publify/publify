@@ -6,24 +6,24 @@
 
     <div>
       <div class='span6'>
-      <% if current_user.profile.modules.include? :articles%>
+      <% if current_user.can_access_to_articles? %>
         <h4 class='page-header'><%= _("Content") %></h4>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statposts, pluralize(@statposts, _("articles"), _("article"), _("articles"))).html_safe, :controller => 'admin/content').html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statuserposts, _("articles writen by you")).html_safe, :controller => 'admin/content', "search[user_id]" => current_user.id).html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statsdrafts, pluralize(@statsdrafts, _("drafts"), _("draft"), _("drafts"))).html_safe, :controller => 'admin/content', "search[state]" => "drafts").html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statspages, pluralize(@statspages, _("pages"), _("page"), _("pages"))).html_safe, :controller => 'admin/pages').html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statuses, pluralize(@statspages, _("notes"), _("note"), _("notes"))).html_safe, :controller => 'admin/notes').html_safe %></p>
-      <% end %>    
-      </div>      
+      <% end %>
+      </div>
       <div class='span6'>
-        <%  if current_user.profile.modules.include? :feedback %>
+        <%  if current_user.can_access_to_feedback? %>
         <h4 class='page-header'><%= _("Feedback") %></h4>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statcomments, _("comments")).html_safe, :controller => 'admin/feedback').html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @confirmed, _("approved")).html_safe, :controller => 'admin/feedback', "ham" => "f").html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @unconfirmed, _("unconfirmed")).html_safe, :controller => 'admin/feedback', "presumed_ham" => "f").html_safe %></p>
         <p><%= link_to(sprintf("<strong>%d</strong> %s", @statspam, _("spam")).html_safe, :controller => 'admin/feedback', "spam" => "f").html_safe %></p>
-        <% end %>    
+        <% end %>
       </div>
     </div>
-  </div>  
+  </div>
 </div>

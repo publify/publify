@@ -28,14 +28,14 @@ FactoryGirl.define do
     profile
     association :text_filter, factory: :textile
   end
-  
+
   factory :user_with_an_empty_profile, parent: :user do |u|
     u.name "Doe"
     u.nickname "John Doe"
     u.twitter nil
     u.association :resource, nil
   end
-  
+
   factory :user_with_a_full_profile, parent: :user do |u|
     u.description "I am a poor lonesone factory generated user"
     u.url "http://myblog.net"
@@ -177,7 +177,7 @@ http://alsoping.example.com/rpc/ping"
     label Profile::ADMIN
     nicename 'Publify administrator'
     modules [ :dashboard, :write, :articles, :pages, :feedback, :themes,
-              :sidebar, :users, :seo, :media, :settings, :profile, :notes ]
+              :customizesidebar, :users, :seo, :media, :settings, :profile, :notes ]
   end
 
   factory :profile_publisher, :parent => :profile do |l|
@@ -205,7 +205,7 @@ http://alsoping.example.com/rpc/ping"
     r.mime 'image/jpeg'
     r.size 110
   end
-  
+
   factory :avatar, parent: :resource do |a|
     a.upload "avatar.jpg"
     a.mime 'image.jpeg'
