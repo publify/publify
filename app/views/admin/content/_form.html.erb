@@ -50,7 +50,7 @@
             <legend><%= t(".publish_settings") %></legend>
             <div class='control-group'>
               <p><%= t(".status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong>
-              <a href="#" onclick="Element.toggle('status'); return false"><%= t('.change')%></a>
+              <a href="#" class="extoggle status"><%= t('.change')%></a>
               </p>
               <div id='status' style='display: none;'>
                 <label for="article_published" class='checkbox'>
@@ -58,13 +58,13 @@
                   <%= t(".published") %>
                 </label>
                 <p><span class='btn btn-mini'>
-                  <a href="#" onclick="Element.toggle('status'); return false">OK</a>
+                  <a href="#" class="extoggle status">OK</a>
                 </span></p>
               </div>
             </div>
             <div class='control-group'>
               <p><%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, get_feedback_status(@article.allow_comments)), allow_trackback: content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
-            <a href="#" onclick="Element.toggle('conversation'); return false"><%= t('.change')%></a>
+            <a href="#" class="extoggle conversation" ><%= t('.change')%></a>
             <div id='conversation' style='display: none'>
               <label for="article_allow_pings" class='checkbox'>
                 <%= check_box 'article', 'allow_pings' %>
@@ -75,48 +75,94 @@
                 <%= t(".allow_comments") %>
               </label>
               <p><span class='btn btn-mini'>
-                <a href="#" onclick="Element.toggle('conversation'); return false"><%= t('.ok')%></a>
+                <a href="#" class="extoggle conversation"><%= t('.ok')%></a>
               </span></p>
             </div>
           </div>
           <div class='control-group'>
             <p><%= t(".published") %> <strong><%= publish_now_or_already_published @article %></strong>
-            <a href="#" onclick="Element.toggle('publish'); return false"><%= t('.change')%></a>
+            <a href="#" class="extoggle publish" ><%= t('.change')%></a>
             </p>
             <div id='publish' class='input-append' style='display: none;'>
               <%= calendar_date_select 'article', 'published_at' %>
               <p><span class="btn btn-mini">
-            <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
+            <a href="#" class="extoggle status"><%= t('.ok')%></a>
               </span></p>
             </div>
 
           </div>
           <div class='control-group'>
             <p><%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
-            <a href="#" onclick="Element.toggle('visibility'); return false"><%= t('.change')%></a>
+            <a href="#" class="extoggle visibility" ><%= t('.change')%></a>
             </p>
             <div id='visibility' style='display: none'>
               <label for="article_password"><%= t(".password") %>
+    <div class='separator'>
+      <h4><%= _("Excerpt") %></h4>
+      <%= text_area 'article', 'excerpt', {:height => '150', :class => 'input-block-level', :rows => '5'} %>
+      <span class='help-block'><%=_("Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself") %></span>
+    </div>
+    
+    <div class='well'>
+      <fieldset>
+        <legend><%= _("Publish settings") %></legend>
+        <div class='control-group'>
+          <p><%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %></p>
+          <div id='status' class="collapse">
+            <label for="article_published" class='checkbox'>
+              <%= check_box 'article', 'published'  %>
+              <%= _("Published") %>
+            </label>
+            <%= ok_button('status') %>
+          </div>
+        </div>
+        <div class='control-group'>
+          <p><%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
+          <%= toggle_element 'conversation' %></p>
+          <div id='conversation' class="collapse">
+            <label for="article_allow_pings" class='checkbox'>
+              <%= check_box 'article', 'allow_pings' %>
+              <%= _("Allow trackbacks") %>
+            </label>
+            <label for="article_allow_comments" class='checkbox'>
+              <%= check_box 'article', 'allow_comments' %>
+              <%= _("Allow comments") %>
+            </label>
+            <p><span class='btn btn-mini'><%= toggle_element 'conversation', "OK" %></span></p>
+          </div>
+        </div>
+        <div class='control-group'>
+          <p><%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %></p>
+          <div id='publish' class='collapse input-append'>
+            <%= text_field 'article', 'published_at', :class => 'datepicker' %>
+            <%= ok_button('publish') %>
+          </div>
+          
+        </div>
+        <div class='control-group'>
+          <p><%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %></p>
+          <div id='visibility' class="collapse">
+            <label for="article_password"><%= _("Password:") %>
               <%= password_field :article, :password, :class => 'span10' %>
             </label>
             <p><span class="btn btn-mini">
-            <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
+            <a href="#" class="extoggle status"><%= t('.ok')%></a>
             </span></p>
           </div>
         </div>
         <div class='control-group'>
           <%= t(".permalink") %>:
-          <a href="#" onclick="Element.toggle('permalink'); return false"><%= t('.change')%></a>
+          <a href="#" class="extoggle permalink"><%= t('.change')%></a>
           <div class='inputs-list' id='permalink' style='display: none'>
             <%= text_field 'article', 'permalink', {class: 'span10'} %>
             <p><span class="btn btn-mini">
-            <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
+            <a href="#" class="extoggle status"><%= t('.ok')%></a>
             </span></p>
           </div>
         </div>
         <div class='control-group'>
           <%= t(".article_filter") %>: <strong id='text_filter_placeholder'><%= _("#{@article.text_filter.description}") %></strong>
-          <a href="#" onclick="Element.toggle('text_filter'); return false"><%= t('.change')%></a>
+          <a href="#" class="extoggle text_filter"><%= t('.change')%></a>
 
           <div id='text_filter' style='display: none'>
             <select name="article[text_filter]" id="article_text_filter">

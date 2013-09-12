@@ -43,7 +43,6 @@ module Publify
   require 'publify_sidebar'
   require 'publify_textfilters'
   require 'publify_avatar_gravatar'
-  require 'calendar_date_select/lib/calendar_date_select.rb'
   require 'action_web_service'
   ## Required by the plugins themselves.
   # require 'avatar_plugin'

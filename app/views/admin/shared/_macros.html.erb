@@ -1,5 +1,5 @@
 <div>
-  <i class='icon icon-question-sign'></i> <%= link_to_function(_("Show help on Publify macros") + " (+/-)", update_page { |page| page.visual_effect(:toggle_blind, "macros", :duration => 0.2) }) %>
+  <i class='icon icon-question-sign'></i> <%= link_to(_("Show help on Publify macros") + " (+/-)", :remote => true) %>
   <table class='table table-striped' id='macros' style='display: none'>
     <thead>
       <tr>

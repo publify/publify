@@ -62,7 +62,7 @@ module Admin::ContentHelper
   end
   
   def toggle_element(element, label=_("Change"))
-    "<a href=\"#\" onclick=\"Element.toggle('#{element}'); return false\">#{label}</a>".html_safe
+    link_to(label, "##{element}", :"data-toggle" => :collapse, :"data-target" => "##{element}")
   end
   
   def publish_now_or_already_published(article)
