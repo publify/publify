@@ -6,7 +6,7 @@
 
 <% end %>
 
-<%= form_remote_tag url: {action: 'index'}, method: :get, name: 'article', update: {:success => 'articleList'}, before: "Element.show('spinner')", complete: "Element.hide('spinner')" do %>
+<%= form_tag url: {action: 'index'}, method: :get, name: 'article', remote: true, :class => 'spinnable', :"data-update-success" => 'articleList' do %>
 
   <% if params[:search] and params[:search]['state'] %>
     <input type='hidden' name="search[state]" value="<%= params[:search]['state'] %>" >

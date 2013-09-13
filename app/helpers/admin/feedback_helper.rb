@@ -35,6 +35,6 @@ module Admin::FeedbackHelper
 
   def change_status(item, context='listing')
     status = (item.state.to_s.downcase =~ /spam/) ? :ham : :spam
-    link_to_remote(_("Flag as %s", status.to_s), :url => {:controller => 'admin/feedback',:action => 'change_state', :id => item.id, :context => context})
+    link_to(_("Flag as %s", status.to_s), :url => {:controller => 'admin/feedback',:action => 'change_state', :id => item.id, :context => context}, :remote => true)
   end
 end
