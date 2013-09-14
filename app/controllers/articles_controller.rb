@@ -14,17 +14,12 @@ class ArticlesController < ContentController
 
   def index
     conditions = (Blog.default.statuses_in_timeline) ? ["type in (?, ?)", "Article", "Note"] : ["type = ?", "Article"]
-    
-    respond_to do |format|
-      format.html { @limit = this_blog.limit_article_display }
-      format.rss { @limit = this_blog.limit_rss_display }
-      format.atom { @limit = this_blog.limit_rss_display }
-    end
 
+      limit = this_blog.per_page(params[:format])
     unless params[:year].blank?
-      @articles = Content.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(@limit)
+      @articles = Content.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(limit)
     else
-      @articles = Content.published.where(conditions).page(params[:page]).per(@limit)
+      @articles = Content.published.where(conditions).page(params[:page]).per(limit)
     end
 
     @page_title = this_blog.home_title_template
@@ -56,7 +51,7 @@ class ArticlesController < ContentController
   end
 
   def search
-    @articles = this_blog.articles_matching(params[:q], :page => params[:page], :per_page => @limit)
+    @articles = this_blog.articles_matching(params[:q], page: params[:page], per_page: this_blog.per_page(params[:format]) )
     return error(_("No posts found..."), :status => 200) if @articles.empty?
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)

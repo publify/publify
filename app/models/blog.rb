@@ -205,8 +205,13 @@ class Blog < ActiveRecord::Base
     end
   end
 
- def articles_matching(query, args={})
+  def articles_matching(query, args={})
     Article.search(query, args)
+  end
+
+  def per_page(format)
+    return limit_article_display if format.nil? || format == 'html'
+    limit_rss_display
   end
 
   def rss_limit_params
@@ -265,7 +270,7 @@ class Blog < ActiveRecord::Base
         raise "Invalid base_url: #{self.base_url}"
       end
       @split_base_url = { :protocol => $1, :host_with_port => $2,
-        :root_path => $3.gsub(%r{/$},'') }
+                          :root_path => $3.gsub(%r{/$},'') }
     end
     @split_base_url
   end
