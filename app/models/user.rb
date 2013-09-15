@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     :source => 'notify_content',
     :uniq => true
 
-  has_many :articles, :order => 'created_at DESC'
+  has_many :articles
 
   serialize :settings, Hash
 

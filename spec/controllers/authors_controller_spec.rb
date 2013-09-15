@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe AuthorsController do
   let!(:blog) { create(:blog, limit_article_display: 1) }
+  let(:now) { DateTime.new(2012,12,23,3,45) }
 
   describe :show do
     describe "With an empty profile" do
       let(:no_profile_user) { create(:user_with_an_empty_profile) }
-      let!(:article) { create(:article, user: no_profile_user) }
+      let!(:article) { create(:article, user: no_profile_user, published_at: now - 1.hour) }
 
       describe "html" do
         before(:each) { get 'show', id: no_profile_user.login }
@@ -27,7 +28,7 @@ describe AuthorsController do
       end
 
       describe "with pagination" do
-        let!(:article_page_2) { create(:article, user: no_profile_user) }
+        let!(:article_page_2) { create(:article, user: no_profile_user, published_at: now - 1.day) }
         before(:each) { get 'show', id: no_profile_user.login, page: 2 }
         it { expect(assigns(:articles)).to eq([article_page_2]) }
       end
