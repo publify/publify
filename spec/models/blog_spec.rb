@@ -25,7 +25,7 @@ describe Blog do
 
         before :each do
           @base_url = "http://myblog.net#{sub_url}"
-          @blog.base_url = @base_url 
+          @blog.base_url = @base_url
         end
 
         [true, false].each do |only_path|
@@ -157,13 +157,13 @@ http://anotherurl.net/other_line")
       blog.urls_to_ping_for(article).map(&:url).should eq ["http://ping.example.com/ping", "http://anotherurl.net/other_line"]
     end
   end
-    
-  describe "Blog Twitter configuration" do    
+
+  describe "Blog Twitter configuration" do
     it "A blog without :twitter_consumer_key or twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog)
       blog.has_twitter_configured?.should == false
     end
-    
+
     it "A blog with an empty :twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "")
       blog.has_twitter_configured?.should == false
@@ -173,30 +173,38 @@ http://anotherurl.net/other_line")
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "", twitter_consumer_secret: "")
       blog.has_twitter_configured?.should == false
     end
-    
+
     it "A blog with a twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "12345")
       blog.has_twitter_configured?.should == false
     end
-    
+
     it "A blog with a twitter_consumer_key and an empty twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "")
       blog.has_twitter_configured?.should == false
     end
-    
+
     it "A blog with a twitter_consumer_secret and no twitter_consumer_key should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_secret: "67890")
       blog.has_twitter_configured?.should == false
     end
-    
+
     it "A blog with a twitter_consumer_secret and an empty twitter_consumer_key should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_secret: "67890", twitter_consumer_key: "")
       blog.has_twitter_configured?.should == false
     end
-    
+
     it "A blog with a twitter_consumer_key and a twitter_consumer_secret should have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
       blog.has_twitter_configured?.should == true
     end
+  end
+
+  describe :per_page do
+    let(:blog) { create(:blog, limit_article_display: 3, limit_rss_display: 4) }
+    it { expect(blog.per_page(nil)).to eq(3) }
+    it { expect(blog.per_page('html')).to eq(3) }
+    it { expect(blog.per_page('rss')).to eq(4) }
+    it { expect(blog.per_page('atom')).to eq(4) }
   end
 end

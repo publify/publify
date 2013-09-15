@@ -33,8 +33,9 @@ class FeedbackController < ApplicationController
           render :text => 'this space left blank'
         end
       end
-      format.atom { render_feed 'atom', get_feedback }
-      format.rss { render_feed 'rss', get_feedback }
+      feedbacks = Feedback.from(controller_name, params[:article_id]).limit(this_blog.per_page(params[:format]))
+      format.atom { render_feed 'atom', feedbacks }
+      format.rss { render_feed 'rss', feedbacks }
     end
   end
 
@@ -44,12 +45,6 @@ class FeedbackController < ApplicationController
     ivar_name = "@#{self.class.to_s.sub(/Controller$/, '').underscore}"
     instance_variable_set(ivar_name, collection)
     render "index_#{format}_feed"
-  end
-
-  private
-
-  def get_feedback
-    @items = Feedback.from(controller_name, params[:article_id]).limit(this_blog.rss_limit_params[:limit])
   end
 
 end
