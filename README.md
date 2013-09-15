@@ -1,5 +1,8 @@
 Publify
 ====
+
+**The blogging engine (and many more) formerly known as Typo**
+
 [![Build Status](https://travis-ci.org/fdv/publify.png)](https://travis-ci.org/fdv/publify)
 [![](https://codeclimate.com/badge.png)](https://codeclimate.com/github/fdv/publify)
 [![Dependency Status](https://gemnasium.com/fdv/publify.png)](https://gemnasium.com/fdv/publify)
@@ -102,7 +105,7 @@ Download Publify
 -------------
 
 For a production blog, you should download [download Publify
-6.1.4](http://publify.co/stable.tgz)
+7.0.0](http://publify.co/stable.tgz)
 
 If you feel adventurous or want to hack on Publify, [clone Publify
 repository](git://github.com/fdv/publify.git)
@@ -118,8 +121,8 @@ Install Publify locally
 
 To install Publify you need the following:
 
--   Ruby 1.9.2 or 1.9.3.
--   Ruby On Rails 3.2.12
+-   Ruby 1.9.3 or 2.0
+-   Ruby On Rails 3.12
 -   A database engine, MySQL, PgSQL or SQLite3
 
 <a href="installpublify"></a>

@@ -1,3 +1,13 @@
+# Publify 7.0
+
+Since Publify 7.0 beta1, changes have mostly been about fixing bugs.
+
+* #228: Changelog is meaningless.
+* #237: Missing or incorrect labels on many forms.
+* #239: Dashboard: marking a comment as spam should load the next non spammy comment.
+* #240: On authors pages, links are rails escaped.
+
+
 # Publify 7.0 beta 1
 
 ## New features and enhancement
