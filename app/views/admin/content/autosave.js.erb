@@ -1,0 +1,4 @@
+$('#autosave').replaceWith('<%= hidden_field_tag('articles[id]', @article.id %>')
+$('#preview_link').replaceWith('<%= url_for({:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) %>')
+$('#destroy_link').replaceWith('<%= link_to_destroy_draft(@article) %>')
+$('#publish').replaceWith('<%=  calendar_date_select('article', 'published_at', {:class => 'span7'}) %>')

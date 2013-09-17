@@ -108,18 +108,11 @@ class Admin::ContentController < Admin::BaseController
     end
 
     if @article.save
-      render(:update) do |page|
-        page.replace_html('autosave', hidden_field_tag('article[id]', @article.id))
-        page.replace_html('preview_link', link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}))
-        page.replace_html('destroy_link', link_to_destroy_draft(@article))
-        if params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?
-          page.replace_html('publish', calendar_date_select('article', 'published_at', {:class => 'span7'})) if @article.state.to_s.downcase == "draft"
-        end
+      @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?)
+      respond_to do |format|
+        format.js
       end
-
-      return true
     end
-    render :text => nil
   end
 
   protected

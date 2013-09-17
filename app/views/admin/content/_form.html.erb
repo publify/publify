@@ -202,7 +202,8 @@
       <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'input-block-level'} %>
       <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
     </div>
-    <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>
+    <%#= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>		
+    
   </div>
   <%= get_post_types %>
 </div>
