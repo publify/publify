@@ -1,50 +1,24 @@
+/* typewatch() borrowed from http://stackoverflow.com/questions/2219924/idiomatic-jquery-delayed-event-only-after-a-short-pause-in-typing-e-g-timew  */
+var typewatch = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  }  
+})();
+
 function autosave_request(e) {
-
-  new Form.Observer (e, 30, function(element, value) {
-      new Ajax.Request(e.action.gsub(/\/admin\/content\/{0,1}.*/, '/admin/content/autosave') , {
-                                        asynchronous:true,
-                                        evalScripts:true,
-                                        parameters: Form.serialize(e)
-                                      })
-			var g = new k.Growler({location : 'br'});
-			g.info('Article was successfully saved', {life: 3});
+  e.find('textarea').keyup(function() {
+    typewatch(function() {
+      e.up('form.autosave').ajax('/admin/content/autosave', e.serialize());
+    }
+  }));
+}
+$(document).ready(function() {
+  $('.autosave').each(function(e){autosave_request(e)});
+  $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
+  $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
 })
-
-}
-
-Event.observe(window, 'load', function() {
-  $$('.autosave').each(function(e){autosave_request(e)});
-  $$('#article_form .new_category').each(function(cat_link){ cat_link.observe('click', bind_new_category_overlay); });
-  $$('.merge_link').each(function(merge_link){ merge_link.observe('click', bind_merge_link); });
-})
-
-// UJS for new category link in admin#new_article
-function bind_new_category_overlay(event) {
-  new Ajax.Request(event.element().readAttribute('href'),
-  {
-    method:'get',
-    onSuccess: function(transport){
-      var response = transport.responseText;
-      Element.insert(document.body, {top: response });
-      window.scrollTo(window.pageXOffset, 0); 
-    },
-    onFailure: function(){ alert('Something went wrong...') }
-  });
-  event.stop();
-}
-
-// JS for merging tags links in admin#tags
-function bind_merge_link(e) {
-  var merger = $('tag_merger');
-  if(!merger) { return; }
-  merger.hide();
-  // Take calling element, then take informations
-  var tag_id = e.element()['id'] + 0;
-  var tag_name = e.element().up(1).previous().text;
-  merger.down('span').update(tag_name);
-  merger.show();
-  e.stop();
-}
 
 // JS QuickTags version 1.3.1
 //
