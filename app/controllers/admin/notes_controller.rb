@@ -1,6 +1,6 @@
 module Admin; end
 
-class Admin::NotesController < Admin::ContentController
+class Admin::NotesController < Admin::BaseController
   layout "administration"
   cache_sweeper :blog_sweeper
   

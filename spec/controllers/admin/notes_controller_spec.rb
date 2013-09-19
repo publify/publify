@@ -79,6 +79,16 @@ describe Admin::NotesController do
         it {expect(response).to redirect_to(controller: 'notes', action: 'new')}
         it {expect(Note.count).to eq(2) }
       end
+      
+      context "With missing params" do
+        before :each do 
+          Note.delete_all
+          post :new, note: { }
+        end
+        
+        it {expect(response).to render_template(controller: 'notes', action: 'edit')}
+        it {expect(Note.count).to eq(0) }
+      end
     end
   end
 
