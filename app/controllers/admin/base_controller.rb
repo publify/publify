@@ -8,6 +8,14 @@ class Admin::BaseController < ApplicationController
 
   private
 
+  def parse_date_time(str)
+    begin
+      DateTime.strptime(str, "%B %e, %Y %I:%M %p GMT%z").utc
+    rescue
+      Time.parse(str).utc rescue nil
+    end
+  end
+
   def update_settings_with!(params)
     Blog.transaction do
       params[:setting].each { |k,v| this_blog.send("#{k.to_s}=", v) }

@@ -149,14 +149,6 @@ class Admin::ContentController < Admin::BaseController
 
   private
 
-  def parse_date_time(str)
-    begin
-      DateTime.strptime(str, "%B %e, %Y %I:%M %p GMT%z").utc
-    rescue
-      Time.parse(str).utc rescue nil
-    end
-  end
-
   def load_resources
     @post_types = PostType.find(:all)
     @images = Resource.images_by_created_at.page(params[:page]).per(10)
