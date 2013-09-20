@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 113) do
+ActiveRecord::Schema.define(:version => 114) do
 
   create_table "articles_tags", :id => false, :force => true do |t|
     t.integer "article_id"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(:version => 113) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
-    t.integer "position",    :default => 0, :null => false
+    t.integer "position"
     t.string  "permalink"
     t.text    "keywords"
     t.text    "description"
     t.integer "parent_id"
   end
 
-  add_index "categories", ["permalink"], :name => "categories_permalink_index"
+  add_index "categories", ["permalink"], :name => "index_categories_on_permalink"
 
   create_table "categorizations", :force => true do |t|
     t.integer "article_id"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(:version => 113) do
     t.string   "post_type",      :default => "read"
   end
 
-  add_index "contents", ["published"], :name => "contents_published_index"
-  add_index "contents", ["text_filter_id"], :name => "contents_text_filter_id_index"
+  add_index "contents", ["published"], :name => "index_contents_on_published"
+  add_index "contents", ["text_filter_id"], :name => "index_contents_on_text_filter_id"
 
   create_table "feedback", :force => true do |t|
     t.string   "type"
@@ -92,20 +92,14 @@ ActiveRecord::Schema.define(:version => 113) do
     t.string   "user_agent"
   end
 
-  add_index "feedback", ["article_id"], :name => "feedback_article_id_index"
-  add_index "feedback", ["text_filter_id"], :name => "feedback_text_filter_id_index"
-
-  create_table "link_articles_tags", :force => true do |t|
-    t.integer "article"
-    t.integer "tag"
-    t.integer "tag_count"
-  end
+  add_index "feedback", ["article_id"], :name => "index_feedback_on_article_id"
+  add_index "feedback", ["text_filter_id"], :name => "index_feedback_on_text_filter_id"
 
   create_table "page_caches", :force => true do |t|
-    t.string "name", :null => false
+    t.string "name"
   end
 
-  add_index "page_caches", ["name"], :name => "name"
+  add_index "page_caches", ["name"], :name => "index_page_caches_on_name"
 
   create_table "pings", :force => true do |t|
     t.integer  "article_id"
@@ -113,7 +107,7 @@ ActiveRecord::Schema.define(:version => 113) do
     t.datetime "created_at"
   end
 
-  add_index "pings", ["article_id"], :name => "article_id"
+  add_index "pings", ["article_id"], :name => "index_pings_on_article_id"
 
   create_table "post_types", :force => true do |t|
     t.string "name"
@@ -163,11 +157,10 @@ ActiveRecord::Schema.define(:version => 113) do
   end
 
   create_table "sidebars", :force => true do |t|
-    t.integer  "active_position"
-    t.text     "config"
-    t.integer  "staged_position"
-    t.datetime "updated_at"
-    t.string   "type"
+    t.integer "active_position"
+    t.text    "config"
+    t.integer "staged_position"
+    t.string  "type"
   end
 
   create_table "sitealizer", :force => true do |t|
@@ -195,11 +188,6 @@ ActiveRecord::Schema.define(:version => 113) do
     t.text   "params"
   end
 
-  create_table "text_link_ads_rss", :force => true do |t|
-    t.string  "html",    :limit => 1024
-    t.integer "post_id"
-  end
-
   create_table "triggers", :force => true do |t|
     t.integer  "pending_item_id"
     t.string   "pending_item_type"
@@ -208,23 +196,21 @@ ActiveRecord::Schema.define(:version => 113) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login",                     :limit => 80
-    t.string   "password",                  :limit => 40
-    t.string   "name",                      :limit => 80
-    t.string   "email",                     :limit => 80
+    t.string   "login"
+    t.string   "password"
+    t.text     "email"
+    t.text     "name"
     t.boolean  "notify_via_email"
     t.boolean  "notify_on_new_articles"
     t.boolean  "notify_on_comments"
     t.integer  "profile_id"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.string   "text_filter_id",                          :default => "1"
-    t.string   "state",                                   :default => "active"
+    t.string   "text_filter_id",            :default => "1"
+    t.string   "state",                     :default => "active"
     t.datetime "last_connection"
     t.text     "settings"
     t.integer  "resource_id"
   end
-
-  add_index "users", ["login"], :name => "login", :unique => true
 
 end
