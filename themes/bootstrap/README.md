@@ -59,7 +59,7 @@ Whenever you add or change a theme helper, you'll have to restart your Publify a
 ## 1.3 Get into the views
 
 > Get into the views, boy you've got to prove your love to me  
-> - Famous 80's pop song.
+> -- Famous 80's pop song.
 
 ### 1.3.1 Understanding the views
 
@@ -126,22 +126,18 @@ Take these files, and replace your Publify Bootstrap theme bootstrap.css and boo
 
 You can easily turn Bootstrap into a three column theme. Let's say you want to split the sidebars into two columns, one with generated content and one with advertisements. Edit the `views/layout/default.html.erb` file, and replace:
 
-<pre>
-<div id='sidebar' class='span4'>
-	<%= render_sidebars %>
-</div>
-</pre>
+    <div id='sidebar' class='span4'>
+        <%= render_sidebars %>
+    </div>
 
 With:
 
-<pre>
-<div class='span2'>
-Call your advertisement or sidebar content here.
-</div>
-<div id='sidebar' class='span2'>
-	<%= render_sidebars %>
-</div>
-</pre>
+    <div class='span2'>
+    Call your advertisement or sidebar content here.
+    </div>
+    <div id='sidebar' class='span2'>
+        <%= render_sidebars %>
+    </div>
 
 
 [1]: http://publify.co
