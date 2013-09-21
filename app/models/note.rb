@@ -11,16 +11,16 @@ class Note < Content
   setting :in_reply_to_status_id,               :string,    ""
   setting :in_reply_to_protected,               :boolean,   false
   setting :in_reply_to_message,                 :string,    ""
-  
+
   belongs_to :user
   validates_presence_of :body
   validates_uniqueness_of :permalink, :guid
   attr_accessor :push_to_twitter, :twitter_message
-  
+
   after_create :set_permalink, :shorten_url
   before_create :create_guid
 
-  default_scope order("published_at DESC")  
+  default_scope order("published_at DESC")
 
   TWITTER_FTP_URL_LEGTH = 19
   TWITTER_HTTP_URL_LENGTH = 20
@@ -30,6 +30,9 @@ class Note < Content
     self.permalink = "#{self.id}-#{self.body.to_permalink[0..79]}" if self.permalink.nil? or self.permalink.empty?
     self.save
   end
+
+  def categories;[];end
+  def tags;[];end
 
   def set_author(user)
     self.author = user.login
@@ -54,29 +57,29 @@ class Note < Content
     return false unless self.push_to_twitter # Then, what are we doing here?!
     return false unless Blog.default.has_twitter_configured?
     return false unless self.user.has_twitter_configured?
-    
+
     twitter = Twitter::Client.new(
       :consumer_key => Blog.default.twitter_consumer_key,
       :consumer_secret => Blog.default.twitter_consumer_secret,
       :oauth_token => self.user.twitter_oauth_token,
       :oauth_token_secret => self.user.twitter_oauth_token_secret
     )
-    
+
     build_twitter_message
-    
+
     begin
       options = {}
-      
+
       if self.in_reply_to_status_id and self.in_reply_to_status_id != ""
         options = {:in_reply_to_status_id => self.in_reply_to_status_id}
         self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
       end
-      
+
       tweet = twitter.update(self.twitter_message, options)
-       self.twitter_id = tweet.attrs[:id_str]      
-      
+       self.twitter_id = tweet.attrs[:id_str]
+
       self.save
-    
+
       self.user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
       return true
     rescue
@@ -107,7 +110,7 @@ class Note < Content
   private
   def calculate_real_length
     message = self.twitter_message
-    
+
     uris = URI.extract(message, ['http', 'https', 'ftp'])
     uris.each do |uri|
       case uri.split(":")[0]
@@ -118,7 +121,7 @@ class Note < Content
       when "ftp"
         payload = "-" * TWITTER_FTP_URL_LEGTH
       end
-      
+
       message = message.gsub(uri, payload)
     end
 
@@ -136,12 +139,12 @@ class Note < Content
       return " (#{prefix} #{path})"
     end
   end
-  
+
   def build_twitter_message
     self.twitter_message = self.body.strip_html
-    
+
     length = calculate_real_length
-    
+
     if length > 114
       self.twitter_message = "#{self.twitter_message[0..113]}#{build_short_link(length)}"
     else
