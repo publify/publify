@@ -103,6 +103,18 @@ class Admin::FeedbackController < Admin::BaseController
     end
   end
 
+  def article
+    @article = Article.find(params[:id])
+    if params[:ham] && params[:spam].blank?
+      @feedback = @article.comments.ham
+    end
+    if params[:spam] && params[:ham].blank?
+      @feedback = @article.comments.spam
+    end
+    @feedback ||= @article.comments
+  end
+
+
   def change_state
     return unless request.xhr?
 
@@ -128,6 +140,7 @@ class Admin::FeedbackController < Admin::BaseController
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
     items = Feedback.find(ids)
+    @unexpired = true
 
     bulkop = params[:bulkop_top].empty? ? params[:bulkop_bottom] : params[:bulkop_top]
     case bulkop
@@ -177,12 +190,13 @@ class Admin::FeedbackController < Admin::BaseController
   def update_feedback(items, method)
     items.each do |value|
       value.send(method)
-      value.invalidates_cache? or next
+      @unexpired && value.invalidates_cache? or next
       flush_cache
     end
   end
 
   def flush_cache
+    @unexpired = false
     PageCache.sweep_all
   end
 
