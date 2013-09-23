@@ -27,6 +27,7 @@
 <%end%>
 
 <%= form_tag :action => "create" do %>
+<%= hidden_field_tag('article_id', @article.id) %>
 <fieldset class='form-horizontal'>
   <legend><%= _("Add a comment")%></legend>
   <div class='control-group'>
