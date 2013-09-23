@@ -1,3 +1,14 @@
+# Publify 7.1
+
+Since Publify 7.0 release 8 days ago, a few bugs have been fixed:
+
+* #246: added a migration to fix empty permalinks on article and empty guid on notes when they exist (may have been introduced by an old historical bug and they now make notes crash).
+* #247: fixed a bug that made the application crash when saving a note would fail for any reason.
+* #248: fixed a bug introduced by some heavy code cleaning that made feedback/article/xxx to crash.
+* #252: fixed an old bug making comment creation from the admin crashing.
+
+**********************************************************************
+
 # Publify 7.0
 
 Since Publify 7.0 beta1, changes have mostly been about fixing bugs.
@@ -7,6 +18,7 @@ Since Publify 7.0 beta1, changes have mostly been about fixing bugs.
 * #239: Dashboard: marking a comment as spam should load the next non spammy comment.
 * #240: On authors pages, links are rails escaped.
 
+**********************************************************************
 
 # Publify 7.0 beta 1
 
