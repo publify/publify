@@ -51,6 +51,8 @@ gem 'twitter'
 gem "jquery-rails", "~> 3.0.4"
 gem "jquery-ui-rails", "~> 4.0.4"
 
+gem 'bootstrap-sass', '~> 2.3.2.1'
+
 # Growler replacement
 gem "gritter", "~> 1.0.3"
 
