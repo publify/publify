@@ -35,6 +35,9 @@ module Publify
 
     # To avoid exception when deploying on Heroku
     config.assets.initialize_on_precompile = false
+
+    # Time to step into asset pipeline…
+    config.assets.enabled = true
   end
 
   # Load included libraries.

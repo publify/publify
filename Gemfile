@@ -59,6 +59,12 @@ gem 'dynamic_form', '~> 1.1.4'
 
 gem 'iconv'
 
+group :assets do
+  gem 'sass-rails', " ~> 3.2.6"
+  gem 'coffee-rails', " ~> 3.2.2"
+  gem 'uglifier'
+end
+
 group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 4.2.0'

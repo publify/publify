@@ -27,6 +27,7 @@ Gemfile.lock
 .ruby-version
 bin/
 .bundle/
+.sass-cache/
 /vendor/bundle
 /themes/*
 !/themes/bootstrap
