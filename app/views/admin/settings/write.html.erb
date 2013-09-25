@@ -57,8 +57,7 @@
 
 <fieldset class='form-horizontal'>
   <legend><%= _("Publish on Twitter")%></legend>
-  <% disabled = (this_blog.has_twitter_configured?) ? false : true %>
-  <%= twitter_disabled_message(disabled) %>
+  <%= twitter_disabled_message %>
   <div class='control-group'>
     <label class='control-label' for="setting_twitter_consumer_key"><%= _("Twitter consumer key")%></label>
     <div class='controls'>

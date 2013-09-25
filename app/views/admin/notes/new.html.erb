@@ -11,8 +11,7 @@
 
     <fieldset class="hidden-phone">
       <legend><%= _("Publish settings") %></legend>
-      <% disabled = (this_blog.has_twitter_configured? and current_user.has_twitter_configured?) ? false : true %>
-      <%= twitter_disabled_message(disabled) %>
+      <%= twitter_disabled_message %>
       <label for="note_push_to_twitter" class='checkbox'>
         <%= check_box 'note', 'push_to_twitter', {:disabled => disabled}  %>
         <%= _("POSSE to Twitter")%>
@@ -23,15 +22,15 @@
       <%= text_field 'note', 'permalink', :class => 'input-block-level' %>
       <label for='note_published' class='checkbox'>
         <%= check_box 'note', 'published'  %>
-        <%= _("Published") %>                    
+        <%= _("Published") %>
       </label>
       <label for='note_published_at'><%= _("Publish at") %></label>
       <%= calendar_date_select 'note', 'published_at', {:class => 'span11'} %>
       </fieldset>
       <div class='pull-right'>
           <%= save( _("Publish")) %>
-      </div>        
-    </div>  
+      </div>
+    </div>
     <% end %>
   </div>
   <div class='span8'>
@@ -57,9 +56,9 @@
           </td>
         </tr>
         <% end %>
-        <%= display_pagination(@notes, 3, 'first', 'last')%>    
+        <%= display_pagination(@notes, 3, 'first', 'last')%>
       </tbody>
     </table>
-    
+
   </div>
 </div>
