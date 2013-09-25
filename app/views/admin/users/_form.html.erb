@@ -123,7 +123,7 @@
 <% unless controller.controller_name == 'users'%>
 <fieldset class='form-horizontal'>
   <legend><%= _("Publish on Twitter")%></legend>
-  <%= twitter_disabled_message %>
+  <%= twitter_disabled_message(this_blog, current_user) %>
   <div class='control-group'>
     <label class='control-label' for="user_twitter_account"><%= _("Twitter account")%></label>
     <div class='controls'>

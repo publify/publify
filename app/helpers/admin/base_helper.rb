@@ -165,8 +165,12 @@ module Admin::BaseHelper
     hidden_field_tag("article[id]", @article.id) unless @article.id.nil?
   end
 
-  def twitter_disabled_message
-    unless this_blog.has_twitter_configured? && current_user.has_twitter_configured?
+  def twitter_available?(blog, user)
+    blog.has_twitter_configured? && user.has_twitter_configured?
+  end
+
+  def twitter_disabled_message(blog, user)
+    unless twitter_available?(blog, user)
       content_tag(:p, _("If you want to push short statuses on Twitter, you need to %s Twitter gave you after you %s.", link_to(_("fill in the oauth credentials"), :controller => 'admin/settings', action: 'write'), link_to(_("registered your application"), "https://dev.twitter.com/apps/new")).html_safe, class: 'alert alert-warning')
     end
   end
