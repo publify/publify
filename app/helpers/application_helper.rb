@@ -95,7 +95,7 @@ module ApplicationHelper
     elsif user.twitter_profile_image.present?
       avatar = user.twitter_profile_image.present?
     end
-    
+
     return unless avatar
     image_tag(File.join(this_blog.base_url, avatar), :alt => user.nickname, :class => klass)
   end
@@ -129,10 +129,6 @@ module ApplicationHelper
 
   def use_canonical
     "<link rel='canonical' href='#{this_blog.base_url + request.fullpath}' />".html_safe
-  end
-
-  def page_header
-    render 'shared/page_header'
   end
 
   def page_header_includes
