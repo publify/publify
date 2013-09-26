@@ -15,7 +15,7 @@ class Note < Content
   belongs_to :user
   validates_presence_of :body
   validates_uniqueness_of :permalink, :guid
-  attr_accessor :push_to_twitter, :twitter_message
+  attr_accessor :push_to_twitter
 
   after_create :set_permalink, :shorten_url
   before_create :create_guid
@@ -53,6 +53,15 @@ class Note < Content
     end
   end
 
+  def twitter_message
+    base_message = self.body.strip_html
+    if too_long?(base_message)
+      "#{base_message[0..113]}... (#{self.redirects.first.to_url})"
+    else
+      "#{base_message} (#{short_link})"
+    end
+  end
+
   def send_to_twitter
     return false unless self.push_to_twitter # Then, what are we doing here?!
     return false unless Blog.default.has_twitter_configured?
@@ -65,8 +74,6 @@ class Note < Content
       :oauth_token_secret => self.user.twitter_oauth_token_secret
     )
 
-    build_twitter_message
-
     begin
       options = {}
 
@@ -76,7 +83,7 @@ class Note < Content
       end
 
       tweet = twitter.update(self.twitter_message, options)
-       self.twitter_id = tweet.attrs[:id_str]
+      self.twitter_id = tweet.attrs[:id_str]
 
       self.save
 
@@ -107,10 +114,17 @@ class Note < Content
     )
   end
 
-  private
-  def calculate_real_length
-    message = self.twitter_message
+  def short_link
+    path = self.redirects.first.from_path
+    blog = Blog.default
+    prefix = blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
+    prefix.sub!(/^https?\:\/\//, '')
+    "#{prefix} #{path}"
+  end
 
+  private
+
+  def too_long?(message)
     uris = URI.extract(message, ['http', 'https', 'ftp'])
     uris.each do |uri|
       case uri.split(":")[0]
@@ -121,34 +135,8 @@ class Note < Content
       when "ftp"
         payload = "-" * TWITTER_FTP_URL_LEGTH
       end
-
       message = message.gsub(uri, payload)
     end
-
-    return message.length
-  end
-
-  def build_short_link(length)
-    if length > 115
-      return "... #{self.redirects.first.to_url}"
-    else
-      path = self.redirects.first.from_path
-      blog = Blog.default
-      prefix = (blog.custom_url_shortener) ? blog.custom_url_shortener : blog.base_url
-      prefix.sub!(/^https?\:\/\//, '')
-      return " (#{prefix} #{path})"
-    end
-  end
-
-  def build_twitter_message
-    self.twitter_message = self.body.strip_html
-
-    length = calculate_real_length
-
-    if length > 114
-      self.twitter_message = "#{self.twitter_message[0..113]}#{build_short_link(length)}"
-    else
-      self.twitter_message = "#{self.twitter_message}#{build_short_link(length)}"
-    end
+    message.length > 114
   end
 end

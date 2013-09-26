@@ -2,229 +2,156 @@
 require 'spec_helper'
 
 describe Note do
-  let!(:blog) { create(:blog) }
+  context "with a simple blog" do
+    let!(:blog) { create(:blog) }
 
-  describe "validations" do
-    it { expect(create(:note)).to be_valid }
+    describe "validations" do
+      it { expect(build(:note)).to be_valid }
+      it { expect(build(:note, body:nil)).to be_invalid }
 
-    context "with an existing note" do
-      let(:existing_note) { create(:note) }
+      it "with a nil body, return default error message" do
+        note = build(:note, body:nil)
+        note.save
+        expect(note.errors[:body]).to eq(["can't be blank"])
+      end
 
-      it { expect(build(:note, guid: existing_note.guid)).to be_invalid }
+      context "with an existing note" do
+        let(:existing_note) { create(:note) }
+        it { expect(build(:note, guid: existing_note.guid)).to be_invalid }
+      end
+    end
+
+    describe :permalink do
+      let(:note) { create(:note, body:"àé") }
+
+      it { expect(note.permalink).to eq("#{note.id}-ae") }
+      it { expect(note.permalink_url).to eq("#{blog.base_url}/note/#{note.id}-ae") }
+
+      context "with a particular blog" do
+        before(:each) do
+          Blog.any_instance.stub(:custom_url_shortener).and_return(url_shortener)
+          Blog.any_instance.stub(:base_url).and_return("http://mybaseurl.net")
+        end
+
+        context "with a blog that have a custome url shortener" do
+          let(:url_shortener) { "shor.tl" }
+          it { expect(note.short_link).to eq("#{url_shortener} #{note.redirects.first.from_path}") }
+        end
+
+        context "with a blog that have a custome url shortener" do
+          let(:url_shortener) { nil }
+          it { expect(note.short_link).to eq("mybaseurl.net #{note.redirects.first.from_path}") }
+        end
+      end
+    end
+
+    describe :redirects do
+      let(:note) { create(:note) }
+      it { expect(note.redirects.map(&:to_path)).to eq([note.permalink_url]) }
+    end
+
+    describe :scopes do
+
+      describe :published do
+        let(:now) { DateTime.new(2012,5,20,14,23) }
+        let(:note) { create(:note, published_at: now - 1.minute) }
+
+        before(:each) { Time.stub(:now).and_return(now) }
+
+        context "with a unpubilshed note" do
+          let(:unpublished_note) { create(:unpublished_note) }
+          it { expect(Note.published).to eq([note]) }
+        end
+
+        context "with a note to publish later" do
+          let(:later_note) { create(:note, published_at: now + 3.days) }
+          it { expect(Note.published).to eq([note]) }
+        end
+      end
+    end
+
+    describe :send_to_twitter do
+      context "with a push to twitter note" do
+        let(:note) { build(:note, push_to_twitter: false) }
+        it { expect(note.send_to_twitter).to be_false }
+      end
+
+      context "with a push to twitter note" do
+        before(:each) { Blog.any_instance.should_receive(:has_twitter_configured?).and_return(false) }
+        let(:note) { build(:note, push_to_twitter: true) }
+
+        it { expect(note.send_to_twitter).to be_false }
+      end
+
+      context "with a push to twitter note" do
+        before(:each) do
+          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
+          User.any_instance.should_receive(:has_twitter_configured?).and_return(false)
+        end
+
+        let(:note) { build(:note, push_to_twitter: true) }
+        it { expect(note.send_to_twitter).to be_false }
+      end
+
+    end
+
+    describe :default_text_filter do
+      let(:note) { build(:note) }
+      it { expect(note.default_text_filter.name).to eq(Blog.default.text_filter) }
+    end
+
+    describe :twitter_message do
+      let(:note) { create(:note, body: tweet) }
+
+
+      context "with a short simple message" do
+        let(:tweet) { "A message without URL" }
+
+        it { expect(note.twitter_message).to start_with(tweet) }
+        it { expect(note.twitter_message).to end_with(" (#{note.short_link})") }
+      end
+
+      context "with a short message with short HTTP url" do
+        let(:tweet) { "A message with a short URL http://foo.com" }
+        it { expect(note.twitter_message).to start_with(tweet) }
+      end
+
+      context "with a short message much more than 114 char" do
+        let(:tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify must construct(124)" }
+        it { expect(note.twitter_message).to start_with(tweet[0..113]) }
+        it { expect(note.twitter_message).to_not include(tweet[113..-1]) }
+        it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
+      end
+    end
+  end
+
+  context "with a dofollowify blog" do
+    let!(:blog) { create(:blog, dofollowify: true) }
+
+    describe "Testing hashtag and @mention replacement in html postprocessing" do
+      it "should replace a hashtag with a proper URL to Twitter search" do
+        note = build(:note, body: "A test tweet with a #hashtag")
+        expected = "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a>"
+        expect(note.html_preprocess(nil, note.body)).to eq(expected)
+      end
+
+      it "should replace a @mention by a proper URL to the twitter account" do
+        note = create(:note, body: "A test tweet with a @mention")
+        expected = "A test tweet with a <a href='https://twitter.com/mention'>@mention</a>"
+        expect(note.html_preprocess(nil, note.body)).to eq(expected)
+      end
+
+      it "should replace a http URL by a proper link" do
+        note = create(:note, body: "A test tweet with a http://link.com")
+        expected = "A test tweet with a <a href='http://link.com'>http://link.com</a>"
+        expect(note.html_preprocess(nil, note.body)).to eq(expected)
+      end
+
+      it "should replace a https URL with a proper link" do
+        note = create(:note, body: "A test tweet with a https://link.com")
+        expected = "A test tweet with a <a href='https://link.com'>https://link.com</a>"
+        expect(note.html_preprocess(nil, note.body)).to eq(expected)
+      end
     end
   end
 end
-
-describe "Testing redirects" do
-  it "a new published status gets a redirect" do
-    FactoryGirl.create(:blog)
-    a = Note.create(:body => "some text", :published => true)
-    a.should be_valid
-    a.redirects.first.should_not be_nil
-    a.redirects.first.to_path.should == a.permalink_url
-  end
-end
-
-describe "Testing hashtag and @mention replacement in html postprocessing" do
-  before(:each) do
-    FactoryGirl.create(:blog, :dofollowify => true)
-  end
-
-  it "should replace a hashtag with a proper URL to Twitter search" do
-    note = FactoryGirl.create(:note, :body => "A test tweet with a #hashtag")
-    text = note.html_preprocess(note.body, note.body)
-    text.should == "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a>"
-  end
-
-  it "should replace a @mention by a proper URL to the twitter account" do
-    note = FactoryGirl.create(:note, :body => "A test tweet with a @mention")
-    text = note.html_preprocess(note.body, note.body)
-    text.should == "A test tweet with a <a href='https://twitter.com/mention'>@mention</a>"
-  end
-
-  it "should replace a http URL by a proper link" do
-    note = FactoryGirl.create(:note, :body => "A test tweet with a http://link.com")
-    text = note.html_preprocess(note.body, note.body)
-    text.should == "A test tweet with a <a href='http://link.com'>http://link.com</a>"
-  end
-
-  it "should replace a https URL with a proper link" do
-    note = FactoryGirl.create(:note, :body => "A test tweet with a https://link.com")
-    text = note.html_preprocess(note.body, note.body)
-    text.should == "A test tweet with a <a href='https://link.com'>https://link.com</a>"
-  end
-end
-
-describe 'Testing notes scopes' do
-  before(:each) do
-    FactoryGirl.create(:blog)
-    Note.delete_all
-  end
-
-  it 'Published scope should not bring unpublished statuses' do
-    FactoryGirl.create(:note)
-    FactoryGirl.create(:unpublished_note)
-
-    notes = Note.published
-    notes.count.should == 1
-  end
-
-  it 'Published scope should not bring notes published in the future' do
-    FactoryGirl.create(:note)
-    FactoryGirl.create(:note, published_at: Time.now + 3.days )
-
-    notes = Note.published
-    notes.count.should == 1
-  end
-end
-
-
-describe 'Given the factory :status' do
-  before(:each) do
-    FactoryGirl.create(:blog)
-    @note = FactoryGirl.create(:note)
-  end
-
-  describe "#permalink_url" do
-    subject { @note.permalink_url }
-    it { should == "http://myblog.net/note/#{@note.id}-this-is-a-note" }
-  end
-
-  it "should give a sanitized title" do
-    note = FactoryGirl.build(:note, :body => 'body with accents éèà')
-    note.body.to_permalink.should == 'body-with-accents-eea'
-  end
-end
-
-class Hash
-  def except(*keys)
-    self.reject { |k,v| keys.include? k.to_sym }
-  end
-
-  def only(*keys)
-    self.dup.reject { |k, v| !keys.include? k.to_sym }
-  end
-end
-
-describe 'Given no notes' do
-  def valid_attributes
-    { :body => 'body'}
-  end
-
-  before(:each) do
-    Note.delete_all
-    @note = Note.new
-  end
-
-  it 'An empty note is invalid' do
-    @note.should_not be_valid
-  end
-
-  it 'A note is valid with a body' do
-    @note.attributes = valid_attributes
-    @note.should be_valid
-  end
-
-  it 'A note is invalid without a body' do
-    @note.attributes = valid_attributes.except(:body)
-    @note.should_not be_valid
-    @note.errors[:body].should == ["can't be blank"]
-    @note.body = 'somebody'
-    @note.should be_valid
-  end
-
-  it "should use sanitize title to set note name" do
-    @note.attributes = valid_attributes.except(:body)
-    @note.body = 'title with accents éèà'
-    @note.should be_valid
-    @note.save
-    @note.permalink.should == "#{@note.id}-title-with-accents-eea"
-  end
-
-end
-
-describe 'Given a note page' do
-  it 'default filter should be fetched from the blog' do
-    FactoryGirl.create(:blog)
-    @note = Note.new()
-    @note.default_text_filter.name.should == Blog.default.text_filter
-  end
-end
-
-describe "Checking Twitter message length..." do
-  it "A twitter message without URL should not be changed" do
-    note = FactoryGirl.build(:note, twitter_message: "A message without URL")
-    note.instance_eval{ calculate_real_length }.should == 21
-  end
-
-  it "A twitter message with a short http URL should have its URL expanded to 20 chars" do
-    note = FactoryGirl.build(:note, twitter_message: "A message with a short URL http://foo.com")
-    note.instance_eval{ calculate_real_length }.should == 47
-  end
-
-  it "A twitter message with a short https URL should have its URL expanded to 21 chars" do
-    note = FactoryGirl.build(:note, twitter_message: "A message with a short URL https://foo.com")
-    note.instance_eval{ calculate_real_length }.should == 48
-  end
-
-  it "A twitter message with a short https URL should have its URL expanded to 19 chars" do
-    note = FactoryGirl.build(:note, twitter_message: "A message with a short URL ftp://foo.com")
-    note.instance_eval{ calculate_real_length }.should == 46
-  end
-
-  it "A twitter message with a long http URL should have its URL shortened to 20 chars" do
-    note = FactoryGirl.build(:note, twitter_message: "A message with a long URL http://foobarsomething.com?blablablablabla")
-    note.instance_eval{ calculate_real_length }.should == 46
-  end
-
-  it "A twitter message with a short https URL should have its URL expanded to 21 chars" do
-    note = FactoryGirl.build(:note, twitter_message: "A message with a long URL https://foobarsomething.com?blablablablabla")
-    note.instance_eval{ calculate_real_length }.should == 47
-  end
-
-  it "A twitter message with a short https URL should have its URL expanded to 19 chars" do
-    note = FactoryGirl.build(:note, twitter_message: "A message with a long URL ftp://foobarsomething.com?blablablablabla")
-    note.instance_eval{ calculate_real_length }.should == 45
-  end
-end
-
-describe 'Pushing a note to Twitter' do
-  before :each do
-    Blog.delete_all
-  end
-
-  it 'A note without push to twitter defined should not push to Twitter' do
-    FactoryGirl.create(:blog)
-    note = FactoryGirl.build(:note, :push_to_twitter => 0)
-    note.send_to_twitter.should == false
-  end
-
-  it 'a non configured blog and non configured user should not send a note to Twitter' do
-    FactoryGirl.create(:blog)
-    note = FactoryGirl.create(:note)
-    note.send_to_twitter.should == false
-  end
-
-  it 'a configured blog and non configured user should not send a note to Twitter' do
-    FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
-    user = FactoryGirl.build(:user)
-    note = FactoryGirl.build(:note, user: user)
-    note.send_to_twitter.should == false
-  end
-
-  it 'a non configured blog and a configured user should not send a note to Twitter' do
-    FactoryGirl.build(:blog)
-    user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
-    note = FactoryGirl.build(:note, user: user)
-    note.send_to_twitter.should == false
-  end
-
-  it 'a configured blog and a configured user should send a note to Twitter' do
-    FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
-    user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
-    note = FactoryGirl.build(:note, user: user)
-    pending "Need to find a way to fake the Twitter API behavior"
-    # status.send_to_twitter.should == false
-  end
-end
-
