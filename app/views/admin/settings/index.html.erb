@@ -1,10 +1,11 @@
-<% @page_heading = _('General settings') %>
-<% @page_heading_class = 'icon-settings' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-settings"><%= _("General settings") %></h2>
+<% end %>
 
 <%= form_tag :action => 'update' do %>
 
-<fieldset class='form-horizontal'>
-  <legend><%= _("Your blog")%></legend>
+  <fieldset class='form-horizontal'>
+    <legend><%= _("Your blog")%></legend>
     <div class='control-group'>
       <label class='control-label' for="setting_blog_name"><%= _("Blog name")%></label>
       <div class='controls'>
@@ -52,9 +53,9 @@
         <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'span1'})%>
       </div>
     </div>
-    
-</fieldset>
 
-<%= hidden_field_tag 'from', 'index' %>
-<%= save_settings %>
+  </fieldset>
+
+  <%= hidden_field_tag 'from', 'index' %>
+  <%= save_settings %>
 <% end %>

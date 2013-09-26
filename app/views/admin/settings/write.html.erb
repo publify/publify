@@ -1,5 +1,6 @@
-<% @page_heading = _('Write') %>
-<% @page_heading_class = 'icon-settings' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-settings"><%= _("Write") %></h2>
+<% end %>
 
 <%= form_tag :action => 'update' do %>
 
@@ -9,7 +10,7 @@
     <label class='checkbox' for="setting_send_outbound_pings"><%= _("Send trackbacks")%></label>
     <div class='controls'>
       <%= check_box(:setting, :send_outbound_pings) %>
-      <span class='help-block'><%= _("When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%></span>            
+      <span class='help-block'><%= _("When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%></span>
     </div>
   </div>
   <div class='control-group'>
@@ -42,7 +43,7 @@
     <div class='controls'>
       <div class='input-append'>
         <%= text_field(:setting, :image_medium_size, { :class => 'span3'})%><span class='add-on'>px</span>
-      </div>      
+      </div>
     </div>
   </div>
   <div class='control-group'>
@@ -50,7 +51,7 @@
     <div class='controls'>
       <div class='input-append'>
         <%= text_field(:setting, :image_avatar_size, { :class => 'span3'})%><span class='add-on'>px</span>
-      </div>      
+      </div>
     </div>
   </div>
 </fieldset>

@@ -45,6 +45,7 @@ class Admin::FeedbackController < Admin::BaseController
     end
     @feedback = Feedback.where(conditions).order('feedback.created_at desc').page(params[:page]).per(this_blog.admin_display_elements)
   end
+
   def destroy
     @record = Feedback.find params[:id]
 

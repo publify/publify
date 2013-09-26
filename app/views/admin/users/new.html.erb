@@ -1,5 +1,7 @@
-<% @page_heading = _('Add User') %>
-<% @page_heading_class = 'icon-user-add' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-user-add"><%= _("Add User") %></h2>
+<% end %>
+
 <%= form_tag :action=>"new" do %>
   <%= render :partial => "admin/users/form" %>
 <% end %>

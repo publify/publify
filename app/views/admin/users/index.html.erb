@@ -1,5 +1,10 @@
-<% @page_heading = _('Users') + content_tag(:div, link_to(_("New User"), {:controller => 'users', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
-<% @page_heading_class = 'icon-user' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-user"><%= _("Users") %></h2>
+  <div class='pull-right'>
+    <%= link_to(_("New User"), {controller: 'users', action: 'new'}, id: 'dialog-link', class: 'btn btn-info') %>
+  </div>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr class='noborder'>
@@ -13,15 +18,15 @@
     </tr>
   </thead>
   <% for user in @users -%>
-  <tr>
-    <td><%= link_to_edit user.login, user%></td>
-    <td> <%= user.nickname %></td>
-    <td><%= mail_to user.email, user.email%></td>
-    <td><%= _(user.profile.nicename) %></td>
-    <td><%= Article.where("user_id = #{user.id}").count %></td>
-    <td><%= Comment.where("user_id = #{user.id}").count %></td>
-    <td class='<%= user.state %>'><%= _("%s user", _("#{user.state.capitalize}").downcase)%></td>
-  </tr>
+    <tr>
+      <td><%= link_to_edit user.login, user%></td>
+      <td> <%= user.nickname %></td>
+      <td><%= mail_to user.email, user.email%></td>
+      <td><%= _(user.profile.nicename) %></td>
+      <td><%= Article.where("user_id = #{user.id}").count %></td>
+      <td><%= Comment.where("user_id = #{user.id}").count %></td>
+      <td class='<%= user.state %>'><%= _("%s user", _("#{user.state.capitalize}").downcase)%></td>
+    </tr>
   <% end -%>
   <%= display_pagination(@users, 7)%>
 </table>

@@ -1,33 +1,35 @@
-<% @page_heading = _('Choose a theme') %>
-<% @page_heading_class = 'icon-theme' %>
-<% i = 0 %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-theme"><%= _("Choose a theme") %></h2>
+<% end %>
 
-<% for theme in @themes %>
+<%- i = 0 %>
+
+<%- for theme in @themes %>
   <% preview_url = url_for(action: 'preview', theme: theme.name) %>
   <% switch_url = url_for(action: 'switchto', theme: theme.name) %>
   <% if i == 0 %>
-  <div class='row'>
-  <% end %>	
+    <div class='row'>
+    <% end %>
 
-  <div class='span6'>
-    <% if theme.path == @active.path -%>
-      <div class='well container-fluid'>
-        <h3><%= "#{theme.name} - #{_("Active theme")}" %></h3>
-        <%= image_tag preview_url %>
-        <%= theme.description_html %>
-      </div>
-    <% else -%>
-      <div class='container-fluid'>
-        <h3><%= link_to(theme.name, switch_url, title: _("Use this theme")) %></h3>
-        <%= link_to(image_tag(preview_url), switch_url, title: _("Use this theme")) %>
-        <%= theme.description_html %>
-        <p><%= link_to(_("Use this theme"), switch_url, class: 'btn btn-info') %></p>
-      </div>
-    <% end -%>
-  </div>
+    <div class='span6'>
+      <% if theme.path == @active.path -%>
+        <div class='well container-fluid'>
+          <h3><%= "#{theme.name} - #{_("Active theme")}" %></h3>
+          <%= image_tag preview_url %>
+          <%= theme.description_html %>
+        </div>
+      <% else -%>
+        <div class='container-fluid'>
+          <h3><%= link_to(theme.name, switch_url, title: _("Use this theme")) %></h3>
+          <%= link_to(image_tag(preview_url), switch_url, title: _("Use this theme")) %>
+          <%= theme.description_html %>
+          <p><%= link_to(_("Use this theme"), switch_url, class: 'btn btn-info') %></p>
+        </div>
+      <% end -%>
+    </div>
 
-  <% if i == 1 %>
-  </div>
+    <% if i == 1 %>
+    </div>
   <% end %>
   <% i = (i == 0) ? 1 : 0%>
 <% end %>

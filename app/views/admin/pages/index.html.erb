@@ -1,13 +1,18 @@
-<% @page_heading = _('Manage pages') + content_tag(:div, link_to(_("New Page"), {:controller => 'pages', :action => 'new'}, :id => 'dialog-link', :class => 'btn btn-info'), :class => 'pull-right') %>
-<% @page_heading_class = 'icon-pages'%>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-pages"><%= _("Manage pages") %></h2>
+  <div class='pull-right'>
+    <%= link_to(_("New Page"), {controller: 'pages', action: 'new'}, id: 'dialog-link', class: 'btn btn-info') %>
+  </div>
+<% end %>
+
 <table class='table table-striped'>
-<thead>
-  <tr class='noborder'>
-    <th><%= _("Title") %></th>
-    <th><%= _("Permalink")%></th>
-    <th><%= _("Author")%></th>
-    <th><%= _("Date") %></th>
-  </tr>
-</thead>
+  <thead>
+    <tr class='noborder'>
+      <th><%= _("Title") %></th>
+      <th><%= _("Permalink")%></th>
+      <th><%= _("Author")%></th>
+      <th><%= _("Date") %></th>
+    </tr>
+  </thead>
   <%= render 'pages' %>
 </table>

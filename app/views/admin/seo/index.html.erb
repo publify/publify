@@ -1,15 +1,16 @@
-<% @page_heading = _('Global settings') %>
-<% @page_heading_class = 'icon-settings' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-settings"><%= _("Global settings") %></h2>
+<% end %>
 
 <%= error_messages_for 'blog' %>
 
 <%= form_tag :action => 'update' do %>
-<fieldset class='form-horizontal'>
-  <legend><%= _("General settings") %></legend>
-  <div class='control-group'>
-    <label class='control-label' for="setting_use_meta_keyword"><%= _("Meta keywords")%></label>
-    <div class='controls'>
-      <label class='checkbox' for="setting_use_meta_keyword"><%= _("Use meta keywords")%>
+  <fieldset class='form-horizontal'>
+    <legend><%= _("General settings") %></legend>
+    <div class='control-group'>
+      <label class='control-label' for="setting_use_meta_keyword"><%= _("Meta keywords")%></label>
+      <div class='controls'>
+        <label class='checkbox' for="setting_use_meta_keyword"><%= _("Use meta keywords")%>
         <%= check_box(:setting, :use_meta_keyword)%>
       </label>
       <%= text_area(:setting, :meta_keywords, :rows => 3, :class => 'span6')%>
@@ -63,7 +64,7 @@
     <div class='controls'>
       <%= text_area(:setting, :robots, :rows => 10, :class => 'span6')%>
       <% unless robot_writable? -%>
-      <p class='alert alert-error'><%= _("You robots.txt file is not writeable. Publify won't be able to write it")%></p>
+        <p class='alert alert-error'><%= _("You robots.txt file is not writeable. Publify won't be able to write it")%></p>
       <% end -%>
     </div>
   </div>
@@ -71,20 +72,20 @@
     <label class='control-label'><%= _("Dofollow") %></label>
     <div class='controls'>
       <label class='checkbox' for="setting_dofollowify"><%= _("Use dofollow in comments")%>
-        <%= check_box(:setting, :dofollowify)%><p class='help-block'><%= _("You may want to moderate feedback when turning this on") %></p>
-      </label>
-    </div>
+      <%= check_box(:setting, :dofollowify)%><p class='help-block'><%= _("You may want to moderate feedback when turning this on") %></p>
+    </label>
   </div>
-  <div class='control-group'>
-    <label class='control-label'><%= _("Canonical URL") %></label>
-    <div class='controls'>
-      <label class='checkbox' for="setting_use_canonical_url">
-        <%= check_box(:setting, :use_canonical_url)%>
-        <%= _("Use canonical URL")%>
-        <span class='help-block'><%= _("Read more about %s", link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
-      </label>      
-    </div>
-  </div>	
+</div>
+<div class='control-group'>
+  <label class='control-label'><%= _("Canonical URL") %></label>
+  <div class='controls'>
+    <label class='checkbox' for="setting_use_canonical_url">
+      <%= check_box(:setting, :use_canonical_url)%>
+      <%= _("Use canonical URL")%>
+      <span class='help-block'><%= _("Read more about %s", link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
+    </label>
+  </div>
+</div>
 </fieldset>
 
 <fieldset class='form-horizontal'>

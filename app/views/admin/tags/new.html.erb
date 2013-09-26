@@ -1,5 +1,6 @@
-<% @page_heading = _('Manage tags') %>
-<% @page_heading_class = 'icon-tags' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-tags"><%= _("Manage tags") %></h2>
+<% end %>
 
 <div>
   <div class='span4'>
@@ -34,7 +35,7 @@
       <% end %>
       <%= display_pagination(@tags, 3)%>
     </table>
-    
+
   </div>
 </div>
 

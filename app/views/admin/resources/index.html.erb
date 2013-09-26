@@ -1,5 +1,7 @@
-<% @page_heading = _('Media library') %>
-<% @page_heading_class = 'icon-resources' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-resources"><%= _("Media library") %></h2>
+<% end %>
+
 <%= render 'upload' -%>
 
 <table class="table table-striped">
@@ -11,6 +13,6 @@
       <th><%= _("Date")%></th>
     </tr>
   </thead>
-  <%= render 'resource_list', { :resources => @resources } %>    
+  <%= render 'resource_list', { :resources => @resources } %>
   <%= display_pagination(@resources, 6)%>
 </table>

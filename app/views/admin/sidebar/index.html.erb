@@ -1,5 +1,6 @@
-<% @page_heading = _('Sidebar') %>
-<% @page_heading_class = 'icon-sidebar' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-sidebar"><%= _("Sidebar") %></h2>
+<% end %>
 
 <p class='help-block'><%= _("Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button")%>.</p>
 <%= form_remote_tag(:url => {:action=>'publish',

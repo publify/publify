@@ -1,14 +1,15 @@
-<% @page_heading = _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
-<% @page_heading_class = 'icon-comment' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-comment"><%= _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %></h2>
+<% end %>
 
 <%= form_tag :action => "update", :id => @comment.id do %>
 
-<%= error_messages_for 'comment' %>
-<%= hidden_field_tag 'article_id', @article.id %>
+  <%= error_messages_for 'comment' %>
+  <%= hidden_field_tag 'article_id', @article.id %>
 
-<fieldset class='form-horizontal'>
-  <div class='control-group'>
-    <label for="comment_author" class='control-label'><%= _("Author")%></label>
+  <fieldset class='form-horizontal'>
+    <div class='control-group'>
+      <label for="comment_author" class='control-label'><%= _("Author")%></label>
       <div class='controls'>
         <%= text_field 'comment', 'author', :class => 'span3' %>
       </div>
@@ -35,6 +36,6 @@
     <div class='form-actions'>
       <%= cancel_or_save %>
     </div>
-</fieldset>
+  </fieldset>
 
 <% end %>

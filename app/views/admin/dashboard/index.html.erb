@@ -1,5 +1,6 @@
-<% @page_heading = _("Welcome back, %s!", current_user.name ) %>
-<% @page_heading_class = 'icon-dashboard'%>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-dashboard"><%= _("Welcome back, %s!", current_user.name) %></h2>
+<% end %>
 
 <%= render "overview" %>
 
@@ -13,5 +14,5 @@
     <%= render "drafts" %>
     <%= render "inbound" %>
   </div>
-  
+
 </div>

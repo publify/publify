@@ -1,16 +1,18 @@
-<% @page_heading = _("Post Types") %>
-<% @page_heading_class = 'icon-articles-types' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-articles-types"><%= _("Post Types") %></h2>
+<% end %>
+
 <div>
   <div class='span4'>
     <%= error_messages_for 'post_type' %>
     <%= form_tag :action=>"edit", :id => @post_type.id do %>
-    <label for="post_type_name"><%= _("Name")%></label>
-    <%= text_field :post_type, :name, :class => 'span12'  %>
-    <label for="post_type_description"><%= _("Description") %></label>
-    <%= text_area :post_type, :description, :rows => 5, :class => 'span12' %>
-    <div class='form-actions'>
-      <%= cancel_or_save %>
-    </div>
+      <label for="post_type_name"><%= _("Name")%></label>
+      <%= text_field :post_type, :name, :class => 'span12'  %>
+      <label for="post_type_description"><%= _("Description") %></label>
+      <%= text_area :post_type, :description, :rows => 5, :class => 'span12' %>
+      <div class='form-actions'>
+        <%= cancel_or_save %>
+      </div>
     <% end %>
   </div>
 
@@ -21,7 +23,7 @@
           <th><%= _("Name") %></th>
           <th><%= _("Description") %></th>
           <th><%= _("Template name") %></th>
-        </tr>    
+        </tr>
       </thead>
       <tr class='shade'>
         <td><%= _("Default") %></td>
@@ -29,17 +31,17 @@
         <td>read</td>
       </tr>
       <% for pt in @post_types -%>
-      <tr>
-        <td>
-          <%= link_to_edit pt.name, pt %><br />
-          <%= show_post_types_actions pt %>
-        </td>
-        <td><%= h pt.description %></td>
-        <td><%= pt.permalink %></td>
-      </tr>
+        <tr>
+          <td>
+            <%= link_to_edit pt.name, pt %><br />
+            <%= show_post_types_actions pt %>
+          </td>
+          <td><%= h pt.description %></td>
+          <td><%= pt.permalink %></td>
+        </tr>
       <% end -%>
     </table>
     <p class="help-block"><%= _("The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb") %></p>
   </div>
-  
+
 </div>

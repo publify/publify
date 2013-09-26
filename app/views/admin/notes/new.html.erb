@@ -1,50 +1,52 @@
-<% @page_heading = _('Notes') %>
-<% @page_heading_class = 'icon-notes' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-notes"><%= _("Notes") %></h2>
+<% end %>
+
 <div>
   <div class='span4'>
     <%= form_tag :action=>"edit", :id => @note.id do %>
-    <input type="hidden" name="note[text_filter]" id="note_textfilter" value="<%= current_user.text_filter_name %>" />
-    <div id='quicktags'>
-      <script type="text/javascript">//edToolbar('status_body', '<%= current_user.text_filter_name %>');</script>
-    </div>
-    <%= text_area('note', 'body', {:class => 'input-block-level', :rows => '7', :placeholder => _("Compose new note")}) %>
+      <input type="hidden" name="note[text_filter]" id="note_textfilter" value="<%= current_user.text_filter_name %>" />
+      <div id='quicktags'>
+        <script type="text/javascript">//edToolbar('status_body', '<%= current_user.text_filter_name %>');</script>
+      </div>
+      <%= text_area('note', 'body', {:class => 'input-block-level', :rows => '7', :placeholder => _("Compose new note")}) %>
 
-    <fieldset class="hidden-phone">
-      <legend><%= _("Publish settings") %></legend>
-      <%= twitter_disabled_message(this_blog, current_user) %>
-      <label for="note_push_to_twitter" class='checkbox'>
-        <%= check_box_tag 'push_to_twitter', true, @note.twitter_id.blank?, {disabled: !twitter_available?(this_blog, current_user)}  %>
-        <%= _("POSSE to Twitter")%>
-      </label>
-      <label for="note_in_reply_to_status_id"><%= _("In reply to")%></label>
-      <%= text_field 'note', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456"), disabled: !twitter_available?(this_blog, current_user) %>
-      <label for="note_permalink"><%= _("Permanent link")%></label>
-      <%= text_field 'note', 'permalink', :class => 'input-block-level' %>
-      <label for='note_published' class='checkbox'>
-        <%= check_box 'note', 'published'  %>
-        <%= _("Published") %>
-      </label>
-      <label for='note_published_at'><%= _("Publish at") %></label>
-      <%= calendar_date_select 'note', 'published_at', {:class => 'span11'} %>
+      <fieldset class="hidden-phone">
+        <legend><%= _("Publish settings") %></legend>
+        <%= twitter_disabled_message(this_blog, current_user) %>
+        <label for="note_push_to_twitter" class='checkbox'>
+          <%= check_box_tag 'push_to_twitter', true, @note.twitter_id.blank?, {disabled: !twitter_available?(this_blog, current_user)}  %>
+          <%= _("POSSE to Twitter")%>
+        </label>
+        <label for="note_in_reply_to_status_id"><%= _("In reply to")%></label>
+        <%= text_field 'note', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456"), disabled: !twitter_available?(this_blog, current_user) %>
+        <label for="note_permalink"><%= _("Permanent link")%></label>
+        <%= text_field 'note', 'permalink', :class => 'input-block-level' %>
+        <label for='note_published' class='checkbox'>
+          <%= check_box 'note', 'published'  %>
+          <%= _("Published") %>
+        </label>
+        <label for='note_published_at'><%= _("Publish at") %></label>
+        <%= calendar_date_select 'note', 'published_at', {:class => 'span11'} %>
       </fieldset>
       <div class='pull-right'>
-          <%= save( _("Publish")) %>
+        <%= save( _("Publish")) %>
       </div>
     </div>
-    <% end %>
-  </div>
-  <div class='span8'>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th><%= _("Message") %></th>
-          <th><%= _("Author") %></th>
-          <th><%= _("Date") %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render_void_table(@notes.size, 3)  %>
-        <% for status in @notes %>
+  <% end %>
+</div>
+<div class='span8'>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= _("Message") %></th>
+        <th><%= _("Author") %></th>
+        <th><%= _("Date") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render_void_table(@notes.size, 3)  %>
+      <% for status in @notes %>
         <tr>
           <td>
             <strong><%= link_to_edit h(status.body), status %></strong>
@@ -55,10 +57,10 @@
             <%= format_date_time status.published_at %><br />
           </td>
         </tr>
-        <% end %>
-        <%= display_pagination(@notes, 3, 'first', 'last')%>
-      </tbody>
-    </table>
+      <% end %>
+      <%= display_pagination(@notes, 3, 'first', 'last')%>
+    </tbody>
+  </table>
 
-  </div>
+</div>
 </div>

@@ -13,18 +13,6 @@ module Admin::BaseHelper
     output
   end
 
-  def show_page_heading
-    return if @page_heading.nil? or @page_heading.blank?
-
-    unless @page_heading_class.nil? or @page_heading_class.blank?
-      @page_heading = content_tag(:i, "", class: "icon-large #{@page_heading_class}") + " " + @page_heading
-    end
-
-    content_tag(:div, {:class => 'page-header'}) do
-      content_tag(:h2, @page_heading.html_safe)
-    end
-  end
-
   def cancel(url = {:action => 'index'})
     link_to _("Cancel"), url, :class => 'btn'
   end

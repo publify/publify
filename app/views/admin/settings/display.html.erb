@@ -1,10 +1,11 @@
-<% @page_heading = _('Display settings') %>
-<% @page_heading_class = 'icon-settings' %>
+<%- content_for :page_heading do %>
+  <h2 class="icon-large icon-settings"><%= _("Display settings") %></h2>
+<% end %>
 
 <%= form_tag :action => 'update' do %>
 
-<fieldset class='form-horizontal'>
-  <legend><%= _("Publishing options")%></legend>
+  <fieldset class='form-horizontal'>
+    <legend><%= _("Publishing options")%></legend>
     <div class='control-group'>
       <label class='control-label' for="setting_limit_article_display"><%= _("Display")%> </label>
       <div class='controls'>
@@ -18,7 +19,7 @@
         <%= check_box(:setting, :statuses_in_timeline) %>
       </div>
     </div>
-    
+
     <div class='control-group'>
       <label class='control-label'><%= _("Date format")%></label>
       <div class='controls'>
@@ -72,32 +73,32 @@
         <p class='help block'><%= _("You may want to use a custom domain for URL shortening, here's where it happens.") %></p>
       </div>
     </div>
-</fieldset>
+  </fieldset>
 
-<fieldset class='form-horizontal'>
-  <legend><%= _("RSS feed")%></legend>
-  <div class='control-group'>
-    <label class='control-label' for="setting_limit_rss_display"><%= _("Display")%> </label>
-    <div class='controls'>
-      <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'span1'})%>
-      <%= _("articles in my news feed by default")%>.
+  <fieldset class='form-horizontal'>
+    <legend><%= _("RSS feed")%></legend>
+    <div class='control-group'>
+      <label class='control-label' for="setting_limit_rss_display"><%= _("Display")%> </label>
+      <div class='controls'>
+        <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'span1'})%>
+        <%= _("articles in my news feed by default")%>.
+      </div>
     </div>
-  </div>
-  <div class='control-group'>
-    <label class='control-label' for="setting_hide_extended_on_rss"><%= _("Show only article excerpt on feed")%>:</label>
-    <div class='controls'>
-      <%= check_box(:setting, :hide_extended_on_rss) %>
+    <div class='control-group'>
+      <label class='control-label' for="setting_hide_extended_on_rss"><%= _("Show only article excerpt on feed")%>:</label>
+      <div class='controls'>
+        <%= check_box(:setting, :hide_extended_on_rss) %>
+      </div>
     </div>
-  </div>
-  <div class='control-group'>
-    <label class='control-label' for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
-    <div class='controls'>
-      <%= text_field(:setting, :feedburner_url, :class => 'span6')%>
-      <span class='help-block'><%= _('You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
+    <div class='control-group'>
+      <label class='control-label' for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
+      <div class='controls'>
+        <%= text_field(:setting, :feedburner_url, :class => 'span6')%>
+        <span class='help-block'><%= _('You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
+      </div>
     </div>
-  </div>
-  
-</fieldset>
-<%= hidden_field_tag 'from', 'display' %>
-<%= save_settings %>
+
+  </fieldset>
+  <%= hidden_field_tag 'from', 'display' %>
+  <%= save_settings %>
 <% end %>

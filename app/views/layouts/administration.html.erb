@@ -63,14 +63,14 @@
               <%= _("Home") %>
             </li>
             <li class='<%= "active" if controller.controller_name == 'dashboard' %>'>
-              <%= link_to _('Dashboard'), {:controller => 'admin/dashboard'} %>              
+              <%= link_to _('Dashboard'), {:controller => 'admin/dashboard'} %>
             </li>
             <li class="divider"></li>
             <% for pm in current_user.project_modules %>
             <li class="nav-header">
               <i class='icon icon-<%= pm.name %>'></i>
               <%= _(pm.menus.first.name) %>
-            </li>            
+            </li>
               <%= subtabs_for(pm.name.to_sym)%>
               <li class="divider"></li>
             <% end %>
@@ -78,18 +78,22 @@
         </div>
       </div>
       <div class='span10' style="padding-top: 20px">
-          <%= render_the_flash %>
-          <%= show_page_heading %>
-          <%= yield  %>
+        <%= render_the_flash %>
+        <%- if content_for?(:page_heading) %>
+          <div class='page-header'>
+            <%= yield :page_heading %>
+          </div>
+        <%- end %>
+        <%= yield  %>
       </div>
-      
+
     </div>
   </div>
 
   <footer class='clearfix'>
-    <div class='span12'>
-      <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
-    </div>
+  <div class='span12'>
+    <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
+  </div>
   </footer>
 </body>
 </html>
