@@ -7,15 +7,14 @@ class Note < Content
 
   serialize :settings, Hash
 
-  setting :twitter_id,                          :string,    ""
-  setting :in_reply_to_status_id,               :string,    ""
-  setting :in_reply_to_protected,               :boolean,   false
-  setting :in_reply_to_message,                 :string,    ""
+  setting :twitter_id, :string, ""
+  setting :in_reply_to_status_id, :string, ""
+  setting :in_reply_to_protected, :boolean, false
+  setting :in_reply_to_message, :string, ""
 
   belongs_to :user
   validates_presence_of :body
   validates_uniqueness_of :permalink, :guid
-  attr_accessor :push_to_twitter
 
   after_create :set_permalink, :shorten_url
   before_create :create_guid
@@ -63,7 +62,6 @@ class Note < Content
   end
 
   def send_to_twitter
-    return false unless self.push_to_twitter # Then, what are we doing here?!
     return false unless Blog.default.has_twitter_configured?
     return false unless self.user.has_twitter_configured?
 

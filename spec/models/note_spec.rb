@@ -71,25 +71,28 @@ describe Note do
     end
 
     describe :send_to_twitter do
-      context "with a push to twitter note" do
-        let(:note) { build(:note, push_to_twitter: false) }
-        it { expect(note.send_to_twitter).to be_false }
-      end
-
-      context "with a push to twitter note" do
-        before(:each) { Blog.any_instance.should_receive(:has_twitter_configured?).and_return(false) }
-        let(:note) { build(:note, push_to_twitter: true) }
+      let(:note) { build(:note) }
+      context "with twitter configured for blog and user" do
+        before(:each) do
+          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
+          User.any_instance.should_receive(:has_twitter_configured?).and_return(true)
+        end
 
         it { expect(note.send_to_twitter).to be_false }
       end
 
-      context "with a push to twitter note" do
+      context "with twitter not configured for blog" do
+        before(:each) do
+          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(false)
+        end
+        it { expect(note.send_to_twitter).to be_false }
+      end
+
+      context "with a twitter configured for blog but not user" do
         before(:each) do
           Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
           User.any_instance.should_receive(:has_twitter_configured?).and_return(false)
         end
-
-        let(:note) { build(:note, push_to_twitter: true) }
         it { expect(note.send_to_twitter).to be_false }
       end
 

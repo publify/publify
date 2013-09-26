@@ -3,7 +3,7 @@ module Admin; end
 class Admin::NotesController < Admin::BaseController
   layout "administration"
   cache_sweeper :blog_sweeper
-  
+
   def index; redirect_to :action => 'new' ; end
   def new; new_or_edit; end
   def edit; new_or_edit; end
@@ -21,7 +21,6 @@ class Admin::NotesController < Admin::BaseController
       note.text_filter = current_user.default_text_filter
       note.published = true
       note.published_at = Time.now
-      note.push_to_twitter = true
     end
   end
 
@@ -51,8 +50,8 @@ class Admin::NotesController < Admin::BaseController
 
       if @note.save
         flash[:notice] = _("Note was successfully %s.", message)
-        if params[:note][:push_to_twitter] and params[:note][:push_to_twitter] != "0" and (@note.twitter_id.nil? or @note.twitter_id.empty?)
-          unless  @note.send_to_twitter
+        if params[:note][:push_to_twitter] && @note.twitter_id.blank?
+          unless @note.send_to_twitter
             flash[:notice] = nil
             flash[:error] = _("Oooops something wrong happened")
           end

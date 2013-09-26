@@ -13,11 +13,11 @@
       <legend><%= _("Publish settings") %></legend>
       <%= twitter_disabled_message(this_blog, current_user) %>
       <label for="note_push_to_twitter" class='checkbox'>
-        <%= check_box 'note', 'push_to_twitter', {disabled: twitter_available?(this_blog, current_user)}  %>
+        <%= check_box_tag 'push_to_twitter', true, @note.twitter_id.blank?, {disabled: !twitter_available?(this_blog, current_user)}  %>
         <%= _("POSSE to Twitter")%>
       </label>
       <label for="note_in_reply_to_status_id"><%= _("In reply to")%></label>
-      <%= text_field 'note', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456"), disabled: twitter_available?(this_blog, current_user) %>
+      <%= text_field 'note', 'in_reply_to_status_id', :class => 'input-block-level', :placeholder => _("tweet id like 123456"), disabled: !twitter_available?(this_blog, current_user) %>
       <label for="note_permalink"><%= _("Permanent link")%></label>
       <%= text_field 'note', 'permalink', :class => 'input-block-level' %>
       <label for='note_published' class='checkbox'>
