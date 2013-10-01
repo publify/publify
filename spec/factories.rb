@@ -61,6 +61,7 @@ FactoryGirl.define do
     allow_comments true
     published true
     allow_pings true
+    association :text_filter, factory: :textile
   end
 
   factory :unpublished_article, :parent => :article do |a|
@@ -220,7 +221,7 @@ http://alsoping.example.com/rpc/ping"
   factory :comment do
     published true
     article
-    text_filter {FactoryGirl.create(:textile)}
+    association :text_filter, factory: :textile
     author 'Bob Foo'
     url 'http://fakeurl.com'
     body 'Test <a href="http://fakeurl.co.uk">body</a>'
@@ -261,7 +262,7 @@ http://alsoping.example.com/rpc/ping"
     user
     published true
     state 'published'
-    text_filter {FactoryGirl.create(:markdown)}
+    association :text_filter, factory: :markdown
     guid
   end
 

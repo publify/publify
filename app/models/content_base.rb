@@ -48,7 +48,7 @@ module ContentBase
     text ||= self[field].to_s
     prehtml = html_preprocess(field, text).to_s
     html = (text_filter || default_text_filter).filter_text_for_content(blog, prehtml, self) || prehtml
-    html_postprocess(field,html).to_s
+    html_postprocess(field, html).to_s
   end
 
   # Post-process the HTML.  This is a noop by default, but Comment overrides it
@@ -80,10 +80,10 @@ module ContentBase
 
   def invalidates_cache?(on_destruction = false)
     @invalidates_cache ||= if on_destruction
-      just_changed_published_status? || published?
-    else
-      (changed? && published?) || just_changed_published_status?
-    end
+                             just_changed_published_status? || published?
+                           else
+                             (changed? && published?) || just_changed_published_status?
+                           end
   end
 
   def publish!
