@@ -1,9 +1,9 @@
 <%= form_tag({:action => 'update', 
-             :id => @article.id},
-             method: :post,
-             multipart: true,
-             id: "article_form",
-             class: 'autosave') do %>
+              :id => @article.id},
+              method: :post,
+              multipart: true,
+              id: "article_form",
+              class: 'autosave') do %>
 
-  <%= render :partial => "form" %>
-<% end %>
+              <%= render :partial => "form" %>
+            <% end %>

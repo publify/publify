@@ -1,5 +1,5 @@
 <%- content_for :page_heading do %>
-  <h2 class="icon-large icon-settings"><%= _("General settings") %></h2>
+  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("General settings") %></h2>
 <% end %>
 
 <%= form_tag :action => 'update' do %>
@@ -11,7 +11,7 @@
       <div class='controls'>
         <%= text_field(:setting, :blog_name, {:class => 'span6', :size => this_blog.blog_name.length })%>
       </div>
-    </div>	
+    </div>
     <div class='control-group'>
       <label class='control-label' for="setting_blog_subtitle"><%= _("Blog subtitle")%></label>
       <div class='controls'>

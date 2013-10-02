@@ -1,5 +1,5 @@
 <%- content_for :page_heading do %>
-  <h2 class="icon-large icon-comment"><%= _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %></h2>
+  <i class="icon-large icon-comment"></i><h2 class="page-title"><%= _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %></h2>
 <% end %>
 
 <%= form_tag :action => "update", :id => @comment.id do %>

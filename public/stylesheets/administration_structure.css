@@ -143,6 +143,7 @@ a.delete:focus {
   background-image: none !important;
 }
 
+.page-title { display:inline-block }
 /* Classes for menu icons */
 
 .icon-articles {
@@ -152,8 +153,8 @@ a.delete:focus {
 .icon-pages {
   background-position: -408px -120px;
   width: 16px;
-
 }
+
 .icon-notes {
   background-position: -264px -24px;
 }
@@ -183,11 +184,12 @@ a.delete:focus {
 }
 
 .icon-large {
-    background:transparent url("../images/admin/glyphicons-large.png") 24px 24px no-repeat;
-    height: 28px;
-    line-height: 28px;
-    vertical-align: text-bottom;
-    padding-left:28px;
+  background:#000 url("../images/admin/glyphicons-large.png") 24px 24px no-repeat;
+  height: 28px;
+  line-height: 28px;
+  vertical-align: text-bottom;
+  padding-left:28px;
+  display:inline-block;
 }
 
 .icon-large.icon-dashboard{ background-position: 0 -670px;  }

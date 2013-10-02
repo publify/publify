@@ -1,5 +1,11 @@
 <%- content_for :page_heading do %>
-  <h2 class="icon-large icon-profile"><%= _("Your profile") %></h2>
+  <i class="icon-large icon-profile"></i><h2 class="page-title"><%= _("Your profile") %></h2>
+  :q
+
+
+:q
+
+
 <% end %>
 
 <%= form_tag({:action => 'index', :id => @user.id}, {:enctype => "multipart/form-data"}) %>

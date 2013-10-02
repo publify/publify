@@ -1,5 +1,5 @@
 <%- content_for :page_heading do %>
-  <h2 class="icon-large icon-comment"><%= _("Comments for %s", @article.title) %></h2>
+  <i class="icon-large icon-comment"></i><h2 class="page-title"><%= _("Comments for %s", @article.title) %></h2>
 <% end %>
 
 <% @link_to_new = link_to(_("Add a comment"), '#comment', {:id => 'dialog-link', :class => 'button'}) %>
