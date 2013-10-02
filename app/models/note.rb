@@ -82,13 +82,11 @@ class Note < Content
 
       tweet = twitter.update(self.twitter_message, options)
       self.twitter_id = tweet.attrs[:id_str]
-
       self.save
-
       self.user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
-      return true
+      true
     rescue
-      return false
+      false
     end
   end
 

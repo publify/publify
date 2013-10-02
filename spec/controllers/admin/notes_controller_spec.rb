@@ -79,13 +79,13 @@ describe Admin::NotesController do
         it {expect(response).to redirect_to(controller: 'notes', action: 'new')}
         it {expect(Note.count).to eq(2) }
       end
-      
+
       context "With missing params" do
-        before :each do 
+        before :each do
           Note.delete_all
           post :new, note: { }
         end
-        
+
         it {expect(response).to render_template(controller: 'notes', action: 'edit')}
         it {expect(Note.count).to eq(0) }
       end
@@ -100,7 +100,7 @@ describe Admin::NotesController do
       henri = create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => henri.id }
       Note.delete_all
-      @note = FactoryGirl.create(:note, :user_id => henri.id)
+      @note = create(:note, :user_id => henri.id)
     end
 
     it 'should render template destroy' do
@@ -117,4 +117,24 @@ describe Admin::NotesController do
 
   end
 
+  describe :edit do
+    context "when push to twitter" do
+      it "call note to send to twitter" do
+        create(:blog_with_twitter)
+        henru = create(:user_admin, :with_twitter)
+
+        request.session = { user: henru.id }
+        expect(Note.count).to eq(0)
+
+        twitter_cli = double(twitter_cli)
+        Twitter::Client.should_receive(:new).and_return(twitter_cli)
+        Tweet = Struct.new(:attrs)
+        tweet = Tweet.new({id_str: '2344'})
+        twitter_cli.should_receive(:update).and_return(tweet)
+
+        post :new, note: { body: "Emphasis _mine_, arguments *strong*" }, push_to_twitter: "true"
+        expect(Note.first.twitter_id).to eq('2344')
+      end
+    end
+  end
 end

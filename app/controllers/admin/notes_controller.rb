@@ -44,23 +44,21 @@ class Admin::NotesController < Admin::BaseController
           flash[:error] = _("Error, you are not allowed to perform this action")
           return(redirect_to :action => 'new')
         end
-
         message = "updated"
       end
 
       if @note.save
         flash[:notice] = _("Note was successfully %s.", message)
-        if params[:note][:push_to_twitter] && @note.twitter_id.blank?
+        if params[:push_to_twitter] && @note.twitter_id.blank?
           unless @note.send_to_twitter
             flash[:notice] = nil
             flash[:error] = _("Oooops something wrong happened")
           end
         end
-        redirect_to :action => 'new'
+        redirect_to action: 'new'
       end
       return
     end
-
     render 'new'
   end
 

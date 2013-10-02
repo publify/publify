@@ -14,7 +14,7 @@
       <fieldset class="hidden-phone">
         <legend><%= _("Publish settings") %></legend>
         <%= twitter_disabled_message(this_blog, current_user) %>
-        <label for="note_push_to_twitter" class='checkbox'>
+        <label for="push_to_twitter" class='checkbox'>
           <%= check_box_tag 'push_to_twitter', true, @note.twitter_id.blank?, {disabled: !twitter_available?(this_blog, current_user)}  %>
           <%= _("POSSE to Twitter")%>
         </label>

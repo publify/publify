@@ -22,28 +22,37 @@ FactoryGirl.define do
     notify_on_new_articles false
     notify_on_comments false
     password 'top-secret'
-    association :resource, factory: :avatar
     state 'active'
     twitter '@getpublify'
-    profile
+    association :profile, factory: :profile
+    association :resource, factory: :avatar
     association :text_filter, factory: :textile
-  end
 
-  factory :user_with_an_empty_profile, parent: :user do |u|
-    u.name "Doe"
-    u.nickname "John Doe"
-    u.twitter nil
-    u.association :resource, nil
-  end
+    factory :user_with_an_empty_profile do
+      name "Doe"
+      nickname "John Doe"
+      twitter nil
+      association :resource, nil
+    end
 
-  factory :user_with_a_full_profile, parent: :user do |u|
-    u.description "I am a poor lonesone factory generated user"
-    u.url "http://myblog.net"
-    u.msn "random@mail.com"
-    u.aim "randomaccount"
-    u.yahoo "anotherrandomaccount"
-    u.twitter "@random"
-    u.jabber "random@account.com"
+    factory :user_with_a_full_profile do
+      description "I am a poor lonesone factory generated user"
+      url "http://myblog.net"
+      msn "random@mail.com"
+      aim "randomaccount"
+      yahoo "anotherrandomaccount"
+      twitter "@random"
+      jabber "random@account.com"
+    end
+
+    factory :user_admin do
+      association :profile, factory: :profile_admin
+
+      trait :with_twitter do
+        twitter_oauth_token "oauth_token"
+        twitter_oauth_token_secret "oauth_token"
+      end
+    end
   end
 
   factory :article do
@@ -166,28 +175,33 @@ http://alsoping.example.com/rpc/ping"
         build_stubbed filter
       end
     end
+
+    factory :blog_with_twitter do
+      twitter_consumer_key "consumer_key"
+      twitter_consumer_secret "consumer_secret"
+    end
   end
 
-  factory :profile, :class => :profile do |l|
-    l.label {FactoryGirl.generate(:label)}
-    l.nicename 'Publify contributor'
-    l.modules [:dashboard, :profile]
-  end
+  factory :profile, :class => :profile do
+    label {FactoryGirl.generate(:label)}
+    nicename 'Publify contributor'
+    modules [:dashboard, :profile]
 
-  factory :profile_admin, parent: :profile do
-    label Profile::ADMIN
-    nicename 'Publify administrator'
-    modules [ :dashboard, :write, :articles, :pages, :feedback, :themes,
-              :customizesidebar, :users, :seo, :media, :settings, :profile, :notes ]
-  end
+    factory :profile_admin do
+      label Profile::ADMIN
+      nicename 'Publify administrator'
+      modules [ :dashboard, :write, :articles, :pages, :feedback, :themes,
+                :customizesidebar, :users, :seo, :media, :settings, :profile, :notes ]
+    end
 
-  factory :profile_publisher, :parent => :profile do |l|
-    l.label 'publisher'
-    l.nicename 'Blog publisher'
-    l.modules [:users, :dashboard, :write, :articles, :pages, :feedback, :media, :notes]
-  end
+    factory :profile_publisher do
+      label 'publisher'
+      nicename 'Blog publisher'
+      modules [:users, :dashboard, :write, :articles, :pages, :feedback, :media, :notes]
+    end
 
-  factory :profile_contributor, :parent => :profile do |l|
+    factory :profile_contributor do
+    end
   end
 
   factory :category do |c|
