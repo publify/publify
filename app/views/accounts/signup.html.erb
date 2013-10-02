@@ -1,7 +1,13 @@
-<%= form_tag :action=> "signup" do %>
-  <%= text_field(:user, :login, {:class => 'input-block-level', :placeholder => _("Username") })%>
-  <%= text_field(:user, :email, {:class => 'input-block-level', :placeholder => _("Email") })%>
+<%= form_tag action: "signup" do %>
+  <%= text_field(:user, :login, {class: 'input-block-level', placeholder: _("Username") })%>
+  <%= text_field(:user, :email, {class: 'input-block-level', placeholder: _("Email") })%>
   <input type="submit" id="submit" class='btn btn-info pull-right' value="<%= _('Signup')%>" />
 <% end %>
 
-<% @accounts_links = [lost_password, back_to_login, back_home].join("<br />") %>    
+<%- content_for :account_links do %>
+  <small><%= link_to(_("I've lost my password"), action: 'recover_password') %></small>
+  <br/>
+  <small><%= link_to(_("Back to login"), action: 'login') %></small>
+  <br/>
+  <small><%= link_to(_("&larr; Back to %s", this_blog.blog_name).html_safe, this_blog.base_url) %></small>
+<% end %>

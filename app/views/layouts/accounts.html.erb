@@ -12,7 +12,7 @@
   <div class='container'>
     <div class='row'>
       <div class='span4 offset4'>
-        <%= link_to_publify %>
+        <h1><%= link_to("Publify", "http://publify.co") %></h1>
       </div>
     </div>
     <div class='row'>
@@ -20,9 +20,11 @@
         <div id="flash"><%= render_the_flash %></div>
         <%= yield %>
       </div>
-      <div class='span4 offset4'>
-        <%= @accounts_links %>
-      </div>
+      <%- if content_for?(:account_links) %>
+        <div class='span4 offset4'>
+          <%= yield :account_links %>
+        </div>
+      <%- end %>
     </div>
   </div>
 </body>

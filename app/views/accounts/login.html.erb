@@ -1,18 +1,26 @@
-<%= form_tag :action=> "login" do %>
-  <%= text_field(:user, :login, {:class => 'input-block-level', :placeholder => _("Login")})%>  
-  <%= password_field(:user, :password, {:class => 'input-block-level', :placeholder => _("Password")})%>
+<%= form_tag action: "login" do %>
+  <%= text_field(:user, :login, {class: 'input-block-level', placeholder: t(".login")})%>
+  <%= password_field(:user, :password, {class: 'input-block-level', placeholder: t(".password")})%>
   <div class='clearfix'>
     <div class='row'>
       <div class='span2'>
         <label class='checkbox inline'>
-          <%= check_box_tag 'remember_me' %><small><%= _('Remember me')%></small>
+          <%= check_box_tag 'remember_me' %><small><%= t('.remember_me')%></small>
         </label>
       </div>
       <div class='span2'>
-        <input type="submit" name="login" class="btn btn-info pull-right" value= "<%= _('Sign in') %>" />
+        <%= submit_tag t('.sign_in'), class: "btn btn-info pull-right"  %>
       </div>
     </div>
   </div>
 <% end %>
 
-<% @accounts_links = [lost_password, create_account_link, back_home].join("<br />") %>
+<%- content_for :account_links do %>
+  <small><%= link_to(_("I've lost my password"), action: 'recover_password') %></small>
+  <br/>
+  <%- if this_blog.allow_signup? %>
+    <small><%= link_to(_("Create an account"), action: 'signup') %></small>
+    <br/>
+  <% end %>
+  <small><%= link_to(_("&larr; Back to %s", this_blog.blog_name).html_safe, this_blog.base_url) %></small>
+<% end %>

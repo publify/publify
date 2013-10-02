@@ -1,0 +1,12 @@
+fr:
+  admin:
+    cache:
+      index:
+        explanations: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+
+  accounts:
+    login:
+      login: "Identifiant"
+      password: "Mot de passe"
+      sign_in: "S'identifier"
+      remember_me: "Rester connecté"

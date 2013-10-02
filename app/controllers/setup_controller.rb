@@ -4,7 +4,6 @@ class SetupController < ApplicationController
 
   def index
     return if not request.post?
-    @accounts_links = ""
     
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url

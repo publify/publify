@@ -254,6 +254,10 @@ class Blog < ActiveRecord::Base
     true
   end
 
+  def allow_signup?
+    allow_signup == 1
+  end
+
   private
 
   def protocol

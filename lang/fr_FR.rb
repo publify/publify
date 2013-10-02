@@ -28,7 +28,7 @@ Localization.define("fr_FR") do |l|
   # app/controllers/admin/dashboard_controller.rb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", "Erreur : nous n'avons pas pu générer le jeton secret. La sécurité de votre blog est à risque. Veuillez changer le contenu du fichier %s."
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "Pour des raisons de sécurité, merci de redémarrer votre blog Publify. Bonne expérience de blogging !"
-  l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez %s" 
+  l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez %s"
   l.store "the latest Publify version", "la dernière version de Publify"
   l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"
   l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas %s"
@@ -161,12 +161,6 @@ Localization.define("fr_FR") do |l|
 
   # app/models/post_type.rb
   l.store "This article type already exists", ""
-
-  # app/views/accounts/login.html.erb
-  l.store "Sign in", "S'identifier"
-  l.store "Login", "Identifiant"
-  l.store "Password", "Mot de passe"
-  l.store "Remember me", "Rester connecté"
 
   # app/views/accounts/recover_password.html.erb
   l.store "Reset my password", "Me renvoyer un mot de passe"
@@ -308,7 +302,7 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/dashboard/_dafts.html.erb
   l.store "Your drafts", "Vos brouillons"
   l.store "No drafts yet, why don't you start and write one", "Pas de brouillons, pourquoi ne pas en écrire un"
- 
+
   # app/views/admin/dashboard/_dafts.html.erb
 
   # app/views/admin/feedback/_button.html.erb
@@ -419,7 +413,7 @@ Localization.define("fr_FR") do |l|
   l.store "This will display", "Cela affichera"
   l.store "at the bottom of each post in the RSS feed", "en bas de chacun de vos articles sur le flux RSS"
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
-  
+
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Les exemples ci-dessous vous aideront à démarrerPublify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
   l.store "Here are some examples to get you started.", "Les exemples ci-dessous vous aideront à démarrer."

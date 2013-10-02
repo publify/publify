@@ -207,4 +207,16 @@ http://anotherurl.net/other_line")
     it { expect(blog.per_page('rss')).to eq(4) }
     it { expect(blog.per_page('atom')).to eq(4) }
   end
+
+  describe :allow_signup? do
+    context "with a blog that allow signup" do
+      let(:blog) { build(:blog, allow_signup: 1) }
+      it {expect(blog.allow_signup?).to be_true}
+    end
+
+    context "with a blog that not allow signup" do
+      let(:blog) { build(:blog, allow_signup: 0) }
+      it {expect(blog.allow_signup?).to be_false}
+    end
+  end
 end
