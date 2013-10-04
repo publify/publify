@@ -53,7 +53,7 @@ class Note < Content
   end
 
   def twitter_message_max_length
-    140 - (5 + self.redirects.first.to_url.length)
+    140 - (7 + self.redirects.first.to_url.length)
   end
 
   def twitter_message
