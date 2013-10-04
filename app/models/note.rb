@@ -52,10 +52,14 @@ class Note < Content
     end
   end
 
+  def twitter_message_max_length
+    140 - (5 + self.redirects.first.to_url.length)
+  end
+
   def twitter_message
     base_message = self.body.strip_html
     if too_long?(base_message)
-      "#{base_message[0..113]}... (#{self.redirects.first.to_url})"
+      "#{base_message[0..twitter_message_max_length]}... (#{self.redirects.first.to_url})"
     else
       "#{base_message} (#{short_link})"
     end
@@ -133,6 +137,6 @@ class Note < Content
       end
       message = message.gsub(uri, payload)
     end
-    message.length > 114
+    message.length > twitter_message_max_length
   end
 end

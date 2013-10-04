@@ -106,7 +106,6 @@ describe Note do
     describe :twitter_message do
       let(:note) { create(:note, body: tweet) }
 
-
       context "with a short simple message" do
         let(:tweet) { "A message without URL" }
 
@@ -121,8 +120,15 @@ describe Note do
 
       context "with a short message much more than 114 char" do
         let(:tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify must construct(124)" }
-        it { expect(note.twitter_message).to start_with(tweet[0..113]) }
+        it { expect(note.twitter_message).to start_with(tweet[0..note.twitter_message_max_length]) }
         it { expect(note.twitter_message).to_not include(tweet[113..-1]) }
+        it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
+      end
+
+      context "with a bug message" do
+        let(:tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.\" http://www.jsfuck.com/ " }
+
+        it { expect(note.twitter_message).to start_with(tweet[0..note.twitter_message_max_length]) }
         it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
       end
     end
