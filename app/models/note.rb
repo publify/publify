@@ -24,6 +24,7 @@ class Note < Content
   TWITTER_FTP_URL_LEGTH = 19
   TWITTER_HTTP_URL_LENGTH = 20
   TWITTER_HTTPS_URL_LENGTH = 21
+  TWITTER_LINK_LENGTH = 22
 
   def set_permalink
     self.permalink = "#{self.id}-#{self.body.to_permalink[0..79]}" if self.permalink.nil? or self.permalink.empty?
@@ -53,7 +54,7 @@ class Note < Content
   end
 
   def twitter_message_max_length
-    140 - (7 + self.redirects.first.to_url.length)
+    140 - (7 + TWITTER_LINK_LENGTH)
   end
 
   def twitter_message
@@ -89,7 +90,8 @@ class Note < Content
       self.save
       self.user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
       true
-    rescue
+    rescue StandardError => e
+      Rails.logger.error("Error while sending to twitter: #{e}")
       false
     end
   end

@@ -129,7 +129,6 @@ describe Note do
         let(:tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.\" http://www.jsfuck.com/ " }
 
         it { expect(note.twitter_message).to start_with(tweet[0..note.twitter_message_max_length]) }
-        it { expect(note.twitter_message.length).to be <= 140 }
         it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
       end
     end
