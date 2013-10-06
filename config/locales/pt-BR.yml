@@ -1,0 +1,14 @@
+pt-BR:
+  accounts:
+    login:
+      login: "Login"
+      password: "Senha"
+      remember_me: "Lembrar-me"
+      sign_in: "Entrar"
+
+  admin:
+    cache:
+      index:
+        explanations: "Para economizar recursos, Publify gera arquivos estáticos
+            juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo
+            artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
