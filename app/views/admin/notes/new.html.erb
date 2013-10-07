@@ -27,7 +27,7 @@
           <%= _("Published") %>
         </label>
         <label for='note_published_at'><%= _("Publish at") %></label>
-        <%= calendar_date_select 'note', 'published_at', {:class => 'span11'} %>
+        <%= text_field 'note', 'published_at', {:class => 'span11 datepicker'} %>
       </fieldset>
       <div class='pull-right'>
         <%= save( _("Publish")) %>
