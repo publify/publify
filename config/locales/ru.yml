@@ -24,9 +24,10 @@ ru:
       powered_by: "С гордостью работает на"
     cache:
       index:
-        explanations: "To save on resources, Publify generates static files
-           along with your content. These files are deleted when a new article
-           is created. You can, at any time, delete these files yourself."
+        stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
+        sweep_cache: "Sweep cache"
+        cache: "Cache"
+        explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
   accounts:
     back_to: "&larr; Назад %{place}"
     back_to_login: "Назад к форме входа"

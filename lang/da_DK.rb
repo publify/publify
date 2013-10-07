@@ -791,7 +791,6 @@ Localization.define("da_DK") do |l|
   l.store "Blacklist Patterns", "Blacklist mønstre"
   l.store "Blog settings", "Blog indstillinger"
   l.store "Body", "Tekst"
-  l.store "Cache", "Cache"
   l.store "Category title", "Kategorititel"
   l.store "Choose password", "Kodeord"
   l.store "Comments and Trackbacks for", "Kommentarer og trackbacks for"
@@ -917,7 +916,6 @@ Localization.define("da_DK") do |l|
   l.store "Text Filters", "Tekst Filtre"
   l.store "Textfilter", "Textfilter"
   l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata" #Need translate
-  l.store "There are %d entries in the cache", "Der er %d objekter i cachen"
   l.store "Things you can do", "Du kan udføre følgende ..."
   l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!","This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!" #Need translate
   l.store "Toggle Extended Content", "Slå udvidet indhold til/fra"

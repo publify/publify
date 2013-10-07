@@ -24,9 +24,10 @@ zh-CN:
       powered_by: "is proudly powered by"
     cache:
       index:
-        explanations: "To save on resources, Publify generates static files
-           along with your content. These files are deleted when a new article
-           is created. You can, at any time, delete these files yourself."
+        stats: "有%{files_count}個項目在Cache中"
+        sweep_cache: "Sweep cache"
+        cache: "儲存"
+        explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
   accounts:
     back_to: "&larr; 返回 %{place}"
     back_to_login: "Back to login"

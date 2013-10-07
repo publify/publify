@@ -24,8 +24,10 @@ fr:
       powered_by: "tourne fièrement sous"
     cache:
       index:
+        stats: "Il y a actuellement %{files_count} fichiers en cache pour un total de %{size} kilo octets."
+        sweep_cache: "Vider le cache"
+        cache: "Cache"
         explanations: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
-
   accounts:
     back_to: "&larr; Revenir à %{place}"
     back_to_login: "S'identifier"

@@ -24,6 +24,9 @@ ja:
       powered_by: "is proudly powered by"
     cache:
       index:
+        stats: "ページキャッシュに%{files_count}個の記事があります"
+        sweep_cache: "キャッシュをクリア"
+        cache: "キャッシュ"
         explanations: "To save on resources, Publify generates static files
            along with your content. These files are deleted when a new article
            is created. You can, at any time, delete these files yourself."

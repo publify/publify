@@ -795,7 +795,6 @@ Localization.define("lt_LT") do |l|
   l.store "Blacklist Patterns", "Juodojo sąrašo šablonas"
   l.store "Blog settings", "Dienoraščio nustatymai"
   l.store "Body", "Tekstas"
-  l.store "Cache", "Cache"
   l.store "Category title", "kategorijos pavadinimas"
   l.store "Choose password", "Pasirinkite slaptažodį"
   l.store "Comments and Trackbacks for", "Komentarai ir dienoraščių nuorodos"
@@ -911,7 +910,6 @@ Localization.define("lt_LT") do |l|
   l.store "Text Filters", "Textfilter"
   l.store "Textfilter", "Teksto filtras"
   l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", "Folgende Einstellungen wirken als Voreinstellungen, wenn Sie einen Anhang mit iTunes Metadaten veröffentlichen"
-  l.store "There are %d entries in the cache", "Es sind %d Einträge im Cache"
   l.store "Things you can do", "Jūs galite daryti ..."
   l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!","This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!" #Need translate
   l.store "Toggle Extended Content", "Sutraukti išplėsta turinį"

@@ -802,7 +802,6 @@ Localization.define("pl_PL") do |l|
   l.store "Blog advanced settings", "Ustawienia zaawansowane bloga"
   l.store "Blog settings", "Ustawienia bloga"
   l.store "Body", "Treść"
-  l.store "Cache", "Bufor"
   l.store "Cache was cleared", "Bufor opróżniono"
   l.store "Category", "Kategoria"
   l.store "Category could not be created.", "Kategoria nie została utworzona."

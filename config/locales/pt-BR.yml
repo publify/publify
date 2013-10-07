@@ -24,9 +24,10 @@ pt-BR:
       powered_by: "is proudly powered by"
     cache:
       index:
-        explanations: "Para economizar recursos, Publify gera arquivos estáticos
-            juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo
-            artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
+        stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
+        sweep_cache: "Sweep cache"
+        cache: "Cach&eacute;"
+        explanations: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
   accounts:
     back_to: "&larr; Voltar para %{place}"
     back_to_login: "Voltar para o login"

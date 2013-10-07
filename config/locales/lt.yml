@@ -24,6 +24,9 @@ lt:
       powered_by: "is proudly powered by"
     cache:
       index:
+        stats: "Es sind %{files_count} Einträge im Cache"
+        sweep_cache: "Sweep cache"
+        cache: "Cache"
         explanations: "To save on resources, Publify generates static files
            along with your content. These files are deleted when a new article
            is created. You can, at any time, delete these files yourself."

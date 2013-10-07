@@ -796,7 +796,6 @@ Localization.define("pt_BR") do |l|
   l.store "Blacklist Patterns", "Lista negra"
   l.store "Blog settings", "Preferencias del Blog"
   l.store "Body", "Comentario"
-  l.store "Cache", "Cach&eacute;"
   l.store "Category title", "T&iacute;tulo de la categor&iacute;a"
   l.store "Choose password", "Escoge una contrase&ntilde;a"
   l.store "Comments and Trackbacks for", "Comentarios y Trackbacks para"

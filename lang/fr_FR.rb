@@ -156,13 +156,6 @@ Localization.define("fr_FR") do |l|
   # app/models/post_type.rb
   l.store "This article type already exists", ""
 
-
-  # app/views/admin/cache/index.html.erb
-  l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
-  l.store "There are currently %d files in cache for a total amount of %d Kb", "Il y a actuellement %d fichiers en cache pour un total de %d kilo octets."
-  l.store "Sweep cache", "Vider le cache"
-  l.store "Cache", "Cache"
-
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Supprimer"
   l.store "Currently this article has the following resources", "Les fichiers suivants sont actuellement liés à ce billet"

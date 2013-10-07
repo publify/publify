@@ -798,7 +798,6 @@ Localization.define("it_IT") do |l|
   l.store "Blog advanced settings", "Settaggi avanzati del blog"
   l.store "Blog settings", "Configurazione blog"
   l.store "Body", "Messaggio"
-  l.store "Cache", "Cache"
   l.store "Cache was cleared", "Cache pulita"
   l.store "Category", "Catégorie"
   l.store "Category could not be created.", "La categoria non puo' essere creata"

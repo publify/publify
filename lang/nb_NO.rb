@@ -174,14 +174,6 @@ Localization.define("nb_NO") do |l|
   l.store "Just Marked As Spam", "Kun markert som Spam"
   l.store "Spam", "Spam"
 
-
-  # app/views/admin/cache/index.html.erb
-  l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.",
-  "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
-  l.store "There are currently %d files in cache for a total amount of %d Kb", "Det finnes for øyeblikket %d filer i cachen som utgjør totalt %d kB"
-  l.store "Sweep cache", ""
-  l.store "Cache", "Cache"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sorter alfabetisk"

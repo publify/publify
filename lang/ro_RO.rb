@@ -776,7 +776,6 @@ Localization.define("ro_RO") do |l|
   l.store "Blacklist Patterns", "Lista neagră"
   l.store "Blog settings", "Setările blogului"
   l.store "Body", "Conținut"
-  l.store "Cache", "Cache"
   l.store "Category title", "Numele categoriei"
   l.store "Choose password", "Parola"
   l.store "Comments and Trackbacks for", "Comentarii și retrolegături pentru"

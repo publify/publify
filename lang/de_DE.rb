@@ -787,7 +787,6 @@ Localization.define("de_DE") do |l|
   l.store "Blacklist Patterns", "Blacklist Muster"
   l.store "Blog settings", "Blog Einstellungen"
   l.store "Body", "Text"
-  l.store "Cache", "Cache"
   l.store "Category title", "Name der Kategorie"
   l.store "Choose password", "Passwort"
   l.store "Comments and Trackbacks for", "Kommentare und Trackbacks für"
@@ -903,7 +902,6 @@ Localization.define("de_DE") do |l|
   l.store "Text Filters", "Textfilter"
   l.store "Textfilter", "Textfilter"
   l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", "Folgende Einstellungen wirken als Voreinstellungen, wenn Sie einen Anhang mit iTunes Metadaten veröffentlichen"
-  l.store "There are %d entries in the cache", "Es sind %d Einträge im Cache"
   l.store "Things you can do", "Folgendes können Sie tun ..."
   l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!","This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!" #Need translate
   l.store "Toggle Extended Content", "Erweiterten Inhalt umschalten"

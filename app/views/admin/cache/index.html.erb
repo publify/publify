@@ -1,13 +1,13 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("Cache") %></h2>
+  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= t(".cache") %></h2>
 <% end %>
 
-<p><%= _("To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.") %></p>
+<p><%= t(".explaination") %></p>
 
-<p><%= _("There are currently %d files in cache for a total amount of %d Kb", @cache_number.to_i, @cache_size.to_i / 1000) %>.</p>
+<p><%= t(".stats", files_count: @cache_number.to_i, size: @cache_size.to_i / 1000) %></p>
 
-<%= form_tag(:controller => 'cache', :action => 'index') do %>
+<%= form_tag(controller: 'cache', action: 'index') do %>
   <div class='form-actions'>
-    <%= save( _("Sweep cache")) %>
+    <%= submit_tag(t(".sweep_cache"), class: 'btn btn-primary') %>
   </div>
 <% end %>
