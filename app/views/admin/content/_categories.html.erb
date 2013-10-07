@@ -1,7 +1,8 @@
-<%- article_categories = @article ? @article.categories.map(&:id) : [] -%>
+<%- used_categories = @article.categories.map(&:id) %>
 <%- Category.all.each do |cat| %>
-  <%= label_tag"category_#{h(cat.id)}", check_box_tag('categories[]', cat.id, (@article.categories.map(&:id).include? cat.id), :id => "category_#{h(cat.id)}")  + h(cat.name), :class => 'checkbox' %>
-	</li>
-</ul>
-<% end -%>
-<%= link_to _("New Category"), {:controller => 'admin/categories', :action => 'new' }, :class => 'btn btn-info new_category' %>
+  <%= label_tag do %>
+    <%= check_box_tag 'categories[]', cat.id, used_categories.include?(cat.id), id: "category_#{cat.id}", class: 'checkbox' %>
+    <%= cat.name %>
+  <%- end %>
+<%- end %>
+<%= link_to t(".new_category"), {controller: 'admin/categories', action: 'new' }, class: 'btn btn-info new_category' %>

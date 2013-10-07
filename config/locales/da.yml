@@ -1,5 +1,8 @@
 da:
   admin:
+    content:
+      categories:
+        new_category: "New Category"
     categories:
       new:
         categories: "Kategorier"

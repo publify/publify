@@ -1,5 +1,8 @@
 fr:
   admin:
+    content:
+      categories:
+        new_category: "Nouvelle catégorie"
     categories:
       new:
         categories: "Catégories"

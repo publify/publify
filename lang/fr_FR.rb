@@ -163,9 +163,6 @@ Localization.define("fr_FR") do |l|
   l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
   l.store "Add another attachment", "Ajouter une autre pièce jointe"
 
-  # app/views/admin/content/_categories.html.erb
-  l.store "New Category", "Nouvelle catégorie"
-
   # app/views/admin/content/_form.html.erb
   l.store "Change", "Modifier"
   l.store "Comments are %s and trackbacks are %s", "Les commentaires sont %s et les rétroliens %s"

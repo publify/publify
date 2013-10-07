@@ -1,5 +1,8 @@
 zh-CN:
   admin:
+    content:
+      categories:
+        new_category: "创建分类"
     categories:
       new:
         categories: "分类"

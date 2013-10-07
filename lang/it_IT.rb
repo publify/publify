@@ -161,9 +161,6 @@ Localization.define("it_IT") do |l|
   l.store "Are you sure you want to delete the category ", "Sei sicuro di voler eliminare questa categoria "
   l.store "Delete this category", "Elimina questa categoria"
 
-  # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
-
   # app/views/admin/categories/new.html.erb
   l.store "%s Category", ""
 

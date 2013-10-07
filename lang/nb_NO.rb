@@ -877,7 +877,6 @@ Localization.define("nb_NO") do |l|
   l.store "Markup type", "Markup type"
   l.store "MetaData", "Metadata"
   l.store "Name (required)", "Navn (obligatorisk)"
-  l.store "New Category", "Ny kategori"
   l.store "Not published by Apple", "Ikke publisert av Apple"
   l.store "Notification", "Beskjeder"
   l.store "Notified", "Beskjed sendt"

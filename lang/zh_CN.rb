@@ -165,7 +165,6 @@ Localization.define("zh_CN") do |l|
   l.store "Delete this category", "删除分类"
 
   # app/views/admin/categories/index.html.erb
-  l.store "New Category", "创建分类"
 
   # app/views/admin/categories/new.html.erb
   l.store "%s Category", "分类%s"

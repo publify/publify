@@ -161,12 +161,6 @@ Localization.define("da_DK") do |l|
   l.store "Are you sure you want to delete the category ", "Er du sikker på du vil slette kategorien: "
   l.store "Delete this category", "Slet denne kategori"
 
-  # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
-
-  # app/views/admin/categories/new.html.erb
-  l.store "%s Category", ""
-
   # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Færdig)"
 

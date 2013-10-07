@@ -1,5 +1,8 @@
 ru:
   admin:
+    content:
+      categories:
+        new_category: "Новая категория"
     categories:
       new:
         categories: "Категории"

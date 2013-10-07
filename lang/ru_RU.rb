@@ -76,7 +76,6 @@ Localization.define("ru_RU") do |l|
   l.store "Delete this category", "Удалить эту категорию"
 
   # app/views/admin/categories/index.html.erb
-  l.store "New Category", "Новая категория"
 
   # app/views/admin/content/_form.html.erb
   l.store "Publish settings", "Настройки публикации"

@@ -1,5 +1,8 @@
 nb-NO:
   admin:
+    content:
+      categories:
+        new_category: "Ny kategori"
     categories:
       new:
         categories: "Kategorier"

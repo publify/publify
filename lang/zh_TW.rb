@@ -162,12 +162,6 @@ Localization.define("zh_TW") do |l|
   l.store "Are you sure you want to delete the category ", "確認刪除此分類？ "
   l.store "Delete this category", "刪除分類"
 
-  # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
-
-  # app/views/admin/categories/new.html.erb
-  l.store "%s Category", ""
-
   # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(完成)"
 

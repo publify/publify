@@ -1,5 +1,8 @@
 pt-BR:
   admin:
+    content:
+      categories:
+        new_category: "Nova Categoria"
     categories:
       new:
         categories: "Categorias"

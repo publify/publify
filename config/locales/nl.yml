@@ -1,5 +1,8 @@
 nl:
   admin:
+    content:
+      categories:
+        new_category: "Nieuwe categorie"
     categories:
       new:
         categories: "Categoriën"

@@ -161,12 +161,6 @@ Localization.define("lt_LT") do |l|
   l.store "Are you sure you want to delete the category ", "Ar tikrai nori ištrinti šią kategoriją : "
   l.store "Delete this category", "Trinti šią kategoriją"
 
-  # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
-
-  # app/views/admin/categories/new.html.erb
-  l.store "%s Category", ""
-
   # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Baigta)"
 
@@ -203,7 +197,7 @@ Localization.define("lt_LT") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ar tikrai norite ištrinti šį straipsnį"
@@ -370,7 +364,7 @@ Localization.define("lt_LT") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
