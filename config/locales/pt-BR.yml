@@ -1,10 +1,17 @@
 pt-BR:
   accounts:
+    back_to: "&larr; Voltar para %{place}"
+    back_to_login: "Voltar para o login"
+    create_account: "Crie uma conta"
+    lost_my_password: "Eu perdi minha senha"
     login:
       login: "Login"
       password: "Senha"
       remember_me: "Lembrar-me"
       sign_in: "Entrar"
+    confirm:
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
 
   admin:
     cache:
@@ -12,3 +19,4 @@ pt-BR:
         explanations: "Para economizar recursos, Publify gera arquivos estáticos
             juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo
             artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
+

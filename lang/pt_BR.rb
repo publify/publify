@@ -34,7 +34,7 @@ Localization.define("pt_BR") do |l|
   l.store "All spam have been deleted", "Todos os spans foram deletados"
   l.store "Comment was successfully created.", "Comentário criado com sucesso"
   l.store "Comment was successfully updated.", "Comentário atualizado com sucesso"
-  
+
   # app/controllers/admin/pages_controller.rb
   l.store "Page was successfully created.", "Página criada com sucesso"
   l.store "Page was successfully updated.", "Página atualizada com sucesso"
@@ -158,20 +158,12 @@ Localization.define("pt_BR") do |l|
   l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
-  l.store "Sign in", "Entre"
-  l.store "I've lost my password", "Eu perdi minha senha"
-  l.store "Login", ""
-  l.store "Password", "Senha"
-  l.store "Remember me", "Lembrar"
   l.store "Submit", "Enviar"
-  l.store "Back to ", "Voltar para"
 
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", "Voltar para o login"
   l.store "Username or email", "Usuario ou e-mail"
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", "Crie uma conta"
   l.store "Username", "Usuario"
   l.store "Email", "Email"
   l.store "Signup", "Registrar"
@@ -233,7 +225,7 @@ Localization.define("pt_BR") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "&iquest;Est&aacute;s seguro que deseas borrar este art&iacute;culo?"
@@ -400,7 +392,7 @@ Localization.define("pt_BR") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
@@ -718,8 +710,6 @@ Localization.define("pt_BR") do |l|
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-  l.store "Proceed to %s", ""
-  l.store "admin", ""
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""

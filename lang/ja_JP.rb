@@ -155,21 +155,10 @@ Localization.define("ja_JP") do |l|
   l.store "Just Marked As Spam", "スパムマーク"
   l.store "Spam", "スパム"
 
-  # app/views/accounts/login.html.erb
-  l.store "Sign in", ""
-  l.store "I've lost my password", ""
-  l.store "Login", "ログイン"
-  l.store "Password", "パスワード"
-  l.store "Remember me", "ログイン状態を持続"
-  l.store "Submit", ""
-  l.store "Back to ", ""
-
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", ""
   l.store "Username", "ユーザー名"
   l.store "Email", "メールアドレス"
   l.store "Signup", "サインアップ"
@@ -715,8 +704,6 @@ Localization.define("ja_JP") do |l|
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-  l.store "Proceed to %s", ""
-  l.store "admin", ""
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""

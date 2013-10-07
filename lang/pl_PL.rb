@@ -158,21 +158,10 @@ Localization.define("pl_PL") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/accounts/login.html.erb
-  l.store "Sign in", ""
-  l.store "I've lost my password", ""
-  l.store "Login", "Login"
-  l.store "Password", "Hasło"
-  l.store "Remember me", ""
-  l.store "Submit", ""
-  l.store "Back to ", ""
-
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", ""
   l.store "Username", "Użytkownik"
   l.store "Email", "Email"
   l.store "Signup", "Zapisz się"
@@ -234,7 +223,7 @@ Localization.define("pl_PL") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
@@ -401,7 +390,7 @@ Localization.define("pl_PL") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
@@ -719,8 +708,6 @@ Localization.define("pl_PL") do |l|
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-  l.store "Proceed to %s", ""
-  l.store "admin", ""
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""

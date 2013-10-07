@@ -1,0 +1,20 @@
+es-MX:
+  admin:
+    cache:
+      index:
+        explanations: "To save on resources, Publify generates static files
+           along with your content. These files are deleted when a new article
+           is created. You can, at any time, delete these files yourself."
+  accounts:
+    back_to: "&larr; Back to %{place}"
+    back_to_login: "Back to login"
+    create_account: "Create an account"
+    lost_my_password: "I've lost my password"
+    login:
+      login: "Login"
+      password: "Contrase&ntilde;a"
+      remember_me: "Remember me"
+      sign_in: "Sign in"
+    confirm:
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"

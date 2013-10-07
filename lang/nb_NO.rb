@@ -111,11 +111,6 @@ Localization.define("nb_NO") do |l|
   # app/controllers/grouping_controller.rb
   l.store "page", "side"
 
-  # app/helpers/accounts_helper.rb
-  l.store "Create an account", "Opprett konto"
-  l.store "I've lost my password", "Jeg har mistet passordet mitt"
-  l.store "Back to ", "Tilbake til"
-
   # app/helpers/admin/base_helper.rb
   l.store "Cancel", "Annuller"
   l.store "Store", "Lagre"
@@ -181,15 +176,7 @@ Localization.define("nb_NO") do |l|
   l.store "Just Marked As Spam", "Kun markert som Spam"
   l.store "Spam", "Spam"
 
-  # app/views/accounts/login.html.erb
-  l.store "Sign in", ""
-  l.store "Login", "Logg inn"
-  l.store "Password", "Passord"
-  l.store "Remember me", "Husk meg"
-  l.store "Submit", "Send inn"
-
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", ""
   l.store "Username or email", "Brukernavn eller epost"
   l.store "Reset my password", "Nullstill passordet mitt"
 
@@ -199,7 +186,7 @@ Localization.define("nb_NO") do |l|
   l.store "Signup", "Registrer"
 
   # app/views/admin/cache/index.html.erb
-  l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", 
+  l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.",
   "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
   l.store "There are currently %d files in cache for a total amount of %d Kb", "Det finnes for øyeblikket %d filer i cachen som utgjør totalt %d kB"
   l.store "Sweep cache", ""
@@ -257,8 +244,7 @@ Localization.define("nb_NO") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
-  
+
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
@@ -728,8 +714,6 @@ Localization.define("nb_NO") do |l|
   l.store "<strong>Login:</strong> %s", "<strong>Logg inn:</strong> %s"
   l.store "<strong>Password:</strong> %s", "<strong>Passord:</strong> %s"
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Ikke mist eposten som ble sendt %s. Uten passordet vil du ikke kunne logge inn senere"
-  l.store "Proceed to %s", "Fortsett til %s"
-  l.store "admin", ""
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""

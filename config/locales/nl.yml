@@ -1,0 +1,20 @@
+nl:
+  admin:
+    cache:
+      index:
+        explanations: "To save on resources, Publify generates static files
+           along with your content. These files are deleted when a new article
+           is created. You can, at any time, delete these files yourself."
+  accounts:
+    back_to: "&larr; Terug naar %{place}"
+    back_to_login: "Back to login"
+    create_account: "Maak een account aan"
+    lost_my_password: "Ik ben mijn wachtwoord kwijt"
+    login:
+      login: "Log in"
+      password: "Wachtwoord"
+      remember_me: "Onthoud me"
+      sign_in: "Sign in"
+    confirm:
+      proceed_to: "Ga door naar %s"
+      admin: "admin"

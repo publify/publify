@@ -67,17 +67,10 @@ Localization.define("ru_RU") do |l|
 
 
   # app/views/accounts/login.html.erb
-  l.store "Sign in", "Войти"
-  l.store "I've lost my password", "Я потерял свой пароль"
-  l.store "Login", "Логин"
-  l.store "Password", "Пароль"
   l.store "password", "пароль"
-  l.store "Remember me", "Запомнить меня"
   l.store "Submit", "Войти"
-  l.store "Back to ", "Назад"
 
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", "Назад к форме входа"
   l.store "Username or email", "Имя пользователи или email"
 
   # app/views/admin/categories/_categories.html.erb

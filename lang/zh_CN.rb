@@ -156,21 +156,12 @@ Localization.define("zh_CN") do |l|
   l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
-  l.store "Sign in", ""
-  l.store "I've lost my password", "忘记密码"
-  l.store "Login", "登录"
-  l.store "Password", "密码"
-  l.store "password", "密码"
-  l.store "Remember me", "记住用户"
   l.store "Submit", "提交"
-  l.store "Back to ", "返回"
 
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", ""
   l.store "Username or email", "用户名或邮箱"
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", "创建帐号"
   l.store "Username", "用户名"
   l.store "Email", "Email"
   l.store "Signup", "注册"
@@ -723,8 +714,6 @@ Localization.define("zh_CN") do |l|
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-  l.store "Proceed to %s", ""
-  l.store "admin", ""
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""

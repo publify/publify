@@ -154,20 +154,10 @@ Localization.define("nl_NL") do |l|
   l.store "Just Marked As Spam", "Zojuist gemarkeerd als Spam"
   l.store "Spam", "Spam"
 
-  # app/views/accounts/login.html.erb
-  l.store "Sign in", ""
-  l.store "I've lost my password", "Ik ben mijn wachtwoord kwijt"
-  l.store "Login", "Log in"
-  l.store "Password", "Wachtwoord"
-  l.store "Remember me", "Onthoud me"
-  l.store "Submit", "Verstuur"
-  l.store "Back to ", "Terug naar"
-
   # app/views/accounts/recover_password.html.erb
   l.store "Username or email", "Gebruikersnaam of e-mail"
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", "Maak een account aan"
   l.store "Username", "Gebruikersnaam"
   l.store "Email", "E-mail"
   l.store "Signup", "Meld aan"
@@ -229,7 +219,7 @@ Localization.define("nl_NL") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Weet je zeker dat je dit artikel wilt verwijderen?"
   l.store "Delete this article", "Verwijder dit artikel"
@@ -395,7 +385,7 @@ Localization.define("nl_NL") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
@@ -628,7 +618,7 @@ Localization.define("nl_NL") do |l|
   l.store "State", "Status"
   l.store "%s user", "%s gebruiker"
   l.store "Manage users", ""
-  
+
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Gebruiker toevoegen"
 
@@ -711,8 +701,6 @@ Localization.define("nl_NL") do |l|
   l.store "<strong>Login:</strong> %s", "<strong>Inlognaam:</strong> %s"
   l.store "<strong>Password:</strong> %s", "<strong>Wachtwoord:</strong> %s"
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Verlies de e-mail verzonden naar %s, want anders kun je niet meer inloggen"
-  l.store "Proceed to %s", "Ga door naar %s"
-  l.store "admin", ""
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""

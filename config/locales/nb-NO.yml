@@ -1,0 +1,19 @@
+nb-NO:
+  admin:
+    cache:
+      index:
+        explanations: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
+  accounts:
+    back_to: "&larr; Tilbake til %{place}"
+    back_to_login: "Back to login"
+    create_account: "Opprett konto"
+    lost_my_password: "Jeg har mistet passordet mitt"
+    login:
+      login: "Logg inn"
+      password: "Passord"
+      remember_me: "Husk meg"
+      sign_in: "Sign in"
+    confirm:
+      proceed_to: "Fortsett til %s"
+      admin: "admin"
+

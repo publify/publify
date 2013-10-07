@@ -1,0 +1,20 @@
+zh-CN:
+  admin:
+    cache:
+      index:
+        explanations: "To save on resources, Publify generates static files
+           along with your content. These files are deleted when a new article
+           is created. You can, at any time, delete these files yourself."
+  accounts:
+    back_to: "&larr; 返回 %{place}"
+    back_to_login: "Back to login"
+    create_account: "创建帐号"
+    lost_my_password: "忘记密码"
+    login:
+      login: "登录"
+      password: "密码"
+      remember_me: "记住用户"
+      sign_in: "Sign in"
+    confirm:
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"

@@ -155,21 +155,10 @@ Localization.define("da_DK") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/accounts/login.html.erb
-  l.store "I've lost my password", ""
-  l.store "Login", "Log ind"
-  l.store "Password", "Kodeord"
-  l.store "Remember me", ""
-  l.store "Submit", "Indsend"
-  l.store "Back to ", ""
-  l.store "Sign in", ""
-
   # app/views/accounts/recover_password.html.erb
-  l.store "Back to login", ""
   l.store "Username or email", ""
 
   # app/views/accounts/signup.html.erb
-  l.store "Create an account", ""
   l.store "Username", "Brugernavn"
   l.store "Email", "Email"
   l.store "Signup", "Tilmelding"
@@ -573,7 +562,6 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/tags/edit.html.erb
   l.store "Editing ", ""
-  l.store "Back to tags list", ""
 
   # app/views/admin/tags/index.html.erb
   l.store "Display Name", ""
@@ -715,8 +703,6 @@ Localization.define("da_DK") do |l|
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-  l.store "Proceed to %s", ""
-  l.store "admin", ""
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""
