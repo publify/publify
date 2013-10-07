@@ -5,8 +5,15 @@ fr:
         explanations: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
 
   accounts:
+    back_to: "&larr; Revenir à %{place}"
+    back_to_login: "S'identifier"
+    create_account: "Créer un compte"
+    lost_my_password: "J'ai perdu mon mot de passe"
     login:
       login: "Identifiant"
       password: "Mot de passe"
       sign_in: "S'identifier"
       remember_me: "Rester connecté"
+    confirm:
+      proceed_to: "Allez sur %{link}"
+      admin: "l'administration"

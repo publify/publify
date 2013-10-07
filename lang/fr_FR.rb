@@ -96,10 +96,6 @@ Localization.define("fr_FR") do |l|
   # app/controllers/grouping_controller.rb
   l.store "page", "page"
 
-  # app/helpers/accounts_helper.rb
-  l.store "Create an account", "Créer un compte"
-  l.store "I've lost my password", "J'ai perdu mon mot de passe"
-
   # app/helpers/admin/base_helper.rb
   l.store "Cancel", "Annuler"
   l.store "Store", "Stocker"
@@ -165,7 +161,6 @@ Localization.define("fr_FR") do |l|
   # app/views/accounts/recover_password.html.erb
   l.store "Reset my password", "Me renvoyer un mot de passe"
   l.store "Username or email", "Identifiant ou email"
-  l.store "Back to login", "S'identifier"
 
   # app/views/accounts/signup.html.erb
   l.store "Username", "Identifiant"
@@ -721,8 +716,6 @@ Localization.define("fr_FR") do |l|
   l.store "<strong>Login:</strong> %s", "<strong>Identifiant&nbsp;:</strong> %s"
   l.store "<strong>Password:</strong> %s", "<strong>Mot de passe&nbsp;:</strong> %s"
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %s ou vous ne pourrez plus vous connecter à l'application"
-  l.store "Proceed to %s", "Allez sur %s"
-  l.store "admin", "l'administration"
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", "Recherche instantanée"
@@ -841,7 +834,6 @@ Localization.define("fr_FR") do |l|
   l.store "Article Types", "Modèles d'articles"
   l.store "Aug", "août"
   l.store "August", "août"
-  l.store "Back to ", "Revenir à "
   l.store "Back to overview", "Revenir à la liste"
   l.store "Back to tags list", "Revenir à la liste des labels"
   l.store "Blacklist Pattern could not be created.", "Cette entrée n'a pas pu être créée"

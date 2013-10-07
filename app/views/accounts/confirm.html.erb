@@ -6,5 +6,5 @@
 </div>
 
 <%- content_for :account_links do %>
-  <%= _("Proceed to %s",  link_to(_("admin"), controller: 'admin/dashboard')) %>
+  <%= t(".proceed_to", link: link_to(t(".admin"), controller: 'admin/dashboard')) %>
 <% end %>
