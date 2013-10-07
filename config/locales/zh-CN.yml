@@ -40,3 +40,10 @@ zh-CN:
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
+    recover_password:
+      username_or_email: "用户名或邮箱"
+      reset_my_password: "Reset my password"
+    signup:
+      username: "用户名"
+      email: "Email"
+      signup: "注册"

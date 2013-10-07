@@ -156,14 +156,6 @@ Localization.define("fr_FR") do |l|
   # app/models/post_type.rb
   l.store "This article type already exists", ""
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Reset my password", "Me renvoyer un mot de passe"
-  l.store "Username or email", "Identifiant ou email"
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Identifiant"
-  l.store "Email", "Email"
-  l.store "Signup", "S'inscrire"
 
   # app/views/admin/cache/index.html.erb
   l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.", "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."

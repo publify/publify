@@ -40,3 +40,10 @@ ro:
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
+    recover_password:
+      username_or_email: "Username or email"
+      reset_my_password: "Reset my password"
+    signup:
+      username: "Utilizator"
+      email: "Email"
+      signup: "Înregistrare"

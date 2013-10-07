@@ -40,3 +40,10 @@ he-IL:
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
+    recover_password:
+      username_or_email: "Username or email"
+      reset_my_password: "Reset my password"
+    signup:
+      username: "שם משתמש"
+      email: "דואל"
+      signup: "הירשם"

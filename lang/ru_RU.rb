@@ -68,9 +68,6 @@ Localization.define("ru_RU") do |l|
   l.store "password", "пароль"
   l.store "Submit", "Войти"
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", "Имя пользователи или email"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Sort alphabetically", "Сортировать по алфавиту"
 

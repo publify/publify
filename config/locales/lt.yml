@@ -40,3 +40,10 @@ lt:
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
+    recover_password:
+      username_or_email: "Username or email"
+      reset_my_password: "Reset my password"
+    signup:
+      username: "Vartotojo vardas"
+      email: "El. pašto adresas"
+      signup: "Registracija"

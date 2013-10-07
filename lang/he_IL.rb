@@ -153,14 +153,6 @@ Localization.define("he_IL") do |l|
   l.store "Just Marked As Spam", "סומן כספאם"
   l.store "Spam", "ספאם"
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "שם משתמש"
-  l.store "Email", "דואל"
-  l.store "Signup", "הירשם"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "סדר מחדש"
   l.store "Sort alphabetically", "מיין לפי האלף-בית"

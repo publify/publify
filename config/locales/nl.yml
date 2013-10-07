@@ -40,3 +40,10 @@ nl:
     confirm:
       proceed_to: "Ga door naar %s"
       admin: "admin"
+    recover_password:
+      username_or_email: "Gebruikersnaam of e-mail"
+      reset_my_password: "Reset my password"
+    signup:
+      username: "Gebruikersnaam"
+      email: "E-mail"
+      signup: "Meld aan"

@@ -153,14 +153,6 @@ Localization.define("da_DK") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Brugernavn"
-  l.store "Email", "Email"
-  l.store "Signup", "Tilmelding"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sortér alfabetisk"
@@ -230,7 +222,7 @@ Localization.define("da_DK") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
   l.store "No comments yet", "Der er ingen kommentarer endnu"
@@ -378,7 +370,7 @@ Localization.define("da_DK") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
@@ -543,7 +535,7 @@ Localization.define("da_DK") do |l|
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-  
+
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Vis navn"
 

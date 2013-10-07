@@ -39,3 +39,10 @@ fr:
     confirm:
       proceed_to: "Allez sur %{link}"
       admin: "l'administration"
+    recover_password:
+      username_or_email: "Identifiant ou email"
+      reset_my_password: "Me renvoyer un mot de passe"
+    signup:
+      username: "Identifiant"
+      email: "Email"
+      signup: "S'inscrire"

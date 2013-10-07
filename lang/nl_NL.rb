@@ -152,14 +152,6 @@ Localization.define("nl_NL") do |l|
   l.store "Just Marked As Spam", "Zojuist gemarkeerd als Spam"
   l.store "Spam", "Spam"
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", "Gebruikersnaam of e-mail"
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Gebruikersnaam"
-  l.store "Email", "E-mail"
-  l.store "Signup", "Meld aan"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Orden opnieuw"
   l.store "Sort alphabetically", "Sorteer alfabetisch"

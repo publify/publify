@@ -156,14 +156,6 @@ Localization.define("zh_CN") do |l|
   # app/views/accounts/login.html.erb
   l.store "Submit", "提交"
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", "用户名或邮箱"
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "用户名"
-  l.store "Email", "Email"
-  l.store "Signup", "注册"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "重新排序"
   l.store "Sort alphabetically", "依字母顺序排序"

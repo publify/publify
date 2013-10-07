@@ -136,14 +136,6 @@ Localization.define("ro_RO") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Utilizator"
-  l.store "Email", "Email"
-  l.store "Signup", "Înregistrare"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Ordonează"
   l.store "Sort alphabetically", "Ordonează alfabetic"

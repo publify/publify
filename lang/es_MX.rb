@@ -155,14 +155,6 @@ Localization.define("es_MX") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Usuario"
-  l.store "Email", "Email"
-  l.store "Signup", "Registro"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Reorganizar"
   l.store "Sort alphabetically", "Ordenar alfab&eacute;ticamente"

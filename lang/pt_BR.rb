@@ -158,14 +158,6 @@ Localization.define("pt_BR") do |l|
   # app/views/accounts/login.html.erb
   l.store "Submit", "Enviar"
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", "Usuario ou e-mail"
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Usuario"
-  l.store "Email", "Email"
-  l.store "Signup", "Registrar"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Reorganizar"
   l.store "Sort alphabetically", "Ordenar alfabéticamente"

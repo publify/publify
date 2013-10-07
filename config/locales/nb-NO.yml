@@ -38,4 +38,10 @@ nb-NO:
     confirm:
       proceed_to: "Fortsett til %s"
       admin: "admin"
-
+    recover_password:
+      username_or_email: "Brukernavn eller epost"
+      reset_my_password: "Nullstill passordet mitt"
+    signup:
+      username: "Brukernavn"
+      email: "Epost"
+      signup: "Registrer"

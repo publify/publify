@@ -153,13 +153,6 @@ Localization.define("zh_TW") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "名稱"
-  l.store "Email", "Email"
-  l.store "Signup", "註冊"
 
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "重新排序"

@@ -40,3 +40,10 @@ ru:
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
+    recover_password:
+      username_or_email: "Имя пользователи или email"
+      reset_my_password: "Reset my password"
+    signup:
+      username: "Username"
+      email: "Email"
+      signup: "Signup"

@@ -153,14 +153,6 @@ Localization.define("ja_JP") do |l|
   l.store "Just Marked As Spam", "スパムマーク"
   l.store "Spam", "スパム"
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "ユーザー名"
-  l.store "Email", "メールアドレス"
-  l.store "Signup", "サインアップ"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "並べ替え"
   l.store "Sort alphabetically", "アルファベット順に並べ替え"

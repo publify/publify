@@ -174,14 +174,6 @@ Localization.define("nb_NO") do |l|
   l.store "Just Marked As Spam", "Kun markert som Spam"
   l.store "Spam", "Spam"
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", "Brukernavn eller epost"
-  l.store "Reset my password", "Nullstill passordet mitt"
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Brukernavn"
-  l.store "Email", "Epost"
-  l.store "Signup", "Registrer"
 
   # app/views/admin/cache/index.html.erb
   l.store "To save resources Publify caches content in static files. Cache is cleared each time something gets published. You may however want to clear the cache yourself.",

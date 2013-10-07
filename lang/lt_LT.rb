@@ -153,14 +153,6 @@ Localization.define("lt_LT") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/accounts/recover_password.html.erb
-  l.store "Username or email", ""
-
-  # app/views/accounts/signup.html.erb
-  l.store "Username", "Vartotojo vardas"
-  l.store "Email", "El. pašto adresas"
-  l.store "Signup", "Registracija"
-
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Rikiuoti"
   l.store "Sort alphabetically", "Rikiuoti pagal abėcėlę"
