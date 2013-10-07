@@ -1,5 +1,14 @@
 ro:
   admin:
+    categories:
+      new:
+        categories: "Categories"
+        name: "Nume"
+        keywords: "Keywords"
+        permalink: "Legătură permanentă"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Descriere"
+        title: "Titlu"
     menu:
       help: "Ajutor"
       documentation: "Documentație"

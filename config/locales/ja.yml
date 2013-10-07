@@ -1,5 +1,14 @@
 ja:
   admin:
+    categories:
+      new:
+        categories: "カテゴリ"
+        name: "名前"
+        keywords: "Keywords"
+        permalink: "パーマリンク"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "説明"
+        title: "タイトル"
     menu:
       help: "Help"
       documentation: "Documentation"

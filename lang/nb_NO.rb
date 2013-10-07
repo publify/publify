@@ -134,8 +134,6 @@ Localization.define("nb_NO") do |l|
   l.store "Show help on Publify macros", "Vis hjelp i Publify makroer"
   l.store "Update settings", "Oppdater innstillinger"
   l.store "Back to list", "Tilbake til listen"
-  l.store "Name", "Navn"
-  l.store "Description", "Beskrivelse"
   l.store "Tag", "Tag"
 
   # app/helpers/admin/categories_helper.rb
@@ -193,16 +191,12 @@ Localization.define("nb_NO") do |l|
   l.store "Cache", "Cache"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Tittel"
-  l.store "Permalink", "Permanent link"
-  l.store "Keywords", "Nøkkelord"
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sorter alfabetisk"
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Er du sikker på du vil slette kategorien: "
   l.store "Delete this category", "Slett denne kategorien"
-  l.store "Categories", "Kategorier"
 
   # app/views/admin/categories/new.html.erb
   l.store "%s Category", "%s kategori"

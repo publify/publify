@@ -1,5 +1,14 @@
 da:
   admin:
+    categories:
+      new:
+        categories: "Kategorier"
+        name: "Navn"
+        keywords: "Keywords"
+        permalink: "Permanent link"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Beskrivelse"
+        title: "Titel"
     menu:
       help: "Help"
       documentation: "Documentation"

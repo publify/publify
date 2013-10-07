@@ -1,5 +1,14 @@
 nb-NO:
   admin:
+    categories:
+      new:
+        categories: "Kategorier"
+        name: "Navn"
+        keywords: "Nøkkelord"
+        permalink: "Permanent link"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Beskrivelse"
+        title: "Tittel"
     menu:
       help: "Help"
       documentation: "Documentation"

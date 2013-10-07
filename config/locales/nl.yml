@@ -1,5 +1,14 @@
 nl:
   admin:
+    categories:
+      new:
+        categories: "Categoriën"
+        name: "Naam"
+        keywords: "Trefwoorden"
+        permalink: "Permalink"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Omschrijving"
+        title: "Titel"
     menu:
       help: "Help"
       documentation: "Documentation"

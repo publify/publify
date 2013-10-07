@@ -1,5 +1,14 @@
 he-IL:
   admin:
+    categories:
+      new:
+        categories: "קטגוריות"
+        name: "שם"
+        keywords: "Keywords"
+        permalink: "קישור קבוע"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "תיאור"
+        title: "כותרת"
     menu:
       help: "עזרה"
       documentation: "Documentation"

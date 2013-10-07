@@ -101,8 +101,6 @@ Localization.define("lt_LT") do |l|
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Atgal į peržiūrą"
-  l.store "Name", "Vardas"
-  l.store "Description", "Beschreibung"
   l.store "Tag", ""
 
   # app/helpers/admin/categories_helper.rb
@@ -164,17 +162,12 @@ Localization.define("lt_LT") do |l|
   l.store "Signup", "Registracija"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Pavadinimas"
   l.store "Reorder", "Rikiuoti"
   l.store "Sort alphabetically", "Rikiuoti pagal abėcėlę"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Ar tikrai nori ištrinti šią kategoriją : "
   l.store "Delete this category", "Trinti šią kategoriją"
-  l.store "Categories", ""
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", ""
@@ -208,7 +201,6 @@ Localization.define("lt_LT") do |l|
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", "Publikuotas"
-  l.store "Permalink", "Nuoroda"
   l.store "Article filter", "Straipsnių filtras"
   l.store "Save as draft", ""
   l.store "disabled", ""

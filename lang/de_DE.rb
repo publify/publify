@@ -101,8 +101,6 @@ Localization.define("de_DE") do |l|
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Zurück zur Übersicht"
-  l.store "Name", "Name"
-  l.store "Description", "Beschreibung"
   l.store "Tag", ""
 
   # app/helpers/admin/categories_helper.rb
@@ -164,23 +162,12 @@ Localization.define("de_DE") do |l|
   l.store "Signup", "Registrieren"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Titel"
   l.store "Reorder", "Sortieren"
   l.store "Sort alphabetically", "Alphabetisch sortieren"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Sind Sie sicher, die Kategorie zu löschen: "
   l.store "Delete this category", "Kategorie löschen"
-  l.store "Categories", ""
-
-  # app/views/admin/categories/index.html.erb
-  l.store "New Category", ""
-
-  # app/views/admin/categories/new.html.erb
-  l.store "%s Category", ""
 
   # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Fertig)"
@@ -208,7 +195,6 @@ Localization.define("de_DE") do |l|
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", "Veröffentlicht am"
-  l.store "Permalink", "Permanenter Link"
   l.store "Article filter", "Textfilter für Artikel"
   l.store "Save as draft", ""
   l.store "disabled", ""

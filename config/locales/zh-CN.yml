@@ -1,5 +1,14 @@
 zh-CN:
   admin:
+    categories:
+      new:
+        categories: "分类"
+        name: "名字"
+        keywords: "关键词"
+        permalink: "固定链接"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "说明"
+        title: "标题"
     menu:
       help: "Help"
       documentation: "Documentation"

@@ -1,5 +1,14 @@
 ru:
   admin:
+    categories:
+      new:
+        categories: "Категории"
+        name: "Имя"
+        keywords: "Ключевые слова"
+        permalink: "Постоянная ссылка"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Описание"
+        title: "Заголовок"
     menu:
       help: "Помощь"
       documentation: "Документация"

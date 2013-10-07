@@ -100,8 +100,6 @@ Localization.define("nl_NL") do |l|
   l.store "Unpublished", "Niet gepubliceerd"
   l.store "Show help on Publify macros", "Toon help voor Publify macro's"
   l.store "Back to overview", "Terug naar overzicht"
-  l.store "Name", "Naam"
-  l.store "Description", "Omschrijving"
   l.store "Tag", "Tag"
 
   # app/helpers/admin/categories_helper.rb
@@ -163,17 +161,12 @@ Localization.define("nl_NL") do |l|
   l.store "Signup", "Meld aan"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Titel"
   l.store "Reorder", "Orden opnieuw"
   l.store "Sort alphabetically", "Sorteer alfabetisch"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", "Trefwoorden"
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Weet je zeker dat je de categorie wilt verwijderen?"
   l.store "Delete this category", "Verwijder deze categorie"
-  l.store "Categories", "Categoriën"
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", "Nieuwe categorie"

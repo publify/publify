@@ -121,8 +121,6 @@ Localization.define("fr_FR") do |l|
   l.store "Show help on Publify macros", "Afficher l'aide sur les macros Publify"
   l.store "Update settings", "Mettre les paramètres à jour"
   l.store "Back to list", ""
-  l.store "Name", "Nom"
-  l.store "Description", "Description"
   l.store "Tag", "Label"
 
   # app/helpers/admin/categories_helper.rb
@@ -172,17 +170,6 @@ Localization.define("fr_FR") do |l|
   l.store "There are currently %d files in cache for a total amount of %d Kb", "Il y a actuellement %d fichiers en cache pour un total de %d kilo octets."
   l.store "Sweep cache", "Vider le cache"
   l.store "Cache", "Cache"
-
-  # app/views/admin/categories/new.html.erb
-  l.store "Categories", "Catégories"
-  l.store "Keywords", "Mots clés"
-  l.store "Permalink", "Lien permanent"
-  l.store "Your category slug. Leave empty if you don't know what to put here", "Le lien permanent de votre catégorie. Laissez le vide si vous ne savez pas quoi mettre"
-  l.store "Title", "Titre"
-
-  # app/views/admin/categories/new.js.erb
-  l.store "%s Category", "%s catégories"
-  l.store "close", "fermer"
 
   # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Supprimer"

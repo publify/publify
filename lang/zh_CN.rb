@@ -101,8 +101,6 @@ Localization.define("zh_CN") do |l|
   l.store "Unpublished", "未发表"
   l.store "Show help on Publify macros", "显示Publify宏的帮助"
   l.store "Back to overview", "回到概览"
-  l.store "Name", "名字"
-  l.store "Description", "说明"
   l.store "Tag", ""
 
   # app/helpers/admin/categories_helper.rb
@@ -167,17 +165,12 @@ Localization.define("zh_CN") do |l|
   l.store "Signup", "注册"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "标题"
   l.store "Reorder", "重新排序"
   l.store "Sort alphabetically", "依字母顺序排序"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", "关键词"
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "确认删除此分类？"
   l.store "Delete this category", "删除分类"
-  l.store "Categories", "分类"
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", "创建分类"
@@ -211,7 +204,6 @@ Localization.define("zh_CN") do |l|
   l.store "Uploads", "上传"
   l.store "Post settings", "发布设定"
   l.store "Publish at", "公开"
-  l.store "Permalink", "固定链接"
   l.store "Article filter", ""
   l.store "Save as draft", "保存为草稿"
   l.store "disabled", ""
@@ -400,17 +392,6 @@ Localization.define("zh_CN") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "Permalink format", ""
-  l.store "Date and title", ""
-  l.store "Month and title", ""
-  l.store "Title only", ""
-  l.store "You can custom your URL structure using the following tags:", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""

@@ -1,5 +1,14 @@
 lt:
   admin:
+    categories:
+      new:
+        categories: "Categories"
+        name: "Vardas"
+        keywords: "Keywords"
+        permalink: "Nuoroda"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Beschreibung"
+        title: "Pavadinimas"
     menu:
       help: "Padėti"
       documentation: "Vadovėlis"

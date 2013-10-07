@@ -101,8 +101,6 @@ Localization.define("da_DK") do |l|
   l.store "Unpublished", "Ikke offentliggjort"
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Tilbage til oversigten"
-  l.store "Name", "Navn"
-  l.store "Description", "Beskrivelse"
   l.store "Tag", "Tag"
 
   # app/helpers/admin/categories_helper.rb
@@ -164,17 +162,12 @@ Localization.define("da_DK") do |l|
   l.store "Signup", "Tilmelding"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Titel"
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sortér alfabetisk"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Er du sikker på du vil slette kategorien: "
   l.store "Delete this category", "Slet denne kategori"
-  l.store "Categories", "Kategorier"
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", ""
@@ -208,7 +201,6 @@ Localization.define("da_DK") do |l|
   l.store "Uploads", "Filer"
   l.store "Post settings", ""
   l.store "Publish at", "Offentliggjort den"
-  l.store "Permalink", "Permanent link"
   l.store "Article filter", "Artikelfilter"
   l.store "Save as draft", ""
   l.store "New article", ""

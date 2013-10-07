@@ -1,5 +1,14 @@
 fr:
   admin:
+    categories:
+      new:
+        categories: "Catégories"
+        name: "Nom"
+        keywords: "Mots clés"
+        permalink: "Lien permanent"
+        explaination: "Le lien permanent de votre catégorie. Laissez le vide si vous ne savez pas quoi mettre"
+        description: "Description"
+        title: "Titre"
     menu:
       help: "Aide"
       documentation: "Documentation"

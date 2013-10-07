@@ -1,5 +1,14 @@
 es-MX:
   admin:
+    categories:
+      new:
+        categories: "Categories"
+        name: "Nombre"
+        keywords: "Keywords"
+        permalink: "Link permanente"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Descripci&oacute;n"
+        title: "T&iacute;tulo"
     menu:
       help: "Ayuda"
       documentation: "Documentación"

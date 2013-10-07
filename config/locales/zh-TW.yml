@@ -1,5 +1,14 @@
 zh-TW:
   admin:
+    categories:
+      new:
+        categories: "分類"
+        name: "名字"
+        keywords: "Keywords"
+        permalink: "固定連接"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "説明"
+        title: "標題"
     menu:
       help: "Help"
       documentation: "Documentation"

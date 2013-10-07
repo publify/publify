@@ -101,8 +101,6 @@ Localization.define("he_IL") do |l|
   l.store "Unpublished", "לא פורסם"
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "עבור לסקירה"
-  l.store "Name", "שם"
-  l.store "Description", "תיאור"
   l.store "Tag", "תוית"
 
   # app/helpers/admin/categories_helper.rb
@@ -164,17 +162,12 @@ Localization.define("he_IL") do |l|
   l.store "Signup", "הירשם"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "כותרת"
   l.store "Reorder", "סדר מחדש"
   l.store "Sort alphabetically", "מיין לפי האלף-בית"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "האם אתה בטוח שברצונך למחוק את הקטגורייה ?"
   l.store "Delete this category", "מחק קטגורייה זו"
-  l.store "Categories", "קטגוריות"
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", ""
@@ -208,7 +201,6 @@ Localization.define("he_IL") do |l|
   l.store "Uploads", "העלאות"
   l.store "Post settings", "הגדרות כתבה"
   l.store "Publish at", "פורסם בתאריך"
-  l.store "Permalink", "קישור קבוע"
   l.store "Article filter", "מסנן הכתבה"
   l.store "Save as draft", "שמור טיוטה"
   l.store "disabled", ""

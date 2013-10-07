@@ -101,8 +101,6 @@ Localization.define("ja_JP") do |l|
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
   l.store "Back to overview", "オーバービューに戻る"
-  l.store "Name", "名前"
-  l.store "Description", "説明"
   l.store "Tag", ""
 
   # app/helpers/admin/categories_helper.rb
@@ -164,17 +162,12 @@ Localization.define("ja_JP") do |l|
   l.store "Signup", "サインアップ"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "タイトル"
   l.store "Reorder", "並べ替え"
   l.store "Sort alphabetically", "アルファベット順に並べ替え"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "このカテゴリを削除してもよろしいですか？ "
   l.store "Delete this category", "このカテゴリを削除"
-  l.store "Categories", "カテゴリ"
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", ""
@@ -208,7 +201,6 @@ Localization.define("ja_JP") do |l|
   l.store "Uploads", "アップロード"
   l.store "Post settings", "投稿設定"
   l.store "Publish at", "公開日"
-  l.store "Permalink", "パーマリンク"
   l.store "Article filter", "記事フィルター"
   l.store "Save as draft", "下書きとして保存"
   l.store "disabled", ""

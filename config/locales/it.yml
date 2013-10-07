@@ -1,5 +1,14 @@
 it:
   admin:
+    categories:
+      new:
+        categories: "Categories"
+        name: "Nome"
+        keywords: "Keywords"
+        permalink: "Permalink"
+        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        description: "Descrizione"
+        title: "Titolo"
     menu:
       help: "Aiuto"
       documentation: "Documentazione"

@@ -101,8 +101,6 @@ Localization.define("zh_TW") do |l|
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "回到概覽"
-  l.store "Name", "名字"
-  l.store "Description", "説明"
   l.store "Tag", ""
 
   # app/helpers/admin/categories_helper.rb
@@ -164,17 +162,12 @@ Localization.define("zh_TW") do |l|
   l.store "Signup", "註冊"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "標題"
   l.store "Reorder", "重新排序"
   l.store "Sort alphabetically", "依字母順序排序"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "確認刪除此分類？ "
   l.store "Delete this category", "刪除分類"
-  l.store "Categories", "分類"
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", ""
@@ -208,7 +201,6 @@ Localization.define("zh_TW") do |l|
   l.store "Uploads", "上載"
   l.store "Post settings", ""
   l.store "Publish at", "公開"
-  l.store "Permalink", "固定連接"
   l.store "Article filter", "篩選文章"
   l.store "Save as draft", ""
   l.store "disabled", ""

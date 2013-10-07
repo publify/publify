@@ -37,8 +37,6 @@ Localization.define("ru_RU") do |l|
   l.store "Show help on Publify macros", "Показать помощь по Publify-макросам"
   l.store "Update settings", "Обновить настройки"
   l.store "Back to list", "Назад к списку"
-  l.store "Name", "Имя"
-  l.store "Description", "Описание"
   l.store "Tag", "Тег"
 
   # app/helpers/admin/categories_helper.rb
@@ -74,15 +72,11 @@ Localization.define("ru_RU") do |l|
   l.store "Username or email", "Имя пользователи или email"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Заголовок"
-  l.store "Permalink", "Постоянная ссылка"
-  l.store "Keywords", "Ключевые слова"
   l.store "Sort alphabetically", "Сортировать по алфавиту"
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Вы уверены, что хотите удалитьэту категорию?"
   l.store "Delete this category", "Удалить эту категорию"
-  l.store "Categories", "Категории"
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", "Новая категория"

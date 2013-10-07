@@ -96,26 +96,7 @@ Localization.define("ro_RO") do |l|
   l.store "or", "sau"
   l.store "Save", "Salvează"
   l.store "Edit", "Editare"
-  l.store "Show", ""
   l.store "Published", "Publicat"
-  l.store "Unpublished", ""
-  l.store "Show help on Publify macros", ""
-  l.store "Back to overview", ""
-  l.store "Name", "Nume"
-  l.store "Description", "Descriere"
-  l.store "Tag", ""
-
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
-
-  # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
-
-  # app/helpers/admin/feedback_helper.rb
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
@@ -164,17 +145,12 @@ Localization.define("ro_RO") do |l|
   l.store "Signup", "Înregistrare"
 
   # app/views/admin/categories/_categories.html.erb
-  l.store "Title", "Titlu"
   l.store "Reorder", "Ordonează"
   l.store "Sort alphabetically", "Ordonează alfabetic"
-
-  # app/views/admin/categories/_form.html.erb
-  l.store "Keywords", ""
 
   # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Ești sigur că dorești să ștergi această categorie"
   l.store "Delete this category", "Șterge această categorie"
-  l.store "Categories", ""
 
   # app/views/admin/categories/index.html.erb
   l.store "New Category", ""
@@ -208,7 +184,6 @@ Localization.define("ro_RO") do |l|
   l.store "Uploads", ""
   l.store "Post settings", ""
   l.store "Publish at", "Publică la"
-  l.store "Permalink", "Legătură permanentă"
   l.store "Article filter", "Filtru pentru articole"
   l.store "Save as draft", ""
   l.store "disabled", ""
