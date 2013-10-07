@@ -1,4 +1,18 @@
 pt-BR:
+  accounts:
+    back_to: "&larr; Voltar para %{place}"
+    back_to_login: "Voltar para o login"
+    create_account: "Crie uma conta"
+    lost_my_password: "Perdi minha senha"
+    login:
+      login: "Login"
+      password: "Senha"
+      remember_me: "Lembrar-me"
+      sign_in: "Entrar"
+    confirm:
+      proceed_to: "Continuar para %{link}"
+      admin: "admin"
+
   admin:
     content:
       categories:
@@ -7,48 +21,48 @@ pt-BR:
       new:
         categories: "Categorias"
         name: "Nome"
-        keywords: "Keywords"
+        keywords: "Palavras chave"
         permalink: "Link permanente"
-        explaination: "Your category slug. Leave empty if you don't know what to put here"
+        explaination: "Fale mais sobre a sua categoria. Deixe em branco caso não saiba o que pôr aqui."
         description: "Descrição"
         title: "Título"
     menu:
-      help: "Ayuda"
-      documentation: "Documentación"
-      report_a_bug: "Informar de un error"
-      in_page_plugins: "In page plugins"
-      sidebar_plugins: "Sidebar plugins"
-      logged_in_as: "Bienvenido, %{login}"
-      new_article: "New Article"
-      profile: "Profile"
-      logout: "Log out &raquo;"
-      home: "Home"
+      help: "Ajuda"
+      documentation: "Documentação"
+      report_a_bug: "Informar um erro"
+      in_page_plugins: "Plugins In Page"
+      sidebar_plugins: "Plugins da Sidebar"
+      logged_in_as: "Bem vindo(a), %{login}"
+      new_article: "Novo Artigo"
+      profile: "Perfil"
+      logout: "Sair &raquo;"
+      home: "Início"
       dashboard: "Dashboard"
-      powered_by: "is proudly powered by"
+      powered_by: "é orgulhosamente desenvolvido por"
     cache:
       index:
-        stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
-        sweep_cache: "Sweep cache"
-        cache: "Cach&eacute;"
+        stats: "Atualmente existem %{files_count} arquivos em cache para uma quantidade total de %{size} Kb."
+        sweep_cache: "Limpar cache"
+        cache: "Cache"
         explanations: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
   accounts:
     back_to: "&larr; Voltar para %{place}"
     back_to_login: "Voltar para o login"
-    create_account: "Crie uma conta"
-    lost_my_password: "Eu perdi minha senha"
+    create_account: "Criar conta"
+    lost_my_password: "Perdi minha senha"
     login:
       login: "Login"
       password: "Senha"
       remember_me: "Lembrar-me"
       sign_in: "Entrar"
     confirm:
-      proceed_to: "Proceed to %{link}"
+      proceed_to: "Continuar para %{link}"
       admin: "admin"
     recover_password:
-      username_or_email: "Usuario ou e-mail"
-      reset_my_password: "Reset my password"
+      username_or_email: "Usuário ou Email"
+      reset_my_password: "Redefinir senha"
     signup:
-      username: "Usuario"
+      username: "Usuário"
       email: "Email"
       signup: "Registrar"
 
