@@ -65,10 +65,6 @@ module Admin::ContentHelper
     "<a href=\"#\" onclick=\"Element.toggle('#{element}'); return false\">#{label}</a>".html_safe
   end
   
-  def ok_button(element)
-    content_tag(:p, content_tag(:span, toggle_element('status', "OK"), :class => 'btn btn-mini'))
-  end
-  
   def publish_now_or_already_published(article)
     return _("now") unless article.published and article.state.to_s.downcase == 'published'
     display_date_and_time(article.published_at)

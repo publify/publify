@@ -36,15 +36,6 @@ module Admin::BaseHelper
       :controller => controller, :action => 'destroy', :id => record.id
   end
 
-  def link_to_destroy_with_profiles(record, controller = controller.controller_name)
-    if current_user.admin? || current_user.id == record.user_id
-      link_to(_("delete"),
-              { controller: controller, action: 'destroy', id: record.id },
-              data: {confirm: _("Are you sure?")},
-              method: :post, class: 'btn danger', title: _("Delete content"))
-    end
-  end
-
   def text_filter_options
     TextFilter.all.collect do |filter|
       [ _(filter.description), filter ]
@@ -146,11 +137,6 @@ module Admin::BaseHelper
 
   def small_to_delete(item)
     content_tag(:small, link_to(_("Delete"), {:action => 'destroy', :id => item.id}, :class => 'delete'))
-  end
-
-  def set_autosave_tag(article)
-    @article.inspect
-    hidden_field_tag("article[id]", @article.id) unless @article.id.nil?
   end
 
   def twitter_available?(blog, user)
