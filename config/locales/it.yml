@@ -1,5 +1,18 @@
 it:
   admin:
+    menu:
+      help: "Aiuto"
+      documentation: "Documentazione"
+      report_a_bug: "Segnalare un bug"
+      in_page_plugins: "In page plugins"
+      sidebar_plugins: "Sidebar plugins"
+      logged_in_as: "Benvenuto, %{login}"
+      new_article: "New Article"
+      profile: "Profilo"
+      logout: "Esci &raquo;"
+      home: "Home"
+      dashboard: "Dashboard"
+      powered_by: "is proudly powered by"
     cache:
       index:
         explanations: "To save on resources, Publify generates static files

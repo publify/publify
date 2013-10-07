@@ -214,7 +214,6 @@ Localization.define("pl_PL") do |l|
   l.store "Permalink", "Permalink"
   l.store "Article filter", "Filtr artykułów"
   l.store "Save as draft", ""
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -409,7 +408,6 @@ Localization.define("pl_PL") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""
-  l.store "Home", ""
   l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
@@ -584,7 +582,6 @@ Localization.define("pl_PL") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", ""
-  l.store "Profile", ""
   l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
@@ -687,17 +684,6 @@ Localization.define("pl_PL") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
-  l.store "%s &raquo;", ""
-  l.store "Help", "Pomocy"
-  l.store "Documentation", ""
-  l.store "Report a bug", ""
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", "dumnie działa na"
-  l.store "Dashboard", "Podsumowanie"
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
@@ -748,7 +734,6 @@ Localization.define("pl_PL") do |l|
   l.store "Searching", ""
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", ""
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
@@ -896,7 +881,6 @@ Localization.define("pl_PL") do |l|
   l.store "Limit to unconfirmed", "Pokaż niepotwierdzone"
   l.store "Limit to unconfirmed spam", "Pokaż niepotwierdzony spam"
   l.store "Location", "Lokacja"
-  l.store "Log out", "Wyloguj"
   l.store "Logoff", "Wyloguj"
   l.store "Macro Filter Help", "Pomoc makr filtrów"
   l.store "Macros", "Makra"

@@ -1,5 +1,18 @@
 da:
   admin:
+    menu:
+      help: "Help"
+      documentation: "Documentation"
+      report_a_bug: "Report a bug"
+      in_page_plugins: "In page plugins"
+      sidebar_plugins: "Sidebar plugins"
+      logged_in_as: "Logged in as %{login}"
+      new_article: "New Article"
+      profile: "Profile"
+      logout: "Log ud &raquo;"
+      home: "Home"
+      dashboard: "Dashboard"
+      powered_by: "is proudly powered by"
     cache:
       index:
         explanations: "To save on resources, Publify generates static files

@@ -211,7 +211,6 @@ Localization.define("de_DE") do |l|
   l.store "Permalink", "Permanenter Link"
   l.store "Article filter", "Textfilter für Artikel"
   l.store "Save as draft", ""
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -405,7 +404,6 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""
-  l.store "Home", ""
   l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
@@ -580,7 +578,6 @@ Localization.define("de_DE") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", ""
-  l.store "Profile", ""
   l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
@@ -682,17 +679,6 @@ Localization.define("de_DE") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", "Angemeldet %s"
-  l.store "%s &raquo;", ""
-  l.store "Help", "Helfen"
-  l.store "Documentation", ""
-  l.store "Report a bug", "Melden"
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", ""
-  l.store "Dashboard", ""
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
@@ -743,7 +729,6 @@ Localization.define("de_DE") do |l|
   l.store "Searching", ""
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", ""
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
@@ -962,7 +947,6 @@ Localization.define("de_DE") do |l|
   l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Sie können die Moderation von Kommentaren auf der gesamten Website aktivieren. Dann erscheinen keine Kommentare oder Trackbacks in Ihrem Blog, die sie nicht überprüft haben"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Sie können optional non-Ajax Kommentare verbieten. Publify verwendet immer Ajax für die Übertragung von Kommentaren, sofern Javascript eingeschaltet ist. non-Ajax Kommentare stamme somit entweder von Spammern oder von Anwendern ohne aktiviertes Javascript."
   l.store "by", "bei"
-  l.store "log out", "Abmelden"
   l.store "on", "über"
   l.store "seperate with spaces", "mit Leerzeichen trennen"
   l.store "via email", "per Email"

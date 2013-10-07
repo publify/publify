@@ -211,7 +211,6 @@ Localization.define("it_IT") do |l|
   l.store "Permalink", "Permalink"
   l.store "Article filter", "Filtra articolo"
   l.store "Save as draft", ""
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -220,7 +219,7 @@ Localization.define("it_IT") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Sei sicuro di voler eliminare questo articolo"
@@ -387,7 +386,7 @@ Localization.define("it_IT") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
@@ -406,7 +405,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""
-  l.store "Home", ""
   l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
@@ -581,7 +579,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", ""
-  l.store "Profile", "Profilo"
   l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
@@ -684,17 +681,6 @@ Localization.define("it_IT") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", "Benvenuto, %s"
-  l.store "%s &raquo;", ""
-  l.store "Help", "Aiuto"
-  l.store "Documentation", "Documentazione"
-  l.store "Report a bug", "Segnalare un bug"
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", ""
-  l.store "Dashboard", ""
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
@@ -745,7 +731,6 @@ Localization.define("it_IT") do |l|
   l.store "Searching", ""
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", ""
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
@@ -995,7 +980,6 @@ Localization.define("it_IT") do |l|
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Puoi disabilitare i commenti non Ajax. Il blog usera' Ajax per l'invio dei commenti se i Javascript sono abilitati, in questo modo i commenti non Ajax saranno bloccati dagli spammer e dagli utenti senza javascript."
   l.store "add new", "aggiungi nuovo"
   l.store "by", "da"
-  l.store "log out", "esci"
   l.store "no ", "no "
   l.store "on", "su"
   l.store "seperate with spaces", "séparez-les par des espaces"

@@ -1,5 +1,18 @@
 pl:
   admin:
+    menu:
+      help: "Pomocy"
+      documentation: "Documentation"
+      report_a_bug: "Report a bug"
+      in_page_plugins: "In page plugins"
+      sidebar_plugins: "Sidebar plugins"
+      logged_in_as: "Logged in as %{login}"
+      new_article: "New Article"
+      profile: "Profile"
+      logout: "Wyloguj &raquo;"
+      home: "Home"
+      dashboard: "Podsumowanie"
+      powered_by: "dumnie działa na"
     cache:
       index:
         explanations: "To save on resources, Publify generates static files

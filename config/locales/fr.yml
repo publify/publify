@@ -1,5 +1,18 @@
 fr:
   admin:
+    menu:
+      help: "Aide"
+      documentation: "Documentation"
+      report_a_bug: "Déclarer un bug"
+      in_page_plugins: "Plugins"
+      sidebar_plugins: "Widgets"
+      logged_in_as: "Salutations, %{login}"
+      new_article: "Nouvel article"
+      profile: "Profil"
+      logout: "Déconnexion &raquo;"
+      home: "Tableau de bord"
+      dashboard: "Tableau de bord"
+      powered_by: "tourne fièrement sous"
     cache:
       index:
         explanations: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."

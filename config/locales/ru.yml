@@ -1,5 +1,18 @@
 ru:
   admin:
+    menu:
+      help: "Помощь"
+      documentation: "Документация"
+      report_a_bug: "Сообщить об ошибке"
+      in_page_plugins: "Плагины для страницы"
+      sidebar_plugins: "Боковые плагины"
+      logged_in_as: "Logged in as %{login}"
+      new_article: "Новый пост"
+      profile: "Profile"
+      logout: "Log out &raquo;"
+      home: "Home"
+      dashboard: "Дайджест"
+      powered_by: "С гордостью работает на"
     cache:
       index:
         explanations: "To save on resources, Publify generates static files

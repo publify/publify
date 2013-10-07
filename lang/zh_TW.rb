@@ -211,7 +211,6 @@ Localization.define("zh_TW") do |l|
   l.store "Permalink", "固定連接"
   l.store "Article filter", "篩選文章"
   l.store "Save as draft", ""
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -220,7 +219,7 @@ Localization.define("zh_TW") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "確定刪除本篇文章？"
   l.store "Delete this article", "刪除本篇文章"
@@ -357,7 +356,7 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "檔案名稱"
   l.store "Browse", ""
-  
+
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
   l.store "Global SEO settings", ""
@@ -386,7 +385,7 @@ Localization.define("zh_TW") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
@@ -405,7 +404,6 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""
-  l.store "Home", ""
   l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
@@ -683,17 +681,6 @@ Localization.define("zh_TW") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
-  l.store "%s &raquo;", ""
-  l.store "Help", ""
-  l.store "Documentation", ""
-  l.store "Report a bug", ""
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", ""
-  l.store "Dashboard", ""
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
@@ -709,7 +696,6 @@ Localization.define("zh_TW") do |l|
   l.store "Live Search", ""
 
   # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
 
   # test/mocks/themes/typographic/views/articles/_article.html.erb
@@ -744,7 +730,6 @@ Localization.define("zh_TW") do |l|
   l.store "Searching", ""
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", ""
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
@@ -990,7 +975,6 @@ Localization.define("zh_TW") do |l|
   l.store "add new", "新增"
   l.store "by", "by"
   l.store "by %s on %s", "由%s在%s"
-  l.store "log out", "登出"
   l.store "no ", "no "
   l.store "on", "の"
   l.store "seperate with spaces", "空間區分"

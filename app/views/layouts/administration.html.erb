@@ -34,20 +34,20 @@
         <ul class='nav pull-right'>
           <li class='divider-vertical'></li>
           <li class="dropdown" onmouseover='$("help_menu").style.display = "block"' onmouseout='$("help_menu").style.display = "none"'>
-            <a class="dropdown-toggle" href="#"><%= _("Help")%></a>
+            <a class="dropdown-toggle" href="#"><%= t("admin.menu.help")%></a>
             <ul class="dropdown-menu" id="help_menu" style="display: none;">
-              <li><%= link_to _("Documentation"), "https://github.com/fdv/publify/wiki" %></li>
-              <li><%= link_to _("Report a bug"), "https://github.com/fdv/publify/issues" %></li>
-              <li><%= link_to _("In page plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
-              <li><%= link_to _("Sidebar plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
+              <li><%= link_to t("admin.menu.documentation"), "https://github.com/fdv/publify/wiki" %></li>
+              <li><%= link_to t("admin.menu.report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
+              <li><%= link_to t("admin.menu.in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
+              <li><%= link_to t("admin.menu.sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
             </ul>
           </li>
           <li class='dropdown' onmouseover='$("user_menu").style.display = "block"' onmouseout='$("user_menu").style.display = "none"'>
-            <a class="dropdown-toggle" href="#"><%= _("Logged in as %s", current_user.display_name)%></a>
+            <a class="dropdown-toggle" href="#"><%= t("admin.menu.logged_in_as", login: current_user.display_name) %></a>
             <ul class="dropdown-menu" id="user_menu" style='display: none'>
-              <li><%= link_to(_("New Article"), {:controller => 'content', :action => 'new'}) %></li>
-              <li><%= link_to _("Profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
-              <li><%= link_to _("%s &raquo;", "Log out").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
+              <li><%= link_to(t("admin.menu.new_article"), {:controller => 'content', :action => 'new'}) %></li>
+              <li><%= link_to t("admin.menu.profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
+              <li><%= link_to t("admin.menu.logout").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
             </ul>
           </li>
         </ul>
@@ -60,10 +60,10 @@
         <div class='well' style='padding: 28px 0'>
           <ul class='nav nav-list'>
             <li class='nav-header'><i class='icon icon-home'></i>
-              <%= _("Home") %>
+              <%= t("admin.menu.home") %>
             </li>
             <li class='<%= "active" if controller.controller_name == 'dashboard' %>'>
-              <%= link_to _('Dashboard'), {:controller => 'admin/dashboard'} %>
+              <%= link_to t('admin.menu.dashboard'), {controller: 'admin/dashboard'} %>
             </li>
             <li class="divider"></li>
             <% for pm in current_user.project_modules %>
@@ -92,7 +92,7 @@
 
   <footer class='clearfix'>
   <div class='span12'>
-    <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= _("is proudly powered by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
+    <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t("admin.menu.powered_by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
   </div>
   </footer>
 </body>

@@ -98,7 +98,6 @@ Localization.define("ru_RU") do |l|
   l.store "Post settings", "Настройки поста"
   l.store "Publish at", "Опубликован"
   l.store "Save as draft", "Сохранить как черновик"
-  l.store "New article", "Новый пост"
   l.store "disabled", "выключены"
   l.store "Markdown with SmartyPants", "Markdown со SmartyPants"
   l.store "Markdown", "Markdown"
@@ -215,15 +214,6 @@ Localization.define("ru_RU") do |l|
   l.store "Twitter:", ""
   l.store "About %s", "Об авторе %s"
   l.store "This author has not published any article yet", "Этот автор еще ничего не публиковал"
-
-  # app/views/layouts/administration.html.erb
-  l.store "Help", "Помощь"
-  l.store "Documentation", "Документация"
-  l.store "Report a bug", "Сообщить об ошибке"
-  l.store "In page plugins", "Плагины для страницы"
-  l.store "Sidebar plugins", "Боковые плагины"
-  l.store "is proudly powered by", "С гордостью работает на"
-  l.store "Dashboard", "Дайджест" # XXX
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "Published on", "Опубликовано"

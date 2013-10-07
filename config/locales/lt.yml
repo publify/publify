@@ -1,5 +1,18 @@
 lt:
   admin:
+    menu:
+      help: "Padėti"
+      documentation: "Vadovėlis"
+      report_a_bug: "Praneškite apie problemą"
+      in_page_plugins: "In page plugins"
+      sidebar_plugins: "Sidebar plugins"
+      logged_in_as: "Sveiki, %{login}"
+      new_article: "New Article"
+      profile: "Profile"
+      logout: "Atsijungti &raquo;"
+      home: "Home"
+      dashboard: "Dashboard"
+      powered_by: "is proudly powered by"
     cache:
       index:
         explanations: "To save on resources, Publify generates static files

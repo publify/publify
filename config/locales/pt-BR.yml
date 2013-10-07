@@ -14,6 +14,19 @@ pt-BR:
       admin: "admin"
 
   admin:
+    menu:
+      help: "Ayuda"
+      documentation: "Documentación"
+      report_a_bug: "Informar de un error"
+      in_page_plugins: "In page plugins"
+      sidebar_plugins: "Sidebar plugins"
+      logged_in_as: "Bienvenido, %{login}"
+      new_article: "New Article"
+      profile: "Profile"
+      logout: "Log out &raquo;"
+      home: "Home"
+      dashboard: "Dashboard"
+      powered_by: "is proudly powered by"
     cache:
       index:
         explanations: "Para economizar recursos, Publify gera arquivos estáticos

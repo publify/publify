@@ -211,7 +211,6 @@ Localization.define("ro_RO") do |l|
   l.store "Permalink", "Legătură permanentă"
   l.store "Article filter", "Filtru pentru articole"
   l.store "Save as draft", ""
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -421,7 +420,6 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""
-  l.store "Home", ""
   l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
@@ -684,17 +682,6 @@ Localization.define("ro_RO") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
-  l.store "%s &raquo;", ""
-  l.store "Help", "Ajutor"
-  l.store "Documentation", "Documentație"
-  l.store "Report a bug", "Raport de eroare"
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", ""
-  l.store "Dashboard", ""
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
@@ -710,7 +697,6 @@ Localization.define("ro_RO") do |l|
   l.store "Live Search", ""
 
   # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
 
   # test/mocks/themes/typographic/views/articles/_article.html.erb
@@ -745,7 +731,6 @@ Localization.define("ro_RO") do |l|
   l.store "Searching", ""
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", ""
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 

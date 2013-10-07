@@ -211,7 +211,6 @@ Localization.define("he_IL") do |l|
   l.store "Permalink", "קישור קבוע"
   l.store "Article filter", "מסנן הכתבה"
   l.store "Save as draft", "שמור טיוטה"
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -581,7 +580,6 @@ Localization.define("he_IL") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", "אימות סיסמה"
-  l.store "Profile", "דיוקן"
   l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
@@ -684,17 +682,6 @@ Localization.define("he_IL") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
-  l.store "%s &raquo;", ""
-  l.store "Help", ""
-  l.store "Documentation", ""
-  l.store "Report a bug", ""
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", ""
-  l.store "Dashboard", "סקירה"
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
@@ -745,7 +732,6 @@ Localization.define("he_IL") do |l|
   l.store "Searching", "מחפש"
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", "בית"
   l.store "About", "אודות"
   l.store "Designed by %s ported to publify by %s ", "עןצב על ידי %s והותאם ל-Publify על ידי %s"
 
@@ -852,7 +838,6 @@ Localization.define("he_IL") do |l|
   l.store "Filters", "מסננים"
   l.store "General options", "הגדרות כלליות"
   l.store "HTML was cleared", "מטמון HTML נוקה"
-  l.store "Help", "עזרה"
   l.store "IP", "כתובת IP"
   l.store "Key Words", "מילות מפתח"
   l.store "Last Comments", "תגובות אחרונות"

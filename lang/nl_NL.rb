@@ -210,7 +210,6 @@ Localization.define("nl_NL") do |l|
   l.store "Permalink", "Permalink"
   l.store "Article filter", "Artikel filter"
   l.store "Save as draft", "Opslaan als concept"
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -577,7 +576,6 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Account instellingen"
   l.store "Password confirmation", "Bevestig wachtwoord"
-  l.store "Profile", "Profiel"
   l.store "User's status", "Status van de gebruiker"
   l.store "Active", "Actief"
   l.store "Inactive", "Inactief"
@@ -680,17 +678,6 @@ Localization.define("nl_NL") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
-  l.store "%s &raquo;", ""
-  l.store "Help", ""
-  l.store "Documentation", ""
-  l.store "Report a bug", ""
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", "wordt trots aangedreven door"
-  l.store "Dashboard", "Dashboard"
-
   # app/views/setup/index.html.erb
   l.store "Welcome", "Welkom"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Welkom bij je %s blog setup. Vul een titel voor je blog in, en een e-mailadres, en Publify zorgt voor de rest"
@@ -741,7 +728,6 @@ Localization.define("nl_NL") do |l|
   l.store "Searching", "Aan het zoeken"
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", "Begin"
   l.store "About", "Over"
   l.store "Designed by %s ported to publify by %s ", "Ontworpen door %s geport naar publify door %s "
 

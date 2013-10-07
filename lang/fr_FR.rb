@@ -225,7 +225,6 @@ Localization.define("fr_FR") do |l|
   l.store "Edit article", "Éditer un article"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", "Nouvel article"
   l.store "Search", "Chercher"
   l.store "All articles", "Tous les articles"
   l.store "Drafts", "Brouillons"
@@ -426,7 +425,6 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", "Paramétrage des titres"
-  l.store "Home", "Tableau de bord"
   l.store "Title template", "Titre"
   l.store "Description template", "Description"
   l.store "Articles", "Articles"
@@ -584,7 +582,6 @@ Localization.define("fr_FR") do |l|
   l.store "Account settings", "Paramètres du compte"
   l.store "Password", "Mot de passe"
   l.store "Password confirmation", "Confirmation du mot de passe"
-  l.store "Profile", "Profil"
   l.store "User's status", "Statut de l'utilisateur"
   l.store "Active", "Actif"
   l.store "Inactive", "Inactif"
@@ -694,17 +691,6 @@ Localization.define("fr_FR") do |l|
   # app/views/errors/404.html.erb
   l.store "Page not found", "Page non trouvée"
   l.store "The page you are looking for has moved or does not exist.", "La page que vous cherchez a été déplacée ou n'existe pas"
-
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", "Salutations, %s"
-  l.store "%s &raquo;", "%s &raquo;"
-  l.store "Help", "Aide"
-  l.store "Documentation", "Documentation"
-  l.store "Report a bug", "Déclarer un bug"
-  l.store "In page plugins", "Plugins"
-  l.store "Sidebar plugins", "Widgets"
-  l.store "is proudly powered by", "tourne fièrement sous"
-  l.store "Dashboard", "Tableau de bord"
 
   # app/views/setup/index.html.erb
   l.store "Welcome", "Bienvenue"

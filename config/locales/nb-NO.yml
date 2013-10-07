@@ -1,5 +1,18 @@
 nb-NO:
   admin:
+    menu:
+      help: "Help"
+      documentation: "Documentation"
+      report_a_bug: "Report a bug"
+      in_page_plugins: "In page plugins"
+      sidebar_plugins: "Sidebar plugins"
+      logged_in_as: "Logged in as %{login}"
+      new_article: "New Article"
+      profile: "Profil"
+      logout: "Logg ut &raquo;"
+      home: "Hjem"
+      dashboard: "Dashboard"
+      powered_by: "bruker med stolthet"
     cache:
       index:
         explanations: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."

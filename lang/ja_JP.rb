@@ -211,7 +211,6 @@ Localization.define("ja_JP") do |l|
   l.store "Permalink", "パーマリンク"
   l.store "Article filter", "記事フィルター"
   l.store "Save as draft", "下書きとして保存"
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -220,7 +219,7 @@ Localization.define("ja_JP") do |l|
   l.store "SmartyPants", ""
   l.store "Visual", ""
   l.store "Edit article", ""
-  
+
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "本当にこの記事を削除してよろしいですか？"
   l.store "Delete this article", "この記事を削除"
@@ -386,7 +385,7 @@ Localization.define("ja_JP") do |l|
   l.store "Global settings", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", "" 
+  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
@@ -405,7 +404,6 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""
-  l.store "Home", ""
   l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
@@ -580,7 +578,6 @@ Localization.define("ja_JP") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", "パスワード（確認用）"
-  l.store "Profile", "プロフィール"
   l.store "User's status", ""
   l.store "Active", "有効"
   l.store "Inactive", "無効"
@@ -683,17 +680,6 @@ Localization.define("ja_JP") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
-  l.store "%s &raquo;", ""
-  l.store "Help", ""
-  l.store "Documentation", ""
-  l.store "Report a bug", ""
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", ""
-  l.store "Dashboard", "ダッシュボード"
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
@@ -744,7 +730,6 @@ Localization.define("ja_JP") do |l|
   l.store "Searching", ""
 
   # themes/dirtylicious/layouts/default.html.erb
-  l.store "Home", ""
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
@@ -986,7 +971,6 @@ Localization.define("ja_JP") do |l|
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "オプションでAjaxでないコメントを不許可にすることができます。Javascriptが有効な場合、Publifyは常にコメントの受け渡しにAjaxを使います。つまりAjaxでないコメントはJavascriptを有効にしていないユーザーのものか、スパマーのものかのどちらかでしょう。"
   l.store "add new", "新規追加"
   l.store "by", "by"
-  l.store "log out", "ログアウト"
   l.store "no ", "no "
   l.store "on", "の"
   l.store "published", "公開済み"

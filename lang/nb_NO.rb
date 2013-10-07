@@ -235,7 +235,6 @@ Localization.define("nb_NO") do |l|
   l.store "Publish at", "Offentliggjort den"
   l.store "Article filter", "artikkelfilter"
   l.store "Save as draft", "Lagre som utkast"
-  l.store "New article", ""
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -587,7 +586,6 @@ Localization.define("nb_NO") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Kontoinnstillinger"
   l.store "Password confirmation", "Gjenta passord"
-  l.store "Profile", "Profil"
   l.store "User's status", "Brukerens status"
   l.store "Active", "Aktiv"
   l.store "Inactive", "Inaktiv"
@@ -693,17 +691,6 @@ Localization.define("nb_NO") do |l|
   l.store "Page not found", ""
   l.store "The page you are looking for has moved or does not exist.", ""
 
-  # app/views/layouts/administration.html.erb
-  l.store "Logged in as %s", ""
-  l.store "%s &raquo;", ""
-  l.store "Help", ""
-  l.store "Documentation", ""
-  l.store "Report a bug", ""
-  l.store "In page plugins", ""
-  l.store "Sidebar plugins", ""
-  l.store "is proudly powered by", "bruker med stolthet"
-  l.store "Dashboard", ""
-
   # app/views/setup/index.html.erb
   l.store "Welcome", "Velkommen"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Publify ta seg av resten"
@@ -748,7 +735,6 @@ Localization.define("nb_NO") do |l|
   l.store "Searching", "Søker"
 
   # themes/dirtylicious/views/layouts/default.html.erb
-  l.store "Home", "Hjem"
   l.store "About", "Om"
   l.store "Designed by %s ported to publify by %s ", "Utformet av %s portert til Publify av %s "
 
@@ -1020,5 +1006,4 @@ Localization.define("nb_NO") do |l|
   l.store "with %s Famfamfam iconset %s", "med %s Famfamfam-ikoner %s"
   l.store "later", "senere"
   l.store "later:", "senere:"
-  l.store "log out", "logg ut"
 end
