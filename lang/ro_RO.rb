@@ -153,18 +153,7 @@ Localization.define("ro_RO") do |l|
   l.store "Delete this article", "Șterge acest articol"
   l.store "Articles", ""
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
-  l.store "Search articles that contain ...", ""
-  l.store "Search", ""
   l.store "Author", "Autor"
-  l.store "Date", ""
-  l.store "Feedback", ""
-  l.store "Filter", ""
-  l.store "Manage articles", ""
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -208,7 +197,6 @@ Localization.define("ro_RO") do |l|
   l.store "Spam comments : %d", ""
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
   l.store "Delete Checked Items", ""
   l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", ""
@@ -234,7 +222,6 @@ Localization.define("ro_RO") do |l|
   l.store "Comments for", "Comentariile la"
 
   # app/views/admin/feedback/index.html.erb
-  l.store "Search Comments and Trackbacks that contain", ""
   l.store "Article", ""
 
   # app/views/admin/pages/_form.html.erb
@@ -296,7 +283,6 @@ Localization.define("ro_RO") do |l|
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
   l.store "Global SEO settings", ""
-  l.store "Titles", ""
   l.store "General settings", ""
   l.store "Use meta keywords", ""
   l.store "Meta description", ""
@@ -336,7 +322,6 @@ Localization.define("ro_RO") do |l|
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "Author page", ""
-  l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -397,7 +382,6 @@ Localization.define("ro_RO") do |l|
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
-  l.store "Search Engine Optimisation", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
   l.store "Meta description", ""
@@ -405,7 +389,6 @@ Localization.define("ro_RO") do |l|
   l.store "Use RSS description", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -475,7 +458,6 @@ Localization.define("ro_RO") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
   l.store "Send notification messages via email", "Alerte prin email"
@@ -574,9 +556,6 @@ Localization.define("ro_RO") do |l|
   l.store "<strong>Login:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Designed by %s ", ""
 
@@ -608,9 +587,6 @@ Localization.define("ro_RO") do |l|
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", ""
 
-  # test/mocks/themes/typographic/views/shared/_search.html.erb
-  l.store "Searching", ""
-
   # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
@@ -638,16 +614,7 @@ Localization.define("ro_RO") do |l|
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Retrolegături pentru"
 
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
   l.store "Read all articles in %s", ""
-
-  l.store "Previous", ""
-  l.store "Next", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
-  l.store "Archives", ""
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
   l.store "Authors", ""
@@ -739,7 +706,6 @@ Localization.define("ro_RO") do |l|
   l.store "Macro Filter Help", "Ajutor la filtrele macro"
   l.store "Macros", "Macro-uri"
   l.store "Manage", "Articole"
-  l.store "Manage Articles", "Listează articolele"
   l.store "Manage Categories", "Listează categoriile"
   l.store "Manage Pages", "Listează paginile"
   l.store "Manage Resources", "Listează resursele"

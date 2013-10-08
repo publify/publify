@@ -189,9 +189,6 @@ Localization.define("nb_NO") do |l|
   l.store "Really delete attachment", "Vil du virkelig slette vedlagt fil"
   l.store "Add another attachment", "Vedlegg enda en fil"
 
-  # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", "Utkast"
-
   # app/views/admin/content/_form.html.erb
   l.store "Uploads", "Opplastede filer"
   l.store "Post settings", "Postinnstillinger"
@@ -210,17 +207,9 @@ Localization.define("nb_NO") do |l|
   l.store "Delete this article", "Slett denne artikkelen"
   l.store "Articles", "Artikler"
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", "Ny artikkel"
-  l.store "Search", "Søk"
-  l.store "Filter", "Filtrer"
   l.store "Author", "Forfatter"
   l.store "Date", "Dato"
   l.store "Feedback", "Diskusjon"
-  l.store "Manage articles", "Administrer artikler"
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Siste kommentarer"
@@ -719,7 +708,6 @@ Localization.define("nb_NO") do |l|
   l.store "Read all articles in %s", "Les alle artikler i %s"
 
   l.store "Previous", "Forrige"
-  l.store "Next", "Neste"
 
   # vendor/plugins/archives_sidebar/app/views/archives_sidebar/_content.html.erb
   l.store "Archives", "Arkiv"

@@ -118,13 +118,11 @@ Localization.define("es_MX") do |l|
 
   # app/models/article.rb
   l.store "Original article writen by", ""
-  l.store "and published on", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
   # app/models/feedback/states.rb
@@ -166,17 +164,10 @@ Localization.define("es_MX") do |l|
   l.store "Delete this article", "Eliminar este art&iacute;culo"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
-  l.store "Search articles that contain ...", ""
-  l.store "Search", ""
   l.store "Author", "Autor"
   l.store "Date", ""
   l.store "Feedback", ""
-  l.store "Filter", ""
   l.store "Manage articles", ""
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
@@ -319,15 +310,11 @@ Localization.define("es_MX") do |l|
   # app/views/admin/seo/titles.html.erb
   l.store "Dated archives", ""
   l.store "Author page", ""
-  l.store "Search results", ""
-  l.store "Help on title settings", ""
-  l.store "Replaced with the title of the article/page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the post/page excerpt", ""
   l.store "Replaced with the article tags (comma separated)", ""
   l.store "Replaced with the article categories (comma separated)", ""
-  l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
@@ -387,7 +374,6 @@ Localization.define("es_MX") do |l|
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
-  l.store "Search Engine Optimisation", ""
   l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
@@ -400,7 +386,6 @@ Localization.define("es_MX") do |l|
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -491,7 +476,6 @@ Localization.define("es_MX") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
   l.store "Send notification messages via email", "Enviar notificaciones por email"
@@ -579,7 +563,6 @@ Localization.define("es_MX") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-  l.store "This author has not published any article yet", ""
 
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", ""
@@ -590,7 +573,6 @@ Localization.define("es_MX") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", ""
@@ -598,9 +580,6 @@ Localization.define("es_MX") do |l|
   l.store "<strong>Login:</strong> %s", ""
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
 
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Designed by %s ", ""
@@ -633,9 +612,6 @@ Localization.define("es_MX") do |l|
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", ""
 
-  # test/mocks/themes/typographic/views/shared/_search.html.erb
-  l.store "Searching", ""
-
   # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
@@ -667,15 +643,11 @@ Localization.define("es_MX") do |l|
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks para"
 
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
   # themes/true-blue-3/views/categories/index.html.erb
   l.store "Read all articles in %s", ""
 
   # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
-  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", ""
@@ -769,7 +741,6 @@ Localization.define("es_MX") do |l|
   l.store "Macro Filter Help", "Ayuda de Macro Filtros"
   l.store "Macros", "Macros"
   l.store "Manage", "Administrar"
-  l.store "Manage Articles", "Administrar Art&iacute;culos"
   l.store "Manage Categories", "Administrar categor&iacute;as"
   l.store "Manage Pages", "Administrar P&aacute;ginas"
   l.store "Manage Resources", "Administrar Recursos"

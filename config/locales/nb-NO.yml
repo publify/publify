@@ -1,6 +1,25 @@
 nb-NO:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Neste"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "Publisert"
+        new_article: "Ny artikkel"
+        all_articles: "All articles"
+        manage_articles: "Administrer artikler"
+        withdrawn: "Withdrawn"
+        drafts: "Utkast"
+        publication_pending: "Publication pending"
+        search: "Søk"
+        title: "Tittel"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "Filtrer"
       form:
         public: "Public"
         publish: "Publiser"

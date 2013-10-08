@@ -31,7 +31,6 @@ Localization.define("ru_RU") do |l|
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
   l.store "Show", "Показать"
-  l.store "Published", "Опубликован"
   l.store "Unpublished", "Неопубликован"
   l.store "Show help on Publify macros", "Показать помощь по Publify-макросам"
   l.store "Update settings", "Обновить настройки"
@@ -83,18 +82,9 @@ Localization.define("ru_RU") do |l|
   l.store "Visual", "Визуально"
   l.store "Edit article", "Редактировать пост"
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", "Новый пост"
-  l.store "Search", "Найти"
-  l.store "Filter", "Фильтровать"
   l.store "Author", "Автор"
   l.store "Date", "Дата"
   l.store "Feedback", "Комментарии"
-  l.store "All Articles", "Все посты"
-  l.store "Manage articles", "Управление постами"
-  l.store "Select a category", "Выбрать категорию"
-  l.store "Select an author", "Выбрать автора"
-  l.store "Publication date", "Дата публикации"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"

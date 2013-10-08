@@ -1,10 +1,29 @@
 nl:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Volgende"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "Gepubliceerd"
+        new_article: "Nieuw artikel"
+        all_articles: "All articles"
+        manage_articles: "Beheer artikelen"
+        withdrawn: "Withdrawn"
+        drafts: "Drafts"
+        publication_pending: "Publication pending"
+        search: "Zoek"
+        title: "Titel"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "Filter"
       form:
         public: "Public"
         publish: "Publiceer"
-        title: "Title"
+        title: "Titel"
         images: "Afbeeldingen"
         excerpt: "Uittreksel"
         excerpt_explaination: "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"

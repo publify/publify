@@ -1,6 +1,25 @@
 ru:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Next"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "Опубликован"
+        new_article: "Новый пост"
+        all_articles: "Все посты"
+        manage_articles: "Управление постами"
+        withdrawn: "Withdrawn"
+        drafts: "Drafts"
+        publication_pending: "Publication pending"
+        search: "Найти"
+        title: "Заголовок"
+        select_a_category: "Выбрать категорию"
+        select_an_author: "Выбрать автора"
+        publication_date: "Дата публикации"
+        filter: "Фильтровать"
       form:
         public: "Public"
         publish: "Опубликовать"

@@ -1,20 +1,25 @@
 pt-BR:
-  accounts:
-    back_to: "&larr; Voltar para %{place}"
-    back_to_login: "Voltar para o login"
-    create_account: "Crie uma conta"
-    lost_my_password: "Perdi minha senha"
-    login:
-      login: "Login"
-      password: "Senha"
-      remember_me: "Lembrar-me"
-      sign_in: "Entrar"
-    confirm:
-      proceed_to: "Continuar para %{link}"
-      admin: "admin"
-
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Next"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "Publicado"
+        new_article: "New article"
+        all_articles: "All articles"
+        manage_articles: "Administrar Art&iacute;culos"
+        withdrawn: "Withdrawn"
+        drafts: "Rascunhos"
+        publication_pending: "Publication pending"
+        search: "Search"
+        title: "Título"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "Filter"
       form:
         public: "Public"
         publish: "Publicar"
@@ -88,4 +93,3 @@ pt-BR:
       username: "Usuário"
       email: "Email"
       signup: "Registrar"
-

@@ -1,6 +1,25 @@
 zh-CN:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Next"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "已发表"
+        new_article: "新文章"
+        all_articles: "所有文章"
+        manage_articles: "文章管理"
+        withdrawn: "Withdrawn"
+        drafts: "草稿"
+        publication_pending: "Publication pending"
+        search: "搜索"
+        title: "Title"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "筛选"
       form:
         public: "Public"
         publish: "发布"

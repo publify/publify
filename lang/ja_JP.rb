@@ -89,13 +89,11 @@ Localization.define("ja_JP") do |l|
   l.store "Please select", "選択してください"
   l.store "All categories", ""
   l.store "All authors", ""
-  l.store "All published dates", ""
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "or", "または"
   l.store "Save", "保存"
   l.store "Edit", "編集"
   l.store "Show", ""
-  l.store "Published", "公開済み"
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
   l.store "Back to overview", "オーバービューに戻る"
@@ -131,7 +129,6 @@ Localization.define("ja_JP") do |l|
 
   # app/models/article.rb
   l.store "Original article writen by", ""
-  l.store "and published on", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
@@ -176,18 +173,10 @@ Localization.define("ja_JP") do |l|
   l.store "Delete this article", "この記事を削除"
   l.store "Articles", "記事"
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
   l.store "Search articles that contain ...", "以下の語句を含む記事を検索"
-  l.store "Search", "検索"
   l.store "Author", "投稿者"
   l.store "Date", "日付"
   l.store "Feedback", "フィードバック"
-  l.store "Filter", "フィルター"
-  l.store "Manage articles", "記事の管理"
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
@@ -234,7 +223,6 @@ Localization.define("ja_JP") do |l|
   l.store "Spam comments : %d", "スパムコメント数"
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
   l.store "Delete Checked Items", "チェックした行を削除"
   l.store "Delete all spam", "全てのスパムを削除する"
   l.store "Mark Checked Items as Spam", "チェックした行をスパムにする"
@@ -604,7 +592,6 @@ Localization.define("ja_JP") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-  l.store "This author has not published any article yet", ""
 
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", ""
@@ -699,7 +686,6 @@ Localization.define("ja_JP") do |l|
 
   # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
-  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "アーカイブ"
@@ -760,7 +746,6 @@ Localization.define("ja_JP") do |l|
   l.store "Delete this filter", "このフィルターを削除"
   l.store "Desired login", "ログイン名"
   l.store "Do you want to go to your blog?", "ブログに移動しますか？"
-  l.store "Drafts:", "下書き:"
   l.store "Duration", "継続時間"
   l.store "Edit Article", "記事を編集"
   l.store "Edit MetaData", "メタデータ編集"

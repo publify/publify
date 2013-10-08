@@ -1,6 +1,25 @@
 fr:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Suivant"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "Publié"
+        new_article: "Nouvel article"
+        all_articles: "Tous les articles"
+        manage_articles: "Gestion des articles"
+        withdrawn: "Supprimé"
+        drafts: "Brouillons"
+        publication_pending: "À publier"
+        search: "Chercher"
+        title: "Titre"
+        select_a_category: "Catégorie"
+        select_an_author: "Auteur"
+        publication_date: "Publié le"
+        filter: "Filtrer"
       form:
         public: "Public"
         publish: "Publier"

@@ -110,13 +110,9 @@ Localization.define("fr_FR") do |l|
   l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
   l.store "Save", "Sauver"
   l.store "or", "ou"
-  l.store "Short url:", ""
   l.store "Edit", "Éditer"
   l.store "Delete", "Supprimer"
   l.store "Show", "Affichage"
-  l.store "Draft", ""
-  l.store "Withdrawn", "Supprimé"
-  l.store "Publication pending", "À publier"
   l.store "Show help on Publify macros", "Afficher l'aide sur les macros Publify"
   l.store "Update settings", "Mettre les paramètres à jour"
   l.store "Back to list", ""
@@ -152,16 +148,10 @@ Localization.define("fr_FR") do |l|
   l.store "You need a permalink format with an identifier : %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
 
-  # app/models/post_type.rb
-  l.store "This article type already exists", ""
-
-  # app/views/admin/content/_form.html.erb
   l.store "public", "publique"
   l.store "protected", "protégée"
-  l.store "Password:", "Mot de passe"
   l.store "now", "maintenant"
   l.store "Uploads", "Pièces jointes"
-  l.store "New article", "Nouvel article"
   l.store "disabled", "désactivés"
   l.store "Markdown with SmartyPants", "Mardown et SmartyPants"
   l.store "Markdown", "Markdown"
@@ -171,19 +161,9 @@ Localization.define("fr_FR") do |l|
   l.store "Visual", "Éditeur riche"
   l.store "Edit article", "Éditer un article"
 
-  # app/views/admin/content/index.html.erb
-  l.store "Search", "Chercher"
-  l.store "All articles", "Tous les articles"
-  l.store "Drafts", "Brouillons"
-  l.store "Filter", "Filtrer"
   l.store "Author", "Auteur"
   l.store "Date", "Date"
   l.store "Feedback", "Commentaires"
-  l.store "Manage articles", "Gestion des articles"
-  l.store "Select a category", "Catégorie"
-  l.store "Select an author", "Auteur"
-  l.store "Publication date", "Publié le"
-  l.store "All Articles", "Tous les articles"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
@@ -655,8 +635,6 @@ Localization.define("fr_FR") do |l|
   # themes/bootstrap/helpers/theme_helper.rb
   l.store "%d comment", "%d commentaires"
 
-  # themes/bootstrap/views/articles/_article.html.erb
-  l.store "Published on", ""
   l.store "under", ""
 
   # themes/bootstrap/views/articles/_comment_form.html.erb
@@ -675,11 +653,8 @@ Localization.define("fr_FR") do |l|
   # themes/bootstrap/views/categories/index.html.erb
   l.store "Read all articles in %s", "Tous les articles dans %s sont lus"
 
-  # themes/bootstrap/views/categories/show.html.erb
   l.store "Previous", "Précédent"
-  l.store "Next", "Suivant"
 
-  # themes/dirtylicious/views/articles/_comment_form.html.erb
   l.store "Leave a comment", "laisser un commentaire"
 
   # themes/dirtylicious/views/layouts/default.html.erb

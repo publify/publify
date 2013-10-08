@@ -130,7 +130,6 @@ Localization.define("de_DE") do |l|
 
   # app/models/article.rb
   l.store "Original article writen by", ""
-  l.store "and published on", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
@@ -170,18 +169,8 @@ Localization.define("de_DE") do |l|
   l.store "Are you sure you want to delete this article", "Sind Sie sicher, diesen Artikel zu löschen"
   l.store "Delete this article", "Diesen Artikel löschen"
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
-  l.store "Search articles that contain ...", ""
-  l.store "Search", ""
   l.store "Author", "Autor"
-  l.store "Date", ""
   l.store "Feedback", "Diskussion"
-  l.store "Filter", ""
-  l.store "Manage articles", ""
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -225,7 +214,6 @@ Localization.define("de_DE") do |l|
   l.store "Spam comments : %d", ""
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
   l.store "Delete Checked Items", ""
   l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", ""
@@ -249,10 +237,6 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Kommentare für"
-
-  # app/views/admin/feedback/index.html.erb
-  l.store "Search Comments and Trackbacks that contain", ""
-  l.store "Article", ""
 
   # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
@@ -339,7 +323,6 @@ Localization.define("de_DE") do |l|
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "Author page", ""
-  l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -399,7 +382,6 @@ Localization.define("de_DE") do |l|
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
-  l.store "Search Engine Optimisation", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
   l.store "Meta description", ""
@@ -407,7 +389,6 @@ Localization.define("de_DE") do |l|
   l.store "Use RSS description", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -489,7 +470,6 @@ Localization.define("de_DE") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Send notification messages via email", "Benachrichtigung via Email schicken"
   l.store "Send notification messages when new articles are posted", "Benachrichtigung schicken, wenn neue Artikel veröffentlicht werden"
@@ -570,7 +550,6 @@ Localization.define("de_DE") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-  l.store "This author has not published any article yet", ""
 
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", ""
@@ -587,9 +566,6 @@ Localization.define("de_DE") do |l|
   l.store "You have successfully signed up", ""
   l.store "<strong>Login:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
 
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", ""
@@ -623,9 +599,6 @@ Localization.define("de_DE") do |l|
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", ""
 
-  # test/mocks/themes/typographic/views/shared/_search.html.erb
-  l.store "Searching", ""
-
   # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
@@ -656,13 +629,9 @@ Localization.define("de_DE") do |l|
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackback für"
 
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
   l.store "Read all articles in %s", ""
 
   l.store "Previous", ""
-  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archive"
@@ -759,7 +728,6 @@ Localization.define("de_DE") do |l|
   l.store "Macro Filter Help", "Hilfe zu Makrofilter"
   l.store "Macros", "Makros"
   l.store "Manage", "Verwalten"
-  l.store "Manage Articles", "Artikel verwalten"
   l.store "Manage Categories", "Kategorien verwalten"
   l.store "Manage Pages", "Seiten verwalten"
   l.store "Manage Resources", "Ressourcen verwalten"

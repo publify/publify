@@ -1,6 +1,25 @@
 ja:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Next"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "公開済み"
+        new_article: "New article"
+        all_articles: "All articles"
+        manage_articles: "記事の管理"
+        withdrawn: "Withdrawn"
+        drafts: "下書き:"
+        publication_pending: "Publication pending"
+        search: "検索"
+        title: "Title"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "フィルター"
       form:
         public: "Public"
         publish: "公開"

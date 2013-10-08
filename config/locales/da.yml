@@ -1,6 +1,25 @@
 da:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Next"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "Offentliggjort"
+        new_article: "New article"
+        all_articles: "All articles"
+        manage_articles: "Administrer artikler"
+        withdrawn: "Withdrawn"
+        drafts: "Kladder"
+        publication_pending: "Publication pending"
+        search: "Search"
+        title: "Titel"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "Filtrer"
       form:
         public: "Public"
         publish: "Udgiv"

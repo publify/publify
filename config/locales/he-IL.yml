@@ -1,6 +1,25 @@
 he-IL:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Next"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "פורסם"
+        new_article: "New article"
+        all_articles: "All articles"
+        manage_articles: "ערוך כתבות"
+        withdrawn: "Withdrawn"
+        drafts: "טיוטות"
+        publication_pending: "Publication pending"
+        search: "חפש"
+        title: "כותרת"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "סנן"
       form:
         public: "Public"
         publish: "פרסם"

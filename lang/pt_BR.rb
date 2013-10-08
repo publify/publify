@@ -174,26 +174,13 @@ Localization.define("pt_BR") do |l|
   l.store "Add another attachment", "Adicionar outro attachment"
 
   # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", "Rascunhos"
   l.store "Publish at", "Publicado el"
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "&iquest;Est&aacute;s seguro que deseas borrar este art&iacute;culo?"
   l.store "Delete this article", "Eliminar este art&iacute;culo"
-  l.store "Articles", ""
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
-  l.store "Search articles that contain ...", ""
-  l.store "Search", ""
   l.store "Author", "Autor"
-  l.store "Date", ""
-  l.store "Feedback", ""
-  l.store "Filter", ""
-  l.store "Manage articles", ""
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -237,7 +224,6 @@ Localization.define("pt_BR") do |l|
   l.store "Spam comments : %d", ""
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
   l.store "Delete Checked Items", ""
   l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", ""
@@ -263,7 +249,6 @@ Localization.define("pt_BR") do |l|
   l.store "Comments for", "Comentarios para"
 
   # app/views/admin/feedback/index.html.erb
-  l.store "Search Comments and Trackbacks that contain", ""
   l.store "Article", ""
 
   # app/views/admin/pages/_form.html.erb
@@ -351,7 +336,6 @@ Localization.define("pt_BR") do |l|
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "Author page", ""
-  l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -412,7 +396,6 @@ Localization.define("pt_BR") do |l|
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
-  l.store "Search Engine Optimisation", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
   l.store "Meta description", ""
@@ -420,7 +403,6 @@ Localization.define("pt_BR") do |l|
   l.store "Use RSS description", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -503,7 +485,6 @@ Localization.define("pt_BR") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
   l.store "Send notification messages via email", "Enviar notificaciones por email"
@@ -603,9 +584,6 @@ Localization.define("pt_BR") do |l|
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Designed by %s ", ""
 
@@ -637,9 +615,6 @@ Localization.define("pt_BR") do |l|
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", ""
 
-  # test/mocks/themes/typographic/views/shared/_search.html.erb
-  l.store "Searching", ""
-
   # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
@@ -670,16 +645,6 @@ Localization.define("pt_BR") do |l|
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks para"
 
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
-  l.store "Read all articles in %s", ""
-
-  l.store "Previous", ""
-  l.store "Next", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
-  l.store "Archives", ""
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
   l.store "Authors", ""
@@ -770,7 +735,6 @@ Localization.define("pt_BR") do |l|
   l.store "Macro Filter Help", "Ayuda de Macro Filtros"
   l.store "Macros", "Macros"
   l.store "Manage", "Administrar"
-  l.store "Manage Articles", "Administrar Art&iacute;culos"
   l.store "Manage Categories", "Administrar categor&iacute;as"
   l.store "Manage Pages", "Administrar P&aacute;ginas"
   l.store "Manage Resources", "Administrar Recursos"

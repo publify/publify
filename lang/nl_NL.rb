@@ -184,17 +184,10 @@ Localization.define("nl_NL") do |l|
   l.store "Articles", "Artikelen"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", "Nieuw artikel"
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
-  l.store "Search", "Zoek"
   l.store "Author", "Auteur"
   l.store "Date", "Datum"
   l.store "Feedback", "Feedback"
-  l.store "Filter", "Filter"
-  l.store "Manage articles", "Beheer artikelen"
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
@@ -342,9 +335,6 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "Date and title", ""
-  l.store "Month and title", ""
-  l.store "Title only", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
   l.store "your article year of publication.", ""
   l.store "your article month of publication.", ""
@@ -353,9 +343,7 @@ Localization.define("nl_NL") do |l|
   l.store "Custom", ""
 
   # app/views/admin/seo/titles.html.erb
-  l.store "Title settings", ""
   l.store "Home", ""
-  l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
   l.store "Pages", ""
@@ -363,13 +351,10 @@ Localization.define("nl_NL") do |l|
   l.store "Dated archives", ""
   l.store "Author page", ""
   l.store "Search results", ""
-  l.store "Help on title settings", ""
-  l.store "Replaced with the title of the article/page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the post/page excerpt", ""
   l.store "Replaced with the article categories (comma separated)", ""
-  l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
@@ -708,7 +693,6 @@ Localization.define("nl_NL") do |l|
 
   # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", "Vorige"
-  l.store "Next", "Volgende"
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archieven"

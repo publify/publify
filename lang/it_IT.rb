@@ -126,7 +126,6 @@ Localization.define("it_IT") do |l|
 
   # app/models/article.rb
   l.store "Original article writen by", ""
-  l.store "and published on", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
@@ -167,20 +166,9 @@ Localization.define("it_IT") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Sei sicuro di voler eliminare questo articolo"
   l.store "Delete this article", "Elimina articolo"
-  l.store "Articles", ""
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
-  l.store "Search articles that contain ...", ""
-  l.store "Search", "Cerca"
   l.store "Author", "Autore"
-  l.store "Date", ""
   l.store "Feedback", "Commenti"
-  l.store "Filter", ""
-  l.store "Manage articles", ""
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
@@ -302,7 +290,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
   l.store "Global SEO settings", ""
-  l.store "Titles", ""
   l.store "General settings", ""
   l.store "Use meta keywords", ""
   l.store "Meta description", ""
@@ -331,9 +318,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "Date and title", ""
-  l.store "Month and title", ""
-  l.store "Title only", ""
   l.store "You can custom your URL structure using the following tags:", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
   l.store "your article year of publication.", ""
@@ -342,9 +326,6 @@ Localization.define("it_IT") do |l|
   l.store "Permalinks", ""
   l.store "Custom", ""
 
-  # app/views/admin/seo/titles.html.erb
-  l.store "Title settings", ""
-  l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
   l.store "Pages", ""
@@ -352,13 +333,10 @@ Localization.define("it_IT") do |l|
   l.store "Dated archives", ""
   l.store "Author page", ""
   l.store "Search results", ""
-  l.store "Help on title settings", ""
-  l.store "Replaced with the title of the article/page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the post/page excerpt", ""
   l.store "Replaced with the article tags (comma separated)", ""
-  l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
@@ -520,7 +498,6 @@ Localization.define("it_IT") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
   l.store "Send notification messages via email", "Invia notifiche via mail"
@@ -608,7 +585,6 @@ Localization.define("it_IT") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-  l.store "This author has not published any article yet", ""
 
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", ""
@@ -619,7 +595,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", ""
@@ -702,7 +677,6 @@ Localization.define("it_IT") do |l|
   l.store "Read all articles in %s", ""
 
   l.store "Previous", ""
-  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archivi"

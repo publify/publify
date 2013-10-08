@@ -170,20 +170,10 @@ Localization.define("pl_PL") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
   l.store "Delete this article", "Usuń artykuł"
-  l.store "Articles", ""
 
-  # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
-  l.store "Search articles that contain ...", ""
-  l.store "Search", "Szukaj"
   l.store "Author", "Autor"
   l.store "Date", "Data"
   l.store "Feedback", "Komentarze"
-  l.store "Filter", ""
-  l.store "Manage articles", ""
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -229,7 +219,6 @@ Localization.define("pl_PL") do |l|
   l.store "Spam comments : %d", "Niechciane komentarze (spam): %d"
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
   l.store "Delete Checked Items", ""
   l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", ""
@@ -494,7 +483,6 @@ Localization.define("pl_PL") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
   l.store "Send notification messages via email", "Wysyłaj powiadomienia emailem"
@@ -667,7 +655,6 @@ Localization.define("pl_PL") do |l|
   l.store "Read all articles in %s", ""
 
   l.store "Previous", "Poprzednie"
-  l.store "Next", "Następne"
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archiwa"
@@ -779,7 +766,6 @@ Localization.define("pl_PL") do |l|
   l.store "Macro Filter Help", "Pomoc makr filtrów"
   l.store "Macros", "Makra"
   l.store "Manage", "Zarządzaj"
-  l.store "Manage Articles", "Zarządzaj artykułami"
   l.store "Manage Categories", "Zarządzaj kategoriami"
   l.store "Manage Pages", "Zarządzaj stronami"
   l.store "Manage Resources", "Zarządzaj zasobami"

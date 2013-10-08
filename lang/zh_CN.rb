@@ -185,20 +185,10 @@ Localization.define("zh_CN") do |l|
   l.store "Articles", "文章"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", "新文章"
   l.store "Search articles that contain ...", "搜索包含内容的文章 ..."
-  l.store "Search", "搜索"
   l.store "Author", "作者"
   l.store "Date", "日期"
   l.store "Feedback", "回应"
-  l.store "Filter", "筛选"
-  l.store "Manage articles", "文章管理"
-  l.store "All articles", "所有文章"
-  l.store "All Articles", "所有文章"
-  l.store "Drafts", "草稿"
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -247,7 +237,6 @@ Localization.define("zh_CN") do |l|
   l.store "Spam comments : %d", "垃圾评论：%d"
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
   l.store "Delete Checked Items", ""
   l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", ""
@@ -514,7 +503,6 @@ Localization.define("zh_CN") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", ""
   l.store "Send notification messages via email", "經由email發出通知訊息"
@@ -688,7 +676,6 @@ Localization.define("zh_CN") do |l|
   l.store "Read all articles in %s", ""
 
   l.store "Previous", ""
-  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "归档"

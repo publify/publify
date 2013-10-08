@@ -164,9 +164,6 @@ Localization.define("da_DK") do |l|
   l.store "Really delete attachment", "Vil du virkelig slette vedhæftet fil"
   l.store "Add another attachment", "Vedhæft en fil mere"
 
-  # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", "Kladder"
-
   l.store "Uploads", "Filer"
   l.store "Publish at", "Offentliggjort den"
 
@@ -176,25 +173,10 @@ Localization.define("da_DK") do |l|
   l.store "Articles", "Artikler"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
   l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
-  l.store "Search", ""
   l.store "Author", "Forfatter"
   l.store "Date", "Dato"
   l.store "Feedback", "Diskussion"
-  l.store "Filter", "Filtrer"
-  l.store "Manage articles", "Administrer artikler"
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
@@ -240,7 +222,6 @@ Localization.define("da_DK") do |l|
   l.store "Spam comments : %d", "Spam kommentarer : %d"
 
   # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
   l.store "Delete Checked Items", ""
   l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", ""
@@ -266,7 +247,6 @@ Localization.define("da_DK") do |l|
   l.store "Comments for", "Kommentarer for"
 
   # app/views/admin/feedback/index.html.erb
-  l.store "Search Comments and Trackbacks that contain", ""
   l.store "Article", "Artikel"
 
   # app/views/admin/pages/_form.html.erb
@@ -354,7 +334,6 @@ Localization.define("da_DK") do |l|
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "Author page", ""
-  l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -415,7 +394,6 @@ Localization.define("da_DK") do |l|
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
-  l.store "Search Engine Optimisation", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
   l.store "Meta description", ""
@@ -423,7 +401,6 @@ Localization.define("da_DK") do |l|
   l.store "Use RSS description", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -613,9 +590,6 @@ Localization.define("da_DK") do |l|
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Designed by %s ", ""
 
@@ -647,9 +621,6 @@ Localization.define("da_DK") do |l|
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", ""
 
-  # test/mocks/themes/typographic/views/shared/_search.html.erb
-  l.store "Searching", ""
-
   # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
@@ -680,13 +651,9 @@ Localization.define("da_DK") do |l|
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks for"
 
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
   l.store "Read all articles in %s", ""
 
   l.store "Previous", ""
-  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Arkiv"
@@ -783,7 +750,6 @@ Localization.define("da_DK") do |l|
   l.store "Macro Filter Help", "Makro filter hjælp"
   l.store "Macros", "Makroer"
   l.store "Manage", "Administrer"
-  l.store "Manage Articles", "Administrer artikler"
   l.store "Manage Categories", "Administrer kategorier"
   l.store "Manage Pages", "Administrer sider"
   l.store "Manage Resources", "Administrer ressourcer"

@@ -183,17 +183,10 @@ Localization.define("he_IL") do |l|
   l.store "Articles", "כתבות"
 
   # app/views/admin/content/index.html.erb
-  l.store "New Article", ""
   l.store "Search articles that contain ...", ""
-  l.store "Search", "חפש"
   l.store "Author", "כותב"
   l.store "Date", "תאריך"
   l.store "Feedback", "משוב"
-  l.store "Filter", "סנן"
-  l.store "Manage articles", "ערוך כתבות"
-  l.store "Select a category", ""
-  l.store "Select an author", ""
-  l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
@@ -539,7 +532,6 @@ Localization.define("he_IL") do |l|
   l.store "Inactive", ""
   l.store "Profile settings", ""
   l.store "Firstname", ""
-  l.store "Lastname", ""
   l.store "Nickname", ""
   l.store "Editor", "עורך"
   l.store "Send notification messages via email", "שלח עדכונים באמצאות הדואל"
@@ -724,7 +716,6 @@ Localization.define("he_IL") do |l|
 
   # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
-  l.store "Next", ""
 
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "ארכיון"
@@ -779,7 +770,6 @@ Localization.define("he_IL") do |l|
   l.store "Created at", "נוצר בתאריך"
   l.store "Delete this filter", "מחק מסנן זה"
   l.store "Desired login", "שם המשתמש הרצוי"
-  l.store "Drafts:", "טיוטות"
   l.store "Duration", "משך זמן"
   l.store "Edit Category", "ערוך קטגוריות"
   l.store "Edit MetaData", "ערוך מידע-על"

@@ -1,6 +1,25 @@
 ro:
+  views:
+    pagination:
+      truncate: "Truncate"
+      next: "Next"
+      last: "Last"
   admin:
     content:
+      index:
+        published: "Publicat"
+        new_article: "New article"
+        all_articles: "All articles"
+        manage_articles: "Listează articolele"
+        withdrawn: "Withdrawn"
+        drafts: "Drafts"
+        publication_pending: "Publication pending"
+        search: "Search"
+        title: "Titlu"
+        select_a_category: "Select a category"
+        select_an_author: "Select an author"
+        publication_date: "Publication date"
+        filter: "Filter"
       form:
         public: "Public"
         publish: "Publică"
