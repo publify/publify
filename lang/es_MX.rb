@@ -98,17 +98,6 @@ Localization.define("es_MX") do |l|
   l.store "or", "o"
   l.store "Save", "Guardar"
   l.store "Edit", "Editar"
-  l.store "Show", ""
-  l.store "Published", "Publicado"
-  l.store "Unpublished", ""
-  l.store "Show help on Publify macros", ""
-  l.store "Back to overview", ""
-  l.store "Tag", ""
-
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
 
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", ""
@@ -126,13 +115,6 @@ Localization.define("es_MX") do |l|
   l.store "no trackbacks", "no hay trackbacks"
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "Tags", "Tags"
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
 
   # app/models/article.rb
   l.store "Original article writen by", ""
@@ -176,38 +158,12 @@ Localization.define("es_MX") do |l|
   l.store "Really delete attachment", "&iquest;Realmente deseas borrar este archivo?"
   l.store "Add another attachment", "Agregar Otro Archivo"
 
-  # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
-
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
-  l.store "Allow comments", "Se permiten comentarios"
-  l.store "Allow trackbacks", "Se permiten trackbacks"
-  l.store "Password:", ""
-  l.store "Publish", "Publicar"
-  l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", ""
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
-  l.store "Uploads", ""
-  l.store "Post settings", ""
   l.store "Publish at", "Publicado el"
-  l.store "Article filter", "Filtro de art&iacute;culo"
-  l.store "Save as draft", ""
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
-
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "&iquest;Est&aacute;s seguro que deseas borrar este art&iacute;culo?"
   l.store "Delete this article", "Eliminar este art&iacute;culo"
-  l.store "Articles", ""
 
   # app/views/admin/content/index.html.erb
   l.store "New Article", ""
@@ -284,18 +240,8 @@ Localization.define("es_MX") do |l|
   # app/views/admin/feedback/_spam.html.erb
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
-  # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", ""
-  l.store "Status", "Estado"
-  l.store "Comment Author", ""
-  l.store "Comment", ""
-
   # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Comentarios para"
-
-  # app/views/admin/feedback/index.html.erb
-  l.store "Search Comments and Trackbacks that contain", ""
-  l.store "Article", ""
 
   # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
@@ -334,7 +280,6 @@ Localization.define("es_MX") do |l|
   # app/views/admin/resources/images.html.erb
   l.store "Thumbnail", ""
   l.store "File Size", "Tama&ntilde;o del Archivo"
-  l.store "Images", ""
   l.store "right-click for link", ""
 
   # app/views/admin/resources/index.html.erb
@@ -371,29 +316,7 @@ Localization.define("es_MX") do |l|
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", ""
-  l.store "Permalink format", ""
-  l.store "Date and title", ""
-  l.store "Month and title", ""
-  l.store "Title only", ""
-  l.store "You can custom your URL structure using the following tags:", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
-
   # app/views/admin/seo/titles.html.erb
-  l.store "Title settings", ""
-  l.store "Home", ""
-  l.store "Title template", ""
-  l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
-  l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "Author page", ""
   l.store "Search results", ""

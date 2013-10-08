@@ -1,6 +1,29 @@
 it:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Pubblica"
+        title: "Titolo"
+        images: "Images"
+        excerpt: "Excerpt"
+        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
+        publish_settings: "Publish settings"
+        status: "Stato"
+        published: "Pubblicato"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "Permetti trackbacks"
+        allow_comments: "Permetti commenti"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "Password"
+        permalink: "Permalink"
+        article_filter: "Filtra articolo"
+        save_as_draft: "Save as draft"
+        categories: "Categories"
+        tags: "Tags"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "New Category"
     categories:

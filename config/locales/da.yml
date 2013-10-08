@@ -1,6 +1,29 @@
 da:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Udgiv"
+        title: "Titel"
+        images: "Images"
+        excerpt: "Excerpt"
+        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
+        publish_settings: "Publish settings"
+        status: "Status"
+        published: "Offentliggjort"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "Tillad Trackbacks"
+        allow_comments: "Tillad kommentarer"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "Kodeord"
+        permalink: "Permanent link"
+        article_filter: "Artikelfilter"
+        save_as_draft: "Save as draft"
+        categories: "Kategorier"
+        tags: "Tags"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "New Category"
     categories:

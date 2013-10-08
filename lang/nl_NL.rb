@@ -90,13 +90,11 @@ Localization.define("nl_NL") do |l|
   l.store "Please select", "Selecteren alstublieft"
   l.store "All categories", ""
   l.store "All authors", ""
-  l.store "All published dates", ""
   l.store "There are no %s yet. Why don't you start and create one?", "Er zijn nog geen %s. Waarom begin je er niet een te maken?"
   l.store "or", "of"
   l.store "Save", "Bewaar"
   l.store "Edit", "Bewerken"
   l.store "Show", "Tonen"
-  l.store "Published", "Gepubliceerd"
   l.store "Unpublished", "Niet gepubliceerd"
   l.store "Show help on Publify macros", "Toon help voor Publify macro's"
   l.store "Back to overview", "Terug naar overzicht"
@@ -126,7 +124,6 @@ Localization.define("nl_NL") do |l|
 
   # app/helpers/content_helper.rb
   l.store "Posted in", "Geplaatst in"
-  l.store "Tags", "Trefwoorden"
   l.store "no posts", "geen berichten"
   l.store "1 post", "één bericht"
   l.store "%d posts", "%d berichten"
@@ -177,29 +174,9 @@ Localization.define("nl_NL") do |l|
   l.store "Drafts", "Concepten"
 
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", "Publicatie instellingen"
-  l.store "Allow comments", "Sta reacties toe"
-  l.store "Allow trackbacks", "Sta trackbacks toe"
-  l.store "Password:", "Wachtwoord:"
-  l.store "Publish", "Publiceer"
-  l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", "Uittreksel"
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
   l.store "Uploads", "Uploads"
   l.store "Post settings", "Post instellingen"
   l.store "Publish at", "Publiceren op"
-  l.store "Permalink", "Permalink"
-  l.store "Article filter", "Artikel filter"
-  l.store "Save as draft", "Opslaan als concept"
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Weet je zeker dat je dit artikel wilt verwijderen?"
@@ -283,7 +260,6 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "Commentaren voor %s"
-  l.store "Status", "Status"
   l.store "Comment Author", "Auteur commentaar"
   l.store "Comment", "Reactie"
 
@@ -328,10 +304,8 @@ Localization.define("nl_NL") do |l|
   l.store "Delete this file from the webserver?", "Verwijder dit bestand van de webserver?"
   l.store "File Uploads", "Bestand Uploads"
 
-  # app/views/admin/resources/images.html.erb
   l.store "Thumbnail", "Voorafbeelding"
   l.store "File Size", "Bestandsgrootte"
-  l.store "Images", "Afbeeldingen"
   l.store "right-click for link", "rechts-klikken voor link"
 
   # app/views/admin/resources/index.html.erb
@@ -350,9 +324,6 @@ Localization.define("nl_NL") do |l|
   l.store "RSS description message", ""
   l.store "Indexing", ""
   l.store "Do not index categories", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Do not index tags", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
@@ -371,11 +342,9 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "Permalink format", ""
   l.store "Date and title", ""
   l.store "Month and title", ""
   l.store "Title only", ""
-  l.store "You can custom your URL structure using the following tags:", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
   l.store "your article year of publication.", ""
   l.store "your article month of publication.", ""
@@ -399,7 +368,6 @@ Localization.define("nl_NL") do |l|
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article tags (comma separated)", ""
   l.store "Replaced with the article categories (comma separated)", ""
   l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
@@ -410,7 +378,6 @@ Localization.define("nl_NL") do |l|
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", "Werk instellingen bij"
@@ -470,7 +437,6 @@ Localization.define("nl_NL") do |l|
   l.store "Use RSS description", "Gebruik RSS beschrijving"
   l.store "Index categories", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", "Het uitzetten van dit vinkje zal de meta-tags <code>noindex, follow</code> toevoegen aan elke categorie pagina, zodat die niet door zoekmachines ge&iuml;ndexeerd wordt; dit voorkomt dubbele hits"
-  l.store "Index tags", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", "Het uitzetten van dit vinkje zal de meta-tags <code>noindex, follow</code> toevoegen aan elke tag pagina, zodat die niet door zoekmachines ge&iuml;ndexeerd wordt; dit voorkomt dubbele hits"
   l.store "Robots.txt", "Robots.txt"
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Je robots.txt bestand is niet schrijfbaar. Publify kan het niet wijzigen"
@@ -526,23 +492,18 @@ Localization.define("nl_NL") do |l|
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
 
-  # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Schermnaam"
 
-  # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
   l.store "Delete this tag", "Verwijder deze tag"
 
-  # app/views/admin/tags/edit.html.erb
   l.store "Editing ", "Wijzigen"
   l.store "Back to tags list", "Terug naar de lijst van tags"
 
-  # app/views/admin/tags/index.html.erb
   l.store "Display Name", ""
   l.store "Manage tags", "Beheer tags"
 
@@ -718,7 +679,6 @@ Localization.define("nl_NL") do |l|
 
   # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
-  l.store "permalink", ""
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", "Je bent hier: "

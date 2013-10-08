@@ -114,7 +114,6 @@ Localization.define("fr_FR") do |l|
   l.store "Edit", "Éditer"
   l.store "Delete", "Supprimer"
   l.store "Show", "Affichage"
-  l.store "Published", "Publié"
   l.store "Draft", ""
   l.store "Withdrawn", "Supprimé"
   l.store "Publication pending", "À publier"
@@ -156,33 +155,12 @@ Localization.define("fr_FR") do |l|
   # app/models/post_type.rb
   l.store "This article type already exists", ""
 
-  # app/views/admin/content/_attachment.html.erb
-  l.store "Remove", "Supprimer"
-  l.store "Currently this article has the following resources", "Les fichiers suivants sont actuellement liés à ce billet"
-  l.store "You can associate the following resources", "Vous pouvez y lier les fichiers suivants"
-  l.store "Really delete attachment", "Voulez-vous vraiment supprimer la pièce jointe"
-  l.store "Add another attachment", "Ajouter une autre pièce jointe"
-
   # app/views/admin/content/_form.html.erb
-  l.store "Change", "Modifier"
-  l.store "Comments are %s and trackbacks are %s", "Les commentaires sont %s et les rétroliens %s"
-  l.store "Publish settings", "Paramètres de publication"
-  l.store "Status:", "État"
-  l.store "Allow trackbacks", "Autoriser les rétroliens"
-  l.store "Allow comments", "Autoriser les commentaires"
-  l.store "Visibility", "Visibilité"
   l.store "public", "publique"
   l.store "protected", "protégée"
   l.store "Password:", "Mot de passe"
-  l.store "Article filter", "Mise en forme des billets"
   l.store "now", "maintenant"
-  l.store "Publish", "Publier"
-  l.store "Tags", "Labels"
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", "Extrait"
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
   l.store "Uploads", "Pièces jointes"
-  l.store "Save as draft", "Sauver comme brouillon"
   l.store "New article", "Nouvel article"
   l.store "disabled", "désactivés"
   l.store "Markdown with SmartyPants", "Mardown et SmartyPants"
@@ -549,7 +527,6 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Paramètres du compte"
-  l.store "Password", "Mot de passe"
   l.store "Password confirmation", "Confirmation du mot de passe"
   l.store "User's status", "Statut de l'utilisateur"
   l.store "Active", "Actif"
@@ -839,7 +816,6 @@ Localization.define("fr_FR") do |l|
   l.store "IP", "Adresse IP"
   l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur"
   l.store "If you need help, %s. You can also %s to customize your Publify blog.", "Si vous avez besoin d'aide, n'hésitez pas à %s. Vous pouvez aussi %s afin de personnaliser votre blog sous Publify"
-  l.store "Images", "Images"
   l.store "Jan", "jan"
   l.store "January", "janvier"
   l.store "Jul", "juil"

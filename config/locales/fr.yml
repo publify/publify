@@ -1,6 +1,29 @@
 fr:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Publier"
+        title: "Titre"
+        images: "Images"
+        excerpt: "Extrait"
+        excerpt_explaination: "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
+        publish_settings: "Paramètres de publication"
+        status: "État"
+        published: "Publié"
+        allowed_comments_and_trackbacks: "Les commentaires sont %{allow_comment} et les rétroliens %{allow_trackback}"
+        change: "Modifier"
+        allow_trackbacks: "Autoriser les rétroliens"
+        allow_comments: "Autoriser les commentaires"
+        ok: "OK"
+        visibility: "Visibilité"
+        password: "Mot de passe"
+        permalink: "Lien permanent"
+        article_filter: "Mise en forme des billets"
+        save_as_draft: "Sauver comme brouillon"
+        categories: "Catégories"
+        tags: "Labels"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "Nouvelle catégorie"
     categories:

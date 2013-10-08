@@ -4,12 +4,10 @@ Localization.define("ja_JP") do |l|
   # app/controllers/accounts_controller.rb
   l.store "Login successful", "ログインしました"
   l.store "Login unsuccessful", "ログインに失敗しました"
-  l.store "An email has been successfully sent to your address with your new password", ""
   l.store "Oops, something wrong just happened", ""
   l.store "Successfully logged out", "ログアウトしました"
   l.store "login", "ログイン"
   l.store "signup", "サインアップ"
-  l.store "Recover your password", ""
 
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", ""
@@ -127,7 +125,6 @@ Localization.define("ja_JP") do |l|
 
   # app/helpers/content_helper.rb
   l.store "Posted in", "カテゴリ"
-  l.store "Tags", "タグ"
   l.store "no posts", ""
   l.store "1 post", ""
   l.store "%d posts", ""
@@ -140,7 +137,6 @@ Localization.define("ja_JP") do |l|
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
   # app/models/feedback/states.rb
@@ -171,32 +167,9 @@ Localization.define("ja_JP") do |l|
   l.store "Really delete attachment", "本当に添付ファイルを削除してもよろしいですか？"
   l.store "Add another attachment", "添付ファイルを追加"
 
-  # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
-
-  # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
-  l.store "Allow comments", "コメントを許可"
-  l.store "Allow trackbacks", "トラックバックを許可"
-  l.store "Password:", ""
-  l.store "Publish", "公開"
-  l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", "要約"
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "アップロード"
   l.store "Post settings", "投稿設定"
   l.store "Publish at", "公開日"
-  l.store "Article filter", "記事フィルター"
-  l.store "Save as draft", "下書きとして保存"
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "本当にこの記事を削除してよろしいですか？"
@@ -280,7 +253,6 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
-  l.store "Status", "ステータス"
   l.store "Comment Author", ""
   l.store "Comment", ""
 
@@ -325,10 +297,7 @@ Localization.define("ja_JP") do |l|
   l.store "Delete this file from the webserver?", "webサーバーからこのファイルを削除しますか？"
   l.store "File Uploads", "ファイルアップロード"
 
-  # app/views/admin/resources/images.html.erb
-  l.store "Thumbnail", ""
   l.store "File Size", "ファイルサイズ"
-  l.store "Images", ""
   l.store "right-click for link", "右クリックでリンク"
 
   # app/views/admin/resources/index.html.erb
@@ -347,9 +316,6 @@ Localization.define("ja_JP") do |l|
   l.store "RSS description message", ""
   l.store "Indexing", ""
   l.store "Do not index categories", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Do not index tags", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
@@ -368,11 +334,9 @@ Localization.define("ja_JP") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "Permalink format", ""
   l.store "Date and title", ""
   l.store "Month and title", ""
   l.store "Title only", ""
-  l.store "You can custom your URL structure using the following tags:", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
   l.store "your article year of publication.", ""
   l.store "your article month of publication.", ""
@@ -394,8 +358,6 @@ Localization.define("ja_JP") do |l|
   l.store "Replaced with the title of the article/page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
-  l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article tags (comma separated)", ""
   l.store "Replaced with the article categories (comma separated)", ""
   l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
@@ -406,7 +368,6 @@ Localization.define("ja_JP") do |l|
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
@@ -524,23 +485,17 @@ Localization.define("ja_JP") do |l|
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
 
-  # app/views/admin/tags/_form.html.erb
   l.store "Display name", "表示名"
 
-  # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", ""
   l.store "Delete this tag", ""
 
-  # app/views/admin/tags/edit.html.erb
   l.store "Editing ", ""
-  l.store "Back to tags list", ""
 
-  # app/views/admin/tags/index.html.erb
   l.store "Display Name", "表示名"
   l.store "Manage tags", "タグの管理"
 
@@ -666,7 +621,6 @@ Localization.define("ja_JP") do |l|
   l.store "Congratulations!", ""
   l.store "You have successfully signed up", ""
   l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
   # app/views/shared/_search.html.erb
@@ -716,7 +670,6 @@ Localization.define("ja_JP") do |l|
 
   # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
-  l.store "permalink", ""
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
@@ -948,7 +901,6 @@ Localization.define("ja_JP") do |l|
   l.store "by", "by"
   l.store "no ", "no "
   l.store "on", "の"
-  l.store "published", "公開済み"
   l.store "save", "保存"
   l.store "seperate with spaces", "スペースで分ける"
   l.store "unpublished", "未公開"

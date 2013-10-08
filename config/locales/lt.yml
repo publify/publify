@@ -1,6 +1,29 @@
 lt:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Publikuoti"
+        title: "Pavadinimas"
+        images: "Images"
+        excerpt: "Excerpt"
+        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
+        publish_settings: "Publish settings"
+        status: "Statusas"
+        published: "Publikuotas"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "Leisti dienoraščių nuorodas"
+        allow_comments: "Leisti komentarus"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "slaptažodis"
+        permalink: "Nuoroda"
+        article_filter: "Straipsnių filtras"
+        save_as_draft: "Save as draft"
+        categories: "Categories"
+        tags: "Žymės"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "New Category"
     categories:

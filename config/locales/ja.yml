@@ -1,6 +1,29 @@
 ja:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "公開"
+        title: "タイトル"
+        images: "Images"
+        excerpt: "要約"
+        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
+        publish_settings: "Publish settings"
+        status: "ステータス"
+        published: "公開済み"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "トラックバックを許可"
+        allow_comments: "コメントを許可"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "パスワード"
+        permalink: "パーマリンク"
+        article_filter: "記事フィルター"
+        save_as_draft: "下書きとして保存"
+        categories: "カテゴリ"
+        tags: "タグ"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "New Category"
     categories:

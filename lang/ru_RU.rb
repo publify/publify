@@ -24,7 +24,6 @@ Localization.define("ru_RU") do |l|
   l.store "Save", "Сохранить"
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
-  l.store "Published", "Опубликован"
   l.store "Unpublished", "Не опубликован"
   l.store "There are no %s yet. Why don't you start and create one?", "Ничего нет. Почему бы не начать и не добавить?" # XXX
   l.store "or", "или"
@@ -68,30 +67,17 @@ Localization.define("ru_RU") do |l|
   l.store "password", "пароль"
   l.store "Submit", "Войти"
 
-  # app/views/admin/categories/_categories.html.erb
   l.store "Sort alphabetically", "Сортировать по алфавиту"
 
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Вы уверены, что хотите удалитьэту категорию?"
   l.store "Delete this category", "Удалить эту категорию"
 
-  # app/views/admin/categories/index.html.erb
-
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", "Настройки публикации"
-  l.store "Password:", "Пароль"
-  l.store "Publish", "Опубликовать"
-  l.store "Tags", "Теги"
-  l.store "Excerpt", "Выдержка"
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Выдержка — это анонс поста, который будет отображаться только на главной странице, и не будет присутствовать при просмотре полного поста"
   l.store "Uploads", "Загрузки"
   l.store "Post settings", "Настройки поста"
   l.store "Publish at", "Опубликован"
-  l.store "Save as draft", "Сохранить как черновик"
   l.store "disabled", "выключены"
   l.store "Markdown with SmartyPants", "Markdown со SmartyPants"
-  l.store "Markdown", "Markdown"
-  l.store "Texttile", "Textile" # XXX: ttile?
   l.store "None", "Нет"
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Визуально"

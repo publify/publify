@@ -1,6 +1,29 @@
 nl:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Publiceer"
+        title: "Title"
+        images: "Afbeeldingen"
+        excerpt: "Uittreksel"
+        excerpt_explaination: "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
+        publish_settings: "Publicatie instellingen"
+        status: "Status"
+        published: "Gepubliceerd"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "Sta trackbacks toe"
+        allow_comments: "Sta reacties toe"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "Wachtwoord"
+        permalink: "Permalink"
+        article_filter: "Artikel filter"
+        save_as_draft: "Opslaan als concept"
+        categories: "Categoriën"
+        tags: "Trefwoorden"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "Nieuwe categorie"
     categories:

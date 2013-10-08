@@ -97,7 +97,6 @@ Localization.define("zh_CN") do |l|
   l.store "Save", "保存"
   l.store "Edit", "修改"
   l.store "Show", "显示"
-  l.store "Published", "已发表"
   l.store "Unpublished", "未发表"
   l.store "Show help on Publify macros", "显示Publify宏的帮助"
   l.store "Back to overview", "回到概览"
@@ -127,20 +126,17 @@ Localization.define("zh_CN") do |l|
 
   # app/helpers/content_helper.rb
   l.store "Posted in", "发表在"
-  l.store "Tags", "标签"
   l.store "no posts", "没有文章"
   l.store "1 post", "一篇文章"
   l.store "%d posts", "%d篇文章"
 
   # app/models/article.rb
   l.store "Original article writen by", ""
-  l.store "and published on", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
   # app/models/feedback/states.rb
@@ -156,20 +152,15 @@ Localization.define("zh_CN") do |l|
   # app/views/accounts/login.html.erb
   l.store "Submit", "提交"
 
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "重新排序"
   l.store "Sort alphabetically", "依字母顺序排序"
 
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "确认删除此分类？"
   l.store "Delete this category", "删除分类"
 
-  # app/views/admin/categories/index.html.erb
 
-  # app/views/admin/categories/new.html.erb
   l.store "%s Category", "分类%s"
 
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(完成)"
 
   # app/views/admin/content/_attachment.html.erb
@@ -183,28 +174,9 @@ Localization.define("zh_CN") do |l|
   l.store "Drafts", "草稿"
 
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", "发布设定"
-  l.store "Allow comments", "允许评论"
-  l.store "Allow trackbacks", "允许引用"
-  l.store "Password:", "密码"
-  l.store "Publish", "发布"
-  l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", "摘要"
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "摘要对文章的总结，只会显示在首页，不会出现在文章正文。"
   l.store "Uploads", "上传"
   l.store "Post settings", "发布设定"
   l.store "Publish at", "公开"
-  l.store "Article filter", ""
-  l.store "Save as draft", "保存为草稿"
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
 
 
   # app/views/admin/content/destroy.html.erb
@@ -229,7 +201,6 @@ Localization.define("zh_CN") do |l|
   l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
-  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "最近评论"
   l.store "No comments yet", "没有任何评论"
@@ -295,7 +266,6 @@ Localization.define("zh_CN") do |l|
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
-  l.store "Status", "状态"
   l.store "Comment Author", ""
   l.store "Comment", ""
 
@@ -361,10 +331,6 @@ Localization.define("zh_CN") do |l|
   l.store "Use RSS description", ""
   l.store "RSS description message", ""
   l.store "Indexing", ""
-  l.store "Do not index categories", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Do not index tags", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
@@ -399,8 +365,6 @@ Localization.define("zh_CN") do |l|
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article tags (comma separated)", ""
-  l.store "Replaced with the article categories (comma separated)", ""
   l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
@@ -410,7 +374,6 @@ Localization.define("zh_CN") do |l|
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
@@ -462,16 +425,11 @@ Localization.define("zh_CN") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "SEO"
-  l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
   l.store "Meta description", ""
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
-  l.store "Index categories", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Index tags", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
@@ -528,25 +486,17 @@ Localization.define("zh_CN") do |l|
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
 
-  # app/views/admin/tags/_form.html.erb
   l.store "Display name", "暱稱"
 
-  # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", ""
   l.store "Delete this tag", ""
 
-  # app/views/admin/tags/edit.html.erb
   l.store "Editing ", ""
-  l.store "Back to tags list", ""
-
-  # app/views/admin/tags/index.html.erb
   l.store "Display Name", ""
-  l.store "Manage tags", ""
 
   # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", ""
@@ -560,7 +510,6 @@ Localization.define("zh_CN") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", ""
-  l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
   l.store "Profile settings", ""
@@ -573,17 +522,11 @@ Localization.define("zh_CN") do |l|
   l.store "Send notification messages when comments are posted", "新的評錀貼上時發出通知訊息"
   l.store "Contact options", ""
   l.store "Your site", ""
-  l.store "display URL on public profile", ""
   l.store "Your MSN", ""
-  l.store "display MSN ID on public profile", ""
   l.store "Your Yahoo ID", ""
-  l.store "display Yahoo! ID on public profile", ""
   l.store "Your Jabber ID", ""
-  l.store "display Jabber ID on public profile", ""
   l.store "Your AIM id", ""
-  l.store "display AIM ID on public profile", ""
   l.store "Your Twitter username", ""
-  l.store "display Twitter on public profile", ""
   l.store "Tell us more about you", ""
 
   # app/views/admin/users/destroy.html.erb
@@ -653,7 +596,6 @@ Localization.define("zh_CN") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-  l.store "This author has not published any article yet", ""
 
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", ""
@@ -719,7 +661,6 @@ Localization.define("zh_CN") do |l|
 
   # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
-  l.store "permalink", ""
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
@@ -744,10 +685,8 @@ Localization.define("zh_CN") do |l|
   # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", ""
 
-  # themes/true-blue-3/views/categories/index.html.erb
   l.store "Read all articles in %s", ""
 
-  # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
   l.store "Next", ""
 

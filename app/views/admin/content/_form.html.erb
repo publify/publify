@@ -8,10 +8,10 @@
   <%= _("#{controller.action_name.to_s.capitalize} article") %>
   <span class='pull-right'>
     <span id='preview_link'>
-      <%= link_to(_("Preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn'}) if @article.id %>
+      <%= link_to(t(".preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn'}) if @article.id %>
     </span>
-    <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn' />
-    <%= save( _("Publish")) %>
+    <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn' />
+    <%= submit_tag(t(".publish"), :class => 'btn btn-primary') %>
   </span>
 </h2>
 
@@ -21,13 +21,13 @@
     <div>
       <div class='span9'>
         <div>
-          <%= text_field 'article', 'title', :class => 'input-block-level', :placeholder => _('Title') %>
+          <%= text_field 'article', 'title', :class => 'input-block-level', :placeholder => t('.title') %>
         </div>
         <%= render('images', { :images => @images}) unless @images.empty? %>
 
         <div id="editor">
           <i class='icon icon-media'></i> <span id='image-link'>
-            <a href="#" onclick="Element.toggle('carousel-wrapper'); return false"><%= _('Images')%></a>
+            <a href="#" onclick="Element.toggle('carousel-wrapper'); return false"><%= t('.images')%></a>
           </span>
           <div id='quicktags'>
             <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
@@ -40,22 +40,22 @@
         </div>
 
         <div class='separator'>
-          <h4><%= _("Excerpt") %></h4>
+          <h4><%= t(".excerpt") %></h4>
           <%= text_area 'article', 'excerpt', {:height => '150', :class => 'input-block-level', :rows => '5'} %>
-          <span class='help-block'><%=_("Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself") %></span>
+          <span class='help-block'><%=t(".excerpt_explaination") %></span>
         </div>
 
         <div class='well'>
           <fieldset>
-            <legend><%= _("Publish settings") %></legend>
+            <legend><%= t(".publish_settings") %></legend>
             <div class='control-group'>
-              <p><%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong>
-              <a href="#" onclick="Element.toggle('status'); return false"><%= _('Change')%></a>
+              <p><%= t(".status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong>
+              <a href="#" onclick="Element.toggle('status'); return false"><%= t('.change')%></a>
               </p>
               <div id='status' style='display: none;'>
                 <label for="article_published" class='checkbox'>
                   <%= check_box 'article', 'published'  %>
-                  <%= _("Published") %>
+                  <%= t(".published") %>
                 </label>
                 <p><span class='btn btn-mini'>
                   <a href="#" onclick="Element.toggle('status'); return false">OK</a>
@@ -63,67 +63,67 @@
               </div>
             </div>
             <div class='control-group'>
-              <p><%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
-            <a href="#" onclick="Element.toggle('conversation'); return false"><%= _('Change')%></a>
+              <p><%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, get_feedback_status(@article.allow_comments)), allow_trackback: content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
+            <a href="#" onclick="Element.toggle('conversation'); return false"><%= t('.change')%></a>
             <div id='conversation' style='display: none'>
               <label for="article_allow_pings" class='checkbox'>
                 <%= check_box 'article', 'allow_pings' %>
-                <%= _("Allow trackbacks") %>
+                <%= t(".allow_trackbacks") %>
               </label>
               <label for="article_allow_comments" class='checkbox'>
                 <%= check_box 'article', 'allow_comments' %>
-                <%= _("Allow comments") %>
+                <%= t(".allow_comments") %>
               </label>
               <p><span class='btn btn-mini'>
-                <a href="#" onclick="Element.toggle('conversation'); return false"><%= _('OK')%></a>
+                <a href="#" onclick="Element.toggle('conversation'); return false"><%= t('.ok')%></a>
               </span></p>
             </div>
           </div>
           <div class='control-group'>
-            <p><%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong>
-            <a href="#" onclick="Element.toggle('publish'); return false"><%= _('Change')%></a>
+            <p><%= t(".published") %> <strong><%= publish_now_or_already_published @article %></strong>
+            <a href="#" onclick="Element.toggle('publish'); return false"><%= t('.change')%></a>
             </p>
             <div id='publish' class='input-append' style='display: none;'>
               <%= calendar_date_select 'article', 'published_at' %>
               <p><span class="btn btn-mini">
-            <a href="#" onclick="Element.toggle('status'); return false"><%= _('OK')%></a>
+            <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
               </span></p>
             </div>
 
           </div>
           <div class='control-group'>
-            <p><%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong>
-            <a href="#" onclick="Element.toggle('visibility'); return false"><%= _('Change')%></a>
+            <p><%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
+            <a href="#" onclick="Element.toggle('visibility'); return false"><%= t('.change')%></a>
             </p>
             <div id='visibility' style='display: none'>
-              <label for="article_password"><%= _("Password:") %>
+              <label for="article_password"><%= t(".password") %>
               <%= password_field :article, :password, :class => 'span10' %>
             </label>
             <p><span class="btn btn-mini">
-            <a href="#" onclick="Element.toggle('status'); return false"><%= _('OK')%></a>
+            <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
             </span></p>
           </div>
         </div>
         <div class='control-group'>
-          <%= _("Permalink") %>:
-          <a href="#" onclick="Element.toggle('permalink'); return false"><%= _('Change')%></a>
+          <%= t(".permalink") %>:
+          <a href="#" onclick="Element.toggle('permalink'); return false"><%= t('.change')%></a>
           <div class='inputs-list' id='permalink' style='display: none'>
             <%= text_field 'article', 'permalink', {class: 'span10'} %>
             <p><span class="btn btn-mini">
-            <a href="#" onclick="Element.toggle('status'); return false"><%= _('OK')%></a>
+            <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
             </span></p>
           </div>
         </div>
         <div class='control-group'>
-          <%= _("Article filter") %>: <strong id='text_filter_placeholder'><%= _("#{@article.text_filter.description}") %></strong>
-          <a href="#" onclick="Element.toggle('text_filter'); return false"><%= _('Change')%></a>
+          <%= t(".article_filter") %>: <strong id='text_filter_placeholder'><%= _("#{@article.text_filter.description}") %></strong>
+          <a href="#" onclick="Element.toggle('text_filter'); return false"><%= t('.change')%></a>
 
           <div id='text_filter' style='display: none'>
             <select name="article[text_filter]" id="article_text_filter">
               <%= options_for_select text_filter_options, @article.text_filter %>
             </select>
             <p><span class="btn btn-mini">
-              <a href="#" onclick="Element.toggle('status'); return false"><%= _('OK')%></a>
+              <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
             </span></p>
           </div>
         </div>
@@ -133,12 +133,12 @@
       <div class='pull-right'>
         <%- if @article.id.present? && @article.state.to_s.downcase != 'draft' %>
           <%- if current_user.admin? || current_user.id == @article.user_id %>
-            <%= link_to(_("delete"), { action: 'destroy', id: @article.id }, data: {confirm: _("Are you sure?")}, method: :post, class: 'btn danger', title: _("Delete content")) %>
+            <%= link_to(t(".delete"), { action: 'destroy', id: @article.id }, data: {confirm: t(".are_you_sure")}, method: :post, class: 'btn danger', title: t(".delete_content")) %>
           <%- end %>
         <%- end %>
         <span id='destroy_link'><%= link_to_destroy_draft @article %></span>
-        <input id='save_draft' type="submit" value="<%= _('Save as draft') %>" name="article[draft]" class='btn info' />
-        <%= submit_tag(_("Publish"), :class => 'btn btn-primary') %>
+        <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn info' />
+        <%= submit_tag(t(".publish"), :class => 'btn btn-primary') %>
       </div>
     </div>
 
@@ -147,14 +147,14 @@
 
 <div class='span3'>
   <div class='well'>
-    <h4><%= _("Categories") %></h4>
+    <h4><%= t(".categories") %></h4>
     <%= render 'categories' %>
   </div>
   <div class='well'>
-    <h4><%= _("Tags") %></h4>
+    <h4><%= t(".tags") %></h4>
     <div class='class'>
       <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'input-block-level'} %>
-      <p class='alert alert-warning'><%=_("Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.") %></p>
+      <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
     </div>
     <%= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>
   </div>

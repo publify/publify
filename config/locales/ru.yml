@@ -1,6 +1,29 @@
 ru:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Опубликовать"
+        title: "Заголовок"
+        images: "Images"
+        excerpt: "Выдержка"
+        excerpt_explaination: "Выдержка — это анонс поста, который будет отображаться только на главной странице, и не будет присутствовать при просмотре полного поста"
+        publish_settings: "Настройки публикации"
+        status: "Status:"
+        published: "Опубликован"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "Allow trackbacks"
+        allow_comments: "Allow comments"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "Пароль"
+        permalink: "Постоянная ссылка"
+        article_filter: "Article filter"
+        save_as_draft: "Сохранить как черновик"
+        categories: "Категории"
+        tags: "Теги"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "Новая категория"
     categories:

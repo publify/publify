@@ -97,7 +97,6 @@ Localization.define("he_IL") do |l|
   l.store "Save", "שמור"
   l.store "Edit", "ערוך"
   l.store "Show", ""
-  l.store "Published", "פורסם"
   l.store "Unpublished", "לא פורסם"
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "עבור לסקירה"
@@ -127,7 +126,6 @@ Localization.define("he_IL") do |l|
 
   # app/helpers/content_helper.rb
   l.store "Posted in", "פורסם ב-"
-  l.store "Tags", "תוויות"
   l.store "no posts", "אין כתבות"
   l.store "1 post", "כתבה 1"
   l.store "%d posts", "%d כתבות"
@@ -174,33 +172,10 @@ Localization.define("he_IL") do |l|
   l.store "Really delete attachment", "האם אתה בטוח שברצונך למחוק את הקובץ הצורף"
   l.store "Add another attachment", "הוסף קובץ-מצורף"
 
-  # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
-
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
-  l.store "Allow comments", "אפשר תגובות"
-  l.store "Allow trackbacks", "אפשר עוקבים חזרה"
-  l.store "Password:", ""
-  l.store "Publish", "פרסם"
-  l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", ""
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
   l.store "Uploads", "העלאות"
   l.store "Post settings", "הגדרות כתבה"
   l.store "Publish at", "פורסם בתאריך"
-  l.store "Article filter", "מסנן הכתבה"
-  l.store "Save as draft", "שמור טיוטה"
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
-
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "האם אתה בטוח שברצונך למחוק כתבה זו"
@@ -284,7 +259,6 @@ Localization.define("he_IL") do |l|
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "תגובות עבור %s"
-  l.store "Status", "מצב"
   l.store "Comment Author", ""
   l.store "Comment", ""
 
@@ -332,7 +306,6 @@ Localization.define("he_IL") do |l|
   # app/views/admin/resources/images.html.erb
   l.store "Thumbnail", ""
   l.store "File Size", "גודל הקובץ"
-  l.store "Images", ""
   l.store "right-click for link", "לחיצה ימנית לקישור"
 
   # app/views/admin/resources/index.html.erb

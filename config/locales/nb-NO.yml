@@ -1,6 +1,29 @@
 nb-NO:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Publiser"
+        title: "Tittel"
+        images: "Bilder"
+        excerpt: "Utdrag"
+        excerpt_explaination: "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
+        publish_settings: "Publiseringsinnstillinger"
+        status: "Status"
+        published: "Publisert"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "Tillat Trackbacks"
+        allow_comments: "Tillat kommentarer"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "Passord"
+        permalink: "permalenke"
+        article_filter: "artikkelfilter"
+        save_as_draft: "Lagre som utkast"
+        categories: "Kategorier"
+        tags: "Tags"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "Ny kategori"
     categories:

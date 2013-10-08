@@ -4,12 +4,10 @@ Localization.define("de_DE") do |l|
   # app/controllers/accounts_controller.rb
   l.store "Login successful", ""
   l.store "Login unsuccessful", ""
-  l.store "An email has been successfully sent to your address with your new password", ""
   l.store "Oops, something wrong just happened", ""
   l.store "Successfully logged out", ""
   l.store "login", ""
   l.store "signup", ""
-  l.store "Recover your password", ""
 
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", ""
@@ -97,7 +95,6 @@ Localization.define("de_DE") do |l|
   l.store "Save", "Speichern"
   l.store "Edit", "Bearbeiten"
   l.store "Show", ""
-  l.store "Published", "Veröffentlicht"
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Zurück zur Übersicht"
@@ -127,7 +124,6 @@ Localization.define("de_DE") do |l|
 
   # app/helpers/content_helper.rb
   l.store "Posted in", ""
-  l.store "Tags", "Tags"
   l.store "no posts", ""
   l.store "1 post", ""
   l.store "%d posts", ""
@@ -140,7 +136,6 @@ Localization.define("de_DE") do |l|
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
   # app/models/feedback/states.rb
@@ -153,15 +148,12 @@ Localization.define("de_DE") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Sortieren"
   l.store "Sort alphabetically", "Alphabetisch sortieren"
 
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Sind Sie sicher, die Kategorie zu löschen: "
   l.store "Delete this category", "Kategorie löschen"
 
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Fertig)"
 
   # app/views/admin/content/_attachment.html.erb
@@ -171,37 +163,12 @@ Localization.define("de_DE") do |l|
   l.store "Really delete attachment", "Anhang wirklich löschen"
   l.store "Add another attachment", "Einen weiteren Anhang hinzufügen"
 
-  # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
-
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
-  l.store "Allow comments", "Kommentare erlauben"
-  l.store "Allow trackbacks", "Trackbacks erlauben"
-  l.store "Password:", ""
-  l.store "Publish", "Veröffentlichen"
-  l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", ""
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
-  l.store "Uploads", ""
-  l.store "Post settings", ""
   l.store "Publish at", "Veröffentlicht am"
-  l.store "Article filter", "Textfilter für Artikel"
-  l.store "Save as draft", ""
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Sind Sie sicher, diesen Artikel zu löschen"
   l.store "Delete this article", "Diesen Artikel löschen"
-  l.store "Articles", ""
 
   # app/views/admin/content/index.html.erb
   l.store "New Article", ""
@@ -217,7 +184,6 @@ Localization.define("de_DE") do |l|
   l.store "Publication date", ""
 
   # app/views/admin/dashboard/_comments.html.erb
-  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", ""
   l.store "No comments yet", ""
@@ -232,9 +198,7 @@ Localization.define("de_DE") do |l|
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "update your profile or change your password", ""
   l.store "You can also do a bit of design, %s or %s.", ""
-  l.store "change your blog presentation", ""
   l.store "enable plugins", ""
   l.store "write a post", ""
   l.store "write a page", ""
@@ -280,7 +244,6 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
-  l.store "Status", "Status"
   l.store "Comment Author", ""
   l.store "Comment", ""
 
@@ -325,10 +288,8 @@ Localization.define("de_DE") do |l|
   l.store "Delete this file from the webserver?", "Diese Datei vom Webserver löschen?"
   l.store "File Uploads", "Dateianhänge"
 
-  # app/views/admin/resources/images.html.erb
   l.store "Thumbnail", ""
   l.store "File Size", "Dateigröße"
-  l.store "Images", ""
   l.store "right-click for link", ""
 
   # app/views/admin/resources/index.html.erb
@@ -346,10 +307,6 @@ Localization.define("de_DE") do |l|
   l.store "Use RSS description", ""
   l.store "RSS description message", ""
   l.store "Indexing", ""
-  l.store "Do not index categories", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Do not index tags", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
@@ -368,11 +325,6 @@ Localization.define("de_DE") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "Permalink format", ""
-  l.store "Date and title", ""
-  l.store "Month and title", ""
-  l.store "Title only", ""
-  l.store "You can custom your URL structure using the following tags:", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
   l.store "your article year of publication.", ""
   l.store "your article month of publication.", ""
@@ -381,8 +333,6 @@ Localization.define("de_DE") do |l|
   l.store "Custom", ""
 
   # app/views/admin/seo/titles.html.erb
-  l.store "Title settings", ""
-  l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
   l.store "Pages", ""
@@ -390,14 +340,8 @@ Localization.define("de_DE") do |l|
   l.store "Dated archives", ""
   l.store "Author page", ""
   l.store "Search results", ""
-  l.store "Help on title settings", ""
-  l.store "Replaced with the title of the article/page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
-  l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article tags (comma separated)", ""
-  l.store "Replaced with the article categories (comma separated)", ""
-  l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
@@ -406,7 +350,6 @@ Localization.define("de_DE") do |l|
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
@@ -447,7 +390,6 @@ Localization.define("de_DE") do |l|
   l.store "Allow users to register", ""
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "Zeige"
   l.store "articles on my homepage by default", "Artikel auf einmal auf meiner Homepage"
   l.store "articles in my news feed by default", "Artikel auf einmal in meinen RSS News Feeds"
@@ -458,16 +400,11 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
-  l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
   l.store "Meta description", ""
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
-  l.store "Index categories", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Index tags", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
@@ -524,25 +461,18 @@ Localization.define("de_DE") do |l|
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
 
-  # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Anzeigename"
 
-  # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", ""
   l.store "Delete this tag", ""
 
-  # app/views/admin/tags/edit.html.erb
   l.store "Editing ", ""
-  l.store "Back to tags list", ""
 
-  # app/views/admin/tags/index.html.erb
   l.store "Display Name", ""
-  l.store "Manage tags", ""
 
   # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", ""
@@ -555,8 +485,6 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
-  l.store "Password confirmation", ""
-  l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
   l.store "Profile settings", ""
@@ -568,17 +496,11 @@ Localization.define("de_DE") do |l|
   l.store "Send notification messages when comments are posted", "Benachrichtigung schicken, wenn neue Kommentare eintreffen"
   l.store "Contact options", ""
   l.store "Your site", ""
-  l.store "display URL on public profile", ""
   l.store "Your MSN", ""
-  l.store "display MSN ID on public profile", ""
   l.store "Your Yahoo ID", ""
-  l.store "display Yahoo! ID on public profile", ""
   l.store "Your Jabber ID", ""
-  l.store "display Jabber ID on public profile", ""
   l.store "Your AIM id", ""
-  l.store "display AIM ID on public profile", ""
   l.store "Your Twitter username", ""
-  l.store "display Twitter on public profile", ""
   l.store "Tell us more about you", ""
 
   # app/views/admin/users/destroy.html.erb
@@ -659,13 +581,11 @@ Localization.define("de_DE") do |l|
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
   # app/views/shared/_confirm.html.erb
   # l.store "Congratulations!", ""
   l.store "You have successfully signed up", ""
   l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
   # app/views/shared/_search.html.erb
@@ -715,7 +635,6 @@ Localization.define("de_DE") do |l|
 
   # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
-  l.store "permalink", ""
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
@@ -740,10 +659,8 @@ Localization.define("de_DE") do |l|
   # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", ""
 
-  # themes/true-blue-3/views/categories/index.html.erb
   l.store "Read all articles in %s", ""
 
-  # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
   l.store "Next", ""
 

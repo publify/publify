@@ -97,7 +97,6 @@ Localization.define("it_IT") do |l|
   l.store "Save", "Salva"
   l.store "Edit", "Modifica"
   l.store "Show", ""
-  l.store "Published", "Pubblicato"
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Torna al sommario"
@@ -125,13 +124,6 @@ Localization.define("it_IT") do |l|
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
 
-  # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "Tags", "Tags"
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
   # app/models/article.rb
   l.store "Original article writen by", ""
   l.store "and published on", ""
@@ -140,7 +132,6 @@ Localization.define("it_IT") do |l|
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
   # app/models/feedback/states.rb
@@ -153,18 +144,14 @@ Localization.define("it_IT") do |l|
   l.store "Just Marked As Spam", ""
   l.store "Spam", ""
 
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Riordina"
   l.store "Sort alphabetically", "Ordina alfabeticamente"
 
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Sei sicuro di voler eliminare questa categoria "
   l.store "Delete this category", "Elimina questa categoria"
 
-  # app/views/admin/categories/new.html.erb
   l.store "%s Category", ""
 
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Termina)"
 
   # app/views/admin/content/_attachment.html.erb
@@ -174,33 +161,8 @@ Localization.define("it_IT") do |l|
   l.store "Really delete attachment", "Vuoi realmente eliminare l'allegato"
   l.store "Add another attachment", "Aggiungi un'altro allegato"
 
-  # app/views/admin/content/_drafts.html.erb
-  l.store "Drafts", ""
-
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", ""
-  l.store "Allow comments", "Permetti commenti"
-  l.store "Allow trackbacks", "Permetti trackbacks"
-  l.store "Password:", ""
-  l.store "Publish", "Pubblica"
-  l.store "Tags", ""
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", ""
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", ""
-  l.store "Uploads", "Uploads"
-  l.store "Post settings", ""
   l.store "Publish at", "Pubblicato il"
-  l.store "Article filter", "Filtra articolo"
-  l.store "Save as draft", ""
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
-
 
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Sei sicuro di voler eliminare questo articolo"
@@ -284,7 +246,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
-  l.store "Status", "Stato"
   l.store "Comment Author", ""
   l.store "Comment", ""
 
@@ -332,7 +293,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/resources/images.html.erb
   l.store "Thumbnail", ""
   l.store "File Size", "Dimensione"
-  l.store "Images", ""
   l.store "right-click for link", "clicca col destro per il link"
 
   # app/views/admin/resources/index.html.erb
@@ -350,7 +310,6 @@ Localization.define("it_IT") do |l|
   l.store "Use RSS description", ""
   l.store "RSS description message", ""
   l.store "Indexing", ""
-  l.store "Do not index categories", ""
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Do not index tags", ""
   l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
@@ -372,7 +331,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "Permalink format", ""
   l.store "Date and title", ""
   l.store "Month and title", ""
   l.store "Title only", ""
@@ -400,7 +358,6 @@ Localization.define("it_IT") do |l|
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the post/page excerpt", ""
   l.store "Replaced with the article tags (comma separated)", ""
-  l.store "Replaced with the article categories (comma separated)", ""
   l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
@@ -462,13 +419,11 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Ottimizzazione motori di ricerca"
-  l.store "Format of permalink", ""
   l.store "Google Analytics", ""
   l.store "Google verification link", ""
   l.store "Meta description", ""
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
-  l.store "Index categories", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Index tags", ""
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
@@ -720,7 +675,6 @@ Localization.define("it_IT") do |l|
 
   # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
-  l.store "permalink", ""
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
@@ -745,10 +699,8 @@ Localization.define("it_IT") do |l|
   # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", ""
 
-  # themes/true-blue-3/views/categories/index.html.erb
   l.store "Read all articles in %s", ""
 
-  # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
   l.store "Next", ""
 

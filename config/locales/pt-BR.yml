@@ -15,6 +15,29 @@ pt-BR:
 
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "Publicar"
+        title: "Título"
+        images: "Images"
+        excerpt: "Excerpt"
+        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
+        publish_settings: "Configurações de publicação"
+        status: "Estado"
+        published: "Publicado"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "Permitir trackbacks"
+        allow_comments: "Permitir comentários"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "Senha"
+        permalink: "Link permanente"
+        article_filter: "Filtro de art&iacute;culo"
+        save_as_draft: "Save as draft"
+        categories: "Categories"
+        tags: "Tags"
+        tags_explaination: "Separe as tags com vírgulas. Use áspas duplas (&quot;) em palavras compostas, ex: opera-house."
       categories:
         new_category: "Nova Categoria"
     categories:

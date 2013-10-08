@@ -1,6 +1,29 @@
 zh-TW:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "公開"
+        title: "標題"
+        images: "Images"
+        excerpt: "Excerpt"
+        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
+        publish_settings: "Publish settings"
+        status: "身分"
+        published: "已公開的"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "允許引用"
+        allow_comments: "允許評論"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "密碼"
+        permalink: "固定連接"
+        article_filter: "篩選文章"
+        save_as_draft: "Save as draft"
+        categories: "分類"
+        tags: "標示標籤"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "New Category"
     categories:

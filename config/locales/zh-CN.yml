@@ -1,6 +1,29 @@
 zh-CN:
   admin:
     content:
+      form:
+        public: "Public"
+        publish: "发布"
+        title: "Title"
+        images: "Images"
+        excerpt: "摘要"
+        excerpt_explaination: "摘要对文章的总结，只会显示在首页，不会出现在文章正文。"
+        publish_settings: "发布设定"
+        status: "状态"
+        published: "已发表"
+        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        change: "Change"
+        allow_trackbacks: "允许引用"
+        allow_comments: "允许评论"
+        ok: "OK"
+        visibility: "Visibility"
+        password: "密码"
+        permalink: "固定链接"
+        article_filter: "Article filter"
+        save_as_draft: "保存为草稿"
+        categories: "分类"
+        tags: "标签"
+        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
       categories:
         new_category: "创建分类"
     categories:

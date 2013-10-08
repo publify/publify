@@ -42,7 +42,6 @@ Localization.define("nb_NO") do |l|
   l.store "Article was successfully updated.", "Artikkel oppdatert"
 
   # app/controllers/admin/dashboard_controller.rb
-  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer %s"
   l.store "the latest Publify version", "den siste versjonan av Publify"
@@ -129,7 +128,6 @@ Localization.define("nb_NO") do |l|
   l.store "Short url:", "Kort URL:"
   l.store "Edit", "Rediger"
   l.store "Show", "Vis"
-  l.store "Published", "Publisert"
   l.store "Unpublished", "Ikke publisert"
   l.store "Show help on Publify macros", "Vis hjelp i Publify makroer"
   l.store "Update settings", "Oppdater innstillinger"
@@ -174,18 +172,14 @@ Localization.define("nb_NO") do |l|
   l.store "Just Marked As Spam", "Kun markert som Spam"
   l.store "Spam", "Spam"
 
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sorter alfabetisk"
 
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Er du sikker på du vil slette kategorien: "
   l.store "Delete this category", "Slett denne kategorien"
 
-  # app/views/admin/categories/new.html.erb
   l.store "%s Category", "%s kategori"
 
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Ferdig)"
 
   # app/views/admin/content/_attachment.html.erb
@@ -199,20 +193,9 @@ Localization.define("nb_NO") do |l|
   l.store "Drafts", "Utkast"
 
   # app/views/admin/content/_form.html.erb
-  l.store "Publish settings", "Publiseringsinnstillinger"
-  l.store "Allow comments", "Tillat kommentarer"
-  l.store "Allow trackbacks", "Tillat Trackbacks"
-  l.store "Password:", "Passord"
-  l.store "Publish", "Publiser"
-  l.store "Tags", "Tags"
-  l.store "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.", ""
-  l.store "Excerpt", "Utdrag"
-  l.store "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself", "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
   l.store "Uploads", "Opplastede filer"
   l.store "Post settings", "Postinnstillinger"
   l.store "Publish at", "Offentliggjort den"
-  l.store "Article filter", "artikkelfilter"
-  l.store "Save as draft", "Lagre som utkast"
   l.store "disabled", ""
   l.store "Markdown with SmartyPants", ""
   l.store "Markdown", ""
@@ -283,7 +266,6 @@ Localization.define("nb_NO") do |l|
   l.store "Content", "Innhold"
   l.store "Total posts:", "Antall artikler:"
   l.store "Your posts:", "Dine artikler:"
-  l.store "Categories:", "Kategorier:"
   l.store "Total comments:", "Antall kommentarer:"
   l.store "Spam comments:", "Spam-kommentarer:"
   l.store "In your spam queue:", "I Spam-køen:"
@@ -311,7 +293,6 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "Kommentarer for %s"
-  l.store "Status", "Status"
   l.store "Comment Author", "Kommentarforfatter"
   l.store "Comment", "Kommentar"
 
@@ -536,19 +517,15 @@ Localization.define("nb_NO") do |l|
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
 
-  # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", "Er du sikker på at du vil slette denne taggen"
   l.store "Delete this tag", "Slett denne taggen"
 
-  # app/views/admin/tags/edit.html.erb
   l.store "Editing ", "Redigerer"
 
-  # app/views/admin/tags/index.html.erb
   l.store "Display Name", "Visningsnavn"
   l.store "Manage tags", "Behandle tags"
 
@@ -716,10 +693,6 @@ Localization.define("nb_NO") do |l|
   l.store "About", "Om"
   l.store "Designed by %s ported to publify by %s ", "Utformet av %s portert til Publify av %s "
 
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-  l.store "permalink", "permalenke"
-
   # themes/scribbish/views/layouts/default.html.erb
   l.store "styled with %s", "utformed med %s"
 
@@ -743,10 +716,8 @@ Localization.define("nb_NO") do |l|
   # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", "Søkeresultater for:"
 
-  # themes/true-blue-3/views/categories/index.html.erb
   l.store "Read all articles in %s", "Les alle artikler i %s"
 
-  # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", "Forrige"
   l.store "Next", "Neste"
 
@@ -775,7 +746,6 @@ Localization.define("nb_NO") do |l|
   l.store ", Articles for ", ", Artikler for "
   l.store "1 post", "1 post"
   l.store "AIM Presence", "AIM Presence"
-  l.store "AIM Status", "AIM Status"
   l.store "Action", "Handling"
   l.store "Activate", "Aktiver"
   l.store "Add MetaData", "Legg til metadata"
@@ -851,7 +821,6 @@ Localization.define("nb_NO") do |l|
   l.store "Google verification link", "Verifiseringslenke for Google"
   l.store "IP", "IP-adresse"
   l.store "If you are reading this article elsewhere than", "Dersom du leser denne artikkelen et annet sted enn"
-  l.store "Images", "Bilder"
   l.store "Index categories", "Indekskategorier"
   l.store "Index tags", "Indekstagger"
   l.store "Jabber", "Jabber"
@@ -977,7 +946,6 @@ Localization.define("nb_NO") do |l|
   l.store "it has been illegally reproduced and without proper authorization", "så har den blitt reprodusert uten tillatelse"
   l.store "no posts", "ingen poster"
   l.store "on", "på"
-  l.store "published", "utgitt"
   l.store "seperate with spaces", "Adskill med mellomrom"
   l.store "via email", "via e-mail"
   l.store "with %s Famfamfam iconset %s", "med %s Famfamfam-ikoner %s"
