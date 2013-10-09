@@ -5,6 +5,10 @@ he-IL:
       next: "Next"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "עדיין ללא תגובות"
+        by: "על ידי"
     content:
       index:
         published: "פורסם"

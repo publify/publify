@@ -173,12 +173,6 @@ Localization.define("lt_LT") do |l|
   l.store "Author", "Autorius"
   l.store "Feedback", "Atsiliepimas"
 
-  # app/views/admin/dashboard/_comments.html.erb
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
-  l.store "Latest Comments", ""
-  l.store "No comments yet", ""
-  l.store "By %s on %s", ""
-
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", ""
   l.store "No one made a link to you yet", ""
@@ -614,10 +608,6 @@ Localization.define("lt_LT") do |l|
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
-  l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""

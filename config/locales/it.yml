@@ -5,6 +5,10 @@ it:
       next: "Next"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "Nessun commento"
+        by: "By"
     content:
       index:
         published: "Pubblicato"

@@ -182,7 +182,6 @@ Localization.define("ja_JP") do |l|
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", ""
-  l.store "No comments yet", "まだコメントはありません"
   l.store "By %s on %s", ""
 
   # app/views/admin/dashboard/_inbound.html.erb
@@ -664,10 +663,6 @@ Localization.define("ja_JP") do |l|
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
-  l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""

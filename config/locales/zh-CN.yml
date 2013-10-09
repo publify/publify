@@ -5,6 +5,10 @@ zh-CN:
       next: "Next"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "没有任何评论"
+        by: "By"
     content:
       index:
         published: "已发表"

@@ -631,7 +631,6 @@ Localization.define("es_MX") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
   # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
   l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb

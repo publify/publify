@@ -5,6 +5,10 @@ ru:
       next: "Next"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "Пока нет комментариев"
+        by: "By"
     content:
       index:
         published: "Опубликован"

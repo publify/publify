@@ -193,7 +193,6 @@ Localization.define("zh_CN") do |l|
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "最近评论"
-  l.store "No comments yet", "没有任何评论"
   l.store "By %s on %s", "%s在%s"
 
   # app/views/admin/dashboard/_inbound.html.erb
@@ -656,10 +655,6 @@ Localization.define("zh_CN") do |l|
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
-  l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""

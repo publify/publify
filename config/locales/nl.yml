@@ -5,6 +5,10 @@ nl:
       next: "Volgende"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "Nog geen reacties"
+        by: "Door"
     content:
       index:
         published: "Gepubliceerd"

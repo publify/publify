@@ -213,8 +213,6 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Siste kommentarer"
-  l.store "No comments yet", "Ingen kommentarer"
-  l.store "By", "Av"
 
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", "Innkommende lenker"

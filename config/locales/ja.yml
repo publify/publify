@@ -5,6 +5,10 @@ ja:
       next: "Next"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "まだコメントはありません"
+        by: "By"
     content:
       index:
         published: "公開済み"

@@ -188,13 +188,6 @@ Localization.define("he_IL") do |l|
   l.store "Date", "תאריך"
   l.store "Feedback", "משוב"
 
-  # app/views/admin/dashboard/_comments.html.erb
-  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
-  l.store "Latest Comments", ""
-  l.store "No comments yet", "עדיין ללא תגובות"
-  l.store "By %s on %s", ""
-
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", ""
   l.store "No one made a link to you yet", ""
@@ -696,7 +689,6 @@ Localization.define("he_IL") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
   # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", "על ידי"
   l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb

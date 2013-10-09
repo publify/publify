@@ -89,7 +89,6 @@ Localization.define("ru_RU") do |l|
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
   l.store "Latest Comments", "Последние комментарии"
-  l.store "No comments yet", "Пока нет комментариев"
 
   # app/views/admin/dashboard/_overview.html.erb
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Здесь можно посмотреть, что происходит в вашем Publify-блоге и что в нем можно сделать. Возможно, вы хотели бы %s, %s или %s."

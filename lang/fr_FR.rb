@@ -165,10 +165,7 @@ Localization.define("fr_FR") do |l|
   l.store "Date", "Date"
   l.store "Feedback", "Commentaires"
 
-  # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Derniers commentaires"
-  l.store "No comments yet", "Aucun commentaire pour l'instant"
-  l.store "By", "Par"
 
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", "Liens entrants"

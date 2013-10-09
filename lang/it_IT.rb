@@ -173,9 +173,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
-  l.store "Latest Comments", ""
-  l.store "No comments yet", "Nessun commento"
-  l.store "By %s on %s", ""
 
   # app/views/admin/dashboard/_inbound.html.erb
   l.store "Inbound links", ""
@@ -635,12 +632,6 @@ Localization.define("it_IT") do |l|
   l.store "Markdown enabled", ""
   l.store "required", ""
 
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
-
-  # test/mocks/themes/typographic/views/shared/_search.html.erb
-  l.store "Searching", ""
-
   # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
@@ -657,10 +648,6 @@ Localization.define("it_IT") do |l|
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
-  l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""

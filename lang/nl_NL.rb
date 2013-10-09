@@ -193,7 +193,6 @@ Localization.define("nl_NL") do |l|
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Laatste reacties"
-  l.store "No comments yet", "Nog geen reacties"
   l.store "By %s on %s", "door %s op %s"
 
   # app/views/admin/dashboard/_inbound.html.erb
@@ -673,7 +672,6 @@ Localization.define("nl_NL") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
   # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", "Door"
   l.store "later:", "later:"
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb

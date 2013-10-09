@@ -5,6 +5,10 @@ pt-BR:
       next: "Próximo"
       last: "Anterior"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "No comments yet"
+        by: "By"
     content:
       index:
         published: "Publicado"

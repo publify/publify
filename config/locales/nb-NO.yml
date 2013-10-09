@@ -5,6 +5,10 @@ nb-NO:
       next: "Neste"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "Ingen kommentarer"
+        by: "Av"
     content:
       index:
         published: "Publisert"

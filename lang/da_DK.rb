@@ -180,7 +180,6 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
-  l.store "No comments yet", "Der er ingen kommentarer endnu"
   l.store "By %s on %s", "Fra %s på %s"
 
   # app/views/admin/dashboard/_inbound.html.erb
@@ -637,10 +636,6 @@ Localization.define("da_DK") do |l|
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "By", ""
-  l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""

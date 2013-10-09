@@ -5,6 +5,10 @@ pl:
       next: "Następne"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "Brak komentarzy"
+        by: "By"
     content:
       index:
         published: "Opublikowane"

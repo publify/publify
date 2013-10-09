@@ -5,6 +5,10 @@ da:
       next: "Next"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "Der er ingen kommentarer endnu"
+        by: "By"
     content:
       index:
         published: "Offentliggjort"

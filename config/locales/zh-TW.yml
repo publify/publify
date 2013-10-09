@@ -5,6 +5,10 @@ zh-TW:
       next: "Next"
       last: "Last"
   admin:
+    dashboard:
+      comment:
+        no_comments_yet: "沒有任何評論"
+        by: "By"
     content:
       index:
         published: "已公開的"
