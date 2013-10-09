@@ -179,12 +179,6 @@ Localization.define("zh_TW") do |l|
   l.store "Latest Comments", "最近評論"
   l.store "By %s on %s", ""
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", "導入連結"
-  l.store "No one made a link to you yet", "目前沒有人連結到你"
-  l.store " made a link to you saying ", "連結到你，並且說"
-  l.store "You have no internet connection", "你沒有連結到網路"
-
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%s， %s或%s"

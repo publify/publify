@@ -6,6 +6,13 @@ da:
       last: "Last"
   admin:
     dashboard:
+      inbound:
+        inbound_links: "Indkomne links"
+        you_have_no_internet_connection: "Du har ingen internet forbindelse"
+        no_one_made_link_to_you_yet: "Der er endnu ingen der har linket til dig"
+        made_a_link_to_you_on: " har lavet et link til dig, og skrevet "
+        at_an_unknown_date: "at an unknown date"
+        at: "at"
       comment:
         no_comments_yet: "Der er ingen kommentarer endnu"
         by: "By"

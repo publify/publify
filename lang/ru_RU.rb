@@ -52,7 +52,6 @@ Localization.define("ru_RU") do |l|
   l.store "%d comments", "комментариев: %d"
   l.store "no comments", "нет комментариев"
   l.store "1 comment", "1 комментарий"
-  l.store "at", "в"
 
   # app/models/article.rb
   l.store "Original article writen by", "Автор оригинальной статьи —"
@@ -129,7 +128,6 @@ Localization.define("ru_RU") do |l|
   l.store "Titles", "Заголовки"
   l.store "General settings", "Основные настройки"
 
-  # app/views/admin/seo/permalinks.html.erb
   l.store "Permalinks", "Постоянные ссылки"
 
   # app/views/admin/settings/index.html.erb

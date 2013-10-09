@@ -21,7 +21,6 @@ Localization.define("es_MX") do |l|
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
   l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
 
   # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
@@ -33,33 +32,22 @@ Localization.define("es_MX") do |l|
   l.store "Not implemented", ""
   l.store "All spam have been deleted", ""
   l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
 
   # app/controllers/admin/pages_controller.rb
   l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
 
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", ""
   l.store "complete", ""
   l.store "File uploaded: ", ""
   l.store "Unable to upload", ""
-  l.store "Metadata was successfully updated.", ""
   l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
 
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
 
   # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
 
   # app/controllers/admin/themes_controller.rb
   l.store "Theme changed successfully", ""
@@ -165,7 +153,6 @@ Localization.define("es_MX") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Author", "Autor"
-  l.store "Date", ""
   l.store "Feedback", ""
   l.store "Manage articles", ""
 
@@ -176,16 +163,9 @@ Localization.define("es_MX") do |l|
   l.store "No comments yet", ""
   l.store "By %s on %s", ""
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", ""
-  l.store "No one made a link to you yet", ""
-  l.store " made a link to you saying ", ""
-  l.store "You have no internet connection", ""
-
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "update your profile or change your password", ""
   l.store "You can also do a bit of design, %s or %s.", ""
   l.store "change your blog presentation", ""
   l.store "enable plugins", ""
@@ -308,7 +288,6 @@ Localization.define("es_MX") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/titles.html.erb
-  l.store "Dated archives", ""
   l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
@@ -318,22 +297,16 @@ Localization.define("es_MX") do |l|
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
-  l.store "Replaced by the archive date", ""
   l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
 
   # app/views/admin/settings/feedback.html.erb
   l.store "Spam protection", ""
   l.store "Enable comments by default", "Habilitar comentarios por default"
   l.store "Enable Trackbacks by default", "Habilitar Trackbacks por default"
   l.store "Enable feedback moderation", "Habilitar moderaci&oacute;n de comentarios y trackbacks"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Filtro de comentarios"
   l.store "Enable gravatars", "Habilitar gravatars"
   l.store "Show your email address", "Mostrar tu direcci&oacute;n de email"
@@ -390,7 +363,6 @@ Localization.define("es_MX") do |l|
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
-  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informaci&oacute;n"
   l.store "Current database version", "Versi&oacute;n actual de la base de datos"
   l.store "New database version", "Nueva versi&oacute;n de la base de datos"

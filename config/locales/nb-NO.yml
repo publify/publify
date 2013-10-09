@@ -6,6 +6,13 @@ nb-NO:
       last: "Last"
   admin:
     dashboard:
+      inbound:
+        inbound_links: "Innkommende lenker"
+        you_have_no_internet_connection: "Du har ingen internettforbindelse"
+        no_one_made_link_to_you_yet: "Ingen har lenket til deg"
+        made_a_link_to_you_on: "opprettet en lenke til deg den"
+        at_an_unknown_date: "at an unknown date"
+        at: "klokken"
       comment:
         no_comments_yet: "Ingen kommentarer"
         by: "Av"

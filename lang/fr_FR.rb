@@ -32,7 +32,6 @@ Localization.define("fr_FR") do |l|
   l.store "the latest Publify version", "la dernière version de Publify"
   l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"
   l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas %s"
-  l.store "at an unknown date", "à une date inconnue"
 
   # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Supprimé"
@@ -142,7 +141,6 @@ Localization.define("fr_FR") do |l|
   l.store "no trackbacks", "aucun rétrolien"
   l.store "1 trackback", "1 rétrolien"
   l.store "%d trackbacks", "%d rétroliens"
-  l.store "at", ""
 
   # app/models/blog.rb
   l.store "You need a permalink format with an identifier : %%title%%", ""
@@ -166,12 +164,6 @@ Localization.define("fr_FR") do |l|
   l.store "Feedback", "Commentaires"
 
   l.store "Latest Comments", "Derniers commentaires"
-
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", "Liens entrants"
-  l.store "No one made a link to you yet", "Personne n'a fait de lien vers votre blog"
-  l.store "made a link to you on", ""
-  l.store "You have no internet connection", "Vous n'avez pas de connexion à internet"
 
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", "Pour commencer"

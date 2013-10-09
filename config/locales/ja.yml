@@ -6,6 +6,13 @@ ja:
       last: "Last"
   admin:
     dashboard:
+      inbound:
+        inbound_links: "外部からのリンク"
+        you_have_no_internet_connection: "インターネットに接続できません"
+        no_one_made_link_to_you_yet: "まだどこからもリンクされていません"
+        made_a_link_to_you_on: " からこのようにリンクされています "
+        at_an_unknown_date: "at an unknown date"
+        at: "at"
       comment:
         no_comments_yet: "まだコメントはありません"
         by: "By"

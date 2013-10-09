@@ -1,29 +1,24 @@
-<h3><%= _("Inbound links") %></h3>
+<h3><%= t(".inbound_links") %></h3>
 <div class='well'>
   <ul class='unstyled'>
     <% if @inbound_links.nil? %>
       <li class='alert alert-error'>
-        <%= _('You have no internet connection') %>
+      <%= t('.you_have_no_internet_connection') %>
       </li>
     <% else %>
       <% if @inbound_links.empty? %>
-      <li class='alert'>
-        <%= _("No one made a link to you yet") %>
-      </li>
+        <li class='alert'>
+        <%= t(".no_one_made_link_to_you_yet") %>
+        </li>
       <% else %>
         <% for link in @inbound_links -%>
-        <%- link_date = link.date -%>
+          <%- link_date = link.date -%>
           <li>
-            <h5>
-              <%= sprintf("%s %s %s %s %s",
-              link_to(link.author, link.link),
-              _("made a link to you on"),
-              link_date && link_date.strftime(this_blog.date_format) || _('at an unknown date'),
-              link_date && _("at") || '',
-              link_date && link_date.strftime(this_blog.time_format)) || '' %>
-            </h5>
-            <p><%= link.description.strip_html.slice(0, 300) %></p>
-            <hr />
+          <h5>
+            <%= sprintf("%s %s %s %s %s", link_to(link.author, link.link), t(".made_a_link_to_you_on"), link_date && link_date.strftime(this_blog.date_format) || t('.at_an_unknown_date'), link_date && t(".at") || '', link_date && link_date.strftime(this_blog.time_format)) || '' %>
+          </h5>
+          <p><%= link.description.strip_html.slice(0, 300) %></p>
+          <hr />
           </li>
         <% end %>
       <% end %>

@@ -156,7 +156,6 @@ Localization.define("nb_NO") do |l|
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
-  l.store "at", "klokken"
 
   # app/models/blog.rb
   l.store "You need a permalink format with an identifier : %%title%%", "Du må bruke et permalenkeformat med identifikator: %%title%%"
@@ -213,12 +212,6 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Siste kommentarer"
-
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", "Innkommende lenker"
-  l.store "No one made a link to you yet", "Ingen har lenket til deg"
-  l.store "made a link to you on", "opprettet en lenke til deg den"
-  l.store "You have no internet connection", "Du har ingen internettforbindelse"
 
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""

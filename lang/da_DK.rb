@@ -182,12 +182,6 @@ Localization.define("da_DK") do |l|
   l.store "Latest Comments", "Seneste kommentarer"
   l.store "By %s on %s", "Fra %s på %s"
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", "Indkomne links"
-  l.store "No one made a link to you yet", "Der er endnu ingen der har linket til dig"
-  l.store " made a link to you saying ", " har lavet et link til dig, og skrevet "
-  l.store "You have no internet connection", "Du har ingen internet forbindelse"
-
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Dette sted giver dig en hurtig oversigt over, hvad der sker på din Publify blog, og hvad du kan gøre. Måske du ønsker at %s, %s eller %s."

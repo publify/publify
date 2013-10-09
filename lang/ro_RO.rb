@@ -155,12 +155,6 @@ Localization.define("ro_RO") do |l|
 
   l.store "Author", "Autor"
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", ""
-  l.store "No one made a link to you yet", ""
-  l.store " made a link to you saying ", ""
-  l.store "You have no internet connection", ""
-
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""

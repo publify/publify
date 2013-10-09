@@ -6,6 +6,13 @@ nl:
       last: "Last"
   admin:
     dashboard:
+      inbound:
+        inbound_links: "Binnenkomende links"
+        you_have_no_internet_connection: "Je hebt geen internetverbinding"
+        no_one_made_link_to_you_yet: "Niemand maakte nog een link naar je"
+        made_a_link_to_you_on: " maakte een link naar je met als tekst "
+        at_an_unknown_date: "at an unknown date"
+        at: "at"
       comment:
         no_comments_yet: "Nog geen reacties"
         by: "Door"

@@ -6,6 +6,13 @@ en:
       last: "Last"
   admin:
     dashboard:
+      inbound:
+        inbound_links: "Inbound links"
+        you_have_no_internet_connection: "You have no internet connection"
+        no_one_made_link_to_you_yet: "No one made a link to you yet"
+        made_a_link_to_you_on: "made a link to you on"
+        at_an_unknown_date: "at an unknown date"
+        at: "at"
       comment:
         no_comments_yet: "No comments yet"
         by: "By"

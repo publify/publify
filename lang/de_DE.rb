@@ -172,24 +172,6 @@ Localization.define("de_DE") do |l|
   l.store "Author", "Autor"
   l.store "Feedback", "Diskussion"
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", ""
-  l.store "No one made a link to you yet", ""
-  l.store " made a link to you saying ", ""
-  l.store "You have no internet connection", ""
-
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "You can also do a bit of design, %s or %s.", ""
-  l.store "enable plugins", ""
-  l.store "write a post", ""
-  l.store "write a page", ""
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", ""
-  l.store "Nothing to show yet", ""
-
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""

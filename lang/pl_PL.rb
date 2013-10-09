@@ -180,12 +180,6 @@ Localization.define("pl_PL") do |l|
   l.store "Latest Comments", "Ostatnie komentarze"
   l.store "By %s on %s", "Przez %s odnośnie %s"
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", "Linki przychodzące"
-  l.store "No one made a link to you yet", "Nikt jeszcze nie stworzył do ciebie łącza"
-  l.store " made a link to you saying ", " wykonał do ciebie łącze o treści "
-  l.store "You have no internet connection", "Nie masz połączenia internetowego"
-
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""

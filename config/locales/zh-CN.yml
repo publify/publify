@@ -6,6 +6,13 @@ zh-CN:
       last: "Last"
   admin:
     dashboard:
+      inbound:
+        inbound_links: "导入链接"
+        you_have_no_internet_connection: "你没有连接到网络"
+        no_one_made_link_to_you_yet: "目前没有人链接到你"
+        made_a_link_to_you_on: "连接到你，并且说"
+        at_an_unknown_date: "at an unknown date"
+        at: "at"
       comment:
         no_comments_yet: "没有任何评论"
         by: "By"

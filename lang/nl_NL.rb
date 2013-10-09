@@ -195,12 +195,6 @@ Localization.define("nl_NL") do |l|
   l.store "Latest Comments", "Laatste reacties"
   l.store "By %s on %s", "door %s op %s"
 
-  # app/views/admin/dashboard/_inbound.html.erb
-  l.store "Inbound links", "Binnenkomende links"
-  l.store "No one made a link to you yet", "Niemand maakte nog een link naar je"
-  l.store " made a link to you saying ", " maakte een link naar je met als tekst "
-  l.store "You have no internet connection", "Je hebt geen internetverbinding"
-
   # app/views/admin/dashboard/_overview.html.erb
   l.store "Getting started", ""
   l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Deze pagina geeft je een snel overzicht van wat er gebeurt op je Type blog en wat je doen kunt. Misschien wil je %s, %s of %s"
