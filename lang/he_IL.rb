@@ -188,16 +188,6 @@ Localization.define("he_IL") do |l|
   l.store "Date", "תאריך"
   l.store "Feedback", "משוב"
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "update your profile or change your password", ""
-  l.store "You can also do a bit of design, %s or %s.", "תוכל גם %s או %s"
-  l.store "change your blog presentation", ""
-  l.store "enable plugins", "לאפשר תוספים"
-  l.store "write a post", "לכתוב כתבה"
-  l.store "write a page", "לכתוב דף"
-
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "הכי פופלריים"
   l.store "Nothing to show yet", "אין מה להציג כרגע"

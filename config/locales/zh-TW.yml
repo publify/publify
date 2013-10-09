@@ -6,6 +6,16 @@ zh-TW:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%{available_actions}"
+        write_a_post: "寫一篇文章"
+        write_a_page: "寫一個頁面"
+        update_your_profile_or_change_your_password: "更新資料或者修改密碼"
+        customization_explain: "你也可以作一些設計, %{theme_link}或%{sidebar_link}."
+        change_your_blog_presentation: "修改你的部落格外觀"
+        enable_plugins: "啟動plugins"
+        help_explain: "If you need help, %{doc_link}."
+        read_our_documentation: "Publify文件"
       inbound:
         inbound_links: "導入連結"
         you_have_no_internet_connection: "你沒有連結到網路"

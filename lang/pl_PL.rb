@@ -133,7 +133,6 @@ Localization.define("pl_PL") do |l|
   # app/models/article.rb
   l.store "Original article writen by", ""
   l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
@@ -179,16 +178,6 @@ Localization.define("pl_PL") do |l|
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Ostatnie komentarze"
   l.store "By %s on %s", "Przez %s odnośnie %s"
-
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "update your profile or change your password", "zaktualizować profil lub zmienić hasło"
-  l.store "You can also do a bit of design, %s or %s.", "Możesz również trochę poprojektować wygląd, %s lub %s."
-  l.store "change your blog presentation", "zmienić wygląd swojego bloga"
-  l.store "enable plugins", "aktywować wtyczkę"
-  l.store "write a post", "utworzyć wpis"
-  l.store "write a page", "utworzyć stronę"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Najpopularniejsze"
@@ -298,7 +287,6 @@ Localization.define("pl_PL") do |l|
   l.store "Use dofollow in comments", ""
   l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
-  l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
   l.store "Google Webmaster Tools validation link", ""
@@ -540,7 +528,6 @@ Localization.define("pl_PL") do |l|
   # app/views/articles/groupings.html.erb
   l.store "There are", "Istnieje"
 
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Skomentuj"
   l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Użyj następującego trackbacka na swojej stronie"
@@ -582,14 +569,12 @@ Localization.define("pl_PL") do |l|
   l.store "Designed by %s ", ""
 
   # test/mocks/themes/typographic/views/articles/_article.html.erb
-  l.store "Continue reading...", ""
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
   l.store "You can follow any response to this entry through the %s", ""
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
   l.store "comment", ""
   l.store "trackback", ""
 
@@ -633,15 +618,12 @@ Localization.define("pl_PL") do |l|
   l.store "Email address", ""
   l.store "Your website", ""
 
-  # themes/true-blue-3/views/articles/read.html.erb
   l.store "If you liked this article you can %s", ""
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacki do"
 
   # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", ""
-
-  l.store "Read all articles in %s", ""
 
   l.store "Previous", "Poprzednie"
 

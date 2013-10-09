@@ -6,6 +6,16 @@ pl:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
+        write_a_post: "utworzyć wpis"
+        write_a_page: "utworzyć stronę"
+        update_your_profile_or_change_your_password: "zaktualizować profil lub zmienić hasło"
+        customization_explain: "Możesz również trochę poprojektować wygląd, %{theme_link} lub %{sidebar_link}."
+        change_your_blog_presentation: "zmienić wygląd swojego bloga"
+        enable_plugins: "aktywować wtyczkę"
+        help_explain: "If you need help, %{doc_link}."
+        read_our_documentation: "read our documentation"
       inbound:
         inbound_links: "Linki przychodzące"
         you_have_no_internet_connection: "Nie masz połączenia internetowego"

@@ -6,6 +6,16 @@ fr:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peux-être voulez vous %{available_actions}"
+        write_a_post: "écrire un article"
+        write_a_page: "publier une page statique"
+        update_your_profile_or_change_your_password: "mettre votre profil à jour ou changer votre mot de passe"
+        customization_explain: "Vous pouvez également faire un peu de personnalisation, %{theme_link}, %{sidebar_link}"
+        change_your_blog_presentation: "changer l'apparence de votre blog"
+        enable_plugins: "activer des plugins"
+        help_explain: "Si vous avez besoin d'aide, vous pouvez %{doc_link}."
+        read_our_documentation: "consulter notre documentation"
       inbound:
         inbound_links: "Liens entrants"
         you_have_no_internet_connection: "Vous n'avez pas de connexion à internet"

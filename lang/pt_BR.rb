@@ -187,18 +187,6 @@ Localization.define("pt_BR") do |l|
   l.store "Latest Comments", ""
   l.store "By %s on %s", ""
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "You can also do a bit of design, %s or %s.", ""
-  l.store "enable plugins", ""
-  l.store "write a post", ""
-  l.store "write a page", ""
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", ""
-  l.store "Nothing to show yet", ""
-
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
@@ -302,7 +290,6 @@ Localization.define("pt_BR") do |l|
   l.store "Use dofollow in comments", ""
   l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
-  l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
   l.store "Google Webmaster Tools validation link", ""
@@ -512,7 +499,6 @@ Localization.define("pt_BR") do |l|
 
   # app/views/articles/_article.html.erb
   l.store "Posted by", "Publicado por"
-  l.store "Continue reading", ""
 
   # app/views/articles/_comment.html.erb
   l.store "said", "dijo"
@@ -542,7 +528,6 @@ Localization.define("pt_BR") do |l|
   # app/views/articles/groupings.html.erb
   l.store "There are", "Hay"
 
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Deja un comentario"
   l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
@@ -581,14 +566,12 @@ Localization.define("pt_BR") do |l|
   l.store "Designed by %s ", ""
 
   # test/mocks/themes/typographic/views/articles/_article.html.erb
-  l.store "Continue reading...", ""
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
   l.store "You can follow any response to this entry through the %s", ""
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
   l.store "comment", ""
   l.store "trackback", ""
 
@@ -625,7 +608,6 @@ Localization.define("pt_BR") do |l|
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  # themes/true-blue-3/views/articles/read.html.erb
   l.store "If you liked this article you can %s", ""
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks para"

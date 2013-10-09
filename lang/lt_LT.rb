@@ -173,14 +173,6 @@ Localization.define("lt_LT") do |l|
   l.store "Author", "Autorius"
   l.store "Feedback", "Atsiliepimas"
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "You can also do a bit of design, %s or %s.", ""
-  l.store "enable plugins", ""
-  l.store "write a post", ""
-  l.store "write a page", ""
-
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", ""
   l.store "Nothing to show yet", ""

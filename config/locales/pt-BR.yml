@@ -6,6 +6,16 @@ pt-BR:
       last: "Anterior"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
+        write_a_post: "write a post"
+        write_a_page: "write a page"
+        update_your_profile_or_change_your_password: "update your profile or change your password"
+        customization_explain: "You can also do a bit of design, %{theme_link} or %{sidebar_link}."
+        change_your_blog_presentation: "change your blog presentation"
+        enable_plugins: "enable plugins"
+        help_explain: "If you need help, %{doc_link}."
+        read_our_documentation: "read our documentation"
       inbound:
         inbound_links: "Inbound links"
         you_have_no_internet_connection: "You have no internet connection"

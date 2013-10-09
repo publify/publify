@@ -6,6 +6,16 @@ ja:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
+        write_a_post: "記事を投稿する"
+        write_a_page: "ページを作成する"
+        update_your_profile_or_change_your_password: "プロフィールを編集したりパスワードを変更する"
+        customization_explain: "You can also do a bit of design, %{theme_link} or %{sidebar_link}."
+        change_your_blog_presentation: "change your blog presentation"
+        enable_plugins: "enable plugins"
+        help_explain: "If you need help, %{doc_link}."
+        read_our_documentation: "read our documentation"
       inbound:
         inbound_links: "外部からのリンク"
         you_have_no_internet_connection: "インターネットに接続できません"

@@ -6,6 +6,16 @@ ru:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "Здесь можно посмотреть, что происходит в вашем Publify-блоге и что в нем можно сделать. Возможно, вы хотели бы %{available_actions}."
+        write_a_post: "написать пост"
+        write_a_page: "создать страницу"
+        update_your_profile_or_change_your_password: "изменить свой профиль или поменять пароль"
+        customization_explain: "Вы также можете изменить дизайн, %{theme_link} или %{sidebar_link}"
+        change_your_blog_presentation: "изменив тему блога"
+        enable_plugins: "включив плагины"
+        help_explain: "Если вам нужна помощь, %{doc_link}."
+        read_our_documentation: "ознакомьтесь с документацией"
       inbound:
         inbound_links: "Inbound links"
         you_have_no_internet_connection: "You have no internet connection"

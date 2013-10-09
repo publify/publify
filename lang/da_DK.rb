@@ -81,7 +81,6 @@ Localization.define("da_DK") do |l|
   l.store "page", ""
   l.store "everything about", ""
 
-  # app/helpers/admin/base_helper.rb
   l.store "Cancel", "Anuller"
   l.store "Store", ""
   l.store "Delete", "Slet"
@@ -98,23 +97,18 @@ Localization.define("da_DK") do |l|
   l.store "Edit", "Rediger"
   l.store "Show", ""
   l.store "Unpublished", "Ikke offentliggjort"
-  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Tilbage til oversigten"
   l.store "Tag", "Tag"
 
-  # app/helpers/admin/categories_helper.rb
   l.store "no articles", "ingen artikler"
   l.store "1 article", "1 artikel"
   l.store "%d articles", "%d artikler"
 
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", ""
 
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
-  # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
   l.store "%d comments", "%d kommentarer"
@@ -124,7 +118,6 @@ Localization.define("da_DK") do |l|
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
 
-  # app/helpers/content_helper.rb
   l.store "Posted in", "Offentliggjort i"
   l.store "no posts", ""
   l.store "1 post", ""
@@ -181,16 +174,6 @@ Localization.define("da_DK") do |l|
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
   l.store "By %s on %s", "Fra %s på %s"
-
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Dette sted giver dig en hurtig oversigt over, hvad der sker på din Publify blog, og hvad du kan gøre. Måske du ønsker at %s, %s eller %s."
-  l.store "update your profile or change your password", "opdatere din profil eller rette dit kodeord"
-  l.store "You can also do a bit of design, %s or %s.", "Du kan også tilpasse designet, %s eller %s."
-  l.store "change your blog presentation", "ændre din blogs udseende"
-  l.store "enable plugins", "tilføje plugins"
-  l.store "write a post", "skrive en artikel"
-  l.store "write a page", "skrive en side"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -624,7 +607,6 @@ Localization.define("da_DK") do |l|
   # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
 
-  # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
   l.store "%d comment", ""
 
@@ -736,7 +718,6 @@ Localization.define("da_DK") do |l|
   l.store "Limit to unconfirmed spam", "Indskrænk til ikke bekræftet Spam"
   l.store "Location", "Adresse"
   l.store "Logoff", "Log ud"
-  l.store "Macro Filter Help", "Makro filter hjælp"
   l.store "Macros", "Makroer"
   l.store "Manage", "Administrer"
   l.store "Manage Categories", "Administrer kategorier"

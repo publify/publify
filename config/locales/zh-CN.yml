@@ -6,6 +6,16 @@ zh-CN:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "这里給你一個快速的概览，让你知道你的博客发生什么事情了。也许你想要%{available_actions}"
+        write_a_post: "写一篇文章"
+        write_a_page: "写一个页面"
+        update_your_profile_or_change_your_password: "更新资料或者修改密码"
+        customization_explain: "你也可以做一些设计, %{theme_link}或%{sidebar_link}."
+        change_your_blog_presentation: "修改你的博客外观"
+        enable_plugins: "启动插件"
+        help_explain: "如果需要帮助，%{doc_link}."
+        read_our_documentation: "阅读我们的文档"
       inbound:
         inbound_links: "导入链接"
         you_have_no_internet_connection: "你没有连接到网络"

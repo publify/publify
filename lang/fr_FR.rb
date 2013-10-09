@@ -165,20 +165,6 @@ Localization.define("fr_FR") do |l|
 
   l.store "Latest Comments", "Derniers commentaires"
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", "Pour commencer"
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s", "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peux-être voulez vous %s"
-  l.store "update your profile or change your password", "mettre votre profil à jour ou changer votre mot de passe"
-  l.store "You can also do a bit of design, %s or %s.", "Vous pouvez également faire un peu de personnalisation, %s, %s"
-  l.store "change your blog presentation", "changer l'apparence de votre blog"
-  l.store "enable plugins", "activer des plugins"
-  l.store "If you need help, %s.", "Si vous avez besoin d'aide, vous pouvez %s."
-  l.store "You can also %s to customize your Publify blog.", "Vous pouvez également %s pour personnaliser votre blog Publify."
-  l.store "write a post", "écrire un article"
-  l.store "write a page", "publier une page statique"
-  l.store "read our documentation", "consulter notre documentation"
-  l.store "download some plugins", "installer des plugins"
-
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Billets les plus populaires"
   l.store "Nothing to show yet", "Rien à afficher pour l'instant"

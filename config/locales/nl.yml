@@ -6,6 +6,16 @@ nl:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "Deze pagina geeft je een snel overzicht van wat er gebeurt op je Type blog en wat je doen kunt. Misschien wil je %{available_actions}"
+        write_a_post: "een post schrijven"
+        write_a_page: "een pagina schrijven"
+        update_your_profile_or_change_your_password: "je profiel bijwerken of je wachtwoord wijzigen"
+        customization_explain: "Je kunt ook wat design doen, %{theme_link} of %{sidebar_link}"
+        change_your_blog_presentation: "je blog presentatie aanpassen"
+        enable_plugins: "plugins instellen"
+        help_explain: "If you need help, %{doc_link}."
+        read_our_documentation: "read our documentation"
       inbound:
         inbound_links: "Binnenkomende links"
         you_have_no_internet_connection: "Je hebt geen internetverbinding"

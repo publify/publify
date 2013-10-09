@@ -179,16 +179,6 @@ Localization.define("zh_TW") do |l|
   l.store "Latest Comments", "最近評論"
   l.store "By %s on %s", ""
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%s， %s或%s"
-  l.store "update your profile or change your password", "更新資料或者修改密碼"
-  l.store "You can also do a bit of design, %s or %s.", "你也可以作一些設計, %s或%s."
-  l.store "change your blog presentation", "修改你的部落格外觀"
-  l.store "enable plugins", "啟動plugins"
-  l.store "write a post", "寫一篇文章"
-  l.store "write a page", "寫一個頁面"
-
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "最受歡迎"
   l.store "Nothing to show yet", "還沒有東西"
@@ -805,7 +795,6 @@ Localization.define("zh_TW") do |l|
   l.store "Toggle Extended Content", "切換擴增內容"
   l.store "Type", "型態"
   l.store "Publify admin", "Publify管理員"
-  l.store "Publify documentation", "Publify文件"
   l.store "Update your profile or change your password", "請更新您的個人資料或者修改密碼"
   l.store "Upload a new File", "上載一個新檔案"
   l.store "Upload a new Resource", "上傳一個新的資源"

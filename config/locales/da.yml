@@ -6,6 +6,16 @@ da:
       last: "Last"
   admin:
     dashboard:
+      overview:
+        dashboard_explain: "Dette sted giver dig en hurtig oversigt over, hvad der sker på din Publify blog, og hvad du kan gøre. Måske du ønsker at %{available_actions}."
+        write_a_post: "skrive en artikel"
+        write_a_page: "skrive en side"
+        update_your_profile_or_change_your_password: "opdatere din profil eller rette dit kodeord"
+        customization_explain: "Du kan også tilpasse designet, %{theme_link} eller %{sidebar_link}."
+        change_your_blog_presentation: "ændre din blogs udseende"
+        enable_plugins: "tilføje plugins"
+        help_explain: "If you need help, %{doc_link}."
+        read_our_documentation: "read our documentation"
       inbound:
         inbound_links: "Indkomne links"
         you_have_no_internet_connection: "Du har ingen internet forbindelse"

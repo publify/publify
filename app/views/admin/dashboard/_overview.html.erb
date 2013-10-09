@@ -1,12 +1,13 @@
 <div class='alert alert-info'>
   <p>
-    <%= _("This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s", dashboard_action_links) %>
+  <%= t(".dashboard_explain", available_actions: dashboard_action_links) %>
   </p>
-  <p> 
-    <%= dashboard_theme_link %>
-  </p>
+  <%- if current_user.can_access_to_themes? %>
+    <p>
+    <%= t(".customization_explain", theme_link: link_to(t(".change_your_blog_presentation"), controller: 'themes'), sidebar_link: link_to(t(".enable_plugins"), controller: 'sidebar')) %>
+    </p>
+  <%- end %>
   <p>
-    <%= _("If you need help, %s.",
-      link_to(_('read our documentation'), 'http://publify.co')) %> <%= dashboard_sidebar_link %>      
+  <%= t(".help_explain", doc_link: link_to(t('.read_our_documentation'), 'http://publify.co')) %>
   </p>
 </div>

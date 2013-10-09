@@ -195,19 +195,6 @@ Localization.define("zh_CN") do |l|
   l.store "Latest Comments", "最近评论"
   l.store "By %s on %s", "%s在%s"
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "这里給你一個快速的概览，让你知道你的博客发生什么事情了。也许你想要%s， %s, %s"
-  l.store "update your profile or change your password", "更新资料或者修改密码"
-  l.store "You can also do a bit of design, %s or %s.", "你也可以做一些设计, %s或%s."
-  l.store "change your blog presentation", "修改你的博客外观"
-  l.store "If you need help, %s. You can also %s to customize your Publify blog.", "如果需要帮助，%s. 也可以%s来订制你的Publify博客。"
-  l.store "enable plugins", "启动插件"
-  l.store "write a post", "写一篇文章"
-  l.store "write a page", "写一个页面"
-  l.store "read our documentation", "阅读我们的文档"
-  l.store "download some plugins", "下载插件"
-
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "最受欢迎"
   l.store "Nothing to show yet", "还没有东西"

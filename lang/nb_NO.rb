@@ -213,20 +213,6 @@ Localization.define("nb_NO") do |l|
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Siste kommentarer"
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Dette stedet gir deg en rask oversikt over hva som foregår på din Publify-blogg og hva du kan gjøre. Kanskje du ønsker å %s, %s eller %s."
-  l.store "update your profile or change your password", "oppdatere profilen din eller endre passordet ditt"
-  l.store "You can also do a bit of design, %s or %s.", "Du kan også tilpasse utseendet, %s eller %s."
-  l.store "change your blog presentation", "endre utseende på bloggen din"
-  l.store "enable plugins", "aktivere plugins"
-  l.store "If you need help, %s. You can also browse our %s or %s to customize your Publify blog.", "Hvis du behøver hjelp, %s. Du kan også se gjennom vår %s eller %s for å tilpasse Publify-bloggen din."
-  l.store "write a post", "skrive en artikkel"
-  l.store "write a page", "skrive en side"
-  l.store "read our documentation", "les dokumentasjonen vår"
-  l.store "theme catalogue", "temakatalog"
-  l.store "download some plugins", "last ned noen plugins"
-
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Mest populære"
   l.store "Nothing to show yet", "Ingenting å vise enda"

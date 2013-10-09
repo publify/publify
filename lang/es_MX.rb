@@ -160,17 +160,7 @@ Localization.define("es_MX") do |l|
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", ""
-  l.store "No comments yet", ""
   l.store "By %s on %s", ""
-
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", ""
-  l.store "You can also do a bit of design, %s or %s.", ""
-  l.store "change your blog presentation", ""
-  l.store "enable plugins", ""
-  l.store "write a post", ""
-  l.store "write a page", ""
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", ""

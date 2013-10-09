@@ -195,16 +195,6 @@ Localization.define("nl_NL") do |l|
   l.store "Latest Comments", "Laatste reacties"
   l.store "By %s on %s", "door %s op %s"
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "Getting started", ""
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Deze pagina geeft je een snel overzicht van wat er gebeurt op je Type blog en wat je doen kunt. Misschien wil je %s, %s of %s"
-  l.store "update your profile or change your password", "je profiel bijwerken of je wachtwoord wijzigen"
-  l.store "You can also do a bit of design, %s or %s.", "Je kunt ook wat design doen, %s of %s"
-  l.store "change your blog presentation", "je blog presentatie aanpassen"
-  l.store "enable plugins", "plugins instellen"
-  l.store "write a post", "een post schrijven"
-  l.store "write a page", "een pagina schrijven"
-
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Meest populair"
   l.store "Nothing to show yet", "Nog niets te zien"

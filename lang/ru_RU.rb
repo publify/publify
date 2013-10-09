@@ -89,19 +89,6 @@ Localization.define("ru_RU") do |l|
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
   l.store "Latest Comments", "Последние комментарии"
 
-  # app/views/admin/dashboard/_overview.html.erb
-  l.store "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %s, %s or %s.", "Здесь можно посмотреть, что происходит в вашем Publify-блоге и что в нем можно сделать. Возможно, вы хотели бы %s, %s или %s."
-  l.store "update your profile or change your password", "изменить свой профиль или поменять пароль"
-  l.store "You can also do a bit of design, %s or %s.", "Вы также можете изменить дизайн, %s или %s"
-  l.store "change your blog presentation", "изменив тему блога"
-  l.store "enable plugins", "включив плагины"
-  l.store "If you need help, %s. You can also browse our %s or %s to customize your Publify blog.", "Если вам нужна помощь, %s. Вы также можете просмотреть %s или %s для изменения своего Publify-блога." # XXX: wtf?
-  l.store "write a post", "написать пост"
-  l.store "write a page", "создать страницу"
-  l.store "read our documentation", "ознакомьтесь с документацией"
-  l.store "theme catalogue", "каталог тем"
-  l.store "download some plugins", "загрузить плагины"
-
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", "Последние посты"
   l.store "No posts yet, why don't you start and write one", "Пока нет постов. Почему бы не начать и не написать один"

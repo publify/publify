@@ -61,7 +61,6 @@ Localization.define("de_DE") do |l|
   l.store "Theme changed successfully", ""
   l.store "You are not authorized to open this file", ""
   l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
 
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
@@ -129,7 +128,6 @@ Localization.define("de_DE") do |l|
   l.store "%d posts", ""
 
   # app/models/article.rb
-  l.store "Original article writen by", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
@@ -174,7 +172,6 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
-  l.store "No posts yet, why don't you start and write one", ""
 
   # app/views/admin/dashboard/_publify_dev.html.erb
   l.store "Latest news from the Publify development blog", ""
@@ -268,7 +265,6 @@ Localization.define("de_DE") do |l|
   l.store "RSS description message", ""
   l.store "Indexing", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
   l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
@@ -364,7 +360,6 @@ Localization.define("de_DE") do |l|
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -382,7 +377,6 @@ Localization.define("de_DE") do |l|
   l.store "yes", "ja"
   l.store "no", "nein"
 
-  # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "Trackbacks verschicken"
   l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publify kann Trackbacks zu anderen Websites schicken, zu denen Sie in veröffentlichten Artikeln verlinken. Das sollte für private Blogs deaktiviert werden, weil sonst nicht-öffentliche Informationen mit dem Trackback Ping nach außen zu den Seiten gehen, die Sie in Ihren Artikeln diskutieren. Für öffentliche Blogs jedoch besteht kein wirklicher Grund, das zu deaktivieren."
   l.store "URLs to ping automatically", "Automatisch diese URLs anpingen"
@@ -772,7 +766,6 @@ Localization.define("de_DE") do |l|
   l.store "View comment on your blog", "Kommentar in Ihrem Blog anschauen"
   l.store "View page on your blog", "Seite in Ihrem Blog anschauen"
   l.store "Which settings group would you like to edit", "Welche Einstellungsgruppe möchten Sie bearbeiten"
-  l.store "Write a Page", "Eine Seite schreiben"
   l.store "Write an Article", "Einen Artikel schreiben"
   l.store "XML Syndication", "XML Syndikat"
   l.store "You are now logged out of the system", "Sie sind nun vom System abgemeldet"
