@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Admin::DashboardController do
   render_views
-    
+
   describe 'test admin profile' do
     before do
       @blog ||= FactoryGirl.create(:blog)
@@ -10,7 +10,7 @@ describe Admin::DashboardController do
       request.session = { :user => @henri.id }
       get :index
     end
-    
+
     it "should render the index template" do
       response.should render_template('index')
     end
@@ -18,11 +18,11 @@ describe Admin::DashboardController do
     it "should have a link to the theme" do
       response.should have_selector("a", :href => "/admin/themes" , :content => "change your blog presentation")
     end
-    
+
     it "should have a link to the sidebar" do
       response.should have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
-    
+
     it "should have a link to a new article" do
       response.should have_selector("a", :href => "/admin/content/new" , :content => "write a post")
     end
@@ -30,36 +30,36 @@ describe Admin::DashboardController do
     it "should have a link to a new page" do
       response.should have_selector("a", :href => "/admin/pages/new" , :content => "write a page")
     end
-    
+
     it "should have a link to article listing" do
-      response.should have_selector("a", :href => "/admin/content" , :content => "0 articles")
+      response.should have_selector("a", :href => "/admin/content" , :content => "no article")
     end
-    
+
     it "should have a link to user's article listing" do
-      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@henri.id}" , :content => "0 articles writen by you")
+      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@henri.id}" , :content => "no article writen by you")
     end
 
     it "should have a link to drafts" do
-      response.should have_selector("a", :href => "/admin/content?search%5Bstate%5D=drafts" , :content => "0 drafts")
+      response.should have_selector("a", :href => "/admin/content?search%5Bstate%5D=drafts" , :content => "no draft")
     end
 
     it "should have a link to pages" do
-      response.should have_selector("a", :href => "/admin/pages" , :content => "0 pages")
+      response.should have_selector("a", :href => "/admin/pages" , :content => "no page")
     end
 
     it "should have a link to total comments" do
-      response.should have_selector("a", :href => "/admin/feedback" , :content => "0 comments")
+      response.should have_selector("a", :href => "/admin/feedback" , :content => "no comment")
     end
 
     it "should have a link to Spam" do
-      response.should have_selector("a", :href => "/admin/feedback?spam=f" , :content => "0 spam")
+      response.should have_selector("a", :href => "/admin/feedback?spam=f" , :content => "no spam")
     end
 
     it "should have a link to Spam queue" do
-      response.should have_selector("a", :href => "/admin/feedback?presumed_ham=f" , :content => "0 unconfirmed")
+      response.should have_selector("a", :href => "/admin/feedback?presumed_ham=f" , :content => "no unconfirmed")
     end
   end
-  
+
   describe 'test publisher profile' do
     before do
       @blog ||= FactoryGirl.create(:blog)
@@ -69,7 +69,7 @@ describe Admin::DashboardController do
       request.session = { :user => @rene.id }
       get :index
     end
-    
+
     it "should render the index template" do
       response.should render_template('index')
     end
@@ -77,11 +77,11 @@ describe Admin::DashboardController do
     it "should not have a link to the theme" do
       response.should_not have_selector("a", :href => "/admin/themes" , :content => "change your blog presentation")
     end
-    
+
     it "should not have a link to the sidebar" do
       response.should_not have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
-    
+
     it "should have a link to a new article" do
       response.should have_selector("a", :href => "/admin/content/new" , :content => "write a post")
     end
@@ -89,28 +89,28 @@ describe Admin::DashboardController do
     it "should have a link to a new page" do
       response.should have_selector("a", :href => "/admin/pages/new" , :content => "write a page")
     end
-    
+
     it "should have a link to article listing" do
-      response.should have_selector("a", :href => "/admin/content" , :content => "0 articles")
+      response.should have_selector("a", :href => "/admin/content" , :content => "no article")
     end
-    
+
     it "should have a link to user's article listing" do
-      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@rene.id}" , :content => "0 articles writen by you")
+      response.should have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@rene.id}" , :content => "no article writen by you")
     end
 
     it "should have a link to total comments" do
-      response.should have_selector("a", :href => "/admin/feedback" , :content => "0 comments")
+      response.should have_selector("a", :href => "/admin/feedback" , :content => "no comment")
     end
 
     it "should have a link to Spam" do
-      response.should have_selector("a", :href => "/admin/feedback?spam=f" , :content => "0 spam")
+      response.should have_selector("a", :href => "/admin/feedback?spam=f" , :content => "no spam")
     end
 
     it "should have a link to Spam queue" do
-      response.should have_selector("a", :href => "/admin/feedback?presumed_ham=f" , :content => "0 unconfirmed")
+      response.should have_selector("a", :href => "/admin/feedback?presumed_ham=f" , :content => "no unconfirmed")
     end
   end
-  
+
   describe 'test contributor profile' do
     before do
       @blog ||= FactoryGirl.create(:blog)
@@ -120,7 +120,7 @@ describe Admin::DashboardController do
       request.session = { :user => @gerard.id }
       get :index
     end
-    
+
     it "should render the index template" do
       response.should render_template('index')
     end
@@ -128,11 +128,11 @@ describe Admin::DashboardController do
     it "should not have a link to the theme" do
       response.should_not have_selector("a", :href => "/admin/themes" , :content => "change your blog presentation")
     end
-    
+
     it "should not have a link to the sidebar" do
       response.should_not have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
-    
+
     it "should not have a link to a new article" do
       response.should_not have_selector("a", :href => "/admin/content/new" , :content => "write a post")
     end
@@ -140,11 +140,11 @@ describe Admin::DashboardController do
     it "should not have a link to a new article" do
       response.should_not have_selector("a", :href => "/admin/pages/new" , :content => "write a page")
     end
-    
+
     it "should not have a link to article listing" do
       response.should_not have_selector("a", :href => "/admin/content" , :content => "Total posts:")
     end
-    
+
     it "should not have a link to user's article listing" do
       response.should_not have_selector("a", :href => "/admin/content?search%5Buser_id%5D=#{@gerard.id}" , :content => "Your posts:")
     end
