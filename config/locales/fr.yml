@@ -6,6 +6,48 @@ fr:
       last: "Last"
   admin:
     dashboard:
+      welcome:
+        today: "Aujourd'hui"
+        articles_and_comments_count_since: "Depuis votre dernière connexion, %{articles_count} articles et %{comments_count} commentaires ont été publiés"
+        running_publify: "Vous utilisez Publify %{version}"
+        content: "Contenu"
+        articles_count:
+          zero: "aucun article"
+          one: "1 article"
+          other: "%{count} articles"
+        your_articles_count:
+          zero: "vous n'avez écris aucun article"
+          one: "1 article que vous avez écris"
+          other: "%{count} articles que vous avez écris"
+        drafts_count:
+          zero: "aucune brouillon"
+          one: "1 brouillon"
+          other: "%{count} brouillons"
+        pages_count:
+          zero: "aucune page"
+          one: "1 page"
+          other: "%{count} pages"
+        notes_count:
+          zero: "aucune note"
+          one: "1 note"
+          other: "%{count} notes"
+        feedback: "Commentaires"
+        comments_count:
+          zero: "aucun commentaire"
+          one: "1 commentaire"
+          other: "%{count} commentaires"
+        approved_count:
+          zero: "aucun approuvés"
+          one: "1 approuvé"
+          other: "%{count} approuvés"
+        unconfirmed_count:
+          zero: "aucun non validés"
+          one: "1 validé"
+          other: "%{count} validés"
+        spam_count:
+          zero: "aucun spam"
+          one: "1 spam"
+          other: "%{count} spams"
       overview:
         dashboard_explain: "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peux-être voulez vous %{available_actions}"
         write_a_post: "écrire un article"

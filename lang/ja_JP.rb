@@ -19,19 +19,12 @@ Localization.define("ja_JP") do |l|
   l.store "Article was successfully created", "記事を作成しました"
   l.store "Article was successfully updated.", "記事が更新されました"
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
-
-  # app/controllers/admin/pages_controller.rb
   l.store "Page was successfully created.", "ページが作成されました"
   l.store "Page was successfully updated.", "ページが更新されました"
 
@@ -69,14 +62,11 @@ Localization.define("ja_JP") do |l|
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
 
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", ""
   l.store "Archives for", ""
   l.store "Archives for ", ""
-  l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -98,25 +88,12 @@ Localization.define("ja_JP") do |l|
   l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
   l.store "Back to overview", "オーバービューに戻る"
   l.store "Tag", ""
-
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", "1記事"
-  l.store "%d articles", "%d記事"
-
-  # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
-
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new { |date| sprintf(date.strftime("%Y-%m-%d %H:%M:%S GMT")) }
   l.store "%%d. %%b", Proc.new { |date| sprintf(date.strftime("%m/%d")) }
-  l.store "%d comments", ""
-  l.store "no comments", "コメントなし"
-  l.store "1 comment", ""
   l.store "no trackbacks", "トラックバックなし"
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
@@ -128,7 +105,6 @@ Localization.define("ja_JP") do |l|
   l.store "%d posts", ""
 
   # app/models/article.rb
-  l.store "Original article writen by", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
@@ -136,7 +112,6 @@ Localization.define("ja_JP") do |l|
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", "未分類"
   l.store "Just Presumed Ham", "承認と推定"
   l.store "Ham?", "承認?"
@@ -176,7 +151,6 @@ Localization.define("ja_JP") do |l|
   l.store "Search articles that contain ...", "以下の語句を含む記事を検索"
   l.store "Author", "投稿者"
   l.store "Date", "日付"
-  l.store "Feedback", "フィードバック"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "人気記事"
@@ -187,14 +161,11 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "お帰りなさいませ、%s 様"
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", "Publify バージョン%s が稼働中です"
   l.store "Total posts : %d", "総投稿数"
   l.store "Your posts : %d", "あなたの投稿数"
   l.store "Total comments : %d", "総コメント数"
   l.store "Spam comments : %d", "スパムコメント数"
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Delete Checked Items", "チェックした行を削除"
   l.store "Delete all spam", "全てのスパムを削除する"
   l.store "Mark Checked Items as Spam", "チェックした行をスパムにする"
@@ -203,38 +174,19 @@ Localization.define("ja_JP") do |l|
   l.store "Limit to ham", "有効コメント"
   l.store "Unapproved comments", "未承認コメント"
   l.store "Limit to spam", "スパムコメント"
-
-  # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
   l.store "Url", ""
-
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-  l.store "Comment", ""
-
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "〜へコメント"
 
-  # app/views/admin/feedback/index.html.erb
   l.store "Search Comments and Trackbacks that contain", "以下の語句を含むコメントおよびトラックバックを検索"
   l.store "Article", "記事"
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "オンライン"
   l.store "Page settings", "ページ設定"
   l.store "Permanent link", ""
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages","ページ"
   l.store "Are you sure you want to delete the page", "本当にこのページを削除してよろしいですか？"
   l.store "Delete this page", "このページを削除"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
   l.store "Manage pages", "ページの管理"
 
   # app/views/admin/profiles/index.html.erb
@@ -242,8 +194,6 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "コンテンツタイプ"
-
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "前のページ"
   l.store "Next page", "次のページ"
 
@@ -278,8 +228,6 @@ Localization.define("ja_JP") do |l|
   l.store "Do not index categories", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -309,31 +257,24 @@ Localization.define("ja_JP") do |l|
   l.store "Title template", ""
   l.store "Description template", ""
   l.store "Articles", ""
-  l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "Search results", ""
   l.store "Help on title settings", ""
-  l.store "Replaced with the title of the article/page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the article categories (comma separated)", ""
-  l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
   l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "デフォルトでコメントを有効にする"
   l.store "Enable Trackbacks by default", "デフォルトでトラックバックを許可する"
   l.store "Enable feedback moderation", "フィードバック承認機能を有効にする"
@@ -357,7 +298,6 @@ Localization.define("ja_JP") do |l|
   l.store "Max Links", "最大のリンク数"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publifyは指定された数のリンクが含まれているコメントやトラックバックを自動的に拒否します"
   l.store "Set to 0 to never reject comments", "コメントを拒否しない場合は0を設定してください"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "あなたのブログ"
@@ -434,14 +374,10 @@ Localization.define("ja_JP") do |l|
   l.store "Get more plugins", "他のプラグインの入手"
   l.store "Sidebar", "サイドバー"
   l.store "Publish changes", "変更を公開"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
-  l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -519,21 +455,15 @@ Localization.define("ja_JP") do |l|
   l.store "Posted by", "投稿者"
   l.store "Continue reading", ""
 
-  # app/views/articles/_comment.html.erb
   l.store "said", "発言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。"
 
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "あなたの名前"
   l.store "Your email", "あなたのemail"
   l.store "Your message", "メッセージ"
   l.store "Comment Markup Help", "コメントのマークアップヘルプ"
   l.store "Preview comment", "前のコメント"
   l.store "leave url/email", ""
-
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
   # app/views/articles/_trackback.html.erb
   l.store "From", "From"
 
@@ -541,7 +471,6 @@ Localization.define("ja_JP") do |l|
   l.store "No articles found", "記事が見つかりませんでした"
   l.store "posted in", ""
 
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "〜について言う"
 
   # app/views/articles/groupings.html.erb
@@ -564,15 +493,6 @@ Localization.define("ja_JP") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
-
-  # app/views/setup/index.html.erb
   l.store "Welcome", ""
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
 
@@ -598,14 +518,10 @@ Localization.define("ja_JP") do |l|
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
   l.store "Read full article", ""
-  l.store "comment", ""
   l.store "trackback", ""
 
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", ""
 
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
   l.store "Name %s", ""
   l.store "enabled", ""
   l.store "never displayed", ""
@@ -613,9 +529,6 @@ Localization.define("ja_JP") do |l|
   l.store "Textile enabled", ""
   l.store "Markdown enabled", ""
   l.store "required", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
 
   # test/mocks/themes/typographic/views/shared/_search.html.erb
   l.store "Searching", ""
@@ -632,12 +545,10 @@ Localization.define("ja_JP") do |l|
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
-  l.store "%d comment", ""
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""
   l.store "Your website", ""
 
@@ -697,7 +608,6 @@ Localization.define("ja_JP") do |l|
   l.store "Confirm Classification of Checked Items", "チェックした行の分類を認める"
   l.store "Confirm password", "パスワード再入力"
   l.store "Contact options", "連絡オプション"
-  l.store "Content", "コンテンツ"
   l.store "Copyright Information", "著作権情報"
   l.store "Create new Blacklist", "新しいブラックリスト作成"
   l.store "Create new category", "新規カテゴリ追加"

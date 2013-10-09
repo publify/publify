@@ -19,12 +19,10 @@ Localization.define("zh_TW") do |l|
   l.store "Article was successfully created", ""
   l.store "Article was successfully updated.", ""
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "All spam have been deleted", ""
@@ -76,7 +74,6 @@ Localization.define("zh_TW") do |l|
   l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -98,24 +95,12 @@ Localization.define("zh_TW") do |l|
   l.store "Back to overview", "回到概覽"
   l.store "Tag", ""
 
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
-
-  # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
-
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", ""
-  l.store "no comments", "沒有評論"
-  l.store "1 comment", ""
   l.store "no trackbacks", "沒有引用"
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
@@ -127,23 +112,17 @@ Localization.define("zh_TW") do |l|
   l.store "%d posts", ""
 
   # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
   l.store "Just Marked As Ham", ""
   l.store "Ham", ""
-  l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
-  l.store "Spam", ""
 
 
   l.store "Reorder", "重新排序"
@@ -172,7 +151,6 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Author", "作者"
-  l.store "Feedback", "回應"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -193,8 +171,6 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "歡迎回來， %s！"
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", "你現在是使用Publify %s"
   l.store "Total posts : %d", "發文總計：%d"
   l.store "Your posts : %d", "你的發文：%d"
   l.store "Total comments : %d", "評論總計：%d"
@@ -203,16 +179,12 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/feedback/_button.html.erb
   l.store "Select action", ""
   l.store "Delete Checked Items", ""
-  l.store "Delete all spam", ""
-  l.store "Mark Checked Items as Spam", ""
   l.store "Mark Checked Items as Ham", ""
   l.store "All comments", ""
   l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
   l.store "Limit to spam", "限制垃圾郵件"
 
   # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
   l.store "Url", "Url"
 
   # app/views/admin/feedback/_spam.html.erb
@@ -221,7 +193,6 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
   l.store "Comment Author", ""
-  l.store "Comment", ""
 
   # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "做出評論"
@@ -235,10 +206,6 @@ Localization.define("zh_TW") do |l|
   l.store "Pages","頁數"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
-  l.store "Manage pages", ""
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", ""
@@ -282,7 +249,6 @@ Localization.define("zh_TW") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -307,10 +273,8 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/seo/titles.html.erb
   l.store "Description template", ""
   l.store "Articles", ""
-  l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -325,7 +289,6 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
   l.store "Spam protection", ""
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
@@ -350,7 +313,6 @@ Localization.define("zh_TW") do |l|
   l.store "Max Links", "最大的連結值"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify會自動回絕評論和引用，包含某些可靠的連結總數"
   l.store "Set to 0 to never reject comments", "設定0回絕不回絕的評論"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "你的部落格"
@@ -421,13 +383,11 @@ Localization.define("zh_TW") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "公開變更"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
   l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
@@ -570,15 +530,12 @@ Localization.define("zh_TW") do |l|
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
-  l.store "comment", ""
   l.store "trackback", ""
 
   # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", ""
 
   # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
   l.store "Name %s", ""
   l.store "enabled", ""
   l.store "never displayed", ""
@@ -602,7 +559,6 @@ Localization.define("zh_TW") do |l|
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
-  l.store "%d comment", ""
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""

@@ -16,36 +16,23 @@ Localization.define("lt_LT") do |l|
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
-  l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
-
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
 
   # app/controllers/admin/profiles_controller.rb
   l.store "User was successfully updated.", ""
 
   # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
   l.store "complete", ""
   l.store "File uploaded: ", ""
   l.store "Unable to upload", ""
   l.store "Metadata was successfully updated.", ""
   l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
 
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
@@ -69,14 +56,11 @@ Localization.define("lt_LT") do |l|
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
 
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", ""
   l.store "Archives for", ""
   l.store "Archives for ", ""
-  l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -100,24 +84,12 @@ Localization.define("lt_LT") do |l|
   l.store "Back to overview", "Atgal į peržiūrą"
   l.store "Tag", ""
 
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
-
-  # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
-
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", ""
-  l.store "no comments", "nėra komentarų"
-  l.store "1 comment", ""
   l.store "no trackbacks", "nėra dienoraščio nuorodų"
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
@@ -128,24 +100,16 @@ Localization.define("lt_LT") do |l|
   l.store "1 post", ""
   l.store "%d posts", ""
 
-  # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
   l.store "Just Marked As Ham", ""
   l.store "Ham", ""
-  l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
-  l.store "Spam", ""
 
   l.store "Reorder", "Rikiuoti"
   l.store "Sort alphabetically", "Rikiuoti pagal abėcėlę"
@@ -167,11 +131,9 @@ Localization.define("lt_LT") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ar tikrai norite ištrinti šį straipsnį"
   l.store "Delete this article", "Trinti šį straipsnį"
-  l.store "Articles", ""
 
   # app/views/admin/content/index.html.erb
   l.store "Author", "Autorius"
-  l.store "Feedback", "Atsiliepimas"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", ""
@@ -187,58 +149,28 @@ Localization.define("lt_LT") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
-  l.store "Total comments : %d", ""
-  l.store "Spam comments : %d", ""
 
   l.store "Delete Checked Items", ""
-  l.store "Delete all spam", ""
-  l.store "Mark Checked Items as Spam", ""
   l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
   l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
   l.store "Limit to spam", "Spamo limitas"
 
-  # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
   l.store "Url", "Url adresas"
 
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-  l.store "Comment", ""
-
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Komentarai"
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Pasiekiamas"
-  l.store "Page settings", ""
   l.store "Permanent link", ""
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages","Seiten"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
 
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
-  l.store "Manage pages", ""
-
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", ""
 
-  # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", "Content Type"
-
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Buvęs puslapis" # reikia kitaip kazkaip
   l.store "Next page", "Sekantis puslapis"
 
@@ -273,8 +205,6 @@ Localization.define("lt_LT") do |l|
   l.store "Indexing", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -289,20 +219,13 @@ Localization.define("lt_LT") do |l|
   # app/views/admin/seo/permalinks.html.erb
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
   l.store "Permalinks", ""
   l.store "Custom", ""
 
   # app/views/admin/seo/titles.html.erb
   l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -311,18 +234,14 @@ Localization.define("lt_LT") do |l|
   l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Kommentare per default erlauben"
   l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
   l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Komentarų filtras"
   l.store "Enable gravatars", "Gratavare aktivieren"
   l.store "Show your email address", "Ihre Email Adresse anzeigen"
@@ -342,7 +261,6 @@ Localization.define("lt_LT") do |l|
   l.store "Max Links", "Maximale Anzahl Links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
   l.store "Set to 0 to never reject comments", "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Tavo dienoraščio adresas"
@@ -412,14 +330,10 @@ Localization.define("lt_LT") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Änderungen veröffentlichen"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
-  l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -475,7 +389,6 @@ Localization.define("lt_LT") do |l|
 
   # app/views/admin/users/index.html.erb
   l.store "New User", "Neuer Benutzer"
-  l.store "Comments", ""
   l.store "State", ""
   l.store "%s user", ""
   l.store "Manage users", ""
@@ -483,15 +396,12 @@ Localization.define("lt_LT") do |l|
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
 
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Parašė"
   l.store "Continue reading", ""
 
-  # app/views/articles/_comment.html.erb
   l.store "said", "pasakė"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Komentaras laukia moderatoriaus patvirtinimo" # sutrumpinua, man rodos logiskaiu
 
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Tavo vardas"
   l.store "Your email", "Tavo el. pašto adresas"
   l.store "Your message", "Tavo žinutė"
@@ -499,23 +409,15 @@ Localization.define("lt_LT") do |l|
   l.store "Preview comment", "Peržiūrėti komentarą"
   l.store "leave url/email", ""
 
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "Nuo"
 
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Straipsnių nėra"
   l.store "posted in", ""
 
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "pasakoja apie"
 
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Čia yra"
 
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Palikti atsakymą"
   l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Dienoraščio nuoroda (trackback)"
@@ -533,13 +435,6 @@ Localization.define("lt_LT") do |l|
   l.store "Twitter:", ""
   l.store "About %s", ""
 
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
-
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
 
@@ -553,7 +448,6 @@ Localization.define("lt_LT") do |l|
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
 
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
   l.store "Continue reading...", ""
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
@@ -561,15 +455,8 @@ Localization.define("lt_LT") do |l|
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
-  l.store "comment", ""
   l.store "trackback", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
   l.store "Name %s", ""
   l.store "enabled", ""
   l.store "never displayed", ""
@@ -577,10 +464,6 @@ Localization.define("lt_LT") do |l|
   l.store "Textile enabled", ""
   l.store "Markdown enabled", ""
   l.store "required", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
-
   # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
@@ -590,21 +473,14 @@ Localization.define("lt_LT") do |l|
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
-  l.store "%d comment", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""
   l.store "Your website", ""
 
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackback für"
 
-  l.store "Read all articles in %s", ""
 
   l.store "Previous", ""
   l.store "Next", ""

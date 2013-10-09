@@ -20,24 +20,15 @@ Localization.define("es_MX") do |l|
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
-  l.store "Article was successfully created", ""
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
 
   # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
   l.store "complete", ""
   l.store "File uploaded: ", ""
   l.store "Unable to upload", ""
@@ -61,14 +52,10 @@ Localization.define("es_MX") do |l|
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
 
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", ""
   l.store "Archives for", ""
   l.store "Archives for ", ""
-  l.store ", Articles for ", ""
 
-  # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -87,41 +74,26 @@ Localization.define("es_MX") do |l|
   l.store "Save", "Guardar"
   l.store "Edit", "Editar"
 
-  # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
-
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", ""
-  l.store "no comments", "no hay comentarios"
-  l.store "1 comment", ""
   l.store "no trackbacks", "no hay trackbacks"
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
 
-  # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
   l.store "Just Marked As Ham", ""
   l.store "Ham", ""
-  l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
-  l.store "Spam", ""
 
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Reorganizar"
@@ -153,8 +125,6 @@ Localization.define("es_MX") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Author", "Autor"
-  l.store "Feedback", ""
-  l.store "Manage articles", ""
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
@@ -176,55 +146,30 @@ Localization.define("es_MX") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Total comments : %d", ""
-  l.store "Spam comments : %d", ""
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Select action", ""
   l.store "Delete Checked Items", ""
-  l.store "Delete all spam", ""
-  l.store "Mark Checked Items as Spam", ""
   l.store "Mark Checked Items as Ham", ""
   l.store "All comments", ""
   l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
-  l.store "Limit to spam", "Limitar a spam"
 
-  # app/views/admin/feedback/_form.html.erb
   l.store "Add a comment", ""
   l.store "Url", "Url"
 
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Comentarios para"
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
-  l.store "Page settings", ""
   l.store "Permanent link", ""
 
-  # app/views/admin/pages/destroy.html.erb
-  l.store "Pages","P&aacute;ginas"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
 
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
-  l.store "Manage pages", ""
-
-  # app/views/admin/profiles/index.html.erb
   l.store "Your profile", ""
 
-  # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", "Content Type"
-
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "P&aacute;gina anterior"
   l.store "Next page", "P&aacute;gina siguiente"
 
@@ -265,7 +210,6 @@ Localization.define("es_MX") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -278,22 +222,14 @@ Localization.define("es_MX") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/titles.html.erb
-  l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
-  l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article tags (comma separated)", ""
-  l.store "Replaced with the article categories (comma separated)", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Habilitar comentarios por default"
   l.store "Enable Trackbacks by default", "Habilitar Trackbacks por default"
   l.store "Enable feedback moderation", "Habilitar moderaci&oacute;n de comentarios y trackbacks"
@@ -316,7 +252,6 @@ Localization.define("es_MX") do |l|
   l.store "Max Links", "M&aacute;ximo n&uacute;mero de links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify rechazar&aacute; autom&aacute;ticamente los comentarios y trackbacks que contengan m&aacute;s de un cierto n&uacute;mero de links en ellos"
   l.store "Set to 0 to never reject comments", "Introducir 0 para nunca rechazar comentarios"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Tu sitio"
@@ -344,9 +279,7 @@ Localization.define("es_MX") do |l|
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
   l.store "Index categories", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Index tags", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "This will display", ""
@@ -390,14 +323,10 @@ Localization.define("es_MX") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Publicar cambios"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
-  l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -528,10 +457,6 @@ Localization.define("es_MX") do |l|
 
   # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""

@@ -19,12 +19,10 @@ Localization.define("de_DE") do |l|
   l.store "Article was successfully created", ""
   l.store "Article was successfully updated.", ""
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "All spam have been deleted", ""
@@ -39,13 +37,11 @@ Localization.define("de_DE") do |l|
   l.store "User was successfully updated.", ""
 
   # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
   l.store "complete", ""
   l.store "File uploaded: ", ""
   l.store "Unable to upload", ""
   l.store "Metadata was successfully updated.", ""
   l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
 
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
@@ -75,7 +71,6 @@ Localization.define("de_DE") do |l|
   l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -98,25 +93,12 @@ Localization.define("de_DE") do |l|
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Zurück zur Übersicht"
   l.store "Tag", ""
-
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
-
-  # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
-
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", ""
-  l.store "no comments", "keine Kommentare"
-  l.store "1 comment", ""
   l.store "no trackbacks", "keine Trackbacks"
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
@@ -135,15 +117,12 @@ Localization.define("de_DE") do |l|
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
   l.store "Just Marked As Ham", ""
   l.store "Ham", ""
   l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
-  l.store "Spam", ""
 
   l.store "Reorder", "Sortieren"
   l.store "Sort alphabetically", "Alphabetisch sortieren"
@@ -168,7 +147,6 @@ Localization.define("de_DE") do |l|
   l.store "Delete this article", "Diesen Artikel löschen"
 
   l.store "Author", "Autor"
-  l.store "Feedback", "Diskussion"
 
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
@@ -179,36 +157,26 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Total comments : %d", ""
   l.store "Spam comments : %d", ""
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Delete Checked Items", ""
-  l.store "Delete all spam", ""
-  l.store "Mark Checked Items as Spam", ""
   l.store "Mark Checked Items as Ham", ""
   l.store "All comments", ""
   l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
   l.store "Limit to spam", "Einschränken auf Spam"
 
-  # app/views/admin/feedback/_form.html.erb
   l.store "Add a comment", ""
   l.store "Url", "Url"
 
-  # app/views/admin/feedback/_spam.html.erb
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
-  # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
   l.store "Comment Author", ""
   l.store "Comment", ""
 
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Kommentare für"
 
   # app/views/admin/pages/_form.html.erb
@@ -222,7 +190,6 @@ Localization.define("de_DE") do |l|
   l.store "Delete this page", "Diese Seite löschen"
 
   # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
   l.store "Manage pages", ""
 
   # app/views/admin/profiles/index.html.erb
@@ -266,7 +233,6 @@ Localization.define("de_DE") do |l|
   l.store "Indexing", ""
   l.store "Robots.txt", ""
   l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -294,7 +260,6 @@ Localization.define("de_DE") do |l|
   l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -309,12 +274,10 @@ Localization.define("de_DE") do |l|
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
   l.store "Spam protection", ""
   l.store "Enable comments by default", "Kommentare per default erlauben"
   l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
   l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Textfilter für Kommentar"
   l.store "Enable gravatars", "Gratavare aktivieren"
   l.store "Show your email address", "Ihre Email Adresse anzeigen"
@@ -334,7 +297,6 @@ Localization.define("de_DE") do |l|
   l.store "Max Links", "Maximale Anzahl Links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
   l.store "Set to 0 to never reject comments", "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Mein Blog"
@@ -401,13 +363,11 @@ Localization.define("de_DE") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Änderungen veröffentlichen"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
   l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
@@ -549,7 +509,6 @@ Localization.define("de_DE") do |l|
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
   l.store "comment", ""
   l.store "trackback", ""
 

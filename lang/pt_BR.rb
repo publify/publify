@@ -23,7 +23,6 @@ Localization.define("pt_BR") do |l|
   l.store "Article was successfully created", "Artigo criado com sucesso"
   l.store "Article was successfully updated.", "Artigo atualizado com sucesso"
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Deletado"
   l.store "Not found", "Não encontrado"
   l.store "Deleted %d item(s)", "%d iten(s) deletados"
@@ -104,24 +103,15 @@ Localization.define("pt_BR") do |l|
   l.store "Back to overview", "Voltar para o overview"
   l.store "Tag", "Tag"
 
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", "sem artigos"
-  l.store "1 article", "1 artigo"
-  l.store "%d articles", "%d artigos"
-
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Excluir esse rascunho"
 
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", "Exibir conversa"
   l.store "Flag as %s", "Marcar como %s"
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", "%d comentários"
-  l.store "no comments", "sem comentários"
-  l.store "1 comment", "1 comentário"
   l.store "no trackbacks", "sem trackbacks"
   l.store "1 trackback", ""
   l.store "%d trackbacks", "%d trackbacks"
@@ -143,15 +133,12 @@ Localization.define("pt_BR") do |l|
   l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Você precisa de um permalink com um identificador : %%day%%, %%month%%, %%year%%, %%title%%"
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Não pode terminar em .rss ou .atom. Esses formatos são reservados para URLs de feed"
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", "Não classificado"
   l.store "Just Presumed Ham", "Ham apenas presumido"
   l.store "Ham?", ""
   l.store "Just Marked As Ham", "Apenas marcado como Ham"
   l.store "Ham", ""
-  l.store "Spam?", ""
   l.store "Just Marked As Spam", "Apenas marcado como Spam"
-  l.store "Spam", ""
 
   # app/views/accounts/login.html.erb
   l.store "Submit", "Enviar"
@@ -173,7 +160,6 @@ Localization.define("pt_BR") do |l|
   l.store "Really delete attachment", "Realmente deletar attachment"
   l.store "Add another attachment", "Adicionar outro attachment"
 
-  # app/views/admin/content/_drafts.html.erb
   l.store "Publish at", "Publicado el"
 
   # app/views/admin/content/destroy.html.erb
@@ -197,54 +183,31 @@ Localization.define("pt_BR") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Total comments : %d", ""
-  l.store "Spam comments : %d", ""
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Delete Checked Items", ""
-  l.store "Delete all spam", ""
-  l.store "Mark Checked Items as Spam", ""
   l.store "Mark Checked Items as Ham", ""
   l.store "All comments", ""
   l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
   l.store "Limit to spam", "Limitar a spam"
 
-  # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
   l.store "Url", "Url"
 
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
   l.store "Comment Author", ""
-  l.store "Comment", ""
 
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Comentarios para"
 
-  # app/views/admin/feedback/index.html.erb
   l.store "Article", ""
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
-  l.store "Page settings", ""
   l.store "Permanent link", ""
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages","P&aacute;ginas"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
-  l.store "Manage pages", ""
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", ""
@@ -288,7 +251,6 @@ Localization.define("pt_BR") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -315,7 +277,6 @@ Localization.define("pt_BR") do |l|
   l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -330,12 +291,9 @@ Localization.define("pt_BR") do |l|
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Habilitar comentarios por default"
   l.store "Enable Trackbacks by default", "Habilitar Trackbacks por default"
   l.store "Enable feedback moderation", "Habilitar moderaci&oacute;n de comentarios y trackbacks"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Filtro de comentarios"
   l.store "Enable gravatars", "Habilitar gravatars"
   l.store "Show your email address", "Mostrar tu direcci&oacute;n de email"
@@ -355,7 +313,6 @@ Localization.define("pt_BR") do |l|
   l.store "Max Links", "M&aacute;ximo n&uacute;mero de links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify rechazar&aacute; autom&aacute;ticamente los comentarios y trackbacks que contengan m&aacute;s de un cierto n&uacute;mero de links en ellos"
   l.store "Set to 0 to never reject comments", "Introducir 0 para nunca rechazar comentarios"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Tu sitio"
@@ -424,13 +381,11 @@ Localization.define("pt_BR") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Publicar cambios"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
   l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
@@ -572,14 +527,12 @@ Localization.define("pt_BR") do |l|
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "comment", ""
   l.store "trackback", ""
 
   # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", ""
 
   # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
   l.store "Name %s", ""
   l.store "enabled", ""
   l.store "never displayed", ""
@@ -603,7 +556,6 @@ Localization.define("pt_BR") do |l|
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
-  l.store "%d comment", ""
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""

@@ -20,7 +20,6 @@ Localization.define("nl_NL") do |l|
   l.store "Article was successfully created", "Artikel is succesvol gemaakt"
   l.store "Article was successfully updated.", "Artikel is succesvol bijgewerkt."
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Verwijderd"
   l.store "Not found", "Niet gevonden"
   l.store "Deleted %d item(s)", "%d items verwijderd"
@@ -32,7 +31,6 @@ Localization.define("nl_NL") do |l|
   l.store "Comment was successfully created.", "Commentaar is succesvol aangemaakt."
   l.store "Comment was successfully updated.", "Commentaar is succesvol bijgewerkt."
 
-  # app/controllers/admin/pages_controller.rb
   l.store "Page was successfully created.", "Pagina is succesvol aangemaakt."
   l.store "Page was successfully updated.", "Pagina is succesvol bijgewerkt."
 
@@ -100,23 +98,15 @@ Localization.define("nl_NL") do |l|
   l.store "Back to overview", "Terug naar overzicht"
   l.store "Tag", "Tag"
 
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", "geen artikelen"
-  l.store "1 article", "1 artikel"
-  l.store "%d articles", "%d artikelen"
-
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Verwijder dit concept"
 
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", "Toon conversatie"
   l.store "Flag as %s", "Markeer als %s"
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
   l.store "%%d. %%b", "%%d. %%b"
-  l.store "%d comments", "%d reacties"
-  l.store "no comments", "geen reacties"
   l.store "1 comment", "één reactie"
   l.store "no trackbacks", "geen trackbacks"
   l.store "1 trackback", "één trackback"
@@ -139,7 +129,6 @@ Localization.define("nl_NL") do |l|
   l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Je hebt een permalink formaat nodig met een identifier: %%month%%, %%year%%, %%day%%, %%title%%"
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Mag niet eindigen met .rss of .atom. Die zijn gereserveerd voor feed URLs"
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", "Niet geclassificeerd"
   l.store "Just Presumed Ham", "Zojuist aangenomen dat dit Ham is"
   l.store "Ham?", "Ham?"
@@ -170,7 +159,6 @@ Localization.define("nl_NL") do |l|
   l.store "Really delete attachment", "Bijlage echt verwijderen"
   l.store "Add another attachment", "Voeg een andere bijlage toe"
 
-  # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", "Concepten"
 
   # app/views/admin/content/_form.html.erb
@@ -187,9 +175,7 @@ Localization.define("nl_NL") do |l|
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
   l.store "Author", "Auteur"
   l.store "Date", "Datum"
-  l.store "Feedback", "Feedback"
 
-  # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Laatste reacties"
@@ -209,14 +195,11 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Welkom terug, %s!"
-  l.store "%d articles and %d comments were posted since your last connexion", "%d artikels en %d commentaren zijn geplaatst sinds je laatste bezoek"
-  l.store "You're running Publify %s", "Je gebruikt Publify %s"
   l.store "Total posts : %d", "Aantal berichten : %d"
   l.store "Your posts : %d", "Jouw berichten : %d"
   l.store "Total comments : %d", "Aantal reacties : %d"
   l.store "Spam comments : %d", "Spam reacties : %d"
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Select action", "Kies actie"
   l.store "Delete Checked Items", "Verwijder aangevinkte reacties"
   l.store "Delete all spam", "Verwijder alle spam"
@@ -227,36 +210,28 @@ Localization.define("nl_NL") do |l|
   l.store "Unapproved comments", "Niet goedgekeurde"
   l.store "Limit to spam", "Alleen spam"
 
-  # app/views/admin/feedback/_form.html.erb
   l.store "Add a comment", "Voeg een commentaar toe"
   l.store "Url", "Url"
 
-  # app/views/admin/feedback/_spam.html.erb
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Dit commentaar van <strong>%s</strong> was gemarkeerd als spam, %s?"
 
-  # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "Commentaren voor %s"
   l.store "Comment Author", "Auteur commentaar"
   l.store "Comment", "Reactie"
 
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Commentaren voor"
 
-  # app/views/admin/feedback/index.html.erb
   l.store "Search Comments and Trackbacks that contain", "Zoek commentaren en trackbacks die bevatten"
   l.store "Article", "Artikel"
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
   l.store "Page settings", "Pagina instellingen"
   l.store "Permanent link", "Permanente link"
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages", "Pagina's"
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"
 
-  # app/views/admin/pages/index.html.erb
   l.store "New Page", "Nieuwe pagina"
   l.store "Manage pages", "Beheer pagina's"
 
@@ -266,7 +241,6 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Content Type"
 
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Vorige pagina"
   l.store "Next page", "Volgende pagina"
 
@@ -302,8 +276,6 @@ Localization.define("nl_NL") do |l|
   l.store "Do not index categories", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -329,14 +301,11 @@ Localization.define("nl_NL") do |l|
   l.store "Home", ""
   l.store "Description template", ""
   l.store "Articles", ""
-  l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
-  l.store "Replaced with the post/page excerpt", ""
   l.store "Replaced with the article categories (comma separated)", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
@@ -344,14 +313,11 @@ Localization.define("nl_NL") do |l|
   l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", "Werk instellingen bij"
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Commentaren standaard toestaan"
   l.store "Enable Trackbacks by default", "Trackbacks standaard toestaan"
   l.store "Enable feedback moderation", "Feedback controle aanzetten"
@@ -375,7 +341,6 @@ Localization.define("nl_NL") do |l|
   l.store "Max Links", "Max links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify zal automatisch commentaren en trackbacks verwijderen die meer dan een bepaald aantal links bevatten"
   l.store "Set to 0 to never reject comments", "Zet op 0 om commentaren nooit te weigeren"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Je blog"
@@ -449,14 +414,11 @@ Localization.define("nl_NL") do |l|
   l.store "Get more plugins", "Haal meer thema's op"
   l.store "Sidebar", "Zijbalk"
   l.store "Publish changes", "Publiceer wijzigingen"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
-  l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -582,12 +544,7 @@ Localization.define("nl_NL") do |l|
   l.store "About %s", "Over %s"
   l.store "This author has not published any article yet", "Deze auteur heeft nog geen artikelen gepubliceerd"
 
-  # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
 
   # app/views/setup/index.html.erb
   l.store "Welcome", "Welkom"
@@ -691,7 +648,6 @@ Localization.define("nl_NL") do |l|
   l.store "Blacklist Patterns", "Blacklist patronen"
   l.store "Choose password", "Kies wachtwoord"
   l.store "Confirm Classification of Checked Items", "Bevestig classificatie van aangevinkte reacties"
-  l.store "Content", "Inhoud"
   l.store "Editing pattern", "Wijzig patroon"
   l.store "Pattern", "Patroon"
   l.store "Posts", "Berichten"

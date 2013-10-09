@@ -21,12 +21,10 @@ Localization.define("da_DK") do |l|
   l.store "Article was successfully created", ""
   l.store "Article was successfully updated.", ""
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "All spam have been deleted", ""
@@ -41,13 +39,11 @@ Localization.define("da_DK") do |l|
   l.store "User was successfully updated.", ""
 
   # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
   l.store "complete", ""
   l.store "File uploaded: ", ""
   l.store "Unable to upload", ""
   l.store "Metadata was successfully updated.", ""
   l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
 
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
@@ -78,7 +74,6 @@ Localization.define("da_DK") do |l|
   l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   l.store "Cancel", "Anuller"
@@ -99,48 +94,23 @@ Localization.define("da_DK") do |l|
   l.store "Unpublished", "Ikke offentliggjort"
   l.store "Back to overview", "Tilbage til oversigten"
   l.store "Tag", "Tag"
-
-  l.store "no articles", "ingen artikler"
-  l.store "1 article", "1 artikel"
-  l.store "%d articles", "%d artikler"
-
-  l.store "Destroy this draft", ""
-
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", "%d kommentarer"
-  l.store "no comments", "ingen kommentarer"
-  l.store "1 comment", "1 kommentar"
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
-
   l.store "Posted in", "Offentliggjort i"
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
-  # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
   l.store "Just Marked As Ham", ""
   l.store "Ham", ""
-  l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
-  l.store "Spam", ""
 
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sortér alfabetisk"
@@ -169,7 +139,6 @@ Localization.define("da_DK") do |l|
   l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
   l.store "Author", "Forfatter"
   l.store "Date", "Dato"
-  l.store "Feedback", "Diskussion"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
@@ -190,39 +159,27 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Velkommen tilbage, %s!"
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", "Du kører Publify version %s"
   l.store "Total posts : %d", "Total artikler : %d"
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Total comments : %d", "Total kommentarer : %d"
   l.store "Spam comments : %d", "Spam kommentarer : %d"
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Delete Checked Items", ""
-  l.store "Delete all spam", ""
-  l.store "Mark Checked Items as Spam", ""
   l.store "Mark Checked Items as Ham", ""
   l.store "All comments", ""
   l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
-  l.store "Limit to spam", "Indskrænk til spam"
 
-  # app/views/admin/feedback/_form.html.erb
   l.store "Add a comment", ""
   l.store "Url", "Url"
 
-  # app/views/admin/feedback/_spam.html.erb
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
-  # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
   l.store "Comment Author", ""
   l.store "Comment", ""
 
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Kommentarer for"
 
-  # app/views/admin/feedback/index.html.erb
   l.store "Article", "Artikel"
 
   # app/views/admin/pages/_form.html.erb
@@ -236,7 +193,6 @@ Localization.define("da_DK") do |l|
   l.store "Delete this page", "Slet denne side"
 
   # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
   l.store "Manage pages", "Administrer sider"
 
   # app/views/admin/profiles/index.html.erb
@@ -281,7 +237,6 @@ Localization.define("da_DK") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -309,7 +264,6 @@ Localization.define("da_DK") do |l|
   l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -324,12 +278,10 @@ Localization.define("da_DK") do |l|
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
   l.store "Spam protection", ""
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback moderation"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Kommentarfilter"
   l.store "Enable gravatars", "Vis gravatars"
   l.store "Show your email address", "Vis din e-mail addresse"
@@ -349,7 +301,6 @@ Localization.define("da_DK") do |l|
   l.store "Max Links", "Max Links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them" #Need translate
   l.store "Set to 0 to never reject comments", "Sæt til 0 for at aldrig forkaste kommentarer"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Din Blog"
@@ -419,13 +370,11 @@ Localization.define("da_DK") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Udgiv ændringer"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
   l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
@@ -577,7 +526,6 @@ Localization.define("da_DK") do |l|
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
   l.store "comment", ""
   l.store "trackback", ""
 
@@ -667,7 +615,6 @@ Localization.define("da_DK") do |l|
   l.store "Choose password", "Kodeord"
   l.store "Comments and Trackbacks for", "Kommentarer og trackbacks for"
   l.store "Confirm password", "Gentag kodeord"
-  l.store "Content", "Indhold"
   l.store "Continue reading &raquo;", "L&aelig;s videre &raquo;"
   l.store "Copyright Information", "Copyright information"
   l.store "Create new Blacklist", "Opret ny blacklist"

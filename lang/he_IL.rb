@@ -21,7 +21,6 @@ Localization.define("he_IL") do |l|
   l.store "Article was successfully created", "הכתבה נוצרה בהצלחה "
   l.store "Article was successfully updated.", "הכתבה עודכנה בהצלחה."
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "נמחקה"
   l.store "Not found", "לא נמצאה"
   l.store "Deleted %d item(s)", "נמחקו %d פריטים"
@@ -29,11 +28,9 @@ Localization.define("he_IL") do |l|
   l.store "Marked %d item(s) as Spam", "סומנו %d פריטים כספאם"
   l.store "Confirmed classification of %s item(s)", "אומת הסיווג של %d פריטים."
   l.store "Not implemented", "לא מיושם"
-  l.store "All spam have been deleted", ""
   l.store "Comment was successfully created.", "התגובה נוצרה בהצלחה."
   l.store "Comment was successfully updated.", "התגובה עודכנה בהצלחה."
 
-  # app/controllers/admin/pages_controller.rb
   l.store "Page was successfully created.", "הדף נוצר בהצלחה."
   l.store "Page was successfully updated.", "הדף עודכן בהצלחה."
 
@@ -71,14 +68,11 @@ Localization.define("he_IL") do |l|
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", "1"
 
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", ""
   l.store "Archives for", ""
   l.store "Archives for ", ""
-  l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -102,24 +96,15 @@ Localization.define("he_IL") do |l|
   l.store "Back to overview", "עבור לסקירה"
   l.store "Tag", "תוית"
 
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", "אין כתבות"
-  l.store "1 article", "כתבה 1"
-  l.store "%d articles", "%d כתבות"
-
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "מחוק טיוטה זו"
 
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
   l.store "%%d. %%b", "%%d. %%b"
-  l.store "%d comments", "%d תגובות"
-  l.store "no comments", "אין תגובות"
-  l.store "1 comment", "תגובה 1"
   l.store "no trackbacks", "אין עוקבים-חזרה"
   l.store "1 trackback", "עוקב-חזרה 1"
   l.store "%d trackbacks", "%d עוקבים-חזרה"
@@ -130,18 +115,13 @@ Localization.define("he_IL") do |l|
   l.store "1 post", "כתבה 1"
   l.store "%d posts", "%d כתבות"
 
-  # app/models/article.rb
-  l.store "Original article writen by", ""
   l.store "and published on", ""
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
   l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", "לא סווג"
   l.store "Just Presumed Ham", "כנראה לא-ספאם"
   l.store "Ham?", "לא-ספאם ?"
@@ -183,10 +163,8 @@ Localization.define("he_IL") do |l|
   l.store "Articles", "כתבות"
 
   # app/views/admin/content/index.html.erb
-  l.store "Search articles that contain ...", ""
   l.store "Author", "כותב"
   l.store "Date", "תאריך"
-  l.store "Feedback", "משוב"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "הכי פופלריים"
@@ -202,55 +180,35 @@ Localization.define("he_IL") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "ברוך הבא, %s!"
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", "אתה מריץ את Publify %s"
   l.store "Total posts : %d", "כתבות: %d"
   l.store "Your posts : %d", "הכתבות שלך: %d"
   l.store "Total comments : %d", "תגובות: %d"
   l.store "Spam comments : %d", "תגובות ספאם: %d"
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Select action", ""
   l.store "Delete Checked Items", "מחק פריטים שסומנו"
-  l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", "סווג פריטים שסומנו כספאם"
   l.store "Mark Checked Items as Ham", "סווג פריטים שסומנו כלא-ספאם"
-  l.store "All comments", ""
   l.store "Limit to ham", ""
   l.store "Unapproved comments", "תגובות לא מאושרות"
   l.store "Limit to spam", "סווג כספאם"
 
-  # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
   l.store "Url", "כתובת"
 
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "תגובות עבור %s"
-  l.store "Comment Author", ""
-  l.store "Comment", ""
 
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "תגובות על"
 
-  # app/views/admin/feedback/index.html.erb
   l.store "Search Comments and Trackbacks that contain", "חפש תגובות או עוקבים-חזרה המכילים"
   l.store "Article", "כתבה"
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "מוצג"
-  l.store "Page settings", ""
   l.store "Permanent link", ""
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages", "דפים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"
   l.store "Delete this page", "מחק דף זה"
 
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
   l.store "Manage pages", "נהל דפים"
 
   # app/views/admin/profiles/index.html.erb
@@ -259,7 +217,6 @@ Localization.define("he_IL") do |l|
   # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "סוג התוכן"
 
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "הדף הקודם"
   l.store "Next page", "הדף הבא"
 
@@ -294,13 +251,9 @@ Localization.define("he_IL") do |l|
   l.store "RSS description message", ""
   l.store "Indexing", ""
   l.store "Do not index categories", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Do not index tags", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -320,10 +273,6 @@ Localization.define("he_IL") do |l|
   l.store "Month and title", ""
   l.store "Title only", ""
   l.store "You can custom your URL structure using the following tags:", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
   l.store "Permalinks", ""
   l.store "Custom", ""
 
@@ -332,35 +281,23 @@ Localization.define("he_IL") do |l|
   l.store "Home", ""
   l.store "Title template", ""
   l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "Search results", ""
   l.store "Help on title settings", ""
-  l.store "Replaced with the title of the article/page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
-  l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article tags (comma separated)", ""
-  l.store "Replaced with the article categories (comma separated)", ""
-  l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
   l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "אפשר תגובות כברירת מחדל"
   l.store "Enable Trackbacks by default", "אפשר עוקבים-חזרה כברירת מחדל"
   l.store "Enable feedback moderation", "אפשר ביקורת על המשוב"
@@ -384,7 +321,6 @@ Localization.define("he_IL") do |l|
   l.store "Max Links", "מקסימום קישורים"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify תדחה אוטומטית תגובות ועוקבים-חזרה המכילים את כמות הקישורים מסויימת"
   l.store "Set to 0 to never reject comments", "הגדר כ-0 כדי לא לדחות תגובות לעולם"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "הבלוג שלך"
@@ -413,9 +349,7 @@ Localization.define("he_IL") do |l|
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
   l.store "Index categories", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Index tags", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
@@ -461,14 +395,10 @@ Localization.define("he_IL") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", "תיבת צד"
   l.store "Publish changes", "פרסם שינויים"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
-  l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -547,15 +477,12 @@ Localization.define("he_IL") do |l|
   # app/views/admin/users/new.html.erb
   l.store "Add User", "הוסף משתמש"
 
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "נכתב על ידי"
   l.store "Continue reading", ""
 
-  # app/views/articles/_comment.html.erb
   l.store "said", "a dit"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"
 
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "השם שלך"
   l.store "Your email", "הדואל שלך"
   l.store "Your message", "התגובה שלך"
@@ -563,23 +490,17 @@ Localization.define("he_IL") do |l|
   l.store "Preview comment", "תצוגה מקדימה של התגובה"
   l.store "leave url/email", "השאר כתובת/דואל"
 
-  # app/views/articles/_comment_failed.html.erb
   l.store "Oops, something wrong happened, the comment could not be saved", "אופס, משהו השתבש, התגובה אינה יכולה להישמר"
 
-  # app/views/articles/_trackback.html.erb
   l.store "From", "מאת"
 
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "לא נמצאו כתבות"
   l.store "posted in", "נשלח ב-"
 
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "עומד לומר"
 
-  # app/views/articles/groupings.html.erb
   l.store "There are", "ישנם"
 
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "הגב"
   l.store "Trackbacks", "עוקבים חזרה"
   l.store "Use the following link to trackback from your own site", "השתמש בקישור הבא כדי לעקוב-חזרה מהאתר שלך"
@@ -596,14 +517,8 @@ Localization.define("he_IL") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-  l.store "This author has not published any article yet", ""
 
-  # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", "התגובה הזו ממתינה לאישור"
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
@@ -623,7 +538,6 @@ Localization.define("he_IL") do |l|
   l.store "Powered by %s", "מופעל על ידי %s"
   l.store "Designed by %s ", "עוצב על ידי %s"
 
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
   l.store "Continue reading...", "המשך לקרוא..."
   l.store "This entry was posted on %s", "כתבה זו פורסמה בתאריך %s"
   l.store "and %s", "ו-%s"
@@ -635,10 +549,8 @@ Localization.define("he_IL") do |l|
   l.store "comment", "תגובה"
   l.store "trackback", "עוקב-חזרה"
 
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", "אחר כך"
 
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
   l.store "Leave a comment", "הגב"
   l.store "Name %s", "שם %s"
   l.store "enabled", "מאופשר"
@@ -648,7 +560,6 @@ Localization.define("he_IL") do |l|
   l.store "Markdown enabled", "Markdown מאופשר"
   l.store "required", "נחוץ"
 
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", "ללא תגובות"
 
   # test/mocks/themes/typographic/views/shared/_search.html.erb
@@ -661,34 +572,25 @@ Localization.define("he_IL") do |l|
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", "עוצב על ידי %s"
 
-  # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", "פרטים"
   l.store "permalink", "קישור קבוע"
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
-  l.store "%d comment", ""
 
-  # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  # themes/true-blue-3/views/articles/_comment.html.erb
   l.store "later:", ""
 
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""
   l.store "Your website", ""
 
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "עוקבי חזרה עבור"
 
-  # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", ""
 
   # themes/true-blue-3/views/categories/index.html.erb
-  l.store "Read all articles in %s", ""
 
   # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
@@ -739,7 +641,6 @@ Localization.define("he_IL") do |l|
   l.store "Comments for %s (%s)", "תגובות עבור %s (%s)"
   l.store "Confirm Classification of Checked Items", "אמת סיווג של פריטים"
   l.store "Confirm password", "אמת סיסמה"
-  l.store "Content", "תוכן"
   l.store "Contributor", "תורם"
   l.store "Copyright Information", "מידע על זכויות יוצרים"
   l.store "Create Text Filter", "צור מסנן טקסט"

@@ -6,6 +6,45 @@ ru:
       last: "Last"
   admin:
     dashboard:
+      welcome:
+        today: "Today"
+        articles_and_comments_count_since: "%{articles_count} постов и %{comments_count} комментариев получено с вашего последнего посещения"
+        running_publify: "Работает Publify %{version}"
+        content: "Content"
+        articles_count:
+          zero: "нет постов"
+          one: "1 пост"
+          other: "постов: %{count}"
+        your_articles_count:
+          zero: "no article writen by you"
+          one: "1 article writen by you"
+          other: "%{count} articles writen by you"
+        drafts_count:
+          zero: "no draft"
+          one: "1 draft"
+          other: "%{count} drafts"
+        pages_count:
+          zero: "no page"
+          one: "1 page"
+          other: "%{count} pages"
+        notes_count:
+          zero: "no note"
+          one: "1 note"
+          other: "%{count} notes"
+        feedback: "Комментарии"
+        comments_count:
+          zero: "нет комментариев"
+          one: "1 комментарий"
+          other: "комментариев: %{count}"
+        approved_count:
+          zero: "no approved"
+          other: "%{count} approved"
+        unconfirmed_count:
+          zero: "no unconfirmed"
+          other: "%{count} unconfirmed"
+        spam_count:
+          zero: "no spam"
+          other: "%{count} spam"
       overview:
         dashboard_explain: "Здесь можно посмотреть, что происходит в вашем Publify-блоге и что в нем можно сделать. Возможно, вы хотели бы %{available_actions}."
         write_a_post: "написать пост"

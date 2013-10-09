@@ -6,6 +6,45 @@ ro:
       last: "Last"
   admin:
     dashboard:
+      welcome:
+        today: "Today"
+        articles_and_comments_count_since: "%{articles_count} articles and %{comments_count} comments were posted since your last connexion"
+        running_publify: "You're running Publify %{version}"
+        content: "Content"
+        articles_count:
+          zero: "no article"
+          one: "1 article"
+          other: "%{count} articles"
+        your_articles_count:
+          zero: "no article writen by you"
+          one: "1 article writen by you"
+          other: "%{count} articles writen by you"
+        drafts_count:
+          zero: "no draft"
+          one: "1 draft"
+          other: "%{count} drafts"
+        pages_count:
+          zero: "no page"
+          one: "1 page"
+          other: "%{count} pages"
+        notes_count:
+          zero: "no note"
+          one: "1 note"
+          other: "%{count} notes"
+        feedback: "Feedback"
+        comments_count:
+          zero: "fără comentarii"
+          one: "1 comment"
+          other: "%{count} comments"
+        approved_count:
+          zero: "no approved"
+          other: "%{count} approved"
+        unconfirmed_count:
+          zero: "no unconfirmed"
+          other: "%{count} unconfirmed"
+        spam_count:
+          zero: "no spam"
+          other: "%{count} spam"
       overview:
         dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
         write_a_post: "write a post"

@@ -18,24 +18,13 @@ Localization.define("it_IT") do |l|
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
-  l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", "Conferma classificazione di %s elementi"
   l.store "Not implemented", "Non implementato"
-  l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
-
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
 
   # app/controllers/admin/profiles_controller.rb
   l.store "User was successfully updated.", ""
@@ -71,14 +60,11 @@ Localization.define("it_IT") do |l|
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
 
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", ""
   l.store "Archives for", ""
   l.store "Archives for ", ""
-  l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -102,30 +88,19 @@ Localization.define("it_IT") do |l|
   l.store "Back to overview", "Torna al sommario"
   l.store "Tag", ""
 
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", ""
-  l.store "1 article", ""
-  l.store "%d articles", ""
-
   # app/helpers/admin/content_helper.rb
-  l.store "Destroy this draft", ""
 
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", ""
   l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
-  l.store "%d comments", ""
-  l.store "no comments", "nessun commento"
-  l.store "1 comment", ""
   l.store "no trackbacks", "nessun trackback"
   l.store "1 trackback", ""
   l.store "%d trackbacks", ""
 
   # app/models/article.rb
-  l.store "Original article writen by", ""
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
@@ -133,16 +108,11 @@ Localization.define("it_IT") do |l|
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
   l.store "Just Marked As Ham", ""
   l.store "Ham", ""
-  l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
-  l.store "Spam", ""
-
   l.store "Reorder", "Riordina"
   l.store "Sort alphabetically", "Ordina alfabeticamente"
 
@@ -168,9 +138,7 @@ Localization.define("it_IT") do |l|
   l.store "Delete this article", "Elimina articolo"
 
   l.store "Author", "Autore"
-  l.store "Feedback", "Commenti"
 
-  # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
 
@@ -188,56 +156,29 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
-  l.store "Total comments : %d", ""
-  l.store "Spam comments : %d", ""
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Select action", ""
   l.store "Delete Checked Items", "Elimina gli elementi selezionati"
-  l.store "Delete all spam", ""
   l.store "Mark Checked Items as Spam", "Segna come spam"
   l.store "Mark Checked Items as Ham", "Segna come confermati"
-  l.store "All comments", ""
   l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
   l.store "Limit to spam", "Limita a spam"
 
-  # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
   l.store "Url", "Sito"
 
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-  l.store "Comment", ""
-
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Commenti per"
 
-  # app/views/admin/feedback/index.html.erb
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Article", ""
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
-  l.store "Page settings", ""
   l.store "Permanent link", ""
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages","Pagine"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
   l.store "Delete this page", "Elimina questa pagina"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
-  l.store "Manage pages", ""
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", ""
@@ -245,7 +186,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Tipo di contenuto"
 
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Pagina precedente"
   l.store "Next page", "Pagina successiva"
 
@@ -278,13 +218,9 @@ Localization.define("it_IT") do |l|
   l.store "Use RSS description", ""
   l.store "RSS description message", ""
   l.store "Indexing", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Do not index tags", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -300,39 +236,26 @@ Localization.define("it_IT") do |l|
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "You can custom your URL structure using the following tags:", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
   l.store "Permalinks", ""
   l.store "Custom", ""
 
   l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
-  l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article tags (comma separated)", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
   l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Abilita commenti di defaault"
   l.store "Enable Trackbacks by default", "Abilita Trackbacks come default"
   l.store "Enable feedback moderation", "Abilita la moderazione dei feedback"
@@ -356,7 +279,6 @@ Localization.define("it_IT") do |l|
   l.store "Max Links", "Max Links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Il blog cancellera' automaticamente commenti e trackbacks che contengono un certo numero di link"
   l.store "Set to 0 to never reject comments", "Inserisci 0 per accettare sempre i commenti."
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Tuo blog "
@@ -383,9 +305,7 @@ Localization.define("it_IT") do |l|
   l.store "Meta description", ""
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Index tags", ""
-  l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Search Engine Optimization", ""
@@ -431,14 +351,10 @@ Localization.define("it_IT") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Pubblica cambiamenti"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
-  l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -509,7 +425,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/users/index.html.erb
   l.store "New User", "Nuovo utente"
-  l.store "Comments", ""
   l.store "State", ""
   l.store "%s user", ""
   l.store "Manage users", ""
@@ -517,39 +432,25 @@ Localization.define("it_IT") do |l|
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Aggiungi Utente"
 
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Scritto da"
   l.store "Continue reading", ""
 
-  # app/views/articles/_comment.html.erb
   l.store "said", "dice"
-  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", ""
-
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Tuo nome "
   l.store "Your email", "Tua email"
   l.store "Your message", "Tuo messaggio"
   l.store "Comment Markup Help", "Aiuto sul markup dei comemnti"
   l.store "Preview comment", "Anteprima commento"
   l.store "leave url/email", ""
-
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "Da"
 
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Nessun articolo trovato"
   l.store "posted in", ""
 
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "sta per dire"
 
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Ci sono"
 
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Commenta"
   l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Usa il link seguente per fare un trackback dal tuo sito"
@@ -566,13 +467,6 @@ Localization.define("it_IT") do |l|
   l.store "AIM:", ""
   l.store "Twitter:", ""
   l.store "About %s", ""
-
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
 
   # app/views/setup/index.html.erb
   l.store "Welcome", ""
@@ -591,7 +485,6 @@ Localization.define("it_IT") do |l|
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
 
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
   l.store "Continue reading...", ""
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
@@ -600,14 +493,8 @@ Localization.define("it_IT") do |l|
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
   l.store "Read full article", "Leggi articolo completo"
-  l.store "comment", ""
   l.store "trackback", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
   l.store "Name %s", ""
   l.store "enabled", ""
   l.store "never displayed", ""
@@ -623,29 +510,20 @@ Localization.define("it_IT") do |l|
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
 
-  # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", ""
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
-  l.store "%d comment", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", ""
   l.store "Your website", ""
 
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks per"
 
-  # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", ""
 
-  l.store "Read all articles in %s", ""
 
   l.store "Previous", ""
 

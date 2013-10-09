@@ -6,6 +6,45 @@ zh-CN:
       last: "Last"
   admin:
     dashboard:
+      welcome:
+        today: "Today"
+        articles_and_comments_count_since: "在你上次离开后，新增%{articles_count}篇文章和%{comments_count}个评价"
+        running_publify: "你正在使用的是Publify %{version}"
+        content: "Content"
+        articles_count:
+          zero: "没有文章"
+          one: "一篇文章"
+          other: "%{count}篇文章"
+        your_articles_count:
+          zero: "no article writen by you"
+          one: "1 article writen by you"
+          other: "%{count} articles writen by you"
+        drafts_count:
+          zero: "no draft"
+          one: "1 draft"
+          other: "%{count} drafts"
+        pages_count:
+          zero: "no page"
+          one: "1 page"
+          other: "%{count} pages"
+        notes_count:
+          zero: "no note"
+          one: "1 note"
+          other: "%{count} notes"
+        feedback: "回应"
+        comments_count:
+          zero: "没有评论"
+          one: "一条评论"
+          other: "%{count}条评论"
+        approved_count:
+          zero: "no approved"
+          other: "%{count} approved"
+        unconfirmed_count:
+          zero: "no unconfirmed"
+          other: "%{count} unconfirmed"
+        spam_count:
+          zero: "no spam"
+          other: "%{count} spam"
       overview:
         dashboard_explain: "这里給你一個快速的概览，让你知道你的博客发生什么事情了。也许你想要%{available_actions}"
         write_a_post: "写一篇文章"

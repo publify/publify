@@ -48,7 +48,6 @@ Localization.define("nb_NO") do |l|
   l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"
   l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify. Hva med å oppgradere til %s?"
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Slettet"
   l.store "Not found", "Ikke funnet"
   l.store "Deleted %d item(s)", "Slettet %d enheter"
@@ -60,7 +59,6 @@ Localization.define("nb_NO") do |l|
   l.store "Comment was successfully created.", "Kommentar opprettet"
   l.store "Comment was successfully updated.", "Kommentar oppdatert"
 
-  # app/controllers/admin/pages_controller.rb
   l.store "Page was successfully created.", "Side opprettet"
   l.store "Page was successfully updated.", "Side oppdatert"
 
@@ -132,17 +130,10 @@ Localization.define("nb_NO") do |l|
   l.store "Show help on Publify macros", "Vis hjelp i Publify makroer"
   l.store "Update settings", "Oppdater innstillinger"
   l.store "Back to list", "Tilbake til listen"
-  l.store "Tag", "Tag"
-
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", "ingen artikler"
-  l.store "1 article", "1 artikkel"
-  l.store "%d articles", "%d artikler"
 
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Slett dette utkastet"
 
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", "Vis samtale"
   l.store "Flag as %s", "Flagg som %s"
 
@@ -150,9 +141,6 @@ Localization.define("nb_NO") do |l|
   l.store "%%d. %%b", ""
   l.store "Are you sure you want to delete this %s?", "Er du sikker på at du vil slette denne %s?"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%d comments", "%d kommentarer"
-  l.store "no comments", "ingen kommentarer"
-  l.store "1 comment", "1 kommentar"
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
@@ -161,7 +149,6 @@ Localization.define("nb_NO") do |l|
   l.store "You need a permalink format with an identifier : %%title%%", "Du må bruke et permalenkeformat med identifikator: %%title%%"
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Kan ikke slutte på .rss eller .atom. Disse er reserverte for feed-URLer"
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", "Uklassifisert"
   l.store "Just Presumed Ham", "Kun antatt Ham"
   l.store "Ham?", "Ham?"
@@ -205,12 +192,8 @@ Localization.define("nb_NO") do |l|
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
   l.store "Articles", "Artikler"
-
   l.store "Author", "Forfatter"
   l.store "Date", "Dato"
-  l.store "Feedback", "Diskusjon"
-
-  # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Siste kommentarer"
 
   # app/views/admin/dashboard/_popular.html.erb
@@ -227,16 +210,12 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Velkommen tilbake, %s!"
-  l.store "%d articles and %d comments were posted since your last connexion", "%d artikler og %d kommentarer siden forrige besøk"
-  l.store "You're running Publify %s", "Du bruker Publify versjon %s"
-  l.store "Content", "Innhold"
   l.store "Total posts:", "Antall artikler:"
   l.store "Your posts:", "Dine artikler:"
   l.store "Total comments:", "Antall kommentarer:"
   l.store "Spam comments:", "Spam-kommentarer:"
   l.store "In your spam queue:", "I Spam-køen:"
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Select action", "Velg handling"
   l.store "Delete Checked Items", "Slett markerte enheter"
   l.store "Delete all spam", "Slett all Spam"
@@ -250,39 +229,31 @@ Localization.define("nb_NO") do |l|
   l.store "Unapproved comments", "Kommentarer på vent"
   l.store "Limit to spam", "Begrens til Spam"
 
-  # app/views/admin/feedback/_form.html.erb
   l.store "Add a comment", "Legg til kommentar"
   l.store "Url", "URL"
 
-  # app/views/admin/feedback/_spam.html.erb
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Denne kommentaren av <strong>%s</strong> er flagget som Spam, %s?"
 
-  # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "Kommentarer for %s"
   l.store "Comment Author", "Kommentarforfatter"
   l.store "Comment", "Kommentar"
 
-  # app/views/admin/feedback/destroy.html.erb
   l.store "Are you sure you want to delete this %s", "Er du sikker på at du vil slette denne %s?"
   l.store "Delete this feedback", "Slett feedback"
   l.store "%s", ""
 
-  # app/views/admin/feedback/index.html.erb
   l.store "Search Comments and Trackbacks that contain", "Søk etter kommentarer og Trackbacks som inneholder"
   l.store "Article", "Artikkel"
   l.store "Select all", "Velg alle"
 
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
   l.store "Page settings", "Sideinnstillinger"
   l.store "Permanent link", "Permanent lenke"
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages", "Sider"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne siden"
   l.store "Delete this page", "Slett denne side"
 
-  # app/views/admin/pages/index.html.erb
   l.store "New Page", "Ny side"
   l.store "Manage pages", "Administrer sider"
 
@@ -303,7 +274,6 @@ Localization.define("nb_NO") do |l|
   # app/views/admin/redirects/new.html.erb
   l.store "%s Redirect", "%s omdirigering"
 
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Forrige side"
   l.store "Next page", "Neste side"
 
@@ -336,9 +306,7 @@ Localization.define("nb_NO") do |l|
   l.store "RSS description message", "Melding for RSS-beskrivelse"
   l.store "Indexing", "Indekserer"
   l.store "Do not index categories", "Ikke indekser kategorier"
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Do not index tags", "Ikke indekser tagger"
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
   l.store "Robots.txt", "Robots.txt"
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Din robots.txt er ikke skrivbar. Publify vil ikke kunne skrive til den"
   l.store "Use dofollow in comments", "Bruk dofollow i kommentarer"
@@ -386,8 +354,6 @@ Localization.define("nb_NO") do |l|
   l.store "Replaced by the archive date", "Erstattet av arkivdato"
   l.store "Titles", "Titler"
 
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback-moderering"
@@ -472,14 +438,11 @@ Localization.define("nb_NO") do |l|
   l.store "Get more plugins", "Hent flere plugins"
   l.store "Sidebar", ""
   l.store "Publish changes", "Publiser endringer"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
-  l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -558,10 +521,8 @@ Localization.define("nb_NO") do |l|
   # app/views/articles/_article_excerpt.html.erb
   l.store "Continue reading", "Fortsett å lese"
 
-  # app/views/articles/_comment_failed.html.erb
   l.store "Oops, something wrong happened, the comment could not be saved", "Ojsann, noe galt skjedde. Kommentaren ble ikke lagret"
 
-  # app/views/articles/_comment_form.html.erb
   l.store "Your name", "Ditt navn"
   l.store "Your email", "Din epost"
   l.store "Your message", "Din beskjed"
@@ -569,14 +530,12 @@ Localization.define("nb_NO") do |l|
   l.store "Preview comment", "Vis eksempel på kommentar"
   l.store "leave url/email", "legg igjen URL/epost"
 
-  # app/views/articles/_comment_list.html.erb
   l.store "No comments", "Ingen kommentarer"
 
   # app/views/articles/archives.html.erb
   l.store "No articles found", "Fant ingen artikler"
   l.store "posted in", "postet i"
 
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "vil snart si"
 
   # app/views/articles/groupings.html.erb
@@ -601,16 +560,10 @@ Localization.define("nb_NO") do |l|
   l.store "About %s", "Om %s"
   l.store "This author has not published any article yet", "Forfatteren har ikke publisert noen artikler enda"
 
-  # app/views/comments/_comment.html.erb
   l.store "said", "sa"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den."
 
-  # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", "Denne kommentaren har blitt flagget for godkjenning av moderator."
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
 
   # app/views/setup/index.html.erb
   l.store "Welcome", "Velkommen"
@@ -642,7 +595,6 @@ Localization.define("nb_NO") do |l|
   l.store "comment", "kommentar"
   l.store "trackback", ""
 
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
   l.store "enabled", "aktivert"
@@ -670,7 +622,6 @@ Localization.define("nb_NO") do |l|
   l.store "Published on", "Publisert den"
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", "Epostadresse"
   l.store "Your website", "Din hjemmeside"
 

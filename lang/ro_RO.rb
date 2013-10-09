@@ -19,15 +19,12 @@ Localization.define("ro_RO") do |l|
   l.store "Article was successfully created", ""
   l.store "Article was successfully updated.", ""
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
-  l.store "Marked %d item(s) as Spam", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "All spam have been deleted", ""
   l.store "Comment was successfully created.", ""
   l.store "Comment was successfully updated.", ""
 
@@ -39,13 +36,11 @@ Localization.define("ro_RO") do |l|
   l.store "User was successfully updated.", ""
 
   # app/controllers/admin/resources_controller.rb
-  l.store "Error occurred while updating Content Type.", ""
   l.store "complete", ""
   l.store "File uploaded: ", ""
   l.store "Unable to upload", ""
   l.store "Metadata was successfully updated.", ""
   l.store "Not all metadata was defined correctly.", ""
-  l.store "Content Type was successfully updated.", ""
 
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
@@ -76,7 +71,6 @@ Localization.define("ro_RO") do |l|
   l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
-  l.store "page", ""
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
@@ -94,16 +88,7 @@ Localization.define("ro_RO") do |l|
   l.store "or", "sau"
   l.store "Save", "Salvează"
   l.store "Edit", "Editare"
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
-  l.store "%d comments", ""
-  l.store "no comments", "fără comentarii"
-  l.store "1 comment", ""
   l.store "no trackbacks", "fără retrolegături"
-  l.store "1 trackback", ""
-  l.store "%d trackbacks", ""
 
   # app/helpers/content_helper.rb
   l.store "Posted in", ""
@@ -112,23 +97,17 @@ Localization.define("ro_RO") do |l|
   l.store "%d posts", ""
 
   # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  # app/models/feedback/states.rb
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
   l.store "Just Marked As Ham", ""
   l.store "Ham", ""
-  l.store "Spam?", ""
-  l.store "Just Marked As Spam", ""
-  l.store "Spam", ""
 
   l.store "Reorder", "Ordonează"
   l.store "Sort alphabetically", "Ordonează alfabetic"
@@ -165,53 +144,28 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
-  l.store "%d articles and %d comments were posted since your last connexion", ""
-  l.store "You're running Publify %s", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Total comments : %d", ""
-  l.store "Spam comments : %d", ""
 
-  # app/views/admin/feedback/_button.html.erb
   l.store "Delete Checked Items", ""
-  l.store "Delete all spam", ""
-  l.store "Mark Checked Items as Spam", ""
   l.store "Mark Checked Items as Ham", ""
   l.store "All comments", ""
   l.store "Limit to ham", ""
   l.store "Unapproved comments", ""
   l.store "Limit to spam", "Doar spam"
-
-  # app/views/admin/feedback/_form.html.erb
-  l.store "Add a comment", ""
   l.store "Url", "Adresa"
-
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", ""
   l.store "Comment Author", ""
-  l.store "Comment", ""
-
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "Comentariile la"
-
-  # app/views/admin/feedback/index.html.erb
-  l.store "Article", ""
-
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
-  l.store "Page settings", ""
   l.store "Permanent link", ""
 
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages","Pagini"
   l.store "Are you sure you want to delete the page", "Ești sigur că dorești să ștergi această pagină"
   l.store "Delete this page", "Șterge această pagină"
 
   # app/views/admin/pages/index.html.erb
-  l.store "New Page", ""
   l.store "Manage pages", ""
 
   # app/views/admin/profiles/index.html.erb
@@ -241,13 +195,11 @@ Localization.define("ro_RO") do |l|
   # app/views/admin/resources/index.html.erb
   l.store "Filename", "Nume de fișier"
   l.store "Browse", ""
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Page", ""
   l.store "Show pages for this blog", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
@@ -269,7 +221,6 @@ Localization.define("ro_RO") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "You may want to moderate feedback when turning this on", ""
   l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
@@ -297,7 +248,6 @@ Localization.define("ro_RO") do |l|
   l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Author page", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -311,13 +261,9 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""
-
-  # app/views/admin/settings/feedback.html.erb
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Implicit comentariile să fie active"
   l.store "Enable Trackbacks by default", "Implicit retrolegăturile să fie active"
   l.store "Enable feedback moderation", "Activează moderarea comentariilor"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.", ""
   l.store "Comments filter", "Filtru pentru comentarii"
   l.store "Enable gravatars", "Activează gravataruri"
   l.store "Show your email address", "Arată adresa ta de email"
@@ -337,7 +283,6 @@ Localization.define("ro_RO") do |l|
   l.store "Max Links", "Număr maxim de legături"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături"
   l.store "Set to 0 to never reject comments", "Comentariile nu vor fi respinse niciodată dacă alegi valoarea 0"
-  l.store "Feedback settings", ""
 
   # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Site"
@@ -543,15 +488,12 @@ Localization.define("ro_RO") do |l|
   l.store "Atom feed", ""
   l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
-  l.store "comment", ""
   l.store "trackback", ""
 
   # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", ""
 
   # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
   l.store "Name %s", ""
   l.store "enabled", ""
   l.store "never displayed", ""
@@ -572,7 +514,6 @@ Localization.define("ro_RO") do |l|
 
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
-  l.store "%d comment", ""
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
@@ -753,7 +694,6 @@ Localization.define("ro_RO") do |l|
   l.store "Write an Article", "Scrie un articol"
   l.store "You are now logged out of the system", "Ați ieșit din aplicație"
   l.store "You can add it to the following categories", "Îl puteți adăuga următoarelor categorii"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", ""
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Opțional, puteți dezactiva comentariile non-AJAX. Publify va folosi întotdeauna AJAX pentru trimiterea comentariilor dacă funcționează Javascript la utilizator, astfel că orice comentariu care nu vine prin AJAX trebuie să vină fie de la spammeri, fie de la vizitatori fără Javascript."
   l.store "by", "de"
   l.store "on", "la"

@@ -37,21 +37,9 @@ Localization.define("ru_RU") do |l|
   l.store "Back to list", "Назад к списку"
   l.store "Tag", "Тег"
 
-  # app/helpers/admin/categories_helper.rb
-  l.store "no articles", "нет постов"
-  l.store "1 article", "1 пост"
-  l.store "%d articles", "постов: %d"
-
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Удалить этот черновик"
-
-  # app/helpers/application_helper.rb
-  l.store "%%d. %%b", ""
   l.store "Are you sure you want to delete this %s?", "Вы уверены, что хотите удалить %s?"
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%d comments", "комментариев: %d"
-  l.store "no comments", "нет комментариев"
-  l.store "1 comment", "1 комментарий"
 
   # app/models/article.rb
   l.store "Original article writen by", "Автор оригинальной статьи —"
@@ -83,7 +71,6 @@ Localization.define("ru_RU") do |l|
 
   l.store "Author", "Автор"
   l.store "Date", "Дата"
-  l.store "Feedback", "Комментарии"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
@@ -95,8 +82,6 @@ Localization.define("ru_RU") do |l|
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Добро пожаловать снова, %s!"
-  l.store "%d articles and %d comments were posted since your last connexion", "%d постов и %d комментариев получено с вашего последнего посещения" # XXX: connexion?
-  l.store "You're running Publify %s", "Работает Publify %s"
   l.store "Total posts : %d", "Всего постов: %d"
   l.store "Your posts : %d", "Ваших постов: %d"
   l.store "Total comments : %d", "Всего комментариев: %d"

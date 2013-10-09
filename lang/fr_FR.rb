@@ -33,7 +33,6 @@ Localization.define("fr_FR") do |l|
   l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"
   l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas %s"
 
-  # app/controllers/admin/feedback_controller.rb
   l.store "Deleted", "Supprimé"
   l.store "Not found", "Introuvable"
   l.store "Deleted %d item(s)", "%d commentaires ont été supprimés"
@@ -127,7 +126,6 @@ Localization.define("fr_FR") do |l|
   l.store "Article type", ""
   l.store "Default", ""
 
-  # app/helpers/admin/feedback_helper.rb
   l.store "Show conversation", "Afficher le fil"
   l.store "Flag as %s", "Marquer comme %s"
 
@@ -161,38 +159,19 @@ Localization.define("fr_FR") do |l|
 
   l.store "Author", "Auteur"
   l.store "Date", "Date"
-  l.store "Feedback", "Commentaires"
 
   l.store "Latest Comments", "Derniers commentaires"
 
-  # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Billets les plus populaires"
   l.store "Nothing to show yet", "Rien à afficher pour l'instant"
 
-  # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", "Derniers articles"
-  l.store "No posts yet, why don't you start and write one", "Vous n'avez encore écrit aucun article, pourquoi ne pas commencer par là"
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", "Dernières nouvelles du blog officiel de Publify"
-  l.store "Oh no, nothing new", "Non, rien de nouveau"
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Bienvenue, %s !"
-  l.store "%d articles and %d comments were posted since your last connexion", "Depuis votre dernière connexion, %d articles et %d commentaires ont été publiés"
-  l.store "You're running Publify %s", "Vous utilisez Publify %s"
-  l.store "Content", "Contenu"
+
   l.store "Total posts:", "Nombre total d'articles :"
   l.store "Your posts:", "Vos articles :"
-  l.store "Categories:", ""
   l.store "Total comments:", "Nombre total de commentaires :"
   l.store "Spam comments:", "Nombre total de spam :"
   l.store "In your spam queue:", "En attente de modération :"
-  l.store "articles writen by you", "articles que vous avez écris"
-  l.store "drafts", "brouillons"
-  l.store "draft", "brouillon"
-  l.store "comments", "commentaires"
-  l.store "approved", "approuvés"
   l.store "unconfirmed", "non validés"
 
   # app/views/admin/dashboard/_dafts.html.erb
@@ -227,7 +206,6 @@ Localization.define("fr_FR") do |l|
   l.store "Spam", "Spam"
   l.store "Presumed ham", "Probablement valide"
   l.store "Presumed spam", "Probablement du spam"
-  l.store "Article", "Article"
   l.store "Select all", "Tout sélectionner"
 
   # app/views/admin/pages/_form.html.erb
@@ -255,7 +233,6 @@ Localization.define("fr_FR") do |l|
   l.store "Leave empty to shorten a link", "Laissez vide pour créer un lien court"
   l.store "To", "Vers"
 
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Page précédente"
   l.store "Next page", "Page suivante"
 
@@ -329,8 +306,6 @@ Localization.define("fr_FR") do |l|
   l.store "Title settings", "Paramétrage des titres"
   l.store "Title template", "Titre"
   l.store "Description template", "Description"
-  l.store "Articles", "Articles"
-  l.store "Pages","Pages"
   l.store "Paginated archives", "Archives paginées"
   l.store "Dated archives", "Archives par date"
   l.store "Author page", "Page d'auteur"
@@ -358,7 +333,6 @@ Localization.define("fr_FR") do |l|
   l.store "Message", "Message"
   l.store "Error messages", "Messages d'erreur"
 
-  # app/views/admin/settings/feedback.html.erb
   l.store "Spam protection", "Protection contre le spam"
   l.store "Enable comments by default", "Activer les commentaires par défaut"
   l.store "Enable Trackbacks by default", "Activer les rétroliens par défaut"
@@ -739,7 +713,6 @@ Localization.define("fr_FR") do |l|
   l.store "Delete this Post Type", ""
   l.store "Delete this article", "Supprimer ce billet"
   l.store "Delete this category", "Supprimer cette catégorie"
-  l.store "Delete this feedback", ""
   l.store "Delete this page", "Supprimer cette page"
   l.store "Delete this redirection", ""
   l.store "Delete this tag", "Supprimer ce label"
