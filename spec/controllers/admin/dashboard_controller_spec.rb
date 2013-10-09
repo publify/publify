@@ -23,10 +23,6 @@ describe Admin::DashboardController do
       response.should have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
     
-    it "should have a link to plugins.publify.co" do
-      response.should have_selector("a", :href => "http://plugins.publify.co" , :content => "download some plugins")
-    end
-    
     it "should have a link to a new article" do
       response.should have_selector("a", :href => "/admin/content/new" , :content => "write a post")
     end
@@ -86,10 +82,6 @@ describe Admin::DashboardController do
       response.should_not have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
     end
     
-    it "should not have a link to plugins.publify.co" do
-      response.should_not have_selector("a", :href => "http://plugins.publify.co" , :content => "download some plugins")
-    end
-    
     it "should have a link to a new article" do
       response.should have_selector("a", :href => "/admin/content/new" , :content => "write a post")
     end
@@ -139,10 +131,6 @@ describe Admin::DashboardController do
     
     it "should not have a link to the sidebar" do
       response.should_not have_selector("a", :href => "/admin/sidebar" , :content => "enable plugins")
-    end
-    
-    it "should not have a link to plugins.publify.co" do
-      response.should_not have_selector("a", :href => "http://plugins.publify.co" , :content => "download some plugins")
     end
     
     it "should not have a link to a new article" do
