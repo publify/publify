@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Admin::ProfilesController do
+  render_views
   let!(:blog) { create(:blog) }
 
   let(:alice) { create(:user, login: 'alice', profile: create(:profile_admin, label: Profile::ADMIN)) }
