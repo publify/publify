@@ -6,6 +6,9 @@ fr:
       last: "Last"
   admin:
     dashboard:
+      drafts:
+        your_drafts: "Vos brouillons"
+        no_drafts_yet: "Pas de brouillons, pourquoi ne pas en écrire un"
       welcome:
         today: "Aujourd'hui"
         articles_and_comments_count_since: "Depuis votre dernière connexion, %{articles_count} articles et %{comments_count} commentaires ont été publiés"

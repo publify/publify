@@ -6,6 +6,9 @@ pt-BR:
       last: "Anterior"
   admin:
     dashboard:
+      drafts:
+        your_drafts: "Your drafts"
+        no_drafts_yet: "No drafts yet, why don't you start and write one"
       welcome:
         today: "Hoje"
         articles_and_comments_count_since: "%{articles_count} artigos e %{comments_count} comentários foram postados desde a sua última conexão"

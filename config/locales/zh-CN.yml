@@ -6,6 +6,9 @@ zh-CN:
       last: "Last"
   admin:
     dashboard:
+      drafts:
+        your_drafts: "Your drafts"
+        no_drafts_yet: "No drafts yet, why don't you start and write one"
       welcome:
         today: "Today"
         articles_and_comments_count_since: "在你上次离开后，新增%{articles_count}篇文章和%{comments_count}个评价"

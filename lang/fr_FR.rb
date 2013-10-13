@@ -174,12 +174,6 @@ Localization.define("fr_FR") do |l|
   l.store "In your spam queue:", "En attente de modération :"
   l.store "unconfirmed", "non validés"
 
-  # app/views/admin/dashboard/_dafts.html.erb
-  l.store "Your drafts", "Vos brouillons"
-  l.store "No drafts yet, why don't you start and write one", "Pas de brouillons, pourquoi ne pas en écrire un"
-
-  # app/views/admin/dashboard/_dafts.html.erb
-
   # app/views/admin/feedback/_button.html.erb
   l.store "Select action", "Choisir de..."
   l.store "Delete Checked Items", "Supprimer les commentaires sélectionnés"

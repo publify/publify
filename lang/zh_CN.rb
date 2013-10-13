@@ -156,7 +156,6 @@ Localization.define("zh_CN") do |l|
   l.store "Really delete attachment", "确定删除附件？"
   l.store "Add another attachment", "新增其他附件"
 
-  # app/views/admin/content/_drafts.html.erb
   l.store "Drafts", "草稿"
 
   # app/views/admin/content/_form.html.erb

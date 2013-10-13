@@ -6,6 +6,9 @@ es-MX:
       last: "Last"
   admin:
     dashboard:
+      drafts:
+        your_drafts: "Your drafts"
+        no_drafts_yet: "No drafts yet, why don't you start and write one"
       welcome:
         today: "Today"
         articles_and_comments_count_since: "%{articles_count} articles and %{comments_count} comments were posted since your last connexion"
