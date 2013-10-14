@@ -3,7 +3,7 @@
   <ul class='unstyled'>
     <% if @drafts.empty? %>
       <li class='alert'>
-      <%= link_to t("no_drafts_yet"), controller: 'content', action: 'new' %> ?
+      <%= link_to t(".no_drafts_yet"), controller: 'content', action: 'new' %> ?
       </li>
     <% else %>
       <% for post in @drafts -%>
