@@ -138,29 +138,10 @@ Localization.define("ro_RO") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
 
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
-  l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
-  l.store "Welcome back, %s!", ""
-  l.store "Total posts : %d", ""
-  l.store "Your posts : %d", ""
-  l.store "Total comments : %d", ""
-
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
-  l.store "Unapproved comments", ""
   l.store "Limit to spam", "Doar spam"
   l.store "Url", "Adresa"
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
   l.store "Comments for", "Comentariile la"
   l.store "Online", "Online"
-  l.store "Permanent link", ""
-
   l.store "Pages","Pagini"
   l.store "Are you sure you want to delete the page", "Ești sigur că dorești să ștergi această pagină"
   l.store "Delete this page", "Șterge această pagină"

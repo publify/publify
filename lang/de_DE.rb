@@ -154,29 +154,8 @@ Localization.define("de_DE") do |l|
   # app/views/admin/dashboard/_publify_dev.html.erb
   l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
-  l.store "Welcome back, %s!", ""
-  l.store "Total posts : %d", ""
-  l.store "Your posts : %d", ""
-  l.store "Total comments : %d", ""
-  l.store "Spam comments : %d", ""
-
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
   l.store "Limit to spam", "Einschränken auf Spam"
-
-  l.store "Add a comment", ""
   l.store "Url", "Url"
-
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-  l.store "Comment", ""
-
   l.store "Comments for", "Kommentare für"
 
   # app/views/admin/pages/_form.html.erb

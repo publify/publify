@@ -24,7 +24,6 @@ Localization.define("zh_CN") do |l|
   l.store "Deleted", "删除"
   l.store "Not found", "不存在"
   l.store "Deleted %d item(s)", "删除%d项"
-  l.store "Marked %d item(s) as Ham", ""
   l.store "Marked %d item(s) as Spam", "标记%d项为垃圾信息"
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", "未实现"
@@ -127,18 +126,6 @@ Localization.define("zh_CN") do |l|
 
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
-  l.store "Spam?", ""
-
-  # app/views/accounts/login.html.erb
-  l.store "Submit", "提交"
-
-  l.store "Reorder", "重新排序"
   l.store "Sort alphabetically", "依字母顺序排序"
 
   l.store "Are you sure you want to delete the category ", "确认删除此分类？"
@@ -197,17 +184,9 @@ Localization.define("zh_CN") do |l|
   l.store "Your posts : %d", "你的文章：%d"
   l.store "Total comments : %d", "评论总计：%d"
   l.store "Spam comments : %d", "垃圾评论：%d"
-
-  # app/views/admin/feedback/_button.html.erb
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
   l.store "Limit to spam", "限制垃圾郵件"
-
   l.store "Add a comment", ""
   l.store "Url", "Url"
-
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
   l.store "Comments for %s", ""
@@ -578,7 +557,6 @@ Localization.define("zh_CN") do |l|
   l.store "never displayed", ""
   l.store "Website", ""
   l.store "Textile enabled", ""
-  l.store "Markdown enabled", ""
   l.store "required", ""
 
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb

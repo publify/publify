@@ -200,11 +200,6 @@ Localization.define("nl_NL") do |l|
   l.store "Total comments : %d", "Aantal reacties : %d"
   l.store "Spam comments : %d", "Spam reacties : %d"
 
-  l.store "Select action", "Kies actie"
-  l.store "Delete Checked Items", "Verwijder aangevinkte reacties"
-  l.store "Delete all spam", "Verwijder alle spam"
-  l.store "Mark Checked Items as Spam", "Markeer aangevinkte reacties als Spam"
-  l.store "Mark Checked Items as Ham", "Markeer aangevinkte reacties als Ham"
   l.store "All comments", "Alle commentaren"
   l.store "Limit to ham", "Alleen ham"
   l.store "Unapproved comments", "Niet goedgekeurde"

@@ -158,14 +158,7 @@ Localization.define("it_IT") do |l|
   l.store "Welcome back, %s!", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
-
-  l.store "Select action", ""
-  l.store "Delete Checked Items", "Elimina gli elementi selezionati"
-  l.store "Mark Checked Items as Spam", "Segna come spam"
-  l.store "Mark Checked Items as Ham", "Segna come confermati"
-  l.store "Limit to ham", ""
   l.store "Limit to spam", "Limita a spam"
-
   l.store "Url", "Sito"
 
   l.store "Comments for", "Commenti per"
@@ -270,7 +263,6 @@ Localization.define("it_IT") do |l|
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Abilitando la protezione contro lo spam fa si che il blog compari gli IP di chi invia i commenti e anche il loro contenuto con una blacklist remota. E' una buona difesa contro gli spam robot"
   l.store "Enable spam protection", "Abilita la protezione spam"
   l.store "Akismet Key", "Chiave Akismet"
-  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", ""
   l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", ""
   l.store "Disable comments after", "Disabilita commenti dopo "

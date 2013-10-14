@@ -174,14 +174,6 @@ Localization.define("fr_FR") do |l|
   l.store "In your spam queue:", "En attente de modération :"
   l.store "unconfirmed", "non validés"
 
-  # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", "Choisir de..."
-  l.store "Delete Checked Items", "Supprimer les commentaires sélectionnés"
-  l.store "Delete all spam", "Supprimer tout le spam"
-  l.store "Mark Checked Items as Spam", "Marquer ces commentaires comme du spam"
-  l.store "Mark Checked Items as Ham", "Valider ces commentaires"
-  l.store "Submit", "Envoyer"
-
   # app/views/admin/feedback/_spam.html.erb
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Ce commentaire de <strong>%s</strong> a été marqué comme spam, %s ?"
 

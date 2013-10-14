@@ -216,11 +216,6 @@ Localization.define("nb_NO") do |l|
   l.store "Spam comments:", "Spam-kommentarer:"
   l.store "In your spam queue:", "I Spam-køen:"
 
-  l.store "Select action", "Velg handling"
-  l.store "Delete Checked Items", "Slett markerte enheter"
-  l.store "Delete all spam", "Slett all Spam"
-  l.store "Mark Checked Items as Spam", "Flagg markerte enheter som Spam"
-  l.store "Mark Checked Items as Ham", "Flagg markerte enheter som Ham"
   l.store "Display", "Vis"
   l.store "All comments", "Alle kommentarer"
   l.store "Limit to ham", "Begrens til Ham"

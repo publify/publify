@@ -176,32 +176,9 @@ Localization.define("pt_BR") do |l|
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
-  l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
-  l.store "Welcome back, %s!", ""
-  l.store "Total posts : %d", ""
-  l.store "Your posts : %d", ""
-  l.store "Total comments : %d", ""
-
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
   l.store "Limit to spam", "Limitar a spam"
-
   l.store "Url", "Url"
-
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-
   l.store "Comments for", "Comentarios para"
-
-  l.store "Article", ""
-
   l.store "Online", "Online"
   l.store "Permanent link", ""
 

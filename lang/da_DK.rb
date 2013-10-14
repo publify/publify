@@ -163,15 +163,7 @@ Localization.define("da_DK") do |l|
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Total comments : %d", "Total kommentarer : %d"
   l.store "Spam comments : %d", "Spam kommentarer : %d"
-
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
-
-  l.store "Add a comment", ""
   l.store "Url", "Url"
-
   l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
 
   l.store "Comments for %s", ""

@@ -147,18 +147,11 @@ Localization.define("lt_LT") do |l|
   l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
 
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", ""
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
-
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "Limit to ham", ""
   l.store "Limit to spam", "Spamo limitas"
-
   l.store "Url", "Url adresas"
-
   l.store "Comments for", "Komentarai"
 
   l.store "Online", "Pasiekiamas"

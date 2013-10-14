@@ -22,7 +22,6 @@ Localization.define("zh_TW") do |l|
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
-  l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "All spam have been deleted", ""
@@ -121,7 +120,6 @@ Localization.define("zh_TW") do |l|
   l.store "Unclassified", ""
   l.store "Just Presumed Ham", ""
   l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
   l.store "Ham", ""
 
 
@@ -175,16 +173,7 @@ Localization.define("zh_TW") do |l|
   l.store "Your posts : %d", "你的發文：%d"
   l.store "Total comments : %d", "評論總計：%d"
   l.store "Spam comments : %d", "垃圾評論：%d"
-
-  # app/views/admin/feedback/_button.html.erb
-  l.store "Select action", ""
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
   l.store "Limit to spam", "限制垃圾郵件"
-
-  # app/views/admin/feedback/_form.html.erb
   l.store "Url", "Url"
 
   # app/views/admin/feedback/_spam.html.erb
@@ -541,7 +530,6 @@ Localization.define("zh_TW") do |l|
   l.store "never displayed", ""
   l.store "Website", ""
   l.store "Textile enabled", ""
-  l.store "Markdown enabled", ""
   l.store "required", ""
 
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb

@@ -149,19 +149,9 @@ Localization.define("es_MX") do |l|
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Total comments : %d", ""
-
-  l.store "Select action", ""
-  l.store "Delete Checked Items", ""
-  l.store "Mark Checked Items as Ham", ""
-  l.store "All comments", ""
-  l.store "Limit to ham", ""
-
   l.store "Add a comment", ""
   l.store "Url", "Url"
-
-
   l.store "Comments for", "Comentarios para"
-
   l.store "Online", "Online"
   l.store "Permanent link", ""
 

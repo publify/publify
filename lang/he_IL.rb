@@ -184,15 +184,8 @@ Localization.define("he_IL") do |l|
   l.store "Your posts : %d", "הכתבות שלך: %d"
   l.store "Total comments : %d", "תגובות: %d"
   l.store "Spam comments : %d", "תגובות ספאם: %d"
-
-  l.store "Select action", ""
-  l.store "Delete Checked Items", "מחק פריטים שסומנו"
-  l.store "Mark Checked Items as Spam", "סווג פריטים שסומנו כספאם"
-  l.store "Mark Checked Items as Ham", "סווג פריטים שסומנו כלא-ספאם"
-  l.store "Limit to ham", ""
   l.store "Unapproved comments", "תגובות לא מאושרות"
   l.store "Limit to spam", "סווג כספאם"
-
   l.store "Url", "כתובת"
 
   l.store "Comments for %s", "תגובות עבור %s"

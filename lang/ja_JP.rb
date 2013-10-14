@@ -155,26 +155,15 @@ Localization.define("ja_JP") do |l|
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "人気記事"
 
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
-  l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "お帰りなさいませ、%s 様"
   l.store "Total posts : %d", "総投稿数"
   l.store "Your posts : %d", "あなたの投稿数"
   l.store "Total comments : %d", "総コメント数"
   l.store "Spam comments : %d", "スパムコメント数"
-
-  l.store "Delete Checked Items", "チェックした行を削除"
-  l.store "Delete all spam", "全てのスパムを削除する"
-  l.store "Mark Checked Items as Spam", "チェックした行をスパムにする"
-  l.store "Mark Checked Items as Ham", "チェックした行を承認する"
   l.store "All comments", "全てのコメント"
   l.store "Limit to ham", "有効コメント"
   l.store "Unapproved comments", "未承認コメント"
   l.store "Limit to spam", "スパムコメント"
-  l.store "Url", ""
   l.store "Comments for", "〜へコメント"
 
   l.store "Search Comments and Trackbacks that contain", "以下の語句を含むコメントおよびトラックバックを検索"
@@ -271,9 +260,6 @@ Localization.define("ja_JP") do |l|
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
   l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
 
   l.store "Enable comments by default", "デフォルトでコメントを有効にする"
   l.store "Enable Trackbacks by default", "デフォルトでトラックバックを許可する"
