@@ -58,21 +58,6 @@ Localization.define("pl_PL") do |l|
 
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-  l.store ", Articles for ", ""
-
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Anuluj"
-  l.store "Store", ""
   l.store "Delete", "Usuń"
   l.store "delete", ""
   l.store "Delete content", ""

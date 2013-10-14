@@ -80,7 +80,6 @@ Localization.define("zh_CN") do |l|
   l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "取消"
   l.store "Store", "保存"
   l.store "Delete", "删除"
   l.store "delete", "删除"
@@ -187,23 +186,8 @@ Localization.define("zh_CN") do |l|
   l.store "Limit to spam", "限制垃圾郵件"
   l.store "Add a comment", ""
   l.store "Url", "Url"
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-  l.store "Comment", ""
-
   l.store "Comments for", "做出评论"
-
-  l.store "Search Comments and Trackbacks that contain", ""
-  l.store "Article", ""
-
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "上線"
-  l.store "Page settings", ""
-  l.store "Permanent link", ""
-
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages","页数"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"

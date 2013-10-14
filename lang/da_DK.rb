@@ -64,20 +64,6 @@ Localization.define("da_DK") do |l|
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
 
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-  l.store ", Articles for ", ""
-
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  l.store "Cancel", "Anuller"
-  l.store "Store", ""
   l.store "Delete", "Slet"
   l.store "delete", ""
   l.store "Delete content", ""
@@ -164,12 +150,6 @@ Localization.define("da_DK") do |l|
   l.store "Total comments : %d", "Total kommentarer : %d"
   l.store "Spam comments : %d", "Spam kommentarer : %d"
   l.store "Url", "Url"
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-  l.store "Comment", ""
-
   l.store "Comments for", "Kommentarer for"
 
   l.store "Article", "Artikel"
@@ -481,47 +461,6 @@ Localization.define("da_DK") do |l|
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
   l.store "Trackbacks are disabled", ""
 
-  # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
-  l.store "About %s", ""
-
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Designed by %s ", ""
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
-  l.store "Continue reading...", ""
-  l.store "This entry was posted on %s", ""
-  l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
-  l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
-  l.store "or a %s from your own site", ""
-  l.store "comment", ""
-  l.store "trackback", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", "senere"
 
   # test/mocks/themes/typographic/views/articles/_comment_form.html.erb

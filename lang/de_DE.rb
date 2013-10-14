@@ -70,12 +70,6 @@ Localization.define("de_DE") do |l|
   l.store "Archives for ", ""
   l.store ", Articles for ", ""
 
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Abbrechen"
-  l.store "Store", ""
   l.store "Delete", "Löschen"
   l.store "delete", ""
   l.store "Delete content", ""
@@ -451,86 +445,6 @@ Localization.define("de_DE") do |l|
   l.store "Comments are disabled", "Kommentare sind deaktiviert"
   l.store "Trackbacks are disabled", ""
 
-  # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
-  l.store "About %s", ""
-
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-
-  # app/views/shared/_confirm.html.erb
-  # l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Powered by %s", ""
-  l.store "Designed by %s ", ""
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
-  l.store "Continue reading...", ""
-  l.store "This entry was posted on %s", ""
-  l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
-  l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
-  l.store "or a %s from your own site", ""
-  l.store "comment", ""
-  l.store "trackback", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
-  l.store "later", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
-  l.store "Name %s", ""
-  l.store "enabled", ""
-  l.store "never displayed", ""
-  l.store "Website", ""
-  l.store "Textile enabled", ""
-  l.store "Markdown enabled", ""
-  l.store "required", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
-
-  # themes/dirtylicious/layouts/default.html.erb
-  l.store "About", ""
-  l.store "Designed by %s ported to publify by %s ", ""
-
-  # themes/scribbish/layouts/default.html.erb
-  l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-  l.store "%d comment", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Email address", ""
-  l.store "Your website", ""
-
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackback für"
 
   l.store "Read all articles in %s", ""

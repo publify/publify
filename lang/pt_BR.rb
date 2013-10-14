@@ -77,13 +77,8 @@ Localization.define("pt_BR") do |l|
   l.store "Archives for", "Arquivos de"
   l.store "Archives for ", "Arquivos de"
   l.store ", Articles for ", "Artigos de"
-
-  # app/controllers/grouping_controller.rb
   l.store "page", "página"
   l.store "everything about", "tudo sobre"
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Cancelar"
   l.store "Store", "Salvar"
   l.store "Delete", "Deletar"
   l.store "delete", "deletar"
@@ -434,9 +429,6 @@ Localization.define("pt_BR") do |l|
 
   # app/views/articles/_comment.html.erb
   l.store "said", "dijo"
-  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", ""
-
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Tu nombre"
   l.store "Your email", "Tu email"
   l.store "Your message", "Tu comentario"
@@ -467,72 +459,6 @@ Localization.define("pt_BR") do |l|
   l.store "trackback uri", "trackback uri"
   l.store "Comments are disabled", "Los comentarios est&aacute;n deshabilitados"
   l.store "Trackbacks are disabled", ""
-
-  # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
-  l.store "About %s", ""
-
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Designed by %s ", ""
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
-  l.store "This entry was posted on %s", ""
-  l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
-  l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
-  l.store "or a %s from your own site", ""
-  l.store "trackback", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
-  l.store "later", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Name %s", ""
-  l.store "enabled", ""
-  l.store "never displayed", ""
-  l.store "Website", ""
-  l.store "Textile enabled", ""
-  l.store "Markdown enabled", ""
-  l.store "required", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
-
-  # themes/dirtylicious/layouts/default.html.erb
-  l.store "About", ""
-  l.store "Designed by %s ported to publify by %s ", ""
-
-  # themes/scribbish/layouts/default.html.erb
-  l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""

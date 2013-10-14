@@ -54,21 +54,6 @@ Localization.define("it_IT") do |l|
   l.store "File saved successfully", ""
   l.store "Unable to write file", ""
 
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Annulla"
   l.store "Store", "Salva"
   l.store "Delete", "Elimina"
   l.store "delete", ""

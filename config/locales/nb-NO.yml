@@ -13,6 +13,9 @@ nb-NO:
         mark_checked_items_as_spam: "Flagg markerte enheter som Spam"
         mark_checked_items_as_ham: "Flagg markerte enheter som Ham"
         submit: "Submit"
+      feedback:
+        this_comment_by_was_flagged_as_spam: "Denne kommentaren av %{author} er flagget som Spam, %{cancel_link}?"
+        cancel: "Annuller"
     dashboard:
       drafts:
         your_drafts: "Your drafts"

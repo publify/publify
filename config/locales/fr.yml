@@ -13,6 +13,9 @@ fr:
         mark_checked_items_as_spam: "Marquer ces commentaires comme du spam"
         mark_checked_items_as_ham: "Valider ces commentaires"
         submit: "Envoyer"
+      feedback:
+        this_comment_by_was_flagged_as_spam: "Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?"
+        cancel: "Annuler"
     dashboard:
       drafts:
         your_drafts: "Vos brouillons"

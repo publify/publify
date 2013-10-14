@@ -107,9 +107,6 @@ Localization.define("nb_NO") do |l|
 
   # app/controllers/grouping_controller.rb
   l.store "page", "side"
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Annuller"
   l.store "Store", "Lagre"
   l.store "Delete", "Slett"
   l.store "delete", "slett"
@@ -227,7 +224,6 @@ Localization.define("nb_NO") do |l|
   l.store "Add a comment", "Legg til kommentar"
   l.store "Url", "URL"
 
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Denne kommentaren av <strong>%s</strong> er flagget som Spam, %s?"
 
   l.store "Comments for %s", "Kommentarer for %s"
   l.store "Comment Author", "Kommentarforfatter"

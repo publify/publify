@@ -87,15 +87,8 @@ Localization.define("fr_FR") do |l|
 
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", "Aucun article n'a été trouvé"
-
-  # app/controllers/grouping_controller.rb
   l.store "page", "page"
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Annuler"
   l.store "Store", "Stocker"
   l.store "delete", "supprimer"
   l.store "Delete content", "Supprimer le contenu"
@@ -174,8 +167,6 @@ Localization.define("fr_FR") do |l|
   l.store "In your spam queue:", "En attente de modération :"
   l.store "unconfirmed", "non validés"
 
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Ce commentaire de <strong>%s</strong> a été marqué comme spam, %s ?"
 
   # app/views/admin/feedback/article.html.erb
   l.store "Comments for %s", "Commentaire sur %s"

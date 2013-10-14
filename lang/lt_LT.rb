@@ -53,19 +53,6 @@ Localization.define("lt_LT") do |l|
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
 
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Baigti" # tik ne i kelnes :)
-  l.store "Store", ""
   l.store "Delete", "Trinti"
   l.store "delete", ""
   l.store "Delete content", ""

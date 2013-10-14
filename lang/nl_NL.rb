@@ -79,7 +79,6 @@ Localization.define("nl_NL") do |l|
   l.store "everything about", "alles over"
 
   # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Terug"
   l.store "Store", "Opslaan"
   l.store "Delete", "Verwijderen"
   l.store "delete", "verwijderen"
@@ -208,7 +207,6 @@ Localization.define("nl_NL") do |l|
   l.store "Add a comment", "Voeg een commentaar toe"
   l.store "Url", "Url"
 
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", "Dit commentaar van <strong>%s</strong> was gemarkeerd als spam, %s?"
 
   l.store "Comments for %s", "Commentaren voor %s"
   l.store "Comment Author", "Auteur commentaar"

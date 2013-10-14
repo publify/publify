@@ -62,22 +62,6 @@ Localization.define("zh_TW") do |l|
 
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-  l.store ", Articles for ", ""
-
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "取消"
-  l.store "Store", ""
   l.store "Delete", "刪除"
   l.store "delete", ""
   l.store "Delete content", ""
@@ -175,18 +159,7 @@ Localization.define("zh_TW") do |l|
   l.store "Spam comments : %d", "垃圾評論：%d"
   l.store "Limit to spam", "限制垃圾郵件"
   l.store "Url", "Url"
-
-  # app/views/admin/feedback/_spam.html.erb
-  l.store "This comment by <strong>%s</strong> was flagged as spam, %s?", ""
-
-  # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", ""
-  l.store "Comment Author", ""
-
-  # app/views/admin/feedback/edit.html.erb
   l.store "Comments for", "做出評論"
-
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "上線"
   l.store "Page settings", ""
   l.store "Permanent link", ""

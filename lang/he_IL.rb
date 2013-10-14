@@ -67,17 +67,6 @@ Localization.define("he_IL") do |l|
 
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", "1"
-
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "בטל"
-  l.store "Store", ""
   l.store "Delete", "מחק"
   l.store "delete", "מחק"
   l.store "Delete content", "מחק תוכן"

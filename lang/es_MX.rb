@@ -48,21 +48,7 @@ Localization.define("es_MX") do |l|
 
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Cancelar"
-  l.store "Store", ""
   l.store "Delete", "Eliminar"
-  l.store "delete", ""
   l.store "Delete content", ""
   l.store "Are you sure?", ""
   l.store "Please select", ""
@@ -397,13 +383,7 @@ Localization.define("es_MX") do |l|
 
   # app/views/articles/_article.html.erb
   l.store "Posted by", "Publicado por"
-  l.store "Continue reading", ""
-
-  # app/views/articles/_comment.html.erb
   l.store "said", "dijo"
-  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", ""
-
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Tu nombre"
   l.store "Your email", "Tu email"
   l.store "Your message", "Tu comentario"

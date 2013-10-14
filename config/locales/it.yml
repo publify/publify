@@ -13,6 +13,9 @@ it:
         mark_checked_items_as_spam: "Segna come spam"
         mark_checked_items_as_ham: "Segna come confermati"
         submit: "Submit"
+      feedback:
+        this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
+        cancel: "Annulla"
     dashboard:
       drafts:
         your_drafts: "Your drafts"

@@ -15,7 +15,6 @@ Localization.define("ru_RU") do |l|
   l.store "Recover your password", "Восстановление пароля"
 
   # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "Отменить"
   l.store "Delete", "Удалить"
   l.store "delete", "удалить"
   l.store "Are you sure?", "Вы уверены?"

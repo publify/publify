@@ -55,23 +55,6 @@ Localization.define("ja_JP") do |l|
   l.store "You are not authorized to open this file", ""
   l.store "File saved successfully", ""
   l.store "Unable to write file", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Cancel", "キャンセル"
-  l.store "Store", ""
   l.store "Delete", "削除"
   l.store "delete", "削除"
   l.store "Delete content", ""

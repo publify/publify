@@ -1,7 +1,8 @@
 <tr id='<%= "placeholder_#{comment.id}" %>' <%= "style='display: none'" unless comment.state.to_s.downcase == 'spam' %>>
   <td colspan='5' <%= "style='display: none'" if comment.state.to_s == 'spam' %>>
     <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 25) %>
-    <%= _("This comment by <strong>%s</strong> was flagged as spam, %s?", comment.author, link_to_remote('Cancel', :url => {:action => 'change_state', :id => comment.id})) %> <%= toggle_element "feedback_#{comment.id}" %>
+    <%= t(".this_comment_by_was_flagged_as_spam", author: comment.author, cancel_link: link_to_remote(t('.cancel'), url: {action: 'change_state', id: comment.id})) %> 
+    <%= toggle_element "feedback_#{comment.id}" %>
   </td>
 </tr>
 
@@ -24,6 +25,6 @@
   </td>
 
   <% if controller.action_name == 'index' %>
-  <td><%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %></td>
+    <td><%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %></td>
   <% end %>
 </tr>
