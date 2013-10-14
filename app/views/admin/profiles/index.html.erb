@@ -1,12 +1,7 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-profile"></i><h2 class="page-title"><%= _("Your profile") %></h2>
-  :q
-
-
-:q
-
-
+  <i class="icon-large icon-profile"></i>
+  <h2 class="page-title"><%= _("Your profile") %></h2>
 <% end %>
 
-<%= form_tag({:action => 'index', :id => @user.id}, {:enctype => "multipart/form-data"}) %>
-<%= render :partial => "admin/users/form" %>
+<%= form_tag({action: 'index', id: @user.id}, {enctype: "multipart/form-data"}) %>
+<%= render partial: "admin/users/form" %>
