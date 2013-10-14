@@ -74,50 +74,12 @@ Localization.define("de_DE") do |l|
   l.store "delete", ""
   l.store "Delete content", ""
   l.store "Are you sure?", ""
-  l.store "Please select", ""
   l.store "All categories", "Alle kategorien"
   l.store "All authors", "Alle autoren"
   l.store "All published dates", "Alle termine"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "oder"
-  l.store "Save", "Speichern"
   l.store "Edit", "Bearbeiten"
-  l.store "Show", ""
-  l.store "Unpublished", ""
-  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Zurück zur Übersicht"
-  l.store "Tag", ""
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "keine Trackbacks"
-  l.store "1 trackback", ""
-  l.store "%d trackbacks", ""
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
-  # app/models/article.rb
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
-  l.store "Spam?", ""
-
   l.store "Reorder", "Sortieren"
   l.store "Sort alphabetically", "Alphabetisch sortieren"
 
@@ -140,7 +102,6 @@ Localization.define("de_DE") do |l|
   l.store "Are you sure you want to delete this article", "Sind Sie sicher, diesen Artikel zu löschen"
   l.store "Delete this article", "Diesen Artikel löschen"
 
-  l.store "Author", "Autor"
 
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
@@ -149,15 +110,6 @@ Localization.define("de_DE") do |l|
   l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
   l.store "Limit to spam", "Einschränken auf Spam"
-  l.store "Url", "Url"
-  l.store "Comments for", "Kommentare für"
-
-  # app/views/admin/pages/_form.html.erb
-  l.store "Online", "Online"
-  l.store "Page settings", ""
-  l.store "Permanent link", ""
-
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages","Seiten"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
@@ -206,7 +158,6 @@ Localization.define("de_DE") do |l|
   l.store "Indexing", ""
   l.store "Robots.txt", ""
   l.store "Use dofollow in comments", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -216,38 +167,6 @@ Localization.define("de_DE") do |l|
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
-
-  # app/views/admin/seo/titles.html.erb
-  l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
-  l.store "Paginated archives", ""
-  l.store "Dated archives", ""
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
-  l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
-
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Kommentare per default erlauben"
   l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
   l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
@@ -418,7 +337,6 @@ Localization.define("de_DE") do |l|
   l.store "Your message", "Meine Nachricht"
   l.store "Comment Markup Help", "Hilfe zu Kommentar Markup"
   l.store "Preview comment", "Kommentar Vorschau"
-  l.store "leave url/email", ""
 
   # app/views/articles/_comment_failed.html.erb
   l.store "Oops, something wrong happened, the comment could not be saved", ""
@@ -470,7 +388,6 @@ Localization.define("de_DE") do |l|
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "%d Users", ["Benutzer", "%d Benutzer"]
   l.store "AIM Presence", "AIM Anwesenheit"
-  l.store "AIM Status", "AIM Status"
   l.store "Action", "Aktion"
   l.store "Activate", "Aktivieren"
   l.store "Add MetaData", "Metadaten hinzufügen"

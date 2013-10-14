@@ -20,13 +20,10 @@ Localization.define("ru_RU") do |l|
   l.store "Are you sure?", "Вы уверены?"
   l.store "All categories", "Все категории"
   l.store "All authors", "Все авторы"
-  l.store "Save", "Сохранить"
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
   l.store "Unpublished", "Не опубликован"
   l.store "There are no %s yet. Why don't you start and create one?", "Ничего нет. Почему бы не начать и не добавить?" # XXX
-  l.store "or", "или"
-  l.store "Save", "Сохранить"
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
   l.store "Show", "Показать"
@@ -68,7 +65,6 @@ Localization.define("ru_RU") do |l|
   l.store "Visual", "Визуально"
   l.store "Edit article", "Редактировать пост"
 
-  l.store "Author", "Автор"
   l.store "Date", "Дата"
 
   # app/views/admin/dashboard/_comments.html.erb
@@ -130,7 +126,6 @@ Localization.define("ru_RU") do |l|
   l.store "Your email", "Ваш email"
   l.store "Your message", "Ваше сообщение"
   l.store "Preview comment", "Предпросмотр комментария"
-  l.store "Comment", "Отправить комментарий"
 
   # app/views/articles/_comment_list.html.erb
   l.store "No comments", "Нет комментариев"
@@ -141,11 +136,6 @@ Localization.define("ru_RU") do |l|
 
   # app/views/authors/show.html.erb
   l.store "Web site:", "Веб-сайт:"
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
   l.store "About %s", "Об авторе %s"
   l.store "This author has not published any article yet", "Этот автор еще ничего не публиковал"
 

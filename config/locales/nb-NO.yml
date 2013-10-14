@@ -6,6 +6,19 @@ nb-NO:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "Kommentarer for %{title}"
+        status: "Status"
+        comment_author: "Kommentarforfatter"
+        comment: "Kommentar"
+        add_a_comment: "Legg til kommentar"
+        author: "Forfatter"
+        email: "Epost"
+        url: "URL"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} eller %{second_action}"
+        cancel: "Annuller"
+        save: "Lagre"
       button:
         select_action: "Velg handling"
         delete_checked_items: "Slett markerte enheter"

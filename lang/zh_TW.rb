@@ -25,17 +25,6 @@ Localization.define("zh_TW") do |l|
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
-
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "當更新內容類型時發生錯誤"
   l.store "complete", "完成"
   l.store "File uploaded: ", "檔案上傳: "
@@ -63,66 +52,18 @@ Localization.define("zh_TW") do |l|
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
   l.store "Delete", "刪除"
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
-  l.store "All authors", ""
-  l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "或"
-  l.store "Save", "存檔"
   l.store "Edit", "修改"
-  l.store "Show", ""
-  l.store "Unpublished", ""
-  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "回到概覽"
-  l.store "Tag", ""
-
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "沒有引用"
-  l.store "1 trackback", ""
-  l.store "%d trackbacks", ""
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
-  # app/models/article.rb
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Ham", ""
-
-
   l.store "Reorder", "重新排序"
   l.store "Sort alphabetically", "依字母順序排序"
-
   l.store "Are you sure you want to delete the category ", "確認刪除此分類？ "
   l.store "Delete this category", "刪除分類"
-
   l.store "(Done)", "(完成)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "移除"
-  l.store "Currently this article has the following resources", ""
   l.store "You can associate the following resources", "你可以連結下列資源"
   l.store "Really delete attachment", "確定刪除附件？"
   l.store "Add another attachment", "新增其他附件"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Uploads", "上載"
   l.store "Publish at", "公開"
 
@@ -132,7 +73,6 @@ Localization.define("zh_TW") do |l|
   l.store "Articles", "文章"
 
   # app/views/admin/content/index.html.erb
-  l.store "Author", "作者"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -158,8 +98,6 @@ Localization.define("zh_TW") do |l|
   l.store "Total comments : %d", "評論總計：%d"
   l.store "Spam comments : %d", "垃圾評論：%d"
   l.store "Limit to spam", "限制垃圾郵件"
-  l.store "Url", "Url"
-  l.store "Comments for", "做出評論"
   l.store "Online", "上線"
   l.store "Page settings", ""
   l.store "Permanent link", ""
@@ -429,12 +367,6 @@ Localization.define("zh_TW") do |l|
   l.store "Your message", "你的訊息"
   l.store "Comment Markup Help", "評論顯示協助"
   l.store "Preview comment", "預覽評論"
-  l.store "leave url/email", ""
-
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "From"
 
   # app/views/articles/archives.html.erb
@@ -465,72 +397,6 @@ Localization.define("zh_TW") do |l|
   l.store "Twitter:", ""
   l.store "About %s", ""
 
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Designed by %s ", ""
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
-  l.store "Continue reading...", ""
-  l.store "This entry was posted on %s", ""
-  l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
-  l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
-  l.store "or a %s from your own site", ""
-  l.store "trackback", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
-  l.store "later", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Name %s", ""
-  l.store "enabled", ""
-  l.store "never displayed", ""
-  l.store "Website", ""
-  l.store "Textile enabled", ""
-  l.store "required", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
-
-  # themes/dirtylicious/layouts/default.html.erb
-  l.store "About", ""
-  l.store "Designed by %s ported to publify by %s ", ""
-
-  # themes/scribbish/layouts/default.html.erb
-  l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Email address", ""
-  l.store "Your website", ""
-
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "作為引用"
 
   # vendor/plugins/archives_sidebar/views/content.rhtml

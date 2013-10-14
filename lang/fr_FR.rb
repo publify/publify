@@ -99,8 +99,6 @@ Localization.define("fr_FR") do |l|
   l.store "All authors", "Tous les auteurs"
   l.store "All published dates", "Tous les dates"
   l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
-  l.store "Save", "Sauver"
-  l.store "or", "ou"
   l.store "Edit", "Éditer"
   l.store "Delete", "Supprimer"
   l.store "Show", "Affichage"
@@ -149,10 +147,7 @@ Localization.define("fr_FR") do |l|
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Éditeur riche"
   l.store "Edit article", "Éditer un article"
-
-  l.store "Author", "Auteur"
   l.store "Date", "Date"
-
   l.store "Latest Comments", "Derniers commentaires"
 
   l.store "Most popular", "Billets les plus populaires"
@@ -166,15 +161,6 @@ Localization.define("fr_FR") do |l|
   l.store "Spam comments:", "Nombre total de spam :"
   l.store "In your spam queue:", "En attente de modération :"
   l.store "unconfirmed", "non validés"
-
-
-  # app/views/admin/feedback/article.html.erb
-  l.store "Comments for %s", "Commentaire sur %s"
-  l.store "Add a comment", "Ajouter un commentaire"
-  l.store "Status", "État"
-  l.store "Comment Author", "Auteur du commentaire"
-  l.store "Comment", "Commentaire"
-  l.store "Url", "Site"
 
   # app/views/admin/feedback/index.html.erb
   l.store "All", "Tous"
@@ -523,7 +509,6 @@ Localization.define("fr_FR") do |l|
   l.store "Comments are disabled", "Les commentaires sont désactivés"
   l.store "Trackbacks are disabled", "Les rétroliens sont désactivés"
 
-  # app/views/authors/show.html.erb
   l.store "Web site:", "Site web:"
   l.store "MSN:", "MSN :"
   l.store "Yahoo:", "Yahoo :"
@@ -627,7 +612,6 @@ Localization.define("fr_FR") do |l|
   # vendor/plugins/archives_sidebar/app/views/archives_sidebar/_content.html.erb
   l.store "Archives", "Archives"
 
-  # vendor/plugins/authors_sidebar/app/views/authors_sidebar/_content.html.erb
   l.store "Authors", "Auteurs"
 
   # vendor/plugins/meta_sidebar/app/views/meta_sidebar/_content.html.erb

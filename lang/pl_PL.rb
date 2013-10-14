@@ -42,7 +42,6 @@ Localization.define("pl_PL") do |l|
   l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
 
   # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
   l.store "config updated.", "konfiguracja zaktualizowana."
 
   # app/controllers/admin/sidebar_controller.rb
@@ -67,10 +66,7 @@ Localization.define("pl_PL") do |l|
   l.store "All authors", "Wszystkie autorzy"
   l.store "All published dates", "Wszystkie daty"
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "lub"
-  l.store "Save", "Zapisz"
   l.store "Edit", "Zmień"
-  l.store "Show", ""
   l.store "Unpublished", ""
   l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Wróć do podglądu"
@@ -126,11 +122,7 @@ Localization.define("pl_PL") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
   l.store "Delete this article", "Usuń artykuł"
-
-  l.store "Author", "Autor"
   l.store "Date", "Data"
-
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Ostatnie komentarze"
   l.store "By %s on %s", "Przez %s odnośnie %s"
 
@@ -153,7 +145,6 @@ Localization.define("pl_PL") do |l|
   l.store "Total comments : %d", "Liczba wszystkich komentarzy: %d"
   l.store "Spam comments : %d", "Niechciane komentarze (spam): %d"
   l.store "Url", "Strona web"
-  l.store "Comments for", "Komentarze do"
   l.store "Online", "Online"
   l.store "Pages", "Strony"
   l.store "Are you sure you want to delete the page", "Czy na pewno chcesz usunąć tą stronę"
@@ -199,7 +190,6 @@ Localization.define("pl_PL") do |l|
   l.store "Indexing", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use canonical URL", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
   l.store "Google Webmaster Tools validation link", ""
@@ -209,8 +199,6 @@ Localization.define("pl_PL") do |l|
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
   l.store "your article year of publication.", ""
@@ -411,7 +399,6 @@ Localization.define("pl_PL") do |l|
   l.store "Your message", "Treść"
   l.store "Comment Markup Help", "Pomoc języka formatowania"
   l.store "Preview comment", "Obejrzyj komentarz"
-  l.store "leave url/email", ""
 
   # app/views/articles/_trackback.html.erb
   l.store "From", "Z"
@@ -493,8 +480,6 @@ Localization.define("pl_PL") do |l|
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  l.store "Email address", ""
   l.store "Your website", ""
 
   l.store "If you liked this article you can %s", ""

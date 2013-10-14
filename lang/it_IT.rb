@@ -4,7 +4,6 @@ Localization.define("it_IT") do |l|
   # app/controllers/accounts_controller.rb
   l.store "Login successful", ""
   l.store "Login unsuccessful", ""
-  l.store "An email has been successfully sent to your address with your new password", ""
   l.store "Oops, something wrong just happened", ""
   l.store "Successfully logged out", "Sei correttamente uscito"
   l.store "login", ""
@@ -52,26 +51,14 @@ Localization.define("it_IT") do |l|
   l.store "Theme changed successfully", ""
   l.store "You are not authorized to open this file", ""
   l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
-
   l.store "Store", "Salva"
   l.store "Delete", "Elimina"
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
   l.store "All categories", "Tutte le categorie"
   l.store "All authors", "Tutte le autori"
   l.store "All published dates", "Tutte le date"
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "o"
-  l.store "Save", "Salva"
   l.store "Edit", "Modifica"
-  l.store "Show", ""
-  l.store "Unpublished", ""
-  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Torna al sommario"
-  l.store "Tag", ""
 
   # app/helpers/admin/content_helper.rb
 
@@ -122,7 +109,6 @@ Localization.define("it_IT") do |l|
   l.store "Are you sure you want to delete this article", "Sei sicuro di voler eliminare questo articolo"
   l.store "Delete this article", "Elimina articolo"
 
-  l.store "Author", "Autore"
 
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -144,9 +130,7 @@ Localization.define("it_IT") do |l|
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Limit to spam", "Limita a spam"
-  l.store "Url", "Sito"
 
-  l.store "Comments for", "Commenti per"
 
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Article", ""
@@ -199,7 +183,6 @@ Localization.define("it_IT") do |l|
   l.store "Do not index tags", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -211,9 +194,7 @@ Localization.define("it_IT") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
-  l.store "You can custom your URL structure using the following tags:", ""
   l.store "Permalinks", ""
   l.store "Custom", ""
 
@@ -273,7 +254,6 @@ Localization.define("it_IT") do |l|
   l.store "Show full article on feed", "Visualizza articolo completo su feed"
   l.store "Feedburner ID", ""
   l.store "General settings", "Configurazione generale"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Ottimizzazione motori di ricerca"
@@ -305,7 +285,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/settings/write.html.erb
   l.store "Send trackbacks", "Invia trackbacks"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Quando pubblichi gli articoli, e' possibile inviare trackback ai siti di cui fornisci l'url. E' possibile disabilitare questa funzione nel caso di blog privato di cui non si vogliono condividere le informazioni. Per blog pubblici non esiste una necessita' reale di disabilitare questa funzione."
   l.store "URLs to ping automatically", "Indirizzi da pingare automaticamente"
   l.store "Latitude, Longitude", "Latitudine, Longitudine"
   l.store "your latitude and longitude", "la tua latitudine e longitudine"
@@ -367,7 +346,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", ""
-  l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
   l.store "Profile settings", ""
@@ -379,7 +357,6 @@ Localization.define("it_IT") do |l|
   l.store "Send notification messages when comments are posted", "Invia notifiche quando viene inserito un nuovo commento"
   l.store "Contact options", ""
   l.store "Your site", ""
-  l.store "display URL on public profile", ""
   l.store "Your MSN", ""
   l.store "display MSN ID on public profile", ""
   l.store "Your Yahoo ID", ""
@@ -418,7 +395,6 @@ Localization.define("it_IT") do |l|
   l.store "Your message", "Tuo messaggio"
   l.store "Comment Markup Help", "Aiuto sul markup dei comemnti"
   l.store "Preview comment", "Anteprima commento"
-  l.store "leave url/email", ""
   l.store "From", "Da"
 
   l.store "No articles found", "Nessun articolo trovato"
@@ -493,7 +469,6 @@ Localization.define("it_IT") do |l|
   l.store "You are here: ", ""
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
-  l.store "Email address", ""
   l.store "Your website", ""
 
   l.store "add me to Twitter", ""

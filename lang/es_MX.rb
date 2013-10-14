@@ -56,32 +56,8 @@ Localization.define("es_MX") do |l|
   l.store "All authors", "Todos los autores"
   l.store "All published dates", "Todos los fechas"
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "o"
-  l.store "Save", "Guardar"
   l.store "Edit", "Editar"
-
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "no hay trackbacks"
-  l.store "1 trackback", ""
-  l.store "%d trackbacks", ""
-
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
-
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Reorganizar"
   l.store "Sort alphabetically", "Ordenar alfab&eacute;ticamente"
 
@@ -110,12 +86,10 @@ Localization.define("es_MX") do |l|
   l.store "Delete this article", "Eliminar este art&iacute;culo"
 
   # app/views/admin/content/index.html.erb
-  l.store "Author", "Autor"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
-  l.store "Latest Comments", ""
   l.store "By %s on %s", ""
 
   # app/views/admin/dashboard/_popular.html.erb
@@ -126,26 +100,8 @@ Localization.define("es_MX") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
 
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
-  l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
-  l.store "Welcome back, %s!", ""
-  l.store "Total posts : %d", ""
-  l.store "Your posts : %d", ""
-  l.store "Total comments : %d", ""
-  l.store "Add a comment", ""
-  l.store "Url", "Url"
-  l.store "Comments for", "Comentarios para"
-  l.store "Online", "Online"
-  l.store "Permanent link", ""
-
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
-
-  l.store "Your profile", ""
-
   l.store "Previous page", "P&aacute;gina anterior"
   l.store "Next page", "P&aacute;gina siguiente"
 
@@ -215,7 +171,6 @@ Localization.define("es_MX") do |l|
   l.store "Notifications", ""
   l.store "Publify can notify you when new articles or comments are posted", "Publify puede notificarte cuando nuevos art&iacute;culos o comentarios sean a&ntilde;adidos"
   l.store "Source Email", "Email remitente"
-  l.store "Email address used by Publify to send notifications", "Direcci&oacute;n de email usada por Publify para enviar notificaciones"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Habilitando la protecci&oacute;n anti-spam har&aacute; que publify compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam"
   l.store "Enable spam protection", "Habilitar protecci&oacute;n anti-spam"
   l.store "Akismet Key", "Clave de Akismet (API key)"
@@ -373,7 +328,6 @@ Localization.define("es_MX") do |l|
 
   # app/views/admin/users/index.html.erb
   l.store "New User", "Nuevo Usuario"
-  l.store "Comments", ""
   l.store "State", ""
   l.store "%s user", ""
   l.store "Manage users", ""
@@ -491,7 +445,6 @@ Localization.define("es_MX") do |l|
   l.store "later:", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Email address", ""
   l.store "Your website", ""
 
   # themes/true-blue-3/views/articles/read.html.erb
@@ -504,12 +457,6 @@ Localization.define("es_MX") do |l|
 
   # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
-  l.store "Archives", ""
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", ""

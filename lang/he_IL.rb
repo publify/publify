@@ -76,12 +76,8 @@ Localization.define("he_IL") do |l|
   l.store "All authors", ""
   l.store "All published dates", ""
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "או"
-  l.store "Save", "שמור"
   l.store "Edit", "ערוך"
-  l.store "Show", ""
   l.store "Unpublished", "לא פורסם"
-  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "עבור לסקירה"
   l.store "Tag", "תוית"
 
@@ -152,7 +148,6 @@ Localization.define("he_IL") do |l|
   l.store "Articles", "כתבות"
 
   # app/views/admin/content/index.html.erb
-  l.store "Author", "כותב"
   l.store "Date", "תאריך"
 
   # app/views/admin/dashboard/_popular.html.erb
@@ -175,30 +170,15 @@ Localization.define("he_IL") do |l|
   l.store "Spam comments : %d", "תגובות ספאם: %d"
   l.store "Unapproved comments", "תגובות לא מאושרות"
   l.store "Limit to spam", "סווג כספאם"
-  l.store "Url", "כתובת"
-
-  l.store "Comments for %s", "תגובות עבור %s"
-
   l.store "Comments for", "תגובות על"
-
   l.store "Search Comments and Trackbacks that contain", "חפש תגובות או עוקבים-חזרה המכילים"
   l.store "Article", "כתבה"
-
   l.store "Online", "מוצג"
-  l.store "Permanent link", ""
-
   l.store "Pages", "דפים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"
   l.store "Delete this page", "מחק דף זה"
-
   l.store "Manage pages", "נהל דפים"
-
-  # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
-
-  # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "סוג התוכן"
-
   l.store "Previous page", "הדף הקודם"
   l.store "Next page", "הדף הבא"
 
@@ -416,12 +396,6 @@ Localization.define("he_IL") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", "אימות סיסמה"
-  l.store "User's status", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
   l.store "Editor", "עורך"
   l.store "Send notification messages via email", "שלח עדכונים באמצאות הדואל"
   l.store "Send notification messages when new articles are posted", "עדכן בעת כתבות חדשים"
@@ -448,15 +422,7 @@ Localization.define("he_IL") do |l|
 
   # app/views/admin/users/edit.html.erb
   l.store "Edit User", "ערוך משתמש"
-
-  # app/views/admin/users/index.html.erb
-  l.store "New User", ""
   l.store "Comments", "תגובות"
-  l.store "State", ""
-  l.store "%s user", ""
-  l.store "Manage users", ""
-
-  # app/views/admin/users/new.html.erb
   l.store "Add User", "הוסף משתמש"
 
   l.store "Posted by", "נכתב על ידי"
@@ -528,11 +494,8 @@ Localization.define("he_IL") do |l|
   l.store "You can leave a %s", "תוכל להשאיר %s"
   l.store "or a %s from your own site", "או %s מהאתר שלך"
   l.store "Read full article", "קרא את הכתבה המלאה"
-  l.store "comment", "תגובה"
   l.store "trackback", "עוקב-חזרה"
-
   l.store "later", "אחר כך"
-
   l.store "Leave a comment", "הגב"
   l.store "Name %s", "שם %s"
   l.store "enabled", "מאופשר"

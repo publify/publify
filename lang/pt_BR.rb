@@ -89,8 +89,6 @@ Localization.define("pt_BR") do |l|
   l.store "All authors", "Todos os authores"
   l.store "All published dates", "Todas as datas publicadas"
   l.store "There are no %s yet. Why don't you start and create one?", "Não existem %s ainda. Por que você não inicia e cria um?"
-  l.store "or", "ou"
-  l.store "Save", "Salvar"
   l.store "Edit", "Editar"
   l.store "Show", "Exibir"
   l.store "Unpublished", "Despublicado"
@@ -161,7 +159,6 @@ Localization.define("pt_BR") do |l|
   l.store "Are you sure you want to delete this article", "&iquest;Est&aacute;s seguro que deseas borrar este art&iacute;culo?"
   l.store "Delete this article", "Eliminar este art&iacute;culo"
 
-  l.store "Author", "Autor"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -172,11 +169,7 @@ Localization.define("pt_BR") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
   l.store "Limit to spam", "Limitar a spam"
-  l.store "Url", "Url"
-  l.store "Comments for", "Comentarios para"
   l.store "Online", "Online"
-  l.store "Permanent link", ""
-
   l.store "Pages","P&aacute;ginas"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
@@ -223,7 +216,6 @@ Localization.define("pt_BR") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "Use canonical URL", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
   l.store "Google Webmaster Tools validation link", ""
@@ -232,37 +224,6 @@ Localization.define("pt_BR") do |l|
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
-
-  # app/views/admin/seo/titles.html.erb
-  l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
-  l.store "Paginated archives", ""
-  l.store "Dated archives", ""
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
-  l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
-
   l.store "Enable comments by default", "Habilitar comentarios por default"
   l.store "Enable Trackbacks by default", "Habilitar Trackbacks por default"
   l.store "Enable feedback moderation", "Habilitar moderaci&oacute;n de comentarios y trackbacks"
@@ -302,7 +263,6 @@ Localization.define("pt_BR") do |l|
   l.store "Show full article on feed", "Mostrar art&iacute;culo completo en el feed"
   l.store "Feedburner ID", ""
   l.store "General settings", "Preferencias generales"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Google Analytics", ""
@@ -387,7 +347,6 @@ Localization.define("pt_BR") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
-  l.store "User's status", ""
   l.store "Active", ""
   l.store "Inactive", ""
   l.store "Profile settings", ""
@@ -416,15 +375,6 @@ Localization.define("pt_BR") do |l|
 
   # app/views/admin/users/index.html.erb
   l.store "New User", "Nuevo Usuario"
-  l.store "Comments", ""
-  l.store "State", ""
-  l.store "%s user", ""
-  l.store "Manage users", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Publicado por"
 
   # app/views/articles/_comment.html.erb
@@ -434,19 +384,12 @@ Localization.define("pt_BR") do |l|
   l.store "Your message", "Tu comentario"
   l.store "Comment Markup Help", "Ayuda del marcado"
   l.store "Preview comment", "Previsualizar comentario"
-  l.store "leave url/email", ""
-
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "De"
 
   # app/views/articles/archives.html.erb
   l.store "No articles found", "No se encontraron art&iacute;culos"
   l.store "posted in", ""
 
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "est&aacute; a punto de decir"
 
   # app/views/articles/groupings.html.erb

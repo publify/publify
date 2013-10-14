@@ -88,8 +88,6 @@ Localization.define("nl_NL") do |l|
   l.store "All categories", ""
   l.store "All authors", ""
   l.store "There are no %s yet. Why don't you start and create one?", "Er zijn nog geen %s. Waarom begin je er niet een te maken?"
-  l.store "or", "of"
-  l.store "Save", "Bewaar"
   l.store "Edit", "Bewerken"
   l.store "Show", "Tonen"
   l.store "Unpublished", "Niet gepubliceerd"
@@ -172,7 +170,6 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
-  l.store "Author", "Auteur"
   l.store "Date", "Datum"
 
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
@@ -198,29 +195,16 @@ Localization.define("nl_NL") do |l|
   l.store "Your posts : %d", "Jouw berichten : %d"
   l.store "Total comments : %d", "Aantal reacties : %d"
   l.store "Spam comments : %d", "Spam reacties : %d"
-
   l.store "All comments", "Alle commentaren"
   l.store "Limit to ham", "Alleen ham"
   l.store "Unapproved comments", "Niet goedgekeurde"
   l.store "Limit to spam", "Alleen spam"
-
-  l.store "Add a comment", "Voeg een commentaar toe"
-  l.store "Url", "Url"
-
-
-  l.store "Comments for %s", "Commentaren voor %s"
-  l.store "Comment Author", "Auteur commentaar"
-  l.store "Comment", "Reactie"
-
   l.store "Comments for", "Commentaren voor"
-
   l.store "Search Comments and Trackbacks that contain", "Zoek commentaren en trackbacks die bevatten"
   l.store "Article", "Artikel"
-
   l.store "Online", "Online"
   l.store "Page settings", "Pagina instellingen"
   l.store "Permanent link", "Permanente link"
-
   l.store "Pages", "Pagina's"
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"
@@ -269,7 +253,6 @@ Localization.define("nl_NL") do |l|
   l.store "Do not index categories", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -281,7 +264,6 @@ Localization.define("nl_NL") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
   l.store "your article year of publication.", ""
@@ -479,7 +461,6 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/users/index.html.erb
   l.store "New User", "Nieuwe gebruikers"
   l.store "Comments", "Reacties"
-  l.store "State", "Status"
   l.store "%s user", "%s gebruiker"
   l.store "Manage users", ""
 

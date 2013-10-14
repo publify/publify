@@ -6,6 +6,19 @@ nl:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "Commentaren voor %{title}"
+        status: "Status"
+        comment_author: "Auteur commentaar"
+        comment: "Reactie"
+        add_a_comment: "Voeg een commentaar toe"
+        author: "Auteur"
+        email: "e-mail"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} of %{second_action}"
+        cancel: "Terug"
+        save: "Bewaar"
       button:
         select_action: "Kies actie"
         delete_checked_items: "Verwijder aangevinkte reacties"

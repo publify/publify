@@ -6,53 +6,6 @@ Localization.define("lt_LT") do |l|
   l.store "Login unsuccessful", ""
   l.store "Oops, something wrong just happened", ""
   l.store "Successfully logged out", ""
-  l.store "login", ""
-  l.store "signup", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Preview", ""
-
-  l.store "Deleted", ""
-  l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
-  l.store "Marked %d item(s) as Ham", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-  l.store "Metadata was successfully updated.", ""
-  l.store "Not all metadata was defined correctly.", ""
-
-  # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
-
-  # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-
   l.store "Delete", "Trinti"
   l.store "delete", ""
   l.store "Delete content", ""
@@ -62,8 +15,6 @@ Localization.define("lt_LT") do |l|
   l.store "All authors", "Visos autoriai"
   l.store "All published dates", "Visos laika"
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "arba"
-  l.store "Save", "Saugoti"
   l.store "Edit", "Redaguoti"
   l.store "Show", ""
   l.store "Unpublished", ""
@@ -120,7 +71,6 @@ Localization.define("lt_LT") do |l|
   l.store "Delete this article", "Trinti šį straipsnį"
 
   # app/views/admin/content/index.html.erb
-  l.store "Author", "Autorius"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", ""
@@ -138,12 +88,7 @@ Localization.define("lt_LT") do |l|
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Limit to spam", "Spamo limitas"
-  l.store "Url", "Url adresas"
-  l.store "Comments for", "Komentarai"
-
   l.store "Online", "Pasiekiamas"
-  l.store "Permanent link", ""
-
   l.store "Pages","Seiten"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
@@ -185,7 +130,6 @@ Localization.define("lt_LT") do |l|
   l.store "Indexing", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -197,7 +141,6 @@ Localization.define("lt_LT") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "Permalinks", ""
   l.store "Custom", ""
@@ -258,7 +201,6 @@ Localization.define("lt_LT") do |l|
   l.store "Show full article on feed", "Rodyti pilną straipsnį RSS sraute"
   l.store "Feedburner ID", ""
   l.store "General settings", "Pagrindiniai nustatymai"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Google Analytics", ""
@@ -387,7 +329,6 @@ Localization.define("lt_LT") do |l|
   l.store "Your message", "Tavo žinutė"
   l.store "Comment Markup Help", "Komentaro sintaksės žymėjimo pagalba"
   l.store "Preview comment", "Peržiūrėti komentarą"
-  l.store "leave url/email", ""
 
   l.store "From", "Nuo"
 
@@ -454,11 +395,6 @@ Localization.define("lt_LT") do |l|
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", ""
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  l.store "Email address", ""
-  l.store "Your website", ""
-
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackback für"
 
 

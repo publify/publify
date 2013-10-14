@@ -6,6 +6,19 @@ fr:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "Commentaire sur %{title}"
+        status: "État"
+        comment_author: "Auteur du commentaire"
+        comment: "Commentaire"
+        author: "Auteur"
+        add_a_comment: "Ajouter un commentaire"
+        email: "Email"
+        url: "Site"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} ou %{second_action}"
+        cancel: "Annuler"
+        save: "Sauver"
       button:
         select_action: "Choisir de..."
         delete_checked_items: "Supprimer les commentaires sélectionnés"

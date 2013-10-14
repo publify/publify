@@ -39,35 +39,12 @@ Localization.define("ja_JP") do |l|
   l.store "Metadata was successfully updated.", "メタデータは正常に更新されました"
   l.store "Not all metadata was defined correctly.", "いくつかのメタデータが正しく反映されませんでした"
   l.store "Content Type was successfully updated.", "コンテントタイプは正常に更新されました"
-
-  # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
   l.store "config updated.", "設定は更新されました"
-
-  # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
   l.store "Delete", "削除"
   l.store "delete", "削除"
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
   l.store "Please select", "選択してください"
-  l.store "All categories", ""
-  l.store "All authors", ""
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "または"
-  l.store "Save", "保存"
   l.store "Edit", "編集"
-  l.store "Show", ""
-  l.store "Unpublished", ""
   l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
   l.store "Back to overview", "オーバービューに戻る"
   l.store "Tag", ""
@@ -132,7 +109,6 @@ Localization.define("ja_JP") do |l|
   l.store "Articles", "記事"
 
   l.store "Search articles that contain ...", "以下の語句を含む記事を検索"
-  l.store "Author", "投稿者"
   l.store "Date", "日付"
 
   # app/views/admin/dashboard/_popular.html.erb
@@ -147,8 +123,6 @@ Localization.define("ja_JP") do |l|
   l.store "Limit to ham", "有効コメント"
   l.store "Unapproved comments", "未承認コメント"
   l.store "Limit to spam", "スパムコメント"
-  l.store "Comments for", "〜へコメント"
-
   l.store "Search Comments and Trackbacks that contain", "以下の語句を含むコメントおよびトラックバックを検索"
   l.store "Article", "記事"
 
@@ -200,7 +174,6 @@ Localization.define("ja_JP") do |l|
   l.store "Do not index categories", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -212,7 +185,6 @@ Localization.define("ja_JP") do |l|
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
 
   # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "Date and title", ""
   l.store "Month and title", ""
@@ -284,7 +256,6 @@ Localization.define("ja_JP") do |l|
   l.store "Show full article on feed", "記事の全文をフィードに表示"
   l.store "Feedburner ID", ""
   l.store "General settings", "一般設定"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", ""
@@ -376,7 +347,6 @@ Localization.define("ja_JP") do |l|
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", "パスワード（確認用）"
-  l.store "User's status", ""
   l.store "Active", "有効"
   l.store "Inactive", "無効"
   l.store "Profile settings", ""
@@ -432,7 +402,6 @@ Localization.define("ja_JP") do |l|
   l.store "Your message", "メッセージ"
   l.store "Comment Markup Help", "コメントのマークアップヘルプ"
   l.store "Preview comment", "前のコメント"
-  l.store "leave url/email", ""
   # app/views/articles/_trackback.html.erb
   l.store "From", "From"
 
@@ -733,7 +702,6 @@ Localization.define("ja_JP") do |l|
   l.store "by", "by"
   l.store "no ", "no "
   l.store "on", "の"
-  l.store "save", "保存"
   l.store "seperate with spaces", "スペースで分ける"
   l.store "unpublished", "未公開"
   l.store "via email", "email経由"

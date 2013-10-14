@@ -90,8 +90,6 @@ Localization.define("zh_CN") do |l|
   l.store "All authors", "所有作家"
   l.store "All published dates", "所有日期"
   l.store "There are no %s yet. Why don't you start and create one?", "这儿并不存在%s。让我们开始创建它。"
-  l.store "or", "或"
-  l.store "Save", "保存"
   l.store "Edit", "修改"
   l.store "Show", "显示"
   l.store "Unpublished", "未发表"
@@ -157,7 +155,6 @@ Localization.define("zh_CN") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "搜索包含内容的文章 ..."
-  l.store "Author", "作者"
   l.store "Date", "日期"
 
   # app/views/admin/dashboard/_comments.html.erb
@@ -184,9 +181,6 @@ Localization.define("zh_CN") do |l|
   l.store "Total comments : %d", "评论总计：%d"
   l.store "Spam comments : %d", "垃圾评论：%d"
   l.store "Limit to spam", "限制垃圾郵件"
-  l.store "Add a comment", ""
-  l.store "Url", "Url"
-  l.store "Comments for", "做出评论"
   l.store "Online", "上線"
   l.store "Pages","页数"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
@@ -240,7 +234,6 @@ Localization.define("zh_CN") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -250,11 +243,6 @@ Localization.define("zh_CN") do |l|
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", ""
-
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", ""
   l.store "Title template", ""
@@ -459,12 +447,6 @@ Localization.define("zh_CN") do |l|
   l.store "Your message", "你的訊息"
   l.store "Comment Markup Help", "评论顯示協助"
   l.store "Preview comment", "預覽评论"
-  l.store "leave url/email", ""
-
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "From"
 
   # app/views/articles/archives.html.erb
@@ -484,95 +466,10 @@ Localization.define("zh_CN") do |l|
   l.store "RSS feed for this post", "為本篇提供RSS"
   l.store "trackback uri", "引用URL"
   l.store "Comments are disabled", "评论停用"
-  l.store "Trackbacks are disabled", ""
-
-  # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
-  l.store "About %s", ""
-
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/errors/404.html.erb
-  l.store "Page not found", ""
-  l.store "The page you are looking for has moved or does not exist.", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Designed by %s ", ""
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
-  l.store "Continue reading...", ""
-  l.store "This entry was posted on %s", ""
-  l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
-  l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
-  l.store "or a %s from your own site", ""
-  l.store "Read full article", ""
-  l.store "comment", ""
-  l.store "trackback", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
-  l.store "later", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
-  l.store "Leave a comment", ""
-  l.store "Name %s", ""
-  l.store "enabled", ""
-  l.store "never displayed", ""
-  l.store "Website", ""
-  l.store "Textile enabled", ""
-  l.store "required", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
-
-  # test/mocks/themes/typographic/views/shared/_search.html.erb
-  l.store "Searching", ""
-
-  # themes/dirtylicious/layouts/default.html.erb
   l.store "About", "关于"
-  l.store "Designed by %s ported to publify by %s ", ""
-
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
 
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-  l.store "%d comment", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Email address", ""
-  l.store "Your website", ""
-
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "作為引用"
 
   # themes/true-blue-3/views/articles/search.html.erb

@@ -6,6 +6,19 @@ pl:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "Komentarze do %{title}"
+        status: "Stan"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        add_a_comment: "Add a comment"
+        author: "Autor"
+        email: "Email"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} lub %{second_action}"
+        cancel: "Anuluj"
+        save: "Zapisz"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"

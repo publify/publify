@@ -6,6 +6,19 @@ zh-TW:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "做出評論 %{title}"
+        status: "身分"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        add_a_comment: "Add a comment"
+        author: "作者"
+        email: "Email"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} 或 %{second_action}"
+        cancel: "取消"
+        save: "存檔"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"

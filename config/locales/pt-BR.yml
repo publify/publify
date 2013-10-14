@@ -6,6 +6,19 @@ pt-BR:
       last: "Anterior"
   admin:
     feedback:
+      article:
+        comments_for: "Comentarios para %{title}"
+        status: "Estado"
+        comment_author: "Comment Author"
+        comment: "Commentario"
+        add_a_comment: "Add a comment"
+        author: "Autor"
+        email: "Email"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} ou %{second_action}"
+        cancel: "Cancelar"
+        save: "Salvar"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"

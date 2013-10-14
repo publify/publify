@@ -6,6 +6,19 @@ ja:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "〜へコメント%{title}"
+        status: "ステータス"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        add_a_comment: "Add a comment"
+        author: "投稿者"
+        email: "メールアドレス"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} または %{second_action}"
+        cancel: "キャンセル"
+        save: "保存"
       button:
         select_action: "Select action"
         delete_checked_items: "チェックした行を削除"

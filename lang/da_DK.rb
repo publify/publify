@@ -28,42 +28,6 @@ Localization.define("da_DK") do |l|
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "All spam have been deleted", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
-
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-  l.store "Metadata was successfully updated.", ""
-  l.store "Not all metadata was defined correctly.", ""
-
-  # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
-
-  # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-
   l.store "Delete", "Slet"
   l.store "delete", ""
   l.store "Delete content", ""
@@ -73,10 +37,7 @@ Localization.define("da_DK") do |l|
   l.store "All authors", "Alle forfattere"
   l.store "All published dates", "Alle datoer"
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "eller"
-  l.store "Save", "Gem"
   l.store "Edit", "Rediger"
-  l.store "Show", ""
   l.store "Unpublished", "Ikke offentliggjort"
   l.store "Back to overview", "Tilbage til oversigten"
   l.store "Tag", "Tag"
@@ -123,7 +84,6 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
-  l.store "Author", "Forfatter"
   l.store "Date", "Dato"
 
   # app/views/admin/dashboard/_comments.html.erb
@@ -149,17 +109,8 @@ Localization.define("da_DK") do |l|
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Total comments : %d", "Total kommentarer : %d"
   l.store "Spam comments : %d", "Spam kommentarer : %d"
-  l.store "Url", "Url"
-  l.store "Comments for", "Kommentarer for"
-
   l.store "Article", "Artikel"
-
-  # app/views/admin/pages/_form.html.erb
   l.store "Online", "Online"
-  l.store "Page settings", ""
-  l.store "Permanent link", ""
-
-  # app/views/admin/pages/destroy.html.erb
   l.store "Pages", "Sider"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne side"
   l.store "Delete this page", "Slet denne side"
@@ -209,7 +160,6 @@ Localization.define("da_DK") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -219,38 +169,6 @@ Localization.define("da_DK") do |l|
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
-
-  # app/views/admin/seo/titles.html.erb
-  l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
-  l.store "Paginated archives", ""
-  l.store "Dated archives", ""
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
-  l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
-
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
   l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
   l.store "Enable feedback moderation", "Aktiver feedback moderation"
@@ -434,11 +352,6 @@ Localization.define("da_DK") do |l|
   l.store "Your message", "Din besked"
   l.store "Comment Markup Help", "Hjælp med kommentar markup"
   l.store "Preview comment", "Vis kommentar eksempel"
-  l.store "leave url/email", ""
-
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
   # app/views/articles/_trackback.html.erb
   l.store "From", "Fra"
 
@@ -487,13 +400,11 @@ Localization.define("da_DK") do |l|
   l.store "Meta", ""
 
   l.store "You are here: ", ""
-  l.store "%d comment", ""
 
   # themes/true-blue-3/views/articles/_article.html.erb
   l.store "%%a, %%d %%b %%Y %%H:%%M", ""
 
   # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Email address", ""
   l.store "Your website", ""
 
   # themes/true-blue-3/views/articles/read.html.erb
@@ -521,7 +432,6 @@ Localization.define("da_DK") do |l|
   l.store "%d Comments", "%d Kommentarer"
   l.store "%d Users", ["Bruger", "%d Brugere"]
   l.store "AIM Presence", "AIM Presence"
-  l.store "AIM Status", "AIM Status"
   l.store "Action", "Aktion"
   l.store "Activate", "Aktiver"
   l.store "Add MetaData", "Tilføj MetaData"

@@ -6,6 +6,19 @@ it:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "Commenti per %{title}"
+        status: "Stato"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        add_a_comment: "Add a comment"
+        author: "Autore"
+        email: "Email"
+        url: "Sito"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} o %{second_action}"
+        cancel: "Annulla"
+        save: "Salva"
       button:
         select_action: "Select action"
         delete_checked_items: "Elimina gli elementi selezionati"

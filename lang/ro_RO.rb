@@ -25,67 +25,11 @@ Localization.define("ro_RO") do |l|
   l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
-
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-  l.store "Metadata was successfully updated.", ""
-  l.store "Not all metadata was defined correctly.", ""
-
-  # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
-
-  # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-  l.store ", Articles for ", ""
-
-  # app/controllers/grouping_controller.rb
-  l.store "everything about", ""
-
-  # app/helpers/admin/base_helper.rb
-  l.store "Store", ""
   l.store "Delete", "Ștergere"
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
   l.store "All categories", "toate categoriile"
   l.store "All authors", "toate autorii"
   l.store "All published dates", "toate timp"
   l.store "There are no %s yet. Why don't you start and create one?", ""
-  l.store "or", "sau"
-  l.store "Save", "Salvează"
   l.store "Edit", "Editare"
   l.store "no trackbacks", "fără retrolegături"
 
@@ -129,38 +73,15 @@ Localization.define("ro_RO") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ești sigur că dorești ștergerea acestui articol"
   l.store "Delete this article", "Șterge acest articol"
-  l.store "Articles", ""
-
-  l.store "Author", "Autor"
-
-  # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
-  l.store "No posts yet, why don't you start and write one", ""
-
   l.store "Limit to spam", "Doar spam"
-  l.store "Url", "Adresa"
-  l.store "Comments for", "Comentariile la"
   l.store "Online", "Online"
   l.store "Pages","Pagini"
   l.store "Are you sure you want to delete the page", "Ești sigur că dorești să ștergi această pagină"
   l.store "Delete this page", "Șterge această pagină"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "Manage pages", ""
-
-  # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
-
-  # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Tip de conținut (content type)"
-
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Pagina anterioară"
   l.store "Next page", "Pagina următoare"
-
-  # app/views/admin/resources/_upload.html.erb
   l.store "Upload a File to your Site", "Încarcă un fișier în site"
-  l.store "File", ""
   l.store "Upload", "Încarcă"
 
   # app/views/admin/resources/destroy.html.erb
@@ -201,7 +122,6 @@ Localization.define("ro_RO") do |l|
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
-  l.store "Use canonical URL", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -211,36 +131,6 @@ Localization.define("ro_RO") do |l|
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
-
-  # app/views/admin/seo/titles.html.erb
-  l.store "Description template", ""
-  l.store "Articles", ""
-  l.store "Pages", ""
-  l.store "Paginated archives", ""
-  l.store "Dated archives", ""
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
-  l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
   l.store "Enable comments by default", "Implicit comentariile să fie active"
   l.store "Enable Trackbacks by default", "Implicit retrolegăturile să fie active"
   l.store "Enable feedback moderation", "Activează moderarea comentariilor"
@@ -405,12 +295,6 @@ Localization.define("ro_RO") do |l|
   l.store "Your message", "Comentariu"
   l.store "Comment Markup Help", "Ajutor la marcare"
   l.store "Preview comment", "Previzualizare"
-  l.store "leave url/email", ""
-
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "De la"
 
   # app/views/articles/archives.html.erb

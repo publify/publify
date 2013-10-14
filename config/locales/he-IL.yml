@@ -6,6 +6,19 @@ he-IL:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "תגובות עבור %{title}"
+        status: "מצב"
+        comment_author: "Comment Author"
+        comment: "תגובה"
+        add_a_comment: "Add a comment"
+        author: "כותב"
+        email: "דואל"
+        url: "כתובת"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} או %{second_action}"
+        cancel: "בטל"
+        save: "שמור"
       button:
         select_action: "Select action"
         delete_checked_items: "מחק פריטים שסומנו"

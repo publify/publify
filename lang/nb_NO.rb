@@ -118,8 +118,6 @@ Localization.define("nb_NO") do |l|
   l.store "All authors", "Alle forfatterne"
   l.store "All published dates", "Alle datoer"
   l.store "There are no %s yet. Why don't you start and create one?", "Det finnes ingen %s enda. Hva med å opprette en?"
-  l.store "or", "eller"
-  l.store "Save", "Lagre"
   l.store "Short url:", "Kort URL:"
   l.store "Edit", "Rediger"
   l.store "Show", "Vis"
@@ -176,20 +174,9 @@ Localization.define("nb_NO") do |l|
   l.store "Uploads", "Opplastede filer"
   l.store "Post settings", "Postinnstillinger"
   l.store "Publish at", "Offentliggjort den"
-  l.store "disabled", ""
-  l.store "Markdown with SmartyPants", ""
-  l.store "Markdown", ""
-  l.store "Texttile", ""
-  l.store "None", ""
-  l.store "SmartyPants", ""
-  l.store "Visual", ""
-  l.store "Edit article", ""
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
   l.store "Articles", "Artikler"
-  l.store "Author", "Forfatter"
   l.store "Date", "Dato"
   l.store "Latest Comments", "Siste kommentarer"
 
@@ -220,35 +207,20 @@ Localization.define("nb_NO") do |l|
   l.store "Limit to presumed spam", "Begrens til antatt Spam"
   l.store "Unapproved comments", "Kommentarer på vent"
   l.store "Limit to spam", "Begrens til Spam"
-
-  l.store "Add a comment", "Legg til kommentar"
-  l.store "Url", "URL"
-
-
-  l.store "Comments for %s", "Kommentarer for %s"
-  l.store "Comment Author", "Kommentarforfatter"
-  l.store "Comment", "Kommentar"
-
   l.store "Are you sure you want to delete this %s", "Er du sikker på at du vil slette denne %s?"
   l.store "Delete this feedback", "Slett feedback"
   l.store "%s", ""
-
   l.store "Search Comments and Trackbacks that contain", "Søk etter kommentarer og Trackbacks som inneholder"
   l.store "Article", "Artikkel"
   l.store "Select all", "Velg alle"
-
   l.store "Online", "Online"
   l.store "Page settings", "Sideinnstillinger"
   l.store "Permanent link", "Permanent lenke"
-
   l.store "Pages", "Sider"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne siden"
   l.store "Delete this page", "Slett denne side"
-
   l.store "New Page", "Ny side"
   l.store "Manage pages", "Administrer sider"
-
-  # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Din profil"
 
   # app/views/admin/redirects/destroy.html.erb
@@ -452,13 +424,9 @@ Localization.define("nb_NO") do |l|
   # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", "Beklager, men temakatalogen er ikke tilgjengelig"
   l.store "Theme catalogue", "Temakatalog"
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Aktivt tema"
   l.store "Choose a theme", "Velg et tema"
   l.store "Use this theme", "Velg dette temaet"
-
-  # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Kontoinnstillinger"
   l.store "Password confirmation", "Gjenta passord"
   l.store "User's status", "Brukerens status"
@@ -520,21 +488,12 @@ Localization.define("nb_NO") do |l|
   l.store "Comment Markup Help", "Hjelp med markup for kommentar"
   l.store "Preview comment", "Vis eksempel på kommentar"
   l.store "leave url/email", "legg igjen URL/epost"
-
   l.store "No comments", "Ingen kommentarer"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Fant ingen artikler"
   l.store "posted in", "postet i"
-
   l.store "is about to say", "vil snart si"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Det er"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Skriv en kommentar"
-  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Bruk følgende lenke for å opprette trackback fra din egen side"
   l.store "RSS feed for this post", "RSS-feed for denne artikkel"
   l.store "trackback uri", "Trackback URI"

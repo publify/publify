@@ -6,6 +6,19 @@ ru:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "Comments for %{title}"
+        status: "Status"
+        comment_author: "Comment Author"
+        comment: "Отправить комментарий"
+        add_a_comment: "Add a comment"
+        author: "Автор"
+        email: "Email"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} или %{second_action}"
+        cancel: "Отменить"
+        save: "Сохранить"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -102,7 +115,7 @@ ru:
         excerpt: "Выдержка"
         excerpt_explaination: "Выдержка — это анонс поста, который будет отображаться только на главной странице, и не будет присутствовать при просмотре полного поста"
         publish_settings: "Настройки публикации"
-        status: "Status:"
+        status: "Status"
         published: "Опубликован"
         allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
         change: "Change"

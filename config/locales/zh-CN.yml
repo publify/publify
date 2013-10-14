@@ -6,6 +6,19 @@ zh-CN:
       last: "Last"
   admin:
     feedback:
+      article:
+        comments_for: "做出评论 %{title}"
+        status: "状态"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        add_a_comment: "Add a comment"
+        author: "作者"
+        email: "Email"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other: "%{first_action} 或 %{second_action}"
+        cancel: "取消"
+        save: "保存"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
