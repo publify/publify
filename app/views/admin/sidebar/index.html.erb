@@ -35,7 +35,7 @@
 			<% else %>
 			<%= render :partial => 'active', :collection => @active %>
 			<% end %>
-			<%= sortable_element "active", :url => {:action => 'set_active'},
+			<%#= sortable_element "active", :url => {:action => 'set_active'},
 			:tag => 'div',
 			:handle => 'handle', :containment => ['active','available_box'],
 			:loading => "new Element.show('update_spinner')" %>
