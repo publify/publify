@@ -5,6 +5,16 @@ ja:
       next: "Next"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "サイトにファイルをアップロード"
+        upload: "アップロード"
+        filename: "ファイル名"
+        right_click_for_link: "右クリックでリンク"
+        content_type: "コンテンツタイプ"
+        file_size: "ファイルサイズ"
+        date: "日付"
     post_types:
       new:
         post_types: "Post Types"

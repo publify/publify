@@ -160,25 +160,12 @@ Localization.define("he_IL") do |l|
   l.store "Pages", "דפים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"
   l.store "Delete this page", "מחק דף זה"
-  l.store "Content Type", "סוג התוכן"
   l.store "Previous page", "הדף הקודם"
   l.store "Next page", "הדף הבא"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "העלה קובץ לאתר שלך"
   l.store "File", "קובץ"
-  l.store "Upload", "העלה"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "האם אתה בטוח שברצונך למחוק קובץ זה ?"
   l.store "Delete this file from the webserver?", "למחוק קובץ זה מהשרת"
   l.store "File Uploads", "העלאות קבצים"
-  l.store "File Size", "גודל הקובץ"
-  l.store "right-click for link", "לחיצה ימנית לקישור"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "שם הקובץ"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
@@ -210,7 +197,6 @@ Localization.define("he_IL") do |l|
   l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
   l.store "Here are some examples to get you started.", ""
   l.store "Permalink format", ""
-  l.store "Date and title", ""
   l.store "Month and title", ""
   l.store "Title only", ""
   l.store "You can custom your URL structure using the following tags:", ""
@@ -231,10 +217,8 @@ Localization.define("he_IL") do |l|
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced by the archive date", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""

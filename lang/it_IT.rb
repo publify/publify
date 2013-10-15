@@ -131,29 +131,13 @@ Localization.define("it_IT") do |l|
   l.store "Delete this page", "Elimina questa pagina"
 
   # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", "Tipo di contenuto"
 
   l.store "Previous page", "Pagina precedente"
   l.store "Next page", "Pagina successiva"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Invia un file al tuo sito"
   l.store "File", "File"
-  l.store "Upload", "Invia"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Sei sicuro di voler eliminare questo file"
   l.store "Delete this file from the webserver?", "Eliminare questo file dal webserver ?"
   l.store "File Uploads", "Invia file"
-
-  # app/views/admin/resources/images.html.erb
-  l.store "Thumbnail", ""
-  l.store "File Size", "Dimensione"
-  l.store "right-click for link", "clicca col destro per il link"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Nome del file"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
@@ -185,7 +169,6 @@ Localization.define("it_IT") do |l|
 
   l.store "Description template", ""
   l.store "Paginated archives", ""
-  l.store "Dated archives", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""

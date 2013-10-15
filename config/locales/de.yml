@@ -5,6 +5,16 @@ de:
       next: "Next"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "Legen Sie einen Dateianhang an ihrer Site an"
+        upload: "Upload"
+        filename: "Dateiname"
+        right_click_for_link: "right-click for link"
+        content_type: "Content Type"
+        file_size: "Dateigröße"
+        date: "Date"
     post_types:
       new:
         post_types: "Post Types"

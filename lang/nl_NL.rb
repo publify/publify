@@ -202,30 +202,14 @@ Localization.define("nl_NL") do |l|
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"
   l.store "Your profile", "Je profiel"
-  l.store "Content Type", "Content Type"
 
   l.store "Previous page", "Vorige pagina"
   l.store "Next page", "Volgende pagina"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Upload een bestand naar je site"
   l.store "File", "Bestand"
-  l.store "Upload", "Upload"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Weet je zeker dat je dit bestand wilt verwijderen?"
   l.store "Delete this file from the webserver?", "Verwijder dit bestand van de webserver?"
   l.store "File Uploads", "Bestand Uploads"
-
   l.store "Thumbnail", "Voorafbeelding"
-  l.store "File Size", "Bestandsgrootte"
-  l.store "right-click for link", "rechts-klikken voor link"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Bestandsnaam"
-  l.store "Browse", ""
-
-  # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
   l.store "Global SEO settings", ""
   l.store "Titles", ""

@@ -222,32 +222,16 @@ Localization.define("nb_NO") do |l|
   l.store "New Redirect", "Ny omdirigering"
   l.store "From", "Fra"
   l.store "To", "Til"
-
-  # app/views/admin/redirects/new.html.erb
   l.store "%s Redirect", "%s omdirigering"
-
   l.store "Previous page", "Forrige side"
   l.store "Next page", "Neste side"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Last opp en fil til siden din"
   l.store "File", "Fil"
-  l.store "Upload", "Last opp"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Er du sikker på du vil slette denne filen"
   l.store "Delete this file from the webserver?", "Slett denne filen fra webtjeneren?"
   l.store "File Uploads", "Opplastede filer"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Filnavn"
-  l.store "Content Type", "Innholdstype (Content Type)"
-  l.store "File Size", "Filstørrelse"
   l.store "Thumbnail", "Thumbnail"
   l.store "Medium size", "Mellomstor"
   l.store "Original size", "Opprinnelig størrelse"
-  l.store "right-click for link", "høyreklikk for lenke"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "General settings", "Generelle innstillinger"
@@ -371,7 +355,6 @@ Localization.define("nb_NO") do |l|
   l.store "Latitude, Longitude", "Breddegrad, lengdegrad"
   l.store "your latitude and longitude", "din breddegrad og lengdegrad"
   l.store "example", "for eksempel"
-  l.store "Media", ""
   l.store "Image thumbnail size", "Liten bildestørrelse"
   l.store "Image medium size", "Mellomstor bildestørrelse"
   l.store "Write", "Skriv"

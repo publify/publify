@@ -117,31 +117,13 @@ Localization.define("ja_JP") do |l|
   l.store "Pages","ページ"
   l.store "Are you sure you want to delete the page", "本当にこのページを削除してよろしいですか？"
   l.store "Delete this page", "このページを削除"
-
-  # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "あなたのプロフィール"
-
-  # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", "コンテンツタイプ"
   l.store "Previous page", "前のページ"
   l.store "Next page", "次のページ"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "サイトにファイルをアップロード"
   l.store "File", "ファイル"
-  l.store "Upload", "アップロード"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "本当にこのファイルを削除してよろしいですか？"
   l.store "Delete this file from the webserver?", "webサーバーからこのファイルを削除しますか？"
   l.store "File Uploads", "ファイルアップロード"
-
-  l.store "File Size", "ファイルサイズ"
-  l.store "right-click for link", "右クリックでリンク"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "ファイル名"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
@@ -169,7 +151,6 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/seo/permalinks.html.erb
   l.store "Here are some examples to get you started.", ""
-  l.store "Date and title", ""
   l.store "Month and title", ""
   l.store "Title only", ""
   l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
@@ -185,7 +166,6 @@ Localization.define("ja_JP") do |l|
   l.store "Description template", ""
   l.store "Articles", ""
   l.store "Paginated archives", ""
-  l.store "Dated archives", ""
   l.store "Search results", ""
   l.store "Help on title settings", ""
   l.store "The blog's tagline / description", ""

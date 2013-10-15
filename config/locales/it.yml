@@ -5,6 +5,16 @@ it:
       next: "Next"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "Invia un file al tuo sito"
+        upload: "Invia"
+        filename: "Nome del file"
+        right_click_for_link: "clicca col destro per il link"
+        content_type: "Tipo di contenuto"
+        file_size: "Dimensione"
+        date: "Date"
     post_types:
       new:
         post_types: "Post Types"

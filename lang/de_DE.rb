@@ -107,29 +107,13 @@ Localization.define("de_DE") do |l|
   l.store "Pages","Seiten"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
-  l.store "Content Type", "Content Type"
 
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Vorherige Seite"
   l.store "Next page", "Nächste Seite"
 
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Legen Sie einen Dateianhang an ihrer Site an"
-  l.store "File", ""
-  l.store "Upload", "Upload"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Sind Sie sicher, diese Datei zu löschen"
   l.store "Delete this file from the webserver?", "Diese Datei vom Webserver löschen?"
   l.store "File Uploads", "Dateianhänge"
-
-  l.store "Thumbnail", ""
-  l.store "File Size", "Dateigröße"
-  l.store "right-click for link", ""
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Dateiname"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""

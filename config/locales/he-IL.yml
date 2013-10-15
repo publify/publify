@@ -5,6 +5,16 @@ he-IL:
       next: "Next"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "העלה קובץ לאתר שלך"
+        upload: "העלה"
+        filename: "שם הקובץ"
+        right_click_for_link: "לחיצה ימנית לקישור"
+        content_type: "סוג התוכן"
+        file_size: "גודל הקובץ"
+        date: "תאריך"
     post_types:
       new:
         post_types: "Post Types"

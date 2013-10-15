@@ -5,6 +5,16 @@ nb-NO:
       next: "Neste"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "Last opp en fil til siden din"
+        upload: "Last opp"
+        filename: "Filnavn"
+        right_click_for_link: "høyreklikk for lenke"
+        content_type: "Innholdstype (Content Type)"
+        file_size: "Filstørrelse"
+        date: "Dato"
     post_types:
       new:
         post_types: "Post Types"

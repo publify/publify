@@ -165,25 +165,14 @@ Localization.define("fr_FR") do |l|
   l.store "Previous page", "Page précédente"
   l.store "Next page", "Page suivante"
 
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Envoyer un fichier sur votre site"
-  l.store "Upload", "Ajouter un fichier joint"
-  l.store "Media Library", "Bibliothèque de média"
-
   # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Êtes-vous certain de vouloir supprimer ce fichier"
   l.store "Delete this file from the webserver?", "Supprimer complètement ce fichier du site ?"
   l.store "File Uploads", "Ajout de fichiers"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Fichier"
-  l.store "Content Type", "Type de contenu"
-  l.store "File Size", "Taille du fichier"
   l.store "Thumbnail", "Miniatures"
   l.store "Medium size", "Taille moyenne"
   l.store "Original size", "Fichier original"
   l.store "Files", "Fichiers"
-  l.store "right-click for link", "clic droit pour le lien"
   l.store "Browse", "Parcourir"
 
   # app/views/admin/seo/index.html.erb

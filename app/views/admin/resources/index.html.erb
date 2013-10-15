@@ -1,18 +1,44 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-resources"></i><h2 class="page-title"><%= _("Media library") %></h2>
+  <i class="icon-large icon-resources"></i>
+  <h2 class="page-title"><%= t(".media_library") %></h2>
 <% end %>
 
-<%= render 'upload' -%>
+<%= form_tag({action: 'upload'}, {enctype: "multipart/form-data"}) do %>
+  <div class='well well-small'>
+    <h3><%= t('.upload_a_file_to_your_site') %></h3>
+    <%= file_field('upload', 'filename', {class: 'input-file'}) -%>
+    <%= submit_tag(t('.upload'), {class: 'btn'}) -%>
+  </div>
+<%- end %>
 
 <table class="table table-striped">
   <thead>
     <tr class='noborder'>
-      <th><%= _("Filename")%> <small>(<%= _('right-click for link')%>)</small></th>
-      <th><%= _("Content Type")%></th>
-      <th><%= _("File Size")%></th>
-      <th><%= _("Date")%></th>
+      <th><%= t(".filename")%> <small>(<%= t('.right_click_for_link')%>)</small></th>
+      <th><%= t(".content_type")%></th>
+      <th><%= t(".file_size")%></th>
+      <th><%= t(".date")%></th>
     </tr>
   </thead>
-  <%= render 'resource_list', { :resources => @resources } %>
+  <%= render_void_table(@resources.size, 6) %>
+  <% for upload in @resources -%>
+    <tr>
+      <td>
+        <% if upload.mime =~ /image/ %>
+          <%= link_to upload.upload_url, rel: 'lightbox' do %>
+            <%= image_tag(upload.upload.thumb.url) %>
+          <% end %>
+        <% else %>
+          <%= link_to(upload.upload_url, upload.upload_url) -%>
+        <% end %>
+        <p><%= resource_action_links(upload) %></p>
+      </td>
+      <td>
+        <%= upload.mime %>
+      </td>
+      <td><%=h upload.size rescue 0 -%> bytes</td>
+      <td><%= format_date upload.created_at -%></td>
+    </tr>
+  <% end -%>
   <%= display_pagination(@resources, 6)%>
 </table>

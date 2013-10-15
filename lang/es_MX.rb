@@ -103,54 +103,10 @@ Localization.define("es_MX") do |l|
   l.store "Previous page", "P&aacute;gina anterior"
   l.store "Next page", "P&aacute;gina siguiente"
 
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Sube un Archivo a tu sitio"
-  l.store "File", ""
-  l.store "Upload", "Subir"
-
   # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "&iquest;Est&aacute;s seguro que deseas eliminar este archivo?"
   l.store "Delete this file from the webserver?", "&iquest;Eliminar este archivo del servidor?"
   l.store "File Uploads", "Archivos subidos"
-
-  # app/views/admin/resources/images.html.erb
-  l.store "Thumbnail", ""
-  l.store "File Size", "Tama&ntilde;o del Archivo"
-  l.store "right-click for link", ""
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Nombre del archivo"
-  l.store "Browse", ""
-
-  # app/views/admin/seo/index.html.erb
-  l.store "SEO", ""
-  l.store "Global SEO settings", ""
-  l.store "Titles", ""
-  l.store "General settings", ""
-  l.store "Use meta keywords", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "RSS description message", ""
-  l.store "Indexing", ""
-  l.store "Do not index categories", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Do not index tags", ""
-  l.store "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "Use canonical URL", ""
-  l.store "Read more about %s", ""
-  l.store "Google", ""
-  l.store "Google Analytics", ""
-  l.store "Google Webmaster Tools validation link", ""
-  l.store "Custom tracking code", ""
-  l.store "Global settings", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
   # app/views/admin/seo/titles.html.erb
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""

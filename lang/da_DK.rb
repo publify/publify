@@ -106,30 +106,11 @@ Localization.define("da_DK") do |l|
   l.store "Your profile", "Din profil"
 
   # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", "Indholdstype (Content Type)"
-
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "Forrige side"
   l.store "Next page", "Næste side"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Upload en fil til din side"
-  l.store "File", ""
-  l.store "Upload", "Upload"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Er du sikker på du vil slette denne fil"
   l.store "Delete this file from the webserver?", "Slet denne fil fra webserveren?"
   l.store "File Uploads", "Fil Uploads"
-
-  l.store "Thumbnail", ""
-  l.store "File Size", "Filstørrelse"
-  l.store "right-click for link", "højreklik for link"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Filnavn"
-  l.store "Browse", ""
-
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
   l.store "Global SEO settings", ""

@@ -171,31 +171,11 @@ Localization.define("pt_BR") do |l|
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", ""
-
-  # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", "Content Type"
-
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "P&aacute;gina anterior"
   l.store "Next page", "P&aacute;gina siguiente"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Sube un Archivo a tu sitio"
-  l.store "File", ""
-  l.store "Upload", "Subir"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "&iquest;Est&aacute;s seguro que deseas eliminar este archivo?"
   l.store "Delete this file from the webserver?", "&iquest;Eliminar este archivo del servidor?"
   l.store "File Uploads", "Archivos subidos"
-
-  l.store "Thumbnail", ""
-  l.store "File Size", "Tama&ntilde;o del Archivo"
-  l.store "right-click for link", ""
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Nombre del archivo"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""

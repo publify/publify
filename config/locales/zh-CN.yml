@@ -5,6 +5,16 @@ zh-CN:
       next: "Next"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "上傳一個檔案到你的網點"
+        upload: "上傳"
+        filename: "檔案名稱"
+        right_click_for_link: "右鍵連結"
+        content_type: "內容類型"
+        file_size: "檔案大小"
+        date: "日期"
     post_types:
       new:
         post_types: "Post Types"

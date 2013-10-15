@@ -61,28 +61,14 @@ Localization.define("ro_RO") do |l|
   l.store "Pages","Pagini"
   l.store "Are you sure you want to delete the page", "Ești sigur că dorești să ștergi această pagină"
   l.store "Delete this page", "Șterge această pagină"
-  l.store "Content Type", "Tip de conținut (content type)"
   l.store "Previous page", "Pagina anterioară"
   l.store "Next page", "Pagina următoare"
-  l.store "Upload a File to your Site", "Încarcă un fișier în site"
-  l.store "Upload", "Încarcă"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Ești sigur că dorești să ștergi acest fișier"
   l.store "Delete this file from the webserver?", "Ștergi acest fișier de pe server?"
   l.store "File Uploads", "Încărcări de fișiere"
-
-  l.store "Thumbnail", ""
-  l.store "File Size", "Dimensiunea fișierului"
-  l.store "right-click for link", ""
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Nume de fișier"
   l.store "Browse", ""
   l.store "Displays links to monthly archives", ""
   l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Show pages for this blog", ""
   l.store "Static", ""

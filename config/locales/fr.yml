@@ -5,6 +5,16 @@ fr:
       next: "Suivant"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Bibliothèque de média"
+        upload_a_file_to_your_site: "Envoyer un fichier sur votre site"
+        upload: "Ajouter un fichier joint"
+        filename: "Fichier"
+        right_click_for_link: "clic droit pour le lien"
+        content_type: "Type de contenu"
+        file_size: "Taille du fichier"
+        date: "Date"
     post_types:
       new:
         post_types: "Modèles d'articles"

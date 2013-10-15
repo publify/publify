@@ -5,6 +5,16 @@ ro:
       next: "Next"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "Încarcă un fișier în site"
+        upload: "Încarcă"
+        filename: "Nume de fișier"
+        right_click_for_link: "right-click for link"
+        content_type: "Tip de conținut (content type)"
+        file_size: "Dimensiunea fișierului"
+        date: "Date"
     post_types:
       new:
         post_types: "Post Types"

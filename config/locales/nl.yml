@@ -5,6 +5,16 @@ nl:
       next: "Volgende"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "Upload een bestand naar je site"
+        upload: "Upload"
+        filename: "Bestandsnaam"
+        right_click_for_link: "rechts-klikken voor link"
+        content_type: "Content Type"
+        file_size: "Bestandsgrootte"
+        date: "Datum"
     post_types:
       new:
         post_types: "Post Types"

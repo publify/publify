@@ -5,6 +5,16 @@ da:
       next: "Next"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "Upload en fil til din side"
+        upload: "Upload"
+        filename: "Filnavn"
+        right_click_for_link: "højreklik for link"
+        content_type: "Indholdstype (Content Type)"
+        file_size: "Filstørrelse"
+        date: "Dato"
     post_types:
       new:
         post_types: "Post Types"

@@ -137,28 +137,15 @@ Localization.define("pl_PL") do |l|
   l.store "Your profile", ""
 
   # app/views/admin/resources/_mime_edit.html.erb
-  l.store "Content Type", "Typ treści"
 
   l.store "Previous page", "Poprzednia strona"
   l.store "Next page", "Następna strona"
 
   # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "Wyślij plik na swój blog"
   l.store "File", "Plik"
-  l.store "Upload", "Wyślij"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "Czy na pewno chcesz skasować ten plik"
   l.store "Delete this file from the webserver?", "Skasować ten plik z serwera?"
   l.store "File Uploads", "Wysłane pliki"
-
-  l.store "Thumbnail", ""
-  l.store "File Size", "Rozmiar pliku"
-  l.store "right-click for link", "Kliknij PPM by uzyskać łącze"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "Nazwa pliku"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
@@ -199,10 +186,8 @@ Localization.define("pl_PL") do |l|
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
-  l.store "Replaced by the archive date", ""
 
   # app/views/admin/settings/_submit.html.erb
   l.store "Update settings", ""

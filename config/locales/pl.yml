@@ -5,6 +5,16 @@ pl:
       next: "Następne"
       last: "Last"
   admin:
+    resources:
+      index:
+        media_library: "Media Library"
+        upload_a_file_to_your_site: "Wyślij plik na swój blog"
+        upload: "Wyślij"
+        filename: "Nazwa pliku"
+        right_click_for_link: "Kliknij PPM by uzyskać łącze"
+        content_type: "Typ treści"
+        file_size: "Rozmiar pliku"
+        date: "Data"
     post_types:
       new:
         post_types: "Post Types"

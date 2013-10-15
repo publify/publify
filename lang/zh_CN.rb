@@ -178,31 +178,12 @@ Localization.define("zh_CN") do |l|
   l.store "Pages","页数"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
-  l.store "Content Type", "內容類型"
-
-  # app/views/admin/resources/_pages.html.erb
   l.store "Previous page", "前一頁"
   l.store "Next page", "下一頁"
-
-  # app/views/admin/resources/_upload.html.erb
-  l.store "Upload a File to your Site", "上傳一個檔案到你的網點"
   l.store "File", "檔案"
-  l.store "Upload", "上傳"
-
-  # app/views/admin/resources/destroy.html.erb
   l.store "Are you sure you want to delete this file", "你確定要刪除此檔案？"
   l.store "Delete this file from the webserver?", "從網路伺服器刪除此檔案？"
   l.store "File Uploads", "檔案上載"
-
-  # app/views/admin/resources/images.html.erb
-  l.store "Thumbnail", ""
-  l.store "File Size", "檔案大小"
-  l.store "Images", ""
-  l.store "right-click for link", "右鍵連結"
-
-  # app/views/admin/resources/index.html.erb
-  l.store "Filename", "檔案名稱"
-  l.store "Browse", ""
 
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
@@ -236,11 +217,9 @@ Localization.define("zh_CN") do |l|
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
-  l.store "Replaced by the archive date", ""
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
   l.store "Enable feedback moderation", "適度可以反饋"
