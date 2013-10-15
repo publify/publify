@@ -97,7 +97,6 @@ Localization.define("da_DK") do |l|
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Total comments : %d", "Total kommentarer : %d"
   l.store "Spam comments : %d", "Spam kommentarer : %d"
-  l.store "Online", "Online"
   l.store "Pages", "Sider"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne side"
   l.store "Delete this page", "Slet denne side"

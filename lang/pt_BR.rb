@@ -165,7 +165,6 @@ Localization.define("pt_BR") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
   l.store "Limit to spam", "Limitar a spam"
-  l.store "Online", "Online"
   l.store "Pages","P&aacute;ginas"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"

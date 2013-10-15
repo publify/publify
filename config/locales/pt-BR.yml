@@ -5,6 +5,17 @@ pt-BR:
       next: "Próximo"
       last: "Anterior"
   admin:
+    pages:
+      form:
+        publish: "Publicar"
+        title: "Título"
+        images: "Imagens"
+        publish_settings: "Configurações de publicação"
+        status: "Estado"
+        online: "Online"
+        article_filter: "Filtro de artigo"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Feedback"

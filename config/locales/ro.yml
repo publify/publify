@@ -5,6 +5,17 @@ ro:
       next: "Next"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "Publică"
+        title: "Titlu"
+        images: "Images"
+        publish_settings: "Publish settings"
+        status: "Status"
+        online: "Online"
+        article_filter: "Filtru pentru articole"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Feedback"

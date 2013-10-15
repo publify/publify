@@ -5,6 +5,17 @@ nb-NO:
       next: "Neste"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "Publiser"
+        title: "Tittel"
+        images: "Bilder"
+        publish_settings: "Publiseringsinnstillinger"
+        status: "Status"
+        online: "Online"
+        article_filter: "artikkelfilter"
+        permanent_link: "Permanent lenke"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Diskusjon"

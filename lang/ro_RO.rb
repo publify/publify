@@ -58,7 +58,6 @@ Localization.define("ro_RO") do |l|
   l.store "Are you sure you want to delete this article", "Ești sigur că dorești ștergerea acestui articol"
   l.store "Delete this article", "Șterge acest articol"
   l.store "Limit to spam", "Doar spam"
-  l.store "Online", "Online"
   l.store "Pages","Pagini"
   l.store "Are you sure you want to delete the page", "Ești sigur că dorești să ștergi această pagină"
   l.store "Delete this page", "Șterge această pagină"

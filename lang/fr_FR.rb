@@ -161,11 +161,7 @@ Localization.define("fr_FR") do |l|
   l.store "Spam comments:", "Nombre total de spam :"
   l.store "In your spam queue:", "En attente de modération :"
   l.store "unconfirmed", "non validés"
-
-  # app/views/admin/pages/_form.html.erb
-  l.store "Online", "En ligne"
   l.store "Page settings", "Paramètres de la page"
-  l.store "Permanent link", "Lien permanent"
 
   # app/views/admin/pages/index.html.erb
   l.store "New Page", "Nouvelle page"
@@ -361,8 +357,6 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/shared/destroy.html.erb
   l.store "Are you sure you want to delete this %s?", "Êtes-vous certain de vouloir supprimer ce %s ?"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Modifications publiées"
 
   # app/views/admin/sidebar/_target.html.erb

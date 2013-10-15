@@ -5,6 +5,17 @@ fr:
       next: "Suivant"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "Publier"
+        title: "Titre"
+        images: "Images"
+        publish_settings: "Paramètres de publication"
+        status: "État"
+        online: "En ligne"
+        article_filter: "Mise en forme des billets"
+        permanent_link: "Lien permanent"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Commentaires"

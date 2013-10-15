@@ -114,11 +114,7 @@ Localization.define("ja_JP") do |l|
   l.store "Limit to ham", "有効コメント"
   l.store "Limit to spam", "スパムコメント"
   l.store "Search Comments and Trackbacks that contain", "以下の語句を含むコメントおよびトラックバックを検索"
-
-  l.store "Online", "オンライン"
   l.store "Page settings", "ページ設定"
-  l.store "Permanent link", ""
-
   l.store "Pages","ページ"
   l.store "Are you sure you want to delete the page", "本当にこのページを削除してよろしいですか？"
   l.store "Delete this page", "このページを削除"

@@ -5,6 +5,17 @@ es-MX:
       next: "Next"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "Publicar"
+        title: "T&iacute;tulo"
+        images: "Images"
+        publish_settings: "Publish settings"
+        status: "Estado"
+        online: "Online"
+        article_filter: "Filtro de art&iacute;culo"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Feedback"

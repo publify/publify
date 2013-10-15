@@ -81,7 +81,6 @@ Localization.define("lt_LT") do |l|
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Limit to spam", "Spamo limitas"
-  l.store "Online", "Pasiekiamas"
   l.store "Pages","Seiten"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"

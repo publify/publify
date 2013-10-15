@@ -94,9 +94,6 @@ Localization.define("zh_TW") do |l|
   l.store "Total comments : %d", "評論總計：%d"
   l.store "Spam comments : %d", "垃圾評論：%d"
   l.store "Limit to spam", "限制垃圾郵件"
-  l.store "Online", "上線"
-  l.store "Page settings", ""
-  l.store "Permanent link", ""
 
   # app/views/admin/pages/destroy.html.erb
   l.store "Pages","頁數"

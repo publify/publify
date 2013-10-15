@@ -181,7 +181,6 @@ Localization.define("zh_CN") do |l|
   l.store "Total comments : %d", "评论总计：%d"
   l.store "Spam comments : %d", "垃圾评论：%d"
   l.store "Limit to spam", "限制垃圾郵件"
-  l.store "Online", "上線"
   l.store "Pages","页数"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
@@ -223,7 +222,6 @@ Localization.define("zh_CN") do |l|
   # app/views/admin/seo/index.html.erb
   l.store "SEO", ""
   l.store "Global SEO settings", ""
-  l.store "Titles", ""
   l.store "General settings", ""
   l.store "Use meta keywords", ""
   l.store "Meta description", ""
@@ -243,9 +241,6 @@ Localization.define("zh_CN") do |l|
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-  # app/views/admin/seo/titles.html.erb
-  l.store "Title settings", ""
-  l.store "Title template", ""
   l.store "Description template", ""
   l.store "Pages", ""
   l.store "Paginated archives", ""

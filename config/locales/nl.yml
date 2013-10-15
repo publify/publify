@@ -5,6 +5,17 @@ nl:
       next: "Volgende"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "Publiceer"
+        title: "Titel"
+        images: "Afbeeldingen"
+        publish_settings: "Publicatie instellingen"
+        status: "Status"
+        online: "Online"
+        article_filter: "Artikel filter"
+        permanent_link: "Permanente link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Feedback"

@@ -5,6 +5,17 @@ ru:
       next: "Next"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "Опубликовать"
+        title: "Заголовок"
+        images: "Images"
+        publish_settings: "Настройки публикации"
+        status: "Status"
+        online: "Online"
+        article_filter: "Article filter"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Комментарии"

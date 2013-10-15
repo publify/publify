@@ -5,6 +5,17 @@ ja:
       next: "Next"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "公開"
+        title: "タイトル"
+        images: "Images"
+        publish_settings: "Publish settings"
+        status: "ステータス"
+        online: "オンライン"
+        article_filter: "記事フィルター"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "フィードバック"
@@ -116,7 +127,7 @@ ja:
         drafts: "下書き:"
         publication_pending: "Publication pending"
         search: "検索"
-        title: "Title"
+        title: "タイトル"
         select_a_category: "Select a category"
         select_an_author: "Select an author"
         publication_date: "Publication date"

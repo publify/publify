@@ -5,6 +5,17 @@ zh-CN:
       next: "Next"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "发布"
+        title: "Title"
+        images: "Images"
+        publish_settings: "发布设定"
+        status: "状态"
+        online: "上線"
+        article_filter: "Article filter"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "回应"

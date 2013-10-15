@@ -5,6 +5,17 @@ it:
       next: "Next"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "Pubblica"
+        title: "Titolo"
+        images: "Images"
+        publish_settings: "Publish settings"
+        status: "Stato"
+        online: "Online"
+        article_filter: "Filtra articolo"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "Feedback"

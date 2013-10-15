@@ -5,6 +5,17 @@ zh-TW:
       next: "Next"
       last: "Last"
   admin:
+    pages:
+      form:
+        publish: "公開"
+        title: "標題"
+        images: "Images"
+        publish_settings: "Publish settings"
+        status: "身分"
+        online: "上線"
+        article_filter: "篩選文章"
+        permanent_link: "Permanent link"
+        page_with_action_name: "%{action} page"
     feedback:
       index:
         feedback: "回應"

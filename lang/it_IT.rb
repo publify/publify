@@ -126,16 +126,9 @@ Localization.define("it_IT") do |l|
   l.store "Your posts : %d", ""
   l.store "Limit to spam", "Limita a spam"
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
-
-  l.store "Online", "Online"
-  l.store "Permanent link", ""
-
   l.store "Pages","Pagine"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
   l.store "Delete this page", "Elimina questa pagina"
-
-  # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
 
   # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Tipo di contenuto"

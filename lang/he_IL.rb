@@ -165,7 +165,6 @@ Localization.define("he_IL") do |l|
   l.store "Limit to spam", "סווג כספאם"
   l.store "Comments for", "תגובות על"
   l.store "Search Comments and Trackbacks that contain", "חפש תגובות או עוקבים-חזרה המכילים"
-  l.store "Online", "מוצג"
   l.store "Pages", "דפים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"
   l.store "Delete this page", "מחק דף זה"
@@ -183,9 +182,6 @@ Localization.define("he_IL") do |l|
   l.store "Are you sure you want to delete this file", "האם אתה בטוח שברצונך למחוק קובץ זה ?"
   l.store "Delete this file from the webserver?", "למחוק קובץ זה מהשרת"
   l.store "File Uploads", "העלאות קבצים"
-
-  # app/views/admin/resources/images.html.erb
-  l.store "Thumbnail", ""
   l.store "File Size", "גודל הקובץ"
   l.store "right-click for link", "לחיצה ימנית לקישור"
 

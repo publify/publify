@@ -2,23 +2,23 @@
 
 <h2 class='page-header'>
   <i class='icon-large icon-page-new'></i>
-  <%= _("#{controller.action_name.to_s.capitalize} Page") %>
+  <%= t(".page_with_action_name", action: controller.action_name.to_s.capitalize) %>
   <span class='pull-right'>
-    <%= save( _("Publish")) %>
+    <%= submit_tag( t(".publish"), class: 'btn btn-primary') %>
   </span>
 </h2>
-  
+
 <%= error_messages_for 'page' %>
 <div>
   <div class='span9'>
     <div>
-      <%= text_field 'page', 'title', :class => 'input-block-level', :placeholder => _('Title')  %>
+      <%= text_field 'page', 'title', :class => 'input-block-level', :placeholder => t('.title')  %>
     </div>
-    
+
     <%= render('images', { :images => @images}) unless @images.empty? %>
-    
+
     <div id='editor'>
-      <i class='icon icon-media'></i> <span id='image-link'><%= toggle_element 'carousel-wrapper', _("Images") %></span>
+      <i class='icon icon-media'></i> <span id='image-link'><%= toggle_element 'carousel-wrapper', t(".images") %></span>
       <div id='quicktags'>
         <script type="text/javascript">edToolbar('page_body', '<%= @page.text_filter %>');</script>
       </div>
@@ -30,19 +30,19 @@
     <div class='separator'>
       <div class='well'>
         <fieldset>
-          <legend><%= _("Publish settings") %></legend>
+          <legend><%= t(".publish_settings") %></legend>
           <div class='control-group'>
-            <%= _("Status") %>: <strong><%= _(@page.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
+            <%= t(".status") %>: <strong><%= _(@page.state.to_s.downcase) %></strong> <%= toggle_element 'status' %>
             <div id='status' style='display: none;'>
               <label for="page_published" class='checkbox'>
                 <%= check_box 'page', 'published'  %>
-                <%= _("Online")%>
+                <%= t(".online")%>
               </label>
               <p><span class='btn btn-mini'><%= toggle_element 'status', "OK" %></span></p>
             </div>
           </div>
           <div class='control-group'>
-            <%= _("Article filter") %>: <strong><%= _("#{@page.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
+            <%= t(".article_filter") %>: <strong><%= _("#{@page.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
             <div id='text_filter' style='display: none;'>
               <select name="page[text_filter]" id="text_filter">
               <%= options_for_select text_filter_options, @page.text_filter %>
@@ -54,18 +54,18 @@
       </div>
       <div class='form-actions'>
         <div class='pull-right'>
-            <%= save( _("Publish")) %>
+          <%= submit_tag(t(".publish"), class: 'btn btn-primary') %>
         </div>
       </div>
     </div>
   </div>
   <div class='span3'>
     <div class='well'>
-      <h4><%= _("Permanent link")%></h4>
+      <h4><%= t(".permanent_link")%></h4>
       <div>
         <%= text_field 'page', 'name', :class => 'input-block-level' %>
       </div>
-      
+
     </div>
   </div>
 </div>

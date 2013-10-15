@@ -130,7 +130,6 @@ Localization.define("pl_PL") do |l|
   l.store "Total comments : %d", "Liczba wszystkich komentarzy: %d"
   l.store "Spam comments : %d", "Niechciane komentarze (spam): %d"
   l.store "Url", "Strona web"
-  l.store "Online", "Online"
   l.store "Pages", "Strony"
   l.store "Are you sure you want to delete the page", "Czy na pewno chcesz usunąć tą stronę"
   l.store "Delete this page", "Usuń tą stronę"
