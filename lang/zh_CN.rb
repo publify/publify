@@ -247,7 +247,6 @@ Localization.define("zh_CN") do |l|
   l.store "Title settings", ""
   l.store "Title template", ""
   l.store "Description template", ""
-  l.store "Articles", ""
   l.store "Pages", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
@@ -265,11 +264,6 @@ Localization.define("zh_CN") do |l|
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
-
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
   l.store "Enable feedback moderation", "適度可以反饋"
@@ -300,7 +294,6 @@ Localization.define("zh_CN") do |l|
   l.store "Blog subtitle", "副標題"
   l.store "Blog URL", "博客URL"
   l.store "Language", "言語"
-  l.store "Allow users to register", ""
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""
@@ -308,7 +301,6 @@ Localization.define("zh_CN") do |l|
   l.store "articles on my homepage by default", "預設的首頁文章"
   l.store "articles in my news feed by default", "預設的feed文章"
   l.store "Show full article on feed", "顯示全部feed文章"
-  l.store "Feedburner ID", ""
   l.store "General settings", "一般設定"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
 

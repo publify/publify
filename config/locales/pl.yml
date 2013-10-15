@@ -6,6 +6,20 @@ pl:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "Komentarze"
+        all: "All"
+        unapproved_comments: "Unapproved comments"
+        ham: "Ham"
+        spam: "Spam"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "Szukaj"
+        status: "Stan"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        article: "Article"
+        select_all: "Select all"
       article:
         comments_for: "Komentarze do %{title}"
         status: "Stan"

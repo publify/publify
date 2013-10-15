@@ -111,10 +111,8 @@ Localization.define("he_IL") do |l|
   l.store "Just Presumed Ham", "כנראה לא-ספאם"
   l.store "Ham?", "לא-ספאם ?"
   l.store "Just Marked As Ham", "סומן כלא-ספאם"
-  l.store "Ham", "לא-ספאם"
   l.store "Spam?", "ספאם ?"
   l.store "Just Marked As Spam", "סומן כספאם"
-  l.store "Spam", "ספאם"
 
   # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "סדר מחדש"
@@ -158,21 +156,15 @@ Localization.define("he_IL") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", "אין כתבות עדיין, למה שלא תתחיל לכתוב כתבה חדשה"
 
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
-  l.store "Oh no, nothing new", ""
-
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "ברוך הבא, %s!"
   l.store "Total posts : %d", "כתבות: %d"
   l.store "Your posts : %d", "הכתבות שלך: %d"
   l.store "Total comments : %d", "תגובות: %d"
   l.store "Spam comments : %d", "תגובות ספאם: %d"
-  l.store "Unapproved comments", "תגובות לא מאושרות"
   l.store "Limit to spam", "סווג כספאם"
   l.store "Comments for", "תגובות על"
   l.store "Search Comments and Trackbacks that contain", "חפש תגובות או עוקבים-חזרה המכילים"
-  l.store "Article", "כתבה"
   l.store "Online", "מוצג"
   l.store "Pages", "דפים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"

@@ -6,6 +6,20 @@ ru:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "Комментарии"
+        all: "All"
+        unapproved_comments: "Unapproved comments"
+        ham: "Ham"
+        spam: "Spam"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "Найти"
+        status: "Status"
+        comment_author: "Comment Author"
+        comment: "Отправить комментарий"
+        article: "Article"
+        select_all: "Select all"
       article:
         comments_for: "Comments for %{title}"
         status: "Status"

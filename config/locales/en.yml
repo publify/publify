@@ -6,6 +6,20 @@ en:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "Feedback"
+        all: "All"
+        unapproved_comments: "Unapproved comments"
+        ham: "Ham"
+        spam: "Spam"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "Search"
+        status: "Status"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        article: "Article"
+        select_all: "Select all"
       article:
         comments_for: "Comments for %{title}"
         status: "Status"
@@ -115,7 +129,7 @@ en:
         excerpt: "Excerpt"
         excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
-        status: "Status:"
+        status: "Status"
         published: "Published"
         allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
         change: "Change"

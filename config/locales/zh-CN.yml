@@ -6,6 +6,20 @@ zh-CN:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "回应"
+        all: "All"
+        unapproved_comments: "Unapproved comments"
+        ham: "Ham"
+        spam: "Spam"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "搜索"
+        status: "状态"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        article: "Article"
+        select_all: "Select all"
       article:
         comments_for: "做出评论 %{title}"
         status: "状态"

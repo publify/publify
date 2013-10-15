@@ -21,7 +21,6 @@ Localization.define("it_IT") do |l|
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
-  l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", "Conferma classificazione di %s elementi"
   l.store "Not implemented", "Non implementato"
 
@@ -81,10 +80,6 @@ Localization.define("it_IT") do |l|
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
   l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
   l.store "Reorder", "Riordina"
   l.store "Sort alphabetically", "Ordina alfabeticamente"
 
@@ -130,10 +125,7 @@ Localization.define("it_IT") do |l|
   l.store "Total posts : %d", ""
   l.store "Your posts : %d", ""
   l.store "Limit to spam", "Limita a spam"
-
-
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
-  l.store "Article", ""
 
   l.store "Online", "Online"
   l.store "Permanent link", ""
@@ -201,7 +193,6 @@ Localization.define("it_IT") do |l|
   l.store "Description template", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
-  l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -265,7 +256,6 @@ Localization.define("it_IT") do |l|
   l.store "Index tags", ""
   l.store "Robots.txt", ""
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -431,9 +421,6 @@ Localization.define("it_IT") do |l|
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
@@ -473,12 +460,6 @@ Localization.define("it_IT") do |l|
 
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks per"
-
-  l.store "Search results for:", ""
-
-
-  l.store "Previous", ""
-
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archivi"
 

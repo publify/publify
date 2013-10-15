@@ -6,6 +6,20 @@ fr:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "Commentaires"
+        all: "Tous"
+        unapproved_comments: "Commentaires non validés"
+        ham: "Valide"
+        spam: "Spam"
+        presumed_ham: "Probablement valide"
+        presumed_spam: "Probablement du spam"
+        search: "Chercher"
+        status: "État"
+        comment_author: "Auteur du commentaire"
+        comment: "Commentaire"
+        article: "Article"
+        select_all: "Tout sélectionner"
       article:
         comments_for: "Commentaire sur %{title}"
         status: "État"

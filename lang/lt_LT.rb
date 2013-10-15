@@ -42,13 +42,6 @@ Localization.define("lt_LT") do |l|
 
   # app/models/blog.rb
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
-
   l.store "Reorder", "Rikiuoti"
   l.store "Sort alphabetically", "Rikiuoti pagal abėcėlę"
 
@@ -152,7 +145,6 @@ Localization.define("lt_LT") do |l|
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
   l.store "Replaced with the current date", ""
   l.store "Replaced with the current month", ""
@@ -256,7 +248,6 @@ Localization.define("lt_LT") do |l|
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "RSS and Atom feeds", ""

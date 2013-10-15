@@ -24,7 +24,6 @@ Localization.define("es_MX") do |l|
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
-  l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
 
@@ -32,7 +31,6 @@ Localization.define("es_MX") do |l|
   l.store "complete", ""
   l.store "File uploaded: ", ""
   l.store "Unable to upload", ""
-  l.store "Not all metadata was defined correctly.", ""
 
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
@@ -451,12 +449,6 @@ Localization.define("es_MX") do |l|
   l.store "If you liked this article you can %s", ""
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks para"
-
-  # themes/true-blue-3/views/categories/index.html.erb
-  l.store "Read all articles in %s", ""
-
-  # themes/true-blue-3/views/categories/show.html.erb
-  l.store "Previous", ""
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", ""

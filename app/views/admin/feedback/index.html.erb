@@ -1,30 +1,31 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-comment"></i><h2 class="page-title"><%= _("Feedback") %></h2>
+  <i class="icon-large icon-comment"></i>
+  <h2 class="page-title"><%= t(".feedback") %></h2>
 <% end %>
 
-<%= form_tag({:action => 'index'}, :method => :get, :class => 'form-inline') do %>
+<%= form_tag({action: 'index'}, method: :get, class: 'form-inline') do %>
   <div>
     <span class='badge badge-inverse'>
-      <%= link_to(_("All"), controller: 'admin/feedback', action: :index) %>
+      <%= link_to(t(".all"), controller: 'admin/feedback', action: :index) %>
     </span>&nbsp;
     <span class='badge'>
-      <%= link_to(_("Unapproved comments"), controller: 'admin/feedback', action: :index, confirmed: 'f') %>
+      <%= link_to(t(".unapproved_comments"), controller: 'admin/feedback', action: :index, confirmed: 'f') %>
     </span>&nbsp;
     <span class='badge badge-success'>
-      <%= link_to(_("Ham"), controller: 'admin/feedback', action: :index, ham: 'f') %>
+      <%= link_to(t(".ham"), controller: 'admin/feedback', action: :index, ham: 'f') %>
     </span>&nbsp;
     <span class='badge badge-important'>
-      <%= link_to(_("Spam"), controller: 'admin/feedback', action: :index, spam: 'f') %>
+      <%= link_to(t(".spam"), controller: 'admin/feedback', action: :index, spam: 'f') %>
     </span>&nbsp;
     <span class='badge badge-info'>
-      <%= link_to(_("Presumed ham"), controller: 'admin/feedback', action: :index, presumed_ham: 'f') %>
+      <%= link_to(t(".presumed_ham"), controller: 'admin/feedback', action: :index, presumed_ham: 'f') %>
     </span>&nbsp;
     <span class='badge badge-warning'>
-      <%= link_to(_("Presumed spam"), controller: 'admin/feedback', action: :index, published: 'f') %>
+      <%= link_to(t(".presumed_spam"), controller: 'admin/feedback', action: :index, published: 'f') %>
     </span>&nbsp;
     <div class='pull-right input-append'>
       <input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" class='medium' />
-      <%= submit_tag(_("Search"), {:class => 'btn'}) %>
+      <%= submit_tag(t(".search"), {:class => 'btn'}) %>
     </div>
   </div>
 <% end %>
@@ -39,10 +40,10 @@
     <thead>
       <tr class='noborder'>
         <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-        <th><%= _("Status")%></th>
-        <th><%= _("Comment Author")%></th>
-        <th><%= _("Comment")%></th>
-        <th><%= _("Article")%></th>
+        <th><%= t(".status")%></th>
+        <th><%= t(".comment_author")%></th>
+        <th><%= t(".comment")%></th>
+        <th><%= t(".article")%></th>
       </tr>
     </thead>
     <%= render_void_table(@feedback.size, 5) %>
@@ -53,10 +54,10 @@
     <%= display_pagination(@feedback, 5) %>
     <tr>
       <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-      <th colspan='4'><%= _("Select all") %></th>
+      <th colspan='4'><%= t(".select_all") %></th>
     </tr>
   </table>
-  <%= render 'button', { :position => 'bottom' } %>
+  <%= render 'button', { position: 'bottom' } %>
 <% end %>
 
 <br class='clear' />

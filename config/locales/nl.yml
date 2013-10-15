@@ -6,6 +6,20 @@ nl:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "Feedback"
+        all: "All"
+        unapproved_comments: "Niet goedgekeurde"
+        ham: "Ham"
+        spam: "Spam"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "Zoek"
+        status: "Status"
+        comment_author: "Auteur commentaar"
+        comment: "Reactie"
+        article: "Artikel"
+        select_all: "Select all"
       article:
         comments_for: "Commentaren voor %{title}"
         status: "Status"

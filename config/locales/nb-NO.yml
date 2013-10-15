@@ -6,6 +6,20 @@ nb-NO:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "Diskusjon"
+        all: "All"
+        unapproved_comments: "Kommentarer på vent"
+        ham: "Ham"
+        spam: "Spam"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "Søk"
+        status: "Status"
+        comment_author: "Kommentarforfatter"
+        comment: "Kommentar"
+        article: "Artikkel"
+        select_all: "Velg alle"
       article:
         comments_for: "Kommentarer for %{title}"
         status: "Status"

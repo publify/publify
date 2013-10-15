@@ -19,8 +19,6 @@ Localization.define("pl_PL") do |l|
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
-  l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
 
   l.store "Deleted", ""
   l.store "Not found", ""
@@ -88,19 +86,6 @@ Localization.define("pl_PL") do |l|
   l.store "1 post", ""
   l.store "%d posts", ""
 
-  # app/models/article.rb
-  l.store "Original article writen by", ""
-  l.store "direct link to this article", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
   l.store "Reorder", "Zmień porządek"
   l.store "Sort alphabetically", "Sortuj alfabetycznie"
 
@@ -209,7 +194,6 @@ Localization.define("pl_PL") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Description template", ""
-  l.store "Articles", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "Search results", ""
@@ -256,7 +240,6 @@ Localization.define("pl_PL") do |l|
   l.store "Blog subtitle", "Podtytuł bloga"
   l.store "Blog URL", "Adres URL bloga"
   l.store "Language", "Język"
-  l.store "Allow users to register", ""
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""

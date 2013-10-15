@@ -6,6 +6,20 @@ ja:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "フィードバック"
+        all: "All"
+        unapproved_comments: "未承認コメント"
+        ham: "承認"
+        spam: "スパム"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "検索"
+        status: "ステータス"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        article: "記事"
+        select_all: "Select all"
       article:
         comments_for: "〜へコメント%{title}"
         status: "ステータス"

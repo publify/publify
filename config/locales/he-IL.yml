@@ -6,6 +6,20 @@ he-IL:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "משוב"
+        all: "All"
+        unapproved_comments: "תגובות לא מאושרות"
+        ham: "לא-ספאם"
+        spam: "ספאם"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "חפש"
+        status: "מצב"
+        comment_author: "Comment Author"
+        comment: "תגובה"
+        article: "כתבה"
+        select_all: "Select all"
       article:
         comments_for: "תגובות עבור %{title}"
         status: "מצב"

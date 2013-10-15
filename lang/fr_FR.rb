@@ -162,15 +162,6 @@ Localization.define("fr_FR") do |l|
   l.store "In your spam queue:", "En attente de modération :"
   l.store "unconfirmed", "non validés"
 
-  # app/views/admin/feedback/index.html.erb
-  l.store "All", "Tous"
-  l.store "Unapproved comments", "Commentaires non validés"
-  l.store "Ham", "Valide"
-  l.store "Spam", "Spam"
-  l.store "Presumed ham", "Probablement valide"
-  l.store "Presumed spam", "Probablement du spam"
-  l.store "Select all", "Tout sélectionner"
-
   # app/views/admin/pages/_form.html.erb
   l.store "Online", "En ligne"
   l.store "Page settings", "Paramètres de la page"

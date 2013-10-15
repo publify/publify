@@ -68,20 +68,12 @@ Localization.define("ja_JP") do |l|
   l.store "direct link to this article", ""
   l.store "If you are reading this article elsewhere than", ""
   l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
   l.store "Unclassified", "未分類"
   l.store "Just Presumed Ham", "承認と推定"
   l.store "Ham?", "承認?"
   l.store "Just Marked As Ham", "承認マーク"
-  l.store "Ham", "承認"
   l.store "Spam?", "スパム?"
   l.store "Just Marked As Spam", "スパムマーク"
-  l.store "Spam", "スパム"
-
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "並べ替え"
   l.store "Sort alphabetically", "アルファベット順に並べ替え"
 
@@ -113,7 +105,6 @@ Localization.define("ja_JP") do |l|
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "人気記事"
-
   l.store "Welcome back, %s!", "お帰りなさいませ、%s 様"
   l.store "Total posts : %d", "総投稿数"
   l.store "Your posts : %d", "あなたの投稿数"
@@ -121,10 +112,8 @@ Localization.define("ja_JP") do |l|
   l.store "Spam comments : %d", "スパムコメント数"
   l.store "All comments", "全てのコメント"
   l.store "Limit to ham", "有効コメント"
-  l.store "Unapproved comments", "未承認コメント"
   l.store "Limit to spam", "スパムコメント"
   l.store "Search Comments and Trackbacks that contain", "以下の語句を含むコメントおよびトラックバックを検索"
-  l.store "Article", "記事"
 
   l.store "Online", "オンライン"
   l.store "Page settings", "ページ設定"

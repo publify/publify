@@ -16,13 +16,10 @@ Localization.define("ro_RO") do |l|
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
-  l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
 
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
-  l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "Delete", "Ștergere"
@@ -38,19 +35,6 @@ Localization.define("ro_RO") do |l|
   l.store "no posts", ""
   l.store "1 post", ""
   l.store "%d posts", ""
-
-  # app/models/article.rb
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
-  l.store "Unclassified", ""
-  l.store "Just Presumed Ham", ""
-  l.store "Ham?", ""
-  l.store "Just Marked As Ham", ""
-  l.store "Ham", ""
 
   l.store "Reorder", "Ordonează"
   l.store "Sort alphabetically", "Ordonează alfabetic"
@@ -102,7 +86,6 @@ Localization.define("ro_RO") do |l|
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "RSS and Atom feeds", ""
@@ -160,7 +143,6 @@ Localization.define("ro_RO") do |l|
   l.store "Blog subtitle", "Subtitlul blogului"
   l.store "Blog URL", "Adresa blogului"
   l.store "Language", "Language" #Need translate
-  l.store "Allow users to register", ""
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""
@@ -273,7 +255,6 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/users/index.html.erb
   l.store "New User", "Utilizator nou"
-  l.store "Comments", ""
   l.store "State", ""
   l.store "%s user", ""
   l.store "Manage users", ""

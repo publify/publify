@@ -16,15 +16,11 @@ Localization.define("zh_TW") do |l|
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
-  l.store "Article was successfully created", ""
-  l.store "Article was successfully updated.", ""
-
   l.store "Deleted", ""
   l.store "Not found", ""
   l.store "Deleted %d item(s)", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "All spam have been deleted", ""
   l.store "Error occurred while updating Content Type.", "當更新內容類型時發生錯誤"
   l.store "complete", "完成"
   l.store "File uploaded: ", "檔案上傳: "
@@ -172,7 +168,6 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/seo/titles.html.erb
   l.store "Description template", ""
-  l.store "Articles", ""
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "The blog's name", ""
@@ -185,11 +180,6 @@ Localization.define("zh_TW") do |l|
   l.store "Replaced with the current year", ""
   l.store "Replaced with the current page number", ""
   l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
-
-  l.store "Spam protection", ""
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
   l.store "Enable feedback moderation", "適度可以反饋"
@@ -220,7 +210,6 @@ Localization.define("zh_TW") do |l|
   l.store "Blog subtitle", "副標題"
   l.store "Blog URL", "部落格URL"
   l.store "Language", "言語"
-  l.store "Allow users to register", ""
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""

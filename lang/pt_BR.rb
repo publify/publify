@@ -128,12 +128,8 @@ Localization.define("pt_BR") do |l|
 
   l.store "Unclassified", "Não classificado"
   l.store "Just Presumed Ham", "Ham apenas presumido"
-  l.store "Ham?", ""
   l.store "Just Marked As Ham", "Apenas marcado como Ham"
-  l.store "Ham", ""
   l.store "Just Marked As Spam", "Apenas marcado como Spam"
-
-  # app/views/accounts/login.html.erb
   l.store "Submit", "Enviar"
 
   l.store "Reorder", "Reorganizar"
@@ -253,7 +249,6 @@ Localization.define("pt_BR") do |l|
   l.store "Blog subtitle", "Subt&iacute;tulo del blog"
   l.store "Blog URL", "URL del blog"
   l.store "Language", "Idioma" #Need translate
-  l.store "Allow users to register", ""
   l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""

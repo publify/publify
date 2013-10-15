@@ -6,6 +6,20 @@ da:
       last: "Last"
   admin:
     feedback:
+      index:
+        feedback: "Diskussion"
+        all: "All"
+        unapproved_comments: "Unapproved comments"
+        ham: "Ham"
+        spam: "Spam"
+        presumed_ham: "Presumed ham"
+        presumed_spam: "Presumed spam"
+        search: "Search"
+        status: "Status"
+        comment_author: "Comment Author"
+        comment: "Comment"
+        article: "Artikel"
+        select_all: "Select all"
       article:
         comments_for: "Kommentarer for %{title}"
         status: "Status"
