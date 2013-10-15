@@ -390,7 +390,6 @@ Localization.define("es_MX") do |l|
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
-  # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Designed by %s ", ""
 
   # test/mocks/themes/typographic/views/articles/_article.html.erb
@@ -421,11 +420,9 @@ Localization.define("es_MX") do |l|
   # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", ""
 
-  # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
-  # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
 
   # themes/scribbish/views/articles/_article.html.erb

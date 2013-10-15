@@ -215,7 +215,6 @@ Localization.define("zh_CN") do |l|
   l.store "RSS description message", ""
   l.store "Indexing", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Use dofollow in comments", ""
   l.store "Read more about %s", ""
   l.store "Google", ""

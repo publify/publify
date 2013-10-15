@@ -5,6 +5,15 @@ nl:
       next: "Volgende"
       last: "Last"
   admin:
+    post_types:
+      new:
+        post_types: "Post Types"
+        name: "Naam"
+        description: "Omschrijving"
+        template_name: "Template name"
+        default: "Default"
+        publify_default_post_type: "Publify default post type"
+        explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
       index:
         manage_pages: "Beheer pagina's"

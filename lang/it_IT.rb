@@ -408,7 +408,6 @@ Localization.define("it_IT") do |l|
   l.store "<strong>Password:</strong> %s", ""
   l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
 
-  # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
 
@@ -430,11 +429,9 @@ Localization.define("it_IT") do |l|
   l.store "Markdown enabled", ""
   l.store "required", ""
 
-  # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
-  # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
 
   l.store "Meta", ""

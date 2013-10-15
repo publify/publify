@@ -188,10 +188,8 @@ Localization.define("ja_JP") do |l|
   l.store "Dated archives", ""
   l.store "Search results", ""
   l.store "Help on title settings", ""
-  l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the article categories (comma separated)", ""
-  l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
   l.store "Replaced with the current date", ""
@@ -307,7 +305,6 @@ Localization.define("ja_JP") do |l|
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-
   l.store "Display name", "表示名"
 
   l.store "Are you sure you want to delete the tag", ""
@@ -315,7 +312,6 @@ Localization.define("ja_JP") do |l|
 
   l.store "Editing ", ""
 
-  l.store "Display Name", "表示名"
   l.store "Manage tags", "タグの管理"
 
   # app/views/admin/themes/catalogue.html.erb
@@ -423,7 +419,6 @@ Localization.define("ja_JP") do |l|
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""
 
-  # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
 
@@ -440,7 +435,6 @@ Localization.define("ja_JP") do |l|
 
   l.store "later", ""
 
-  l.store "Name %s", ""
   l.store "enabled", ""
   l.store "never displayed", ""
   l.store "Website", ""
@@ -451,11 +445,9 @@ Localization.define("ja_JP") do |l|
   # test/mocks/themes/typographic/views/shared/_search.html.erb
   l.store "Searching", ""
 
-  # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
-  # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
 
   # themes/scribbish/views/articles/_article.html.erb

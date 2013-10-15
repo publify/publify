@@ -115,8 +115,6 @@ Localization.define("fr_FR") do |l|
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Supprimer ce brouillon"
   l.store "Article type", ""
-  l.store "Default", ""
-
   l.store "Show conversation", "Afficher le fil"
   l.store "Flag as %s", "Marquer comme %s"
 
@@ -158,20 +156,7 @@ Localization.define("fr_FR") do |l|
   l.store "In your spam queue:", "En attente de modération :"
   l.store "unconfirmed", "non validés"
   l.store "Page settings", "Paramètres de la page"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "All Pages", "Toutes les pages"
-
-  # app/views/admin/post_types/new.html.erb
-  l.store "Post Types", "Modèles d'articles"
-  l.store "Template name", "Nom du modèle"
-  l.store "Publify default post type", "Modèle d'article par défaut"
-  l.store "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb", "Ce modèle est un fichier que Publify cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
-
-  # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Votre profil"
-
-  # app/views/admin/redirects/new.html.erb
   l.store "Redirects", "Redirections"
   l.store "From", "De"
   l.store "Leave empty to shorten a link", "Laissez vide pour créer un lien court"

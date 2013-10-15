@@ -5,6 +5,15 @@ fr:
       next: "Suivant"
       last: "Last"
   admin:
+    post_types:
+      new:
+        post_types: "Modèles d'articles"
+        name: "Nom"
+        description: "Description"
+        template_name: "Nom du modèle"
+        default: "Default"
+        publify_default_post_type: "Modèle d'article par défaut"
+        explain: "Ce modèle est un fichier que Publify cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
     pages:
       index:
         manage_pages: "Administrer les pages"

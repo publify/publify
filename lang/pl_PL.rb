@@ -420,7 +420,6 @@ Localization.define("pl_PL") do |l|
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""
 
-  # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
 
@@ -444,11 +443,9 @@ Localization.define("pl_PL") do |l|
   # test/mocks/themes/typographic/views/shared/_search.html.erb
   l.store "Searching", ""
 
-  # themes/dirtylicious/layouts/default.html.erb
   l.store "About", ""
   l.store "Designed by %s ported to publify by %s ", ""
 
-  # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
 
   # themes/scribbish/views/articles/_article.html.erb

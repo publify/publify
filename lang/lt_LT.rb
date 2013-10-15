@@ -18,7 +18,6 @@ Localization.define("lt_LT") do |l|
   l.store "Edit", "Redaguoti"
   l.store "Show", ""
   l.store "Unpublished", ""
-  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Atgal į peržiūrą"
   l.store "Tag", ""
 
@@ -72,9 +71,6 @@ Localization.define("lt_LT") do |l|
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
 
   l.store "Welcome back, %s!", ""
@@ -121,7 +117,6 @@ Localization.define("lt_LT") do |l|
   l.store "RSS description message", ""
   l.store "Indexing", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "Read more about %s", ""
   l.store "Google", ""
   l.store "Google Analytics", ""
@@ -200,7 +195,6 @@ Localization.define("lt_LT") do |l|
   l.store "Meta keywords", ""
   l.store "Use RSS description", ""
   l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
   l.store "This will display", ""
   l.store "at the bottom of each post in the RSS feed", ""
   l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
@@ -245,8 +239,6 @@ Localization.define("lt_LT") do |l|
   l.store "Publish changes", "Änderungen veröffentlichen"
   l.store "Displays links to monthly archives", ""
   l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
   l.store "RSS and Atom feeds", ""

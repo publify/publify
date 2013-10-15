@@ -102,7 +102,6 @@ Localization.define("de_DE") do |l|
   l.store "Latest Posts", ""
 
   # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
   l.store "Limit to spam", "Einschränken auf Spam"
   l.store "Pages","Seiten"

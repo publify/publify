@@ -87,7 +87,6 @@ Localization.define("da_DK") do |l|
   l.store "No posts yet, why don't you start and write one", "Der er ingen artikler endnu, du kan evt. starte med at skrive en"
 
   # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
   l.store "Oh no, nothing new", ""
 
   # app/views/admin/dashboard/_welcome.html.erb
