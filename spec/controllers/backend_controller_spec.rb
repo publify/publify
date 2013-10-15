@@ -273,7 +273,7 @@ describe BackendController do
       media_object = MetaWeblog::Structs::MediaObject.new(
         "name" => Digest::SHA1.hexdigest("upload-test--#{Time.now}--") + ".gif",
         "type" => "image/gif",
-          "bits" => Base64.encode64(File.open(File.expand_path(::Rails.root.to_s) + "/public/images/powered.gif", "rb") { |f| f.read })
+          'bits' => Base64.encode64((::Rails.root + 'app' + 'assets' + 'images' + 'powered.gif').read)
       )
 
       args = [ 1, 'henri', 'whatever', media_object ]
