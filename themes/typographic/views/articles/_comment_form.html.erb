@@ -1,5 +1,6 @@
-<%= form_remote_tag :url      => @article.comment_url,
+<%= form_tag :url      => @article.comment_url,
                     :position => :bottom,
+                    :remote   => true,
                     :update   => {:success => 'commentList'},
                     :loading  => "loading()",
                     :complete => "complete(request)",
@@ -40,12 +41,12 @@
   <% end %>
 
   <p class="buttons">
-    <%= submit_to_remote('preview', _('Preview') + '!',
+    <%#= submit_to_remote('preview', _('Preview') + '!',
                          :update => 'preview',
                          :complete => "Element.show('preview')",
                          :url    => @article.preview_comment_url,
 												 :html => {:class => 'submit', :id => 'form-preview-button'}) %>
-    <%= submit_tag _('Submit'), :id => 'form-submit-button', :class => 'submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
+    <%#= submit_tag _('Submit'), :id => 'form-submit-button', :class => 'submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
     <%= image_tag 'theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
   </p>
 </div>
