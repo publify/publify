@@ -6,6 +6,13 @@ ru:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Manage pages"
+        new_page: "New Page"
+        title: "Заголовок"
+        permalink: "Постоянная ссылка"
+        author: "Автор"
+        date: "Дата"
       form:
         publish: "Опубликовать"
         title: "Заголовок"

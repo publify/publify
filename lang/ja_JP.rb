@@ -101,7 +101,6 @@ Localization.define("ja_JP") do |l|
   l.store "Articles", "記事"
 
   l.store "Search articles that contain ...", "以下の語句を含む記事を検索"
-  l.store "Date", "日付"
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "人気記事"
@@ -118,7 +117,6 @@ Localization.define("ja_JP") do |l|
   l.store "Pages","ページ"
   l.store "Are you sure you want to delete the page", "本当にこのページを削除してよろしいですか？"
   l.store "Delete this page", "このページを削除"
-  l.store "Manage pages", "ページの管理"
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "あなたのプロフィール"
@@ -370,9 +368,6 @@ Localization.define("ja_JP") do |l|
   l.store "Comments", "コメント"
   l.store "State", "状態"
   l.store "%s user", "%s"
-  l.store "Manage users", ""
-
-  # app/views/admin/users/new.html.erb
   l.store "Add User", "ユーザーの追加"
 
   # app/views/articles/_article.html.erb
@@ -587,7 +582,6 @@ Localization.define("ja_JP") do |l|
   l.store "Macros", "マクロ"
   l.store "Manage Articles", "記事管理"
   l.store "Manage Categories", "カテゴリ管理"
-  l.store "Manage Pages", "ページ管理"
   l.store "Manage Resources", "リソース管理"
   l.store "Manage Text Filters", "テキストフィルターの管理"
   l.store "Mandatory", "必須"

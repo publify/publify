@@ -6,6 +6,13 @@ he-IL:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "נהל דפים"
+        new_page: "New Page"
+        title: "כותרת"
+        permalink: "קישור קבוע"
+        author: "כותב"
+        date: "תאריך"
       form:
         publish: "פרסם"
         title: "כותרת"

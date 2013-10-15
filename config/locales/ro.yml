@@ -6,6 +6,13 @@ ro:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Listează paginile"
+        new_page: "New Page"
+        title: "Titlu"
+        permalink: "Legătură permanentă"
+        author: "Autor"
+        date: "Date"
       form:
         publish: "Publică"
         title: "Titlu"

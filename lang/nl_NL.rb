@@ -168,7 +168,6 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
-  l.store "Date", "Datum"
 
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -202,14 +201,7 @@ Localization.define("nl_NL") do |l|
   l.store "Pages", "Pagina's"
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"
-
-  l.store "New Page", "Nieuwe pagina"
-  l.store "Manage pages", "Beheer pagina's"
-
-  # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Je profiel"
-
-  # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Content Type"
 
   l.store "Previous page", "Vorige pagina"
@@ -396,13 +388,10 @@ Localization.define("nl_NL") do |l|
   l.store "remove", "supprimer"
 
   l.store "Display name", "Schermnaam"
-
   l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
   l.store "Delete this tag", "Verwijder deze tag"
-
   l.store "Editing ", "Wijzigen"
   l.store "Back to tags list", "Terug naar de lijst van tags"
-
   l.store "Display Name", ""
   l.store "Manage tags", "Beheer tags"
 
@@ -456,7 +445,6 @@ Localization.define("nl_NL") do |l|
   l.store "New User", "Nieuwe gebruikers"
   l.store "Comments", "Reacties"
   l.store "%s user", "%s gebruiker"
-  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Gebruiker toevoegen"

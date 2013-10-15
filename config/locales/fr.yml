@@ -6,6 +6,13 @@ fr:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Administrer les pages"
+        new_page: "Nouvelle page"
+        title: "Titre"
+        permalink: "Lien permanent"
+        author: "Auteur"
+        date: "Date"
       form:
         publish: "Publier"
         title: "Titre"

@@ -147,14 +147,10 @@ Localization.define("fr_FR") do |l|
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Éditeur riche"
   l.store "Edit article", "Éditer un article"
-  l.store "Date", "Date"
   l.store "Latest Comments", "Derniers commentaires"
-
   l.store "Most popular", "Billets les plus populaires"
   l.store "Nothing to show yet", "Rien à afficher pour l'instant"
-
   l.store "Welcome back, %s!", "Bienvenue, %s !"
-
   l.store "Total posts:", "Nombre total d'articles :"
   l.store "Your posts:", "Vos articles :"
   l.store "Total comments:", "Nombre total de commentaires :"
@@ -164,8 +160,6 @@ Localization.define("fr_FR") do |l|
   l.store "Page settings", "Paramètres de la page"
 
   # app/views/admin/pages/index.html.erb
-  l.store "New Page", "Nouvelle page"
-  l.store "Manage pages", "Administrer les pages"
   l.store "All Pages", "Toutes les pages"
 
   # app/views/admin/post_types/new.html.erb

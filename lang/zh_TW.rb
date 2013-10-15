@@ -166,7 +166,6 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/seo/titles.html.erb
   l.store "Description template", ""
   l.store "Paginated archives", ""
-  l.store "Dated archives", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the category/tag name", ""
@@ -334,11 +333,6 @@ Localization.define("zh_TW") do |l|
   l.store "Comments", "評論"
   l.store "State", ""
   l.store "%s user", ""
-  l.store "Manage users", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
-
   # app/views/articles/_article.html.erb
   l.store "Posted by", "貼上"
   l.store "Continue reading", ""
@@ -492,7 +486,6 @@ Localization.define("zh_TW") do |l|
   l.store "Manage", "管理"
   l.store "Manage Articles", "管理文章"
   l.store "Manage Categories", "分類管理"
-  l.store "Manage Pages", "管理頁面"
   l.store "Manage Resources", "管理資源"
   l.store "Manage Text Filters", "管理文字過濾"
   l.store "Markup", "審定"

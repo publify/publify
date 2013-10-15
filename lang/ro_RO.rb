@@ -256,7 +256,6 @@ Localization.define("ro_RO") do |l|
   l.store "New User", "Utilizator nou"
   l.store "State", ""
   l.store "%s user", ""
-  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
@@ -391,7 +390,6 @@ Localization.define("ro_RO") do |l|
   l.store "Macros", "Macro-uri"
   l.store "Manage", "Articole"
   l.store "Manage Categories", "Listează categoriile"
-  l.store "Manage Pages", "Listează paginile"
   l.store "Manage Resources", "Listează resursele"
   l.store "Manage Text Filters", "Configurează filtrele de text"
   l.store "Markup", "Marcaj"

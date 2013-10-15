@@ -108,14 +108,6 @@ Localization.define("de_DE") do |l|
   l.store "Pages","Seiten"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "Manage pages", ""
-
-  # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
-
-  # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "Content Type"
 
   # app/views/admin/resources/_pages.html.erb
@@ -308,7 +300,6 @@ Localization.define("de_DE") do |l|
   l.store "Edit User", "Benutzer bearbeiten"
 
   # app/views/admin/users/index.html.erb
-  l.store "Manage users", ""
   l.store "New User", "Neuer Benutzer"
   l.store "Comments", ""
   l.store "State", ""
@@ -458,7 +449,6 @@ Localization.define("de_DE") do |l|
   l.store "Macros", "Makros"
   l.store "Manage", "Verwalten"
   l.store "Manage Categories", "Kategorien verwalten"
-  l.store "Manage Pages", "Seiten verwalten"
   l.store "Manage Resources", "Ressourcen verwalten"
   l.store "Manage Text Filters", "Textfilter verwalten"
   l.store "Markup", "Markup"

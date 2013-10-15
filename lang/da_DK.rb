@@ -72,7 +72,6 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
-  l.store "Date", "Dato"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
@@ -314,7 +313,6 @@ Localization.define("da_DK") do |l|
   l.store "Edit User", "Rediger bruger"
 
   # app/views/admin/users/index.html.erb
-  l.store "Manage users", ""
   l.store "New User", "Ny bruger"
   l.store "Comments", "Kommentarer"
   l.store "State", ""
@@ -494,7 +492,6 @@ Localization.define("da_DK") do |l|
   l.store "Macros", "Makroer"
   l.store "Manage", "Administrer"
   l.store "Manage Categories", "Administrer kategorier"
-  l.store "Manage Pages", "Administrer sider"
   l.store "Manage Resources", "Administrer ressourcer"
   l.store "Manage Text Filters", "Administrer text filtre"
   l.store "Markup", "Markup"

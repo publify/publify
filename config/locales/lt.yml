@@ -6,6 +6,13 @@ lt:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Valdyti puslapius"
+        new_page: "New Page"
+        title: "Pavadinimas"
+        permalink: "Nuoroda"
+        author: "Autorius"
+        date: "Date"
       form:
         publish: "Publikuoti"
         title: "Pavadinimas"

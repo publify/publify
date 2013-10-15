@@ -6,6 +6,13 @@ da:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Administrer sider"
+        new_page: "New Page"
+        title: "Titel"
+        permalink: "Permanent link"
+        author: "Forfatter"
+        date: "Dato"
       form:
         publish: "Udgiv"
         title: "Titel"

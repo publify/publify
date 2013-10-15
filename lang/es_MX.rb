@@ -537,7 +537,6 @@ Localization.define("es_MX") do |l|
   l.store "Macros", "Macros"
   l.store "Manage", "Administrar"
   l.store "Manage Categories", "Administrar categor&iacute;as"
-  l.store "Manage Pages", "Administrar P&aacute;ginas"
   l.store "Manage Resources", "Administrar Recursos"
   l.store "Manage Text Filters", "Configurar Filtros de Texto"
   l.store "Markup", "Marcado"

@@ -144,16 +144,8 @@ Localization.define("he_IL") do |l|
   l.store "Are you sure you want to delete this article", "האם אתה בטוח שברצונך למחוק כתבה זו"
   l.store "Delete this article", "מחק כתבה זו"
   l.store "Articles", "כתבות"
-
-  # app/views/admin/content/index.html.erb
-  l.store "Date", "תאריך"
-
-  # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "הכי פופלריים"
   l.store "Nothing to show yet", "אין מה להציג כרגע"
-
-  # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", "אין כתבות עדיין, למה שלא תתחיל לכתוב כתבה חדשה"
 
   # app/views/admin/dashboard/_welcome.html.erb
@@ -168,7 +160,6 @@ Localization.define("he_IL") do |l|
   l.store "Pages", "דפים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"
   l.store "Delete this page", "מחק דף זה"
-  l.store "Manage pages", "נהל דפים"
   l.store "Content Type", "סוג התוכן"
   l.store "Previous page", "הדף הקודם"
   l.store "Next page", "הדף הבא"

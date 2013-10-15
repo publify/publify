@@ -6,6 +6,13 @@ nl:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Beheer pagina's"
+        new_page: "Nieuwe pagina"
+        title: "Titel"
+        permalink: "Permalink"
+        author: "Auteur"
+        date: "Datum"
       form:
         publish: "Publiceer"
         title: "Titel"

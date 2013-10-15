@@ -313,10 +313,6 @@ Localization.define("it_IT") do |l|
   l.store "Editing ", ""
   l.store "Back to tags list", ""
 
-  # app/views/admin/tags/index.html.erb
-  l.store "Display Name", ""
-  l.store "Manage tags", ""
-
   # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", ""
   l.store "Theme catalogue", ""
@@ -364,8 +360,6 @@ Localization.define("it_IT") do |l|
   l.store "New User", "Nuovo utente"
   l.store "State", ""
   l.store "%s user", ""
-  l.store "Manage users", ""
-
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Aggiungi Utente"
 
@@ -564,7 +558,6 @@ Localization.define("it_IT") do |l|
   l.store "Manage", "Gestisci"
   l.store "Manage Articles", "Gestisci gli articoli"
   l.store "Manage Categories", "Gestisci categorie"
-  l.store "Manage Pages", "Gestisci le pagine"
   l.store "Manage Resources", "Gestici le risorse"
   l.store "Manage Text Filters", "Gestisci i filtri del testo"
   l.store "Markup", "Markup"

@@ -6,6 +6,13 @@ nb-NO:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Administrer sider"
+        new_page: "Ny side"
+        title: "Tittel"
+        permalink: "Permalenke"
+        author: "Forfatter"
+        date: "Dato"
       form:
         publish: "Publiser"
         title: "Tittel"

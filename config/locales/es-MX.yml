@@ -6,6 +6,13 @@ es-MX:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "Administrar P&aacute;ginas"
+        new_page: "New Page"
+        title: "T&iacute;tulo"
+        permalink: "Link permanente"
+        author: "Autor"
+        date: "Date"
       form:
         publish: "Publicar"
         title: "T&iacute;tulo"

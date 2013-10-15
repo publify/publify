@@ -6,6 +6,13 @@ ja:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "ページの管理"
+        new_page: "New Page"
+        title: "タイトル"
+        permalink: "パーマリンク"
+        author: "投稿者"
+        date: "日付"
       form:
         publish: "公開"
         title: "タイトル"

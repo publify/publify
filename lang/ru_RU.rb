@@ -65,8 +65,6 @@ Localization.define("ru_RU") do |l|
   l.store "Visual", "Визуально"
   l.store "Edit article", "Редактировать пост"
 
-  l.store "Date", "Дата"
-
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
   l.store "Latest Comments", "Последние комментарии"

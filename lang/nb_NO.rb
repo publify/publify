@@ -174,7 +174,6 @@ Localization.define("nb_NO") do |l|
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
   l.store "Articles", "Artikler"
-  l.store "Date", "Dato"
   l.store "Latest Comments", "Siste kommentarer"
 
   # app/views/admin/dashboard/_popular.html.erb
@@ -211,8 +210,6 @@ Localization.define("nb_NO") do |l|
   l.store "Pages", "Sider"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne siden"
   l.store "Delete this page", "Slett denne side"
-  l.store "New Page", "Ny side"
-  l.store "Manage pages", "Administrer sider"
   l.store "Your profile", "Din profil"
 
   # app/views/admin/redirects/destroy.html.erb
@@ -461,7 +458,6 @@ Localization.define("nb_NO") do |l|
   l.store "Comments", "Kommentarer"
   l.store "State", "Tilstand"
   l.store "%s user", "%s bruker"
-  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Legg til bruker"
@@ -697,7 +693,6 @@ Localization.define("nb_NO") do |l|
   l.store "Manage", "Administrer"
   l.store "Manage Articles", "Administrer artikler"
   l.store "Manage Categories", "Administrer kategorier"
-  l.store "Manage Pages", "Administrer sider"
   l.store "Manage Resources", "Administrer resurser"
   l.store "Manage Text Filters", "Administrer tekstfiltre"
   l.store "Markup", "Markup"

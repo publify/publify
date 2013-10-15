@@ -303,7 +303,6 @@ Localization.define("lt_LT") do |l|
   l.store "New User", "Neuer Benutzer"
   l.store "State", ""
   l.store "%s user", ""
-  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
@@ -487,7 +486,6 @@ Localization.define("lt_LT") do |l|
   l.store "Manage", "Valdyti"
   l.store "Manage Articles", "Valdyti Straipsnius"
   l.store "Manage Categories", "Valdyti kategorijas"
-  l.store "Manage Pages", "Valdyti puslapius"
   l.store "Manage Resources", "Valdyti resursus"
   l.store "Manage Text Filters", "Textfilter verwalten"
   l.store "Markup", "Markup"

@@ -107,7 +107,6 @@ Localization.define("pl_PL") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
   l.store "Delete this article", "Usuń artykuł"
-  l.store "Date", "Data"
   l.store "Latest Comments", "Ostatnie komentarze"
   l.store "By %s on %s", "Przez %s odnośnie %s"
 
@@ -194,7 +193,6 @@ Localization.define("pl_PL") do |l|
   # app/views/admin/seo/titles.html.erb
   l.store "Description template", ""
   l.store "Paginated archives", ""
-  l.store "Dated archives", ""
   l.store "Search results", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
@@ -364,7 +362,6 @@ Localization.define("pl_PL") do |l|
   l.store "New User", "Nowy użytkownik"
   l.store "State", ""
   l.store "%s user", ""
-  l.store "Manage users", ""
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
@@ -584,7 +581,6 @@ Localization.define("pl_PL") do |l|
   l.store "Macros", "Makra"
   l.store "Manage", "Zarządzaj"
   l.store "Manage Categories", "Zarządzaj kategoriami"
-  l.store "Manage Pages", "Zarządzaj stronami"
   l.store "Manage Resources", "Zarządzaj zasobami"
   l.store "Manage Text Filters", "Zarządzaj filtrami tekstu"
   l.store "Markup", "Znaczniki"

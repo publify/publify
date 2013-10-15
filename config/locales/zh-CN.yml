@@ -6,9 +6,16 @@ zh-CN:
       last: "Last"
   admin:
     pages:
+      index:
+        manage_pages: "管理页面"
+        new_page: "新页面"
+        title: "标题"
+        permalink: "固定链接"
+        author: "作者"
+        date: "日期"
       form:
         publish: "发布"
-        title: "Title"
+        title: "标题"
         images: "Images"
         publish_settings: "发布设定"
         status: "状态"
@@ -127,7 +134,7 @@ zh-CN:
         drafts: "草稿"
         publication_pending: "Publication pending"
         search: "搜索"
-        title: "Title"
+        title: "标题"
         select_a_category: "Select a category"
         select_an_author: "Select an author"
         publication_date: "Publication date"
@@ -135,7 +142,7 @@ zh-CN:
       form:
         public: "Public"
         publish: "发布"
-        title: "Title"
+        title: "标题"
         images: "Images"
         excerpt: "摘要"
         excerpt_explaination: "摘要对文章的总结，只会显示在首页，不会出现在文章正文。"

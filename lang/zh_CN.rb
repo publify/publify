@@ -146,16 +146,10 @@ Localization.define("zh_CN") do |l|
   l.store "Uploads", "上传"
   l.store "Post settings", "发布设定"
   l.store "Publish at", "公开"
-
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "确定删除本篇文章？"
   l.store "Delete this article", "删除本篇文章"
   l.store "Articles", "文章"
-
-  # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "搜索包含内容的文章 ..."
-  l.store "Date", "日期"
 
   # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
@@ -184,15 +178,6 @@ Localization.define("zh_CN") do |l|
   l.store "Pages","页数"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
-
-  # app/views/admin/pages/index.html.erb
-  l.store "New Page", "新页面"
-  l.store "Manage pages", "管理页面"
-
-  # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
-
-  # app/views/admin/resources/_mime_edit.html.erb
   l.store "Content Type", "內容類型"
 
   # app/views/admin/resources/_pages.html.erb
@@ -246,11 +231,9 @@ Localization.define("zh_CN") do |l|
   l.store "Paginated archives", ""
   l.store "Dated archives", ""
   l.store "Search results", ""
-  l.store "Help on title settings", ""
   l.store "The blog's name", ""
   l.store "The blog's tagline / description", ""
   l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the article/page title", ""
   l.store "Replaced with the category/tag name", ""
   l.store "Replaced with the current search phrase", ""
   l.store "Replaced with the current time", ""
