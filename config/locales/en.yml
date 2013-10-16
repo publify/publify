@@ -237,3 +237,7 @@ en:
       username: "Username"
       email: "Email"
       signup: "Signup"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

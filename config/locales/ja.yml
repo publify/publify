@@ -239,3 +239,7 @@ ja:
       username: "ユーザー名"
       email: "メールアドレス"
       signup: "サインアップ"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

@@ -239,4 +239,7 @@ es-MX:
       username: "Usuario"
       email: "Email"
       signup: "Registro"
-
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

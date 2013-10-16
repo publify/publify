@@ -237,3 +237,7 @@ zh-CN:
       username: "用户名"
       email: "Email"
       signup: "注册"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

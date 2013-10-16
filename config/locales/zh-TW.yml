@@ -239,3 +239,7 @@ zh-TW:
       username: "名稱"
       email: "Email"
       signup: "註冊"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

@@ -239,3 +239,7 @@ ro:
       username: "Utilizator"
       email: "Email"
       signup: "Înregistrare"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

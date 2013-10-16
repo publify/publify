@@ -237,3 +237,7 @@ nl:
       username: "Gebruikersnaam"
       email: "E-mail"
       signup: "Meld aan"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

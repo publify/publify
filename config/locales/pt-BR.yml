@@ -237,3 +237,7 @@ pt-BR:
       username: "Usuário"
       email: "Email"
       signup: "Registrar"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

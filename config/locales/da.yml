@@ -237,3 +237,7 @@ da:
       username: "Brugernavn"
       email: "Email"
       signup: "Tilmelding"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

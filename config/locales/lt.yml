@@ -455,3 +455,7 @@ lt:
       username: "Vartotojo vardas"
       email: "El. pašto adresas"
       signup: "Registracija"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

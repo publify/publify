@@ -239,3 +239,7 @@ he-IL:
       username: "שם משתמש"
       email: "דואל"
       signup: "הירשם"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

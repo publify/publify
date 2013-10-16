@@ -240,3 +240,7 @@ fr:
       username: "Identifiant"
       email: "Email"
       signup: "S'inscrire"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%y"

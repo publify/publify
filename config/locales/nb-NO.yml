@@ -237,3 +237,7 @@ nb-NO:
       username: "Brukernavn"
       email: "Epost"
       signup: "Registrer"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"

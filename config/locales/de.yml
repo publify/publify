@@ -239,3 +239,7 @@ de:
       username: "Benutzername"
       email: "Email"
       signup: "Registrieren"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%m/%d/%y"
