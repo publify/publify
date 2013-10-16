@@ -1,16 +1,5 @@
 # coding: utf-8
 Localization.define("lt_LT") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", ""
-  l.store "Delete", "Trinti"
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
   l.store "All categories", "Visos kategorijios"
   l.store "All authors", "Visos autoriai"
   l.store "All published dates", "Visos laika"
@@ -226,25 +215,9 @@ Localization.define("lt_LT") do |l|
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-
   l.store "Display name", "Rodomas vardas"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-
-  l.store "Display Name", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Aktives Motiv"
   l.store "Choose a theme", "Motiv auswählen"
-  l.store "Use this theme", ""
-
   # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Active", ""
@@ -391,7 +364,6 @@ Localization.define("lt_LT") do |l|
   l.store "Add pattern", "Pridėti šabloną" #
   l.store "Allow non-ajax comments", "non-AJAX Kommentare erlauben"
   l.store "Are you sure you want to delete this filter", "Sind sie sicher, diesen Textfilter zu löschen"
-  l.store "Are you sure you want to delete this item?", "Ar jūs tikrai nori ištrinti šį įrašą?" #
   l.store "Article Attachments", "Straipsnio prikabinti failai"
   l.store "Article Body", "Straipsnio tekstas" #straipsnio kūnas niekur nesako, reikia tinkamesnio
   l.store "Article Content", "Straipsnio turinys"

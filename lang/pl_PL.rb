@@ -20,9 +20,7 @@ Localization.define("pl_PL") do |l|
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
 
-  l.store "Deleted", ""
   l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
@@ -41,25 +39,6 @@ Localization.define("pl_PL") do |l|
 
   # app/controllers/admin/settings_controller.rb
   l.store "config updated.", "konfiguracja zaktualizowana."
-
-  # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-  l.store "Delete", "Usuń"
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
   l.store "All categories", "Wszystkie kategorie"
   l.store "All authors", "Wszystkie autorzy"
   l.store "All published dates", "Wszystkie daty"
@@ -296,21 +275,7 @@ Localization.define("pl_PL") do |l|
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-
   l.store "Display name", "Wyświetlana nazwa"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-
-  l.store "Display Name", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Temat aktywny"
   l.store "Choose a theme", ""
   l.store "Use this theme", ""

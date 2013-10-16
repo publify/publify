@@ -108,7 +108,6 @@ Localization.define("nb_NO") do |l|
   # app/controllers/grouping_controller.rb
   l.store "page", "side"
   l.store "Store", "Lagre"
-  l.store "Delete", "Slett"
   l.store "delete", "slett"
   l.store "Delete content", "Slett innhold"
   l.store "Are you sure?", "Er du sikker?"
@@ -134,7 +133,6 @@ Localization.define("nb_NO") do |l|
 
   # app/helpers/application_helper.rb
   l.store "%%d. %%b", ""
-  l.store "Are you sure you want to delete this %s?", "Er du sikker på at du vil slette denne %s?"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"

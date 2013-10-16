@@ -5,6 +5,12 @@ nb-NO:
       next: "Neste"
       last: "Last"
   admin:
+    shared:
+      destroy:
+        are_you_sure: "Er du sikker på at du vil slette denne %{element}?"
+        action_or_other: "%{first_action} eller %{second_action}"
+        cancel: "Annuller"
+        delete: "Slett"
     resources:
       index:
         media_library: "Media Library"

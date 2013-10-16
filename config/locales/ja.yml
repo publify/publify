@@ -5,6 +5,12 @@ ja:
       next: "Next"
       last: "Last"
   admin:
+    shared:
+      destroy:
+        are_you_sure: "Are you sure you want to delete this %{element}"
+        action_or_other: "%{first_action} または %{second_action}"
+        cancel: "キャンセル"
+        delete: "削除"
     resources:
       index:
         media_library: "Media Library"

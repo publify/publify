@@ -7,49 +7,6 @@ Localization.define("es_MX") do |l|
   l.store "Login successful", ""
   l.store "Login unsuccessful", ""
   l.store "An email has been successfully sent to your address with your new password", ""
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", ""
-  l.store "login", ""
-  l.store "signup", ""
-  l.store "Recover your password", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Preview", ""
-
-  l.store "Deleted", ""
-  l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
-
-  # app/controllers/admin/resources_controller.rb
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-
-  # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-
-  # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-  l.store "Unable to write file", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-  l.store "Delete", "Eliminar"
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
-  l.store "Please select", ""
   l.store "All categories", "Todos las categorias"
   l.store "All authors", "Todos los autores"
   l.store "All published dates", "Todos los fechas"
@@ -224,7 +181,6 @@ Localization.define("es_MX") do |l|
   l.store "Display name", "Nombre para mostrar"
 
   # app/views/admin/tags/destroy.html.erb
-  l.store "Are you sure you want to delete the tag", ""
   l.store "Delete this tag", ""
 
   # app/views/admin/tags/edit.html.erb

@@ -80,7 +80,6 @@ Localization.define("nl_NL") do |l|
 
   # app/helpers/admin/base_helper.rb
   l.store "Store", "Opslaan"
-  l.store "Delete", "Verwijderen"
   l.store "delete", "verwijderen"
   l.store "Delete content", "Verwijder inhoud"
   l.store "Are you sure?", "Weet je het zeker?"

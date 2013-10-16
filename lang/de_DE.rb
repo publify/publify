@@ -1,74 +1,5 @@
 # coding: utf-8
 Localization.define("de_DE") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", ""
-  l.store "login", ""
-  l.store "signup", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Preview", ""
-  l.store "Deleted", ""
-  l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
-  l.store "Comment was successfully created.", ""
-  l.store "Comment was successfully updated.", ""
-
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", ""
-  l.store "Page was successfully updated.", ""
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
-  l.store "complete", ""
-  l.store "File uploaded: ", ""
-  l.store "Unable to upload", ""
-  l.store "Metadata was successfully updated.", ""
-  l.store "Not all metadata was defined correctly.", ""
-
-  # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", ""
-
-  # app/controllers/admin/sidebar_controller.rb
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
-
-  # app/controllers/admin/users_controller.rb
-  l.store "User was successfully created.", ""
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
-  l.store "No posts found...", ""
-  l.store "Archives for", ""
-  l.store "Archives for ", ""
-  l.store ", Articles for ", ""
-
-  l.store "Delete", "Löschen"
-  l.store "delete", ""
-  l.store "Delete content", ""
-  l.store "Are you sure?", ""
   l.store "All categories", "Alle kategorien"
   l.store "All authors", "Alle autoren"
   l.store "All published dates", "Alle termine"
@@ -77,7 +8,6 @@ Localization.define("de_DE") do |l|
   l.store "no trackbacks", "keine Trackbacks"
   l.store "Reorder", "Sortieren"
   l.store "Sort alphabetically", "Alphabetisch sortieren"
-
   l.store "Are you sure you want to delete the category ", "Sind Sie sicher, die Kategorie zu löschen: "
   l.store "Delete this category", "Kategorie löschen"
 
@@ -238,19 +168,6 @@ Localization.define("de_DE") do |l|
   l.store "remove", "supprimer"
 
   l.store "Display name", "Anzeigename"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-
-  l.store "Display Name", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Aktives Motiv"
   l.store "Choose a theme", "Motiv auswählen"
   l.store "Use this theme", ""

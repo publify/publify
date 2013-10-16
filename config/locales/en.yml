@@ -5,6 +5,12 @@ en:
       next: "Next"
       last: "Last"
   admin:
+    shared:
+      destroy:
+        are_you_sure: "Are you sure you want to delete this %{element}"
+        action_or_other: "%{first_action} or %{second_action}"
+        cancel: "Cancel"
+        delete: "Delete"
     resources:
       index:
         media_library: "Media Library"

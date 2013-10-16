@@ -5,6 +5,12 @@ he-IL:
       next: "Next"
       last: "Last"
   admin:
+    shared:
+      destroy:
+        are_you_sure: "האם אתה בטוח שברצונך למחוק את %{element} הזו?"
+        action_or_other: "%{first_action} או %{second_action}"
+        cancel: "בטל"
+        delete: "מחק"
     resources:
       index:
         media_library: "Media Library"

@@ -17,12 +17,9 @@ Localization.define("ro_RO") do |l|
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
 
-  l.store "Deleted", ""
   l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "Delete", "Ștergere"
   l.store "All categories", "toate categoriile"
   l.store "All authors", "toate autorii"
   l.store "All published dates", "toate timp"
@@ -191,19 +188,6 @@ Localization.define("ro_RO") do |l|
   l.store "Publish changes", "Publică modificările"
 
   l.store "Display name", "Numele real"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-
-  l.store "Display Name", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Tema activă"
   l.store "Choose a theme", "Alege o temă"
   l.store "Use this theme", ""

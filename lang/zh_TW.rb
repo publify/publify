@@ -16,9 +16,7 @@ Localization.define("zh_TW") do |l|
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
-  l.store "Deleted", ""
   l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
   l.store "Error occurred while updating Content Type.", "當更新內容類型時發生錯誤"
@@ -47,7 +45,6 @@ Localization.define("zh_TW") do |l|
 
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", ""
-  l.store "Delete", "刪除"
   l.store "Edit", "修改"
   l.store "Back to overview", "回到概覽"
   l.store "no trackbacks", "沒有引用"
@@ -263,19 +260,6 @@ Localization.define("zh_TW") do |l|
   l.store "remove", "supprimer"
 
   l.store "Display name", "暱稱"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-
-  l.store "Display Name", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
   l.store "Use this theme", ""

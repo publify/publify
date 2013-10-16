@@ -81,7 +81,6 @@ Localization.define("zh_CN") do |l|
 
   # app/helpers/admin/base_helper.rb
   l.store "Store", "保存"
-  l.store "Delete", "删除"
   l.store "delete", "删除"
   l.store "Delete content", "删除内容"
   l.store "Are you sure?", "你确认？"
@@ -127,8 +126,6 @@ Localization.define("zh_CN") do |l|
 
   l.store "Are you sure you want to delete the category ", "确认删除此分类？"
   l.store "Delete this category", "删除分类"
-
-
   l.store "%s Category", "分类%s"
 
   l.store "(Done)", "(完成)"
@@ -326,18 +323,6 @@ Localization.define("zh_CN") do |l|
   l.store "remove", "supprimer"
 
   l.store "Display name", "暱稱"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-  l.store "Display Name", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
   l.store "Use this theme", ""

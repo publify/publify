@@ -80,7 +80,6 @@ Localization.define("pt_BR") do |l|
   l.store "page", "página"
   l.store "everything about", "tudo sobre"
   l.store "Store", "Salvar"
-  l.store "Delete", "Deletar"
   l.store "delete", "deletar"
   l.store "Delete content", "Deletar conteúdo?"
   l.store "Are you sure?", "Você tem certeza?"
@@ -301,19 +300,6 @@ Localization.define("pt_BR") do |l|
   l.store "remove", "supprimer"
 
   l.store "Display name", "Nombre para mostrar"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-
-  l.store "Display Name", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Tema activo"
   l.store "Choose a theme", "Escoge un tema"
   l.store "Use this theme", ""

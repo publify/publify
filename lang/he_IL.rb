@@ -67,7 +67,6 @@ Localization.define("he_IL") do |l|
 
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", "1"
-  l.store "Delete", "מחק"
   l.store "delete", "מחק"
   l.store "Delete content", "מחק תוכן"
   l.store "Are you sure?", "האם אתה בטוח? "
@@ -523,7 +522,6 @@ Localization.define("he_IL") do |l|
   l.store "Add Extended Content", "הוסף תוכן מורחב"
   l.store "Add MetaData", "הוסף מידע-על"
   l.store "Allow non-ajax comments", "אפשר תגובות ללא Ajax"
-  l.store "Are you sure you want to delete this %s?", "האם אתה בטוח שברצונך למחוק את % הזו?"
   l.store "Are you sure you want to delete this filter", "האם אתה בטוח שברצונך למחוק מסנן זה?"
   l.store "Are you sure you want to delete this item?", "האם אתה בטוח שברצונך למחוק פריט זה ?"
   l.store "Article was successfully saved at ", "הכתבה נשמרה בהצלחה"

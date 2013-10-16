@@ -100,7 +100,6 @@ Localization.define("fr_FR") do |l|
   l.store "All published dates", "Tous les dates"
   l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
   l.store "Edit", "Éditer"
-  l.store "Delete", "Supprimer"
   l.store "Show", "Affichage"
   l.store "Show help on Publify macros", "Afficher l'aide sur les macros Publify"
   l.store "Update settings", "Mettre les paramètres à jour"
@@ -118,9 +117,7 @@ Localization.define("fr_FR") do |l|
   l.store "Show conversation", "Afficher le fil"
   l.store "Flag as %s", "Marquer comme %s"
 
-  # app/helpers/application_helper.rb
   l.store "%%d. %%b", ""
-  l.store "Are you sure you want to delete this %s?", ""
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%d comments", "%d commentaires"
   l.store "no comments", "aucun commentaire"
@@ -166,7 +163,6 @@ Localization.define("fr_FR") do |l|
   l.store "Next page", "Page suivante"
 
   # app/views/admin/resources/destroy.html.erb
-  l.store "Are you sure you want to delete this file", "Êtes-vous certain de vouloir supprimer ce fichier"
   l.store "Delete this file from the webserver?", "Supprimer complètement ce fichier du site ?"
   l.store "File Uploads", "Ajout de fichiers"
   l.store "Thumbnail", "Miniatures"
@@ -324,7 +320,6 @@ Localization.define("fr_FR") do |l|
   l.store "Write", "Écrire"
 
   # app/views/admin/shared/destroy.html.erb
-  l.store "Are you sure you want to delete this %s?", "Êtes-vous certain de vouloir supprimer ce %s ?"
   l.store "Changes published", "Modifications publiées"
 
   # app/views/admin/sidebar/_target.html.erb
@@ -594,12 +589,9 @@ Localization.define("fr_FR") do |l|
   l.store "April", "avril"
   l.store "Archives for", "Archives de"
   l.store "Archives for ", "Archives de"
-  l.store "Are you sure you want to delete the Article Type ", ""
   l.store "Are you sure you want to delete the category ", "Êtes vous certain de vouloir supprimer cette catégorie "
   l.store "Are you sure you want to delete the page", "Voulez-vous vraiment effacer cette page"
-  l.store "Are you sure you want to delete the redirection ", ""
   l.store "Are you sure you want to delete the tag", "Êtes-vous certain de vouloir supprimer le label"
-  l.store "Are you sure you want to delete this %s", "Êtes-vous certain de vouloir supprimer cet %s"
   l.store "Are you sure you want to delete this item?", "Êtes vous certain de vouloir supprimer cette entrée ?"
   l.store "Article Types", "Modèles d'articles"
   l.store "Aug", "août"

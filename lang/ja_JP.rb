@@ -19,9 +19,7 @@ Localization.define("ja_JP") do |l|
   l.store "Article was successfully created", "記事を作成しました"
   l.store "Article was successfully updated.", "記事が更新されました"
 
-  l.store "Deleted", ""
   l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
   l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
@@ -40,18 +38,12 @@ Localization.define("ja_JP") do |l|
   l.store "Not all metadata was defined correctly.", "いくつかのメタデータが正しく反映されませんでした"
   l.store "Content Type was successfully updated.", "コンテントタイプは正常に更新されました"
   l.store "config updated.", "設定は更新されました"
-  l.store "Delete", "削除"
   l.store "delete", "削除"
   l.store "Please select", "選択してください"
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "編集"
   l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
   l.store "Back to overview", "オーバービューに戻る"
-  l.store "Tag", ""
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
-  # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new { |date| sprintf(date.strftime("%Y-%m-%d %H:%M:%S GMT")) }
   l.store "%%d. %%b", Proc.new { |date| sprintf(date.strftime("%m/%d")) }
   l.store "no trackbacks", "トラックバックなし"
@@ -286,12 +278,6 @@ Localization.define("ja_JP") do |l|
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
   l.store "Display name", "表示名"
-
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  l.store "Editing ", ""
-
   l.store "Manage tags", "タグの管理"
 
   # app/views/admin/themes/catalogue.html.erb

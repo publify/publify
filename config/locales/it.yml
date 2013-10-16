@@ -5,6 +5,12 @@ it:
       next: "Next"
       last: "Last"
   admin:
+    shared:
+      destroy:
+        are_you_sure: "Sei sicuro di voler eliminare questo %{element}?"
+        action_or_other: "%{first_action} o %{second_action}"
+        cancel: "Annulla"
+        delete: "Elimina"
     resources:
       index:
         media_library: "Media Library"

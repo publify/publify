@@ -51,7 +51,6 @@ Localization.define("it_IT") do |l|
   l.store "You are not authorized to open this file", ""
   l.store "File saved successfully", ""
   l.store "Store", "Salva"
-  l.store "Delete", "Elimina"
   l.store "All categories", "Tutte le categorie"
   l.store "All authors", "Tutte le autori"
   l.store "All published dates", "Tutte le date"
@@ -287,20 +286,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Nome visualizzato"
-
-  # app/views/admin/tags/destroy.html.erb
-  l.store "Are you sure you want to delete the tag", ""
-  l.store "Delete this tag", ""
-
-  # app/views/admin/tags/edit.html.erb
-  l.store "Editing ", ""
-  l.store "Back to tags list", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Tema Attivo"
   l.store "Choose a theme", "Seleziona un tema"
   l.store "Use this theme", ""

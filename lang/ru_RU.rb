@@ -15,7 +15,6 @@ Localization.define("ru_RU") do |l|
   l.store "Recover your password", "Восстановление пароля"
 
   # app/helpers/admin/base_helper.rb
-  l.store "Delete", "Удалить"
   l.store "delete", "удалить"
   l.store "Are you sure?", "Вы уверены?"
   l.store "All categories", "Все категории"
@@ -35,7 +34,6 @@ Localization.define("ru_RU") do |l|
 
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Удалить этот черновик"
-  l.store "Are you sure you want to delete this %s?", "Вы уверены, что хотите удалить %s?"
 
   # app/models/article.rb
   l.store "Original article writen by", "Автор оригинальной статьи —"

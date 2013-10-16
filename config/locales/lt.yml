@@ -5,6 +5,12 @@ lt:
       next: "Next"
       last: "Last"
   admin:
+    shared:
+      destroy:
+        are_you_sure: "Ar jūs tikrai nori ištrinti šį %{element}?"
+        action_or_other: "%{first_action} arba %{second_action}"
+        cancel: "Baigti"
+        delete: "Trinti"
     resources:
       index:
         media_library: "Media Library"
@@ -67,8 +73,8 @@ lt:
         email: "Email"
         url: "Url"
         your_comment: "Your comment"
-        action_or_other: "%{first_action} or %{second_action}"
-        cancel: "Cancel"
+        action_or_other: "%{first_action} arba %{second_action}"
+        cancel: "Baigti"
         save: "Save"
       button:
         select_action: "Select action"
@@ -79,7 +85,7 @@ lt:
         submit: "Submit"
       feedback:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
-        cancel: "Cancel"
+        cancel: "Baigti"
     dashboard:
       drafts:
         your_drafts: "Your drafts"

@@ -5,6 +5,12 @@ ru:
       next: "Next"
       last: "Last"
   admin:
+    shared:
+      destroy:
+        are_you_sure: "Вы уверены, что хотите удалить %{element}?"
+        action_or_other: "%{first_action} или %{second_action}"
+        cancel: "Отменить"
+        delete: "Удалить"
     resources:
       index:
         media_library: "Media Library"
