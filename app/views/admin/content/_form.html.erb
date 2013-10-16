@@ -113,7 +113,8 @@
               <%= check_box 'article', 'published'  %>
               <%= _("Published") %>
             </label>
-            <%= ok_button('status') %>
+            <%= submit_tag 'Ok', :class => "old_ok_button status" %>
+            <%#= ok_button('status') %>
           </div>
         </div>
         <div class='control-group'>
@@ -135,7 +136,8 @@
           <p><%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %></p>
           <div id='publish' class='collapse input-append'>
             <%= text_field 'article', 'published_at', :class => 'datepicker' %>
-            <%= ok_button('publish') %>
+            <%= submit_tag 'Ok', :class => "old_ok_button publish" %>
+            <%#= ok_button('publish') %>
           </div>
           
         </div>
