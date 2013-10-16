@@ -84,7 +84,7 @@
             <a href="#" class="extoggle publish" ><%= t('.change')%></a>
             </p>
             <div id='publish' class='input-append' style='display: none;'>
-              <%= calendar_date_select 'article', 'published_at' %>
+              <%= text_field 'article', 'published_at', :class => "datepicker" %>
               <p><span class="btn btn-mini">
             <a href="#" class="extoggle status"><%= t('.ok')%></a>
               </span></p>
