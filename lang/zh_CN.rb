@@ -181,42 +181,6 @@ Localization.define("zh_CN") do |l|
   l.store "Are you sure you want to delete this file", "你確定要刪除此檔案？"
   l.store "Delete this file from the webserver?", "從網路伺服器刪除此檔案？"
   l.store "File Uploads", "檔案上載"
-
-  # app/views/admin/seo/index.html.erb
-  l.store "SEO", ""
-  l.store "Global SEO settings", ""
-  l.store "General settings", ""
-  l.store "Use meta keywords", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "RSS description message", ""
-  l.store "Indexing", ""
-  l.store "Robots.txt", ""
-  l.store "Use dofollow in comments", ""
-  l.store "Read more about %s", ""
-  l.store "Google", ""
-  l.store "Google Analytics", ""
-  l.store "Google Webmaster Tools validation link", ""
-  l.store "Custom tracking code", ""
-  l.store "Global settings", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-  l.store "Description template", ""
-  l.store "Pages", ""
-  l.store "Paginated archives", ""
-  l.store "Dated archives", ""
-  l.store "Search results", ""
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the post/page excerpt", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
   l.store "Enable feedback moderation", "適度可以反饋"
@@ -241,7 +205,6 @@ Localization.define("zh_CN") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify會自動回絕评论和引用，包含某些可靠的連結總數"
   l.store "Set to 0 to never reject comments", "設定0回絕不回絕的评论"
 
-  # app/views/admin/settings/index.html.erb
   l.store "Your blog", "你的博客"
   l.store "Blog name", "博客名稱"
   l.store "Blog subtitle", "副標題"
@@ -254,24 +217,7 @@ Localization.define("zh_CN") do |l|
   l.store "articles on my homepage by default", "預設的首頁文章"
   l.store "articles in my news feed by default", "預設的feed文章"
   l.store "Show full article on feed", "顯示全部feed文章"
-  l.store "General settings", "一般設定"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
-
-  # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "SEO"
-  l.store "Google Analytics", ""
-  l.store "Google verification link", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Search Engine Optimization", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "資訊"
   l.store "Current database version", "當前的資料庫版本"
   l.store "New database version", "新資料庫版本"
@@ -302,7 +248,6 @@ Localization.define("zh_CN") do |l|
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
 
-  # app/views/admin/sidebar/index.html.erb
   l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "在這個博客顯示拖曳改變的sidebar選項。從sidebar選項移除會立即存檔，但是不會執行直到你輸入<公開>鍵"
   l.store "Available Items", "可用的項目"
   l.store "Active Sidebar items", "有效的側邊欄項目"
@@ -356,7 +301,6 @@ Localization.define("zh_CN") do |l|
   # app/views/admin/users/edit.html.erb
   l.store "Edit User", "修改使用者"
 
-  # app/views/admin/users/index.html.erb
   l.store "New User", "新的使用者"
   l.store "Comments", "评论"
   l.store "State", ""

@@ -73,29 +73,6 @@ Localization.define("ro_RO") do |l|
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-
-  # app/views/admin/seo/index.html.erb
-  l.store "SEO", ""
-  l.store "Global SEO settings", ""
-  l.store "General settings", ""
-  l.store "Use meta keywords", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "RSS description message", ""
-  l.store "Indexing", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "Read more about %s", ""
-  l.store "Google", ""
-  l.store "Google Analytics", ""
-  l.store "Google Webmaster Tools validation link", ""
-  l.store "Custom tracking code", ""
-  l.store "Global settings", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
   l.store "Enable comments by default", "Implicit comentariile să fie active"
   l.store "Enable Trackbacks by default", "Implicit retrolegăturile să fie active"
   l.store "Enable feedback moderation", "Activează moderarea comentariilor"
@@ -119,7 +96,6 @@ Localization.define("ro_RO") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături"
   l.store "Set to 0 to never reject comments", "Comentariile nu vor fi respinse niciodată dacă alegi valoarea 0"
 
-  # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Site"
   l.store "Blog name", "Numele blogului"
   l.store "Blog subtitle", "Subtitlul blogului"
@@ -133,22 +109,7 @@ Localization.define("ro_RO") do |l|
   l.store "articles in my news feed by default", "articole implicit în RSS"
   l.store "Show full article on feed", "Include articole complete în RSS"
   l.store "Feedburner ID", ""
-  l.store "General settings", "Setări generale"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
-
-  # app/views/admin/settings/seo.html.erb
-  l.store "Google Analytics", ""
-  l.store "Google verification link", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Informații"
   l.store "Current database version", "Versiunea curentă a bazei de date"
   l.store "New database version", "Versiunea nouă a bazei de date"
@@ -179,7 +140,6 @@ Localization.define("ro_RO") do |l|
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Trage plugin-uri aici pentru a popula bara laterală"
 
-  # app/views/admin/sidebar/index.html.erb
   l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"
   l.store "Available Items", "Obiecte disponibile"
   l.store "Active Sidebar items", "Obiecte utilizate"
@@ -222,7 +182,6 @@ Localization.define("ro_RO") do |l|
   # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Editează un utilizator"
 
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Utilizator nou"
   l.store "State", ""
   l.store "%s user", ""

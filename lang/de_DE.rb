@@ -44,29 +44,6 @@ Localization.define("de_DE") do |l|
   l.store "Are you sure you want to delete this file", "Sind Sie sicher, diese Datei zu löschen"
   l.store "Delete this file from the webserver?", "Diese Datei vom Webserver löschen?"
   l.store "File Uploads", "Dateianhänge"
-
-  # app/views/admin/seo/index.html.erb
-  l.store "SEO", ""
-  l.store "Global SEO settings", ""
-  l.store "Titles", ""
-  l.store "General settings", ""
-  l.store "Use meta keywords", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "RSS description message", ""
-  l.store "Indexing", ""
-  l.store "Robots.txt", ""
-  l.store "Use dofollow in comments", ""
-  l.store "Read more about %s", ""
-  l.store "Google", ""
-  l.store "Google Analytics", ""
-  l.store "Google Webmaster Tools validation link", ""
-  l.store "Custom tracking code", ""
-  l.store "Global settings", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
   l.store "Enable comments by default", "Kommentare per default erlauben"
   l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
   l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
@@ -90,7 +67,6 @@ Localization.define("de_DE") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
   l.store "Set to 0 to never reject comments", "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
 
-  # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Mein Blog"
   l.store "Blog name", "Blog Titel"
   l.store "Blog subtitle", "Blog Untertitel"
@@ -102,22 +78,6 @@ Localization.define("de_DE") do |l|
   l.store "articles on my homepage by default", "Artikel auf einmal auf meiner Homepage"
   l.store "articles in my news feed by default", "Artikel auf einmal in meinen RSS News Feeds"
   l.store "Show full article on feed", "Ganzen Artikel im RSS News Feed anzeigen"
-  l.store "Feedburner ID", ""
-  l.store "General settings", "Allgemeine Einstellungen"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
-
-  # app/views/admin/settings/seo.html.erb
-  l.store "Google Analytics", ""
-  l.store "Google verification link", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "Robots.txt", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Information"
   l.store "Current database version", "Aktuelle Datenbank Version"
   l.store "New database version", "Neue Datenbank Version"
@@ -147,7 +107,6 @@ Localization.define("de_DE") do |l|
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
 
-  # app/views/admin/sidebar/index.html.erb
   l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
   l.store "Available Items", "Verfügbare Einträge"
   l.store "Active Sidebar items", "Aktive Einträge der Seitenleiste"
@@ -199,7 +158,6 @@ Localization.define("de_DE") do |l|
   # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Benutzer bearbeiten"
 
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Neuer Benutzer"
   l.store "Comments", ""
   l.store "State", ""
@@ -377,7 +335,6 @@ Localization.define("de_DE") do |l|
   l.store "Posted date", "Angelegt am"
   l.store "Preview Article", "Artikel Vorschau "
   l.store "Read", "Lesen"
-  l.store "Read more", "Mehr lesen"
   l.store "Rebuild cached HTML", "Im Cache gespeicherte HTML Seiten neu generieren"
   l.store "Recent comments", "Neueste Kommentare"
   l.store "Recent trackbacks", "Neueste Trackbacks"

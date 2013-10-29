@@ -109,25 +109,6 @@ Localization.define("es_MX") do |l|
   l.store "articles on my homepage by default", "art&iacute;culos en mi p&aacute;gina de inicio por default"
   l.store "articles in my news feed by default", "art&iacute;culos en mi feed RSS"
   l.store "Show full article on feed", "Mostrar art&iacute;culo completo en el feed"
-  l.store "Feedburner ID", ""
-  l.store "General settings", "Preferencias generales"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
-
-  # app/views/admin/settings/seo.html.erb
-  l.store "Format of permalink", ""
-  l.store "Google Analytics", ""
-  l.store "Google verification link", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "Index categories", ""
-  l.store "Index tags", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
   l.store "Information", "Informaci&oacute;n"
   l.store "Current database version", "Versi&oacute;n actual de la base de datos"
   l.store "New database version", "Nueva versi&oacute;n de la base de datos"
@@ -336,27 +317,6 @@ Localization.define("es_MX") do |l|
   l.store "Designed by %s ported to publify by %s ", ""
 
   l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-  l.store "permalink", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-  l.store "%d comment", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment.html.erb
-  l.store "later:", ""
-
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Your website", ""
-
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks para"
 
   # vendor/plugins/xml_sidebar/views/content.rhtml

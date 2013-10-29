@@ -107,53 +107,6 @@ Localization.define("zh_TW") do |l|
   l.store "Delete this file from the webserver?", "從網路伺服器刪除此檔案？"
   l.store "File Uploads", "檔案上載"
   l.store "Browse", ""
-
-  # app/views/admin/seo/index.html.erb
-  l.store "SEO", ""
-  l.store "Global SEO settings", ""
-  l.store "Titles", ""
-  l.store "General settings", ""
-  l.store "Use meta keywords", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "RSS description message", ""
-  l.store "Indexing", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "Use dofollow in comments", ""
-  l.store "Use canonical URL", ""
-  l.store "Read more about %s", ""
-  l.store "Google", ""
-  l.store "Google Analytics", ""
-  l.store "Google Webmaster Tools validation link", ""
-  l.store "Custom tracking code", ""
-  l.store "Global settings", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", ""
-  l.store "Here are some examples to get you started.", ""
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", ""
-  l.store "your article year of publication.", ""
-  l.store "your article month of publication.", ""
-  l.store "your article day of publication.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
-
-  # app/views/admin/seo/titles.html.erb
-  l.store "Description template", ""
-  l.store "Paginated archives", ""
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-  l.store "Replaced with the current page number", ""
   l.store "Enable comments by default", "預設為可以回應"
   l.store "Enable Trackbacks by default", "預設為可以引用"
   l.store "Enable feedback moderation", "適度可以反饋"
@@ -184,31 +137,13 @@ Localization.define("zh_TW") do |l|
   l.store "Blog subtitle", "副標題"
   l.store "Blog URL", "部落格URL"
   l.store "Language", "言語"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""
   l.store "Display", "顯示"
   l.store "articles on my homepage by default", "預設的首頁文章"
   l.store "articles in my news feed by default", "預設的feed文章"
   l.store "Show full article on feed", "顯示全部feed文章"
-  l.store "Feedburner ID", ""
-  l.store "General settings", "一般設定"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
-
-  # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "SEO"
-  l.store "Google Analytics", ""
-  l.store "Google verification link", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "Robots.txt", ""
-  l.store "You robots.txt file is not writeable. Publify won't be able to write it", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "資訊"
   l.store "Current database version", "當前的資料庫版本"
   l.store "New database version", "新資料庫版本"
@@ -300,7 +235,6 @@ Localization.define("zh_TW") do |l|
   l.store "%s user", ""
   # app/views/articles/_article.html.erb
   l.store "Posted by", "貼上"
-  l.store "Continue reading", ""
 
   # app/views/articles/_comment.html.erb
   l.store "said", "發言"
@@ -324,7 +258,6 @@ Localization.define("zh_TW") do |l|
   # app/views/articles/groupings.html.erb
   l.store "There are", "有"
 
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "離開一個回應"
   l.store "Trackbacks", "引用"
   l.store "Use the following link to trackback from your own site", "從你所屬的網點用隨後的連結去引用"

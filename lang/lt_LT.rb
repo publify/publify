@@ -75,50 +75,6 @@ Localization.define("lt_LT") do |l|
   l.store "Are you sure you want to delete this file", "Sind Sie sicher, diese Datei zu löschen"
   l.store "Delete this file from the webserver?", "Diese Datei vom Webserver löschen?"
   l.store "File Uploads", "Dateianhänge"
-
-  # app/views/admin/seo/index.html.erb
-  l.store "SEO", ""
-  l.store "Global SEO settings", ""
-  l.store "Titles", ""
-  l.store "General settings", ""
-  l.store "Use meta keywords", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "RSS description message", ""
-  l.store "Indexing", ""
-  l.store "Robots.txt", ""
-  l.store "Read more about %s", ""
-  l.store "Google", ""
-  l.store "Google Analytics", ""
-  l.store "Google Webmaster Tools validation link", ""
-  l.store "Custom tracking code", ""
-  l.store "Global settings", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Here are some examples to get you started.", ""
-  l.store "Permalinks", ""
-  l.store "Custom", ""
-
-  # app/views/admin/seo/titles.html.erb
-  l.store "Description template", ""
-  l.store "Paginated archives", ""
-  l.store "Dated archives", ""
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current date", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-  l.store "Replaced by the archive date", ""
-
-  # app/views/admin/settings/_submit.html.erb
-  l.store "Update settings", ""
-
   l.store "Enable comments by default", "Kommentare per default erlauben"
   l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
   l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
@@ -156,21 +112,6 @@ Localization.define("lt_LT") do |l|
   l.store "articles on my homepage by default", "straipsniai pradžioje pagal nutylėjimą"
   l.store "articles in my news feed by default", "straipsniai naujienų sraute pagal nutylėjimą"
   l.store "Show full article on feed", "Rodyti pilną straipsnį RSS sraute"
-  l.store "Feedburner ID", ""
-  l.store "General settings", "Pagrindiniai nustatymai"
-
-  # app/views/admin/settings/seo.html.erb
-  l.store "Google Analytics", ""
-  l.store "Google verification link", ""
-  l.store "Meta description", ""
-  l.store "Meta keywords", ""
-  l.store "Use RSS description", ""
-  l.store "Robots.txt", ""
-  l.store "This will display", ""
-  l.store "at the bottom of each post in the RSS feed", ""
-  l.store "Here you can add anything you want to appear in your application header, such as analytics service tracking code.", ""
-
-  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "Information"
   l.store "Current database version", "Aktuelle Datenbank Version"
   l.store "New database version", "Neue Datenbank Version"

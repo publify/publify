@@ -84,16 +84,12 @@ Localization.define("ru_RU") do |l|
   l.store "Delete this redirection", "Удалить это перенаправление"
   l.store "Redirects", "Перенаправления"
 
-  # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Ваш профиль"
 
-  # app/views/admin/seo/index.html.erb
   l.store "Titles", "Заголовки"
-  l.store "General settings", "Основные настройки"
 
   l.store "Permalinks", "Постоянные ссылки"
 
-  # app/views/admin/settings/index.html.erb
   l.store "Your blog", "Ваш блог"
   l.store "Blog name", "Имя блога"
   l.store "Blog subtitle", "Подзаголовок блога"

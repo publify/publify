@@ -1,112 +1,112 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("Global settings") %></h2>
+  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= t(".global_settings") %></h2>
 <% end %>
 
 <%= error_messages_for 'blog' %>
 
 <%= form_tag :action => 'update' do %>
   <fieldset class='form-horizontal'>
-    <legend><%= _("General settings") %></legend>
+    <legend><%= t(".general_settings") %></legend>
     <div class='control-group'>
-      <label class='control-label' for="setting_use_meta_keyword"><%= _("Meta keywords")%></label>
+      <label class='control-label' for="setting_use_meta_keyword"><%= t(".meta_keywords")%></label>
       <div class='controls'>
-        <label class='checkbox' for="setting_use_meta_keyword"><%= _("Use meta keywords")%>
+        <label class='checkbox' for="setting_use_meta_keyword"><%= t(".use_meta_keywords")%>
         <%= check_box(:setting, :use_meta_keyword)%>
       </label>
       <%= text_area(:setting, :meta_keywords, :rows => 3, :class => 'span6')%>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label' for="setting_meta_description"><%= _("Meta description")%></label>
+    <label class='control-label' for="setting_meta_description"><%= t(".meta_description")%></label>
     <div class='controls'>
       <%= text_area(:setting, :meta_description, :rows => 3, :class => 'span6')%>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label'><%= _("Use RSS description")%></label>
+    <label class='control-label'><%= t(".use_rss_description")%></label>
     <div class='controls'>
       <label class='checkbox' for="setting_rss_description">
         <%= check_box(:setting, :rss_description)%>
-        <%= _("Use RSS description")%>
+        <%= t(".use_rss_description")%>
       </label>
-      <p class='help-block'><%= "#{_('This will display')}  #{_('at the bottom of each post in the RSS feed')}"%></p>
+      <p class='help-block'><%= t('.this_will_display') %></p>
       <%= show_rss_description %>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label' for="setting_rss_description_text"><%= _("RSS description message")%></label>
+    <label class='control-label' for="setting_rss_description_text"><%= t(".rss_description_message")%></label>
     <div class='controls'>
       <%= text_area(:setting, :rss_description_text, :rows => 10, :class => 'span6')%>
-      <p class='help-block'>You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)</p>
+      <p class='help-block'><%= t('.explain_rss_description') %></p>
     </div>
   </div>
 </fieldset>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Indexing") %></legend>
+  <legend><%= t(".indexing") %></legend>
   <div class='control-group'>
-    <label class='control-label'><%= _("Indexing") %></label>
+    <label class='control-label'><%= t(".indexing") %></label>
     <div class='controls'>
       <label class='checkbox' for="setting_unindex_categories">
         <%= check_box(:setting, :unindex_categories)%>
-        <%= _("Do not index categories")%>
-        <span class='help-block'><%= _("Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues") %></span>
+        <%= t(".do_not_index_categories")%>
+        <span class='help-block'><%= t(".explain_category_index") %></span>
       </label>
       <label class='checkbox' for="setting_unindex_tags">
         <%= check_box(:setting, :unindex_tags)%>
-        <%= _("Do not index tags")%>
-        <span class='help-block'><%= _("Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues") %></span>
+        <%= t(".do_not_index_tags")%>
+        <span class='help-block'><%= t(".explain_tag_index") %></span>
       </label>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label' for="setting_robots"><%= _("Robots.txt")%></label>
+    <label class='control-label' for="setting_robots"><%= t(".robots_txt")%></label>
     <div class='controls'>
       <%= text_area(:setting, :robots, :rows => 10, :class => 'span6')%>
       <% unless robot_writable? -%>
-        <p class='alert alert-error'><%= _("You robots.txt file is not writeable. Publify won't be able to write it")%></p>
+        <p class='alert alert-error'><%= t(".you_robots_txt_file_is_not_writeable") %></p>
       <% end -%>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label'><%= _("Dofollow") %></label>
+    <label class='control-label'><%= t(".dofollow") %></label>
     <div class='controls'>
-      <label class='checkbox' for="setting_dofollowify"><%= _("Use dofollow in comments")%>
-      <%= check_box(:setting, :dofollowify)%><p class='help-block'><%= _("You may want to moderate feedback when turning this on") %></p>
+      <label class='checkbox' for="setting_dofollowify"><%= t(".use_dofollow_in_comments")%>
+      <%= check_box(:setting, :dofollowify)%><p class='help-block'><%= t(".explain_moderate_feedback") %></p>
     </label>
   </div>
 </div>
 <div class='control-group'>
-  <label class='control-label'><%= _("Canonical URL") %></label>
+  <label class='control-label'><%= t(".canonical_url") %></label>
   <div class='controls'>
     <label class='checkbox' for="setting_use_canonical_url">
       <%= check_box(:setting, :use_canonical_url)%>
-      <%= _("Use canonical URL")%>
-      <span class='help-block'><%= _("Read more about %s", link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
+      <%= t(".use_canonical_url")%>
+      <span class='help-block'><%= t(".read_more_about", link: link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
     </label>
   </div>
 </div>
 </fieldset>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Google") %></legend>
+  <legend><%= t(".google") %></legend>
   <div class='control-group'>
-    <label class='control-label' for="setting_google_analytics"><%= _("Google Analytics")%></label>
+    <label class='control-label' for="setting_google_analytics"><%= t(".google_analytics")%></label>
     <div class='controls'>
       <%= text_field(:setting, :google_analytics, :class => 'span6')%>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label' for="setting_google_verification"><%= _("Google Webmaster Tools validation link")%></label>
+    <label class='control-label' for="setting_google_verification"><%= t(".google_webmaster_tools_validation_link")%></label>
     <div class='controls'>
       <%= text_field(:setting, :google_verification, :class => 'span6')%>
     </div>
   </div>
   <div class='control-group'>
-    <label class='control-label' for="setting_custom_tracking_field"><%= _("Custom tracking code")%></label>
+    <label class='control-label' for="setting_custom_tracking_field"><%= t(".custom_tracking_code")%></label>
     <div class='controls'>
       <%= text_area(:setting, :custom_tracking_field, :rows => 3, :class => 'span6')%>
-      <p class='help-block'><%= _("Here you can add anything you want to appear in your application header, such as analytics service tracking code.") %></p>
+      <p class='help-block'><%= t(".explain") %></p>
     </div>
   </div>
 </fieldset>
