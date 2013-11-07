@@ -10,5 +10,6 @@ Available converters:
 * s9y.rb: Converts from Serendipity (aka s9y)
 * textpattern.rb: Converts from TextPattern
 * feed.rb: Converts from any RSS or Atom feed.  Requires the 'feed_tools' gem.
+* blogger.rb: Converts from an exported Blogger XML.  Requires the 'feedzirra' gem.
 
 For Wordpress and Dotclear 1.2 and Dotclear 2 conversion, please use the converters in vendors/plugins
