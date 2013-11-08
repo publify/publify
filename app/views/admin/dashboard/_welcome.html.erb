@@ -1,28 +1,28 @@
-<h3><%= t(".today") %></h3>
-<div>
-  <div class='span12 well'>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t(".today") %></h3>
+  </div>
+  <div class="panel-body">
     <p><%= t(".articles_and_comments_count_since", articles_count: @newposts_count, comments_count: @newcomments_count) %></p>
     <p><%= t(".running_publify", version: PUBLIFY_VERSION) %> <%= @version_message %></p>
-    <div>
-      <div class='span6'>
-        <% if current_user.can_access_to_articles? %>
-          <h4 class='page-header'><%= t(".content") %></h4>
-          <p><%= link_to(t(".articles_count", count: @statposts), controller: 'admin/content') %></p>
-          <p><%= link_to(t(".your_articles_count", count: @statuserposts), controller: 'admin/content', "search[user_id]" => current_user.id) %></p>
-          <p><%= link_to(t(".drafts_count", count: @statsdrafts), controller: 'admin/content', "search[state]" => "drafts") %></p>
-          <p><%= link_to(t(".pages_count", count: @statspages), controller: 'admin/pages') %></p>
-          <p><%= link_to(t(".notes_count", count: @statuses), controller: 'admin/notes') %></p>
-        <% end %>
-      </div>
-      <div class='span6'>
-        <%  if current_user.can_access_to_feedback? %>
-          <h4 class='page-header'><%= t(".feedback") %></h4>
-          <p><%= link_to(t('.comments_count', count: @statcomments), controller: 'admin/feedback') %></p>
-          <p><%= link_to(t('.approved_count', count: @confirmed), controller: 'admin/feedback', "ham" => "f") %></p>
-          <p><%= link_to(t('.unconfirmed_count', count: @unconfirmed), controller: 'admin/feedback', "presumed_ham" => "f") %></p>
-          <p><%= link_to(t(".spam_count", count: @statspam), controller: 'admin/feedback', "spam" => "f") %></p>
-        <% end %>
-      </div>
+    <div class='col-md-6'>
+      <% if current_user.can_access_to_articles? %>
+        <h4 class='page-header'><%= t(".content") %></h4>
+        <p><%= link_to(t(".articles_count", count: @statposts), controller: 'admin/content') %></p>
+        <p><%= link_to(t(".your_articles_count", count: @statuserposts), controller: 'admin/content', "search[user_id]" => current_user.id) %></p>
+        <p><%= link_to(t(".drafts_count", count: @statsdrafts), controller: 'admin/content', "search[state]" => "drafts") %></p>
+        <p><%= link_to(t(".pages_count", count: @statspages), controller: 'admin/pages') %></p>
+        <p><%= link_to(t(".notes_count", count: @statuses), controller: 'admin/notes') %></p>
+      <% end %>
+    </div>
+    <div class='col-md-6'>
+      <%  if current_user.can_access_to_feedback? %>
+        <h4 class='page-header'><%= t(".feedback") %></h4>
+        <p><%= link_to(t('.comments_count', count: @statcomments), controller: 'admin/feedback') %></p>
+        <p><%= link_to(t('.approved_count', count: @confirmed), controller: 'admin/feedback', "ham" => "f") %></p>
+        <p><%= link_to(t('.unconfirmed_count', count: @unconfirmed), controller: 'admin/feedback', "presumed_ham" => "f") %></p>
+        <p><%= link_to(t(".spam_count", count: @statspam), controller: 'admin/feedback', "spam" => "f") %></p>
+      <% end %>      
     </div>
   </div>
 </div>

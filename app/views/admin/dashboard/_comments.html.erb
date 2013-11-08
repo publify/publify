@@ -1,6 +1,10 @@
-<h3><%= _("Latest Comments") %></h3>
-<div class='well'>
-  <ul class='unstyled' id="commentList">
-    <%= render :partial => "comment" %>
-  </ul>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class='panel-title'><%= _("Latest Comments") %></h3>
+  </div>
+  <div class="panel-body">
+    <ul class='list-unstyled' id="commentList">
+      <%= render :partial => "comment" %>
+    </ul>
+  </div>
 </div>
