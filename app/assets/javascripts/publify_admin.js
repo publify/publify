@@ -7,4 +7,5 @@
 //= require gritter
 //= require_self
 //= require gritter
+//= require quicktags
 // Front javascript manifest
