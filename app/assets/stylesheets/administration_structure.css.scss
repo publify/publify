@@ -183,6 +183,12 @@ a.delete:focus {
   background-position: -240px 0;
 }
 
+.glyphicon-large {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
 .icon-large {
     background-image: image-url("admin/glyphicons-large.png");
     background-position: 24px 24px;
@@ -212,3 +218,4 @@ a.delete:focus {
 .icon-large.icon-user-add{ background-position: 0 -200px;  } 
 .icon-large.icon-settings{ background-position: 0 -780px;  } 
 .icon-large.icon-resources{ background-position: -92px -1332px;  } 
+
