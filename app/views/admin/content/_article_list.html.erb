@@ -2,16 +2,17 @@
 <% for article in @articles %>
 <tr>
   <td>
-    <strong><%= link_to_edit h(article.title), article %></strong>
+    <%#= published_or_not article %>
+    <%= link_to_published(article, h(article.title), h(article.title)) %>
     <%= show_actions article %>
   </td>
   <td><%= article.categories.map { |c| link_to h(c.name), {:controller => 'content', :action => 'index', "search[category]" => c.id}}.join(", ") %></td>
-  <td><%= author_link(article)%></td>
   <td>
-    <%= format_date article.published_at %><br />
-    <%= published_or_not article %>
+    <%= author_link(article)%><br />
+    <small><%= format_date article.published_at %></small>
   </td>
-  <td><%= (article.allow_comments?) ? link_to("#{article.comments.ham.size.to_s} <i class='icon icon-comment'></i>".html_safe, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %> </td>
+  <td>
+    <%= (article.allow_comments?) ? link_to("#{article.comments.ham.size.to_s} <i class='glyphicon glyphicon-comment'></i>".html_safe, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %> </td>
 </tr>
 <% end %>
 <%= display_pagination(@articles, 5, 'first', 'last')%>

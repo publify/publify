@@ -31,15 +31,7 @@ td small {
 }
 
 tr .action {
-  display: none;
-}
-
-tr:hover .action {
-  display: block;
-}
-
-.badge a {
-  color: #fff;
+  margin-top: 5px;
 }
 
 /* Dashboard */
@@ -131,18 +123,6 @@ a.delete:focus {
   font-weight: normal;
 }
 
-/* Flatten das boostrap */
-.well, .navbar-inner, .popover, .btn, .tooltip, input, select, textarea, pre, .progress, .modal, .add-on, .alert, .table-bordered, .nav>.active>a, .dropdown-menu, .tooltip-inner, .badge, .label, .img-polaroid {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  -webkit-border-radius: 0px !important;
-  -moz-border-radius: 0px !important;
-  border-radius: 0px !important;
-  border-collapse: collapse !important;
-  background-image: none !important;
-}
-
 .page-title { display:inline-block }
 /* Classes for menu icons */
 
@@ -219,3 +199,6 @@ a.delete:focus {
 .icon-large.icon-settings{ background-position: 0 -780px;  } 
 .icon-large.icon-resources{ background-position: -92px -1332px;  } 
 
+.btn-action {
+  padding: 4px;
+}
