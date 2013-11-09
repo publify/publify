@@ -18,7 +18,7 @@ module Admin::BaseHelper
   end
 
   def save(val = _("Store"))
-    submit_tag(val, :class => 'btn btn-primary')
+    submit_tag(val, :class => 'btn btn-success')
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
