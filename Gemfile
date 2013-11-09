@@ -72,6 +72,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'simplecov', :require => false
   gem 'pry-rails'
+	# gem 'feedzirra' # required for blogger import
 end
 
 # Install gems from each theme
