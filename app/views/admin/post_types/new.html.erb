@@ -1,24 +1,28 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-articles-types"></i>
-  <h2 class="page-title"><%= t(".post_types") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+    <%= t(".post_types") %>
+  </h2>
 <% end %>
 
-<div>
-  <div class='span4'>
+<div class='row'>
+  <div class='col-md-4'>
+    <%= form_tag :action=>"edit", :id => @post_type.id do %>    
     <%= error_messages_for 'post_type' %>
-    <%= form_tag :action=>"edit", :id => @post_type.id do %>
-      <label for="post_type_name"><%= t(".name")%></label>
-      <%= text_field :post_type, :name, :class => 'span12'  %>
-      <label for="post_type_description"><%= t(".description") %></label>
-      <%= text_area :post_type, :description, :rows => 5, :class => 'span12' %>
-      <div class='form-actions'>
-        <%= cancel_or_save %>
-      </div>
+    <div class='form-group'>
+      <%= text_field :post_type, :name, class: 'form-control', placeholder: t(".name")  %>
+    </div>
+    <div class='form-group'>
+      <%= text_area :post_type, :description, rows: 5, class: 'form-control', placeholder: t(".description") %>
+    </div>
+    <div class='form-group'>
+      <%= cancel_or_save %>
+    </div>
     <% end %>
   </div>
 
-  <div class="span8">
-    <table class='table table-striped'>
+  <div class="col-md-8">
+    <table class='table table-hover'>
       <thead>
         <tr class='noborder'>
           <th><%= t(".name") %></th>
@@ -34,7 +38,7 @@
       <% for pt in @post_types -%>
         <tr>
           <td>
-            <%= link_to_edit pt.name, pt %><br />
+            <%= pt.name %><br />
             <%= show_post_types_actions pt %>
           </td>
           <td><%= h pt.description %></td>
