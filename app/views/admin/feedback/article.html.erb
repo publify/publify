@@ -1,5 +1,8 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-comment"></i><h2 class="page-title"><%= t(".comments_for", title: @article.title) %></h2>
+  <h2 class="page-title">
+    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+    <%= t(".comments_for", title: @article.title) %>
+  </h2>
 <%- end %>
 
 <%= form_tag({action: 'bulkops'}, {class: 'form-inline'}) do %>

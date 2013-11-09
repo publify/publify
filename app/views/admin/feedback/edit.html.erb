@@ -1,5 +1,9 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-comment"></i><h2 class="page-title"><%= _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %></h2>
+  
+  <h2 class="page-title">
+    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+    <%= _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
+  </h2>
 <% end %>
 
 <%= form_tag :action => "update", :id => @comment.id do %>
@@ -8,7 +12,7 @@
   <%= hidden_field_tag 'article_id', @article.id %>
 
   <fieldset>
-    <legend><%= t(".add_a_comment")%></legend>
+    <legend><%= t(".edit_a_comment")%></legend>
     <div class='row'>
       <div class="form-group col-md-4">
         <label for="comment_author" class='control-label'><%= t(".author")%></label>
