@@ -30,16 +30,8 @@ class Content < ActiveRecord::Base
   }
   scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
-  scope :published_at_like, lambda { |date_at| where(:published_at => (
-      if date_at =~ /\d{4}-\d{2}-\d{2}/
-        DateTime.strptime(date_at, '%Y-%m-%d').beginning_of_day..DateTime.strptime(date_at, '%Y-%m-%d').end_of_day
-    elsif date_at =~ /\d{4}-\d{2}/
-      DateTime.strptime(date_at, '%Y-%m').beginning_of_month..DateTime.strptime(date_at, '%Y-%m').end_of_month
-    elsif date_at =~ /\d{4}/
-      DateTime.strptime(date_at, '%Y').beginning_of_year..DateTime.strptime(date_at, '%Y').end_of_year
-    else
-      date_at
-    end)
+  scope :published_at_like, lambda { |date_at|
+    where(:published_at => (PublifyTime.delta_like(date_at))
   )}
 
   serialize :whiteboard
@@ -144,4 +136,3 @@ class ContentTextHelpers
   include ActionView::Helpers::TextHelper
   extend ActionView::Helpers::SanitizeHelper::ClassMethods
 end
-
