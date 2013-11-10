@@ -105,16 +105,16 @@ function edShowButton(which, button, i) {
 	}
 	switch (button.id) {
 		case 'ed_img':
-			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn  ' + button.id + '" onclick="edInsertImage(\'' + which + '\');" value="' + button.display + '" />');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn btn-default ' + button.id + '" onclick="edInsertImage(\'' + which + '\');" value="' + button.display + '" />');
 			break;
 		case 'ed_link':
-			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn ' + button.id + '" onclick="edInsertLink(\'' + which + '\', ' + i + ');" value="' + button.display + '" />');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn btn-default ' + button.id + '" onclick="edInsertLink(\'' + which + '\', ' + i + ');" value="' + button.display + '" />');
 			break;
 		case 'ed_publifycode':
-			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn ' + button.id + '" onclick="edInsertPublifyCode(\'' + which + '\', ' + i + ');" value="' + button.display + '" />');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn btn-default ' + button.id + '" onclick="edInsertPublifyCode(\'' + which + '\', ' + i + ');" value="' + button.display + '" />');
 			break;
 		default:
-			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn ' + button.id + '" onclick="edInsertTag(\'' + which + '\', ' + i + ');" value="' + button.display + '"  />');
+			document.write('<input type="button" id="' + button.id + '_' + which + '" ' + accesskey + ' class="btn btn-default ' + button.id + '" onclick="edInsertTag(\'' + which + '\', ' + i + ');" value="' + button.display + '"  />');
 			break;
 	}
 }
@@ -222,14 +222,14 @@ function edToolbar(which, textfilter) {
   
 	if (edShowExtraCookie()) {
 		document.write(
-			'<input type="button" id="ed_close_' + which + '" class="btn" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" />'
-			+ '<input type="button" id="ed_spell_' + which + '" class="btn" onclick="edSpell(\'' + which + '\');" value="Dict" />'
+			'<input type="button" id="ed_close_' + which + '" class="btn btn-default" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" />'
+			+ '<input type="button" id="ed_spell_' + which + '" class="btn btn-default" onclick="edSpell(\'' + which + '\');" value="Dict" />'
 		);
 	}
 	else {
 		document.write(
-			'<input type="button" id="ed_close_' + which + '" class="btn" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" />'
-			+ '<input type="button" id="ed_spell_' + which + '" class="btn" onclick="edSpell(\'' + which + '\');" value="Dict" />'
+			'<input type="button" id="ed_close_' + which + '" class="btn btn-default" onclick="edCloseAllTags(\'' + which + '\');" value="Close Tags" />'
+			+ '<input type="button" id="ed_spell_' + which + '" class="btn btn-default" onclick="edSpell(\'' + which + '\');" value="Dict" />'
 		);
 	}
 

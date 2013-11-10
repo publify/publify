@@ -1,29 +1,29 @@
 <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
 
-<h2 class='page-header'>
-  <i class='icon-large icon-page-new'></i>
+<h2>
+  <i class='glyphicon glyphicon-large glyphicon-pencil'></i>
   <%= t(".page_with_action_name", action: controller.action_name.to_s.capitalize) %>
   <span class='pull-right'>
-    <%= submit_tag( t(".publish"), class: 'btn btn-primary') %>
+    <%= submit_tag( t(".publish"), class: 'btn btn-success') %>
   </span>
 </h2>
 
 <%= error_messages_for 'page' %>
-<div>
-  <div class='span9'>
+<div class='row'>
+  <div class='col-md-9'>
     <div>
-      <%= text_field 'page', 'title', :class => 'input-block-level', :placeholder => t('.title')  %>
+      <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title')  %>
     </div>
 
     <%= render('images', { :images => @images}) unless @images.empty? %>
 
     <div id='editor'>
-      <i class='icon icon-media'></i> <span id='image-link'><%= toggle_element 'carousel-wrapper', t(".images") %></span>
+      <i class='glyphicon glyphicon-picture'></i> <span id='image-link'><%= toggle_element 'carousel-wrapper', t(".images") %></span>
       <div id='quicktags'>
         <script type="text/javascript">edToolbar('page_body', '<%= @page.text_filter %>');</script>
       </div>
       <div id='simple_editor'>
-        <%= text_area('page', 'body', {:class => 'input-block-level', :height => '300px', :rows => '20'}) %>
+        <%= text_area('page', 'body', {:class => 'form-control', :height => '300px', :rows => '20'}) %>
         <%= render 'admin/shared/macros' %>
       </div>
     </div>
@@ -38,7 +38,7 @@
                 <%= check_box 'page', 'published'  %>
                 <%= t(".online")%>
               </label>
-              <p><span class='btn btn-mini'><%= toggle_element 'status', "OK" %></span></p>
+              <p><span class='btn btn-default btn-mini'><%= toggle_element 'status', "OK" %></span></p>
             </div>
           </div>
           <div class='control-group'>
@@ -53,17 +53,15 @@
         </fieldset>
       </div>
       <div class='form-actions'>
-        <div class='pull-right'>
-          <%= submit_tag(t(".publish"), class: 'btn btn-primary') %>
-        </div>
+        <%= cancel_or_save(t(".publish")) %>
       </div>
     </div>
   </div>
-  <div class='span3'>
+  <div class='col-md-3'>
     <div class='well'>
       <h4><%= t(".permanent_link")%></h4>
       <div>
-        <%= text_field 'page', 'name', :class => 'input-block-level' %>
+        <%= text_field 'page', 'name', :class => 'form-control' %>
       </div>
 
     </div>
