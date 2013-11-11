@@ -1,8 +1,10 @@
 <%- used_categories = @article.categories.map(&:id) %>
 <%- Category.all.each do |cat| %>
+  <%= content_tag(:div, class: 'checkbox') do %>
   <%= label_tag do %>
     <%= check_box_tag 'categories[]', cat.id, used_categories.include?(cat.id), id: "category_#{cat.id}", class: 'checkbox' %>
     <%= cat.name %>
+    <%- end %>
   <%- end %>
 <%- end %>
 <%= link_to t(".new_category"), {controller: 'admin/categories', action: 'new' }, class: 'btn btn-info new_category' %>
