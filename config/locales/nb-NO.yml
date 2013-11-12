@@ -6,6 +6,20 @@ nb-NO:
       last: "Last"
   admin:
     seo:
+      permalinks:
+        explain: "Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
+        permalinks: "Permalenker"
+        permalink_format: "Permalinkformat"
+        date_and_title: "Date and title"
+        month_and_title: "Month and title"
+        title_only: "Title only"
+        custom: "Custom"
+        sample: "Here are some examples to get you started."
+        you_can_custom_your_url_structure: "Du kan tilbasse URL-strukturen din ved å bruke følgende tags:"
+        your_article_slug: "Din artikkel-slug. <strong>Det er påkrevd å bruke denne slug</strong>."
+        your_article_year: "din artikkels publiseringsår"
+        your_article_month: "din artikkels publiseringmåned"
+        your_article_day: "din artikkels publiseringsdag"
       index:
         global_settings: "Globale innstillinger"
         general_settings: "Generelle innstillinger"

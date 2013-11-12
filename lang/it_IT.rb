@@ -105,7 +105,6 @@ Localization.define("it_IT") do |l|
 
 
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "I più popolari"
@@ -114,15 +113,6 @@ Localization.define("it_IT") do |l|
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Latest news from the Publify development blog", ""
-  l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
-  l.store "Welcome back, %s!", ""
-  l.store "Total posts : %d", ""
-  l.store "Your posts : %d", ""
   l.store "Limit to spam", "Limita a spam"
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Pages","Pagine"

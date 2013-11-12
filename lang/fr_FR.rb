@@ -173,21 +173,6 @@ Localization.define("fr_FR") do |l|
   l.store "Titles", "Titre des pages"
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Publify ne peut pas écrire dans votre fichier robots.txt."
 
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Les exemples ci-dessous vous aideront à démarrerPublify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
-  l.store "Here are some examples to get you started.", "Les exemples ci-dessous vous aideront à démarrer."
-  l.store "Permalink format", "Format des permaliens"
-  l.store "Date and title", "Date et titre"
-  l.store "Month and title", "Mois et titre"
-  l.store "Title only", "Titre uniquement"
-  l.store "You can custom your URL structure using the following tags:", "Vous pouvez personnaliser la structure de vos URL à l'aide des tags suivats:"
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", "le permalien de votre article <strong>ce champ est obligatoire</strong>"
-  l.store "your article year of publication.", "L'année de publication de votre article."
-  l.store "your article month of publication.", "Le mois de publication de votre article."
-  l.store "your article day of publication.", "Le jour de publication de votre article."
-  l.store "Permalinks", "Permaliens"
-  l.store "Custom", "Personnalisé"
-
   # app/views/admin/seo/titles.html.erb
   l.store "Title settings", "Paramétrage des titres"
   l.store "Title template", "Titre"
