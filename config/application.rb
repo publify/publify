@@ -72,6 +72,11 @@ module Publify
     :long_weekday => '%a %B %e, %Y %H:%M'
   )
 
+  # TimeZone
+  if  File.file? "#{::Rails.root.to_s}/config/timezone.yml"
+    Time.zone = YAML.load(File.read("#{::Rails.root.to_s}/config/timezone.yml"))
+  end
+
   ActionMailer::Base.default :charset => 'utf-8'
 
   # Work around interpolation deprecation problem: %d is replaced by

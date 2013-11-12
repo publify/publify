@@ -231,19 +231,6 @@ Localization.define("nb_NO") do |l|
   l.store "Medium size", "Mellomstor"
   l.store "Original size", "Opprinnelig størrelse"
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Din robots.txt er ikke skrivbar. Publify vil ikke kunne skrive til den"
-
-  # app/views/admin/seo/permalinks.html.erb
-  l.store "Format of permalink", "Permalinkformat"
-  l.store "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.", "Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
-  l.store "You can custom your URL structure using the following tags:", "Du kan tilbasse URL-strukturen din ved å bruke følgende tags:"
-  l.store "your article slug. <strong>Using this slug is mandatory</strong>.", "Din artikkel-slug. <strong>Det er påkrevd å bruke denne slug</strong>."
-  l.store "your article year of publication.", "din artikkels publiseringsår"
-  l.store "your article month of publication.", "din artikkels publiseringmåned"
-  l.store "your article day of publication.", "din artikkels publiseringsdag"
-  l.store "Permalinks", "Permalenker"
-  l.store "Custom", ""
-
-  # app/views/admin/seo/titles.html.erb
   l.store "Title settings", "Tittelinnstillinger"
   l.store "Title template", "Mønster for tittel"
   l.store "Description template", "Mønster for beskrivelse"

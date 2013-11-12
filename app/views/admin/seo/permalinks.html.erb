@@ -1,45 +1,45 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("Permalinks") %></h2>
+  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= t(".permalinks") %></h2>
 <% end %>
 
 <%= error_messages_for 'blog' %>
 
-<%= form_tag :action => 'permalinks' do %>
-  <p><%= _("Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.") %></p>
-  <p><%= _("Here are some examples to get you started.") %></p>
+<%= form_tag action: 'permalinks' do %>
+  <p><%= t(".explain") %></p>
+  <p><%= t(".sample") %></p>
 
   <div class='form-horizontal'>
     <div class='control-group'>
-      <label class='control-label'><%= _("Permalink format") %></label>
+      <label class='control-label'><%= t(".permalink_format") %></label>
       <div class='controls'>
         <label class='radio' for="setting_permalink_format_yearmonthdaytitle">
           <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %>
-          <%= _("Date and title") %>
+          <%= t(".date_and_title") %>
           <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m/%d')}/sample-article" %></span>
         </label>
         <label class='radio' for="setting_permalink_format_yearmonthtitle">
           <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%title%') %>
-          <%= _("Month and title") %>
+          <%= t(".month_and_title") %>
           <span class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m')}/sample-article" %></span>
         </label>
         <label class='radio' for="setting_permalink_format_title">
-          <%= radio_button(:setting, :permalink_format, '/%title%') %> <%= _("Title only") %>
+          <%= radio_button(:setting, :permalink_format, '/%title%') %> <%= t(".title_only") %>
           <span class='help-block'><%= "#{this_blog.base_url}/sample-article" %></span>
         </label>
         <label class='radio' for="setting_permalink_format_custom">
-          <%= radio_button(:setting, :permalink_format, 'custom') %> <%= _("Custom") %>
+          <%= radio_button(:setting, :permalink_format, 'custom') %> <%= t(".custom") %>
           <%= text_field(:setting, :custom_permalink, { :class => 'span5 '})%>
         </label>
       </div>
     </div>
   </div>
 
-  <p class='clear'><%= _("You can custom your URL structure using the following tags:") %></p>
+  <p class='clear'><%= t(".you_can_custom_your_url_structure") %></p>
   <ul>
-    <li><code>%title%</code>: <%= _("your article slug. <strong>Using this slug is mandatory</strong>.") %></li>
-    <li><code>%year%</code>: <%= _("your article year of publication.") %></li>
-    <li><code>%month%</code>: <%= _("your article month of publication.") %></li>
-    <li><code>%day%</code>: <%= _("your article day of publication.") %></li>
+    <li><code>%title%</code>: <%= t(".your_article_slug") %></li>
+    <li><code>%year%</code>: <%= t(".your_article_year") %></li>
+    <li><code>%month%</code>: <%= t(".your_article_month") %></li>
+    <li><code>%day%</code>: <%= t(".your_article_day") %></li>
   </ul>
 
   <%= save_settings %>
