@@ -143,6 +143,10 @@ module Admin::BaseHelper
     link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), item.short_url, {class: 'btn btn-success btn-xs btn-action'})
   end
 
+  def button_to_show(item)
+    link_to_permalink(item,  content_tag(:span, '', class: 'glyphicon glyphicon-link'), nil, 'btn btn-success btn-xs btn-action')
+  end
+
   def twitter_available?(blog, user)
     blog.has_twitter_configured? && user.has_twitter_configured?
   end
