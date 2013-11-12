@@ -1,8 +1,11 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("Database migration") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+    <%= _("Database migration") %>
+  </h2>
 <% end %>
 
-<div class='alert alert-message warning'>
+<div class='alert alert-warning'>
   <h3><%= _("Information")%></h3>
   <p>
     <strong><%= _("Current database version")%>:</strong>
