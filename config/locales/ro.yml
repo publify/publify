@@ -6,6 +6,20 @@ ro:
       last: "Last"
   admin:
     seo:
+      permalinks:
+        explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
+        permalinks: "Permalinks"
+        permalink_format: "Permalink format"
+        date_and_title: "Date and title"
+        month_and_title: "Month and title"
+        title_only: "Title only"
+        custom: "Custom"
+        sample: "Here are some examples to get you started."
+        you_can_custom_your_url_structure: "You can custom your URL structure using the following tags:"
+        your_article_slug: "your article slug. <strong>Using this slug is mandatory</strong>."
+        your_article_year: "your article year of publication."
+        your_article_month: "your article month of publication."
+        your_article_day: "your article day of publication."
       index:
         global_settings: "Global settings"
         general_settings: "Setări generale"

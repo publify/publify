@@ -102,7 +102,6 @@ Localization.define("es_MX") do |l|
   l.store "Blog URL", "URL del blog"
   l.store "Language", "Idioma" #Need translate
   l.store "Allow users to register", ""
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
   l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""
   l.store "Display", "Mostrar"
@@ -289,9 +288,7 @@ Localization.define("es_MX") do |l|
   l.store "Continue reading...", ""
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
   l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
   l.store "or a %s from your own site", ""
   l.store "Read full article", ""
   l.store "comment", ""

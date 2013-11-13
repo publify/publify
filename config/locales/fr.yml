@@ -6,6 +6,20 @@ fr:
       last: "Last"
   admin:
     seo:
+      permalinks:
+        explain: "Les exemples ci-dessous vous aideront à démarrerPublify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
+        permalinks: "Permaliens"
+        permalink_format: "Format des permaliens"
+        date_and_title: "Date et titre"
+        month_and_title: "Mois et titre"
+        title_only: "Titre uniquement"
+        custom: "Personnalisé"
+        sample: "Les exemples ci-dessous vous aideront à démarrer."
+        you_can_custom_your_url_structure: "Vous pouvez personnaliser la structure de vos URL à l'aide des tags suivats:"
+        your_article_slug: "le permalien de votre article <strong>ce champ est obligatoire</strong>"
+        your_article_year: "L'année de publication de votre article."
+        your_article_month: "Le mois de publication de votre article."
+        your_article_day: "Le jour de publication de votre article."
       index:
         global_settings: "Options générales"
         general_settings: "Options générales"
