@@ -1,112 +1,130 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= t(".global_settings") %></h2>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= t(".global_settings") %>
+</h2>
 <% end %>
 
 <%= error_messages_for 'blog' %>
 
 <%= form_tag :action => 'update' do %>
-  <fieldset class='form-horizontal'>
-    <legend><%= t(".general_settings") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_use_meta_keyword"><%= t(".meta_keywords")%></label>
-      <div class='controls'>
-        <label class='checkbox' for="setting_use_meta_keyword"><%= t(".use_meta_keywords")%>
-        <%= check_box(:setting, :use_meta_keyword)%>
-      </label>
-      <%= text_area(:setting, :meta_keywords, :rows => 3, :class => 'span6')%>
+<fieldset class='form-horizontal'>
+  <legend><%= t(".general_settings") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2'><%= t(".meta_keywords")%></label>
+    <div class='col-sm-5'>
+      <div class='checkbox'>
+        <label for="setting_use_meta_keyword">
+          <%= check_box(:setting, :use_meta_keyword)%>
+          <%= t(".use_meta_keywords")%>
+        </label>
+      </div>
+      <%= text_area(:setting, :meta_keywords, :rows => 3, :class => 'form-control')%>
     </div>
   </div>
-  <div class='control-group'>
-    <label class='control-label' for="setting_meta_description"><%= t(".meta_description")%></label>
-    <div class='controls'>
-      <%= text_area(:setting, :meta_description, :rows => 3, :class => 'span6')%>
+    <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_meta_description"><%= t(".meta_description")%></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :meta_description, :rows => 3, :class => 'form-control')%>
     </div>
   </div>
-  <div class='control-group'>
-    <label class='control-label'><%= t(".use_rss_description")%></label>
-    <div class='controls'>
-      <label class='checkbox' for="setting_rss_description">
-        <%= check_box(:setting, :rss_description)%>
-        <%= t(".use_rss_description")%>
-      </label>
-      <p class='help-block'><%= t('.this_will_display') %></p>
+  <div class='form-group'>
+    <label class='control-label col-sm-2'><%= t(".use_rss_description")%></label>
+    <div class='col-sm-5'>
+      <div class='checkbox'>
+        <label for="setting_rss_description">
+          <%= check_box(:setting, :rss_description)%>
+          <%= t(".use_rss_description")%>
+        </label>
+      </div>
+      <small class='help-block'><%= t('.this_will_display') %></small>
       <%= show_rss_description %>
     </div>
   </div>
-  <div class='control-group'>
-    <label class='control-label' for="setting_rss_description_text"><%= t(".rss_description_message")%></label>
-    <div class='controls'>
-      <%= text_area(:setting, :rss_description_text, :rows => 10, :class => 'span6')%>
-      <p class='help-block'><%= t('.explain_rss_description') %></p>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_rss_description_text"><%= t(".rss_description_message")%></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :rss_description_text, :rows => 10, :class => 'form-control')%>
+      <small class='help-block'><%= t('.explain_rss_description') %></small>
     </div>
   </div>
 </fieldset>
 
 <fieldset class='form-horizontal'>
   <legend><%= t(".indexing") %></legend>
-  <div class='control-group'>
-    <label class='control-label'><%= t(".indexing") %></label>
-    <div class='controls'>
-      <label class='checkbox' for="setting_unindex_categories">
-        <%= check_box(:setting, :unindex_categories)%>
-        <%= t(".do_not_index_categories")%>
-        <span class='help-block'><%= t(".explain_category_index") %></span>
-      </label>
-      <label class='checkbox' for="setting_unindex_tags">
-        <%= check_box(:setting, :unindex_tags)%>
-        <%= t(".do_not_index_tags")%>
-        <span class='help-block'><%= t(".explain_tag_index") %></span>
-      </label>
+  <div class='form-group'>
+    <label class='control-label col-sm-2'><%= t(".indexing") %></label>
+    <div class='col-sm-5'>
+      <div class='checkbox'>
+        <label for="setting_unindex_categories">
+          <%= check_box(:setting, :unindex_categories)%>
+          <%= t(".do_not_index_categories")%>
+        </label>
+        <small class='help-block'><%= t(".explain_category_index") %></small>
+      </div>
+      <div class='checkbox'>
+        <label for="setting_unindex_tags">
+          <%= check_box(:setting, :unindex_tags)%>
+          <%= t(".do_not_index_tags")%>
+        </label>
+        <small class='help-block'><%= t(".explain_tag_index") %></small>
+      </div>
     </div>
   </div>
-  <div class='control-group'>
-    <label class='control-label' for="setting_robots"><%= t(".robots_txt")%></label>
-    <div class='controls'>
-      <%= text_area(:setting, :robots, :rows => 10, :class => 'span6')%>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_robots"><%= t(".robots_txt")%></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :robots, :rows => 10, :class => 'form-control')%>
       <% unless robot_writable? -%>
-        <p class='alert alert-error'><%= t(".you_robots_txt_file_is_not_writeable") %></p>
+        <p class='alert alert-danger'><%= t(".you_robots_txt_file_is_not_writeable") %></p>
       <% end -%>
     </div>
   </div>
-  <div class='control-group'>
-    <label class='control-label'><%= t(".dofollow") %></label>
-    <div class='controls'>
-      <label class='checkbox' for="setting_dofollowify"><%= t(".use_dofollow_in_comments")%>
-      <%= check_box(:setting, :dofollowify)%><p class='help-block'><%= t(".explain_moderate_feedback") %></p>
-    </label>
+  <div class='form-group'>
+    <label class='control-label col-sm-2'><%= t(".dofollow") %></label>
+    <div class='col-sm-5'>
+      <div class='checkbox'>
+        <label for="setting_dofollowify">
+          <%= t(".use_dofollow_in_comments")%>
+          <%= check_box(:setting, :dofollowify)%>
+        </label>
+        <small class='help-block'><%= t(".explain_moderate_feedback") %></small>
+      </div>
   </div>
 </div>
-<div class='control-group'>
-  <label class='control-label'><%= t(".canonical_url") %></label>
-  <div class='controls'>
-    <label class='checkbox' for="setting_use_canonical_url">
-      <%= check_box(:setting, :use_canonical_url)%>
-      <%= t(".use_canonical_url")%>
-      <span class='help-block'><%= t(".read_more_about", link: link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></span>
-    </label>
+<div class='form-group'>
+  <label class='control-label col-sm-2'><%= t(".canonical_url") %></label>
+  <div class='col-sm-5'>
+    <div class='checkbox'>
+      <label for="setting_use_canonical_url">
+        <%= check_box(:setting, :use_canonical_url)%>
+        <%= t(".use_canonical_url")%>
+      </label>
+      <small class='help-block'><%= t(".read_more_about", link: link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></small>      
+    </div>
   </div>
 </div>
 </fieldset>
 
 <fieldset class='form-horizontal'>
   <legend><%= t(".google") %></legend>
-  <div class='control-group'>
-    <label class='control-label' for="setting_google_analytics"><%= t(".google_analytics")%></label>
-    <div class='controls'>
-      <%= text_field(:setting, :google_analytics, :class => 'span6')%>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_google_analytics"><%= t(".google_analytics")%></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :google_analytics, :class => 'form-control')%>
     </div>
   </div>
-  <div class='control-group'>
-    <label class='control-label' for="setting_google_verification"><%= t(".google_webmaster_tools_validation_link")%></label>
-    <div class='controls'>
-      <%= text_field(:setting, :google_verification, :class => 'span6')%>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_google_verification"><%= t(".google_webmaster_tools_validation_link")%></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :google_verification, :class => 'form-control')%>
     </div>
   </div>
-  <div class='control-group'>
-    <label class='control-label' for="setting_custom_tracking_field"><%= t(".custom_tracking_code")%></label>
-    <div class='controls'>
-      <%= text_area(:setting, :custom_tracking_field, :rows => 3, :class => 'span6')%>
-      <p class='help-block'><%= t(".explain") %></p>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_custom_tracking_field"><%= t(".custom_tracking_code")%></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :custom_tracking_field, :rows => 3, :class => 'form-control')%>
+      <small class='help-block'><%= t(".explain") %></small>
     </div>
   </div>
 </fieldset>
