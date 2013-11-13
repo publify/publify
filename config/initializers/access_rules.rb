@@ -88,23 +88,14 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
     end
   end
 
-  map.project_module :users, nil do |project|
-    project.menu "Users",            { :controller => "admin/users", :action => "index" }
-    project.submenu "Manage users",            { :controller => "admin/users", :action => "index" }
-  end
-  
-  map.project_module :profile, nil do |project|
-    project.menu "Profile",            { :controller => "admin/profiles", :action => "index" }
-    project.submenu "Your profile",            { :controller => "admin/profiles", :action => "index" }
-  end
-
   map.project_module :settings, nil do |project|
-    project.menu    "Settings",         { :controller => "admin/settings", :action => "index" }
-    project.submenu "General settings", { :controller => "admin/settings", :action => "index" }
-    project.submenu "Write",            { :controller => "admin/settings", :action => "write" }
-    project.submenu "Display",            { :controller => "admin/settings", :action => "display" }
-    project.submenu "Feedback",         { :controller => "admin/settings", :action => "feedback" }
-    project.submenu "Cache",            { :controller => "admin/cache",    :action => "index" }
+    project.menu    "Settings",         { :controller => "admin/settings",    :action => "index" }
+    project.submenu "General settings", { :controller => "admin/settings",    :action => "index" }
+    project.submenu "Write",            { :controller => "admin/settings",    :action => "write" }
+    project.submenu "Display",          { :controller => "admin/settings",    :action => "display" }
+    project.submenu "Feedback",         { :controller => "admin/settings",    :action => "feedback" }
+    project.submenu "Cache",            { :controller => "admin/cache",       :action => "index" }
+    project.submenu "Manage users",     { :controller => "admin/users",       :action => "index" }
   end
 
   map.project_module :notes, nil do |project|
