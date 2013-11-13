@@ -28,7 +28,7 @@
 <body>
   <nav class='navbar navbar-default navbar-inverse navbar-fixed-top' role="navigation">
     <div class="navbar-header">
-      <%= link_to this_blog.blog_name, this_blog.base_url, { :class => 'navbar-brand' } %>
+      <%= link_to this_blog.blog_name, this_blog.base_url, { class: 'navbar-brand' } %>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -37,8 +37,21 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class='nav navbar-nav pull-right'>
-        <li class='divider-vertical'></li>
+      <ul class='nav navbar-nav'>
+        <li class='dropdown'>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= t(".new")%>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><%= link_to(t("admin.menu.new_article"), {controller: 'content', action: 'new'}) %></li>
+            <li><%= link_to(t("admin.menu.new_page"), {controller: 'pages', actions: 'new'}) %></li>
+            <li><%= link_to(t("admin.menu.new_media"), {controller: 'resources', action: 'index'}) %></li>
+            <li><%= link_to(t("admin.menu.new_note"), {controller: 'notes'}) %></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class='nav navbar-nav pull-right'>        
         <li class='dropdown'>
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <%= t("admin.menu.help")%>
@@ -57,7 +70,6 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li><%= link_to(t("admin.menu.new_article"), {:controller => 'content', :action => 'new'}) %></li>
             <li><%= link_to t("admin.menu.profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
             <li><%= link_to t("admin.menu.logout").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
           </ul>
@@ -67,28 +79,7 @@
   </nav>
   <div id='main'>
     <div class='row'>
-      <div class='col-md-2'>
-        <div class='well' style='padding: 28px 0'>
-          <ul class='nav nav-list'>
-            <li class='nav-header'><i class='icon icon-home'></i>
-              <%= t("admin.menu.home") %>
-            </li>
-            <li class='<%= "active" if controller.controller_name == 'dashboard' %>'>
-              <%= link_to t('admin.menu.dashboard'), {controller: 'admin/dashboard'} %>
-            </li>
-            <li class="divider"></li>
-            <% for pm in current_user.project_modules %>
-            <li class="nav-header">
-              <i class='icon icon-<%= pm.name %>'></i>
-              <%= _(pm.menus.first.name) %>
-            </li>
-              <%= subtabs_for(pm.name.to_sym)%>
-              <li class="divider"></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <div class='col-md-10' style="padding-top: 20px">
+      <div class='col-md-12'>
         <%= render_the_flash %>
         <%- if content_for?(:page_heading) %>
           <div class='page-header'>
@@ -97,10 +88,34 @@
         <%- end %>
         <%= yield  %>
       </div>
-
-    </div>
+    </div>  
   </div>
-
+  <nav  class='navbar navbar-default navbar-fixed-bottom' role="navigation">
+    <div class="navbar-header">
+      <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>      
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class='nav navbar-nav'>
+        <% for pm in current_user.project_modules %>
+        <li class='dropdown'>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= _(pm.menus.first.name) %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <%= subtabs_for(pm.name.to_sym)%>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
   <footer class='clearfix'>
   <div class='span12'>
     <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t("admin.menu.powered_by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
