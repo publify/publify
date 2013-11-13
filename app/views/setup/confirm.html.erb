@@ -1,1 +1,8 @@
-<%= render 'shared/confirm'%>
+<p><%= _("You have successfully signed up") %></p>  
+<p><%= _("<strong>Login:</strong> %s", current_user.login)%></p>
+<p><%= _("<strong>Password:</strong> %s", session[:tmppass]) %></p>
+<div class='alert alert-warning'><%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%></div>
+
+<%- content_for :account_links do %>
+  <%= t(".proceed_to", link: link_to(t(".admin"), controller: 'admin/dashboard')) %>
+<% end %>
