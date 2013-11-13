@@ -1,9 +1,9 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-pages"></i>
-  <h2 class="page-title"><%= t(".manage_pages") %></h2>
-  <div class='pull-right'>
-    <%= link_to(t(".new_page"), {controller: 'pages', action: 'new'}, id: 'dialog-link', class: 'btn btn-info') %>
-  </div>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-folder-open"></i>
+    <%= t(".manage_pages") %>
+    <%= link_to(t(".new_page"), {controller: 'pages', action: 'new'}, id: 'dialog-link', class: 'btn btn-info pull-right') %>
+  </h2>
 <% end %>
 
 <table class='table table-striped'>
@@ -12,7 +12,6 @@
       <th><%= t(".title") %></th>
       <th><%= t(".permalink")%></th>
       <th><%= t(".author")%></th>
-      <th><%= t(".date") %></th>
     </tr>
   </thead>
   <%= render 'pages' %>

@@ -1,103 +1,151 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("Display settings") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+    <%= _("Display settings") %>
+  </h2>
 <% end %>
 
 <%= form_tag :action => 'update' do %>
 
-  <fieldset class='form-horizontal'>
-    <legend><%= _("Publishing options")%></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_limit_article_display"><%= _("Display")%> </label>
-      <div class='controls'>
-        <%= text_field(:setting, :limit_article_display, {:size => 4, :class => 'span1'})%>
-        <%= _("articles on my homepage by default")%>
-      </div>
+<fieldset class='form-horizontal'>
+  <legend><%= _("Publishing options")%></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_limit_article_display"><%= _("Display")%> </label>
+    <div class='col-sm-1'>
+      <%= text_field(:setting, :limit_article_display, {:size => 4, :class => 'form-control'})%>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_statuses_in_timeline"><%= _("Display statuses in the main feed")%>:</label>
-      <div class='controls'>
-        <%= check_box(:setting, :statuses_in_timeline) %>
-      </div>
+    <div class='pull-left'>
+      <span class='help-block'><%= _("articles on my homepage by default")%></span>
     </div>
-
-    <div class='control-group'>
-      <label class='control-label'><%= _("Date format")%></label>
-      <div class='controls'>
-        <label class='radio' for="setting_date_format_dmy">
-          <%= radio_button(:setting, :date_format, '%d/%m/%Y')%>
-          <span><%= Time.now.strftime('%d/%m/%Y') %></span>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2'><%= _("Statuses") %></label>
+    <div class='col-sm-5'>
+      <div class='checkbox'>
+        <label>
+          <%= check_box(:setting, :statuses_in_timeline) %>
+          <%= _("Display statuses in the main feed")%>            
         </label>
-        <label class='radio' for="setting_date_format_mdy">
+      </div>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2'><%= _("Date format")%></label>
+    <div class='col-sm-5'>
+      <div class='radio'>
+          <label for="setting_date_format_dmy">
+            <%= radio_button(:setting, :date_format, '%d/%m/%Y')%>
+            <%= Time.now.strftime('%d/%m/%Y') %>
+          </label>
+      </div>
+    </div>
+    <div class='col-md-offset-2 col-sm-5'>
+      <div class='radio'>
+        <label for="setting_date_format_mdy">
           <%= radio_button(:setting, :date_format, '%m/%d/%Y') %>
-          <span><%= Time.now.strftime('%m/%d/%Y') %></span>
+          <%= Time.now.strftime('%m/%d/%Y') %>
         </label>
-        <label class='radio' for="setting_date_format_d_b_y">
+      </div>
+    </div>
+    <div class='col-md-offset-2 col-sm-5'>
+      <div class='radio'>
+        <label for="setting_date_format_d_b_y">
           <%= radio_button(:setting, :date_format, "%d %b %Y" )%>
-          <span><%= Time.now.strftime('%d %b %Y') %></span>
-        </label>
-        <label class='radio' for="setting_date_format_d_b_y">
+          <%= Time.now.strftime('%d %b %Y') %>
+        </label>    
+      </div>
+    </div>
+    <div class='col-md-offset-2 col-sm-5'>
+      <div class='radio'>
+        <label for="setting_date_format_d_b_y">
           <%= radio_button(:setting, :date_format, '%d %B %Y' )%>
-          <span><%= Time.now.strftime('%d %B %Y') %></span>
+          <%= Time.now.strftime('%d %B %Y') %>
         </label>
-        <label class='radio' for="setting_date_format_4">
+      </div>
+    </div>
+    <div class='col-md-offset-2 col-sm-5'>
+      <div class='radio'>
+        <label for="setting_date_format_4">
           <%= radio_button(:setting, :date_format, 'setting_date_format_distance_of_time_in_words' )%>
-          <span><%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= _("ago") %></span>
+          <%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= _("ago") %>
         </label>
-        <label class='radio' for="setting_date_format_ymd">
+      </div>
+    </div>
+    <div class='col-md-offset-2 col-sm-5'>
+      <div class='radio'>
+        <label for="setting_date_format_ymd">
           <%= radio_button(:setting, :date_format, '%Y/%m/%d' )%>
-          <span><%= Time.now.strftime('%Y/%m/%d') %></span>
+          <%= Time.now.strftime('%Y/%m/%d') %>
         </label>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label'><%= _("Time format")%></label>
-      <div class='controls'>
-        <label class='radio' for="setting_time_format_hhm">
-          <span><%= Time.now.strftime('%Hh%M') %></span>
-          <%= radio_button(:setting, :time_format, '%Hh%M')%>
-        </label>
-        <label class='radio' for="setting_time_format_hm">
-          <%= radio_button(:setting, :time_format, '%H:%M')%>
-          <span><%= Time.now.strftime('%H:%M') %></span>
-        </label>
-        <label class='radio' for="setting_time_format_imp">
-          <%= radio_button(:setting, :time_format, '%I:%M%p')%>
-          <span><%= Time.now.strftime('%I:%M%p') %></span>
-        </label>
+  </div>
+
+  <div class='form-group'>
+    <label class='control-label col-sm-2'><%= _("Time format")%></label>
+      <div class='col-sm-5'>
+        <div class='radio'>
+          <label for="setting_time_format_hhm">
+            <%= Time.now.strftime('%Hh%M') %>
+            <%= radio_button(:setting, :time_format, '%Hh%M')%>
+          </label>
+        </div>
+      </div>
+      <div class='col-md-offset-2 col-sm-5'>
+        <div class='radio'>
+          <label for="setting_time_format_hm">
+            <%= radio_button(:setting, :time_format, '%H:%M')%>
+            <%= Time.now.strftime('%H:%M') %>
+          </label>
+        </div>
+      </div>
+      <div class='col-md-offset-2 col-sm-5'>
+        <div class='radio'>
+          <label for="setting_time_format_imp">
+            <%= radio_button(:setting, :time_format, '%I:%M%p')%>
+            <%= Time.now.strftime('%I:%M%p') %>
+          </label>
+        </div>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_custom_url_shortener"><%= _("Custom URL shortener domain")%></label>
-      <div class='controls'>
-        <%= text_field(:setting, :custom_url_shortener, { :class => 'span6'})%>
-        <p class='help block'><%= _("You may want to use a custom domain for URL shortening, here's where it happens.") %></p>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_custom_url_shortener"><%= _("Custom URL shortener domain")%></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :custom_url_shortener, { :class => 'form-control'})%>
+        <small class='help block'><%= _("You may want to use a custom domain for URL shortening, here's where it happens.") %></small>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
     <legend><%= _("RSS feed")%></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_limit_rss_display"><%= _("Display")%> </label>
-      <div class='controls'>
-        <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'span1'})%>
-        <%= _("articles in my news feed by default")%>.
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_limit_rss_display"><%= _("Display")%> </label>
+      <div class='col-sm-1'>
+        <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'form-control'})%>        
+      </div>
+      <div class='pull-left'>
+          <span class='help-block'><%= _("articles in my news feed by default")%>.</span>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_hide_extended_on_rss"><%= _("Show only article excerpt on feed")%>:</label>
-      <div class='controls'>
-        <%= check_box(:setting, :hide_extended_on_rss) %>
+    <div class='form-group'>
+      <label class='control-label col-sm-2'><%= _("Articles") %></label>
+      <div class='col-sm-5'>
+        <div class='checkbox'>
+          <label for="setting_hide_extended_on_rss">
+            <%= check_box(:setting, :hide_extended_on_rss) %>
+            <%= _("Show only article excerpt on feed")%>
+          </label>
+        </div>        
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
-      <div class='controls'>
-        <%= text_field(:setting, :feedburner_url, :class => 'span6')%>
-        <span class='help-block'><%= _('You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.') %></span>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :feedburner_url, :class => 'form-control')%>
+        <small class='help-block'><%= _('You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.') %></small>
       </div>
     </div>
-
   </fieldset>
   <%= hidden_field_tag 'from', 'display' %>
   <%= save_settings %>

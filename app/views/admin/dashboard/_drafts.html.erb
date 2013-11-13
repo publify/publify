@@ -1,21 +1,25 @@
-<h3><%= t(".your_drafts") %></h3>
-<div class='well'>
-  <ul class='unstyled'>
-    <% if @drafts.empty? %>
-      <li class='alert'>
-      <%= link_to t(".no_drafts_yet"), controller: 'content', action: 'new' %> ?
-      </li>
-    <% else %>
-      <% for post in @drafts -%>
-        <li>
-        <h5>
-          <%= link_to(post.title, controller: "admin/content", action: "edit", id: post.id) %>
-          <%= display_date_and_time(post.created_at) %>
-        </h5>
-        <p><%= post.body.strip_html.slice(0,300) if post.body %></p>
-        <hr />
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class='panel-title'><%= t(".your_drafts") %></h3>
+  </div>
+  <div class="panel-body">
+    <ul class='list-unstyled'>
+      <% if @drafts.empty? %>
+        <li class='alert alert-info'>
+        <%= link_to t(".no_drafts_yet"), controller: 'content', action: 'new' %> ?
         </li>
+      <% else %>
+        <% for post in @drafts -%>
+          <li>
+          <h5>
+            <%= link_to(post.title, controller: "admin/content", action: "edit", id: post.id) %>
+            <%= display_date_and_time(post.created_at) %>
+          </h5>
+          <p><%= post.body.strip_html.slice(0,300) if post.body %></p>
+          <hr />
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>

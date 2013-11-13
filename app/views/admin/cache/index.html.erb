@@ -1,13 +1,16 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= t(".cache") %></h2>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= t(".cache") %>
+</h2>
 <% end %>
 
-<p><%= t(".explaination") %></p>
+<p class='alert alert-info'><%= t(".explaination") %></p>
 
 <p><%= t(".stats", files_count: @cache_number.to_i, size: @cache_size.to_i / 1000) %></p>
 
 <%= form_tag(controller: 'cache', action: 'index') do %>
-  <div class='form-actions'>
+  <div class='form-group'>
     <%= submit_tag(t(".sweep_cache"), class: 'btn btn-primary') %>
   </div>
 <% end %>

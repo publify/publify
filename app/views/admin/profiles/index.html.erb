@@ -1,6 +1,8 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-profile"></i>
-  <h2 class="page-title"><%= _("Your profile") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-user"></i>
+    <%= _("Your profile") %>
+  </h2>
 <% end %>
 
 <%= form_tag({action: 'index', id: @user.id}, {enctype: "multipart/form-data"}) %>

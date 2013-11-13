@@ -1,30 +1,42 @@
-<tr id='<%= "placeholder_#{comment.id}" %>' <%= "style='display: none'" unless comment.state.to_s.downcase == 'spam' %>>
-  <td colspan='5' <%= "style='display: none'" if comment.state.to_s == 'spam' %>>
-    <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 25) %>
-    <%= t(".this_comment_by_was_flagged_as_spam", author: comment.author, cancel_link: link_to(t('.cancel'), url: {action: 'change_state', id: comment.id, remote: true})) %> 
-    <%= toggle_element "feedback_#{comment.id}" %>
+<tr id='feedback_<%= comment.id %>' class='<%= comment.state.to_s.downcase %>'>
+  <% if comment.state.to_s.downcase == 'spam'%>
+  <td></td>
+  <td style='text-align: center'>
+      <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 48, :class => 'img-circle') %>
+      <p class='action'><span class='label label-danger'><%= comment.state %></span></p>
   </td>
-</tr>
-
-<tr id='<%= "feedback_#{comment.id}" %>' <%= "style='display: none'" if comment.state.to_s.downcase == 'spam' %>>
+  <td colspan=4>
+    <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
+    <p>
+      <small>
+        <%= t('.by:')%> <%= mail_to h(comment.email), h(comment.author) %>
+        <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
+        <%= t('.on') %> <%= format_date_time comment.created_at %>
+      </small>
+    </p>
+    <p>
+      <small>
+        <%= t(".this_comment_by_was_flagged_as_spam", author: comment.author, cancel_link: link_to(t('.cancel'), url: {action: 'change_state', id: comment.id, remote: true})) %> 
+        <%= toggle_element "feedback_#{comment.id}" %>
+      </small>
+    </p>
+  </td>
+  <% else %>
   <td><input class= "feedback_check" type="checkbox" name="feedback_check[<%= comment.id %>]"/></td>
-  <td><span class='badge <%= comment_class comment.state.to_s.downcase %>'><%= comment.state %></span></td>
-  <td>
-    <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 32) %>
-    <div class='comment_content'>
-      <strong><%= mail_to h(comment.email), h(comment.author), {:class => 'noborder'} %></strong><br />
-      <%= link_to "#{h(comment.url)}<br />".html_safe, comment.url, {:class => 'noborder'} unless comment.url.blank? %>
-      <small><%= format_date_time comment.created_at %></small>
-    </div>
+  <td style='text-align: center'>
+    <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 80, :class => 'img-circle') %>
+    <p class='action'><span class='label <%= comment_class comment.state.to_s.downcase %>'><%= comment.state %></span></p>
   </td>
   <td>
+    <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
+    <p>
+      <small>
+        <%= t('.by:')%> <%= mail_to h(comment.email), h(comment.author) %>
+        <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
+        <%= t('.on') %> <%= format_date_time comment.created_at %>
+      </small>
+    </p>
     <%= comment.html(:all) %>
-    <div class='action'>
-      <%= show_feedback_actions comment %>
-    </div>
+    <%= show_feedback_actions comment %>
   </td>
-
-  <% if controller.action_name == 'index' %>
-    <td><%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %></td>
-  <% end %>
-</tr>
+<% end %>

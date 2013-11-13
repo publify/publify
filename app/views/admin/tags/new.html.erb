@@ -1,20 +1,24 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-tags"></i><h2 class="page-title"><%= _("Manage tags") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-tags"></i>
+    <%= _("Manage tags") %>
+  </h2>
 <% end %>
 
-<div>
-  <div class='span4'>
+<div class='row'>
+  <div class='col-md-4'>
     <%= form_tag :action=>"edit", :id => @tag.id do %>
     <%= error_messages_for 'tag' %>
-    <label for="tag_display_name"><%= _("Name")%>:</label>
-    <%= text_field 'tag', 'display_name', :class => 'medium' %>
-    <div class='form-actions'>
+    <div class='form-group'>
+      <%= text_field :tag, :display_name, class: 'form-control', placeholder: _("Name") %>
+    </div>
+    <div class='form-group'>
       <%= cancel_or_save %>
     </div>
     <% end %>
   </div>
-  <div class='span8'>
-    <table class="table table-striped">
+  <div class='col-md-8'>
+    <table class="table table-hover">
       <thead>
         <tr class='noborder'>
         <th><%= _("Display Name") %></th>
@@ -35,7 +39,6 @@
       <% end %>
       <%= display_pagination(@tags, 3)%>
     </table>
-
   </div>
 </div>
 

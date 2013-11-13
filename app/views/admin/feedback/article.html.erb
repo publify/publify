@@ -1,14 +1,17 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-comment"></i><h2 class="page-title"><%= t(".comments_for", title: @article.title) %></h2>
+  <h2 class="page-title">
+    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+    <%= t(".comments_for", title: @article.title) %>
+  </h2>
 <%- end %>
 
-<%= form_tag({action: 'bulkops'}) do %>
+<%= form_tag({action: 'bulkops'}, {class: 'form-inline'}) do %>
 
   <%= hidden_field 'article_id', @article.id %>
   <%= render 'button', { :position => 'top' } %>
 
   <br class='clear' />
-  <table class='table table-stripped'>
+  <table class='table table-hover'>
     <thead>
       <tr class='noborder'>
         <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
@@ -27,36 +30,38 @@
 
 <%= form_tag :action => "create" do %>
   <%= hidden_field_tag('article_id', @article.id) %>
-  <fieldset class='form-horizontal'>
+  <fieldset>
     <legend><%= t(".add_a_comment")%></legend>
-    <div class='control-group'>
-      <label for="comment_author" class='control-label'><%= t(".author")%></label>
-      <div class='controls'>
-        <%= text_field 'comment', 'author', :class => 'medium' %>
+    <div class='row'>
+      <div class="form-group col-md-4">
+        <label for="comment_author" class='control-label'><%= t(".author")%></label>
+        <%= text_field 'comment', 'author', :class => 'form-control' %>
       </div>
     </div>
-    <div class='control-group'>
-      <label for="comment_email" class='control-label'><%= t(".email")%></label>
-      <div class='controls'>
-        <%= text_field 'comment', 'email', :class => 'medium' %>
+    <div class='row'>
+      <div class='form-group col-md-4'>
+        <label for="comment_email" class='control-label'><%= t(".email")%></label>
+          <%= text_field 'comment', 'email', :class => 'form-control' %>
       </div>
     </div>
-    <div class='control-group'>
-      <label for="comment_url" class='control-label'><%= t(".url") %></label>
-      <div class='controls'>
-        <%= text_field 'comment', 'url', :class => 'medium' %>
-      </div>
+    <div class='row'>
+      <div class='form-group col-md-4'>
+        <label for="comment_url" class='control-label'><%= t(".url") %></label>
+        <%= text_field 'comment', 'url', :class => 'form-control' %>
+      </div>      
     </div>
-    <div class='control-group'>
-      <label for='comment_body' class='control-label'><%= t(".your_comment") %></label>
-      <div class='controls'>
+    <div class='row'>
+      <div class='form-group col-md-12'>
+        <label for='comment_body' class='control-label'><%= t(".your_comment") %></label>
         <script type="text/javascript">edToolbar('comment_body', '<%= current_user.default_text_filter.name %>');</script>
-        <%= text_area 'comment', 'body', { :rows => '10', :class => 'span6'} %>
+        <%= text_area 'comment', 'body', { :rows => '10', :class => 'form-control'} %>
       </div>
     </div>
-    <div class='form-actions'>
-      <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}, class: 'btn'), second_action: submit_tag(t(".save"), class: 'btn btn-primary')) %>
+    <div class='row'>
+      <div class='form-group col-md-12'>
+        <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}, class: 'btn'), second_action: submit_tag(t(".save"), class: 'btn btn-primary')) %>
+      </div>
+    </div>
     </div>
   </fieldset>
-
 <% end %>

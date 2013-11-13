@@ -6,25 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= @page_title %></title>
   <meta http-equiv="imagetoolbar" content="no" />
-  <%= stylesheet_link_tag "accounts" %>
+  <%= stylesheet_link_tag "accounts", "bootstrap" %>
 </head>
 <body>
-  <div class='container'>
-    <div class='row'>
-      <div class='span4 offset4'>
-        <h1><%= link_to("Publify", "http://publify.co") %></h1>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='span4 offset4 well'>
-        <div id="flash"><%= render_the_flash %></div>
-        <%= yield %>
-      </div>
-      <%- if content_for?(:account_links) %>
-        <div class='span4 offset4'>
-          <%= yield :account_links %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1 class='panel-title'><%= link_to("Publify", "http://publify.co") %></h1>
+          </div>
+          <div class="panel-body">
+            <div id="flash"><%= render_the_flash %></div>
+              <%= yield %>
+          </div>
         </div>
-      <%- end %>
+        <%- if content_for?(:account_links) %>
+            <%= yield :account_links %>
+        <%- end %>  
+      </div>
     </div>
   </div>
 </body>

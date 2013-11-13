@@ -18,7 +18,7 @@ module Admin::BaseHelper
   end
 
   def save(val = _("Store"))
-    submit_tag(val, :class => 'btn btn-primary')
+    submit_tag(val, :class => 'btn btn-success')
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
@@ -77,10 +77,9 @@ module Admin::BaseHelper
 
   def show_actions item
     content_tag(:div, { :class => 'action', :style => '' }) do
-      [ content_tag(:small, link_to_published(item)),
-        small_to_edit(item),
-        small_to_delete(item),
-        get_short_url(item) ].join(" | ").html_safe
+      [ button_to_edit(item),
+        button_to_delete(item),
+        button_to_short_url(item) ].join(" ").html_safe
     end
   end
 
@@ -92,19 +91,19 @@ module Admin::BaseHelper
     date.strftime('%d/%m/%Y %H:%M')
   end
 
-  def link_to_published(item)
-    return link_to_permalink(item,  _("Show"), nil, 'published') if item.published
+  def link_to_published(item, show=_("Show"), preview=_("Preview"))
+    return link_to_permalink(item, show, nil, 'published') if item.published
 
     type = controller.controller_name == 'content' ? "" : "_page"
 
-    link_to(_("Preview"), {:controller => '/articles', :action => "preview#{type}", :id => item.id}, {:class => 'unpublished', :target => '_new'})
+    link_to(preview, {:controller => '/articles', :action => "preview#{type}", :id => item.id}, {:class => 'unpublished', :target => '_new'})
   end
 
   def published_or_not(item)
-    return content_tag(:small, _("Published"), :class => 'label label-success') if item.state.to_s.downcase == 'published'
-    return content_tag(:small, _("Draft"), :class => 'label label-info') if item.state.to_s.downcase == 'draft'
-    return content_tag(:small, _("Withdrawn"), :class => 'label label-important') if item.state.to_s.downcase == 'withdrawn'
-    return content_tag(:small, _("Publication pending"), :class => 'label label-warning') if item.state.to_s.downcase == 'publicationpending'
+    return content_tag(:span, t(".published"), class: 'label label-success') if item.state.to_s.downcase == 'published'
+    return content_tag(:span, t(".draft"), class: 'label label-info') if item.state.to_s.downcase == 'draft'
+    return content_tag(:span, t(".withdrawn"), class: 'label label-important') if item.state.to_s.downcase == 'withdrawn'
+    return content_tag(:span, t(".publication_pending"), class: 'label label-warning') if item.state.to_s.downcase == 'publicationpending'
   end
 
   def macro_help_popup(macro, text)
@@ -128,15 +127,24 @@ module Admin::BaseHelper
   end
 
   def save_settings
-    content_tag(:div, cancel_or_save(_("Update settings")).html_safe, :class => 'form-actions')
+    content_tag(:div, cancel_or_save(_("Update settings")).html_safe, :class => 'form-group')
   end
 
-  def small_to_edit(item)
-    content_tag(:small, link_to(_("Edit"), :action => 'edit', :id => item.id))
+  def button_to_edit(item)
+    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), {action: 'edit', id: item.id}, {class: 'btn btn-primary btn-xs btn-action'})
   end
 
-  def small_to_delete(item)
-    content_tag(:small, link_to(_("Delete"), {:action => 'destroy', :id => item.id}, :class => 'delete'))
+  def button_to_delete(item)
+    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), {action: 'destroy', id: item.id}, {class: 'btn btn-danger btn-xs btn-action'})
+  end
+
+  def button_to_short_url(item)
+    return "" if item.short_url.nil?
+    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), item.short_url, {class: 'btn btn-success btn-xs btn-action'})
+  end
+
+  def button_to_show(item)
+    link_to_permalink(item,  content_tag(:span, '', class: 'glyphicon glyphicon-link'), nil, 'btn btn-success btn-xs btn-action')
   end
 
   def twitter_available?(blog, user)

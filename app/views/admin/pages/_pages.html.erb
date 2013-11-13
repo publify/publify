@@ -7,10 +7,9 @@
     <%= show_actions page %>
   </td>
   <td><%= page.name%></td>
-  <td><%= author_link(page) %></td>
   <td>
-    <%= format_date page.created_at %><br />
-    <%= published_or_not page %>
+    <%= author_link(page) %><br />
+    <small><%= format_date page.created_at %></small>
   </td>
 </tr>
 <% end %>

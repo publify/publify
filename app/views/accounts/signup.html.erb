@@ -1,7 +1,13 @@
 <%= form_tag action: "signup" do %>
-  <%= text_field(:user, :login, {class: 'input-block-level', placeholder: t(".username") })%>
-  <%= text_field(:user, :email, {class: 'input-block-level', placeholder: t(".email") })%>
-  <input type="submit" id="submit" class='btn btn-info pull-right' value="<%= t('.signup')%>" />
+<fieldset>
+  <div class="form-group">
+    <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".username") })%>
+  </div>
+  <div class="form-group">
+    <%= text_field(:user, :email, {class: 'form-control', placeholder: t(".email") })%>    
+  </div>
+  <input type="submit" id="submit" class='btn btn-lg btn-success btn-block' value="<%= t('.signup')%>" />
+</fieldset>
 <% end %>
 
 <%- content_for :account_links do %>

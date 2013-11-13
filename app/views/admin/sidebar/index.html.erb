@@ -11,43 +11,49 @@
 
 <div id="messages">&nbsp;</div>
 
-<div id="sidebar-config" class='row-fluid'>
-  <div id="available" class='span6 well'>
-    <h3><%= _("Available Items")%></h3>
-    <div id="available_box">
-    <% if @available.blank? %>
-      <p class='alert-message warning'><%= _("You have no plugins installed")%>.</p>
-    <% else %>
-      <%= render :partial => 'available', :collection => @available %>
-    <% end %>
+<div id="sidebar-config" class='row'>
+  <div id="available" class='col-md-6'>
+    <div class='well'>
+      <h3><%= _("Available Items")%></h3>
+      <div id="available_box">
+      <% if @available.blank? %>
+        <p class='alert-message warning'><%= _("You have no plugins installed")%>.</p>
+      <% else %>
+        <%= render :partial => 'available', :collection => @available %>
+      <% end %>
+      </div>      
     </div>
   </div>
 
-	<div id="cnt-active" class='span6 well '>
-		<h3 id="hdr-active">
-			<%= _("Active Sidebar items")%>
-			<%= image_tag "spinner-blue.gif", :id => 'update_spinner',
-			:style => 'display:none;' -%>
-		</h3>
-		<div id="active">
-			<% if @active.blank? %>
-			<%= render :partial => 'target' %>
-			<% else %>
-			<%= render :partial => 'active', :collection => @active %>
-			<% end %>
-			<%#= sortable_element "active", :url => {:action => 'set_active'},
-			:tag => 'div',
-			:handle => 'handle', :containment => ['active','available_box'],
-			:loading => "new Element.show('update_spinner')" %>
-		</div>
-	</div>
+  <div id="cnt-active" class='col-md-6'>
+    <div class='well'>
+      <h3 id="hdr-active">
+        <%= _("Active Sidebar items")%>
+        <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
+        :style => 'display:none;' -%>
+      </h3>
+      <div id="active">
+        <% if @active.blank? %>
+        <%= render :partial => 'target' %>
+        <% else %>
+        <%= render :partial => 'active', :collection => @active %>
+        <% end %>
+        <%#= sortable_element "active", :url => {:action => 'set_active'},
+        :tag => 'div',
+        :handle => 'handle', :containment => ['active','available_box'],
+        :loading => "new Element.show('update_spinner')" %>
+      </div>
+    </div>
+  </div>
 
 </div>
-<div class='form-actions'>
-	<%= cancel_or_save(_('Publish changes'))%>
+<div class='form-group'>
+  <%= cancel_or_save(_('Publish changes'))%>
 </div>
 
 <% end %>
 
-<h2><%= _("Get more plugins") %></h2>
-<p><%= _("You can download and install sidebar plugins from our official %s. All you have to do is upload the theme directory in your vendor/plugins directory.", "<a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>#{_("plugin repository")}</a>") %></p>
+<div class='alert alert-info'>
+  <p><%= _("You can download and install sidebar plugins from our official %s. All you have to do is upload the theme directory in your vendor/plugins directory.", "<a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>#{_("plugin repository")}</a>") %></p>  
+</div>
+

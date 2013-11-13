@@ -1,16 +1,17 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-dashboard"></i><h2 class="page-title"><%= _("Welcome back, %s!", current_user.name) %></h2>
+  <i class="glyphicon glyphicon-large glyphicon-home"></i>
+  <h2 class="page-title"><%= _("Welcome back, %s!", current_user.name) %></h2>
 <% end %>
 
 <%= render "overview" %>
 
-<div>
-  <div class='span6'>
+<div class='row'>
+  <div class='col-md-6'>
     <%= render "welcome" %>
     <%= render "comments" %>
   </div>
 
-  <div class='span6'>
+  <div class='col-md-6'>
     <%= render "drafts" %>
     <%= render "inbound" %>
   </div>

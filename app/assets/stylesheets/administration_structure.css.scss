@@ -31,15 +31,7 @@ td small {
 }
 
 tr .action {
-  display: none;
-}
-
-tr:hover .action {
-  display: block;
-}
-
-.badge a {
-  color: #fff;
+  margin-top: 5px;
 }
 
 /* Dashboard */
@@ -115,7 +107,7 @@ tr:hover .action {
 }
 
 #main  {
-  padding-left: 0;
+  padding: 0 15px 0 0;
 }
 
 a.delete {
@@ -129,18 +121,6 @@ a.delete:focus {
 
 #preview_link {
   font-weight: normal;
-}
-
-/* Flatten das boostrap */
-.well, .navbar-inner, .popover, .btn, .tooltip, input, select, textarea, pre, .progress, .modal, .add-on, .alert, .table-bordered, .nav>.active>a, .dropdown-menu, .tooltip-inner, .badge, .label, .img-polaroid {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  -webkit-border-radius: 0px !important;
-  -moz-border-radius: 0px !important;
-  border-radius: 0px !important;
-  border-collapse: collapse !important;
-  background-image: none !important;
 }
 
 .page-title { display:inline-block }
@@ -183,6 +163,12 @@ a.delete:focus {
   background-position: -240px 0;
 }
 
+.glyphicon-large {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
 .icon-large {
     background-image: image-url("admin/glyphicons-large.png");
     background-position: 24px 24px;
@@ -212,3 +198,7 @@ a.delete:focus {
 .icon-large.icon-user-add{ background-position: 0 -200px;  } 
 .icon-large.icon-settings{ background-position: 0 -780px;  } 
 .icon-large.icon-resources{ background-position: -92px -1332px;  } 
+
+.btn-action {
+  padding: 4px;
+}

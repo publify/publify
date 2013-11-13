@@ -1,19 +1,26 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-resources"></i>
-  <h2 class="page-title"><%= t(".media_library") %></h2>
+  
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-picture"></i>
+    <%= t(".media_library") %>
+  </h2>
 <% end %>
 
-<%= form_tag({action: 'upload'}, {enctype: "multipart/form-data"}) do %>
+<%= form_tag({action: 'upload'}, {enctype: "multipart/form-data", class: 'form-inline'}) do %>
   <div class='well well-small'>
     <h3><%= t('.upload_a_file_to_your_site') %></h3>
-    <%= file_field('upload', 'filename', {class: 'input-file'}) -%>
-    <%= submit_tag(t('.upload'), {class: 'btn'}) -%>
+    <div class="form-group">
+      <%= file_field('upload', 'filename', {class: 'input-file'}) -%>
+    </div>
+    <div class="form-group">
+      <%= submit_tag(t('.upload'), {class: 'btn btn-success'}) -%>
+    </div>
   </div>
 <%- end %>
 
-<table class="table table-striped">
+<table class="table table-hover">
   <thead>
-    <tr class='noborder'>
+    <tr>
       <th><%= t(".filename")%> <small>(<%= t('.right_click_for_link')%>)</small></th>
       <th><%= t(".content_type")%></th>
       <th><%= t(".file_size")%></th>

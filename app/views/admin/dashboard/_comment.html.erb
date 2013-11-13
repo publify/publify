@@ -1,5 +1,5 @@
 <%- if @comments.size == 0 %>
-  <li class='alert'><%= t(".no_comments_yet") %></li>
+  <li class='alert alert-info'><%= t(".no_comments_yet") %></li>
 <%- else %>
   <%- for comment in @comments %>
     <li id='feedback_<%= comment.id %>'>

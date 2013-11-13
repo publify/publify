@@ -22,12 +22,12 @@ class Sidebar < ActiveRecord::Base
     end
 
     def input_html(sidebar)
-      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'span12'})
+      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'form-control'})
     end
 
     def line_html(sidebar)
       html = label_html(sidebar)
-      html << content_tag(:div,  input_html(sidebar), :class => 'input')
+      html << content_tag(:div,  input_html(sidebar), :class => 'form-group')
     end
 
     def input_name(sidebar)
@@ -48,7 +48,7 @@ class Sidebar < ActiveRecord::Base
 
     class TextAreaField < self
       def input_html(sidebar)
-        html_options = { "rows" => "10", "class" => "span12" }.update(options.stringify_keys)
+        html_options = { "rows" => "10", "class" => "form-control" }.update(options.stringify_keys)
         text_area_tag(input_name(sidebar), sidebar.config[key], html_options)
       end
     end

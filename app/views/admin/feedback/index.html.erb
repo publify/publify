@@ -1,49 +1,34 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-comment"></i>
-  <h2 class="page-title"><%= t(".feedback") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+    <%= t(".feedback") %>
+  </h2>
 <% end %>
 
 <%= form_tag({action: 'index'}, method: :get, class: 'form-inline') do %>
-  <div>
-    <span class='badge badge-inverse'>
-      <%= link_to(t(".all"), controller: 'admin/feedback', action: :index) %>
-    </span>&nbsp;
-    <span class='badge'>
-      <%= link_to(t(".unapproved_comments"), controller: 'admin/feedback', action: :index, confirmed: 'f') %>
-    </span>&nbsp;
-    <span class='badge badge-success'>
-      <%= link_to(t(".ham"), controller: 'admin/feedback', action: :index, ham: 'f') %>
-    </span>&nbsp;
-    <span class='badge badge-important'>
-      <%= link_to(t(".spam"), controller: 'admin/feedback', action: :index, spam: 'f') %>
-    </span>&nbsp;
-    <span class='badge badge-info'>
-      <%= link_to(t(".presumed_ham"), controller: 'admin/feedback', action: :index, presumed_ham: 'f') %>
-    </span>&nbsp;
-    <span class='badge badge-warning'>
-      <%= link_to(t(".presumed_spam"), controller: 'admin/feedback', action: :index, published: 'f') %>
-    </span>&nbsp;
-    <div class='pull-right input-append'>
-      <input type="text" id="feedback_search" name="search" value="<%=h params[:search] %>" class='medium' />
-      <%= submit_tag(t(".search"), {:class => 'btn'}) %>
-    </div>
-  </div>
+  <p>
+    <%= link_to(t(".all"), {controller: 'admin/feedback', action: :index}, {class: 'label label-default'}) %>
+    <%= link_to(t(".unapproved_comments"), {controller: 'admin/feedback', action: :index, confirmed: 'f'}, {class: 'label label-info'}) %>
+    <%= link_to(t(".presumed_ham"), {controller: 'admin/feedback', action: :index, presumed_ham: 'f'}, {class: 'label label-primary'}) %>
+    <%= link_to(t(".ham"), {controller: 'admin/feedback', action: :index, ham: 'f'}, {class: 'label label-success'}) %>
+    <%= link_to(t(".presumed_spam"), {controller: 'admin/feedback', action: :index, published: 'f'}, {class: 'label label-warning'}) %>
+    <%= link_to(t(".spam"), {controller: 'admin/feedback', action: :index, spam: 'f'}, {class: 'label label-danger'}) %>
+  </p>
 <% end %>
 
-<%= form_tag({:action => 'bulkops'}) do %>
-  <%= render 'button', { :position => 'top' } %>
+<%= form_tag({:action => 'bulkops'}, {class: 'form-inline'}) do %>
 
   <%= hidden_field_tag "search", params[:search]%>
   <%= hidden_field_tag "page", params[:page]%>
 
-  <table class='table table-striped'>
+  <%= render 'button', { :position => 'top' } %>          
+  <table class='table hover'>
     <thead>
       <tr class='noborder'>
-        <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
-        <th><%= t(".status")%></th>
-        <th><%= t(".comment_author")%></th>
-        <th><%= t(".comment")%></th>
-        <th><%= t(".article")%></th>
+        <th colspan='5'>
+          <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/>
+          <%= t(".select_all") %>
+        </th>
       </tr>
     </thead>
     <%= render_void_table(@feedback.size, 5) %>
