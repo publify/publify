@@ -11,24 +11,6 @@ Localization.define("pl_PL") do |l|
   l.store "Successfully logged out", ""
   l.store "login", ""
   l.store "signup", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Preview", ""
-
-  l.store "Not found", ""
-  l.store "Marked %d item(s) as Ham", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Wystąpił błąd w trakcie aktualizacji typu zawartości."
   l.store "complete", "zakończony"
   l.store "File uploaded: ", "Załadowany plik: "
@@ -36,8 +18,6 @@ Localization.define("pl_PL") do |l|
   l.store "Metadata was successfully updated.", "Metadane zostały pomyślnie zaktualizowane."
   l.store "Not all metadata was defined correctly.", "Nie wszystkie metadane zostały poprawnie zdefiniowane."
   l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
-
-  # app/controllers/admin/settings_controller.rb
   l.store "config updated.", "konfiguracja zaktualizowana."
   l.store "All categories", "Wszystkie kategorie"
   l.store "All authors", "Wszystkie autorzy"
@@ -45,7 +25,6 @@ Localization.define("pl_PL") do |l|
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Zmień"
   l.store "Unpublished", ""
-  l.store "Show help on Publify macros", ""
   l.store "Back to overview", "Wróć do podglądu"
   l.store "Tag", ""
 
@@ -108,7 +87,6 @@ Localization.define("pl_PL") do |l|
   l.store "Total comments : %d", "Liczba wszystkich komentarzy: %d"
   l.store "Spam comments : %d", "Niechciane komentarze (spam): %d"
   l.store "Url", "Strona web"
-  l.store "Pages", "Strony"
   l.store "Are you sure you want to delete the page", "Czy na pewno chcesz usunąć tą stronę"
   l.store "Delete this page", "Usuń tą stronę"
 
@@ -205,7 +183,6 @@ Localization.define("pl_PL") do |l|
   l.store "Sidebar", ""
   l.store "Publish changes", "Publikuj zmiany"
   l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
   l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
@@ -255,8 +232,6 @@ Localization.define("pl_PL") do |l|
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", ""
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Opublikowane przez"
   l.store "Continue reading", "Czytaj dalej"
 
@@ -268,17 +243,11 @@ Localization.define("pl_PL") do |l|
   l.store "Your message", "Treść"
   l.store "Comment Markup Help", "Pomoc języka formatowania"
   l.store "Preview comment", "Obejrzyj komentarz"
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "Z"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Brak artykułów"
   l.store "posted in", ""
 
   l.store "is about to say", "zaraz powie"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Istnieje"
 
   l.store "Leave a response", "Skomentuj"
@@ -312,8 +281,6 @@ Localization.define("pl_PL") do |l|
 
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
   l.store "You can follow any response to this entry through the %s", ""
@@ -337,24 +304,7 @@ Localization.define("pl_PL") do |l|
   l.store "Designed by %s ported to publify by %s ", ""
 
   l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-  l.store "Your website", ""
-
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacki do"
-
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
   l.store "Previous", "Poprzednie"
 
   # vendor/plugins/archives_sidebar/views/content.rhtml

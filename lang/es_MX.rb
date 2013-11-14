@@ -64,15 +64,6 @@ Localization.define("es_MX") do |l|
   l.store "Are you sure you want to delete this file", "&iquest;Est&aacute;s seguro que deseas eliminar este archivo?"
   l.store "Delete this file from the webserver?", "&iquest;Eliminar este archivo del servidor?"
   l.store "File Uploads", "Archivos subidos"
-  # app/views/admin/seo/titles.html.erb
-  l.store "The blog's name", ""
-  l.store "The blog's tagline / description", ""
-  l.store "Replaced with the category/tag name", ""
-  l.store "Replaced with the current search phrase", ""
-  l.store "Replaced with the current time", ""
-  l.store "Replaced with the current month", ""
-  l.store "Replaced with the current year", ""
-
   l.store "Enable comments by default", "Habilitar comentarios por default"
   l.store "Enable Trackbacks by default", "Habilitar Trackbacks por default"
   l.store "Enable feedback moderation", "Habilitar moderaci&oacute;n de comentarios y trackbacks"

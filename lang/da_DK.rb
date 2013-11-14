@@ -41,7 +41,6 @@ Localization.define("da_DK") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikel"
   l.store "Delete this article", "Slet denne artikel"
-  l.store "Articles", "Artikler"
 
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
@@ -68,7 +67,6 @@ Localization.define("da_DK") do |l|
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Total comments : %d", "Total kommentarer : %d"
   l.store "Spam comments : %d", "Spam kommentarer : %d"
-  l.store "Pages", "Sider"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne side"
   l.store "Delete this page", "Slet denne side"
 

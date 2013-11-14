@@ -8,18 +8,6 @@ Localization.define("ro_RO") do |l|
   l.store "Successfully logged out", ""
   l.store "login", ""
   l.store "signup", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Preview", ""
-
-  l.store "Not found", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
   l.store "All categories", "toate categoriile"
   l.store "All authors", "toate autorii"
   l.store "All published dates", "toate timp"
@@ -55,7 +43,6 @@ Localization.define("ro_RO") do |l|
   l.store "Are you sure you want to delete this article", "Ești sigur că dorești ștergerea acestui articol"
   l.store "Delete this article", "Șterge acest articol"
   l.store "Limit to spam", "Doar spam"
-  l.store "Pages","Pagini"
   l.store "Are you sure you want to delete the page", "Ești sigur că dorești să ștergi această pagină"
   l.store "Delete this page", "Șterge această pagină"
   l.store "Previous page", "Pagina anterioară"

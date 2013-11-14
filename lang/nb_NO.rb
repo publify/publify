@@ -101,10 +101,7 @@ Localization.define("nb_NO") do |l|
 
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", "Ingen poster."
-
   # app/controllers/grouping_controller.rb
   l.store "page", "side"
   l.store "Store", "Lagre"
@@ -171,7 +168,6 @@ Localization.define("nb_NO") do |l|
   l.store "Publish at", "Offentliggjort den"
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
-  l.store "Articles", "Artikler"
   l.store "Latest Comments", "Siste kommentarer"
 
   # app/views/admin/dashboard/_popular.html.erb
@@ -205,7 +201,6 @@ Localization.define("nb_NO") do |l|
   l.store "%s", ""
   l.store "Search Comments and Trackbacks that contain", "Søk etter kommentarer og Trackbacks som inneholder"
   l.store "Page settings", "Sideinnstillinger"
-  l.store "Pages", "Sider"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne siden"
   l.store "Delete this page", "Slett denne side"
   l.store "Your profile", "Din profil"
@@ -231,25 +226,6 @@ Localization.define("nb_NO") do |l|
   l.store "Medium size", "Mellomstor"
   l.store "Original size", "Opprinnelig størrelse"
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Din robots.txt er ikke skrivbar. Publify vil ikke kunne skrive til den"
-  l.store "Title settings", "Tittelinnstillinger"
-  l.store "Title template", "Mønster for tittel"
-  l.store "Description template", "Mønster for beskrivelse"
-  l.store "Help on title settings", "Hjelp med tittelinnstillinger"
-  l.store "Replaced with the title of the article/page", "Erstatted med tittelen til artikkelen/siden"
-  l.store "The blog's name", "Bloggens navn"
-  l.store "The blog's tagline / description", "Bloggens undertittel/beskrivelse"
-  l.store "Replaced with the post/page excerpt", "Erstattet med utdrag fra artikkelen/siden"
-  l.store "Replaced with the article tags (comma separated)", "Erstattet med artikkelens tags (kommaseparert)"
-  l.store "Replaced with the article categories (comma separated)", "Erstattet med artikkelens kategorier (kommaseparert)"
-  l.store "Replaced with the article/page title", "Erstattet med artikkelens/sidens tittel"
-  l.store "Replaced with the category/tag name", "Erstattet med kategori-/tagnavn"
-  l.store "Replaced with the current search phrase", "Erstattet med nåværende søketekst"
-  l.store "Replaced with the current time", "Erstattet med nåværende tid"
-  l.store "Replaced with the current date", "Erstattet med nåværende dato"
-  l.store "Replaced with the current month", "Erstattet med nåværende måned"
-  l.store "Replaced with the current year", "Erstattet med nåværende år"
-  l.store "Replaced with the current page number", "Erstattet med nåværende sidetall"
-  l.store "Replaced by the archive date", "Erstattet av arkivdato"
   l.store "Titles", "Titler"
 
   l.store "Enable comments by default", "Aktiver kommentarer som standard"
@@ -406,11 +382,7 @@ Localization.define("nb_NO") do |l|
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Legg til bruker"
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Skrevet av"
-
-  # app/views/articles/_article_excerpt.html.erb
   l.store "Continue reading", "Fortsett å lese"
 
   l.store "Oops, something wrong happened, the comment could not be saved", "Ojsann, noe galt skjedde. Kommentaren ble ikke lagret"
@@ -465,8 +437,6 @@ Localization.define("nb_NO") do |l|
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Bloggen bruker %s"
   l.store "Designed by %s ", "Utformet av %s"
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
   l.store "Continue reading...", "Fortsett å lese..."
   l.store "This entry was posted on %s", "Denne artikkelen ble publisert %s"
   l.store "and %s", "og %s"
@@ -500,24 +470,14 @@ Localization.define("nb_NO") do |l|
   # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", "Du er her: "
   l.store "%d comment", "%d kommentar"
-
-  # themes/true-blue-3/views/articles/_article.html.erb
   l.store "Published on", "Publisert den"
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
   l.store "Email address", "Epostadresse"
   l.store "Your website", "Din hjemmeside"
-
-  # themes/true-blue-3/views/articles/read.html.erb
   l.store "If you liked this article you can %s", "Hvis du likte denne artikkelen, kan du %s"
   l.store "add me to Twitter", "legge meg til på Twitter"
   l.store "Trackbacks for", "Trackbacks for"
-
-  # themes/true-blue-3/views/articles/search.html.erb
   l.store "Search results for:", "Søkeresultater for:"
-
   l.store "Read all articles in %s", "Les alle artikler i %s"
-
   l.store "Previous", "Forrige"
 
   # vendor/plugins/archives_sidebar/app/views/archives_sidebar/_content.html.erb

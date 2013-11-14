@@ -10,8 +10,6 @@ Localization.define("zh_CN") do |l|
   l.store "login", "登录"
   l.store "signup", "注册"
   l.store "Recover your password", ""
-
-  # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "成功保存分类"
   l.store "Category could not be saved.", "无法保存分类"
 
@@ -54,7 +52,6 @@ Localization.define("zh_CN") do |l|
   # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "有错误发生，可能是一些侧边栏丢失，请尝试重新安装或者手动卸载。"
 
-  # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "Tag已经更新"
 
   # app/controllers/admin/themes_controller.rb
@@ -145,7 +142,6 @@ Localization.define("zh_CN") do |l|
   l.store "Publish at", "公开"
   l.store "Are you sure you want to delete this article", "确定删除本篇文章？"
   l.store "Delete this article", "删除本篇文章"
-  l.store "Articles", "文章"
   l.store "Search articles that contain ...", "搜索包含内容的文章 ..."
 
   # app/views/admin/dashboard/_comments.html.erb
@@ -172,7 +168,6 @@ Localization.define("zh_CN") do |l|
   l.store "Total comments : %d", "评论总计：%d"
   l.store "Spam comments : %d", "垃圾评论：%d"
   l.store "Limit to spam", "限制垃圾郵件"
-  l.store "Pages","页数"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
   l.store "Previous page", "前一頁"
@@ -348,15 +343,6 @@ Localization.define("zh_CN") do |l|
   l.store "styled with %s", ""
 
   l.store "Trackbacks for", "作為引用"
-
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
-  l.store "Read all articles in %s", ""
-
-  l.store "Previous", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "归档"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml

@@ -34,7 +34,6 @@ Localization.define("de_DE") do |l|
   # app/views/admin/dashboard/_publify_dev.html.erb
   l.store "Oh no, nothing new", ""
   l.store "Limit to spam", "Einschränken auf Spam"
-  l.store "Pages","Seiten"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
 

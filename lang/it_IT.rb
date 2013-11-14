@@ -9,11 +9,6 @@ Localization.define("it_IT") do |l|
   l.store "login", ""
   l.store "signup", ""
   l.store "Recover your password", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", ""
   l.store "Preview", ""
@@ -23,11 +18,6 @@ Localization.define("it_IT") do |l|
   l.store "Deleted %d item(s)", ""
   l.store "Confirmed classification of %s item(s)", "Conferma classificazione di %s elementi"
   l.store "Not implemented", "Non implementato"
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", ""
-
-  # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Si e' verificato un errore mentre aggiornavo il tipo di contenuto."
   l.store "complete", "completato"
   l.store "File uploaded: ", "File inviata: "
@@ -42,14 +32,6 @@ Localization.define("it_IT") do |l|
 
   # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
-  l.store "Tag was successfully updated.", ""
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
-  l.store "You are not authorized to open this file", ""
-  l.store "File saved successfully", ""
   l.store "Store", "Salva"
   l.store "All categories", "Tutte le categorie"
   l.store "All authors", "Tutte le autori"
@@ -115,7 +97,6 @@ Localization.define("it_IT") do |l|
   l.store "No posts yet, why don't you start and write one", ""
   l.store "Limit to spam", "Limita a spam"
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
-  l.store "Pages","Pagine"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
   l.store "Delete this page", "Elimina questa pagina"
 
@@ -211,12 +192,9 @@ Localization.define("it_IT") do |l|
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-
-  # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Nome visualizzato"
   l.store "Active theme", "Tema Attivo"
   l.store "Choose a theme", "Seleziona un tema"
