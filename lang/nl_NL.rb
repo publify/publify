@@ -9,8 +9,6 @@ Localization.define("nl_NL") do |l|
   l.store "login", "inloggen"
   l.store "signup", "aanmelden"
   l.store "Recover your password", "Herstel uw wachtwoord"
-
-  # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "Categorie succesvol opgeslagen."
   l.store "Category could not be saved.", "Categorie kon niet opgeslagen worden."
 
@@ -52,8 +50,6 @@ Localization.define("nl_NL") do |l|
 
   # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Het lijkt er op dat er iets fout ging. Misschien ontbreken sommige zijbalken en moet je ze opnieuw installeren of handmatig verwijderen"
-
-  # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "Tag was succesvol bijgewerkt."
 
   # app/controllers/admin/themes_controller.rb
@@ -67,8 +63,6 @@ Localization.define("nl_NL") do |l|
 
   # app/controllers/application_controller.rb
   l.store "Localization.rtl", ""
-
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", "Geen berichten gevonden..."
   l.store "Archives for", "Archieven voor"
   l.store "Archives for ", "Archieven voor "
@@ -131,19 +125,11 @@ Localization.define("nl_NL") do |l|
   l.store "Spam?", "Spam?"
   l.store "Just Marked As Spam", "Zojuist gemarkeerd als Spam"
   l.store "Spam", "Spam"
-
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "Orden opnieuw"
   l.store "Sort alphabetically", "Sorteer alfabetisch"
-
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "Weet je zeker dat je de categorie wilt verwijderen?"
   l.store "Delete this category", "Verwijder deze categorie"
-
-  # app/views/admin/categories/new.html.erb
   l.store "%s Category", "%s Categorie"
-
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Gedaan)"
 
   # app/views/admin/content/_attachment.html.erb
@@ -163,7 +149,6 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Weet je zeker dat je dit artikel wilt verwijderen?"
   l.store "Delete this article", "Verwijder dit artikel"
-  l.store "Articles", "Artikelen"
 
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
@@ -197,7 +182,6 @@ Localization.define("nl_NL") do |l|
   l.store "Comments for", "Commentaren voor"
   l.store "Search Comments and Trackbacks that contain", "Zoek commentaren en trackbacks die bevatten"
   l.store "Page settings", "Pagina instellingen"
-  l.store "Pages", "Pagina's"
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"
   l.store "Your profile", "Je profiel"
@@ -369,40 +353,22 @@ Localization.define("nl_NL") do |l|
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Gebruiker toevoegen"
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Geplaatst door"
   l.store "Continue reading", "Verder lezen"
-
-  # app/views/articles/_comment.html.erb
   l.store "said", "zei"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt."
-
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Jouw naam"
   l.store "Your email", "Jouw e-mail"
   l.store "Your message", "Jouw bericht"
   l.store "Comment Markup Help", ""
   l.store "Preview comment", "Bekijk reactie"
   l.store "leave url/email", "plaats url/e-mail"
-
-  # app/views/articles/_comment_failed.html.erb
   l.store "Oops, something wrong happened, the comment could not be saved", "Er is iets mis gegaan en je reactie is niet bewaard"
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "Van"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Geen artikelen gevonden"
   l.store "posted in", "geplaatst in"
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "gaat zeggen"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Er zijn"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Geef een reactie"
   l.store "Trackbacks", "Trackbacks"
   l.store "Use the following link to trackback from your own site", "Gebruik de volgende link voor een trackback van jouw site"
@@ -440,8 +406,6 @@ Localization.define("nl_NL") do |l|
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Powered by %s"
   l.store "Designed by %s ", "Ontworpen door %s"
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
   l.store "Continue reading...", "Lees meer..."
   l.store "This entry was posted on %s", "Dit bericht was geplaatst op %s"
   l.store "and %s", "en %s"
@@ -452,11 +416,7 @@ Localization.define("nl_NL") do |l|
   l.store "Read full article", "Lees volledige artikel"
   l.store "comment", "reactie"
   l.store "trackback", "trackback"
-
-  # test/mocks/themes/typographic/views/articles/_comment.html.erb
   l.store "later", "later"
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
   l.store "Leave a comment", "Geef een reactie"
   l.store "Name %s", "Naam %s"
   l.store "enabled", "aangezet"
@@ -465,8 +425,6 @@ Localization.define("nl_NL") do |l|
   l.store "Textile enabled", "Textile beschikbaar"
   l.store "Markdown enabled", "Markdown beschikbaar"
   l.store "required", "verplicht"
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
   l.store "No comments", "Geen reacties"
 
   # test/mocks/themes/typographic/views/shared/_search.html.erb
@@ -478,36 +436,11 @@ Localization.define("nl_NL") do |l|
 
   # themes/scribbish/layouts/default.html.erb
   l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", "Je bent hier: "
   l.store "%d comment", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment.html.erb
   l.store "later:", "later:"
-
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", "E-mailadres"
   l.store "Your website", "Je website"
-
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
-  l.store "Trackbacks for", ""
-
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
-  # themes/true-blue-3/views/categories/index.html.erb
-  l.store "Read all articles in %s", ""
-
-  # themes/true-blue-3/views/categories/show.html.erb
   l.store "Previous", "Vorige"
 
   # vendor/plugins/archives_sidebar/views/content.rhtml

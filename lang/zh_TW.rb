@@ -8,17 +8,6 @@ Localization.define("zh_TW") do |l|
   l.store "Successfully logged out", ""
   l.store "login", ""
   l.store "signup", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Preview", ""
-  l.store "Not found", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
   l.store "Error occurred while updating Content Type.", "當更新內容類型時發生錯誤"
   l.store "complete", "完成"
   l.store "File uploaded: ", "檔案上傳: "
@@ -63,7 +52,6 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "確定刪除本篇文章？"
   l.store "Delete this article", "刪除本篇文章"
-  l.store "Articles", "文章"
 
   # app/views/admin/content/index.html.erb
 
@@ -93,7 +81,6 @@ Localization.define("zh_TW") do |l|
   l.store "Limit to spam", "限制垃圾郵件"
 
   # app/views/admin/pages/destroy.html.erb
-  l.store "Pages","頁數"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
 

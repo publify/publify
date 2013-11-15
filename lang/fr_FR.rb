@@ -173,32 +173,6 @@ Localization.define("fr_FR") do |l|
   l.store "Titles", "Titre des pages"
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Publify ne peut pas écrire dans votre fichier robots.txt."
 
-  # app/views/admin/seo/titles.html.erb
-  l.store "Title settings", "Paramétrage des titres"
-  l.store "Title template", "Titre"
-  l.store "Description template", "Description"
-  l.store "Paginated archives", "Archives paginées"
-  l.store "Dated archives", "Archives par date"
-  l.store "Author page", "Page d'auteur"
-  l.store "Search results", "Résultats de recherche"
-  l.store "Help on title settings", "Aide sur le Paramétrage des titres"
-  l.store "Replaced with the title of the article/page", "Remplacé par le titre de l'article ou de la page"
-  l.store "The blog's name", "Le nom du blog"
-  l.store "The blog's tagline / description", "Le sous-titre du blog"
-  l.store "Replaced with the post/page excerpt", "Remplacé par l'introduction de l'article ou de la page"
-  l.store "Replaced with the article tags (comma separated)", "Remplacé par les tags de l'article (séparés par une virgule)"
-  l.store "Replaced with the article categories (comma separated)", "Remplacé par les catégories de l'article (séparées par une virgule)"
-  l.store "Replaced with the article/page title", "Remplacé par le titre de l'article ou de la page"
-  l.store "Replaced with the category/tag name", "Remplacé par le nom de la catégorie ou du mot-clé"
-  l.store "Replaced with the current search phrase", "Remplacé avec le contenu de la recherche"
-  l.store "Replaced with the current time", "Remplacé par l'heure actuelle"
-  l.store "Replaced with the current date", "Remplacé par la date du jour"
-  l.store "Replaced with the current month", "Remplacé par le mois en cours"
-  l.store "Replaced with the current year", "Remplacé par l'année en cours"
-  l.store "Replaced with the current page number", "Remplacé par le numéro de la page"
-  l.store "Replaced by the archive date", "Remplacé par la date de l'archive"
-  l.store "These tags can be included in your templates and will be replaced when displaying the page.", "Ces tags peuvent être ajoutés dans le template et seront remplacés lors de l'affichage de la page"
-
   # app/views/admin/settings/errors.html.erb
   l.store "Error 404", "Erreur 404 (le document demandé n'existe pas)"
   l.store "Message", "Message"
@@ -368,44 +342,23 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Ajouter un utilisateur"
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Publié par"
-
   # app/view/admin/
   l.store "All notes", "Toutes les notes"
   l.store "Statuses", "Notes"
-
-
-
-  # app/views/articles/_article_excerpt.html.erb
   l.store "Continue reading", "Lire plus"
-
-  # app/views/articles/_comment_failed.html.erb
   l.store "Oops, something wrong happened, the comment could not be saved", "Oops, quelque chose s'est mal déroulé. Votre commentaire n'a donc pu être enregistré."
-
-  # app/views/articles/_comment_form.html.erb
   l.store "Your name", "Votre nom "
   l.store "Your email", "Votre courriel"
   l.store "Your message", "Votre commentaire"
   l.store "Comment Markup Help", "Aide sur le balisage des commentaires"
   l.store "Preview comment", "Prévisualiser le commentaire"
   l.store "leave url/email", "laissez votre url/courriel"
-
-  # app/views/articles/_comment_list.html.erb
   l.store "No comments", "Pas de commentaires"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Aucun article ne correspond à la recherche"
   l.store "posted in", "publié dans"
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "va dire"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Il y a"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Réagir à ce billet"
   l.store "Trackbacks", "Rétroliens"
   l.store "Use the following link to trackback from your own site", "Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site"

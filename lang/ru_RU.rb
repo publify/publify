@@ -23,8 +23,6 @@ Localization.define("ru_RU") do |l|
   l.store "Edit", "Редактировать"
   l.store "Unpublished", "Не опубликован"
   l.store "There are no %s yet. Why don't you start and create one?", "Ничего нет. Почему бы не начать и не добавить?" # XXX
-  l.store "Short url:", "Короткий URL:"
-  l.store "Edit", "Редактировать"
   l.store "Show", "Показать"
   l.store "Unpublished", "Неопубликован"
   l.store "Show help on Publify macros", "Показать помощь по Publify-макросам"

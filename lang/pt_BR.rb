@@ -12,8 +12,6 @@ Localization.define("pt_BR") do |l|
   l.store "login", "entrar"
   l.store "signup", "registrar"
   l.store "Recover your password", "recupere sua senha"
-
-  # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "Categoria salva com sucesso"
   l.store "Category could not be saved.", "Categoria não pode ser salva"
 
@@ -164,7 +162,6 @@ Localization.define("pt_BR") do |l|
   l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", ""
   l.store "Limit to spam", "Limitar a spam"
-  l.store "Pages","P&aacute;ginas"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
 

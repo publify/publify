@@ -8,11 +8,6 @@ Localization.define("ja_JP") do |l|
   l.store "Successfully logged out", "ログアウトしました"
   l.store "login", "ログイン"
   l.store "signup", "サインアップ"
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "あなたのアカウントではこの操作は許可されていません"
   l.store "Preview", ""
@@ -68,12 +63,8 @@ Localization.define("ja_JP") do |l|
   l.store "Just Marked As Spam", "スパムマーク"
   l.store "Reorder", "並べ替え"
   l.store "Sort alphabetically", "アルファベット順に並べ替え"
-
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "このカテゴリを削除してもよろしいですか？ "
   l.store "Delete this category", "このカテゴリを削除"
-
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(完了)"
 
   # app/views/admin/content/_attachment.html.erb
@@ -90,7 +81,6 @@ Localization.define("ja_JP") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "本当にこの記事を削除してよろしいですか？"
   l.store "Delete this article", "この記事を削除"
-  l.store "Articles", "記事"
 
   l.store "Search articles that contain ...", "以下の語句を含む記事を検索"
 
@@ -106,7 +96,6 @@ Localization.define("ja_JP") do |l|
   l.store "Limit to spam", "スパムコメント"
   l.store "Search Comments and Trackbacks that contain", "以下の語句を含むコメントおよびトラックバックを検索"
   l.store "Page settings", "ページ設定"
-  l.store "Pages","ページ"
   l.store "Are you sure you want to delete the page", "本当にこのページを削除してよろしいですか？"
   l.store "Delete this page", "このページを削除"
   l.store "Your profile", "あなたのプロフィール"
@@ -265,8 +254,6 @@ Localization.define("ja_JP") do |l|
   l.store "State", "状態"
   l.store "%s user", "%s"
   l.store "Add User", "ユーザーの追加"
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "投稿者"
   l.store "Continue reading", ""
 
@@ -278,19 +265,10 @@ Localization.define("ja_JP") do |l|
   l.store "Your message", "メッセージ"
   l.store "Comment Markup Help", "コメントのマークアップヘルプ"
   l.store "Preview comment", "前のコメント"
-  # app/views/articles/_trackback.html.erb
   l.store "From", "From"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "記事が見つかりませんでした"
-  l.store "posted in", ""
-
   l.store "is about to say", "〜について言う"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "ここに"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "コメントを書く"
   l.store "Trackbacks", "トラックバック"
   l.store "Use the following link to trackback from your own site", "トラックバックリンク"
@@ -318,11 +296,8 @@ Localization.define("ja_JP") do |l|
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", ""
-
   l.store "Powered by %s", ""
   l.store "Designed by %s ", ""
-
-  # test/mocks/themes/typographic/views/articles/_article.html.erb
   l.store "Continue reading...", "続きを読む‥"
   l.store "This entry was posted on %s", ""
   l.store "and %s", ""
@@ -349,34 +324,7 @@ Localization.define("ja_JP") do |l|
   l.store "Designed by %s ported to publify by %s ", ""
 
   l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  l.store "Email address", ""
-  l.store "Your website", ""
-
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "〜へのトラックバック"
-
-  # themes/true-blue-3/views/articles/search.html.erb
-  l.store "Search results for:", ""
-
-  # themes/true-blue-3/views/categories/index.html.erb
-  l.store "Read all articles in %s", ""
-
-  # themes/true-blue-3/views/categories/show.html.erb
-  l.store "Previous", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "アーカイブ"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml

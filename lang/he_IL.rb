@@ -10,11 +10,6 @@ Localization.define("he_IL") do |l|
   l.store "login", ""
   l.store "signup", ""
   l.store "Recover your password", ""
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", ""
-  l.store "Category could not be saved.", ""
-
   # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "שגיאה, אינך רשאי לבצע פעולה זו"
   l.store "Preview", "תצוגה מקדימה"
@@ -52,8 +47,6 @@ Localization.define("he_IL") do |l|
 
   # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
-
-  # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "התוית עודכנה בהצלחה."
 
   # app/controllers/admin/themes_controller.rb
@@ -71,7 +64,6 @@ Localization.define("he_IL") do |l|
   l.store "Delete content", "מחק תוכן"
   l.store "Are you sure?", "האם אתה בטוח? "
   l.store "Please select", "אנא בחר"
-  l.store "All categories", ""
   l.store "All authors", ""
   l.store "All published dates", ""
   l.store "There are no %s yet. Why don't you start and create one?", ""
@@ -113,18 +105,10 @@ Localization.define("he_IL") do |l|
   l.store "Spam?", "ספאם ?"
   l.store "Just Marked As Spam", "סומן כספאם"
 
-  # app/views/admin/categories/_categories.html.erb
   l.store "Reorder", "סדר מחדש"
   l.store "Sort alphabetically", "מיין לפי האלף-בית"
-
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "האם אתה בטוח שברצונך למחוק את הקטגורייה ?"
   l.store "Delete this category", "מחק קטגורייה זו"
-
-  # app/views/admin/categories/new.html.erb
-  l.store "%s Category", ""
-
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(בוצע)"
 
   # app/views/admin/content/_attachment.html.erb
@@ -142,7 +126,6 @@ Localization.define("he_IL") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "האם אתה בטוח שברצונך למחוק כתבה זו"
   l.store "Delete this article", "מחק כתבה זו"
-  l.store "Articles", "כתבות"
   l.store "Most popular", "הכי פופלריים"
   l.store "Nothing to show yet", "אין מה להציג כרגע"
   l.store "No posts yet, why don't you start and write one", "אין כתבות עדיין, למה שלא תתחיל לכתוב כתבה חדשה"
@@ -156,7 +139,6 @@ Localization.define("he_IL") do |l|
   l.store "Limit to spam", "סווג כספאם"
   l.store "Comments for", "תגובות על"
   l.store "Search Comments and Trackbacks that contain", "חפש תגובות או עוקבים-חזרה המכילים"
-  l.store "Pages", "דפים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"
   l.store "Delete this page", "מחק דף זה"
   l.store "Previous page", "הדף הקודם"
@@ -205,11 +187,6 @@ Localization.define("he_IL") do |l|
   l.store "Show full article on feed", "הצג כתבה מלאה במזין החדשות"
   l.store "Feedburner ID", ""
   l.store "Search Engine Optimisation", "אופטימיזצית מנוע חיפוש"
-  l.store "Format of permalink", ""
-  l.store "Meta description", ""
-  l.store "Search Engine Optimization", ""
-
-  # app/views/admin/settings/update_database.html.erb
   l.store "Information", "מידע"
   l.store "Current database version", "גרסת בסיס הנתונים הנוכחית"
   l.store "New database version", "גירסת בסיס הנתונים החדשה"
@@ -254,23 +231,14 @@ Localization.define("he_IL") do |l|
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
   l.store "RSS and Atom feeds", ""
   l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-
-  # app/views/admin/tags/_form.html.erb
   l.store "Display name", "שם התצוגה"
-
-  # app/views/admin/tags/destroy.html.erb
   l.store "Are you sure you want to delete the tag", "האם אתה בטוח שרצונך למחוק תווית זו ?"
   l.store "Delete this tag", "מחק תוויות זו"
-
-  # app/views/admin/tags/edit.html.erb
   l.store "Editing ", "עורך"
   l.store "Back to tags list", "חזרה לרשימת התוויות"
-
-  # app/views/admin/tags/index.html.erb
   l.store "Display Name", "שם תצוגה"
   l.store "Manage tags", "נהל תוויות"
 
@@ -422,15 +390,6 @@ Localization.define("he_IL") do |l|
 
   l.store "add me to Twitter", ""
   l.store "Trackbacks for", "עוקבי חזרה עבור"
-
-  l.store "Search results for:", ""
-
-  # themes/true-blue-3/views/categories/index.html.erb
-
-  # themes/true-blue-3/views/categories/show.html.erb
-  l.store "Previous", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "ארכיון"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
